@@ -4,8 +4,8 @@
 - base technology: React
 - idea: provide users with simple UI to create, adjust and deploy the end-result React projects (as games)
 - topics: 2d games: card game, board game, fort defense/offense game, text adventure game, etc.
-- creator/author being the core user of this cloud tool
-- relieves the user from the local space
+- creator/author being the core user of this cloud platform
+- relieves the user from the local space issue and portability of devices during travel
 
 ### Features:
 - account systems for creators and players
