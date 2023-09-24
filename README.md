@@ -1,6 +1,6 @@
 # ClouderOut_v1
 
-## Plan & intro of CloudOut: a cloud-based lightweight game engine for 2d games
+## Plan & intro of ClouderOut: a cloud-based lightweight game engine for 2d games
 - base technology: React
 - idea: provide users with simple UI to create, adjust and deploy the end-result React projects (as games)
 - topics: 2d games: card game, board game, fort defense/offense game, text adventure game, etc.
