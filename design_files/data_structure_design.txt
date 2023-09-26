@@ -1,0 +1,5 @@
+each "piece"(small level) can either be a conversation of game-round [pieces are by default linear order]
+each "sequence"(large level) can contain 1 or more "pieces" [sequence is with LinkedList pointers for flexible orders]
+each "chapter"(game stage level) is linked by linear order
+
+editing option of "piece" can be among the following game types: card, board, fort defense, fort offense, text adventure
