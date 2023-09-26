@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import GameMaker from './components/GameMaker.js'
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         </p>
 
         <p>That is, the user should sign up / log in first, and then manage their projects.</p>
-        
+        <GameMaker></GameMaker>
       </header>
     </div>
   );
