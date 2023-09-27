@@ -12,7 +12,11 @@ export default function GameMaker() {
 
     function goToProjectManagingPanel() {
       navigate('/projectmanagingpanel', { replace: true });
-  }
+    }
+
+    function goToPieceScreenEditingPanel() {
+      navigate('/piecepanel', { replace: true});
+    }
     
     return (
   <div>
@@ -26,6 +30,7 @@ export default function GameMaker() {
       <br></br> 3.edit piece/screen/move of a sequence/level [piece/screen editing-panel]
     </p>
     
+    <button class="button" onClick={goToPieceScreenEditingPanel}>Go to PieceScreenEditingPanel</button>
 
 
   </div>
