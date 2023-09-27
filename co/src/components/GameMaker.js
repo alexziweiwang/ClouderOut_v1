@@ -20,12 +20,14 @@ export default function GameMaker() {
     <button class="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
 
     <p className="plans">This is GameMaker Component!!
-    <br></br> Here, the user can do the following:
-    <br></br> 1.arrange chapters
-    <br></br> 2.arrange sequences/individual levels
-    <br></br> 3.edit piece/move of a sequence/level
+      <br></br> Here, the user can do the following:
+      <br></br> 1.arrange chapters
+      <br></br> 2.arrange sequences/individual levels
+      <br></br> 3.edit piece/screen/move of a sequence/level [piece/screen editing-panel]
     </p>
     
+
+
   </div>
     );
 }
