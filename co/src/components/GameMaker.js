@@ -20,8 +20,10 @@ export default function GameMaker() {
     
     return (
   <div>
-    <button class="button" onClick={goToDashboard}>Return to Dashboard </button>
-    <button class="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
+    <div class="returning_buttons">
+      <button class="button" onClick={goToDashboard}>Return to Dashboard </button>
+      <button class="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
+    </div>
 
     <p className="plans">This is GameMaker Component!!
       <br></br> Here, the user can do the following:

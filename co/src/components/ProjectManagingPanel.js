@@ -19,7 +19,7 @@ export default function ProjectManagerPanel() {
   <div>    
     <div>
 
-        <button class="button" onClick={goToDashboard}>Return to Dashboard </button>
+        <div class="returning_buttons"><button class="button" onClick={goToDashboard}>Return to Dashboard </button></div>
         <p className="plans">This is ProjectManagerPanel Component!!
           <br></br>Here, the user can create new projects, or select specific projects to edit.
           <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
