@@ -8,13 +8,15 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/gamemaker" element={<GameMaker />} />
       </Routes>
 
-      <header className="App-header">
-        <Dashboard></Dashboard>
-      </header>
+      {/* <header className="App-header">
+      </header> */}
+    
+     
     </div>
   );
 }
