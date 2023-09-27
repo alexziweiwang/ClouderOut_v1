@@ -11,8 +11,9 @@ export default function GameMaker() {
     
     return (
   <div>
-    This is GameMaker Component!!
     <button onClick={goToGameMaker}>Return to Dashboard </button>
+
+    This is GameMaker Component!!
   </div>
     );
 }
