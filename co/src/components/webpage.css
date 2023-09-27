@@ -1,11 +1,3 @@
-.GameMaker {
-    text-align: center;
-}
-
-.plans {
-    color: rgb(64, 121, 171);
-}
-
 .button {
     background-color: #f0aa54;
     color: white;
@@ -16,4 +8,8 @@
     border: none;
     text-decoration: none;
     margin: 6px;
+}
+
+.plans {
+    color: rgb(64, 121, 171);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import styles from './ProjectManagingPanel.css';
+import styles from './webpage.css';
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function ProjectManagerPanel() {
     
     
     <div>
-        <button onClick={goToGameMaker}> Go To GameMaker! </button>
+        <button class="button" onClick={goToGameMaker}> Go To GameMaker! </button>
     </div>
     
 

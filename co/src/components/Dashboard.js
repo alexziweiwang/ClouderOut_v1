@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import styles from './Dashboard.css'
+import styles from './webpage.css';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
@@ -20,7 +20,7 @@ export default function Dashboard() {
 
     </p>
    
-    <button onClick={goToProjectManagingPanel}> Go To Project Managing Panel </button>
+    <button class="button" onClick={goToProjectManagingPanel}> Go To Project Managing Panel </button>
 
   </div>
     );
