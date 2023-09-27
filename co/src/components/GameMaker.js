@@ -2,17 +2,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-export default function Dashboard() {
+export default function GameMaker() {
     const navigate = useNavigate();
 
     function goToGameMaker() {
-        navigate('/gamemaker', { replace: true });
+        navigate('/dashboard', { replace: true });
     }
     
     return (
   <div>
-    This is ... Dashboard Component
-    <button onClick={goToGameMaker}>Go To GameMaker! </button>
+    This is GameMaker Component!!
+    <button onClick={goToGameMaker}>Return to Dashboard </button>
   </div>
     );
 }
