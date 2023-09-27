@@ -6,21 +6,25 @@ import styles from './webpage.css';
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
 
+
+    function goToDashboard() {
+      navigate('/dashboard', { replace: true });
+    }
+  
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true });
     }
     
     return (
-  <div>
-    <p className="plans">This is ProjectManagerPanel Component!!
-    <br></br>Here, the user can create new projects, or select specific projects to edit.
-    <br></br>flow: create or continue? if create, then create and complete or start with game-maker?
-    
-    </p>
-    
-    
-    
+  <div>    
     <div>
+
+        <button class="button" onClick={goToDashboard}>Return to Dashboard </button>
+        <p className="plans">This is ProjectManagerPanel Component!!
+          <br></br>Here, the user can create new projects, or select specific projects to edit.
+          <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
+        </p>
+       
         <button class="button" onClick={goToGameMaker}> Go To GameMaker! </button>
     </div>
     
