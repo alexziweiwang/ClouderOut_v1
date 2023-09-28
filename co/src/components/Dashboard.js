@@ -21,11 +21,9 @@ export default function Dashboard() {
     
     <div className="dashboard_content">
 
-      <p className="plans"> This is ... *Dashboard Component*
-      <br></br>Here, the user can edit their profile, setup account settings, or go to projects.
-      </p>
+      <p className="plans"> This is ... *Dashboard Component* </p>
 
-      <p> TODO: plan -- if user want to do the setting/adjustment in this part of the screen? 
+      <p className="plans"> TODO: plan -- if user want to do the setting/adjustment in this part of the screen? 
       <br></br> that is, keep the sidebar for them to jump back and forth, and content part for actual editing
       <br></br> plan: conditionally render the correct content here? according to the chosen tab on side bar ...?
       </p>
