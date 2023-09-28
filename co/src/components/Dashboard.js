@@ -17,15 +17,17 @@ export default function Dashboard() {
     return (
   <div className="page">
     <Sidebar/>
-    <div className="dashboard_content">
-      <p className="plans"> This is ... Dashboard Component
-      Here, the user can edit their profile, setup account settings, or go to projects.
 
+    
+    <div className="dashboard_content">
+
+      <p className="plans"> This is ... *Dashboard Component*
+      <br></br>Here, the user can edit their profile, setup account settings, or go to projects.
       </p>
-      
+
       <p> TODO: plan -- if user want to do the setting/adjustment in this part of the screen? 
       <br></br> that is, keep the sidebar for them to jump back and forth, and content part for actual editing
-
+      <br></br> plan: conditionally render the correct content here? according to the chosen tab on side bar ...?
       </p>
       
       <button class="button" onClick={goToProjectManagingPanel}> Go To Project Managing Panel </button>
