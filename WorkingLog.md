@@ -5,3 +5,5 @@
 
 ### Content:
 - 2023-Sept-23: Creation and setup of GitHub repository. Included some future plans and potential tasks.
+
+- 2023-Sept-27: Planning and reading about [React design patterns]. For flexible game-node design.
