@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Dashboard />} />  {/* TODO change later for default entry page */}
+        <Route path="*" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projectmanagingpanel" element={<ProjectManagerPanel />} />
         <Route path="/gamemaker" element={<GameMaker />} />
