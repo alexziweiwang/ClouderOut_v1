@@ -1,5 +1,10 @@
-each "/screen" can be a conversation or game-move[pieces/screens are by default linear order]
-each "sequence"(small level) can contain 1 or more "pieces/screens"; game-round(?) [sequence is with LinkedList pointers for flexible orders]
-each "chapter"(large level) is linked by linear order
+each "screen/piece" can be a conversational screen (optional for sequence/game node)
 
-editing option of "piece/screen" can be among the following game types: card, board, fort defense, fort offense, text adventure
+each "sequence"/small level/game-node: can contain 1 or more "pieces/screens" or a tyle of game-round [game-node is with LinkedList pointers for flexible orders]
+
+each "chapter"(large level) is linked by linear order (consists of game-nodes)
+
+
+** a game-node can be among the following game types: card, board, fort defense, fort offense, conversational text display
+
+
