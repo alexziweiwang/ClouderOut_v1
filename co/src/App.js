@@ -15,13 +15,7 @@ function App() {
         <Route path="/projectmanagingpanel" element={<ProjectManagerPanel />} />
         <Route path="/gamemaker" element={<GameMaker />} />
         <Route path="/piecepanel" element={<PieceScreenEditingPanel />} />
-      </Routes>
-
-
-      {/* <header className="App-header">
-      </header> */}
-    
-     
+      </Routes>     
     </div>
   );
 }

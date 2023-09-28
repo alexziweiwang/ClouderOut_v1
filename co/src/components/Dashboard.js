@@ -14,14 +14,17 @@ export default function Dashboard() {
     }
     
     return (
-  <div>
-    <p className="plans"> This is ... Dashboard Component
-    Here, the user can edit their profile, setup account settings, or go to projects.
+  <div className="page">
+    <div className="sidebar" > Welcom, user ___ ! </div>
+    <div className="dashboard_content">
+      <p className="plans"> This is ... Dashboard Component
+      Here, the user can edit their profile, setup account settings, or go to projects.
 
-    </p>
+      </p>
    
-    <button class="button" onClick={goToProjectManagingPanel}> Go To Project Managing Panel </button>
-
+      <button class="button" onClick={goToProjectManagingPanel}> Go To Project Managing Panel </button>
+    </div>
+ 
   </div>
     );
 }
