@@ -20,15 +20,15 @@
 }
 
 .dashboard_content {
-    background-color: rgb(232, 231, 229);
-    width: 85%;
+    background-color: rgb(247, 246, 244);
+    width: 91%;
     height: 100vh; 
     float: right;
 }
 
 .sidebar {
-    background-color: rgb(175, 210, 191);
-    width: 15%;
+    background-color: rgb(93, 97, 103);
+    width: 9%;
     height: 100vh; 
     float: left;
 }
