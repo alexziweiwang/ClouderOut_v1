@@ -1,4 +1,4 @@
-## This log file records any work completed but not reflected on code or uploaded diagrams (for example, time taken and end results for designing code architectures or visual elements, or time taken for a larger scope of research on product perspective)
+## This log file records any task worked on but not reflected on code or uploaded diagrams (for example, time taken and end results for designing code architectures or visual elements, or time taken for a larger scope of research on product perspective)
 
 ### Format: 
 [Date(YYYY/Month/DD)]:[Task Done]. [(optional) Description or detail].
