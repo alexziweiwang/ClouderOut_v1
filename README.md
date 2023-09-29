@@ -16,3 +16,4 @@
 [ ] testing plans
 [ ] architecture design, user flow, solution plans for concerns
 [ ] hosting and launching options
+[ ] game project: resource management solution
