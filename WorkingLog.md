@@ -8,3 +8,4 @@
 
 - 2023-Sept-27: Planning and reading about [React design patterns]. For flexible game-node design.
 - 2023-Sept-27: Read and consider MVVM architecture
+- 2023-Sept-28: Read and know more about MVVM architecture
