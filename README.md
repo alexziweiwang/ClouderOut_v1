@@ -17,3 +17,4 @@
 [ ] architecture design, user flow, solution plans for concerns
 [ ] hosting and launching options
 [ ] game project: resource management solution (carefully handle re-renders)
+[ ] abstraction of game logic: into modularizable organizer
