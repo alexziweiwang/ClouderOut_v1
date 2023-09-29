@@ -11,7 +11,8 @@
 - lightweight computer requirement for creators (because main functionalities are done through on the web tool)
 
 ### TODO list:
-- base app: game engine part without topic: UI, menu, etc.
-- design of each module (types of 2d games)
-- testing plans
-- architecture design, user flow, solution plans for concerns
+[ ] base app: game engine part without topic: UI, menu, etc.
+[ ] design of each module (types of 2d games)
+[ ] testing plans
+[ ] architecture design, user flow, solution plans for concerns
+[ ] hosting and launching options
