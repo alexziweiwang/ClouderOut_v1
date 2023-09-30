@@ -15,3 +15,6 @@ uses card(s) to "attack" the opponent
 - trading rules: if allowing players to trade cards at hand, etc.
 - player diminish rule: what to do with cards at hand when one player is out
 - card visible rule: whether other players can see the player's cards, hp, etc.
+- round playing card out: all players should present card at the same time, or there is a type of sequence
+- player sequence: how to decide sequence of player's move
+- player group: in multiplayer games, allows players to be in groups to fight together; also decide whether their winning is on group or individual
