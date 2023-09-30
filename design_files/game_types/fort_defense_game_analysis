@@ -1,0 +1,8 @@
+Fort Defense Games
+
+- placable spots for player's fighters
+- player's fighters: various properties in fighting, including attack value, speed, range, skills, skill cool down, etc.
+- movable positions and paths for enemy
+- behaviour of enemies: normal offence movings, special moments (such as with skills, buff),
+- winning and losing rules: 1) touching ground; 2) time out;
+
