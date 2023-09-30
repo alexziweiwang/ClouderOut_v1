@@ -6,8 +6,12 @@ uses card(s) to "attack" the opponent
 - winning rules can be different: 1) loses when hp becomes 0; 2) wins when all cards out of hand; 3) loses when all cards out of hand
 - card strength: 1) linear ranking, pure numeric value for each card; 2) circular comparison, only loses when meets the upper card; 3) circular comparison, only wins when meets lower card
 - card properties: each card can have several properties (for example, value + type, or more)
-- combination of card, custom: use relationship logic (and, or, not, >, >=, ==, <=, <) to decide the winning one
+- combination of card, custom: use relationship logic (and, or, not, >, >=, ==, <=, <) to decide the winning hand (by which player)
  (TODO: mini task: make a game-rule mini app for users with no coding experience to organize their custom game rules)
 - custom skills, buffs, tools: adding effects to any action of the associated card/player
 - card fighting format: once together, or by player's choice of fighting sequence
 - card in/out rules: if players would need to receive cards each round, or they use all cards on hand, or if they transfer cards to others, etc.
+- sending out cards: if cards should be send to players, what is expected when all cards in stock are out
+- trading rules: if allowing players to trade cards at hand, etc.
+- player diminish rule: what to do with cards at hand when one player is out
+- card visible rule: whether other players can see the player's cards, hp, etc.
