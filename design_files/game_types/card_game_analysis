@@ -1,0 +1,9 @@
+Card Game:
+uses card to "attack" the opponent
+
+- opponent can be 1 (dual) or more (multiplayer)
+- attacked target(to one opponent) can be one(card holder) or more(each card's character)
+- winning rules can be different: 1) loses when hp becomes 0; 2) wins when all cards out of hand; 3) loses when all cards out of hand
+- card strength: 1) linear ranking, pure numeric value for each card; 2) circular comparison, only loses when meets the upper card; 3) circular comparison, only wins when meets lower card
+- card properties: each card can have several properties (for example, value + type, or more)
+- combination sel custom: use relationship logic (and, or, not, >, >=, ==, <=, <) to decide the winning one
