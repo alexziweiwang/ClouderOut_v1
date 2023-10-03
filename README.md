@@ -12,9 +12,13 @@
 
 ### TODO list:
 [ ] base app: game engine part without topic: UI, menu, etc.
-[ ] design of each module (types of 2d games)
+[ ] design of each module (for types of various 2d games)
 [ ] testing plans
-[ ] architecture design, user flow, solution plans for concerns
-[ ] hosting and launching options
-[ ] game project: resource management solution (carefully handle re-renders)
+[x] architecture design, user flow
+[ ] solution plans for concerns
+[x] hosting and launching options, plan
+[ ] hosting and launching options, implementation
+[ ] game product: resource management solution (carefully handle re-renders)
 [ ] abstraction of game logic: into modularizable organizer
+[ ] game mode analysis
+[ ] sample small projects (for test and demo)
