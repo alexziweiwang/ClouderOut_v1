@@ -22,3 +22,4 @@
 [ ] abstraction of game logic: into modularizable organizer
 [ ] game mode analysis
 [ ] sample small projects (for test and demo)
+[ ] logic organizer for game rule (this can be a module to be used): between nodes & inside one game-round for specific game rules
