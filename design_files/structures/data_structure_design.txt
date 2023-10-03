@@ -1,0 +1,14 @@
+** a game-node[parent class] can be among the following game types[child classes]: card, board, fort defense, fort offense, conversational text display
+
+*** game node aspects:
+for game-round:
+1.game rule
+2.element setting
+3.looking setting
+(for example, for board games, setup positions of "movable spots", "paths", and each "token")
+(the author can provide a picture as background board for the board game, and add visible or invisible "movable spots";
+they also need to specify the rules of moving.
+TODO: think of modularized way of setting up game rules.
+) (DOING: game mode analysis)
+
+
