@@ -1,13 +1,20 @@
 import * as React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import styles from './webpage.css';
 
 export default function GameMaker() {
     const navigate = useNavigate();
+    const [val, setValue] = useState('Node Name');
+
+
+    function onInputTextChange(event) {
+      setValue({value: event.target.value});
+    }
 
     function goToDashboard() {
-        navigate('/dashboard', { replace: true });
+      navigate('/dashboard', { replace: true });
     }
 
     function goToProjectManagingPanel() {
@@ -28,9 +35,24 @@ export default function GameMaker() {
     <p className="plans">
       TODO: Entry: Create New Node
       <br></br> - node name 
+      <br></br> - node type (game type)
       <br></br> - inserting place -- basically updating these pre-nodes' "next node" pointer to this new node
       <br></br> (fill in and see viewer's change, confirm to update cloud db)
     </p>
+    <div className="setting_area"> Create a New Node
+    <br></br>
+    <input type="text" value={val} onChange={onInputTextChange} />
+
+    <br></br>
+    <select>
+      <option value="cardg">Card Game</option>
+      <option value="boardg">Board Game</option>
+      <option value="fortdefenseg">Tower Defense</option>
+      <option value="conversation">Conversation</option>
+    </select>
+
+
+    </div>
 
     <p className="plans">
           CONSIDERING solution of "linked list looks": nodes and arrows
@@ -56,6 +78,8 @@ export default function GameMaker() {
       <br></br> 2. solution of logic organizer for nodes
     </p>
 
+
+    {/* <p className="plans">Temp: </p> */}
       {/* this can be selected in the future: as a child class of node */}
     {/* <button class="button" onClick={goToPieceScreenEditingPanel}>Go to PieceScreenEditingPanel</button> */}
 

@@ -16,6 +16,12 @@
     margin-left: 100px;
 }
 
+.setting_area {
+    color:rgb(7, 7, 7);
+    text-align: left;
+    margin-left: 70px;
+}
+
 .page {
     justify-content: flex-start;
     min-height: 100vh; 
