@@ -33,6 +33,10 @@ export default function GameMaker() {
     </p>
 
     <p className="plans">
+      concept of "node group"? when needing to merge some tree-like order into one and continue, group them by node-group for a linear continuation
+    </p>
+    
+    <p className="plans">
       TODO: Entry: Arrange Node order(including Node-editing)
     </p>
     <p className="plans">
