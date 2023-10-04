@@ -25,22 +25,20 @@ export default function GameMaker() {
       <button class="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
     </div>
 
-    <p className="plans">This is GameMaker Component!!
-      <br></br> Here, the user can do the following:
-      <br></br> 1.arrange chapters
-      <br></br> 2.arrange sequences/individual levels
-      <br></br> 3.edit piece/screen/move of a sequence/level [piece/screen editing-panel]
-    </p>
-
     <p className="plans">
-      Plan about "sequence": this is a minimum playable unit. 
-      <br></br>It can be one round of game (card/board/fort offense/fort defense games, or a linear sequence of pieces/screens for conversation)  
-      <br></br>It (usually) carries some input and produces some output (such as game-round result, for game-data changes)
+      TODO: Entry: Create New Node
+    </p>
+    <p className="plans">
+      TODO: Entry: Arrange Nodes (including Node-editing)
+    </p>
+    <p className="plans">
+      drag-and-drop? for pointers and orders between nodes...
+    </p>
+    <p className="plans">
+      TODO: logic organizer: let users to decide node connection rules
     </p>
 
-    
     <button class="button" onClick={goToPieceScreenEditingPanel}>Go to PieceScreenEditingPanel</button>
-
 
   </div>
     );
