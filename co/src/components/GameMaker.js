@@ -38,18 +38,20 @@ export default function GameMaker() {
     </p>
     
     <p className="plans">
-      design of interactable graph
+      *** design of interactable graph *** 
       <br></br>visualization and operation panel: view, hover and double-click
       <br></br>hover a node would show the starting wording/desciption of this node
       <br></br>double-click a node would pop an intro window? for options?
     </p>
 
     <p className="plans">
-      TODO: logic organizer: let users to decide node connection rules *important*
+      TODO: logic organizer: let users to fill node-connection-rules *important*
+      <br></br>carry game data to the decision node
+      <br></br>with the "formula" the user created by custom logic organizer, update "next node" assignment of this "decision node"?
     </p>
 
     <p className="plans">
-      Tasks TODO: 
+      -------------- Tasks TODO -------------- 
       <br></br> 1. visualization and setting of graph of nodes
       <br></br> 2. solution of logic organizer for nodes
     </p>
