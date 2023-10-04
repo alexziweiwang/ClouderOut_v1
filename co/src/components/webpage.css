@@ -20,6 +20,13 @@
     color:rgb(7, 7, 7);
     text-align: left;
     margin-left: 70px;
+    padding: 10px;
+}
+
+.setting_item {
+    margin-top: 3px;
+    margin-bottom: 3px;
+
 }
 
 .page {

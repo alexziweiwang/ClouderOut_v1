@@ -41,18 +41,27 @@ export default function GameMaker() {
     <div className="setting_area"> Create a New Node
     <br></br>
     <input 
+      className="setting_item"
       type="text" value={val} 
-      onBlur={e => {console.log(e.target.value);}}
+      // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
       onChange={e => {setValue(e.target.value)}}  
     />
 
     <br></br>
-    <select>
+    <select className="setting_item">
+      
       <option value="cardg">Card Game</option>
       <option value="boardg">Board Game</option>
       <option value="fortdefenseg">Tower Defense</option>
       <option value="conversation">Conversation</option>
     </select>
+
+    <br></br>
+    <button 
+      className="setting_item"
+      onClick={e => {console.log("create-node submitted:" + val)}}>
+        Create
+    </button>
 
 
     </div>
