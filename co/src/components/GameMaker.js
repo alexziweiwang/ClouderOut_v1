@@ -34,25 +34,18 @@ export default function GameMaker() {
     </p>
 
     <p className="plans">
-          (concept of "node group"? when needing to merge some tree-like order into one and continue, group them by node-group for a linear continuation
-      <br></br>   default: everything in one node-group
-      <br></br>   when there are branches, and needing to merge later, separate trees from later continuing process, by using nodegroup0 + nodegroup1)
-    </p>
-
-    <p className="plans">
-      TODO: node graph visulization
-      <br></br> clickable for brief info, edit options, and trash options
+          CONSIDERING solution of "child nodes merging and continue"
     </p>
     
     <p className="plans">
-      TODO: Entry: Arrange Node order(including Node-editing)
+      design of interactable graph
+      <br></br>visualization and operation panel: view, hover and double-click
+      <br></br>hover a node would show the starting wording/desciption of this node
+      <br></br>double-click a node would pop an intro window? for options?
     </p>
+
     <p className="plans">
-      drag-and-drop? for pointers and orders between nodes... 
-      <br></br>visualization and operation panel: *viewer and setter*
-    </p>
-    <p className="plans">
-      TODO: logic organizer: let users to decide node connection rules
+      TODO: logic organizer: let users to decide node connection rules *important*
     </p>
 
     <p className="plans">
