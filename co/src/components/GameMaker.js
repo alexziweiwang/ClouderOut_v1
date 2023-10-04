@@ -28,13 +28,13 @@ export default function GameMaker() {
     <p className="plans">
       TODO: Entry: Create New Node
       <br></br> - node name 
-      <br></br> - connection type: as a branch or merged next-one
-      <br></br> - connection target: (some node name)
+      <br></br> - inserting place -- basically updating these pre-nodes' "next node" pointer to this new node
       <br></br> (fill in and see viewer's change, confirm to update cloud db)
     </p>
 
     <p className="plans">
-          CONSIDERING solution of "child nodes merging and continue"
+          CONSIDERING solution of "linked list looks": nodes and arrows
+          <br></br>TODO use SVG
     </p>
     
     <p className="plans">
