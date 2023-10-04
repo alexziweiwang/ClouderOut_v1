@@ -6,8 +6,7 @@ import styles from './webpage.css';
 
 export default function GameMaker() {
     const navigate = useNavigate();
-    const [val, setValue] = useState('Node Name');
-
+    const [val, setValue] = useState('');
 
     function onInputTextChange(event) {
       setValue({value: event.target.value});
@@ -41,7 +40,11 @@ export default function GameMaker() {
     </p>
     <div className="setting_area"> Create a New Node
     <br></br>
-    <input type="text" value={val} onChange={e => {setValue(e.target.value); console.log(val)}} />
+    <input 
+      type="text" value={val} 
+      onBlur={e => {console.log(e.target.value);}}
+      onChange={e => {setValue(e.target.value)}}  
+    />
 
     <br></br>
     <select>
