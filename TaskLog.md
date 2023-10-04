@@ -12,4 +12,5 @@
 - 2023-Sept-28: Read and know more about MVVM architecture
 - 2023-Sept-28: Consider and plan for game material storage topic
 
-- 2023-Oct-03: Read and consider drag-and-drop for node arrangement in game-maker
+- 2023-Oct-03: Read and consider interactable & flexible node arrangement in game-maker
+- 2023-Oct-03: Read and consider CSS custom properties

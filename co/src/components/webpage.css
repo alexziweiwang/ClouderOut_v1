@@ -12,6 +12,8 @@
 
 .plans {
     color: rgb(64, 121, 171);
+    text-align: left;
+    margin-left: 100px;
 }
 
 .page {

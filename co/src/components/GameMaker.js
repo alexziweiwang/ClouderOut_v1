@@ -27,13 +27,21 @@ export default function GameMaker() {
 
     <p className="plans">
       TODO: Entry: Create New Node
-      <br></br> add node name 
-      <br></br> add parent node
-      <br></br> (fill in and see viewer's change)
+      <br></br> - node name 
+      <br></br> - connection type: as a branch or merged next-one
+      <br></br> - connection target: (some node name)
+      <br></br> (fill in and see viewer's change, confirm to update cloud db)
     </p>
 
     <p className="plans">
-      concept of "node group"? when needing to merge some tree-like order into one and continue, group them by node-group for a linear continuation
+          (concept of "node group"? when needing to merge some tree-like order into one and continue, group them by node-group for a linear continuation
+      <br></br>   default: everything in one node-group
+      <br></br>   when there are branches, and needing to merge later, separate trees from later continuing process, by using nodegroup0 + nodegroup1)
+    </p>
+
+    <p className="plans">
+      TODO: node graph visulization
+      <br></br> clickable for brief info, edit options, and trash options
     </p>
     
     <p className="plans">
@@ -48,7 +56,8 @@ export default function GameMaker() {
     </p>
 
     <p className="plans">
-      Tasks TODO: 1. visualization and setting of graph of nodes
+      Tasks TODO: 
+      <br></br> 1. visualization and setting of graph of nodes
       <br></br> 2. solution of logic organizer for nodes
     </p>
 
