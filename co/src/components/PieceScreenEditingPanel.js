@@ -13,7 +13,7 @@ export default function PieceScreenEditingPanel() {
     return (
 
         <div>
-            <div class="returning_buttons"><button class="button" onClick={goToGameMaker}> Return To GameMaker! </button></div>
+            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> Return To GameMaker! </button></div>
             
             <p className="plans">This is piece/screen editing panel
             <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)

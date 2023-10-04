@@ -27,9 +27,9 @@ export default function GameMaker() {
     
     return (
   <div>
-    <div class="returning_buttons">
-      <button class="button" onClick={goToDashboard}>Return to Dashboard </button>
-      <button class="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
+    <div className="returning_buttons">
+      <button className="button" onClick={goToDashboard}>Return to Dashboard </button>
+      <button className="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
     </div>
 
     <p className="plans">
@@ -41,7 +41,7 @@ export default function GameMaker() {
     </p>
     <div className="setting_area"> Create a New Node
     <br></br>
-    <input type="text" value={val} onChange={onInputTextChange} />
+    <input type="text" value={val} onChange={e => {setValue(e.target.value); console.log(val)}} />
 
     <br></br>
     <select>
@@ -81,7 +81,7 @@ export default function GameMaker() {
 
     {/* <p className="plans">Temp: </p> */}
       {/* this can be selected in the future: as a child class of node */}
-    {/* <button class="button" onClick={goToPieceScreenEditingPanel}>Go to PieceScreenEditingPanel</button> */}
+    {/* <button className="button" onClick={goToPieceScreenEditingPanel}>Go to PieceScreenEditingPanel</button> */}
 
   </div>
     );
