@@ -26,3 +26,4 @@
 - [ ] logic organizer for game rule (this can be a module to be used): between nodes & inside one game-round for specific game rules
 - [ ] game data sharing and update design
 - [ ] cloud db data structure design
+- [ ] account system design
