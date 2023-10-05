@@ -14,3 +14,5 @@
 
 - 2023-Oct-03: Read and consider interactable & flexible node arrangement in game-maker
 - 2023-Oct-03: Read and consider CSS custom properties
+
+- 2023-Oct-04: Read and consider SVG for game-node visualization
