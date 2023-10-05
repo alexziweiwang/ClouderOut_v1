@@ -5,24 +5,28 @@ import { useNavigate } from 'react-router-dom';
 import styles from './webpage.css';
 
 export default function GameMaker() {
-    const navigate = useNavigate();
-    const [val, setValue] = useState('');
+  // TODO testing
+  const nodeData = [
+    { nodeName: "plot1", width:100, height:40, rx:5, x:100, y:-10 },
+    { nodeName: "plot2", width:100, height:40, rx:5, x:160, y:-10 },
+    { nodeName: "option x", width:100, height:40, rx:5, x:220, y:-10 },
+    { nodeName: "option y", width:100, height:40, rx:5, x:280, y:-10 },
+  ]; 
 
-    function onInputTextChange(event) {
-      setValue({value: event.target.value});
-    }
+  const navigate = useNavigate();
+  const [val, setValue] = useState('');
 
-    function goToDashboard() {
-      navigate('/dashboard', { replace: true });
-    }
+  function goToDashboard() {
+    navigate('/dashboard', { replace: true });
+  }
 
-    function goToProjectManagingPanel() {
-      navigate('/projectmanagingpanel', { replace: true });
-    }
+  function goToProjectManagingPanel() {
+    navigate('/projectmanagingpanel', { replace: true });
+  }
 
-    function goToPieceScreenEditingPanel() {
-      navigate('/piecepanel', { replace: true});
-    }
+function goToPieceScreenEditingPanel() {
+  navigate('/piecepanel', { replace: true});
+}
     
     return (
   <div>
@@ -62,6 +66,42 @@ export default function GameMaker() {
       onClick={e => {console.log("create-node submitted:" + val)}}>
         Create
     </button>
+
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="nodes_viewer"
+        viewBox="10 -10 2000 2000"
+      >
+
+      {Object.keys(nodeData).map((nodeIndex, index) => {
+        const { width, height } = nodeData[nodeIndex];
+        const x = 100 + index * (width + 5);
+        const y = 2;
+        
+        return (
+            <g 
+              key={index}>
+              <rect
+                x={x}
+                y={y}
+                width={width}
+                height={height}
+                fill="none"
+                stroke="pink"
+                strokeWidth="2"
+              />
+              <text x={x + 5} y={y + 20} fill="grey">
+                {nodeData[nodeIndex].nodeName}
+              </text>
+            </g>
+        );
+      })}
+
+
+
+
+
+      </svg>
 
 
     </div>
