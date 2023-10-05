@@ -8,11 +8,11 @@ export default function GameMaker() {
   // TODO testing
   const x_base = 100, y_base = 2;
   const nodeData = [
-    { nodeName: "plot1", width:100, height:40, rx:5, x:x_base, y:y_base, nextNodes:[1] },
-    { nodeName: "plot2", width:100, height:40, rx:5, x:x_base+120, y:y_base, nextNodes:[2, 3] },
+    { nodeName: "plot1", width:100, height:40, rx:5, x:x_base, y:y_base + 30, nextNodes:[1] },
+    { nodeName: "plot2", width:100, height:40, rx:5, x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
     { nodeName: "option x", width:100, height:40, rx:5, x:x_base+240, y:y_base, nextNodes:[4] },
-    { nodeName: "option y", width:100, height:40, rx:5, x:x_base+360, y:y_base, nextNodes:[4] },
-    { nodeName: "end node", width:100, height:40, rx:5, x:x_base+480, y:y_base, nextNodes:[] },
+    { nodeName: "option y", width:100, height:40, rx:5, x:x_base+240, y:y_base + 60, nextNodes:[4] },
+    { nodeName: "end node", width:100, height:40, rx:5, x:x_base+360, y:y_base + 30, nextNodes:[] },
   ]; 
 
   // TODO x_val = x_base + index * (100 + 30);
@@ -100,7 +100,7 @@ function goToPieceScreenEditingPanel() {
                 <line
                   key={`line_${nodeIndex}_${nextIndex}`}
                   x1={x_val + width}
-                  y1={y_val + height / 2 - 15}
+                  y1={y_val + height / 2}
                   x2={nodeData[nextNodeIndex].x}
                   y2={nodeData[nextNodeIndex].y + height / 2}
                   stroke="green"
