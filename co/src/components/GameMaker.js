@@ -13,6 +13,10 @@ export default function GameMaker() {
     { nodeName: "option y", width:100, height:40, rx:5, x:280, y:-10 },
   ]; 
 
+  function handleNodeClick(name) {
+    console.log("node = " + name);
+  }
+
   const navigate = useNavigate();
   const [val, setValue] = useState('');
 
@@ -86,11 +90,11 @@ function goToPieceScreenEditingPanel() {
                 y={y}
                 width={width}
                 height={height}
-                fill="none"
-                stroke="pink"
-                strokeWidth="2"
+                fill="#b2efe0"
+                stroke="#b2b2b2"
+                onClick={() => handleNodeClick(nodeData[nodeIndex].nodeName)}
               />
-              <text x={x + 5} y={y + 20} fill="grey">
+              <text x={x + 5} y={y + 20} fill="#323232">
                 {nodeData[nodeIndex].nodeName}
               </text>
             </g>
