@@ -107,7 +107,7 @@ function goToPieceScreenEditingPanel() {
                   x1={x_val + width}
                   y1={y_val + height / 2}
                   x2={nodeData[nextNodeIndex].x}
-                  y2={nodeData[nextNodeIndex].y}
+                  y2={y_val + height / 2+ 20}
                   stroke="green"
                   strokeWidth="2"
                 />
