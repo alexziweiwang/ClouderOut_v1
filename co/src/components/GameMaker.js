@@ -6,13 +6,17 @@ import styles from './webpage.css';
 
 export default function GameMaker() {
   // TODO testing
+  const x_base = 100;
   const nodeData = [
-    { nodeName: "plot1", width:100, height:40, rx:5, x:100, y:-10, nextNodes:[1] },
-    { nodeName: "plot2", width:100, height:40, rx:5, x:160, y:-10, nextNodes:[2, 3] },
-    { nodeName: "option x", width:100, height:40, rx:5, x:220, y:-10, nextNodes:[4] },
-    { nodeName: "option y", width:100, height:40, rx:5, x:280, y:-10, nextNodes:[4] },
-    { nodeName: "end node", width:100, height:40, rx:5, x:280, y:-10, nextNodes:[] },
+    { nodeName: "plot1", width:100, height:40, rx:5, x:100, y:y_base, nextNodes:[1] },
+    { nodeName: "plot2", width:100, height:40, rx:5, x:160, y:y_base, nextNodes:[2, 3] },
+    { nodeName: "option x", width:100, height:40, rx:5, x:220, y:y_base, nextNodes:[4] },
+    { nodeName: "option y", width:100, height:40, rx:5, x:280, y:y_base, nextNodes:[4] },
+    { nodeName: "end node", width:100, height:40, rx:5, x:280, y:y_base, nextNodes:[] },
   ]; 
+
+  // TODO x_val = x_base + index * (100 + 30);
+
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
