@@ -6,13 +6,13 @@ import styles from './webpage.css';
 
 export default function GameMaker() {
   // TODO testing
-  const x_base = 100;
+  const x_base = 100, y_base = 2;
   const nodeData = [
-    { nodeName: "plot1", width:100, height:40, rx:5, x:100, y:y_base, nextNodes:[1] },
-    { nodeName: "plot2", width:100, height:40, rx:5, x:160, y:y_base, nextNodes:[2, 3] },
-    { nodeName: "option x", width:100, height:40, rx:5, x:220, y:y_base, nextNodes:[4] },
-    { nodeName: "option y", width:100, height:40, rx:5, x:280, y:y_base, nextNodes:[4] },
-    { nodeName: "end node", width:100, height:40, rx:5, x:280, y:y_base, nextNodes:[] },
+    { nodeName: "plot1", width:100, height:40, rx:5, x:x_base, y:y_base, nextNodes:[1] },
+    { nodeName: "plot2", width:100, height:40, rx:5, x:x_base+120, y:y_base, nextNodes:[2, 3] },
+    { nodeName: "option x", width:100, height:40, rx:5, x:x_base+240, y:y_base, nextNodes:[4] },
+    { nodeName: "option y", width:100, height:40, rx:5, x:x_base+360, y:y_base, nextNodes:[4] },
+    { nodeName: "end node", width:100, height:40, rx:5, x:x_base+480, y:y_base, nextNodes:[] },
   ]; 
 
   // TODO x_val = x_base + index * (100 + 30);
@@ -84,13 +84,30 @@ function goToPieceScreenEditingPanel() {
 
       {Object.keys(nodeData).map((nodeIndex, index) => {
         const { width, height } = nodeData[nodeIndex];
-        const x_val = 100 + index * (width + 30);
-        const y_val = 2;
-        nodeData[index].x = x_val;
-        nodeData[index].y = y_val;
+        const x_val = nodeData[index].x
+        const y_val = nodeData[index].y
         
         return (
           <g key={nodeIndex}>
+            {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
+              console.log("!   ");
+              console.log(nodeData[nodeIndex]);
+              console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
+              console.log(nodeData[nextNodeIndex]);
+              console.log("   ");
+
+              return (
+                <line
+                  key={`line_${nodeIndex}_${nextIndex}`}
+                  x1={x_val + width}
+                  y1={y_val + height / 2 - 15}
+                  x2={nodeData[nextNodeIndex].x}
+                  y2={nodeData[nextNodeIndex].y + height / 2}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+              );
+            })}
             <rect
               x={x_val}
               y={y_val}
@@ -103,21 +120,6 @@ function goToPieceScreenEditingPanel() {
             <text x={x_val + 5} y={y_val + 20} fill="#323232">
               {nodeData[nodeIndex].nodeName}
             </text>
-            {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
-              console.log("nextNode: " + nextNodeIndex);
-              return (
-                <line
-                  key={`line_${nodeIndex}_${nextIndex}`}
-                  x1={x_val + width}
-                  y1={y_val + height / 2}
-                  x2={nodeData[nextNodeIndex].x}
-                  y2={y_val + height / 2+ 20}
-                  stroke="green"
-                  strokeWidth="2"
-                />
-              );
-            })}
-
           </g>
         );
       })}
