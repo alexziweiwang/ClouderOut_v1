@@ -7,14 +7,15 @@ import styles from './webpage.css';
 export default function GameMaker() {
   // TODO testing
   const nodeData = [
-    { nodeName: "plot1", width:100, height:40, rx:5, x:100, y:-10 },
-    { nodeName: "plot2", width:100, height:40, rx:5, x:160, y:-10 },
-    { nodeName: "option x", width:100, height:40, rx:5, x:220, y:-10 },
-    { nodeName: "option y", width:100, height:40, rx:5, x:280, y:-10 },
+    { nodeName: "plot1", width:100, height:40, rx:5, x:100, y:-10, nextNodes:[1] },
+    { nodeName: "plot2", width:100, height:40, rx:5, x:160, y:-10, nextNodes:[2, 3] },
+    { nodeName: "option x", width:100, height:40, rx:5, x:220, y:-10, nextNodes:[4] },
+    { nodeName: "option y", width:100, height:40, rx:5, x:280, y:-10, nextNodes:[4] },
+    { nodeName: "end node", width:100, height:40, rx:5, x:280, y:-10, nextNodes:[] },
   ]; 
 
   function handleNodeClick(name) {
-    console.log("node = " + name);
+    console.log("node = " + name); //TODO
   }
 
   const navigate = useNavigate();
@@ -79,31 +80,43 @@ function goToPieceScreenEditingPanel() {
 
       {Object.keys(nodeData).map((nodeIndex, index) => {
         const { width, height } = nodeData[nodeIndex];
-        const x = 100 + index * (width + 5);
-        const y = 2;
+        const x_val = 100 + index * (width + 30);
+        const y_val = 2;
+        nodeData[index].x = x_val;
+        nodeData[index].y = y_val;
         
         return (
-            <g 
-              key={index}>
-              <rect
-                x={x}
-                y={y}
-                width={width}
-                height={height}
-                fill="#b2efe0"
-                stroke="#b2b2b2"
-                onClick={() => handleNodeClick(nodeData[nodeIndex].nodeName)}
-              />
-              <text x={x + 5} y={y + 20} fill="#323232">
-                {nodeData[nodeIndex].nodeName}
-              </text>
-            </g>
+          <g key={nodeIndex}>
+            <rect
+              x={x_val}
+              y={y_val}
+              width={width}
+              height={height}
+              fill="#b2efe0"
+              stroke="#b2b2b2"
+              onClick={() => handleNodeClick(nodeData[nodeIndex].nodeName)}
+            />
+            <text x={x_val + 5} y={y_val + 20} fill="#323232">
+              {nodeData[nodeIndex].nodeName}
+            </text>
+            {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
+              console.log("nextNode: " + nextNodeIndex);
+              return (
+                <line
+                  key={`line_${nodeIndex}_${nextIndex}`}
+                  x1={x_val + width}
+                  y1={y_val + height / 2}
+                  x2={nodeData[nextNodeIndex].x}
+                  y2={nodeData[nextNodeIndex].y}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+              );
+            })}
+
+          </g>
         );
       })}
-
-
-
-
 
       </svg>
 
