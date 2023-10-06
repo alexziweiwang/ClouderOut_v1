@@ -8,13 +8,13 @@ import styles from './webpage.css';
 export default function GameMaker() {
   // TODO testing
   const x_base = 100, y_base = 2;
-  let nodeData = [
+  const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", width:100, height:40, rx:5, x:x_base, y:y_base + 30, nextNodes:[1] },
     { nodeName: "plot2", width:100, height:40, rx:5, x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
     { nodeName: "option x", width:100, height:40, rx:5, x:x_base+240, y:y_base, nextNodes:[4] },
     { nodeName: "option y", width:100, height:40, rx:5, x:x_base+240, y:y_base + 60, nextNodes:[4] },
     { nodeName: "end node", width:100, height:40, rx:5, x:x_base+360, y:y_base + 30, nextNodes:[] },
-  ]; 
+  ]); 
 
   // TODO think of dynamic calculation for visualization
   // if even number of branch-nodes, then calculate mid-point y-value in mid line
@@ -22,6 +22,25 @@ export default function GameMaker() {
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
+  }
+
+  function addNewNode() {
+    const nodeDataTemp = nodeData;
+    if (val.length > 0) {
+      //TODO check if node name duplicate
+      const found = nodeData.some((item) => item.nodeName === val);
+      if (found) {
+        console.log("Invalid node name: duplicate")
+      } else {
+        console.log("create-node submitted:" + val); // TODO temp
+        const newDataItem = { nodeName: `${val}`, width:100, height:40, rx:5, x:x_base+480, y:y_base + 30, nextNodes:[]  };
+        nodeDataTemp.push(newDataItem);
+        setNodeData(nodeDataTemp);
+      }
+
+    } else {
+      console.log("Invalid node name: empty"); //TODO temp
+    }
   }
 
   const navigate = useNavigate();
@@ -76,23 +95,7 @@ function goToPieceScreenEditingPanel() {
     <br></br>
     <button 
       className="setting_item"
-      onClick={e => {
-          if (val.length > 0) {
-            //TODO check if node name duplicate
-            const found = nodeData.some((item) => item.nodeName === val);
-            if (found) {
-              console.log("Invalid node name: duplicate")
-            } else {
-              console.log("create-node submitted:" + val); // TODO temp
-              const newDataItem = { nodeName: `${val}`, width:100, height:40, rx:5, x:x_base+480, y:y_base + 30, nextNodes:[]  };
-              nodeData.push(newDataItem);
-            }
-
-          } else {
-            console.log("Invalid node name: empty"); //TODO temp
-          }
-        
-        }}>
+      onClick={addNewNode}>
         Create
     </button>
 
@@ -115,6 +118,8 @@ function goToPieceScreenEditingPanel() {
               // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
               // console.log(nodeData[nextNodeIndex]);
               // console.log("   ");      //TODO remove later (after all tests completed)
+              console.log("Drawing nodes!!!"); //TODO temp
+              console.log(nodeData); //TODO temp
 
               return (
                 <line
