@@ -8,12 +8,13 @@ import styles from './webpage.css';
 export default function GameMaker() {
   // TODO testing
   const x_base = 100, y_base = 2;
+  const node_width = 100, node_height = 40, node_rx = 5;
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", width:100, height:40, rx:5, x:x_base, y:y_base + 30, nextNodes:[1] },
-    { nodeName: "plot2", width:100, height:40, rx:5, x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
-    { nodeName: "option x", width:100, height:40, rx:5, x:x_base+240, y:y_base, nextNodes:[4] },
-    { nodeName: "option y", width:100, height:40, rx:5, x:x_base+240, y:y_base + 60, nextNodes:[4] },
-    { nodeName: "end node", width:100, height:40, rx:5, x:x_base+360, y:y_base + 30, nextNodes:[] },
+    { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1] },
+    { nodeName: "plot2", x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
+    { nodeName: "option x", x:x_base+240, y:y_base, nextNodes:[4] },
+    { nodeName: "option y", x:x_base+240, y:y_base + 60, nextNodes:[4] },
+    { nodeName: "end node", x:x_base+360, y:y_base + 30, nextNodes:[] },
   ]); 
 
   // TODO think of dynamic calculation for visualization
@@ -33,7 +34,7 @@ export default function GameMaker() {
         console.log("Invalid node name: duplicate")
       } else {
         console.log("create-node submitted:" + val); // TODO temp
-        const newDataItem = { nodeName: `${val}`, width:100, height:40, rx:5, x:x_base+480, y:y_base + 30, nextNodes:[]  };
+        const newDataItem = { nodeName: `${val}`, x:580, y:30, nextNodes:[]  }; //TODO temp
         nodeDataTemp.push(newDataItem);
         setNodeData(nodeDataTemp);
         setValue("");
@@ -107,7 +108,7 @@ function goToPieceScreenEditingPanel() {
       >
 
       {Object.keys(nodeData).map((nodeIndex, index) => {
-        const { width, height } = nodeData[nodeIndex];
+        // const { node_width, node_height } = nodeData[nodeIndex];
         const x_val = nodeData[index].x
         const y_val = nodeData[index].y
         
@@ -125,10 +126,10 @@ function goToPieceScreenEditingPanel() {
               return (
                 <line
                   key={`line_${nodeIndex}_${nextIndex}`}
-                  x1={x_val + width}
-                  y1={y_val + height / 2}
+                  x1={x_val + node_width}
+                  y1={y_val + node_height / 2}
                   x2={nodeData[nextNodeIndex].x}
-                  y2={nodeData[nextNodeIndex].y + height / 2}
+                  y2={nodeData[nextNodeIndex].y + node_height / 2}
                   stroke="green"
                   strokeWidth="2"
                 />
@@ -138,8 +139,8 @@ function goToPieceScreenEditingPanel() {
               className="game_node_vis"
               x={x_val}
               y={y_val}
-              width={width}
-              height={height}
+              width={node_width}
+              height={node_height}
               fill="#b2efe0"
               stroke="#b2b2b2"
               onClick={() => handleNodeClick(nodeData[nodeIndex].nodeName)}
