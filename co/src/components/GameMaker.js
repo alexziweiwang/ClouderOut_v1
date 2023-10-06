@@ -6,9 +6,27 @@ import styles from './webpage.css';
 
 
 export default function GameMaker() {
+
+/* // TODO game-node visualization task list
+1. switching between "new node" and "edit node"
+2. for "new node", selection of previous node (where does it start)
+3. for "edit node", allow edition of several properties
+4. optimization of paths: non-overlapping, line to path
+5. optimization of paths: arrow looking
+6. draggable nodes? (optional)
+7. optimization on node positions when generated
+
+*/
+
+
+
+
+
+
+
   // TODO testing
   const x_base = 100, y_base = 2;
-  const node_width = 100, node_height = 40, node_rx = 5;
+  const node_width = 100, node_height = 40;
   const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1] },
     { nodeName: "plot2", x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
