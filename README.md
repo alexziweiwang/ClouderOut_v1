@@ -20,10 +20,12 @@
 - [x] hosting and launching options, plan
 - [ ] hosting and launching options, implementation
 - [ ] game product: resource management solution (carefully handle re-renders)
-- [ ] abstraction of game logic: into modularizable organizer
-- [ ] game mode analysis
-- [ ] sample small projects (for test and demo)
-- [ ] logic organizer for game rule (this can be a module to be used): between nodes & inside one game-round for specific game rules
-- [ ] game data sharing and update design
+- [x] abstraction of game logic: into modularizable organizer
+- [x] game mode analysis, draft
+- [ ] game mode analysis, advanced
+- [ ] logic organizer for game rule (this can be a module to be used), implement: between nodes & inside one game-round for specific game rules
+- [ ] logic organizer: analysis and design
+- [ ] game data sharing and update design, architecture design
 - [ ] cloud db data structure design
-- [ ] account system design
+- [ ] account-system design
+- [ ] sample small projects (for test and demo)
