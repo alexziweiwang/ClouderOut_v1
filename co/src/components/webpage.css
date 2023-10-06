@@ -26,7 +26,10 @@
 .setting_item {
     margin-top: 3px;
     margin-bottom: 3px;
+}
 
+.game_node_vis {
+    cursor: pointer
 }
 
 .page {

@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import styles from './webpage.css';
 
+
 export default function GameMaker() {
   // TODO testing
   const x_base = 100, y_base = 2;
-  const nodeData = [
+  let nodeData = [
     { nodeName: "plot1", width:100, height:40, rx:5, x:x_base, y:y_base + 30, nextNodes:[1] },
     { nodeName: "plot2", width:100, height:40, rx:5, x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
     { nodeName: "option x", width:100, height:40, rx:5, x:x_base+240, y:y_base, nextNodes:[4] },
@@ -52,7 +53,9 @@ function goToPieceScreenEditingPanel() {
       <br></br> - inserting place -- basically updating these pre-nodes' "next node" pointer to this new node
       <br></br> (fill in and see viewer's change, confirm to update cloud db)
     </p>
-    <div className="setting_area"> Create a New Node
+    <div className="setting_area"> Node Management
+    <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes </p>
+    
     <br></br>
     <input 
       className="setting_item"
@@ -73,7 +76,23 @@ function goToPieceScreenEditingPanel() {
     <br></br>
     <button 
       className="setting_item"
-      onClick={e => {console.log("create-node submitted:" + val)}}>
+      onClick={e => {
+          if (val.length > 0) {
+            //TODO check if node name duplicate
+            const found = nodeData.some((item) => item.nodeName === val);
+            if (found) {
+              console.log("Invalid node name: duplicate")
+            } else {
+              console.log("create-node submitted:" + val); // TODO temp
+              const newDataItem = { nodeName: `${val}`, width:100, height:40, rx:5, x:x_base+480, y:y_base + 30, nextNodes:[]  };
+              nodeData.push(newDataItem);
+            }
+
+          } else {
+            console.log("Invalid node name: empty"); //TODO temp
+          }
+        
+        }}>
         Create
     </button>
 
@@ -91,11 +110,11 @@ function goToPieceScreenEditingPanel() {
         return (
           <g key={nodeIndex}>
             {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
-              console.log("!   ");
-              console.log(nodeData[nodeIndex]);
-              console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
-              console.log(nodeData[nextNodeIndex]);
-              console.log("   ");
+              // console.log("!   ");
+              // console.log(nodeData[nodeIndex]);
+              // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
+              // console.log(nodeData[nextNodeIndex]);
+              // console.log("   ");      //TODO remove later (after all tests completed)
 
               return (
                 <line
@@ -110,6 +129,7 @@ function goToPieceScreenEditingPanel() {
               );
             })}
             <rect
+              className="game_node_vis"
               x={x_val}
               y={y_val}
               width={width}
