@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 
 
-export default function GameMaker(props) {
+export default function GameMaker() {
+
 /* // TODO game-maker task list
 1. add "chapter management"
 2. logic organizer for game-node-relationship
@@ -26,8 +27,9 @@ export default function GameMaker(props) {
 */
 
 
-
-
+  const {state} = useLocation();
+  console.log(state); //TODO testing
+  console.log(state.selected_project_name[0]); //TODO testing
 
 
 
@@ -157,8 +159,7 @@ function goToPieceScreenEditingPanel() {
               // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
               // console.log(nodeData[nextNodeIndex]);
               // console.log("   ");      //TODO remove later (after all tests completed)
-              console.log("Drawing nodes!!!"); //TODO temp
-              console.log(nodeData); //TODO temp
+
 
               return (
                 <line

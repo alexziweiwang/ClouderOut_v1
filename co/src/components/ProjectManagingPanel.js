@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import styles from './webpage.css';
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
-    const [selected_project_name, setProjectName] = useState['unnamed'];
+    const [selected_project_name, setProjectName] = useState(['unnamed_project']);
 
     function goToDashboard() {
       navigate('/dashboard', { replace: true });
     }
   
     function goToGameMaker() {
-        navigate('/gamemaker', { replace: true }, { name: { selected_project_name } });
+        navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
     
     return (
