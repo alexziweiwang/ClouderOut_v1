@@ -36,6 +36,7 @@ export default function GameMaker() {
         const newDataItem = { nodeName: `${val}`, width:100, height:40, rx:5, x:x_base+480, y:y_base + 30, nextNodes:[]  };
         nodeDataTemp.push(newDataItem);
         setNodeData(nodeDataTemp);
+        setValue("");
       }
 
     } else {
