@@ -15,8 +15,9 @@ export default function GameMaker() {
     { nodeName: "end node", width:100, height:40, rx:5, x:x_base+360, y:y_base + 30, nextNodes:[] },
   ]; 
 
-  // TODO x_val = x_base + index * (100 + 30);
-
+  // TODO think of dynamic calculation for visualization
+  // if even number of branch-nodes, then calculate mid-point y-value in mid line
+  // if odd number of branch-nodes, then the same y with mid-node
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
