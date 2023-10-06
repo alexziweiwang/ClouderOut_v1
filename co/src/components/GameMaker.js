@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './webpage.css';
 
 
-export default function GameMaker() {
+export default function GameMaker(props) {
 /* // TODO game-maker task list
 1. add "chapter management"
 2. logic organizer for game-node-relationship
@@ -41,10 +41,6 @@ export default function GameMaker() {
     { nodeName: "option y", x:x_base+240, y:y_base + 60, nextNodes:[4] },
     { nodeName: "end node", x:x_base+360, y:y_base + 30, nextNodes:[] },
   ]); 
-
-  // TODO think of dynamic calculation for visualization
-  // if even number of branch-nodes, then calculate mid-point y-value in mid line
-  // if odd number of branch-nodes, then the same y with mid-node
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
