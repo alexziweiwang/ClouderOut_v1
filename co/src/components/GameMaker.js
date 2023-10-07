@@ -28,10 +28,6 @@ export default function GameMaker() {
 
 
   const {state} = useLocation();
-  console.log(state); //TODO testing
-  console.log(state.selected_project_name[0]); //TODO testing
-
-
 
   // TODO testing
   const x_base = 100, y_base = 2;
@@ -134,6 +130,24 @@ function goToPieceScreenEditingPanel() {
     </select>
 
     <br></br>
+    <select>
+    {nodeData.map((nextIndex, index) => {
+      return (
+        <option value="${nodeData[index].nodeName}">{nodeData[index].nodeName}</option>
+
+
+
+
+      );
+      
+    
+    
+    })}
+
+    </select>
+
+    <br></br>
+
     <button 
       className="setting_item"
       onClick={addNewNode}>
