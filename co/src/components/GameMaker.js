@@ -103,16 +103,10 @@ function goToPieceScreenEditingPanel() {
       <br></br>with the "formula" the user created by custom logic organizer, update "next node" assignment of this "decision node"?
     </p>
 
-    <p className="plans">
-      TODO: Entry: Create New Node
-      <br></br> - node name 
-      <br></br> - node type (game type)
-      <br></br> - inserting place -- basically updating these pre-nodes' "next node" pointer to this new node
-      <br></br> (fill in and see viewer's change, confirm to update cloud db)
-    </p>
     <div className="setting_area"> Node Management
-    <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes </p>
+    <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>
     
+
     <br></br>
     {/* modeCreateNewNode, setModeToCreateNewNode */}
     <div> 
@@ -256,6 +250,11 @@ function goToPieceScreenEditingPanel() {
 
       </svg>
 
+      <button 
+      className="setting_item"
+      onClick={() => console.log("saving settings of nodes...")}>
+        Save To My Project
+    </button>
 
     </div>
 
