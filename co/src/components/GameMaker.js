@@ -149,7 +149,7 @@ function goToPieceScreenEditingPanel() {
     <select>
     {nodeData.map((nextIndex, index) => {
       return (
-        <option value="${nodeData[index].nodeName}">{nodeData[index].nodeName}</option>
+        <option value="${nodeData[index].nodeName}" key={index}>{nodeData[index].nodeName}</option>
       );
     })}
     </select>
@@ -158,25 +158,43 @@ function goToPieceScreenEditingPanel() {
     <select>
     {nodeData.map((nextIndex, index) => {
       return (
-        <option value="${nodeData[index].nodeName}">{nodeData[index].nodeName}</option>
+        <option value="${nodeData[index].nodeName}" key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
       );
     })}
     </select>
     <br></br>
     <button 
       className="setting_item"
-      onClick={console.log("TEMP")}>
+      onClick={() => console.log("add connection")}>
         Add connection
     </button>
     <button 
       className="setting_item"
-      onClick={console.log("TEMP")}>
+      onClick={() => console.log("delete connection !")}>
         Delete connection
     </button>
 
     </div>
     
-
+    <div>
+    <br></br>
+    Put Node into Trash Area
+    <br></br>
+    <select>
+    {nodeData.map((nextIndex, index) => {
+      const keyStr = nodeData[index].nodeName+index
+      return (
+        <option value="${nodeData[index].nodeName}" key={keyStr}>{nodeData[index].nodeName}</option>
+      );
+    })}
+    </select>
+    <br></br>
+    <button 
+      className="setting_item"
+      onClick={() => console.log("delete node...!!!")}>
+        Delete Node
+    </button>
+    </div>
 
 
 
