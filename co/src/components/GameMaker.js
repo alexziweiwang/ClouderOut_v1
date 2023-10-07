@@ -39,6 +39,7 @@ export default function GameMaker() {
     { nodeName: "option y", x:x_base+240, y:y_base + 60, nextNodes:[4] },
     { nodeName: "end node", x:x_base+360, y:y_base + 30, nextNodes:[] },
   ]); 
+  const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
@@ -113,13 +114,16 @@ function goToPieceScreenEditingPanel() {
     <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes </p>
     
     <br></br>
+    {/* modeCreateNewNode, setModeToCreateNewNode */}
+    <div> 
+    Create New Node
+    <br></br>
     <input 
       className="setting_item"
       type="text" value={val} 
       // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
       onChange={e => {setValue(e.target.value)}}  
     />
-
     <br></br>
     <select className="setting_item">
       
@@ -128,24 +132,6 @@ function goToPieceScreenEditingPanel() {
       <option value="fortdefenseg">Tower Defense</option>
       <option value="conversation">Conversation</option>
     </select>
-
-    <br></br>
-    <select>
-    {nodeData.map((nextIndex, index) => {
-      return (
-        <option value="${nodeData[index].nodeName}">{nodeData[index].nodeName}</option>
-
-
-
-
-      );
-      
-    
-    
-    })}
-
-    </select>
-
     <br></br>
 
     <button 
@@ -153,6 +139,31 @@ function goToPieceScreenEditingPanel() {
       onClick={addNewNode}>
         Create
     </button>
+    </div>
+    
+    <div>
+    <br></br>
+    Edit Existing Node
+    <br></br>
+    <select>
+    {nodeData.map((nextIndex, index) => {
+      return (
+        <option value="${nodeData[index].nodeName}">{nodeData[index].nodeName}</option>
+      );
+    })}
+    </select>
+
+    </div>
+    
+
+
+
+
+
+
+
+
+
 
     <svg
         xmlns="http://www.w3.org/2000/svg"
