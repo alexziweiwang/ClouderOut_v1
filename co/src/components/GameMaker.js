@@ -145,6 +145,7 @@ function goToPieceScreenEditingPanel() {
     <br></br>
     Edit Existing Node
     <br></br>
+    <label>current node </label>
     <select>
     {nodeData.map((nextIndex, index) => {
       return (
@@ -152,6 +153,26 @@ function goToPieceScreenEditingPanel() {
       );
     })}
     </select>
+    <br></br>
+    <label>next node</label>
+    <select>
+    {nodeData.map((nextIndex, index) => {
+      return (
+        <option value="${nodeData[index].nodeName}">{nodeData[index].nodeName}</option>
+      );
+    })}
+    </select>
+    <br></br>
+    <button 
+      className="setting_item"
+      onClick={console.log("TEMP")}>
+        Add connection
+    </button>
+    <button 
+      className="setting_item"
+      onClick={console.log("TEMP")}>
+        Delete connection
+    </button>
 
     </div>
     
