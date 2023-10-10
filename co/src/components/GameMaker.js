@@ -192,7 +192,7 @@ function goToPieceScreenEditingPanel() {
         Delete Node
     </button>
     </div>
-
+{/* //TODO read and use the selected values */}
 
 
 

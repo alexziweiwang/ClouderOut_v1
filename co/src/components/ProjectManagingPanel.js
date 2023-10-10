@@ -7,6 +7,12 @@ import styles from './webpage.css';
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState(['unnamed_project']);
+    const [testProj, setTestProj] = useState([
+      { project_name: "project001"},
+      { project_name: "project002"},
+      { project_name: "project003"},
+    ]); 
+
 
     function goToDashboard() {
       navigate('/dashboard', { replace: true });
@@ -26,10 +32,20 @@ export default function ProjectManagerPanel() {
           <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
         </p>
 
+        <select>
+        {testProj.map((itemIndex, index) => {
+          return (
+          <option value="${testProj[index].project_name}" key={itemIndex}>{testProj[index].project_name}</option>
+          );
+        })}
+    </select>
+   
         <p className="plans">Later: connect to cloud db and provide all project names to get selected by the user, or create new project</p>
         //TODO when use choose an exisiting project, do setProjectName to update the selection of project
-        //TODO also do creation of projects to cloud db
+        <br></br>//TODO also do creation of projects to cloud db
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
+   
+   
     </div>
     
 
