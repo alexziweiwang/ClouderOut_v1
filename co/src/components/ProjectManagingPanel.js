@@ -32,13 +32,13 @@ export default function ProjectManagerPanel() {
           <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
         </p>
 
-        <select>
+        <select onChange={() => {console.log("changed selected item...");}}>
         {testProj.map((itemIndex, index) => {
           return (
-          <option value="${testProj[index].project_name}" key={itemIndex}>{testProj[index].project_name}</option>
+          <option value="${testProj[index].project_name}" key={testProj[index].project_name}>{testProj[index].project_name}</option>
           );
         })}
-    </select>
+        </select>
    
         <p className="plans">Later: connect to cloud db and provide all project names to get selected by the user, or create new project</p>
         //TODO when use choose an exisiting project, do setProjectName to update the selection of project
