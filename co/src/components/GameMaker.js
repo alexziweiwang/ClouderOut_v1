@@ -106,7 +106,8 @@ function goToPieceScreenEditingPanel() {
     <div className="setting_area"> Node Management
     <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>
     <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes</p>
-    <p className="plans"> TODO: links add arrows</p>
+    <p className="plans"> TODO               think of ways to organize node layers/positions with insertion considered</p>
+    <p className="plans"> TODO: link-arrows adjustment and improvement: different directions, etc.</p>
 
 
     <br></br>
@@ -246,6 +247,7 @@ function goToPieceScreenEditingPanel() {
                   points={point_string}
                   style={{fill: "green"}}
                 />
+                {/* //TODO: other direction-arrows */}
                 </>
 
               );
