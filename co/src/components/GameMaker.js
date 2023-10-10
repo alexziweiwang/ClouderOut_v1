@@ -30,14 +30,14 @@ export default function GameMaker() {
   const {state} = useLocation();
 
   // TODO testing
-  const x_base = 100, y_base = 2;
-  const node_width = 100, node_height = 40;
+  const x_base = 120, y_base = 52;
+  const node_width = 190, node_height = 70;
   const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1], display: true},
-    { nodeName: "plot2", x:x_base+120, y:y_base + 30, nextNodes:[2, 3], display: true},
-    { nodeName: "option x", x:x_base+240, y:y_base, nextNodes:[4], display: true},
-    { nodeName: "option y", x:x_base+240, y:y_base + 60, nextNodes:[4], display: true},
-    { nodeName: "end node", x:x_base+360, y:y_base + 30, nextNodes:[], display: true},
+    { nodeName: "plot2", x:x_base+node_width+20, y:y_base + 30, nextNodes:[2, 3], display: true},
+    { nodeName: "option x", x:x_base+node_width*2+40, y:y_base, nextNodes:[4], display: true},
+    { nodeName: "option y", x:x_base+node_width*2+40, y:y_base + 90, nextNodes:[4], display: true},
+    { nodeName: "end node", x:x_base+node_width*3+60, y:y_base + 40, nextNodes:[], display: true},
   ]); 
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
 
@@ -54,7 +54,7 @@ export default function GameMaker() {
         console.log("Invalid node name: duplicate")
       } else {
         console.log("create-node submitted:" + val); // TODO temp
-        const newDataItem = { nodeName: `${val}`, x:580, y:30, nextNodes:[], display: true}; //TODO temp
+        const newDataItem = { nodeName: `${val}`, x:x_base+node_width*4+20, y:30, nextNodes:[], display: true}; //TODO temp
         nodeDataTemp.push(newDataItem);
         setNodeData(nodeDataTemp);
         setValue("");
@@ -105,7 +105,9 @@ function goToPieceScreenEditingPanel() {
 
     <div className="setting_area"> Node Management
     <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>
-    
+    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes</p>
+    <p className="plans"> TODO: links add arrows</p>
+
 
     <br></br>
     {/* modeCreateNewNode, setModeToCreateNewNode */}
@@ -234,6 +236,7 @@ function goToPieceScreenEditingPanel() {
                   stroke="green"
                   strokeWidth="2"
                 />
+
               );
             })}
             {nodeData[nodeIndex].display && 
