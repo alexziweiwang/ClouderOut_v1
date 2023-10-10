@@ -12,6 +12,7 @@ export default function ProjectManagerPanel() {
       { project_name: "project002"},
       { project_name: "project003"},
     ]); 
+    const [addedNewProjName, setNewProjName] = useState(['New Project Name']);
 
 
     function goToDashboard() {
@@ -22,6 +23,12 @@ export default function ProjectManagerPanel() {
         navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
     
+    function addNewProject() {
+
+      console.log("adding a new project: " + addedNewProjName);
+    }
+
+
     return (
   <div>    
     <div>
@@ -31,6 +38,20 @@ export default function ProjectManagerPanel() {
           <br></br>Here, the user can create new projects, or select specific projects to edit.
           <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
         </p>
+
+        <input 
+          className="setting_item"
+          type="text" value={addedNewProjName} 
+          onChange={e => {setNewProjName(e.target.value)}
+        }  
+        />
+        <button 
+          className="setting_item"
+          onClick={addNewProject}>
+        Create Project
+        </button>
+
+        <br></br>
 
         <select onChange={() => {console.log("changed selected item...");}}>
         {testProj.map((itemIndex, index) => {
