@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styles from './webpage.css';
+import Sidebar from './Sidebar';
+
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
@@ -28,9 +30,11 @@ export default function ProjectManagerPanel() {
       console.log("adding a new project: " + addedNewProjName);
     }
 
-
+    let name = "/projectmanagingpanel";
     return (
   <div>    
+    <Sidebar compName = {name}/>
+
     <div>
 
         <div className="returning_buttons"><button className="button" onClick={goToDashboard}>Return to Dashboard </button></div>

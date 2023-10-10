@@ -8,15 +8,10 @@ import Sidebar from './Sidebar';
 Dashboard is for each specific user, and users setup their profile, projects and account.
 */
 export default function Dashboard() {
-    const navigate = useNavigate();
-
-    function goToProjectManagingPanel() {
-        navigate('/projectmanagingpanel', { replace: true });
-    }
-    
+    let name = "/dashboard";
     return (
   <div className="page">
-    <Sidebar/>
+    <Sidebar compName = {name}/>
 
     
     <div className="dashboard_content">
