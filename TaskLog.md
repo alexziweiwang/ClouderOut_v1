@@ -16,3 +16,5 @@
 - 2023-Oct-03: Read and consider CSS custom properties
 
 - 2023-Oct-04: Read and consider SVG for game-node visualization
+
+- 2023-Oct-09: Read and consider Cloud db setup and data structure design
