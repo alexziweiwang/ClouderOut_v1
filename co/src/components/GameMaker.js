@@ -149,7 +149,7 @@ function goToPieceScreenEditingPanel() {
     </select>
     <br></br>
     <label>next node</label>
-    <select>
+    <select multiple={true}>
     {nodeData.map((nextIndex, index) => {
       return (
         <option value="${nodeData[index].nodeName}" key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
