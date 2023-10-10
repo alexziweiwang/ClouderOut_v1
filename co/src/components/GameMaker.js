@@ -185,7 +185,10 @@ function goToPieceScreenEditingPanel() {
     <br></br>
     <button 
       className="setting_item"
-      onClick={() => console.log("delete node...!!!")}>
+      onClick={() => {
+        console.log("delete node...!!!")
+        
+        }}>
         Delete Node
     </button>
     </div>
@@ -217,7 +220,10 @@ function goToPieceScreenEditingPanel() {
               // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
               // console.log(nodeData[nextNodeIndex]);
               // console.log("   ");      //TODO remove later (after all tests completed)
-
+              
+              if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
+                return;
+              } 
               return (
                 <line
                   key={`line_${nodeIndex}_${nextIndex}`}
@@ -230,6 +236,7 @@ function goToPieceScreenEditingPanel() {
                 />
               );
             })}
+            {nodeData[nodeIndex].display && 
             <rect
               className="game_node_vis"
               x={x_val}
@@ -240,9 +247,12 @@ function goToPieceScreenEditingPanel() {
               stroke="#b2b2b2"
               onClick={() => handleNodeClick(nodeData[nodeIndex].nodeName)}
             />
+            }
+            {nodeData[nodeIndex].display && 
             <text x={x_val + 5} y={y_val + 20} fill="#323232">
               {nodeData[nodeIndex].nodeName}
             </text>
+            }
           </g>
         );
       })}
