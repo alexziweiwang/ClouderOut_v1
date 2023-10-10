@@ -226,7 +226,13 @@ function goToPieceScreenEditingPanel() {
               if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
                 return;
               } 
+              
+              let point_string = 
+                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 - 10) + " " + 
+                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 + 10) + " " + 
+                nodeData[nextNodeIndex].x + "," + (nodeData[nextNodeIndex].y + node_height / 2);
               return (
+                <>
                 <line
                   key={`line_${nodeIndex}_${nextIndex}`}
                   x1={x_val + node_width}
@@ -236,6 +242,11 @@ function goToPieceScreenEditingPanel() {
                   stroke="green"
                   strokeWidth="2"
                 />
+                <polygon 
+                  points={point_string}
+                  style={{fill: "green"}}
+                />
+                </>
 
               );
             })}
