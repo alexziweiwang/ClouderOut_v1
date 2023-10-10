@@ -33,11 +33,11 @@ export default function GameMaker() {
   const x_base = 100, y_base = 2;
   const node_width = 100, node_height = 40;
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1] },
-    { nodeName: "plot2", x:x_base+120, y:y_base + 30, nextNodes:[2, 3] },
-    { nodeName: "option x", x:x_base+240, y:y_base, nextNodes:[4] },
-    { nodeName: "option y", x:x_base+240, y:y_base + 60, nextNodes:[4] },
-    { nodeName: "end node", x:x_base+360, y:y_base + 30, nextNodes:[] },
+    { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1], display: true},
+    { nodeName: "plot2", x:x_base+120, y:y_base + 30, nextNodes:[2, 3], display: true},
+    { nodeName: "option x", x:x_base+240, y:y_base, nextNodes:[4], display: true},
+    { nodeName: "option y", x:x_base+240, y:y_base + 60, nextNodes:[4], display: true},
+    { nodeName: "end node", x:x_base+360, y:y_base + 30, nextNodes:[], display: true},
   ]); 
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
 
@@ -54,7 +54,7 @@ export default function GameMaker() {
         console.log("Invalid node name: duplicate")
       } else {
         console.log("create-node submitted:" + val); // TODO temp
-        const newDataItem = { nodeName: `${val}`, x:580, y:30, nextNodes:[]  }; //TODO temp
+        const newDataItem = { nodeName: `${val}`, x:580, y:30, nextNodes:[], display: true}; //TODO temp
         nodeDataTemp.push(newDataItem);
         setNodeData(nodeDataTemp);
         setValue("");
@@ -217,7 +217,6 @@ function goToPieceScreenEditingPanel() {
               // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
               // console.log(nodeData[nextNodeIndex]);
               // console.log("   ");      //TODO remove later (after all tests completed)
-
 
               return (
                 <line
