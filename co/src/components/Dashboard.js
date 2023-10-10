@@ -28,7 +28,6 @@ export default function Dashboard() {
       <br></br> plan: conditionally render the correct content here? according to the chosen tab on side bar ...?
       </p>
       
-      <button className="button" onClick={goToProjectManagingPanel}> Go To Project Managing Panel </button>
     </div>
  
   </div>
