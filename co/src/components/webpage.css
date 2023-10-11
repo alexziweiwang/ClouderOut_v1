@@ -1,3 +1,7 @@
+body {
+    height: 100%;
+}
+
 .button {
     background-color: #f0aa54;
     color: white;
@@ -44,8 +48,15 @@
     float: right;
 }
 
-.sidebar {
+.sidebar1 {
     background-color: rgb(93, 97, 103);
+    width: 9%;
+    height: 100vh; 
+    float: left;
+}
+
+.sidebar2 {
+    background-color: rgb(226, 215, 237);
     width: 9%;
     height: 100vh; 
     float: left;

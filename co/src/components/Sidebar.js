@@ -13,8 +13,13 @@ export default function Sidebar(props) {
         navigate('/projectmanagingpanel', { replace: true });
     }
 
+    function backToDashboard() {
+        navigate('/dashboard', { replace: true });
+    }
+
     return (
-    <div className="sidebar" > Welcome, user ___ ! 1223123
+    <>
+    {props.compName == "/dashboard" && <div className="sidebar1" > Welcome, user ___ ! 1223123
         <div> 
             <button className="sidebar_options">Profile</button>
             <button className="sidebar_options" onClick={goToProjectManagingPanel}>My Projects</button>
@@ -22,6 +27,16 @@ export default function Sidebar(props) {
         </div>
 
         <div className="plans"> Logout</div>
-    </div>
+        </div>
+    }
+        {props.compName == "/projectmanagingpanel" && <div className="sidebar2" >
+        <div> 
+            <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
+        </div>
+
+        <div className="plans"> Logout</div>
+        </div>
+    }
+    </>
     );
 }

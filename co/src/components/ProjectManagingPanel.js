@@ -16,11 +16,6 @@ export default function ProjectManagerPanel() {
     ]); 
     const [addedNewProjName, setNewProjName] = useState(['New Project Name']);
 
-
-    function goToDashboard() {
-      navigate('/dashboard', { replace: true });
-    }
-  
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
@@ -37,7 +32,6 @@ export default function ProjectManagerPanel() {
 
     <div>
 
-        <div className="returning_buttons"><button className="button" onClick={goToDashboard}>Return to Dashboard </button></div>
         <p className="plans">This is ProjectManagerPanel Component!!
           <br></br>Here, the user can create new projects, or select specific projects to edit.
           <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
