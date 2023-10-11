@@ -29,12 +29,11 @@ export default function Sidebar(props) {
         <div className="plans"> Logout</div>
         </div>
     }
-        {props.compName == "/projectmanagingpanel" && <div className="sidebar2" >
+    {props.compName == "/projectmanagingpanel" && <div className="sidebar2" >
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
         </div>
 
-        <div className="plans"> Logout</div>
         </div>
     }
     </>

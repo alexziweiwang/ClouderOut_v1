@@ -27,24 +27,19 @@ export default function ProjectManagerPanel() {
 
     let name = "/projectmanagingpanel";
     return (
-  <div>    
+    <>    
     <Sidebar compName = {name}/>
 
-    <div>
+    <>
 
-        <p className="plans">This is ProjectManagerPanel Component!!
-          <br></br>Here, the user can create new projects, or select specific projects to edit.
-          <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
-        </p>
+    
 
         <input 
-          className="setting_item"
           type="text" value={addedNewProjName} 
           onChange={e => {setNewProjName(e.target.value)}
         }  
         />
         <button 
-          className="setting_item"
           onClick={addNewProject}>
         Create Project
         </button>
@@ -64,10 +59,15 @@ export default function ProjectManagerPanel() {
         <br></br>//TODO also do creation of projects to cloud db
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
    
+
+        <p className="plans">This is ProjectManagerPanel Component!!
+          <br></br>Here, the user can create new projects, or select specific projects to edit.
+          <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
+        </p>
    
-    </div>
+    </>
     
 
-  </div>
+  </>
     );
 }
