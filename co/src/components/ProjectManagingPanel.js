@@ -5,7 +5,7 @@ import { useState } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
 
-
+// TODO: add 2 sub-panel-look components for new and edit project
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState(['unnamed_project']);
