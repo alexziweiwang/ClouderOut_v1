@@ -17,12 +17,19 @@ export default function ProjectManageNew() {
         navigate('/projectmanagingpanel', { replace: true });
     }
     
-    function createNewProject() {
+    function createNewProjectEdit() {
         console.log("adding a new project: " + addedNewProjName);
         //TODO update to actual db: add this new project
-        //TODO ask the user if continue to edit that project, or go back to project-management page
-        navigate('/projectmanagingpanel', { replace: true });
+        navigate('/gamemaker', { replace: true, state: { addedNewProjName } });
+
     }
+
+        
+    function createNewProjectReturn() {
+      console.log("adding a new project: " + addedNewProjName);
+      //TODO update to actual db: add this new project
+      navigate('/projectmanagingpanel', { replace: true });
+  }
 
     return (
     <>    
@@ -45,10 +52,24 @@ export default function ProjectManageNew() {
             <br></br>- project info - author(s) //future feature
             <br></br>- project tag(s) //future feature
         </p>
+
+        <br></br>
+
         <button 
-          onClick={createNewProject}>
-        Create Project
+          onClick={createNewProjectEdit}>
+        Create Project and Start Editing
         </button>
+
+        <br></br>
+        <br></br>
+        <br></br>
+
+        <button 
+          onClick={createNewProjectReturn}>
+        Create Project and Return
+        </button>
+
+        <br></br>
 
         <br></br>
         <button className="setting_item" onClick={projectManagePanel}> Cancel </button>

@@ -28,6 +28,7 @@ export default function GameMaker() {
 
 
   const {state} = useLocation();
+  console.log(state.addedNewProjName);
 
   // TODO testing
   const x_base = 120, y_base = 52;
