@@ -10,10 +10,16 @@ export default function ProjectManageNew() {
     const name = "/projectmanagenew";
 
     return (
-        <>
-        <Sidebar compName = {name}/>
+    <>    
+    <Sidebar compName = {name}/>
 
-        <p> this is 1 project manage new ! </p>
-        </>
+    <>
+
+        This is project new page
+
+    </>
+    
+
+  </>
     );
 }

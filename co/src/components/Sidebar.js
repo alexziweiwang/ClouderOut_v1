@@ -21,9 +21,10 @@ export default function Sidebar(props) {
         navigate('/projectmanagenew', { replace: true });
     }
 
-    function projectManageEdit() {
-        navigate('/projectmanageedit', { replace: true });
+    function projectManagePanel() {
+        navigate('/projectmanagingpanel', { replace: true });
     }
+
 
     return (
     <>
@@ -44,21 +45,21 @@ export default function Sidebar(props) {
         <div>
             <br></br> <br></br> <br></br>
         <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
-        <button className="sidebar_options" onClick={projectManageEdit}> Edit Project</button>
+        <button className="sidebar_options" onClick={projectManagePanel}> Manage Projects</button>
 
         </div>
 
         </div>
     }
 
-    {(props.compName == "/projectmanagenew" || props.compName == "/projectmanageedit") && <div className="sidebar2" >
+    {(props.compName == "/projectmanagenew") && <div className="sidebar2" >
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
         </div>
         <div>
             <br></br> <br></br> <br></br>
         <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
-        <button className="sidebar_options" onClick={projectManageEdit}> Edit Project</button>
+        <button className="sidebar_options" onClick={projectManagePanel}> Manage Projects</button>
 
         </div>
 
