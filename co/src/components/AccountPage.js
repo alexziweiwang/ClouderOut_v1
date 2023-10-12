@@ -8,8 +8,14 @@ import Sidebar from './Sidebar';
 Dashboard is for each specific user, and users setup their profile, projects and account.
 */
 export default function AccountPage() {
+    const navigate = useNavigate();
+
     let name = "/accountpage";
-    
+
+    function returnToDashboard() {
+        navigate("/dashboard", { replace: true });
+    }
+
     return (
   <div className="page">
     <Sidebar compName = {name}/>
@@ -18,6 +24,7 @@ export default function AccountPage() {
 
       <p className="plans"> This is Account Page!  </p>
 
+      <button className="button" onClick={returnToDashboard}> back to dashboard </button>
       
     </div>
  
