@@ -24,8 +24,10 @@
 - [x] game mode analysis, draft
 - [ ] game mode analysis, advanced
 - [ ] logic organizer for game rule (this can be a module to be used), implement: between nodes & inside one game-round for specific game rules
+- [ ] game-node visualization optimization
 - [ ] logic organizer: analysis and design
 - [ ] game data sharing and update design, architecture design
-- [ ] cloud db data structure design
+- [x] cloud db data structure design, preliminary
+- [x] cloud db data structure design, optimized
 - [ ] account-system design
 - [ ] sample small projects (for test and demo)

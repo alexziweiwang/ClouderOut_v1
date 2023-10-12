@@ -4,7 +4,6 @@ import styles from './webpage.css';
 import { useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 
-// TODO: when other componente enter here, specify the component name and decide display items on the side bar
 export default function Sidebar(props) {
     console.log(props.compName);
     const navigate = useNavigate();
