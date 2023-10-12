@@ -24,14 +24,18 @@ export default function Sidebar(props) {
         navigate('/projectmanagingpanel', { replace: true });
     }
 
+    function goToAccountPage() {
+        navigate('/accountpage', { replace: true });
+    }
+
 
     return (
     <>
-    {props.compName == "/dashboard" && <div className="sidebar1" > Welcome, user ___ ! 1223123
+    {(props.compName == "/dashboard"|| props.compName == "/accountpage") && <div className="sidebar1" > Welcome, user ___ ! 1223123
         <div> 
             <button className="sidebar_options">Profile</button>
             <button className="sidebar_options" onClick={goToProjectManagingPanel}>My Projects</button>
-            <button className="sidebar_options">Account</button>
+            <button className="sidebar_options" onClick={goToAccountPage}>Account</button>
         </div>
 
         <div className="plans"> Logout</div>

@@ -7,6 +7,7 @@ import ProjectManagerPanel from './components/ProjectManagingPanel';
 import PieceScreenEditingPanel from'./components/PieceScreenEditingPanel';
 import ProjectManageNew from './components/ProjectManageNew';
 import ProjectManageEdit from './components/ProjectManageEdit';
+import AccountPage from './components/AccountPage';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/piecepanel" element={<PieceScreenEditingPanel />} />
         <Route path="/projectmanagenew" element={<ProjectManageNew/>} />
         <Route path="/projectmanageedit" element={<ProjectManageEdit/>} />
-
+        <Route path="/accountpage" element={<AccountPage/>} />
       </Routes>     
     </div>
   );
