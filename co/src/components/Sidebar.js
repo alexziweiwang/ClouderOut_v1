@@ -31,18 +31,20 @@ export default function Sidebar(props) {
 
     return (
     <>
-    {(props.compName == "/dashboard"|| props.compName == "/accountpage") && <div className="sidebar1" > Welcome, user ___ ! 1223123
+    {(props.compName == "/dashboard"|| props.compName == "/accountpage") && 
+    <div className="sidebar1" > Welcome, user ___ ! 1223123
         <div> 
             <button className="sidebar_options">Profile</button>
             <button className="sidebar_options" onClick={goToProjectManagingPanel}>My Projects</button>
             <button className="sidebar_options" onClick={goToAccountPage}>Account</button>
         </div>
+        <button className="sidebar_options" onClick={() => {console.log("log out pressed")}}>Log Out</button>
 
-        <div className="plans"> Logout</div>
         </div>
     }
 
-    {(props.compName == "/projectmanagingpanel") && <div className="sidebar2" >
+    {(props.compName == "/projectmanagingpanel") && 
+    <div className="sidebar2" >
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
         </div>
@@ -55,14 +57,15 @@ export default function Sidebar(props) {
         </div>
     }
 
-    {(props.compName == "/projectmanagenew") && <div className="sidebar2" >
+    {(props.compName == "/projectmanagenew") && 
+    <div className="sidebar2" >
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
         </div>
 
-
         </div>
     }
+
 
 
 
