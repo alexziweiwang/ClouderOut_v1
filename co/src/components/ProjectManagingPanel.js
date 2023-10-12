@@ -34,7 +34,7 @@ export default function ProjectManagerPanel() {
 
   
         <br></br>
-
+        
         <select onChange={() => {console.log("changed selected item...");}}>
         {testProj.map((itemIndex, index) => {
           return (
