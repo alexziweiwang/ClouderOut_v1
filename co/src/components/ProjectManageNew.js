@@ -57,7 +57,7 @@ export default function ProjectManageNew() {
 
         <button 
           onClick={createNewProjectEdit}>
-        Create Project and Start Editing
+        Create and Start Editing
         </button>
 
         <br></br>
@@ -66,7 +66,7 @@ export default function ProjectManageNew() {
 
         <button 
           onClick={createNewProjectReturn}>
-        Create Project and Return
+        Create and Return
         </button>
 
         <br></br>

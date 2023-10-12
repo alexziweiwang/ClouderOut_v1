@@ -30,6 +30,7 @@ export default function GameMaker() {
   const {state} = useLocation();
   console.log(state.addedNewProjName);
 
+  const name = "/gamemaker";
   // TODO testing
   const x_base = 120, y_base = 52;
   const node_width = 190, node_height = 70;
@@ -77,19 +78,17 @@ export default function GameMaker() {
     navigate('/projectmanagingpanel', { replace: true });
   }
 
-function goToPieceScreenEditingPanel() {
-  navigate('/piecepanel', { replace: true});
-}
+  function goToPieceScreenEditingPanel() {
+    navigate('/piecepanel', { replace: true});
+  }
     
     return (
   <div>
 
     
     <div className="returning_buttons">
-      <button className="button" onClick={goToDashboard}>Return to Dashboard </button>
       <button className="button" onClick={goToProjectManagingPanel}>Return to Project Managing Panel </button>
     </div>
-
 
     <p className="plans">
       *** design of interactable graph *** 
