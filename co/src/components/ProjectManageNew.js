@@ -20,6 +20,7 @@ export default function ProjectManageNew() {
     function createNewProject() {
         console.log("adding a new project: " + addedNewProjName);
         //TODO update to actual db: add this new project
+        //TODO ask the user if continue to edit that project, or go back to project-management page
         navigate('/projectmanagingpanel', { replace: true });
     }
 
@@ -39,7 +40,10 @@ export default function ProjectManageNew() {
 
         <p className="plans">
             creating a new project:
-            project name
+            <br></br>- project name
+            <br></br>- project description
+            <br></br>- project info - author(s) //future feature
+            <br></br>- project tag(s) //future feature
         </p>
         <button 
           onClick={createNewProject}>
