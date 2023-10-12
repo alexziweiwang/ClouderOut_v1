@@ -17,6 +17,14 @@ export default function Sidebar(props) {
         navigate('/dashboard', { replace: true });
     }
 
+    function projectManageNew() {
+        navigate('/projectmanagenew', { replace: true });
+    }
+
+    function projectManageEdit() {
+        navigate('/projectmanageedit', { replace: true });
+    }
+
     return (
     <>
     {props.compName == "/dashboard" && <div className="sidebar1" > Welcome, user ___ ! 1223123
@@ -35,13 +43,30 @@ export default function Sidebar(props) {
         </div>
         <div>
             <br></br> <br></br> <br></br>
-        <button className="sidebar_options" onClick={()=>{console.log("new project creating")}}> New Project</button>
-        <button className="sidebar_options" onClick={()=>{console.log("existing project editing")}}> Edit Project</button>
+        <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
+        <button className="sidebar_options" onClick={projectManageEdit}> Edit Project</button>
 
         </div>
 
         </div>
     }
+
+    {(props.compName == "/projectmanagenew" || props.compName == "/projectmanageedit") && <div className="sidebar2" >
+        <div> 
+            <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
+        </div>
+        <div>
+            <br></br> <br></br> <br></br>
+        <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
+        <button className="sidebar_options" onClick={projectManageEdit}> Edit Project</button>
+
+        </div>
+
+        </div>
+    }
+
+
+
     </>
     );
 }
