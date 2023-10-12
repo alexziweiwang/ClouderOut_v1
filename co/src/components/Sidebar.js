@@ -38,14 +38,14 @@ export default function Sidebar(props) {
         <div className="plans"> Logout</div>
         </div>
     }
-    {props.compName == "/projectmanagingpanel" && <div className="sidebar2" >
+
+    {(props.compName == "/projectmanagingpanel") && <div className="sidebar2" >
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
         </div>
         <div>
             <br></br> <br></br> <br></br>
         <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
-        <button className="sidebar_options" onClick={projectManagePanel}> Manage Projects</button>
 
         </div>
 
@@ -56,12 +56,7 @@ export default function Sidebar(props) {
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
         </div>
-        <div>
-            <br></br> <br></br> <br></br>
-        <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
-        <button className="sidebar_options" onClick={projectManagePanel}> Manage Projects</button>
 
-        </div>
 
         </div>
     }

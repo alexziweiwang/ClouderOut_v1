@@ -32,18 +32,7 @@ export default function ProjectManagerPanel() {
 
     <>
 
-    
-
-        <input 
-          type="text" value={addedNewProjName} 
-          onChange={e => {setNewProjName(e.target.value)}
-        }  
-        />
-        <button 
-          onClick={addNewProject}>
-        Create Project
-        </button>
-
+  
         <br></br>
 
         <select onChange={() => {console.log("changed selected item...");}}>
