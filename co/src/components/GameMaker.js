@@ -28,7 +28,9 @@ export default function GameMaker() {
 
 
   const {state} = useLocation();
-  console.log(state.addedNewProjName);
+  if (state != null) {
+    console.log(state.addedNewProjName);
+  }
 
   const name = "/gamemaker";
   // TODO testing
@@ -90,6 +92,16 @@ export default function GameMaker() {
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
     </div>
 
+    <p className="plans"> Game Maker page 
+    <br></br>this is the place to edit for a specific game </p>
+
+    <p className="plans">
+      TODO: build and apply Game-Data Management design: game data can be edited anywhere during game development:
+      <br></br>places that game-data might be changed: 
+      <br></br>1. at the end of each node (by selection on button or other actions, which goes to branches to other nodes)
+      <br></br>2. for round-games, each operations can change game-data (click on spots, buttons, cards, etc.)
+    </p>
+
     <p className="plans">
       *** design of interactable graph *** 
       <br></br>visualization and operation panel: view, hover and double-click
@@ -97,11 +109,7 @@ export default function GameMaker() {
       <br></br>double-click a node would pop an intro window? for options?
     </p>
 
-    <p className="plans">
-      TODO: logic organizer: let users to fill node-connection-rules *important*
-      <br></br>carry game data to the decision node
-      <br></br>with the "formula" the user created by custom logic organizer, update "next node" assignment of this "decision node"?
-    </p>
+
 
     <div className="setting_area"> Node Management
     <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>

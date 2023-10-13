@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Dashboard />} />  {/* TODO change later for default entry page */}
+        <Route path="/" element={<GameMaker />} />  {/* TODO change later for default entry page */}
         <Route path="*" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projectmanagingpanel" element={<ProjectManagerPanel />} />
