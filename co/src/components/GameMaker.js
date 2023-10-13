@@ -118,9 +118,8 @@ export default function GameMaker() {
 
     <p className="plans">
       *** design of interactable graph *** 
-      <br></br>visualization and operation panel: view, hover and double-click
+      <br></br>visualization and operation panel: view, hover and click
       <br></br>hover a node would show the starting wording/desciption of this node
-      <br></br>double-click a node would pop an intro window? for options?
     </p>
 
 
@@ -131,8 +130,85 @@ export default function GameMaker() {
     <p className="plans"> TODO               think of ways to organize node layers/positions with insertion considered</p>
     <p className="plans"> TODO: link-arrows adjustment and improvement: different directions, etc.</p>
 
+    {selectedNode != "" && <button 
+      className="setting_item"
+      onClick={enterNodeEditor}>
+        Edit {selectedNode} in Editor
+    </button>}
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="nodes_viewer"
+        viewBox="10 -10 2000 300"
+      >
 
-    <br></br>
+      {Object.keys(nodeData).map((nodeIndex, index) => {
+        // const { node_width, node_height } = nodeData[nodeIndex];
+        const x_val = nodeData[index].x
+        const y_val = nodeData[index].y
+        
+        return (
+          
+          <g key={nodeIndex}>
+            {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
+              // console.log("!   ");
+              // console.log(nodeData[nodeIndex]);
+              // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
+              // console.log(nodeData[nextNodeIndex]);
+              // console.log("   ");      //TODO remove later (after all tests completed)
+              
+              if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
+                return;
+              } 
+              
+              let point_string = 
+                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 - 10) + " " + 
+                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 + 10) + " " + 
+                nodeData[nextNodeIndex].x + "," + (nodeData[nextNodeIndex].y + node_height / 2);
+              return (
+                <>
+                <line
+                  key={`line_${nodeIndex}_${nextIndex}`}
+                  x1={x_val + node_width}
+                  y1={y_val + node_height / 2}
+                  x2={nodeData[nextNodeIndex].x}
+                  y2={nodeData[nextNodeIndex].y + node_height / 2}
+                  stroke="green"
+                  strokeWidth="2"
+                />
+                <polygon 
+                  points={point_string}
+                  style={{fill: "green"}}
+                />
+                {/* //TODO: other direction-arrows */}
+                </>
+
+              );
+            })}
+            {nodeData[nodeIndex].display && 
+            <rect
+              className="game_node_vis"
+              x={x_val}
+              y={y_val}
+              width={node_width}
+              height={node_height}
+              fill="#b2efe0"
+              stroke="#b2b2b2"
+              onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
+            />
+            }
+            {nodeData[nodeIndex].display && 
+            <text x={x_val + 5} y={y_val + 20} fill="#323232">
+              {nodeData[nodeIndex].nodeName}
+            </text>
+            }
+          </g>
+        );
+      })}
+
+      </svg>
+
+    
+      <br></br>
     {/* modeCreateNewNode, setModeToCreateNewNode */}
     <div> 
     Create New Node
@@ -218,90 +294,9 @@ export default function GameMaker() {
     </button>
     </div>
 
-    {selectedNode != "" && <button 
-      className="setting_item"
-      onClick={enterNodeEditor}>
-        Edit {selectedNode} in Editor
-    </button>}
 {/* //TODO read and use the selected values */}
 
 
-
-
-
-
-
-
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="nodes_viewer"
-        viewBox="10 -10 2000 2000"
-      >
-
-      {Object.keys(nodeData).map((nodeIndex, index) => {
-        // const { node_width, node_height } = nodeData[nodeIndex];
-        const x_val = nodeData[index].x
-        const y_val = nodeData[index].y
-        
-        return (
-          <g key={nodeIndex}>
-            {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
-              // console.log("!   ");
-              // console.log(nodeData[nodeIndex]);
-              // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
-              // console.log(nodeData[nextNodeIndex]);
-              // console.log("   ");      //TODO remove later (after all tests completed)
-              
-              if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
-                return;
-              } 
-              
-              let point_string = 
-                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 - 10) + " " + 
-                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 + 10) + " " + 
-                nodeData[nextNodeIndex].x + "," + (nodeData[nextNodeIndex].y + node_height / 2);
-              return (
-                <>
-                <line
-                  key={`line_${nodeIndex}_${nextIndex}`}
-                  x1={x_val + node_width}
-                  y1={y_val + node_height / 2}
-                  x2={nodeData[nextNodeIndex].x}
-                  y2={nodeData[nextNodeIndex].y + node_height / 2}
-                  stroke="green"
-                  strokeWidth="2"
-                />
-                <polygon 
-                  points={point_string}
-                  style={{fill: "green"}}
-                />
-                {/* //TODO: other direction-arrows */}
-                </>
-
-              );
-            })}
-            {nodeData[nodeIndex].display && 
-            <rect
-              className="game_node_vis"
-              x={x_val}
-              y={y_val}
-              width={node_width}
-              height={node_height}
-              fill="#b2efe0"
-              stroke="#b2b2b2"
-              onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
-            />
-            }
-            {nodeData[nodeIndex].display && 
-            <text x={x_val + 5} y={y_val + 20} fill="#323232">
-              {nodeData[nodeIndex].nodeName}
-            </text>
-            }
-          </g>
-        );
-      })}
-
-      </svg>
 
       <button 
       className="setting_item"
