@@ -29,7 +29,9 @@ export default function GameMaker() {
 
   const {state} = useLocation();
   if (state != null) {
-    console.log(state.addedNewProjName);
+    if (state.addedNewProjName != null) {
+      console.log(state.addedNewProjName);
+    }
   }
 
   const name = "/gamemaker";
@@ -44,9 +46,10 @@ export default function GameMaker() {
     { nodeName: "end node", x:x_base+node_width*3+60, y:y_base + 40, nextNodes:[], display: true},
   ]); 
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
-
+  const [selectedNode, setSelectedNode] = useState('-');
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
+    setSelectedNode(name);
   }
 
   function addNewNode() {
@@ -203,6 +206,15 @@ export default function GameMaker() {
         Delete Node
     </button>
     </div>
+
+    {selectedNode != "-" && <button 
+      className="setting_item"
+      onClick={() => {
+        console.log("delete node...!!!")
+        
+        }}>
+        Edit {selectedNode} in Editor
+    </button>}
 {/* //TODO read and use the selected values */}
 
 
@@ -269,7 +281,7 @@ export default function GameMaker() {
               height={node_height}
               fill="#b2efe0"
               stroke="#b2b2b2"
-              onClick={() => handleNodeClick(nodeData[nodeIndex].nodeName)}
+              onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
             />
             }
             {nodeData[nodeIndex].display && 
