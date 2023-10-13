@@ -47,16 +47,22 @@ export default function GameMaker() {
   ]); 
 
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
-  const [selectedNode, setSelectedNode] = useState('-');
+  const [selectedNode, setSelectedNode] = useState("");
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
     setSelectedNode(name);
   }
 
   function enterNodeEditor() {
-    console.log("edit node content...!!!");
     let currNode = nodeData.find(node => node.nodeName === selectedNode);
-    console.log(currNode.nodeType);
+    let currNodeType = currNode.nodeType;
+    console.log(currNodeType);
+    if (currNodeType == "Card Game") {
+      navigate('/cardgamenode', { replace: true, state: { selectedNode } });
+    } else if (currNodeType == "Conversation") {
+      navigate('/conversationnode', { replace: true, state: { selectedNode } });
+    }
+
   }
 
   function addNewNode() {
@@ -91,9 +97,6 @@ export default function GameMaker() {
     navigate('/projectmanagingpanel', { replace: true });
   }
 
-  function goToPieceScreenEditingPanel() {
-    navigate('/piecepanel', { replace: true});
-  }
     
     return (
   <div>
@@ -215,7 +218,7 @@ export default function GameMaker() {
     </button>
     </div>
 
-    {selectedNode != "-" && <button 
+    {selectedNode != "" && <button 
       className="setting_item"
       onClick={enterNodeEditor}>
         Edit {selectedNode} in Editor
