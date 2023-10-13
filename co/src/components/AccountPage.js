@@ -12,9 +12,7 @@ export default function AccountPage() {
 
     let name = "/accountpage";
 
-    function returnToDashboard() {
-        navigate("/dashboard", { replace: true });
-    }
+
 
     return (
   <div className="page">
@@ -23,8 +21,6 @@ export default function AccountPage() {
     <div className="dashboard_content">
 
       <p className="plans"> This is Account Page!  </p>
-
-      <button className="button" onClick={returnToDashboard}> back to dashboard </button>
       
     </div>
  
