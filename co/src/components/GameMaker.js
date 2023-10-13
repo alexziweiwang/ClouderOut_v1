@@ -39,17 +39,24 @@ export default function GameMaker() {
   const x_base = 120, y_base = 52;
   const node_width = 190, node_height = 70;
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1], display: true},
-    { nodeName: "plot2", x:x_base+node_width+20, y:y_base + 30, nextNodes:[2, 3], display: true},
-    { nodeName: "option x", x:x_base+node_width*2+40, y:y_base, nextNodes:[4], display: true},
-    { nodeName: "option y", x:x_base+node_width*2+40, y:y_base + 90, nextNodes:[4], display: true},
-    { nodeName: "end node", x:x_base+node_width*3+60, y:y_base + 40, nextNodes:[], display: true},
+    { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2", x:x_base+node_width+20, y:y_base + 30, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
+    { nodeName: "option x", x:x_base+node_width*2+40, y:y_base, nextNodes:[4], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", x:x_base+node_width*2+40, y:y_base + 90, nextNodes:[4], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", x:x_base+node_width*3+60, y:y_base + 40, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); 
+
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
   const [selectedNode, setSelectedNode] = useState('-');
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
     setSelectedNode(name);
+  }
+
+  function enterNodeEditor() {
+    console.log("edit node content...!!!");
+    let currNode = nodeData.find(node => node.nodeName === selectedNode);
+    console.log(currNode.nodeType);
   }
 
   function addNewNode() {
@@ -64,6 +71,7 @@ export default function GameMaker() {
         const newDataItem = { nodeName: `${val}`, x:x_base+node_width*4+20, y:30, nextNodes:[], display: true}; //TODO temp
         nodeDataTemp.push(newDataItem);
         setNodeData(nodeDataTemp);
+      
         setValue("");
       }
 
@@ -209,10 +217,7 @@ export default function GameMaker() {
 
     {selectedNode != "-" && <button 
       className="setting_item"
-      onClick={() => {
-        console.log("delete node...!!!")
-        
-        }}>
+      onClick={enterNodeEditor}>
         Edit {selectedNode} in Editor
     </button>}
 {/* //TODO read and use the selected values */}
