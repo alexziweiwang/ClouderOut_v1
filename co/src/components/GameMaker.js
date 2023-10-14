@@ -139,7 +139,7 @@ export default function GameMaker() {
       } else {
         nodeDataTemp[fromNodeIndex].nextNodes.push(toNodeIndex);
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
-        console.log("Added link !!! between " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "!!!!!!!"); //TODO test 
+        console.log("Added link !!! from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "!!!!!!!"); //TODO test 
         setFromNodeName("");
         setToNodeName("");
       }
@@ -216,14 +216,9 @@ export default function GameMaker() {
          
         return (
           
-          <g key={nodeIndex}>
+          <g key={nodeIndex} key={nodeIndex}>
             {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
-              // console.log("!   ");
-              // console.log(nodeData[nodeIndex]);
-              // console.log("this is " + nodeData[nodeIndex].nodeName + " and it's connecting to ");
-              // console.log(nodeData[nextNodeIndex]);
-              // console.log("   ");      //TODO remove later (after all tests completed)
-              
+
               if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
                 return;
               } 
@@ -231,7 +226,6 @@ export default function GameMaker() {
               const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base 
               const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].inGroupPosition
                
-
               let point_string = 
                 (next_x_val-15) + "," + (y_val + node_height / 2 - 10) + " " + 
                 (next_x_val-15) + "," + (y_val + node_height / 2 + 10) + " " + 
@@ -258,6 +252,7 @@ export default function GameMaker() {
             })}
             {nodeData[nodeIndex].display && 
             <rect
+              key={nodeData[nodeIndex].nodeName}
               className="game_node_vis"
               x={x_val}
               y={y_val}
@@ -269,7 +264,7 @@ export default function GameMaker() {
             />
             }
             {nodeData[nodeIndex].display && 
-            <text x={x_val + 5} y={y_val + 20} fill="#323232">
+            <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
               {nodeData[nodeIndex].nodeName}
             </text>
             }
@@ -293,10 +288,10 @@ export default function GameMaker() {
     />
     <br></br>
     <select className="setting_item" onChange={addNewNodeGameType}>
-      <option value="Card Game">Card Game</option>
-      <option value="Board Game">Board Game</option>
-      <option value="Tower Defense">Tower Defense</option>
-      <option value="Conversation">Conversation</option>
+      <option value="Card Game" key="Card Game">Card Game</option>
+      <option value="Board Game" key="Board Game">Board Game</option>
+      <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
+      <option value="Conversation" key="Conversation">Conversation</option>
     </select>
     <br></br>
 
@@ -376,11 +371,6 @@ export default function GameMaker() {
     </button>
 
     </div>
-
-
-    {/* <p className="plans">Temp: </p> */}
-      {/* this can be selected in the future: as a child class of node */}
-    {/* <button className="button" onClick={goToPieceScreenEditingPanel}>Go to PieceScreenEditingPanel</button> */}
 
   </div>
     );
