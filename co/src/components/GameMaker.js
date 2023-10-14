@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
@@ -35,7 +35,6 @@ export default function GameMaker() {
     }
   }
 
- 
 
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
@@ -49,15 +48,16 @@ export default function GameMaker() {
   ]); //TODO testing data
 
 
+
    /* variable area */
    const navigate = useNavigate();
    const name = "/gamemaker";
    const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
    const [selectedNode, setSelectedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
-   const [createNewNodeGameType, setCreateNewNodeGameType] = useState("Card Game");
-   const [fromNodeName, setFromNodeName] = useState(nodeData[0].nodeName);
-   const [toNodeName, setToNodeName] = useState(nodeData[0].nodeName);
+   const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
+   const [fromNodeName, setFromNodeName] = useState("");
+   const [toNodeName, setToNodeName] = useState("");
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
@@ -80,6 +80,7 @@ export default function GameMaker() {
 
   function addNewNode() {
     const nodeDataTemp = nodeData;
+  
     if (createNewNodeName.length > 0) {
       //TODO later: check if node name duplicate in cloud-db
       //TODO now searching in temp "nodeData" testing data
@@ -98,8 +99,10 @@ export default function GameMaker() {
 
         nodeDataTemp.push(newDataItem); //TODO temp
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
-        set_test_new_node_depth(test_new_node_depth+1);
+        set_test_new_node_depth(test_new_node_depth+1); //TODO test
         setCreateNewNodeName("");
+        setCreateNewNodeGameType("");
+        //TODO reset the look of dropdown list here
       }
 
     } else {
@@ -109,6 +112,7 @@ export default function GameMaker() {
 
   function addNewNodeGameType(event) {
     setCreateNewNodeGameType(event.target.value); //TODO later update to cloud db
+    console.log("changed selection of new game type : " + event.target.value);
   }
 
   function addConnectionFromNode(event) {
@@ -143,18 +147,7 @@ export default function GameMaker() {
         setFromNodeName("");
         setToNodeName("");
       }
-    }
-
-
-
-    //TODO check if 2 nodes has link, and then add the link by updating info in nodeData
-    //TODO from nodeData, goto node-name of "from node", and update its "next node array"
-
-    // edit nodeDataTemp //TODO temp
-    
-    
-    setNodeData(nodeDataTemp); //TODO later: update to cloud db
-         
+    } 
   }
 
   function deleteLink() {
@@ -176,13 +169,6 @@ export default function GameMaker() {
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
-
-    <p className="plans">
-      TODO: build and apply Game-Data Management design: game data can be edited anywhere during game development:
-      <br></br>places that game-data might be changed: 
-      <br></br>1. at the end of each node (by selection on button or other actions, which goes to branches to other nodes)
-      <br></br>2. for round-games, each operations can change game-data (click on spots, buttons, cards, etc.)
-    </p>
 
     <p className="plans">
       *** design of interactable graph *** 
@@ -280,7 +266,8 @@ export default function GameMaker() {
       onChange={e => {setCreateNewNodeName(e.target.value)}}  
     />
     <br></br>
-    <select className="setting_item" onChange={addNewNodeGameType}>
+    <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+      <option value="" key=""> -- Select Node's Game Type -- </option>
       <option value="Card Game" key="Card Game">Card Game</option>
       <option value="Board Game" key="Board Game">Board Game</option>
       <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
@@ -301,7 +288,7 @@ export default function GameMaker() {
     <br></br>
     <label>From Node </label>
  
-    <select onChange={addConnectionFromNode}>
+    <select onChange={addConnectionFromNode} value={fromNodeName}>
     {nodeData.map((nextIndex, index) => {
       return (
         <option value={nodeData[index].nodeName} key={index}>{nodeData[index].nodeName}</option>
@@ -309,7 +296,7 @@ export default function GameMaker() {
     })}
     </select>
     <label> to Node </label>
-    <select onChange={addConnectionToNode}>
+    <select onChange={addConnectionToNode} value={toNodeName}>
     {nodeData.map((nextIndex, index) => {
       return (
         <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
