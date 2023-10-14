@@ -216,7 +216,7 @@ export default function GameMaker() {
          
         return (
           
-          <g key={nodeIndex} key={nodeIndex}>
+          <g key={nodeIndex}>
             {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
 
               if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
@@ -231,7 +231,7 @@ export default function GameMaker() {
                 (next_x_val-15) + "," + (y_val + node_height / 2 + 10) + " " + 
                 next_x_val + "," + (next_y_val + node_height / 2);
               return (
-                <>
+                <div key={`div_${nodeIndex}_${nextIndex}`}>
                 <line
                   key={`line_${nodeIndex}_${nextIndex}`}
                   x1={x_val + node_width}
@@ -246,7 +246,7 @@ export default function GameMaker() {
                   style={{fill: "green"}}
                 /> */} //TODO later resume for better shaping
                 {/* //TODO: other direction-arrows */}
-                </>
+                </div>
 
               );
             })}
