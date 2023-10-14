@@ -35,18 +35,7 @@ export default function GameMaker() {
     }
   }
 
-  /* variable area */
-  const navigate = useNavigate();
-  const name = "/gamemaker";
-  const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
-  const [selectedNode, setSelectedNode] = useState("");
-  const [createNewNodeName, setCreateNewNodeName] = useState('');
-  const [createNewNodeGameType, setCreateNewNodeGameType] = useState('');
-
-  const x_base = 1, y_base = 1;
-  const node_width = 190, node_height = 70;
-
-
+ 
 
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
@@ -58,6 +47,19 @@ export default function GameMaker() {
     { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], display: true, nodeType:"Card Game"},
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
+
+
+   /* variable area */
+   const navigate = useNavigate();
+   const name = "/gamemaker";
+   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
+   const [selectedNode, setSelectedNode] = useState("");
+   const [createNewNodeName, setCreateNewNodeName] = useState('');
+   const [createNewNodeGameType, setCreateNewNodeGameType] = useState('');
+   const [fromNodeName, setFromNodeName] = useState(nodeData[0].nodeName);
+   const [toNodeName, setToNodeName] = useState(nodeData[0].nodeName);
+   const x_base = 1, y_base = 1;
+   const node_width = 190, node_height = 70;
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
@@ -73,6 +75,7 @@ export default function GameMaker() {
     } else if (currNodeType == "Conversation") {
       navigate('/conversationnode', { replace: true, state: { selectedNode } });
     }
+    //TODO later add conditions for board game and tower defense
   }
 
   function addNewNode() {
@@ -105,11 +108,57 @@ export default function GameMaker() {
   }
 
   function addNewNodeGameType(event) {
-    setCreateNewNodeGameType(event.target.value);
+    setCreateNewNodeGameType(event.target.value); //TODO later update to cloud db
   }
 
-  function goToDashboard() {
-    navigate('/dashboard', { replace: true });
+  function addConnectionFromNode(event) {
+    setFromNodeName(event.target.value); //TODO later update to cloud db
+  }
+
+  function addConnectionToNode(event) {
+    setToNodeName(event.target.value); //TODO later update to cloud db
+  }
+
+  function addLinkBetweenNodes() {
+    const nodeDataTemp = nodeData;
+    let fromNodeIndex = -1, toNodeIndex = -1;
+    let i = 0;
+    //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
+
+    for (; i < nodeDataTemp.length; i++) {
+      if (nodeDataTemp[i].nodeName == fromNodeName) {
+        fromNodeIndex = i;
+      }
+      if (nodeDataTemp[i].nodeName == toNodeName) {
+        toNodeIndex = i;
+      }
+    }
+    if (fromNodeIndex != -1 && toNodeIndex != -1) {
+      if (nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
+        console.log("Warning: the two nodes are already linked"); //TODO test
+      } else {
+        nodeDataTemp[fromNodeIndex].nextNodes.push(toNodeIndex);
+        setNodeData(nodeDataTemp); //TODO later: update to cloud db
+        console.log("Added link !!! between " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "!!!!!!!"); //TODO test 
+        setFromNodeName("");
+        setToNodeName("");
+      }
+    }
+
+
+
+    //TODO check if 2 nodes has link, and then add the link by updating info in nodeData
+    //TODO from nodeData, goto node-name of "from node", and update its "next node array"
+
+    // edit nodeDataTemp //TODO temp
+    
+    
+    setNodeData(nodeDataTemp); //TODO later: update to cloud db
+         
+  }
+
+  function deleteLink() {
+    //TODO check if 2 nodes has link, and then remove the link by updating info in nodeData
   }
 
   function goToProjectManagingPanel() {
@@ -262,27 +311,27 @@ export default function GameMaker() {
     <br></br>
     Edit Existing Node
     <br></br>
-    <label>current node </label>
-    <select>
+    <label>From Node </label>
+ 
+    <select onChange={addConnectionFromNode}>
     {nodeData.map((nextIndex, index) => {
       return (
-        <option value="${nodeData[index].nodeName}" key={index}>{nodeData[index].nodeName}</option>
+        <option value={nodeData[index].nodeName} key={index}>{nodeData[index].nodeName}</option>
       );
     })}
     </select>
-    <br></br>
-    <label>next node</label>
-    <select multiple={true}>
+    <label> to Node </label>
+    <select onChange={addConnectionToNode}>
     {nodeData.map((nextIndex, index) => {
       return (
-        <option value="${nodeData[index].nodeName}" key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
+        <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
       );
     })}
     </select>
     <br></br>
     <button 
       className="setting_item"
-      onClick={() => console.log("add connection")}>
+      onClick={addLinkBetweenNodes}>
         Add connection
     </button>
     <button 
