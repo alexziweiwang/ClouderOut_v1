@@ -41,7 +41,9 @@ export default function GameMaker() {
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
   const [selectedNode, setSelectedNode] = useState("");
   const [createNewNodeName, setCreateNewNodeName] = useState('');
-  const x_base = 120, y_base = 52;
+  const [createNewNodeGameType, setCreateNewNodeGameType] = useState('');
+
+  const x_base = 1, y_base = 1;
   const node_width = 190, node_height = 70;
 
 
@@ -50,11 +52,11 @@ export default function GameMaker() {
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", depth: 1, in_group_pos:0, nextNodes:[1], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2",depth: 2, in_group_pos:0, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, in_group_pos:0, nextNodes:[4], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, in_group_pos:1, nextNodes:[4], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, in_group_pos:0, nextNodes:[], display: true, nodeType:"Conversation"},
+    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
   function handleNodeClick(name) {
@@ -71,7 +73,6 @@ export default function GameMaker() {
     } else if (currNodeType == "Conversation") {
       navigate('/conversationnode', { replace: true, state: { selectedNode } });
     }
-
   }
 
   function addNewNode() {
@@ -87,7 +88,7 @@ export default function GameMaker() {
         const newDataItem = { 
           nodeName: `${createNewNodeName}`, 
           depth: test_new_node_depth,
-          in_group_pos:0,
+          inGroupPosition:0,
           nextNodes:[],  
           display: true, 
           nodeType:"Card Game"}; //TODO temp
@@ -101,6 +102,10 @@ export default function GameMaker() {
     } else {
       console.log("Invalid node name: empty"); //TODO temp
     }
+  }
+
+  function addNewNodeGameType(event) {
+    setCreateNewNodeGameType(event.target.value);
   }
 
   function goToDashboard() {
@@ -158,7 +163,7 @@ export default function GameMaker() {
       {Object.keys(nodeData).map((nodeIndex, index) => {
         // const { node_width, node_height } = nodeData[nodeIndex];
         const x_val = nodeData[index].depth * 240 + x_base 
-        const y_val = y_base + (node_height+30) * nodeData[index].in_group_pos
+        const y_val = y_base + (node_height+30) * nodeData[index].inGroupPosition
          
         return (
           
@@ -175,7 +180,7 @@ export default function GameMaker() {
               } 
               
               const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base 
-              const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].in_group_pos
+              const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].inGroupPosition
                
 
               let point_string = 
@@ -238,12 +243,11 @@ export default function GameMaker() {
       onChange={e => {setCreateNewNodeName(e.target.value)}}  
     />
     <br></br>
-    <select className="setting_item">
-      
-      <option value="cardg">Card Game</option>
-      <option value="boardg">Board Game</option>
-      <option value="fortdefenseg">Tower Defense</option>
-      <option value="conversation">Conversation</option>
+    <select className="setting_item" onChange={addNewNodeGameType}>
+      <option value="Card Game">Card Game</option>
+      <option value="Board Game">Board Game</option>
+      <option value="Tower Defense">Tower Defense</option>
+      <option value="Conversation">Conversation</option>
     </select>
     <br></br>
 
