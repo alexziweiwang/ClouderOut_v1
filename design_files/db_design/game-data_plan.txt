@@ -16,3 +16,12 @@ check some values in game data, for conditional node-enter
 3. between chapters:
 game data should be consistent all along the game experience. 
 the author can have the option of maintaining separate chapter-specific data, as long as they use separate variables; overall, this is flexible based on their use.
+
+*** Tool option design:
+1) variable name
+2) variable type (numeric-integer, numeric-float, boolean, ...)
+3) default value
+these are stored in an array of objects, and during game development, the author can choose by variable name and decide the behaviour.
+
+
+
