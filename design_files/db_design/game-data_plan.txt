@@ -2,3 +2,9 @@ This document is about idea and plans for game-data management.
 Game-data in this project is defined as the data pool that will be used to make decision on game flow, such as the player's previous choice, player's hp, players friendship value with game characters, etc.
 The game-data pool are fixed after the game-author finish the game, and all the actions during a player's playing would only change the game-data values.
 That is, the tool to manage game-data is only available for game-authors, and the place, amount, and behaviour of game-data is only decided by game author. (game-author can be one or multiple people in future collborative mode, but overall this is a group of permission on the project.)
+
+*** Relationship with tool elements:
+1. inside a game-node:
+each player action might update game-data
+each node should have reference/access to update the game-data
+the tool should allow the game-author to choose, update on a certain spot
