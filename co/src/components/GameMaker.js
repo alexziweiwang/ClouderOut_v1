@@ -80,6 +80,11 @@ export default function GameMaker() {
 
   function addNewNode() {
     const nodeDataTemp = nodeData;
+
+    if (createNewNodeGameType == "") {
+      console.log("Game type is required.") //TODO
+      return;
+    }
   
     if (createNewNodeName.length > 0) {
       //TODO later: check if node name duplicate in cloud-db
@@ -128,6 +133,21 @@ export default function GameMaker() {
     let fromNodeIndex = -1, toNodeIndex = -1;
     let i = 0;
     //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
+
+    if (fromNodeName == "" && toNodeName == "") {
+      console.log("Sourec Node and Destination Node are required."); //TODO test
+      return;
+    }
+
+    if (fromNodeName == "") {
+      console.log("Source Node is required."); //TODO test 
+      return;
+    }
+
+    if (toNodeName == "") {
+      console.log("Destination Node is required."); //TODO test 
+      return;
+    }
 
     for (; i < nodeDataTemp.length; i++) {
       if (nodeDataTemp[i].nodeName == fromNodeName) {
