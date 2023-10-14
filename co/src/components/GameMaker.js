@@ -55,7 +55,7 @@ export default function GameMaker() {
    const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
    const [selectedNode, setSelectedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
-   const [createNewNodeGameType, setCreateNewNodeGameType] = useState('');
+   const [createNewNodeGameType, setCreateNewNodeGameType] = useState("Card Game");
    const [fromNodeName, setFromNodeName] = useState(nodeData[0].nodeName);
    const [toNodeName, setToNodeName] = useState(nodeData[0].nodeName);
    const x_base = 1, y_base = 1;
@@ -87,14 +87,14 @@ export default function GameMaker() {
       if (found) {
         console.log("Invalid node name: duplicate")
       } else {
-        console.log("create-node submitted:" + createNewNodeName); // TODO temp
+        console.log("create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
         const newDataItem = { 
           nodeName: `${createNewNodeName}`, 
           depth: test_new_node_depth,
           inGroupPosition:0,
           nextNodes:[],  
           display: true, 
-          nodeType:"Card Game"}; //TODO temp
+          nodeType:`${createNewNodeGameType}`}; //TODO temp
 
         nodeDataTemp.push(newDataItem); //TODO temp
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
