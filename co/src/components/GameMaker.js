@@ -40,16 +40,15 @@ export default function GameMaker() {
   const name = "/gamemaker";
   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
   const [selectedNode, setSelectedNode] = useState("");
-
-  
   const [createNewNodeName, setCreateNewNodeName] = useState('');
-
+  const x_base = 120, y_base = 52;
+  const node_width = 190, node_height = 70;
 
 
 
   // TODO testing, temp
-  const x_base = 120, y_base = 52;
-  const node_width = 190, node_height = 70;
+  const [test_new_node_depth, set_test_new_node_depth] = useState(5);
+
   const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", depth: 1, in_group_pos:0, nextNodes:[1], display: true, nodeType:"Conversation"},
     { nodeName: "plot2",depth: 2, in_group_pos:0, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
@@ -87,14 +86,15 @@ export default function GameMaker() {
         console.log("create-node submitted:" + createNewNodeName); // TODO temp
         const newDataItem = { 
           nodeName: `${createNewNodeName}`, 
-          depth: 5,
-          in_group_pos:0, 
+          depth: test_new_node_depth,
+          in_group_pos:0,
+          nextNodes:[],  
           display: true, 
           nodeType:"Card Game"}; //TODO temp
 
         nodeDataTemp.push(newDataItem); //TODO temp
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
-      
+        set_test_new_node_depth(test_new_node_depth+1);
         setCreateNewNodeName("");
       }
 
