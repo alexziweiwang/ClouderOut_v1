@@ -157,7 +157,7 @@ export default function GameMaker() {
 
       {Object.keys(nodeData).map((nodeIndex, index) => {
         // const { node_width, node_height } = nodeData[nodeIndex];
-        const x_val = nodeData[index].depth * 200 + x_base 
+        const x_val = nodeData[index].depth * 240 + x_base 
         const y_val = y_base + (node_height+30) * nodeData[index].in_group_pos
          
         return (
@@ -174,18 +174,22 @@ export default function GameMaker() {
                 return;
               } 
               
+              const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base 
+              const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].in_group_pos
+               
+
               let point_string = 
-                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 - 10) + " " + 
-                (nodeData[nextNodeIndex].x-15) + "," + (y_val + node_height / 2 + 10) + " " + 
-                nodeData[nextNodeIndex].x + "," + (nodeData[nextNodeIndex].y + node_height / 2);
+                (next_x_val-15) + "," + (y_val + node_height / 2 - 10) + " " + 
+                (next_x_val-15) + "," + (y_val + node_height / 2 + 10) + " " + 
+                next_x_val + "," + (next_y_val + node_height / 2);
               return (
                 <>
                 <line
                   key={`line_${nodeIndex}_${nextIndex}`}
                   x1={x_val + node_width}
                   y1={y_val + node_height / 2}
-                  x2={nodeData[nextNodeIndex].x}
-                  y2={nodeData[nextNodeIndex].y + node_height / 2}
+                  x2={next_x_val}
+                  y2={next_y_val + node_height / 2}
                   stroke="green"
                   strokeWidth="2"
                 />
