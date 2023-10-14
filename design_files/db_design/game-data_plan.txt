@@ -8,3 +8,11 @@ That is, the tool to manage game-data is only available for game-authors, and th
 each player action might update game-data
 each node should have reference/access to update the game-data
 the tool should allow the game-author to choose, update on a certain spot
+
+2. between game nodes:
+check some values in game data, for conditional node-enter
+(game-data decides game flow here)
+
+3. between chapters:
+game data should be consistent all along the game experience. 
+the author can have the option of maintaining separate chapter-specific data, as long as they use separate variables; overall, this is flexible based on their use.
