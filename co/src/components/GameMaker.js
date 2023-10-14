@@ -289,7 +289,9 @@ export default function GameMaker() {
     <label>From Node </label>
  
     <select onChange={addConnectionFromNode} value={fromNodeName}>
-    {nodeData.map((nextIndex, index) => {
+    <option value="" key=""> -- Select Source Node -- </option> 
+    {
+    nodeData.map((nextIndex, index) => {
       return (
         <option value={nodeData[index].nodeName} key={index}>{nodeData[index].nodeName}</option>
       );
@@ -297,6 +299,7 @@ export default function GameMaker() {
     </select>
     <label> to Node </label>
     <select onChange={addConnectionToNode} value={toNodeName}>
+    <option value="" key=""> -- Select Destination Node -- </option> 
     {nodeData.map((nextIndex, index) => {
       return (
         <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
