@@ -28,26 +28,36 @@ export default function GameMaker() {
 
 
   const {state} = useLocation();
+
   if (state != null) {
     if (state.addedNewProjName != null) {
       console.log(state.addedNewProjName);
     }
   }
 
+  /* variable area */
+  const navigate = useNavigate();
   const name = "/gamemaker";
-  // TODO testing
+  const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
+  const [selectedNode, setSelectedNode] = useState("");
+
+  
+  const [createNewNodeName, setCreateNewNodeName] = useState('');
+
+
+
+
+  // TODO testing, temp
   const x_base = 120, y_base = 52;
   const node_width = 190, node_height = 70;
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", x:x_base, y:y_base + 30, nextNodes:[1], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2", x:x_base+node_width+20, y:y_base + 30, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
-    { nodeName: "option x", x:x_base+node_width*2+40, y:y_base, nextNodes:[4], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", x:x_base+node_width*2+40, y:y_base + 90, nextNodes:[4], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", x:x_base+node_width*3+60, y:y_base + 40, nextNodes:[], display: true, nodeType:"Conversation"},
-  ]); 
+    { nodeName: "plot1", depth: 1, in_group_pos:0, nextNodes:[1], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2",depth: 2, in_group_pos:0, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 3, in_group_pos:0, nextNodes:[4], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, in_group_pos:1, nextNodes:[4], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, in_group_pos:0, nextNodes:[], display: true, nodeType:"Conversation"},
+  ]); //TODO testing data
 
-  const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
-  const [selectedNode, setSelectedNode] = useState("");
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
     setSelectedNode(name);
@@ -67,27 +77,31 @@ export default function GameMaker() {
 
   function addNewNode() {
     const nodeDataTemp = nodeData;
-    if (val.length > 0) {
-      //TODO check if node name duplicate
-      const found = nodeData.some((item) => item.nodeName === val);
+    if (createNewNodeName.length > 0) {
+      //TODO later: check if node name duplicate in cloud-db
+      //TODO now searching in temp "nodeData" testing data
+      const found = nodeData.some((item) => item.nodeName === createNewNodeName);
       if (found) {
         console.log("Invalid node name: duplicate")
       } else {
-        console.log("create-node submitted:" + val); // TODO temp
-        const newDataItem = { nodeName: `${val}`, x:x_base+node_width*4+20, y:30, nextNodes:[], display: true}; //TODO temp
-        nodeDataTemp.push(newDataItem);
-        setNodeData(nodeDataTemp);
+        console.log("create-node submitted:" + createNewNodeName); // TODO temp
+        const newDataItem = { 
+          nodeName: `${createNewNodeName}`, 
+          depth: 5,
+          in_group_pos:0, 
+          display: true, 
+          nodeType:"Card Game"}; //TODO temp
+
+        nodeDataTemp.push(newDataItem); //TODO temp
+        setNodeData(nodeDataTemp); //TODO later: update to cloud db
       
-        setValue("");
+        setCreateNewNodeName("");
       }
 
     } else {
       console.log("Invalid node name: empty"); //TODO temp
     }
   }
-
-  const navigate = useNavigate();
-  const [val, setValue] = useState('');
 
   function goToDashboard() {
     navigate('/dashboard', { replace: true });
@@ -127,7 +141,7 @@ export default function GameMaker() {
     <div className="setting_area"> Node Management
     <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>
     <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes</p>
-    <p className="plans"> TODO               think of ways to organize node layers/positions with insertion considered</p>
+    <p className="plans"> TODO               think of ways to organize node depth/positions with insertion considered</p>
     <p className="plans"> TODO: link-arrows adjustment and improvement: different directions, etc.</p>
 
     {selectedNode != "" && <button 
@@ -143,9 +157,9 @@ export default function GameMaker() {
 
       {Object.keys(nodeData).map((nodeIndex, index) => {
         // const { node_width, node_height } = nodeData[nodeIndex];
-        const x_val = nodeData[index].x
-        const y_val = nodeData[index].y
-        
+        const x_val = nodeData[index].depth * 200 + x_base 
+        const y_val = y_base + (node_height+30) * nodeData[index].in_group_pos
+         
         return (
           
           <g key={nodeIndex}>
@@ -175,10 +189,10 @@ export default function GameMaker() {
                   stroke="green"
                   strokeWidth="2"
                 />
-                <polygon 
+                {/* <polygon 
                   points={point_string}
                   style={{fill: "green"}}
-                />
+                /> */} //TODO later resume for better shaping
                 {/* //TODO: other direction-arrows */}
                 </>
 
@@ -215,9 +229,9 @@ export default function GameMaker() {
     <br></br>
     <input 
       className="setting_item"
-      type="text" value={val} 
+      type="text" value={createNewNodeName} 
       // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
-      onChange={e => {setValue(e.target.value)}}  
+      onChange={e => {setCreateNewNodeName(e.target.value)}}  
     />
     <br></br>
     <select className="setting_item">
