@@ -1,4 +1,4 @@
-## This log file records any task worked on but not reflected on code or uploaded diagrams (for example, time taken and end results for designing code architectures or visual elements, or time taken for a larger scope of research on product perspective)
+## This log file records any task/effort working/worked on but not reflected on code or uploaded diagrams (for example, time taken and end results for designing code architectures or visual elements, or time taken for a larger scope of research on product perspective)
 
 ### Format: 
 [Date(YYYY/Month/DD)]:[Task Done]. [(optional) Description or detail].
@@ -20,3 +20,5 @@
 - 2023-Oct-09: Read and consider Cloud db setup and data structure design
 
 - 2023-Oct-11: Explore on optimization of React Project render aspect
+
+- 2023-Oct-16: Design data input and output for conversation-game-node
