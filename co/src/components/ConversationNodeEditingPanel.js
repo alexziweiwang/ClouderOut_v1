@@ -119,6 +119,12 @@ export default function ConversationNodeEditingPanel() {
             </p>
 
             <p className="plans">
+                *** db updating consideration: only call db-updating when user press "save" button to update the project data.
+                <br></br> for list of pieces in conversation-game-node, when entering this editing-panel, pull once from db, then save and present whatever changed locally
+                <br></br> then ask the user to save the changes when exiting or only save when requested.
+            </p>
+
+            <p className="plans">
                 After fetching the data above, previewer should reflect the adjustment and present this piece
                 <br></br> also, save and update to db if requested by user.
             </p>
