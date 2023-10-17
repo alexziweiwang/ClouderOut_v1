@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
+import { serverTimestamp } from 'firebase/firestore';
 
 
 export default function ConversationNodeEditingPanel() {
@@ -24,12 +25,28 @@ export default function ConversationNodeEditingPanel() {
     const [bgMusicAdd, setBgMusicAdd] = useState(false);
     const [voicelineAdd, setVoicelineAdd] = useState(false);
 
-    function switchBgPicOption() {
+    function toggleBgPicOption() {
         setBgPicAdd(!bgpicAdd);
     }
 
-    function switchCharPicOption() {
+    function toggleCharPicOption() {
         setCharPicAdd(!charPicAdd);
+    }
+
+    function toggleSpeakerNameOption() {
+        setSpeakerNameAdd(!speakerNameAdd);
+    }
+
+    function toggleButtonAddOption() {
+        setButtonAdd(!buttonAdd);
+    }
+
+    function toggleBgMusicAddOption() {
+        setBgMusicAdd(!bgMusicAdd);
+    }
+
+    function toggleVoicelineAddOption() {
+        setVoicelineAdd(!voicelineAdd);
     }
 
     function goToGameMaker() {
@@ -61,11 +78,29 @@ export default function ConversationNodeEditingPanel() {
             <br></br>
 
 
-            <button onClick={switchBgPicOption}>Add Background Picture</button>
+            <button onClick={toggleBgPicOption}>Add Background Picture</button>
             {bgpicAdd && <div>TODO: bg pic setting area</div>}
             <br></br>
-            <button onClick={switchCharPicOption}>Add Character Picture</button>
+            <br></br>
+            <button onClick={toggleCharPicOption}>Add Character Picture</button>
             {charPicAdd && <div>TODO: character pic setting area</div>}
+            <br></br>
+            <br></br>
+            <button onClick={toggleSpeakerNameOption}>Add Speaker Name for Text</button>
+            {speakerNameAdd && <div> TODO: speaker name setting area</div>}
+            <br></br>
+            <br></br>
+            <button onClick={toggleButtonAddOption}>Add Button</button>
+            {buttonAdd && <div>TODO: button/clickable-option setting area</div>}
+            <br></br>
+            <br></br>
+            <button onClick={toggleBgMusicAddOption}>Add bgm</button>
+            {bgMusicAdd && <div>TODO: bgm setting area</div>}
+            <br></br>
+            <br></br>
+            <button onClick={toggleVoicelineAddOption}>Add voiceline</button>
+            {voicelineAdd && <div>TODO: voiceline setting area</div>}
+
 
             <p className="plans">
                 required input data: "Edit on Piece"
