@@ -22,3 +22,4 @@
 - 2023-Oct-11: Explore on optimization of React Project render aspect
 
 - 2023-Oct-16: Design data input and output for conversation-game-node
+- 2023-Oct-16: Read and consider collapsible components on webpage
