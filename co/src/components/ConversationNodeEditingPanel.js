@@ -48,7 +48,18 @@ export default function ConversationNodeEditingPanel() {
 
             <p className="plans">
                 TODO: Add table-like or other solutions for scrolling/switching between slides/pieces for this node
+                <br></br>add "clickable table-like browsing list, and the chosen row get editable"
+                <br></br>"Save" button *after* editing finished
             </p>
+
+            <p className="plans">
+                TODO: think about "switching"/"moving rows" feature 
+            </p>
+
+            <br></br>  
+            <br></br>
+            <br></br>
+
 
             <button onClick={switchBgPicOption}>Add Background Picture</button>
             {bgpicAdd && <div>TODO: bg pic setting area</div>}
@@ -75,10 +86,6 @@ export default function ConversationNodeEditingPanel() {
             <p className="plans">
                 After fetching the data above, previewer should reflect the adjustment and present this piece
                 <br></br> also, save and update to db if requested by user.
-            </p>
-
-            <p className="plans">
-                TODO think about the preview solution
             </p>
 
         </div>
