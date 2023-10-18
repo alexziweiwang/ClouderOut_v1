@@ -12,13 +12,13 @@ export default function GameNodeConvPieceEditing() {
 
     let name = "/gamenodeconvpiecedatasec";
     const [textContent, setTextContent] = useState("");
-
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
     const [clickableAdd, setClickableAdd] = useState(false);
     const [bgMusicAdd, setBgMusicAdd] = useState(false);
     const [voicelineAdd, setVoicelineAdd] = useState(false);
+
 
     function handleTextContentEnter(event) {
         console.log("In textarea: " + event.target.value); //TODO
@@ -72,7 +72,8 @@ export default function GameNodeConvPieceEditing() {
 
     return (
         <div>
-    <button onClick={expandAllOptions}> Expand All </button>
+  <button onClick={expandAllOptions}> Expand All </button>
+  <button onClick={collapseAllOptions}> Collapse All </button>
 
     <div className="userChoice">
             <label> Text to display: </label>
@@ -84,63 +85,93 @@ export default function GameNodeConvPieceEditing() {
 
             <br></br>
             <br></br>
-            <button onClick={toggleSpeakerNameOption}> Speaker Name for Text Setting </button>
+            <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + Speaker Name for Text Setting </button>
             {speakerNameAdd && 
-                <div> TODO: speaker name setting area
-                    <br></br>content
+                <div>
+                    <label>Speaker Name:  </label>
+                    <input defaultValue="..."></input>
                 </div>}
-            {!speakerNameAdd && <div className="textRight">-----------------------------------------------</div>}
+            {!speakerNameAdd && <div className="textRight">-------------------(None)--------</div>}
             
-            <button onClick={toggleBgPicOption}> Background Picture Setting {bgpicAdd}</button>
+            <button className="collapseToggle" onClick={toggleBgPicOption}> + Background Picture Setting {bgpicAdd}</button>
             {bgpicAdd && 
                 <div>
-                    TODO: bg pic setting area
-                    <br></br>source link
-                    <br></br>position
-                    <br></br>width
-                    <br></br>height
-                </div>}
-            {!bgpicAdd && <div className="textRight">-----------------------------------------------</div>}
+                    <label>Source Link:  </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Position:      </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Width:         </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Height:        </label>
+                    <input defaultValue="..."></input>
 
-            <button onClick={toggleCharPicOption}> Character Picture Setting </button>
+                </div>}
+            {!bgpicAdd && <div className="textRight">-------------------(None)--------</div>}
+
+            <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>
             {charPicAdd && 
                 <div>
-                    TODO: character pic setting area
-                    <br></br>source link
-                    <br></br>position
-                    <br></br>width
-                    <br></br>height
+                    <label>Source Link:  </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Position:      </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Width:         </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Height:        </label>
+                    <input defaultValue="..."></input>
                 </div>}
-            {!charPicAdd && <div className="textRight">-----------------------------------------------</div>}
+            {!charPicAdd && <div className="textRight">-------------------(None)--------</div>}
 
-            <button onClick={toggleclickableAddOption}> Clickable(customizable button) Setting </button>
+            <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>
             {clickableAdd && 
-                <div>TODO: button/clickable-option setting area
-                    <br></br>shape/pic_source
-                    <br></br>sound effect
-                    <br></br>pressed consequence on game data
+                <div>
+                    <label>Shape/Picture Source:  </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Sound Effect:      </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Consequence:         </label>
+                    <input defaultValue="..."></input>
+        
                 </div>}
-            {!clickableAdd && <div className="textRight">-----------------------------------------------</div>}
+            {!clickableAdd && <div className="textRight">-------------------(None)--------</div>}
 
-            <button onClick={toggleBgMusicAddOption}>Background Music Setting </button>
+            <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>
             {bgMusicAdd && 
-                <div>TODO: bgm setting area
-                    <br></br>source link
-                    <br></br>is looping
-                    <br></br>volume
+                <div>
+                    <label>Source Link:  </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Is looping:      </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Volume:         </label>
+                    <input defaultValue="..."></input>
+        
                 </div>}
-            {!bgMusicAdd && <div className="textRight">-----------------------------------------------</div>}
+            {!bgMusicAdd && <div className="textRight">-------------------(None)--------</div>}
 
-            <button onClick={toggleVoicelineAddOption}> Voiceline Setting </button>
+            <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>
             {voicelineAdd && 
-                <div>TODO: voiceline setting area
-                    <br></br>source link
-                    <br></br>volume           
+                <div>
+                    <label>Source Link:  </label>
+                    <input defaultValue="..."></input>
+                    <br></br>
+                    <label>Volume:         </label>
+                    <input defaultValue="..."></input>
                 </div>}
-            {!voicelineAdd && <div className="textRight">-----------------------------------------------</div>}
+            {!voicelineAdd && <div className="textRight">-------------------(None)--------</div>}
 
 
   </div>
+  <button onClick={expandAllOptions}> Expand All </button>
   <button onClick={collapseAllOptions}> Collapse All </button>
 
  </div>

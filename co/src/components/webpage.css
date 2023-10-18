@@ -80,14 +80,26 @@ body {
 }
 
 .userChoice {
-    background-color: rgb(227, 209, 177);
+    background-color: rgb(235, 227, 213);
     width: 30%;
     margin-left: 10%;
     justify-content: flex-start;
     text-align: left;
-    padding: 5px;
+    padding: 15px;
 }
 
 .textRight {
     text-align: right;
+}
+
+.collapseToggle {
+    background-color: rgb(139, 156, 186);
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    border-color: rgb(247, 243, 243);
+    text-decoration: none;
+    margin: 6px;
+    width: 90%;
 }
