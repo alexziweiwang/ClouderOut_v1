@@ -46,28 +46,38 @@ export default function GameNodeConvPieceEditing() {
   
 
     return (
-  <div>
-            <button onClick={toggleBgPicOption}>Add Background Picture</button>
-            {bgpicAdd && <div>TODO: bg pic setting area</div>}
+  <div className="userChoice">
+            <button onClick={toggleBgPicOption}> Background Picture Setting {bgpicAdd}</button>
+            {bgpicAdd && 
+            
+                <div>
+                    TODO: bg pic setting area
+                    <br></br>source link
+                    <br></br>position
+                    <br></br>width
+                    <br></br>height
+                </div>}
+
+
             <br></br>
             <br></br>
-            <button onClick={toggleCharPicOption}>Add Character Picture</button>
+            <button onClick={toggleCharPicOption}> Character Picture Setting </button>
             {charPicAdd && <div>TODO: character pic setting area</div>}
             <br></br>
             <br></br>
-            <button onClick={toggleSpeakerNameOption}>Add Speaker Name for Text</button>
+            <button onClick={toggleSpeakerNameOption}> Speaker Name for Text Setting </button>
             {speakerNameAdd && <div> TODO: speaker name setting area</div>}
             <br></br>
             <br></br>
-            <button onClick={toggleButtonAddOption}>Add Button</button>
+            <button onClick={toggleButtonAddOption}> Clickable Setting </button>
             {buttonAdd && <div>TODO: button/clickable-option setting area</div>}
             <br></br>
             <br></br>
-            <button onClick={toggleBgMusicAddOption}>Add bgm</button>
+            <button onClick={toggleBgMusicAddOption}>Background Music Setting </button>
             {bgMusicAdd && <div>TODO: bgm setting area</div>}
             <br></br>
             <br></br>
-            <button onClick={toggleVoicelineAddOption}>Add voiceline</button>
+            <button onClick={toggleVoicelineAddOption}> Voiceline Setting </button>
             {voicelineAdd && <div>TODO: voiceline setting area</div>}
 
   </div>

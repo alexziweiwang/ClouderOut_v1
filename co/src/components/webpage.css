@@ -78,3 +78,12 @@ body {
     align-items: flex-start;
     background-color: pink;
 }
+
+.userChoice {
+    background-color: rgb(227, 209, 177);
+    width: 30%;
+    margin-left: 10%;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 5px;
+}
