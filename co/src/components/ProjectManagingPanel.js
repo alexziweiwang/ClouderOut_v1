@@ -40,12 +40,12 @@ export default function ProjectManagerPanel() {
           return (
           <option value="${testProj[index].project_name}" key={testProj[index].project_name}>{testProj[index].project_name}</option>
           );
-        })}
+        })} 
+   
         </select>
    
         <p className="plans">Later: connect to cloud db and provide all project names to get selected by the user, or create new project</p>
         //TODO when use choose an exisiting project, do setProjectName to update the selection of project
-        <br></br>//TODO also do creation of projects to cloud db
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
    
 

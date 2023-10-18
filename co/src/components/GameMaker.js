@@ -58,6 +58,7 @@ export default function GameMaker() {
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [fromNodeName, setFromNodeName] = useState("");
    const [toNodeName, setToNodeName] = useState("");
+   const [deletingNodeName, setDeletingNodeName] = useState("");
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
@@ -170,8 +171,29 @@ export default function GameMaker() {
     } 
   }
 
+  
+
   function deleteLink() {
     //TODO check if 2 nodes has link, and then remove the link by updating info in nodeData
+  }
+
+  function selectDeletingNode(event) {
+    setDeletingNodeName(event.target.value); //TODO later update to cloud db
+    console.log("selecting in list: deleting? ");
+    console.log(event.target.value);
+  }
+
+  function handleDeleteNode(){
+    let i = 0;
+    const nodeDataTemp = nodeData;
+    for (; i < nodeDataTemp.length; i++) {
+      if (nodeDataTemp[i].nodeName == deletingNodeName) {
+        nodeDataTemp[i].display = false;
+        console.log("trying to delete node: " + deletingNodeName); //TODO
+      }
+    }
+    setNodeData(nodeDataTemp);
+    setDeletingNodeName("");
   }
 
   function goToProjectManagingPanel() {
@@ -201,7 +223,6 @@ export default function GameMaker() {
     <div className="setting_area"> Node Management
     <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>
     <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes</p>
-    <p className="plans"> TODO               think of ways to organize node depth/positions with insertion considered</p>
     <p className="plans"> TODO: link-arrows adjustment and improvement: different directions, etc.</p>
 
     {selectedNode != "" && <button 
@@ -249,7 +270,7 @@ export default function GameMaker() {
 
               );
             })}
-            {nodeData[nodeIndex].display && 
+            {nodeData[nodeIndex].display == true && 
             <rect
               key={nodeData[nodeIndex].nodeName}
               className="game_node_vis"
@@ -262,7 +283,7 @@ export default function GameMaker() {
               onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
             />
             }
-            {nodeData[nodeIndex].display && 
+            {nodeData[nodeIndex].display == true && 
             <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
               {nodeData[nodeIndex].nodeName}
             </text>
@@ -344,21 +365,23 @@ export default function GameMaker() {
     <br></br>
     Put Node into Trash Area
     <br></br>
-    <select>
+    <select value={deletingNodeName} onChange={selectDeletingNode}>
+    <option value="" key=""> -- Select Node to Remove -- </option> 
+
     {nodeData.map((nextIndex, index) => {
-      const keyStr = nodeData[index].nodeName+index
+      if (nodeData[index].display == false) {
+        return;
+      }
+      const keyStr = nodeData[index].nodeName+index;
       return (
-        <option value="${nodeData[index].nodeName}" key={keyStr}>{nodeData[index].nodeName}</option>
+        <option value={nodeData[index].nodeName} key={keyStr}>{nodeData[index].nodeName}</option>
       );
     })}
     </select>
     <br></br>
     <button 
       className="setting_item"
-      onClick={() => {
-        console.log("delete node...!!!")
-        
-        }}>
+      onClick={handleDeleteNode}>
         Delete Node
     </button>
     </div>
