@@ -8,9 +8,10 @@ import Sidebar from './Sidebar';
 export default function GameNodeConvPieceEditing() {
     const navigate = useNavigate();
 
-    console.log("re-rendering: game node conv... @piece editing");
+    console.log("re-rendering: game node conv section ... @piece editing");
 
-    let name = "/gamenodeconvpiece";
+    let name = "/gamenodeconvpiecedatasec";
+    const [textContent, setTextContent] = useState("");
 
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
@@ -18,6 +19,12 @@ export default function GameNodeConvPieceEditing() {
     const [clickableAdd, setClickableAdd] = useState(false);
     const [bgMusicAdd, setBgMusicAdd] = useState(false);
     const [voicelineAdd, setVoicelineAdd] = useState(false);
+
+    function handleTextContentEnter(event) {
+        console.log("In textarea: " + event.target.value); //TODO
+        setTextContent(event.target.value);
+      
+      }
 
     function toggleBgPicOption() {
         setBgPicAdd(!bgpicAdd);
@@ -64,9 +71,19 @@ export default function GameNodeConvPieceEditing() {
   
 
     return (
-  <div className="userChoice">
-            
+        <div>
+    <button onClick={expandAllOptions}> Expand All </button>
 
+    <div className="userChoice">
+            <label> Text to display: </label>
+            <br></br>
+            <textarea
+                value={textContent}
+                onChange={handleTextContentEnter}
+            />
+
+            <br></br>
+            <br></br>
             <button onClick={toggleSpeakerNameOption}> Speaker Name for Text Setting </button>
             {speakerNameAdd && 
                 <div> TODO: speaker name setting area
@@ -123,8 +140,9 @@ export default function GameNodeConvPieceEditing() {
             {!voicelineAdd && <div className="textRight">-----------------------------------------------</div>}
 
 
-            <button onClick={collapseAllOptions}> Collapse All </button>
-            <button onClick={expandAllOptions}> Expand All </button>
   </div>
+  <button onClick={collapseAllOptions}> Collapse All </button>
+
+ </div>
     );
 }
