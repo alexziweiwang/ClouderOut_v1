@@ -365,6 +365,13 @@ export default function GameMaker() {
 
 {/* //TODO read and use the selected values */}
 
+<p className="plans">
+                *** resource management consideration: along the entire project, the user should be able to add, remove, and use some resource they upload
+                <br></br>- the presentation/preview should consider fewer re-render on these resource
+                <br></br>- in the game node editing process, the user should work closely with the resource manager for specifying the resource
+                <br></br> for example, something like a "resource pool/stock" should be always available for actions
+                <br></br>- for all game-node editing, rsrc-mgmt should be available; later for node visualization, it might be good UX if also support some mini pic on the node's looking
+            </p>
 
 
       <button 
