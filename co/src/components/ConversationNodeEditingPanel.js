@@ -56,8 +56,8 @@ export default function ConversationNodeEditingPanel() {
 
                 <br></br> - [optional] button/clickable item [0..n]: shape/pic_source, sound effect, pressed_consequence on game data
 
-                <br></br> - [optional] background music [0..1]: source link, loop or not, volumne
-                <br></br> - [optional] voiceline [0..1]: source link, volumne
+                <br></br> - [optional] background music [0..1]: source link, loop or not, volume
+                <br></br> - [optional] voiceline [0..1]: source link, volume
 
             </p>
 
