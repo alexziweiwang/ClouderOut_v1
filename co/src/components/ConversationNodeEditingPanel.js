@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 import { serverTimestamp } from 'firebase/firestore';
-
+import GameNodeConvPieceEditing from './GameNodeConvPieceEditing';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -16,38 +16,7 @@ export default function ConversationNodeEditingPanel() {
     if (state != null && state.selectedNode != null) {
         nodeName = state.selectedNode;
     }
-    console.log("this node is : " + nodeName); //TODO
-
-    const [bgpicAdd, setBgPicAdd] = useState(false);
-    const [charPicAdd, setCharPicAdd] = useState(false);
-    const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
-    const [buttonAdd, setButtonAdd] = useState(false);
-    const [bgMusicAdd, setBgMusicAdd] = useState(false);
-    const [voicelineAdd, setVoicelineAdd] = useState(false);
-
-    function toggleBgPicOption() {
-        setBgPicAdd(!bgpicAdd);
-    }
-
-    function toggleCharPicOption() {
-        setCharPicAdd(!charPicAdd);
-    }
-
-    function toggleSpeakerNameOption() {
-        setSpeakerNameAdd(!speakerNameAdd);
-    }
-
-    function toggleButtonAddOption() {
-        setButtonAdd(!buttonAdd);
-    }
-
-    function toggleBgMusicAddOption() {
-        setBgMusicAdd(!bgMusicAdd);
-    }
-
-    function toggleVoicelineAddOption() {
-        setVoicelineAdd(!voicelineAdd);
-    }
+    console.log("this node is : [" + nodeName + "] in conversation-node editing page."); //TODO
 
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true });
@@ -73,34 +42,8 @@ export default function ConversationNodeEditingPanel() {
                 TODO: think about "switching"/"moving rows" feature 
             </p>
 
-            <br></br>  
-            <br></br>
-            <br></br>
-
-
-            <button onClick={toggleBgPicOption}>Add Background Picture</button>
-            {bgpicAdd && <div>TODO: bg pic setting area</div>}
-            <br></br>
-            <br></br>
-            <button onClick={toggleCharPicOption}>Add Character Picture</button>
-            {charPicAdd && <div>TODO: character pic setting area</div>}
-            <br></br>
-            <br></br>
-            <button onClick={toggleSpeakerNameOption}>Add Speaker Name for Text</button>
-            {speakerNameAdd && <div> TODO: speaker name setting area</div>}
-            <br></br>
-            <br></br>
-            <button onClick={toggleButtonAddOption}>Add Button</button>
-            {buttonAdd && <div>TODO: button/clickable-option setting area</div>}
-            <br></br>
-            <br></br>
-            <button onClick={toggleBgMusicAddOption}>Add bgm</button>
-            {bgMusicAdd && <div>TODO: bgm setting area</div>}
-            <br></br>
-            <br></br>
-            <button onClick={toggleVoicelineAddOption}>Add voiceline</button>
-            {voicelineAdd && <div>TODO: voiceline setting area</div>}
-
+            <GameNodeConvPieceEditing/>
+           
 
             <p className="plans">
                 required input data: "Edit on Piece"
