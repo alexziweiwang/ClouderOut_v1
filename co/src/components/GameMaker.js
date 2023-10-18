@@ -221,9 +221,10 @@ export default function GameMaker() {
 
 
     <div className="setting_area"> Node Management
-    <p className="plans"> TODO : dynamic operation panel : create new or edit existing nodes or delete nodes (put into trash area)</p>
-    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes</p>
     <p className="plans"> TODO: link-arrows adjustment and improvement: different directions, etc.</p>
+    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links(TODO), deleting nodes</p>
+    <p className="plans"> TODO: node positions: in-group-position and depth, etc.; auto/dynamic adjustment after adding or removing nodes </p>
+    <p className="plans"> TODO: "undo" and "redo" features </p>
 
     {selectedNode != "" && <button 
       className="setting_item"
@@ -333,6 +334,9 @@ export default function GameMaker() {
     <option value="" key=""> -- Select Source Node -- </option> 
     {
     nodeData.map((nextIndex, index) => {
+      if (nodeData[index].display == false) {
+        return;
+      }      
       return (
         <option value={nodeData[index].nodeName} key={index}>{nodeData[index].nodeName}</option>
       );
@@ -342,6 +346,9 @@ export default function GameMaker() {
     <select onChange={addConnectionToNode} value={toNodeName}>
     <option value="" key=""> -- Select Destination Node -- </option> 
     {nodeData.map((nextIndex, index) => {
+      if (nodeData[index].display == false) {
+        return;
+      }
       return (
         <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
       );
