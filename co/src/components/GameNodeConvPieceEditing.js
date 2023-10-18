@@ -86,16 +86,23 @@ export default function GameNodeConvPieceEditing() {
             <br></br>
             <br></br>
             <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + Speaker Name for Text Setting </button>
+
             {speakerNameAdd && 
                 <div>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <br></br>
                     <label>Speaker Name:  </label>
                     <input defaultValue="..."></input>
-                </div>}
+                </div>
+                
+            }
             {!speakerNameAdd && <div className="textRight">-------------------(None)--------</div>}
             
             <button className="collapseToggle" onClick={toggleBgPicOption}> + Background Picture Setting {bgpicAdd}</button>
             {bgpicAdd && 
                 <div>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <br></br>
                     <label>Source Link:  </label>
                     <input defaultValue="..."></input>
                     <br></br>
@@ -107,13 +114,14 @@ export default function GameNodeConvPieceEditing() {
                     <br></br>
                     <label>Height:        </label>
                     <input defaultValue="..."></input>
-
                 </div>}
             {!bgpicAdd && <div className="textRight">-------------------(None)--------</div>}
 
             <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>
             {charPicAdd && 
                 <div>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <br></br>
                     <label>Source Link:  </label>
                     <input defaultValue="..."></input>
                     <br></br>
@@ -131,6 +139,8 @@ export default function GameNodeConvPieceEditing() {
             <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>
             {clickableAdd && 
                 <div>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <br></br>
                     <label>Shape/Picture Source:  </label>
                     <input defaultValue="..."></input>
                     <br></br>
@@ -139,13 +149,14 @@ export default function GameNodeConvPieceEditing() {
                     <br></br>
                     <label>Consequence:         </label>
                     <input defaultValue="..."></input>
-        
                 </div>}
             {!clickableAdd && <div className="textRight">-------------------(None)--------</div>}
 
             <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>
             {bgMusicAdd && 
                 <div>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <br></br>
                     <label>Source Link:  </label>
                     <input defaultValue="..."></input>
                     <br></br>
@@ -154,13 +165,14 @@ export default function GameNodeConvPieceEditing() {
                     <br></br>
                     <label>Volume:         </label>
                     <input defaultValue="..."></input>
-        
                 </div>}
             {!bgMusicAdd && <div className="textRight">-------------------(None)--------</div>}
-
+                
             <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>
             {voicelineAdd && 
                 <div>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <br></br>
                     <label>Source Link:  </label>
                     <input defaultValue="..."></input>
                     <br></br>

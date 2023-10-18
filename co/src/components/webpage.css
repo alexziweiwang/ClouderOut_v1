@@ -101,5 +101,9 @@ body {
     border-color: rgb(247, 243, 243);
     text-decoration: none;
     margin: 6px;
-    width: 90%;
+    width: 80%;
+}
+
+.buttonRight {
+    margin-left: 70%;
 }

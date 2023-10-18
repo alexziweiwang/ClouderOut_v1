@@ -31,3 +31,5 @@
 - [x] cloud db data structure design, optimized
 - [ ] account-system design
 - [ ] sample small projects (for test and demo)
+- [ ] consider UI language switching design
+
