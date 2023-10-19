@@ -171,10 +171,11 @@ export default function GameMaker() {
     } 
   }
 
-  
+  function deleteLinkBetweenNodes() {
+    // TODO check if 2 nodes has link, and then remove the link by updating info in nodeData
+    // TODO checking "from sourceNode to destinationNode"
+    // TODO sourceNode's nextNodes array, delete destinationNodes' index if there is
 
-  function deleteLink() {
-    //TODO check if 2 nodes has link, and then remove the link by updating info in nodeData
   }
 
   function selectDeletingNode(event) {
@@ -186,12 +187,20 @@ export default function GameMaker() {
   function handleDeleteNode(){
     let i = 0;
     const nodeDataTemp = nodeData;
+    let deletedNodeIndex = 0;
     for (; i < nodeDataTemp.length; i++) {
       if (nodeDataTemp[i].nodeName == deletingNodeName) {
         nodeDataTemp[i].display = false;
-        console.log("trying to delete node: " + deletingNodeName); //TODO
+        deletedNodeIndex = i;
       }
     }
+
+    i = 0;
+    for (; i < nodeDataTemp.length; i++) {
+      //TODO if nextNodes contains "deletedNodeIndex", remove it
+      //TODO also remove all nodes in "deletedNodeIndex"'s node
+    }
+
     setNodeData(nodeDataTemp);
     setDeletingNodeName("");
   }
@@ -362,7 +371,7 @@ export default function GameMaker() {
     </button>
     <button 
       className="setting_item"
-      onClick={() => console.log("delete connection !")}>
+      onClick={deleteLinkBetweenNodes}>
         Delete connection
     </button>
 
