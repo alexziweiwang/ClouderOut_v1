@@ -10,13 +10,13 @@ export default function GameMaker() {
 /* // TODO game-maker task list
 1. add "chapter management"
 2. logic organizer for game-node-relationship
-3. preview and test for node play-flow
+3. preview and test for node play-flow (progress: 35%)
+4. testing data for some nodes on cloud-db
 */
 
 
-/* // TODO game-node visualization task list
+/* // TODO game-node visualization task list, dont items removed
 1. switching between "new node" and "edit node"
-2. for "new node", selection of previous node (where does it start)
 3. for "edit node", allow edition of several properties
 4. optimization of paths: non-overlapping, line to path
 5. optimization of paths: arrow looking
@@ -29,7 +29,7 @@ export default function GameMaker() {
 
   const {state} = useLocation();
 
-  if (state != null) {
+  if (state != null) { //TODO testing
     if (state.addedNewProjName != null) {
       console.log(state.addedNewProjName);
     }
@@ -48,7 +48,6 @@ export default function GameMaker() {
   ]); //TODO testing data
 
 
-
    /* variable area */
    const navigate = useNavigate();
    const name = "/gamemaker";
@@ -63,6 +62,7 @@ export default function GameMaker() {
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
+  console.log("This is game-maker component -- render once."); //TODO
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
@@ -78,7 +78,7 @@ export default function GameMaker() {
     } else if (currNodeType == "Conversation") {
       navigate('/conversationnode', { replace: true, state: { selectedNode } });
     }
-    //TODO later add conditions for board game and tower defense
+        //TODO later add conditions for board game and tower defense
   }
 
   function addNewNode() {

@@ -49,10 +49,15 @@ export default function ConversationNodeEditingPanel() {
             </p>
 
             <p className="plans">
-                TODO: Add table-like or other solutions for scrolling/switching between slides/pieces for this node
-                <br></br>add "clickable table-like browsing list, and the chosen row get editable"
-                <br></br>"Save" button *after* editing finished
+                TODO: Add a list for scrolling/switching between slides/pieces for this node
+                <br></br> - TODO: add testing data
+                <br></br> - when entering this node-editing page, pull once from cloud db for list of pieces/slides
+                <br></br> - each list item is clickable, and then the editing options provided to the user
+                <br></br>
+                <br></br> - "Save" button *after* all editing finished (to update to cloud-db)
             </p>
+
+
 
             <p className="plans">
                 TODO: think about "switching"/"moving rows" feature 
