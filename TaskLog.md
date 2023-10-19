@@ -26,3 +26,4 @@
 - 2023-Oct-16: Explore preview feature for game node
 
 - 2023-Oct-18: Design and add testing data onto cloud database for later development and test
+- 2023-Oct-18: Setup Cloud Storage uploading for users
