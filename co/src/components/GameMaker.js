@@ -174,9 +174,53 @@ export default function GameMaker() {
   }
 
   function deleteLinkBetweenNodes() {
-    // TODO check if 2 nodes has link, and then remove the link by updating info in nodeData
-    // TODO checking "from sourceNode to destinationNode"
-    // TODO sourceNode's nextNodes array, delete destinationNodes' index if there is
+    const nodeDataTemp = nodeData;
+    let fromNodeIndex = -1, toNodeIndex = -1;
+    let i = 0;
+
+    if (fromNodeName == "" && toNodeName == "") {
+      console.log("Sourec Node and Destination Node are required."); //TODO test
+      return;
+    }
+
+    if (fromNodeName == "") {
+      console.log("Source Node is required."); //TODO test 
+      return;
+    }
+
+    if (toNodeName == "") {
+      console.log("Destination Node is required."); //TODO test 
+      return;
+    }
+    for (; i < nodeDataTemp.length; i++) {
+      if (nodeDataTemp[i].nodeName == fromNodeName) {
+        fromNodeIndex = i;
+      }
+      if (nodeDataTemp[i].nodeName == toNodeName) {
+        toNodeIndex = i;
+      }
+    }
+    if (fromNodeIndex != -1 && toNodeIndex != -1) {
+      if (!nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
+        console.log("Warning: the two nodes are not linked ..."); //TODO test
+      } else {
+
+        let j =0;
+        let newArr = []
+        for (; j < nodeDataTemp[fromNodeIndex].nextNodes.length; j++) {
+          if (nodeDataTemp[fromNodeIndex].nextNodes[j] != toNodeIndex) {
+            newArr.push(nodeDataTemp[fromNodeIndex].nextNodes[j]);
+          }
+        }
+        nodeDataTemp[fromNodeIndex].nextNodes = newArr;
+        
+        setNodeData(nodeDataTemp); //TODO later: update to cloud db
+        console.log("Removed link from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "......"); //TODO test 
+        console.log(nodeData[fromNodeIndex]); //TODO
+        setFromNodeName("");
+        setToNodeName("");
+      }
+    } 
 
   }
 
