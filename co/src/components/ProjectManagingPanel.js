@@ -5,7 +5,6 @@ import { useState } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
 
-// TODO: add 2 sub-panel-look components for new and edit project
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState(['unnamed_project']);
@@ -13,22 +12,17 @@ export default function ProjectManagerPanel() {
       { project_name: "project001"},
       { project_name: "project002"},
       { project_name: "project003"},
-    ]); 
+    ]); //TODO pull the list from cloud-db
     const [addedNewProjName, setNewProjName] = useState(['New Project Name']);
 
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
     
-    function addNewProject() {
-
-      console.log("adding a new project: " + addedNewProjName);
-    }
-
     let name = "/projectmanagingpanel";
     return (
     <>    
-    <Sidebar compName = {name}/>
+      <Sidebar compName = {name}/>
 
     <>
 

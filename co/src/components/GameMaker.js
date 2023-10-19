@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
-import db from '../googleCloudConnetions';
+
 
 export default function GameMaker() {
 
@@ -290,8 +290,8 @@ export default function GameMaker() {
 
 
     <div className="setting_area"> Node Management
-    <p className="plans"> TODO: link-arrows adjustment and improvement: different directions, etc.</p>
-    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links(TODO), deleting nodes</p>
+    <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.</p>
+    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes (functionality ok, need UI & UX improvement)</p>
     <p className="plans"> TODO: node positions: in-group-position and depth, etc.; auto/dynamic adjustment after adding or removing nodes </p>
     <p className="plans"> TODO: "undo" and "redo" features </p>
 
