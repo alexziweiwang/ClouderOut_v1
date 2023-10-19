@@ -206,7 +206,7 @@ export default function GameMaker() {
       } else {
 
         let j =0;
-        let newArr = []
+        let newArr = [];
         for (; j < nodeDataTemp[fromNodeIndex].nextNodes.length; j++) {
           if (nodeDataTemp[fromNodeIndex].nextNodes[j] != toNodeIndex) {
             newArr.push(nodeDataTemp[fromNodeIndex].nextNodes[j]);
@@ -243,8 +243,23 @@ export default function GameMaker() {
 
     i = 0;
     for (; i < nodeDataTemp.length; i++) {
-      //TODO if nextNodes contains "deletedNodeIndex", remove it
-      //TODO also remove all nodes in "deletedNodeIndex"'s node
+      //if nextNodes contains "deletedNodeIndex", remove it
+      if (nodeDataTemp[i].nextNodes.includes(deletedNodeIndex)) {
+        let j = 0;
+        let newArr = [];
+        for (; j < nodeDataTemp[i].nextNodes.length; j++) {
+          if (nodeDataTemp[i].nextNodes[j] != deletedNodeIndex) {
+            newArr.push(nodeDataTemp[i].nextNodes[j]);
+          }
+        }
+        nodeDataTemp[i].nextNodes = newArr;
+      }
+
+      //also remove all nodes in "deletedNodeIndex"'s node
+      if (i == deletedNodeIndex) {
+        nodeDataTemp[deletedNodeIndex].nextNodes = [];
+      }
+
     }
 
     setNodeData(nodeDataTemp);
@@ -300,10 +315,6 @@ export default function GameMaker() {
           
           <g key={nodeIndex}>
             {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
-
-              if (nodeData[nodeIndex].display == false || nodeData[nextNodeIndex].display == false) {
-                return;
-              } 
               
               const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base 
               const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].inGroupPosition
