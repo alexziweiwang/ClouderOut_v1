@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 import { serverTimestamp } from 'firebase/firestore';
 import GameNodeConvPieceEditing from './GameNodeConvPieceEditing';
+import ResourceManagingModal from './ResourceManagingModal';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -18,6 +19,19 @@ export default function ConversationNodeEditingPanel() {
     }
     console.log("this node is : [" + nodeName + "] in conversation-node editing page."); //TODO
 
+    const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+   
+    function handleResourceManagerCancel() {
+        setDisplayRmModal(false);
+      }
+    
+    function handleResourceManagerSaveChanges() {
+        console.log("modal save changes!");
+        //TODO update to cloud db
+        setDisplayRmModal(false);
+    
+    }
+
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true });
     }
@@ -27,7 +41,9 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> Return To GameMaker! </button></div>
             
-            
+            {isDisplayRmBool && <ResourceManagingModal isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
+            <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> Show Resource Manager </button>
+
             <p className="plans">This is conversation-node editing panel
             <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)
             </p>

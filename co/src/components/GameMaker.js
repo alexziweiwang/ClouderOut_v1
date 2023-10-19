@@ -59,8 +59,10 @@ export default function GameMaker() {
    const [fromNodeName, setFromNodeName] = useState("");
    const [toNodeName, setToNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
+
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
+
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
@@ -209,8 +211,7 @@ export default function GameMaker() {
     navigate('/projectmanagingpanel', { replace: true });
   }
 
-    
-    return (
+  return (
   <div>
 
     
