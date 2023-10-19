@@ -6,6 +6,6 @@ export async function fetchProjectList() {
     if (!doc.exists) {
       console.log('on cloud db: document not found');
     } else {
-      console.log('on vloud db: data is ... ', doc.data());
+      console.log('on cloud db: data is ... ', doc.data());
     }
 }

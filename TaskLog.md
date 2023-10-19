@@ -27,3 +27,4 @@
 
 - 2023-Oct-18: Design and add testing data onto cloud database for later development and test
 - 2023-Oct-18: Setup Cloud Storage uploading for users
+- 2023-Oct-18: Cloud db debug for architecture design
