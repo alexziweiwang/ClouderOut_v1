@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
-import {fetchProjectList} from '../viewmodels/ProjectManagerViewModel';
+import {fetchProjectList} from '../models/ProjectManagerModel';
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function ProjectManagerPanel() {
     ]); //TODO pull the list from cloud-db
     const [addedNewProjName, setNewProjName] = useState(['New Project Name']);
     fetchProjectList();
-    
+
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }

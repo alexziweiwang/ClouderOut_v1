@@ -32,4 +32,5 @@
 - [ ] account-system design
 - [ ] sample small projects (for test and demo)
 - [ ] consider UI language switching design
+- [ ] refactor to RESTful API in a later stage
 
