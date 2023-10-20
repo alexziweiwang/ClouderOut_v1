@@ -52,6 +52,12 @@ export default function ProjectManageNew() {
             <br></br>- project info - author(s) //future feature
             <br></br>- project tag(s) //future feature
         </p>
+        <p className="plans">
+          Validate user input, and then create a new folder for this new project
+          <br></br>(including resource managing?)
+          <br></br>(user can use materials cross-projects to avoid repeat upload?
+        </p>
+
 
         <br></br>
 

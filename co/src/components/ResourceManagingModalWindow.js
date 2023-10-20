@@ -43,6 +43,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <p className="plans">
                     Allow user to pull the "resource pool" from cloud, and click to choose?
                     <br></br> User can either choose the resource or upload new ones
+                    <br></br> Then: add "tag" for each resource for quick filter/search when developing
                     <br></br> Later: add "folder"-like sections for different types/purposes
                 </p>
             </div>

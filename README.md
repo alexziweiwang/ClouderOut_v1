@@ -31,6 +31,7 @@
 - [x] cloud db data structure design, optimized
 - [ ] account-system design
 - [ ] sample small projects (for test and demo)
-- [ ] consider UI language switching design
+- [x] consider UI language switching design
+- [ ] implement and optimize UI language switching feature
 - [ ] refactor to RESTful API in a later stage
 
