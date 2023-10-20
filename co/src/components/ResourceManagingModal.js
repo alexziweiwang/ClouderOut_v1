@@ -1,4 +1,7 @@
 import styles from './webpage.css';
+import { useState } from "react";
+import { storage } from '../googleCloudConnetions';
+import { ref, uploadBytes } from "firebase/storage";
 
 export default function ResourceManagingModal ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -8,6 +11,26 @@ export default function ResourceManagingModal ({handleRmCancel, handleRmSaveChan
     } else {
         modalStyleName = "displayNone modalBackboard";
     }
+
+    const [fileSelected, setFileSelected] = useState("");
+
+    function fileSelectChange(event) {
+        setFileSelected(event.target.files[0]);
+    }
+
+    function submitFile() {
+        if (fileSelected == "") {
+            console.log("File NOT chosen");
+            return;
+        }
+
+        const username = "user002";
+        const fileName = `${username}_${fileSelected.name}`;
+
+        const fileRef = ref(storage, `rm001test/${fileName}`);
+        uploadBytes(fileRef, fileSelected);
+        console.log("document [", fileName, "] submitted."); //TODO test
+    }
   
     return (
       <div className={modalStyleName}>
@@ -16,6 +39,12 @@ export default function ResourceManagingModal ({handleRmCancel, handleRmSaveChan
 
             <div className="modalContent">
                 TODO... (resource manager)
+                <input 
+                    type="file"
+                    onChange={fileSelectChange}
+                > 
+                </input>
+                <button onClick={submitFile}> Submit </button>
             </div>
 
             <div className="modalControl">
