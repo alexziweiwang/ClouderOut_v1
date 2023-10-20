@@ -1,9 +1,8 @@
 import styles from './webpage.css';
 import { useState } from "react";
-import { storage } from '../googleCloudConnetions';
-import { ref, uploadBytes } from "firebase/storage";
+import { submitFileVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function ResourceManagingModal ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
+export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
     
     if (isDisplay == true) {
@@ -23,13 +22,8 @@ export default function ResourceManagingModal ({handleRmCancel, handleRmSaveChan
             console.log("File NOT chosen");
             return;
         }
-
-        const username = "user002";
-        const fileName = `${username}_${fileSelected.name}`;
-
-        const fileRef = ref(storage, `rm001test/${fileName}`);
-        uploadBytes(fileRef, fileSelected);
-        console.log("document [", fileName, "] submitted."); //TODO test
+        const username = "user002"; //TODO testing
+        submitFileVM({file: fileSelected , uname: username});
     }
   
     return (

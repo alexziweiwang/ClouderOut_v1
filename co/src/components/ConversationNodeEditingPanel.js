@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 import { serverTimestamp } from 'firebase/firestore';
 import GameNodeConvPieceEditing from './GameNodeConvPieceEditing';
-import ResourceManagingModal from './ResourceManagingModal';
+import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -44,7 +44,7 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[0]} </button></div>
             
-            {isDisplayRmBool && <ResourceManagingModal isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
+            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
             <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[0]} </button>
 
             <p className="plans">This is conversation-node editing panel
