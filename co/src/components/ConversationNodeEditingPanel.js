@@ -20,7 +20,10 @@ export default function ConversationNodeEditingPanel() {
     console.log("this node is : [" + nodeName + "] in conversation-node editing page."); //TODO
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
-   
+    const returnGameMakerButtonText = ["Return To GameMaker!"];
+    const showResourceManagerButtonText = ["Resource Manager"]; 
+
+
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
       }
@@ -39,10 +42,10 @@ export default function ConversationNodeEditingPanel() {
     return (
 
         <div>
-            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> Return To GameMaker! </button></div>
+            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[0]} </button></div>
             
             {isDisplayRmBool && <ResourceManagingModal isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
-            <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> Show Resource Manager </button>
+            <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[0]} </button>
 
             <p className="plans">This is conversation-node editing panel
             <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)

@@ -12,7 +12,7 @@ export default function CardGameNodeEditingPanel() {
         nodeName = state.selectedNode;
     }
     console.log("this node is : " + nodeName); //TODO
-
+    const returnGameMakerButtonText = ["Return To GameMaker!"];
 
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true });
@@ -21,7 +21,7 @@ export default function CardGameNodeEditingPanel() {
     return (
 
         <div>
-            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> Return To GameMaker! </button></div>
+            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[0]} </button></div>
             
             <p className="plans">This is card game editing panel
             <br></br> users can create one level of card game here
