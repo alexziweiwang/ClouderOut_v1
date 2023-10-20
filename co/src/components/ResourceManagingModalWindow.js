@@ -36,9 +36,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <input 
                     type="file"
                     onChange={fileSelectChange}
-                > 
-                </input>
+                /> 
                 <button onClick={submitFile}> Submit </button>
+
+
+                <p className="plans">
+                    Allow user to pull the "resource pool" from cloud, and click to choose?
+                    <br></br> User can either choose the resource or upload new ones
+                    <br></br> Later: add "folder"-like sections for different types/purposes
+                </p>
             </div>
 
             <div className="modalControl">
