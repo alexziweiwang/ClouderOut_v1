@@ -10,7 +10,6 @@ export function submitFile({file, uname}) {
     const fileRef = ref(storage, `rm001test/${fileName}`);
     uploadBytes(fileRef, file);
     console.log("document [", fileName, "] submitted."); //TODO test
-
 }
 
 export async function getRmFileList({uname}) {
@@ -28,4 +27,15 @@ export async function getRmFileList({uname}) {
         dataContent = doc.data().filenames; 
     });    
     return dataContent;
+}
+
+export async function addToRmFileList({uname, filetitle}) {
+    const docRef = doc(db, "user_projects", uname);
+    const docSnap = await getDoc(docRef);
+  
+    if (!docSnap.exists()) {
+      return;
+    }
+
+    //TODO add filename to resource-manage file list
 }

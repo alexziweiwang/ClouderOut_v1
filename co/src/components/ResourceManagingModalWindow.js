@@ -1,6 +1,6 @@
 import styles from './webpage.css';
 import { useState } from "react";
-import { submitFileVM, getRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -25,6 +25,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             return;
         }
         submitFileVM({file: fileSelected , uname: username});
+        const fileName = `${username}_${fileSelected.name}`;
+        addToRmFileListVM({uname: username, filetitle: fileName});
+        fetchRmFileList();
     }
 
     async function fetchRmFileList() {
@@ -46,7 +49,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index}>{item}</li>
+                        <li key={index} onClick={()=>{console.log("list clicked.")}}>{item}</li>
                     ))}
                 </ul>
 
@@ -56,6 +59,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 /> 
                 <button onClick={submitFile}> Submit </button>
 
+                <p className="plans">
+                    TODO: improve to clickable customizable list items & image preview
+                </p>
 
                 <p className="plans">
                     Allow user to pull the "resource pool" from cloud, and click to choose?
@@ -66,8 +72,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             </div>
 
             <div className="modalControl">
-                <button className="modalControlButton" onClick={handleRmCancel}> Cancel </button>
-                <button className="modalControlButton" onClick={handleRmSaveChanges}> Save Changes </button>
+                <button className="modalControlButton" onClick={handleRmCancel}> Close </button>
             </div>
             
         </div>
