@@ -1,6 +1,6 @@
 import styles from './webpage.css';
 import { useState } from "react";
-import { submitFileVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";

@@ -1,6 +1,7 @@
+import db from '../googleCloudConnetions';
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from '../googleCloudConnetions';
-
+import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
 
 export function submitFile({file, uname}) {
     console.log("RM model ..."); //TODO
@@ -9,4 +10,21 @@ export function submitFile({file, uname}) {
     const fileRef = ref(storage, `rm001test/${fileName}`);
     uploadBytes(fileRef, file);
     console.log("document [", fileName, "] submitted."); //TODO test
+
+}
+
+export async function getRmFileList({uname}) {
+    const docRef = doc(db, "user_projects", uname);
+    const docSnap = await getDoc(docRef);
+  
+    if (!docSnap.exists()) {
+      return;
+    }
+
+    console.log("getting list");
+    const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc); //TODO
+    });
 }
