@@ -4,7 +4,8 @@ import { submitFileVM, getRmFileListVM } from '../viewmodels/ResourceManagerView
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
-    
+    const username = "user002"; //TODO testing
+
     if (isDisplay == true) {
         modalStyleName = "displayBlock modalBackboard";
     } else {
@@ -22,7 +23,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             console.log("File NOT chosen");
             return;
         }
-        const username = "user002"; //TODO testing
         submitFileVM({file: fileSelected , uname: username});
     }
   
@@ -39,6 +39,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 /> 
                 <button onClick={submitFile}> Submit </button>
 
+                <button onClick={() => {getRmFileListVM({uname: username});}}> Load Resource List </button>
 
                 <p className="plans">
                     Allow user to pull the "resource pool" from cloud, and click to choose?

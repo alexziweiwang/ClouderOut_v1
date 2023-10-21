@@ -21,10 +21,14 @@ export async function getRmFileList({uname}) {
       return;
     }
 
-    console.log("getting list");
     const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
     const querySnapshot = await getDocs(q);
+  
     querySnapshot.forEach((doc) => {
-      console.log(doc); //TODO
+        console.log(doc.id, " ===> ", doc.data()); //TODO test
+        let dataContent = doc.data().filenames;
+        console.log(dataContent); //TODO test
     });
+
+
 }
