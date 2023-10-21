@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
+import ResourceSelector from './ResourceSelector';
 
 export default function GameNodeConvPieceEditing() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function GameNodeConvPieceEditing() {
     const [clickableAdd, setClickableAdd] = useState(false);
     const [bgMusicAdd, setBgMusicAdd] = useState(false);
     const [voicelineAdd, setVoicelineAdd] = useState(false);
-
+    const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
 
     function handleTextContentEnter(event) {
         console.log("In textarea: " + event.target.value); //TODO
@@ -76,6 +77,7 @@ export default function GameNodeConvPieceEditing() {
   <button onClick={collapseAllOptions}> Collapse All </button>
 
     <div className="userChoice">
+            {rmSelectorOpen == true && <ResourceSelector/>}
             <label> Text to display: </label>
             <br></br>
             <textarea
@@ -104,7 +106,7 @@ export default function GameNodeConvPieceEditing() {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <input defaultValue="..."></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Position:      </label>
                     <input defaultValue="..."></input>
