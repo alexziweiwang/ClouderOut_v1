@@ -2,7 +2,7 @@ import styles from './webpage.css';
 import { useState } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function ResourceSelector ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
+export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -25,6 +25,7 @@ export default function ResourceSelector ({handleRmCancel, handleRmSaveChanges, 
         console.log("choosing this resource...");
     }
   
+    console.log("Resource Selector !!!!!!!!!!!!"); //TODO test
     return (
       <div className={modalStyleName}>
 
@@ -43,7 +44,7 @@ export default function ResourceSelector ({handleRmCancel, handleRmSaveChanges, 
             </div>
 
             <div className="modalControl">
-                <button className="modalControlButton" onClick={handleRmCancel}> Close </button>
+                <button className="modalControlButton" onClick={handleRsCancel}> Close </button>
                 <button className="modalControlButton" onClick={confirmResource}> Confirm </button>
 
             </div>

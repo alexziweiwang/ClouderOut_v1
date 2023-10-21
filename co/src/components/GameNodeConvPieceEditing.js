@@ -21,11 +21,19 @@ export default function GameNodeConvPieceEditing() {
     const [voicelineAdd, setVoicelineAdd] = useState(false);
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
 
+    function handleResourceSelectorCancel() {
+        setRmSelectorOpen(false);
+    }
+
+    function handleResourceSelectorSave() {
+        console.log("saving for handleResourceSelectorSave ... "); //TODO
+    }
+
     function handleTextContentEnter(event) {
         console.log("In textarea: " + event.target.value); //TODO
         setTextContent(event.target.value);
       
-      }
+    }
 
     function toggleBgPicOption() {
         setBgPicAdd(!bgpicAdd);
@@ -77,7 +85,12 @@ export default function GameNodeConvPieceEditing() {
   <button onClick={collapseAllOptions}> Collapse All </button>
 
     <div className="userChoice">
-            {rmSelectorOpen == true && <ResourceSelector/>}
+            {rmSelectorOpen && 
+                <ResourceSelector 
+                    handleRsCancel={handleResourceSelectorCancel} 
+                    handleRsSaveChanges={handleResourceSelectorSave} 
+                    isDisplay={rmSelectorOpen}/>
+            }
             <label> Text to display: </label>
             <br></br>
             <textarea
