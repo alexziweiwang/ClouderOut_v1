@@ -79,15 +79,6 @@ body {
     background-color: pink;
 }
 
-.userChoice {
-    background-color: rgb(235, 227, 213);
-    width: 30%;
-    margin-left: 10%;
-    justify-content: flex-start;
-    text-align: left;
-    padding: 15px;
-}
-
 .textRight {
     text-align: right;
 }
@@ -148,3 +139,29 @@ body {
 .displayNone {
     display: none;
 }
+
+.userChoice {
+    background-color: rgb(235, 227, 213);
+    width: 20%;
+    margin-left: 3%;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 15px;
+    flex: 1;
+}
+
+.previewWindow {
+    background-color: darkseagreen;
+    height: 100%;
+    width: 70%;
+    flex: 2;
+}
+
+.parallelFrame {
+    display: flex;
+    background-color: rgb(225, 190, 196);
+}
+
+/* .userChoice, .previewWindow {
+    flex: 1;
+} */

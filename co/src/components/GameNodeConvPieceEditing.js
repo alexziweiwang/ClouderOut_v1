@@ -80,11 +80,14 @@ export default function GameNodeConvPieceEditing() {
   
 
     return (
-        <div>
-  <button onClick={expandAllOptions}> Expand All </button>
-  <button onClick={collapseAllOptions}> Collapse All </button>
+      
 
     <div className="userChoice">
+        <button className="buttonRight" onClick={expandAllOptions}> Expand All </button>
+        <button className="buttonRight" onClick={collapseAllOptions}> Collapse All </button>
+        <br></br>
+        <br></br>
+
             {rmSelectorOpen && 
                 <ResourceSelector 
                     handleRsCancel={handleResourceSelectorCancel} 
@@ -195,12 +198,12 @@ export default function GameNodeConvPieceEditing() {
                     <input defaultValue="..."></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">-------------------(None)--------</div>}
-
-
+  
+        <br></br>
+        <br></br>
+        <button className="buttonRight" onClick={collapseAllOptions}> Collapse All </button>
+        <button className="buttonRight" onClick={expandAllOptions}> Expand All </button>
   </div>
-  <button onClick={expandAllOptions}> Expand All </button>
-  <button onClick={collapseAllOptions}> Collapse All </button>
-
- </div>
+ 
     );
 }

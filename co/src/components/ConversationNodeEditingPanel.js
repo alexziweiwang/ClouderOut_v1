@@ -6,6 +6,7 @@ import styles from './webpage.css';
 import { serverTimestamp } from 'firebase/firestore';
 import GameNodeConvPieceEditing from './GameNodeConvPieceEditing';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+import PreviewWindow from './PreviewWindow';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -65,9 +66,10 @@ export default function ConversationNodeEditingPanel() {
             <p className="plans">
                 TODO: think about "switching"/"moving rows" feature 
             </p>
-
+            <div className="parallelFrame">
             <GameNodeConvPieceEditing/>
-           
+            <PreviewWindow/>
+            </div>
 
             <p className="plans">
                 required input data: "Edit on Piece"
