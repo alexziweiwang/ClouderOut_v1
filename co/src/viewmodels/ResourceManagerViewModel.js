@@ -7,6 +7,6 @@ export function submitFileVM({file, uname}) {
 }
 
 export async function getRmFileListVM({uname}) {
-    
-    getRmFileList({uname});
+    const arr = getRmFileList({uname});
+    return arr;
 }

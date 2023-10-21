@@ -23,12 +23,9 @@ export async function getRmFileList({uname}) {
 
     const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
     const querySnapshot = await getDocs(q);
-  
+    let dataContent;
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " ===> ", doc.data()); //TODO test
-        let dataContent = doc.data().filenames;
-        console.log(dataContent); //TODO test
-    });
-
-
+        dataContent = doc.data().filenames; 
+    });    
+    return dataContent;
 }

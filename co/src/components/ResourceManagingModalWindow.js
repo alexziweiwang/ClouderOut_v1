@@ -13,6 +13,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     const [fileSelected, setFileSelected] = useState("");
+    const [cloudFileList, setCloudFileList] = useState([]);
 
     function fileSelectChange(event) {
         setFileSelected(event.target.files[0]);
@@ -25,6 +26,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
         submitFileVM({file: fileSelected , uname: username});
     }
+
+    async function fetchRmFileList() {
+        const fileList = await getRmFileListVM({uname: username});
+        setCloudFileList(fileList);
+        console.log("modalwindow: fileList:"); //TODO test
+        console.log(fileList); //TODO test
+    }
   
     return (
       <div className={modalStyleName}>
@@ -32,14 +40,22 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         <div className="modalArea">
 
             <div className="modalContent">
-                TODO... (resource manager)
+                <button onClick={fetchRmFileList}> Load Resource List </button>
+                <br></br><br></br>
+            
+
+                <ul>
+                    {cloudFileList.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+
                 <input 
                     type="file"
                     onChange={fileSelectChange}
                 /> 
                 <button onClick={submitFile}> Submit </button>
 
-                <button onClick={() => {getRmFileListVM({uname: username});}}> Load Resource List </button>
 
                 <p className="plans">
                     Allow user to pull the "resource pool" from cloud, and click to choose?
