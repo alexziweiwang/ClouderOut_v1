@@ -138,7 +138,7 @@ export default function GameNodeConvPieceEditing() {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <input defaultValue="..."></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Position:      </label>
                     <input defaultValue="..."></input>
@@ -157,7 +157,7 @@ export default function GameNodeConvPieceEditing() {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Shape/Picture Source:  </label>
-                    <input defaultValue="..."></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Sound Effect:      </label>
                     <input defaultValue="..."></input>
@@ -173,7 +173,7 @@ export default function GameNodeConvPieceEditing() {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <input defaultValue="..."></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Is looping:      </label>
                     <input defaultValue="..."></input>
@@ -189,7 +189,7 @@ export default function GameNodeConvPieceEditing() {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <input defaultValue="..."></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Volume:         </label>
                     <input defaultValue="..."></input>
