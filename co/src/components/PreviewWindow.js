@@ -17,6 +17,11 @@ export default function PreviewWindow() {
                 this is preview window...
                 <br></br>(line2)
             </p>
+
+            <p className="plans">
+                needed data: game size and direction
+                <br></br> reads all data for current piece and present
+            </p>
             
         </div>
     );

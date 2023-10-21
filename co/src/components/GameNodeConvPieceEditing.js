@@ -83,8 +83,8 @@ export default function GameNodeConvPieceEditing() {
       
 
     <div className="userChoice">
-        <button className="buttonRight" onClick={expandAllOptions}> Expand All </button>
         <button className="buttonRight" onClick={collapseAllOptions}> Collapse All </button>
+        <button className="buttonRight" onClick={expandAllOptions}> Expand All </button>
         <br></br>
         <br></br>
 
@@ -114,7 +114,7 @@ export default function GameNodeConvPieceEditing() {
                 </div>
                 
             }
-            {!speakerNameAdd && <div className="textRight">-------------------(None)--------</div>}
+            {!speakerNameAdd && <div className="textRight">------------(Collapsed)---------------</div>}
             
             <button className="collapseToggle" onClick={toggleBgPicOption}> + Background Picture Setting {bgpicAdd}</button>
             {bgpicAdd && 
@@ -133,7 +133,7 @@ export default function GameNodeConvPieceEditing() {
                     <label>Height:        </label>
                     <input defaultValue="..."></input>
                 </div>}
-            {!bgpicAdd && <div className="textRight">-------------------(None)--------</div>}
+            {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
             <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>
             {charPicAdd && 
@@ -152,7 +152,7 @@ export default function GameNodeConvPieceEditing() {
                     <label>Height:        </label>
                     <input defaultValue="..."></input>
                 </div>}
-            {!charPicAdd && <div className="textRight">-------------------(None)--------</div>}
+            {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
             <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>
             {clickableAdd && 
@@ -168,7 +168,7 @@ export default function GameNodeConvPieceEditing() {
                     <label>Consequence:         </label>
                     <input defaultValue="..."></input>
                 </div>}
-            {!clickableAdd && <div className="textRight">-------------------(None)--------</div>}
+            {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
             <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>
             {bgMusicAdd && 
@@ -184,7 +184,7 @@ export default function GameNodeConvPieceEditing() {
                     <label>Volume:         </label>
                     <input defaultValue="..."></input>
                 </div>}
-            {!bgMusicAdd && <div className="textRight">-------------------(None)--------</div>}
+            {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
                 
             <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>
             {voicelineAdd && 
@@ -197,7 +197,7 @@ export default function GameNodeConvPieceEditing() {
                     <label>Volume:         </label>
                     <input defaultValue="..."></input>
                 </div>}
-            {!voicelineAdd && <div className="textRight">-------------------(None)--------</div>}
+            {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
   
         <br></br>
         <br></br>

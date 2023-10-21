@@ -70,6 +70,10 @@ export default function ConversationNodeEditingPanel() {
             <GameNodeConvPieceEditing/>
             <PreviewWindow/>
             </div>
+            <p className="plans">
+                TODO : make "GameNodeConvPieceEditing" with scroller and fixed height
+                <br></br> to be more convenient for previewing
+            </p>
 
             <p className="plans">
                 required input data: "Edit on Piece"

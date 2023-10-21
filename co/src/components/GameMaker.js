@@ -280,6 +280,9 @@ export default function GameMaker() {
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
+   
+    <p className="plans"> TODO: game-flow controller:
+     <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. </p>
 
     <p className="plans">
       *** design of interactable graph *** 
@@ -460,13 +463,11 @@ export default function GameMaker() {
 
 {/* //TODO read and use the selected values */}
 
-<p className="plans">
+      <p className="plans">
                 *** resource management consideration: along the entire project, the user should be able to add, remove, and use some resource they upload
                 <br></br>- the presentation/preview should consider fewer re-render on these resource
-                <br></br>- in the game node editing process, the user should work closely with the resource manager for specifying the resource
-                <br></br> for example, something like a "resource pool/stock" should be always available for actions
                 <br></br>- for all game-node editing, rsrc-mgmt should be available; later for node visualization, it might be good UX if also support some mini pic on the node's looking
-            </p>
+      </p>
 
 
       <button 
