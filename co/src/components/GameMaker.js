@@ -24,6 +24,10 @@ export default function GameMaker() {
 7. optimization on node positions when generated
 8. adjust svg size, zoom/scrollbar options
 9. game node brief info display and options (hover and click)
+10. change data design for "layer" for auto-node arrangement: map-like (k,v) for (layer, [node1, node2, node3, ...]); for node's that came from multiple sources with different depths, consider later
+depth & inGroupPosition should be the outer part of a node?
+that is, when doing CRUD on nodes, change this tracking-data-structure as well.
+
 */
 
 
