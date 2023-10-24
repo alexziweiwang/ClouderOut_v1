@@ -66,10 +66,6 @@ export default function ConversationNodeEditingPanel() {
             <p className="plans">
                 TODO: think about "switching"/"moving rows" feature 
             </p>
-            <div className="parallelFrame">
-            <GameNodeConvPieceEditing/>
-            <PreviewWindow/>
-            </div>
             <p className="plans">
                 TODO : make "GameNodeConvPieceEditing" with scroller and fixed height
                 <br></br> to be more convenient for previewing
@@ -102,6 +98,13 @@ export default function ConversationNodeEditingPanel() {
                 <br></br> also, save and update to db if requested by user.
             </p>
 
+
+
+            <div className="parallelFrame">
+            <GameNodeConvPieceEditing/>
+            <PreviewWindow/>
+            </div>
+        
         </div>
     );
 }

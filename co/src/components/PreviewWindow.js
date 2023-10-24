@@ -12,16 +12,14 @@ export default function PreviewWindow() {
  
     return (
         <div className="previewWindow">
-            <p>
-
-                this is preview window...
-                <br></br>(line2)
-            </p>
-
+     
+            <div className="preveiewArea">
             <p className="plans">
-                needed data: game size and direction
-                <br></br> reads all data for current piece and present
+                needed data: game size and direction info setting from the user/author
+                <br></br> default:     height: 450px & width: 800px
+                <br></br> reads all data for current piece and present here
             </p>
+            </div>
             
         </div>
     );

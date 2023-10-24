@@ -148,18 +148,29 @@ body {
     text-align: left;
     padding: 15px;
     flex: 1;
+    height: 500px;
+    overflow: auto;
+    margin: 1%;
 }
 
 .previewWindow {
-    background-color: darkseagreen;
+    background-color: rgb(197, 218, 197);
     height: 100%;
     width: 70%;
     flex: 2;
+    margin: 3%;
 }
 
 .parallelFrame {
     display: flex;
     background-color: rgb(225, 190, 196);
+}
+
+.preveiewArea {
+    height: 450px;
+    width: 800px;
+    background-color: rgb(198, 198, 220);
+    margin: 3%;
 }
 
 /* .userChoice, .previewWindow {
