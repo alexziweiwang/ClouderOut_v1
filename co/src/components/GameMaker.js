@@ -286,7 +286,14 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     <br></br>this is the place to edit for a specific game </p>
    
     <p className="plans"> TODO: game-flow controller:
-     <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. </p>
+     <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. 
+     <br></br>
+     <br></br> [source node] connect to [logic-splitter], logic-splitter connect to 'multiple next-nodes'
+     <br></br> inside logic-splitter: add logic for decision, game-data checking and updating, each branch's condition and next-node
+     <br></br> logic splitter's input: source node, branch pair (condition, next-node)
+     <br></br> later: for each node, they would not have an array of single/multiple "next-nodes", but either one next-node, or a logic-splitter instead??
+     <br></br> this design is also better for auto-drawing of paths and node positions (for mulriple branchs' situation)
+     </p>
 
     <p className="plans">
       *** design of interactable graph *** 
