@@ -305,9 +305,15 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
     <div className="setting_area"> Node Management
     <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.</p>
-    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes (functionality ok, need UI & UX improvement)</p>
+    <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes (functionality ok, need UI & UX improvement)
+    <br></br> - when clicking on a node? display option of [Edit], [Add next node], [Add logic splitter], [Delete this node]
+    <br></br> - can node be deleted by user? 
+    <br></br>1. when deleting the next node, the link get deleted together; 2. when changing next-node, just edit the source-node's info; 3. avoid "unreachable" node by not allowing deleting links?
+    </p>
+
     <p className="plans"> TODO: node positions: in-group-position and depth, etc.; auto/dynamic adjustment after adding or removing nodes </p>
-    <p className="plans"> TODO: "undo" and "redo" features </p>
+    <p className="plans"> TODO: "undo" and "redo" features: so far, can have "trash area" for nodes and logic splitters, and allow "revert" of deletions? 
+    <br></br>Since added items (node/link) can be deleted easily but deleted items are harder to revert</p>
 
     {selectedNode != "" && <button 
       className="setting_item"
@@ -346,6 +352,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
                   y2={next_y_val + node_height / 2}
                   stroke="green"
                   strokeWidth="2"
+                  className="game_node_vis"
                 />
 
               );
