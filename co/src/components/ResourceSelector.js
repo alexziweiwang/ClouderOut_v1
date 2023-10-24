@@ -42,6 +42,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 </ul>
 
                 <p className="plans">
+                    Here it shouldn't display resource from cloud storage directly -- but just the list from naming pair (see resource manager)
+                
+                </p>
+
+                <p className="plans">
                     for each project, specify the user-given-name for one resource, for modularization and reusability.
                     <br></br> for example, character1 might have pic ver.1 in some art style, and if the author wants to change to ver.2 style, they can do this once by "changing source" for the user-specified preveiewArea
                     <br></br> that is, each resource on cloud storage should have a unique variable name, in this project, and later this name can be reassigned to other resource

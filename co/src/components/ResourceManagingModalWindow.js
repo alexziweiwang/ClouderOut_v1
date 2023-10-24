@@ -69,6 +69,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <br></br> Then: add "tag" for each resource for quick filter/search when developing
                     <br></br> Later: add "folder"-like sections for different types/purposes
                 </p>
+
+                    <p className="plans">
+                        TODO: for resource-selection, specific for each project
+                        <br></br> (list all naming pairs)
+                        <br></br>
+                        <br></br> create a naming pair
+                        <br></br> edit a naming pair
+                        <br></br> delete a naming pair
+                    </p>
             </div>
 
             <div className="modalControl">
