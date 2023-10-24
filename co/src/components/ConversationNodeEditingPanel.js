@@ -22,6 +22,8 @@ export default function ConversationNodeEditingPanel() {
     console.log("this node is : [" + nodeName + "] in conversation-node editing page."); //TODO
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+    const [browseList, setBrowseList] = useState(true);
+
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
 
@@ -79,13 +81,12 @@ export default function ConversationNodeEditingPanel() {
                 <br></br> also, save and update to db if requested by user.
             </p>
 
-            <PieceManager/>
-
-
             <p className="plans"> *** place of "GameNodeConvPieceEditing"? <br></br> either editing for a sinlgle piece + left/right button, or a list of all pieces: switch? </p>
-
+            <button onClick={()=>{setBrowseList(!browseList)}}>List/Editing</button>
             <div className="parallelFrame">
-            <GameNodeConvPieceEditing/>
+            {browseList == false && <GameNodeConvPieceEditing/>}
+            {browseList == true && <PieceManager/>}
+
             <PreviewWindow/>
             </div>
         

@@ -10,10 +10,13 @@ export default function PieceManager() {
     let name = "/piecemanager";
  
     return (
-        <div >
-     
-            This is piece-manager: <br></br>list of pieces are displayed here organized here
+        <div className="pieceManager">
+            <p className="plans">
+            This is piece-manager: 
+            <br></br>list of pieces are displayed here organized here
             <br></br> in each piece's quick view: show the speaker + word content
+            </p>
+           
             
         </div>
     );

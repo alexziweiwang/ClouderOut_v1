@@ -151,6 +151,20 @@ body {
     height: 500px;
     overflow: auto;
     margin: 1%;
+    margin-top: 2%;
+}
+.pieceManager {
+    background-color: rgb(111, 106, 125);
+    width: 20%;
+    margin-left: 3%;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 15px;
+    flex: 1;
+    height: 500px;
+    overflow: auto;
+    margin: 1%;
+    margin-top: 2%;
 }
 
 .previewWindow {
@@ -172,7 +186,3 @@ body {
     background-color: rgb(198, 198, 220);
     margin: 3%;
 }
-
-/* .userChoice, .previewWindow {
-    flex: 1;
-} */
