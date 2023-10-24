@@ -83,8 +83,8 @@ export default function GameNodeConvPieceEditing() {
       
 
     <div className="userChoice">
-        <button className="buttonRight" onClick={collapseAllOptions}> Collapse All </button>
-        <button className="buttonRight" onClick={expandAllOptions}> Expand All </button>
+        <button onClick={collapseAllOptions}> Collapse All </button>
+        <button onClick={expandAllOptions}> Expand All </button>
         <br></br>
         <br></br>
 
@@ -138,6 +138,7 @@ export default function GameNodeConvPieceEditing() {
             <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>
             {charPicAdd && 
                 <div>
+                    <p className="plans"> (modularizable: multiple items allowed) </p>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
@@ -151,22 +152,25 @@ export default function GameNodeConvPieceEditing() {
                     <br></br>
                     <label>Height:        </label>
                     <input defaultValue="..."></input>
+
                 </div>}
             {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
             <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>
             {clickableAdd && 
                 <div>
+                    <p className="plans"> (modularizable: multiple items allowed) </p>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Shape/Picture Source:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Sound Effect:      </label>
-                    <input defaultValue="..."></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Consequence:         </label>
-                    <input defaultValue="..."></input>
+                    <p className="plans"> Consequence: (logic organizer-related) </p>
+
                 </div>}
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
@@ -201,8 +205,8 @@ export default function GameNodeConvPieceEditing() {
   
         <br></br>
         <br></br>
-        <button className="buttonRight" onClick={collapseAllOptions}> Collapse All </button>
-        <button className="buttonRight" onClick={expandAllOptions}> Expand All </button>
+        <button onClick={collapseAllOptions}> Collapse All </button>
+        <button onClick={expandAllOptions}> Expand All </button>
   </div>
  
     );

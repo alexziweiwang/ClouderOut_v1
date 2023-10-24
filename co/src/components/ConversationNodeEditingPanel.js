@@ -7,6 +7,7 @@ import { serverTimestamp } from 'firebase/firestore';
 import GameNodeConvPieceEditing from './GameNodeConvPieceEditing';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import PreviewWindow from './PreviewWindow';
+import PieceManager from './PieceManager';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -66,26 +67,6 @@ export default function ConversationNodeEditingPanel() {
             <p className="plans">
                 TODO: think about "switching"/"moving rows" feature 
             </p>
-            <p className="plans">
-                TODO : make "GameNodeConvPieceEditing" with scroller and fixed height
-                <br></br> to be more convenient for previewing
-            </p>
-
-            <p className="plans">
-                required input data: "Edit on Piece"
-
-                <br></br> - [optional] background picture [0..1]: source link, position, width, height
-                <br></br> - [optional] character picture [0..n]: source link, position, width, height
-
-                <br></br> - text content (on UI) [0..1]: content
-                <br></br> - [optional] test speaker name [0..1]: content
-
-                <br></br> - [optional] button/clickable item [0..n]: shape/pic_source, sound effect, pressed_consequence on game data
-
-                <br></br> - [optional] background music [0..1]: source link, loop or not, volume
-                <br></br> - [optional] voiceline [0..1]: source link, volume
-
-            </p>
 
             <p className="plans">
                 *** db updating consideration: only call db-updating when user press "save" button to update the project data.
@@ -98,7 +79,10 @@ export default function ConversationNodeEditingPanel() {
                 <br></br> also, save and update to db if requested by user.
             </p>
 
+            <PieceManager/>
 
+
+            <p className="plans"> *** place of "GameNodeConvPieceEditing"? <br></br> either editing for a sinlgle piece + left/right button, or a list of all pieces: switch? </p>
 
             <div className="parallelFrame">
             <GameNodeConvPieceEditing/>
