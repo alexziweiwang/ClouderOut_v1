@@ -138,17 +138,18 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
   }
 
   function addLinkBetweenNodes() {
+    const sourceNodeName = clickedNode;
     const nodeDataTemp = nodeData;
     let fromNodeIndex = -1, toNodeIndex = -1;
     let i = 0;
     //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
 
-    if (fromNodeName == "" && toNodeName == "") {
+    if (sourceNodeName == "" && toNodeName == "") {
       console.log("Sourec Node and Destination Node are required."); //TODO test
       return;
     }
 
-    if (fromNodeName == "") {
+    if (sourceNodeName == "") {
       console.log("Source Node is required."); //TODO test 
       return;
     }
@@ -159,7 +160,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     }
 
     for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == fromNodeName) {
+      if (nodeDataTemp[i].nodeName == sourceNodeName) {
         fromNodeIndex = i;
       }
       if (nodeDataTemp[i].nodeName == toNodeName) {
@@ -180,16 +181,18 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
   }
 
   function deleteLinkBetweenNodes() {
+    const sourceNodeName = clickedNode;
+
     const nodeDataTemp = nodeData;
     let fromNodeIndex = -1, toNodeIndex = -1;
     let i = 0;
 
-    if (fromNodeName == "" && toNodeName == "") {
+    if (sourceNodeName == "" && toNodeName == "") {
       console.log("Sourec Node and Destination Node are required."); //TODO test
       return;
     }
 
-    if (fromNodeName == "") {
+    if (sourceNodeName == "") {
       console.log("Source Node is required."); //TODO test 
       return;
     }
@@ -199,7 +202,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
       return;
     }
     for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == fromNodeName) {
+      if (nodeDataTemp[i].nodeName == sourceNodeName) {
         fromNodeIndex = i;
       }
       if (nodeDataTemp[i].nodeName == toNodeName) {
