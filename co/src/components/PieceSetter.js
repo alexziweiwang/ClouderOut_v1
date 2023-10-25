@@ -6,7 +6,7 @@ import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import ResourceSelector from './ResourceSelector';
 
-export default function GameNodeConvPieceEditing() {
+export default function PieceSetter() {
     const navigate = useNavigate();
 
     console.log("re-rendering: game node conv section ... @piece editing");

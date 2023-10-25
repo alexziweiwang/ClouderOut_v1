@@ -1,6 +1,6 @@
 import styles from './webpage.css';
 import { useState } from "react";
-import { submitFileVM, getRmFileListVM, addToRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -24,6 +24,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     function confirmResource() {
         console.log("choosing this resource...");
     }
+
+    function itemClicked(index) {
+        const fname = cloudFileList[index];
+        const fullFName = `${username}_${fname}`;
+        fetchUrlByFilenameVM({fullFilename: fullFName});
+    }
   
     console.log("Resource Selector !!!!!!!!!!!!"); //TODO test
     return (
@@ -37,7 +43,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index} onClick={()=>{console.log("list clicked.")}}>{item}</li>
+                        <li key={index} onClick={itemClicked(index)}>{item}</li>
                     ))}
                 </ul>
 

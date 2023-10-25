@@ -37,5 +37,10 @@ export async function addToRmFileList({uname, filetitle}) {
       return;
     }
 
-    //TODO add filename to resource-manage file list
+    //TODO add filename to resource-manage file-list
+}
+
+export async function fetchUrlByFilename({fullFilename}) {
+ //TODO
+
 }

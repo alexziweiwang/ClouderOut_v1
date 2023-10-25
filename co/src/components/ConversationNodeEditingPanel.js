@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 import { serverTimestamp } from 'firebase/firestore';
-import GameNodeConvPieceEditing from './GameNodeConvPieceEditing';
+import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
@@ -81,10 +81,10 @@ export default function ConversationNodeEditingPanel() {
                 <br></br> also, save and update to db if requested by user.
             </p>
 
-            <p className="plans"> *** place of "GameNodeConvPieceEditing"? <br></br> either editing for a sinlgle piece + left/right button, or a list of all pieces: switch? </p>
+            <p className="plans"> *** place of "PieceSetter"? <br></br> either editing for a sinlgle piece + left/right button, or a list of all pieces: switch? </p>
             <button onClick={()=>{setBrowseList(!browseList)}}>List/Editing</button>
             <div className="parallelFrame">
-            {browseList == false && <GameNodeConvPieceEditing/>}
+            {browseList == false && <PieceSetter/>}
             {browseList == true && <PieceManager/>}
 
             <PreviewWindow/>

@@ -1,4 +1,4 @@
-import { submitFile, getRmFileList, addToRmFileList } from "../models/ResourceManagerModel";
+import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename } from "../models/ResourceManagerModel";
 
 export function submitFileVM({file, uname}) {
     console.log("submitFile VM :::"); //TODO test
@@ -13,4 +13,8 @@ export async function getRmFileListVM({uname}) {
 
 export async function addToRmFileListVM({uname, filetitle}) {
     addToRmFileList({uname, filetitle});
+}
+
+export async function fetchUrlByFilenameVM({fullFilename}) {
+    fetchUrlByFilename({fullFilename});
 }
