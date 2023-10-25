@@ -27,8 +27,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     function itemClicked(index) {
         const fname = cloudFileList[index];
-        const fullFName = `${username}_${fname}`;
-        fetchUrlByFilenameVM({fullFilename: fullFName});
+        fetchUrlByFilenameVM({fullFilename: fname});
     }
   
     console.log("Resource Selector !!!!!!!!!!!!"); //TODO test
@@ -43,7 +42,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index} onClick={itemClicked(index)}>{item}</li>
+                        <li key={index} onClick={() => {
+                            itemClicked(index);
+                        }}>{item}</li>
                     ))}
                 </ul>
 

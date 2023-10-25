@@ -1,5 +1,5 @@
 import db from '../googleCloudConnetions';
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
 import { storage } from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
 
@@ -41,6 +41,18 @@ export async function addToRmFileList({uname, filetitle}) {
 }
 
 export async function fetchUrlByFilename({fullFilename}) {
- //TODO
+  const storageG = getStorage();
+  const dir = "/rm001test/";
+  const filePath = dir + fullFilename;
+  const fileRef = ref(storageG, filePath);
+
+  getDownloadURL(fileRef)
+    .then((url) => {
+      console.log("Fetched from cloud-storage..", url);
+      return url; //TODO test
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
 
 }
