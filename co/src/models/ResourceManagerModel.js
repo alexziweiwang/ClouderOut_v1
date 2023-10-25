@@ -46,10 +46,9 @@ export async function fetchUrlByFilename({fullFilename}) {
   const filePath = dir + fullFilename;
   const fileRef = ref(storageG, filePath);
 
-  getDownloadURL(fileRef)
+  return getDownloadURL(fileRef)
     .then((url) => {
-      console.log("Fetched from cloud-storage..", url);
-      return url; //TODO test
+      return url;
     })
     .catch((error) => {
       console.log("Error:", error);

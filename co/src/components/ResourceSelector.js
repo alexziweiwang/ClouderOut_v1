@@ -13,6 +13,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     const [cloudFileList, setCloudFileList] = useState([]);
+    const [clickedFile, setClickedFile] = useState("");
 
     async function fetchRmFileList() {
         const fileList = await getRmFileListVM({uname: username});
@@ -25,9 +26,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         console.log("choosing this resource...");
     }
 
-    function itemClicked(index) {
+    async function itemClicked(index) {
         const fname = cloudFileList[index];
-        fetchUrlByFilenameVM({fullFilename: fname});
+        const urlStr = await fetchUrlByFilenameVM({fullFilename: fname});
+        setClickedFile(urlStr);
+        console.log("Resource selector: ", urlStr); //TODO testing
     }
   
     console.log("Resource Selector !!!!!!!!!!!!"); //TODO test

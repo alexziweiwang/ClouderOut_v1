@@ -16,5 +16,6 @@ export async function addToRmFileListVM({uname, filetitle}) {
 }
 
 export async function fetchUrlByFilenameVM({fullFilename}) {
-    fetchUrlByFilename({fullFilename});
+    const url = await fetchUrlByFilename({fullFilename});
+    return url;
 }
