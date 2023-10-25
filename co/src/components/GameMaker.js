@@ -389,16 +389,10 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
     <button 
       className="setting_item"
-      onClick={()=>{setModeToCreateNewNode(true);}}>
-        Add Next Node
+      onClick={()=>{setModeToCreateNewNode(!modeCreateNewNode);}}>
+        Node Relationship
     </button>
     
-    <button 
-      className="setting_item"
-      onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
-        Add Logic Splitter
-    </button>
-
     <button 
       className="setting_item"
       onClick={()=>{
@@ -417,16 +411,18 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
 
     {modeCreateNewNode && 
+    <>
+
     <div>
-      Create New Node
+      Link to a New Node
     <br></br>
+    <label>Node Name: </label>
     <input 
       className="setting_item"
       type="text" value={createNewNodeName} 
       // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
       onChange={e => {setCreateNewNodeName(e.target.value)}}  
     />
-    <br></br>
     <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
       <option value="" key=""> -- Select Node's Game Type -- </option>
       <option value="Card Game" key="Card Game">Card Game</option>
@@ -441,27 +437,26 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
         Create
     </button>
     </div>
+
+    <div>
+    Link to a Logic Splitter
+    <br></br>
+    <button 
+      className="setting_item"
+      onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
+        Add Logic Splitter
+    </button>
+
+    </div>
     
-    }
+    
     
     <div>
     <br></br>
     Edit Existing Node
     <br></br>
-    <label>From Node </label>
- 
-    <select onChange={addConnectionFromNode} value={fromNodeName}>
-    <option value="" key=""> -- Select Source Node -- </option> 
-    {
-    nodeData.map((nextIndex, index) => {
-      if (nodeData[index].display == false) {
-        return;
-      }      
-      return (
-        <option value={nodeData[index].nodeName} key={index}>{nodeData[index].nodeName}</option>
-      );
-    })}
-    </select>
+    <label>From Node [{clickedNode}] </label>
+ {/* //TODO change "fromNode" to "clickedNode" */}
     <label> to Node </label>
     <select onChange={addConnectionToNode} value={toNodeName}>
     <option value="" key=""> -- Select Destination Node -- </option> 
@@ -487,11 +482,9 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     </button>
 
     </div>
+    </>
+  }
     
-    <div>
- 
-
-    </div>
 
 
     <button 
