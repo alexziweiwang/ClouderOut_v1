@@ -30,6 +30,7 @@ body {
 .setting_item {
     margin-top: 3px;
     margin-bottom: 3px;
+    margin: 5px;
 }
 
 .game_node_vis {

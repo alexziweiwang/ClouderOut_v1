@@ -56,7 +56,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    const navigate = useNavigate();
    const name = "/gamemaker";
    const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
-   const [selectedNode, setSelectedNode] = useState("");
+   const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [fromNodeName, setFromNodeName] = useState("");
@@ -70,17 +70,18 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
-    setSelectedNode(name);
+    setClickedNode(name);
+    // TODO refactor: display option of [Edit Conetnt], [Add next node], [Add logic splitter], [Delete this node]
   }
 
   function enterNodeEditor() {
-    let currNode = nodeData.find(node => node.nodeName === selectedNode);
+    let currNode = nodeData.find(node => node.nodeName === clickedNode);
     let currNodeType = currNode.nodeType;
     console.log(currNodeType);
     if (currNodeType == "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { selectedNode } });
+      navigate('/cardgamenode', { replace: true, state: { clickedNode } });
     } else if (currNodeType == "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { selectedNode } });
+      navigate('/conversationnode', { replace: true, state: { clickedNode } });
     }
         //TODO later add conditions for board game and tower defense
   }
@@ -306,8 +307,8 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     <div className="setting_area"> Node Management
     <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.</p>
     <p className="plans"> TODO: better ways for UX on node relationship operations: inserting nodes, add links, deleting links, deleting nodes (functionality ok, need UI & UX improvement)
-    <br></br> - when clicking on a node? display option of [Edit], [Add next node], [Add logic splitter], [Delete this node]
-    <br></br> - can node be deleted by user? 
+    <br></br> - when clicking on a node? display option of [Edit Conetnt], [Add next node], [Add logic splitter], [Delete this node]
+    <br></br> - can link be deleted by user? 
     <br></br>1. when deleting the next node, the link get deleted together; 2. when changing next-node, just edit the source-node's info; 3. avoid "unreachable" node by not allowing deleting links?
     </p>
 
@@ -315,11 +316,38 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     <p className="plans"> TODO: "undo" and "redo" features: so far, can have "trash area" for nodes and logic splitters, and allow "revert" of deletions? 
     <br></br>Since added items (node/link) can be deleted easily but deleted items are harder to revert</p>
 
-    {selectedNode != "" && <button 
+    {clickedNode != "" && 
+    <div>
+    <button 
       className="setting_item"
       onClick={enterNodeEditor}>
-        Edit {selectedNode} in Editor
-    </button>}
+        Edit Content of [{clickedNode}]
+    </button>
+
+    <button 
+      className="setting_item"
+      onClick={()=>{console.log("Adding new node after this...", clickedNode)}}>
+        Add Next Node
+    </button>
+    
+    <button 
+      className="setting_item"
+      onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
+        Add Logic Splitter
+    </button>
+
+    <button 
+      className="setting_item"
+      onClick={()=>{console.log("Deleting this node...", clickedNode)}}>
+        Delete
+    </button>
+    
+    </div>
+    
+    
+    }
+
+
     <svg
         xmlns="http://www.w3.org/2000/svg"
         className="nodes_viewer"
@@ -479,16 +507,8 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     </button>
     </div>
 
-{/* //TODO read and use the selected values */}
 
-      <p className="plans">
-                *** resource management consideration: along the entire project, the user should be able to add, remove, and use some resource they upload
-                <br></br>- the presentation/preview should consider fewer re-render on these resource
-                <br></br>- for all game-node editing, rsrc-mgmt should be available; later for node visualization, it might be good UX if also support some mini pic on the node's looking
-      </p>
-
-
-      <button 
+    <button 
       className="setting_item"
       onClick={() => console.log("saving settings of nodes...")}>
         Save To My Project
