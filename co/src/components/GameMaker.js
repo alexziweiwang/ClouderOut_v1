@@ -270,6 +270,42 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     setNodeData(nodeDataTemp);
     setDeletingNodeName("");
   }
+  
+  function handleDeleteNodeWithParam(nodeToDelete){
+    let i = 0;
+    const nodeDataTemp = nodeData;
+    let deletedNodeIndex = 0;
+    for (; i < nodeDataTemp.length; i++) {
+      if (nodeDataTemp[i].nodeName == nodeToDelete) {
+        nodeDataTemp[i].display = false;
+        deletedNodeIndex = i;
+      }
+    }
+
+    i = 0;
+    for (; i < nodeDataTemp.length; i++) {
+      //if nextNodes contains "deletedNodeIndex", remove it
+      if (nodeDataTemp[i].nextNodes.includes(deletedNodeIndex)) {
+        let j = 0;
+        let newArr = [];
+        for (; j < nodeDataTemp[i].nextNodes.length; j++) {
+          if (nodeDataTemp[i].nextNodes[j] != deletedNodeIndex) {
+            newArr.push(nodeDataTemp[i].nextNodes[j]);
+          }
+        }
+        nodeDataTemp[i].nextNodes = newArr;
+      }
+
+      //also remove all nodes in "deletedNodeIndex"'s node
+      if (i == deletedNodeIndex) {
+        nodeDataTemp[deletedNodeIndex].nextNodes = [];
+      }
+
+    }
+
+    setNodeData(nodeDataTemp);
+    setDeletingNodeName("");
+  }
 
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });
@@ -315,38 +351,6 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     <p className="plans"> TODO: node positions: in-group-position and depth, etc.; auto/dynamic adjustment after adding or removing nodes </p>
     <p className="plans"> TODO: "undo" and "redo" features: so far, can have "trash area" for nodes and logic splitters, and allow "revert" of deletions? 
     <br></br>Since added items (node/link) can be deleted easily but deleted items are harder to revert</p>
-
-    {clickedNode != "" && 
-    <div>
-    <button 
-      className="setting_item"
-      onClick={enterNodeEditor}>
-        Edit Content of [{clickedNode}]
-    </button>
-
-    <button 
-      className="setting_item"
-      onClick={()=>{console.log("Adding new node after this...", clickedNode)}}>
-        Add Next Node
-    </button>
-    
-    <button 
-      className="setting_item"
-      onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
-        Add Logic Splitter
-    </button>
-
-    <button 
-      className="setting_item"
-      onClick={()=>{console.log("Deleting this node...", clickedNode)}}>
-        Delete
-    </button>
-    
-    </div>
-    
-    
-    }
-
 
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -408,6 +412,40 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
       })}
 
       </svg>
+
+
+      {clickedNode != "" && 
+    <div>
+    <button 
+      className="setting_item"
+      onClick={enterNodeEditor}>
+        Edit Content of [{clickedNode}]
+    </button>
+
+    <button 
+      className="setting_item"
+      onClick={()=>{console.log("Adding new node after this...", clickedNode)}}>
+        Add Next Node
+    </button>
+    
+    <button 
+      className="setting_item"
+      onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
+        Add Logic Splitter
+    </button>
+
+    <button 
+      className="setting_item"
+      onClick={()=>{
+        console.log("Deleting this node...", clickedNode); 
+        handleDeleteNodeWithParam(clickedNode);
+        setClickedNode("");
+      }}>
+        Delete
+    </button>
+    
+    </div>
+    }
 
     
       <br></br>
@@ -483,28 +521,8 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     </div>
     
     <div>
-    <br></br>
-    Put Node into Trash Area
-    <br></br>
-    <select value={deletingNodeName} onChange={selectDeletingNode}>
-    <option value="" key=""> -- Select Node to Remove -- </option> 
+ 
 
-    {nodeData.map((nextIndex, index) => {
-      if (nodeData[index].display == false) {
-        return;
-      }
-      const keyStr = nodeData[index].nodeName+index;
-      return (
-        <option value={nodeData[index].nodeName} key={keyStr}>{nodeData[index].nodeName}</option>
-      );
-    })}
-    </select>
-    <br></br>
-    <button 
-      className="setting_item"
-      onClick={handleDeleteNode}>
-        Delete Node
-    </button>
     </div>
 
 
