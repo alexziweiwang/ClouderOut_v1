@@ -55,7 +55,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    /* variable area */
    const navigate = useNavigate();
    const name = "/gamemaker";
-   const [modeCreateNewNode, setModeToCreateNewNode] = useState(true);
+   const [modeCreateNewNode, setModeToCreateNewNode] = useState(false);
    const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -121,6 +121,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     } else {
       console.log("Invalid node name: empty"); //TODO temp
     }
+    setModeToCreateNewNode(false);
   }
 
   function addNewNodeGameType(event) {
@@ -235,42 +236,6 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     console.log(event.target.value);
   }
 
-  function handleDeleteNode(){
-    let i = 0;
-    const nodeDataTemp = nodeData;
-    let deletedNodeIndex = 0;
-    for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == deletingNodeName) {
-        nodeDataTemp[i].display = false;
-        deletedNodeIndex = i;
-      }
-    }
-
-    i = 0;
-    for (; i < nodeDataTemp.length; i++) {
-      //if nextNodes contains "deletedNodeIndex", remove it
-      if (nodeDataTemp[i].nextNodes.includes(deletedNodeIndex)) {
-        let j = 0;
-        let newArr = [];
-        for (; j < nodeDataTemp[i].nextNodes.length; j++) {
-          if (nodeDataTemp[i].nextNodes[j] != deletedNodeIndex) {
-            newArr.push(nodeDataTemp[i].nextNodes[j]);
-          }
-        }
-        nodeDataTemp[i].nextNodes = newArr;
-      }
-
-      //also remove all nodes in "deletedNodeIndex"'s node
-      if (i == deletedNodeIndex) {
-        nodeDataTemp[deletedNodeIndex].nextNodes = [];
-      }
-
-    }
-
-    setNodeData(nodeDataTemp);
-    setDeletingNodeName("");
-  }
-  
   function handleDeleteNodeWithParam(nodeToDelete){
     let i = 0;
     const nodeDataTemp = nodeData;
@@ -424,7 +389,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
     <button 
       className="setting_item"
-      onClick={()=>{console.log("Adding new node after this...", clickedNode)}}>
+      onClick={()=>{setModeToCreateNewNode(true);}}>
         Add Next Node
     </button>
     
@@ -449,9 +414,11 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
     
       <br></br>
-    {/* modeCreateNewNode, setModeToCreateNewNode */}
-    <div> 
-    Create New Node
+
+
+    {modeCreateNewNode && 
+    <div>
+      Create New Node
     <br></br>
     <input 
       className="setting_item"
@@ -467,7 +434,6 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
       <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
       <option value="Conversation" key="Conversation">Conversation</option>
     </select>
-    <br></br>
 
     <button 
       className="setting_item"
@@ -475,6 +441,8 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
         Create
     </button>
     </div>
+    
+    }
     
     <div>
     <br></br>
