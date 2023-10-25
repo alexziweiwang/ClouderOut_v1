@@ -83,8 +83,11 @@ export default function PieceSetter() {
       
 
     <div className="userChoice">
-        <button onClick={collapseAllOptions}> Collapse All </button>
-        <button onClick={expandAllOptions}> Expand All </button>
+        <div className="buttonRight">
+            <button onClick={collapseAllOptions}> Collapse All </button>
+            <button onClick={expandAllOptions}> Expand All </button>
+        </div>
+
         <br></br>
         <br></br>
 
@@ -205,8 +208,10 @@ export default function PieceSetter() {
   
         <br></br>
         <br></br>
-        <button onClick={collapseAllOptions}> Collapse All </button>
-        <button onClick={expandAllOptions}> Expand All </button>
+        <div className="buttonRight">
+            <button onClick={collapseAllOptions}> Collapse All </button>
+            <button onClick={expandAllOptions}> Expand All </button>
+        </div>
   </div>
  
     );

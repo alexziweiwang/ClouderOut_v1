@@ -82,7 +82,7 @@ export default function ConversationNodeEditingPanel() {
             </p>
 
             <p className="plans"> *** place of "PieceSetter"? <br></br> either editing for a sinlgle piece + left/right button, or a list of all pieces: switch? </p>
-            <button onClick={()=>{setBrowseList(!browseList)}}>List/Editing</button>
+            <button className="buttonLeft" onClick={()=>{setBrowseList(!browseList)}}>List/Editing</button>
             <div className="parallelFrame">
             {browseList == false && <PieceSetter/>}
             {browseList == true && <PieceManager/>}
