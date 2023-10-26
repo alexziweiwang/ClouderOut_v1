@@ -299,6 +299,10 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
      <br></br> logic splitter's input: source node, branch pair (condition, next-node)
      <br></br> later: for each node, they would not have an array of single/multiple "next-nodes", but either one next-node, or a logic-splitter instead??
      <br></br> this design is also better for auto-drawing of paths and node positions (for mulriple branchs' situation)
+     
+     <br></br> <br></br> idea: "logic splitter" is attached to a node (not individually put)
+     <br></br> in each node, it should either have *one* next-node, or *one* logic-splitter, and each logic-splitter keeps track of condition and next-node
+     <br></br> TODO: conversion of logic-condition? to consider
      </p>
 
     <p className="plans">
@@ -416,8 +420,10 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
     <div>
     <input type="radio" name="singleSelect" name="linkToNextNode" value="isLinkNode"/>Link to a New Node
+    <p className="plans">TODO improve later</p>
 
-    {isLinkNode && <> 
+{/* //TODO: change later */}
+    {true && <> 
     <br></br>
     <label>Node Name: </label>
 
@@ -446,8 +452,10 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
     <div>
     <input type="radio" name="singleSelect" name="linkToNextNode" value="isLinkNode"/>Link to a Logic Splitter
+    <p className="plans">TODO improve later</p>
 
-    {!isLinkNode && 
+{/* //TODO: change later */}
+    {true && 
     <>
     <br></br>
     <button 
@@ -463,7 +471,9 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     
     <div>
     <br></br>
-    Edit Existing Node
+    Edit Node-Links
+          <p className="plans">TODO improve later</p>
+
     <br></br>
     <label>From Node [{clickedNode}] </label>
  {/* //TODO change "fromNode" to "clickedNode" */}
