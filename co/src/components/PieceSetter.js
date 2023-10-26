@@ -172,7 +172,11 @@ export default function PieceSetter() {
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Consequence:         </label>
-                    <p className="plans"> Consequence: (logic organizer-related) </p>
+                    <p className="plans"> Consequence: (logic organizer-related) 
+                    <br></br> - option1: assign a value to variable in game-data
+                    <br></br> - option2: increase/decrease some value of variable in game-data
+                    <br></br> - (can contain multiple consequences)
+                    </p>
 
                 </div>}
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
@@ -186,7 +190,12 @@ export default function PieceSetter() {
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Is looping:      </label>
-                    <input defaultValue="..."></input>
+                    <select>
+                        <option value="t" key="t">True</option>
+                        <option value="f" key="f">False</option>
+
+
+                    </select>
                     <br></br>
                     <label>Volume:         </label>
                     <input defaultValue="..."></input>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
-import { serverTimestamp } from 'firebase/firestore';
 import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import PreviewWindow from './PreviewWindow';
@@ -19,7 +18,6 @@ export default function ConversationNodeEditingPanel() {
     if (state != null && state.selectedNode != null) {
         nodeName = state.selectedNode;
     }
-    console.log("this node is : [" + nodeName + "] in conversation-node editing page."); //TODO
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [browseList, setBrowseList] = useState(true);
@@ -59,6 +57,7 @@ export default function ConversationNodeEditingPanel() {
                 TODO: Add a list for scrolling/switching between slides/pieces for this node
                 <br></br> - TODO: add testing data
                 <br></br> - when entering this node-editing page, pull once from cloud db for list of pieces/slides
+                <br></br> *** in VM layer, pull all data once, and always transmit to View with the "ready" data, when editing (unless updated and refreshed) 
                 <br></br> - each list item is clickable, and then the editing options provided to the user
                 <br></br>
                 <br></br> - "Save" button *after* all editing finished (to update to cloud-db)
@@ -71,17 +70,10 @@ export default function ConversationNodeEditingPanel() {
             </p>
 
             <p className="plans">
-                *** db updating consideration: only call db-updating when user press "save" button to update the project data.
-                <br></br> for list of pieces in conversation-game-node, when entering this editing-panel, pull once from db, then save and present whatever changed locally
-                <br></br> then ask the user to save the changes when exiting or only save when requested.
-            </p>
-
-            <p className="plans">
                 After fetching the data above, previewer should reflect the adjustment and present this piece
                 <br></br> also, save and update to db if requested by user.
             </p>
 
-            <p className="plans"> *** place of "PieceSetter"? <br></br> either editing for a sinlgle piece + left/right button, or a list of all pieces: switch? </p>
             <button className="buttonLeft" onClick={()=>{setBrowseList(!browseList)}}>List/Editing</button>
             <div className="parallelFrame">
             {browseList == false && <PieceSetter/>}
