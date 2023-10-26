@@ -63,6 +63,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    const [toNodeName, setToNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNode, setIsLinkNode] = useState(false);
+   const [nodeToRevert, setToRevert] = useState("");
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -130,13 +131,19 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     console.log("changed selection of new game type : " + event.target.value);
   }
 
-  function addConnectionFromNode(event) {
-    setFromNodeName(event.target.value); //TODO later update to cloud db
-  }
-
   function addConnectionToNode(event) {
     setToNodeName(event.target.value); //TODO later update to cloud db
   }
+
+  function addRevertingNode(event) {
+    setToRevert(event.target.value); //TODO later update to cloud db
+  }
+
+  function revertSelectedNode() {
+    //TODO change the "display" to "true" for this node
+    console.log("trying to revert...", nodeToRevert); //TODO testing
+  }
+
 
   function addLinkBetweenNodes() {
     const sourceNodeName = clickedNode;
@@ -246,14 +253,14 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     let deletedNodeIndex = 0;
     for (; i < nodeDataTemp.length; i++) {
       if (nodeDataTemp[i].nodeName == nodeToDelete) {
-        nodeDataTemp[i].display = false;
+        nodeDataTemp[i].display = false; // "undisplay" this deleted node
         deletedNodeIndex = i;
       }
     }
 
     i = 0;
     for (; i < nodeDataTemp.length; i++) {
-      //if nextNodes contains "deletedNodeIndex", remove it
+      //if nextNodes contains "deletedNodeIndex", remove the link to the deleted-node
       if (nodeDataTemp[i].nextNodes.includes(deletedNodeIndex)) {
         let j = 0;
         let newArr = [];
@@ -512,7 +519,25 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     </div>
     </>
   }
-    
+    <div>
+      Revert Node-Deletion
+      <label> Select from deleted nodes: </label>
+      <br></br>
+      <select value={nodeToRevert} onChange={addRevertingNode}>
+        <option value="" key=""> -- Deleted Nodes -- </option> 
+        {nodeData.map((nextIndex, index) => {
+          if (nodeData[index].display == true) {
+            return;
+          } 
+      return (
+        <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
+      );
+    })}
+    </select>
+
+    <button onClick={revertSelectedNode}> Revert </button>
+
+    </div>
 
 
     <button 
