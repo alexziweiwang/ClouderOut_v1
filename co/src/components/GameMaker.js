@@ -31,6 +31,15 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 */
 
 
+  async function displayGameData() {
+    const currUser = "user002"; //TODO test
+    const projTest = "project001";
+    const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser});
+
+    console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
+   
+  }
+
   const {state} = useLocation();
 
   if (state != null) { //TODO testing
@@ -38,10 +47,6 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
       console.log(state.addedNewProjName);
     }
   }
-  const currUser = "user002"; //TODO test
-  const projTest = "project001";
-  const gdataTestResult = getProjectGameDataVM({projectName: projTest, uname: currUser}); //TODO test
-  console.log(gdataTestResult.game_data); //TODO
 
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
@@ -297,6 +302,8 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     <div className="returning_buttons">
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
     </div>
+
+    <button onClick={displayGameData}> Check Game data </button>
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>

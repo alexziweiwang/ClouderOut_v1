@@ -11,10 +11,10 @@ export async function getProjectGameData({projectName, uname}) {
 
   const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
   const querySnapshot = await getDocs(q);
-  let dataFetched;
+  let dataFetched = [];
   querySnapshot.forEach((doc) => {
-    dataFetched = doc.data(); 
-      console.log("dataFetched:", dataFetched); //TODO testing
+    dataFetched = doc.data();
+    console.log("dataFetched.. ", dataFetched); //TODO testing
   });    
   return dataFetched;
 
