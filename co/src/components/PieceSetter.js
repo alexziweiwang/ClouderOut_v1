@@ -89,7 +89,7 @@ export default function PieceSetter() {
     return (
       
 
-    <div className="userChoice">
+    <div className="pieceSetterArea">
         <div className="buttonRight">
             <button onClick={collapseAllOptions}> Collapse All </button>
             <button onClick={expandAllOptions}> Expand All </button>
@@ -198,8 +198,9 @@ export default function PieceSetter() {
                     <br></br>
                     <label>Is looping:      </label>
                     <select value="isLooping" onChange={changeLoopingSetting}>
-                        <option value="isTrue" key="isTrue">True</option>
-                        <option value="isFalse" key="isFalse">False</option>
+                        <option value="" key="-">-- Looping? --</option>
+                        <option value={true} key="isTrue">True</option>
+                        <option value={false} key="isFalse">False</option>
                     </select>
                     <br></br>
                     <label>Volume:         </label>

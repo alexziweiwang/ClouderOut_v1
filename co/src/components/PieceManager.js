@@ -10,7 +10,7 @@ export default function PieceManager() {
     let name = "/piecemanager";
  
     return (
-        <div className="pieceManager">
+        <div>
             <p className="plans">
             This is piece-manager: 
             <br></br>list of pieces are displayed here organized here

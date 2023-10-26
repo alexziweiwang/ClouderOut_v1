@@ -74,10 +74,20 @@ export default function ConversationNodeEditingPanel() {
                 <br></br> also, save and update to db if requested by user.
             </p>
 
-            <button className="buttonLeft" onClick={()=>{setBrowseList(!browseList)}}>List/Editing</button>
+            
             <div className="parallelFrame">
-            {browseList == false && <PieceSetter/>}
-            {browseList == true && <PieceManager/>}
+            {browseList == false && <div className="userChoice">
+                <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
+                <p className="plans">TODO: Left and Right buttons for Previous and Next [piece]</p>
+                <PieceSetter/>
+                <p className="plans">TODO: Left and Right buttons for Previous and Next [piece]</p>
+
+            </div>}
+            {browseList == true &&<div className="pieceManager">
+                <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>List/Editing (TEMP) </button>
+                 <PieceManager/>
+            </div>}
+            
 
             <PreviewWindow/>
             </div>
