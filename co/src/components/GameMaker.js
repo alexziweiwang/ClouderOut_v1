@@ -303,6 +303,14 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
      <br></br> <br></br> idea: "logic splitter" is attached to a node (not individually put)
      <br></br> in each node, it should either have *one* next-node, or *one* logic-splitter, and each logic-splitter keeps track of condition and next-node
      <br></br> TODO: conversion of logic-condition? to consider
+
+
+     <br></br> idea: logic organizer depends heavily on the game-data specified by author.
+     <br></br> thus, the prerequisite steps include flexibly (and precisely) display game-data-vairable names
+     <br></br> the game maker should provide entry for CRUD operations on game-data, in both node-managing layer and inside-node layer
+     <br></br> frontend aspect, game-data manager is needed (CRUD); backend aspect, game-data's data structure on cloud is needed
+     <br></br> ** first, implement and test simple logical conditions, then improve to combos (with parenthesis)
+
      </p>
 
     <p className="plans">
