@@ -62,6 +62,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    const [fromNodeName, setFromNodeName] = useState("");
    const [toNodeName, setToNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
+   const [isLinkNode, setIsLinkNode] = useState(false);
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -414,9 +415,12 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     <>
 
     <div>
-      Link to a New Node
+    <input type="radio" name="singleSelect" name="linkToNextNode" value="isLinkNode"/>Link to a New Node
+
+    {isLinkNode && <> 
     <br></br>
     <label>Node Name: </label>
+
     <input 
       className="setting_item"
       type="text" value={createNewNodeName} 
@@ -436,16 +440,22 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
       onClick={addNewNode}>
         Create
     </button>
+    </>
+    }
     </div>
 
     <div>
-    Link to a Logic Splitter
+    <input type="radio" name="singleSelect" name="linkToNextNode" value="isLinkNode"/>Link to a Logic Splitter
+
+    {!isLinkNode && 
+    <>
     <br></br>
     <button 
       className="setting_item"
       onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
-        Add Logic Splitter
+        Add Logic Splitter Button
     </button>
+    </>}
 
     </div>
     
