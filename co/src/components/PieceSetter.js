@@ -20,6 +20,13 @@ export default function PieceSetter() {
     const [bgMusicAdd, setBgMusicAdd] = useState(false);
     const [voicelineAdd, setVoicelineAdd] = useState(false);
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
+    const [isLooping, setIsLooping] = useState(true);
+
+    function changeLoopingSetting(event) {
+        setIsLooping(event.target.value); //TODO later update to cloud db
+        console.log("now looping? ", event.target.value);
+      }
+    
 
     function handleResourceSelectorCancel() {
         setRmSelectorOpen(false);
@@ -190,11 +197,9 @@ export default function PieceSetter() {
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Is looping:      </label>
-                    <select>
-                        <option value="t" key="t">True</option>
-                        <option value="f" key="f">False</option>
-
-
+                    <select value="isLooping" onChange={changeLoopingSetting}>
+                        <option value="isTrue" key="isTrue">True</option>
+                        <option value="isFalse" key="isFalse">False</option>
                     </select>
                     <br></br>
                     <label>Volume:         </label>
