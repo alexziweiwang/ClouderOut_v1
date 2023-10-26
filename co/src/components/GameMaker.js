@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
-
+import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 
 export default function GameMaker() {
 
@@ -38,7 +38,10 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
       console.log(state.addedNewProjName);
     }
   }
-
+  const currUser = "user002"; //TODO test
+  const projTest = "project001";
+  const gdataTestResult = getProjectGameDataVM({projectName: projTest, uname: currUser}); //TODO test
+  console.log(gdataTestResult.game_data); //TODO
 
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
