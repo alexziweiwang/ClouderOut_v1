@@ -33,7 +33,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
   async function displayGameData() {
     const currUser = "user002"; //TODO test
-    const projTest = "project001";
+    const projTest = "project001"; //TODO test
     const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser});
 
     console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
@@ -148,8 +148,16 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
   }
 
   function revertSelectedNode() {
-    //TODO change the "display" to "true" for this node
-    console.log("trying to revert...", nodeToRevert); //TODO testing
+    let i = 0;
+    const nodeDataTemp = nodeData;
+    for (; i < nodeDataTemp.length; i++) {
+      if (nodeDataTemp[i].nodeName == nodeToRevert) {
+        nodeDataTemp[i].display = true;
+      }
+    }
+
+    setNodeData(nodeDataTemp);
+    setToRevert("");
   }
 
 
