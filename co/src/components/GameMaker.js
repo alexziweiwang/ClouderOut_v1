@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+import GameDataManager from './GameDataManager';
+
 
 export default function GameMaker() {
 
@@ -60,11 +62,13 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [fromNodeName, setFromNodeName] = useState("");
-   const [toNodeName, setToNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNode, setIsLinkNode] = useState(false);
+   const [toNodeName, setToNodeName] = useState("");
+
    const [nodeToRevert, setToRevert] = useState("");
    const [gameDataLocal, setGameDataLocal] = useState({});
+   const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -82,7 +86,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
 //TODO set local-game-data: convert from object map to array?  
     setGameDataLocal(gdataTestResult.game_data);
-
+    setDisplayGameDataWindow(!displayGameDataWindow);
   }
 
 
@@ -321,18 +325,18 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     </div>
 
     <button onClick={displayGameData}> Check Game data </button>
-    <p className="plans"> TODO: display current game-data from cloud? </p>
     <ul>
     {
     Object.keys(gameDataLocal).map((key) => {
       return (
-        <li>{key}:{gameDataLocal[key]}</li>
+        <li key={key}>{key}:{gameDataLocal[key]}</li>
       )
    })}
-  
-
     </ul>
+
+
     <br></br>
+   {displayGameDataWindow && <GameDataManager/>}
 
 
     <p className="plans"> Game Maker page 
