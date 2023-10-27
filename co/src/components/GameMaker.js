@@ -31,22 +31,29 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 */
 
 
+  const {state} = useLocation();
+  let providedProjectName = "project001";
+  if (state != null) { //TODO testing
+    if (state.addedNewProjName != null) {
+      console.log("This is for project: ", state.addedNewProjName);
+      providedProjectName = state.addedNewProjName;
+    }
+  } 
+  
+
   async function displayGameData() {
+
+
     const currUser = "user002"; //TODO test
-    const projTest = "project001"; //TODO test
+    const projTest = providedProjectName; //TODO test
+    console.log("checking for ...", projTest);
     const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser});
 
     console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
    
   }
 
-  const {state} = useLocation();
 
-  if (state != null) { //TODO testing
-    if (state.addedNewProjName != null) {
-      console.log(state.addedNewProjName);
-    }
-  }
 
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);

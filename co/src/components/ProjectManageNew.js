@@ -10,7 +10,7 @@ export default function ProjectManageNew() {
 
     const name = "/projectmanagenew";
 
-    const [addedNewProjName, setNewProjName] = useState(['New Project Name']);
+    const [addedNewProjName, setNewProjName] = useState(['New Project']); //TODO testing
 
 
     function projectManagePanel() {

@@ -14,7 +14,6 @@ export default function ProjectManagerPanel() {
       { project_name: "project002"},
       { project_name: "project003"},
     ]); //TODO pull the list from cloud-db
-    const [addedNewProjName, setNewProjName] = useState(['New Project Name']);
     fetchProjectListVM();
 
     function goToGameMaker() {
