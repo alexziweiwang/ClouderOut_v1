@@ -16,6 +16,11 @@ export default function ProjectManageNew() {
     function projectManagePanel() {
         navigate('/projectmanagingpanel', { replace: true });
     }
+
+    function changeProjNameInput(event) {
+      setNewProjName(event.target.value);
+
+    }
     
     function createNewProjectEdit() {
         console.log("adding a new project: " + addedNewProjName);
@@ -31,6 +36,10 @@ export default function ProjectManageNew() {
       navigate('/projectmanagingpanel', { replace: true });
   }
 
+  function handleChangeProjectName() {
+
+  }
+
     return (
     <>    
     <Sidebar compName = {name}/>
@@ -39,25 +48,21 @@ export default function ProjectManageNew() {
 
         <br></br>
 
-        <input 
-          type="text" value={addedNewProjName} 
-          onChange={e => {setNewProjName(e.target.value)}
-        }  
-        />
-
         <label>Project Name: </label>
-        <input></input>
+        <input type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
+
         <br></br>
         <label></label>Project Description:
         <textarea></textarea>
         <br></br>
         <label></label>Author Info:
         <input></input>
+        <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
         <br></br>
         <label></label>Genre:
-        <input></input>
-        
-
+        <p className="plans"> (Genre can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
+ 
+ <br></br> <br></br>
         <p className="plans">
           Validate user input, and then create a new folder for this new project
           <br></br> TODO: design and construct new-set for each new project: layers, etc.
