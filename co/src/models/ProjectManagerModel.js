@@ -1,5 +1,5 @@
 import db from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection, query } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
 
 export async function fetchProjectList() {
   const currUser = "user002"; //TODO to-change
@@ -13,14 +13,11 @@ export async function fetchProjectList() {
     return;
   }
 
-  const q = query(collection(docRef, "projects"));
+  const q = query(collection(docRef, "projects"), where("type", "!=", "rm"));
   const querySnapshot = await getDocs(q);
   let projectArr = [];
   querySnapshot.forEach((doc) => {
     projectArr.push(doc.id);
   });
-
-  console.log("arr:", projectArr); //TODO testing: list of projects for user002
+  return projectArr;
 }
-
-

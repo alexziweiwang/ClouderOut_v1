@@ -9,15 +9,17 @@ import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState(['unnamed_project']);
-    const [testProj, setTestProj] = useState([
-      { project_name: "project001"},
-      { project_name: "project002"},
-      { project_name: "project003"},
-    ]); //TODO pull the list from cloud-db
-    fetchProjectListVM();
+    const [testProj, setTestProj] = useState(false); //TODO pull the list from cloud-db
+    let projectList = [];
 
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true, state: { selected_project_name } });
+    }
+
+    async function loadProjectList() {
+      projectList = await fetchProjectListVM();
+      setTestProj(projectList);    
+      console.log("project list: ", projectList); //TODO test
     }
     
     let name = "/projectmanagingpanel";
@@ -27,17 +29,17 @@ export default function ProjectManagerPanel() {
 
     <>
 
-  
+        <button onClick={loadProjectList}> Load Projects </button>
         <br></br>
         
-        <select onChange={() => {console.log("changed selected item...");}}>
+        {testProj && <select onChange={() => {console.log("changed selected item...");}}>
         {testProj.map((itemIndex, index) => {
           return (
-          <option value="${testProj[index].project_name}" key={testProj[index].project_name}>{testProj[index].project_name}</option>
+          <option value="${testProj[index].project_name}" key={testProj[index]}>{testProj[index]}</option>
           );
         })} 
    
-        </select>
+        </select>}
    
         <p className="plans">Later: connect to cloud db and provide all project names to get selected by the user, or create new project</p>
         //TODO when use choose an exisiting project, do setProjectName to update the selection of project
