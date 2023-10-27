@@ -40,21 +40,6 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     }
   } 
   
-
-  async function displayGameData() {
-
-
-    const currUser = "user002"; //TODO test
-    const projTest = providedProjectName; //TODO test
-    console.log("checking for ...", projTest);
-    const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser});
-
-    console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
-   
-  }
-
-
-
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
@@ -79,11 +64,28 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNode, setIsLinkNode] = useState(false);
    const [nodeToRevert, setToRevert] = useState("");
+   const [gameDataLocal, setGameDataLocal] = useState({});
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
   console.log("This is game-maker component -- render once."); //TODO
+
+
+  async function displayGameData() {
+
+
+    const currUser = "user002"; //TODO test
+    const projTest = providedProjectName; //TODO test
+    console.log("checking for ...", projTest);
+    const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser});
+    console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
+//TODO set local-game-data: convert from object map to array?  
+    setGameDataLocal(gdataTestResult.game_data);
+
+  }
+
+
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
@@ -319,6 +321,19 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     </div>
 
     <button onClick={displayGameData}> Check Game data </button>
+    <p className="plans"> TODO: display current game-data from cloud? </p>
+    <ul>
+    {
+    Object.keys(gameDataLocal).map((key) => {
+      return (
+        <li>{key}:{gameDataLocal[key]}</li>
+      )
+   })}
+  
+
+    </ul>
+    <br></br>
+
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
