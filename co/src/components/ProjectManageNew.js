@@ -45,17 +45,22 @@ export default function ProjectManageNew() {
         }  
         />
 
-        <p className="plans">
-            creating a new project:
-            <br></br>- project name
-            <br></br>- project description
-            <br></br>- project info - author(s) //future feature
-            <br></br>- project tag(s) //future feature
-        </p>
+        <label>Project Name: </label>
+        <input></input>
+        <br></br>
+        <label></label>Project Description:
+        <textarea></textarea>
+        <br></br>
+        <label></label>Author Info:
+        <input></input>
+        <br></br>
+        <label></label>Genre:
+        <input></input>
+        
+
         <p className="plans">
           Validate user input, and then create a new folder for this new project
-          <br></br>(including resource managing?)
-          <br></br>(user can use materials cross-projects to avoid repeat upload?
+          <br></br> TODO: design and construct new-set for each new project: layers, etc.
         </p>
 
 
