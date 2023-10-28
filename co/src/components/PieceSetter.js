@@ -134,14 +134,17 @@ export default function PieceSetter() {
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
-                    <label>Position:      </label>
-                    <input defaultValue="..."></input>
+                    <label>Position x:      </label>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <br></br>
+                    <label>Position y:      </label>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
                     <br></br>
                     <label>Width:         </label>
-                    <input defaultValue="..."></input>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="800"></input>
                     <br></br>
                     <label>Height:        </label>
-                    <input defaultValue="..."></input>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="450"></input>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
@@ -154,14 +157,17 @@ export default function PieceSetter() {
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
-                    <label>Position:      </label>
-                    <input defaultValue="..."></input>
+                    <label>Position x:      </label>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <br></br>
+                    <label>Position y:      </label>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
                     <br></br>
                     <label>Width:         </label>
-                    <input defaultValue="..."></input>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="60"></input>
                     <br></br>
                     <label>Height:        </label>
-                    <input defaultValue="..."></input>
+                    <input type="number" min="0" max="9000" step="1" defaultValue="210"></input>
 
                 </div>}
             {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
@@ -204,7 +210,7 @@ export default function PieceSetter() {
                     </select>
                     <br></br>
                     <label>Volume:         </label>
-                    <input defaultValue="..."></input>
+                    <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
                 
@@ -217,7 +223,7 @@ export default function PieceSetter() {
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Volume:         </label>
-                    <input defaultValue="..."></input>
+                    <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
   
