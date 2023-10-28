@@ -125,6 +125,16 @@ body {
     transform: translate(-50%,-50%);
 }
 
+.modalArea2 {
+    position: fixed;
+    width: 80%;
+    height: 85%;
+    top: 50%;
+    left: 50%;
+    background: rgb(24, 59, 49);
+    transform: translate(-50%,-50%);
+}
+
 .modalContent {
     color: rgb(242, 241, 240);
     height: 93%;
@@ -175,7 +185,7 @@ body {
 }
 
 .previewWindow {
-    background-color: rgb(197, 218, 197);
+    background-color: rgb(235, 242, 235);
     height: 100%;
     width: 70%;
     flex: 2;
@@ -190,7 +200,7 @@ body {
 .preveiewArea {
     height: 450px;
     width: 800px;
-    background-color: rgb(198, 198, 220);
+    background-color: rgb(222, 222, 235);
     margin: 3%;
 }
 
