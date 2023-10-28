@@ -22,9 +22,9 @@ export default function PieceSetter() {
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
 
-    function changeLoopingSetting(event) {
-        setIsLooping(event.target.value); //TODO later update to cloud db
-        console.log("now looping? ", event.target.value);
+    function changeLoopingSetting() {
+        setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
+        console.log("looping? ", !isLooping); //TODO test
       }
     
 
@@ -120,7 +120,7 @@ export default function PieceSetter() {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Speaker Name:  </label>
-                    <input defaultValue="..."></input>
+                    <input defaultValue=""></input>
                 </div>
                 
             }
@@ -202,12 +202,9 @@ export default function PieceSetter() {
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
-                    <label>Is looping:      </label>
-                    <select value="isLooping" onChange={changeLoopingSetting}>
-                        <option value="" key="-">-- Looping? --</option>
-                        <option value={true} key="isTrue">True</option>
-                        <option value={false} key="isFalse">False</option>
-                    </select>
+                    <label>Loop:  </label>
+                    <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
+                    
                     <br></br>
                     <label>Volume:         </label>
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
