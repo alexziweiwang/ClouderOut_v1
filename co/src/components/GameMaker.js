@@ -344,23 +344,22 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
    
     <p className="plans"> TODO: game-flow controller:
      <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. 
-     <br></br>
-     <br></br> [source node] connect to [logic-splitter], logic-splitter connect to 'multiple next-nodes'
-     <br></br> inside logic-splitter: add logic for decision, game-data checking and updating, each branch's condition and next-node
-     <br></br> logic splitter's input: source node, branch pair (condition, next-node)
-     <br></br> later: for each node, they would not have an array of single/multiple "next-nodes", but either one next-node, or a logic-splitter instead??
-     <br></br> this design is also better for auto-drawing of paths and node positions (for mulriple branchs' situation)
-     
-     <br></br> <br></br> idea: "logic splitter" is attached to a node (not individually put)
-     <br></br> in each node, it should either have *one* next-node, or *one* logic-splitter, and each logic-splitter keeps track of condition and next-node
-     <br></br> TODO: conversion of logic-condition? to consider
+     <br></br> - need a "pointer" that keeps track of "current game progress", so that it points to the current place, and be ready to continue in the flow
+     <br></br> 
 
+     <br></br> [source node] might attach a [logic-splitter], logic-splitter connect to 'multiple next-nodes' with 'conditional pair'
+     <br></br> inside logic-splitter: add logic for decision, game-data checking and updating, each branch's condition and desintation-node
+     <br></br> logic splitter's input: source node, branch pair (condition, destination-node)
+     <br></br> this design is also better for auto-drawing of paths and node positions (for mulriple branchs' situation)
+
+     <br></br> TODO: conversion of logic-condition? to consider
 
      <br></br> idea: logic organizer depends heavily on the game-data specified by author.
      <br></br> thus, the prerequisite steps include flexibly (and precisely) display game-data-vairable names
      <br></br> the game maker should provide entry for CRUD operations on game-data, in both node-managing layer and inside-node layer
      <br></br> frontend aspect, game-data manager is needed (CRUD); backend aspect, game-data's data structure on cloud is needed
-     <br></br> ** first, implement and test simple logical conditions, then improve to combos (with parenthesis)
+     <br></br> for game-data, in the node-managing layer, it can only display/check, and only inside node can it alter game-data value
+     <br></br> [ ** first, implement and test simple logical conditions, then improve to combos (with parenthesis) ]
 
      </p>
 
