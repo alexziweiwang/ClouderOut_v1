@@ -14,21 +14,18 @@ export default function GameMaker() {
 2. logic organizer for game-node-relationship
 3. preview and test for node play-flow (progress: 35%)
 4. testing data for some nodes on cloud-db
+5. consider "change destination-node" operation
 */
 
 
 /* // TODO game-node visualization task list, dont items removed
-1. switching between "new node" and "edit node"
-3. for "edit node", allow edition of several properties
 4. optimization of paths: non-overlapping, line to path
 5. optimization of paths: arrow looking
 6. draggable nodes? (optional)
 7. optimization on node positions when generated
 8. adjust svg size, zoom/scrollbar options
 9. game node brief info display and options (hover and click)
-10. change data design for "layer" for auto-node arrangement: map-like (k,v) for (layer, [node1, node2, node3, ...]); for node's that came from multiple sources with different depths, consider later
-depth & inGroupPosition should be the outer part of a node?
-that is, when doing CRUD on nodes, change this tracking-data-structure as well.
+
 
 */
 
@@ -109,7 +106,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
         //TODO later add conditions for board game and tower defense
   }
 
-  function addNewNode() {
+  function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
     const nodeDataTemp = nodeData;
 
     if (createNewNodeGameType == "") {
@@ -174,7 +171,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
   }
 
 
-  function addLinkBetweenNodes() {
+  function addLinkBetweenNodes() { //TODO *** refactor: for new data-structure and depth plan
     const sourceNodeName = clickedNode;
     const nodeDataTemp = nodeData;
     let fromNodeIndex = -1, toNodeIndex = -1;
@@ -217,7 +214,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
     } 
   }
 
-  function deleteLinkBetweenNodes() {
+  function deleteLinkBetweenNodes() { //TODO *** refactor: for new data-structure and depth plan
     const sourceNodeName = clickedNode;
 
     const nodeDataTemp = nodeData;
@@ -372,14 +369,7 @@ that is, when doing CRUD on nodes, change this tracking-data-structure as well.
 
 
     <div className="setting_area"> Node Management
-    <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.</p>
-    <p className="plans">
-    link deletion design: 1. when deleting the next node, the link get deleted together; 2. when changing next-node, just edit the source-node's info; 3. avoid "unreachable" node by not allowing deleting links?
-    </p>
-    <p className="plans"> TODO: node positions: in-group-position and depth, etc.; auto/dynamic adjustment after adding or removing nodes </p>
-    <p className="plans"> TODO: "undo" and "redo" features: so far, can have "trash area" for nodes and logic splitters, and allow "revert" of deletions? 
-    <br></br>Since added items (node/link) can be deleted easily but deleted items are harder to revert</p>
-
+    <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.</p> 
     <svg
         xmlns="http://www.w3.org/2000/svg"
         className="nodes_viewer"
