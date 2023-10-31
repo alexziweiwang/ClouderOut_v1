@@ -56,7 +56,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     <div className="modalContent">
         <p> This is game-data manager!!!!!!!!! </p>
         <div className="gameDataDisplayArea">
-
+            <div className="dataArea">
             <ul>
                 {
                 Object.keys(gameData).map((key) => {
@@ -65,14 +65,12 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 )
                 })}
             </ul>
-            <button onClick={showNewVarForm}> + New Variable </button>
+            </div>
+            
+            {!displayNewVarArea && <button onClick={showNewVarForm}> + New Variable </button>}
+
             {displayNewVarArea && 
                 <div>
-                    <p className="plans">
-                        variable name
-                        <br></br>data type (options: text, number, true/false)
-                        <br></br>default value
-                    </p>
                     <label>Variable Name: </label>
                     <input></input>
                     <br></br>
@@ -94,6 +92,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     <button onClick={addNewVarPair}>Submit</button>
                 </div>
             }
+            {displayNewVarArea && <button onClick={showNewVarForm}> Cancel </button>}
+
 
         </div>
 

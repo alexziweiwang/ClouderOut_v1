@@ -219,8 +219,16 @@ body {
 }
 
 .gameDataDisplayArea {
-    background-color: rgb(132, 143, 154);
+    background-color: rgb(85, 104, 121);
     padding-top: 3px;
     padding-bottom: 3px;
     margin: 3px;
+    height: 90%;
+
+}
+
+.dataArea {
+    height: 70%;
+    background-color: rgb(201, 168, 188);
+    overflow: scroll;
 }
