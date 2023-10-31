@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameDataManager({isDisplay, handleGdmCancel, gameData}) {
+export default function GameDataManager({isDisplay, handleGdmCancel, gameData, setNeedCloudData}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -17,6 +17,12 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData}) 
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
+    }
+
+    function addNewVarPair() {
+        //TODO update game-data variable: name, type, default-value to cloud db
+        
+        setNeedCloudData();
     }
 
     return (
@@ -36,11 +42,15 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData}) 
                 )
                 })}
             </ul>
-            <button onClick={showNewVarForm}> Add New Variable </button>
+            <button onClick={showNewVarForm}> + New Variable </button>
             {displayNewVarArea && 
                 <div>
-                
-                
+                    <p className="plans">
+                        variable name
+                        <br></br>data type (options: text, number, true/false)
+                        <br></br>default value
+                    </p>
+                    <button onClick={addNewVarPair}>Submit</button>
                 </div>
             }
 

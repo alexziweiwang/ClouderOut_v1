@@ -91,6 +91,10 @@ export default function GameMaker() {
     setDisplayGameDataButton(true);
   }
 
+  function markNextNeedCloudGameData() {
+    console.log("next move changed... need to fetch game data from cloud"); //TODO test
+    setNeedCloudGameData(true);
+  }
 
 
   function handleNodeClick(name) {
@@ -336,7 +340,7 @@ export default function GameMaker() {
 
 
     <br></br>
-   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal}/>}
+   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} setNeedCloudData={markNextNeedCloudGameData}/>}
 
 
     <p className="plans"> Game Maker page 
