@@ -135,6 +135,16 @@ body {
     transform: translate(-50%,-50%);
 }
 
+.modalArea3 {
+    position: fixed;
+    width: 80%;
+    height: 85%;
+    top: 50%;
+    left: 50%;
+    background: rgb(203, 191, 171);
+    transform: translate(-50%,-50%);
+}
+
 .modalContent {
     color: rgb(242, 241, 240);
     height: 93%;

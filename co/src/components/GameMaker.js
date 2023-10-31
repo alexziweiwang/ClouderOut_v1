@@ -313,6 +313,10 @@ export default function GameMaker() {
     navigate('/projectmanagingpanel', { replace: true });
   }
 
+  function handleGameDataManagerCancel() {
+    setDisplayGameDataWindow(!displayGameDataWindow);
+  }
+
   return (
   <div>
 
@@ -333,7 +337,7 @@ export default function GameMaker() {
 
 
     <br></br>
-   {displayGameDataWindow && <GameDataManager/>}
+   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel}/>}
 
 
     <p className="plans"> Game Maker page 
