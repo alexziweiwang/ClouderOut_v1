@@ -54,6 +54,7 @@ export default function GameMaker() {
    /* variable area */
    const navigate = useNavigate();
    const name = "/gamemaker";
+   const [needCloudGameData, setNeedCloudGameData] = useState(true);
    const [modeCreateNewNode, setModeToCreateNewNode] = useState(false);
    const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
@@ -79,10 +80,15 @@ export default function GameMaker() {
     const currUser = "user002"; //TODO test
     const projTest = providedProjectName; //TODO test
     console.log("checking for ...", projTest);
-    const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser});
-    console.log("gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
-//TODO set local-game-data: convert from object map to array?  
-    setGameDataLocal(gdataTestResult.game_data);
+    let gdataTestResult = [];
+    if (needCloudGameData == true) {
+      gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser, mostUpdated: needCloudGameData});
+      console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
+      setGameDataLocal(gdataTestResult.game_data);
+      setNeedCloudGameData(false);
+    } else {
+      console.log("*from local* game-data: using existing data"); 
+    }
     setDisplayGameDataWindow(!displayGameDataWindow);
   }
 
