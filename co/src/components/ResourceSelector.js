@@ -65,6 +65,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <br></br> uesr-flow: defualt panel shows resource-naming selection, and "add new" is at the corner for newly added resource-link, then the main panel get refreshed with the new resource-linking
                         <br></br>[note: there is no limitaiton on multiple names pointing to the same resource, because it is flexible for later change and adjustment]
 
+                        <br></br> Idea: resource preview should be separate?
+                        <br></br> visual (pictures) and audio (bgm/sound effect/voiceline) preview in different sections
+                        <br></br> TODO: think about separation trategy
+                        <br></br> such as containing a tag(visual or audio), etc.?
                 </p>
 
                 <p className="plans">

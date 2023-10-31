@@ -232,3 +232,18 @@ body {
     background-color: rgb(201, 168, 188);
     overflow: scroll;
 }
+
+.clickableListItem {
+    background-color: rgb(49, 46, 58);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+}
+
+.clickableListItem:hover {
+    background-color: rgb(189, 156, 98);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+    cursor: pointer
+}

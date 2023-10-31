@@ -96,8 +96,6 @@ export default function GameMaker() {
     setNeedCloudGameData(false);
   }
 
-  
-
   function markNextNeedCloudGameData() {
     setNeedCloudGameData(true);
   }

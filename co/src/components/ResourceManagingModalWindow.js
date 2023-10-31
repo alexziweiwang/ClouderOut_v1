@@ -49,7 +49,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index} onClick={()=>{console.log("list clicked.")}}>{item}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.")}}>{item}</li>
                     ))}
                 </ul>
 
@@ -60,7 +60,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <button onClick={submitFile}> Submit </button>
 
                 <p className="plans">
-                    TODO: improve to clickable customizable list items & image preview
+                    TODO: improve to clickable customizable list items & image preview?
+                </p>
+
+                <p className="plans">
+                    TODO: refactor to fetch from cloud when only needed...
                 </p>
 
                 <p className="plans">
@@ -77,6 +81,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         <br></br> create a naming pair
                         <br></br> edit a naming pair
                         <br></br> delete a naming pair
+                        <br></br>
+                        <br></br> This would be done in resource selector?
+
                     </p>
             </div>
 
