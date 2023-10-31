@@ -72,9 +72,6 @@ export default function GameMaker() {
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
-  console.log("This is game-maker component -- render once."); //TODO
-
-
   async function displayGameData() {
     setDisplayGameDataButton(false);
 
@@ -334,6 +331,7 @@ export default function GameMaker() {
     </div>
 
     {displayGameDataButton && <button onClick={displayGameData}> Check Game data </button>}
+    {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
 
 
 

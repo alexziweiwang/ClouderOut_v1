@@ -217,3 +217,10 @@ body {
 .pieceSetterArea {
     background-color: rgb(186, 208, 205);
 }
+
+.gameDataDisplayArea {
+    background-color: rgb(132, 143, 154);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin: 3px;
+}
