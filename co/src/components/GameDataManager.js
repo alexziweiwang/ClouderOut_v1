@@ -1,6 +1,6 @@
 
 
-export default function GameDataManager({isDisplay, handleGdmCancel}) {
+export default function GameDataManager({isDisplay, handleGdmCancel, gameData}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -10,9 +10,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel}) {
         modalStyleName = "displayNone modalBackboard";
     }
 
-//TODO game-data manager can be a modal (pop-up window) for the author to add/remove variable, its type, and default value
-
-    console.log("this is game data manager..."); //TODO testing
+//TODO game-data manager: to add/remove variable, its type, and default value
     
     return (
     <div className={modalStyleName}>
@@ -21,6 +19,16 @@ export default function GameDataManager({isDisplay, handleGdmCancel}) {
 
     <div className="modalContent">
         <p> This is game-data manager!!!!!!!!! </p>
+
+        <ul>
+            {
+            Object.keys(gameData).map((key) => {
+            return (
+                <li key={key}>{key}:{gameData[key]}</li>
+            )
+        })}
+        </ul>
+
         <button className="modalControlButton" onClick={handleGdmCancel}> Close </button>
 
     </div> 

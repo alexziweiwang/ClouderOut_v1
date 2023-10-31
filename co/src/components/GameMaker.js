@@ -67,6 +67,7 @@ export default function GameMaker() {
    const [nodeToRevert, setToRevert] = useState("");
    const [gameDataLocal, setGameDataLocal] = useState({});
    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
+   const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -75,7 +76,7 @@ export default function GameMaker() {
 
 
   async function displayGameData() {
-
+    setDisplayGameDataButton(false);
 
     const currUser = "user002"; //TODO test
     const projTest = providedProjectName; //TODO test
@@ -90,6 +91,7 @@ export default function GameMaker() {
       console.log("*from local* game-data: using existing data"); 
     }
     setDisplayGameDataWindow(!displayGameDataWindow);
+    setDisplayGameDataButton(true);
   }
 
 
@@ -331,19 +333,12 @@ export default function GameMaker() {
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
     </div>
 
-    <button onClick={displayGameData}> Check Game data </button>
-    <ul>
-    {
-    Object.keys(gameDataLocal).map((key) => {
-      return (
-        <li key={key}>{key}:{gameDataLocal[key]}</li>
-      )
-   })}
-    </ul>
+    {displayGameDataButton && <button onClick={displayGameData}> Check Game data </button>}
+
 
 
     <br></br>
-   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel}/>}
+   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal}/>}
 
 
     <p className="plans"> Game Maker page 
