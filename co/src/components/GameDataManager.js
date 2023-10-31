@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameDataManager({isDisplay, handleGdmCancel, gameData, setNeedCloudData}) {
+export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -21,8 +21,10 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, s
 
     function addNewVarPair() {
         //TODO update game-data variable: name, type, default-value to cloud db
-        
-        setNeedCloudData();
+        //TODO also trigger update of layout's above area: all game data pairs...
+        resetNeedCloudData();
+        fetchFromCloud();
+        setDisplayNewVarArea(false);
     }
 
     return (

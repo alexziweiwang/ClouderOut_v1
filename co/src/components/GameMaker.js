@@ -75,15 +75,8 @@ export default function GameMaker() {
   async function displayGameData() {
     setDisplayGameDataButton(false);
 
-    const currUser = "user002"; //TODO test
-    const projTest = providedProjectName; //TODO test
-    console.log("checking for ...", projTest);
-    let gdataTestResult = [];
     if (needCloudGameData == true) {
-      gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser, mostUpdated: needCloudGameData});
-      console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
-      setGameDataLocal(gdataTestResult.game_data);
-      setNeedCloudGameData(false);
+      await fetchGameDataFromCloud();
     } else {
       console.log("*from local* game-data: using existing data"); 
     }
@@ -91,8 +84,21 @@ export default function GameMaker() {
     setDisplayGameDataButton(true);
   }
 
+  async function fetchGameDataFromCloud() {
+
+    const currUser = "user002"; //TODO test
+    const projTest = providedProjectName; //TODO test
+    console.log("checking for ...", projTest);
+
+    const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser, mostUpdated: needCloudGameData});
+    console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
+    setGameDataLocal(gdataTestResult.game_data);
+    setNeedCloudGameData(false);
+  }
+
+  
+
   function markNextNeedCloudGameData() {
-    console.log("next move changed... need to fetch game data from cloud"); //TODO test
     setNeedCloudGameData(true);
   }
 
@@ -340,7 +346,7 @@ export default function GameMaker() {
 
 
     <br></br>
-   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} setNeedCloudData={markNextNeedCloudGameData}/>}
+   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud}/>}
 
 
     <p className="plans"> Game Maker page 
