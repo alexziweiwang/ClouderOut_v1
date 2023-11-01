@@ -533,6 +533,15 @@ export default function GameMaker() {
       onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
         Add Logic Splitter Button
     </button>
+    <p className="plans">
+      Current idea on logic-splitter:
+      <br></br>fill in information
+      <br></br>(source node is already selected)
+      <br></br>an array of pairs [(condition, next-node),(condition, next-node), ...]
+      <br></br>for condition: *important* analyze and design comparison or check generalization
+      <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
+      <br></br>on node path, display brief text of condition?
+    </p>
     </>}
 
     </div>
@@ -580,6 +589,7 @@ export default function GameMaker() {
     </>
   }
   <br></br><br></br><br></br><br></br><br></br>
+  <p className="plans"> revert options : later change into collapsable section with simple icon</p>
     <div>
       Revert Node-Deletion
       <label> Select from deleted nodes: </label>
