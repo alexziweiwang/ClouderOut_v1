@@ -71,7 +71,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 {
                 Object.keys(gameData).map((key) => {
                 return (
-                    <li className="clickableListItem" key={key}>{key}:{gameData[key]}</li>
+                    <li className="clickableListItem" key={key}>{key}:               {gameData[key]}</li>
                 )
                 })}
             </ul>

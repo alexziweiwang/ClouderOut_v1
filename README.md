@@ -25,8 +25,10 @@
 - [ ] game mode analysis, advanced
 - [ ] logic organizer for game rule (this can be a module to be used), implement: between nodes & inside one game-round for specific game rules
 - [ ] game-node visualization optimization
-- [ ] logic organizer: analysis and design
-- [ ] game data sharing and update design, architecture design
+- [x] logic organizer: analysis and design
+- [ ] logic organizer: preliminary implement
+- [x] game data sharing and update design, architecture design
+- [ ] game data sharing and update implementation
 - [x] cloud db data structure design, preliminary
 - [x] cloud db data structure design, optimized
 - [ ] account-system design
@@ -34,4 +36,5 @@
 - [x] consider UI language switching design
 - [ ] implement and optimize UI language switching feature
 - [ ] refactor to RESTful API in a later stage
-
+- [ ] resource selector preview window/player tech exploration
+- [ ] resource selector variable name paring implementation
