@@ -42,7 +42,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
         <div className="modalArea">
 
-            <div className="modalContent">
+            <div className="modalContent parallelFrame">
+                
+            <div className="areaOrange">
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
             
@@ -52,11 +54,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.")}}>{item}</li>
                     ))}
                 </ul>
-
+        </div>
+        <div className="areaBlue">
                 <input 
                     type="file"
                     onChange={fileSelectChange}
                 /> 
+                
+                
                 <button onClick={submitFile}> Submit </button>
 
                 <p className="plans">
@@ -74,23 +79,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <br></br> Later: add "folder"-like sections for different types/purposes
                 </p>
 
-                    <p className="plans">
-                        TODO: for resource-selection, specific for each project
-                        <br></br> (list all naming pairs)
-                        <br></br>
-                        <br></br> create a naming pair
-                        <br></br> edit a naming pair
-                        <br></br> delete a naming pair
-                        <br></br>
-                        <br></br> This would be done in resource selector?
-
-                    </p>
+     
             </div>
+            </div>
+
+
 
             <div className="modalControl">
                 <button className="modalControlButton" onClick={handleRmCancel}> Close </button>
             </div>
-            
         </div>
       </div>
     );

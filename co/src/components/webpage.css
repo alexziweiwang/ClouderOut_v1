@@ -247,3 +247,19 @@ body {
     width: 90%;
     cursor: pointer
 }
+
+li {
+    list-style-type: none;
+}
+
+.areaOrange {
+    background-color: #d7bfa1;
+    width: 30%;
+    overflow: auto;
+}
+
+.areaBlue {
+    background-color: rgb(137, 137, 199);
+    overflow: auto;
+    width:70%;
+}

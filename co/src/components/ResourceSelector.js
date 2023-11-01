@@ -77,6 +77,18 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                     <br></br> that is, each resource on cloud storage should have a variable name in this project, and later this name can be reassigned to other resource
                 </p>
 
+                <p className="plans">
+                        TODO: for resource-selection, specific for each project
+                        <br></br> (list all naming pairs)
+                        <br></br>
+                        <br></br> create a naming pair
+                        <br></br> edit a naming pair
+                        <br></br> delete a naming pair
+                        <br></br>
+                        <br></br> This would be done in resource selector?
+
+                    </p>
+
             </div>
 
             <div className="modalControl">
