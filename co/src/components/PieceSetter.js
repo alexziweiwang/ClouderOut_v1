@@ -113,7 +113,8 @@ export default function PieceSetter() {
 
             <br></br>
             <br></br>
-            <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + Speaker Name for Text Setting </button>
+            {!speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + Speaker Name for Text Setting </button>}
+            {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> - Speaker Name for Text Setting </button>}
 
             {speakerNameAdd && 
                 <div>
@@ -126,7 +127,11 @@ export default function PieceSetter() {
             }
             {!speakerNameAdd && <div className="textRight">------------(Collapsed)---------------</div>}
             
-            <button className="collapseToggle" onClick={toggleBgPicOption}> + Background Picture Setting {bgpicAdd}</button>
+            {!bgpicAdd
+            && <button className="collapseToggle" onClick={toggleBgPicOption}> + Background Picture Setting {bgpicAdd}</button>}
+            {bgpicAdd
+            && <button className="collapseToggle" onClick={toggleBgPicOption}> - Background Picture Setting {bgpicAdd}</button>}
+            
             {bgpicAdd && 
                 <div>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
@@ -148,7 +153,9 @@ export default function PieceSetter() {
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>
+            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>}
+            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> - Character Picture Setting </button>}
+
             {charPicAdd && 
                 <div>
                     <p className="plans"> (modularizable: multiple items allowed) </p>
@@ -172,7 +179,9 @@ export default function PieceSetter() {
                 </div>}
             {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>
+            {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>}
+            {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> - Clickable(customizable button) Setting </button>}
+
             {clickableAdd && 
                 <div>
                     <p className="plans"> (modularizable: multiple items allowed) </p>
@@ -194,7 +203,9 @@ export default function PieceSetter() {
                 </div>}
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>
+            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
+            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - Background Music Setting </button>}
+
             {bgMusicAdd && 
                 <div>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
@@ -211,7 +222,9 @@ export default function PieceSetter() {
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
                 
-            <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>
+            {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
+            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>}
+
             {voicelineAdd && 
                 <div>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>

@@ -82,6 +82,8 @@ export default function ConversationNodeEditingPanel() {
                 <p className="plans">TODO: Left and Right buttons for Previous and Next [piece]</p>
                 <PieceSetter/>
                 <p className="plans">TODO: Left and Right buttons for Previous and Next [piece] <br></br>calculation of serial number</p>
+                <button className="pairGroup">Prev Piece</button>
+                <button className="pairGroup">Next Piece</button>
 
             </div>}
             {browseList == true &&<div className="pieceManager">
