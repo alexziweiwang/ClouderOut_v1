@@ -59,7 +59,7 @@ export default function GameMaker() {
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [fromNodeName, setFromNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
-   const [isLinkNode, setIsLinkNode] = useState(false);
+   const [isLinkNode, setIsLinkNode] = useState(true);
    const [toNodeName, setToNodeName] = useState("");
 
    const [nodeToRevert, setToRevert] = useState("");
@@ -101,7 +101,11 @@ export default function GameMaker() {
 
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
-    setClickedNode(name);
+    if (name == "" || name != clickedNode) {
+      setClickedNode(name);
+    } else { //clicked on the same node
+      setClickedNode("");
+    }
   }
 
   function enterNodeEditor() {
@@ -327,6 +331,14 @@ export default function GameMaker() {
     setDisplayGameDataWindow(!displayGameDataWindow);
   }
 
+  function changeNextToNode() {
+    setIsLinkNode(true);
+  }
+
+  function changeNextToSplitter() {
+    setIsLinkNode(false);
+  }
+
   return (
   <div>
 
@@ -475,11 +487,12 @@ export default function GameMaker() {
     <>
 
     <div>
-    <input type="radio" name="singleSelect" name="linkToNextNode" value="isLinkNode"/>Link to a New Node
-    <p className="plans">TODO improve later</p>
+    <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>Link to a New Node
 
 {/* //TODO: change later */}
-    {true && <> 
+    {isLinkNode && <> 
+      <p className="plans">TODO improve later</p>
+
     <br></br>
     <label>Node Name: </label>
 
@@ -507,12 +520,13 @@ export default function GameMaker() {
     </div>
 
     <div>
-    <input type="radio" name="singleSelect" name="linkToNextNode" value="isLinkNode"/>Link to a Logic Splitter
-    <p className="plans">TODO improve later</p>
+    <input type="radio" name="logic_splitter" value={isLinkNode} checked={!isLinkNode} onChange={changeNextToSplitter}/>Link to a Logic Splitter
 
 {/* //TODO: change later */}
-    {true && 
+    {!isLinkNode && 
     <>
+    <p className="plans">TODO improve later</p>
+
     <br></br>
     <button 
       className="setting_item"
@@ -527,6 +541,11 @@ export default function GameMaker() {
     
     <div>
     <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+
     Edit Node-Links
           <p className="plans">TODO improve later</p>
 
@@ -560,6 +579,7 @@ export default function GameMaker() {
     </div>
     </>
   }
+  <br></br><br></br><br></br><br></br><br></br>
     <div>
       Revert Node-Deletion
       <label> Select from deleted nodes: </label>
