@@ -67,10 +67,11 @@ export default function ConversationNodeEditingPanel() {
 
             <p className="plans">
                 TODO: think about "switching"/"moving rows" feature 
+                <br></br> each row would have an serial number, and switching would just switch the row number, and then sort again?
             </p>
 
             <p className="plans">
-                After fetching the data above, previewer should reflect the adjustment and present this piece
+                After fetching the data above, previewer should reflect the adjustment and present this piece (refresh with local data)
                 <br></br> also, save and update to db if requested by user.
             </p>
 
@@ -80,7 +81,7 @@ export default function ConversationNodeEditingPanel() {
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <p className="plans">TODO: Left and Right buttons for Previous and Next [piece]</p>
                 <PieceSetter/>
-                <p className="plans">TODO: Left and Right buttons for Previous and Next [piece]</p>
+                <p className="plans">TODO: Left and Right buttons for Previous and Next [piece] <br></br>calculation of serial number</p>
 
             </div>}
             {browseList == true &&<div className="pieceManager">

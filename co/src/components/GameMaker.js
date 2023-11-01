@@ -14,18 +14,16 @@ export default function GameMaker() {
 2. logic organizer for game-node-relationship
 3. preview and test for node play-flow (progress: 35%)
 4. testing data for some nodes on cloud-db
-5. consider "change destination-node" operation
+5. consider optimization of "change destination-node" operation
 */
 
 
 /* // TODO game-node visualization task list, dont items removed
 4. optimization of paths: non-overlapping, line to path
 5. optimization of paths: arrow looking
-6. draggable nodes? (optional)
 7. optimization on node positions when generated
-8. adjust svg size, zoom/scrollbar options
+8. dynamic svg size?
 9. game node brief info display and options (hover and click)
-
 
 */
 
@@ -104,7 +102,6 @@ export default function GameMaker() {
   function handleNodeClick(name) {
     console.log("node = " + name); //TODO
     setClickedNode(name);
-    // TODO refactor: display option of [Edit Conetnt], [Add next node], [Add logic splitter], [Delete this node]
   }
 
   function enterNodeEditor() {

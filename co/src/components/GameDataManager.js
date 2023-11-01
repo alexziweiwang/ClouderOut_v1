@@ -18,8 +18,6 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
 
-//TODO game-data manager: to add/remove variable, its type, and default value
-
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
     }
