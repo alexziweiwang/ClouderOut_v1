@@ -263,3 +263,15 @@ li {
     overflow: auto;
     width:70%;
 }
+
+.sectionHeader {
+    background-color: rgb(138, 198, 138);
+    height: 30px;
+    width: 100%;
+}
+
+.sectionHeader2 {
+    background-color: rgb(131, 184, 199);
+    height: 30px;
+    width: 20%;
+}

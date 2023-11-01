@@ -487,6 +487,7 @@ export default function GameMaker() {
     <>
 
     <div>
+    <p className="sectionHeader">***Append an Element***</p>
     <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>Link to a New Node
 
 {/* //TODO: change later */}
@@ -517,6 +518,7 @@ export default function GameMaker() {
     </button>
     </>
     }
+    {!isLinkNode && <p>----------------------------------------------------</p>}
     </div>
 
     <div>
@@ -528,11 +530,7 @@ export default function GameMaker() {
     <p className="plans">TODO improve later</p>
 
     <br></br>
-    <button 
-      className="setting_item"
-      onClick={()=>{console.log("Adding Logic Splitter...", clickedNode)}}>
-        Add Logic Splitter Button
-    </button>
+  
     <p className="plans">
       Current idea on logic-splitter:
       <br></br>fill in information
@@ -543,6 +541,7 @@ export default function GameMaker() {
       <br></br>on node path, display brief text of condition?
     </p>
     </>}
+    {isLinkNode && <p>----------------------------------------------------</p>}
 
     </div>
     
@@ -554,10 +553,8 @@ export default function GameMaker() {
     <br></br>
     <br></br>
     <br></br>
-
-    Edit Node-Links
-          <p className="plans">TODO improve later</p>
-
+    <p className="sectionHeader">***Edit Node-Links***</p>
+    
     <br></br>
     <label>From Node [{clickedNode}] </label>
  {/* //TODO change "fromNode" to "clickedNode" */}
@@ -591,7 +588,9 @@ export default function GameMaker() {
   <br></br><br></br><br></br><br></br><br></br>
   <p className="plans"> revert options : later change into collapsable section with simple icon</p>
     <div>
-      Revert Node-Deletion
+      <p className="sectionHeader2">***Revert Node-Deletion***</p>
+    
+      <br></br>
       <label> Select from deleted nodes: </label>
       <br></br>
       <select value={nodeToRevert} onChange={addRevertingNode}>
