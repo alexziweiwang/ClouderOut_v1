@@ -15,6 +15,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     const [newGameDataType, setNewGameDataType] = useState("isNumber");
     const [isNewGdataTypeBoolean, setIsNewDdataTypeBoolean] = useState(false);
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState(true);
+    const [newVarName, setNewVarName] = useState("");
+    const [defaultNewValue, setDefaultNewValue] = useState(0);
 
 //TODO game-data manager: to add/remove variable, its type, and default value
 
@@ -48,6 +50,14 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         }
     }
 
+    function changeNewVarName(event) {
+        setNewVarName(event.target.value);
+    }
+
+    function changeDefaultNewValue(event) {
+        setDefaultNewValue(event.target.value);
+    }
+
     return (
     <div className={modalStyleName}>
 
@@ -72,7 +82,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             {displayNewVarArea && 
                 <div>
                     <label>Variable Name: </label>
-                    <input></input>
+                    <input type="text" value={newVarName} onChange={changeNewVarName}/>
                     <br></br>
                     <label>Data Type: </label>
                     <select value={newGameDataType} onChange={selectOnNewGdataType}>
@@ -82,12 +92,15 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     </select>
                     <br></br>
                     <label>Default Value: </label>
-                    {!isNewGdataTypeBoolean && <input></input>}
+                    {!isNewGdataTypeBoolean && 
+                    <input type="text" value={defaultNewValue} onChange={changeDefaultNewValue}></input>
+                    }
                     {isNewGdataTypeBoolean && 
                     <select value={defaultNewBooleanValue} onChange={selectOnDefaultBoolean}>
                         <option value="isTrue" key="true"> True </option>
                         <option value="isFalse" key="false"> False </option>
-                    </select>}
+                    </select>
+                    }
                     <br></br>
                     <button onClick={addNewVarPair}>Submit</button>
                 </div>

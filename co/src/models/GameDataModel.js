@@ -16,7 +16,6 @@ export async function getProjectGameData({projectName, uname}) {
     dataFetched = doc.data();
   });    
   return dataFetched;
-
 }
 
 
