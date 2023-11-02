@@ -68,13 +68,17 @@ export default function ConversationNodeEditingPanel() {
             <p className="plans">
                 TODO: Add a list for scrolling/switching between slides/pieces for this node
                 <br></br> - TODO: add testing data
-                <br></br> - when entering this node-editing page, pull once from cloud db for list of pieces/slides
-                <br></br> *** in VM layer, pull all data once, and always transmit to View with the "ready" data, when editing (unless updated and refreshed) 
                 <br></br> - each list item is clickable, and then the editing options provided to the user
-                <br></br>
-                <br></br> - "Save" button *after* all editing finished (to update to cloud-db)
+                <br></br> options: [move up], [move down], [duplicate] ,[remove]
+                <br></br> important!! think about efficient ways for changing/keeping the index(sequence)
+                <br></br> indexing-idea: not chaning like bubble-sort?
             </p>
 
+            <p className="plans">
+                TODO: load game-data here, and pass to piece-setter
+                <br></br>for "consequence" by some clickable, make sure it updates the game-data
+                <br></br>conosider local-version keeping, and syncing to cloud
+            </p>
 
 
             <p className="plans">
