@@ -30,3 +30,5 @@
 - 2023-Oct-18: Cloud db debug for architecture design
 
 - 2023-Oct-19: Consideration of some functionality separation in the components, for architecture aspect
+
+- 2023-Nov-01: Design testing data for conversation-game-node: piece list and each piece
