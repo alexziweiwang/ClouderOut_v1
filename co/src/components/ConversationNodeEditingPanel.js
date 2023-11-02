@@ -26,6 +26,7 @@ export default function ConversationNodeEditingPanel() {
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
 
+    const pieceDataStructure = {}; //TODO testing
     
 
 
@@ -104,7 +105,7 @@ export default function ConversationNodeEditingPanel() {
             </div>}
             {browseList == true &&<div className="pieceManager">
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>List/Editing (TEMP) </button>
-                 <PieceManager/>
+                 <PieceManager pieceData={pieceDataStructure}/>
             </div>}
             
 

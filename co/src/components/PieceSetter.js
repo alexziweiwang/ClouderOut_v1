@@ -166,7 +166,7 @@ export default function PieceSetter({pieceNum}) {
                     <br></br>
                     <p className="plans"> (modularizable: multiple items allowed) </p>
                     <p className="plans"> Idea on design: keep a "table" here, for each char-pic, and provide "edit" and "delete" option for each row </p>
-                    <table>
+    <table>
         <tr>
             <th>Source</th>
             <th>Position x</th>
