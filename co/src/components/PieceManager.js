@@ -5,9 +5,17 @@ import styles from './webpage.css';
 
 
 export default function PieceManager({pieceData}) {
-
+    //TODO need a *function (from caller)* that fetches the current "will edit" row/piece number
 
     let name = "/piecemanager";
+
+    const [currentPieceNum, setCurrentPieceNum] = useState(1);
+
+    function changeSelectedRow() {
+        console.log("row selected...");
+        //TODO: change the currentPieceNum here based on clicked button's index
+        //TODO: need the information of "which row" is selected
+    }
  
     return (
         <div>
@@ -22,8 +30,11 @@ export default function PieceManager({pieceData}) {
             <th>Content</th>
             <th>Operations</th>
             </tr>
+
+        {/* //TODO: after creating testing data, do map for each row in the table */}
+            {
             <tr>
-                <td>1</td>
+                <td>{currentPieceNum}</td>
                 <td></td>
                 <td>
                 <div>
@@ -32,11 +43,11 @@ export default function PieceManager({pieceData}) {
                 <button>Move Down</button>
                 <button>Delete</button>
                 <br></br>
-                <button>Edit</button>
+                <button onClick={()=>{changeSelectedRow();}}>Edit</button>
 
                 </div>
                 </td>
-            </tr>
+            </tr>}
         {}
     </table>
     <button>Add New Row</button>
