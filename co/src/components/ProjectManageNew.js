@@ -67,7 +67,8 @@ export default function ProjectManageNew() {
           Validate user input, and then create a new folder for this new project
           <br></br> TODO: design and construct new-set for each new project: layers, etc.
         </p>
-
+        <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)
+</p>
 
         <br></br>
 
