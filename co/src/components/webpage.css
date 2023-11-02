@@ -278,3 +278,12 @@ li {
 .pairGroup {
     margin: 60px;
 }
+
+table {
+    border: 1px solid rgb(0, 0, 0);
+    width: 350px;
+}
+
+th {
+    border-bottom: 1px solid black;
+}

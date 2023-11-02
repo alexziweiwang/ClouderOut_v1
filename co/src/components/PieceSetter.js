@@ -21,7 +21,7 @@ export default function PieceSetter({pieceNum}) {
     const [voicelineAdd, setVoicelineAdd] = useState(false);
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
-
+    const [anotherCharpic, setAnotherCharPic] = useState(false);
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
@@ -82,6 +82,10 @@ export default function PieceSetter({pieceNum}) {
         setClickableAdd(true);
         setBgMusicAdd(true);
         setVoicelineAdd(true);
+    }
+
+    function changeAddAnotherCharPicOption() {
+        setAnotherCharPic(!anotherCharpic);
     }
 
   
@@ -158,25 +162,46 @@ export default function PieceSetter({pieceNum}) {
 
             {charPicAdd && 
                 <div>
-                    <p className="plans"> (modularizable: multiple items allowed) </p>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
-                    <label>Source Link:  </label>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
-                    <br></br>
-                    <label>Position x:      </label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
-                    <br></br>
-                    <label>Position y:      </label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
-                    <br></br>
-                    <label>Width:         </label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="60"></input>
-                    <br></br>
-                    <label>Height:        </label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="210"></input>
+                    <p className="plans"> (modularizable: multiple items allowed) </p>
+                    <p className="plans"> Idea on design: keep a "table" here, for each char-pic, and provide "edit" and "delete" option for each row </p>
+                    <table>
+        <tr>
+            <th>Source</th>
+            <th>Position x</th>
+            <th>Position y</th>
+            <th>Width</th>
+            <th>Height</th>
+        </tr>
+        {}
+    </table>
+    <br></br>
+    <button onClick={changeAddAnotherCharPicOption}>Add Another Character Picture</button>
+    {anotherCharpic &&
+    <>
+        <br></br>
+    <label>Source Link:  </label>
+    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+    <br></br>
+    <label>Position x:      </label>
+    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+    <br></br>
+    <label>Position y:      </label>
+    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+    <br></br>
+    <label>Width:         </label>
+    <input type="number" min="0" max="9000" step="1" defaultValue="60"></input>
+    <br></br>
+    <label>Height:        </label>
+    <input type="number" min="0" max="9000" step="1" defaultValue="210"></input>
+    <br></br>
+    <button>Confirm Add</button>        {/* //TODO later */}
+    </>}
 
-                </div>}
+            
+            
+            </div>}
             {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
             {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>}
