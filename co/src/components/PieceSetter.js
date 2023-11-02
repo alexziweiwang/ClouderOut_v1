@@ -164,7 +164,6 @@ export default function PieceSetter({pieceNum}) {
                 <div>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
-                    <p className="plans"> (modularizable: multiple items allowed) </p>
                     <p className="plans"> Idea on design: keep a "table" here, for each char-pic, and provide "edit" and "delete" option for each row </p>
     <table>
         <tr>
@@ -211,6 +210,19 @@ export default function PieceSetter({pieceNum}) {
                 <div>
                     <p className="plans"> (modularizable: multiple items allowed) </p>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    
+                    <br></br>
+
+                    <table>
+                    <tr>
+                        <th>Shape/Picture Source</th>
+                        <th>Sound Effect</th>
+                        <th>Consequence</th>
+                    </tr>
+                    {}
+                    </table>
+                    <br></br>
+                    <button>Add Another Clickable</button>
                     <br></br>
                     <label>Shape/Picture Source:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
