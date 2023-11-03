@@ -352,6 +352,7 @@ export default function GameMaker() {
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
     </div>
 
+    <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
     {displayGameDataButton && <button onClick={displayGameData}> Check Game data </button>}
     {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
 
@@ -545,14 +546,45 @@ export default function GameMaker() {
       <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
       <br></br>on node path, display brief text of condition?
     </p>
+    <div>
+    <label> Variable 1 </label>
     <select>
       {Object.keys(gameDataLocal).map((key) => {
           return (
-          <option value="${key}" key={gameDataLocal[key]}>{key}</option>
+          <option value={logicSplitter_gameDataVar1} key={gameDataLocal[key]}>{key}</option>
+          );
+          })}
+    </select>
+    <br></br>
+
+    <label>Operator: </label>
+    <select>
+          <option key="" value=""> -- Operator -- </option>
+          <option key="larger" value="larger"> larger than </option>
+          <option key="smaller" value="smaller"> smaller than </option>
+          <option key="equal" value="equal"> equal to </option>
+          <option key="largerequal" value="largerequal"> larger than or euqal to </option>
+          <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
+
+    </select>
+    
+    <br></br>
+    <label> Variable 2 </label>
+    <select>
+      {Object.keys(gameDataLocal).map((key) => {
+          return (
+          <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]}>{key}</option>
           );
           })}
     </select>
 
+    <br></br>
+    <label> Numeric Value: </label>
+    <input></input> //TODO later: if operand is number instead of variable
+    <br></br>
+    <label> Next Node: </label>
+    <select></select>
+    </div>
     </>}
     {isLinkNode && <p>----------------------------------------------------</p>}
 
