@@ -12,6 +12,7 @@ export default function ProjectManageNew() {
 
     const [addedNewProjName, setNewProjName] = useState(['New Project']); //TODO testing
     const [projDedscription, setProjDescription] = useState("");
+    const [addedAuthorInfo, setAuthorInfo] = useState("");
 
     function projectManagePanel() {
         navigate('/projectmanagingpanel', { replace: true });
@@ -33,11 +34,16 @@ export default function ProjectManageNew() {
       console.log("adding a new project: " + addedNewProjName);
       //TODO update to actual db: add this new project
       navigate('/projectmanagingpanel', { replace: true });
-  }
+    }
 
-  function changeProjDescription(event) {
-    setProjDescription(event.target.value);
-  }
+    function changeProjDescription(event) {
+      setProjDescription(event.target.value);
+    }
+
+    function changeAuthorInfo(event) {
+      setAuthorInfo(event.target.value);
+    }
+
 
     return (
     <>    
@@ -55,7 +61,7 @@ export default function ProjectManageNew() {
         <textarea className="newProjectInfoElement" rows={5} cols={36} value={projDedscription} onChange={changeProjDescription}></textarea>
         <br></br>
         <label className="newProjectInfoElement">Author Info: </label>
-        <textarea className="newProjectInfoElement" rows={2} cols={20} ></textarea>
+        <textarea className="newProjectInfoElement" rows={2} cols={20} value={addedAuthorInfo} onChange={changeAuthorInfo}></textarea>
 
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
         <br></br>
@@ -63,7 +69,12 @@ export default function ProjectManageNew() {
 
         <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)</p>
         <label className="newProjectInfoElement">Screen Size and Direction:</label>
-        <select></select>
+        <select>
+          <option value="" key=""> ----- Select Size and Direction ----- </option>
+          <option value="" key=""> height: 450px, width: 800px (horizontal) </option>
+          <option value="" key=""> height: 800px, width: 450px (vertical) </option>
+
+        </select>
 
         <br></br>
         <label className="newProjectInfoElement">Genre: </label>
