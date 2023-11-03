@@ -11,7 +11,7 @@ export default function ProjectManageNew() {
     const name = "/projectmanagenew";
 
     const [addedNewProjName, setNewProjName] = useState(['New Project']); //TODO testing
-
+    const [projDedscription, setProjDescription] = useState("");
 
     function projectManagePanel() {
         navigate('/projectmanagingpanel', { replace: true });
@@ -19,7 +19,6 @@ export default function ProjectManageNew() {
 
     function changeProjNameInput(event) {
       setNewProjName(event.target.value);
-
     }
     
     function createNewProjectEdit() {
@@ -36,8 +35,8 @@ export default function ProjectManageNew() {
       navigate('/projectmanagingpanel', { replace: true });
   }
 
-  function handleChangeProjectName() {
-
+  function changeProjDescription(event) {
+    setProjDescription(event.target.value);
   }
 
     return (
@@ -47,27 +46,30 @@ export default function ProjectManageNew() {
     <>
 
         <br></br>
-
-        <label>Project Name: </label>
-        <input type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
+        <div>
+        <label className="newProjectInfoElement">Project Name: </label>
+        <input className="newProjectInfoElement" type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
 
         <br></br>
-        <label></label>Project Description:
-        <textarea></textarea>
+        <label className="newProjectInfoElement"></label>Project Description: 
+        <textarea className="newProjectInfoElement" rows={5} cols={36} value={projDedscription} onChange={changeProjDescription}></textarea>
         <br></br>
-        <label></label>Author Info:
+        <label className="newProjectInfoElement">Author Info: </label>
+        <textarea className="newProjectInfoElement" rows={2} cols={20} ></textarea>
+
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
         <br></br>
 
 
         <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)</p>
-        <label>Screen Size and Direction:</label>
+        <label className="newProjectInfoElement">Screen Size and Direction:</label>
         <select></select>
-        <p className="plans"> add</p>
 
         <br></br>
-        <label></label>Genre:
+        <label className="newProjectInfoElement">Genre: </label>
         <p className="plans"> (Genre can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
+
+        </div>
 
  <br></br> <br></br>
         <p className="plans">
