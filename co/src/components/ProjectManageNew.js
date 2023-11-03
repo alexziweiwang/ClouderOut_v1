@@ -56,25 +56,30 @@ export default function ProjectManageNew() {
         <textarea></textarea>
         <br></br>
         <label></label>Author Info:
-        <input></input>
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
+        <br></br>
+
+
+        <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)</p>
+        <label>Screen Size and Direction:</label>
+        <select></select>
+        <p className="plans"> add</p>
+
         <br></br>
         <label></label>Genre:
         <p className="plans"> (Genre can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
- 
+
  <br></br> <br></br>
         <p className="plans">
           Validate user input, and then create a new folder for this new project
           <br></br> TODO: design and construct new-set for each new project: layers, etc.
         </p>
-        <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)
-</p>
 
         <br></br>
 
         <button 
           onClick={createNewProjectEdit}>
-        Create and Start Editing
+        Create & Start Editing!
         </button>
 
         <br></br>
@@ -83,7 +88,7 @@ export default function ProjectManageNew() {
 
         <button 
           onClick={createNewProjectReturn}>
-        Create and Return
+        Create & Close
         </button>
 
         <br></br>

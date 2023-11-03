@@ -35,3 +35,4 @@
 
 - 2023-Nov-02: Create testing data samples for conversation-game-node: piece list and each piece
 - 2023-Nov-02: Explore piece-setting's form strategy and solution
+- 2023-Nov-02: Design default info-set for each newly created project
