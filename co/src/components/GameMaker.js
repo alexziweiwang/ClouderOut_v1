@@ -67,6 +67,9 @@ export default function GameMaker() {
    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
+   const [logicSplitter_gameDataVar1, setLsGdataVar1] = useState("");
+   const [logicSplitter_gameDataVar2, setLsGdataVar2] = useState("");
+
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
@@ -81,6 +84,8 @@ export default function GameMaker() {
     setDisplayGameDataWindow(!displayGameDataWindow);
     setDisplayGameDataButton(true);
   }
+
+
 
   async function fetchGameDataFromCloud() {
 
@@ -540,6 +545,14 @@ export default function GameMaker() {
       <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
       <br></br>on node path, display brief text of condition?
     </p>
+    <select>
+      {Object.keys(gameDataLocal).map((key) => {
+          return (
+          <option value="${key}" key={gameDataLocal[key]}>{key}</option>
+          );
+          })}
+    </select>
+
     </>}
     {isLinkNode && <p>----------------------------------------------------</p>}
 
