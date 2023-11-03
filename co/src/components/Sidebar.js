@@ -76,7 +76,7 @@ export default function Sidebar(props) {
     {(props.compName == "/projectmanagenew") && 
     <div className="sidebar2" >
         <div> 
-            <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
+        <button className="sidebar_options" onClick={goToProjectManagingPanel}>Cancel</button>
         </div>
 
         </div>

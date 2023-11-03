@@ -31,6 +31,7 @@ export default function ProjectManagerPanel() {
 
         <button onClick={loadProjectList}> Load Projects </button>
         <br></br>
+        <p className="plans">TODO: later handle the update of new-porject (name and directory), local data and cloud data updating design, etc.</p>
         
         {testProj && <select onChange={() => {console.log("changed selected item...");}}>
         {testProj.map((itemIndex, index) => {

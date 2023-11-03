@@ -71,14 +71,13 @@ export default function ProjectManageNew() {
         <label className="newProjectInfoElement">Screen Size and Direction:</label>
         <select>
           <option value="" key=""> ----- Select Size and Direction ----- </option>
-          <option value="" key=""> height: 450px, width: 800px (horizontal) </option>
-          <option value="" key=""> height: 800px, width: 450px (vertical) </option>
+          <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+          <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
 
         </select>
 
         <br></br>
-        <label className="newProjectInfoElement">Genre: </label>
-        <p className="plans"> (Genre can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
+        <p className="plans"> (Later: [Genre] can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
 
         </div>
 
@@ -103,11 +102,6 @@ export default function ProjectManageNew() {
           onClick={createNewProjectReturn}>
         Create & Close
         </button>
-
-        <br></br>
-
-        <br></br>
-        <button className="setting_item" onClick={projectManagePanel}> Cancel </button>
 
     </>
     
