@@ -70,6 +70,8 @@ export default function GameMaker() {
    const [logicSplitter_gameDataVar1, setLsGdataVar1] = useState("");
    const [logicSplitter_gameDataVar2, setLsGdataVar2] = useState("");
 
+   const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
+
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
@@ -105,12 +107,15 @@ export default function GameMaker() {
 
 
   function handleNodeClick(name) {
+    //TODO: update to local data: update previously-clicked node's most recent logic-splitter count ("currNodeSplittedNum")
     console.log("node = " + name); //TODO
     if (name == "" || name != clickedNode) {
       setClickedNode(name);
     } else { //clicked on the same node
       setClickedNode("");
     }
+
+    //TODO set this node's logic-splitter count here
   }
 
   function enterNodeEditor() {
@@ -480,7 +485,7 @@ export default function GameMaker() {
         handleDeleteNodeWithParam(clickedNode);
         setClickedNode("");
       }}>
-        Delete
+        Delete [{clickedNode}]
     </button>
     
     </div>
@@ -541,6 +546,7 @@ export default function GameMaker() {
     <>
     <p className="plans">TODO improve later</p>
 
+      
     <br></br>
   
     <p className="plans">
@@ -552,7 +558,10 @@ export default function GameMaker() {
       <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
       <br></br>on node path, display brief text of condition?
     </p>
-    <div>
+
+    <p className="plans">**important!! for each node, it should keep track of it's number of conditional-consequence for its logic-splitter</p>
+    <button onClick={() => {setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}>Add a pair of conditional consequence</button>
+    <div className="areaBlue">
     <label> Variable 1 </label>
     <select>
       {Object.keys(gameDataLocal).map((key) => {
