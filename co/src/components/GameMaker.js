@@ -72,6 +72,8 @@ export default function GameMaker() {
 
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
 
+   const [displayRevertArea, setDisplayRevertArea] = useState(false);
+
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
@@ -561,6 +563,10 @@ export default function GameMaker() {
 
     <p className="plans">**important!! for each node, it should keep track of it's number of conditional-consequence for its logic-splitter</p>
     <button onClick={() => {setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}>Add a pair of conditional consequence</button>
+    <p className="plans"> display current node's logic-splitter count and 1 more empty form when creating a new pair! </p>
+
+    <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
+
     <div className="areaBlue">
     <label> Variable 1 </label>
     <select>
@@ -568,7 +574,7 @@ export default function GameMaker() {
           return (
           <option value={logicSplitter_gameDataVar1} key={gameDataLocal[key]}>{key}</option>
           );
-          })}
+      })}
     </select>
     <br></br>
 
@@ -648,8 +654,11 @@ export default function GameMaker() {
   <br></br><br></br><br></br><br></br><br></br>
   <p className="plans"> revert options : later change into collapsable section with simple icon</p>
     <div>
-      <p className="sectionHeader2">***Revert Node-Deletion***</p>
-    
+      {!displayRevertArea && <p className="sectionHeader2" onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}>Revert Node-Deletion?</p>}
+      {displayRevertArea && <p className="sectionHeader2" onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}>Collapse Revert Node-Deletion</p>}
+
+      {displayRevertArea &&
+      <>
       <br></br>
       <label> Select from deleted nodes: </label>
       <br></br>
@@ -666,6 +675,8 @@ export default function GameMaker() {
     </select>
 
     <button onClick={revertSelectedNode}> Revert </button>
+    </>
+    }
 
     </div>
 

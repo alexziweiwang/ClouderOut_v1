@@ -274,6 +274,7 @@ li {
     background-color: rgb(131, 184, 199);
     height: 30px;
     width: 20%;
+    cursor: pointer;
 }
 .pairGroup {
     margin: 60px;
