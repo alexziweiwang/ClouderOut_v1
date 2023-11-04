@@ -292,5 +292,11 @@ th,td {
 .newProjectInfoElement {
     margin-left: 10px;
     margin-top: 5px;
+}
 
+.projSelectionArea {
+    overflow: auto;
+    border:rgb(7, 7, 7);
+    background-color: antiquewhite;
+    padding: 15px;
 }

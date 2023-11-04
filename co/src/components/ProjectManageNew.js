@@ -25,7 +25,7 @@ export default function ProjectManageNew() {
     
     function createNewProjectEdit() {
         console.log("adding a new project: " + addedNewProjName);
-        //TODO update to actual db: add this new project
+        createNewProjectToCloud();
         navigate('/gamemaker', { replace: true, state: { addedNewProjName } });
 
     }
@@ -33,8 +33,26 @@ export default function ProjectManageNew() {
         
     function createNewProjectReturn() {
       console.log("adding a new project: " + addedNewProjName);
-      //TODO update to actual db: add this new project
+      createNewProjectToCloud();
       navigate('/projectmanagingpanel', { replace: true });
+    }
+
+    /* Create and setup the default set for a new project */
+    function createNewProjectToCloud() {
+      // TODO gather list:
+      // project description
+      // project name
+      // game-data map
+      // author-info field
+      // type = "project"
+      // game-size-direction
+      // genre field (later)
+      // chapter directory
+      // game node directory
+
+      // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
+
+      //TODO call VM function here to pass the data
     }
 
     function changeProjDescription(event) {

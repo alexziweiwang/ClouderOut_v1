@@ -9,16 +9,15 @@ import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState(['unnamed_project']);
-    const [testProj, setTestProj] = useState(false); //TODO pull the list from cloud-db
-    let projectList = [];
+    const [projList, setProjList] = useState(false); //TODO pull the list from cloud-db
 
     function goToGameMaker() {
         navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
 
-    async function loadProjectList() {
-      projectList = await fetchProjectListVM();
-      setTestProj(projectList);    
+    async function loadProjectListFromCloud() {
+      const projectList = await fetchProjectListVM();
+      setProjList(projectList);    
       console.log("project list: ", projectList); //TODO test
     }
     
@@ -29,27 +28,29 @@ export default function ProjectManagerPanel() {
 
     <>
 
-        <button onClick={loadProjectList}> Load Projects </button>
+        <button onClick={loadProjectListFromCloud}> Load Projects </button>
         <br></br>
-        <p className="plans">TODO: later handle the update of new-porject (name and directory), local data and cloud data updating design, etc.</p>
         
-        {testProj && <select onChange={() => {console.log("changed selected item...");}}>
-        {testProj.map((itemIndex, index) => {
+        <div className="projSelectionArea">
+          <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
+        {projList && <select onChange={() => {console.log("changed selected item...");}}>
+        {projList.map((itemIndex, index) => {
           return (
-          <option value="${testProj[index].project_name}" key={testProj[index]}>{testProj[index]}</option>
+          <option value="${projList[index].project_name}" key={projList[index]}>{projList[index]}</option>
           );
         })} 
    
         </select>}
-   
-        <p className="plans">Later: connect to cloud db and provide all project names to get selected by the user, or create new project</p>
-        //TODO when use choose an exisiting project, do setProjectName to update the selection of project
+        </div>
+        
+        <p className="plans"> TODO: add "trash can area" for proejcts</p>
+
+        <br></br>
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
    
 
         <p className="plans">This is ProjectManagerPanel Component!!
           <br></br>Here, the user can create new projects, or select specific projects to edit.
-          <br></br>flow: create or continue? if create, then create and complete or start with game-maker? 
         </p>
    
     </>
