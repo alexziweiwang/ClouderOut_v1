@@ -13,6 +13,7 @@ export default function ProjectManageNew() {
     const [addedNewProjName, setNewProjName] = useState(['New Project']); //TODO testing
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAuthorInfo] = useState("");
+    const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
 
     function projectManagePanel() {
         navigate('/projectmanagingpanel', { replace: true });
@@ -44,6 +45,28 @@ export default function ProjectManageNew() {
       setAuthorInfo(event.target.value);
     }
 
+    function changeGameScreenSize(event) {
+      const input = event.target.value;
+      if (event != null && event.target != null && event.target.value!= null) {
+        if (input == "h450_800") {
+          //TODO pass into cloud: project info
+          console.log("h450_800");
+        } else if (input == "v800_450") {
+          //TODO pass into cloud: project info
+          console.log("v800_450");
+
+        } else if (input == "h600_800") {
+          //TODO pass into cloud: project info
+          console.log("h600_800");
+
+        } else if (input == "v800_600") {
+          //TODO pass into cloud: project info
+          console.log("v800_600");
+
+        }
+      }
+    }
+
 
     return (
     <>    
@@ -69,10 +92,12 @@ export default function ProjectManageNew() {
 
         <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)</p>
         <label className="newProjectInfoElement">Screen Size and Direction:</label>
-        <select>
+        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
           <option value="" key=""> ----- Select Size and Direction ----- </option>
           <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
           <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+          <option value="h600_800" key="h450_800"> height: 600px, width: 800px (horizontal) </option>
+          <option value="v800_600" key="v800_450"> height: 800px, width: 600px (vertical) </option>
 
         </select>
 
