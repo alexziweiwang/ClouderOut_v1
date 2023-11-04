@@ -368,6 +368,8 @@ export default function GameMaker() {
     <p className="plans"> TODO: game-flow controller:
      <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. 
      <br></br> - need a "pointer" that keeps track of "current game progress", so that it points to the current place, and be ready to continue in the flow
+     <br></br> idea: it keeps the "current node", and keeps possible "next node" (decide according to logic splitter)
+     <br></br> * should [understand] the logic splitter's decision flow: compare game-data with the conditional-pairs from author
      <br></br> 
 
      <br></br> [source node] might attach a [logic-splitter], logic-splitter connect to 'multiple next-nodes' with 'conditional pair'
@@ -378,10 +380,9 @@ export default function GameMaker() {
      <br></br> TODO: conversion of logic-condition? to consider
 
      <br></br> idea: logic organizer depends heavily on the game-data specified by author.
-     <br></br> thus, the prerequisite steps include flexibly (and precisely) display game-data-vairable names
-     <br></br> the game maker should provide entry for CRUD operations on game-data, in both node-managing layer and inside-node layer
+     <br></br> the game maker should provide entry for CRUD operations on game-data, in inside-node layer
      <br></br> frontend aspect, game-data manager is needed (CRUD); backend aspect, game-data's data structure on cloud is needed
-     <br></br> for game-data, in the node-managing layer, it can only display/check, and only inside node can it alter game-data value
+     <br></br> for game-data, in the node-managing layer, it can only display/check, and only inside node can it alter game-data value via logic-organzer related system
      <br></br> [ ** first, implement and test simple logical conditions, then improve to combos (with parenthesis) ]
 
      </p>
@@ -491,6 +492,11 @@ export default function GameMaker() {
 
     {modeCreateNewNode && 
     <>
+    <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
+      <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
+      <br></br> - for node-link editing: later adding links should be done by attach-new, and deleting links should be done by deleting-next; no direct control about links?
+    </p>
+
 
     <div>
     <p className="sectionHeader">***Append an Element***</p>
