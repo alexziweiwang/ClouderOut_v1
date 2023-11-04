@@ -678,6 +678,8 @@ export default function GameMaker() {
     </>
     }
 
+    <p className="plans"> TODO: consider "reverted node" overlap problem if later created new nodes around </p>
+
     </div>
 
 

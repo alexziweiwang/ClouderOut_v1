@@ -35,6 +35,10 @@
 - [ ] sample small projects (for test and demo)
 - [x] consider UI language switching design
 - [ ] implement and optimize UI language switching feature
-- [ ] refactor to RESTful API in a later stage
 - [ ] resource selector preview window/player tech exploration
 - [ ] resource selector variable name paring implementation
+- [ ] refactor to RESTful API in a later stage
+- [ ] add warning/asking related to project/progress saving, that reminds authors to save to cloud (in balance of frequent updating)
+- [ ] consideration on undo/redo/revert or log and records for authors
+- [ ] dynamic tags and lists
+
