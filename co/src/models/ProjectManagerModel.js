@@ -17,7 +17,11 @@ export async function fetchProjectList() {
   const querySnapshot = await getDocs(q);
   let projectArr = [];
   querySnapshot.forEach((doc) => {
-    projectArr.push(doc.id);
+    if (doc.data().trashed == false) {
+      projectArr.push(doc.id);
+    } else {
+      console.log("trashed: ", doc.id); //TODO test
+    }
   });
   return projectArr;
 }
