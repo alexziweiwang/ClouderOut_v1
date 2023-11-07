@@ -10,7 +10,7 @@ export default function ProjectManageNew() {
 
     const name = "/projectmanagenew";
 
-    const [addedNewProjName, setNewProjName] = useState(['New Project']); //TODO testing
+    const [addedNewProjName, setNewProjName] = useState(""); //TODO testing
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
@@ -25,6 +25,9 @@ export default function ProjectManageNew() {
     
     function createNewProjectEdit() {
         console.log("adding a new project: " + addedNewProjName);
+        if (addedNewProjName == "") {
+          return;
+        }
         createNewProjectToCloud();
         navigate('/gamemaker', { replace: true, state: { addedNewProjName } });
 
@@ -33,6 +36,9 @@ export default function ProjectManageNew() {
         
     function createNewProjectReturn() {
       console.log("adding a new project: " + addedNewProjName);
+      if (addedNewProjName == "") {
+        return;
+      }
       createNewProjectToCloud();
       navigate('/projectmanagingpanel', { replace: true });
     }

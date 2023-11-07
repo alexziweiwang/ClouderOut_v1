@@ -22,6 +22,9 @@ export default function PieceSetter({pieceNum}) {
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
+
+    const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
+
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
@@ -209,10 +212,10 @@ export default function PieceSetter({pieceNum}) {
             {clickableAdd && 
                 <div>
                     <p className="plans"> (modularizable: multiple items allowed) </p>
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
                     
                     <br></br>
-
+                   
                     <table>
                     <tr>
                         <th>Shape/Picture Source</th>
@@ -222,8 +225,9 @@ export default function PieceSetter({pieceNum}) {
                     {}
                     </table>
                     <br></br>
-                    <button>Add Another Clickable</button>
+                    <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add Another Clickable</button>
                     <br></br>
+                     {displayClickableAdd && <div>
                     <label>Shape/Picture Source:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
@@ -236,7 +240,9 @@ export default function PieceSetter({pieceNum}) {
                     <br></br> - option2: increase/decrease some value of variable in game-data
                     <br></br> - (can contain multiple consequences)
                     </p>
-
+                    <button>Confirm Add</button>
+                    </div>
+                    }
                 </div>}
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
