@@ -40,3 +40,4 @@
 - 2023-Nov-03: Analyze optimization between cloud layer and local layer (re-render, save, etc.)
 
 - 2023-Nov-06: Organize and design -- features and functions for local-cloud interlayers
+- 2023-Nov-06: Firebase: cloud db's "index" issue expoliration

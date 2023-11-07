@@ -43,7 +43,11 @@ export default function ProjectManagerPanel() {
         </select>}
         </div>
         
-        <p className="plans"> TODO: add "trash can area" for proejcts</p>
+        <p className="plans"> TODO: add "trash can area" for proejcts
+          <br></br> design: each project's field: add "trashed": true/false
+          <br></br> on cloud: testing data updated with "trashed" field
+        </p>
+
 
         <br></br>
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
