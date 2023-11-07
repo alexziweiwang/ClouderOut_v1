@@ -97,7 +97,7 @@ export default function GameMaker() {
           return;
         }
 
-        const gdataTestResult = await getProjectGameDataVM({project: project, uname: currUser, mostUpdated: needCloudGameData});
+        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: needCloudGameData});
      
         if (gdataTestResult == undefined) {
           console.log("Error: no game_data in this project...");

@@ -39,6 +39,8 @@ export default function ProjectManagerPanel() {
         <div className="projSelectionArea">
           <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
         {projList && <select value={selected_project_name} onChange={handleProjectSelectionChange}>
+          <option value="" key=""> -- Project Name --</option>
+
         {projList.map((itemIndex, index) => {
           return (
           <option value={projList[index].project_name} key={projList[index]}>{projList[index]}</option>
