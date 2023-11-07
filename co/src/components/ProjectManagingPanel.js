@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
@@ -10,9 +10,21 @@ export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); //TODO pull the list from cloud-db
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    useEffect(() => {
+      if (firstTimeEnter == true) {
+        loadProjectListFromCloud();
+        setFirstTimeEnter(false);
+      }
+    });
+  
 
     function goToGameMaker() {
-        navigate('/gamemaker', { replace: true, state: { selected_project_name } });
+      if (selected_project_name == "") {
+        return;
+      }
+
+      navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
 
     async function loadProjectListFromCloud() {
@@ -33,7 +45,7 @@ export default function ProjectManagerPanel() {
 
     <>
 
-        <button onClick={loadProjectListFromCloud}> Load Projects </button>
+        {/* <button onClick={loadProjectListFromCloud}> Load Projects </button> */} //TODO decide later
         <br></br>
         
         <div className="projSelectionArea">

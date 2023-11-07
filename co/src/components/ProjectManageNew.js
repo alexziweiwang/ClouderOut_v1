@@ -114,8 +114,8 @@ export default function ProjectManageNew() {
           <option value="" key=""> ----- Select Size and Direction ----- </option>
           <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
           <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-          <option value="h600_800" key="h450_800"> height: 600px, width: 800px (horizontal) </option>
-          <option value="v800_600" key="v800_450"> height: 800px, width: 600px (vertical) </option>
+          <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+          <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
 
         </select>
 

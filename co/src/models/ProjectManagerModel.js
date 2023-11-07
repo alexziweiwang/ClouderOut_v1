@@ -4,7 +4,7 @@ import { doc, getDoc, getDocs, collection, query, where } from "firebase/firesto
 export async function fetchProjectList() {
   const currUser = "user002"; //TODO to-change
 
-  console.log("model: fetch project list ...");
+  console.log("*from cloud*: model - fetch project list ...");
   
   const docRef = doc(db, "user_projects", currUser);
   const docSnap = await getDoc(docRef);
