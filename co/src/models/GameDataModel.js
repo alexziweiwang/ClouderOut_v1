@@ -8,12 +8,15 @@ export async function getProjectGameData({projectName, uname}) {
   if (!docSnap.exists()) {
     return;
   }
+  if (projectName == "" || projectName == undefined) {
+    return;
+  }
 
   const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
   const querySnapshot = await getDocs(q);
   let dataFetched = [];
   querySnapshot.forEach((doc) => {
-    dataFetched = doc.data();
+    dataFetched = doc.data().game_data;
   });    
   return dataFetched;
 }

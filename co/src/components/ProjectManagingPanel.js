@@ -8,7 +8,7 @@ import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
-    const [selected_project_name, setProjectName] = useState(['unnamed_project']);
+    const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); //TODO pull the list from cloud-db
 
     function goToGameMaker() {
@@ -19,6 +19,11 @@ export default function ProjectManagerPanel() {
       const projectList = await fetchProjectListVM();
       setProjList(projectList);    
       console.log("project list: ", projectList); //TODO test
+    }
+
+    function handleProjectSelectionChange(event) {
+      setProjectName(event.target.value);
+      console.log("currently chose: ", event.target.value);
     }
     
     let name = "/projectmanagingpanel";
@@ -33,10 +38,10 @@ export default function ProjectManagerPanel() {
         
         <div className="projSelectionArea">
           <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
-        {projList && <select onChange={() => {console.log("changed selected item...");}}>
+        {projList && <select value={selected_project_name} onChange={handleProjectSelectionChange}>
         {projList.map((itemIndex, index) => {
           return (
-          <option value="${projList[index].project_name}" key={projList[index]}>{projList[index]}</option>
+          <option value={projList[index].project_name} key={projList[index]}>{projList[index]}</option>
           );
         })} 
    

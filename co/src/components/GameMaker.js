@@ -26,17 +26,8 @@ export default function GameMaker() {
 9. game node brief info display and options (hover and click)
 
 */
-
-
   const {state} = useLocation();
-  let providedProjectName = "project001";
-  if (state != null) { //TODO testing
-    if (state.addedNewProjName != null) {
-      console.log("This is for project: ", state.addedNewProjName);
-      providedProjectName = state.addedNewProjName;
-    }
-  } 
-  
+
   // TODO testing, temp
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
@@ -94,13 +85,30 @@ export default function GameMaker() {
   async function fetchGameDataFromCloud() {
 
     const currUser = "user002"; //TODO test
-    const projTest = providedProjectName; //TODO test
-    console.log("checking for ...", projTest);
 
-    const gdataTestResult = await getProjectGameDataVM({projectName: projTest, uname: currUser, mostUpdated: needCloudGameData});
-    console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult.game_data); //TODO fetched game-data!
-    setGameDataLocal(gdataTestResult.game_data);
-    setNeedCloudGameData(false);
+    let project = "";
+    if (state != null) { //TODO testing
+      if (state.selected_project_name != null && state.selected_project_name!= undefined) {
+        
+        console.log("!!! This is for project: ", state.selected_project_name);
+        project  = state.selected_project_name;
+        console.log("checking2 on project ... [", project, "]");
+        if (project.trim() == "") {
+          return;
+        }
+
+        const gdataTestResult = await getProjectGameDataVM({project: project, uname: currUser, mostUpdated: needCloudGameData});
+     
+        if (gdataTestResult == undefined) {
+          console.log("Error: no game_data in this project...");
+          return;
+        }
+        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+        setGameDataLocal(gdataTestResult);
+        setNeedCloudGameData(false);
+      
+      }
+    } 
   }
 
   function markNextNeedCloudGameData() {
