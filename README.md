@@ -41,4 +41,8 @@
 - [ ] add warning/asking related to project/progress saving, that reminds authors to save to cloud (in balance of frequent updating)
 - [ ] consideration on undo/redo/revert or log and records for authors
 - [ ] dynamic tags and lists
+- [ ] author account "networking" considerations
+- [ ] consider and design version control system for projects
+- [ ] consider safe account authorization & data keeping for each user
+- [ ] resource naming/renaming considerations
 
