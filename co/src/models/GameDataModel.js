@@ -17,7 +17,6 @@ export async function getProjectGameData({projectName, uname}) {
   let dataFetched = [];
   querySnapshot.forEach((doc) => {
     dataFetched = doc.data().game_data;
-    console.log("?? model for game-data: ", doc.data());
   });    
   return dataFetched;
 }
