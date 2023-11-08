@@ -319,3 +319,8 @@ th,td {
     background-color: antiquewhite;
     padding: 15px;
 }
+
+.tableItem:hover{
+    background-color: rgb(218, 214, 208);
+    cursor: pointer;
+}

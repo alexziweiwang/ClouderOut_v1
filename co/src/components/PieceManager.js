@@ -10,6 +10,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
     const [pieceDataLocal, setPieceDataLocal] = useState(pieceData);
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
+    const [previewPieceNum, setPreviewPieceNum] = useState(0);
 
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
@@ -71,11 +72,11 @@ export default function PieceManager({pieceData, assignPieceNum}) {
         </thead>
         <tbody>
         {/* //TODO: after creating testing data, do map for each row in the table */}
-            {pieceDataLocal.map((itemIndex, index) => {
+            {pieceDataLocal.map((item, index) => {
 
                 const currItem = pieceDataLocal[index];
                 return (
-                    <tr key={index}>
+                    <tr key={index} className="tableItem" onClick={()=>{setPreviewPieceNum(index); console.log("clicked and previewing on: ", index)}}>
                 
                     <td>{currItem["num"]}</td>
                     <td>{currItem["content"]}</td>
