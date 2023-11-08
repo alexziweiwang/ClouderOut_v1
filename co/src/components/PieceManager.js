@@ -5,33 +5,21 @@ import styles from './webpage.css';
 
 
 export default function PieceManager({pieceData, assignPieceNum}) {
-    //TODO need a *function (from caller)* that fetches the current "will edit" row/piece number
 
     let name = "/piecemanager";
-
+    const [pieceDataLocal, setPieceDataLocal] = useState(pieceData);
+ 
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
-    const [pieceTestData, setPieceTestData] = useState({pieceNumber: [], contentList:[]});
 
-
-    function changeSelectedRow(index) {
-        console.log("row selected...", index);
-        //TODO: change the currentPieceNum here based on clicked button's index
-        //TODO: need the information of "which row" is selected
-    }
 
     function createNewListItem() {
         const num = currentPieceNum+1;
         setCurrentPieceNum(num);
-        
-        const pList = pieceTestData.pieceNumber;
+        const pList = pieceDataLocal.pieceNumber;
         pList.push(num);
-     
-        const cList = pieceTestData.contentList;
-        const str = "This is piece" + num; //TODO temp
-        cList.push(str);
-        
+        const cList = pieceDataLocal.contentList;
         const newObj = {pieceNumber: pList, contentList: cList};
-        setPieceTestData(newObj);
+        setPieceDataLocal(newObj);
     }
  
     return (
@@ -49,12 +37,12 @@ export default function PieceManager({pieceData, assignPieceNum}) {
             </tr>
 
         {/* //TODO: after creating testing data, do map for each row in the table */}
-            {pieceTestData.pieceNumber.map((itemIndex, index) => {
+            {pieceDataLocal.pieceNumber.map((itemIndex, index) => {
                 return (
                     <tr>
                 
-                    <td>{pieceTestData.pieceNumber[index]}</td>
-                    <td>{pieceTestData.contentList[index]}</td>
+                    <td>{pieceDataLocal.pieceNumber[index]}</td>
+                    <td>{pieceDataLocal.contentList[index]}</td>
                     <td>
                     <div>
                     <button>Move Up</button>
@@ -62,7 +50,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
                     <button>Move Down</button>
                     <button>Delete</button>
                     <br></br>
-                    <button onClick={()=>{changeSelectedRow(itemIndex);assignPieceNum(itemIndex);}}>Edit</button>
+                    <button onClick={()=>{assignPieceNum(itemIndex);}}>Edit</button>
     
                     </div>
                     </td>

@@ -26,13 +26,16 @@ export default function ConversationNodeEditingPanel() {
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
 
-    const pieceDataStructure = {}; //TODO testing
+    const pieceDataStructure = {
+        pieceNumber: [1, 2, 3, 4, 5], 
+        contentList:["a1", "b2", "c3", "d4", "e5"]
+    }; //TODO testing *Important* later: bring from cloud
     
 
 
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
-      }
+    }
     
     function handleResourceManagerSaveChanges() {
         console.log("modal save changes!");
@@ -123,7 +126,6 @@ export default function ConversationNodeEditingPanel() {
 
             </div>}
             {browseList == true &&<div className="pieceManager">
-                <button className="switchButton" onClick={()=>{switchListEditor();}}>List/Editing (TEMP) </button>
                  <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece}/>
             </div>}
             
