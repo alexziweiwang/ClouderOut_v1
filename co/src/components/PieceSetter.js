@@ -10,8 +10,9 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
     const navigate = useNavigate();
 
     let name = "/gamenodeconvpiecedatasec";
-    
-    const [textContent, setTextContent] = useState(pieceData.contentList[pieceNum-1]);
+    const [pieceNumber, setPieceNumber] = useState(pieceNum);
+
+    const [textContent, setTextContent] = useState(pieceData.contentList[pieceNumber-1]);
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
@@ -89,6 +90,35 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
         setAnotherCharPic(!anotherCharpic);
     }
 
+
+    function jumpToPrevPiece() {
+        console.log("TOOD: jump to previous piece..."); //TODO testing
+        if (pieceNumber > 1) {
+            setPieceNumber(pieceNumber-1);
+            //TODO change *all* form content here in display...
+            setTextContent(pieceData.contentList[pieceNumber-2]);
+
+
+        } else {
+            setPieceNumber(1);
+        }
+    }
+
+    function jumpToNextpiece() {
+        console.log("TOOD: jump to next piece..."); //TODO testing
+        if (pieceNumber < pieceData.pieceNumber.length) {
+            setPieceNumber(pieceNumber+1);
+            //TODO change *all* form content here in display...
+            setTextContent(pieceData.contentList[pieceNumber]);
+
+
+
+
+        } else {
+            setPieceNumber(pieceData.pieceNumber.length);
+        }
+    }
+
     function updateToCaller() {
         //TODO later: conclude all the current info in this piece, update to the caller's update-function
 
@@ -98,7 +128,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
         let i = 0;
         console.log("before changing and updateing to caller..", pieceData); //TODO test
         for (; i < pieceData.contentList.length; i++) {
-            if (i+1 != pieceNum) {
+            if (i+1 != pieceNumber) {
                 cList.push(pieceData.contentList[i]);
             } else {
                 cList.push(textContent); // important: new content updated
@@ -113,6 +143,10 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
       
 
     <div className="pieceSetterArea">
+        <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
+        <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
+
+
         <div className="buttonRight">
             <button onClick={collapseAllOptions}> Collapse All </button>
             <button onClick={expandAllOptions}> Expand All </button>
@@ -131,7 +165,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                     handleRsSaveChanges={handleResourceSelectorSave} 
                     isDisplay={rmSelectorOpen}/>
             }
-            <label>Piece: {pieceNum}</label>
+            <label>Piece: {pieceNumber}</label>
             <br></br>
             <label> Text to display: </label>
             <br></br>

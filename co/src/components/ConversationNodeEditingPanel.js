@@ -48,24 +48,6 @@ export default function ConversationNodeEditingPanel() {
         navigate('/gamemaker', { replace: true });
     }
 
-    function jumpToPrevPiece() {
-        console.log("TOOD: jump to previous piece..."); //TODO testing
-        if (pieceNumber > 1) {
-            setPieceNumber(pieceNumber-1);
-        } else {
-            setPieceNumber(1);
-        }
-    }
-
-    function jumpToNextpiece() {
-        console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < pieceDataStructure.pieceNumber.length) {
-            setPieceNumber(pieceNumber+1);
-        } else {
-            setPieceNumber(pieceDataStructure.pieceNumber.length);
-        }
-    }
-
     function switchListEditor() {
         setBrowseList(!browseList);
     }
@@ -124,11 +106,8 @@ export default function ConversationNodeEditingPanel() {
             {browseList == false && <div className="userChoice">
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
-                <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
-                <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
+             
                 <PieceSetter pieceNum={pieceNumber} pieceData={pieceDataStructure} updatePieceData={changePieceData}/>
-                <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
-                <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 
             </div>}
             {browseList == true &&<div className="pieceManager">
