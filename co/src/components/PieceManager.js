@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './webpage.css';
 
 
-export default function PieceManager({pieceData}) {
+export default function PieceManager({pieceData, assignPieceNum}) {
     //TODO need a *function (from caller)* that fetches the current "will edit" row/piece number
 
     let name = "/piecemanager";
@@ -12,7 +12,7 @@ export default function PieceManager({pieceData}) {
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
     const [pieceTestData, setPieceTestData] = useState({pieceNumber: [], contentList:[]});
 
-    
+
     function changeSelectedRow(index) {
         console.log("row selected...", index);
         //TODO: change the currentPieceNum here based on clicked button's index
@@ -62,7 +62,7 @@ export default function PieceManager({pieceData}) {
                     <button>Move Down</button>
                     <button>Delete</button>
                     <br></br>
-                    <button onClick={()=>{changeSelectedRow(itemIndex);}}>Edit</button>
+                    <button onClick={()=>{changeSelectedRow(itemIndex);assignPieceNum(itemIndex);}}>Edit</button>
     
                     </div>
                     </td>

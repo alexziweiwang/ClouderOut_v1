@@ -55,11 +55,21 @@ export default function ConversationNodeEditingPanel() {
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < 1000000) { //TODO change later
+        if (pieceNumber < 1000000) { //TODO change later: fetch pieceDataGroup's length
             setPieceNumber(pieceNumber+1);
         } else {
             setPieceNumber(999999);
         }
+    }
+
+    function switchListEditor() {
+        setBrowseList(!browseList);
+    }
+
+    function getSelectedPiece(num) {
+        setPieceNumber(num);
+        console.log("!!! from piece-manager:" , num);//TODO test
+        switchListEditor();
     }
 
     return (
@@ -113,8 +123,8 @@ export default function ConversationNodeEditingPanel() {
 
             </div>}
             {browseList == true &&<div className="pieceManager">
-                <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>List/Editing (TEMP) </button>
-                 <PieceManager pieceData={pieceDataStructure}/>
+                <button className="switchButton" onClick={()=>{switchListEditor();}}>List/Editing (TEMP) </button>
+                 <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece}/>
             </div>}
             
 
