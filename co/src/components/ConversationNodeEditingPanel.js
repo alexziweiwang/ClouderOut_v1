@@ -56,7 +56,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function getSelectedPiece(num) {
-        setPieceNumber(num);
+        setPieceNumber(num["num"]);
         console.log("!!! from piece-manager:" , num);//TODO test
         switchListEditor();
     }
