@@ -56,8 +56,10 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function getSelectedPiece(num) {
-        setPieceNumber(num["num"]);
-        console.log("!!! from piece-manager:" , num);//TODO test
+        setPieceNumber(num);
+        let tempArr = pieceDataStructure;
+        tempArr.sort((a, b) => a.num - b.num);
+        setPieceDatastructure(tempArr);
         switchListEditor();
     }
 
@@ -82,12 +84,6 @@ export default function ConversationNodeEditingPanel() {
                 TODO: load game-data here, and pass to piece-setter
                 <br></br>for "consequence" by some clickable, make sure it updates the game-data
                 <br></br>conosider local-version keeping, and syncing to cloud
-            </p>
-
-
-            <p className="plans">
-                TODO: think about "switching"/"moving rows" feature 
-                <br></br> each row would have an serial number, and switching would just switch the row number, and then sort again?
             </p>
 
             <p className="plans">

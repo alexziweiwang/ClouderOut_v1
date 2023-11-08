@@ -71,7 +71,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
                     <button>Move Down</button>
                     <button>Delete</button>
                     <br></br>
-                    <button onClick={()=>{assignPieceNum(index);}}>Edit</button>
+                    <button onClick={()=>{assignPieceNum(currItem["num"]);}}>Edit</button>
     
                     </div>
                     </td>
