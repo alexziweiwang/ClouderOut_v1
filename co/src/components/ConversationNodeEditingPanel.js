@@ -79,15 +79,6 @@ export default function ConversationNodeEditingPanel() {
             </p>
 
             <p className="plans">
-                TODO: Add a list for scrolling/switching between slides/pieces for this node
-                <br></br> - TODO: add testing data
-                <br></br> - each list item is clickable, and then the editing options provided to the user
-                <br></br> options: [move up], [move down], [duplicate] ,[remove]
-                <br></br> important!! think about efficient ways for changing/keeping the index(sequence)
-                <br></br> indexing-idea: not chaning like bubble-sort?
-            </p>
-
-            <p className="plans">
                 TODO: load game-data here, and pass to piece-setter
                 <br></br>for "consequence" by some clickable, make sure it updates the game-data
                 <br></br>conosider local-version keeping, and syncing to cloud

@@ -26,20 +26,24 @@ export default function PieceManager({pieceData, assignPieceNum}) {
  
     function moveItemUpRow(index) {
         /* switch current item with the previous (smaller) item */
-        if (index > 1) {
-            //TODO switch 
+        if (index >= 1) {
+            const tempArr = [...pieceDataLocal];
+            //TODO switch: current row become curr-1, and previous row become curr
+            let itemPrev = tempArr[index-1];
+            itemPrev["num"] = index+1;
+            let itemCurr = tempArr[index];
+            itemCurr["num"] = index;
+            tempArr.sort((a, b) => a.num - b.num);
+            setPieceDataLocal(tempArr);
+
+        } else {
+            return;
         }
     }
 
     return (
         <div>
-            <p className="plans">
-            This is piece-manager: 
-            <br></br>list of pieces are displayed here organized here
-            <br></br> in each piece's quick view: show the speaker + word content
-            </p>
-
-            <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
+            <button className="buttonRight" onClick={updateLocalDataToCloud}>Save to Cloud</button>
             
             <table>
         <thead>
@@ -62,12 +66,12 @@ export default function PieceManager({pieceData, assignPieceNum}) {
                     <td>{currItem["content"]}</td>
                     <td>
                     <div>
-                    <button onClick={()=>{moveItemUpRow(itemIndex);}}>Move Up</button>
+                    <button onClick={()=>{moveItemUpRow(index);}}>Move Up</button>
                     <button>Duplicate</button>
                     <button>Move Down</button>
                     <button>Delete</button>
                     <br></br>
-                    <button onClick={()=>{assignPieceNum(itemIndex);}}>Edit</button>
+                    <button onClick={()=>{assignPieceNum(index);}}>Edit</button>
     
                     </div>
                     </td>
