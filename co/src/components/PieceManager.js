@@ -28,11 +28,26 @@ export default function PieceManager({pieceData, assignPieceNum}) {
         /* switch current item with the previous (smaller) item */
         if (index >= 1) {
             const tempArr = [...pieceDataLocal];
-            //TODO switch: current row become curr-1, and previous row become curr
             let itemPrev = tempArr[index-1];
             itemPrev["num"] = index+1;
             let itemCurr = tempArr[index];
             itemCurr["num"] = index;
+            tempArr.sort((a, b) => a.num - b.num);
+            setPieceDataLocal(tempArr);
+
+        } else {
+            return;
+        }
+    }
+
+    function moveItemDownRow(index) {
+        /* switch current item with the next (larger) item */
+        if (index < pieceDataLocal.length - 1) {
+            const tempArr = [...pieceDataLocal];
+            let itemNext = tempArr[index+1];
+            itemNext["num"] = index+1;
+            let itemCurr = tempArr[index];
+            itemCurr["num"] = index+2;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
 
@@ -68,7 +83,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
                     <div>
                     <button onClick={()=>{moveItemUpRow(index);}}>Move Up</button>
                     <button>Duplicate</button>
-                    <button>Move Down</button>
+                    <button onClick={()=>{moveItemDownRow(index);}}>Move Down</button>
                     <button>Delete</button>
                     <br></br>
                     <button onClick={()=>{assignPieceNum(currItem["num"]);}}>Edit</button>
