@@ -10,9 +10,9 @@ export default function PieceManager({pieceData}) {
     let name = "/piecemanager";
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
-    const [pieceList, setPieceList] = useState([]);
-    const [contentList, setContentList] = useState([]);
+    const [pieceTestData, setPieceTestData] = useState({pieceNumber: [], contentList:[]});
 
+    
     function changeSelectedRow(index) {
         console.log("row selected...", index);
         //TODO: change the currentPieceNum here based on clicked button's index
@@ -23,14 +23,15 @@ export default function PieceManager({pieceData}) {
         const num = currentPieceNum+1;
         setCurrentPieceNum(num);
         
-        const pList = pieceList;
+        const pList = pieceTestData.pieceNumber;
         pList.push(num);
-        setPieceList(pList);
-
-        const cList = contentList;
+     
+        const cList = pieceTestData.contentList;
         const str = "This is piece" + num; //TODO temp
         cList.push(str);
-        setContentList(cList);
+        
+        const newObj = {pieceNumber: pList, contentList: cList};
+        setPieceTestData(newObj);
     }
  
     return (
@@ -48,12 +49,12 @@ export default function PieceManager({pieceData}) {
             </tr>
 
         {/* //TODO: after creating testing data, do map for each row in the table */}
-            {pieceList.map((itemIndex, index) => {
+            {pieceTestData.pieceNumber.map((itemIndex, index) => {
                 return (
                     <tr>
                 
-                    <td>{pieceList[index]}</td>
-                    <td>{contentList[index]}</td>
+                    <td>{pieceTestData.pieceNumber[index]}</td>
+                    <td>{pieceTestData.contentList[index]}</td>
                     <td>
                     <div>
                     <button>Move Up</button>
