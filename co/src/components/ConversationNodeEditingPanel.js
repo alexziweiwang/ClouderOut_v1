@@ -26,6 +26,7 @@ export default function ConversationNodeEditingPanel() {
 
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
+    const buttonLanguageIndex = 0;
 
     const [pieceDataStructure, setPieceDatastructure] = useState([
             {"num": 1, "content": "a1000"}, 
@@ -77,37 +78,23 @@ export default function ConversationNodeEditingPanel() {
     return (
 
         <div>
-            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[0]} </button></div>
+            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button></div>
             
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
-            <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[0]} </button>
-
-            <p className="plans">This is conversation-node editing panel
-            <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)
-            </p>
-
-            <p className="plans">
-                TODO: load game-data here, and pass to piece-setter
-                <br></br>for "consequence" by some clickable, make sure it updates the game-data
-                <br></br>conosider local-version keeping, and syncing to cloud
-            </p>
-
-            <p className="plans">
-                After fetching the data above, previewer should reflect the adjustment and present this piece (refresh with local data)
-                <br></br> also, save and update to db if requested by user.
-            </p>
-
-            
+     
             <div className="parallelFrame">
             {browseList == false && <div className="userChoice">
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
              
                 <PieceSetter pieceNum={pieceNumber} pieceData={pieceDataStructure} updatePieceData={changePieceData}/>
+                <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
             {browseList == true &&<div className="pieceManager">
                  <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex}/>
+                 <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+
             </div>}
             
             <PreviewWindow previewPieceNum={previewingIndex}/>

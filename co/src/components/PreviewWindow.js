@@ -36,7 +36,26 @@ export default function PreviewWindow({previewPieceNum}) {
                 <br></br> - [optional] voiceline [0..1]: source link, volume
 
             </p>
+
+
+            <p className="plans">
+            This is conversation-node editing panel
+            <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)
+
+            <br></br> TODO: load game-data here, and pass to piece-setter
+            <br></br> for "consequence" by some clickable, make sure it updates the game-data
+            <br></br> conosider local-version keeping, and syncing to cloud
+
+            <br></br> After fetching the data above, previewer should reflect the adjustment and present this piece (refresh with local data)
+            <br></br> also, save and update to db if requested by user.
+
+
+            </p>
+
             </div>
+
+
+           
             
         </div>
     );

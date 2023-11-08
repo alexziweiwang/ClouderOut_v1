@@ -18,6 +18,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         const item = {"num": number, "content": ""};
         let pieceDataArr = pieceData;
         pieceDataArr.push(item);
+        pieceDataArr.sort((a, b) => a.num - b.num);
         setPieceDataLocal(pieceDataArr);
     }
 

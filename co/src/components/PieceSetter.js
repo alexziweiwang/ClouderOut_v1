@@ -11,11 +11,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
 
     let name = "/gamenodeconvpiecedatasec";
     const [pieceNumber, setPieceNumber] = useState(pieceNum);
-
-    console.log("in piece setter: piece-data is..." , pieceData); //TODO test
-    console.log("in piece setter: piece-num is..." , pieceNum); //TODO test
-    console.log("in piece setter: piece-content is..." , pieceData[pieceNum-1]["content"]); //TODO test
-
+    
     const [textContent, setTextContent] = useState(pieceData[pieceNum-1]["content"]); //TODO temp
 
     const [bgpicAdd, setBgPicAdd] = useState(false);
@@ -228,6 +224,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                     <br></br>
                     <p className="plans"> Idea on design: keep a "table" here, for each char-pic, and provide "edit" and "delete" option for each row </p>
     <table>
+    <thead>        
         <tr>
             <th>Source</th>
             <th>Position x</th>
@@ -235,6 +232,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
             <th>Width</th>
             <th>Height</th>
         </tr>
+    </thead>
         {}
     </table>
     <br></br>
@@ -276,11 +274,13 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                     <br></br>
                    
                     <table>
+                    <thead>
                     <tr>
                         <th>Shape/Picture Source</th>
                         <th>Sound Effect</th>
                         <th>Consequence</th>
                     </tr>
+                    </thead>
                     {}
                     </table>
                     <br></br>

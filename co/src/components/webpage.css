@@ -205,6 +205,7 @@ body {
 .parallelFrame {
     display: flex;
     background-color: rgb(225, 190, 196);
+    height: 100%;
 }
 
 .preveiewArea {
