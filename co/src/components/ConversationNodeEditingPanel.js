@@ -22,6 +22,7 @@ export default function ConversationNodeEditingPanel() {
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
+    const [previewingIndex, setPreviewingIndex] = useState(0);
 
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
@@ -68,6 +69,11 @@ export default function ConversationNodeEditingPanel() {
         setPieceDatastructure(updatedPieceData);
     }
 
+    function getPreviewingIndex(index) {
+        console.log("conv-edit-panel, getPreviewingIndex:" , index); 
+        setPreviewingIndex(index);
+    }
+
     return (
 
         <div>
@@ -101,11 +107,10 @@ export default function ConversationNodeEditingPanel() {
 
             </div>}
             {browseList == true &&<div className="pieceManager">
-                 <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece}/>
+                 <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex}/>
             </div>}
             
-
-            <PreviewWindow/>
+            <PreviewWindow previewPieceNum={previewingIndex}/>
             </div>
         
         </div>

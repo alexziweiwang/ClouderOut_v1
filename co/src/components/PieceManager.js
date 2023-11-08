@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './webpage.css';
 
 
-export default function PieceManager({pieceData, assignPieceNum}) {
+export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex}) {
 
     let name = "/piecemanager";
     const [pieceDataLocal, setPieceDataLocal] = useState(pieceData);
@@ -76,7 +76,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
 
                 const currItem = pieceDataLocal[index];
                 return (
-                    <tr key={index} className="tableItem" onClick={()=>{setPreviewPieceNum(index); console.log("clicked and previewing on: ", index)}}>
+                    <tr key={index} className="tableItem" onClick={()=>{assignPreviewIndex(index); console.log("clicked and previewing on: ", index)}}>
                 
                     <td>{currItem["num"]}</td>
                     <td>{currItem["content"]}</td>
