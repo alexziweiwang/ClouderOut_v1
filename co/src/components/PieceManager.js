@@ -11,10 +11,9 @@ export default function PieceManager({pieceData, assignPieceNum}) {
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
 
-    console.log("In [Piece-Manager]:", pieceData); //TODO test
-
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
+        setCurrentPieceNum(number);
         const item = {"num": number, "content": ""};
         let pieceDataArr = pieceData;
         pieceDataArr.push(item);
@@ -55,12 +54,12 @@ export default function PieceManager({pieceData, assignPieceNum}) {
         {/* //TODO: after creating testing data, do map for each row in the table */}
             {pieceDataLocal.map((itemIndex, index) => {
 
-                console.log("pieceDataLocal:" , pieceDataLocal[itemIndex]); //TODO test
+                const currItem = pieceDataLocal[index];
                 return (
                     <tr key={index}>
                 
-                    <td>{pieceDataLocal[itemIndex]}</td>
-                    <td>{pieceDataLocal[itemIndex]}</td>
+                    <td>{currItem["num"]}</td>
+                    <td>{currItem["content"]}</td>
                     <td>
                     <div>
                     <button onClick={()=>{moveItemUpRow(itemIndex);}}>Move Up</button>
