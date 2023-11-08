@@ -9,12 +9,28 @@ export default function PieceManager({pieceData}) {
 
     let name = "/piecemanager";
 
-    const [currentPieceNum, setCurrentPieceNum] = useState(1);
+    const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
+    const [pieceList, setPieceList] = useState([]);
+    const [contentList, setContentList] = useState([]);
 
-    function changeSelectedRow() {
-        console.log("row selected...");
+    function changeSelectedRow(index) {
+        console.log("row selected...", index);
         //TODO: change the currentPieceNum here based on clicked button's index
         //TODO: need the information of "which row" is selected
+    }
+
+    function createNewListItem() {
+        const num = currentPieceNum+1;
+        setCurrentPieceNum(num);
+        
+        const pList = pieceList;
+        pList.push(num);
+        setPieceList(pList);
+
+        const cList = contentList;
+        const str = "This is piece" + num; //TODO temp
+        cList.push(str);
+        setContentList(cList);
     }
  
     return (
@@ -32,25 +48,31 @@ export default function PieceManager({pieceData}) {
             </tr>
 
         {/* //TODO: after creating testing data, do map for each row in the table */}
-            {
-            <tr>
-                <td>{currentPieceNum}</td>
-                <td></td>
-                <td>
-                <div>
-                <button>Move Up</button>
-                <button>Duplicate</button>
-                <button>Move Down</button>
-                <button>Delete</button>
-                <br></br>
-                <button onClick={()=>{changeSelectedRow();}}>Edit</button>
+            {pieceList.map((itemIndex, index) => {
+                return (
+                    <tr>
+                
+                    <td>{pieceList[index]}</td>
+                    <td>{contentList[index]}</td>
+                    <td>
+                    <div>
+                    <button>Move Up</button>
+                    <button>Duplicate</button>
+                    <button>Move Down</button>
+                    <button>Delete</button>
+                    <br></br>
+                    <button onClick={()=>{changeSelectedRow(itemIndex);}}>Edit</button>
+    
+                    </div>
+                    </td>
+                </tr>
+                );
+            })} 
 
-                </div>
-                </td>
-            </tr>}
+         
         {}
     </table>
-    <button>Add New Row</button>
+    <button onClick={createNewListItem}>Add New Row</button>
 
         </div>
     );

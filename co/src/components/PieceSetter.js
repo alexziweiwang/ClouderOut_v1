@@ -103,6 +103,10 @@ export default function PieceSetter({pieceNum}) {
             <button onClick={expandAllOptions}> Expand All </button>
         </div>
 
+        <p className="plans"> according to "pieceNumber", fetch this set of data from *local*
+        <br></br>TODO: implement cloud-local data fetching/updating control
+        </p>
+
         <br></br>
         <br></br>
 
