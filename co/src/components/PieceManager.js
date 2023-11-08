@@ -29,17 +29,23 @@ export default function PieceManager({pieceData, assignPieceNum}) {
             <br></br>list of pieces are displayed here organized here
             <br></br> in each piece's quick view: show the speaker + word content
             </p>
+
+            <button onClick={()=>{console.log("TODO: saving to cloud via VM func ... ");}}>Save to Cloud</button>
+            
             <table>
+        <thead>
             <tr>
             <th>Number</th>
             <th>Content</th>
             <th>Operations</th>
+            
             </tr>
-
+        </thead>
+        <tbody>
         {/* //TODO: after creating testing data, do map for each row in the table */}
             {pieceDataLocal.pieceNumber.map((itemIndex, index) => {
                 return (
-                    <tr>
+                    <tr key={itemIndex}>
                 
                     <td>{pieceDataLocal.pieceNumber[index]}</td>
                     <td>{pieceDataLocal.contentList[index]}</td>
@@ -58,8 +64,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
                 );
             })} 
 
-         
-        {}
+        </tbody>
     </table>
     <button onClick={createNewListItem}>Add New Row</button>
 

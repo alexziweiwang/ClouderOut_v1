@@ -31,6 +31,7 @@ export default function ConversationNodeEditingPanel() {
         contentList:["a1", "b2", "c3", "d4", "e5"]
     }; //TODO testing *Important* later: bring from cloud
     
+    console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
 
 
     function handleResourceManagerCancel() {
