@@ -12,6 +12,7 @@ export default function PieceSetter({pieceNum}) {
     console.log("re-rendering: game node conv section ... @piece editing");
 
     let name = "/gamenodeconvpiecedatasec";
+
     const [textContent, setTextContent] = useState("");
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
@@ -28,7 +29,7 @@ export default function PieceSetter({pieceNum}) {
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
-      }
+    }
     
 
     function handleResourceSelectorCancel() {
@@ -111,6 +112,8 @@ export default function PieceSetter({pieceNum}) {
                     handleRsSaveChanges={handleResourceSelectorSave} 
                     isDisplay={rmSelectorOpen}/>
             }
+            <label>Piece: {pieceNum}</label>
+            <br></br>
             <label> Text to display: </label>
             <br></br>
             <textarea

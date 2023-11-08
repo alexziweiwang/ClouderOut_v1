@@ -21,7 +21,7 @@ export default function ConversationNodeEditingPanel() {
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [browseList, setBrowseList] = useState(true);
-    const [pieceNumber, setPieceNumber] = useState(0); //TODO: this would be the current/"counter of" piece to fetch from db/ds
+    const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
 
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
@@ -46,12 +46,20 @@ export default function ConversationNodeEditingPanel() {
 
     function jumpToPrevPiece() {
         console.log("TOOD: jump to previous piece..."); //TODO testing
-        setPieceNumber(pieceNumber-1);
+        if (pieceNumber > 1) {
+            setPieceNumber(pieceNumber-1);
+        } else {
+            setPieceNumber(1);
+        }
     }
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        setPieceNumber(pieceNumber+1);
+        if (pieceNumber < 1000000) { //TODO change later
+            setPieceNumber(pieceNumber+1);
+        } else {
+            setPieceNumber(999999);
+        }
     }
 
     return (
@@ -96,11 +104,12 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
             {browseList == false && <div className="userChoice">
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
-                <button onClick={jumpToPrevPiece} className="pairGroup">Prev Piece</button>
-                <button onClick={jumpToNextpiece} className="pairGroup">Next Piece</button>
+                <br></br>
+                <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
+                <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
                 <PieceSetter pieceNum={pieceNumber}/>
-                <button onClick={jumpToPrevPiece} className="pairGroup">Prev Piece</button>
-                <button onClick={jumpToNextpiece} className="pairGroup">Next Piece</button>
+                <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
+                <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 
             </div>}
             {browseList == true &&<div className="pieceManager">

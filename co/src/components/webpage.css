@@ -292,7 +292,10 @@ li {
     cursor: pointer;
 }
 .pairGroup {
-    margin: 60px;
+    margin-right: 170px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
 }
 
 table {
