@@ -14,11 +14,11 @@ export default function PieceManager({pieceData, assignPieceNum}) {
     console.log("In [Piece-Manager]:", pieceData); //TODO test
 
     function createNewListItem() {
-        const num = currentPieceNum+1;
-        setCurrentPieceNum(num);
+        const num = pieceDataLocal.pieceNumber.length+1;
         const pList = pieceDataLocal.pieceNumber;
         pList.push(num);
-        const cList = pieceDataLocal.contentList;
+        let cList = pieceDataLocal.contentList;
+        cList.push("");
         const newObj = {pieceNumber: pList, contentList: cList};
         setPieceDataLocal(newObj);
     }
