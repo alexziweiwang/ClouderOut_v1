@@ -6,14 +6,12 @@ import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import ResourceSelector from './ResourceSelector';
 
-export default function PieceSetter({pieceNum}) {
+export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
     const navigate = useNavigate();
 
-    console.log("re-rendering: game node conv section ... @piece editing");
-
     let name = "/gamenodeconvpiecedatasec";
-
-    const [textContent, setTextContent] = useState("");
+    
+    const [textContent, setTextContent] = useState(pieceData.contentList[pieceNum-1]);
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
@@ -30,7 +28,6 @@ export default function PieceSetter({pieceNum}) {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
     }
-    
 
     function handleResourceSelectorCancel() {
         setRmSelectorOpen(false);
@@ -92,6 +89,24 @@ export default function PieceSetter({pieceNum}) {
         setAnotherCharPic(!anotherCharpic);
     }
 
+    function updateToCaller() {
+        //TODO later: conclude all the current info in this piece, update to the caller's update-function
+
+        let newPieceData = {};
+        const indexList = pieceData.pieceNumber;
+        let cList = [];
+        let i = 0;
+        console.log("before changing and updateing to caller..", pieceData); //TODO test
+        for (; i < pieceData.contentList.length; i++) {
+            if (i+1 != pieceNum) {
+                cList.push(pieceData.contentList[i]);
+            } else {
+                cList.push(textContent); // important: new content updated
+            }
+        }
+        newPieceData = {pieceNumber: indexList, contentList: cList}
+        updatePieceData(newPieceData);
+    }
   
 
     return (
@@ -123,7 +138,9 @@ export default function PieceSetter({pieceNum}) {
             <textarea
                 value={textContent}
                 onChange={handleTextContentEnter}
-            />
+            >
+                {textContent}
+            </textarea>
 
             <br></br>
             <br></br>
@@ -286,7 +303,10 @@ export default function PieceSetter({pieceNum}) {
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
-  
+        
+        <br></br>
+        <button onClick={updateToCaller}>Save</button>
+
         <br></br>
         <br></br>
         <div className="buttonRight">

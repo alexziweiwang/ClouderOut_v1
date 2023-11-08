@@ -26,10 +26,10 @@ export default function ConversationNodeEditingPanel() {
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
 
-    const pieceDataStructure = {
+    const [pieceDataStructure, setPieceDatastructure] = useState({
         pieceNumber: [1, 2, 3, 4, 5], 
         contentList:["a1", "b2", "c3", "d4", "e5"]
-    }; //TODO testing *Important* later: bring from cloud
+    }); //TODO testing *Important* later: load from cloud
     
     console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
 
@@ -59,10 +59,10 @@ export default function ConversationNodeEditingPanel() {
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < 1000000) { //TODO change later: fetch pieceDataGroup's length
+        if (pieceNumber < pieceDataStructure.pieceNumber.length) {
             setPieceNumber(pieceNumber+1);
         } else {
-            setPieceNumber(999999);
+            setPieceNumber(pieceDataStructure.pieceNumber.length);
         }
     }
 
@@ -74,6 +74,11 @@ export default function ConversationNodeEditingPanel() {
         setPieceNumber(num);
         console.log("!!! from piece-manager:" , num);//TODO test
         switchListEditor();
+    }
+
+    function changePieceData(updatedPieceData) {
+        console.log("in editing-panel: new data now is ...", updatedPieceData);
+        setPieceDatastructure(updatedPieceData);
     }
 
     return (
@@ -121,7 +126,7 @@ export default function ConversationNodeEditingPanel() {
                 <br></br>
                 <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
                 <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
-                <PieceSetter pieceNum={pieceNumber}/>
+                <PieceSetter pieceNum={pieceNumber} pieceData={pieceDataStructure} updatePieceData={changePieceData}/>
                 <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
                 <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 

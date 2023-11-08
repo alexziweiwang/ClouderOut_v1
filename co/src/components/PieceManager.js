@@ -11,6 +11,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
 
+    console.log("In [Piece-Manager]:", pieceData); //TODO test
 
     function createNewListItem() {
         const num = currentPieceNum+1;
@@ -21,7 +22,18 @@ export default function PieceManager({pieceData, assignPieceNum}) {
         const newObj = {pieceNumber: pList, contentList: cList};
         setPieceDataLocal(newObj);
     }
+
+    function updateLocalDataToCloud() { //TODO cloud-related
+        console.log("TODO: saving to cloud via VM func ... ", pieceDataLocal);
+    }
  
+    function moveItemUpRow(index) {
+        /* switch current item with the previous (smaller) item */
+        if (index > 1) {
+            //TODO switch 
+        }
+    }
+
     return (
         <div>
             <p className="plans">
@@ -30,7 +42,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
             <br></br> in each piece's quick view: show the speaker + word content
             </p>
 
-            <button onClick={()=>{console.log("TODO: saving to cloud via VM func ... ");}}>Save to Cloud</button>
+            <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
             
             <table>
         <thead>
@@ -51,7 +63,7 @@ export default function PieceManager({pieceData, assignPieceNum}) {
                     <td>{pieceDataLocal.contentList[index]}</td>
                     <td>
                     <div>
-                    <button>Move Up</button>
+                    <button onClick={()=>{moveItemUpRow(index);}}>Move Up</button>
                     <button>Duplicate</button>
                     <button>Move Down</button>
                     <button>Delete</button>
