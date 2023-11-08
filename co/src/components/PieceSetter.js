@@ -12,7 +12,9 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
     let name = "/gamenodeconvpiecedatasec";
     const [pieceNumber, setPieceNumber] = useState(pieceNum);
 
-    const [textContent, setTextContent] = useState(pieceData.contentList[pieceNumber-1]);
+    // const [textContent, setTextContent] = useState(pieceData.contentList[pieceNumber-1]); //TODO temp
+    const [textContent, setTextContent] = useState("");
+
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
@@ -92,50 +94,50 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
 
 
     function jumpToPrevPiece() {
-        console.log("TOOD: jump to previous piece..."); //TODO testing
-        if (pieceNumber > 1) {
-            setPieceNumber(pieceNumber-1);
-            //TODO change *all* form content here in display...
-            setTextContent(pieceData.contentList[pieceNumber-2]);
+    //     console.log("TOOD: jump to previous piece..."); //TODO testing
+    //     if (pieceNumber > 1) {
+    //         setPieceNumber(pieceNumber-1);
+    //         //TODO change *all* form content here in display...
+    //         setTextContent(pieceData.contentList[pieceNumber-2]);
 
 
-        } else {
-            setPieceNumber(1);
-        }
+    //     } else {
+    //         setPieceNumber(1);
+    //     }
     }
 
     function jumpToNextpiece() {
-        console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < pieceData.pieceNumber.length) {
-            setPieceNumber(pieceNumber+1);
-            //TODO change *all* form content here in display...
-            setTextContent(pieceData.contentList[pieceNumber]);
+    //     console.log("TOOD: jump to next piece..."); //TODO testing
+    //     if (pieceNumber < pieceData.pieceNumber.length) {
+    //         setPieceNumber(pieceNumber+1);
+    //         //TODO change *all* form content here in display...
+    //         setTextContent(pieceData.contentList[pieceNumber]);
 
 
 
 
-        } else {
-            setPieceNumber(pieceData.pieceNumber.length);
-        }
+    //     } else {
+    //         setPieceNumber(pieceData.pieceNumber.length);
+    //     }
     }
 
     function updateToCaller() {
         //TODO later: conclude all the current info in this piece, update to the caller's update-function
 
-        let newPieceData = {};
-        const indexList = pieceData.pieceNumber;
-        let cList = [];
-        let i = 0;
-        console.log("before changing and updateing to caller..", pieceData); //TODO test
-        for (; i < pieceData.contentList.length; i++) {
-            if (i+1 != pieceNumber) {
-                cList.push(pieceData.contentList[i]);
-            } else {
-                cList.push(textContent); // important: new content updated
-            }
-        }
-        newPieceData = {pieceNumber: indexList, contentList: cList}
-        updatePieceData(newPieceData);
+        // let newPieceData = {};
+        // const indexList = pieceData.pieceNumber;
+        // let cList = [];
+        // let i = 0;
+        // console.log("before changing and updateing to caller..", pieceData); //TODO test
+        // for (; i < pieceData.contentList.length; i++) {
+        //     if (i+1 != pieceNumber) {
+        //         cList.push(pieceData.contentList[i]);
+        //     } else {
+        //         cList.push(textContent); // important: new content updated
+        //     }
+        // }
+        // newPieceData = {pieceNumber: indexList, contentList: cList}
+        // updatePieceData(newPieceData);
     }
   
 

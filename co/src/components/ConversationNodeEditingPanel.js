@@ -26,11 +26,14 @@ export default function ConversationNodeEditingPanel() {
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
 
-    const [pieceDataStructure, setPieceDatastructure] = useState({
-        pieceNumber: [1, 2, 3, 4, 5], 
-        contentList:["a1", "b2", "c3", "d4", "e5"]
-    }); //TODO testing *Important* later: load from cloud
-    
+    const [pieceDataStructure, setPieceDatastructure] = useState([
+            {"num": 1, "content": "a1000"}, 
+            {"num": 2, "content": "b2000"}, 
+            {"num": 3, "content": "c3000"}, 
+            {"num": 4, "content": "d4000"}, 
+            {"num": 5, "content": "e5000"}]
+    ); //TODO testing *Important* later: load from cloud
+
     console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
 
 

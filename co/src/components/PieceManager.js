@@ -14,13 +14,11 @@ export default function PieceManager({pieceData, assignPieceNum}) {
     console.log("In [Piece-Manager]:", pieceData); //TODO test
 
     function createNewListItem() {
-        const num = pieceDataLocal.pieceNumber.length+1;
-        const pList = pieceDataLocal.pieceNumber;
-        pList.push(num);
-        let cList = pieceDataLocal.contentList;
-        cList.push("");
-        const newObj = {pieceNumber: pList, contentList: cList};
-        setPieceDataLocal(newObj);
+        const number = pieceDataLocal.length+1;
+        const item = {"num": number, "content": ""};
+        let pieceDataArr = pieceData;
+        pieceDataArr.push(item);
+        setPieceDataLocal(pieceDataArr);
     }
 
     function updateLocalDataToCloud() { //TODO cloud-related
@@ -55,15 +53,17 @@ export default function PieceManager({pieceData, assignPieceNum}) {
         </thead>
         <tbody>
         {/* //TODO: after creating testing data, do map for each row in the table */}
-            {pieceDataLocal.pieceNumber.map((itemIndex, index) => {
+            {pieceDataLocal.map((itemIndex, index) => {
+
+                console.log("pieceDataLocal:" , pieceDataLocal[itemIndex]); //TODO test
                 return (
-                    <tr key={itemIndex}>
+                    <tr key={index}>
                 
-                    <td>{pieceDataLocal.pieceNumber[index]}</td>
-                    <td>{pieceDataLocal.contentList[index]}</td>
+                    <td>{pieceDataLocal[itemIndex]}</td>
+                    <td>{pieceDataLocal[itemIndex]}</td>
                     <td>
                     <div>
-                    <button onClick={()=>{moveItemUpRow(index);}}>Move Up</button>
+                    <button onClick={()=>{moveItemUpRow(itemIndex);}}>Move Up</button>
                     <button>Duplicate</button>
                     <button>Move Down</button>
                     <button>Delete</button>
