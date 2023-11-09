@@ -41,3 +41,5 @@
 
 - 2023-Nov-06: Organize and design -- features and functions for local-cloud interlayers
 - 2023-Nov-06: Firebase: cloud db's "index" issue expoliration (bypassed with other strategy)
+
+- 2023-Nov-08: Explore preview-window scale strategy
