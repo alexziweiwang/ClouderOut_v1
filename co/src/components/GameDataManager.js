@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, addNewVarPair}) {
+export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -36,12 +36,20 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         }
 
         console.log("Test: game-data created...", newObj);
-        addNewVarPair(newObj)
-        setUsingGameData(usingGameData);
+
+        const naming = newObj["name"];
+    
+        const gameDataTemp = {
+          ...usingGameData,
+          [naming]: newObj,
+        };
+    
+
+        setUsingGameData(gameDataTemp);
 
         resetNeedCloudData();
 
-        //TODO update cloud db
+        //TODO update cloud db to the latest "usingGameData"
         //fetchFromCloud(); //TODO temp
         setDisplayNewVarArea(false);
     }
