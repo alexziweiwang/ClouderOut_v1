@@ -26,12 +26,23 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     function addVarPair() {
         //TODO update game-data variable: name, type, default-value to cloud db
         //TODO also trigger update of layout's above area: all game data pairs...
-        const newObj = {"name": newVarName, "default_value:": defaultNewValue, "data_type": newGameDataType};
+        let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
+        if (newGameDataType == "isBoolean") {
+            newObj = {"name": newVarName, "default_value": defaultNewBooleanValue, "data_type": "boolean"};
+        } else if (newGameDataType == "isNumber") {
+            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "number"};
+        } else if (newGameDataType == "isText") {
+            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "string"};
+        }
+
+        console.log("Test: game-data created...", newObj);
         addNewVarPair(newObj)
-        setUsingGameData(gameData); // TODO parameter shoud contain new-pair-info
+        setUsingGameData(usingGameData);
 
         resetNeedCloudData();
-        fetchFromCloud(); //TODO remove later
+
+        //TODO update cloud db
+        //fetchFromCloud(); //TODO temp
         setDisplayNewVarArea(false);
     }
 
@@ -76,7 +87,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 {
                 Object.keys(usingGameData).map((key) => {
                 return (
-                    <li className="clickableListItem" key={key}>{key}:               {usingGameData[key]}</li>
+                    <li className="clickableListItem" key={key}>{key}:{usingGameData[key]["data_type"]}, {usingGameData[key]["default_value"]}</li>
                 )
                 })}
             </ul>

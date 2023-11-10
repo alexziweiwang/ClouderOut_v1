@@ -361,14 +361,17 @@ export default function GameMaker() {
 
   function addNewGameDataPair(obj) {
     /* called by GameDataManager, to add new variable-pair to cloud */
-    /* object structure -- {"name": newVarName, "default_value:": defaultNewValue, "data_type": newGameDataType} */
+    /* object structure -- {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType} */
     
     const naming = obj["name"];
+    console.log("game-maker: naming is...", naming, obj);
 
     const gameDataTemp = {
       ...gameDataLocal,
-      naming: obj,
+      [naming]: obj,
     };
+
+    console.log("new data: ", gameDataTemp); //TODO test
 
     setGameDataLocal(gameDataTemp);
 
