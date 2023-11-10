@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud}) {
+export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, addNewVarPair}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -17,16 +17,21 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState(true);
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
+    const [usingGameData, setUsingGameData] = useState(gameData);
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
     }
 
-    function addNewVarPair() {
+    function addVarPair() {
         //TODO update game-data variable: name, type, default-value to cloud db
         //TODO also trigger update of layout's above area: all game data pairs...
+        const newObj = {"name": newVarName, "default_value:": defaultNewValue, "data_type": newGameDataType};
+        addNewVarPair(newObj)
+        setUsingGameData(gameData); // TODO parameter shoud contain new-pair-info
+
         resetNeedCloudData();
-        fetchFromCloud();
+        fetchFromCloud(); //TODO remove later
         setDisplayNewVarArea(false);
     }
 
@@ -56,6 +61,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         setDefaultNewValue(event.target.value);
     }
 
+
+
     return (
     <div className={modalStyleName}>
 
@@ -67,9 +74,9 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             <div className="dataArea">
             <ul>
                 {
-                Object.keys(gameData).map((key) => {
+                Object.keys(usingGameData).map((key) => {
                 return (
-                    <li className="clickableListItem" key={key}>{key}:               {gameData[key]}</li>
+                    <li className="clickableListItem" key={key}>{key}:               {usingGameData[key]}</li>
                 )
                 })}
             </ul>
@@ -100,7 +107,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     </select>
                     }
                     <br></br>
-                    <button onClick={addNewVarPair}>Submit</button>
+                    <button onClick={addVarPair}>Submit</button>
                 </div>
             }
             {displayNewVarArea && <button onClick={showNewVarForm}> Cancel </button>}

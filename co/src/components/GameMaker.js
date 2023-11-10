@@ -359,6 +359,21 @@ export default function GameMaker() {
     setIsLinkNode(false);
   }
 
+  function addNewGameDataPair(obj) {
+    /* called by GameDataManager, to add new variable-pair to cloud */
+    /* object structure -- {"name": newVarName, "default_value:": defaultNewValue, "data_type": newGameDataType} */
+    
+    const naming = obj["name"];
+
+    const gameDataTemp = {
+      ...gameDataLocal,
+      naming: obj,
+    };
+
+    setGameDataLocal(gameDataTemp);
+
+  } 
+
   return (
   <div>
 
@@ -374,7 +389,7 @@ export default function GameMaker() {
 
 
     <br></br>
-   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud}/>}
+   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} addNewVarPair={addNewGameDataPair}/>}
 
 
     <p className="plans"> Game Maker page 
