@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
-import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 
 
@@ -359,6 +359,21 @@ export default function GameMaker() {
     setIsLinkNode(false);
   }
 
+  function updateGDataToCloud(gameDataLatest) {
+    const currUser = "user002"; //TODO test
+
+    let project = "";
+    if (state != null) { //TODO testing
+      if (state.selected_project_name != null && state.selected_project_name!= undefined) {
+        project  = state.selected_project_name;
+        if (project.trim() == "") {
+          return;
+        }
+        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+      }
+    }
+  }
+
   return (
   <div>
 
@@ -374,7 +389,7 @@ export default function GameMaker() {
 
 
     <br></br>
-   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud}/>}
+   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
 
     <p className="plans"> Game Maker page 

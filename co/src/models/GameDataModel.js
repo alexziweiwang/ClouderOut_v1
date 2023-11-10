@@ -21,4 +21,9 @@ export async function getProjectGameData({projectName, uname}) {
   return dataFetched;
 }
 
+export async function updateGameData({projectName, uname, gameData}) {
+  //TODO add new game-data to cloud db
+  console.log("TODO: adding new game-data...")
+}
+
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud}) {
+export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
@@ -24,9 +24,13 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     }
 
     function addVarPair() {
-        //TODO update game-data variable: name, type, default-value to cloud db
-        //TODO also trigger update of layout's above area: all game data pairs...
+        if (usingGameData.hasOwnProperty(newVarName)) {
+            console.log("Error: duplicate game-data name."); //TODO test
+            return;
+        }
+
         let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
+        
         if (newGameDataType == "isBoolean") {
             newObj = {"name": newVarName, "default_value": defaultNewBooleanValue, "data_type": "boolean"};
         } else if (newGameDataType == "isNumber") {
@@ -34,8 +38,6 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         } else if (newGameDataType == "isText") {
             newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "string"};
         }
-
-        console.log("Test: game-data created...", newObj);
 
         const naming = newObj["name"];
     
@@ -50,6 +52,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         resetNeedCloudData();
 
         //TODO update cloud db to the latest "usingGameData"
+
         //fetchFromCloud(); //TODO temp
         setDisplayNewVarArea(false);
     }
