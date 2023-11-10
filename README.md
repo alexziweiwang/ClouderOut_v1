@@ -28,7 +28,9 @@
 - [x] logic organizer: analysis and design
 - [ ] logic organizer: preliminary implement
 - [x] game data sharing and update design, architecture design
-- [ ] game data sharing and update implementation
+- [x] game data sharing and update implementation
+- [ ] game data manager: UI
+- [ ] game data management: edit and delete
 - [x] cloud db data structure design, preliminary
 - [x] cloud db data structure design, optimized
 - [ ] account-system design
@@ -39,7 +41,7 @@
 - [ ] resource selector variable name paring implementation
 - [ ] refactor to RESTful API in a later stage
 - [ ] add warning/asking related to project/progress saving, that reminds authors to save to cloud (in balance of frequent updating)
-- [ ] consideration on undo/redo/revert or log and records for authors
+- [x] consideration on undo/redo/revert or log and records for authors
 - [ ] dynamic tags and lists
 - [ ] author account "networking" considerations
 - [ ] consider and design version control system for projects
