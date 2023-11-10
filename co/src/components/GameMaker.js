@@ -363,7 +363,7 @@ export default function GameMaker() {
     const currUser = "user002"; //TODO test
 
     let project = "";
-    if (state != null) { //TODO testing
+    if (state != null) {
       if (state.selected_project_name != null && state.selected_project_name!= undefined) {
         project  = state.selected_project_name;
         if (project.trim() == "") {

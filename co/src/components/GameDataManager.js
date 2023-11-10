@@ -46,14 +46,11 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
           [naming]: newObj,
         };
     
-
-        setUsingGameData(gameDataTemp);
-
+        setUsingGameData(gameDataTemp); /* update local  data structure */
         resetNeedCloudData();
-
-        //TODO update cloud db to the latest "usingGameData"
-
-        //fetchFromCloud(); //TODO temp
+        
+        updateGameDataToCloud(gameDataTemp); /* update cloud db*/
+        fetchFromCloud();
         setDisplayNewVarArea(false);
     }
 

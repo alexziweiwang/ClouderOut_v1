@@ -1,11 +1,11 @@
 import db from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, collection, query, where, updateDoc} from "firebase/firestore"; 
 
 export async function getProjectGameData({projectName, uname}) {
   const docRef = doc(db, "user_projects", uname);
-  const docSnap = await getDoc(docRef);
+  const userDirSnap = await getDoc(docRef);
 
-  if (!docSnap.exists()) {
+  if (!userDirSnap.exists()) {
     return;
   }
   if (projectName == "" || projectName == undefined) {
@@ -22,8 +22,27 @@ export async function getProjectGameData({projectName, uname}) {
 }
 
 export async function updateGameData({projectName, uname, gameData}) {
-  //TODO add new game-data to cloud db
-  console.log("TODO: adding new game-data...")
+
+  const userDirRef = doc(db, "user_projects", uname);
+  const userDirSnap = await getDoc(userDirRef);
+
+  if (!userDirSnap.exists()) {
+    return;
+  }
+  if (projectName == "" || projectName == undefined) {
+    return;
+  }
+
+  const projectRef = doc(userDirRef, "projects", projectName);
+  const projectSnap = await getDoc(projectRef);
+
+  if (!projectSnap.exists()) {
+    return;
+  }
+  /* current document contains "game_data" field */
+  await updateDoc(projectRef, {
+    "game_data": gameData
+  });
 }
 
 
