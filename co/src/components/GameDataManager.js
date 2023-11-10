@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styles from './webpage.css';
 
 
 export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
@@ -88,14 +89,23 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     <div className="modalArea3">
 
     <div className="modalContent">
-        <p> This is game-data manager!!!!!!!!! </p>
+        <button className="buttonRight90" onClick={handleGdmCancel}>X</button>
+
         <div className="gameDataDisplayArea">
             <div className="dataArea">
             <ul>
                 {
                 Object.keys(usingGameData).map((key) => {
                 return (
-                    <li className="clickableListItem" key={key}>{key}:{usingGameData[key]["data_type"]}, {usingGameData[key]["default_value"]}</li>
+                    <li className="clickableListItem" key={key}>{key}:{usingGameData[key]["data_type"]}, {usingGameData[key]["default_value"]}
+                        <div className="pairGroup2">
+                            <button className="cursor_pointer">Edit</button>
+                            <button className="cursor_pointer">Delete</button> 
+                        </div>
+                         
+                    </li>
+
+                  
                 )
                 })}
             </ul>
@@ -134,8 +144,6 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
         </div>
 
-
-        <button className="modalControlButton" onClick={handleGdmCancel}> Close </button>
 
     </div> 
     
