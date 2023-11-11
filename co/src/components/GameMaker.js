@@ -60,6 +60,8 @@ export default function GameMaker() {
 
    const [logicSplitter_gameDataVar1, setLsGdataVar1] = useState("");
    const [logicSplitter_gameDataVar2, setLsGdataVar2] = useState("");
+   const [logicSplitter_nextNode, setLsNextNode] = useState("");
+
 
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
 
@@ -627,7 +629,16 @@ export default function GameMaker() {
     <input></input> //TODO later: if operand is number instead of variable
     <br></br>
     <label> Next Node: </label>
-    <select></select>
+    <select value={logicSplitter_nextNode} onChange={()=>{console.log("logic-splitter: selected destination", logicSplitter_nextNode);}}>
+      {nodeData.map((item, index) => {
+      if (nodeData[index].display == false) {
+        return;
+      }
+      return (
+        <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
+      );
+    })}
+    </select>
     </div>
     </>}
     {isLinkNode && <p>----------------------------------------------------</p>}
