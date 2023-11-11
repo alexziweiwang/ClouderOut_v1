@@ -24,6 +24,11 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
+        setNewGameDataType("isNumber");
+        setNewVarName("");
+        setDefaultNewBooleanValue(false);
+        setDefaultNewValue(0);
+        setIsNewDdataTypeBoolean(false);
     }
 
     function addVarPair() {
