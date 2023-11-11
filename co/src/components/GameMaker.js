@@ -61,11 +61,12 @@ export default function GameMaker() {
    const [logicSplitter_gameDataVar1, setLsGdataVar1] = useState("");
    const [logicSplitter_gameDataVar2, setLsGdataVar2] = useState("");
    const [logicSplitter_nextNode, setLsNextNode] = useState("");
-
+   const [logicSplitterVar2IsGData, setLsV2IsGData] = useState(true);
 
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
+   
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -361,6 +362,14 @@ export default function GameMaker() {
     setIsLinkNode(false);
   }
 
+  function changeLsVar2ToGameData() {
+    setLsV2IsGData(true);
+  }
+
+  function changeLsVar2ToValue() {
+    setLsV2IsGData(false);
+  }
+
   function updateGDataToCloud(gameDataLatest) {
     const currUser = "user002"; //TODO test
 
@@ -532,7 +541,7 @@ export default function GameMaker() {
 
     <div>
     <p className="sectionHeader">***Append an Element***</p>
-    <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>Link to a New Node
+    <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>Attach a New Node
 
 {/* //TODO: change later */}
     {isLinkNode && <> 
@@ -593,7 +602,7 @@ export default function GameMaker() {
     <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
 
     <div className="areaBlue">
-    <label> Variable 1 </label>
+    <label> Variable 1: </label>
     <select>
       {Object.keys(gameDataLocal).map((currKey) => {
           return (
@@ -603,7 +612,7 @@ export default function GameMaker() {
     </select>
     <br></br>
 
-    <label>Operator: </label>
+    <label>Comparison: </label>
     <select>
           <option key="" value=""> -- Operator -- </option>
           <option key="larger" value="larger"> larger than </option>
@@ -613,9 +622,10 @@ export default function GameMaker() {
           <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
 
     </select>
-    
     <br></br>
-    <label> Variable 2 </label>
+    <label> Variable 2: </label>
+    <br></br>
+    <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
     <select>
       {Object.keys(gameDataLocal).map((key) => {
           return (
@@ -623,10 +633,9 @@ export default function GameMaker() {
           );
           })}
     </select>
-
     <br></br>
-    <label> Numeric Value: </label>
-    <input></input> //TODO later: if operand is number instead of variable
+    <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
+    <input></input>
     <br></br>
     <label> Next Node: </label>
     <select value={logicSplitter_nextNode} onChange={()=>{console.log("logic-splitter: selected destination", logicSplitter_nextNode);}}>
