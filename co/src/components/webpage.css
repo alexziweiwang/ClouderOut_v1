@@ -233,9 +233,24 @@ body {
 }
 
 .dataArea {
-    height: 70%;
+    height: 95%;
     background-color: rgb(201, 168, 188);
     overflow: scroll;
+}
+
+.dataAreaShrink {
+    height: 70%;
+    background-color: rgb(201, 168, 188);
+    overflow: scroll;  
+}
+
+.addNewGameDataArea {
+    background-color: rgb(185, 193, 185);
+    height: 30%;
+}
+
+.addNewGameDataAreaClosed {
+    height: 10%;
 }
 
 .clickableListItem {

@@ -127,7 +127,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         <button className="buttonRight90 cursor_pointer" onClick={handleGdmCancel}>X</button>
 
         <div className="gameDataDisplayArea">
-            <div className="dataArea">
+            <div className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}>
             <ul>
                 <li className="clickableListItem" key="-">Variable Name, Type, Default Value</li>
 
@@ -155,10 +155,12 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             </ul>
             </div>
             
-            {!displayNewVarArea && <button onClick={showNewVarForm}> + New Variable </button>}
-
+            {!displayNewVarArea && 
+                <div className="addNewGameDataAreaClosed">
+                <button onClick={showNewVarForm}> + New Variable </button>
+                </div>}
             {displayNewVarArea && 
-                <div>
+                <div className="addNewGameDataArea">
                     <label>Variable Name: </label>
                     <input type="text" value={newVarName} onChange={changeNewVarName}/>
                     <br></br>
@@ -180,10 +182,12 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     </select>
                     }
                     <br></br>
+                    <button onClick={showNewVarForm}> Cancel </button>
                     <button onClick={addVarPair}>Submit</button>
+
                 </div>
+
             }
-            {displayNewVarArea && <button onClick={showNewVarForm}> Cancel </button>}
 
 
         </div>
