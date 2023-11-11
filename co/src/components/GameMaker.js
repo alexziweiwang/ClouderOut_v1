@@ -593,9 +593,9 @@ export default function GameMaker() {
     <div className="areaBlue">
     <label> Variable 1 </label>
     <select>
-      {Object.keys(gameDataLocal).map((key) => {
+      {Object.keys(gameDataLocal).map((currKey) => {
           return (
-          <option value={logicSplitter_gameDataVar1} key={gameDataLocal[key]}>{key}</option>
+          <option value={logicSplitter_gameDataVar1} key={currKey}>{currKey}</option>
           );
       })}
     </select>
