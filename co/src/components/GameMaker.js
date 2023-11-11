@@ -648,6 +648,7 @@ export default function GameMaker() {
       );
     })}
     </select>
+    <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter")}}> Add </button>
     </div>
     </>}
     {isLinkNode && <p>----------------------------------------------------</p>}

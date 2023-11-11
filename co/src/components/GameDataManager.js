@@ -81,6 +81,18 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         setDefaultNewValue(event.target.value);
     }
 
+    function deleteListItem(obj) {
+        //change locally for UI
+        let tempMap = {};
+        Object.keys(usingGameData).map((key) => {
+            if (key != obj["name"]) {
+                tempMap[key] = usingGameData[key];
+            }
+        });
+        setUsingGameData(tempMap);
+        //TODO later: change to cloud for db
+
+    }
 
 
     return (
@@ -93,7 +105,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             <br></br>
             2. TODO: table-item operation: edit (name, type, default value)
             <br></br> delete: consider revert options
-            
+
 
         </p>
 
@@ -109,7 +121,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     <li className="clickableListItem" key={key}>{key}:{usingGameData[key]["data_type"]}, {usingGameData[key]["default_value"]}
                         <div className="pairGroup2">
                             <button className="cursor_pointer">Edit</button>
-                            <button className="cursor_pointer">Delete</button> 
+                            <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
                         </div>
                          
                     </li>
