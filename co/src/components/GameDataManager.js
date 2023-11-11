@@ -19,6 +19,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
     const [usingGameData, setUsingGameData] = useState(gameData);
+    const [editLineDisplay, setEditLineDisplay] = useState("");
+    const [editAreaOpen, setEditAreaOpen] = useState(false);
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
@@ -95,10 +97,15 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     }
 
     function editListItem(obj) {
+        if (editAreaOpen == false) {
         console.log("editing game-data: " , obj); //TODO 
+        setEditLineDisplay(obj["name"]);
         //TODO display editing panel
         //TODO update locally
         //TODO update to cloud db
+        
+        }
+        setEditAreaOpen(!editAreaOpen);
     }
 
 
@@ -122,18 +129,27 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         <div className="gameDataDisplayArea">
             <div className="dataArea">
             <ul>
+                <li className="clickableListItem" key="-">Variable Name, Type, Default Value</li>
+
                 {
                 Object.keys(usingGameData).map((key) => {
                 return (
-                    <li className="clickableListItem" key={key}>{key}: type is [{usingGameData[key]["data_type"]}]. Default value = {usingGameData[key]["default_value"]}
+                    <>
+                    <li className="clickableListItem" key={key}>{key},[{usingGameData[key]["data_type"]}], {usingGameData[key]["default_value"]}
                         <div className="pairGroup2 buttonRight">
                             <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
                             <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
                         </div>
                          
                     </li>
+                   
+                   {(editAreaOpen && editLineDisplay == key) && 
+                    <li>Area of Editing for this item...
 
-                  
+                        <button>OK</button>
+                    </li>
+                    }
+                    </>
                 )
                 })}
             </ul>
