@@ -90,8 +90,15 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             }
         });
         setUsingGameData(tempMap);
-        //TODO later: change to cloud for db
+        //TODO later: change to cloud db
 
+    }
+
+    function editListItem(obj) {
+        console.log("editing game-data: " , obj); //TODO 
+        //TODO display editing panel
+        //TODO update locally
+        //TODO update to cloud db
     }
 
 
@@ -118,9 +125,9 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 {
                 Object.keys(usingGameData).map((key) => {
                 return (
-                    <li className="clickableListItem" key={key}>{key}:{usingGameData[key]["data_type"]}, {usingGameData[key]["default_value"]}
-                        <div className="pairGroup2">
-                            <button className="cursor_pointer">Edit</button>
+                    <li className="clickableListItem" key={key}>{key}: type is [{usingGameData[key]["data_type"]}]. Default value = {usingGameData[key]["default_value"]}
+                        <div className="pairGroup2 buttonRight">
+                            <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
                             <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
                         </div>
                          
