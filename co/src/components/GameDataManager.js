@@ -91,6 +91,10 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             1. TODO: table-like looking for list items -- improve for UX
             <br></br>(change list to table with rows)
             <br></br>
+            2. TODO: table-item operation: edit (name, type, default value)
+            <br></br> delete: consider revert options
+            
+
         </p>
 
     <div className="modalContent">
