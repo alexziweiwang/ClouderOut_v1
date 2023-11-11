@@ -87,9 +87,14 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     <div className={modalStyleName}>
 
     <div className="modalArea3">
+        <p className="plans">
+            1. TODO: table-like looking for list items -- improve for UX
+            <br></br>(change list to table with rows)
+            <br></br>
+        </p>
 
     <div className="modalContent">
-        <button className="buttonRight90" onClick={handleGdmCancel}>X</button>
+        <button className="buttonRight90 cursor_pointer" onClick={handleGdmCancel}>X</button>
 
         <div className="gameDataDisplayArea">
             <div className="dataArea">
