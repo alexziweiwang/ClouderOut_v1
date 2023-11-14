@@ -27,7 +27,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         console.log("TODO: saving to cloud via VM func ... ", pieceDataLocal);
     }
  
-    function moveItemUpRow(index) {
+    function moveItemUpRow(index, content) {
         /* switch current item with the previous (smaller) item */
         if (index >= 1) {
             const tempArr = [...pieceDataLocal];
@@ -37,13 +37,15 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
             itemCurr["num"] = index;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
+            setHighlightedPiece(content);        
+
 
         } else {
             return;
         }
     }
 
-    function moveItemDownRow(index) {
+    function moveItemDownRow(index, content) {
         /* switch current item with the next (larger) item */
         if (index < pieceDataLocal.length - 1) {
             const tempArr = [...pieceDataLocal];
@@ -53,6 +55,8 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
             itemCurr["num"] = index+2;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
+            setHighlightedPiece(content);        
+
 
         } else {
             return;
@@ -88,9 +92,9 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
                     <td>{currItem["content"]}</td>
                     <td>
                     <div>
-                    <button onClick={()=>{moveItemUpRow(index);}}>Move Up</button>
+                    <button onClick={()=>{moveItemUpRow(index, currItem["content"]);}}>Move Up</button>
                     <br></br>
-                    <button onClick={()=>{moveItemDownRow(index);}}>Move Down</button>
+                    <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
                     <br></br>
                     <button onClick={()=>{console.log("adding duplicate item...")}}>Duplicate</button>
                     <button onClick={()=>{console.log("deleting item...");}}>Delete</button>
