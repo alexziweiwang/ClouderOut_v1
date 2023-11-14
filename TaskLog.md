@@ -43,3 +43,5 @@
 - 2023-Nov-06: Firebase: cloud db's "index" issue expoliration (bypassed with other strategy)
 
 - 2023-Nov-08: Explore preview-window scale strategy
+
+- 2023-Nov-13: Explore integration plan for pre-test phase1
