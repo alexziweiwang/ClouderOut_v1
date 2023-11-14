@@ -365,7 +365,12 @@ th,td {
     padding: 15px;
 }
 
-.tableItem:hover{
-    background-color: rgb(218, 214, 208);
+.tableItem {
+    background-color: rgb(235, 232, 227);
+    cursor: pointer;
+}
+
+.tableItemSelected {
+    background-color: rgb(173, 178, 193);
     cursor: pointer;
 }
