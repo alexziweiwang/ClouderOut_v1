@@ -11,7 +11,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
     const [previewPieceNum, setPreviewPieceNum] = useState(0);
-    const [highlightedNum, setHighlightedNum] = useState(0);
+    const [highlightedPiece, setHighlightedPiece] = useState("");
 
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
@@ -59,12 +59,8 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         }
     }
 
-    function doHighlightItem(index) {
-        if (highlightedNum == index) {
-            setHighlightedNum(-1);
-        } else {
-            setHighlightedNum(index); 
-        }
+    function doHighlightItem(content) {
+        setHighlightedPiece(content);        
     }
 
     return (
@@ -86,7 +82,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
 
                 const currItem = pieceDataLocal[index];
                 return (
-                    <tr key={index} className={(highlightedNum == index)? "tableItemSelected" : "tableItem"}onClick={()=>{assignPreviewIndex(index); doHighlightItem(index); console.log("clicked and previewing on: ", index)}}>
+                    <tr key={index} className={(highlightedPiece == currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{assignPreviewIndex(index); doHighlightItem(currItem["content"]); console.log("clicked and previewing on: ", currItem["content"])}}>
                 
                     <td>{currItem["num"]}</td>
                     <td>{currItem["content"]}</td>
