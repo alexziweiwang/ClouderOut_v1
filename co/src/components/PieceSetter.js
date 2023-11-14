@@ -317,6 +317,10 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                     <br></br> - option1: assign a value to variable in game-data
                     <br></br> - option2: increase/decrease some value of variable in game-data
                     <br></br> - (can contain multiple consequences)
+                    <br></br> TODO: add table for this feature (with operation options)
+                    <br></br> TODO: load game-data items for selection
+                    <br></br> TODO: keep the *action* of updating game-data!! (not immediately, but when action triggered)
+                    
                     </p>
                     <button>Confirm Add</button>
                     </div>
