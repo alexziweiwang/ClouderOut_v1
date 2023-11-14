@@ -84,12 +84,14 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
                     <td>
                     <div>
                     <button onClick={()=>{moveItemUpRow(index);}}>Move Up</button>
-                    <button>Duplicate</button>
+                    <br></br>
                     <button onClick={()=>{moveItemDownRow(index);}}>Move Down</button>
-                    <button>Delete</button>
+                    <br></br>
+                    <button onClick={()=>{console.log("adding duplicate item...")}}>Duplicate</button>
+                    <button onClick={()=>{console.log("deleting item...");}}>Delete</button>
                     <br></br>
                     <button onClick={()=>{assignPieceNum(currItem["num"]);}}>Edit</button>
-    
+                    <button onClick={()=>{assignPreviewIndex(currItem["num"]);}}>Preview</button>
                     </div>
                     </td>
                 </tr>
