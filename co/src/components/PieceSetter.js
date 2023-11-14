@@ -231,6 +231,8 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
             <th>Position y</th>
             <th>Width</th>
             <th>Height</th>
+            <th>[Operation]</th>
+
         </tr>
     </thead>
         {}
@@ -281,15 +283,24 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                         <th>Shape/Picture Source</th>
                         <th>Sound Effect</th>
                         <th>Consequence</th>
+                        <th>[Operation]</th>
+    
                     </tr>
                     </thead>
-                    {
-                        <tbody>
+                    
+                    <tbody>
+                        {
+                        <tr className="clickableListItem3">
                             <td>[button shape/pic]</td>
                             <td>[sound effect resource url]</td>
                             <td>[consequence logic]</td>
-                        </tbody>
-                    }
+                            <td>
+                                <button className="cursor_pointer">Edit</button>
+                                <button className="cursor_pointer">Remove</button>
+                            </td>
+                        </tr>}
+                    </tbody>
+                    
                     </table>
                     <br></br>
                     <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add Another Clickable</button>

@@ -286,6 +286,21 @@ body {
     cursor: pointer
 }
 
+.clickableListItem3 {
+    background-color: rgb(240, 239, 242);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+}
+
+.clickableListItem3:hover {
+    background-color: rgb(232, 220, 196);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+    cursor: pointer
+}
+
 li {
     list-style-type: none;
 }
