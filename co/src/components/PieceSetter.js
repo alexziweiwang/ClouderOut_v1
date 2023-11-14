@@ -268,7 +268,9 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
 
             {clickableAdd && 
                 <div>
-                    <p className="plans"> (modularizable: multiple items allowed) </p>
+                    <p className="plans"> (modularizable: multiple items allowed) 
+                    <br></br> TODO: add data structure of clickable-setting records!
+                    </p>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
                     
                     <br></br>
@@ -281,7 +283,13 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                         <th>Consequence</th>
                     </tr>
                     </thead>
-                    {}
+                    {
+                        <tbody>
+                            <td>[button shape/pic]</td>
+                            <td>[sound effect resource url]</td>
+                            <td>[consequence logic]</td>
+                        </tbody>
+                    }
                     </table>
                     <br></br>
                     <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add Another Clickable</button>
