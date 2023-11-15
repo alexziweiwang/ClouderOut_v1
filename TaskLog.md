@@ -49,4 +49,4 @@
 
 - 2023-Nov-14: Explore and consider piece-setter UX improvement and data collection
 - 2023-Nov-14: Explore on output conversion design for game-project data
-
+- 2023-Nov-14: Design on preview-window data consistency
