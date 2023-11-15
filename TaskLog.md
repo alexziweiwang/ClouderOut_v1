@@ -48,5 +48,5 @@
 - 2023-Nov-13: Explore better design and UX for game-data manager
 
 - 2023-Nov-14: Explore and consider piece-setter UX improvement and data collection
-
+- 2023-Nov-14: Explore on output conversion design for game-project data
 
