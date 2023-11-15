@@ -313,6 +313,26 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Consequence:         </label>
+                    <table>
+                        <thead></thead>
+                            <tr>
+                                <th>Object</th>
+                                <th>Action</th>
+                                <th>Amount</th>
+                                <th>[Operation]</th>
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <td>(obj1)</td>
+                                <td>(action1)</td>
+                                <td>(amount1)</td>
+                                <td>
+                                    <button>x</button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <p className="plans"> Consequence: (logic organizer-related) 
                     <br></br> - option1: assign a value to variable in game-data
                     <br></br> - option2: increase/decrease some value of variable in game-data
@@ -320,7 +340,11 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                     <br></br> TODO: add table for this feature (with operation options)
                     <br></br> TODO: load game-data items for selection
                     <br></br> TODO: keep the *action* of updating game-data!! (not immediately, but when action triggered)
-                    
+                   
+                    <br></br>
+                    <select></select>
+
+
                     </p>
                     <button>Confirm Add</button>
                     </div>
