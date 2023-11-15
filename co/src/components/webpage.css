@@ -370,11 +370,13 @@ th,td {
 .tableItem {
     background-color: rgb(235, 232, 227);
     cursor: pointer;
+    color:rgb(7, 7, 7);
 }
 
 .tableItemSelected {
     background-color: rgb(173, 178, 193);
     cursor: pointer;
+    color:rgb(7, 7, 7);
 }
 
 .scrollableArea {

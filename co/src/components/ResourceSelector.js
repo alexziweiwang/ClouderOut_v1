@@ -13,7 +13,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     const [cloudFileList, setCloudFileList] = useState([]);
-    const [clickedFile, setClickedFile] = useState("");
+    const [clickedFile, setClickedFileUrl] = useState("");
+    const [clickedFileName, setClickedFileName] = useState("");
 
     async function fetchRmFileList() {
         const fileList = await getRmFileListVM({uname: username});
@@ -23,13 +24,14 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     function confirmResource() {
-        console.log("choosing this resource...");
+        console.log("choosing this resource...", clickedFileName);
     }
 
     async function itemClicked(index) {
         const fname = cloudFileList[index];
         const urlStr = await fetchUrlByFilenameVM({fullFilename: fname});
-        setClickedFile(urlStr);
+        setClickedFileUrl(urlStr);
+        setClickedFileName(cloudFileList[index]);
         console.log("Resource selector: ", urlStr); //TODO testing
     }
   
@@ -45,7 +47,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li className="clickableListItem3" ey={index} onClick={() => {
+                        <li className={clickedFileName == cloudFileList[index]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
                             itemClicked(index);
                         }}>{item}</li>
                     ))}
