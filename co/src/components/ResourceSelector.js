@@ -39,13 +39,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
         <div className="modalArea2">
 
-            <div className="modalContent">
+            <div className="modalContent scrollableArea">
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index} onClick={() => {
+                        <li className="clickableListItem3" ey={index} onClick={() => {
                             itemClicked(index);
                         }}>{item}</li>
                     ))}
@@ -61,6 +61,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <br></br> when creating these link-pairs, the urls are fetched, and stored as value of the pair
                         <br></br> TODO: consider the assigning of fetched url to variable by UI operations
                         <br></br>
+                </p>
+                <div>
+                    <button>Add New Pair</button>
+                <p className="plans">
                         <br></br>section2: selecting resource name for *this field* ...
                         <br></br> uesr-flow: defualt panel shows resource-naming selection, and "add new" is at the corner for newly added resource-link, then the main panel get refreshed with the new resource-linking
                         <br></br>[note: there is no limitaiton on multiple names pointing to the same resource, because it is flexible for later change and adjustment]
@@ -70,6 +74,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <br></br> TODO: think about separation trategy
                         <br></br> such as containing a tag(visual or audio), etc.?
                 </p>
+                </div>
 
                 <p className="plans">
                     for each project, specify the user-given-name for one resource, for modularization and reusability.

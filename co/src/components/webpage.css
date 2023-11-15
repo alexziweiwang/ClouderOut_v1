@@ -291,6 +291,8 @@ body {
     margin: 1px;
     height: 25px;
     width: 90%;
+    color:rgb(7, 7, 7);
+    text-align: center;
 }
 
 .clickableListItem3:hover {
@@ -373,4 +375,8 @@ th,td {
 .tableItemSelected {
     background-color: rgb(173, 178, 193);
     cursor: pointer;
+}
+
+.scrollableArea {
+    overflow: auto;
 }
