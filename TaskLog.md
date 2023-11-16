@@ -53,3 +53,4 @@
 - 2023-Nov-14: Consider strategy of view-parsing (and necessay elements)
 
 - 2023-Nov-15: Design testing-project frame
+- 2023-Nov-15: Design and consider simplest-test plan (sequence only, without logic condition), progress for later
