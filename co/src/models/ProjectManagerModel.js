@@ -21,3 +21,7 @@ export async function fetchProjectList() {
   });
   return projectArr;
 }
+
+export async function revertProject(projectToRevert) {
+    //TODO db cloud: change project's field value (become untrashed)
+}

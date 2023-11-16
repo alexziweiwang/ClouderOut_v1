@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
-import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
+import {fetchProjectListVM, revertProjectVM} from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
@@ -42,6 +42,10 @@ export default function ProjectManagerPanel() {
 
     function handleTrashedProjectSelectionChange(event) {
       setSelectedTrashedProj(event.target.value);
+    }
+
+    function revertTrashedProject() {
+      revertProjectVM(selectedTrashedProj);
     }
     
     let name = "/projectmanagingpanel";
@@ -90,6 +94,7 @@ export default function ProjectManagerPanel() {
           
         }
 
+        <button onClick={revertTrashedProject}>Revert this project</button>
         </div>
 
 
