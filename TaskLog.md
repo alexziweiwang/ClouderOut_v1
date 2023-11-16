@@ -51,3 +51,5 @@
 - 2023-Nov-14: Explore on output conversion design for game-project data
 - 2023-Nov-14: Design on preview-window data consistency
 - 2023-Nov-14: Consider strategy of view-parsing (and necessay elements)
+
+- 2023-Nov-15: Design testing-project frame
