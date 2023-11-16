@@ -39,6 +39,16 @@ export async function revertProject(projectToRevert) {
 
 export async function deleteProject(projectToDelete) {
   //delete project by name
+  const currUser = "user002"; //TODO to-change
 
+  const docRef = doc(db, "user_projects", currUser);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return;
+  }
+
+  const projRef = doc(docRef, "projects", projectToDelete);
+  await updateDoc(projRef, {trashed: true});
   
 }
