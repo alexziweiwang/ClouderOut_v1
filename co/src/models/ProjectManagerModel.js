@@ -36,3 +36,9 @@ export async function revertProject(projectToRevert) {
     await updateDoc(projRef, {trashed: false});
     
 }
+
+export async function deleteProject(projectToDelete) {
+  //delete project by name
+
+  
+}

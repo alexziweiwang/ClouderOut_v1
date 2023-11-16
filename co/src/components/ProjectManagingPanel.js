@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
-import {fetchProjectListVM, revertProjectVM} from '../viewmodels/ProjectManagerViewModel';
+import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
@@ -13,6 +13,7 @@ export default function ProjectManagerPanel() {
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     const [trashedProjList, setTrashedProjList] = useState(false);
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
+
     useEffect(() => {
       if (firstTimeEnter == true) {
         loadProjectListFromCloud();
@@ -49,6 +50,13 @@ export default function ProjectManagerPanel() {
       setSelectedTrashedProj("");
       loadProjectListFromCloud();
     }
+
+    async function deleteProject() {
+      await deleteProjectVM(selected_project_name);
+      setProjectName("");
+      loadProjectListFromCloud();
+
+    }
     
     let name = "/projectmanagingpanel";
     return (
@@ -63,6 +71,7 @@ export default function ProjectManagerPanel() {
         <div className="projSelectionArea">
           <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
         {projList && 
+        <div>
         <select value={selected_project_name} onChange={handleProjectSelectionChange}>
           <option value="" key=""> -- Project Name --</option>
 
@@ -72,8 +81,18 @@ export default function ProjectManagerPanel() {
           );
         })} 
    
-        </select>}
+        </select>
         </div>
+        }
+        </div>
+
+
+        <br></br>
+        <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
+        <button onClick={deleteProject}>Delete</button>
+   
+        <br></br><br></br><br></br>
+
         
         <p className="plans"> TODO: add "trash can area" for proejcts
           <br></br> design: each project's field: add "trashed": true/false
@@ -98,11 +117,6 @@ export default function ProjectManagerPanel() {
 
         <button onClick={revertTrashedProject}>Revert this project</button>
         </div>
-
-
-        <br></br>
-        <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
-   
 
         <p className="plans">This is ProjectManagerPanel Component!!
           <br></br>Here, the user can create new projects, or select specific projects to edit.
