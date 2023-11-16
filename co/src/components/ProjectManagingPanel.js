@@ -44,8 +44,10 @@ export default function ProjectManagerPanel() {
       setSelectedTrashedProj(event.target.value);
     }
 
-    function revertTrashedProject() {
-      revertProjectVM(selectedTrashedProj);
+    async function revertTrashedProject() {
+      await revertProjectVM(selectedTrashedProj);
+      setSelectedTrashedProj("");
+      loadProjectListFromCloud();
     }
     
     let name = "/projectmanagingpanel";

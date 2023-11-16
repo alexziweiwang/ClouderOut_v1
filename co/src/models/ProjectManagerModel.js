@@ -1,5 +1,5 @@
 import db from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 export async function fetchProjectList() {
   const currUser = "user002"; //TODO to-change
@@ -23,5 +23,16 @@ export async function fetchProjectList() {
 }
 
 export async function revertProject(projectToRevert) {
-    //TODO db cloud: change project's field value (become untrashed)
+    const currUser = "user002"; //TODO to-change
+
+    const docRef = doc(db, "user_projects", currUser);
+    const docSnap = await getDoc(docRef);
+  
+    if (!docSnap.exists()) {
+      return;
+    }
+
+    const projRef = doc(docRef, "projects", projectToRevert);
+    await updateDoc(projRef, {trashed: false});
+    
 }
