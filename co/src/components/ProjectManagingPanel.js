@@ -28,9 +28,14 @@ export default function ProjectManagerPanel() {
     }
 
     async function loadProjectListFromCloud() {
-      const projectList = await fetchProjectListVM();
+      const projectList = await fetchProjectListVM(false); // signature: fetchProjectListVM(isTrashed)
+
       setProjList(projectList);    
       console.log("project list: ", projectList); //TODO test
+
+      //TODO remove later
+      const testTrash = await fetchProjectListVM(true); //TODO test
+      console.log("trashed project list:" , testTrash); //TODO test
     }
 
     function handleProjectSelectionChange(event) {
