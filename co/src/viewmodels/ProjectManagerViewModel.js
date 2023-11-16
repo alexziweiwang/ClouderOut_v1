@@ -4,7 +4,7 @@ import db from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection } from "firebase/firestore"; 
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
-export async function fetchProjectListVM(isTrashed) {
+export async function fetchProjectListVM() {
     
     const res = await fetchProjectList();
     //"res" contains both "untrashed" and "trashed" proj-names
@@ -18,11 +18,9 @@ export async function fetchProjectListVM(isTrashed) {
         }
     });
 
-    if (isTrashed == true) {
-        return resTrashedArr;
-    } else {
-        return resUntrashedArr;
-    }
+    const group = {untrashed: resUntrashedArr, trashed: resTrashedArr};
+
+    return group;
 
 }
 

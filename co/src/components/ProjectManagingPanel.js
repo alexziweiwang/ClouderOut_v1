@@ -11,6 +11,8 @@ export default function ProjectManagerPanel() {
     const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); //TODO pull the list from cloud-db
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    const [trashedProjList, setTrashedProjList] = useState(false);
+    const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
     useEffect(() => {
       if (firstTimeEnter == true) {
         loadProjectListFromCloud();
@@ -28,19 +30,18 @@ export default function ProjectManagerPanel() {
     }
 
     async function loadProjectListFromCloud() {
-      const projectList = await fetchProjectListVM(false); // signature: fetchProjectListVM(isTrashed)
+      const groupList = await fetchProjectListVM(); 
 
-      setProjList(projectList);    
-      console.log("project list: ", projectList); //TODO test
-
-      //TODO remove later
-      const testTrash = await fetchProjectListVM(true); //TODO test
-      console.log("trashed project list:" , testTrash); //TODO test
+      setProjList(groupList.untrashed);
+      setTrashedProjList(groupList.trashed);
     }
 
     function handleProjectSelectionChange(event) {
       setProjectName(event.target.value);
-      console.log("currently chose: ", event.target.value);
+    }
+
+    function handleTrashedProjectSelectionChange(event) {
+      setSelectedTrashedProj(event.target.value);
     }
     
     let name = "/projectmanagingpanel";
@@ -55,7 +56,8 @@ export default function ProjectManagerPanel() {
         
         <div className="projSelectionArea">
           <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
-        {projList && <select value={selected_project_name} onChange={handleProjectSelectionChange}>
+        {projList && 
+        <select value={selected_project_name} onChange={handleProjectSelectionChange}>
           <option value="" key=""> -- Project Name --</option>
 
         {projList.map((itemIndex, index) => {
@@ -71,6 +73,24 @@ export default function ProjectManagerPanel() {
           <br></br> design: each project's field: add "trashed": true/false
           <br></br> on cloud: testing data updated with "trashed" field
         </p>
+        <div>
+        <label>Trashed Project(s):</label>
+        <br></br>
+        {trashedProjList && 
+          <select value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
+            <option value="" key=""> -- Project Name --</option>
+            {
+              trashedProjList.map((item, index) => {
+                return (
+                  <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>
+                );
+              })
+            }
+          </select>
+          
+        }
+
+        </div>
 
 
         <br></br>
