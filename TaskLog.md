@@ -58,7 +58,7 @@
 - 2023-Nov-16: Design user account fields and features
 - 2023-Nov-16: Design game-project-data strcture and relationship for save and parse
 - 2023-Nov-16: Design user page layout and modes for the tool, consider UX
-
+- 2023-Nov-16: Consider UI & UX: icon using and button content standards
 
 
 
