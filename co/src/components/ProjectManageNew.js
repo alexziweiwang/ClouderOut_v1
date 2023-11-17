@@ -46,16 +46,26 @@ export default function ProjectManageNew() {
     /* Create and setup the default set for a new project */
     function createNewProjectToCloud() {
       // TODO gather list:
-      // project description
-      // project name
-      // game-data map
-      // author-info field
-      // type = "project"
-      // game-size-direction
-      // genre field (later)
-      // chapter directory
-      // game node directory
-
+      // project name: addedNewProjName
+      // project description: projDedscription
+      // game-data map: empty {}
+      // author-info field: addedAuthorInfo
+      // field: type = "project"
+      // field: game-size-direction
+      // chapter directory: collection "chapters"
+      // game node directory: default in chapter-management (at least one defualt node in ecah chapter)
+      //            genre field (later)
+      const empty_game_data = {};
+      const obj = {
+        project_name: addedNewProjName,
+        project_description: projDedscription,
+        game_data: empty_game_data,
+        author_info: addedAuthorInfo,
+        type: "project",
+        game_size_direction: "h450_800"
+      };
+      //TODO add collection "chapters"
+      
       // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
 
       //TODO call VM function here to pass the data
