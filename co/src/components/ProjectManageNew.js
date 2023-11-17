@@ -20,7 +20,12 @@ export default function ProjectManageNew() {
     }
 
     function changeProjNameInput(event) {
-      setNewProjName(event.target.value);
+      const str = event.target.value;
+      //TODO also: check project names that already exists, fetch list from cloud
+      if (str == "") {
+        return;
+      }
+      setNewProjName(str);
     }
     
     function createNewProjectEdit() {
@@ -65,7 +70,7 @@ export default function ProjectManageNew() {
         game_size_direction: "h450_800"
       };
       //TODO add collection "chapters"
-      
+
       // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
 
       //TODO call VM function here to pass the data
@@ -76,6 +81,12 @@ export default function ProjectManageNew() {
     }
 
     function changeAuthorInfo(event) {
+      const str = event.target.value;
+      //TODO check author info, can't be empty (?)
+      if (str == "") {
+        return;
+      }
+
       setAuthorInfo(event.target.value);
     }
 
@@ -96,7 +107,10 @@ export default function ProjectManageNew() {
         } else if (input == "v800_600") {
           //TODO pass into cloud: project info
           console.log("v800_600");
-
+        } else {
+          
+          //TODO: show warning if not selected
+          console.log("not selected!");
         }
       }
     }
