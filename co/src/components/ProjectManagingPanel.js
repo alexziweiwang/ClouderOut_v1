@@ -9,7 +9,7 @@ import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodel
 export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState("");
-    const [projList, setProjList] = useState(false); //TODO pull the list from cloud-db
+    const [projList, setProjList] = useState(false); 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     const [trashedProjList, setTrashedProjList] = useState(false);
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");

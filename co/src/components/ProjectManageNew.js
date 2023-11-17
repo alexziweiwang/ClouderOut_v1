@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
+import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManageNew() {
     const navigate = useNavigate();
@@ -14,17 +15,24 @@ export default function ProjectManageNew() {
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
+    const [projList, setProjList] = useState(false); 
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
-    function projectManagePanel() {
-        navigate('/projectmanagingpanel', { replace: true });
+    useEffect(() => {
+      if (firstTimeEnter == true) {
+        loadProjectListFromCloud();
+        setFirstTimeEnter(false);
+      }
+    });
+
+    async function loadProjectListFromCloud() {
+      const groupList = await fetchProjectListVM(); 
+      setProjList(groupList.untrashed);
     }
 
     function changeProjNameInput(event) {
       const str = event.target.value;
-      //TODO also: check project names that already exists, fetch list from cloud
-      if (str == "") {
-        return;
-      }
+
       setNewProjName(str);
     }
     
@@ -60,6 +68,22 @@ export default function ProjectManageNew() {
       // chapter directory: collection "chapters"
       // game node directory: default in chapter-management (at least one defualt node in ecah chapter)
       //            genre field (later)
+      
+    
+      const result = projList.filter((name) => name == addedNewProjName);
+      if (result.length > 0) {
+        console.log("warning: duplicate name");
+        //if already contains this name
+        //TODO trigger flag to false: don't navigate
+      }
+      
+      if (addedAuthorInfo.length == 0) {
+        console.log("warning: author info can't be empty");
+        //TODO trigger flag to false: don't navigate
+      }
+      
+      
+      
       const empty_game_data = {};
       const obj = {
         project_name: addedNewProjName,
@@ -82,11 +106,6 @@ export default function ProjectManageNew() {
 
     function changeAuthorInfo(event) {
       const str = event.target.value;
-      //TODO check author info, can't be empty (?)
-      if (str == "") {
-        return;
-      }
-
       setAuthorInfo(event.target.value);
     }
 
