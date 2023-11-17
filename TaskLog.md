@@ -54,3 +54,10 @@
 
 - 2023-Nov-15: Design testing-project frame
 - 2023-Nov-15: Design and consider simplest-test plan (sequence only, without logic condition), progress for later
+
+- 2023-Nov-16: Design user account fields and features
+
+
+
+
+
