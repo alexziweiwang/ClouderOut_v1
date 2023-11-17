@@ -56,6 +56,7 @@
 - 2023-Nov-15: Design and consider simplest-test plan (sequence only, without logic condition), progress for later
 
 - 2023-Nov-16: Design user account fields and features
+- 2023-Nov-16: Design game-project-data strcture and relationship for save and parse
 
 
 
