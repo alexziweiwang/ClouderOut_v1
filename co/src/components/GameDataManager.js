@@ -139,37 +139,40 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                             <th>Variable Name</th>
                             <th>Type</th>
                             <th>Default Value</th>
-                            <th>[Operation]</th>
+                            <th>                                
+                                <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(true);}}>Edit</button>
+                            </th>
                         </tr>
                     </thead>
-                    <tbody>
-                    {Object.keys(usingGameData).map((key) => {
+                    <tbody>       
+                    {!editAreaOpen && Object.keys(usingGameData).map((key) => {
                         return (
-                            <><tr>
+                            <tr key={key}>
                             <td>{key}</td>
                             <td>{usingGameData[key]["data_type"]}</td>
                             <td>{usingGameData[key]["default_value"]}</td>
                             <td>
                                 <div className="parallelFrame">
-                                <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
                                 <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
                                 </div>
                             </td>
                             </tr>
-                            
-                                 
-                            {(editAreaOpen && editLineDisplay === key) && 
-                            <tr>
-                                <label>Area of Editing for this item...</label>
-
-                                <button>OK</button>
-                            </tr>
-                            }
-                            
-                            
-                            </>
                         );
-
+                    })}
+                    {editAreaOpen && Object.keys(usingGameData).map((key) => {
+                        return (
+                            <tr key={key}>
+                            <td><input></input></td>
+                            <td><input></input></td>
+                            <td><input></input></td>
+                            <td>
+                                <div className="parallelFrame">
+                                <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(false);}}>Save</button>
+                                <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(false);}}>Cancel</button> 
+                                </div>
+                            </td>
+                            </tr>
+                        );
                     })}
                         
                     </tbody>
