@@ -144,39 +144,40 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                             <th>Type</th>
                             <th>Default Value</th>
                             <th>                                
-                                {!editAreaOpen && <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(true);}}>Edit</button>}
-                                <div className="parallelFrame">
-                                    {editAreaOpen && <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>}
-                                    {editAreaOpen && <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(false);}}>Cancel</button>}
-                                </div>
+                            
                             </th>
                         </tr>
                     </thead>
-                    <tbody>       
-                    {!editAreaOpen && Object.keys(usingGameData).map((key) => {
-                        return (
-                            <tr key={key}>
-                            <td>{key}</td>
-                            <td>{usingGameData[key]["data_type"]}</td>
-                            <td>{usingGameData[key]["default_value"]}</td>
-                            <td></td>
-                            </tr>
-                        );
-                    })}
-                    {editAreaOpen && Object.keys(usingGameData).map((key) => {
-                        return (
-                            <tr key={key}>
-                            <td><input></input></td>
-                            <td><input></input></td>
-                            <td><input></input></td>
-                            <td>
-                            <button className="cursor_pointer" onClick={()=>{console.log("TODO: delete item");}}>Delete</button>
 
-                            </td>
+                    <tbody>       
+                    {Object.keys(usingGameData).map((key) => {
+                    
+                        return (
+                            <tr key={key}>
+                            {(editLineDisplay !== key) && <td>{key}</td>}
+                            {(editLineDisplay === key && editAreaOpen == true) && <td><input></input></td>}
+
+                            {(editLineDisplay !== key) && <td>{usingGameData[key]["data_type"]}</td>}
+                            {(editLineDisplay === key && editAreaOpen == true) && <td><input></input></td>}
+
+                            {(editLineDisplay !== key) && <td>{usingGameData[key]["default_value"]}</td>}
+                            {(editLineDisplay === key && editAreaOpen == true) && <td><input></input></td>}
+
+                            {(editLineDisplay === "") && <td>
+                                <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
+                            </td>}
+                            {(editLineDisplay === key && editAreaOpen == true) && <td>
+                                <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
+                                <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>Cancel</button>
+                            </td>}
+
+
                             </tr>
-                        );
-                    })}
-                        
+                            
+                        );    
+                    }
+                    )}
+ 
                     </tbody>
 
                 </table>
