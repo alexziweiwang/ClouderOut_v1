@@ -1,8 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './webpage.css';
 import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import PreviewWindow from './PreviewWindow';

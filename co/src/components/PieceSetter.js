@@ -125,7 +125,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
         let i = 0;
         console.log("before changing and updateing to caller..", pieceData); //TODO test
         for (; i < pieceData.length; i++) {
-            if (i+1 != pieceNumber) {
+            if (i+1 !== pieceNumber) {
                 newPieceData.push(pieceData[i]);
             } else {
                 const updatedObj = {"num": i+1, "content": textContent};

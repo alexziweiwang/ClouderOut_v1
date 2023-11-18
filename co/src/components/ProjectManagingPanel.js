@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 
@@ -15,15 +13,15 @@ export default function ProjectManagerPanel() {
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
 
     useEffect(() => {
-      if (firstTimeEnter == true) {
+      if (firstTimeEnter === true) {
         loadProjectListFromCloud();
         setFirstTimeEnter(false);
       }
-    });
+    }, [firstTimeEnter]);
   
 
     function goToGameMaker() {
-      if (selected_project_name == "") {
+      if (selected_project_name === "") {
         return;
       }
 
@@ -65,7 +63,6 @@ export default function ProjectManagerPanel() {
 
     <>
 
-        {/* <button onClick={loadProjectListFromCloud}> Load Projects </button> */} //TODO decide later
         <br></br>
         
         <div className="projSelectionArea">

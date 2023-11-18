@@ -1,8 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import styles from './webpage.css';
 import { useNavigate} from 'react-router-dom';
-import { useState } from 'react';
 
 export default function Sidebar(props) {
     console.log(props.compName);
@@ -18,10 +15,6 @@ export default function Sidebar(props) {
 
     function projectManageNew() {
         navigate('/projectmanagenew', { replace: true });
-    }
-
-    function projectManagePanel() {
-        navigate('/projectmanagingpanel', { replace: true });
     }
 
     function goToAccountPage() {

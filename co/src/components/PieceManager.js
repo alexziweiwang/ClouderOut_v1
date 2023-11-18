@@ -1,7 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import styles from './webpage.css';
 
 
 export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex}) {
@@ -86,7 +84,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
 
                 const currItem = pieceDataLocal[index];
                 return (
-                    <tr key={index} className={(highlightedPiece == currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{assignPreviewIndex(index); doHighlightItem(currItem["content"]); console.log("clicked and previewing on: ", currItem["content"])}}>
+                    <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{assignPreviewIndex(index); doHighlightItem(currItem["content"]); console.log("clicked and previewing on: ", currItem["content"])}}>
                 
                     <td>{currItem["num"]}</td>
                     <td>{currItem["content"]}</td>

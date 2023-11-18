@@ -1,7 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { getProjectGameDataVM } from '../viewmodels/AccountViewModel';
 
@@ -9,7 +7,6 @@ import { getProjectGameDataVM } from '../viewmodels/AccountViewModel';
 Dashboard is for each specific user, and users setup their profile, projects and account.
 */
 export default function AccountPage() {
-    const navigate = useNavigate();
     const username = "user002"; //TODO test
 
     let name = "/accountpage";

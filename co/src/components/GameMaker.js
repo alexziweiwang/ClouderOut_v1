@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './webpage.css';
 import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 import { GiTrashCan } from "react-icons/gi";
@@ -76,7 +74,7 @@ export default function GameMaker() {
   async function displayGameData() {
     setDisplayGameDataButton(false);
 
-    if (needCloudGameData == true) {
+    if (needCloudGameData === true) {
       await fetchGameDataFromCloud();
     } else {
       console.log("*from local* game-data: using existing data"); 
@@ -93,18 +91,18 @@ export default function GameMaker() {
 
     let project = "";
     if (state != null) {
-      if (state.selected_project_name != null && state.selected_project_name!= undefined) {
+      if (state.selected_project_name !== null && state.selected_project_name!== undefined) {
         
         console.log("!!! This is for project: ", state.selected_project_name);
         project  = state.selected_project_name;
         console.log("checking2 on project ... [", project, "]");
-        if (project.trim() == "") {
+        if (project.trim() === "") {
           return;
         }
 
         const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: needCloudGameData});
      
-        if (gdataTestResult == undefined) {
+        if (gdataTestResult === undefined) {
           console.log("Error: no game_data in this project...");
           return;
         }
@@ -124,7 +122,7 @@ export default function GameMaker() {
   function handleNodeClick(name) {
     //TODO: update to local data: update previously-clicked node's most recent logic-splitter count ("currNodeSplittedNum")
     console.log("node = " + name); //TODO
-    if (name == "" || name != clickedNode) {
+    if (name === "" || name !== clickedNode) {
       setClickedNode(name);
     } else { //clicked on the same node
       setClickedNode("");
@@ -137,9 +135,9 @@ export default function GameMaker() {
     let currNode = nodeData.find(node => node.nodeName === clickedNode);
     let currNodeType = currNode.nodeType;
     console.log(currNodeType);
-    if (currNodeType == "Card Game") {
+    if (currNodeType === "Card Game") {
       navigate('/cardgamenode', { replace: true, state: { clickedNode } });
-    } else if (currNodeType == "Conversation") {
+    } else if (currNodeType === "Conversation") {
       navigate('/conversationnode', { replace: true, state: { clickedNode } });
     }
         //TODO later add conditions for board game and tower defense
@@ -148,7 +146,7 @@ export default function GameMaker() {
   function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
     const nodeDataTemp = nodeData;
 
-    if (createNewNodeGameType == "") {
+    if (createNewNodeGameType === "") {
       console.log("Game type is required.") //TODO
       return;
     }
@@ -200,7 +198,7 @@ export default function GameMaker() {
     let i = 0;
     const nodeDataTemp = nodeData;
     for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == nodeToRevert) {
+      if (nodeDataTemp[i].nodeName === nodeToRevert) {
         nodeDataTemp[i].display = true;
       }
     }
@@ -217,30 +215,30 @@ export default function GameMaker() {
     let i = 0;
     //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
 
-    if (sourceNodeName == "" && toNodeName == "") {
+    if (sourceNodeName === "" && toNodeName === "") {
       console.log("Sourec Node and Destination Node are required."); //TODO test
       return;
     }
 
-    if (sourceNodeName == "") {
+    if (sourceNodeName === "") {
       console.log("Source Node is required."); //TODO test 
       return;
     }
 
-    if (toNodeName == "") {
+    if (toNodeName === "") {
       console.log("Destination Node is required."); //TODO test 
       return;
     }
 
     for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == sourceNodeName) {
+      if (nodeDataTemp[i].nodeName === sourceNodeName) {
         fromNodeIndex = i;
       }
-      if (nodeDataTemp[i].nodeName == toNodeName) {
+      if (nodeDataTemp[i].nodeName === toNodeName) {
         toNodeIndex = i;
       }
     }
-    if (fromNodeIndex != -1 && toNodeIndex != -1) {
+    if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
       if (nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
         console.log("Warning: the two nodes are already linked"); //TODO test
       } else {
@@ -260,29 +258,29 @@ export default function GameMaker() {
     let fromNodeIndex = -1, toNodeIndex = -1;
     let i = 0;
 
-    if (sourceNodeName == "" && toNodeName == "") {
+    if (sourceNodeName === "" && toNodeName === "") {
       console.log("Sourec Node and Destination Node are required."); //TODO test
       return;
     }
 
-    if (sourceNodeName == "") {
+    if (sourceNodeName === "") {
       console.log("Source Node is required."); //TODO test 
       return;
     }
 
-    if (toNodeName == "") {
+    if (toNodeName === "") {
       console.log("Destination Node is required."); //TODO test 
       return;
     }
     for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == sourceNodeName) {
+      if (nodeDataTemp[i].nodeName === sourceNodeName) {
         fromNodeIndex = i;
       }
-      if (nodeDataTemp[i].nodeName == toNodeName) {
+      if (nodeDataTemp[i].nodeName === toNodeName) {
         toNodeIndex = i;
       }
     }
-    if (fromNodeIndex != -1 && toNodeIndex != -1) {
+    if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
       if (!nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
         console.log("Warning: the two nodes are not linked ..."); //TODO test
       } else {
@@ -290,7 +288,7 @@ export default function GameMaker() {
         let j =0;
         let newArr = [];
         for (; j < nodeDataTemp[fromNodeIndex].nextNodes.length; j++) {
-          if (nodeDataTemp[fromNodeIndex].nextNodes[j] != toNodeIndex) {
+          if (nodeDataTemp[fromNodeIndex].nextNodes[j] !== toNodeIndex) {
             newArr.push(nodeDataTemp[fromNodeIndex].nextNodes[j]);
           }
         }
@@ -317,7 +315,7 @@ export default function GameMaker() {
     const nodeDataTemp = nodeData;
     let deletedNodeIndex = 0;
     for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName == nodeToDelete) {
+      if (nodeDataTemp[i].nodeName === nodeToDelete) {
         nodeDataTemp[i].display = false; // "undisplay" this deleted node
         deletedNodeIndex = i;
       }
@@ -330,7 +328,7 @@ export default function GameMaker() {
         let j = 0;
         let newArr = [];
         for (; j < nodeDataTemp[i].nextNodes.length; j++) {
-          if (nodeDataTemp[i].nextNodes[j] != deletedNodeIndex) {
+          if (nodeDataTemp[i].nextNodes[j] !== deletedNodeIndex) {
             newArr.push(nodeDataTemp[i].nextNodes[j]);
           }
         }
@@ -338,7 +336,7 @@ export default function GameMaker() {
       }
 
       //also remove all nodes in "deletedNodeIndex"'s node
-      if (i == deletedNodeIndex) {
+      if (i === deletedNodeIndex) {
         nodeDataTemp[deletedNodeIndex].nextNodes = [];
       }
 
@@ -377,9 +375,9 @@ export default function GameMaker() {
 
     let project = "";
     if (state != null) {
-      if (state.selected_project_name != null && state.selected_project_name!= undefined) {
+      if (state.selected_project_name !== null && state.selected_project_name!== undefined) {
         project  = state.selected_project_name;
-        if (project.trim() == "") {
+        if (project.trim() === "") {
           return;
         }
         updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
@@ -477,7 +475,7 @@ export default function GameMaker() {
 
               );
             })}
-            {nodeData[nodeIndex].display == true && 
+            {nodeData[nodeIndex].display === true && 
             <rect
               key={nodeData[nodeIndex].nodeName}
               className="game_node_vis"
@@ -490,7 +488,7 @@ export default function GameMaker() {
               onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
             />
             }
-            {nodeData[nodeIndex].display == true && 
+            {nodeData[nodeIndex].display === true && 
             <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
               {nodeData[nodeIndex].nodeName}
             </text>
@@ -502,7 +500,7 @@ export default function GameMaker() {
       </svg>
 
 
-      {clickedNode != "" && 
+      {clickedNode !== "" && 
     <div>
     <button 
       className="setting_item"
@@ -642,8 +640,8 @@ export default function GameMaker() {
     <label> Next Node: </label>
     <select value={logicSplitter_nextNode} onChange={()=>{console.log("logic-splitter: selected destination", logicSplitter_nextNode);}}>
       {nodeData.map((item, index) => {
-      if (nodeData[index].display == false) {
-        return;
+      if (nodeData[index].display === false) {
+        return "false";
       }
       return (
         <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
@@ -674,8 +672,8 @@ export default function GameMaker() {
     <select onChange={addConnectionToNode} value={toNodeName}>
     <option value="" key=""> -- Select Destination Node -- </option> 
     {nodeData.map((nextIndex, index) => {
-      if (nodeData[index].display == false) {
-        return;
+      if (nodeData[index].display === false) {
+        return "false";
       }
       return (
         <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
@@ -716,8 +714,8 @@ export default function GameMaker() {
       <select value={nodeToRevert} onChange={addRevertingNode}>
         <option value="" key=""> -- Deleted Nodes -- </option> 
         {nodeData.map((nextIndex, index) => {
-          if (nodeData[index].display == true) {
-            return;
+          if (nodeData[index].display === true) {
+            return "true";
           } 
       return (
         <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>

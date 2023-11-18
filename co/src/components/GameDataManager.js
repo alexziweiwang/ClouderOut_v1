@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import styles from './webpage.css';
-
+import { useState } from 'react';
 
 export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
     let modalStyleName = "modalBackboard";
@@ -103,6 +101,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             if (key !== obj["name"]) {
                 tempMap[key] = usingGameData[key];
             }
+            return tempMap;
         });
         setUsingGameData(tempMap);
         //TODO later: change to cloud db
@@ -165,6 +164,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 }
                 newGameData[k] = newObj;
             }
+            return newGameData;
         });
 
         setUsingGameData(newGameData);
@@ -212,12 +212,12 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                                 {usingGameData[key]["default_value"] === true ? "True" : usingGameData[key]["default_value"] === false ? "False" : usingGameData[key]["default_value"]}
                             
                             </td>}
-                            {(editLineDisplay === key && editAreaOpen == true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue}></input></td>}
+                            {(editLineDisplay === key && editAreaOpen === true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue}></input></td>}
 
                             {(editLineDisplay === "") && <td>
                                 <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
                             </td>}
-                            {(editLineDisplay === key && editAreaOpen == true) && <td>
+                            {(editLineDisplay === key && editAreaOpen === true) && <td>
                                 <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
                                 <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>Cancel</button>
                             </td>}

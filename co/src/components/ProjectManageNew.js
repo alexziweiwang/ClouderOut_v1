@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 

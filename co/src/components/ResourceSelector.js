@@ -1,12 +1,11 @@
-import styles from './webpage.css';
 import { useState } from "react";
-import { submitFileVM, getRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
+import { getRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
-    if (isDisplay == true) {
+    if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
     } else {
         modalStyleName = "displayNone modalBackboard";
@@ -47,7 +46,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li className={clickedFileName == cloudFileList[index]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
+                        <li className={clickedFileName === cloudFileList[index]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
                             itemClicked(index);
                         }}>{item}</li>
                     ))}

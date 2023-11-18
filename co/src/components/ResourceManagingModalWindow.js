@@ -1,4 +1,3 @@
-import styles from './webpage.css';
 import { useState } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 
@@ -6,7 +5,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
-    if (isDisplay == true) {
+    if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
     } else {
         modalStyleName = "displayNone modalBackboard";
@@ -20,7 +19,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     function submitFile() {
-        if (fileSelected == "") {
+        if (fileSelected === "") {
             console.log("File NOT chosen");
             return;
         }
