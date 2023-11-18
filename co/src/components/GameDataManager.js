@@ -21,6 +21,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     const [usingGameData, setUsingGameData] = useState(gameData);
     const [editLineDisplay, setEditLineDisplay] = useState("");
     const [editAreaOpen, setEditAreaOpen] = useState(false);
+    const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
@@ -102,21 +103,56 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     }
 
     function editListItem(obj) {
-        if (editAreaOpen === false) {
+       
         console.log("editing game-data: " , obj); //TODO 
+        console.log("before editing: " , usingGameData); //TODO
+
         setEditLineDisplay(obj["name"]);
+        setUpdatedDefaultValue(obj["default_value"]);
+
         //TODO display editing panel
         //TODO update locally
         //TODO update to cloud db
         
-        }
-        setEditAreaOpen(!editAreaOpen);
+        
+        setEditAreaOpen(true);
     }
 
     function saveTableChanges() {
-        //TODO validation? then save changes? 
+        //TODO validation? then save changes? for number & boolean types
+        updateVarDefaultValue();
         setEditAreaOpen(false);
+        setEditLineDisplay("");
     }
+    function editVarDefaultValue(event) {
+        setUpdatedDefaultValue(event.target.value);
+    }
+
+    function updateVarDefaultValue() {
+        if (editLineDisplay === "") {
+            console.log("error: empty editing."); //TODO
+            return;
+        }
+
+        console.log("updateVarDefaultValue(): ");
+        let newGameData = {};
+        Object.keys(usingGameData).map((k) => {
+            console.log("each", k, "...", usingGameData[k]);
+            if (k !== editLineDisplay) {
+                newGameData[k] = usingGameData[k];
+            } else {
+                const newObj = {
+                    "name": usingGameData[k]["name"],
+                    "data_type": usingGameData[k]["data_type"],
+                    "default_value": updatedDefaultValue
+                }
+                newGameData[k] = newObj;
+            }
+        });
+
+        setUsingGameData(newGameData);
+    }
+
 
     return (
     <div className={modalStyleName}>
@@ -154,14 +190,12 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     
                         return (
                             <tr key={key}>
-                            {(editLineDisplay !== key) && <td>{key}</td>}
-                            {(editLineDisplay === key && editAreaOpen == true) && <td><input></input></td>}
+                            <td>{key}</td>
 
-                            {(editLineDisplay !== key) && <td>{usingGameData[key]["data_type"]}</td>}
-                            {(editLineDisplay === key && editAreaOpen == true) && <td><input></input></td>}
+                            <td>{usingGameData[key]["data_type"]}</td>
 
                             {(editLineDisplay !== key) && <td>{usingGameData[key]["default_value"]}</td>}
-                            {(editLineDisplay === key && editAreaOpen == true) && <td><input></input></td>}
+                            {(editLineDisplay === key && editAreaOpen == true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue}></input></td>}
 
                             {(editLineDisplay === "") && <td>
                                 <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
