@@ -140,9 +140,9 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
         let updatedVal = updatedDefaultValue;
         if (usingGameData[editLineDisplay]["data_type"] === "boolean") {
-            if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y") {
+            if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
                 updatedVal = true;
-            } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N") {
+            } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
                 updatedVal = false;
             } else {
                 console.log("error: please enter valid boolean value."); //TODO test
@@ -176,11 +176,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
     <div className="modalArea3">
         <p className="plans">
-            1. TODO: table-like looking for list items -- improve for UX
-            <br></br>(change list to table with rows)
-            <br></br>
-            2. TODO: table-item operation: edit (name, type, default value)
-            <br></br> delete: consider revert options
+            TODO: table-item operation: delete: consider revert options
 
 
         </p>

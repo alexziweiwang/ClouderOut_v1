@@ -52,6 +52,13 @@ export default function PreviewWindow({previewPieceNum}) {
 
             </p>
 
+            <p className="plans">
+                * idea: provide "game-data-viewer" for authors:
+                <br></br> at all points (pieces) of the game, the author can check game-data for that progress to keep track of everything in game
+                <br></br> toggle in preview-related component
+            </p>
+
+
             </div>
 
 
