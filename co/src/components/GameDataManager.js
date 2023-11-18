@@ -117,11 +117,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         setEditLineDisplay(obj["name"]);
         setUpdatedDefaultValue(obj["default_value"]);
 
-        //TODO display editing panel
-        //TODO update locally
         //TODO update to cloud db
-        
-        
+                
         setEditAreaOpen(true);
     }
 
@@ -141,6 +138,19 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
             return;
         }
 
+        let updatedVal = updatedDefaultValue;
+        if (usingGameData[editLineDisplay]["data_type"] === "boolean") {
+            if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y") {
+                updatedVal = true;
+            } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N") {
+                updatedVal = false;
+            } else {
+                console.log("error: please enter valid boolean value."); //TODO test
+                return;
+            }
+
+        }
+
         console.log("updateVarDefaultValue(): ");
         let newGameData = {};
         Object.keys(usingGameData).map((k) => {
@@ -151,7 +161,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 const newObj = {
                     "name": usingGameData[k]["name"],
                     "data_type": usingGameData[k]["data_type"],
-                    "default_value": updatedDefaultValue
+                    "default_value": updatedVal
                 }
                 newGameData[k] = newObj;
             }
