@@ -1,8 +1,5 @@
 import {fetchProjectList, revertProject, deleteProject} from '../models/ProjectManagerModel';
 
-import db from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection } from "firebase/firestore"; 
-
 /* Returns list of project names according to given parameter: untrashed or trashed */
 export async function fetchProjectListVM() {
     
@@ -11,7 +8,7 @@ export async function fetchProjectListVM() {
     let resUntrashedArr = [];
     let resTrashedArr = [];
     res.forEach((doc) => {
-        if (doc.data().trashed == false) {
+        if (doc.data().trashed === false) {
             resUntrashedArr.push(doc.id);
         } else {
             resTrashedArr.push(doc.id);

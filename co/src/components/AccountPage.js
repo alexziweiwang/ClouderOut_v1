@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import { getProjectGameDataVM } from '../viewmodels/AccountViewModel';
 

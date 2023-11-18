@@ -8,7 +8,7 @@ export async function getProjectGameData({projectName, uname}) {
   if (!userDirSnap.exists()) {
     return;
   }
-  if (projectName == "" || projectName == undefined) {
+  if (projectName === "" || projectName === undefined) {
     return;
   }
 
@@ -29,7 +29,7 @@ export async function updateGameData({projectName, uname, gameData}) {
   if (!userDirSnap.exists()) {
     return;
   }
-  if (projectName == "" || projectName == undefined) {
+  if (projectName === "" || projectName === undefined) {
     return;
   }
 

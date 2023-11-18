@@ -83,7 +83,7 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
      
             <div className="parallelFrame">
-            {browseList == false && <div className="userChoice">
+            {browseList === false && <div className="userChoice">
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
              
@@ -91,7 +91,7 @@ export default function ConversationNodeEditingPanel() {
                 <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
-            {browseList == true &&<div className="pieceManager">
+            {browseList === true &&<div className="pieceManager">
                  <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex}/>
                  <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 

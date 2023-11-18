@@ -706,7 +706,6 @@ export default function GameMaker() {
 
       {displayRevertArea && 
         <GiTrashCan onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}  className="iconButtonOn"/>
-      
       }
 
       {displayRevertArea &&

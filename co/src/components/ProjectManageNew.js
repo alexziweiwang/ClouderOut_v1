@@ -19,7 +19,7 @@ export default function ProjectManageNew() {
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
-      if (firstTimeEnter == true) {
+      if (firstTimeEnter === true) {
         loadProjectListFromCloud();
         setFirstTimeEnter(false);
       }
@@ -38,7 +38,7 @@ export default function ProjectManageNew() {
     
     function createNewProjectEdit() {
         console.log("adding a new project: " + addedNewProjName);
-        if (addedNewProjName == "") {
+        if (addedNewProjName === "") {
           return;
         }
         createNewProjectToCloud();
@@ -49,7 +49,7 @@ export default function ProjectManageNew() {
         
     function createNewProjectReturn() {
       console.log("adding a new project: " + addedNewProjName);
-      if (addedNewProjName == "") {
+      if (addedNewProjName === "") {
         return;
       }
       createNewProjectToCloud();
@@ -70,14 +70,14 @@ export default function ProjectManageNew() {
       //            genre field (later)
       
     
-      const result = projList.filter((name) => name == addedNewProjName);
+      const result = projList.filter((name) => name === addedNewProjName);
       if (result.length > 0) {
         console.log("warning: duplicate name");
         //if already contains this name
         //TODO trigger flag to false: don't navigate
       }
       
-      if (addedAuthorInfo.length == 0) {
+      if (addedAuthorInfo.length === 0) {
         console.log("warning: author info can't be empty");
         //TODO trigger flag to false: don't navigate
       }
@@ -112,18 +112,18 @@ export default function ProjectManageNew() {
     function changeGameScreenSize(event) {
       const input = event.target.value;
       if (event != null && event.target != null && event.target.value!= null) {
-        if (input == "h450_800") {
+        if (input === "h450_800") {
           //TODO pass into cloud: project info
           console.log("h450_800");
-        } else if (input == "v800_450") {
+        } else if (input === "v800_450") {
           //TODO pass into cloud: project info
           console.log("v800_450");
 
-        } else if (input == "h600_800") {
+        } else if (input === "h600_800") {
           //TODO pass into cloud: project info
           console.log("h600_800");
 
-        } else if (input == "v800_600") {
+        } else if (input === "v800_600") {
           //TODO pass into cloud: project info
           console.log("v800_600");
         } else {

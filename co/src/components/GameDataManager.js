@@ -6,7 +6,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
 
-    if (isDisplay == true) {
+    if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
     } else {
         modalStyleName = "displayNone modalBackboard";
@@ -39,11 +39,11 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
         let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
         
-        if (newGameDataType == "isBoolean") {
+        if (newGameDataType === "isBoolean") {
             newObj = {"name": newVarName, "default_value": defaultNewBooleanValue, "data_type": "boolean"};
-        } else if (newGameDataType == "isNumber") {
+        } else if (newGameDataType === "isNumber") {
             newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "number"};
-        } else if (newGameDataType == "isText") {
+        } else if (newGameDataType === "isText") {
             newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "string"};
         }
 
@@ -65,7 +65,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     function selectOnNewGdataType(event) {
         setNewGameDataType(event.target.value);
         console.log("selected:", event.target.value); //TODO testing
-        if (event.target.value == "isBoolean") {
+        if (event.target.value === "isBoolean") {
             setIsNewDdataTypeBoolean(true);
         } else {
             setIsNewDdataTypeBoolean(false);
@@ -73,7 +73,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     }
 
     function selectOnDefaultBoolean(event) {
-        if (event.target.value == "isTrue") {
+        if (event.target.value === "isTrue") {
             setDefaultNewBooleanValue(true);
         } else {
             setDefaultNewBooleanValue(false);
@@ -92,7 +92,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         //change locally for UI
         let tempMap = {};
         Object.keys(usingGameData).map((key) => {
-            if (key != obj["name"]) {
+            if (key !== obj["name"]) {
                 tempMap[key] = usingGameData[key];
             }
         });
@@ -102,7 +102,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     }
 
     function editListItem(obj) {
-        if (editAreaOpen == false) {
+        if (editAreaOpen === false) {
         console.log("editing game-data: " , obj); //TODO 
         setEditLineDisplay(obj["name"]);
         //TODO display editing panel
@@ -148,7 +148,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                          
                     </li>
                    
-                   {(editAreaOpen && editLineDisplay == key) && 
+                   {(editAreaOpen && editLineDisplay === key) && 
                     <li>Area of Editing for this item...
 
                         <button>OK</button>

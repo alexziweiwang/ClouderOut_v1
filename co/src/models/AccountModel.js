@@ -1,5 +1,5 @@
 import db from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
+import { doc, getDoc } from "firebase/firestore"; 
 
 export async function getProjectGameData({uname}) {
     // fetch account information according to provided username
