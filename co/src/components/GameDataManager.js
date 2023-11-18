@@ -15,7 +15,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
     const [newGameDataType, setNewGameDataType] = useState("isNumber");
     const [isNewGdataTypeBoolean, setIsNewDdataTypeBoolean] = useState(false);
-    const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState(true);
+    const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
     const [usingGameData, setUsingGameData] = useState(gameData);
@@ -27,16 +27,21 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         setDisplayNewVarArea(!displayNewVarArea);
         setNewGameDataType("isNumber");
         setNewVarName("");
-        setDefaultNewBooleanValue(false);
+        setDefaultNewBooleanValue("invalid");
         setDefaultNewValue(0);
         setIsNewDdataTypeBoolean(false);
     }
 
     function addVarPair() {
+        if (defaultNewBooleanValue === "invalid") {
+            return;
+        }
+
         if (usingGameData.hasOwnProperty(newVarName)) {
             console.log("Error: duplicate game-data name."); //TODO test
             return;
         }
+
 
         let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
         
@@ -76,8 +81,10 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     function selectOnDefaultBoolean(event) {
         if (event.target.value === "isTrue") {
             setDefaultNewBooleanValue(true);
-        } else {
+        } else if (event.target.value === "isFalse") {
             setDefaultNewBooleanValue(false);
+        } else {
+            setDefaultNewBooleanValue("invalid");
         }
     }
 
@@ -194,7 +201,11 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
                             <td>{usingGameData[key]["data_type"]}</td>
 
-                            {(editLineDisplay !== key) && <td>{usingGameData[key]["default_value"]}</td>}
+                            {(editLineDisplay !== key) && 
+                            <td>
+                                {usingGameData[key]["default_value"] === true ? "True" : usingGameData[key]["default_value"] === false ? "False" : usingGameData[key]["default_value"]}
+                            
+                            </td>}
                             {(editLineDisplay === key && editAreaOpen == true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue}></input></td>}
 
                             {(editLineDisplay === "") && <td>
@@ -240,6 +251,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     }
                     {isNewGdataTypeBoolean && 
                     <select value={defaultNewBooleanValue} onChange={selectOnDefaultBoolean}>
+                        <option value="" key=""> True or False </option>
                         <option value="isTrue" key="true"> True </option>
                         <option value="isFalse" key="false"> False </option>
                     </select>
