@@ -113,6 +113,10 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
         setEditAreaOpen(!editAreaOpen);
     }
 
+    function saveTableChanges() {
+        //TODO validation? then save changes? 
+        setEditAreaOpen(false);
+    }
 
     return (
     <div className={modalStyleName}>
@@ -140,7 +144,11 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                             <th>Type</th>
                             <th>Default Value</th>
                             <th>                                
-                                <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(true);}}>Edit</button>
+                                {!editAreaOpen && <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(true);}}>Edit</button>}
+                                <div className="parallelFrame">
+                                    {editAreaOpen && <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>}
+                                    {editAreaOpen && <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(false);}}>Cancel</button>}
+                                </div>
                             </th>
                         </tr>
                     </thead>
@@ -151,11 +159,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                             <td>{key}</td>
                             <td>{usingGameData[key]["data_type"]}</td>
                             <td>{usingGameData[key]["default_value"]}</td>
-                            <td>
-                                <div className="parallelFrame">
-                                <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
-                                </div>
-                            </td>
+                            <td></td>
                             </tr>
                         );
                     })}
@@ -166,10 +170,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                             <td><input></input></td>
                             <td><input></input></td>
                             <td>
-                                <div className="parallelFrame">
-                                <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(false);}}>Save</button>
-                                <button className="cursor_pointer" onClick={()=>{setEditAreaOpen(false);}}>Cancel</button> 
-                                </div>
+                            <button className="cursor_pointer" onClick={()=>{console.log("TODO: delete item");}}>Delete</button>
+
                             </td>
                             </tr>
                         );
