@@ -5,6 +5,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './webpage.css';
 import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
+import { GiTrashCan } from "react-icons/gi";
+
 
 
 export default function GameMaker() {
@@ -698,8 +700,14 @@ export default function GameMaker() {
   <br></br><br></br><br></br><br></br><br></br>
   <p className="plans"> revert options : later change into collapsable section with simple icon</p>
     <div>
-      {!displayRevertArea && <p className="sectionHeader2" onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}>Revert Node-Deletion?</p>}
-      {displayRevertArea && <p className="sectionHeader2" onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}>Collapse Revert Node-Deletion</p>}
+      {!displayRevertArea && 
+        <GiTrashCan onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}  className="iconButton"/>
+      }
+
+      {displayRevertArea && 
+        <GiTrashCan onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}  className="iconButtonOn"/>
+      
+      }
 
       {displayRevertArea &&
       <>

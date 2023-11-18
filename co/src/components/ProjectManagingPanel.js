@@ -93,11 +93,6 @@ export default function ProjectManagerPanel() {
    
         <br></br><br></br><br></br>
 
-        
-        <p className="plans"> TODO: add "trash can area" for proejcts
-          <br></br> design: each project's field: add "trashed": true/false
-          <br></br> on cloud: testing data updated with "trashed" field
-        </p>
         <div>
         <label>Trashed Project(s):</label>
         <br></br>
