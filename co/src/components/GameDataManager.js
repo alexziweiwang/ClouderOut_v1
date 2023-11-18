@@ -133,31 +133,49 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
         <div className="gameDataDisplayArea">
             <div className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}>
-            <ul>
-                <li className="clickableListItem" key="-">Variable Name, Type, Default Value</li>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable Name</th>
+                            <th>Type</th>
+                            <th>Default Value</th>
+                            <th>[Operation]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {Object.keys(usingGameData).map((key) => {
+                        return (
+                            <><tr>
+                            <td>{key}</td>
+                            <td>{usingGameData[key]["data_type"]}</td>
+                            <td>{usingGameData[key]["default_value"]}</td>
+                            <td>
+                                <div className="parallelFrame">
+                                <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
+                                <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
+                                </div>
+                            </td>
+                            </tr>
+                            
+                                 
+                            {(editAreaOpen && editLineDisplay === key) && 
+                            <tr>
+                                <label>Area of Editing for this item...</label>
 
-                {
-                Object.keys(usingGameData).map((key) => {
-                return (
-                    <>
-                    <li className="clickableListItem" key={key}>{key},[{usingGameData[key]["data_type"]}], {usingGameData[key]["default_value"]}
-                        <div className="pairGroup2 buttonRight">
-                            <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
-                            <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button> 
-                        </div>
-                         
-                    </li>
-                   
-                   {(editAreaOpen && editLineDisplay === key) && 
-                    <li>Area of Editing for this item...
+                                <button>OK</button>
+                            </tr>
+                            }
+                            
+                            
+                            </>
+                        );
 
-                        <button>OK</button>
-                    </li>
-                    }
-                    </>
-                )
-                })}
-            </ul>
+                    })}
+                        
+                    </tbody>
+
+                </table>
+        
             </div>
             
             {!displayNewVarArea && 
