@@ -63,4 +63,4 @@
 - 2023-Nov-20: List action items for next round of development, test and debug
 - 2023-Nov-20: Handle cloud db permission issue
 - 2023-Nov-20: Explore better design and UX for resource manager
-
+- 2023-Nov-20: Explore key press for piece-manager
