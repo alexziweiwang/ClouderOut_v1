@@ -60,5 +60,6 @@
 - 2023-Nov-16: Design user page layout and modes for the tool, consider UX
 - 2023-Nov-16: Consider UI & UX: icon using and button content standards
 
+- 2023-Nov-20: List action items for next round of development, test and debug
 
 
