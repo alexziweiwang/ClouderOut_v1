@@ -31,7 +31,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     }
 
     function addVarPair() {
-        if (defaultNewBooleanValue === "invalid") {
+        if (newGameDataType === "isBoolean" && defaultNewBooleanValue === "invalid") {
+            console.log("invalid boolean");
             return;
         }
 
@@ -57,6 +58,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
           ...usingGameData,
           [naming]: newObj,
         };
+
+        console.log("adding new var: ", gameDataTemp); //TODO test
     
         setUsingGameData(gameDataTemp); /* update local  data structure */
         resetNeedCloudData();
@@ -216,6 +219,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
                             {(editLineDisplay === "") && <td>
                                 <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
+                                <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button>
                             </td>}
                             {(editLineDisplay === key && editAreaOpen === true) && <td>
                                 <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
