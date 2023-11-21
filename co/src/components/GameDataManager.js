@@ -233,14 +233,14 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
 
                 </table>
         
-            </div>
-            
+           
+    
             {!displayNewVarArea && 
-                <div className="addNewGameDataAreaClosed">
-                <button onClick={showNewVarForm}> + New Variable </button>
+                <div className="addNewGameDataAreaClosed areaLeft">
+                    <button onClick={showNewVarForm}> + New Variable </button>
                 </div>}
             {displayNewVarArea && 
-                <div className="addNewGameDataArea">
+                <div className="addNewGameDataArea areaLeft">
                     <label>Variable Name: </label>
                     <input type="text" value={newVarName} onChange={changeNewVarName}/>
                     <br></br>
@@ -269,8 +269,9 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                 </div>
 
             }
+         
 
-
+            </div>
         </div>
 
 
