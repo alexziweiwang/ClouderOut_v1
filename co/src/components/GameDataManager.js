@@ -205,7 +205,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     {Object.keys(usingGameData).map((key) => {
                     
                         return (
-                            <tr key={key}>
+                            <tr key={key} className="tableItem">
                             <td>{key}</td>
 
                             <td>{usingGameData[key]["data_type"]}</td>
@@ -215,13 +215,13 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                                 {usingGameData[key]["default_value"] === true ? "True" : usingGameData[key]["default_value"] === false ? "False" : usingGameData[key]["default_value"]}
                             
                             </td>}
-                            {(editLineDisplay === key && editAreaOpen === true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue}></input></td>}
+                            {(editLineDisplay === key && editAreaOpen === true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
 
-                            {(editLineDisplay === "") && <td>
+                            {(editLineDisplay === "") && <td className="parallelFrame">
                                 <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
                                 <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button>
                             </td>}
-                            {(editLineDisplay === key && editAreaOpen === true) && <td>
+                            {(editLineDisplay === key && editAreaOpen === true) && <td className="parallelFrame">
                                 <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
                                 <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>Cancel</button>
                             </td>}

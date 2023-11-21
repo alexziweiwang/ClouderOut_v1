@@ -371,12 +371,22 @@ th,td {
     background-color: rgb(235, 232, 227);
     cursor: pointer;
     color:rgb(7, 7, 7);
+    height: 15px;
 }
+
+.tableItem:hover {
+    background-color: rgb(231, 222, 237);
+    cursor: pointer;
+    color:rgb(7, 7, 7);
+    height: 15px;
+}
+
 
 .tableItemSelected {
     background-color: rgb(173, 178, 193);
     cursor: pointer;
     color:rgb(7, 7, 7);
+    height: 15px;
 }
 
 .scrollableArea {
@@ -407,4 +417,13 @@ th,td {
     position: absolute;
     left: 0px;
     width: 200px;
+}
+
+.editInput {
+    width: 62px;
+    height: 70%;
+}
+
+td {
+    height: 15px;
 }
