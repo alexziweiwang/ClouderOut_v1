@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { submitFileVM, getRmFileListVM, addToRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -23,9 +23,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             console.log("File NOT chosen");
             return;
         }
-        submitFileVM({file: fileSelected , uname: username});
+        const url = submitFileVM({file: fileSelected , uname: username});
         const fileName = `${username}_${fileSelected.name}`;
-        addToRmFileListVM({uname: username, filetitle: fileName});
+        addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url});
         fetchRmFileList();
     }
 
@@ -34,6 +34,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setCloudFileList(fileList);
         console.log("modalwindow: fileList:"); //TODO test
         console.log(fileList); //TODO test
+
+
+        // const url = await fetchUrlByFilenameVM({fullFilename: "user002_test_img.jpeg"});
+        // console.log("sample, user002_test_img.jpeg = ", url); //TODO test
+
+
     }
   
     return (

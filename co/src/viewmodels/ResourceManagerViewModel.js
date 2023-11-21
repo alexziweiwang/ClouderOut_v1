@@ -3,7 +3,8 @@ import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename } from "
 export function submitFileVM({file, uname}) {
     console.log("submitFile VM :::"); //TODO test
 
-    submitFile({file, uname});
+    const url = submitFile({file, uname});
+    return url;
 }
 
 export async function getRmFileListVM({uname}) {
@@ -11,11 +12,11 @@ export async function getRmFileListVM({uname}) {
     return arr;
 }
 
-export async function addToRmFileListVM({uname, filetitle}) {
-    addToRmFileList({uname, filetitle});
+export async function addToRmFileListVM({uname, filetitle, fileUrl}) {
+    addToRmFileList({uname, filetitle, fileUrl});
 }
 
 export async function fetchUrlByFilenameVM({fullFilename}) {
-    const url = await fetchUrlByFilename({fullFilename});
+    const url = await submitFile({fullFilename});
     return url;
 }

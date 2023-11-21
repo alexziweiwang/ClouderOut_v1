@@ -10,6 +10,7 @@ export function submitFile({file, uname}) {
     const fileRef = ref(storage, `rm001test/${fileName}`);
     uploadBytes(fileRef, file);
     console.log("document [", fileName, "] submitted."); //TODO test
+    return fileRef;
 }
 
 export async function getRmFileList({uname}) {
@@ -29,7 +30,7 @@ export async function getRmFileList({uname}) {
     return dataContent;
 }
 
-export async function addToRmFileList({uname, filetitle}) {
+export async function addToRmFileList({uname, filetitle, fileUrl}) {
     const docRef = doc(db, "user_projects", uname);
     const docSnap = await getDoc(docRef);
   
@@ -37,7 +38,10 @@ export async function addToRmFileList({uname, filetitle}) {
       return;
     }
 
+
     //TODO add filename to resource-manage file-list
+    //TODO data structure: map <k, v> is <filetitle, fileUrl>
+
 }
 
 export async function fetchUrlByFilename({fullFilename}) {
