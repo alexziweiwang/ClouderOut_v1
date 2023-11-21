@@ -32,7 +32,7 @@ export default function ConversationNodeEditingPanel() {
             {"num": 3, "content": "c3000"}, 
             {"num": 4, "content": "d4000"}, 
             {"num": 5, "content": "e5000"}]
-    ); //TODO testing *Important* later: load from cloud
+    ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
     console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
 

@@ -128,7 +128,9 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
             if (i+1 !== pieceNumber) {
                 newPieceData.push(pieceData[i]);
             } else {
-                const updatedObj = {"num": i+1, "content": textContent};
+                
+                const updatedObj = {"num": i+1, "content": textContent}; //TODO all *detailed* setting for all fields!
+
                 newPieceData.push(updatedObj); // important: new content updated
             }
         }
