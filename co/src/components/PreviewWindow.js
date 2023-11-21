@@ -4,9 +4,9 @@ import { useState } from 'react';
 import styles from './webpage.css';
 
 
-export default function PreviewWindow({previewPieceNum}) {
+export default function PreviewWindow({ dataObj}) {
 
-    console.log("re-rendering @preview window", previewPieceNum);
+    console.log("re-rendering @preview window", dataObj);
 
     let name = "/previewwindow";
  
@@ -14,7 +14,7 @@ export default function PreviewWindow({previewPieceNum}) {
         <div className="previewWindow">
      
             <div className="preveiewArea">
-                <label> Previewing ... {previewPieceNum} </label>
+                
             <p className="plans">
                 needed data: game size and direction info setting from the user/author
                 <br></br> default:     height: 450px & width: 800px

@@ -95,7 +95,7 @@ export default function ConversationNodeEditingPanel() {
 
             </div>}
             
-            <PreviewWindow previewPieceNum={previewingIndex}/>
+            <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
             </div>
         
         </div>
