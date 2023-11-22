@@ -23,6 +23,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
     const [anotherCharpic, setAnotherCharPic] = useState(false);
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
+
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
@@ -55,9 +56,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
     }
 
     function handleTextContentEnter(event) {
-        console.log("In textarea: " + event.target.value); //TODO
         setCurrentPieceDetail({...currentPieceDetail,  "content": event.target.value});
-        console.log("Testing: currentPieceDetail = ", currentPieceDetail); //TODO test
+    }
+
+    function handleSpeakerNameEnter(event) {
+        setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": event.target.value});
     }
 
     function toggleBgPicOption() {
@@ -199,7 +202,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
                     <label>Speaker Name:  </label>
-                    <input defaultValue=""></input>
+
+
+                    <input value={currentPieceDetail["speaker_name"]} onChange={handleSpeakerNameEnter}></input>
                 </div>
                 
             }
