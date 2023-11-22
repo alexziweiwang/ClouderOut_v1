@@ -27,11 +27,12 @@ export default function ConversationNodeEditingPanel() {
     const buttonLanguageIndex = 0;
 
     const [pieceDataStructure, setPieceDatastructure] = useState([
-            {"num": 1, "content": "a1000"}, 
-            {"num": 2, "content": "b2000"}, 
-            {"num": 3, "content": "c3000"}, 
-            {"num": 4, "content": "d4000"}, 
-            {"num": 5, "content": "e5000"}]
+            {"num": 1, "content": "a1000", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}, 
+            {"num": 2, "content": "b2000", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}, 
+            {"num": 3, "content": "c3000", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}, 
+            {"num": 4, "content": "d4000", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}, 
+            {"num": 5, "content": "e5000", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}
+        ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
     console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");

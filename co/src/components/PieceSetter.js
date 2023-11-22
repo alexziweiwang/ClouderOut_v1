@@ -150,11 +150,6 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
             <button onClick={collapseAllOptions}> Collapse All </button>
             <button onClick={expandAllOptions}> Expand All </button>
         </div>
-
-        <p className="plans"> according to "pieceNumber", fetch this set of data from *local*
-        <br></br>TODO: implement cloud-local data fetching/updating control
-        </p>
-
         <br></br>
         <br></br>
 
@@ -388,6 +383,10 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
         
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <br></br>
         <button onClick={updateToCaller}>Save</button>
 
