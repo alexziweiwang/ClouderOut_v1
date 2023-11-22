@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
-export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex, updatePieceData}) {
+export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData}) {
 
     let name = "/piecemanager";
     const [pieceDataLocal, setPieceDataLocal] = useState(pieceData);
@@ -10,12 +10,24 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
     const [previewPieceNum, setPreviewPieceNum] = useState(0);
     const [highlightedPiece, setHighlightedPiece] = useState("");
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
+
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            const allPiece = getAllPieceData();
+            console.log("allpiece now is : ", allPiece);//TODO test
+            setPieceDataLocal(allPiece);
+            setFirstTimeEnter(false);
+        }
+    });
+
+      
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
         const item = {"num": number, "content": ""};
-        let pieceDataArr = pieceData;
+        let pieceDataArr = pieceDataLocal;
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
         setPieceDataLocal(pieceDataArr);
@@ -71,7 +83,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         setCurrentPieceNum(number);
         const item = {"num": number, "content": pieceDataLocal[index]["content"]};
 
-        let pieceDataArr = pieceData;
+        let pieceDataArr = pieceDataLocal;
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
         setPieceDataLocal(pieceDataArr);
@@ -122,7 +134,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
     <button onClick={createNewListItem}>Add New Row</button>
 
     <br></br><br></br>
-    <button onClick={()=>{updatePieceData(pieceData);}}>Save</button>
+    <button onClick={()=>{updatePieceData(pieceDataLocal);}}>Save</button>
 
         </div>
     );
