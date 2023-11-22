@@ -61,6 +61,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
 
     function handleSpeakerNameEnter(event) {
         setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": event.target.value});
+        console.log("entered new speaker_name: ", event.target.value);
     }
 
     function toggleBgPicOption() {
@@ -151,9 +152,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
                 newPieceData.push(allPieceData[i]);
             } else {
                 
-                const updatedObj = currentPieceDetail; //TODO all *detailed* setting for all fields!
-                console.log("Saving...", updatedObj); //TODO test
-                newPieceData.push(updatedObj); // important: new content updated
+                console.log("Saving...", currentPieceDetail); //TODO test
+                newPieceData.push(currentPieceDetail); // important: new content updated
             }
         }
         updatePieceData(newPieceData);
@@ -199,10 +199,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
 
             {speakerNameAdd && 
                 <div>
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": ""});}}> reset </button>
                     <br></br>
                     <label>Speaker Name:  </label>
-
 
                     <input value={currentPieceDetail["speaker_name"]} onChange={handleSpeakerNameEnter}></input>
                 </div>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './webpage.css';
 
 
-export default function PreviewWindow({ dataObj}) {
+export default function PreviewWindow({dataObj}) {
 
     console.log("re-rendering @preview window", dataObj);
 
