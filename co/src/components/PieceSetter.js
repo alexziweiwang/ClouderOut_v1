@@ -25,7 +25,24 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
     const [anotherCharpic, setAnotherCharPic] = useState(false);
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
-
+    const [currentPieceDetail, setCurrentPieceDetail] = useState(
+        {"num": pieceNum, 
+        "content": pieceData[pieceNum-1]["content"], 
+        "speaker_name": "", 
+        "bgp_source_link": "", 
+        "bgp_pos_x": 0, 
+        "bgp_pos_y": 0, 
+        "bgp_width": 800, 
+        "bgp_height": 450, 
+        "chp_arr": [], 
+        "btn_arr": [], 
+        "bgm_source_link": "", 
+        "bgm_loop": true, 
+        "bgm_volume": 100, 
+        "vl_source_link": "", 
+        "vl_volume": 100}
+    );
+    
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
@@ -42,7 +59,8 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
     function handleTextContentEnter(event) {
         console.log("In textarea: " + event.target.value); //TODO
         setTextContent(event.target.value);
-      
+        setCurrentPieceDetail({...currentPieceDetail,  "content": event.target.value});
+        console.log("Testing: currentPieceDetail = ", currentPieceDetail); //TODO test
     }
 
     function toggleBgPicOption() {
@@ -129,8 +147,8 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
                 newPieceData.push(pieceData[i]);
             } else {
                 
-                const updatedObj = {"num": i+1, "content": textContent}; //TODO all *detailed* setting for all fields!
-
+                const updatedObj = currentPieceDetail; //TODO all *detailed* setting for all fields!
+                console.log("Saving...", updatedObj); //TODO test
                 newPieceData.push(updatedObj); // important: new content updated
             }
         }
