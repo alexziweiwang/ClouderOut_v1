@@ -66,6 +66,7 @@ export default function ConversationNodeEditingPanel() {
     function changePieceData(updatedPieceData) {
         console.log("in editing-panel: new data now is ...", updatedPieceData);
         setPieceDatastructure(updatedPieceData);
+        //TODO update to cloud
     }
 
     function getPreviewingIndex(index) {
@@ -90,7 +91,7 @@ export default function ConversationNodeEditingPanel() {
 
             </div>}
             {browseList === true &&<div className="pieceManager">
-                 <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex}/>
+                 <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData}/>
                  <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}

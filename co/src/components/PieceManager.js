@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 
 
-export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex}) {
+export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex, updatePieceData}) {
 
     let name = "/piecemanager";
     const [pieceDataLocal, setPieceDataLocal] = useState(pieceData);
@@ -120,6 +120,9 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         </tbody>
     </table>
     <button onClick={createNewListItem}>Add New Row</button>
+
+    <br></br><br></br>
+    <button onClick={()=>{updatePieceData(pieceData);}}>Save</button>
 
         </div>
     );
