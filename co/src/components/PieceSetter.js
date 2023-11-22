@@ -6,14 +6,12 @@ import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import ResourceSelector from './ResourceSelector';
 
-export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
+export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
     const navigate = useNavigate();
 
     let name = "/gamenodeconvpiecedatasec";
     const [pieceNumber, setPieceNumber] = useState(pieceNum);
     
-    const [textContent, setTextContent] = useState(pieceData[pieceNum-1]["content"]); //TODO temp
-
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
@@ -27,7 +25,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
-        "content": pieceData[pieceNum-1]["content"], 
+        "content": allPieceData[pieceNum-1]["content"], 
         "speaker_name": "", 
         "bgp_source_link": "", 
         "bgp_pos_x": 0, 
@@ -42,7 +40,7 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
         "vl_source_link": "", 
         "vl_volume": 100}
     );
-    
+
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
@@ -58,7 +56,6 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
 
     function handleTextContentEnter(event) {
         console.log("In textarea: " + event.target.value); //TODO
-        setTextContent(event.target.value);
         setCurrentPieceDetail({...currentPieceDetail,  "content": event.target.value});
         console.log("Testing: currentPieceDetail = ", currentPieceDetail); //TODO test
     }
@@ -115,8 +112,10 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
         if (pieceNumber > 1) {
             setPieceNumber(pieceNumber-1);
             //TODO change *all* form content here in display...
-            setTextContent(pieceData[pieceNumber-2]["content"]);
 
+            //TODO: fetch "pieceNumber-2"'s data            
+            //TODO temp
+            setCurrentPieceDetail(allPieceData[pieceNumber-2]);
 
         } else {
             setPieceNumber(1);
@@ -125,13 +124,15 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < pieceData.length) {
+        if (pieceNumber < allPieceData.length) {
             setPieceNumber(pieceNumber+1);
             //TODO change *all* form content here in display...
-            setTextContent(pieceData[pieceNumber]["content"]);
+            
+            setCurrentPieceDetail(allPieceData[pieceNumber]);
+
 
         } else {
-            setPieceNumber(pieceData.length);
+            setPieceNumber(allPieceData.length);
         }
     }
 
@@ -141,10 +142,10 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
         let newPieceData = [];
 
         let i = 0;
-        console.log("before changing and updateing to caller..", pieceData); //TODO test
-        for (; i < pieceData.length; i++) {
+        console.log("before changing and updateing to caller..", allPieceData); //TODO test
+        for (; i < allPieceData.length; i++) {
             if (i+1 !== pieceNumber) {
-                newPieceData.push(pieceData[i]);
+                newPieceData.push(allPieceData[i]);
             } else {
                 
                 const updatedObj = currentPieceDetail; //TODO all *detailed* setting for all fields!
@@ -182,10 +183,10 @@ export default function PieceSetter({pieceNum, pieceData, updatePieceData}) {
             <label> Text to display: </label>
             <br></br>
             <textarea
-                value={textContent}
+                value={currentPieceDetail["content"]}
                 onChange={handleTextContentEnter}
             >
-                {textContent}
+                {currentPieceDetail["content"]}
             </textarea>
 
             <br></br>

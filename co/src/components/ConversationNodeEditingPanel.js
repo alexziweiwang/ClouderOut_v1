@@ -87,7 +87,7 @@ export default function ConversationNodeEditingPanel() {
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
              
-                <PieceSetter pieceNum={pieceNumber} pieceData={pieceDataStructure} updatePieceData={changePieceData}/>
+                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData}/>
                 <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
