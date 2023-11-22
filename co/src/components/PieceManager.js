@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 
 
-export default function PieceManager({pieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData}) {
+export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData}) {
 
     let name = "/piecemanager";
-    const [pieceDataLocal, setPieceDataLocal] = useState(pieceData);
+    const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
     const [previewPieceNum, setPreviewPieceNum] = useState(0);
@@ -16,7 +16,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
     useEffect(() => {
         if (firstTimeEnter === true) {
             const allPiece = getAllPieceData();
-            console.log("allpiece now is : ", allPiece);//TODO test
+            console.log("piece manager: allpiece now is = ", allPiece);//TODO test
             setPieceDataLocal(allPiece);
             setFirstTimeEnter(false);
         }
@@ -26,7 +26,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
-        const item = {"num": number, "content": ""};
+        const item = {"num": number, "content": "", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
         let pieceDataArr = pieceDataLocal;
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
@@ -81,8 +81,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         console.log("duplicate, content = ", pieceDataLocal[index]);
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
-        const item = {"num": number, "content": pieceDataLocal[index]["content"]};
-
+        const item = {... pieceDataLocal[index],  "num": number};
         let pieceDataArr = pieceDataLocal;
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);

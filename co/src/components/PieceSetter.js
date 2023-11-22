@@ -1,17 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './webpage.css';
 import Sidebar from './Sidebar';
 import ResourceSelector from './ResourceSelector';
 
-export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
+export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData}) {
     const navigate = useNavigate();
 
     let name = "/gamenodeconvpiecedatasec";
     const [pieceNumber, setPieceNumber] = useState(pieceNum);
-    
+
+    const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
@@ -27,20 +31,29 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
-        "speaker_name": "", 
-        "bgp_source_link": "", 
-        "bgp_pos_x": 0, 
-        "bgp_pos_y": 0, 
-        "bgp_width": 800, 
-        "bgp_height": 450, 
-        "chp_arr": [], 
-        "btn_arr": [], 
-        "bgm_source_link": "", 
-        "bgm_loop": true, 
-        "bgm_volume": 100, 
-        "vl_source_link": "", 
-        "vl_volume": 100}
+        "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
+        "bgp_source_link": allPieceData[pieceNum-1]["bgp_source_link"], 
+        "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
+        "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
+        "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
+        "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
+        "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
+        "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
+        "bgm_source_link": allPieceData[pieceNum-1]["bgm_source_link"], 
+        "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
+        "bgm_volume": allPieceData[pieceNum-1]["bgm_volume"], 
+        "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
+        "vl_volume": allPieceData[pieceNum-1]["vl_volume"]}
     );
+
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            const allPiece = getAllPieceData();
+            setPieceDataLocal(allPiece);
+            setFirstTimeEnter(false);
+        }
+    });
+
 
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
@@ -119,7 +132,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
 
             //TODO: fetch "pieceNumber-2"'s data            
             //TODO temp
-            setCurrentPieceDetail(allPieceData[pieceNumber-2]);
+            setCurrentPieceDetail(pieceDataLocal[pieceNumber-2]);
 
         } else {
             setPieceNumber(1);
@@ -128,15 +141,15 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < allPieceData.length) {
+        if (pieceNumber < pieceDataLocal.length) {
             setPieceNumber(pieceNumber+1);
             //TODO change *all* form content here in display...
             
-            setCurrentPieceDetail(allPieceData[pieceNumber]);
+            setCurrentPieceDetail(pieceDataLocal[pieceNumber]);
 
 
         } else {
-            setPieceNumber(allPieceData.length);
+            setPieceNumber(pieceDataLocal.length);
         }
     }
 
@@ -146,10 +159,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData}) {
         let newPieceData = [];
 
         let i = 0;
-        console.log("before changing and updateing to caller..", allPieceData); //TODO test
-        for (; i < allPieceData.length; i++) {
+        console.log("before changing and updateing to caller..", pieceDataLocal); //TODO test
+        for (; i < pieceDataLocal.length; i++) {
             if (i+1 !== pieceNumber) {
-                newPieceData.push(allPieceData[i]);
+                newPieceData.push(pieceDataLocal[i]);
             } else {
                 
                 console.log("Saving...", currentPieceDetail); //TODO test

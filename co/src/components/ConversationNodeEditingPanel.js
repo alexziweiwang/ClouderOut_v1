@@ -71,7 +71,6 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function fetchAllPieceData() {
-        console.log("!!! upper level, fetchAllPieceData() ", pieceDataStructure);
         return pieceDataStructure;
     }
 
@@ -92,12 +91,12 @@ export default function ConversationNodeEditingPanel() {
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
              
-                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData}/>
+                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
                 <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
             {browseList === true &&<div className="pieceManager">
-                 <PieceManager pieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
+                 <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
                  <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
