@@ -65,6 +65,18 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
         setHighlightedPiece(content);        
     }
 
+    function duplicatePiece(index) {
+        console.log("duplicate, content = ", pieceDataLocal[index]);
+        const number = pieceDataLocal.length+1;
+        setCurrentPieceNum(number);
+        const item = {"num": number, "content": pieceDataLocal[index]["content"]};
+
+        let pieceDataArr = pieceData;
+        pieceDataArr.push(item);
+        pieceDataArr.sort((a, b) => a.num - b.num);
+        setPieceDataLocal(pieceDataArr);
+    }
+
     return (
         <div>
             <button className="buttonRight" onClick={updateLocalDataToCloud}>Save to Cloud</button>
@@ -94,7 +106,7 @@ export default function PieceManager({pieceData, assignPieceNum, assignPreviewIn
                     <br></br>
                     <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
                     <br></br>
-                    <button onClick={()=>{console.log("adding duplicate item...")}}>Duplicate</button>
+                    <button onClick={()=>{duplicatePiece(index);}}>Duplicate</button>
                     <button onClick={()=>{console.log("deleting item...");}}>Delete</button>
                     <br></br>
                     <button onClick={()=>{assignPieceNum(currItem["num"]);}}>Edit</button>
