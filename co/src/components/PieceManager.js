@@ -92,6 +92,20 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         console.log("deleting item...", pieceDataLocal[index]);
         //TODO: all later pieces move up by 1?
         //TODO: design effective deleting way
+        let newDataLocal = [];
+        let j = 0;
+        for (; j < index; j++) {
+            newDataLocal.push(pieceDataLocal[j]);
+        }
+
+        let i = index;
+        for (; i < (pieceDataLocal.length - 1); i++) {
+            const piece = {...pieceDataLocal[i+1],  "num": i+1};
+            newDataLocal.push(piece);
+        }
+
+        console.log("updated allPieceData: ", newDataLocal);
+        setPieceDataLocal(newDataLocal);
     }
 
     return (
