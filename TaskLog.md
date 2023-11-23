@@ -66,3 +66,4 @@
 - 2023-Nov-20: Explore key press for piece-manager
 
 - 2023-Nov-22: Design formal functionality flow for improved resource-manager
+- 2023-Nov-22: Redesign resource-manager's file-type splitting, for visual and audio materials
