@@ -110,7 +110,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{doHighlightItem(currItem["content"]);}}>
                 
                     <td>{currItem["num"]}</td>
-                    <td>{currItem["content"]}</td>
+                    <td>{currItem["speaker_name"]}{(currItem["speaker_name"] === "") ? "" : ":"}{(currItem["speaker_name"] !== "") && <br></br>}{currItem["content"]}</td>
                     <td>
                     <div>
                     <button onClick={()=>{moveItemUpRow(index, currItem["content"]);}}>Move Up</button>
