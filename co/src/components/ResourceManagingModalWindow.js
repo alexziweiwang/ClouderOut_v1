@@ -13,6 +13,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
+    const [isTabVisual, setIsTabVisual] = useState(true);
 
     function fileSelectChange(event) {
         setFileSelected(event.target.files[0]);
@@ -68,7 +69,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 
                 <button onClick={submitFile}> Submit </button>
-
+                <div>
+                    <button className={isTabVisual ? "buttonClicked" : "buttonUnclicked"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
+                    <button onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                </div>
                 <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?
                 </p>
