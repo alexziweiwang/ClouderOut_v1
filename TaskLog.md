@@ -64,3 +64,5 @@
 - 2023-Nov-20: Handle cloud db permission issue
 - 2023-Nov-20: Explore better design and UX for resource manager
 - 2023-Nov-20: Explore key press for piece-manager
+
+- 2023-Nov-22: Design formal functionality flow for improved resource-manager
