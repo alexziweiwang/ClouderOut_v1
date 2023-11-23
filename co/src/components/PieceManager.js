@@ -102,7 +102,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             </tr>
         </thead>
         <tbody>
-        {/* //TODO: after creating testing data, do map for each row in the table */}
+        
             {pieceDataLocal.map((item, index) => {
 
                 const currItem = pieceDataLocal[index];
@@ -120,7 +120,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <button onClick={()=>{duplicatePiece(index);}}>Duplicate</button>
                     <button onClick={()=>{console.log("deleting item...");}}>Delete</button>
                     <br></br>
-                    <button onClick={()=>{assignPieceNum(currItem["num"]);}}>Edit</button>
+                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
                     <button onClick={()=>{assignPreviewIndex(index);}}>Preview</button>
                     </div>
                     </td>
