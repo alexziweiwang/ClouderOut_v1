@@ -88,6 +88,12 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         setPieceDataLocal(pieceDataArr);
     }
 
+    function deletePiece(index) {
+        console.log("deleting item...", pieceDataLocal[index]);
+        //TODO: all later pieces move up by 1?
+        //TODO: design effective deleting way
+    }
+
     return (
         <div>
             <button className="buttonRight" onClick={updateLocalDataToCloud}>Save to Cloud</button>
@@ -118,7 +124,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
                     <br></br>
                     <button onClick={()=>{duplicatePiece(index);}}>Duplicate</button>
-                    <button onClick={()=>{console.log("deleting item...");}}>Delete</button>
+                    <button onClick={()=>{deletePiece(index);}}>Delete</button>
                     <br></br>
                     <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
                     <button onClick={()=>{assignPreviewIndex(index);}}>Preview</button>

@@ -74,7 +74,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     function handleSpeakerNameEnter(event) {
         setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": event.target.value});
-        console.log("entered new speaker_name: ", event.target.value);
     }
 
     function toggleBgPicOption() {
