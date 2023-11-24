@@ -107,30 +107,20 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     function insertNewListItem(preIndex) {
         const number = preIndex+1;
         setCurrentPieceNum(number);
-        const item = {"num": number, "content": "", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
-        let pieceDataArr = pieceDataLocal;
-        
-        pieceDataArr.push(item);
-        const moveAmount = pieceDataLocal.length - preIndex + 1;
-        let i = 0;
-        const content = "";
-        let num = number-1;
-        while (i < moveAmount) {
-            moveItemUpRow(num, content);   
-            i++;
-            num--;
-        }
-
+        let pieceDataArr = [];
         let j = 0;
-        for (; j < preIndex; j++) {
+        for (; j < number; j++) {
             pieceDataArr.push(pieceDataLocal[j]);
         }
-
-        i = preIndex;
-        for (; i < (pieceDataLocal.length - 1); i++) {
-            const piece = {...pieceDataLocal[i+1],  "num": i+1};
+    
+        for (; j < pieceDataLocal.length; j++) {
+            const piece = {...pieceDataLocal[j],  "num": j+2};
             pieceDataArr.push(piece);
         }
+
+        const item = {"num": number+1, "content": "", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
+      
+        pieceDataArr.push(item);
 
         pieceDataArr.sort((a, b) => a.num - b.num);
         setPieceDataLocal(pieceDataArr);
