@@ -63,8 +63,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             itemCurr["num"] = index+2;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(content);        
-
+            setHighlightedPiece(content);
         } else {
             return;
         }
@@ -158,7 +157,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
                     <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
                     <br></br>
-                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);updatePieceData(pieceDataLocal);}}>Edit</button>
+                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
                     <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button>
                     </div>
                     <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 

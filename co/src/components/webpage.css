@@ -427,3 +427,24 @@ th,td {
 td {
     height: 15px;
 }
+
+.rmTypeArea {
+    background-color: rgb(140, 198, 178);
+    height: 90%;
+}
+
+.tabBar {
+    background-color: rgb(198, 193, 186);
+    border-color: rgb(198, 193, 186);
+    border: 3px solid rgb(198, 193, 186);
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.tabBarSelected {
+    background-color: rgb(140, 198, 178);
+    border-color: rgb(140, 198, 178);
+    border: 3px solid rgb(140, 198, 178);
+    margin-left: 2px;
+    margin-right: 2px;
+}

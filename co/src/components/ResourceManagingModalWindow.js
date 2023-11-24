@@ -70,9 +70,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <button onClick={submitFile}> Submit </button>
                 <div>
-                    <button className={isTabVisual ? "buttonClicked" : "buttonUnclicked"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
-                    <button onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                    <button className={isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
+                    <button className={!isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
                 </div>
+                {isTabVisual && <div className="rmTypeArea"> visual area</div>}
+                {!isTabVisual && <div className="rmTypeArea"> audio area</div>}
                 <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?
                 </p>
