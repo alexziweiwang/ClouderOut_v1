@@ -155,13 +155,13 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <br></br>
                     <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
                     <br></br>
-                    <button onClick={()=>{duplicatePiece(index);}}>Duplicate</button>
-                    <button onClick={()=>{deletePiece(index);}}>Delete</button>
+                    <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
+                    <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
                     <br></br>
                     <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);updatePieceData(pieceDataLocal);}}>Edit</button>
-                    <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal)}}>Preview</button>
+                    <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button>
                     </div>
-                    <button onClick={()=>{insertNewListItem(index);}}>Insert</button> 
+                    <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 
                     </td>
                 </tr>
                 );
@@ -170,10 +170,6 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         </tbody>
     </table>
     <button onClick={createNewListItem}>Add New Row</button>
-
-    <br></br><br></br>
-    <button onClick={()=>{updatePieceData(pieceDataLocal);}}>Save</button>
-
         </div>
     );
 }
