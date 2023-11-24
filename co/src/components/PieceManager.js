@@ -48,8 +48,6 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
             setHighlightedPiece(content);        
-
-
         } else {
             return;
         }
@@ -66,7 +64,6 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
             setHighlightedPiece(content);        
-
 
         } else {
             return;
@@ -90,8 +87,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
     function deletePiece(index) {
         console.log("deleting item...", pieceDataLocal[index]);
-        //TODO: all later pieces move up by 1?
-        //TODO: design effective deleting way
+
         let newDataLocal = [];
         let j = 0;
         for (; j < index; j++) {
@@ -106,6 +102,38 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
         console.log("updated allPieceData: ", newDataLocal);
         setPieceDataLocal(newDataLocal);
+    }
+
+    function insertNewListItem(preIndex) {
+        const number = preIndex+1;
+        setCurrentPieceNum(number);
+        const item = {"num": number, "content": "", "speaker_name": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
+        let pieceDataArr = pieceDataLocal;
+        
+        pieceDataArr.push(item);
+        const moveAmount = pieceDataLocal.length - preIndex + 1;
+        let i = 0;
+        const content = "";
+        let num = number-1;
+        while (i < moveAmount) {
+            moveItemUpRow(num, content);   
+            i++;
+            num--;
+        }
+
+        let j = 0;
+        for (; j < preIndex; j++) {
+            pieceDataArr.push(pieceDataLocal[j]);
+        }
+
+        i = preIndex;
+        for (; i < (pieceDataLocal.length - 1); i++) {
+            const piece = {...pieceDataLocal[i+1],  "num": i+1};
+            pieceDataArr.push(piece);
+        }
+
+        pieceDataArr.sort((a, b) => a.num - b.num);
+        setPieceDataLocal(pieceDataArr);
     }
 
     return (
@@ -143,6 +171,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
                     <button onClick={()=>{assignPreviewIndex(index);}}>Preview</button>
                     </div>
+                    <button onClick={()=>{insertNewListItem(index);}}>Insert</button> 
                     </td>
                 </tr>
                 );
