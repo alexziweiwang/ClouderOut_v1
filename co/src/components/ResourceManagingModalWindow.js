@@ -50,31 +50,75 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
             <div className="modalContent parallelFrame">
                 
-            <div className="areaOrange">
+           
+
+
+        <div>
+
+                <div>
+                    <button className={isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
+                    <button className={!isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                </div>
+                {isTabVisual && <div className="rmTypeArea"> 
+                <div className="modalContent parallelFrame">
+                    visual area
+                <div className="areaOrange">
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
-            
-
+        
                 <ul>
                     {cloudFileList.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]);}}>{item}</li>
                     ))}
                 </ul>
-        </div>
-        <div className="areaBlue">
-                <input 
-                    type="file"
-                    onChange={fileSelectChange}
-                /> 
-                
-                
-                <button onClick={submitFile}> Submit </button>
-                <div>
-                    <button className={isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
-                    <button className={!isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
                 </div>
-                {isTabVisual && <div className="rmTypeArea"> visual area</div>}
-                {!isTabVisual && <div className="rmTypeArea"> audio area</div>}
+                
+                <div className="areaBlue">
+                    <input 
+                        type="file"
+                        onChange={fileSelectChange}
+                    /> 
+                    <button onClick={submitFile}> Submit </button>
+                </div>
+
+
+
+
+
+                </div>
+
+                </div>}
+
+                {!isTabVisual && <div className="rmTypeArea"> 
+                <div className="modalContent parallelFrame">
+                audio area
+                <div className="areaOrange">
+                <button onClick={fetchRmFileList}> Load Resource List </button>
+                <br></br><br></br>
+        
+                <ul>
+                    {cloudFileList.map((item, index) => (
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]);}}>{item}</li>
+                    ))}
+                </ul>
+                </div>
+                
+                <div className="areaBlue">
+                    <input 
+                        type="file"
+                        onChange={fileSelectChange}
+                    /> 
+                    <button onClick={submitFile}> Submit </button>
+                </div>
+
+
+
+
+
+                </div>
+
+
+                </div>}
                 <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?
                 </p>
