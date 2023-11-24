@@ -14,8 +14,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
 
-    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-
     const [bgpicAdd, setBgPicAdd] = useState(false);
     const [charPicAdd, setCharPicAdd] = useState(false);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
@@ -47,11 +45,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     );
 
     useEffect(() => {
-        if (firstTimeEnter === true) {
-            const allPiece = getAllPieceData();
-            setPieceDataLocal(allPiece);
-            setFirstTimeEnter(false);
-        }
+        const allPiece = getAllPieceData();
+        setPieceDataLocal(allPiece);       
     });
 
 

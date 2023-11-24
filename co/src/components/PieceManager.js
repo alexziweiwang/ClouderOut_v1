@@ -158,7 +158,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     <button onClick={()=>{duplicatePiece(index);}}>Duplicate</button>
                     <button onClick={()=>{deletePiece(index);}}>Delete</button>
                     <br></br>
-                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);updatePieceData(pieceDataLocal)}}>Edit</button>
+                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);updatePieceData(pieceDataLocal);}}>Edit</button>
                     <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal)}}>Preview</button>
                     </div>
                     <button onClick={()=>{insertNewListItem(index);}}>Insert</button> 
