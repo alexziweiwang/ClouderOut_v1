@@ -448,3 +448,9 @@ td {
     margin-left: 2px;
     margin-right: 2px;
 }
+
+.largerArea {
+    background-color: #cecbc8;
+    width: 100%;
+    height: 100%;
+}

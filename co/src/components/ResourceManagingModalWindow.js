@@ -39,8 +39,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
         // const url = await fetchUrlByFilenameVM({fullFilename: "user002_test_img.jpeg"});
         // console.log("sample, user002_test_img.jpeg = ", url); //TODO test
+    }
 
+    function getAudioList() {
+        console.log("getting audio file list...");
+        //TODO filter on local file list
+    }
 
+    function getVisualList() {
+        console.log("getting visual file list...");
+        //TODO filter on local file list
     }
   
     return (
@@ -48,12 +56,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
         <div className="modalArea">
 
-            <div className="modalContent parallelFrame">
+     
                 
-           
-
-
-        <div>
+        
+            <div>
 
                 <div>
                     <button className={isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
@@ -61,9 +67,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 {isTabVisual && <div className="rmTypeArea"> 
                 <div className="modalContent parallelFrame">
-                    visual area
-                <div className="areaOrange">
-                <button onClick={fetchRmFileList}> Load Resource List </button>
+                 
+                <div className="areaOrange"> visual area
+                <button onClick={getVisualList}> Load Resource List </button>
                 <br></br><br></br>
         
                 <ul>
@@ -91,9 +97,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 {!isTabVisual && <div className="rmTypeArea"> 
                 <div className="modalContent parallelFrame">
-                audio area
-                <div className="areaOrange">
-                <button onClick={fetchRmFileList}> Load Resource List </button>
+            
+                <div className="areaOrange"> audio area
+                <button onClick={getAudioList}> Load Resource List </button>
                 <br></br><br></br>
         
                 <ul>
@@ -109,17 +115,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         onChange={fileSelectChange}
                     /> 
                     <button onClick={submitFile}> Submit </button>
-                </div>
-
-
-
-
-
-                </div>
-
-
-                </div>}
-                <p className="plans">
+                    <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?
                 </p>
 
@@ -134,6 +130,17 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <br></br> Later: add "folder"-like sections for different types/purposes
                 </p>
 
+                </div>
+
+
+
+
+
+                </div>
+
+
+                </div>}
+          
      
             </div>
             </div>
@@ -143,7 +150,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             <div className="modalControl">
                 <button className="modalControlButton" onClick={handleRmCancel}> Close </button>
             </div>
-        </div>
+       
       </div>
     );
   };
