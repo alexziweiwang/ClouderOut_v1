@@ -223,7 +223,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             
             {bgpicAdd && 
                 <div>
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
