@@ -71,3 +71,4 @@
 - 2023-Nov-23: Explore piece-insertion feature
 
 - 2023-Nov-24: Explore resource manager robustness on file types
+- 2023-Nov-24: Design resource selector UX improvement
