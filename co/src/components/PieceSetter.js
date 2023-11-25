@@ -223,7 +223,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             
             {bgpicAdd && 
                 <div>
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
@@ -384,7 +384,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
             {bgMusicAdd && 
                 <div>
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_link": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
@@ -403,7 +403,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
             {voicelineAdd && 
                 <div>
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
