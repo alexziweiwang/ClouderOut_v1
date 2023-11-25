@@ -26,6 +26,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [charPicDataPart, setCharPicDataPart] = useState([]);
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
+    const [clickableDataPart, setClickableDataPart] = useState([]);
 
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
@@ -383,7 +384,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
 
                     </p>
-                    <button>Confirm Add</button>
+                    <button  onClick={()=>{
+                        let newlickableData = clickableDataPart;
+                        const newRow = ""; //TODO fill in data from fields
+                        newlickableData.push(newRow);
+                        setClickableDataPart(newlickableData);
+                    }}>
+                        Confirm Add</button>
                     </div>
                     }
                 </div>}
