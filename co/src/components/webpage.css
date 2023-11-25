@@ -125,7 +125,7 @@ body {
     height: 85%;
     top: 50%;
     left: 50%;
-    background: rgb(49, 46, 58);
+    background: rgba(210, 215, 222, 0);
     transform: translate(-50%,-50%);
 }
 
@@ -155,7 +155,7 @@ body {
 }
 
 .modalControl {
-    height: 7%;
+    height: 5%;
     padding-inline: 10px;
 }
 
@@ -308,19 +308,22 @@ li {
 }
 
 .areaOrange {
-    background-color: #d7bfa1;
+    background-color: rgb(140, 198, 178);
     width: 30%;
     overflow: auto;
+    border-right: 2px solid rgb(0, 0, 0);
+    height: 700px;
 }
 
 .areaBlue {
-    background-color: rgb(137, 137, 199);
+    background-color: rgb(140, 198, 178);
     overflow: auto;
     width:70%;
+    height: 700px;
 }
 
 .sectionHeader {
-    background-color: rgb(138, 198, 138);
+    background-color: rgb(140, 198, 178);
     height: 30px;
     width: 100%;
 }
@@ -439,6 +442,8 @@ td {
     border: 3px solid rgb(198, 193, 186);
     margin-left: 2px;
     margin-right: 2px;
+    width: 120px;
+    height: 30px;
 }
 
 .tabBarSelected {
@@ -447,6 +452,8 @@ td {
     border: 3px solid rgb(140, 198, 178);
     margin-left: 2px;
     margin-right: 2px;
+    width: 120px;
+    height: 30px;
 }
 
 .largerArea {
