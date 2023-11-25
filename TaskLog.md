@@ -69,3 +69,5 @@
 - 2023-Nov-22: Redesign resource-manager's file-type splitting, for visual and audio materials
 
 - 2023-Nov-23: Explore piece-insertion feature
+
+- 2023-Nov-24: Explore resource manager robustness on file types
