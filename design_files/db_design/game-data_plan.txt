@@ -9,6 +9,20 @@ each player action might update game-data
 each node should have reference/access to update the game-data
 the tool should allow the game-author to choose, update on a certain spot
 
+{ Piece Data Structure
+
+- [optional] background picture [0..1]: source link, position, width, height
+- [optional] character picture [0..n]: source link, position, width, height
+
+- text content (on UI) [0..1]: content
+- [optional] test speaker name [0..1]: content
+
+- [optional] button/clickable item [0..n]: shape/pic_source, sound effect, pressed_consequence on game data
+
+- [optional] background music [0..1]: source link, loop or not, volume
+- [optional] voiceline [0..1]: source link, volume
+}
+
 2. between game nodes:
 check some values in game data, for conditional node-enter
 (game-data decides game flow here)
