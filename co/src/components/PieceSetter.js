@@ -14,12 +14,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
 
-    const [bgpicAdd, setBgPicAdd] = useState(false);
-    const [charPicAdd, setCharPicAdd] = useState(false);
-    const [speakerNameAdd, setSpeakerNameAdd] = useState(false);
-    const [clickableAdd, setClickableAdd] = useState(false);
-    const [bgMusicAdd, setBgMusicAdd] = useState(false);
-    const [voicelineAdd, setVoicelineAdd] = useState(false);
+    const [bgpicAdd, setBgPicAdd] = useState(true);
+    const [charPicAdd, setCharPicAdd] = useState(true);
+    const [speakerNameAdd, setSpeakerNameAdd] = useState(true);
+    const [clickableAdd, setClickableAdd] = useState(true);
+    const [bgMusicAdd, setBgMusicAdd] = useState(true);
+    const [voicelineAdd, setVoicelineAdd] = useState(true);
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);

@@ -545,7 +545,9 @@ export default function GameMaker() {
 
 {/* //TODO: change later */}
     {isLinkNode && <> 
-      <p className="plans">TODO improve later</p>
+      <p className="plans">TODO improve later
+      <br></br>Design: can specify initial size & direction here
+      </p>
 
     <br></br>
     <label>Node Name: </label>

@@ -95,10 +95,17 @@ export default function ConversationNodeEditingPanel() {
                 <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
+
             {browseList === true &&<div className="pieceManager">
                  <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
                  <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
-
+                <div>
+                    <p className="plans">
+                    Adjustment area: setting of size & direction for current node 
+                    <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
+                    <br></br>but this feature is provided so user can utilize the existing node-content
+                    </p>
+                </div>
             </div>}
             
             <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
