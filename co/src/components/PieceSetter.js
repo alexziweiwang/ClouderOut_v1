@@ -23,6 +23,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
+    const [charPicDataPart, setCharPicDataPart] = useState([]);
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
 
@@ -262,7 +263,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
         </tr>
     </thead>
-        {}
+    <tbody>
+           {}
+    </tbody>
     </table>
     <br></br>
     <button onClick={changeAddAnotherCharPicOption}>Add Another Character Picture</button>
@@ -284,7 +287,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <label>Height:        </label>
     <input type="number" min="0" max="9000" step="1" defaultValue="210"></input>
     <br></br>
-    <button>Confirm Add</button>        {/* //TODO later */}
+    <button onClick={()=>{
+        let newcharPicData = charPicDataPart;
+        const newRow = ""; //TODO fill in data from fields
+        newcharPicData.push(newRow);
+        setCharPicDataPart(newcharPicData);
+    }}>
+        Confirm Add
+    </button>        {/* //TODO later */}
     </>}
 
             
