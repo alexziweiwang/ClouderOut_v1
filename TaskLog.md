@@ -74,3 +74,4 @@
 - 2023-Nov-24: Design resource selector UX improvement
 
 - 2023-Nov-27: Improve resource selector data structure
+- 2023-Nov-27: Explore cloud storage path topic
