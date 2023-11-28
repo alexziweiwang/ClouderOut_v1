@@ -46,7 +46,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li className={clickedFileName === cloudFileList[index]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
+                        <li key={index} className={clickedFileName === cloudFileList[index]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
                             itemClicked(index);
                         }}>{item}</li>
                     ))}

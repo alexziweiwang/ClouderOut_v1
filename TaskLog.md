@@ -72,3 +72,5 @@
 
 - 2023-Nov-24: Explore resource manager robustness on file types
 - 2023-Nov-24: Design resource selector UX improvement
+
+- 2023-Nov-27: Improve resource selector data structure
