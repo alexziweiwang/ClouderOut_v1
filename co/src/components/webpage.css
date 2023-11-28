@@ -437,13 +437,15 @@ td {
 }
 
 .rmTypeAreaV {
-    background-color: rgb(202, 222, 215);
+    background-color: rgb(92, 120, 110);
     height: 90%;
+    color:rgb(7, 7, 7);
 }
 
 .rmTypeAreaA {
-    background-color: rgb(224, 214, 227);
+    background-color: rgb(129, 117, 133);
     height: 90%;
+    color:rgb(7, 7, 7);
 }
 
 .tabBar {
@@ -457,9 +459,9 @@ td {
 }
 
 .tabBarVSelected {
-    background-color: rgb(202, 222, 215);
-    border-color: rgb(202, 222, 215);
-    border: 3px solid rgb(202, 222, 215);
+    background-color: rgb(92, 120, 110);
+    border-color: rgb(92, 120, 110);
+    border: 3px solid rgb(92, 120, 110);
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;
@@ -469,9 +471,9 @@ td {
 
 
 .tabBarASelected {
-    background-color: rgb(224, 214, 227);
-    border-color: rgb(224, 214, 227);
-    border: 3px solid rgb(224, 214, 227);
+    background-color: rgb(129, 117, 133);
+    border-color: rgb(129, 117, 133);
+    border: 3px solid rgb(129, 117, 133);
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;

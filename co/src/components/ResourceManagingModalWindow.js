@@ -19,13 +19,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setFileSelected(event.target.files[0]);
     }
 
-    function submitFile() {
+    async function submitFile() {
         if (fileSelected === "") {
             console.log("File NOT chosen");
             return;
         }
-        const url = submitFileVM({file: fileSelected , uname: username});
+        await submitFileVM({file: fileSelected , uname: username});
+        //gs://clouderout001.appspot.com/rm001test/user002_test_img.jpeg
         const fileName = `${username}_${fileSelected.name}`;
+        const url = "gs://clouderout001.appspot.com/" + "rm001test/" + fileName;
         addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url});
         fetchRmFileList();
     }
