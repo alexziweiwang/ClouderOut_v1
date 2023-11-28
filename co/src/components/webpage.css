@@ -208,7 +208,6 @@ body {
 
 .parallelFrame {
     display: flex;
-    background-color: rgb(172, 88, 102);
     height: 100%;
 }
 
@@ -308,7 +307,6 @@ li {
 }
 
 .areaOrange {
-    background-color: rgb(140, 198, 178);
     width: 30%;
     overflow: auto;
     border-right: 2px solid rgb(0, 0, 0);
@@ -316,7 +314,6 @@ li {
 }
 
 .areaBlue {
-    background-color: rgb(140, 198, 178);
     overflow: auto;
     width:70%;
     height: 700px;
@@ -439,8 +436,13 @@ td {
     height: 15px;
 }
 
-.rmTypeArea {
-    background-color: rgb(140, 198, 178);
+.rmTypeAreaV {
+    background-color: rgb(202, 222, 215);
+    height: 90%;
+}
+
+.rmTypeAreaA {
+    background-color: rgb(224, 214, 227);
     height: 90%;
 }
 
@@ -454,10 +456,22 @@ td {
     height: 30px;
 }
 
-.tabBarSelected {
-    background-color: rgb(140, 198, 178);
-    border-color: rgb(140, 198, 178);
-    border: 3px solid rgb(140, 198, 178);
+.tabBarVSelected {
+    background-color: rgb(202, 222, 215);
+    border-color: rgb(202, 222, 215);
+    border: 3px solid rgb(202, 222, 215);
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 120px;
+    height: 30px;
+}
+
+
+
+.tabBarASelected {
+    background-color: rgb(224, 214, 227);
+    border-color: rgb(224, 214, 227);
+    border: 3px solid rgb(224, 214, 227);
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;

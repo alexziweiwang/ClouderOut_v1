@@ -62,10 +62,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             <div>
 
                 <div>
-                    <button className={isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
-                    <button className={!isTabVisual ? "buttonClicked tabBarSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
+                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
                 </div>
-                {isTabVisual && <div className="rmTypeArea"> 
+                {isTabVisual && 
+                <div className="rmTypeAreaV"> 
                 <div className="modalContent parallelFrame">
                  
                 <div className="areaOrange"> visual area
@@ -95,7 +96,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 </div>}
 
-                {!isTabVisual && <div className="rmTypeArea"> 
+                {!isTabVisual && 
+                <div className="rmTypeAreaA"> 
                 <div className="modalContent parallelFrame">
             
                 <div className="areaOrange"> audio area
