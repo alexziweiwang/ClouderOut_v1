@@ -23,14 +23,11 @@ export async function getRmFileList({uname}) {
 
     const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
     const querySnapshot = await getDocs(q);
-    let dataContent;
+    let dataContentData;
     querySnapshot.forEach((doc) => {
-        dataContent = doc.data().filenames; 
-        console.log("rm data model: doc.data()=", doc.data());
-
-        console.log("rm data model: content=", dataContent);
+        dataContentData = doc.data(); 
     });    
-    return dataContent;
+    return dataContentData;
 }
 
 export async function addToRmFileList({uname, filetitle, fileUrl}) {
@@ -44,13 +41,11 @@ export async function addToRmFileList({uname, filetitle, fileUrl}) {
     /* add filename to resource-manage file-list */
     /* data structure: map <k, v> is <filetitle, fileUrl> */
     const ref = doc(docRef, "projects", "resource_manager");
-    const currFileMapData = await getDoc(ref, "fileRecord");
-    let currFileMap = currFileMapData.data().filenames;
-
-    currFileMap[filetitle] = fileUrl;
-    console.log("file url: " , fileUrl);
-    console.log("new arr:  ", currFileMap);
-    // await updateDoc(ref, {currFileMap});
+    let currFileData = await getDoc(ref, "fileRecord");
+    let currFileList = currFileData.data().filenames;
+    const obj = {"filename": filetitle, "fileurl": fileUrl};
+    currFileList.push(obj);
+    await updateDoc(ref, {filenames: currFileList});
 
 }
 

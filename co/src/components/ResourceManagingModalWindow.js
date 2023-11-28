@@ -25,22 +25,17 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             return;
         }
         await submitFileVM({file: fileSelected , uname: username});
-        //gs://clouderout001.appspot.com/rm001test/user002_test_img.jpeg
         const fileName = `${username}_${fileSelected.name}`;
-        const url = "gs://clouderout001.appspot.com/" + "rm001test/" + fileName;
-        addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url});
-        fetchRmFileList();
+        const url = "gs://clouderout001.appspot.com/" + "rm001test/" + fileName; //TODO test, change file folder later, file url
+        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url}).then(fetchRmFileList());
     }
 
-    async function fetchRmFileList() {
+    async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
-        setCloudFileList(fileList);
+        setCloudFileList(fileList.filenames);
         console.log("modalwindow: fileList:"); //TODO test
         console.log(fileList); //TODO test
 
-
-        // const url = await fetchUrlByFilenameVM({fullFilename: "user002_test_img.jpeg"});
-        // console.log("sample, user002_test_img.jpeg = ", url); //TODO test
     }
 
     function getAudioList() {
@@ -77,7 +72,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]);}}>{item}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]);}}>{item["filename"]}</li>
                     ))}
                 </ul>
                 </div>
