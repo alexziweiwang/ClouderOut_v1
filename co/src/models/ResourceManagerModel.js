@@ -1,7 +1,7 @@
 import db from '../googleCloudConnetions';
 import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
 import { storage } from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 export function submitFile({file, uname}) {
     console.log("RM model ..."); //TODO
@@ -26,6 +26,9 @@ export async function getRmFileList({uname}) {
     let dataContent;
     querySnapshot.forEach((doc) => {
         dataContent = doc.data().filenames; 
+        console.log("rm data model: doc.data()=", doc.data());
+
+        console.log("rm data model: content=", dataContent);
     });    
     return dataContent;
 }
@@ -38,9 +41,13 @@ export async function addToRmFileList({uname, filetitle, fileUrl}) {
       return;
     }
 
-
-    //TODO add filename to resource-manage file-list
-    //TODO data structure: map <k, v> is <filetitle, fileUrl>
+    /* add filename to resource-manage file-list */
+    /* data structure: map <k, v> is <filetitle, fileUrl> */
+    const ref = doc(docRef, "projects", "resource_manager");
+    await updateDoc(ref, {
+      "filename": filetitle,
+      "fileurl": fileUrl
+    });
 
 }
 
