@@ -41,11 +41,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     function getAudioList() {
         console.log("getting audio file list...");
         //TODO filter on local file list
+        fetchRmFileList(); //TODO temp, all items
     }
 
     function getVisualList() {
         console.log("getting visual file list...");
         //TODO filter on local file list
+        fetchRmFileList(); //TODO temp, all items
     }
   
     return (
