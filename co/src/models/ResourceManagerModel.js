@@ -44,10 +44,9 @@ export async function addToRmFileList({uname, filetitle, fileUrl}) {
     /* add filename to resource-manage file-list */
     /* data structure: map <k, v> is <filetitle, fileUrl> */
     const ref = doc(docRef, "projects", "resource_manager");
-    await updateDoc(ref, {
-      "filename": filetitle,
-      "fileurl": fileUrl
-    });
+    let currFileMap = await getDocs(ref, "fileRecord");
+    currFileMap[filetitle] = fileUrl;
+    await updateDoc(ref, {currFileMap});
 
 }
 
