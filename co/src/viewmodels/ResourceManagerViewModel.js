@@ -12,8 +12,8 @@ export async function getRmFileListVM({uname}) {
     return arr;
 }
 
-export async function addToRmFileListVM({uname, filetitle, fileUrl}) {
-    addToRmFileList({uname, filetitle, fileUrl});
+export async function addToRmFileListVM({uname, filetitle, fileUrl, fileType}) {
+    addToRmFileList({uname, filetitle, fileUrl, fileType});
 }
 
 export async function fetchUrlByFilenameVM({fullFilename}) {

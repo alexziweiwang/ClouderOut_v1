@@ -30,7 +30,7 @@ export async function getRmFileList({uname}) {
     return dataContentData;
 }
 
-export async function addToRmFileList({uname, filetitle, fileUrl}) {
+export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
     const docRef = doc(db, "user_projects", uname);
     const docSnap = await getDoc(docRef);
   
@@ -43,7 +43,7 @@ export async function addToRmFileList({uname, filetitle, fileUrl}) {
     const ref = doc(docRef, "projects", "resource_manager");
     let currFileData = await getDoc(ref, "fileRecord");
     let currFileList = currFileData.data().filenames;
-    const obj = {"filename": filetitle, "fileurl": fileUrl};
+    const obj = {"filename": filetitle, "fileurl": fileUrl, "filetype": fileType};
 
     const duplicatePart = currFileList.filter(item => item.filename == filetitle && item.fileurl == fileUrl);
     
@@ -51,7 +51,6 @@ export async function addToRmFileList({uname, filetitle, fileUrl}) {
       currFileList.push(obj);
     }
     await updateDoc(ref, {filenames: currFileList});
-
 }
 
 export async function fetchUrlByFilename({fullFilename}) {

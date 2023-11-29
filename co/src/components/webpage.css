@@ -456,6 +456,7 @@ td {
     margin-right: 2px;
     width: 120px;
     height: 30px;
+    border-bottom: none;
 }
 
 .tabBarVSelected {
@@ -466,6 +467,7 @@ td {
     margin-right: 2px;
     width: 120px;
     height: 30px;
+    border-bottom: none;
 }
 
 
@@ -478,6 +480,7 @@ td {
     margin-right: 2px;
     width: 120px;
     height: 30px;
+    border-bottom: none;
 }
 
 .largerArea {

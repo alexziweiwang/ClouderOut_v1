@@ -14,12 +14,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
+    const [fileListVisual, setFileListVisual] = useState([]);
+    const [fileListAudio, setFileListAudio] = useState([]);
+
 
     function fileSelectChange(event) {
         setFileSelected(event.target.files[0]);
     }
 
-    async function submitFile() {
+    async function submitFile(type) {
         if (fileSelected === "") {
             console.log("File NOT chosen");
             return;
@@ -27,7 +30,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await submitFileVM({file: fileSelected , uname: username});
         const fileName = `${username}_${fileSelected.name}`;
         const url = "gs://clouderout001.appspot.com/" + "rm001test/" + fileName; //TODO test, change file folder later, file url
-        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url}).then(fetchRmFileList());
+        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type}).then(fetchRmFileList());
     }
 
     async function fetchRmFileList() { //TODO temp debugging
@@ -84,7 +87,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         type="file"
                         onChange={fileSelectChange}
                     /> 
-                    <button onClick={submitFile}> Submit </button>
+                    <button onClick={()=>{submitFile("visual")}}> Submit </button>
                 </div>
 
 
@@ -115,7 +118,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         type="file"
                         onChange={fileSelectChange}
                     /> 
-                    <button onClick={submitFile}> Submit </button>
+                    <button onClick={()=>{submitFile("audio")}}> Submit </button>
+
                     <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?
                 </p>
