@@ -102,6 +102,13 @@ export default function ConversationNodeEditingPanel() {
         }
       }
 
+    function updateGameSize() {
+        console.log("new game size:", gameScreenSize);
+        //TODO pop some kind of warning to remind the user
+        //TODO design: each node and have one size, and different nodes can have various nodes?
+
+    }
+
     return (
 
         <div>
@@ -141,7 +148,7 @@ export default function ConversationNodeEditingPanel() {
                         <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
 
                     </select>
-                    <button onClick={()=>{console.log("new game size:", gameScreenSize);}}>Update</button>
+                    <button onClick={()=>{updateGameSize();}}>Update</button>
                 </div>
             </div>}
             
