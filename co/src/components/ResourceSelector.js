@@ -25,9 +25,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     async function fetchRmFileList() {
         const fileList = await getRmFileListVM({uname: username});
-        setCloudFileList(fileList);
+        setCloudFileList(fileList.filenames);
         console.log("modalwindow: fileList:"); //TODO test
-        console.log(fileList); //TODO test
+        console.log(fileList.filenames); //TODO test
     }
 
     function confirmResource() {
@@ -35,11 +35,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     async function itemClicked(index) {
-        const fname = cloudFileList[index];
-        const urlStr = await fetchUrlByFilenameVM({fullFilename: fname});
-        setClickedFileUrl(urlStr);
-        setClickedFileName(cloudFileList[index]);
-        console.log("Resource selector: ", urlStr); //TODO testing
+        // const fname = cloudFileList[index];
+        // const urlStr = await fetchUrlByFilenameVM({fullFilename: fname});
+        setClickedFileUrl(cloudFileList[index]["fileurl"]);
+        setClickedFileName(cloudFileList[index]["filename"]);
+        console.log("Resource selector: ", cloudFileList[index]["fileurl"]); //TODO testing
     }
   
     return (
@@ -53,7 +53,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index} className={clickedFileName === cloudFileList[index]["filename"]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
+                        <li key={index} className={clickedFileName === cloudFileList[index]["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
                             itemClicked(index);
                         }}>{item["filename"]}</li>
                     ))}
