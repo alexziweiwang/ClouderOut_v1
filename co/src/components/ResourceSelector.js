@@ -50,7 +50,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             <div className="modalContent scrollableArea">
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
-            
+                <div className="parallelFrame"> 
+                <div>
                 <ul>
                     {cloudFileList.map((item, index) => (
                         <li key={index} className={clickedFileName === cloudFileList[index]["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
@@ -58,6 +59,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         }}>{item["filename"]}</li>
                     ))}
                 </ul>
+
+                </div>
+                <div>resource preview area</div>
+                </div>
+
                 <p className="plans">For loaded list: consider option of prewviewing this resource? (the same with ResourceManagingModalWindow)</p>
 
                 <p className="plans">

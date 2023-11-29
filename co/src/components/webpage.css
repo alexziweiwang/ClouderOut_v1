@@ -394,7 +394,11 @@ th,td {
     background-color: rgb(173, 178, 193);
     cursor: pointer;
     color:rgb(7, 7, 7);
-    height: 15px;
+    height: 20px;
+    margin: 2px;
+    padding: 3px;
+    width: 500px;
+    overflow: auto;
 }
 
 .scrollableArea {
