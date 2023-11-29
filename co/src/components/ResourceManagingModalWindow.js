@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
@@ -11,11 +11,19 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         modalStyleName = "displayNone modalBackboard";
     }
 
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            fetchRmFileList();
+            setFirstTimeEnter(false);
+        }
+    });
+
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
     const [fileListVisual, setFileListVisual] = useState([]);
     const [fileListAudio, setFileListAudio] = useState([]);
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
 
     function fileSelectChange(event) {
@@ -30,27 +38,28 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await submitFileVM({file: fileSelected , uname: username});
         const fileName = `${username}_${fileSelected.name}`;
         const url = "gs://clouderout001.appspot.com/" + "rm001test/" + fileName; //TODO test, change file folder later, file url
-        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type}).then(fetchRmFileList());
+        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
+        fetchRmFileList();
+
     }
 
     async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
         setCloudFileList(fileList.filenames);
-        console.log("modalwindow: fileList:"); //TODO test
-        console.log(fileList); //TODO test
-
     }
 
     function getAudioList() {
         console.log("getting audio file list...");
-        //TODO filter on local file list
-        fetchRmFileList(); //TODO temp, all items
+        fetchRmFileList(); //TODO temp
+        //TODO: filter fileListVisual with filetype == "audio"
+
     }
 
     function getVisualList() {
         console.log("getting visual file list...");
-        //TODO filter on local file list
-        fetchRmFileList(); //TODO temp, all items
+        fetchRmFileList(); //TODO temp
+                //TODO: filter fileListVisual with filetype == "visual"
+
     }
   
     return (
