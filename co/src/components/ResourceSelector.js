@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
@@ -11,9 +11,17 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         modalStyleName = "displayNone modalBackboard";
     }
 
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            fetchRmFileList();
+            setFirstTimeEnter(false);
+        }
+    });
+
     const [cloudFileList, setCloudFileList] = useState([]);
     const [clickedFile, setClickedFileUrl] = useState("");
     const [clickedFileName, setClickedFileName] = useState("");
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     async function fetchRmFileList() {
         const fileList = await getRmFileListVM({uname: username});
@@ -34,7 +42,6 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         console.log("Resource selector: ", urlStr); //TODO testing
     }
   
-    console.log("Resource Selector !!!!!!!!!!!!"); //TODO test
     return (
       <div className={modalStyleName}>
 
@@ -46,9 +53,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
             
                 <ul>
                     {cloudFileList.map((item, index) => (
-                        <li key={index} className={clickedFileName === cloudFileList[index]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
+                        <li key={index} className={clickedFileName === cloudFileList[index]["filename"]? "tableItemSelected" :  "tableItem"} ey={index} onClick={() => {
                             itemClicked(index);
-                        }}>{item}</li>
+                        }}>{item["filename"]}</li>
                     ))}
                 </ul>
                 <p className="plans">For loaded list: consider option of prewviewing this resource? (the same with ResourceManagingModalWindow)</p>
