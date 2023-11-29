@@ -46,19 +46,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
         setCloudFileList(fileList.filenames);
-    }
+        const vList = fileList.filenames.filter((item)=>(item.filetype=="visual"));
+        setFileListVisual(vList);
+        const aList = fileList.filenames.filter((item)=>(item.filetype=="audio"));
+        setFileListAudio(aList);
+        console.log("gen list = ", cloudFileList); //TODO test
 
-    function getAudioList() {
-        console.log("getting audio file list...");
-        fetchRmFileList(); //TODO temp
-        //TODO: filter fileListVisual with filetype == "audio"
-
-    }
-
-    function getVisualList() {
-        console.log("getting visual file list...");
-        fetchRmFileList(); //TODO temp
-                //TODO: filter fileListVisual with filetype == "visual"
+        console.log("vlist = ", vList); //TODO test
+        console.log("alist = ", aList); //TODO test
 
     }
   
@@ -81,11 +76,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="modalContent parallelFrame">
                  
                 <div className="areaOrange"> visual area
-                <button onClick={getVisualList}> Load Resource List </button>
+                <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
         
                 <ul>
-                    {cloudFileList.map((item, index) => (
+                    {fileListVisual.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]);}}>{item["filename"]}</li>
                         ))}
                 </ul>
@@ -113,11 +108,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="modalContent parallelFrame">
             
                 <div className="areaOrange"> audio area
-                <button onClick={getAudioList}> Load Resource List </button>
+                <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
         
                 <ul>
-                    {cloudFileList.map((item, index) => (
+                    {fileListAudio.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]);}}>{item["filename"]}</li>
                     ))}
                 </ul>
