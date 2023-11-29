@@ -85,6 +85,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="areaBlue">
                     <input 
                         type="file"
+                        accept=".png,.jpg,.jpeg,"
                         onChange={fileSelectChange}
                     /> 
                     <button onClick={()=>{submitFile("visual")}}> Submit </button>
@@ -116,6 +117,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="areaBlue">
                     <input 
                         type="file"
+                        accept=".wav,.mp3,.aac,.m4a"
                         onChange={fileSelectChange}
                     /> 
                     <button onClick={()=>{submitFile("audio")}}> Submit </button>

@@ -88,18 +88,21 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
      
             <div className="parallelFrame">
+
             {browseList === false && <div className="userChoice">
+            <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+            <br></br>
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
              
                 <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
-                <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
 
             </div>}
 
             {browseList === true &&<div className="pieceManager">
+            <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+
                  <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
-                 <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
                 <div>
                     <p className="plans">
                     Adjustment area: setting of size & direction for current node 

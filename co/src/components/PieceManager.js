@@ -127,7 +127,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
     return (
         <div>
-            <button className="buttonRight" onClick={updateLocalDataToCloud}>Save to Cloud</button>
+            <br></br>
+            <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
             
             <table>
         <thead>
