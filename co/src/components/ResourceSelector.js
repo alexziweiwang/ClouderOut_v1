@@ -19,8 +19,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     });
 
     const [cloudFileList, setCloudFileList] = useState([]);
-    const [clickedFile, setClickedFileUrl] = useState("");
+    const [clickedFileUrl, setClickedFileUrl] = useState("");
     const [clickedFileName, setClickedFileName] = useState("");
+    const [clickedFileType, setClickedFileType] = useState("");
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     const [visualList, setVisualList] = useState([]);
     const [audioList, setAudioList] = useState([]);
@@ -33,16 +34,23 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         setAudioList(audioList);
         const visualList = fileList.filter((item) => (item.filetype == "visual"));
         setVisualList(visualList);
+        console.log("curr gen list:", fileList); //TODO test
     }
 
     function confirmResource() {
         console.log("choosing this resource...", clickedFileName);
     }
 
-    async function itemClicked(index) {
-        setClickedFileUrl(cloudFileList[index]["fileurl"]);
-        setClickedFileName(cloudFileList[index]["filename"]);
-        console.log("Resource selector: ", cloudFileList[index]["fileurl"]); //TODO testing
+    async function audioItemClicked(index) {
+        setClickedFileUrl(audioList[index]["fileurl"]);
+        setClickedFileName(audioList[index]["filename"]);
+        setClickedFileType("audio");
+    }
+
+    async function visualItemClicked(index) {
+        setClickedFileUrl(visualList[index]["fileurl"]);
+        setClickedFileName(visualList[index]["filename"]);
+        setClickedFileType("visual");
     }
   
     return (
@@ -59,7 +67,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <ul>
                     {visualList.map((item, index) => (
                         <li key={index} className={clickedFileName === item["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
-                            itemClicked(index);
+                            visualItemClicked(index);
                         }}>{item["filename"]}</li>
                     ))}
                 </ul>
@@ -68,7 +76,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <ul>
                     {audioList.map((item, index) => (
                         <li key={index} className={clickedFileName === item["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
-                            itemClicked(index);
+                            audioItemClicked(index);
                         }}>{item["filename"]}</li>
                     ))}
                 </ul>
@@ -76,8 +84,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                 </div>
                 <div className="rsrcPrevArea">
-                    resource preview area
-
+                    {(clickedFileType == "audio") && 
+                        <div>audio resource area</div>
+                    }
+                    {(clickedFileType == "visual") && 
+                        <div>visual resource area</div>
+                    }                    
+                    
                 </div>
                 
                 </div>
