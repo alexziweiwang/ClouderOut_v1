@@ -376,6 +376,7 @@ th,td {
     padding: 3px;
     width: 500px;
     overflow: auto;
+    user-select: none;
 }
 
 .tableItem:hover {
@@ -387,6 +388,7 @@ th,td {
     padding: 3px;
     width: 500px;
     overflow: auto;
+    user-select: none;
 }
 
 
@@ -399,6 +401,7 @@ th,td {
     padding: 3px;
     width: 500px;
     overflow: auto;
+    user-select: none;
 }
 
 .scrollableArea {

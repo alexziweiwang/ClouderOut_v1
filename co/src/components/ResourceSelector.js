@@ -82,7 +82,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                     {visualList.map((item, index) => (
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             visualItemClicked(index);
-                        }}>{item["filename"]}</li>
+                        }}>
+                            <input></input>
+                            <button>Update</button>
+                            <label>      {item["filename"]}</label>
+                            
+                        </li>
                     ))}
                 </ul>
                 <br></br>
@@ -91,7 +96,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                     {audioList.map((item, index) => (
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             audioItemClicked(index);
-                        }}>{item["filename"]}</li>
+                        }}>
+                            <input></input>
+                            <button>Update</button>
+                            <label>      {item["filename"]}</label>
+                        
+                        </li>
                     ))}
                 </ul>
 
