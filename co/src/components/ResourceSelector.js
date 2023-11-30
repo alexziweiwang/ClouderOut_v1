@@ -42,12 +42,26 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     async function audioItemClicked(index) {
+        if (clickedFileName == audioList[index]["filename"]) { /* reset */
+            console.log("repeat"); //TODO test
+            setClickedFileUrl("");
+            setClickedFileName("");
+            setClickedFileType("");
+            return;
+        }
         setClickedFileUrl(audioList[index]["fileurl"]);
         setClickedFileName(audioList[index]["filename"]);
         setClickedFileType("audio");
     }
 
     async function visualItemClicked(index) {
+        if (clickedFileName == visualList[index]["filename"]) { /* reset */
+            console.log("repeat"); //TODO test
+            setClickedFileUrl("");
+            setClickedFileName("");
+            setClickedFileType("");
+            return;
+        }
         setClickedFileUrl(visualList[index]["fileurl"]);
         setClickedFileName(visualList[index]["filename"]);
         setClickedFileType("visual");
@@ -66,7 +80,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <label>Visual Resource</label>
                 <ul>
                     {visualList.map((item, index) => (
-                        <li key={index} className={clickedFileName === item["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
+                        <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             visualItemClicked(index);
                         }}>{item["filename"]}</li>
                     ))}
@@ -75,7 +89,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <label>Audio Resource</label>
                 <ul>
                     {audioList.map((item, index) => (
-                        <li key={index} className={clickedFileName === item["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
+                        <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             audioItemClicked(index);
                         }}>{item["filename"]}</li>
                     ))}
