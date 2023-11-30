@@ -26,11 +26,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     const [audioList, setAudioList] = useState([]);
 
     async function fetchRmFileList() {
-        const fileList = await getRmFileListVM({uname: username});
-        setCloudFileList(fileList.filenames);
-        //TODO set audioList and visualList
-        console.log("modalwindow: fileList:"); //TODO test
-        console.log(fileList.filenames); //TODO test
+        let fileList = await getRmFileListVM({uname: username});
+        fileList = fileList.filenames;
+        setCloudFileList(fileList);
+        const audioList = fileList.filter((item) => (item.filetype == "audio"));
+        setAudioList(audioList);
+        const visualList = fileList.filter((item) => (item.filetype == "visual"));
+        setVisualList(visualList);
     }
 
     function confirmResource() {
@@ -53,13 +55,24 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <br></br><br></br>
                 <div className="parallelFrame"> 
                 <div>
+                <label>Visual Resource</label>
                 <ul>
-                    {cloudFileList.map((item, index) => (
-                        <li key={index} className={clickedFileName === cloudFileList[index]["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
+                    {visualList.map((item, index) => (
+                        <li key={index} className={clickedFileName === item["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
                             itemClicked(index);
                         }}>{item["filename"]}</li>
                     ))}
                 </ul>
+                <br></br>
+                <label>Audio Resource</label>
+                <ul>
+                    {audioList.map((item, index) => (
+                        <li key={index} className={clickedFileName === item["filename"]? "tableItemSelected" :  "tableItem"} onClick={() => {
+                            itemClicked(index);
+                        }}>{item["filename"]}</li>
+                    ))}
+                </ul>
+
 
                 </div>
                 <div className="rsrcPrevArea">
