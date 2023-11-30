@@ -62,7 +62,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
                 <div className="parallelFrame"> 
-                <div>
+                <div className="rsrcListArea">
                 <label>Visual Resource</label>
                 <ul>
                     {visualList.map((item, index) => (
