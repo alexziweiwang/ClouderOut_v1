@@ -22,10 +22,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     const [clickedFile, setClickedFileUrl] = useState("");
     const [clickedFileName, setClickedFileName] = useState("");
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    const [visualList, setVisualList] = useState([]);
+    const [audioList, setAudioList] = useState([]);
 
     async function fetchRmFileList() {
         const fileList = await getRmFileListVM({uname: username});
         setCloudFileList(fileList.filenames);
+        //TODO set audioList and visualList
         console.log("modalwindow: fileList:"); //TODO test
         console.log(fileList.filenames); //TODO test
     }
@@ -35,8 +38,6 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     async function itemClicked(index) {
-        // const fname = cloudFileList[index];
-        // const urlStr = await fetchUrlByFilenameVM({fullFilename: fname});
         setClickedFileUrl(cloudFileList[index]["fileurl"]);
         setClickedFileName(cloudFileList[index]["filename"]);
         console.log("Resource selector: ", cloudFileList[index]["fileurl"]); //TODO testing
@@ -61,7 +62,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 </ul>
 
                 </div>
-                <div>resource preview area</div>
+                <div className="rsrcPrevArea">
+                    resource preview area
+
+                </div>
+                
                 </div>
 
                 <p className="plans">For loaded list: consider option of prewviewing this resource? (the same with ResourceManagingModalWindow)</p>
