@@ -505,12 +505,19 @@ td {
 }
 
 .rsrcListArea {
-    width: 60%;
     background-color: rgb(183, 208, 170);
     margin-left: 5px;
     color:rgb(7, 7, 7);
+    overflow: auto;
 }
 
 .rsrcSelectorArea {
     height: 70%;
+}
+
+.varPairArea {
+    background-color: rgb(237, 209, 157);
+    margin-left: 5px;
+    margin-top: 5px;
+    color:rgb(7, 7, 7);
 }

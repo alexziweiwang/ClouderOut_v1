@@ -73,13 +73,22 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         <div className="modalArea2">
 
             <div className="modalContent scrollableArea">
+       
+                <div>
+
+                {/* <button onClick={fetchRmFileList}> Load Resource List </button> */}
+                <br></br><br></br>
+                <div className="parallelFrame rsrcSelectorArea" > 
+                
+                <div>
                 <div>
                     <button>Add New Pair</button>
-                    <div>
+                    <div className="varPairArea">
                         Variable pair area
                         <p className="plans">
                             TODO: load list of added variable-pair for *this* project
                         </p>
+
                     </div>
                 <p className="plans">
                         <br></br>section2: selecting resource name for *this field* ...
@@ -92,12 +101,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <br></br> such as containing a tag(visual or audio), etc.?
                 </p>
                 </div>
-                <div>
 
-                {/* <button onClick={fetchRmFileList}> Load Resource List </button> */}
-                <br></br><br></br>
-                <div className="parallelFrame rsrcSelectorArea" > 
-                
+
                 <div className="rsrcListArea">
                 <label>Visual Resource</label>
                 <ul>
@@ -124,6 +129,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         </li>
                     ))}
                 </ul>
+
+                </div>
 
 
                 </div>
