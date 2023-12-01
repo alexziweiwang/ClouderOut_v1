@@ -68,3 +68,8 @@ export async function fetchUrlByFilename({fullFilename}) {
     });
 
 }
+
+export async function fetchProjectResourcePairs({userName, projectName}) {
+  //TODO fetch list of project-resource pairs, by given user-name and project-name
+
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
+import { getRmFileListVM, fetchUrlByFilenameVM, fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -25,6 +25,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     const [visualList, setVisualList] = useState([]);
     const [audioList, setAudioList] = useState([]);
+
+    const [isAddNewPair, setIsAddNewPair] = useState(false);
 
     async function fetchRmFileList() {
         let fileList = await getRmFileListVM({uname: username});
@@ -82,7 +84,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 
                 <div>
                 <div>
-                    <button>Add New Pair</button>
+                    <button onClick={() => {setIsAddNewPair(!isAddNewPair);}}>Add New Pair</button>
+                    {isAddNewPair && 
+                    <div>
+                        Form Area...
+                        <button>Confirm</button>
+                    </div>}
                     <div className="varPairArea">
                         Variable pair area
                         <p className="plans">

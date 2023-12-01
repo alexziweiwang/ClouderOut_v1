@@ -277,7 +277,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                 <div>
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
-                    <p className="plans"> Idea on design: keep a "table" here, for each char-pic, and provide "edit" and "delete" option for each row </p>
     <table>
     <thead>        
         <tr>
@@ -301,7 +300,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <td>{item["w"]}</td>
                     <td>{item["h"]}</td>
                     {charPicDataPart.length > 0 && <td>
-                        <button>Edit</button>
                         <button onClick={()=>{removeRowInCharPicTable(index);}}>Remove</button>
                     </td>}
 
