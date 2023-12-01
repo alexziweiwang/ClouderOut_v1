@@ -9,9 +9,21 @@ body {
     text-align: center;
     font-size: 17px;
     cursor: pointer;
-    border-color: rgb(245, 239, 239);
     text-decoration: none;
     margin: 6px;
+    border: none;
+}
+
+.button:hover {
+    background-color: #accddf;
+    color: rgb(126, 123, 123);
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 6px;
+    border: none;
 }
 
 .plans {
@@ -64,12 +76,28 @@ body {
 }
 
 .sidebar_options {
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: -18px;
     background-color: rgb(242, 249, 255);
     height: 50px;
     width: 80%;
     cursor: pointer;
-    border-color: rgb(245, 239, 239);
+    border: none;
+    font-size: 16px;
+}
+
+.sidebar_options:hover {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: -18px;
+    background-color: rgb(238, 218, 184);
+    height: 50px;
+    width: 80%;
+    cursor: pointer;
+    border: none;
     font-size: 16px;
 }
 
@@ -78,6 +106,7 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     background-color: pink;
+    border: none;
 }
 
 .textRight {
