@@ -23,7 +23,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
-    const [charPicDataPart, setCharPicDataPart] = useState([]);
+    const [charPicDataPart, setCharPicDataPart] = useState(["test1"]);
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [clickableDataPart, setClickableDataPart] = useState([]);
@@ -265,8 +265,17 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         </tr>
     </thead>
     <tbody>
-           {}
+        {charPicDataPart.map((item, index) => {
+            
+            return (
+                <tr>
+                    <td>{item}</td>
+
+                </tr>
+            );
+        })}
     </tbody>
+
     </table>
     <br></br>
     <button onClick={changeAddAnotherCharPicOption}>Add Another Character Picture</button>
