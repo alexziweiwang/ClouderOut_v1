@@ -24,6 +24,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
     const [charPicDataPart, setCharPicDataPart] = useState(["test1"]);
+    const [charPicDataPosX, setCharPicDataPosX] = useState(0);
+    const [charPicDataPosY, setCharPicDataPosY] = useState(0);
+    const [charPicDataWidth, setCharPicDataWidth] = useState(60);
+    const [charPicDataHeight, setCharPicDataHeight] = useState(210);
+
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [clickableDataPart, setClickableDataPart] = useState([]);
@@ -268,8 +273,16 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         {charPicDataPart.map((item, index) => {
             
             return (
-                <tr>
-                    <td>{item}</td>
+                <tr key={index}>
+                    <td>(source link)</td>
+                    <td>{item["posX"]}</td>
+                    <td>{item["posY"]}</td>
+                    <td>{item["w"]}</td>
+                    <td>{item["h"]}</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Remove</button>
+                    </td>
 
                 </tr>
             );
@@ -299,7 +312,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <br></br>
     <button onClick={()=>{
         let newcharPicData = charPicDataPart;
-        const newRow = ""; //TODO fill in data from fields
+        const newRow = {posX: charPicDataPosX, posY: charPicDataPosY, w: charPicDataWidth, h: charPicDataHeight}; //TODO fill in data from fields    
         newcharPicData.push(newRow);
         setCharPicDataPart(newcharPicData);
     }}>
