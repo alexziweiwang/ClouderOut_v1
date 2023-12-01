@@ -337,7 +337,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         newcharPicData.push(newRow);
         changeAddAnotherCharPicOption();
         setCharPicDataPart(newcharPicData);
-        //TODO: update to cloud db for this field: character-pic
+        /* update to cloud db for this field: character-pic */
+        let tempArr = currentPieceDetail["chp_arr"];
+        tempArr.push(newcharPicData);
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempArr});
     }}>
         Confirm Add
     </button>        {/* //TODO later */}
