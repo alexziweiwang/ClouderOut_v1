@@ -172,6 +172,27 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         }
         updatePieceData(newPieceData);
     }
+
+    function removeRowInCharPicTable(index) {
+        let tempCharPicDataPart = charPicDataPart.filter((item) => (item != charPicDataPart[index]));
+        setCharPicDataPart(tempCharPicDataPart);
+    }
+
+    function onChangeCharPicDataPosX(event) {
+        setCharPicDataPosX(event.target.value);
+    }
+
+    function onChangeCharPicDataPosY(event) {
+        setCharPicDataPosY(event.target.value);
+    }
+
+    function onChangeCharPicDataW(event) {
+        setCharPicDataWidth(event.target.value);
+    }
+
+    function onChangeCharPicDataH(event) {
+        setCharPicDataHeight(event.target.value);
+    }
   
 
     return (
@@ -281,7 +302,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <td>{item["h"]}</td>
                     {charPicDataPart.length > 0 && <td>
                         <button>Edit</button>
-                        <button>Remove</button>
+                        <button onClick={()=>{removeRowInCharPicTable(index);}}>Remove</button>
                     </td>}
 
                 </tr>
@@ -299,16 +320,16 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
     <br></br>
     <label>Position x:      </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+    <input type="number" min="0" max="9000" step="1" defaultValue="0" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+    <input type="number" min="0" max="9000" step="1" defaultValue="0" value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="60"></input>
+    <input type="number" min="0" max="9000" step="1" defaultValue="60" value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="210"></input>
+    <input type="number" min="0" max="9000" step="1" defaultValue="210" value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
         let newcharPicData = charPicDataPart;
@@ -316,6 +337,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         newcharPicData.push(newRow);
         changeAddAnotherCharPicOption();
         setCharPicDataPart(newcharPicData);
+        //TODO: update to cloud db for this field: character-pic
     }}>
         Confirm Add
     </button>        {/* //TODO later */}
