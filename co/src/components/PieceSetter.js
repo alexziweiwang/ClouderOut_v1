@@ -23,7 +23,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
-    const [charPicDataPart, setCharPicDataPart] = useState(["test1"]);
+    const [charPicDataPart, setCharPicDataPart] = useState([]);
     const [charPicDataPosX, setCharPicDataPosX] = useState(0);
     const [charPicDataPosY, setCharPicDataPosY] = useState(0);
     const [charPicDataWidth, setCharPicDataWidth] = useState(60);
@@ -274,15 +274,15 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             
             return (
                 <tr key={index}>
-                    <td>(source link)</td>
+                    {charPicDataPart.length > 0 && <td>(source link)</td>}
                     <td>{item["posX"]}</td>
                     <td>{item["posY"]}</td>
                     <td>{item["w"]}</td>
                     <td>{item["h"]}</td>
-                    <td>
+                    {charPicDataPart.length > 0 && <td>
                         <button>Edit</button>
                         <button>Remove</button>
-                    </td>
+                    </td>}
 
                 </tr>
             );
@@ -314,6 +314,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         let newcharPicData = charPicDataPart;
         const newRow = {posX: charPicDataPosX, posY: charPicDataPosY, w: charPicDataWidth, h: charPicDataHeight}; //TODO fill in data from fields    
         newcharPicData.push(newRow);
+        changeAddAnotherCharPicOption();
         setCharPicDataPart(newcharPicData);
     }}>
         Confirm Add
