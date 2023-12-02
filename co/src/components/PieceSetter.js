@@ -32,9 +32,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [clickableDataPart, setClickableDataPart] = useState([]);
-    const [clickableSource, setClickableSource] = useState("");
-    const [clickableSound, setClickableSound] = useState("");
-    const [clickableConsequenceArray, setClickableConsequenceArray] = useState([]);
+    const [clickableSource, setClickableSource] = useState("default source"); //TODO test
+    const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
+    const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
 
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
@@ -381,18 +381,21 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     
                     <tbody>
                         {clickableDataPart.map((item, index) => {
+
+                            
                             return (
                                 <tr className="clickableListItem3">
-                                <td>[button shape/pic]</td>
-                                <td>[sound effect resource url]</td>
+                                <td>{item["shape"]}</td>
+                                <td>{item["sound"]}</td>
                                 <td>
                                     {<>
-                                        [consequence logic array]
+                                        {item["consequence"].map((row, rowIndex)=>{
+                                            return(<>{row[rowIndex]}</>);
+                                        })}
                                     </>}
                                 </td>
                                 <td>
-                                    <button className="cursor_pointer">Edit</button>
-                                    <button className="cursor_pointer">Remove</button>
+                                    <button className="cursor_pointer" onClick={()=>{console.log("remove a clickable-item")}}>Remove</button>
                                 </td>
                             </tr>
                             
