@@ -28,8 +28,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     const [isAddNewPair, setIsAddNewPair] = useState(false);
 
-    const [projectRsrcAudioList, setProjectRsrcAudioList] = useState([]);
-    const [projectRsrcVisualList, setProjectRsrcVisualList] = useState([]);
+    const [projectRsrcAudioList, setProjectRsrcAudioList] = useState([]); //TODO fetch from cloud!!
+    const [projectRsrcVisualList, setProjectRsrcVisualList] = useState([]); //TODO fetch from cloud!!
+
+    const [tempVarName, setTempVarName] = useState("");
 
     async function fetchRmFileList() {
         let fileList = await getRmFileListVM({uname: username});
@@ -72,6 +74,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         setClickedFileType("visual");
     }
   
+    function handleTempVarChange(event) {
+        setTempVarName(event.target.value);
+    }
+
     return (
       <div className={modalStyleName}>
 
@@ -106,13 +112,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                         {projectRsrcVisualList.map((item, index) => {
                                 return (<li className="clickableListItem2">
-                                    {item["filename"]}
+                                    {item["var"]}:{item["content"]["filename"]}
                                 </li>);
                         })}
 
                         {projectRsrcAudioList.map((item, index) => {
                                 return (<li className="clickableListItem2">
-                                    {item["filename"]}
+                                    {item["var"]}:{item["content"]["filename"]}
                                 </li>);
                         })}
                         </ul>
@@ -131,6 +137,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
 
                 <div className="rsrcListArea">
+
+                <input value={tempVarName} onChange={handleTempVarChange}></input>
+                <br></br><br></br>
                 <label>Visual Resource</label>
                 <ul>
                     {visualList.map((item, index) => (
@@ -138,10 +147,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             visualItemClicked(index);
                         }}>
                             {<>
-                            <input></input>
-                            <button>Save</button>
                             <label>      {item["filename"]}</label>      
-                            <button onClick={()=>{projectRsrcVisualList.push(item);console.log("projectRsrcVisualList= ", projectRsrcVisualList);}}>Add</button>
+                            <button onClick={()=>{
+                                let obj = {var: tempVarName, content: item}
+                                projectRsrcVisualList.push(obj);
+                                console.log("projectRsrcVisualList= ", projectRsrcVisualList);}}>Add</button>
                             </>}                  
                         </li>
                     ))}
@@ -153,10 +163,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             audioItemClicked(index);
                         }}>
-                            <input></input>
-                            <button>Save</button>
                             <label>      {item["filename"]}</label>
-                            <button onClick={()=>{projectRsrcAudioList.push(item);console.log("projectRsrcAudioList = ", projectRsrcAudioList);}}>Add</button>
+                            <button onClick={()=>{
+                                let obj = {var: tempVarName, content: item}
+                                projectRsrcVisualList.push(obj);
+                                console.log("projectRsrcAudioList = ", projectRsrcAudioList);}}>Add</button>
 
                         </li>
                     ))}
