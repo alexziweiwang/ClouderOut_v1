@@ -339,6 +339,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         let tempArr = currentPieceDetail["chp_arr"];
         tempArr.push(newcharPicData);
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempArr});
+        setCharPicDataPosX(0);
+        setCharPicDataPosY(0);
+        setCharPicDataWidth(60);
+        setCharPicDataHeight(210);
     }}>
         Confirm Add
     </button>        {/* //TODO later */}

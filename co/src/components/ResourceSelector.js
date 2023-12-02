@@ -117,9 +117,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             visualItemClicked(index);
                         }}>
+                            {<>
                             <input></input>
                             <button>Save</button>
-                            <label>      {item["filename"]}</label>                            
+                            <label>      {item["filename"]}</label>      
+                            <button>Add</button>
+                            </>}                  
                         </li>
                     ))}
                 </ul>
