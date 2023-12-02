@@ -99,6 +99,23 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             TODO: load list of added variable-pair for *this* project
                         </p>
 
+                        <ul>
+
+
+                       
+
+                        {projectRsrcVisualList.map((item, index) => {
+                                return (<li className="clickableListItem2">
+                                    {item["filename"]}
+                                </li>);
+                        })}
+
+                        {projectRsrcAudioList.map((item, index) => {
+                                return (<li className="clickableListItem2">
+                                    {item["filename"]}
+                                </li>);
+                        })}
+                        </ul>
                     </div>
                 <p className="plans">
                         <br></br>section2: selecting resource name for *this field* ...
@@ -124,7 +141,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             <input></input>
                             <button>Save</button>
                             <label>      {item["filename"]}</label>      
-                            <button onClick={()=>{projectRsrcVisualList.push(item);}}>Add</button>
+                            <button onClick={()=>{projectRsrcVisualList.push(item);console.log("projectRsrcVisualList= ", projectRsrcVisualList);}}>Add</button>
                             </>}                  
                         </li>
                     ))}
@@ -139,7 +156,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             <input></input>
                             <button>Save</button>
                             <label>      {item["filename"]}</label>
-                            <button onClick={()=>{projectRsrcAudioList.push(item);}}>Add</button>
+                            <button onClick={()=>{projectRsrcAudioList.push(item);console.log("projectRsrcAudioList = ", projectRsrcAudioList);}}>Add</button>
 
                         </li>
                     ))}
