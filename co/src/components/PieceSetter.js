@@ -35,7 +35,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
-
+    const [isClickableAddNewConsq, setIsClickableAddNEwConsq] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
@@ -416,6 +416,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Consequence:         </label>
+                    <button onClick={()=>{setIsClickableAddNEwConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
+                    {isClickableAddNewConsq && <><br></br>
+                    new row info
+                    <br></br>
+                    <button>Add</button>
+                    </>}
                     <table>
                         <thead></thead>
                             <tr>
