@@ -23,15 +23,18 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
+
     const [charPicDataPart, setCharPicDataPart] = useState([]);
     const [charPicDataPosX, setCharPicDataPosX] = useState(0);
     const [charPicDataPosY, setCharPicDataPosY] = useState(0);
     const [charPicDataWidth, setCharPicDataWidth] = useState(60);
     const [charPicDataHeight, setCharPicDataHeight] = useState(210);
 
-
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [clickableDataPart, setClickableDataPart] = useState([]);
+    const [clickableSource, setClickableSource] = useState("");
+    const [clickableSound, setClickableSound] = useState("");
+    const [clickableConsequenceArray, setClickableConsequenceArray] = useState([]);
 
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
@@ -377,16 +380,25 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     </thead>
                     
                     <tbody>
-                        {
-                        <tr className="clickableListItem3">
-                            <td>[button shape/pic]</td>
-                            <td>[sound effect resource url]</td>
-                            <td>[consequence logic]</td>
-                            <td>
-                                <button className="cursor_pointer">Edit</button>
-                                <button className="cursor_pointer">Remove</button>
-                            </td>
-                        </tr>}
+                        {clickableDataPart.map((item, index) => {
+                            return (
+                                <tr className="clickableListItem3">
+                                <td>[button shape/pic]</td>
+                                <td>[sound effect resource url]</td>
+                                <td>
+                                    {<>
+                                        [consequence logic array]
+                                    </>}
+                                </td>
+                                <td>
+                                    <button className="cursor_pointer">Edit</button>
+                                    <button className="cursor_pointer">Remove</button>
+                                </td>
+                            </tr>
+                            
+                                );
+                        })}
+                        
                     </tbody>
                     
                     </table>
@@ -410,7 +422,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                                 <th>[Operation]</th>
                             </tr>
                         <tbody>
-                            <tr>
+                            {<tr>
                                 <td>(obj1)</td>
                                 <td>(action1)</td>
                                 <td>(amount1)</td>
@@ -418,7 +430,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                                     <button>x</button>
 
                                 </td>
-                            </tr>
+                            </tr>}
                         </tbody>
                     </table>
                     <p className="plans"> Consequence: (logic organizer-related) 
