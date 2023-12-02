@@ -112,13 +112,27 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                         {projectRsrcVisualList.map((item, index) => {
                                 return (<li className="clickableListItem2">
-                                    {item["var"]}:{item["content"]["filename"]}
+                                    <input value={projectRsrcVisualList[index]["var"]} onChange={()=>{}}></input>
+                                    {item["content"]["filename"]}
+                                    <button onClick={()=>{}}>Update</button>
+                                    <button onClick={()=>{
+                                        let tempList = projectRsrcVisualList;
+                                        tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
+                                        setProjectRsrcVisualList(tempList);
+                                    }}>Remove</button>
                                 </li>);
                         })}
 
                         {projectRsrcAudioList.map((item, index) => {
                                 return (<li className="clickableListItem2">
-                                    {item["var"]}:{item["content"]["filename"]}
+                                    <input value={projectRsrcAudioList[index]["var"]} onChange={()=>{}}></input>
+                                    {item["content"]["filename"]}
+                                    <button onClick={()=>{}}>Update</button>
+                                    <button onClick={()=>{
+                                        let tempList = projectRsrcAudioList;
+                                        tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
+                                        setProjectRsrcAudioList(tempList);
+                                    }}>Remove</button>
                                 </li>);
                         })}
                         </ul>
