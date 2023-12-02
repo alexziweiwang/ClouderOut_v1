@@ -112,9 +112,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                         {projectRsrcVisualList.map((item, index) => {
                                 return (<li className="clickableListItem2">
-                                    <input value={projectRsrcVisualList[index]["var"]} onChange={()=>{}}></input>
+                                    <input value={projectRsrcVisualList[index]["var"]} onChange={()=>{console.log("TODO: typed new variable name");}}></input>
                                     {item["content"]["filename"]}
-                                    <button onClick={()=>{}}>Update</button>
+                                    <button onClick={()=>{console.log("TODO: update the variable name for this list item")}}>Update</button>
                                     <button onClick={()=>{
                                         let tempList = projectRsrcVisualList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
@@ -163,9 +163,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             {<>
                             <label>      {item["filename"]}</label>      
                             <button onClick={()=>{
+                                //TODO check duplicate in projectRsrcVisualList
                                 let obj = {var: tempVarName, content: item}
                                 projectRsrcVisualList.push(obj);
-                                console.log("projectRsrcVisualList= ", projectRsrcVisualList);}}>Add</button>
+                                console.log("projectRsrcVisualList= ", projectRsrcVisualList);
+                                setTempVarName("");
+                                }}>Add</button>
                             </>}                  
                         </li>
                     ))}
@@ -179,9 +182,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         }}>
                             <label>      {item["filename"]}</label>
                             <button onClick={()=>{
+                                //TODO check duplicate in projectRsrcAudioList
                                 let obj = {var: tempVarName, content: item}
                                 projectRsrcVisualList.push(obj);
-                                console.log("projectRsrcAudioList = ", projectRsrcAudioList);}}>Add</button>
+                                console.log("projectRsrcAudioList = ", projectRsrcAudioList);
+                                setTempVarName("");
+                            }}>Add</button>
 
                         </li>
                     ))}
