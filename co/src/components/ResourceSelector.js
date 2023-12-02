@@ -28,6 +28,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     const [isAddNewPair, setIsAddNewPair] = useState(false);
 
+    const [projectRsrcAudioList, setProjectRsrcAudioList] = useState([]);
+    const [projectRsrcVisualList, setProjectRsrcVisualList] = useState([]);
+
     async function fetchRmFileList() {
         let fileList = await getRmFileListVM({uname: username});
         fileList = fileList.filenames;
@@ -121,7 +124,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             <input></input>
                             <button>Save</button>
                             <label>      {item["filename"]}</label>      
-                            <button>Add</button>
+                            <button onClick={()=>{projectRsrcVisualList.push(item);}}>Add</button>
                             </>}                  
                         </li>
                     ))}
@@ -136,6 +139,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             <input></input>
                             <button>Save</button>
                             <label>      {item["filename"]}</label>
+                            <button onClick={()=>{projectRsrcAudioList.push(item);}}>Add</button>
+
                         </li>
                     ))}
                 </ul>

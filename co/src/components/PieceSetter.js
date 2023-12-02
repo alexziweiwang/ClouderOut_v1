@@ -416,12 +416,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Consequence:         </label>
-                    <button onClick={()=>{setIsClickableAddNEwConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
-                    {isClickableAddNewConsq && <><br></br>
-                    new row info
-                    <br></br>
-                    <button>Add</button>
-                    </>}
                     <table>
                         <thead></thead>
                             <tr>
@@ -442,11 +436,18 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                             </tr>}
                         </tbody>
                     </table>
+                    <button onClick={()=>{setIsClickableAddNEwConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
+                    {isClickableAddNewConsq && <><br></br>
+                    <p className="plans">TODO new row info: 
+                        <br></br>- option1: assign a value to variable in game-data
+                        <br></br>- option2: increase/decrease some value of variable in game-data
+                    </p>
+                    <br></br>
+                    <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
+                    </>}
+
+
                     <p className="plans"> Consequence: (logic organizer-related) 
-                    <br></br> - option1: assign a value to variable in game-data
-                    <br></br> - option2: increase/decrease some value of variable in game-data
-                    <br></br> - (can contain multiple consequences)
-                    <br></br> TODO: add table for this feature (with operation options)
                     <br></br> TODO: load game-data items for selection
                     <br></br> TODO: keep the *action* of updating game-data!! (not immediately, but when action triggered)
                    
