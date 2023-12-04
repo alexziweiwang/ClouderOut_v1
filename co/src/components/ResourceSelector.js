@@ -114,10 +114,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                        
 
                         {projectRsrcVisualList.map((item, index) => {
-                                return (<li className="clickableListItem2">
-                                    <input value={projectRsrcVisualList[index]["var"]} onChange={()=>{console.log("TODO: typed new variable name");}}></input>
-                                    {item["content"]["filename"]}
-                                    <button onClick={()=>{console.log("TODO: update the variable name for this list item")}}>Update</button>
+                                return (<li className="clickableListItem2" key={index}>    
+                                    {item["content"]["filename"]}                                    
                                     <button onClick={()=>{
                                         let tempList = projectRsrcVisualList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
@@ -127,10 +125,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         })}
 
                         {projectRsrcAudioList.map((item, index) => {
-                                return (<li className="clickableListItem2">
-                                    <input value={projectRsrcAudioList[index]["var"]} onChange={()=>{}}></input>
+                                return (<li className="clickableListItem2" key={index}>
                                     {item["content"]["filename"]}
-                                    <button onClick={()=>{}}>Update</button>
                                     <button onClick={()=>{
                                         let tempList = projectRsrcAudioList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
