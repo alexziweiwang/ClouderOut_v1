@@ -51,30 +51,16 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         console.log("choosing this resource...", clickedFileName);
     }
 
-    async function audioItemClicked(index) {
-        if (clickedFileName == audioList[index]["filename"]) { /* reset */
-            console.log("repeat"); //TODO test
+    async function itemClicked(item) {
+        if (clickedFileName == item["filename"]) { /* reset */
             setClickedFileUrl("");
             setClickedFileName("");
             setClickedFileType("");
             return;
         }
-        setClickedFileUrl(audioList[index]["fileurl"]);
-        setClickedFileName(audioList[index]["filename"]);
-        setClickedFileType("audio");
-    }
-
-    async function visualItemClicked(index) {
-        if (clickedFileName == visualList[index]["filename"]) { /* reset */
-            console.log("repeat"); //TODO test
-            setClickedFileUrl("");
-            setClickedFileName("");
-            setClickedFileType("");
-            return;
-        }
-        setClickedFileUrl(visualList[index]["fileurl"]);
-        setClickedFileName(visualList[index]["filename"]);
-        setClickedFileType("visual");
+        setClickedFileUrl(item["fileurl"]);
+        setClickedFileName(item["filename"]);
+        setClickedFileType(item["filetype"]);
     }
   
     function handleTempVarChange(event) {
@@ -114,7 +100,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                        
 
                         {projectRsrcVisualList.map((item, index) => {
-                                return (<li className="clickableListItem2" key={index}>    
+                                return (<li className="clickableListItem2" key={index} onClick={()=>{ itemClicked(item);}}> 
                                     {item["var"]}= {item["content"]["filename"]}                                    
                                     <button onClick={()=>{
                                         let tempList = projectRsrcVisualList;
@@ -127,7 +113,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         })}
 
                         {projectRsrcAudioList.map((item, index) => {
-                                return (<li className="clickableListItem2" key={index}>
+                                return (<li className="clickableListItem2" key={index} onClick={()=>{ itemClicked(item);}}>
                                     {item["var"]}= {item["content"]["filename"]}                                    
                                     <button onClick={()=>{
                                         let tempList = projectRsrcAudioList;
@@ -162,7 +148,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <ul>
                     {visualList.map((item, index) => (
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
-                            visualItemClicked(index);
+                            itemClicked(item);
                         }}>
                             {<>
                             <label>      {item["filename"]}</label>      
@@ -183,7 +169,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <ul>
                     {audioList.map((item, index) => (
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
-                            audioItemClicked(index);
+                            itemClicked(item);
                         }}>
                             <label>      {item["filename"]}</label>
                             {!localAudioList.includes(item["filename"]) && 
