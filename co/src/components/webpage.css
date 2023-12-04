@@ -119,7 +119,19 @@ body {
     text-align: center;
     font-size: 17px;
     cursor: pointer;
-    border-color: rgb(247, 243, 243);
+    border: none;
+    text-decoration: none;
+    margin: 6px;
+    width: 80%;
+}
+
+.collapseToggle:hover {
+    background-color: rgb(218, 205, 194);
+    color: rgb(7, 7, 7);
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
     text-decoration: none;
     margin: 6px;
     width: 80%;
@@ -549,4 +561,23 @@ td {
     margin-left: 5px;
     margin-top: 5px;
     color:rgb(7, 7, 7);
+}
+
+table {
+    overflow: audio;
+}
+
+button {
+    border: none;
+    background-color: rgb(229, 239, 239);
+    color: rgb(16, 16, 16);
+    font-size: 16px;
+}
+
+button:hover {
+    border: none;
+    background-color: rgb(79, 78, 78);
+    color: rgb(238, 238, 238);
+    cursor: pointer;
+    font-size: 16px;
 }

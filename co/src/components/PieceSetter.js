@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResourceSelector from './ResourceSelector';
+import styles from './webpage.css';
 
 export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData}) {
     const navigate = useNavigate();
