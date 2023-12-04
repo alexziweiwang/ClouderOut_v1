@@ -115,22 +115,27 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                         {projectRsrcVisualList.map((item, index) => {
                                 return (<li className="clickableListItem2" key={index}>    
-                                    {item["content"]["filename"]}                                    
+                                    {item["var"]}= {item["content"]["filename"]}                                    
                                     <button onClick={()=>{
                                         let tempList = projectRsrcVisualList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
                                         setProjectRsrcVisualList(tempList);
+                                        let tempLocalArr = localVisualList.filter((elem) => (elem != item["content"]["filename"]));
+                                        setLocalVisualList(tempLocalArr);
                                     }}>Remove</button>
                                 </li>);
                         })}
 
                         {projectRsrcAudioList.map((item, index) => {
                                 return (<li className="clickableListItem2" key={index}>
-                                    {item["content"]["filename"]}
+                                    {item["var"]}= {item["content"]["filename"]}                                    
                                     <button onClick={()=>{
                                         let tempList = projectRsrcAudioList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
                                         setProjectRsrcAudioList(tempList);
+                                        console.log("");
+                                        let tempLocalArr = localAudioList.filter((elem) => (elem != item["content"]["filename"]));
+                                        setLocalAudioList(tempLocalArr);
                                     }}>Remove</button>
                                 </li>);
                         })}
