@@ -31,6 +31,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     const [projectRsrcAudioList, setProjectRsrcAudioList] = useState([]); //TODO fetch from cloud!!
     const [projectRsrcVisualList, setProjectRsrcVisualList] = useState([]); //TODO fetch from cloud!!
 
+    const [localAudioList, setLocalAudioList] = useState([]); //local list
+    const [localVisualList, setLocalVisualList] = useState([]); //local list
+
     const [tempVarName, setTempVarName] = useState("");
 
     async function fetchRmFileList() {
@@ -163,9 +166,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             {<>
                             <label>      {item["filename"]}</label>      
                             <button onClick={()=>{
-                                //TODO check duplicate in projectRsrcVisualList
-                                let obj = {var: tempVarName, content: item}
-                                projectRsrcVisualList.push(obj);
+                                let obj = {var: tempVarName, content: item};
+                                if (!localVisualList.includes(item["filename"])) {
+                                    projectRsrcVisualList.push(obj);  
+                                    localVisualList.push(item["filename"]);                          
+                                }
                                 console.log("projectRsrcVisualList= ", projectRsrcVisualList);
                                 setTempVarName("");
                                 }}>Add</button>
@@ -182,10 +187,12 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         }}>
                             <label>      {item["filename"]}</label>
                             <button onClick={()=>{
-                                //TODO check duplicate in projectRsrcAudioList
-                                let obj = {var: tempVarName, content: item}
-                                projectRsrcVisualList.push(obj);
-                                console.log("projectRsrcAudioList = ", projectRsrcAudioList);
+                                let obj = {var: tempVarName, content: item};
+                                if (!localAudioList.includes(item["filename"])) {
+                                    projectRsrcAudioList.push(obj);  
+                                    localAudioList.push(item["filename"]);                          
+                                }
+
                                 setTempVarName("");
                             }}>Add</button>
 
