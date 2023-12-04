@@ -46,9 +46,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
         setCloudFileList(fileList.filenames);
-        const vList = fileList.filenames.filter((item)=>(item.filetype=="visual"));
+        const vList = fileList.filenames.filter((item)=>(item.filetype === "visual"));
         setFileListVisual(vList);
-        const aList = fileList.filenames.filter((item)=>(item.filetype=="audio"));
+        const aList = fileList.filenames.filter((item)=>(item.filetype === "audio"));
         setFileListAudio(aList);
         console.log("gen list = ", cloudFileList); //TODO test
 

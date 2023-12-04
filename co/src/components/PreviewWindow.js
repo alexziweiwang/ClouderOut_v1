@@ -1,7 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import styles from './webpage.css';
 
 
 export default function PreviewWindow({dataObj}) {

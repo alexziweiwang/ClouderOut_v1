@@ -1,9 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './webpage.css';
-import Sidebar from './Sidebar';
 import ResourceSelector from './ResourceSelector';
 
 export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData}) {
@@ -177,7 +174,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     }
 
     function removeRowInCharPicTable(index) {
-        let tempCharPicDataPart = charPicDataPart.filter((item) => (item != charPicDataPart[index]));
+        let tempCharPicDataPart = charPicDataPart.filter((item) => (item !== charPicDataPart[index]));
         setCharPicDataPart(tempCharPicDataPart);
     }
 

@@ -45,9 +45,9 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
     let currFileList = currFileData.data().filenames;
     const obj = {"filename": filetitle, "fileurl": fileUrl, "filetype": fileType};
 
-    const duplicatePart = currFileList.filter(item => item.filename == filetitle && item.fileurl == fileUrl);
+    const duplicatePart = currFileList.filter(item => item.filename === filetitle && item.fileurl === fileUrl);
     
-    if (duplicatePart.length == 0) {
+    if (duplicatePart.length === 0) {
       currFileList.push(obj);
     }
     await updateDoc(ref, {filenames: currFileList});

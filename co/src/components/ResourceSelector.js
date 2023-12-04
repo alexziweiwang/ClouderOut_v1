@@ -40,9 +40,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         let fileList = await getRmFileListVM({uname: username});
         fileList = fileList.filenames;
         setCloudFileList(fileList);
-        const audioList = fileList.filter((item) => (item.filetype == "audio"));
+        const audioList = fileList.filter((item) => (item.filetype === "audio"));
         setAudioList(audioList);
-        const visualList = fileList.filter((item) => (item.filetype == "visual"));
+        const visualList = fileList.filter((item) => (item.filetype === "visual"));
         setVisualList(visualList);
         console.log("curr gen list:", fileList); //TODO test
     }
@@ -52,7 +52,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     async function itemClicked(item) {
-        if (clickedFileName == item["filename"]) { /* reset */
+        if (clickedFileName === item["filename"]) { /* reset */
             setClickedFileUrl("");
             setClickedFileName("");
             setClickedFileType("");
@@ -106,7 +106,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                         let tempList = projectRsrcVisualList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
                                         setProjectRsrcVisualList(tempList);
-                                        let tempLocalArr = localVisualList.filter((elem) => (elem != item["content"]["filename"]));
+                                        let tempLocalArr = localVisualList.filter((elem) => (elem !== item["content"]["filename"]));
                                         setLocalVisualList(tempLocalArr);
                                     }}>Remove</button>
                                 </li>);
@@ -120,7 +120,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
                                         setProjectRsrcAudioList(tempList);
                                         console.log("");
-                                        let tempLocalArr = localAudioList.filter((elem) => (elem != item["content"]["filename"]));
+                                        let tempLocalArr = localAudioList.filter((elem) => (elem !== item["content"]["filename"]));
                                         setLocalAudioList(tempLocalArr);
                                     }}>Remove</button>
                                 </li>);
@@ -190,10 +190,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                 </div>
                 <div className="rsrcPrevArea">
-                    {(clickedFileType == "audio") && 
+                    {(clickedFileType === "audio") && 
                         <div>audio resource area {clickedFileUrl}</div>
                     }
-                    {(clickedFileType == "visual") && 
+                    {(clickedFileType === "visual") && 
                         <div>visual resource area {clickedFileUrl}</div>
                     }                    
                     
