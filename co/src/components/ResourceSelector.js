@@ -162,7 +162,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 let temArr = projectRsrcVisualList.filter((elem) => (elem["filename"] !== item["filename"]));               
                                 temArr.push(obj); 
                                 setProjectRsrcVisualList(temArr);                               
-                                let tempLocal = localVisualList.filter((elem) => (elem["filename"] !== item["filename"])); 
+                                let tempLocal = localVisualList.filter((elem) => (elem !== item["filename"])); 
                                 tempLocal.push(item["filename"]);
                                 setLocalVisualList(tempLocal);                        
                                 setTempVarName("");
@@ -197,7 +197,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 let temArr = projectRsrcAudioList.filter((elem) => (elem["filename"] !== item["filename"]));               
                                 temArr.push(obj); 
                                 setProjectRsrcAudioList(temArr);                               
-                                let tempLocal = localAudioList.filter((elem) => (elem["filename"] !== item["filename"])); 
+                                let tempLocal = localAudioList.filter((elem) => (elem !== item["filename"])); 
                                 tempLocal.push(item["filename"]);
                                 setLocalAudioList(tempLocal);                        
                                 setTempVarName("");
