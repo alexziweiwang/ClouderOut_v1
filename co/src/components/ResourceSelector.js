@@ -154,13 +154,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 setTempVarName("");
                                 }}>Add
                             </button>}
+                            
                             {localVisualList.includes(item["filename"]) &&
                             <button onClick={()=>{
+                                if (tempVarName === "") {return;}
                                 let obj = {var: tempVarName, content: item};  
-                                let temArr = projectRsrcVisualList.filter((elem) => (elem["filename"] != item["filename"]));               
+                                let temArr = projectRsrcVisualList.filter((elem) => (elem["filename"] !== item["filename"]));               
                                 temArr.push(obj); 
                                 setProjectRsrcVisualList(temArr);                               
-                                let tempLocal = localVisualList.filter((elem) => (elem["filename"] != item["filename"])); 
+                                let tempLocal = localVisualList.filter((elem) => (elem["filename"] !== item["filename"])); 
                                 tempLocal.push(item["filename"]);
                                 setLocalVisualList(tempLocal);                        
                                 setTempVarName("");
@@ -187,13 +189,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 setTempVarName("");
                             }}>Add
                             </button>}
+                            
                             {localAudioList.includes(item["filename"]) &&
                             <button onClick={()=>{
+                                if (tempVarName === "") {return;}
                                 let obj = {var: tempVarName, content: item};  
-                                let temArr = projectRsrcAudioList.filter((elem) => (elem["filename"] != item["filename"]));               
+                                let temArr = projectRsrcAudioList.filter((elem) => (elem["filename"] !== item["filename"]));               
                                 temArr.push(obj); 
                                 setProjectRsrcAudioList(temArr);                               
-                                let tempLocal = localAudioList.filter((elem) => (elem["filename"] != item["filename"])); 
+                                let tempLocal = localAudioList.filter((elem) => (elem["filename"] !== item["filename"])); 
                                 tempLocal.push(item["filename"]);
                                 setLocalAudioList(tempLocal);                        
                                 setTempVarName("");
