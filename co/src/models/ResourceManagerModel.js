@@ -70,6 +70,22 @@ export async function fetchUrlByFilename({fullFilename}) {
 }
 
 export async function fetchProjectResourcePairs({userName, projectName}) {
-  //TODO fetch list of project-resource pairs, by given user-name and project-name
+  /* fetch lists of project-resource pairs, by given user-name and project-name */
 
+  const docRef = doc(db, "user_projects", userName);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return;
+  }
+
+  const ref = doc(docRef, "projects", projectName);
+  let visualList = await getDoc(ref, "proj_resource_visual");
+  visualList = visualList.data();
+  let audioList = await getDoc(ref, "proj_resource_audio");
+  audioList = audioList.data();
+
+  const obj = {audio: audioList, visual: visualList};
+
+  return obj;
 }

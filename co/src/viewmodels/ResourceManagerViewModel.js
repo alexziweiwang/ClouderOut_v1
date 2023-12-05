@@ -22,6 +22,5 @@ export async function fetchUrlByFilenameVM({fullFilename}) {
 }
 
 export async function fetchProjectResourcePairsVM({userName, projectName}) {
-    fetchProjectResourcePairs({userName, projectName});
-
+    return fetchProjectResourcePairs({userName, projectName});
 }
