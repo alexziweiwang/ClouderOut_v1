@@ -114,7 +114,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 </option>);
                             })}
                         </select>
-                        <input></input>
+                        <select>
+                            {visualList.map((item, index) => {
+                                return (<option value={item["filename"]} key={index}>
+                                    {item["filename"]}
+                                </option>);
+                            })}
+                        </select>
                         <button>Update</button></>}
 
                         <ul>    
@@ -143,7 +149,13 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 </option>);
                             })}
                         </select>
-                        <input></input>
+                        <select>
+                            {audioList.map((item, index) => {
+                                return (<option value={item["filename"]} key={index}>
+                                    {item["filename"]}
+                                </option>);
+                            })}
+                        </select>
                         <button>Update</button></>}
                         
                         <ul>
