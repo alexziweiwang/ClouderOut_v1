@@ -92,7 +92,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         Variable pair area
                         <p className="plans">
                             TODO: load list:
-                            <br></br>cloud db field array name: Variable pair area
+                            <br></br>cloud db field array name: project_resource
                         </p>
 
                         <ul>
@@ -110,6 +110,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                         let tempLocalArr = localVisualList.filter((elem) => (elem !== item["content"]["filename"]));
                                         setLocalVisualList(tempLocalArr);
                                     }}>Remove</button>
+                                    
                                 </li>);
                         })}
 
@@ -143,7 +144,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         <li key={index} className={clickedFileName === item["filename"] ? "tableItemSelected" :  "tableItem"} onClick={() => {
                             itemClicked(item);
                         }}>
-                            {<>
+                            
                             <label>{item["filename"]}</label>      
                             {!localVisualList.includes(item["filename"]) &&
                             <button onClick={()=>{
@@ -153,7 +154,20 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 setTempVarName("");
                                 }}>Add
                             </button>}
-                            </>}                  
+                            {localVisualList.includes(item["filename"]) &&
+                            <button onClick={()=>{
+                                let obj = {var: tempVarName, content: item};  
+                                let temArr = projectRsrcVisualList.filter((elem) => (elem["filename"] != item["filename"]));               
+                                temArr.push(obj); 
+                                setProjectRsrcVisualList(temArr);                               
+                                let tempLocal = localVisualList.filter((elem) => (elem["filename"] != item["filename"])); 
+                                tempLocal.push(item["filename"]);
+                                setLocalVisualList(tempLocal);                        
+                                setTempVarName("");
+                            }}>
+                                Update
+                            </button>}
+                                        
                         </li>
                     ))}
                 </ul>
@@ -173,6 +187,20 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 setTempVarName("");
                             }}>Add
                             </button>}
+                            {localAudioList.includes(item["filename"]) &&
+                            <button onClick={()=>{
+                                let obj = {var: tempVarName, content: item};  
+                                let temArr = projectRsrcAudioList.filter((elem) => (elem["filename"] != item["filename"]));               
+                                temArr.push(obj); 
+                                setProjectRsrcAudioList(temArr);                               
+                                let tempLocal = localAudioList.filter((elem) => (elem["filename"] != item["filename"])); 
+                                tempLocal.push(item["filename"]);
+                                setLocalAudioList(tempLocal);                        
+                                setTempVarName("");
+                            }}>
+                                Update
+                            </button>}
+                              
 
                         </li>
                     ))}
