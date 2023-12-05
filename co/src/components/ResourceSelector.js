@@ -94,15 +94,33 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             TODO: load list:
                             <br></br>cloud db field array name: project_resource
                         </p>
+                        
+                        <p className="plans">
+                            Rule of variable pair: variable should be unique, value (file name) can have duplicates
+                        </p>    
+                        
+                        <label>Update variable linking:</label>
+                        <button onClick={()=>{
+                            console.log("projectRsrcVisualList: ", projectRsrcVisualList);
+                            console.log("projectRsrcAudioList: ", projectRsrcVisualList);
+                        }}>Check list content</button>
+                        <br></br>
 
-                        <ul>
+                        <div>
+                        {<><select>
+                            {projectRsrcVisualList.map((item, index) => {
+                                return (<option value={item["var"]} key={index}>
+                                    {item["var"]}
+                                </option>);
+                            })}
+                        </select>
+                        <input></input>
+                        <button>Update</button></>}
 
-
-                       
-
+                        <ul>    
                         {projectRsrcVisualList.map((item, index) => {
                                 return (<li className="clickableListItem2" key={index} onClick={()=>{ itemClicked(item["content"]);}}> 
-                                    {item["var"]}= {item["content"]["filename"]}                                    
+                                    {item["var"]} = {item["content"]["filename"]}                                    
                                     <button onClick={()=>{
                                         let tempList = projectRsrcVisualList;
                                         tempList = tempList.filter((elem) => (elem["content"]["filename"] !== item["content"]["filename"]));
@@ -113,7 +131,22 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                     
                                 </li>);
                         })}
+                         </ul>
+                        </div>
 
+                        <div>
+                        <br></br>
+                        {<><select>
+                            {projectRsrcAudioList.map((item, index) => {
+                                return (<option value={item["var"]} key={index}>
+                                    {item["var"]}
+                                </option>);
+                            })}
+                        </select>
+                        <input></input>
+                        <button>Update</button></>}
+                        
+                        <ul>
                         {projectRsrcAudioList.map((item, index) => {
                                 return (<li className="clickableListItem2" key={index} onClick={()=>{ itemClicked(item["content"]);}}>
                                     {item["var"]}= {item["content"]["filename"]}                                    
@@ -128,6 +161,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                                 </li>);
                         })}
                         </ul>
+                    </div>
+                       
                     </div>
 
                 </div>
@@ -146,30 +181,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         }}>
                             
                             <label>{item["filename"]}</label>      
-                            {!localVisualList.includes(item["filename"]) &&
+                            
                             <button onClick={()=>{
                                 let obj = {var: tempVarName, content: item};                                
                                 projectRsrcVisualList.push(obj);  
                                 localVisualList.push(item["filename"]);                                                         
                                 setTempVarName("");
                                 }}>Add
-                            </button>}
-                            
-                            {localVisualList.includes(item["filename"]) &&
-                            <button onClick={()=>{
-                                if (tempVarName === "") {return;}
-                                let obj = {var: tempVarName, content: item};  
-                                let temArr = projectRsrcVisualList.filter((elem) => (elem["filename"] !== item["filename"]));               
-                                temArr.push(obj); 
-                                setProjectRsrcVisualList(temArr);                               
-                                let tempLocal = localVisualList.filter((elem) => (elem !== item["filename"])); 
-                                tempLocal.push(item["filename"]);
-                                setLocalVisualList(tempLocal);                        
-                                setTempVarName("");
-                            }}>
-                                Update
-                            </button>}
-                                        
+                            </button>
+                                                                   
                         </li>
                     ))}
                 </ul>
@@ -181,31 +201,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             itemClicked(item);
                         }}>
                             <label>      {item["filename"]}</label>
-                            {!localAudioList.includes(item["filename"]) && 
+                            
                             <button onClick={()=>{
                                 let obj = {var: tempVarName, content: item};                 
                                 projectRsrcAudioList.push(obj);  
                                 localAudioList.push(item["filename"]);                          
                                 setTempVarName("");
                             }}>Add
-                            </button>}
+                            </button>
                             
-                            {localAudioList.includes(item["filename"]) &&
-                            <button onClick={()=>{
-                                if (tempVarName === "") {return;}
-                                let obj = {var: tempVarName, content: item};  
-                                let temArr = projectRsrcAudioList.filter((elem) => (elem["filename"] !== item["filename"]));               
-                                temArr.push(obj); 
-                                setProjectRsrcAudioList(temArr);                               
-                                let tempLocal = localAudioList.filter((elem) => (elem !== item["filename"])); 
-                                tempLocal.push(item["filename"]);
-                                setLocalAudioList(tempLocal);                        
-                                setTempVarName("");
-                            }}>
-                                Update
-                            </button>}
-                              
-
                         </li>
                     ))}
                 </ul>
