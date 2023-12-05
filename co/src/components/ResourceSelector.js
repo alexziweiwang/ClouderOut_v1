@@ -49,6 +49,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     function confirmResource() {
         console.log("choosing this resource...", clickedFileName);
+        //TODO update cloud db:
+        //TODO proj_resource_audio
+        //TODO proj_resource_visual
     }
 
     async function itemClicked(item) {
@@ -90,16 +93,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                     </div>}
                     <div className="varPairArea">
                         Variable pair area
-                        <p className="plans">
-                            TODO: load list:
-                            <br></br>cloud db field array name: project_resource
-                        </p>
                         
-                        <p className="plans">
-                            Rule of variable pair: variable should be unique, value (file name) can have duplicates
-                        </p>    
-                        
-                        <label>Update variable linking:</label>
                         <button onClick={()=>{
                             console.log("projectRsrcVisualList: ", projectRsrcVisualList);
                             console.log("projectRsrcAudioList: ", projectRsrcVisualList);
@@ -243,11 +237,6 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 </div>
 
                 </div>              
-                <p className="plans">
-                    for each project, specify the user-given-name for one resource, for modularization and reusability.
-                    <br></br> for example, character1 might have pic ver.1 in some art style, and if the author wants to change to ver.2 style, they can do this once by "changing source" for the user-specified preveiewArea
-                    <br></br> that is, each resource on cloud storage should have a variable name in this project, and later this name can be reassigned to other resource
-                </p>
 
             </div>
 

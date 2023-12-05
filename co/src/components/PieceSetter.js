@@ -194,6 +194,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     function onChangeCharPicDataH(event) {
         setCharPicDataHeight(event.target.value);
     }
+
+    function fetchProjResourceLists() {
+        //TODO fetch from cloud db
+        //TODO proj_resource_audio
+        //TODO proj_resource_visual
+    }
   
 
     return (
@@ -255,6 +261,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
+                    <select></select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Position x:      </label>
@@ -316,6 +323,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <>
         <br></br>
     <label>Source Link:  </label>
+    <select></select>
     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
     <br></br>
     <label>Position x:      </label>
@@ -408,9 +416,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                      {displayClickableAdd && <div>
                     <label>Shape/Picture Source:  </label>
+                    <select></select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Sound Effect:      </label>
+                    <select></select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Consequence:         </label>
@@ -474,6 +484,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_link": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
+                    <select></select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Loop:  </label>
@@ -493,6 +504,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
+                    <select></select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
                     <br></br>
                     <label>Volume:         </label>
