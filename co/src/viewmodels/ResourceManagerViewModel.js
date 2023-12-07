@@ -1,9 +1,9 @@
 import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourcePairs } from "../models/ResourceManagerModel";
 
-export function submitFileVM({file, uname}) {
+export function submitFileVM({file, uname, filename}) {
     console.log("submitFile VM :::"); //TODO test
 
-    const url = submitFile({file, uname});
+    const url = submitFile({file, uname, filename});
     return url;
 }
 

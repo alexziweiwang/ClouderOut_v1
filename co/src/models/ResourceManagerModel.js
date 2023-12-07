@@ -3,12 +3,11 @@ import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
 import { storage } from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
-export function submitFile({file, uname}) {
-    console.log("RM model ..."); //TODO
-
+export function submitFile({file, uname, filename}) {
+    console.log("RM model ...", filename); //TODO test
     const fileRef = ref(storage, `rm001test/${file}`);
     uploadBytes(fileRef, file);
-    return fetchUrlByFilename(fileName);
+    return fetchUrlByFilename({fullFilename: filename});
 }
 
 export async function getRmFileList({uname}) {
@@ -52,6 +51,7 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 }
 
 export async function fetchUrlByFilename({fullFilename}) {
+  console.log("fetchUrlByFilename: ", fullFilename); //TODO test
   const storageG = getStorage();
   const dir = "/rm001test/";
   const filePath = dir + fullFilename;
