@@ -262,7 +262,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Source Link:  </label>
                     <select></select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Position x:      </label>
                     <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
@@ -324,7 +324,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         <br></br>
     <label>Source Link:  </label>
     <select></select>
-    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max="9000" step="1" defaultValue="0" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
@@ -417,11 +417,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                      {displayClickableAdd && <div>
                     <label>Shape/Picture Source:  </label>
                     <select></select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Sound Effect:      </label>
                     <select></select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Consequence:         </label>
                     <table>
@@ -485,7 +485,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Source Link:  </label>
                     <select></select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Loop:  </label>
                     <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
@@ -505,7 +505,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Source Link:  </label>
                     <select></select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> select resource </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Volume:         </label>
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>

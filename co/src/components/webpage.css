@@ -2,6 +2,10 @@ body {
     height: 100%;
 }
 
+div {
+    border-radius: 9px;
+}
+
 .button {
     background-color: #f0aa54;
     color: white;
@@ -46,7 +50,7 @@ body {
 }
 
 .game_node_vis {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .page {
@@ -100,6 +104,7 @@ body {
     cursor: pointer;
     border: none;
     font-size: 16px;
+    border-radius: 0px;
 }
 
 .returning_buttons {
@@ -581,3 +586,4 @@ button:hover {
     font-size: 16px;
     border-radius: 5px;
 }
+
