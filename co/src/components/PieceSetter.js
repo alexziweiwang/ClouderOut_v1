@@ -3,11 +3,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResourceSelector from './ResourceSelector';
 import styles from './webpage.css';
+import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData}) {
     const navigate = useNavigate();
 
     let name = "/gamenodeconvpiecedatasec";
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
     const [pieceNumber, setPieceNumber] = useState(pieceNum);
 
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
@@ -55,8 +58,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     useEffect(() => {
         const allPiece = getAllPieceData();
         setPieceDataLocal(allPiece);       
+        if (firstTimeEnter === true) {
+            //TODO initialization of project-resource-list in drop-down list
+            
+            setFirstTimeEnter(false);
+        }
     });
-
 
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
@@ -195,10 +202,16 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         setCharPicDataHeight(event.target.value);
     }
 
-    function fetchProjResourceLists() {
-        //TODO fetch from cloud db
-        //TODO proj_resource_audio
-        //TODO proj_resource_visual
+    async function fetchProjResourceLists() {
+        /* fetch from cloud db */
+        const username = "user002"; //TODO testing
+        const projName = "project001"; //TODO testing
+
+        const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
+        const audioList = obj.audio;
+        const visualList = obj.visual;
+        
+
     }
   
 
