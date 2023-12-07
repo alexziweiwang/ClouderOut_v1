@@ -85,21 +85,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 
                 <div>
                 <div>
-                    <button onClick={() => {setIsAddNewPair(!isAddNewPair);}}>Add New Pair</button>
-                    {isAddNewPair && 
-                    <div>
-                        Form Area...
-                        <button>Confirm</button>
-                    </div>}
                     <div className="varPairArea">
-                        Variable pair area
+                        Variable Pairs in This Project
                         
                         <button onClick={()=>{
                             console.log("projectRsrcVisualList: ", projectRsrcVisualList);
                             console.log("projectRsrcAudioList: ", projectRsrcVisualList);
                         }}>Check list content</button>
                         <br></br>
-
+                        <label>Visual Resource</label>
                         <div>
                         {<><select>
                             {projectRsrcVisualList.map((item, index) => {
@@ -135,6 +129,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                         </div>
 
                         <div>
+                        <br></br>
+                        <label>Audio Resource</label>
                         <br></br>
                         {<><select>
                             {projectRsrcAudioList.map((item, index) => {
