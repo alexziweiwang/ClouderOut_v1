@@ -363,11 +363,20 @@ li {
     list-style-type: none;
 }
 
-.areaOrange {
+.areaNote1 {
     width: 30%;
     overflow: auto;
     border-right: 2px solid rgb(0, 0, 0);
     height: 700px;
+    background-color: rgb(167, 193, 184);;
+}
+
+.areaNote2 {
+    width: 30%;
+    overflow: auto;
+    border-right: 2px solid rgb(0, 0, 0);
+    height: 700px;
+    background-color: rgb(181, 170, 184);
 }
 
 .areaBlue {
@@ -510,8 +519,41 @@ td {
     color:rgb(7, 7, 7);
 }
 
-.tabBar {
+.tabBar1 {
     background-color: rgb(198, 193, 186);
+    border-color: rgb(198, 193, 186);
+    border: 3px solid rgb(198, 193, 186);
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 120px;
+    height: 30px;
+    border-bottom: none;
+}
+
+.tabBar1:hover {
+    background-color: rgb(155, 179, 170);
+    border-color: rgb(198, 193, 186);
+    border: 3px solid rgb(198, 193, 186);
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 120px;
+    height: 30px;
+    border-bottom: none;
+}
+
+.tabBar2 {
+    background-color: rgb(198, 193, 186);
+    border-color: rgb(198, 193, 186);
+    border: 3px solid rgb(198, 193, 186);
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 120px;
+    height: 30px;
+    border-bottom: none;
+}
+
+.tabBar2:hover {
+    background-color: rgb(181, 170, 184);
     border-color: rgb(198, 193, 186);
     border: 3px solid rgb(198, 193, 186);
     margin-left: 2px;
@@ -523,6 +565,17 @@ td {
 
 .tabBarVSelected {
     background-color: rgb(92, 120, 110);
+    border-color: rgb(92, 120, 110);
+    border: 3px solid rgb(92, 120, 110);
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 120px;
+    height: 30px;
+    border-bottom: none;
+}
+
+.tabBarVSelected:hover {
+    background-color: rgb(155, 179, 170);
     border-color: rgb(92, 120, 110);
     border: 3px solid rgb(92, 120, 110);
     margin-left: 2px;

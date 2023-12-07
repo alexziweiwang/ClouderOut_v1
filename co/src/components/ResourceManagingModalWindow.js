@@ -76,14 +76,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             <div>
 
                 <div>
-                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
-                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
+                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
                 </div>
                 {isTabVisual && 
                 <div className="rmTypeAreaV"> 
                 <div className="modalContent parallelFrame">
                  
-                <div className="areaOrange"> visual area
+                <div className="areaNote1"> visual area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
         
@@ -115,7 +115,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="rmTypeAreaA"> 
                 <div className="modalContent parallelFrame">
             
-                <div className="areaOrange"> audio area
+                <div className="areaNote2"> audio area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 <br></br><br></br>
         
