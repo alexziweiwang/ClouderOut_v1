@@ -6,11 +6,9 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "fireb
 export function submitFile({file, uname}) {
     console.log("RM model ..."); //TODO
 
-    const fileName = `${uname}_${file.name}`;
-    const fileRef = ref(storage, `rm001test/${fileName}`);
+    const fileRef = ref(storage, `rm001test/${file}`);
     uploadBytes(fileRef, file);
-    console.log("document [", fileName, "] submitted."); //TODO test
-    return fileRef;
+    return fetchUrlByFilename(fileName);
 }
 
 export async function getRmFileList({uname}) {

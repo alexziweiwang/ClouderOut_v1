@@ -35,9 +35,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             console.log("File NOT chosen");
             return;
         }
-        await submitFileVM({file: fileSelected , uname: username});
         const fileName = `${username}_${fileSelected.name}`;
-        const url = "gs://clouderout001.appspot.com/" + "rm001test/" + fileName; //TODO test, change file folder later, file url
+
+        const url = await submitFileVM({file: fileName , uname: username});
+        console.log("uploaded url in window: ", url); //TODO test
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
         fetchRmFileList();
 

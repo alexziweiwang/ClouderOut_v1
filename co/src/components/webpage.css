@@ -551,6 +551,8 @@ td {
     color:rgb(7, 7, 7);
     margin-left: 5px;
     margin-right: 5px;
+    overflow: scroll;
+    margin-top: 0px;
 }
 
 .rsrcListArea {
@@ -561,6 +563,7 @@ td {
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 3px;
+    margin-top: 0px;
 }
 
 .rsrcSelectorArea {
@@ -570,7 +573,7 @@ td {
 .varPairArea {
     background-color: rgb(237, 209, 157);
     margin-left: 5px;
-    margin-top: 5px;
+    margin-top: 0px;
     color:rgb(7, 7, 7);
     padding-top: 5px;
     padding-left: 5px;
