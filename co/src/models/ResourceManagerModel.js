@@ -3,14 +3,17 @@ import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
 import { storage } from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
-export function submitFile({file, uname, filename}) {
-    console.log("RM model ...", filename); //TODO test
-    if (filename.length === "") {
+export async function submitFile({file, uname, filename}) {
+    console.log("step2.RM model submitFile ...", filename); //TODO test
+    if (filename === "" || filename === undefined) {
+      console.log("returned");//TODO test
       return;
-    }
-    const fileRef = ref(storage, `rm001test/${file}`);
+    } else {
+      const fileRef = ref(storage, `rm001test/${file}`);
     
-    uploadBytes(fileRef, file);
+      uploadBytes(fileRef, file);
+      console.log("file upload complete."); //TODO test
+    }
 }
 
 export async function getRmFileList({uname}) {
@@ -54,7 +57,7 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 }
 
 export async function fetchUrlByFilename({fullFilename}) {
-  console.log("fetchUrlByFilename: ", fullFilename); //TODO test
+  console.log("fetchUrlByFilename(): ", fullFilename); //TODO test
   const storageG = getStorage();
   const dir = "/rm001test/";
   const filePath = dir + fullFilename;

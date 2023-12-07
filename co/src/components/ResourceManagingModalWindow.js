@@ -31,6 +31,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     async function submitFile(type) {
+        console.log("Window: called ... submitFile"); //TODO
         if (fileSelected === "") {
             console.log("File NOT chosen");
             return;
@@ -38,11 +39,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         const fileName = `${username}_${fileSelected.name}`;
 
         await submitFileVM({file: fileName , uname: username, filename: fileName});
+        
+        console.log("continue to next steps of updating..."); //TODO test
+        await updateUploadedFileRecords(username, fileName, type);
+    }
+
+    async function updateUploadedFileRecords(username, fileName, type) {
         const url = await fetchUrlByFilenameVM({fullFilename: fileName});
         console.log("uploaded url in window: ", url); //TODO test
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
-        fetchRmFileList();
-
+        await fetchRmFileList();
     }
 
     async function fetchRmFileList() { //TODO temp debugging

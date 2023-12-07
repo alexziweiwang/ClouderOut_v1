@@ -1,13 +1,12 @@
 import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourcePairs } from "../models/ResourceManagerModel";
 
-export function submitFileVM({file, uname, filename}) {
-    if (filename.length === "" || filename == undefined) {
+export async function submitFileVM({file, uname, filename}) {
+    if (filename === "" || filename === undefined) {
         return;
+    } else {
+        console.log("step1. submitFileVM ::: ", filename); //TODO test
+        await submitFile({file, uname, filename});
     }
-    console.log("submitFile VM ::: ", filename); //TODO test
-
-    const url = submitFile({file, uname, filename});
-    return url;
 }
 
 export async function getRmFileListVM({uname}) {
@@ -20,8 +19,7 @@ export async function addToRmFileListVM({uname, filetitle, fileUrl, fileType}) {
 }
 
 export async function fetchUrlByFilenameVM({fullFilename}) {
-    const url = await submitFile({fullFilename});
-    return url;
+    return await fetchUrlByFilename({fullFilename});
 }
 
 export async function fetchProjectResourcePairsVM({userName, projectName}) {
