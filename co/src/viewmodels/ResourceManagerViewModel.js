@@ -1,7 +1,10 @@
 import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourcePairs } from "../models/ResourceManagerModel";
 
 export function submitFileVM({file, uname, filename}) {
-    console.log("submitFile VM :::"); //TODO test
+    if (filename.length === "" || filename == undefined) {
+        return;
+    }
+    console.log("submitFile VM ::: ", filename); //TODO test
 
     const url = submitFile({file, uname, filename});
     return url;

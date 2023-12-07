@@ -5,9 +5,12 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "fireb
 
 export function submitFile({file, uname, filename}) {
     console.log("RM model ...", filename); //TODO test
+    if (filename.length === "") {
+      return;
+    }
     const fileRef = ref(storage, `rm001test/${file}`);
+    
     uploadBytes(fileRef, file);
-    return fetchUrlByFilename({fullFilename: filename});
 }
 
 export async function getRmFileList({uname}) {

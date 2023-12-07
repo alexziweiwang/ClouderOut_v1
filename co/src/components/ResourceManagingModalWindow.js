@@ -37,7 +37,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
         const fileName = `${username}_${fileSelected.name}`;
 
-        const url = await submitFileVM({file: fileName , uname: username, filename: fileName});
+        await submitFileVM({file: fileName , uname: username, filename: fileName});
+        const url = await fetchUrlByFilenameVM({fullFilename: fileName});
         console.log("uploaded url in window: ", url); //TODO test
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
         fetchRmFileList();
