@@ -276,6 +276,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Source Link:  </label>
                     <select>
+                    {visualList.map((item, index) => {
+                        return (<option value={[item]}></option>);
+                    })}
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
@@ -338,7 +341,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <>
         <br></br>
     <label>Source Link:  </label>
-    <select></select>
+    <select>
+        {visualList.map((item, index) => {
+            return (<option value={[item]}></option>);
+        })}
+    </select>
     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
     <br></br>
     <label>Position x:      </label>
@@ -431,11 +438,19 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                      {displayClickableAdd && <div>
                     <label>Shape/Picture Source:  </label>
-                    <select></select>
+                    <select>
+                        {visualList.map((item, index) => {
+                            return (<option value={[item]}></option>);
+                        })}
+                    </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Sound Effect:      </label>
-                    <select></select>
+                    <select>
+                        {audioList.map((item, index) => {
+                            return (<option value={[item]}></option>);
+                        })}
+                    </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Consequence:         </label>
@@ -499,7 +514,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_link": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select></select>
+                    <select>
+                        {audioList.map((item, index) => {
+                            return (<option value={[item]}></option>);
+                        })}
+                    </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Loop:  </label>
@@ -519,7 +538,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select></select>
+                    <select>
+                        {audioList.map((item, index) => {
+                            return (<option value={[item]}></option>);
+                        })}
+                    </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Volume:         </label>
