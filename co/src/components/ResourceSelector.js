@@ -50,7 +50,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     async function confirmResource() {
         /* update cloud db */
-        const tempObj = {audio: audioList, visual: visualList}
+        const tempObj = {audio: localAudioList, visual: localVisualList};
+        //TODO 
         console.log("Resource-selector: Updating the db data structure...", tempObj); //TODO test
         
         await updateProjectResourcePairsVM({userName: username, projectName: projName, obj: tempObj});
@@ -191,7 +192,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             <button onClick={()=>{
                                 let obj = {var: tempVarName, content: item};                                
                                 projectRsrcVisualList.push(obj);  
-                                localVisualList.push(item["filename"]);                                                         
+                                let value = {var: tempVarName, name: item["filename"]};
+                                localVisualList.push(value);                                                         
                                 setTempVarName("");
                                 }}>Add
                             </button>
@@ -211,7 +213,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                             <button onClick={()=>{
                                 let obj = {var: tempVarName, content: item};                 
                                 projectRsrcAudioList.push(obj);  
-                                localAudioList.push(item["filename"]);                          
+                                let value = {var: tempVarName, name: item["filename"]};
+                                localAudioList.push(value);                                           
                                 setTempVarName("");
                             }}>Add
                             </button>

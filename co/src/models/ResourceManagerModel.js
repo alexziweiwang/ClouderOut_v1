@@ -117,7 +117,7 @@ export async function updateProjectResourcePairs({userName, projectName, obj}) {
     "proj_resource_audio": obj.audio,
   });
 
-    await updateDoc(projectRef, {
+  await updateDoc(projectRef, {
     "proj_resource_visual": obj.visual
   });
 
