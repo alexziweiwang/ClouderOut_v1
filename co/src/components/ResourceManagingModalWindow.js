@@ -42,11 +42,17 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         
         console.log("continue to next steps of updating..."); //TODO test
         await updateUploadedFileRecords(username, fileName, type);
+        await updateUploadedFileRecords(username, fileName, type);
+
     }
 
     async function updateUploadedFileRecords(username, fileName, type) {
         const url = await fetchUrlByFilenameVM({fullFilename: fileName});
         console.log("uploaded url in window: ", url); //TODO test
+        if (url === undefined || url === "") {
+            console.log("Error: empty url"); //TODO test
+            return;
+        }
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
         await fetchRmFileList();
     }
@@ -100,7 +106,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         accept=".png,.jpg,.jpeg,"
                         onChange={fileSelectChange}
                     /> 
-                    <button onClick={()=>{submitFile("visual")}}> Submit </button>
+                    <button onClick={()=>{submitFile("visual");}}> Submit </button>
                 </div>
 
 
@@ -132,7 +138,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         accept=".wav,.mp3,.aac,.m4a"
                         onChange={fileSelectChange}
                     /> 
-                    <button onClick={()=>{submitFile("audio")}}> Submit </button>
+                    <button onClick={()=>{submitFile("audio");}}> Submit </button>
 
                     <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?

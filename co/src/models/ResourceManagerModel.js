@@ -53,11 +53,13 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
     if (duplicatePart.length === 0) {
       currFileList.push(obj);
     }
+
+    console.log("update file list:", currFileList);//TODO test
     await updateDoc(ref, {filenames: currFileList});
 }
 
 export async function fetchUrlByFilename({fullFilename}) {
-  console.log("fetchUrlByFilename(): ", fullFilename); //TODO test
+  console.log("model-fetchUrlByFilename(): ", fullFilename); //TODO test
   const storageG = getStorage();
   const dir = "/rm001test/";
   const filePath = dir + fullFilename;
