@@ -206,6 +206,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     }
 
     async function fetchProjResourceLists() {
+        console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
         const username = "user002"; //TODO testing
         const projName = "project001"; //TODO testing
@@ -278,7 +279,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Source Link:  </label>
                     <select>
                     {visualList.map((item, index) => {
-                        return (<option key={index} value={item}></option>);
+                        return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                     })}
 
                     </select>
@@ -345,7 +346,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <label>Source Link:  </label>
     <select>
         {visualList.map((item, index) => {
-            return (<option value={[item]}></option>);
+            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
         })}
     </select>
     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
@@ -442,7 +443,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Shape/Picture Source:  </label>
                     <select>
                         {visualList.map((item, index) => {
-                            return (<option value={[item]}></option>);
+                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
@@ -450,7 +451,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Sound Effect:      </label>
                     <select>
                         {audioList.map((item, index) => {
-                            return (<option value={[item]}></option>);
+                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
@@ -518,7 +519,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Source Link:  </label>
                     <select>
                         {audioList.map((item, index) => {
-                            return (<option value={[item]}></option>);
+                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
@@ -542,7 +543,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Source Link:  </label>
                     <select>
                         {audioList.map((item, index) => {
-                            return (<option value={[item]}></option>);
+                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>

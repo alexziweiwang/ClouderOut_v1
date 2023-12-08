@@ -86,12 +86,13 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
   const ref = doc(docRef, "projects", projectName);
   let visualList = await getDoc(ref, "proj_resource_visual");
   visualList = visualList.data();
-  visualList = visualList["proj_resource_audio"];
+  visualList = visualList["proj_resource_visual"];
   let audioList = await getDoc(ref, "proj_resource_audio");
   audioList = audioList.data();
   audioList = audioList["proj_resource_audio"];
 
   const obj = {audio: audioList, visual: visualList};
+  console.log("rm-model, fetchProjectResourcePairs: ", obj); //TODO test
 
   return obj;
 }
