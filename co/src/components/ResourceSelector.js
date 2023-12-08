@@ -49,7 +49,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     async function confirmResource() {
-
+        console.log("Resource-selector: Updating the db data structure..."); //TODO test
         /* update cloud db */
         const tempObj = {audio: audioList, visual: visualList}
         await updateProjectResourcePairsVM({userName: username, projectName: projName, obj: tempObj});

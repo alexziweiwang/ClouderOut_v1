@@ -86,8 +86,10 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
   const ref = doc(docRef, "projects", projectName);
   let visualList = await getDoc(ref, "proj_resource_visual");
   visualList = visualList.data();
+  visualList = visualList["proj_resource_audio"];
   let audioList = await getDoc(ref, "proj_resource_audio");
   audioList = audioList.data();
+  audioList = audioList["proj_resource_audio"];
 
   const obj = {audio: audioList, visual: visualList};
 
@@ -103,6 +105,13 @@ export async function updateProjectResourcePairs({userName, projectName, obj}) {
   }
 
   const projectRef = doc(docRef, "projects", projectName);
+  const projectSnap = await getDoc(projectRef);
+
+  if (!projectSnap.exists()) {
+    return;
+  }
+
+  const dataRef = doc(projectRef, )
 
   await updateDoc(projectRef, {
     "proj_resource_audio": obj.audio,

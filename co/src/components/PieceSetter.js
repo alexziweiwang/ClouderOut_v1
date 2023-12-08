@@ -211,6 +211,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         const projName = "project001"; //TODO testing
 
         const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
+        console.log("new render- piece setter: obj from cloud:", obj);
         setAudioList(obj.audio);
         setVisualList(obj.visual);
     }
@@ -277,8 +278,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Source Link:  </label>
                     <select>
                     {visualList.map((item, index) => {
-                        return (<option value={[item]}></option>);
+                        return (<option key={index} value={item}></option>);
                     })}
+
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
