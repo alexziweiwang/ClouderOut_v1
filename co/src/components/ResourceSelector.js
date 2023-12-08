@@ -4,6 +4,7 @@ import { getRmFileListVM, fetchUrlByFilenameVM, fetchProjectResourcePairsVM } fr
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
 
     if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
@@ -48,10 +49,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     }
 
     function confirmResource() {
-        console.log("choosing this resource...", clickedFileName);
-        //TODO update cloud db:
-        //TODO proj_resource_audio
-        //TODO proj_resource_visual
+
+        /* update cloud db */
+        const tempObj = {audio: audioList, visual: visualList}
+        await updateProjectResourcePairsVM({userName: username, projectName: projName, obj: tempObj});
     }
 
     async function itemClicked(item) {

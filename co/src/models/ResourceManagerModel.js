@@ -93,3 +93,7 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
 
   return obj;
 }
+
+export async function updateProjectResourcePairs({userName, projectName, obj}) {
+  //TODO update both lists to cloud db
+}
