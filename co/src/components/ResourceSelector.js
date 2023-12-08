@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRmFileListVM, fetchUrlByFilenameVM, fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -48,7 +48,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         console.log("curr gen list:", fileList); //TODO test
     }
 
-    function confirmResource() {
+    async function confirmResource() {
 
         /* update cloud db */
         const tempObj = {audio: audioList, visual: visualList}

@@ -95,5 +95,18 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
 }
 
 export async function updateProjectResourcePairs({userName, projectName, obj}) {
-  //TODO update both lists to cloud db
+  const docRef = doc(db, "user_projects", userName);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return;
+  }
+
+  const projectRef = doc(docRef, "projects", projectName);
+
+  await updateDoc(projectRef, {
+    "proj_resource_audio": obj.audio,
+    "proj_resource_visual": obj.visual
+  });
+
 }
