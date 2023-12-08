@@ -111,10 +111,13 @@ export async function updateProjectResourcePairs({userName, projectName, obj}) {
     return;
   }
 
-  const dataRef = doc(projectRef, )
 
+  console.log("before updating to cloud db: ", obj); //TODO test
   await updateDoc(projectRef, {
     "proj_resource_audio": obj.audio,
+  });
+
+    await updateDoc(projectRef, {
     "proj_resource_visual": obj.visual
   });
 
