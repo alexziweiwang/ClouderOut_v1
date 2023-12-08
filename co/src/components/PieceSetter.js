@@ -55,12 +55,15 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         "vl_volume": allPieceData[pieceNum-1]["vl_volume"]}
     );
 
+    const [audioList, setAudioList] = useState([]);
+    const [visualList, setVisualList] = useState([]); 
+
     useEffect(() => {
         const allPiece = getAllPieceData();
         setPieceDataLocal(allPiece);       
         if (firstTimeEnter === true) {
-            //TODO initialization of project-resource-list in drop-down list
-            
+            /* initialization of project-resource-list in drop-down list */
+            fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
     });
@@ -208,10 +211,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         const projName = "project001"; //TODO testing
 
         const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
-        const audioList = obj.audio;
-        const visualList = obj.visual;
-        
-
+        setAudioList(obj.audio);
+        setVisualList(obj.visual);
     }
   
 
@@ -274,7 +275,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select></select>
+                    <select>
+                    </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Position x:      </label>

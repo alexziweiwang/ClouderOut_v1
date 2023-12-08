@@ -171,6 +171,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
 
                 <div className="rsrcListArea">
+
+                <button onClick={()=>{console.log("TODO: add entry for resource-manager");}}>Resource Manager</button>
                 
                 <label>New Variable Name:</label>
                 <input value={tempVarName} onChange={handleTempVarChange}></input>
