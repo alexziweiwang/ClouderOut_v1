@@ -684,3 +684,7 @@ button:hover {
     border-radius: 5px;
 }
 
+.trashNodeArea {
+    background-color: #e1ceb8;
+    width: 700px;
+}

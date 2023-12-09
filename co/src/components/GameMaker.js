@@ -44,7 +44,6 @@ export default function GameMaker() {
    const navigate = useNavigate();
    const name = "/gamemaker";
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
-   const [modeCreateNewNode, setModeToCreateNewNode] = useState(false);
    const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -180,7 +179,6 @@ export default function GameMaker() {
     } else {
       console.log("Invalid node name: empty"); //TODO temp
     }
-    setModeToCreateNewNode(false);
   }
 
   function addNewNodeGameType(event) {
@@ -537,12 +535,6 @@ export default function GameMaker() {
 
     <button 
       className="setting_item"
-      onClick={()=>{setModeToCreateNewNode(!modeCreateNewNode);}}>
-        Node Relationship
-    </button>
-    
-    <button 
-      className="setting_item"
       onClick={()=>{
         console.log("Deleting this node...", clickedNode); 
         handleDeleteNodeWithParam(clickedNode);
@@ -558,7 +550,7 @@ export default function GameMaker() {
       <br></br>
 
 
-    {modeCreateNewNode && 
+    {(clickedNode !== "") && 
     <>
     <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
       <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
@@ -734,7 +726,7 @@ export default function GameMaker() {
   }
   <br></br><br></br><br></br><br></br><br></br>
   <p className="plans"> revert options : later change into collapsable section with simple icon</p>
-    <div>
+    <div className="trashNodeArea">
       {!displayRevertArea && 
         <GiTrashCan onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}  className="iconButton"/>
       }
@@ -744,7 +736,7 @@ export default function GameMaker() {
       }
 
       {displayRevertArea &&
-      <>
+      <div>
       <br></br>
       <label> Select from deleted nodes: </label>
       <br></br>
@@ -761,7 +753,7 @@ export default function GameMaker() {
     </select>
 
     <button onClick={revertSelectedNode}> Revert </button>
-    </>
+    </div>
     }
 
     <p className="plans"> TODO: consider "reverted node" overlap problem if later created new nodes around 
