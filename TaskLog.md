@@ -79,3 +79,4 @@
 - 2023-Nov-30: Explore better UX for different browser sizes
 
 - 2023-Dec-08: Adjust and test for resource previewing
+- 2023-Dec-08: Explore game-node dragging option
