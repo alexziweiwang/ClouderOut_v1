@@ -73,18 +73,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
   
     return (
       <div className={modalStyleName}>
-
         <div className="modalArea">
 
-     
-                
-        
             <div>
-
                 <div>
                     <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
                     <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                    <button onClick={handleRmCancel}> Close </button>
+
                 </div>
+
                 {isTabVisual && 
                 <div className="rmTypeAreaV"> 
                 <div className="modalContent parallelFrame">
@@ -170,11 +168,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             </div>
             </div>
 
-
-
-            <div className="modalControl">
-                <button className="modalControlButton" onClick={handleRmCancel}> Close </button>
-            </div>
        
       </div>
     );

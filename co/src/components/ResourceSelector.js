@@ -3,14 +3,14 @@ import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/Res
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
-    let modalStyleName = "modalBackboard";
+    let modalStyleName = "modalBackboardLighter";
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
     if (isDisplay === true) {
-        modalStyleName = "displayBlock modalBackboard";
+        modalStyleName = "displayBlock modalBackboardLighter";
     } else {
-        modalStyleName = "displayNone modalBackboard";
+        modalStyleName = "displayNone modalBackboardLighter";
     }
 
     useEffect(() => {
