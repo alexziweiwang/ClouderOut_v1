@@ -243,10 +243,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 </div>
                 <div className="rsrcPrevArea">
                     {(clickedFileType === "audio") && 
-                        <div>audio resource area {clickedFileUrl}</div>
+                        <div>audio resource area {clickedFileUrl}
+                        </div>
                     }
                     {(clickedFileType === "visual") && 
-                        <div>visual resource area {clickedFileUrl}</div>
+                        <div>visual resource area {clickedFileUrl}
+                            <div>
+                                <img src={clickedFileUrl} alt="preview_audio" />
+                            </div>
+                        </div>
                     }                    
                     
                 </div>
