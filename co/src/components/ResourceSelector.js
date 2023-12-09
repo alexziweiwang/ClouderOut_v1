@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -37,6 +38,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
     const [tempVarName, setTempVarName] = useState("");
 
+    const [isRmOpen, setIsRmOpen] = useState(false);
+
     async function fetchRmFileList() {
         let fileList = await getRmFileListVM({uname: username});
         fileList = fileList.filenames;
@@ -71,6 +74,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
   
     function handleTempVarChange(event) {
         setTempVarName(event.target.value);
+    }
+
+    function handleResourceManagerCancel() {
+        setIsRmOpen(false);
+    }
+    
+    function handleResourceManagerSaveChanges() {
+        setIsRmOpen(false);
+        //TODO: save changes onto cloud db
     }
 
     return (
@@ -175,8 +187,10 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
 
                 <div className="rsrcListArea">
 
-                <button onClick={()=>{console.log("TODO: add entry for resource-manager");}}>Resource Manager</button>
-                
+                {isRmOpen && <ResourceManagingModalWindow isDisplay = {isRmOpen} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
+
+                <button onClick={()=>{setIsRmOpen(!isRmOpen);}}>Resource Manager</button>
+                <br></br>
                 <label>New Variable Name:</label>
                 <input value={tempVarName} onChange={handleTempVarChange}></input>
                 <br></br><br></br>
