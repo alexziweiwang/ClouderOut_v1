@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import styles from './webpage.css';
 
+
 export default function PreviewWindow({dataObj}) {
 
     console.log("re-rendering @preview window", dataObj);
@@ -10,7 +11,7 @@ export default function PreviewWindow({dataObj}) {
 
     const [gameScreenSize, setGameScreenSize] = useState("");
 
-    function changeGameScreenSize(event) {
+    function changeGameScreenSizeSetting(event) {
         const input = event.target.value;
         //TODO update information to cloud db
         if (event != null && event.target != null && event.target.value!= null) {
@@ -32,12 +33,12 @@ export default function PreviewWindow({dataObj}) {
         }
     }
 
-    function updateGameSize() {
-        console.log("new game size:", gameScreenSize);
+    function updateGameSizeSetting() {
+        console.log("new game size setting:", gameScreenSize);
         //TODO pop some kind of warning to remind the user
         //TODO design: each node and have one size, and different nodes can have various nodes?
 
-    }
+    } 
 
  
     return (
@@ -80,12 +81,12 @@ export default function PreviewWindow({dataObj}) {
 
             <div>
                     <p className="plans">
-                    Adjustment area: setting of size & direction for current node 
+                    Adjustment area: setting of size & direction for current *node*
                     <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
                     <br></br>but this feature is provided so user can utilize the existing node-content
                     </p>
 
-                    <select value={gameScreenSize} onChange={changeGameScreenSize}>
+                    <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
                         <option value="" key=""> ----- Select Size and Direction ----- </option>
                         <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
                         <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
@@ -93,7 +94,7 @@ export default function PreviewWindow({dataObj}) {
                         <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
 
                     </select>
-                    <button onClick={()=>{updateGameSize();}}>Update</button>
+                    <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
                 </div>
            
         </div>

@@ -67,6 +67,8 @@ export default function GameMaker() {
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
+   const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
+
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -385,6 +387,31 @@ export default function GameMaker() {
     }
   }
 
+  function changeGameScreenSize(event) {
+    const input = event.target.value;
+    if (event != null && event.target != null && event.target.value!= null) {
+      if (input === "h450_800") {
+        //TODO pass into cloud: node info
+        console.log("h450_800");
+      } else if (input === "v800_450") {
+        //TODO pass into cloud: node info
+        console.log("v800_450");
+
+      } else if (input === "h600_800") {
+        //TODO pass into cloud: node info
+        console.log("h600_800");
+
+      } else if (input === "v800_600") {
+        //TODO pass into cloud: node info
+        console.log("v800_600");
+      } else {
+        
+        //TODO: show warning if not selected
+        console.log("not selected!");
+      }
+    }
+  }
+
   return (
   <div>
 
@@ -565,6 +592,14 @@ export default function GameMaker() {
       <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
       <option value="Conversation" key="Conversation">Conversation</option>
     </select>
+    <label>Screen Size:</label>
+    <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+          <option value="" key=""> ----- Select Size and Direction ----- </option>
+          <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+          <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+          <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+          <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+        </select>
 
     <button 
       className="setting_item"

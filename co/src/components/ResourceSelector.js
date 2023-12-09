@@ -89,6 +89,11 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
       <div className={modalStyleName}>
 
         <div className="modalArea2">
+            <div className="modalControl">
+                <button className="modalControlButton" onClick={handleRsCancel}> Close </button>
+                <button className="modalControlButton" onClick={confirmResource}> Confirm </button>
+
+            </div>
 
             <div className="modalContent scrollableArea">
        
@@ -259,12 +264,6 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 </div>
 
                 </div>              
-
-            </div>
-
-            <div className="modalControl">
-                <button className="modalControlButton" onClick={handleRsCancel}> Close </button>
-                <button className="modalControlButton" onClick={confirmResource}> Confirm </button>
 
             </div>
             
