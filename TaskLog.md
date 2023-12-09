@@ -80,3 +80,5 @@
 
 - 2023-Dec-08: Adjust and test for resource previewing
 - 2023-Dec-08: Explore game-node dragging option
+- 2023-Dec-08: Explore audio playing and player
+
