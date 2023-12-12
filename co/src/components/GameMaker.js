@@ -68,7 +68,7 @@ export default function GameMaker() {
    
    const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
    const [currChapter, setCurrChapter] = useState("");
-   const [chapterList, setChapterList] = useState([]); //TODO fetch from cloud db
+   const [chapterList, setChapterList] = useState(["testChapter1", "testChapter2"]); //TODO fetch from cloud db
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -462,13 +462,38 @@ export default function GameMaker() {
 
     <div className="chapterManagingArea"> Chapter Management
     <br></br>
-    <select>
 
-    </select>
+    <table>
+      <thead>
+        <th>Chapter Sequence Number</th>
+        <th>Chapter Title</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+      {chapterList.map((item, index) => {
+        return (<tr value={item} key={index}>
+          <td>{index+1}</td>
+          <td>{item} </td>
+          <td>
+            <button>Edit</button>
+            <button>Move Up</button>
+            <button>Move Down</button>
+          </td>
+          <td>
+            <button>Delete</button>
+          </td>
+        </tr>);
+      })}
+      </tbody>
+    </table>
 
       <div>
-        Add New Chapter
+        Add New Chapter: 
+        <br></br>
+        <label>Chapter Name:</label>
         <input></input>
+        <button>Add</button>
 
       </div>
 
