@@ -360,6 +360,39 @@ export default function NodeManager({currState}) {
             <br></br> [ ** first, implement and test simple logical conditions, then improve to combos (with parenthesis) ]
         
         </p> 
+
+        <div>New Node
+        <br></br>
+        <label>Node Name: </label>
+        <input 
+          className="setting_item"
+          type="text" value={createNewNodeName} 
+          // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
+          onChange={e => {setCreateNewNodeName(e.target.value)}}  
+        />
+        <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+          <option value="" key=""> -- Select Node's Game Type -- </option>
+          <option value="Card Game" key="Card Game">Card Game</option>
+          <option value="Board Game" key="Board Game">Board Game</option>
+          <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
+          <option value="Conversation" key="Conversation">Conversation</option>
+        </select>
+        <label>Screen Size:</label>
+        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+              <option value="" key=""> ----- Select Size and Direction ----- </option>
+              <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+              <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+              <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+              <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+            </select>
+    
+        <button 
+          className="setting_item"
+          onClick={addNewNode}>
+            Create
+        </button>
+        </div>
+        
         <svg
             xmlns="http://www.w3.org/2000/svg"
             className="nodes_viewer"
@@ -452,12 +485,49 @@ export default function NodeManager({currState}) {
         <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
           <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
           <br></br> - for node-link editing: later adding links should be done by attach-new, and deleting links should be done by deleting-next; no direct control about links?
-        </p>
+        </p>        
+
+        <p className="sectionHeader">***Edit Node-Links***</p>
+        
+        <br></br>
+        <label>From Node [{clickedNode}] </label>
+        <label> to Node </label>
+        <select onChange={addConnectionToNode} value={toNodeName}>
+            <option value="" key=""> -- Select Destination Node -- </option> 
+        {nodeData.map((nextIndex, index) => {
+          if (nodeData[index].display === false) {
+            return "false";
+          }
+          return (
+            <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
+          );
+        })}
+        </select>
+        <br></br>
+        <button 
+          className="setting_item"
+          onClick={addLinkBetweenNodes}>
+            Add connection
+        </button>
+        <button 
+          className="setting_item"
+          onClick={deleteLinkBetweenNodes}>
+            Delete connection
+        </button>
     
-    
+            
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
         <div>
-        <p className="sectionHeader">***Append an Element***</p>
-        <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>Attach a New Node
+
+        <p className="sectionHeader">***Next-Element***</p>
+
+        <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>An existing Node
     
     {/* //TODO: change later */}
         {isLinkNode && <> 
@@ -466,42 +536,16 @@ export default function NodeManager({currState}) {
           </p>
     
         <br></br>
-        <label>Node Name: </label>
-    
-        <input 
-          className="setting_item"
-          type="text" value={createNewNodeName} 
-          // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
-          onChange={e => {setCreateNewNodeName(e.target.value)}}  
-        />
-        <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
-          <option value="" key=""> -- Select Node's Game Type -- </option>
-          <option value="Card Game" key="Card Game">Card Game</option>
-          <option value="Board Game" key="Board Game">Board Game</option>
-          <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
-          <option value="Conversation" key="Conversation">Conversation</option>
-        </select>
-        <label>Screen Size:</label>
-        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-              <option value="" key=""> ----- Select Size and Direction ----- </option>
-              <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-              <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-              <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-              <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-            </select>
-    
-        <button 
-          className="setting_item"
-          onClick={addNewNode}>
-            Create
-        </button>
+            <p className="plans">
+                [a list of existing nodes]
+            </p>
         </>
         }
         {!isLinkNode && <p>----------------------------------------------------</p>}
         </div>
     
         <div>
-        <input type="radio" name="logic_splitter" value={isLinkNode} checked={!isLinkNode} onChange={changeNextToSplitter}/>Link to a Logic Splitter
+        <input type="radio" name="logic_splitter" value={isLinkNode} checked={!isLinkNode} onChange={changeNextToSplitter}/>A Logic Splitter
     
     {/* //TODO: change later */}
         {!isLinkNode && 
@@ -527,8 +571,9 @@ export default function NodeManager({currState}) {
     
     
         <div className="areaBlue">
-        <label> Variable 1: </label>
         <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
+        <br></br>
+        <label> Variable 1: </label>
 
         <select>
           {Object.keys(gameDataLocal).map((currKey) => {
@@ -574,6 +619,7 @@ export default function NodeManager({currState}) {
             <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
           );
         })}
+        <option>*New Node* (untitled)</option>
         </select>
         <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter")}}> Add </button>
         </div>
@@ -585,40 +631,7 @@ export default function NodeManager({currState}) {
         
         
         <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <p className="sectionHeader">***Edit Node-Links***</p>
-        
-        <br></br>
-        <label>From Node [{clickedNode}] </label>
-     {/* //TODO change "fromNode" to "clickedNode" */}
-        <label> to Node </label>
-        <select onChange={addConnectionToNode} value={toNodeName}>
-            <option value="" key=""> -- Select Destination Node -- </option> 
-        {nodeData.map((nextIndex, index) => {
-          if (nodeData[index].display === false) {
-            return "false";
-          }
-          return (
-            <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
-          );
-        })}
-        </select>
-        <br></br>
-        <button 
-          className="setting_item"
-          onClick={addLinkBetweenNodes}>
-            Add connection
-        </button>
-        <button 
-          className="setting_item"
-          onClick={deleteLinkBetweenNodes}>
-            Delete connection
-        </button>
-    
+      
         </div>
         </>
       }

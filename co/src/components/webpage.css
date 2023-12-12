@@ -394,6 +394,7 @@ li {
     overflow: auto;
     width:70%;
     height: 700px;
+    padding: 3px;
 }
 
 .sectionHeader {
