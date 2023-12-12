@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
-import GameDataManager from './GameDataManager';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
 
@@ -29,78 +27,9 @@ export default function GameMaker() {
   /* variable area */
   const navigate = useNavigate();
   const name = "/gamemaker";
-  const [needCloudGameData, setNeedCloudGameData] = useState(true);
-
-  const [gameDataLocal, setGameDataLocal] = useState({});
-  const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
-  const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
   const [currChapter, setCurrChapter] = useState("");
   const [chapterList, setChapterList] = useState(["testChapter1", "testChapter2"]); //TODO fetch from cloud db
-
-  async function displayGameData() {
-    setDisplayGameDataButton(false);
-
-    if (needCloudGameData === true) {
-      await fetchGameDataFromCloud();
-    } else {
-      console.log("*from local* game-data: using existing data"); 
-    }
-    setDisplayGameDataWindow(!displayGameDataWindow);
-    setDisplayGameDataButton(true);
-  }
-
-  async function fetchGameDataFromCloud() {
-
-    const currUser = "user002"; //TODO test
-
-    let project = "";
-    if (state != null) {
-      if (state.selected_project_name !== null && state.selected_project_name!== undefined) {
-        
-        console.log("!!! This is for project: ", state.selected_project_name);
-        project  = state.selected_project_name;
-        console.log("checking2 on project ... [", project, "]");
-        if (project.trim() === "") {
-          return;
-        }
-
-        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: needCloudGameData});
-     
-        if (gdataTestResult === undefined) {
-          console.log("Error: no game_data in this project...");
-          return;
-        }
-        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-        setGameDataLocal(gdataTestResult);
-        setNeedCloudGameData(false);
-      }
-    } 
-  }
-
-  function markNextNeedCloudGameData() {
-    setNeedCloudGameData(true);
-  }
-
-  function handleGameDataManagerCancel() {
-    setDisplayGameDataWindow(!displayGameDataWindow);
-  }
-
-
-  function updateGDataToCloud(gameDataLatest) {
-    const currUser = "user002"; //TODO test
-
-    let project = "";
-    if (state != null) {
-      if (state.selected_project_name !== null && state.selected_project_name!== undefined) {
-        project  = state.selected_project_name;
-        if (project.trim() === "") {
-          return;
-        }
-        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
-      }
-    }
-  }
 
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });
@@ -115,15 +44,7 @@ export default function GameMaker() {
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
     </div>
 
-    <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
-    {displayGameDataButton && <button onClick={displayGameData}> Check Game data </button>}
-    {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
-
-
-
     <br></br>
-   {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
-
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>

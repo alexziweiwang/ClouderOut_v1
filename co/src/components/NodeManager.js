@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
-import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
+import GameDataManager from './GameDataManager';
 
 export default function NodeManager({currState}) {
 
@@ -28,6 +29,7 @@ export default function NodeManager({currState}) {
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNode, setIsLinkNode] = useState(true);
    const [toNodeName, setToNodeName] = useState("");
+   const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
    const [nodeToRevert, setToRevert] = useState("");
    const [gameDataLocal, setGameDataLocal] = useState({});
@@ -42,7 +44,9 @@ export default function NodeManager({currState}) {
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
    const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
-
+   const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
+   const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
+ 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
 
@@ -69,6 +73,21 @@ export default function NodeManager({currState}) {
       navigate('/conversationnode', { replace: true, state: { clickedNode } });
     }
         //TODO later add conditions for board game and tower defense
+  }
+
+  function updateGDataToCloud(gameDataLatest) {
+    const currUser = "user002"; //TODO test
+
+    let project = "";
+    if (currState != null) {
+      if (currState.selected_project_name !== null && currState.selected_project_name!== undefined) {
+        project  = currState.selected_project_name;
+        if (project.trim() === "") {
+          return;
+        }
+        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+      }
+    }
   }
 
   function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
@@ -228,7 +247,6 @@ export default function NodeManager({currState}) {
         setToNodeName("");
       }
     } 
-
   }
 
   function handleDeleteNodeWithParam(nodeToDelete){
@@ -283,6 +301,18 @@ export default function NodeManager({currState}) {
     setLsV2IsGData(false);
   }
 
+  async function displayGameDataFunc() {
+    setDisplayGameDataButton(false);
+
+    if (needCloudGameData === true) {
+      await fetchGameDataFromCloud();
+    } else {
+      console.log("*from local* game-data: using existing data"); 
+    }
+    setDisplayGameDataWindow(!displayGameDataWindow);
+    setDisplayGameDataButton(true);
+  }
+
   function changeGameScreenSize(event) {
     const input = event.target.value;
     if (event != null && event.target != null && event.target.value!= null) {
@@ -306,6 +336,14 @@ export default function NodeManager({currState}) {
         console.log("not selected!");
       }
     }
+  }
+
+  function markNextNeedCloudGameData() {
+    setNeedCloudGameData(true);
+  }
+
+  function handleGameDataManagerCancel() {
+    setDisplayGameDataWindow(!displayGameDataWindow);
   }
 
   async function fetchGameDataFromCloud() {
@@ -343,7 +381,8 @@ export default function NodeManager({currState}) {
     return (     
 
         <div className="setting_area"> Node Management
-        
+        {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
+
         <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.
             <br></br>
             <br></br> [source node] might attach a [logic-splitter], logic-splitter connect to 'multiple next-nodes' with 'conditional pair'
@@ -566,12 +605,14 @@ export default function NodeManager({currState}) {
         </p>
     
         <p className="plans">**important!! for each node, it should keep track of it's number of conditional-consequence for its logic-splitter</p>
-        <button onClick={() => {setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}>Add a pair of conditional consequence</button>
         <p className="plans"> display current node's logic-splitter count and 1 more empty form when creating a new pair! </p>
     
     
         <div className="areaBlue">
         <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
+        {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
+        {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
+
         <br></br>
         <label> Variable 1: </label>
 
@@ -630,7 +671,8 @@ export default function NodeManager({currState}) {
             <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
             <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
         </select>
-        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter")}}> Add </button>
+        <br></br>
+        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}> Add </button>
         </div>
         </>}
         {isLinkNode && <p>----------------------------------------------------</p>}
