@@ -610,16 +610,25 @@ export default function NodeManager({currState}) {
         <input></input>
         <br></br>
         <label> Next Node: </label>
-        <select value={logicSplitter_nextNode} onChange={()=>{console.log("logic-splitter: selected destination", logicSplitter_nextNode);}}>
-          {nodeData.map((item, index) => {
-          if (nodeData[index].display === false) {
-            return "false";
-          }
-          return (
-            <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
-          );
-        })}
-        <option>*New Node* (untitled)</option>
+        
+        <br></br><label>Name: </label>
+        <input></input>
+        <br></br><label>Type: </label>
+        
+            <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+                <option value="" key=""> -- Select Node's Game Type -- </option>
+                <option value="Card Game" key="Card Game">Card Game</option>
+                <option value="Board Game" key="Board Game">Board Game</option>
+                <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
+                <option value="Conversation" key="Conversation">Conversation</option>
+            </select>
+        <br></br><label>Screen Size:</label>
+        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+            <option value="" key=""> ----- Select Size and Direction ----- </option>
+            <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+            <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+            <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+            <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
         </select>
         <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter")}}> Add </button>
         </div>
