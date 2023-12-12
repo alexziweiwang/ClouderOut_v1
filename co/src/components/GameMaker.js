@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 import { GiTrashCan } from "react-icons/gi";
-
+import ChapterManager from './ChapterManager';
 
 
 export default function GameMaker() {
@@ -460,46 +460,9 @@ export default function GameMaker() {
       <br></br>hover a node would show the starting wording/desciption of this node [later]
     </p>
 
-    <div className="chapterManagingArea"> Chapter Management
-    <br></br>
+    
 
-    <table>
-      <thead>
-        <th>Chapter Sequence Number</th>
-        <th>Chapter Title</th>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-      {chapterList.map((item, index) => {
-        return (<tr value={item} key={index}>
-          <td>{index+1}</td>
-          <td>{item} </td>
-          <td>
-            <button>Edit</button>
-            <button>Move Up</button>
-            <button>Move Down</button>
-          </td>
-          <td>
-            <button>Delete</button>
-          </td>
-        </tr>);
-      })}
-      </tbody>
-    </table>
-
-      <div>
-        Add New Chapter: 
-        <br></br>
-        <label>Chapter Name:</label>
-        <input></input>
-        <button>Add</button>
-
-      </div>
-
-    </div>
-
-
+    <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
 
     <div className="setting_area"> Node Management
     <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.</p> 
