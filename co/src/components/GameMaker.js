@@ -74,7 +74,6 @@ export default function GameMaker() {
         console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
         setGameDataLocal(gdataTestResult);
         setNeedCloudGameData(false);
-      
       }
     } 
   }
@@ -148,7 +147,7 @@ export default function GameMaker() {
     <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
 
  
-    <NodeManager state={state}/>
+    <NodeManager currState={state}/>
   </div>
 
   

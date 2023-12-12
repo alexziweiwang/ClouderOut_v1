@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
+import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 
 export default function NodeManager({currState}) {
 
@@ -307,6 +308,37 @@ export default function NodeManager({currState}) {
     }
   }
 
+  async function fetchGameDataFromCloud() {
+
+    const currUser = "user002"; //TODO test
+
+    let project = "";
+
+    if (currState != null) {
+      if (currState.selected_project_name !== null && currState.selected_project_name!== undefined) {
+        
+        console.log("!!! This is for project: ", currState.selected_project_name);
+        project  = currState.selected_project_name;
+        console.log("checking2 on project ... [", project, "]");
+        if (project.trim() === "") {
+          return;
+        }
+        const isUpdated = true;
+        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
+     
+        if (gdataTestResult === undefined) {
+          console.log("Error: no game_data in this project...");
+          return;
+        }
+        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+        setGameDataLocal(gdataTestResult);
+      
+      }
+    } else {
+        console.log("currState is null"); //TODO test
+    }
+  }
+
 
     return (     
 
@@ -496,6 +528,8 @@ export default function NodeManager({currState}) {
     
         <div className="areaBlue">
         <label> Variable 1: </label>
+        <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
+
         <select>
           {Object.keys(gameDataLocal).map((currKey) => {
               return (
@@ -606,7 +640,7 @@ export default function NodeManager({currState}) {
           <br></br>
           <select value={nodeToRevert} onChange={addRevertingNode}>
             <option value="" key=""> -- Deleted Nodes -- </option> 
-            {nodeData.map((nextIndex, index) => {
+            {nodeData.map((item, index) => {
               if (nodeData[index].display === true) {
                 return "true";
               } 
