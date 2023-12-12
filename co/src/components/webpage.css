@@ -688,3 +688,11 @@ button:hover {
     background-color: #e1ceb8;
     width: 700px;
 }
+
+.chapterManagingArea {
+    text-align: left;
+    padding-left: 50px;
+    padding-bottom: 3px;    
+    padding-top: 3px;
+
+}

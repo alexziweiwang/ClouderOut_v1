@@ -67,7 +67,8 @@ export default function GameMaker() {
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
    const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
-
+   const [currChapter, setCurrChapter] = useState("");
+   const [chapterList, setChapterList] = useState([]); //TODO fetch from cloud db
 
    const x_base = 1, y_base = 1;
    const node_width = 190, node_height = 70;
@@ -458,6 +459,20 @@ export default function GameMaker() {
       <br></br>visualization and operation panel: view, hover and click
       <br></br>hover a node would show the starting wording/desciption of this node [later]
     </p>
+
+    <div className="chapterManagingArea"> Chapter Management
+    <br></br>
+    <select>
+
+    </select>
+
+      <div>
+        Add New Chapter
+        <input></input>
+
+      </div>
+
+    </div>
 
 
 
