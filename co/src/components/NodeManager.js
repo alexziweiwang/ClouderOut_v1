@@ -532,8 +532,9 @@ export default function NodeManager({currState}) {
 
         <select>
           {Object.keys(gameDataLocal).map((currKey) => {
+              const keyStr = gameDataLocal[currKey]["name"] + "1";
               return (
-              <option value={logicSplitter_gameDataVar1} key={currKey}>{currKey}</option>
+              <option value={logicSplitter_gameDataVar1} key={keyStr}>{currKey}</option>
               );
           })}
         </select>
@@ -541,13 +542,12 @@ export default function NodeManager({currState}) {
     
         <label>Comparison: </label>
         <select>
-              <option key="" value=""> -- Operator -- </option>
+              <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
               <option key="equal" value="equal"> equal to </option>
               <option key="largerequal" value="largerequal"> larger than or euqal to </option>
               <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
-    
         </select>
         <br></br>
         <label> Variable 2: </label>
@@ -556,7 +556,7 @@ export default function NodeManager({currState}) {
         <select>
           {Object.keys(gameDataLocal).map((key) => {
               return (
-              <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]}>{key}</option>
+              <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]["name"]}>{key}</option>
               );
               })}
         </select>
@@ -597,7 +597,7 @@ export default function NodeManager({currState}) {
      {/* //TODO change "fromNode" to "clickedNode" */}
         <label> to Node </label>
         <select onChange={addConnectionToNode} value={toNodeName}>
-        <option value="" key=""> -- Select Destination Node -- </option> 
+            <option value="" key=""> -- Select Destination Node -- </option> 
         {nodeData.map((nextIndex, index) => {
           if (nodeData[index].display === false) {
             return "false";

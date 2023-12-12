@@ -10,10 +10,13 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
     <table>
       <thead>
-        <th>Chapter Sequence Number</th>
-        <th>Chapter Title</th>
-        <th></th>
-        <th></th>
+        <tr>
+          <th>Chapter Sequence Number</th>
+          <th>Chapter Title</th>
+          <th></th>
+          <th></th>   
+        </tr>
+
       </thead>
       <tbody>
       {chapterData.map((item, index) => {
