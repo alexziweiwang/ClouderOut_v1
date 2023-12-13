@@ -11,12 +11,12 @@ export default function NodeManager({currState}) {
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2], display: true, nodeType:"Conversation"},
-    { nodeName: "splliter1",depth: 2, inGroupPosition:0, nextNodes:[3, 4], display: true, nodeType:"[Splitter]"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[5], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[5], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
+    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "splliter1",depth: 2, inGroupPosition:0, nextNodes:[3, 4], spltCondt: ["c1", "c2"], display: true, nodeType:"[Splitter]"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[5], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[5], spltCondt: [], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
   const [nodeData3, setNodeData3] = useState([
@@ -509,6 +509,7 @@ export default function NodeManager({currState}) {
                   height={node_height}
                   fill="#d8ddeb"
                   stroke="#b2b2b2"
+                  onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
                 />}
                 {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType !== "[Splitter]") && 
                 <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
@@ -601,6 +602,35 @@ export default function NodeManager({currState}) {
         <div>
 
         <p className="sectionHeader">***Next-Element***</p>
+        <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Next Node</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+                {nodeData.filter(elem => (elem.nodeName === clickedNode)).map((item, index) => {
+                    const listNext = item.nextNodes;
+                    const listCond = item.spltCondt;
+                    console.log("clicked node is : ", clickedNode); //TODO test
+                    console.log("table:", item, "listNext = ", listNext); //TODO test
+                    listNext.map((e, i) => {
+                        return (<tr>
+                            <td>{e},{i}</td>
+                            <td>(condition...)</td>
+                            
+                        </tr>);
+                    })
+                })}
+
+            <tbody>
+
+            </tbody>
+        </table>
+        </div>
+
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
         <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>An existing Node
     
