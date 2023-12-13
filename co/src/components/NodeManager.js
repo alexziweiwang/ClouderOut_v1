@@ -12,23 +12,33 @@ export default function NodeManager({currState}) {
 
   const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2], display: true, nodeType:"Conversation"},
+    { nodeName: "splliter1",depth: 3, inGroupPosition:0, nextNodes:[3, 4], display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 4, inGroupPosition:0, nextNodes:[5], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 4, inGroupPosition:1, nextNodes:[5], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 5, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
   const [nodeData2, setNodeData2] = useState([
-    { nodeName: "plot1", depth: 1, isNextNode: true, nextElem:"plot2", display: true, nodeType:"Conversation"},
-    { nodeName: "plot2", depth: 2, isNextNode: false, nextElem:"s0", display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, isNextNode: true, nextElem:"end node", display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, isNextNode: true, nextElem:"end node", display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, isNextNode: true, nextElem:"", display: true, nodeType:"Conversation"},
+    { nodeName: "plot1", depth: 1, nextIsNode: true, nextElem:"plot2", display: true, nodeType:"Conversation"},
+    { nodeName: "plot2", depth: 2, nextIsNode: false, nextElem:"s0", display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 3, nextIsNode: true, nextElem:"end node", display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, nextIsNode: true, nextElem:"end node", display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, nextIsNode: true, nextElem:"", display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
   const [lSplitter2, setLSplitter2] = useState([
-    { splitterName: "s0", pairs: [{conse: "", nextNode: 2}, {conse: "", nextNode: 3}]}
-  ]);//TODO testing data
+    { splitterName: "s0", pairs: [{condt: "", nextNode: 2}, {condt: "", nextNode: 3}]}
+  ]); //TODO testing data
+
+  const [nodeData3, setNodeData3] = useState([
+    { nodeName: "plot1", depth: 1, isNode: true, nextElem:["plot2"], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2", depth: 2, isNode: true, nextElem:["s0"], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "s0", depth: 3, isNode: false, nextElem:["option x", "option y"], spltCondt: ["c1", "c2"],display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 3, isNode: true, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, isNode: true, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, isNode: true, nextElem:[], spltCondt: [], display: true, nodeType:"Conversation"},
+  ]); //TODO testing data
 
 
    /* variable area */
