@@ -12,10 +12,9 @@ export default function NodeManager({currState}) {
 
   const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "splliter1",depth: 2, inGroupPosition:0, nextNodes:[3, 4], spltCondt: ["c1", "c2"], display: true, nodeType:"[Splitter]"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[5], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[5], spltCondt: [], display: true, nodeType:"Card Game"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: [], display: true, nodeType:"Card Game"},
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
@@ -487,7 +486,7 @@ export default function NodeManager({currState}) {
     
                   );
                 })}
-                {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType !== "[Splitter]") && 
+                {(nodeData[nodeIndex].display === true) && 
                 <rect
                   key={nodeData[nodeIndex].nodeName}
                   className="game_node_vis"
@@ -499,19 +498,8 @@ export default function NodeManager({currState}) {
                   stroke="#b2b2b2"
                   onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
                 />}
-                {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType === "[Splitter]") && 
-                <rect
-                  key={nodeData[nodeIndex].nodeName}
-                  className="game_node_vis"
-                  x={x_val+(node_width/7)*6}
-                  y={y_val}
-                  width={node_width/7}
-                  height={node_height}
-                  fill="#d8ddeb"
-                  stroke="#b2b2b2"
-                  onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
-                />}
-                {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType !== "[Splitter]") && 
+
+                {(nodeData[nodeIndex].display === true ) && 
                 <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
                   {nodeData[nodeIndex].nodeName}
                 </text>}
@@ -610,21 +598,30 @@ export default function NodeManager({currState}) {
                     <th>Condition</th>
                 </tr>
             </thead>
-                {nodeData.filter(elem => (elem.nodeName === clickedNode)).map((item, index) => {
+ 
+            <tbody>
+            {nodeData.filter(elem => (elem.nodeName === clickedNode)).map((item, index) => {
                     const listNext = item.nextNodes;
                     const listCond = item.spltCondt;
                     console.log("clicked node is : ", clickedNode); //TODO test
-                    console.log("table:", item, "listNext = ", listNext); //TODO test
+                    console.log("table:", item); //TODO test
+                    console.log("listNext = ", listNext); //TODO test
+                    console.log("listCond = ", listCond); //TODO test
                     listNext.map((e, i) => {
-                        return (<tr>
-                            <td>{e},{i}</td>
-                            <td>(condition...)</td>
-                            
+                        console.log("current row next node = ", e);
+                        return (
+                        <tr>
+                            <td>row1, test1</td>
+                            <td>row1, test2</td>
+
                         </tr>);
                     })
+
+                    return (<tr>
+                        <td>?</td>
+                    </tr>);
                 })}
 
-            <tbody>
 
             </tbody>
         </table>
