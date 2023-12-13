@@ -18,6 +18,18 @@ export default function NodeManager({currState}) {
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
+  const [nodeData2, setNodeData2] = useState([
+    { nodeName: "plot1", depth: 1, isNextNode: true, nextElem:"plot2", display: true, nodeType:"Conversation"},
+    { nodeName: "plot2", depth: 2, isNextNode: false, nextElem:"s0", display: true, nodeType:"Conversation"},
+    { nodeName: "option x", depth: 3, isNextNode: true, nextElem:"end node", display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, isNextNode: true, nextElem:"end node", display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, isNextNode: true, nextElem:"", display: true, nodeType:"Conversation"},
+  ]); //TODO testing data
+
+  const [lSplitter2, setLSplitter2] = useState([
+    { splitterName: "s0", pairs: [{conse: "", nextNode: 2}, {conse: "", nextNode: 3}]}
+  ]);//TODO testing data
+
 
    /* variable area */
    const navigate = useNavigate();
