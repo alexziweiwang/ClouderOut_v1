@@ -56,6 +56,9 @@ export default function NodeManager({currState}) {
    const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
+
+   const [nextNodeList, setNextNodeList] = useState([]);
+   const [nextCondtList, setNextCondtList] = useState([]);
  
    const x_base = 1, y_base = 1, y_dist=50;
    const node_width = 190, node_height = 70;
@@ -63,14 +66,24 @@ export default function NodeManager({currState}) {
  
   function handleNodeClick(name) {
     //TODO: update to local data: update previously-clicked node's most recent logic-splitter count ("currNodeSplittedNum")
-    console.log("node = " + name); //TODO
+    console.log("clicked node = " + name); //TODO
     if (name === "" || name !== clickedNode) {
       setClickedNode(name);
     } else { //clicked on the same node
       setClickedNode("");
     }
 
-    //TODO set this node's logic-splitter count here
+    const tempNextList = nodeData.filter(item => (name === item.nodeName)).nextNodes;
+    const tempNextCondtList = nodeData.filter(item => (name === item.nodeName)).spltCondt;
+
+    console.log("nodeData: ", nodeData);
+    console.log("handle node clicked..."); //TODO test
+    console.log("tempNextList: ", tempNextList); //TODO test
+    console.log("tempNextCondtList", tempNextCondtList); //TODO test
+
+    // setNextNodeList(tempNextList);
+    // setNextCondtList(tempNextCondtList);
+
   }
 
   function enterNodeEditor() {
@@ -600,25 +613,11 @@ export default function NodeManager({currState}) {
             </thead>
  
             <tbody>
-            {nodeData.filter(elem => (elem.nodeName === clickedNode)).map((item, index) => {
-                    const listNext = item.nextNodes;
-                    const listCond = item.spltCondt;
-                    console.log("clicked node is : ", clickedNode); //TODO test
-                    console.log("table:", item); //TODO test
-                    console.log("listNext = ", listNext); //TODO test
-                    console.log("listCond = ", listCond); //TODO test
-                    listNext.map((e, i) => {
-                        console.log("current row next node = ", e);
-                        return (
-                        <tr>
-                            <td>row1, test1</td>
-                            <td>row1, test2</td>
 
-                        </tr>);
-                    })
-
+            {nextNodeList.map((item, index) => {
                     return (<tr>
-                        <td>?</td>
+                        <td>{item}</td>
+                        <td>{nextCondtList[index]}</td>
                     </tr>);
                 })}
 
