@@ -73,16 +73,18 @@ export default function NodeManager({currState}) {
       setClickedNode("");
     }
 
-    const tempNextList = nodeData.filter(item => (name === item.nodeName)).nextNodes;
-    const tempNextCondtList = nodeData.filter(item => (name === item.nodeName)).spltCondt;
+    let tempNextList = nodeData.filter(item => (name === item.nodeName));
+    tempNextList = tempNextList[0].nextNodes;
+    let tempNextCondtList = nodeData.filter(item => (name === item.nodeName));
+    tempNextCondtList = tempNextCondtList[0].spltCondt;
 
     console.log("nodeData: ", nodeData);
     console.log("handle node clicked..."); //TODO test
     console.log("tempNextList: ", tempNextList); //TODO test
     console.log("tempNextCondtList", tempNextCondtList); //TODO test
 
-    // setNextNodeList(tempNextList);
-    // setNextCondtList(tempNextCondtList);
+    setNextNodeList(tempNextList);
+    setNextCondtList(tempNextCondtList);
 
   }
 
@@ -609,15 +611,19 @@ export default function NodeManager({currState}) {
                 <tr>
                     <th>Next Node</th>
                     <th>Condition</th>
+                    <th>[Operation]</th>
                 </tr>
             </thead>
  
             <tbody>
 
             {nextNodeList.map((item, index) => {
-                    return (<tr>
+                    return (<tr key={nextCondtList[index]}>
                         <td>{item}</td>
                         <td>{nextCondtList[index]}</td>
+                        <td>
+                            <button>Remove</button>
+                        </td>
                     </tr>);
                 })}
 
