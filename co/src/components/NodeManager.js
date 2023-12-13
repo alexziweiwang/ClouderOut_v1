@@ -7,16 +7,16 @@ import GameDataManager from './GameDataManager';
 
 export default function NodeManager({currState}) {
 
-  // TODO testing, temp
+// TODO testing, temp ----------------------------------------
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
   const [nodeData, setNodeData] = useState([
     { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], display: true, nodeType:"Conversation"},
     { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2], display: true, nodeType:"Conversation"},
-    { nodeName: "splliter1",depth: 3, inGroupPosition:0, nextNodes:[3, 4], display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 4, inGroupPosition:0, nextNodes:[5], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 4, inGroupPosition:1, nextNodes:[5], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 5, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
+    { nodeName: "splliter1",depth: 2, inGroupPosition:0, nextNodes:[3, 4], display: true, nodeType:"[Splitter]"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[5], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[5], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
   const [nodeData3, setNodeData3] = useState([
@@ -27,6 +27,8 @@ export default function NodeManager({currState}) {
     { nodeName: "option y", depth: 4, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Card Game"},
     { nodeName: "end node", depth: 5, nextElem:[], spltCondt: [], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
+
+// TODO testing, temp ----------------------------------------
 
    /* variable area */
    const navigate = useNavigate();
@@ -56,7 +58,7 @@ export default function NodeManager({currState}) {
    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
  
-   const x_base = 1, y_base = 1;
+   const x_base = 1, y_base = 1, y_dist=50;
    const node_width = 190, node_height = 70;
 
  
@@ -454,9 +456,10 @@ export default function NodeManager({currState}) {
             // const { node_width, node_height } = nodeData[nodeIndex];
             const x_val = nodeData[index].depth * 240 + x_base;
             //TODO calculate in-group-position by same-depth
-            const y_val = y_base + (node_height+30) * nodeData[index].inGroupPosition;
+            const y_val = y_base + (node_height+y_dist) * nodeData[index].inGroupPosition;
 
-             
+            
+
             return (
               
               <g key={nodeIndex}>
@@ -464,7 +467,7 @@ export default function NodeManager({currState}) {
                   
                   const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base;
                   //TODO calculate in-group-position by same-depth
-                  const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].inGroupPosition;
+                  const next_y_val = y_base + (node_height+y_dist) * nodeData[nextNodeIndex].inGroupPosition;
                    
                   let point_string = 
                     (next_x_val-15) + "," + (y_val + node_height / 2 - 10) + " " + 
@@ -484,7 +487,7 @@ export default function NodeManager({currState}) {
     
                   );
                 })}
-                {nodeData[nodeIndex].display === true && 
+                {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType !== "[Splitter]") && 
                 <rect
                   key={nodeData[nodeIndex].nodeName}
                   className="game_node_vis"
@@ -495,13 +498,23 @@ export default function NodeManager({currState}) {
                   fill="#b2efe0"
                   stroke="#b2b2b2"
                   onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
-                />
-                }
-                {nodeData[nodeIndex].display === true && 
+                />}
+                {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType === "[Splitter]") && 
+                <rect
+                  key={nodeData[nodeIndex].nodeName}
+                  className="game_node_vis"
+                  x={x_val}
+                  y={y_val+25}
+                  width={node_width}
+                  height={node_height}
+                  fill="#12efe3"
+                  stroke="#b2b2b2"
+                  onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
+                />}
+                {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType !== "[Splitter]") && 
                 <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
                   {nodeData[nodeIndex].nodeName}
-                </text>
-                }
+                </text>}
               </g>
             );
           })}
