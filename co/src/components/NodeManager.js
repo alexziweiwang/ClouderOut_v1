@@ -495,7 +495,7 @@ export default function NodeManager({currState}) {
                   y={y_val}
                   width={node_width}
                   height={node_height}
-                  fill="#b2efe0"
+                  fill="#d1e8e2"
                   stroke="#b2b2b2"
                   onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
                 />}
@@ -503,13 +503,12 @@ export default function NodeManager({currState}) {
                 <rect
                   key={nodeData[nodeIndex].nodeName}
                   className="game_node_vis"
-                  x={x_val}
-                  y={y_val+25}
-                  width={node_width}
+                  x={x_val+(node_width/7)*6}
+                  y={y_val}
+                  width={node_width/7}
                   height={node_height}
-                  fill="#12efe3"
+                  fill="#d8ddeb"
                   stroke="#b2b2b2"
-                  onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
                 />}
                 {(nodeData[nodeIndex].display === true && nodeData[nodeIndex].nodeType !== "[Splitter]") && 
                 <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
@@ -552,7 +551,16 @@ export default function NodeManager({currState}) {
         <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
           <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
           <br></br> - for node-link editing: later adding links should be done by attach-new, and deleting links should be done by deleting-next; no direct control about links?
-        </p>        
+        </p> 
+        <br></br>       
+        <p className="plans">
+            New Design Idea: *Each* node contains 1 logic splitter by default
+            <br></br>Next node condition is "true"(always) by default
+            <br></br>user can add 0 to many next-nodes with conditions(always by default)
+            <br></br>each node maintains a [list] of (next-node) and a [list] of (condition) (1-to-1 mapping by index)
+            <br></br>Limitation: cannot have multiple "always-true" path
+
+        </p>
 
         <p className="sectionHeader">***Edit Node-Links***</p>
         
