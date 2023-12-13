@@ -19,27 +19,14 @@ export default function NodeManager({currState}) {
     { nodeName: "end node", depth: 5, inGroupPosition:0, nextNodes:[], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
-  const [nodeData2, setNodeData2] = useState([
-    { nodeName: "plot1", depth: 1, nextIsNode: true, nextElem:"plot2", display: true, nodeType:"Conversation"},
-    { nodeName: "plot2", depth: 2, nextIsNode: false, nextElem:"s0", display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, nextIsNode: true, nextElem:"end node", display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, nextIsNode: true, nextElem:"end node", display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, nextIsNode: true, nextElem:"", display: true, nodeType:"Conversation"},
-  ]); //TODO testing data
-
-  const [lSplitter2, setLSplitter2] = useState([
-    { splitterName: "s0", pairs: [{condt: "", nextNode: 2}, {condt: "", nextNode: 3}]}
-  ]); //TODO testing data
-
   const [nodeData3, setNodeData3] = useState([
-    { nodeName: "plot1", depth: 1, isNode: true, nextElem:["plot2"], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2", depth: 2, isNode: true, nextElem:["s0"], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "s0", depth: 3, isNode: false, nextElem:["option x", "option y"], spltCondt: ["c1", "c2"],display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, isNode: true, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, isNode: true, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, isNode: true, nextElem:[], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "plot1", depth: 1, nextElem:["plot2"], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "plot2", depth: 2, nextElem:["s0"], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "s0", depth: 3, nextElem:["option x", "option y"], spltCondt: ["c1", "c2"], display: true, nodeType:"[Splitter]"},
+    { nodeName: "option x", depth: 4, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 4, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Card Game"},
+    { nodeName: "end node", depth: 5, nextElem:[], spltCondt: [], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
-
 
    /* variable area */
    const navigate = useNavigate();
@@ -128,6 +115,9 @@ export default function NodeManager({currState}) {
         console.log("Invalid node name: duplicate")
       } else {
         console.log("create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
+        
+        //TODO calculate in-grou-position by filtering the same depth
+
         const newDataItem = { 
           nodeName: `${createNewNodeName}`, 
           depth: test_new_node_depth,
@@ -462,16 +452,19 @@ export default function NodeManager({currState}) {
     
           {Object.keys(nodeData).map((nodeIndex, index) => {
             // const { node_width, node_height } = nodeData[nodeIndex];
-            const x_val = nodeData[index].depth * 240 + x_base 
-            const y_val = y_base + (node_height+30) * nodeData[index].inGroupPosition
+            const x_val = nodeData[index].depth * 240 + x_base;
+            //TODO calculate in-group-position by same-depth
+            const y_val = y_base + (node_height+30) * nodeData[index].inGroupPosition;
+
              
             return (
               
               <g key={nodeIndex}>
                 {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
                   
-                  const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base 
-                  const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].inGroupPosition
+                  const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base;
+                  //TODO calculate in-group-position by same-depth
+                  const next_y_val = y_base + (node_height+30) * nodeData[nextNodeIndex].inGroupPosition;
                    
                   let point_string = 
                     (next_x_val-15) + "," + (y_val + node_height / 2 - 10) + " " + 
