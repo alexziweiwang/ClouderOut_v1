@@ -587,7 +587,7 @@ export default function NodeManager({currState}) {
         <table>
             <thead>
                 <tr>
-                    <th>Next Node</th>
+                    <th>Next Node(s)</th>
                     <th>Condition</th>
                     <th>[Operation]</th>
                 </tr>
@@ -596,9 +596,10 @@ export default function NodeManager({currState}) {
             <tbody>
 
             {nextNodeList.map((item, index) => {
+                const nextNodeName = nodeData[item].nodeName;
                 
                     return (<tr key={nextCondtList[index]}>
-                        <td>{item}</td>
+                        <td>{nextNodeName}</td>
                         {nextCondtList.length === nextNodeList.length && 
                             <td>{nextCondtList[index]}</td>
                         }
@@ -612,12 +613,14 @@ export default function NodeManager({currState}) {
                     </tr>);
             })}
 
-
             </tbody>
         </table>
         </div>
 
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        <label>Add a New Next-Node: </label>
+        <br></br>
+
+
 
         <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>An existing Node
     
