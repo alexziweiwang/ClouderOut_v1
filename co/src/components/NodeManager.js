@@ -37,7 +37,7 @@ export default function NodeManager({currState}) {
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [fromNodeName, setFromNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
-   const [isLinkNode, setIsLinkNode] = useState(true);
+   const [isLinkNewNode, setIsLinkNewNode] = useState(true);
    const [toNodeName, setToNodeName] = useState("");
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
@@ -313,16 +313,16 @@ export default function NodeManager({currState}) {
     setDeletingNodeName("");
   }
 
-  function changeNextToNode() {
-    setIsLinkNode(true);
+  function changeNextToExistingNode() {
+    setIsLinkNewNode(false);
   }
 
-  function changeNextToSplitter() {
-    setIsLinkNode(false);
+  function changeNextToNewNode() {
+    setIsLinkNewNode(true);
   }
 
   function changeLsVar2ToGameData() {
-    setLsV2IsGData(true);
+    setLsV2IsGData(false);
   }
 
   function changeLsVar2ToValue() {
@@ -622,7 +622,7 @@ export default function NodeManager({currState}) {
 
 
 
-        <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>An existing Node
+        <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
             
         <select>
             {nodeData.filter(e => e.nodeName !== clickedNode).map((item, index) => {
@@ -633,18 +633,13 @@ export default function NodeManager({currState}) {
 
 
 
-        {!isLinkNode && <p>----------------------------------------------------</p>}
+        {!isLinkNewNode && <p>----------------------------------------------------</p>}
         </div>
     
         <div>
-        <input type="radio" name="logic_splitter" value={isLinkNode} checked={!isLinkNode} onChange={changeNextToSplitter}/>A Logic Splitter
+        <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
     
-    {/* //TODO: change later */}
-        {!isLinkNode && 
-        <>
-        <p className="plans">TODO improve later</p>
     
-          
         <br></br>
       
         <p className="plans">
@@ -727,8 +722,8 @@ export default function NodeManager({currState}) {
         <br></br>
         <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}> Add </button>
         </div>
-        </>}
-        {isLinkNode && <p>----------------------------------------------------</p>}
+       
+        {isLinkNewNode && <p>----------------------------------------------------</p>}
     
         </div>
         
