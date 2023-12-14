@@ -617,7 +617,7 @@ export default function NodeManager({currState}) {
         </table>
         </div>
         <br></br>
-        <label>Add a New Next-Node: </label>
+        <label>Add a Next-Node: </label>
         <br></br>
 
 
@@ -631,10 +631,8 @@ export default function NodeManager({currState}) {
                 .map((item, index) => {
 
                     if (!nextNodeList.includes(index) && item.nodeName !== clickedNode) {
-                    //TODO eliminate duplicate node item
-                    console.log("curr index = ", index, ", item = ", item); //TODO test
-                    console.log("clickedNode: ", clickedNode); //TODO test
-                    console.log("nextNodeList: ", nextNodeList); //TODO test
+                        //TODO eliminate "parent node"?
+
                         return (<option>{item.nodeName}</option>);
                     }
                 })}
@@ -649,13 +647,43 @@ export default function NodeManager({currState}) {
         <div>
         <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
         {isLinkNewNode && <>
-            <p className="plans"> TODO: setting of new node to add here </p>
+        <br></br>
+        <label>Node Name: </label>
+        <input 
+          className="setting_item"
+          type="text" 
+          value={createNewNodeName} 
+          onChange={e => {setCreateNewNodeName(e.target.value);}}  
+        />
+        <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+          <option value="" key=""> -- Select Node's Game Type -- </option>
+          <option value="Card Game" key="Card Game">Card Game</option>
+          <option value="Board Game" key="Board Game">Board Game</option>
+          <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
+          <option value="Conversation" key="Conversation">Conversation</option>
+        </select>
+        <label>Screen Size:</label>
+        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+              <option value="" key=""> ----- Select Size and Direction ----- </option>
+              <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+              <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+              <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+              <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+            </select>
+    
+        <button 
+          className="setting_item"
+          onClick={addNewNode}>
+            Create
+        </button>
+        
         </>}
         {!isLinkNewNode && <p>----------------------------------------------------</p>}
 
         <br></br>
   
         <div className="areaBlue">
+            <br></br><br></br><br></br>
         <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
         {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
         {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
