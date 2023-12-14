@@ -624,38 +624,30 @@ export default function NodeManager({currState}) {
 
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
             
+        {!isLinkNewNode && <>
+        <br></br>
         <select>
             {nodeData.filter(e => e.nodeName !== clickedNode).map((item, index) => {
                 //TODO eliminate duplicate node item
                 return (<option>{item.nodeName}</option>);
             })}
         </select>
+        </>}
+        {isLinkNewNode && <p>----------------------------------------------------</p>}
 
 
 
-        {!isLinkNewNode && <p>----------------------------------------------------</p>}
         </div>
     
         <div>
         <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
-    
-    
+        {isLinkNewNode && <>
+            <p className="plans"> TODO: setting of new node to add here </p>
+        </>}
+        {!isLinkNewNode && <p>----------------------------------------------------</p>}
+
         <br></br>
-      
-        <p className="plans">
-          Current idea on logic-splitter:
-          <br></br>fill in information
-          <br></br>(source node is already selected)
-          <br></br>an array of pairs [(condition, next-node),(condition, next-node), ...]
-          <br></br>for condition: *important* analyze and design comparison or check generalization
-          <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
-          <br></br>on node path, display brief text of condition?
-        </p>
-    
-        <p className="plans">**important!! for each node, it should keep track of it's number of conditional-consequence for its logic-splitter</p>
-        <p className="plans"> display current node's logic-splitter count and 1 more empty form when creating a new pair! </p>
-    
-    
+  
         <div className="areaBlue">
         <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
         {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
@@ -722,9 +714,7 @@ export default function NodeManager({currState}) {
         <br></br>
         <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}> Add </button>
         </div>
-       
-        {isLinkNewNode && <p>----------------------------------------------------</p>}
-    
+           
         </div>
         
         
@@ -744,7 +734,21 @@ export default function NodeManager({currState}) {
 
         </p>
 
-      
+          
+        <p className="plans">
+          Current idea on logic-splitter:
+          <br></br>fill in information
+          <br></br>(source node is already selected)
+          <br></br>an array of pairs [(condition, next-node),(condition, next-node), ...]
+          <br></br>for condition: *important* analyze and design comparison or check generalization
+          <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
+          <br></br>on node path, display brief text of condition?
+        </p>
+    
+        <p className="plans">**important!! for each node, it should keep track of it's number of conditional-consequence for its logic-splitter</p>
+        <p className="plans"> display current node's logic-splitter count and 1 more empty form when creating a new pair! </p>
+    
+    
         </div>
         </>
       }
