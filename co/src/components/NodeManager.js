@@ -628,12 +628,13 @@ export default function NodeManager({currState}) {
         <br></br>
         <select>
             {nodeData
-                .filter(e => (e.nodeName !== clickedNode))
                 .map((item, index) => {
+
+                    if (!nextNodeList.includes(index) && item.nodeName !== clickedNode) {
                     //TODO eliminate duplicate node item
+                    console.log("curr index = ", index, ", item = ", item); //TODO test
                     console.log("clickedNode: ", clickedNode); //TODO test
                     console.log("nextNodeList: ", nextNodeList); //TODO test
-                    if (!nextNodeList.includes(index)) {
                         return (<option>{item.nodeName}</option>);
                     }
                 })}
