@@ -13,8 +13,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <tr>
           <th>Chapter Sequence Number</th>
           <th>Chapter Title</th>
-          <th></th>
-          <th></th>   
+ 
         </tr>
 
       </thead>
@@ -24,26 +23,26 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           <td>{index+1}</td>
           <td>{item} </td>
           <td>
-            <button>Edit</button>
-            <button>Move Up</button>
-            <button>Move Down</button>
+            <button>Select</button>
           </td>
           <td>
             <button>Delete</button>
           </td>
         </tr>);
       })}
+      <tr key="newChapter">
+        <td>Add New Chapter</td>
+        <td>      
+            <label>Chapter Name:</label>
+            <input></input>
+        </td>
+        <td>
+          <button>Add</button>
+        </td>
+      </tr>
       </tbody>
     </table>
 
-        <div>
-            Add New Chapter: 
-            <br></br>
-            <label>Chapter Name:</label>
-            <input></input>
-            <button>Add</button>
-
-         </div>
 
         </div>
         </>

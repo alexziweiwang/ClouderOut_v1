@@ -552,19 +552,6 @@ export default function NodeManager({currState}) {
     
         {(clickedNode !== "") && 
         <>
-        <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
-          <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
-          <br></br> - for node-link editing: later adding links should be done by attach-new, and deleting links should be done by deleting-next; no direct control about links?
-        </p> 
-        <br></br>       
-        <p className="plans">
-            New Design Idea: *Each* node contains 1 logic splitter by default
-            <br></br>Next node condition is "true"(always) by default
-            <br></br>user can add 0 to many next-nodes with conditions(always by default)
-            <br></br>each node maintains a [list] of (next-node) and a [list] of (condition) (1-to-1 mapping by index)
-            <br></br>Limitation: cannot have multiple "always-true" path
-
-        </p>
 
         <p className="sectionHeader">***Edit Node-Links***</p>
         
@@ -750,6 +737,20 @@ export default function NodeManager({currState}) {
         
         
         <div>
+        <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
+          <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
+          <br></br> - for node-link editing: later adding links should be done by attach-new, and deleting links should be done by deleting-next; no direct control about links?
+        </p> 
+        <br></br>       
+        <p className="plans">
+            New Design Idea: *Each* node contains 1 logic splitter by default
+            <br></br>Next node condition is "true"(always) by default
+            <br></br>user can add 0 to many next-nodes with conditions(always by default)
+            <br></br>each node maintains a [list] of (next-node) and a [list] of (condition) (1-to-1 mapping by index)
+            <br></br>Limitation: cannot have multiple "always-true" path
+
+        </p>
+
       
         </div>
         </>
