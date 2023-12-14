@@ -616,26 +616,23 @@ export default function NodeManager({currState}) {
             </tbody>
         </table>
         </div>
-
+        <br></br>
         <label>Add a New Next-Node: </label>
         <br></br>
 
 
 
         <input type="radio" name="node" value={isLinkNode} onChange={changeNextToNode} checked={isLinkNode}/>An existing Node
-    
-    {/* //TODO: change later */}
-        {isLinkNode && <> 
-          <p className="plans">TODO improve later
-          <br></br>Design: can specify initial size & direction here
-          </p>
-    
-        <br></br>
-            <p className="plans">
-                [a list of existing nodes]
-            </p>
-        </>
-        }
+            
+        <select>
+            {nodeData.filter(e => e.nodeName !== clickedNode).map((item, index) => {
+                //TODO eliminate duplicate node item
+                return (<option>{item.nodeName}</option>);
+            })}
+        </select>
+
+
+
         {!isLinkNode && <p>----------------------------------------------------</p>}
         </div>
     
