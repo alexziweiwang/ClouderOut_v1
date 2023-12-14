@@ -37,7 +37,7 @@ export default function NodeManager({currState}) {
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [fromNodeName, setFromNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
-   const [isLinkNewNode, setIsLinkNewNode] = useState(true);
+   const [isLinkNewNode, setIsLinkNewNode] = useState(false);
    const [toNodeName, setToNodeName] = useState("");
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
@@ -627,10 +627,16 @@ export default function NodeManager({currState}) {
         {!isLinkNewNode && <>
         <br></br>
         <select>
-            {nodeData.filter(e => e.nodeName !== clickedNode).map((item, index) => {
-                //TODO eliminate duplicate node item
-                return (<option>{item.nodeName}</option>);
-            })}
+            {nodeData
+                .filter(e => (e.nodeName !== clickedNode))
+                .map((item, index) => {
+                    //TODO eliminate duplicate node item
+                    console.log("clickedNode: ", clickedNode); //TODO test
+                    console.log("nextNodeList: ", nextNodeList); //TODO test
+                    if (!nextNodeList.includes(index)) {
+                        return (<option>{item.nodeName}</option>);
+                    }
+                })}
         </select>
         </>}
         {isLinkNewNode && <p>----------------------------------------------------</p>}
