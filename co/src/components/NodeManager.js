@@ -553,8 +553,7 @@ export default function NodeManager({currState}) {
         {(clickedNode !== "") && 
         <>
 
-        <p className="sectionHeader">***Edit Node-Links***</p>
-        
+        {/* <p className="sectionHeader">***Edit Node-Links***</p>        
         <br></br>
         <label>From Node [{clickedNode}] </label>
         <label> to Node </label>
@@ -579,16 +578,8 @@ export default function NodeManager({currState}) {
           className="setting_item"
           onClick={deleteLinkBetweenNodes}>
             Delete connection
-        </button>
+        </button> */}
     
-            
-
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-
         <div>
 
         <p className="sectionHeader">***Next-Element***</p>
@@ -605,14 +596,21 @@ export default function NodeManager({currState}) {
             <tbody>
 
             {nextNodeList.map((item, index) => {
+                
                     return (<tr key={nextCondtList[index]}>
                         <td>{item}</td>
-                        <td>{nextCondtList[index]}</td>
+                        {nextCondtList.length === nextNodeList.length && 
+                            <td>{nextCondtList[index]}</td>
+                        }
+                        {nextCondtList.length !== nextNodeList.length && 
+                            <td>Default: Always Continue</td>
+                        }
+
                         <td>
                             <button>Remove</button>
                         </td>
                     </tr>);
-                })}
+            })}
 
 
             </tbody>
