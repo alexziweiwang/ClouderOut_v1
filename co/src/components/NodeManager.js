@@ -35,11 +35,10 @@ export default function NodeManager({currState}) {
    const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
-   const [fromNodeName, setFromNodeName] = useState("");
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNewNode, setIsLinkNewNode] = useState(false);
-   const [toNodeName, setToNodeName] = useState("");
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
+   const [toNodeName, setToNodeName] = useState("");
 
    const [nodeToRevert, setToRevert] = useState("");
    const [gameDataLocal, setGameDataLocal] = useState({});
@@ -160,10 +159,6 @@ export default function NodeManager({currState}) {
     console.log("changed selection of new game type : " + event.target.value);
   }
 
-  function addConnectionToNode(event) {
-    setToNodeName(event.target.value); //TODO later update to cloud db
-  }
-
   function addRevertingNode(event) {
     setToRevert(event.target.value); //TODO later update to cloud db
   }
@@ -182,14 +177,58 @@ export default function NodeManager({currState}) {
   }
 
 
-  function addLinkBetweenNodes() { //TODO *** refactor: for new data-structure and depth plan
+//   function addLinkBetweenNodes() { //TODO *** refactor: for new data-structure and depth plan
+//     const sourceNodeName = clickedNode;
+//     const nodeDataTemp = nodeData;
+//     let fromNodeIndex = -1, toNodeIndex = -1;
+//     let i = 0;
+//     //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
+
+//     if (sourceNodeName === "" && toNodeName === "") {
+//       console.log("Sourec Node and Destination Node are required."); //TODO test
+//       return;
+//     }
+
+//     if (sourceNodeName === "") {
+//       console.log("Source Node is required."); //TODO test 
+//       return;
+//     }
+
+//     if (toNodeName === "") {
+//       console.log("Destination Node is required."); //TODO test 
+//       return;
+//     }
+
+//     for (; i < nodeDataTemp.length; i++) {
+//       if (nodeDataTemp[i].nodeName === sourceNodeName) {
+//         fromNodeIndex = i;
+//       }
+//       if (nodeDataTemp[i].nodeName === toNodeName) {
+//         toNodeIndex = i;
+//       }
+//     }
+//     if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
+//       if (nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
+//         console.log("Warning: the two nodes are already linked"); //TODO test
+//       } else {
+//         nodeDataTemp[fromNodeIndex].nextNodes.push(toNodeIndex);
+//         setNodeData(nodeDataTemp); //TODO later: update to cloud db
+//         console.log("Added link !!! from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "!!!!!!!"); //TODO test 
+//         setFromNodeName("");
+//         setToNodeName("");
+//       }
+//     } 
+//   }
+
+  function deleteLinkBetweenNodes(destNodeName) { //TODO *** refactor: for new data-structure and depth plan
+    setToNodeName(destNodeName);
     const sourceNodeName = clickedNode;
+
     const nodeDataTemp = nodeData;
     let fromNodeIndex = -1, toNodeIndex = -1;
     let i = 0;
-    //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
 
-    if (sourceNodeName === "" && toNodeName === "") {
+    if (sourceNodeName === "" && destNodeName === "") {
       console.log("Sourec Node and Destination Node are required."); //TODO test
       return;
     }
@@ -199,50 +238,7 @@ export default function NodeManager({currState}) {
       return;
     }
 
-    if (toNodeName === "") {
-      console.log("Destination Node is required."); //TODO test 
-      return;
-    }
-
-    for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName === sourceNodeName) {
-        fromNodeIndex = i;
-      }
-      if (nodeDataTemp[i].nodeName === toNodeName) {
-        toNodeIndex = i;
-      }
-    }
-    if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
-      if (nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
-        console.log("Warning: the two nodes are already linked"); //TODO test
-      } else {
-        nodeDataTemp[fromNodeIndex].nextNodes.push(toNodeIndex);
-        setNodeData(nodeDataTemp); //TODO later: update to cloud db
-        console.log("Added link !!! from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "!!!!!!!"); //TODO test 
-        setFromNodeName("");
-        setToNodeName("");
-      }
-    } 
-  }
-
-  function deleteLinkBetweenNodes() { //TODO *** refactor: for new data-structure and depth plan
-    const sourceNodeName = clickedNode;
-
-    const nodeDataTemp = nodeData;
-    let fromNodeIndex = -1, toNodeIndex = -1;
-    let i = 0;
-
-    if (sourceNodeName === "" && toNodeName === "") {
-      console.log("Sourec Node and Destination Node are required."); //TODO test
-      return;
-    }
-
-    if (sourceNodeName === "") {
-      console.log("Source Node is required."); //TODO test 
-      return;
-    }
-
-    if (toNodeName === "") {
+    if (destNodeName === "") {
       console.log("Destination Node is required."); //TODO test 
       return;
     }
@@ -250,7 +246,7 @@ export default function NodeManager({currState}) {
       if (nodeDataTemp[i].nodeName === sourceNodeName) {
         fromNodeIndex = i;
       }
-      if (nodeDataTemp[i].nodeName === toNodeName) {
+      if (nodeDataTemp[i].nodeName === destNodeName) {
         toNodeIndex = i;
       }
     }
@@ -271,8 +267,7 @@ export default function NodeManager({currState}) {
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
         console.log("Removed link from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "......"); //TODO test 
         console.log(nodeData[fromNodeIndex]); //TODO
-        setFromNodeName("");
-        setToNodeName("");
+        setNextNodeList(newArr);
       }
     } 
   }
@@ -551,35 +546,7 @@ export default function NodeManager({currState}) {
     
     
         {(clickedNode !== "") && 
-        <>
-
-        {/* <p className="sectionHeader">***Edit Node-Links***</p>        
-        <br></br>
-        <label>From Node [{clickedNode}] </label>
-        <label> to Node </label>
-        <select onChange={addConnectionToNode} value={toNodeName}>
-            <option value="" key=""> -- Select Destination Node -- </option> 
-        {nodeData.map((nextIndex, index) => {
-          if (nodeData[index].display === false) {
-            return "false";
-          }
-          return (
-            <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
-          );
-        })}
-        </select>
-        <br></br>
-        <button 
-          className="setting_item"
-          onClick={addLinkBetweenNodes}>
-            Add connection
-        </button>
-        <button 
-          className="setting_item"
-          onClick={deleteLinkBetweenNodes}>
-            Delete connection
-        </button> */}
-    
+        <>    
         <div>
 
         <p className="sectionHeader">***Next-Element***</p>
@@ -597,8 +564,8 @@ export default function NodeManager({currState}) {
 
             {nextNodeList.map((item, index) => {
                 const nextNodeName = nodeData[item].nodeName;
-                
-                    return (<tr key={nextCondtList[index]}>
+                    
+                return (<tr key={nextCondtList[index]}>
                         <td>{nextNodeName}</td>
                         {nextCondtList.length === nextNodeList.length && 
                             <td>{nextCondtList[index]}</td>
@@ -607,10 +574,10 @@ export default function NodeManager({currState}) {
                             <td>Default: Always Continue</td>
                         }
 
-                        <td>
-                            <button>Remove</button>
-                        </td>
-                    </tr>);
+                    <td>
+                        <button onClick={()=>{deleteLinkBetweenNodes(nextNodeName);}}>Remove</button>
+                    </td>
+                </tr>);
             })}
 
             </tbody>
@@ -630,8 +597,8 @@ export default function NodeManager({currState}) {
             {nodeData
                 .map((item, index) => {
 
-                    if (!nextNodeList.includes(index) && item.nodeName !== clickedNode) {
-                        //TODO eliminate "parent node"?
+                    if (!nextNodeList.includes(index)) {
+                        /* A node can link to itself or its parent(s) node, as it could be a potential design by the game-author */
 
                         return (<option>{item.nodeName}</option>);
                     }
