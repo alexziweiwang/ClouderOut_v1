@@ -604,7 +604,7 @@ export default function NodeManager({currState}) {
         <br></br>
 
 
-        <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"}>
+        <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
             
         {!isLinkNewNode && <>
@@ -631,7 +631,7 @@ export default function NodeManager({currState}) {
         </div>
     
         <div>
-        <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"}>
+        <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"} onClick={changeNextToNewNode}>
         <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
         {isLinkNewNode && <>
         <br></br>
@@ -671,12 +671,18 @@ export default function NodeManager({currState}) {
         <div>
             <label>Select a Condition to Reach this Node:</label>
             <br></br>
-            <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"}>
+            <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
                 <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Continue
             </div>
 
-            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"}>
-                <input type="radio" name="isCondtCustom" value={isNextCondtDefault} checked={!isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(false);fetchGameDataFromCloud();}}/>Customized Condition                
+            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);fetchGameDataFromCloud();}}>
+                <input 
+                    type="radio" 
+                    name="isCondtCustom" 
+                    value={isNextCondtDefault} 
+                    checked={!isNextCondtDefault} 
+                    onChange={()=>{setNextCondtIsDefault(false);fetchGameDataFromCloud();}
+                }/>Customized Condition                
                 
                 {!isNextCondtDefault && <div>
                 <br></br>
@@ -729,6 +735,7 @@ export default function NodeManager({currState}) {
         <button onClick={()=>{
             setCurrNodeSplitterNum(currNodeSplittedNum + 1);
             addNewNode();
+            //TODO add a link between clickedNode and the specified next-node
         }}> Add As Next-Node</button>
 
 
