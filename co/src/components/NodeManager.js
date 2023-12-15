@@ -329,7 +329,7 @@ export default function NodeManager({currState}) {
   }
 
   function changeLsVar2ToGameData() {
-    setLsV2IsGData(false);
+    setLsV2IsGData(true);
   }
 
   function changeLsVar2ToValue() {
@@ -681,7 +681,9 @@ export default function NodeManager({currState}) {
                     name="isCondtCustom" 
                     value={isNextCondtDefault} 
                     checked={!isNextCondtDefault} 
-                    onChange={()=>{setNextCondtIsDefault(false);fetchGameDataFromCloud();}
+                    onChange={()=>{
+                        setNextCondtIsDefault(false);fetchGameDataFromCloud(); //TODO improve: prevent unnecessary call to cloud db
+                    }
                 }/>Customized Condition                
                 
                 {!isNextCondtDefault && <div>
