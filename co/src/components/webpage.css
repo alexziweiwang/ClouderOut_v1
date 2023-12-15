@@ -713,3 +713,7 @@ button:hover {
     width: 500px;
     /* user-select: none; TODO add later*/ 
 }
+
+.indentOne {
+    margin-left: 15px;
+}

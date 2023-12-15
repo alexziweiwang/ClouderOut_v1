@@ -661,14 +661,12 @@ export default function NodeManager({currState}) {
             </div>
 
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"}>
-                <input type="radio" name="isCondtCustom" value={isNextCondtDefault} checked={!isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(false);}}/>Customized Condition                
+                <input type="radio" name="isCondtCustom" value={isNextCondtDefault} checked={!isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(false);fetchGameDataFromCloud();}}/>Customized Condition                
                 
                 {!isNextCondtDefault && <div>
                 <br></br>
-                <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
-                {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
-                {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
-                <br></br>
+                {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
+
         <label> Variable 1: </label>
 
         <select>
@@ -679,6 +677,7 @@ export default function NodeManager({currState}) {
               );
           })}
         </select>
+        {displayGameDataButton && <button onClick={displayGameDataFunc}> + </button>}
         <br></br>
     
         <label>Comparison: </label>
@@ -693,6 +692,7 @@ export default function NodeManager({currState}) {
         <br></br>
         <label> Variable 2: </label>
         <br></br>
+        <div className="indentOne">
         <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
         <select>
           {Object.keys(gameDataLocal).map((key) => {
@@ -701,10 +701,12 @@ export default function NodeManager({currState}) {
               );
               })}
         </select>
+        {displayGameDataButton && <button onClick={displayGameDataFunc}> + </button>}
+
         <br></br>
         <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
         <input></input>        
-        
+        </div>
         </div>}
 
         </div>
