@@ -268,6 +268,17 @@ export default function NodeManager({currState}) {
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
         console.log("Removed link from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "......"); //TODO test 
         console.log(nodeData[fromNodeIndex]); //TODO
+
+        let tempCondtList = nextCondtList;
+        let p = 0;
+        for (; p < nextNodeList.length; p++) {
+            if (nextNodeList[p] === toNodeIndex) {
+                tempCondtList[p] = "N/A";
+            }
+        }
+        tempCondtList = tempCondtList.filter(e => e !== "N/A");
+        setNextCondtList(tempCondtList);
+
         setNextNodeList(newArr);
       }
     } 
