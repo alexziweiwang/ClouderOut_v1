@@ -588,12 +588,15 @@ export default function NodeManager({currState}) {
         <br></br>
 
 
-
+        <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"}>
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
             
         {!isLinkNewNode && <>
         <br></br>
+        <div>
+        <label>Node Name: </label>
         <select>
+            <option value="" key="-"> -- Select Node Name --</option>
             {nodeData
                 .map((item, index) => {
 
@@ -604,14 +607,15 @@ export default function NodeManager({currState}) {
                     }
                 })}
         </select>
+        </div>
         </>}
-        {isLinkNewNode && <p>----------------------------------------------------</p>}
-
 
 
         </div>
+        </div>
     
         <div>
+        <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"}>
         <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
         {isLinkNewNode && <>
         <br></br>
@@ -622,6 +626,8 @@ export default function NodeManager({currState}) {
           value={createNewNodeName} 
           onChange={e => {setCreateNewNodeName(e.target.value);}}  
         />
+        <br></br>
+        <label>Node Type:</label>
         <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
           <option value="" key=""> -- Select Node's Game Type -- </option>
           <option value="Card Game" key="Card Game">Card Game</option>
@@ -629,6 +635,7 @@ export default function NodeManager({currState}) {
           <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
           <option value="Conversation" key="Conversation">Conversation</option>
         </select>
+        <br></br>
         <label>Screen Size:</label>
         <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
               <option value="" key=""> ----- Select Size and Direction ----- </option>
@@ -637,20 +644,14 @@ export default function NodeManager({currState}) {
               <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
               <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
             </select>
-    
-        <button 
-          className="setting_item"
-          onClick={addNewNode}>
-            Create
-        </button>
         
         </>}
-        {!isLinkNewNode && <p>----------------------------------------------------</p>}
-
+        </div>
         <br></br>
   
         <div className="areaBlue">
             <br></br><br></br><br></br>
+        
         <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
         {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
         {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
@@ -714,7 +715,7 @@ export default function NodeManager({currState}) {
             <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
         </select>
         <br></br>
-        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);}}> Add </button>
+        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);addNewNode();}}> Add </button>
         </div>
            
         </div>
