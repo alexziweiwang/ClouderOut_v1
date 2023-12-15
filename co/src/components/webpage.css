@@ -703,7 +703,7 @@ button:hover {
     padding: 5px;
     margin: 3px;
     width: 500px;
-    user-select: none;
+    /* user-select: none; TODO add later*/ 
 }
 
 .optionAreaSelected {
@@ -711,5 +711,5 @@ button:hover {
     padding: 5px;
     margin: 3px;
     width: 500px;
-    user-select: none;
+    /* user-select: none; TODO add later*/ 
 }

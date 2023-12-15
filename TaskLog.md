@@ -84,3 +84,5 @@
 - 2023-Dec-08: Overview of data structures for dev-flow
 
 - 2023-Dec-11: Design refactoring aspects for better game-node user-flow
+
+- 2023-Dec-14: Design implementation list for Node-Manager page, next-node data updating
