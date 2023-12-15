@@ -59,6 +59,7 @@ export default function NodeManager({currState}) {
    const [nextNodeList, setNextNodeList] = useState([]);
    const [nextCondtList, setNextCondtList] = useState([]);
  
+   const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
    const x_base = 1, y_base = 1, y_dist=50;
    const node_width = 190, node_height = 70;
 
@@ -650,8 +651,24 @@ export default function NodeManager({currState}) {
         <br></br>
   
         <div className="areaBlue">
-            <br></br><br></br><br></br>
+            <br></br>
         
+        <div>
+            <label>Select a Condition to Reach this Node:</label>
+            <br></br>
+            <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"}>
+                <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Continue
+            </div>
+
+            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"}>
+                <input type="radio" name="isCondtCustom" value={isNextCondtDefault} checked={!isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(false);}}/>Customized Condition:                
+            </div>
+
+            
+
+        </div>
+        <br></br>
+
         <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
         {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
         {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
