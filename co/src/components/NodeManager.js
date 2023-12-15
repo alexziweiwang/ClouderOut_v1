@@ -661,19 +661,14 @@ export default function NodeManager({currState}) {
             </div>
 
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"}>
-                <input type="radio" name="isCondtCustom" value={isNextCondtDefault} checked={!isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(false);}}/>Customized Condition:                
-            </div>
-
-            
-
-        </div>
-        <br></br>
-
-        <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
-        {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
-        {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
-
-        <br></br>
+                <input type="radio" name="isCondtCustom" value={isNextCondtDefault} checked={!isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(false);}}/>Customized Condition                
+                
+                {!isNextCondtDefault && <div>
+                <br></br>
+                <button onClick={fetchGameDataFromCloud}>Load Game Data </button>
+                {displayGameDataButton && <button onClick={displayGameDataFunc}> Game data Manager </button>}
+                {!displayGameDataButton && <label> Opening Game Data Manager... </label>}
+                <br></br>
         <label> Variable 1: </label>
 
         <select>
@@ -708,32 +703,18 @@ export default function NodeManager({currState}) {
         </select>
         <br></br>
         <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
-        <input></input>
-        <br></br>
-        <label> Next Node: </label>
+        <input></input>        
         
-        <br></br><label>Name: </label>
-        <input></input>
-        <br></br><label>Type: </label>
-        
-            <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
-                <option value="" key=""> -- Select Node's Game Type -- </option>
-                <option value="Card Game" key="Card Game">Card Game</option>
-                <option value="Board Game" key="Board Game">Board Game</option>
-                <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
-                <option value="Conversation" key="Conversation">Conversation</option>
-            </select>
-        <br></br><label>Screen Size:</label>
-        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-            <option value="" key=""> ----- Select Size and Direction ----- </option>
-            <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-            <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-            <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-            <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-        </select>
-        <br></br>
-        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);addNewNode();}}> Add </button>
+        </div>}
+
         </div>
+
+        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);addNewNode();}}> Add </button>
+
+
+        </div>
+      
+       </div>
            
         </div>
         
