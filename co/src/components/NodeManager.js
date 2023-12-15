@@ -587,7 +587,11 @@ export default function NodeManager({currState}) {
                         }
 
                     <td>
-                        <button onClick={()=>{deleteLinkBetweenNodes(nextNodeName);}}>Remove</button>
+                        <button onClick={()=>{
+                            const tempPreToNode = toNodeName;
+                            deleteLinkBetweenNodes(nextNodeName);
+                            setToNodeName(tempPreToNode);
+                        }}>Remove</button>
                     </td>
                 </tr>);
             })}
@@ -607,7 +611,7 @@ export default function NodeManager({currState}) {
         <br></br>
         <div>
         <label>Node Name: </label>
-        <select>
+        <select onChange={(event)=>{setToNodeName(event.target.value);console.log("Next-Node selected:", event.target.value);}} value={toNodeName}>
             <option value="" key="-"> -- Select Node Name --</option>
             {nodeData
                 .map((item, index) => {
@@ -615,7 +619,7 @@ export default function NodeManager({currState}) {
                     if (!nextNodeList.includes(index)) {
                         /* A node can link to itself or its parent(s) node, as it could be a potential design by the game-author */
 
-                        return (<option>{item.nodeName}</option>);
+                        return (<option value={item.nodeName} key={item.nodeName}>{item.nodeName}</option>);
                     }
                 })}
         </select>
@@ -722,7 +726,10 @@ export default function NodeManager({currState}) {
 
         </div>
 
-        <button onClick={()=>{console.log("TODO: add a pair of conditional consequence in logic splitter");setCurrNodeSplitterNum(currNodeSplittedNum + 1);addNewNode();}}> Add </button>
+        <button onClick={()=>{
+            setCurrNodeSplitterNum(currNodeSplittedNum + 1);
+            addNewNode();
+        }}> Add As Next-Node</button>
 
 
         </div>
