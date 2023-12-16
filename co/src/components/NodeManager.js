@@ -692,11 +692,18 @@ export default function NodeManager({currState}) {
                         setNextCondtIsDefault(false);
                     }
                 }/>Customized Condition             
-                <p className="plans">TODO: display concatenated condition-string here</p>   
+
                 </div>
 
 
                 {!isNextCondtDefault && <div>
+                  <p className="plans">
+                    TODO: display concatenated condition-string here
+                    <br></br>First, fetch the selected-next-node name 
+                    <br></br>(if existing-node: fetch from nodeData, display all elements inside list; 
+                    <br></br>if new-node: display empty)
+                  </p>  
+
                 <br></br>
                 {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
         
@@ -739,11 +746,13 @@ export default function NodeManager({currState}) {
 
               <br></br>
               <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
-              <input></input>        </div>
-         
+              <input></input>        
+              </div>
+              <br></br>
+              <button>Add Condition</button>
+
                     </div>
               <br></br>
-              <button>Add Condition Item</button>
 
         </div>}
 
