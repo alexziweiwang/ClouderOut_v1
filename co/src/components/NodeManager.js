@@ -678,12 +678,12 @@ export default function NodeManager({currState}) {
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
                 <div onClick={()=>{                        
                     if (needCloudGameData === true) {
-                            fetchGameDataFromCloud();
+                      fetchGameDataFromCloud();
                     }
                     setNeedCloudGameData(false);
-                }}
-                >
-                <input 
+                  }}
+                  >
+                  <input 
                     type="radio" 
                     name="isCondtCustom" 
                     value={isNextCondtDefault} 
@@ -691,54 +691,60 @@ export default function NodeManager({currState}) {
                     onChange={()=>{
                         setNextCondtIsDefault(false);
                     }
-                }/>Customized Condition                
+                }/>Customized Condition             
+                <p className="plans">TODO: display concatenated condition-string here</p>   
                 </div>
 
 
                 {!isNextCondtDefault && <div>
                 <br></br>
                 {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
+        
+                <div className="areaFrame">
+                <label> Variable 1: </label>
 
-        <label> Variable 1: </label>
-
-        <select>
+                <select>
           {Object.keys(gameDataLocal).map((currKey) => {
               const keyStr = gameDataLocal[currKey]["name"] + "1";
               return (
               <option value={logicSplitter_gameDataVar1} key={keyStr}>{currKey}</option>
               );
           })}
-        </select>
-        {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
-        <br></br>
+                </select>
+                {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                <br></br>
     
-        <label>Comparison: </label>
-        <select>
+                <label>Comparison: </label>
+                <select>
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
               <option key="equal" value="equal"> equal to </option>
               <option key="largerequal" value="largerequal"> larger than or euqal to </option>
               <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
-        </select>
-        <br></br>
-        <label> Variable 2: </label>
-        <br></br>
-        <div className="indentOne">
-        <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
-        <select>
+                </select>
+                <br></br>
+                <label> Variable 2: </label>
+                <br></br>
+                    <div className="indentOne">
+                <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
+                <select>
           {Object.keys(gameDataLocal).map((key) => {
               return (
               <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]["name"]}>{key}</option>
               );
               })}
-        </select>
-        {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                </select>
+              {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
 
-        <br></br>
-        <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
-        <input></input>        
-        </div>
+              <br></br>
+              <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
+              <input></input>        </div>
+         
+                    </div>
+              <br></br>
+              <button>Add Condition Item</button>
+
         </div>}
 
         </div>

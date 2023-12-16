@@ -695,7 +695,6 @@ button:hover {
     padding-left: 50px;
     padding-bottom: 3px;    
     padding-top: 3px;
-
 }
 
 .optionArea {
@@ -737,6 +736,13 @@ button:hover {
     width: 95%;
     margin-left: 6px;
     margin-right: 5px;
-
     /* user-select: none; TODO add later*/ 
+}
+
+
+.areaFrame {
+    background-color: rgb(232, 229, 223);
+    padding: 5px;
+    margin: 2px;
+    width: 60%;
 }
