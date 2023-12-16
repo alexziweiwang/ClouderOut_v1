@@ -565,7 +565,7 @@ export default function NodeManager({currState}) {
         <div>
         <table>
             <thead>
-                <tr>
+                <tr key="head">
                     <th>Next Node(s)</th>
                     <th>Condition</th>
                     <th>[Operation]</th>
@@ -675,7 +675,14 @@ export default function NodeManager({currState}) {
                 <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Continue
             </div>
 
-            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNeedCloudGameData(false);setNextCondtIsDefault(false);}}>
+            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
+                <div onClick={()=>{                        
+                    if (needCloudGameData === true) {
+                            fetchGameDataFromCloud();
+                    }
+                    setNeedCloudGameData(false);
+                }}
+                >
                 <input 
                     type="radio" 
                     name="isCondtCustom" 
@@ -683,10 +690,11 @@ export default function NodeManager({currState}) {
                     checked={!isNextCondtDefault} 
                     onChange={()=>{
                         setNextCondtIsDefault(false);
-                        fetchGameDataFromCloud();
                     }
                 }/>Customized Condition                
-                
+                </div>
+
+
                 {!isNextCondtDefault && <div>
                 <br></br>
                 {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
