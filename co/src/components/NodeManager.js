@@ -583,7 +583,7 @@ export default function NodeManager({currState}) {
                             <td>{nextCondtList[index]}</td>
                         }
                         {nextCondtList.length !== nextNodeList.length && 
-                            <td>Default: Always Continue</td>
+                            <td>Default: Always Reachable</td>
                         }
 
                     <td>
@@ -672,7 +672,7 @@ export default function NodeManager({currState}) {
             <label>Select a Condition to Reach this Node:</label>
             <br></br>
             <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
-                <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Continue
+                <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Reachable
             </div>
 
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
@@ -697,12 +697,8 @@ export default function NodeManager({currState}) {
 
 
                 {!isNextCondtDefault && <div>
-                  <p className="plans">
-                    TODO: display concatenated condition-string here
-                    <br></br>First, fetch the selected-next-node name 
-                    <br></br>(if existing-node: fetch from nodeData, display all elements inside list; 
-                    <br></br>if new-node: display empty)
-                  </p>  
+                  <label>Destination Node: {toNodeName}</label><br></br>
+                  <label>Conditions: {nextNodeList.includes(toNodeName) ? nextCondtList[nextCondtList.length-1] : ""}</label>
 
                 <br></br>
                 {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
@@ -746,7 +742,7 @@ export default function NodeManager({currState}) {
 
               <br></br>
               <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
-              <input></input>        
+              <input type="number" min="-100000000" max="100000000" step="1" defaultValue="25"></input>
               </div>
               <br></br>
               <button>Add Condition</button>
