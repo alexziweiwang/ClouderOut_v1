@@ -675,14 +675,15 @@ export default function NodeManager({currState}) {
                 <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Continue
             </div>
 
-            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);fetchGameDataFromCloud();}}>
+            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNeedCloudGameData(false);setNextCondtIsDefault(false);}}>
                 <input 
                     type="radio" 
                     name="isCondtCustom" 
                     value={isNextCondtDefault} 
                     checked={!isNextCondtDefault} 
                     onChange={()=>{
-                        setNextCondtIsDefault(false);fetchGameDataFromCloud(); //TODO improve: prevent unnecessary call to cloud db
+                        setNextCondtIsDefault(false);
+                        fetchGameDataFromCloud();
                     }
                 }/>Customized Condition                
                 
@@ -700,7 +701,7 @@ export default function NodeManager({currState}) {
               );
           })}
         </select>
-        {displayGameDataButton && <button onClick={displayGameDataFunc}> + </button>}
+        {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
         <br></br>
     
         <label>Comparison: </label>
@@ -724,7 +725,7 @@ export default function NodeManager({currState}) {
               );
               })}
         </select>
-        {displayGameDataButton && <button onClick={displayGameDataFunc}> + </button>}
+        {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
 
         <br></br>
         <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
