@@ -256,7 +256,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> - Speaker Name for Text Setting </button>}
 
             {speakerNameAdd && 
-                <div>
+                <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": ""});}}> reset </button>
                     <br></br>
                     <label>Speaker Name:  </label>
@@ -273,7 +273,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             && <button className="collapseToggle" onClick={toggleBgPicOption}> - Background Picture Setting {bgpicAdd}</button>}
             
             {bgpicAdd && 
-                <div>
+                <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
@@ -303,7 +303,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> - Character Picture Setting </button>}
 
             {charPicAdd && 
-                <div>
+                <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
     <table>
@@ -391,7 +391,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> - Clickable(customizable button) Setting </button>}
 
             {clickableAdd && 
-                <div>
+                <div className="optionAreaSelected2">
                     <p className="plans"> (modularizable: multiple items allowed) 
                     <br></br> TODO: add data structure of clickable-setting records!
                     </p>
@@ -513,7 +513,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - Background Music Setting </button>}
 
             {bgMusicAdd && 
-                <div>
+                <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_link": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
@@ -537,7 +537,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>}
 
             {voicelineAdd && 
-                <div>
+                <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
