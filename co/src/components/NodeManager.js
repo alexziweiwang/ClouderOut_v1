@@ -746,7 +746,23 @@ export default function NodeManager({currState}) {
         <button onClick={()=>{
             setCurrNodeSplitterNum(currNodeSplittedNum + 1);
             addNewNode();
-            //TODO add a link between clickedNode and the specified next-node
+            /* For next-node-name */
+            /* //TODO If next-node is a new node, use the name of new-node */
+
+            /* //TODO If next-node is an existing node, use the name of selected item from select-list */
+
+            /* For condition */
+            /* Version1: single condition for path-splitting */
+
+            /* //TODO If condition is default-always, store the string-specifier directly */
+
+            /* //TODO If condition is cutomized, convert and store the instruction */
+
+            /* //TODO Update the nextNodeList and condition-list for this clicked-node's data */
+                //TODO by adding a link between clickedNode and the specified next-node
+                    //TODO with addLinkBetweenNodes()
+
+
         }}> Add As Next-Node</button>
 
 
