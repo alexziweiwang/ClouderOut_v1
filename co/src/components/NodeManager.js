@@ -698,7 +698,7 @@ export default function NodeManager({currState}) {
 
                 {!isNextCondtDefault && <div>
                   <label>Destination Node: {toNodeName}</label><br></br>
-                  <label>Conditions: {nextNodeList.includes(toNodeName) ? nextCondtList[nextCondtList.length-1] : ""}</label>
+                  <label>Conditions: {nextNodeList.includes(toNodeName) ? nextCondtList[nextCondtList.length-1] : "(Not Added)"}</label>
 
                 <br></br>
                 {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
@@ -706,7 +706,7 @@ export default function NodeManager({currState}) {
                 <div className="areaFrame">
                 <label> Variable 1: </label>
 
-                <select>
+                <select onChange={(event)=>{}}>
           {Object.keys(gameDataLocal).map((currKey) => {
               const keyStr = gameDataLocal[currKey]["name"] + "1";
               return (
@@ -718,7 +718,7 @@ export default function NodeManager({currState}) {
                 <br></br>
     
                 <label>Comparison: </label>
-                <select>
+                <select onChange={(event)=>{}}>
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
@@ -731,7 +731,8 @@ export default function NodeManager({currState}) {
                 <br></br>
                     <div className="indentOne">
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
-                <select>
+                
+                <select onChange={(event)=>{}}>
           {Object.keys(gameDataLocal).map((key) => {
               return (
               <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]["name"]}>{key}</option>
