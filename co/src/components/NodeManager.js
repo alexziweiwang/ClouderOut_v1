@@ -629,14 +629,20 @@ export default function NodeManager({currState, projectName}) {
             </tbody>
         </table>
         </div>
+        
+        {(nextNodeList.length > 0 && nextCondtList.length === 0) && <p> ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes</p>}
+        
+        {!(nextNodeList.length > 0 && nextCondtList.length === 0) && <>
         <br></br>
         <label>Add a Next-Node: </label>
         <br></br>
+        </>}
 
-
-        <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
+        {!(nextNodeList.length > 0 && nextCondtList.length === 0) && <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
-            
+           
+
+
         {!isLinkNewNode && <>
         <br></br>
         <div>
@@ -657,10 +663,10 @@ export default function NodeManager({currState, projectName}) {
         </>}
 
 
-        </div>
+        </div>}
         </div>
     
-        <div>
+        {!(nextNodeList.length > 0 && nextCondtList.length === 0) && <div>
         <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"} onClick={changeNextToNewNode}>
         <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
         {isLinkNewNode && <>
@@ -813,7 +819,7 @@ export default function NodeManager({currState, projectName}) {
        </div>
            
         </div>
-        
+        }
         
         
         <div>

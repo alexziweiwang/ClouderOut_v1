@@ -752,3 +752,7 @@ button:hover {
     padding: 6px;
     width: 500px;
 }
+
+.testArea {
+    background-color: #c4a4da;
+}
