@@ -5,7 +5,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 
-export default function NodeManager({currState}) {
+export default function NodeManager({currState, projectName}) {
 
 // TODO testing, temp ----------------------------------------
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
@@ -31,7 +31,7 @@ export default function NodeManager({currState}) {
 
    /* variable area */
    const navigate = useNavigate();
-   const name = "/gamemaker";
+
    const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -93,11 +93,11 @@ export default function NodeManager({currState}) {
   function enterNodeEditor() {
     let currNode = nodeData.find(node => node.nodeName === clickedNode);
     let currNodeType = currNode.nodeType;
-    console.log(currNodeType);
+    
     if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { clickedNode } });
+      navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName } });
     } else if (currNodeType === "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { clickedNode } });
+      navigate('/conversationnode', { replace: true, state: { clickedNode, projectName } });
     }
         //TODO later add conditions for board game and tower defense
   }
@@ -106,15 +106,12 @@ export default function NodeManager({currState}) {
     const currUser = "user002"; //TODO test
 
     let project = "";
-    if (currState != null) {
-      if (currState.selected_project_name !== null && currState.selected_project_name!== undefined) {
-        project  = currState.selected_project_name;
+        project  = projectName;
         if (project.trim() === "") {
           return;
         }
         updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
-      }
-    }
+     
   }
 
   function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
@@ -391,11 +388,9 @@ export default function NodeManager({currState}) {
 
     let project = "";
 
-    if (currState != null) {
-      if (currState.selected_project_name !== null && currState.selected_project_name!== undefined) {
-        
-        console.log("!!! This is for project: ", currState.selected_project_name);
-        project  = currState.selected_project_name;
+  
+        console.log("!!! This is for project: ", projectName);
+        project  = projectName;
         console.log("checking2 on project ... [", project, "]");
         if (project.trim() === "") {
           return;
@@ -410,10 +405,8 @@ export default function NodeManager({currState}) {
         console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
         setGameDataLocal(gdataTestResult);
       
-      }
-    } else {
-        console.log("currState is null"); //TODO test
-    }
+      
+   
   }
 
 

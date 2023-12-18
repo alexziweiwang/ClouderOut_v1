@@ -15,6 +15,8 @@ export default function ConversationNodeEditingPanel() {
     let nodeName = "";
     if (state != null && state.selectedNode != null) {
         nodeName = state.selectedNode;
+    } else {
+        console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     }
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
@@ -49,7 +51,8 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function goToGameMaker() {
-        navigate('/gamemaker', { replace: true });
+        const selected_project_name = state.projectName;
+        navigate('/gamemaker', { replace: true, state: { selected_project_name } });
     }
 
     function switchListEditor() {

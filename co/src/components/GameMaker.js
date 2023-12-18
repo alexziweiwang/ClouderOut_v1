@@ -23,6 +23,7 @@ export default function GameMaker() {
 
 */
   const {state} = useLocation();
+  const projectName = "project001"; //TODO testing
 
   /* variable area */
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ export default function GameMaker() {
     <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
 
  
-    <NodeManager currState={state}/>
+    <NodeManager currState={state} projectName={projectName}/>
   </div>
 
   
