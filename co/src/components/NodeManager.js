@@ -58,6 +58,8 @@ export default function NodeManager({currState, projectName}) {
 
    const [nextNodeList, setNextNodeList] = useState([]);
    const [nextCondtList, setNextCondtList] = useState([]);
+
+   const [tempNewName, setTempNewName] = useState("");
  
    const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
 
@@ -409,6 +411,10 @@ export default function NodeManager({currState, projectName}) {
    
   }
 
+  function updateNodeToNewName() {
+    //TODO tempNewName becomes clickNode's nodeName
+  }
+
 
     return (     
 
@@ -543,7 +549,7 @@ export default function NodeManager({currState, projectName}) {
         <button 
           className="setting_item"
           onClick={enterNodeEditor}>
-            Edit Content of [{clickedNode}]
+            Enter Editor for [{clickedNode}]
         </button>
     
         <button 
@@ -566,8 +572,14 @@ export default function NodeManager({currState, projectName}) {
         {(clickedNode !== "") && 
         <>    
         <div>
+        <p className="sectionHeader">*** Node Settings ***</p>
+        <div>
+          <label>Rename Node: </label>
+          <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
+          <button onClick={()=>{updateNodeToNewName();}}>Update</button>
+        </div>
 
-        <p className="sectionHeader">***Next-Element***</p>
+        <p className="sectionHeader">*** Next Node(s) ***</p>
         <div>
         <table>
             <thead>
@@ -583,7 +595,7 @@ export default function NodeManager({currState, projectName}) {
             {nextNodeList.map((item, index) => {
                 const nextNodeName = nodeData[item].nodeName;
                     
-                return (<tr key={nextCondtList[index]}>
+                return (<tr key={nextNodeList[index]}>
                         <td>{nextNodeName}</td>
                         {nextCondtList.length === nextNodeList.length && 
                             <td>{nextCondtList[index]}</td>

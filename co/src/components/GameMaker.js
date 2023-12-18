@@ -24,6 +24,7 @@ export default function GameMaker() {
 */
   const {state} = useLocation();
   const projectName = "project001"; //TODO testing
+  console.log("GameMaker-state: ", state);//TODO testing
 
   /* variable area */
   const navigate = useNavigate();
