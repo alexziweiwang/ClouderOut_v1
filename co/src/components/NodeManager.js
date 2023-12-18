@@ -412,7 +412,18 @@ export default function NodeManager({currState, projectName}) {
   }
 
   function updateNodeToNewName() {
+
     //TODO tempNewName becomes clickNode's nodeName
+    let clickedIndex = 0;
+    let tempNodeData = nodeData;
+
+    for (; clickedIndex < nodeData.length; clickedIndex++) {
+      if (tempNodeData[clickedIndex].nodeName === clickedNode) {
+        tempNodeData[clickedIndex].nodeName = tempNewName;
+      }
+    }
+    setNodeData(tempNodeData);
+    
   }
 
 
