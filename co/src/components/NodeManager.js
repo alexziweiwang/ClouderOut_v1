@@ -584,6 +584,19 @@ export default function NodeManager({currState, projectName}) {
         {(clickedNode !== "") && 
         <>    
         <div>
+        <p className="sectionHeader">*** Node Info ***</p>
+        <div>
+          <p className="plans">display node information here
+            <br></br>TODO: fetch data from cloud? 
+            <br></br>items: 
+            <br></br>node-name, 
+            <br></br>node-description, 
+            <br></br>node-screen-size, 
+            <br></br>node-game-type
+          </p>
+        
+        </div>
+
         <p className="sectionHeader">*** Node Settings ***</p>
         <div>
           <label>Rename Node: </label>
