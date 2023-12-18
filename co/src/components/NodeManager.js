@@ -356,21 +356,23 @@ export default function NodeManager({currState}) {
       if (input === "h450_800") {
         //TODO pass into cloud: node info
         console.log("h450_800");
+        setAddedGameScreenSize(event.target.value);
       } else if (input === "v800_450") {
         //TODO pass into cloud: node info
         console.log("v800_450");
-
+        setAddedGameScreenSize(event.target.value);
       } else if (input === "h600_800") {
         //TODO pass into cloud: node info
         console.log("h600_800");
-
+        setAddedGameScreenSize(event.target.value);
       } else if (input === "v800_600") {
         //TODO pass into cloud: node info
         console.log("v800_600");
+        setAddedGameScreenSize(event.target.value);
       } else {
-        
         //TODO: show warning if not selected
         console.log("not selected!");
+        setAddedGameScreenSize("");
       }
     }
   }
@@ -439,8 +441,10 @@ export default function NodeManager({currState}) {
 
         <div className="section">
         
-        <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>
-        
+        {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
+        {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">+ Add A New Node</label></div>}
+
+
         {addNewNodeAreaDisplay && <div>
         <label>Node Name: </label>
         <input 
@@ -449,6 +453,8 @@ export default function NodeManager({currState}) {
           // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
           onChange={e => {setCreateNewNodeName(e.target.value)}}  
         />
+        <br></br>
+        <label>Node Game Type: </label>
         <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
           <option value="" key=""> -- Select Node's Game Type -- </option>
           <option value="Card Game" key="Card Game">Card Game</option>
@@ -456,7 +462,8 @@ export default function NodeManager({currState}) {
           <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
           <option value="Conversation" key="Conversation">Conversation</option>
         </select>
-        <label>Screen Size:</label>
+        <br></br>
+        <label>Screen Size: </label>
         <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
               <option value="" key=""> ----- Select Size and Direction ----- </option>
               <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
@@ -464,9 +471,9 @@ export default function NodeManager({currState}) {
               <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
               <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
             </select>
-    
+        <br></br>
         <button 
-          className="setting_item"
+          className="setting_item buttonRight"
           onClick={addNewNode}>
             Create
         </button>

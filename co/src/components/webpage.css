@@ -748,6 +748,7 @@ button:hover {
 }
 
 .section {
-    background-color: #accddf;
+    background-color: #c0d6e3;
     padding: 6px;
+    width: 500px;
 }
