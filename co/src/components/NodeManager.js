@@ -412,8 +412,7 @@ export default function NodeManager({currState, projectName}) {
   }
 
   function updateNodeToNewName() {
-
-    //TODO tempNewName becomes clickNode's nodeName
+    /* tempNewName becomes clickNode's nodeName */
     let clickedIndex = 0;
     let tempNodeData = nodeData;
 
@@ -423,8 +422,10 @@ export default function NodeManager({currState, projectName}) {
       }
     }
     setNodeData(tempNodeData);
-    
-  }
+    setClickedNode(tempNewName);
+    setTempNewName("");
+
+  } 
 
 
     return (     
@@ -587,7 +588,7 @@ export default function NodeManager({currState, projectName}) {
         <div>
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-          <button onClick={()=>{updateNodeToNewName();}}>Update</button>
+          <button onClick={updateNodeToNewName}>Update</button>
         </div>
 
         <p className="sectionHeader">*** Next Node(s) ***</p>
