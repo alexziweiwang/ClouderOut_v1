@@ -746,3 +746,8 @@ button:hover {
     margin: 2px;
     width: 60%;
 }
+
+.section {
+    background-color: #accddf;
+    padding: 6px;
+}

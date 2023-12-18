@@ -59,6 +59,8 @@ export default function NodeManager({currState}) {
    const [nextNodeList, setNextNodeList] = useState([]);
    const [nextCondtList, setNextCondtList] = useState([]);
  
+   const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
+
    const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
    const x_base = 1, y_base = 1, y_dist=50;
    const node_width = 190, node_height = 70;
@@ -435,8 +437,11 @@ export default function NodeManager({currState}) {
         
         </p> 
 
-        <div>New Node
-        <br></br>
+        <div className="section">
+        
+        <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>
+        
+        {addNewNodeAreaDisplay && <div>
         <label>Node Name: </label>
         <input 
           className="setting_item"
@@ -465,6 +470,7 @@ export default function NodeManager({currState}) {
           onClick={addNewNode}>
             Create
         </button>
+        </div>}
         </div>
         
         <svg
