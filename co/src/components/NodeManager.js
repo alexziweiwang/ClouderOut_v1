@@ -652,7 +652,6 @@ export default function NodeManager({currState, projectName}) {
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
            
 
-
         {!isLinkNewNode && <>
         <br></br>
         <div>
@@ -804,17 +803,30 @@ export default function NodeManager({currState, projectName}) {
         <button onClick={()=>{
             setCurrNodeSplitterNum(currNodeSplittedNum + 1);
             addNewNode();
+
+            //TODO future: addedGameScreenSize
+            let nextNodeNameSetup = "";
             /* For next-node-name */
-            /* //TODO If next-node is a new node, use the name of new-node */
 
-            /* //TODO If next-node is an existing node, use the name of selected item from select-list */
+            if (isLinkNewNode) {
+            /*  If next-node is a new node, use the name of new-node */
+              nextNodeNameSetup = createNewNodeName;
+            } else {
+            /* If next-node is an existing node, use the name of selected item from select-list */
+              nextNodeNameSetup = toNodeName;
+            }
+            console.log("new node name: ", nextNodeNameSetup); //TODO test
+            
 
+          
             /* For condition */
             /* Version1: single condition for path-splitting */
-
+                          //TODO go for clickedNode and add next-node and next-condition...
             /* //TODO If condition is default-always, store the string-specifier directly */
 
             /* //TODO If condition is cutomized, convert and store the instruction */
+
+            const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
 
             /* //TODO Update the nextNodeList and condition-list for this clicked-node's data */
                 //TODO by adding a link between clickedNode and the specified next-node
