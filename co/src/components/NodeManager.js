@@ -631,7 +631,7 @@ export default function NodeManager({currState, projectName}) {
                             const tempPreToNode = toNodeName;
                             deleteLinkBetweenNodes(nextNodeName);
                             setToNodeName(tempPreToNode);
-                        }}>Remove</button>
+                        }}>Remove Connection</button>
                     </td>
                 </tr>);
             })}
@@ -640,15 +640,15 @@ export default function NodeManager({currState, projectName}) {
         </table>
         </div>
         
-        {(nextNodeList.length > 0 && nextCondtList.length === 0) && <p> ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes</p>}
+        {(nextCondtList.includes("Default: Always Reachable")) && <p> ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes</p>}
         
-        {!(nextNodeList.length > 0 && nextCondtList.length === 0) && <>
+        {(!nextCondtList.includes("Default: Always Reachable")) && <>
         <br></br>
         <label>Add a Next-Node: </label>
         <br></br>
         </>}
 
-        {!(nextNodeList.length > 0 && nextCondtList.length === 0) && <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
+        {(!nextCondtList.includes("Default: Always Reachable")) && <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
            
 
@@ -676,7 +676,7 @@ export default function NodeManager({currState, projectName}) {
         </div>}
         </div>
     
-        {!(nextNodeList.length > 0 && nextCondtList.length === 0) && <div>
+        {(!nextCondtList.includes("Default: Always Reachable")) && <div>
         <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"} onClick={changeNextToNewNode}>
         <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
         {isLinkNewNode && <>
