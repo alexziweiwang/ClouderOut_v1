@@ -18,15 +18,6 @@ export default function NodeManager({currState, projectName}) {
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   ]); //TODO testing data
 
-  const [nodeData3, setNodeData3] = useState([
-    { nodeName: "plot1", depth: 1, nextElem:["plot2"], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2", depth: 2, nextElem:["s0"], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "s0", depth: 3, nextElem:["option x", "option y"], spltCondt: ["c1", "c2"], display: true, nodeType:"[Splitter]"},
-    { nodeName: "option x", depth: 4, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 4, nextElem:["end node"], spltCondt: [], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 5, nextElem:[], spltCondt: [], display: true, nodeType:"Conversation"},
-  ]); //TODO testing data
-
 // TODO testing, temp ----------------------------------------
 
    /* variable area */
@@ -760,10 +751,11 @@ export default function NodeManager({currState, projectName}) {
                 onChange={(event)=>{
                   setLsGdataVar1(event.target.value);
                   setCondtVar1Type(gameDataLocal[event.target.value]["data_type"]);
+                  console.log("var1 selected type = ", gameDataLocal[event.target.value]["data_type"]);
                 }} 
                 value={logicSplitter_gameDataVar1}>
               
-              <option value="" key="">-- Select Game Data --</option>
+              <option value="" key="">--Game Data--</option>
               {Object.keys(gameDataLocal).map((currKey) => {
                   return (
                   <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
@@ -774,22 +766,25 @@ export default function NodeManager({currState, projectName}) {
                 <br></br>
     
                 <label>Comparison: </label>
-                <select onChange={(event)=>{}}>
+          
+          
+          {(condtVar1Type === "number") && <select onChange={(event)=>{}}>
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
               <option key="equal" value="equal"> equal to </option>
               <option key="largerequal" value="largerequal"> larger than or euqal to </option>
               <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
-                </select>
+          </select>}
+         
+          <br></br>
+          <label> Variable 2: </label>
                 <br></br>
-                <label> Variable 2: </label>
-                <br></br>
-                    <div className="indentOne">
+          {(condtVar1Type === "number") && <div className="indentOne">
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
                 
                 <select onChange={(event)=>{}}>
-                <option value="" key="">-- Select Game Data --</option>
+                <option value="" key="">--Game Data--</option>
 
           {Object.keys(gameDataLocal).map((key) => {
               return (
@@ -801,8 +796,22 @@ export default function NodeManager({currState, projectName}) {
 
               <br></br>
               <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
-              <input type="number" min="-100000000" max="100000000" step="1" defaultValue="25"></input>
-              </div>
+              <input type="number" min="-100000000" max="100000000" step="1" defaultValue="25"></input>    
+          </div>}
+
+          {(condtVar1Type === "string") && <div className="indentOne">
+            
+            
+          <p className="plans"> string variable: equals to a given value?</p>
+          
+          </div>}
+
+          {(condtVar1Type === "boolean") && <div className="indentOne">
+            
+          <p className="plans"> boolean variable:  true or false</p>
+          
+          </div>}
+
               <br></br>
               <button>Add Condition</button>
               <p className="plans">

@@ -701,7 +701,7 @@ button:hover {
     background-color: rgb(238, 238, 238);
     padding: 5px;
     margin: 3px;
-    width: 500px;
+    width: 550px;
     cursor: pointer;
     /* user-select: none; TODO add later*/ 
 }
@@ -710,7 +710,7 @@ button:hover {
     background-color: rgb(238, 219, 191);
     padding: 5px;
     margin: 3px;
-    width: 500px;
+    width: 550px;
     /* user-select: none; TODO add later*/ 
 }
 
@@ -750,7 +750,7 @@ button:hover {
 .section {
     background-color: #c0d6e3;
     padding: 6px;
-    width: 500px;
+    width: 550px;
 }
 
 .testArea {
