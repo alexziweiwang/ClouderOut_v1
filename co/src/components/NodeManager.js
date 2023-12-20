@@ -49,6 +49,8 @@ export default function NodeManager({currState, projectName}) {
    const [logicSplitter_nextNode, setLsNextNode] = useState("");
    const [logicSplitterVar2IsGData, setLsV2IsGData] = useState(true);
 
+   const [condtVar1Type, setCondtVar1Type] = useState("");
+
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
@@ -754,14 +756,20 @@ export default function NodeManager({currState, projectName}) {
                 <div className="areaFrame">
                 <label> Variable 1: </label>
 
-                <select onChange={(event)=>{}}>
-          {Object.keys(gameDataLocal).map((currKey) => {
-              const keyStr = gameDataLocal[currKey]["name"] + "1";
-              return (
-              <option value={logicSplitter_gameDataVar1} key={keyStr}>{currKey}</option>
-              );
-          })}
-                </select>
+          <select 
+                onChange={(event)=>{
+                  setLsGdataVar1(event.target.value);
+                  setCondtVar1Type(gameDataLocal[event.target.value]["data_type"]);
+                }} 
+                value={logicSplitter_gameDataVar1}>
+              
+              <option value="" key="">-- Select Game Data --</option>
+              {Object.keys(gameDataLocal).map((currKey) => {
+                  return (
+                  <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
+                  );
+              })}
+          </select>
                 {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
                 <br></br>
     
@@ -781,6 +789,8 @@ export default function NodeManager({currState, projectName}) {
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
                 
                 <select onChange={(event)=>{}}>
+                <option value="" key="">-- Select Game Data --</option>
+
           {Object.keys(gameDataLocal).map((key) => {
               return (
               <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]["name"]}>{key}</option>
