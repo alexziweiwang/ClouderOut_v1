@@ -795,7 +795,12 @@ export default function NodeManager({currState, projectName}) {
               </div>
               <br></br>
               <button>Add Condition</button>
-
+              <p className="plans">
+                conditions:
+                <br></br>1. compare number with a number
+                <br></br>2. compare boolean with a value (t/f)
+                <br></br>Switching between 2 of the above types 
+              </p>
                     </div>
               <br></br>
 
@@ -824,9 +829,11 @@ export default function NodeManager({currState, projectName}) {
             console.log("new node name: ", nextNodeNameSetup); //TODO test
             
             /* For condition */
-            /* Version1: single condition for path-splitting */
-                          //TODO go for clickedNode and add next-node and next-condition...
-            /* //TODO If condition is default-always, store the string-specifier directly */
+            /* Version1: single condition-string for path-splitting */
+            //Variable 1 + comparison + Variable2
+                  //TODO go for clickedNode and add next-node and next-condition...
+            
+                          /* //TODO If condition is default-always, store the string-specifier directly */
 
             /* //TODO If condition is cutomized, convert and store the instruction */
 
