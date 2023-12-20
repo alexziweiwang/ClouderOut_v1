@@ -11,10 +11,10 @@ export default function NodeManager({currState, projectName}) {
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation"},
     { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: [], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: [], display: true, nodeType:"Card Game"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game"},
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation"},
   ]); //TODO testing data
 
@@ -268,7 +268,10 @@ export default function NodeManager({currState, projectName}) {
         
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
         console.log("Removed link from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "......"); //TODO test 
-        console.log(nodeData[fromNodeIndex]); //TODO
+        console.log("nodeData[fromNodeIndex]", nodeData[fromNodeIndex]); //TODO
+        console.log("nextList: ", nextNodeList); //TODO test
+        console.log("nextCondtList", nextCondtList); //TODO test
+
 
         let tempCondtList = nextCondtList;
         let p = 0;
@@ -622,13 +625,7 @@ export default function NodeManager({currState, projectName}) {
                     
                 return (<tr key={nextNodeList[index]}>
                         <td>{nextNodeName}</td>
-                        {nextCondtList.length === nextNodeList.length && 
-                            <td>{nextCondtList[index]}</td>
-                        }
-                        {nextCondtList.length !== nextNodeList.length && 
-                            <td>Default: Always Reachable</td>
-                        }
-
+                        <td>{nextCondtList[index]}</td>
                     <td>
                         <button onClick={()=>{
                             const tempPreToNode = toNodeName;
