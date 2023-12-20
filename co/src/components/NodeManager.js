@@ -779,8 +779,8 @@ export default function NodeManager({currState, projectName}) {
          
           <br></br>
           <label> Variable 2: </label>
-                <br></br>
-          {(condtVar1Type === "number") && <div className="indentOne">
+          <div className="testArea">
+          {(condtVar1Type === "number") && <div>
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
                 
                 <select onChange={(event)=>{}}>
@@ -799,27 +799,31 @@ export default function NodeManager({currState, projectName}) {
               <input type="number" min="-100000000" max="100000000" step="1" defaultValue="25"></input>    
           </div>}
 
-          {(condtVar1Type === "string") && <div className="indentOne">
-            
-            
-          <p className="plans"> string variable: equals to a given value?</p>
+          {(condtVar1Type === "string") && <div>          
+            <input type="radio"></input>
+            <label> Is </label>
+            <input></input>
+          <br></br>
+            <input type="radio"></input>
+            <label> Is Not </label>
+            <input></input>          
           
           </div>}
 
-          {(condtVar1Type === "boolean") && <div className="indentOne">
+          {(condtVar1Type === "boolean") && <div>
             
-          <p className="plans"> boolean variable:  true or false</p>
+          <input type="radio"></input>
+            <label> Is True</label>
+          <br></br>
+            <input type="radio"></input>
+            <label> Is False</label>
           
           </div>}
+          </div>
 
               <br></br>
               <button>Add Condition</button>
-              <p className="plans">
-                conditions:
-                <br></br>1. compare number with a number
-                <br></br>2. compare boolean with a value (t/f)
-                <br></br>Switching between 2 of the above types 
-              </p>
+
                     </div>
               <br></br>
 
