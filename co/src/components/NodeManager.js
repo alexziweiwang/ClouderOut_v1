@@ -41,7 +41,8 @@ export default function NodeManager({currState, projectName}) {
    const [logicSplitterVar2IsGData, setLsV2IsGData] = useState(true);
 
    const [condtVar1Type, setCondtVar1Type] = useState("");
-
+   const [var1StringEq, setVar1StringEq] = useState(true);
+   const [var1BoolTrue, setVar1BoolTrue] = useState(true);
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
@@ -779,7 +780,7 @@ export default function NodeManager({currState, projectName}) {
          
           <br></br>
           <label> Variable 2: </label>
-          <div className="testArea">
+          <div>
           {(condtVar1Type === "number") && <div>
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
                 
@@ -800,11 +801,11 @@ export default function NodeManager({currState, projectName}) {
           </div>}
 
           {(condtVar1Type === "string") && <div>          
-            <input type="radio"></input>
+            <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
             <label> Is </label>
             <input></input>
-          <br></br>
-            <input type="radio"></input>
+          <br></br>                         
+          <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
             <label> Is Not </label>
             <input></input>          
           
@@ -812,10 +813,10 @@ export default function NodeManager({currState, projectName}) {
 
           {(condtVar1Type === "boolean") && <div>
             
-          <input type="radio"></input>
+          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);}} checked={var1BoolTrue}></input>
             <label> Is True</label>
-          <br></br>
-            <input type="radio"></input>
+          <br></br>                   
+          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);}} checked={!var1BoolTrue}></input>
             <label> Is False</label>
           
           </div>}
