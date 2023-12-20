@@ -11,11 +11,11 @@ export default function NodeManager({currState, projectName}) {
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
   const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation"},
-    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game"},
-    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation"},
+    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   ]); //TODO testing data
 
   const [nodeData3, setNodeData3] = useState([
@@ -35,6 +35,7 @@ export default function NodeManager({currState, projectName}) {
    const [clickedNode, setClickedNode] = useState("");
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
+   const [createdNewNodeScreenSize, setCreatedNewNodeScreenSize] = useState("h450_800");
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNewNode, setIsLinkNewNode] = useState(false);
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
@@ -139,9 +140,11 @@ export default function NodeManager({currState, projectName}) {
           nodeName: `${createNewNodeName}`, 
           depth: test_new_node_depth,
           inGroupPosition:0,
-          nextNodes:[],  
+          nextNodes:[], 
+          spltCondt:[], 
           display: true, 
-          nodeType:`${createNewNodeGameType}`}; //TODO temp
+          nodeType:`${createNewNodeGameType}`,
+          screenSize: createdNewNodeScreenSize}; //TODO temp
 
         nodeDataTemp.push(newDataItem); //TODO temp
         setNodeData(nodeDataTemp); //TODO later: update to cloud db
@@ -802,9 +805,11 @@ export default function NodeManager({currState, projectName}) {
 
         <button onClick={()=>{
             setCurrNodeSplitterNum(currNodeSplittedNum + 1);
-            addNewNode();
 
-            //TODO future: addedGameScreenSize
+            if (addedGameScreenSize !== "") {
+              setCreatedNewNodeScreenSize(addedGameScreenSize);
+            }
+
             let nextNodeNameSetup = "";
             /* For next-node-name */
 
@@ -814,11 +819,10 @@ export default function NodeManager({currState, projectName}) {
             } else {
             /* If next-node is an existing node, use the name of selected item from select-list */
               nextNodeNameSetup = toNodeName;
+              setCreateNewNodeName(toNodeName);
             }
             console.log("new node name: ", nextNodeNameSetup); //TODO test
             
-
-          
             /* For condition */
             /* Version1: single condition for path-splitting */
                           //TODO go for clickedNode and add next-node and next-condition...
@@ -831,6 +835,7 @@ export default function NodeManager({currState, projectName}) {
             /* //TODO Update the nextNodeList and condition-list for this clicked-node's data */
                 //TODO by adding a link between clickedNode and the specified next-node
                     //TODO with addLinkBetweenNodes()
+            addNewNode();
 
 
         }}> Add As Next-Node</button>
