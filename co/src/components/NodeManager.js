@@ -44,6 +44,7 @@ export default function NodeManager({currState, projectName}) {
    const [var1StringEq, setVar1StringEq] = useState(true);
    const [var1BoolTrue, setVar1BoolTrue] = useState(true);
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
+   const [var2NumCompare, setVar2NumCompare] = useState("");
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
@@ -769,7 +770,7 @@ export default function NodeManager({currState, projectName}) {
                 <label>Comparison: </label>
           
           
-{(condtVar1Type === "number") && <select onChange={(event)=>{}}>
+{(condtVar1Type === "number") && <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
@@ -858,10 +859,11 @@ export default function NodeManager({currState, projectName}) {
             
             
             if (condtVar1Type === "number") {
+              //TODO comparing content is: car2NumCompare
               if (logicSplitterVar2IsGData) {
                 //TODO add string-wording for this case
                 // TODO fetch value of logicSplitter_gameDataVar2
-
+                
               } else { //compared with value
                 //TODO add string-wording for this case
 
