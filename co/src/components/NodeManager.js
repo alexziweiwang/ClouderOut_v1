@@ -587,15 +587,14 @@ export default function NodeManager({currState, projectName}) {
         <div>
         <p className="sectionHeader">*** Node Info ***</p>
         <div>
-          <p className="plans">display node information here
-            <br></br>TODO: fetch data from cloud? 
-            <br></br>items: 
-            <br></br>node-name, 
-            <br></br>node-description, 
-            <br></br>node-screen-size, 
-            <br></br>node-game-type
-          </p>
-        
+          <label>Node Name: </label>
+          <label>{clickedNode}</label>
+          <br></br>
+          <label>Node Type: </label>
+          <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].nodeType}</label>
+          <br></br>
+          <label>Screen Size: </label>
+          <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].screenSize}</label>
         </div>
 
         <p className="sectionHeader">*** Node Settings ***</p>
