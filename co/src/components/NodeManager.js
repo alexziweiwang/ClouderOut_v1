@@ -650,7 +650,10 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         </table>
         </div>
         
-        {(nextCondtList.includes("Default: Always Reachable")) && <p> ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes</p>}
+        {(nextCondtList.includes("Default: Always Reachable")) && 
+            <div className="hint"> 
+            ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes
+            </div>}
         
         {(!nextCondtList.includes("Default: Always Reachable")) && <>
         <br></br>
@@ -726,9 +729,17 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         <div>
             <label>Select a Condition to Reach this Node:</label>
             <br></br>
-            <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
+            <p className="plans"> TODO: add option of "Else" in the condition </p>
+            
+            {nextNodeList.length === 0 && <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
                 <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Reachable
-            </div>
+            </div>}
+
+            {nextNodeList.length > 0 && <div className="optionArea">
+              <div>
+              ! If you want to set this node as "Default: Always Reachable", <br></br>delete other conditionally-reachable node(s).
+              </div>
+            </div>}
 
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
                 <div onClick={()=>{                        
