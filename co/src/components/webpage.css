@@ -70,6 +70,7 @@ div {
     width: 9%;
     height: 100vh; 
     float: left;
+    border-radius: 0px;
 }
 
 .sidebar2 {
@@ -77,6 +78,7 @@ div {
     width: 9%;
     height: 100vh; 
     float: left;
+    border-radius: 0px;
 }
 
 .sidebar_options {

@@ -93,3 +93,5 @@
 
 - 2023-Dec-21: Consider next-node-conditions for complicated number case and "else" case
 - 2023-Dec-21: Explore complex logic-group for complicated conditions (for future consideration)
+- 2023-Dec-21: Consider improvement on UI design for better UX
+
