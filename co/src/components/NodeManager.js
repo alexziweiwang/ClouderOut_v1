@@ -276,10 +276,10 @@ export default function NodeManager({currState, projectName}) {
         let p = 0;
         for (; p < nextNodeList.length; p++) {
             if (nextNodeList[p] === toNodeIndex) {
-                tempCondtList[p] = "N/A";
+                tempCondtList[p] = "(deleted)";
             }
         }
-        tempCondtList = tempCondtList.filter(e => e !== "N/A");
+        tempCondtList = tempCondtList.filter(e => e !== "(deleted)");
         setNextCondtList(tempCondtList);
 
         setNextNodeList(newArr);
@@ -437,13 +437,7 @@ export default function NodeManager({currState, projectName}) {
 
         <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.
             <br></br>
-            <br></br> [source node] might attach a [logic-splitter], logic-splitter connect to 'multiple next-nodes' with 'conditional pair'
-            <br></br> inside logic-splitter: add logic for decision, game-data checking and updating, each branch's condition and desintation-node
-            <br></br> logic splitter's input: source node, branch pair (condition, destination-node)
-            <br></br> this design is also better for auto-drawing of paths and node positions (for mulriple branchs' situation)
-
-            <br></br> TODO: conversion of logic-condition? to consider
-
+  
             <br></br> idea: logic organizer depends heavily on the game-data specified by author.
             <br></br> the game maker should provide entry for CRUD operations on game-data, in inside-node layer
             <br></br> frontend aspect, game-data manager is needed (CRUD); backend aspect, game-data's data structure on cloud is needed
@@ -953,10 +947,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         
         
         <div>
-        <p className="plans">TODO: display current setup for this node, such as next node, conditions, etc.
-          <br></br> - if there is already a next-node or logic splitter, show the editing layout; otherwise show append-new layout.
-          <br></br> - for node-link editing: later adding links should be done by attach-new, and deleting links should be done by deleting-next; no direct control about links?
-        </p> 
+
         <br></br>       
         <p className="plans">
             New Design Idea: *Each* node contains 1 logic splitter by default
@@ -967,21 +958,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
 
         </p>
 
-          
-        <p className="plans">
-          Current idea on logic-splitter:
-          <br></br>fill in information
-          <br></br>(source node is already selected)
-          <br></br>an array of pairs [(condition, next-node),(condition, next-node), ...]
-          <br></br>for condition: *important* analyze and design comparison or check generalization
-          <br></br>would use game-data here. two sides of the condition might be one variable vs one value, or one variable vs on variable, etc.
-          <br></br>on node path, display brief text of condition?
-        </p>
-    
-        <p className="plans">**important!! for each node, it should keep track of it's number of conditional-consequence for its logic-splitter</p>
-        <p className="plans"> display current node's logic-splitter count and 1 more empty form when creating a new pair! </p>
-    
-    
+      
         </div>
         </>
       }
@@ -1022,7 +999,6 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         <br></br> (that is, there can be "pending nodes" that are reverted node to add?)
         <br></br> idea1: when user append a node, can from scratch, or use "reverted node"?
         <br></br> idea2: for a revert node, provide available places to insert
-        <br></br> - overall, won't let the reverted node to float without connection
         
         </p>
     

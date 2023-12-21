@@ -55,7 +55,7 @@ export default function GameMaker() {
      <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. 
      <br></br> - need a "pointer" that keeps track of "current game progress", so that it points to the current place, and be ready to continue in the flow
      <br></br> idea: it keeps the "current node", and keeps possible "next node" (decide according to logic splitter)
-     <br></br> * should [understand] the logic splitter's decision flow: compare game-data with the conditional-pairs from author
+     <br></br> * should provide [understandable keywords] for decision flow, and the actual game-file parse should understand and decide real-time game-flow
      <br></br> 
      </p>
 
