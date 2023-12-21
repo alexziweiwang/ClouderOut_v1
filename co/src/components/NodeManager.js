@@ -769,7 +769,7 @@ export default function NodeManager({currState, projectName}) {
                 <label>Comparison: </label>
           
           
-          {(condtVar1Type === "number") && <select onChange={(event)=>{}}>
+{(condtVar1Type === "number") && <select onChange={(event)=>{}}>
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
@@ -778,10 +778,11 @@ export default function NodeManager({currState, projectName}) {
               <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
           </select>}
          
-          <br></br>
-          <label> Variable 2: </label>
           <div>
-          {(condtVar1Type === "number") && <div>
+{(condtVar1Type === "number") && <div>
+                <label> Variable 2: </label>
+                <br></br>
+
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
                 
                 <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
