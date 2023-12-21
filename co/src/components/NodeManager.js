@@ -840,20 +840,7 @@ export default function NodeManager({currState, projectName}) {
             if (addedGameScreenSize !== "") {
               setCreatedNewNodeScreenSize(addedGameScreenSize);
             }
-
-            let nextNodeNameSetup = "";
-            /* For next-node-name */
-
-            if (isLinkNewNode) {
-            /*  If next-node is a new node, use the name of new-node */
-              nextNodeNameSetup = createNewNodeName;
-            } else {
-            /* If next-node is an existing node, use the name of selected item from select-list */
-              nextNodeNameSetup = toNodeName;
-              setCreateNewNodeName(toNodeName);
-            }
-            console.log("new node name: ", nextNodeNameSetup); //TODO test
-            
+    
             /* For condition */
             /* Version1: single condition-string for path-splitting */
             
@@ -897,12 +884,34 @@ export default function NodeManager({currState, projectName}) {
 
             /* //TODO If condition is cutomized, convert and store the instruction */
 
-            const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
+
+            /* Setup of next-node name */
+            let nextNodeNameSetup = "";
+            /* For next-node-name */
+
+            if (isLinkNewNode) {
+            /*  If next-node is a new node, use the name of new-node */
+              nextNodeNameSetup = createNewNodeName;
+              //TODO create a new node first, with default info, etc.
+              
+              addNewNode();
+
+            } else {
+            /* If next-node is an existing node, use the name of selected item from select-list */
+              nextNodeNameSetup = toNodeName;
+            }
+
+            //TODO both case (new or existing node): add link and update curr-node's next-node info
+                //TODO using name "nextNodeNameSetup"
+            console.log("next-node name: ", nextNodeNameSetup); //TODO test
+        
+
+            // const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
 
             /* //TODO Update the nextNodeList and condition-list for this clicked-node's data */
                 //TODO by adding a link between clickedNode and the specified next-node
                     //TODO with addLinkBetweenNodes()
-            addNewNode();
+            
 
 
         }}> Add As Next-Node</button>
