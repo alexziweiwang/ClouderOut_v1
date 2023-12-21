@@ -841,43 +841,51 @@ export default function NodeManager({currState, projectName}) {
               setCreatedNewNodeScreenSize(addedGameScreenSize);
             }
     
-            /* For condition */
+            /* For condition: defualt or custom */
             /* Version1: single condition-string for path-splitting */
+            if (isNextCondtDefault == true) {
+              //TODO: condition is "Default: Always Reachable"
+
+            } else {
+              // TODO: fetch var1, comp, var2
+
+              if (condtVar1Type === "number") {
+                //TODO comparing content is: car2NumCompare
+                if (logicSplitterVar2IsGData) {
+                  //TODO add string-wording for this case
+                  // TODO fetch value of logicSplitter_gameDataVar2
+  
+                } else { //compared with value
+                  //TODO add string-wording for this case
+  
+                }
+              } else if (condtVar1Type === "string") {
+                if (var1StringEq) {
+                  //TODO add string-wording for this case
+                  //TODO fetch the compared string-sample
+  
+                } else {
+                  //TODO add string-wording for this case
+  
+                }
+              } else if (condtVar1Type === "boolean") {
+                if (var1BoolTrue) {
+                  //TODO add string-wording for this case
+  
+                } else {
+                  //TODO add string-wording for this case
+  
+                }
+              }
+  
+
+
+
+            }
             
-            
-            if (condtVar1Type === "number") {
-              //TODO comparing content is: car2NumCompare
-              if (logicSplitterVar2IsGData) {
-                //TODO add string-wording for this case
-                // TODO fetch value of logicSplitter_gameDataVar2
+          
 
-              } else { //compared with value
-                //TODO add string-wording for this case
-
-              }
-            }
-            if (condtVar1Type === "string") {
-              if (var1StringEq) {
-                //TODO add string-wording for this case
-                //TODO fetch the compared string-sample
-
-              } else {
-                //TODO add string-wording for this case
-
-              }
-            }
-            if (condtVar1Type === "boolean") {
-              if (var1BoolTrue) {
-                //TODO add string-wording for this case
-
-              } else {
-                //TODO add string-wording for this case
-
-              }
-            }
-
-
-            //Variable 1 + comparison + Variable2
+            /* condition-content: Variable 1 + comparison + Variable2 */
                   //TODO go for clickedNode and add next-node and next-condition...
             
                           /* //TODO If condition is default-always, store the string-specifier directly */
