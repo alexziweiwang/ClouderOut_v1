@@ -729,7 +729,6 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         <div>
             <label>Select a Condition to Reach this Node:</label>
             <br></br>
-            <p className="plans"> TODO: add option of "Else" in the condition </p>
             
             {nextNodeList.length === 0 && <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
                 <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Reachable
