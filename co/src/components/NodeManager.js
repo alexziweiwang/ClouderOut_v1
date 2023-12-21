@@ -763,6 +763,13 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
 
 
                 {!isNextCondtDefault && <div>
+                  <p className="plans">TODO: add "else" option here (for with at least 1 existing next-nodes)
+                    <br></br> Current Design: convey "else" into parser, and game-flow decided automatically there
+                    <br></br> Logic sequence is the adding sequence (by author)
+                  </p>
+
+
+
                   <label>Destination Node: {toNodeName}</label><br></br>
                   <label>Conditions: {nextNodeList.includes(toNodeName) ? nextCondtList[nextCondtList.length-1] : "(Not Added)"}</label>
 
@@ -854,6 +861,8 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
               <br></br>
 
         </div>}
+
+                
 
         </div>
 
