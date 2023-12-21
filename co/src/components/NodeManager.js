@@ -1,4 +1,5 @@
 import * as React from 'react';
+import moment from "moment";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
@@ -568,9 +569,21 @@ export default function NodeManager({currState, projectName}) {
         <button 
           className="setting_item"
           onClick={()=>{
-            console.log("Deleting this node...", clickedNode); 
+console.log("Deleting this node...", clickedNode);  //TODO testing
             handleDeleteNodeWithParam(clickedNode);
-            setClickedNode("");
+
+            /* rename this node to timeStamp+original_name */
+            const timeStamp = moment().format("YYYYMM_DD_hhmmss");
+  console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
+            let i = 0;
+            let tempNodeData = nodeData;
+            for (; i < tempNodeData.length; i++) {
+              if (tempNodeData[i].nodeName === clickedNode) {
+                tempNodeData[i]["nodeName"] = timeStamp + "=" +clickedNode;
+              }
+            }
+            setNodeData(tempNodeData);
+            setClickedNode(""); /* reset clicked node's name */
           }}>
             Delete [{clickedNode}]
         </button>
