@@ -74,9 +74,9 @@ export default function NodeManager({currState, projectName}) {
       setClickedNode("");
     }
 
-    let tempNextList = nodeData.filter(item => (name === item.nodeName));
+    let tempNextList = nodeData.filter(item => (item.display === true && name === item.nodeName));
     tempNextList = tempNextList[0].nextNodes;
-    let tempNextCondtList = nodeData.filter(item => (name === item.nodeName));
+    let tempNextCondtList = nodeData.filter(item => (item.display === true && name === item.nodeName));
     tempNextCondtList = tempNextCondtList[0].spltCondt;
 
     console.log("nodeData: ", nodeData);
@@ -604,7 +604,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
           <label>{clickedNode}</label>
           <br></br>
           <label>Node Type: </label>
-          <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].nodeType}</label>
+          <label>{nodeData.filter((e => (e.display === true && e.nodeName === clickedNode)))[0].nodeType}</label>
           <br></br>
           <label>Screen Size: </label>
           <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].screenSize}</label>
