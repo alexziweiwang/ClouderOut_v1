@@ -841,12 +841,11 @@ export default function NodeManager({currState, projectName}) {
               setCreatedNewNodeScreenSize(addedGameScreenSize);
             }
     
-            /* For condition: defualt or custom */
-            /* Version1: single condition-string for path-splitting */
-            if (isNextCondtDefault == true) {
-              //TODO: condition is "Default: Always Reachable"
+            let conditionContent = "Default: Always Reachable"; //default condition
+            if (isNextCondtDefault == false) {
+              /* Version1: single condition-string for path-splitting */
+              /* condition-content: Variable 1 + comparison + Variable2 */
 
-            } else {
               // TODO: fetch var1, comp, var2
 
               if (condtVar1Type === "number") {
@@ -877,49 +876,38 @@ export default function NodeManager({currState, projectName}) {
   
                 }
               }
-  
-
-
+            
 
             }
             
-          
-
-            /* condition-content: Variable 1 + comparison + Variable2 */
-                  //TODO go for clickedNode and add next-node and next-condition...
-            
-                          /* //TODO If condition is default-always, store the string-specifier directly */
-
-            /* //TODO If condition is cutomized, convert and store the instruction */
-
 
             /* Setup of next-node name */
             let nextNodeNameSetup = "";
-            /* For next-node-name */
 
             if (isLinkNewNode) {
             /*  If next-node is a new node, use the name of new-node */
               nextNodeNameSetup = createNewNodeName;
               //TODO create a new node first, with default info, etc.
-              
-              addNewNode();
+              addNewNode(); //TODO improve for new ver. designs
 
             } else {
             /* If next-node is an existing node, use the name of selected item from select-list */
               nextNodeNameSetup = toNodeName;
             }
+            console.log("next-node name: ", nextNodeNameSetup); //TODO test
 
             //TODO both case (new or existing node): add link and update curr-node's next-node info
-                //TODO using name "nextNodeNameSetup"
-            console.log("next-node name: ", nextNodeNameSetup); //TODO test
+                //TODO using name "nextNodeNameSetup", "conditionContent"
+            /*Update the nextNodeList and condition-list for this clicked-node's data */
+                let currNodeNextList = nodeData[clickedNode].nextNodes;
+            // currNodeNextList.push(); //TODO push the next-node's index-in-nodeData
+            let currNodeCondtList = nodeData[clickedNode].spltCondt;
+            currNodeCondtList.push(conditionContent);
+            //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
+            //TODO add link between nodes 
         
 
-            // const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
-
-            /* //TODO Update the nextNodeList and condition-list for this clicked-node's data */
-                //TODO by adding a link between clickedNode and the specified next-node
-                    //TODO with addLinkBetweenNodes()
-            
+            // foramt: const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
 
 
         }}> Add As Next-Node</button>
