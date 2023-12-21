@@ -784,10 +784,10 @@ export default function NodeManager({currState, projectName}) {
                 <label> Variable 2: </label>
                 <br></br>
 
-                <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
+                <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
                 
                 <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
-                        < option value="" key="">--Game Data--</option>
+                        <option value="" key="">--Game Data--</option>
 
                   {Object.keys(gameDataLocal).map((key) => {
                     return (
@@ -798,8 +798,8 @@ export default function NodeManager({currState, projectName}) {
               {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
 
               <br></br>
-              <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={changeLsVar2ToValue}/> Value:
-              <input type="number" min="-100000000" max="100000000" step="1" defaultValue="25"></input>    
+              <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
+                  <input type="number" min="-100000000" max="100000000" step="1" value={logicSplitter_gameDataVar2} onChange={(event)=>{setLsGdataVar2(event.target.value);}}></input>    
           </div>}
 
           {(condtVar1Type === "string") && <div>          
@@ -825,7 +825,7 @@ export default function NodeManager({currState, projectName}) {
           </div>
 
               <br></br>
-              <button>Add Condition</button>
+              <button onClick={()=>{console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);}}>Add Condition</button>
 
                     </div>
               <br></br>
@@ -863,7 +863,7 @@ export default function NodeManager({currState, projectName}) {
               if (logicSplitterVar2IsGData) {
                 //TODO add string-wording for this case
                 // TODO fetch value of logicSplitter_gameDataVar2
-                
+
               } else { //compared with value
                 //TODO add string-wording for this case
 
