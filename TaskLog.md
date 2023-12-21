@@ -90,3 +90,5 @@
 - 2023-Dec-15: Explore condition and consequence logic-content-parsing, for higher-level conversion, from user-setting to code-flow
 
 - 2023-Dec-20: Design testing plan for next-node-condition mechanism
+
+- 2023-Dec-21: Consider next-node-conditions for complicated number case and "else" case
