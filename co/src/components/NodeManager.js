@@ -784,14 +784,14 @@ export default function NodeManager({currState, projectName}) {
           {(condtVar1Type === "number") && <div>
                 <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={changeLsVar2ToGameData}/> Game Data Item: 
                 
-                <select onChange={(event)=>{}}>
-                <option value="" key="">--Game Data--</option>
+                <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
+                        < option value="" key="">--Game Data--</option>
 
-          {Object.keys(gameDataLocal).map((key) => {
-              return (
-              <option value={logicSplitter_gameDataVar2} key={gameDataLocal[key]["name"]}>{key}</option>
-              );
-              })}
+                  {Object.keys(gameDataLocal).map((key) => {
+                    return (
+                          <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
+                      );
+                    })}
                 </select>
               {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
 
@@ -813,10 +813,10 @@ export default function NodeManager({currState, projectName}) {
 
           {(condtVar1Type === "boolean") && <div>
             
-          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);}} checked={var1BoolTrue}></input>
+          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
             <label> Is True</label>
           <br></br>                   
-          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);}} checked={!var1BoolTrue}></input>
+          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);console.log("going to set: Var1-boolean-false");}} checked={!var1BoolTrue}></input>
             <label> Is False</label>
           
           </div>}
@@ -854,6 +854,39 @@ export default function NodeManager({currState, projectName}) {
             
             /* For condition */
             /* Version1: single condition-string for path-splitting */
+            
+            
+            if (condtVar1Type === "number") {
+              if (logicSplitterVar2IsGData) {
+                //TODO add string-wording for this case
+                // TODO fetch value of logicSplitter_gameDataVar2
+
+              } else { //compared with value
+                //TODO add string-wording for this case
+
+              }
+            }
+            if (condtVar1Type === "string") {
+              if (var1StringEq) {
+                //TODO add string-wording for this case
+                //TODO fetch the compared string-sample
+
+              } else {
+                //TODO add string-wording for this case
+
+              }
+            }
+            if (condtVar1Type === "boolean") {
+              if (var1BoolTrue) {
+                //TODO add string-wording for this case
+
+              } else {
+                //TODO add string-wording for this case
+
+              }
+            }
+
+
             //Variable 1 + comparison + Variable2
                   //TODO go for clickedNode and add next-node and next-condition...
             
