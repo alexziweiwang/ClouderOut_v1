@@ -21,6 +21,10 @@ export default function Sidebar(props) {
         navigate('/accountpage', { replace: true });
     }
 
+    function goToProfilePage() {
+        navigate('/profilepage', { replace: true });
+    }
+
 
     return (
     <>
@@ -28,7 +32,7 @@ export default function Sidebar(props) {
     <div className="sidebar1" > Welcome, user ___ ! 1223123
         <div> 
             <button className="sidebar_options" onClick={goToProjectManagingPanel}>My Projects</button>
-            <button className="sidebar_options">Profile</button>
+            <button className="sidebar_options" onClick={goToProfilePage}>Profile</button>
             <button className="sidebar_options" onClick={goToAccountPage}>Account</button>
         </div>
         

@@ -9,6 +9,7 @@ import ProjectManageNew from './components/ProjectManageNew';
 import ProjectManageEdit from './components/ProjectManageEdit';
 import AccountPage from './components/AccountPage';
 import CardGameNodeEditingPanel from './components/CardGameNodeEditingPanel';
+import ProfilePage from './components/ProfilePage';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="/projectmanagenew" element={<ProjectManageNew/>} />
         <Route path="/projectmanageedit" element={<ProjectManageEdit/>} />
         <Route path="/accountpage" element={<AccountPage/>} />
+        <Route path="/profilepage" element={<ProfilePage/>} />
+
       </Routes>     
     </div>
   );
