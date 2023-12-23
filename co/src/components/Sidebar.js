@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useNavigate} from 'react-router-dom';
 
-export default function Sidebar(props) {
-    console.log(props.compName);
+export default function Sidebar({compName, username}) {
+    console.log("sidebar, compName:", compName);
     const navigate = useNavigate();
-    const username = "user002";
 
     function goToProjectManagingPanel() {
         navigate('/projectmanagingpanel', { replace: true, state: { username } });
@@ -29,8 +28,8 @@ export default function Sidebar(props) {
 
     return (
     <>
-    {(props.compName === "/dashboard") && 
-    <div className="sidebar1" > Welcome, user ___ ! 1223123
+    {(compName === "/dashboard") && 
+    <div className="sidebar1" > Welcome, {username}!
         <div> 
             <button className="sidebar_options" onClick={goToProjectManagingPanel}>My Projects</button>
             <button className="sidebar_options" onClick={goToProfilePage}>Profile</button>
@@ -46,7 +45,7 @@ export default function Sidebar(props) {
         </div>
     }
 
-    {(props.compName === "/accountpage" || props.compName === "/profilepage") && 
+    {(compName === "/accountpage" || compName === "/profilepage") && 
     <div className="sidebar1" >
         <div> 
             
@@ -57,7 +56,7 @@ export default function Sidebar(props) {
         </div>
     }
 
-    {(props.compName === "/projectmanagingpanel") && 
+    {(compName === "/projectmanagingpanel") && 
     <div className="sidebar2" >
         <div> 
             <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
@@ -71,7 +70,7 @@ export default function Sidebar(props) {
         </div>
     }
 
-    {(props.compName === "/projectmanagenew") && 
+    {(compName === "/projectmanagenew") && 
     <div className="sidebar2" >
         <div> 
         <button className="sidebar_options" onClick={goToProjectManagingPanel}>Cancel</button>
