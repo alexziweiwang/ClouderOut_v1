@@ -6,14 +6,21 @@ export default function CardGameNodeEditingPanel() {
 
     const {state} = useLocation();
     let nodeName = "";
-    if (state != null && state.selectedNode != null) {
+    let uname = "default-no-state username";
+    let projectName = "default-no-state projectName";
+    if (state != null) {
         nodeName = state.selectedNode;
-    }
-    console.log("this node is : " + nodeName); //TODO
+        uname = state.userName;
+        projectName = state.selected_project_name;
+    } 
+    console.log("CardGameNodeEditingPanel-state: ", state);//TODO test
+
     const returnGameMakerButtonText = ["Return To GameMaker!"];
 
     function goToGameMaker() {
-        navigate('/gamemaker', { replace: true });
+        const username = uname;
+        const selected_project_name = projectName;
+        navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
     }
 
     return (

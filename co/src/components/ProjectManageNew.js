@@ -9,6 +9,7 @@ export default function ProjectManageNew() {
 
     const name = "/projectmanagenew";
     const username = "user002"; //TODO test
+
     const [addedNewProjName, setNewProjName] = useState(""); //TODO testing
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAuthorInfo] = useState("");
@@ -40,7 +41,8 @@ export default function ProjectManageNew() {
           return;
         }
         createNewProjectToCloud();
-        navigate('/gamemaker', { replace: true, state: { addedNewProjName } });
+        const selected_project_name = addedNewProjName;
+        navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
 
     }
 
