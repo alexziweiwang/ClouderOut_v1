@@ -45,13 +45,13 @@ export default function ProjectManagerPanel() {
     }
 
     async function revertTrashedProject() {
-      await revertProjectVM(selectedTrashedProj);
+      await revertProjectVM(selectedTrashedProj, username);
       setSelectedTrashedProj("");
       loadProjectListFromCloud();
     }
 
     async function deleteProject() {
-      await deleteProjectVM(selected_project_name);
+      await deleteProjectVM(selected_project_name, username);
       setProjectName("");
       loadProjectListFromCloud();
 

@@ -21,10 +21,10 @@ export async function fetchProjectListVM(currUser) {
 
 }
 
-export async function revertProjectVM(projectToRevert) {
-    await revertProject(projectToRevert);
+export async function revertProjectVM(projectToRevert, currUser) {
+    await revertProject(projectToRevert, currUser);
 }
 
-export async function deleteProjectVM(projectToDelete) {
-    await deleteProject(projectToDelete);
+export async function deleteProjectVM(projectToDelete, currUser) {
+    await deleteProject(projectToDelete, currUser);
 }

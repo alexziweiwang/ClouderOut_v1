@@ -21,8 +21,7 @@ export async function fetchProjectList(currUser) {
   return projectArr;
 }
 
-export async function revertProject(projectToRevert) {
-    const currUser = "user002"; //TODO to-change
+export async function revertProject(projectToRevert, currUser) {
 
     const docRef = doc(db, "user_projects", currUser);
     const docSnap = await getDoc(docRef);
@@ -36,10 +35,8 @@ export async function revertProject(projectToRevert) {
     
 }
 
-export async function deleteProject(projectToDelete) {
+export async function deleteProject(projectToDelete, currUser) {
   //delete project by name
-  const currUser = "user002"; //TODO to-change
-
   const docRef = doc(db, "user_projects", currUser);
   const docSnap = await getDoc(docRef);
 
