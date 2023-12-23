@@ -26,7 +26,7 @@ export default function ProjectManagerPanel() {
         return;
       }
 
-      navigate('/gamemaker', { replace: true, state: { selected_project_name } });
+      navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
     }
 
     async function loadProjectListFromCloud() {

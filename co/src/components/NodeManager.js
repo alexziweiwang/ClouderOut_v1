@@ -6,11 +6,10 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 
-export default function NodeManager({currState, projectName}) {
+export default function NodeManager({projectName, currUser}) {
 
 // TODO testing, temp ----------------------------------------
-  const currUser = "user002"; //TODO test
-
+  console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
 
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 

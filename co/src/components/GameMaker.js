@@ -23,7 +23,12 @@ export default function GameMaker() {
 
 */
   const {state} = useLocation();
-  const projectName = "project001"; //TODO testing
+  let projectName = "default-no-state projectname"; //TODO testing
+  let username = "default-no-state username";
+  if (state !== null) {
+    projectName = state.selected_project_name;
+    username = state.username;
+  }
   console.log("GameMaker-state: ", state);//TODO testing
 
   /* variable area */
@@ -70,7 +75,7 @@ export default function GameMaker() {
     <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
 
  
-    <NodeManager currState={state} projectName={projectName}/>
+    <NodeManager currUser={username} projectName={projectName}/>
   </div>
 
   
