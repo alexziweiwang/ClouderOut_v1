@@ -94,18 +94,20 @@ export default function NodeManager({projectName, currUser}) {
   function enterNodeEditor() {
     let currNode = nodeData.find(node => node.nodeName === clickedNode);
     let currNodeType = currNode.nodeType;
+    let userName = currUser;
+
     
     if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName } });
+      navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName, userName } });
     } else if (currNodeType === "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { clickedNode, projectName } });
+      navigate('/conversationnode', { replace: true, state: { clickedNode, projectName, userName } });
     }
         //TODO later add conditions for board game and tower defense
   }
 
   function updateGDataToCloud(gameDataLatest) {
 
-    let project = "";
+        let project = "";
         project  = projectName;
         if (project.trim() === "") {
           return;

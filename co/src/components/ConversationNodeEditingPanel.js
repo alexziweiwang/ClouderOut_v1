@@ -8,16 +8,18 @@ import PieceManager from './PieceManager';
 
 export default function ConversationNodeEditingPanel() {
 
- 
     const navigate = useNavigate();
-
     const {state} = useLocation();
     let nodeName = "";
-    if (state != null && state.selectedNode != null) {
+    let uname = "default-no-state username";
+    let projectName = "default-no-state projectName";
+    if (state != null) {
         nodeName = state.selectedNode;
-    } else {
-        console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
-    }
+        uname = state.userName;
+        projectName = state.selected_project_name;
+    } 
+    console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
+    
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [browseList, setBrowseList] = useState(true);
@@ -51,8 +53,9 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function goToGameMaker() {
-        const selected_project_name = state.projectName;
-        navigate('/gamemaker', { replace: true, state: { selected_project_name } });
+        const selected_project_name = projectName;
+        let username = uname;
+        navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
     }
 
     function switchListEditor() {
@@ -99,7 +102,7 @@ export default function ConversationNodeEditingPanel() {
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
              
-                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
+                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName}/>
 
             </div>}
 
