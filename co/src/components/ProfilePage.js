@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import { getProjectGameDataVM } from '../viewmodels/AccountViewModel';
 
@@ -10,6 +10,17 @@ export default function ProfilePage() {
 
     let profile = [];
     const [profileText, setProfile] = useState({});
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
+
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            const profile = getProfile();
+            console.log("profile from cloud:", profile); //TODO test
+            setFirstTimeEnter(false);
+        }
+    });
 
     async function getProfile() {
       profile = await getProjectGameDataVM({uname: username});

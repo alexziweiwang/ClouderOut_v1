@@ -45,7 +45,7 @@ export default function Sidebar(props) {
         </div>
     }
 
-    {(props.compName === "/accountpage") && 
+    {(props.compName === "/accountpage" || props.compName === "/profilepage") && 
     <div className="sidebar1" >
         <div> 
             
