@@ -8,7 +8,7 @@ export default function ProjectManageNew() {
     const navigate = useNavigate();
 
     const name = "/projectmanagenew";
-
+    const username = "user002"; //TODO test
     const [addedNewProjName, setNewProjName] = useState(""); //TODO testing
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAuthorInfo] = useState("");
@@ -24,7 +24,7 @@ export default function ProjectManageNew() {
     });
 
     async function loadProjectListFromCloud() {
-      const groupList = await fetchProjectListVM(); 
+      const groupList = await fetchProjectListVM(username); 
       setProjList(groupList.untrashed);
     }
 

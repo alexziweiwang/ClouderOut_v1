@@ -7,6 +7,8 @@ import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewMo
 
 export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData}) {
     const navigate = useNavigate();
+    const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
 
     let name = "/gamenodeconvpiecedatasec";
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -208,9 +210,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
-        const username = "user002"; //TODO testing
-        const projName = "project001"; //TODO testing
-
         const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
         console.log("new render- piece setter: obj from cloud:", obj);
         setAudioList(obj.audio);

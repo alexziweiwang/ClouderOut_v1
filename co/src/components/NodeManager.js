@@ -9,6 +9,9 @@ import GameDataManager from './GameDataManager';
 export default function NodeManager({currState, projectName}) {
 
 // TODO testing, temp ----------------------------------------
+  const currUser = "user002"; //TODO test
+
+
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
   const [nodeData, setNodeData] = useState([
@@ -102,7 +105,6 @@ export default function NodeManager({currState, projectName}) {
   }
 
   function updateGDataToCloud(gameDataLatest) {
-    const currUser = "user002"; //TODO test
 
     let project = "";
         project  = projectName;
@@ -387,8 +389,6 @@ export default function NodeManager({currState, projectName}) {
   }
 
   async function fetchGameDataFromCloud() {
-
-    const currUser = "user002"; //TODO test
 
     let project = "";
 

@@ -1,8 +1,7 @@
 import db from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
-export async function fetchProjectList() {
-  const currUser = "user002"; //TODO to-change
+export async function fetchProjectList(currUser) {
 
   console.log("*from cloud*: model - fetch project list ...");
   

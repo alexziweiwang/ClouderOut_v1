@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
     let modalStyleName = "modalBackboard";
-    const username = "user002"; //TODO testing
 
     if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";

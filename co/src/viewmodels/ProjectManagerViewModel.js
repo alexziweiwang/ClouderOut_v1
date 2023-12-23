@@ -1,9 +1,9 @@
 import {fetchProjectList, revertProject, deleteProject} from '../models/ProjectManagerModel';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
-export async function fetchProjectListVM() {
+export async function fetchProjectListVM(currUser) {
     
-    const res = await fetchProjectList();
+    const res = await fetchProjectList(currUser);
     //"res" contains both "untrashed" and "trashed" proj-names
     let resUntrashedArr = [];
     let resTrashedArr = [];

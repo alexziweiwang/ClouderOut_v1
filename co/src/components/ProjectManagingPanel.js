@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManagerPanel() {
+    const username = "user002"; //TODO test
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); 
@@ -29,7 +30,7 @@ export default function ProjectManagerPanel() {
     }
 
     async function loadProjectListFromCloud() {
-      const groupList = await fetchProjectListVM(); 
+      const groupList = await fetchProjectListVM(username); 
 
       setProjList(groupList.untrashed);
       setTrashedProjList(groupList.trashed);
