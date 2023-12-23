@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { getProjectGameDataVM } from '../viewmodels/AccountViewModel';
 
-export default function ProfilePage() {
-    const username = "user002"; //TODO test
+export default function ProfilePage({}) {
+
+    const {state} = useLocation();
+    let username = "default-no-state-username";
+    if (state !== null) {
+        username = state.username;
+    }
 
     let name = "/profilepage";
 
@@ -23,9 +29,13 @@ export default function ProfilePage() {
     });
 
     async function getProfile() {
-      profile = await getProjectGameDataVM({uname: username});
-      console.log("page: ", profile); //TODO test
-      setProfile(profile);
+        if (username === "default-no-state-username") {
+            console.log("Not getting profile -- no state");
+            return;
+        }
+        profile = await getProjectGameDataVM({uname: username});
+        console.log("page: ", profile); //TODO test
+        setProfile(profile);
     }
 
 

@@ -4,9 +4,10 @@ import { useNavigate} from 'react-router-dom';
 export default function Sidebar(props) {
     console.log(props.compName);
     const navigate = useNavigate();
+    const username = "user002";
 
     function goToProjectManagingPanel() {
-        navigate('/projectmanagingpanel', { replace: true });
+        navigate('/projectmanagingpanel', { replace: true, state: { username } });
     }
 
     function backToDashboard() {
@@ -14,15 +15,15 @@ export default function Sidebar(props) {
     }
 
     function projectManageNew() {
-        navigate('/projectmanagenew', { replace: true });
+        navigate('/projectmanagenew', { replace: true, state: { username } });
     }
 
     function goToAccountPage() {
-        navigate('/accountpage', { replace: true });
+        navigate('/accountpage',  { replace: true, state: { username } });
     }
 
     function goToProfilePage() {
-        navigate('/profilepage', { replace: true });
+        navigate('/profilepage',  { replace: true, state: { username } });
     }
 
 
