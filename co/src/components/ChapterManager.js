@@ -5,6 +5,8 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
+  const [editingChapterTitle, setEditingChapterTitle] = useState("");
+  const [editedLine, setEditedLine] = useState(-1);
 
     return (
         <>
@@ -27,7 +29,15 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           <td>{index+1}</td>
           <td>{item[0]} </td>
           <td>{item[1]} 
-            {<button>Edit</button>}
+            {(editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
+            {(editedLine === index) && 
+              <>
+              <input></input>
+              <button>Cancel</button>
+              <button onClick={()=>{setEditedLine(-1);}}>Save</button>
+              </>
+            }
+
           </td>
           <td>
             <button>Select</button>
