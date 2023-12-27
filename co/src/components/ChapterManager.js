@@ -9,8 +9,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [editedLine, setEditedLine] = useState(-1);
 
   function updateChapterDataByLine(index, newTitle) {
-    //TODO update chapterData[index][1]) to the new-edited-title-input content
-    //TODO updateChapterData() to the new data structure
+    let tempChapterData = chapterData;
+    tempChapterData[index][1] = newTitle;
+    updateChapterData(tempChapterData);
   }
 
     return (
@@ -37,9 +38,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
             {(editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
             {(editedLine === index) && 
               <>
-              <input></input>
+              <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
               <button onClick={()=>{setEditedLine(-1);}}>Cancel</button>
-              <button onClick={()=>{setEditedLine(-1); console.log("TODO: call updateChapterDataByLine");}}>Save</button>
+              <button onClick={()=>{setEditedLine(-1); updateChapterDataByLine(index, editingChapterTitle);}}>Save</button>
               </>
             }
 
