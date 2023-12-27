@@ -12,6 +12,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       <thead>
         <tr>
           <th>Chapter Sequence Number</th>
+          <th>Chapter Keyword</th>
           <th>Chapter Title</th>
  
         </tr>
@@ -21,7 +22,8 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       {chapterData.map((item, index) => {
         return (<tr value={item} key={index}>
           <td>{index+1}</td>
-          <td>{item} </td>
+          <td>{item[0]} </td>
+          <td>{item[1]} </td>
           <td>
             <button>Select</button>
           </td>
@@ -32,6 +34,10 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       })}
       <tr key="newChapter">
         <td>Add New Chapter</td>
+        <td>      
+            <label>Chapter Key:</label>
+            <input></input>
+        </td>
         <td>      
             <label>Chapter Name:</label>
             <input></input>

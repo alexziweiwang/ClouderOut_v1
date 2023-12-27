@@ -36,7 +36,7 @@ export default function GameMaker() {
   const name = "/gamemaker";
 
   const [currChapter, setCurrChapter] = useState("");
-  const [chapterList, setChapterList] = useState(["testChapter1", "testChapter2"]); //TODO fetch from cloud db
+  const [chapterList, setChapterList] = useState([["key1", "testChapter1"], ["key2", "testChapter2"]]); //TODO fetch from cloud db
 
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });
