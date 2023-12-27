@@ -8,6 +8,11 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
   const [editedLine, setEditedLine] = useState(-1);
 
+  function updateChapterDataByLine(index, newTitle) {
+    //TODO update chapterData[index][1]) to the new-edited-title-input content
+    //TODO updateChapterData() to the new data structure
+  }
+
     return (
         <>
         <div className="chapterManagingArea"> Chapter Management
@@ -33,8 +38,8 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
             {(editedLine === index) && 
               <>
               <input></input>
-              <button>Cancel</button>
-              <button onClick={()=>{setEditedLine(-1);}}>Save</button>
+              <button onClick={()=>{setEditedLine(-1);}}>Cancel</button>
+              <button onClick={()=>{setEditedLine(-1); console.log("TODO: call updateChapterDataByLine");}}>Save</button>
               </>
             }
 
