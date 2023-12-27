@@ -3,6 +3,9 @@ import { useState } from 'react';
 
 export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter}) {
 
+  const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
+  const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
+
     return (
         <>
         <div className="chapterManagingArea"> Chapter Management
@@ -23,7 +26,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         return (<tr value={item} key={index}>
           <td>{index+1}</td>
           <td>{item[0]} </td>
-          <td>{item[1]} </td>
+          <td>{item[1]} 
+            {<button>Edit</button>}
+          </td>
           <td>
             <button>Select</button>
           </td>
@@ -35,12 +40,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       <tr key="newChapter">
         <td>Add New Chapter</td>
         <td>      
-            <label>Chapter Key:</label>
-            <input></input>
+            <label>Chapter Key (unchangable):</label>
+            <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
         </td>
         <td>      
-            <label>Chapter Name:</label>
-            <input></input>
+            <label>Chapter Name (changable):</label>
+            <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
         </td>
         <td>
           <button>Add</button>
