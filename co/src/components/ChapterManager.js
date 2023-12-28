@@ -82,6 +82,16 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
 
         </div>
+
+        <div>
+          Chapter Revert area
+   
+
+        </div>
+
+        <p className="plans">TODO: improve data design to include chapter editing options </p>
+        <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud</p>
+        
         </>
     );
 }
