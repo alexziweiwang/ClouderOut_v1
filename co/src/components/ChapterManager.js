@@ -12,6 +12,16 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     let tempChapterData = chapterData;
     tempChapterData[index][1] = newTitle;
     updateChapterData(tempChapterData);
+    setEditingChapterTitle("");
+  }
+
+  function addNewChapterLine() {
+    let tempChapterData = chapterData;
+    let line = [newChapterKeyInput, newChapterTitleInput];
+    tempChapterData.push(line);
+    updateChapterData(tempChapterData);
+    setNewChapterKeyInput("");
+    setNewChapterTitleInput("");
   }
 
     return (
@@ -64,7 +74,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
             <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
         </td>
         <td>
-          <button>Add</button>
+          <button onClick={()=>{addNewChapterLine();}}>Add</button>
         </td>
       </tr>
       </tbody>
