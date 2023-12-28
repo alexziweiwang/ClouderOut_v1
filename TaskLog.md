@@ -96,3 +96,5 @@
 - 2023-Dec-21: Consider improvement on UI design for better UX
 
 - 2023-Dec-25: Draw project engineering map
+
+- 2023-Dec-27: Design conditional next-node mechanism on if-else
