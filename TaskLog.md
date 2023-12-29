@@ -100,3 +100,4 @@
 - 2023-Dec-27: Design conditional next-node mechanism on if-else
 
 - 2023-Dec-28: Explore optimization of data structure for cloud-db accessing
+- 2023-Dec-28: Design improvement of chapter-related data design for cloud db
