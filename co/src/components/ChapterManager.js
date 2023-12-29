@@ -24,6 +24,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     setNewChapterTitleInput("");
   }
 
+  function hideChapter(index) {
+    let tempChapterData = chapterData;
+    tempChapterData[index][2] = "delete";
+    updateChapterData(tempChapterData);
+  }
+
     return (
         <>
         <div className="chapterManagingArea"> Chapter Management
@@ -59,7 +65,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
             <button>Select</button>
           </td>
           <td>
-            <button>Delete</button>
+            <button onClick={()=>{hideChapter(index);}}>Delete</button>
           </td>
         </tr>);
       })}
