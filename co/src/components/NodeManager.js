@@ -397,7 +397,7 @@ export default function NodeManager({projectName, currUser}) {
         console.log("!!! This is for project: ", projectName);
         project  = projectName;
         console.log("checking2 on project ... [", project, "]");
-        if (project.trim() === "") {
+        if (project === undefined || project === null || project === "" || project.trim() === "") {
           return;
         }
         const isUpdated = true;
