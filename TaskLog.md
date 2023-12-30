@@ -103,3 +103,4 @@
 - 2023-Dec-28: Design improvement of chapter-related data design for cloud db
 
 - 2023-Dec-29: Consider multi-language UI strategy
+- 2023-Dec-29: Plan for next-stage cloud-data testing and fixing from chapter-level
