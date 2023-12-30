@@ -101,3 +101,5 @@
 
 - 2023-Dec-28: Explore optimization of data structure for cloud-db accessing
 - 2023-Dec-28: Design improvement of chapter-related data design for cloud db
+
+- 2023-Dec-29: Consider multi-language UI strategy

@@ -731,7 +731,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
 
             {nextNodeList.length > 0 && <div className="optionArea">
               <div>
-              ! If you want to set this node as "Default: Always Reachable", <br></br>delete other conditionally-reachable node(s).
+              ! If you want to set this node as "Default: Always Reachable", <br></br>delete connection(s) to other conditionally-reachable node(s).
               </div>
             </div>}
 
