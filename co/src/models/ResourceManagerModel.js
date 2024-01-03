@@ -3,6 +3,14 @@ import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
 import { storage } from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
+/**
+ * Upload a file to storage
+ * 
+ * @param {*} file 
+ * @param {*} uname 
+ * @param {*} filename 
+ * @returns void
+ */
 export async function submitFile({file, uname, filename}) {
     console.log("step2.RM model submitFile ...", filename); //TODO test
     if (filename === "" || filename === undefined) {
@@ -16,6 +24,12 @@ export async function submitFile({file, uname, filename}) {
     }
 }
 
+/**
+ * Fetch list of uploaded files in resource-manager
+ * 
+ * @param {*} uname 
+ * @returns list of uploaded files
+ */
 export async function getRmFileList({uname}) {
     const docRef = doc(db, "user_projects", uname);
     const docSnap = await getDoc(docRef);
@@ -33,6 +47,15 @@ export async function getRmFileList({uname}) {
     return dataContentData;
 }
 
+/**
+ * Add file name to resource-manager file-list
+ * 
+ * @param {*} uname 
+ * @param {*} filetitle 
+ * @param {*} fileUrl 
+ * @param {*} fileType 
+ * @returns void
+ */
 export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
     const docRef = doc(db, "user_projects", uname);
     const docSnap = await getDoc(docRef);

@@ -1,6 +1,13 @@
 import db from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
+
+/**
+ * Get the list of project names of the user
+ * 
+ * @param {*} currUser 
+ * @returns list of project names
+ */
 export async function fetchProjectList(currUser) {
 
   console.log("*from cloud*: model - fetch project list ...");
@@ -21,6 +28,13 @@ export async function fetchProjectList(currUser) {
   return projectArr;
 }
 
+/**
+ * Revert deleted proejct to using
+ * 
+ * @param {*} projectToRevert 
+ * @param {*} currUser 
+ * @returns void
+ */
 export async function revertProject(projectToRevert, currUser) {
 
     const docRef = doc(db, "user_projects", currUser);
@@ -35,6 +49,13 @@ export async function revertProject(projectToRevert, currUser) {
     
 }
 
+/**
+ * Set specified project to deleted
+ * 
+ * @param {*} projectToDelete 
+ * @param {*} currUser 
+ * @returns void
+ */
 export async function deleteProject(projectToDelete, currUser) {
   //delete project by name
   const docRef = doc(db, "user_projects", currUser);
