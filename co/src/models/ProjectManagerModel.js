@@ -5,7 +5,7 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "fireb
 /**
  * Get the list of project names of the user
  * 
- * @param {*} currUser 
+ * @param {*} currUser username
  * @returns list of project names
  */
 export async function fetchProjectList(currUser) {
@@ -31,8 +31,8 @@ export async function fetchProjectList(currUser) {
 /**
  * Revert deleted proejct to using
  * 
- * @param {*} projectToRevert 
- * @param {*} currUser 
+ * @param {*} projectToRevert project name
+ * @param {*} currUser username
  * @returns void
  */
 export async function revertProject(projectToRevert, currUser) {
@@ -52,8 +52,8 @@ export async function revertProject(projectToRevert, currUser) {
 /**
  * Set specified project to deleted
  * 
- * @param {*} projectToDelete 
- * @param {*} currUser 
+ * @param {*} projectToDelete project name
+ * @param {*} currUser username
  * @returns void
  */
 export async function deleteProject(projectToDelete, currUser) {

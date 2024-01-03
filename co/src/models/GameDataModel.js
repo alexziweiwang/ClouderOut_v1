@@ -5,7 +5,8 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc} from "fireba
 /**
  * Get specific project data 
  * 
- * @param {*} projectName, uname
+ * @param {*} projectName project name
+ * @param {*} uname username
  * @returns specific project data of the user
  */
 export async function getProjectGameData({projectName, uname}) {
@@ -31,7 +32,9 @@ export async function getProjectGameData({projectName, uname}) {
 /**
  * Update game data by replacing with provided data
  * 
- * @param {*} projectName, uname, gameData
+ * @param {*} projectName project name
+ * @param {*} uname username
+ * @param {*} gameData game data to update
  * @returns void
  */
 export async function updateGameData({projectName, uname, gameData}) {

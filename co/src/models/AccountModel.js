@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 /**
  * Get project data by username.
  * 
- * @param {*} uname 
+ * @param {*} uname username
  * @returns fetched profiled data
  */
 export async function getProjectGameData({uname}) {

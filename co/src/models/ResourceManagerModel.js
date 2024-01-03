@@ -6,9 +6,9 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "fireb
 /**
  * Upload a file to storage
  * 
- * @param {*} file 
- * @param {*} uname 
- * @param {*} filename 
+ * @param {*} file file
+ * @param {*} uname usernamae
+ * @param {*} filename filename
  * @returns void
  */
 export async function submitFile({file, uname, filename}) {
@@ -27,7 +27,7 @@ export async function submitFile({file, uname, filename}) {
 /**
  * Fetch list of uploaded files in resource-manager
  * 
- * @param {*} uname 
+ * @param {*} uname username
  * @returns list of uploaded files
  */
 export async function getRmFileList({uname}) {
@@ -50,10 +50,10 @@ export async function getRmFileList({uname}) {
 /**
  * Add file name to resource-manager file-list
  * 
- * @param {*} uname 
- * @param {*} filetitle 
- * @param {*} fileUrl 
- * @param {*} fileType 
+ * @param {*} uname username
+ * @param {*} filetitle file name title
+ * @param {*} fileUrl file url
+ * @param {*} fileType file type
  * @returns void
  */
 export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
@@ -84,7 +84,7 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 /**
  * Fetch download url of a uploaded file by filename
  * 
- * @param {*} fullFilename 
+ * @param {*} fullFilename file name
  * @returns file url
  */
 export async function fetchUrlByFilename({fullFilename}) {
@@ -106,8 +106,8 @@ export async function fetchUrlByFilename({fullFilename}) {
 /**
  * Get specific proejct's resource-pair data
  * 
- * @param {*} userName 
- * @param {*} projectName 
+ * @param {*} userName username
+ * @param {*} projectName project name
  * @returns resource-pair data
  */
 export async function fetchProjectResourcePairs({userName, projectName}) {
@@ -137,9 +137,9 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
 /**
  * Update specific project's resource-pair data
  * 
- * @param {*} userName
- * @param {*} projectName
- * @param {*} obj
+ * @param {*} userName username
+ * @param {*} projectName project name
+ * @param {*} obj resource pair data object
  * @returns void
  */
 export async function updateProjectResourcePairs({userName, projectName, obj}) {
@@ -156,7 +156,6 @@ export async function updateProjectResourcePairs({userName, projectName, obj}) {
   if (!projectSnap.exists()) {
     return;
   }
-
 
   console.log("before updating to cloud db: ", obj); //TODO test
   await updateDoc(projectRef, {
