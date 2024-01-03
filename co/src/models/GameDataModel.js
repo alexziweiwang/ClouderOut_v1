@@ -1,6 +1,13 @@
 import db from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc} from "firebase/firestore"; 
 
+
+/**
+ * Get specific project data 
+ * 
+ * @param {*} projectName, uname
+ * @returns specific project data of the user
+ */
 export async function getProjectGameData({projectName, uname}) {
   const docRef = doc(db, "user_projects", uname);
   const userDirSnap = await getDoc(docRef);
@@ -21,6 +28,12 @@ export async function getProjectGameData({projectName, uname}) {
   return dataFetched;
 }
 
+/**
+ * Update game data by replacing with provided data
+ * 
+ * @param {*} projectName, uname, gameData
+ * @returns void
+ */
 export async function updateGameData({projectName, uname, gameData}) {
 
   const userDirRef = doc(db, "user_projects", uname);
