@@ -81,6 +81,12 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
     await updateDoc(ref, {filenames: currFileList});
 }
 
+/**
+ * Fetch download url of a uploaded file by filename
+ * 
+ * @param {*} fullFilename 
+ * @returns file url
+ */
 export async function fetchUrlByFilename({fullFilename}) {
   console.log("model-fetchUrlByFilename(): ", fullFilename); //TODO test
   const storageG = getStorage();
@@ -95,9 +101,15 @@ export async function fetchUrlByFilename({fullFilename}) {
     .catch((error) => {
       console.log("Error:", error);
     });
-
 }
 
+/**
+ * Get specific proejct's resource-pair data
+ * 
+ * @param {*} userName 
+ * @param {*} projectName 
+ * @returns resource-pair data
+ */
 export async function fetchProjectResourcePairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
 
@@ -122,6 +134,14 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
   return obj;
 }
 
+/**
+ * Update specific project's resource-pair data
+ * 
+ * @param {*} userName
+ * @param {*} projectName
+ * @param {*} obj
+ * @returns void
+ */
 export async function updateProjectResourcePairs({userName, projectName, obj}) {
   const docRef = doc(db, "user_projects", userName);
   const docSnap = await getDoc(docRef);
