@@ -104,3 +104,5 @@
 
 - 2023-Dec-29: Consider multi-language UI strategy
 - 2023-Dec-29: Plan for next-stage cloud-data testing and fixing from chapter-level
+
+- 2024-Jan-02: Explore documentation aspect plans
