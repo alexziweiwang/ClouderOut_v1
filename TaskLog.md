@@ -108,3 +108,4 @@
 - 2024-Jan-02: Explore documentation aspect plans
 
 - 2024-Jan-03: Design implementation plan for current stage
+- 2024-Jan-03: Design node-related data operations with cloud-db, for efficiency
