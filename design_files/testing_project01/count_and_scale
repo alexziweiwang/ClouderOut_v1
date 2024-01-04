@@ -1,0 +1,13 @@
+3 chapters
+chapter2 with branched nodes
+
+    node1->node2
+    node1->node3
+    node2->node4
+    node3->node4
+    node4->node5
+
+    (1 conditional access)
+each conversation node: 3 to 5 pieces
+    2+ chatacter images
+    2+ background images
