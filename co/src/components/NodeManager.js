@@ -78,8 +78,8 @@ export default function NodeManager({projectName, currUser}) {
 });
 
   async function getChapterDataFromCloud(chapter) {
-    //return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
-    return [];
+    return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
+   
   }
 
  
@@ -451,7 +451,7 @@ export default function NodeManager({projectName, currUser}) {
 
         <div className="setting_area"> Node Management
 
-        <button onClick={()=>{getChapterDataVM("chapter0");}}> Fetch chapter data </button>
+        <button onClick={()=>{getChapterDataFromCloud("chapter0");}}> temp: Fetch chapter data </button>
 
         {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 

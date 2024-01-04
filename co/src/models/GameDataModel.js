@@ -66,21 +66,23 @@ export async function getChapterData({projectName, uname, chapterName}) {
   console.log("projectName, uname, chapterName:", projectName, uname, chapterName); //TODO test
 
   const docRef = doc(db, "user_projects", uname);
-  // const userDirSnap = await getDoc(docRef);
+  const userDirSnap = await getDoc(docRef);
 
-  // if (!userDirSnap.exists()) {
-  //   return;
-  // }
-  // if (projectName === "" || projectName === undefined) {
-  //   return;
-  // }
+  if (!userDirSnap.exists()) {
+    return;
+  }
+  if (projectName === "" || projectName === undefined) {
+    return;
+  }
 
-  // const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
-  // const querySnapshot = await getDoc(q);
+  const projecRef = collection(docRef, projectName);
+  const q = query(collection(projecRef, "chapters"), where("chapter_name", "==", chapterName));
+              //TODO later: need to add"chapter_name" after creating a new chapter
+  const querySnapshot = await getDocs(q);
   let projectData = [];
-  // querySnapshot.forEach((doc) => {
-  //   projectData = doc.data();
-  // }); 
+  querySnapshot.forEach((doc) => {
+    projectData = doc.data();
+  }); 
 
   //TODO continue for chapter title in this project folder
   
