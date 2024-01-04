@@ -1,4 +1,4 @@
-import { getProjectGameData, updateGameData } from '../models/GameDataModel';
+import { getProjectGameData, updateGameData, getChapterData } from '../models/GameDataModel';
 
 /**
  * Get project data, call cloud-db related model function
@@ -21,4 +21,8 @@ export async function getProjectGameDataVM({projectName, uname}) {
  */
 export async function updateGameDataVM({projectName, uname, gameData}) {
     await updateGameData({projectName, uname, gameData});
+}
+
+export async function getChapterDataVM({projectName, uname, chapterName}) {
+    await getChapterData({projectName, uname, chapterName});
 }

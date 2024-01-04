@@ -1,6 +1,6 @@
 import * as React from 'react';
 import moment from "moment";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
@@ -65,6 +65,17 @@ export default function NodeManager({projectName, currUser}) {
    const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
    const x_base = 1, y_base = 1, y_dist=50;
    const node_width = 190, node_height = 70;
+
+
+   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+   useEffect(() => {
+    if (firstTimeEnter === true) {
+        let chapter = "chapter0"; //TODO test, later: fetch from user-input
+        let chapterData = await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
+        setNodeData(chapterData);
+        setFirstTimeEnter(false);
+    }
+});
 
  
   function handleNodeClick(name) {

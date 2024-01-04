@@ -61,4 +61,7 @@ export async function updateGameData({projectName, uname, gameData}) {
   });
 }
 
-
+export async function getChapterData({projectName, uname, chapterName}) {
+  //TODO fetch chapter data in the specified project of that user
+  
+}
