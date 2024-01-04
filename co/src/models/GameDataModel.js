@@ -22,11 +22,11 @@ export async function getProjectGameData({projectName, uname}) {
 
   const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
   const querySnapshot = await getDocs(q);
-  let dataFetched = [];
+  let projectData = [];
   querySnapshot.forEach((doc) => {
-    dataFetched = doc.data().game_data;
+    projectData = doc.data().game_data;
   });    
-  return dataFetched;
+  return projectData;
 }
 
 /**
@@ -38,7 +38,6 @@ export async function getProjectGameData({projectName, uname}) {
  * @returns void
  */
 export async function updateGameData({projectName, uname, gameData}) {
-
   const userDirRef = doc(db, "user_projects", uname);
   const userDirSnap = await getDoc(userDirRef);
 
@@ -64,4 +63,27 @@ export async function updateGameData({projectName, uname, gameData}) {
 export async function getChapterData({projectName, uname, chapterName}) {
   //TODO fetch chapter data in the specified project of that user
   
+  console.log("projectName, uname, chapterName:", projectName, uname, chapterName); //TODO test
+
+  const docRef = doc(db, "user_projects", uname);
+  // const userDirSnap = await getDoc(docRef);
+
+  // if (!userDirSnap.exists()) {
+  //   return;
+  // }
+  // if (projectName === "" || projectName === undefined) {
+  //   return;
+  // }
+
+  // const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
+  // const querySnapshot = await getDoc(q);
+  let projectData = [];
+  // querySnapshot.forEach((doc) => {
+  //   projectData = doc.data();
+  // }); 
+
+  //TODO continue for chapter title in this project folder
+  
+
+  console.log("getChapterData", projectData); //TODO test
 }

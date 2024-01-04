@@ -3,7 +3,7 @@ import moment from "moment";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
-import { getProjectGameDataVM, updateGameDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 
 export default function NodeManager({projectName, currUser}) {
@@ -71,11 +71,16 @@ export default function NodeManager({projectName, currUser}) {
    useEffect(() => {
     if (firstTimeEnter === true) {
         let chapter = "chapter0"; //TODO test, later: fetch from user-input
-        let chapterData = await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
+        let chapterData = getChapterDataFromCloud(chapter);
         setNodeData(chapterData);
         setFirstTimeEnter(false);
     }
 });
+
+  async function getChapterDataFromCloud(chapter) {
+    //return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
+    return [];
+  }
 
  
   function handleNodeClick(name) {
@@ -445,6 +450,9 @@ export default function NodeManager({projectName, currUser}) {
     return (     
 
         <div className="setting_area"> Node Management
+
+        <button onClick={()=>{getChapterDataVM("chapter0");}}> Fetch chapter data </button>
+
         {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
         <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.

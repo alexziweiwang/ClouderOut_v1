@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
@@ -74,8 +74,9 @@ export default function GameMaker() {
 
     <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
 
- 
+    <p className="plans">TODO: send node data into NodeManager component here</p> 
     <NodeManager currUser={username} projectName={projectName}/>
+    
   </div>
 
   
