@@ -109,3 +109,5 @@
 
 - 2024-Jan-03: Design implementation plan for current stage
 - 2024-Jan-03: Design node-related data operations with cloud-db, for efficiency
+
+- 2024-Jan-04: Consider current-stage dev-flow before testing-stage
