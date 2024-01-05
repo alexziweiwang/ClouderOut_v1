@@ -148,14 +148,14 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
  * @returns void
  */
 export async function updateProjectResourcePairs({userName, projectName, obj}) {
-  const docRef = doc(db, "user_projects", userName);
-  const docSnap = await getDoc(docRef);
+                // const docRef = doc(db, "user_projects", userName);
+                // const docSnap = await getDoc(docRef);
 
-  if (!docSnap.exists()) {
-    return;
-  }
+                // if (!docSnap.exists()) {
+                //   return;
+                // }
 
-  const projectRef = doc(docRef, "projects", projectName);
+  const projectRef = doc(db, "user_projects", userName, "projects", projectName);
   const projectSnap = await getDoc(projectRef);
 
   if (!projectSnap.exists()) {

@@ -36,17 +36,17 @@ export async function fetchProjectList(currUser) {
  * @returns void
  */
 export async function revertProject(projectToRevert, currUser) {
-
-    const docRef = doc(db, "user_projects", currUser);
-    const docSnap = await getDoc(docRef);
+              // const docRef = doc(db, "user_projects", currUser);
+              // const docSnap = await getDoc(docRef);
   
-    if (!docSnap.exists()) {
-      return;
-    }
+              // if (!docSnap.exists()) {
+              //   return;
+              // }
 
-    const projRef = doc(docRef, "projects", projectToRevert);
-    await updateDoc(projRef, {trashed: false});
-    
+              // const projRef = doc(docRef, "projects", projectToRevert);
+    const projRef = doc(db, "user_projects", currUser, "projects", projectToRevert);
+
+    await updateDoc(projRef, {trashed: false});  
 }
 
 /**
@@ -58,14 +58,16 @@ export async function revertProject(projectToRevert, currUser) {
  */
 export async function deleteProject(projectToDelete, currUser) {
   //delete project by name
-  const docRef = doc(db, "user_projects", currUser);
-  const docSnap = await getDoc(docRef);
+              // const docRef = doc(db, "user_projects", currUser);
+              // const docSnap = await getDoc(docRef);
+  
+              // if (!docSnap.exists()) {
+              //   return;
+              // }
 
-  if (!docSnap.exists()) {
-    return;
-  }
+              // const projRef = doc(docRef, "projects", projectToDelete);
+              const projRef = doc(db, "user_projects", currUser, "projects", projectToDelete);
 
-  const projRef = doc(docRef, "projects", projectToDelete);
   await updateDoc(projRef, {trashed: true});
   
 }
