@@ -82,6 +82,16 @@ export default function NodeManager({projectName, currUser}) {
    
   }
 
+  async function updateNodeData() {
+    //TODO update current node-data to cloud db
+    //TODO cloud node-data design:
+      //TODO each node is a collection
+      //TODO each node-collection contains many documents
+        //TODO for board-game/card-game node, each document is an element?
+        //TODO for conversational node, each document is a piece?        
+
+  }
+
  
   function handleNodeClick(name) {
     //TODO: update to local data: update previously-clicked node's most recent logic-splitter count ("currNodeSplittedNum")
