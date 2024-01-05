@@ -20,13 +20,8 @@ export async function getProjectGameData({projectName, uname}) {
     return;
   }
 
-      // const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
-      // const querySnapshot = await getDocs(q);
   let projectData = [];
-  // querySnapshot.forEach((doc) => {
-  //   projectData = doc.data().game_data;
-  // });   
-  projectData = projectSnap.data().gameData; 
+  projectData = projectSnap.data().game_data; 
 
   return projectData;
 }
@@ -40,18 +35,7 @@ export async function getProjectGameData({projectName, uname}) {
  * @returns void
  */
 export async function updateGameData({projectName, uname, gameData}) {
-  const userDirRef = doc(db, "user_projects", uname);
-  const userDirSnap = await getDoc(userDirRef);
-  //db, "user_projects", uname, "projects", projectName
-
-  if (!userDirSnap.exists()) {
-    return;
-  }
-  if (projectName === "" || projectName === undefined) {
-    return;
-  }
-
-  const projectRef = doc(userDirRef, "projects", projectName);
+  const projectRef = doc(db, "user_projects", uname, "projects", projectName);
   const projectSnap = await getDoc(projectRef);
 
   if (!projectSnap.exists()) {
