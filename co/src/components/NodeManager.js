@@ -72,7 +72,7 @@ export default function NodeManager({projectName, currUser}) {
     if (firstTimeEnter === true) {
         let chapter = "chapter0"; //TODO test, later: fetch from user-input
         let chapterData = getChapterDataFromCloud(chapter);
-        setNodeData(chapterData);
+    //    setNodeData(chapterData);
         setFirstTimeEnter(false);
     }
 });

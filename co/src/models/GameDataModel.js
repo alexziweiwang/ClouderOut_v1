@@ -10,22 +10,24 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc} from "fireba
  * @returns specific project data of the user
  */
 export async function getProjectGameData({projectName, uname}) {
-  const docRef = doc(db, "user_projects", uname);
-  const userDirSnap = await getDoc(docRef);
-
-  if (!userDirSnap.exists()) {
-    return;
-  }
   if (projectName === "" || projectName === undefined) {
     return;
   }
+  const projectRef = doc(db, "user_projects", uname, "projects", projectName);
+  const projectSnap = await getDoc(projectRef);
 
-  const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
-  const querySnapshot = await getDocs(q);
+  if (!projectSnap.exists()) {
+    return;
+  }
+
+      // const q = query(collection(docRef, "projects"), where("project_name", "==", projectName));
+      // const querySnapshot = await getDocs(q);
   let projectData = [];
-  querySnapshot.forEach((doc) => {
-    projectData = doc.data().game_data;
-  });    
+  // querySnapshot.forEach((doc) => {
+  //   projectData = doc.data().game_data;
+  // });   
+  projectData = projectSnap.data().gameData; 
+
   return projectData;
 }
 
@@ -40,6 +42,7 @@ export async function getProjectGameData({projectName, uname}) {
 export async function updateGameData({projectName, uname, gameData}) {
   const userDirRef = doc(db, "user_projects", uname);
   const userDirSnap = await getDoc(userDirRef);
+  //db, "user_projects", uname, "projects", projectName
 
   if (!userDirSnap.exists()) {
     return;
@@ -69,13 +72,13 @@ export async function getChapterData({projectName, uname, chapterName}) {
   }
 
               //TODO later: need to add"chapter_name" after creating a new chapter
-  const userRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterName);
-  const userDirSnap = await getDoc(userRef);
-  if (!userDirSnap.exists()) {
+  const chapterRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterName);
+  const chapterSnap = await getDoc(chapterRef);
+  if (!chapterSnap.exists()) {
     return;
   }
 
-  let projectData = userDirSnap.data();
+  let projectData = chapterSnap.data();
  
   console.log("getChapterData", projectData); //TODO test
 
