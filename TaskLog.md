@@ -112,3 +112,4 @@
 
 - 2024-Jan-04: Consider current-stage dev-flow before testing-stage
 - 2024-Jan-04: Research on tool features
+- 2024-Jan-04: Design and refactor node and smaller element data structures for cloud db

@@ -94,7 +94,6 @@ export default function NodeManager({projectName, currUser}) {
 
  
   function handleNodeClick(name) {
-    //TODO: update to local data: update previously-clicked node's most recent logic-splitter count ("currNodeSplittedNum")
     console.log("clicked node = " + name); //TODO
     if (name === "" || name !== clickedNode) {
       setClickedNode(name);
