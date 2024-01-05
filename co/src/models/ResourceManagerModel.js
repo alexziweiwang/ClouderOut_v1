@@ -57,16 +57,17 @@ export async function getRmFileList({uname}) {
  * @returns void
  */
 export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
-    const docRef = doc(db, "user_projects", uname);
-    const docSnap = await getDoc(docRef);
+                  // const docRef = doc(db, "user_projects", uname);
+                  // const docSnap = await getDoc(docRef);
   
-    if (!docSnap.exists()) {
-      return;
-    }
+                  // if (!docSnap.exists()) {
+                  //   return;
+                  // }
 
     /* add filename to resource-manage file-list */
     /* data structure: map <k, v> is <filetitle, fileUrl> */
-    const ref = doc(docRef, "projects", "resource_manager");
+                  // const ref = doc(docRef, "projects", "resource_manager");
+    const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
     let currFileData = await getDoc(ref, "fileRecord");
     let currFileList = currFileData.data().filenames;
     const obj = {"filename": filetitle, "fileurl": fileUrl, "filetype": fileType};
@@ -113,19 +114,23 @@ export async function fetchUrlByFilename({fullFilename}) {
 export async function fetchProjectResourcePairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
 
-  const docRef = doc(db, "user_projects", userName);
-  const docSnap = await getDoc(docRef);
+              // const docRef = doc(db, "user_projects", userName);
+              // const docSnap = await getDoc(docRef);
 
-  if (!docSnap.exists()) {
-    return;
-  }
+              // if (!docSnap.exists()) {
+              //   return;
+              // }
 
-  const ref = doc(docRef, "projects", projectName);
-  let visualList = await getDoc(ref, "proj_resource_visual");
-  visualList = visualList.data();
+              // const ref = doc(docRef, "projects", projectName);
+  const ref = doc(db, "user_projects", userName, "projects", projectName);
+  let visualListSnap = await getDoc(ref, "proj_resource_visual");
+  //TODO validate visualListSnap
+  let visualList = visualListSnap.data();
   visualList = visualList["proj_resource_visual"];
-  let audioList = await getDoc(ref, "proj_resource_audio");
-  audioList = audioList.data();
+  let audioListSnap = await getDoc(ref, "proj_resource_audio");
+  //TODO validate audioListSnap
+
+  let audioList = audioListSnap.data();
   audioList = audioList["proj_resource_audio"];
 
   const obj = {audio: audioList, visual: visualList};
