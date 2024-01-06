@@ -953,9 +953,12 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             //TODO both case (new or existing node): add link and update curr-node's next-node info
                 //TODO using name "nextNodeNameSetup", "conditionContent"
             /*Update the nextNodeList and condition-list for this clicked-node's data */
-                let currNodeNextList = nodeData[clickedNode].nextNodes;
-            // currNodeNextList.push(); //TODO push the next-node's index-in-nodeData
-            let currNodeCondtList = nodeData[clickedNode].spltCondt;
+            
+            let currNodeNextList = nodeData.filter(e => e.nodeName === clickedNode)[0];
+            currNodeNextList = currNodeNextList.nextNodes;
+            currNodeNextList.push(); //TODO push the next-node's index-in-nodeData
+            let currNodeCondtList = nodeData.filter(e => e.nodeName === clickedNode)[0];
+            currNodeCondtList = currNodeCondtList.spltCondt;
             currNodeCondtList.push(conditionContent);
             //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
             //TODO add link between nodes 
