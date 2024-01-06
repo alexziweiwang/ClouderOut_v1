@@ -293,7 +293,6 @@ export default function NodeManager({projectName, currUser}) {
         }
         nodeDataTemp[fromNodeIndex].nextNodes = newArr;
         
-        setNodeData(nodeDataTemp); //TODO later: update to cloud db
         console.log("Removed link from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "......"); //TODO test 
         console.log("nodeData[fromNodeIndex]", nodeData[fromNodeIndex]); //TODO
         console.log("nextList: ", nextNodeList); //TODO test
@@ -308,7 +307,12 @@ export default function NodeManager({projectName, currUser}) {
             }
         }
         tempCondtList = tempCondtList.filter(e => e !== "(deleted)");
-        setNextCondtList(tempCondtList);
+        console.log("new condt list: ");
+        console.log(tempCondtList);
+        setNextCondtList(tempCondtList); 
+        nodeDataTemp[fromNodeIndex].nextCondtList = tempCondtList;
+
+        setNodeData(nodeDataTemp); //TODO later: update to cloud db
 
         setNextNodeList(newArr);
       }
