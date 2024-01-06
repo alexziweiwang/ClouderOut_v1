@@ -930,11 +930,8 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
   
                 }
               }
-            
-
             }
             
-
             /* Setup of next-node name */
             let nextNodeNameSetup = "";
 
@@ -952,6 +949,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
 
             //TODO both case (new or existing node): add link and update curr-node's next-node info
                 //TODO using name "nextNodeNameSetup", "conditionContent"
+
             /*Update the nextNodeList and condition-list for this clicked-node's data */
             
             let currNodeNextList = nodeData.filter(e => e.nodeName === clickedNode)[0];
@@ -960,9 +958,24 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             let currNodeCondtList = nodeData.filter(e => e.nodeName === clickedNode)[0];
             currNodeCondtList = currNodeCondtList.spltCondt;
             currNodeCondtList.push(conditionContent);
+
+            let nodeDataTemp = nodeData;
+            let index = 0;
+            for (; index < nodeDataTemp.length; index++) {
+              if (nodeDataTemp[index].nodeName === clickedNode) {
+                break;
+              }
+            }
+            nodeDataTemp[index].nextNodes = currNodeNextList;
+            nodeDataTemp[index].spltCondt = currNodeCondtList;
+            setNodeData(nodeDataTemp);
+
             //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
             //TODO add link between nodes 
-        
+
+            console.log("nodeDataTemp");
+            console.log(nodeDataTemp);
+
 
             // foramt: const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
 
