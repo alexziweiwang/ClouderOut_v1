@@ -20,6 +20,14 @@ export default function NodeManager({projectName, currUser}) {
     { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game", screenSize: "h450_800"},
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   ]); //TODO testing data
+  
+  const [nodeData2, setNodeData2] = useState([
+    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    { nodeName: "end node", depth: 4, inGroupPosition:0, nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  ]); //TODO new data-design
 
 // TODO testing, temp ----------------------------------------
 
@@ -204,50 +212,6 @@ export default function NodeManager({projectName, currUser}) {
     setNodeData(nodeDataTemp);
     setToRevert("");
   }
-
-
-//   function addLinkBetweenNodes() { //TODO *** refactor: for new data-structure and depth plan
-//     const sourceNodeName = clickedNode;
-//     const nodeDataTemp = nodeData;
-//     let fromNodeIndex = -1, toNodeIndex = -1;
-//     let i = 0;
-//     //TODO idea: a node actually CAN link to itself, if there is "loop-like" occasion needed, but it would need game-data update eventually
-
-//     if (sourceNodeName === "" && toNodeName === "") {
-//       console.log("Sourec Node and Destination Node are required."); //TODO test
-//       return;
-//     }
-
-//     if (sourceNodeName === "") {
-//       console.log("Source Node is required."); //TODO test 
-//       return;
-//     }
-
-//     if (toNodeName === "") {
-//       console.log("Destination Node is required."); //TODO test 
-//       return;
-//     }
-
-//     for (; i < nodeDataTemp.length; i++) {
-//       if (nodeDataTemp[i].nodeName === sourceNodeName) {
-//         fromNodeIndex = i;
-//       }
-//       if (nodeDataTemp[i].nodeName === toNodeName) {
-//         toNodeIndex = i;
-//       }
-//     }
-//     if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
-//       if (nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
-//         console.log("Warning: the two nodes are already linked"); //TODO test
-//       } else {
-//         nodeDataTemp[fromNodeIndex].nextNodes.push(toNodeIndex);
-//         setNodeData(nodeDataTemp); //TODO later: update to cloud db
-//         console.log("Added link !!! from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "!!!!!!!"); //TODO test 
-//         setFromNodeName("");
-//         setToNodeName("");
-//       }
-//     } 
-//   }
 
   function deleteLinkBetweenNodes(destNodeName) { //TODO *** refactor: for new data-structure and depth plan
     setToNodeName(destNodeName);
@@ -958,7 +922,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             
             let currNodeNextList = nodeData.filter(e => e.nodeName === clickedNode)[0];
             currNodeNextList = currNodeNextList.nextNodes;
-            currNodeNextList.push(); //TODO push the next-node's index-in-nodeData
+            currNodeNextList.push(); //TODO !!! push the next-node's index-in-nodeData
             let currNodeCondtList = nodeData.filter(e => e.nodeName === clickedNode)[0];
             currNodeCondtList = currNodeCondtList.spltCondt;
             currNodeCondtList.push(conditionContent);
@@ -977,7 +941,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
             //TODO add link between nodes 
 
-            console.log("nodeDataTemp");
+            console.log("nodeDataTemp:: ");
             console.log(nodeDataTemp);
 
 
