@@ -21,7 +21,7 @@ export default function NodeManager({projectName, currUser}) {
     { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   ]); //TODO testing data
   
-  const [nodeData2, setNodeData2] = useState([
+  const [nodeRelationship, setNodeRelationship] = useState([
     { nodeName: "plot1", depth: 1, inGroupPosition:0, nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
     { nodeName: "plot2",depth: 2, inGroupPosition:0, nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
     { nodeName: "option x", depth: 3, inGroupPosition:0, nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
@@ -90,7 +90,7 @@ export default function NodeManager({projectName, currUser}) {
    
   }
 
-  async function updateNodeData() {
+  async function updateNodeRelationship() {
     //TODO update current node-data to cloud db
     //TODO cloud node-data design:
       //TODO each node is a collection
