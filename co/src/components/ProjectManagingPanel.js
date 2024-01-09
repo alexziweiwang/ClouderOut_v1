@@ -40,6 +40,15 @@ export default function ProjectManagerPanel() {
       setProjectName(event.target.value);
     }
 
+    function handleProjectGridClicked(project) {
+      if (project === selected_project_name) {
+        setProjectName("");
+      } else {
+        setProjectName(project);
+      }
+    }
+
+
     function handleTrashedProjectSelectionChange(event) {
       setSelectedTrashedProj(event.target.value);
     }
@@ -67,12 +76,11 @@ export default function ProjectManagerPanel() {
         <br></br>
         
         <div className="projSelectionArea">
-          <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
         {projList && 
         <div>
 
 
-        <select className="dropdownList" value={selected_project_name} onChange={handleProjectSelectionChange}>
+        {/* <select className="dropdownList" value={selected_project_name} onChange={handleProjectSelectionChange}>
           <option value="" key=""> -- Project Name --</option>
 
         {projList.map((itemIndex, index) => {
@@ -81,14 +89,19 @@ export default function ProjectManagerPanel() {
           );
         })} 
    
-        </select>
+        </select> */}
 
 
         <br></br>
         <div className="projectGrid">
-          {projList.map((itemIndex, index) => {
+          {projList.map((item, index) => {
             return (
-              <div className="projectGridItem" key={projList[index]}>{projList[index]}</div>
+              <div className= {(selected_project_name === item) ? "projectGridItemSelected" : "projectGridItem"}
+                  key={projList[index]} 
+                  value={item} 
+                  onClick={()=>{handleProjectGridClicked(item);}}>
+              {item}
+              </div>
             );
           })} 
         </div>
@@ -96,7 +109,7 @@ export default function ProjectManagerPanel() {
         </div>
         }
         </div>
-
+        <p className="plans">TEST selected_project_name : {selected_project_name}</p>
 
         <br></br>
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
