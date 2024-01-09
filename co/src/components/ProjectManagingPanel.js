@@ -101,6 +101,12 @@ export default function ProjectManagerPanel() {
                   value={item} 
                   onClick={()=>{handleProjectGridClicked(item);}}>
               {item}
+              <br></br>
+              <br></br>
+              <br></br>
+
+              {(selected_project_name === item) && <button className="buttonRightBottom" onClick={deleteProject}>Delete</button>}
+
               </div>
             );
           })} 
@@ -109,17 +115,17 @@ export default function ProjectManagerPanel() {
         </div>
         }
         </div>
-        <p className="plans">TEST selected_project_name : {selected_project_name}</p>
+        <p className="plans">TEST: selected_project_name = {selected_project_name}</p>
 
         <br></br>
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
-        <button onClick={deleteProject}>Delete</button>
    
         <br></br><br></br><br></br>
 
-        <div>
+        <div className="trashedProjectArea">
         <label>Trashed Project(s):</label>
         <br></br>
+
         {trashedProjList && 
           <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
             <option value="" key=""> -- Project Name --</option>
@@ -131,7 +137,6 @@ export default function ProjectManagerPanel() {
               })
             }
           </select>
-          
         }
 
         <button onClick={revertTrashedProject}>Revert this project</button>
