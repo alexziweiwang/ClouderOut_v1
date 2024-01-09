@@ -115,3 +115,5 @@
 - 2024-Jan-04: Design and refactor node and smaller element data structures for cloud db
 
 - 2024-Jan-05: Consider optimization on node-link visualization
+
+- 2024-Jan-08: Design node data visualization strategy
