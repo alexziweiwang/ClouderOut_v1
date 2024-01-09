@@ -775,20 +775,37 @@ button:hover {
 
 .projectGridItem {
     border-color: rgb(37, 46, 68);
-    background-color: #cbd7de;
+    background-color: #d9dae4;
     margin: 2px;
-    width: 500px;
+    width: 300px;
     border-radius: 0px;
-    margin-left: 30%;
+    user-select: none;
+    padding: 2px;
+    margin: 10px;
+    border-radius: 7px;
 }
 
 .projectGridItem:hover {
     border-color: rgb(37, 46, 68);
-    background-color: #425159;
+    background-color: #41435b;
     color: white;
     margin: 2px;
-    width: 500px;
+    width: 300px;
     border-radius: 0px;
-    margin-left: 30%;
-    
+    cursor: pointer;
+    padding: 2px;
+    margin: 10px;
+    border-radius: 7px;
+}
+
+.projectGrid {
+    margin-top: 5px;
+    margin-left: 10%;
+    background-color: rgb(122, 124, 122);
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    flex-shrink: initial;
+    height: 100px;
 }

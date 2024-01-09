@@ -85,7 +85,7 @@ export default function ProjectManagerPanel() {
 
 
         <br></br>
-        <div>
+        <div className="projectGrid">
           {projList.map((itemIndex, index) => {
             return (
               <div className="projectGridItem" key={projList[index]}>{projList[index]}</div>
