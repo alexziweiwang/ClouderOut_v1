@@ -833,3 +833,22 @@ button:hover {
 .trashedProjectArea {
     background-color: rgb(106, 140, 106);
 }
+
+.newProjForm {
+    padding-left: 20%;
+}
+
+.newProjLineName {
+    width: 160px;
+    /* background-color: rgb(180, 173, 160); */
+    text-align: right;
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+.newProjLineContent {
+    width: 500px;
+    /* background-color: rgb(186, 186, 215); */
+    text-align: left;
+    padding: -3px;
+}

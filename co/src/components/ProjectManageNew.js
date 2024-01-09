@@ -64,7 +64,6 @@ export default function ProjectManageNew() {
       // game-data map: empty {}
       // author-info field: addedAuthorInfo
       // field: type = "project"
-      // field: game-size-direction
       // chapter directory: collection "chapters"
       // game node directory: default in chapter-management (at least one defualt node in ecah chapter)
       //            genre field (later)
@@ -82,8 +81,7 @@ export default function ProjectManageNew() {
         //TODO trigger flag to false: don't navigate
       }
       
-      
-      
+
       const empty_game_data = {};
       const obj = {
         project_name: addedNewProjName,
@@ -143,29 +141,32 @@ export default function ProjectManageNew() {
 
         <br></br>
         <div>
-        <label className="newProjectInfoElement">Project Name: </label>
-        <input className="newProjectInfoElement" type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
+          <div className="parallelFrame newProjForm">
+          
+           <div className="newProjLineName">
+            <label className="newProjectInfoElement">Project Name: </label>
+            <br></br>
+            <label className="newProjectInfoElement"></label>Project Description: 
+            <br></br><br></br><br></br><br></br><br></br>
+            <label className="newProjectInfoElement">Author Info: </label>
+          </div>
+          <div className="newProjLineContent">
+            <input className="newProjectInfoElement" type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
+            <br></br>
+            <textarea className="newProjectInfoElement" rows={5} cols={36} value={projDedscription} onChange={changeProjDescription}></textarea>
+            <br></br>
+            <textarea className="newProjectInfoElement" rows={2} cols={20} value={addedAuthorInfo} onChange={changeAuthorInfo}></textarea>
+
+          </div>
+        </div>
+
+
 
         <br></br>
-        <label className="newProjectInfoElement"></label>Project Description: 
-        <textarea className="newProjectInfoElement" rows={5} cols={36} value={projDedscription} onChange={changeProjDescription}></textarea>
         <br></br>
-        <label className="newProjectInfoElement">Author Info: </label>
-        <textarea className="newProjectInfoElement" rows={2} cols={20} value={addedAuthorInfo} onChange={changeAuthorInfo}></textarea>
 
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
         <br></br>
-
-
-        <p className="plans"> TODO: add screen-size setting here (with warning of unchangeble after creation)</p>
-        <label className="newProjectInfoElement">Screen Size and Direction:</label>
-        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-          <option value="" key=""> ----- Select Size and Direction ----- </option>
-          <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-          <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-          <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-          <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-        </select>
 
         <br></br>
         <p className="plans"> (Later: [Genre] can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
@@ -179,20 +180,18 @@ export default function ProjectManageNew() {
         </p>
 
         <br></br>
+        <div className="parallelFrame">
+        <button 
+          onClick={createNewProjectReturn}>
+        Create & Close
+        </button>
 
         <button 
           onClick={createNewProjectEdit}>
         Create & Start Editing!
         </button>
 
-        <br></br>
-        <br></br>
-        <br></br>
-
-        <button 
-          onClick={createNewProjectReturn}>
-        Create & Close
-        </button>
+        </div>
 
     </>
     

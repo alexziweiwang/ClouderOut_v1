@@ -60,6 +60,8 @@ export default function ProjectManagerPanel() {
     }
 
     async function deleteProject() {
+      //TODO add warning
+
       await deleteProjectVM(selected_project_name, username);
       setProjectName("");
       loadProjectListFromCloud();
@@ -110,6 +112,7 @@ export default function ProjectManagerPanel() {
               </div>
             );
           })} 
+   
         </div>
 
         </div>
