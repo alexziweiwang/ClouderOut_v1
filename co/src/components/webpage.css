@@ -765,3 +765,30 @@ button:hover {
     width: 550px;
     margin: 5px;
 }
+
+.dropdownList {
+    height: 30px;
+    border-color: rgb(191, 191, 191);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.projectGridItem {
+    border-color: rgb(37, 46, 68);
+    background-color: #cbd7de;
+    margin: 2px;
+    width: 500px;
+    border-radius: 0px;
+    margin-left: 30%;
+}
+
+.projectGridItem:hover {
+    border-color: rgb(37, 46, 68);
+    background-color: #425159;
+    color: white;
+    margin: 2px;
+    width: 500px;
+    border-radius: 0px;
+    margin-left: 30%;
+    
+}

@@ -70,7 +70,9 @@ export default function ProjectManagerPanel() {
           <p className="plans"> later: make icon-like or list-like selfmade project-selector for the user to select </p>
         {projList && 
         <div>
-        <select value={selected_project_name} onChange={handleProjectSelectionChange}>
+
+
+        <select className="dropdownList" value={selected_project_name} onChange={handleProjectSelectionChange}>
           <option value="" key=""> -- Project Name --</option>
 
         {projList.map((itemIndex, index) => {
@@ -80,6 +82,17 @@ export default function ProjectManagerPanel() {
         })} 
    
         </select>
+
+
+        <br></br>
+        <div>
+          {projList.map((itemIndex, index) => {
+            return (
+              <div className="projectGridItem" key={projList[index]}>{projList[index]}</div>
+            );
+          })} 
+        </div>
+
         </div>
         }
         </div>
@@ -95,7 +108,7 @@ export default function ProjectManagerPanel() {
         <label>Trashed Project(s):</label>
         <br></br>
         {trashedProjList && 
-          <select value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
+          <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
             <option value="" key=""> -- Project Name --</option>
             {
               trashedProjList.map((item, index) => {
@@ -110,10 +123,6 @@ export default function ProjectManagerPanel() {
 
         <button onClick={revertTrashedProject}>Revert this project</button>
         </div>
-
-        <p className="plans">This is ProjectManagerPanel Component!!
-          <br></br>Here, the user can create new projects, or select specific projects to edit.
-        </p>
    
     </>
     
