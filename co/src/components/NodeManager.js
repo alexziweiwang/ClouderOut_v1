@@ -22,12 +22,13 @@ export default function NodeManager({projectName, currUser}) {
   ]); //TODO testing data
   
   const [nodeRelationship, setNodeRelationship] = useState([
-    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    { nodeName: "end node", depth: 4, inGroupPosition:0, nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "plot1", depth: 1, prevNode: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "plot2", depth: 2, prevNode: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option x", depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option y", depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    { nodeName: "end node", depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   ]); //TODO new data-design
+  // prevNode: an clue to search for previous-node, and get the prev-node's next-node list length, for visualization
 
 // TODO testing, temp ----------------------------------------
 
