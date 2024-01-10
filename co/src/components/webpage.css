@@ -115,6 +115,7 @@ div {
     align-items: flex-start;
     background-color: pink;
     border: none;
+    border-radius: 0px;
 }
 
 .textRight {

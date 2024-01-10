@@ -42,6 +42,33 @@ export default function GameMaker() {
     navigate('/projectmanagingpanel', { replace: true });
   }
 
+  const [nodeData, setNodeData] = useState([
+    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  ]); //TODO testing data
+  
+  const [nodeRelationship, setNodeRelationship] = useState([
+    { nodeName: "plot1", depth: 1, prevNode: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "plot2", depth: 2, prevNode: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option x", depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    { nodeName: "option y", depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    { nodeName: "end node", depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  ]); //TODO new data-design
+  // prevNode: an clue to search for previous-node, and get the prev-node's next-node list length, for visualization
+  // improvement on prevNode involved: adding link & deleting link, involved fields: current node's prevNode, previous nodes' nextPairs
+
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
+    "plot1": {depth: 1, prevNode: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "plot2": {depth: 2, prevNode: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option x": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option y": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    "end node": {depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  }); //TODO new data-design
+
+
 
   return (
   <div>
@@ -51,8 +78,14 @@ export default function GameMaker() {
       <p>projectName: {projectName}</p>
 
     </div>
-
     <br></br>
+
+    <p></p>
+    <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
+
+    <p className="plans">TODO: dynamic setup of "nodedata" for specific chapter, according to user choice</p> 
+    <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData}/>
+
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
@@ -73,10 +106,6 @@ export default function GameMaker() {
 
     
 
-    <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
-
-    <p className="plans">TODO: send node data into NodeManager component here</p> 
-    <NodeManager currUser={username} projectName={projectName}/>
     
   </div>
 
