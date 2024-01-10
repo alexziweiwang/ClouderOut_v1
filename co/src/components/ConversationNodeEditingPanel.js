@@ -41,6 +41,11 @@ export default function ConversationNodeEditingPanel() {
 
     console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
 
+    function goToGameMaker() {
+        let stateObj = {selected_project_name: state.projectName, username: state.userName};
+        navigate('/gamemaker', { replace: true, state: stateObj });
+    }
+
 
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
@@ -50,12 +55,6 @@ export default function ConversationNodeEditingPanel() {
         console.log("modal save changes!");
         //TODO update to cloud db
         setDisplayRmModal(false);
-    }
-
-    function goToGameMaker() {
-        const selected_project_name = projectName;
-        let username = uname;
-        navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
     }
 
     function switchListEditor() {
@@ -89,7 +88,12 @@ export default function ConversationNodeEditingPanel() {
     return (
 
         <div>
-            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button></div>
+            <div className="returning_buttons">
+                <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
+                <p>projectName: {state.projectName}</p>
+
+                </div>
+            
             <p className="plans"></p>
             
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
