@@ -117,3 +117,5 @@
 - 2024-Jan-05: Consider optimization on node-link visualization
 
 - 2024-Jan-08: Design node data visualization strategy
+
+- 2024-Jan-09: Design improvement of Game-maker page UX
