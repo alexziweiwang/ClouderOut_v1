@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
+import { GiTrashCan } from "react-icons/gi";
+
 
 export default function ProjectManagerPanel() {
     const username = "user002"; //TODO test
@@ -106,7 +108,7 @@ export default function ProjectManagerPanel() {
 
               {(selected_project_name === item) && 
               <button className="buttonLeftBottom" onClick={handleDeleteProject}>
-                Delete
+                <GiTrashCan/>
               </button>}
 
               </div>
