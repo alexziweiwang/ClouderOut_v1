@@ -30,7 +30,18 @@ export default function NodeManager({projectName, currUser}) {
   ]); //TODO new data-design
   // prevNode: an clue to search for previous-node, and get the prev-node's next-node list length, for visualization
   // improvement on prevNode involved: adding link & deleting link, involved fields: current node's prevNode, previous nodes' nextPairs
-// TODO testing, temp ----------------------------------------
+
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
+    "plot1": {depth: 1, prevNode: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "plot2": {depth: 2, prevNode: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option x": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option y": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    "end node": {depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  }); //TODO new data-design
+
+
+
+  // TODO testing, temp ----------------------------------------
 
    /* variable area */
    const navigate = useNavigate();
@@ -403,9 +414,6 @@ export default function NodeManager({projectName, currUser}) {
         }
         console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
         setGameDataLocal(gdataTestResult);
-      
-      
-   
   }
 
   function updateNodeToNewName() {
