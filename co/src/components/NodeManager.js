@@ -931,7 +931,14 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             
             let currNodeNextList = nodeData.filter(e => e.nodeName === clickedNode)[0];
             currNodeNextList = currNodeNextList.nextNodes;
-            currNodeNextList.push(); //TODO !!! push the next-node's index-in-nodeData
+            let nextIndex = 0;
+            let j = 0;
+            for (; j < nodeData.length; j++) {
+              if (nodeData[j].nodeName === nextNodeNameSetup) {
+                nextIndex = j;
+              }
+            }
+            currNodeNextList.push(nextIndex); 
             let currNodeCondtList = nodeData.filter(e => e.nodeName === clickedNode)[0];
             currNodeCondtList = currNodeCondtList.spltCondt;
             currNodeCondtList.push(conditionContent);
