@@ -12,6 +12,7 @@ export default function ProjectManagerPanel() {
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     const [trashedProjList, setTrashedProjList] = useState(false);
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
+    const [isDisplayAsk, setDisplayAsk] = useState(false);
 
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -59,14 +60,22 @@ export default function ProjectManagerPanel() {
       loadProjectListFromCloud();
     }
 
-    async function deleteProject() {
+    function handleDeleteProject() {
       //TODO add warning
+      //setDisplayAsk(!isDisplayAsk);
+      // if yes: deleteProject();
+      // if cancel: close window
 
+           
+    }
+
+    async function deleteProject() {
       await deleteProjectVM(selected_project_name, username);
       setProjectName("");
       loadProjectListFromCloud();
-
     }
+
+
     
     let name = "/projectmanagingpanel";
     return (
@@ -82,18 +91,6 @@ export default function ProjectManagerPanel() {
         <div>
 
 
-        {/* <select className="dropdownList" value={selected_project_name} onChange={handleProjectSelectionChange}>
-          <option value="" key=""> -- Project Name --</option>
-
-        {projList.map((itemIndex, index) => {
-          return (
-          <option value={projList[index].project_name} key={projList[index]}>{projList[index]}</option>
-          );
-        })} 
-   
-        </select> */}
-
-
         <br></br>
         <div className="projectGrid">
           {projList.map((item, index) => {
@@ -107,7 +104,10 @@ export default function ProjectManagerPanel() {
               <br></br>
               <br></br>
 
-              {(selected_project_name === item) && <button className="buttonRightBottom" onClick={deleteProject}>Delete</button>}
+              {(selected_project_name === item) && 
+              <button className="buttonLeftBottom" onClick={handleDeleteProject}>
+                Delete
+              </button>}
 
               </div>
             );
@@ -118,7 +118,6 @@ export default function ProjectManagerPanel() {
         </div>
         }
         </div>
-        <p className="plans">TEST: selected_project_name = {selected_project_name}</p>
 
         <br></br>
         <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>

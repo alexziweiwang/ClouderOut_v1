@@ -153,9 +153,9 @@ div {
     margin-left: 90%;
 }
 
-.buttonRightBottom {
-    margin-left: 140px;
-    margin-top: -20px;
+.buttonLeftBottom {
+    margin-left: -142px;
+    margin-bottom: 0px;
 }
 
 .switchButton {
@@ -827,11 +827,13 @@ button:hover {
     flex-direction: row;
     overflow: scroll;
     flex-shrink: initial;
-    height: 100px;
+    height: 120px;
 }
 
 .trashedProjectArea {
     background-color: rgb(106, 140, 106);
+    padding: 10px;
+    border-radius: 0px;
 }
 
 .newProjForm {
