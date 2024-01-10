@@ -701,9 +701,8 @@ button:hover {
 
 .chapterManagingArea {
     text-align: left;
-    padding-left: 50px;
-    padding-bottom: 3px;    
-    padding-top: 3px;
+    padding-left: 5px;
+
 }
 
 .optionArea {
@@ -854,4 +853,11 @@ button:hover {
     /* background-color: rgb(186, 186, 215); */
     text-align: left;
     padding: -3px;
+}
+
+.listBar {
+    width: 500px;
+    background-color: rgb(228, 237, 228);
+    border-radius: 0px;
+    overflow: auto;
 }

@@ -78,14 +78,19 @@ export default function GameMaker() {
       <p>projectName: {projectName}</p>
 
     </div>
-    <br></br>
 
-    <p></p>
-    <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
+    <div className="parallelFrame">
+      
+      <div className="listBar">
+        <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/> 
+      </div>
+      <div>
+        <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData}/>
+      </div>
 
+    </div>
+   
     <p className="plans">TODO: dynamic setup of "nodedata" for specific chapter, according to user choice</p> 
-    <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData}/>
-
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
