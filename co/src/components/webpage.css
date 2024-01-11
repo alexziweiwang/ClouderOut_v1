@@ -861,3 +861,23 @@ button:hover {
     border-radius: 0px;
     overflow: auto;
 }
+
+.chapterListItem {
+    background-color: rgb(194, 223, 194);
+    border-radius: 2px;
+    padding: 3px;
+    width: 300px;
+    margin: -10px;
+    margin-left: -30px;
+}
+
+.chapterListItem:hover {
+    background-color: rgb(124, 155, 124);
+    color: white;
+    border-radius: 2px;
+    padding: 3px;
+    cursor: pointer;
+    width: 300px;
+    margin: -10px;
+    margin-left: -30px;
+}

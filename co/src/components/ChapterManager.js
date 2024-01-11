@@ -40,12 +40,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       {chapterData.map((item, index) => {
         return (
         <>
-          <li>             
+          <li className="chapterListItem">             
 
             
             
-            <label>{item[0]}:</label> 
-            {(editedLine !== index) &&<label>{item[1]}</label>}
+            <>{item[0]}:</> 
+            {(editedLine !== index) &&<>{item[1]}</>}
             {(editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
 
             {(editedLine === index) && 
