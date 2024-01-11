@@ -869,10 +869,22 @@ button:hover {
     width: 300px;
     margin: -10px;
     margin-left: -30px;
+    height: 30px;
 }
 
 .chapterListItem:hover {
     background-color: rgb(124, 155, 124);
+    border-radius: 2px;
+    padding: 3px;
+    cursor: pointer;
+    width: 300px;
+    margin: -10px;
+    margin-left: -30px;
+    height: 30px;
+}
+
+.chapterListItemSelected {
+    background-color: rgb(61, 85, 61);
     color: white;
     border-radius: 2px;
     padding: 3px;
@@ -880,4 +892,5 @@ button:hover {
     width: 300px;
     margin: -10px;
     margin-left: -30px;
+    height: 30px;
 }

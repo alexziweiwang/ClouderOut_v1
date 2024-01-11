@@ -7,6 +7,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
   const [editedLine, setEditedLine] = useState(-1);
+  const [selectedChpt, setSelectedChpt] = useState("");
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
@@ -29,6 +30,11 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     tempChapterData[index][2] = "delete";
     updateChapterData(tempChapterData);
   }
+  
+  function handleSelectChapter(str) {
+    setSelectedChpt(str);
+    updateChosenChapter(str);
+  }
 
     return (
         <>
@@ -41,15 +47,14 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     <ol>
 
       {chapterData.map((item, index) => {
+        let keyStr = item[0];
         return (
         <>
-          <li className="chapterListItem">             
+          <li className={selectedChpt === keyStr ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{handleSelectChapter(keyStr);console.log("selected? ", selectedChpt);}}>             
 
-            
-            
             <>{item[0]}:</> 
             {(editedLine !== index) &&<>{item[1]}</>}
-            {(editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
+            {(selectedChpt === keyStr && editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
 
             {(editedLine === index) && 
             <>
