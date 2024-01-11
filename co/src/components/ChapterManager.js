@@ -35,56 +35,26 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <div className="chapterManagingArea"> Chapter Management
     <br></br>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Chapter Sequence Number</th>
-          <th>Chapter Keyword</th>
-          <th>Chapter Title</th>
- 
-        </tr>
+    <ol>
 
-      </thead>
-      <tbody>
       {chapterData.map((item, index) => {
-        return (<tr value={item} key={index}>
-          <td>{index+1}</td>
-          <td>{item[0]} </td>
-          <td>{item[1]} 
+        return (<li>
+        
+             
             {(editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
             {(editedLine === index) && 
               <>
               <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
               <button onClick={()=>{setEditedLine(-1);}}>Cancel</button>
               <button onClick={()=>{setEditedLine(-1); updateChapterDataByLine(index, editingChapterTitle);}}>Save</button>
-              </>
-            }
+              </>}
+              {item[0]}: {item[1]}
+        </li>);
+        })}
 
-          </td>
-          <td>
-            <button>Select</button>
-          </td>
-          <td>
-            <button onClick={()=>{hideChapter(index);}}>Delete</button>
-          </td>
-        </tr>);
-      })}
-      <tr key="newChapter">
-        <td>Add New Chapter</td>
-        <td>      
-            <label>Chapter Key (unchangable):</label>
-            <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
-        </td>
-        <td>      
-            <label>Chapter Name (changable):</label>
-            <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
-        </td>
-        <td>
-          <button onClick={()=>{addNewChapterLine();}}>Add</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    </ol>
+
+
 
 
         </div>

@@ -84,6 +84,7 @@ export default function GameMaker() {
       <div className="listBar">
         <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/> 
       </div>
+      
       <div>
         <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData}/>
       </div>
