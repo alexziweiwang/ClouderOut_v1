@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter}) {
+export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, collapseBar}) {
 
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
@@ -32,9 +32,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
     return (
         <>
-        <div className="chapterManagingArea"> Chapter Management
-    <br></br>
-
+        <div className="chapterManagingArea"> 
+        <div>
+          <label>Chapter Management</label>
+          <button className="buttonRight" onClick={()=>{}}>Collapse</button>
+        </div>
+       
     <ol>
 
       {chapterData.map((item, index) => {
@@ -79,8 +82,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
    
 
         </div>
-
-        <p className="plans">TODO: improve data design to include chapter editing options </p>
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud</p>
         
         </>

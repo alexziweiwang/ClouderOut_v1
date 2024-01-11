@@ -37,9 +37,13 @@ export default function GameMaker() {
 
   const [currChapter, setCurrChapter] = useState("");
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display"], ["key2", "testChapter2", "display"]]); //TODO fetch from cloud db
-
+  const [isDisplayChapterBar, setDisplayChapterBar] = useState(true);
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });
+  }
+
+  function collapseChapterSideBar() {
+    setDisplayChapterBar(false);
   }
 
   const [nodeData, setNodeData] = useState([
@@ -82,7 +86,8 @@ export default function GameMaker() {
     <div className="parallelFrame">
       
       <div className="listBar">
-        <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/> 
+        {(isDisplayChapterBar === true) && <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter} collapseBar={collapseChapterSideBar}/>} 
+        {(isDisplayChapterBar === false) && <button onClick={()=>{setDisplayChapterBar(true)}}>Chapter Bar</button>}
       </div>
       
       <div>
