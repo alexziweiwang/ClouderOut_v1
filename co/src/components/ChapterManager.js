@@ -38,18 +38,33 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     <ol>
 
       {chapterData.map((item, index) => {
-        return (<li>
-        
-             
+        return (
+        <>
+          <li>             
+
+            
+            
+            <label>{item[0]}:</label> 
+            {(editedLine !== index) &&<label>{item[1]}</label>}
             {(editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
+
+            {(editedLine === index) && 
+            <>
+            <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
+            <button onClick={()=>{setEditedLine(-1); updateChapterDataByLine(index, editingChapterTitle);}}>Save</button>
+            
+            </>
+            }
+
+          </li>
+          <p>
             {(editedLine === index) && 
               <>
-              <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
               <button onClick={()=>{setEditedLine(-1);}}>Cancel</button>
-              <button onClick={()=>{setEditedLine(-1); updateChapterDataByLine(index, editingChapterTitle);}}>Save</button>
-              </>}
-              {item[0]}: {item[1]}
-        </li>);
+            </>}
+          </p>
+
+        </>);
         })}
 
     </ol>
