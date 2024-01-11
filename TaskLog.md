@@ -119,3 +119,5 @@
 - 2024-Jan-08: Design node data visualization strategy
 
 - 2024-Jan-09: Design improvement of Game-maker page UX
+
+- 2024-Jan-10: Redesign game-maker chapter sidebar
