@@ -51,32 +51,18 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         return (
         <>
           <li className={selectedChpt === keyStr ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{handleSelectChapter(keyStr);console.log("selected? ", selectedChpt);}}>             
-
-            <>{item[0]}:</> 
-            {(editedLine !== index) &&<>{item[1]}</>}
-            {(selectedChpt === keyStr && editedLine !== index) && <button onClick={()=>{setEditedLine(index);}}>Edit</button>}
-
-            {(editedLine === index) && 
-            <>
-            <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
-            <button onClick={()=>{setEditedLine(-1); updateChapterDataByLine(index, editingChapterTitle);}}>Save</button>
-            
-            </>
-            }
-
+            {item[0]}:{item[1]}
           </li>
-          <p>
-            {(editedLine === index) && 
-              <>
-              <button onClick={()=>{setEditedLine(-1);}}>Cancel</button>
-            </>}
-          </p>
 
         </>);
         })}
 
     </ol>
 
+    {<button onClick={()=>{setEditedLine(selectedChpt);}}>Edit</button>}
+    {/* <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input> */}
+     {/* <button onClick={()=>updateChapterDataByLine(index, editingChapterTitle);}>Save</button>
+    <button onClick={()=>{}}>Cancel</button> */}
 
 
 
