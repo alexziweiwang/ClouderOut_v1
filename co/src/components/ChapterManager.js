@@ -7,7 +7,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
   const [editedLine, setEditedLine] = useState(-1);
-  const [selectedChpt, setSelectedChpt] = useState("");
+  const [selectedChpt, setSelectedChpt] = useState(-1);
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
@@ -31,9 +31,14 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     updateChapterData(tempChapterData);
   }
   
-  function handleSelectChapter(str) {
-    setSelectedChpt(str);
-    updateChosenChapter(str);
+  function handleSelectChapter(index) {
+    if (selectedChpt === index) {
+      setSelectedChpt(-1);
+    } else {
+      setSelectedChpt(index);
+      // updateChosenChapter(index); //TODO change later
+    }
+    
   }
 
     return (
@@ -47,10 +52,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     <ol>
 
       {chapterData.map((item, index) => {
-        let keyStr = item[0];
         return (
         <>
-          <li className={selectedChpt === keyStr ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{handleSelectChapter(keyStr);console.log("selected? ", selectedChpt);}}>             
+          <li className={selectedChpt === index ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{handleSelectChapter(index);}}>             
             {item[0]}:{item[1]}
           </li>
 
@@ -59,10 +63,17 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
     </ol>
 
-    {<button onClick={()=>{setEditedLine(selectedChpt);}}>Edit</button>}
-    {/* <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input> */}
-     {/* <button onClick={()=>updateChapterDataByLine(index, editingChapterTitle);}>Save</button>
-    <button onClick={()=>{}}>Cancel</button> */}
+    {(selectedChpt !== -1) && 
+    <>
+      <button onClick={()=>{setEditedLine(selectedChpt);}}>Edit</button>
+      {(editedLine !== -1) && 
+      <>
+      <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
+      <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
+      <button onClick={()=>{setEditingChapterTitle("");setEditedLine(-1);}}>Cancel</button>
+      </>}
+    </>}
+
 
 
 
