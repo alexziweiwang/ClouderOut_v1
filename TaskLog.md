@@ -123,3 +123,4 @@
 - 2024-Jan-10: Redesign game-maker chapter sidebar
 
 - 2024-Jan-11: Consider sidebar designs for the entire tool
+- 2024-Jan-11: Consider optimization for chapter data structure operations
