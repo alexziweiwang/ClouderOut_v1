@@ -46,7 +46,20 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       setSelectedChpt(index);
       // updateChosenChapter(index); //TODO change later
     }
-    
+  }
+
+  function revertChapter(keyStr) {
+    let i = 0;
+    let tempChapterData = chapterData;
+    for (; i < tempChapterData.length; i++) {
+      if (tempChapterData[i][0] === keyStr) {
+        tempChapterData[i][2] = "display";
+      }
+    }
+    updateChapterData(tempChapterData);
+
+    //TODO test 
+    //TODO improve: rerender trigger from caller's data structure
   }
 
     return (
@@ -99,7 +112,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           <label>New Chapter Keyname (editable later): </label><br></br>
           <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
           <br></br>
-          <button>Add</button>
+          <button onClick={()=>{addNewChapterLine();}}>Add</button>
         </ul>}
           
         
@@ -112,7 +125,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <div>
               Chapter Revert area<br></br>
               {deletedLocalList.map((item, index) => {
-                return (<label>{item[0]}, {item[1]}</label>);
+                return (<label>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>Revert</button ></label>);
               })}
         </div>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
