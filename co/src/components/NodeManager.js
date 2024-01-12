@@ -413,17 +413,6 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
 
         {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
-        <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.
-            <br></br>
-  
-            <br></br> idea: logic organizer depends heavily on the game-data specified by author.
-            <br></br> the game maker should provide entry for CRUD operations on game-data, in inside-node layer
-            <br></br> frontend aspect, game-data manager is needed (CRUD); backend aspect, game-data's data structure on cloud is needed
-            <br></br> for game-data, in the node-managing layer, it can only display/check, and only inside node can it alter game-data value via logic-organzer related system
-            <br></br> [ ** first, implement and test simple logical conditions, then improve to combos (with parenthesis) ]
-        
-        </p> 
-
         <div className="section">
         
         {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
@@ -994,6 +983,18 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         <button onClick={revertSelectedNode}> Revert </button>
         </div>
         }
+
+
+<p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.
+            <br></br>
+  
+            <br></br> idea: logic organizer depends heavily on the game-data specified by author.
+            <br></br> the game maker should provide entry for CRUD operations on game-data, in inside-node layer
+            <br></br> frontend aspect, game-data manager is needed (CRUD); backend aspect, game-data's data structure on cloud is needed
+            <br></br> for game-data, in the node-managing layer, it can only display/check, and only inside node can it alter game-data value via logic-organzer related system
+            <br></br> [ ** first, implement and test simple logical conditions, then improve to combos (with parenthesis) ]
+        
+        </p> 
     
         <p className="plans"> TODO: consider "reverted node" overlap problem if later created new nodes around 
         <br></br> for reverted node, it keeps the original content, but relationship needs rebuidling?

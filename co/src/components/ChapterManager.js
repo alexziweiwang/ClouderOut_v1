@@ -10,6 +10,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [editedLine, setEditedLine] = useState(-1);
   const [selectedChpt, setSelectedChpt] = useState(-1);
   const [isAddNewChpater, setIsAddNewChapter] = useState(false);
+  const [deletedLocalList, setDeletedLocalList] = useState([]);
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
@@ -28,9 +29,14 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   }
 
   function hideChapter(index) {
+    let deleteListTemp = deletedLocalList;
+    deleteListTemp.push(chapterData[index]);
+    setDeletedLocalList(deleteListTemp);
+
     let tempChapterData = chapterData;
     tempChapterData[index][2] = "delete";
     updateChapterData(tempChapterData);
+    setSelectedChpt(-1);
   }
   
   function handleSelectChapter(index) {
@@ -101,12 +107,13 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     </ol>
 
 
-        </div>
+    </div>
 
         <div>
-          Chapter Revert area
-   
-
+              Chapter Revert area<br></br>
+              {deletedLocalList.map((item, index) => {
+                return (<label>{item[0]}, {item[1]}</label>);
+              })}
         </div>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
