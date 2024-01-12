@@ -61,11 +61,18 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
         </>);
         })}
-        <ul className={isAddNewChpater === true ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);
+        <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);
         }}>
           + New Chapter
         </ul>
-        {isAddNewChpater === true && <ul className={isAddNewChpater === true ? "chapterListItemSelected" : "chapterListItem"}>...</ul>}
+        {isAddNewChpater === true && <ul>
+          <label>New Chapter Keyname (unchangable): </label><br></br>
+          <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
+          <label>New Chapter Keyname (editable later): </label><br></br>
+          <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
+          <br></br>
+          <button>Add</button>
+        </ul>}
           
         
 
