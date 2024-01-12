@@ -891,3 +891,9 @@ button:hover {
     margin-left: -30px;
     height: 20px;
 }
+
+.newChapterArea {
+    background-color: rgb(194, 223, 194);
+    border-radius: 2px;
+    width: 300px;
+}

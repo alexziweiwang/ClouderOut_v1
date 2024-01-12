@@ -8,6 +8,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
   const [editedLine, setEditedLine] = useState(-1);
   const [selectedChpt, setSelectedChpt] = useState(-1);
+  const [isAddNewChpater, setIsAddNewChapter] = useState(false);
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
@@ -60,6 +61,13 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
         </>);
         })}
+        <ul className={isAddNewChpater === true ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);
+        }}>
+          + New Chapter
+        </ul>
+        {isAddNewChpater === true && <ul className={isAddNewChpater === true ? "chapterListItemSelected" : "chapterListItem"}>...</ul>}
+          
+        
 
     </ol>
 
@@ -68,6 +76,8 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       <button onClick={()=>{setEditedLine(selectedChpt);}}>Edit</button>
       {(editedLine !== -1) && 
       <>
+      <br></br>
+      <label>Chapter Name:</label>
       <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
       <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
       <button onClick={()=>{setEditingChapterTitle("");setEditedLine(-1);}}>Cancel</button>
