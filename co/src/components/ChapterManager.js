@@ -49,14 +49,19 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <div className="chapterManagingArea"> 
         <div>
           <label>Chapter Management</label>
-          <button className="buttonRight" onClick={()=>{setIsCollapse(!isCollapse);}}>Collapse</button>
+          <button onClick={()=>{setIsCollapse(true);}}>Collapse</button>
         </div>
        
     <ol>
 
       {chapterData.map((item, index) => {
+        let hide = "display";
+        if (chapterData[index][2] === "delete") {
+          hide = "hide";
+        }
         return (
         <>
+        {hide === "display" && <>
           <li className={selectedChpt === index ? "chapterListItemSelected" : "chapterListItem"} 
               onClick={()=>{handleSelectChapter(index);setIsAddNewChapter(false);}}>             
             {item[0]}:{item[1]}
@@ -69,11 +74,14 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
               <button onClick={()=>{setEditingChapterTitle("");setEditedLine(-1);setSelectedChpt(-1);}}>Cancel</button>
               <br></br>
+              <label>*Delete Chapter</label><br></br>
+              <button onClick={()=>{hideChapter(index);}}>Delete</button>
             </>
           
           }
-
-        </>);
+          </>}
+        </>
+        );
         })}
         <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);
         }}>
@@ -101,11 +109,14 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
         </div>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud</p>
+        <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
+          <br></br>TODO feature: insert chapter between existing chapters 
+          <br></br>TODO feature: rearrange chapter sequence
+        </p>
         
         </div>
         }
-        <button onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>
+        {isCollapse === true && <button onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>}
       </>
     );
 }
