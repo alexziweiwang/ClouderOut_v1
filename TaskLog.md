@@ -121,3 +121,5 @@
 - 2024-Jan-09: Design improvement of Game-maker page UX
 
 - 2024-Jan-10: Redesign game-maker chapter sidebar
+
+- 2024-Jan-11: Consider sidebar designs for the entire tool
