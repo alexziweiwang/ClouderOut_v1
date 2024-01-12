@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, collapseBar}) {
+export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter}) {
 
+  const [isCollapse, setIsCollapse] = useState(false);
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
@@ -43,11 +44,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   }
 
     return (
-        <>
+      <>
+        {isCollapse === false && <div className="listBar">
         <div className="chapterManagingArea"> 
         <div>
           <label>Chapter Management</label>
-          <button className="buttonRight" onClick={()=>{}}>Collapse</button>
+          <button className="buttonRight" onClick={()=>{setIsCollapse(!isCollapse);}}>Collapse</button>
         </div>
        
     <ol>
@@ -101,6 +103,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud</p>
         
-        </>
+        </div>
+        }
+        <button onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>
+      </>
     );
 }
