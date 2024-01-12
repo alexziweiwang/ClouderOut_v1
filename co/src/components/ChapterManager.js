@@ -55,9 +55,21 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       {chapterData.map((item, index) => {
         return (
         <>
-          <li className={selectedChpt === index ? "chapterListItemSelected" : "chapterListItem"} onClick={()=>{handleSelectChapter(index);}}>             
+          <li className={selectedChpt === index ? "chapterListItemSelected" : "chapterListItem"} 
+              onClick={()=>{handleSelectChapter(index);setIsAddNewChapter(false);}}>             
             {item[0]}:{item[1]}
           </li>
+          {selectedChpt === index && 
+            <>
+              <label>*Change Chapter Name*</label><br></br>
+              <label>Chapter Name:</label>
+              <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
+              <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
+              <button onClick={()=>{setEditingChapterTitle("");setEditedLine(-1);setSelectedChpt(-1);}}>Cancel</button>
+              <br></br>
+            </>
+          
+          }
 
         </>);
         })}
@@ -77,21 +89,6 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         
 
     </ol>
-
-    {(selectedChpt !== -1) && 
-    <>
-      <button onClick={()=>{setEditedLine(selectedChpt);}}>Edit</button>
-      {(editedLine !== -1) && 
-      <>
-      <br></br>
-      <label>Chapter Name:</label>
-      <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
-      <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
-      <button onClick={()=>{setEditingChapterTitle("");setEditedLine(-1);}}>Cancel</button>
-      </>}
-    </>}
-
-
 
 
         </div>
