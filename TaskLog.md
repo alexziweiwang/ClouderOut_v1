@@ -126,3 +126,5 @@
 - 2024-Jan-11: Consider optimization for chapter data structure operations
 
 - 2024-Jan-12: Design testing-project simplest feature list
+- 2024-Jan-12: Plan for preview-feature implementation
+
