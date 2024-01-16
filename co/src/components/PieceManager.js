@@ -126,7 +126,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     }
 
     return (
-        <div>
+        <div className="pieceManager">
             <br></br>
             <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
             

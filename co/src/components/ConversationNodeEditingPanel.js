@@ -102,7 +102,8 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
 
             {browseList === false && <div className="userChoice">
-            <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+            {/* <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button> */}
+            
             <br></br>
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
@@ -110,15 +111,21 @@ export default function ConversationNodeEditingPanel() {
 
             </div>}
 
-            {browseList === true &&<div className="pieceManager">
-            <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+            {browseList === true &&<div>
+            {/* <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button> */}
 
                  <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
 
             </div>}
+
             
-            <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
-            
+            <div>
+                <button>Preview</button>
+                <button>Game UI Setup</button>
+                <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
+            </div>
+
+
             </div>
 
         </div>

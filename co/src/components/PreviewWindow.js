@@ -97,7 +97,7 @@ export default function PreviewWindow({dataObj}) {
                     </select>
                     <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
                 </div>
-                <GameUISetter/>
+               
         </div>
     );
 }
