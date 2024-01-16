@@ -111,31 +111,20 @@ export default function ConversationNodeEditingPanel() {
      
             <div className="parallelFrame">
 
-            {browseList === false && <div>
-            {/* <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button> */}
-            
-            <br></br>
-                <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
-                <br></br>
-                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName}/>
-
-            </div>}
-
-            {browseList === true &&<div>
-            {/* <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button> */}
-
-                 <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>
-
-            </div>}
-
-            
+            {browseList === false && 
             <div>
-                {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
-                {isDisplayPreview === false && <GameUISetter/>}
+                <button onClick={()=>{setBrowseList(!browseList)}}>← List</button><br></br>
+                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName}/>
+            </div>}
 
-            </div>
+            {browseList === true &&
+                 <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>           
+            }
+ 
+            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
+            {isDisplayPreview === false && <GameUISetter/>}
 
-
+            
             </div>
 
         </div>

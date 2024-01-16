@@ -127,7 +127,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
     return (
         <div className="pieceManager">
-            <br></br>
+            <p className="plans"> TODO consider: view-only(non-edit) mode list for quick view </p>
             <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
             
             <table>
