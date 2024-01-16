@@ -220,7 +220,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     return (
       
 
-    <div className="pieceSetterArea">
+    <div className="pieceSetterArea userChoice">
         <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
         <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 

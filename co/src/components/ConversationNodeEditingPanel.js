@@ -93,15 +93,20 @@ export default function ConversationNodeEditingPanel() {
                 <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
                 <p>projectName: {state.projectName}</p>
 
-                </div>
+            </div>
             
-            <p className="plans"></p>
-            
+            <div>
+                <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+                
+                <button>Preview</button>
+                <button>Game UI Setup</button>
+            </div>
+
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
      
             <div className="parallelFrame">
 
-            {browseList === false && <div className="userChoice">
+            {browseList === false && <div>
             {/* <button className="buttonRight" onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button> */}
             
             <br></br>
@@ -120,8 +125,7 @@ export default function ConversationNodeEditingPanel() {
 
             
             <div>
-                <button>Preview</button>
-                <button>Game UI Setup</button>
+
                 <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
             </div>
 

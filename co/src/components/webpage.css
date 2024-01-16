@@ -264,8 +264,7 @@ div {
 
 .previewWindow {
     background-color: rgb(235, 242, 235);
-    height: 100%;
-    width: 550px;
+    width: 840px;
     flex: 2;
     margin: 3%;
 }
