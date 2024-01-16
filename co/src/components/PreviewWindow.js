@@ -87,8 +87,6 @@ export default function PreviewWindow({dataObj}) {
             </div>
 
             <div>
-              <div>Game UI setter</div>
-
                     <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
                         <option value="" key=""> ----- Select Size and Direction ----- </option>
                         <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>

@@ -128,3 +128,6 @@
 - 2024-Jan-12: Design testing-project simplest feature list
 - 2024-Jan-12: Plan for preview-feature implementation
 
+- 2024-Jan-15: Design game-UI-setter features and implementation plans
+
+
