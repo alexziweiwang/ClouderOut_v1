@@ -5,6 +5,7 @@ import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
+import GameUISetter from './GameUISetter';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -105,7 +106,6 @@ export default function ConversationNodeEditingPanel() {
             <br></br>
                 <button className="switchButton" onClick={()=>{setBrowseList(!browseList)}}>← List</button>
                 <br></br>
-             
                 <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName}/>
 
             </div>}
@@ -118,8 +118,9 @@ export default function ConversationNodeEditingPanel() {
             </div>}
             
             <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
+            
             </div>
-        
+
         </div>
     );
 }

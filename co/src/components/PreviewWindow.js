@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import styles from './webpage.css';
+import GameUISetter from './GameUISetter';
 
 
 export default function PreviewWindow({dataObj}) {
@@ -76,15 +77,17 @@ export default function PreviewWindow({dataObj}) {
                 TODO: fetch the current game-size for this node
             </p>
 
+            <p className="plans">
+                    Below is ... Adjustment area: setting of size & direction for current *node*
+                    <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
+                    <br></br>but this feature is provided so user can utilize the existing node-content
+                    </p>
+
 
             </div>
 
             <div>
-                    <p className="plans">
-                    Adjustment area: setting of size & direction for current *node*
-                    <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
-                    <br></br>but this feature is provided so user can utilize the existing node-content
-                    </p>
+              <div>Game UI setter</div>
 
                     <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
                         <option value="" key=""> ----- Select Size and Direction ----- </option>
@@ -96,7 +99,7 @@ export default function PreviewWindow({dataObj}) {
                     </select>
                     <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
                 </div>
-           
+                <GameUISetter/>
         </div>
     );
 }
