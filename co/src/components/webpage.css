@@ -907,3 +907,10 @@ button:hover {
     padding-right: 0px;
     width: 75%;
 }
+
+.gameUISettingArea {
+    background-color: #c3d7e1;
+    width: 820px;
+    height: 100%;
+    margin-left: 10px;
+}

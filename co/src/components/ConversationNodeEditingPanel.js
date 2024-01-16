@@ -26,6 +26,7 @@ export default function ConversationNodeEditingPanel() {
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
+    const [isDisplayPreview, setIsDisplayPreview] = useState(true);
 
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
@@ -100,8 +101,8 @@ export default function ConversationNodeEditingPanel() {
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
                 </div>
                 <div className="topParalBarRightPart">
-                    <button>Preview</button>
-                    <button>Game UI Setup</button>
+                    <button onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
+                    <button onClick={()=>{setIsDisplayPreview(false);}}>Game UI Setup</button>
                 </div>
                
             </div>
@@ -129,7 +130,9 @@ export default function ConversationNodeEditingPanel() {
 
             
             <div>
-                <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
+                {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
+                {isDisplayPreview === false && <GameUISetter/>}
+
             </div>
 
 
