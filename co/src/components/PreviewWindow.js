@@ -44,7 +44,6 @@ export default function PreviewWindow({dataObj}) {
  
     return (
         <div className="previewWindow">
-     
             <div className="preveiewArea">
                 
             <p className="plans">

@@ -95,11 +95,15 @@ export default function ConversationNodeEditingPanel() {
 
             </div>
             
-            <div>
-                <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
-                
-                <button>Preview</button>
-                <button>Game UI Setup</button>
+            <div className="parallelFrame">
+                <div className="topParalBarLeftPart">
+                    <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+                </div>
+                <div className="topParalBarRightPart">
+                    <button>Preview</button>
+                    <button>Game UI Setup</button>
+                </div>
+               
             </div>
 
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
@@ -125,7 +129,6 @@ export default function ConversationNodeEditingPanel() {
 
             
             <div>
-
                 <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>
             </div>
 

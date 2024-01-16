@@ -266,7 +266,7 @@ div {
     background-color: rgb(235, 242, 235);
     width: 840px;
     flex: 2;
-    margin: 3%;
+    margin-left: 3%;
 }
 
 .parallelFrame {
@@ -895,4 +895,15 @@ button:hover {
     background-color: rgb(194, 223, 194);
     border-radius: 2px;
     width: 300px;
+}
+
+.topParalBarLeftPart {
+    padding-left: 0px;
+    width:  550px;
+    align-items: flex-start;
+}
+
+.topParalBarRightPart {
+    padding-right: 0px;
+    width: 75%;
 }
