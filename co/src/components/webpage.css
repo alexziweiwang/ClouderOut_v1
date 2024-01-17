@@ -238,28 +238,24 @@ div {
 .userChoice {
     background-color: rgb(235, 231, 224);
     width: 450px;
-    margin-left: 3%;
+    margin-left: 5px;
     justify-content: flex-start;
     text-align: left;
     padding: 15px;
     flex: 1;
     height: 550px;
     overflow: auto;
-    margin: 1%;
-    margin-top: 2%;
 }
 .pieceManager {
     background-color: rgb(234, 232, 240);
     width: 450px;
-    margin-left: 3%;
+    margin-left: 5px;
     justify-content: flex-start;
     text-align: left;
     padding: 15px;
     flex: 1;
     height: 550px;
     overflow: auto;
-    margin: 1%;
-    margin-top: 2%;
 }
 
 .previewWindow {
@@ -913,4 +909,30 @@ button:hover {
     width: 820px;
     height: 600px;
     margin-left: 10px;
+}
+
+.topBarTab {
+    background-color: rgb(178, 202, 232);
+    border: none;
+    border-radius: 0px;
+    margin-bottom: -2px;
+    margin-top: 10px;
+    height: 30px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.topBarTab:hover {
+    background-color: rgb(131, 150, 174);
+    border: none;
+    border-radius: 0px;
+    margin-bottom: -2px;
+    margin-top: 10px;
+    height: 30px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
 }

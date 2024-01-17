@@ -104,8 +104,8 @@ export default function ConversationNodeEditingPanel() {
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
                 </div>
                 <div className="topParalBarRightPart">
-                    <button onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
-                    <button onClick={()=>{setIsDisplayPreview(false);}}>Game UI Setup</button>
+                    <button className="topBarTab" onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
+                    <button className="topBarTab" onClick={()=>{setIsDisplayPreview(false);}}>Game UI Setup</button>
                 </div>
                
             </div>
@@ -115,9 +115,8 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
 
             {browseList === false && 
-            <div>
                 <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList}/>
-            </div>}
+            }
 
             {browseList === true &&
                  <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>           
