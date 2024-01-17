@@ -4,7 +4,7 @@ import styles from './webpage.css';
 
 export default function GameUISetter({dataObj}) {
 
-    return(<div className="gameUISettingArea">
+    return(<div className="previewWindow">
         <p className="plans">
             Provide setting options for game menu, game UI, side menut, etc.
             <br></br>

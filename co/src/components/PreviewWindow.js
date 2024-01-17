@@ -44,7 +44,9 @@ export default function PreviewWindow({dataObj}) {
  
     return (
         <div className="previewWindow">
+       
             <div className="preveiewArea">
+            
                 
             <p className="plans">
                 needed data: game size and direction info setting from the user/author
