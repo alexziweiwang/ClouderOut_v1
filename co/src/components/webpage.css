@@ -245,6 +245,7 @@ div {
     flex: 1;
     height: 550px;
     overflow: auto;
+    white-space: nowrap;
 }
 .pieceManager {
     background-color: rgb(234, 232, 240);
@@ -256,6 +257,7 @@ div {
     flex: 1;
     height: 550px;
     overflow: auto;
+    white-space: nowrap;
 }
 
 .parallelFrame {
@@ -269,12 +271,16 @@ div {
     flex: 2;
     margin-left: 10px;
     margin-right: 10px;
+    white-space: nowrap;
 }
 
 .preveiewArea {
     height: 450px;
-    width: 100%;
+    width: 96%;
+    height: 90%;
     background-color: rgb(222, 222, 235);
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .pieceSetterArea {
