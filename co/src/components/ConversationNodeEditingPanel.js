@@ -104,8 +104,8 @@ export default function ConversationNodeEditingPanel() {
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
                 </div>
                 <div className="topParalBarRightPart">
-                    <button className="topBarTab" onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
-                    <button className="topBarTab" onClick={()=>{setIsDisplayPreview(false);}}>Game UI Setup</button>
+                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
+                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false);}}>Game UI Setup</button>
                 </div>
                
             </div>

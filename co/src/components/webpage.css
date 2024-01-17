@@ -912,7 +912,7 @@ button:hover {
 }
 
 .topBarTab {
-    background-color: rgb(178, 202, 232);
+    background-color: rgb(217, 225, 233);
     border: none;
     border-radius: 0px;
     margin-bottom: -2px;
@@ -925,7 +925,34 @@ button:hover {
 }
 
 .topBarTab:hover {
-    background-color: rgb(131, 150, 174);
+    background-color: rgb(155, 169, 186);
+    border: none;
+    border-radius: 0px;
+    margin-bottom: -2px;
+    margin-top: 10px;
+    height: 30px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.topBarTabSelected {
+    background-color: rgb(55, 61, 69);
+    color: white;
+    border: none;
+    border-radius: 0px;
+    margin-bottom: -2px;
+    margin-top: 10px;
+    height: 30px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.topBarTabSelected:hover {
+    background-color: rgb(55, 61, 69);
     border: none;
     border-radius: 0px;
     margin-bottom: -2px;
