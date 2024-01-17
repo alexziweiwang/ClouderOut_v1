@@ -12,6 +12,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     const [highlightedPiece, setHighlightedPiece] = useState("");
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
+    const [isManage, setIsManage] = useState(false);
+
 
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -135,8 +137,10 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             <tr>
             <th>Number</th>
             <th>Content</th>
-            <th>Operations</th>
-            
+            {isManage === true && <th>Operations</th>}
+            <button onClick={()=>{setIsManage(!isManage);}}>
+                    Manage
+                </button>            
             </tr>
         </thead>
         <tbody>
@@ -149,20 +153,22 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                 
                     <td>{currItem["num"]}</td>
                     <td>{currItem["speaker_name"]}{(currItem["speaker_name"] === "") ? "" : ":"}{(currItem["speaker_name"] !== "") && <br></br>}{currItem["content"]}</td>
-                    <td>
+                    {isManage === true &&  <td>
                     <div>
-                    <button onClick={()=>{moveItemUpRow(index, currItem["content"]);}}>Move Up</button>
-                    <br></br>
-                    <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
-                    <br></br>
-                    <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
-                    <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
-                    <br></br>
-                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
-                    <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button>
+                        <button onClick={()=>{moveItemUpRow(index, currItem["content"]);}}>Move Up</button>
+                        <br></br>
+                        <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
+                        <br></br>
+                        <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
+                        <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
+                        <br></br>
+                        <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
+                        <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button>
+                    
+                        <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 
                     </div>
-                    <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 
-                    </td>
+                    
+                    </td>}
                 </tr>
                 );
             })} 
