@@ -272,6 +272,8 @@ div {
     margin-left: 10px;
     margin-right: 10px;
     white-space: nowrap;
+    overflow: auto;
+    height: 550px;
 }
 
 .preveiewArea {

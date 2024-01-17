@@ -26,6 +26,45 @@ export default function GameUISetter({dataObj}) {
             TODO: consider menu setting-list
         </p>
 
+        <div>
+            <p className="plans">
+                The opening-menu:
+                <br></br>
+                TODO: a series of buttons (table) to allow users to add
+                <br></br>
+                TODO: opening music selection
+                <br></br>
+                TODO: player profile/account feature
+            </p>
+
+            <p className="plans">
+                The in-game side bar:
+                <br></br>
+                TODO: a series of buttons (table) to allow users to add
+                <br></br>
+                TODO: setup options for button UX
+            </p>
+
+            <p className="plans">
+                The in-game menu (pause page):
+                <br></br>
+                TODO: pause effect (modal-like)
+                <br></br>
+                TODO: a series of buttons (table) to allow users to add
+            </p>
+
+            <p className="plans">
+                The text-content frames:
+                <br></br>
+                TODO: Text display options (animation)
+                <br></br>
+                TODO: Text looks - font, font size, color, etc.
+            </p>
+
+
+
+        </div>
+
 
 
     
