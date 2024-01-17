@@ -5,7 +5,7 @@ import ResourceSelector from './ResourceSelector';
 import styles from './webpage.css';
 import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData}) {
+export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData, backToList}) {
     const navigate = useNavigate();
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -221,6 +221,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
       
 
     <div className="pieceSetterArea userChoice">
+        <button onClick={()=>{backToList();}}>← List</button><br></br>
+        <br></br>
         <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
         <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 

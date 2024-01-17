@@ -86,6 +86,10 @@ export default function ConversationNodeEditingPanel() {
         setPreviewingIndex(index);
     }
 
+    function returnToList() {
+        setBrowseList(!browseList);
+    }
+
 
     return (
 
@@ -93,7 +97,6 @@ export default function ConversationNodeEditingPanel() {
             <div className="returning_buttons">
                 <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
                 <p>projectName: {state.projectName}</p>
-
             </div>
             
             <div className="parallelFrame">
@@ -113,8 +116,7 @@ export default function ConversationNodeEditingPanel() {
 
             {browseList === false && 
             <div>
-                <button onClick={()=>{setBrowseList(!browseList)}}>← List</button><br></br>
-                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName}/>
+                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList}/>
             </div>}
 
             {browseList === true &&
