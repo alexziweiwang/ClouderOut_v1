@@ -130,4 +130,4 @@
 
 - 2024-Jan-15: Design game-UI-setter features and implementation plans
 
-
+- 2024-Jan-16: Consider playing-progress strategy
