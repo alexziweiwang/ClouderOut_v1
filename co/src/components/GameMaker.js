@@ -68,6 +68,12 @@ export default function GameMaker() {
     "end node": {depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   }); //TODO new data-design
 
+  function updateChapterNodeData() {
+    // TODO fetch currChapter
+    // TODO update nodeRelationshipMap by chapter title
+    // TODO strategy: from cloud? local?
+    // TODO consider data structure to store, balance efficiency and cloud traffic
+  }
 
 
   return (
