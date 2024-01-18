@@ -458,15 +458,14 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
             xmlns="http://www.w3.org/2000/svg"
             className="nodes_viewer"
             viewBox="10 -10 2000 300"
-          >
+            overflow="auto"
+        >
     
           {Object.keys(nodeData).map((nodeIndex, index) => {
             // const { node_width, node_height } = nodeData[nodeIndex];
             const x_val = nodeData[index].depth * node_gap + x_base;
             //TODO calculate in-group-position by same-depth
             const y_val = y_base + (node_height+y_dist) * nodeData[index].inGroupPosition;
-
-            
 
             return (
               
