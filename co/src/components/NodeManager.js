@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 
-export default function NodeManager({projectName, currUser, nodeData, setNodeDataFunc}) {
+export default function NodeManager({projectName, currUser, nodeData, setNodeDataFunc, chapterTitle}) {
 
 // TODO testing, temp ----------------------------------------
   console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
@@ -405,9 +405,12 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
   } 
 
 
-    return (     
+    return (      
 
-        <div className="setting_area"> Node Management
+
+        <div className="setting_area"> 
+        <label>Chapter Title: {chapterTitle}</label><br></br>
+        <label>Node Management</label>
 
         <button onClick={()=>{getChapterDataFromCloud("chapter0");}}> temp: Fetch chapter data </button>
 

@@ -81,11 +81,11 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         return (
         <>
         {hide === "display" && <>
-          <li className={selectedChpt === index ? "chapterListItemSelected" : "chapterListItem"} 
+          <li className={selectedChpt === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
               onClick={()=>{handleSelectChapter(item[0]);setIsAddNewChapter(false);}}>             
             {item[0]}:{item[1]}
           </li>
-          {selectedChpt === index && 
+          {selectedChpt === item[0] && 
             <>
               <label>*Change Chapter Name*</label><br></br>
               <label>Chapter Name:</label>

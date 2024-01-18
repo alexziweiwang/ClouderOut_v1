@@ -92,9 +92,7 @@ export default function GameMaker() {
       </div>
 
       <div>
-        <label>current chapter: {currChapter}</label><br></br>
-
-        <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData}/>
+        <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData} chapterTitle={currChapter}/>
       </div>
 
     </div>
