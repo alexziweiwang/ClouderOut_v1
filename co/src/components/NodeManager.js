@@ -55,8 +55,8 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
    const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
 
    const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
-   const x_base = 1, y_base = 1, y_dist=50;
-   const node_width = 190, node_height = 70;
+   const x_base = 1, y_base = 1, y_dist=100, node_gap=480;
+   const node_width = 380, node_height = 120;
 
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -462,7 +462,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
     
           {Object.keys(nodeData).map((nodeIndex, index) => {
             // const { node_width, node_height } = nodeData[nodeIndex];
-            const x_val = nodeData[index].depth * 240 + x_base;
+            const x_val = nodeData[index].depth * node_gap + x_base;
             //TODO calculate in-group-position by same-depth
             const y_val = y_base + (node_height+y_dist) * nodeData[index].inGroupPosition;
 
@@ -473,7 +473,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
               <g key={nodeIndex}>
                 {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
                   
-                  const next_x_val = nodeData[nextNodeIndex].depth * 240 + x_base;
+                  const next_x_val = nodeData[nextNodeIndex].depth * 480 + x_base;
                   //TODO calculate in-group-position by same-depth
                   const next_y_val = y_base + (node_height+y_dist) * nodeData[nextNodeIndex].inGroupPosition;
                    
