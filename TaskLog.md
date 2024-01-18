@@ -131,3 +131,5 @@
 - 2024-Jan-15: Design game-UI-setter features and implementation plans
 
 - 2024-Jan-16: Consider playing-progress strategy
+
+- 2024-Jan-17: Explore svg scrolling option for better node visualization
