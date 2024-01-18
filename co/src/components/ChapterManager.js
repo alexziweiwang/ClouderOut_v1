@@ -66,9 +66,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       <>
         {isCollapse === false && <div className="listBar">
         <div className="chapterManagingArea"> 
-        <div>
+        <div className="parallelFrame">
           <label>Chapter Management</label>
-          <button onClick={()=>{setIsCollapse(true);}}>Collapse</button>
+          <button className="buttonRight50" onClick={()=>{setIsCollapse(true);}}>Collapse</button>
         </div>
        
     <ol>

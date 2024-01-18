@@ -146,8 +146,16 @@ div {
     width: 80%;
 }
 
+.buttonRight50 {
+    margin-left: 50%;
+}
+
 .buttonRight {
     margin-left: 70%;
+}
+
+.buttonRight80 {
+    margin-left: 80%;
 }
 
 .buttonRight90 {
