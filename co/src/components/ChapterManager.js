@@ -39,12 +39,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     setSelectedChpt(-1);
   }
   
-  function handleSelectChapter(index) {
-    if (selectedChpt === index) {
+  function handleSelectChapter(keyStr) {
+    if (selectedChpt === keyStr) {
       setSelectedChpt(-1);
     } else {
-      setSelectedChpt(index);
-      // updateChosenChapter(index); //TODO change later
+      setSelectedChpt(keyStr);
+      updateChosenChapter(keyStr); //TODO change later
     }
   }
 
@@ -82,7 +82,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <>
         {hide === "display" && <>
           <li className={selectedChpt === index ? "chapterListItemSelected" : "chapterListItem"} 
-              onClick={()=>{handleSelectChapter(index);setIsAddNewChapter(false);}}>             
+              onClick={()=>{handleSelectChapter(item[0]);setIsAddNewChapter(false);}}>             
             {item[0]}:{item[1]}
           </li>
           {selectedChpt === index && 
@@ -91,7 +91,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               <label>Chapter Name:</label>
               <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
               <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
-              <button onClick={()=>{setEditingChapterTitle("");setEditedLine(-1);setSelectedChpt(-1);}}>Cancel</button>
+              <button onClick={()=>{setEditingChapterTitle("");}}>Cancel</button>
               <br></br>
               <label>*Delete Chapter</label><br></br>
               <button onClick={()=>{hideChapter(index);}}>Delete</button>
@@ -102,7 +102,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         </>
         );
         })}
-        <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);
+        <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);updateChosenChapter("");
         }}>
           + New Chapter
         </ul>

@@ -90,8 +90,10 @@ export default function GameMaker() {
       <div>
         <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
       </div>
-      
+
       <div>
+        <label>current chapter: {currChapter}</label><br></br>
+
         <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData}/>
       </div>
 
