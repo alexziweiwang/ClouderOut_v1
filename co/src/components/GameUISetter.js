@@ -61,6 +61,15 @@ export default function GameUISetter({dataObj}) {
                 TODO: Text looks - font, font size, color, etc.
             </p>
 
+            <p className="plans">
+                The Game Progress save/load:
+                <br></br>
+                TODO: allow authors to arrangne save/load spots
+                <br></br>
+                TODO: trigger of saving [game progress + game state]
+
+            </p>
+
 
 
         </div>
