@@ -457,10 +457,11 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
         </div>}
         </div>
         
-        <svg
+        <div className="visArea">
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             className="nodes_viewer"
-            viewBox="10 -10 2000 300"
+            viewBox="10 -10 3000 600"
             overflow="auto"
         >
     
@@ -520,7 +521,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
     
           </svg>
     
-    
+        </div>
           {clickedNode !== "" && 
         <div>
         <button 

@@ -135,3 +135,4 @@
 - 2024-Jan-17: Explore svg scrolling option for better node visualization
 
 - 2024-Jan-18: Make implementation task list and plan
+- 2024-Jan-18: Further exploration on svg and its setting

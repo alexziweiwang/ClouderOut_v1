@@ -993,3 +993,10 @@ button:hover {
     transform: rotate(-90deg);
     font-size: 20px;
 }
+
+.visArea {
+    background-color: rgb(237, 221, 223);
+    border-radius: 0px;
+    margin-top: 10px;
+    overflow: auto;
+}
