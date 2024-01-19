@@ -133,3 +133,5 @@
 - 2024-Jan-16: Consider playing-progress strategy
 
 - 2024-Jan-17: Explore svg scrolling option for better node visualization
+
+- 2024-Jan-18: Make implementation task list and plan

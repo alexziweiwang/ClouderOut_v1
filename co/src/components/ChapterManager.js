@@ -65,13 +65,10 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     return (
       <>
         {isCollapse === false && <div className="listBar">
-        <div className="chapterManagingArea"> 
-        <label>Chapter Management</label>
-
-        <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>Collapse</button>
-
         
-       
+        <div className="chapterManagingArea"> 
+          <label>Chapter Management</label>
+  
     <ol>
 
       {chapterData.map((item, index) => {
@@ -120,6 +117,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
     </ol>
 
+    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>Collapse</button>
 
     </div>
 
@@ -134,7 +132,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           <br></br>TODO feature: insert chapter between existing chapters 
           <br></br>TODO feature: rearrange chapter sequence
         </p>
-        
+
         </div>
         }
         {isCollapse === true && <button onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>}
