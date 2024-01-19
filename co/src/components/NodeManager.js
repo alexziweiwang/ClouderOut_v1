@@ -57,6 +57,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
    const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
    const x_base = 1, y_base = 1, y_dist=100, node_gap=480;
    const node_width = 380, node_height = 120;
+   const [viewBoxStr, setViewBoxStr] = useState("10 -10 3000 600");
 
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -65,6 +66,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
         let chapter = "chapter0"; //TODO test, later: fetch from user-input
         let chapterData = getChapterDataFromCloud(chapter);
     //    setNodeDataFunc(chapterData);
+    //    setViewBoxStr(); //TODO calculate needed scale
         setFirstTimeEnter(false);
     }
 });
@@ -164,6 +166,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
 
         nodeDataTemp.push(newDataItem); //TODO temp
         setNodeDataFunc(nodeDataTemp); //TODO later: update to cloud db
+        //    setViewBoxStr(); //TODO calculate needed scale
         set_test_new_node_depth(test_new_node_depth+1); //TODO test
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
@@ -194,6 +197,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
     }
 
     setNodeDataFunc(nodeDataTemp);
+    //    setViewBoxStr(); //TODO calculate needed scale
     setToRevert("");
   }
 
@@ -261,7 +265,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
         nodeDataTemp[fromNodeIndex].nextCondtList = tempCondtList;
 
         setNodeDataFunc(nodeDataTemp); //TODO later: update to cloud db
-
+//    setViewBoxStr(); //TODO calculate needed scale
         setNextNodeList(newArr);
       }
     } 
@@ -300,6 +304,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
     }
 
     setNodeDataFunc(nodeDataTemp);
+    //    setViewBoxStr(); //TODO calculate needed scale
     setDeletingNodeName("");
   }
 
@@ -399,6 +404,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
       }
     }
     setNodeDataFunc(tempNodeData);
+    //    setViewBoxStr(); //TODO calculate needed scale
     setClickedNode(tempNewName);
     setTempNewName("");
 
@@ -461,7 +467,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="nodes_viewer"
-            viewBox="10 -10 3000 600"
+            viewBox={viewBoxStr}
             overflow="auto"
           >
     
@@ -547,6 +553,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
               }
             }
             setNodeDataFunc(tempNodeData);
+            //    setViewBoxStr(); //TODO calculate needed scale
             setClickedNode(""); /* reset clicked node's name */
           }}>
             Delete [{clickedNode}]
@@ -917,6 +924,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             nodeDataTemp[index].nextNodes = currNodeNextList;
             nodeDataTemp[index].spltCondt = currNodeCondtList;
             setNodeDataFunc(nodeDataTemp);
+            //    setViewBoxStr(); //TODO calculate needed scale
 
             //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
             //TODO add link between nodes 
