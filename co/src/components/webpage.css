@@ -974,19 +974,22 @@ button:hover {
 }
 
 .shrinkTab {
-    background-color: rgb(211, 181, 211);
+    background-color: rgb(106, 116, 148);
+    color: white;
     border: none;
     border-radius: 0px;
-    margin-left: 50%;
-    margin-top: 25px;
-    transform: rotate(-90deg); 
+    margin-left: 439px;
+    margin-top: 12px;
+    transform: rotate(-90deg);
+    font-size: 20px;
 }
 
 .shrinkTab:hover {
-    background-color: rgb(82, 72, 82);
+    background-color: rgb(185, 191, 213);
     border: none;
     border-radius: 0px;
-    margin-left: 50%;
-    margin-top: 25px;
-    transform: rotate(-90deg); 
+    margin-left: 439px;
+    margin-top: 12px;
+    transform: rotate(-90deg);
+    font-size: 20px;
 }
