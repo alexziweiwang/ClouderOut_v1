@@ -136,3 +136,5 @@
 
 - 2024-Jan-18: Make implementation task list and plan
 - 2024-Jan-18: Further exploration on svg and its setting
+- 2024-Jan-18: Setup testing-project priority action items (including data transmission)
+
