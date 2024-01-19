@@ -67,6 +67,8 @@ export default function GameMaker() {
     "option y": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
     "end node": {depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
   }); //TODO new data-design
+  //TODO: node-visualization point: keep the max-length of "nextPairs", as the total height reference for svg drawing
+  //TODO: calculation strategy for placing odd and even number of nodes in the same depth-level
 
   function updateChapterNodeData() {
     // TODO fetch currChapter
