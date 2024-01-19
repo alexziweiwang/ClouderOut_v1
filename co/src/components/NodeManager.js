@@ -463,7 +463,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
             className="nodes_viewer"
             viewBox="10 -10 3000 600"
             overflow="auto"
-        >
+          >
     
           {Object.keys(nodeData).map((nodeIndex, index) => {
             // const { node_width, node_height } = nodeData[nodeIndex];
