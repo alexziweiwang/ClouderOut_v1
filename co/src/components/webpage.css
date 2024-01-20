@@ -842,9 +842,11 @@ button:hover {
 }
 
 .trashedProjectArea {
-    background-color: rgb(106, 140, 106);
+    background-color: rgb(116, 105, 89);
+    color: white;
     padding: 10px;
     border-radius: 0px;
+    margin-top: 15%;
 }
 
 .newProjForm {
@@ -867,7 +869,7 @@ button:hover {
 }
 
 .listBar {
-    width: 500px;
+    width: 25%;
     background-color: rgb(228, 237, 228);
     border-radius: 0px;
     overflow: auto;
@@ -978,8 +980,8 @@ button:hover {
     color: white;
     border: none;
     border-radius: 0px;
-    margin-left: 439px;
-    margin-top: 12px;
+    margin-left: 84%;
+    margin-top: 90%;
     transform: rotate(-90deg);
     font-size: 20px;
 }

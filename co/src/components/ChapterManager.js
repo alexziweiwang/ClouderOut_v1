@@ -64,7 +64,8 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
     return (
       <>
-        {isCollapse === false && <div className="listBar">
+        {isCollapse === false && 
+  <div className="listBar">
         
         <div className="chapterManagingArea"> 
           <label>Chapter Management</label>

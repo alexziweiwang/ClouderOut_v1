@@ -89,13 +89,12 @@ export default function GameMaker() {
 
     <div className="parallelFrame">
       
-      <div>
+   
         <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
-      </div>
+  
 
-      <div>
         <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData} chapterTitle={currChapter}/>
-      </div>
+
 
     </div>
    
