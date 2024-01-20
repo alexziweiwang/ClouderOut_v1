@@ -154,7 +154,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
                 const currItem = pieceDataLocal[index];
                 return (
-                    <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{doHighlightItem(currItem["content"]);}}>
+                    <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{doHighlightItem(currItem["content"]);assignPreviewIndex(index);}}>
                 
                     <td>{currItem["num"]}</td>
                     <td>{currItem["speaker_name"]}{(currItem["speaker_name"] === "") ? "" : ":"}{(currItem["speaker_name"] !== "") && <br></br>}{currItem["content"]}</td>
@@ -168,7 +168,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                         <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
                         <br></br>
                         <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
-                        <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button>
+                        {/* <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button> //TODO reconsider whether pieceData-updating needed*/}
                     
                         <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 
                     </div>

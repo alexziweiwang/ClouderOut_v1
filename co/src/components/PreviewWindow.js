@@ -6,7 +6,8 @@ import GameUISetter from './GameUISetter';
 
 export default function PreviewWindow({dataObj}) {
 
-    console.log("re-rendering @preview window", dataObj);
+    console.log("re-rendering @preview window");
+    console.log(dataObj);
 
     let name = "/previewwindow";
 
@@ -46,6 +47,11 @@ export default function PreviewWindow({dataObj}) {
         <div className="previewWindow">
        
             <div className="preveiewArea">
+              <div> Current Data: 
+                <br></br>{dataObj.num}
+                <br></br>{dataObj.content}
+                <br></br>{dataObj.speaker_name}
+              </div>
             
                 
             <p className="plans">
