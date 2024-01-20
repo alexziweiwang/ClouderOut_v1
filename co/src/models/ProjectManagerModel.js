@@ -78,4 +78,5 @@ export async function createProject(currUser, projectName, projectObj) {
   // TODO save any other info in projectObj
 
   // TODO create default directories: chapters, etc.
+  console.log("before impl: createProject()");
 }

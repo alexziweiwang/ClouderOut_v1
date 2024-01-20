@@ -1,4 +1,4 @@
-import {fetchProjectList, revertProject, deleteProject} from '../models/ProjectManagerModel';
+import {fetchProjectList, revertProject, deleteProject, createProject} from '../models/ProjectManagerModel';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
 export async function fetchProjectListVM(currUser) {
@@ -27,4 +27,8 @@ export async function revertProjectVM(projectToRevert, currUser) {
 
 export async function deleteProjectVM(projectToDelete, currUser) {
     await deleteProject(projectToDelete, currUser);
+}
+
+export async function createProjectVM(currUser, projectName, projectObj) {
+    await createProject(currUser, projectName, projectObj);
 }
