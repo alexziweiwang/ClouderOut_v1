@@ -59,27 +59,30 @@ export default function ProjectManageNew() {
     /* Create and setup the default set for a new project */
     function createNewProjectToCloud() {
       // TODO gather list:
-      // project name: addedNewProjName
-      // project description: projDedscription
-      // game-data map: empty {}
-      // author-info field: addedAuthorInfo
-      // field: type = "project"
-      // chapter directory: collection "chapters"
-      // game node directory: default in chapter-management (at least one defualt node in ecah chapter)
-      //            genre field (later)
+      /* project name: addedNewProjName
+      project description: projDedscription
+      game-data map: empty {}
+      author-info field: addedAuthorInfo
+      field: type = "project"
+      chapter directory: collection "chapters"
+      game node directory: default in chapter-management (at least one defualt node in ecah chapter)
+                 genre field (later) */
       
     
       const result = projList.filter((name) => name === addedNewProjName);
       if (result.length > 0) {
         console.log("warning: duplicate name");
         //if already contains this name
-        //TODO trigger flag to false: don't navigate
+        //don't navigate
+        return;
       }
       
-      if (addedAuthorInfo.length === 0) {
-        console.log("warning: author info can't be empty");
-        //TODO trigger flag to false: don't navigate
-      }
+      // if (addedAuthorInfo.length === 0) {
+      //   console.log("warning: author info can't be empty");
+      //   //don't navigate
+      //   return;
+      // }
+      //TODO: author name default: current username, then allow adding others
       
 
       const empty_game_data = {};
@@ -141,8 +144,10 @@ export default function ProjectManageNew() {
 
         <br></br>
         <div>
+        <label>Create a new project: </label>
+            <br></br>
           <div className="parallelFrame newProjForm">
-          
+ 
            <div className="newProjLineName">
             <label className="newProjectInfoElement">Project Name: </label>
             <br></br>
@@ -160,6 +165,22 @@ export default function ProjectManageNew() {
           </div>
         </div>
 
+        </div>
+
+        <br></br>
+        <div className="parallelFrame">
+        <button 
+          onClick={createNewProjectReturn}>
+        Create & Close
+        </button>
+
+        <button 
+          className="buttonRight"
+          onClick={createNewProjectEdit}>
+        Create & Start Editing!
+        </button>
+
+        </div>
 
 
         <br></br>
@@ -171,27 +192,11 @@ export default function ProjectManageNew() {
         <br></br>
         <p className="plans"> (Later: [Genre] can be the "tag"s? multiple selection or add new? **Implement Later**)</p>
 
-        </div>
-
- <br></br> <br></br>
+        <br></br> <br></br>
         <p className="plans">
           Validate user input, and then create a new folder for this new project
           <br></br> TODO: design and construct new-set for each new project: layers, etc.
         </p>
-
-        <br></br>
-        <div className="parallelFrame">
-        <button 
-          onClick={createNewProjectReturn}>
-        Create & Close
-        </button>
-
-        <button 
-          onClick={createNewProjectEdit}>
-        Create & Start Editing!
-        </button>
-
-        </div>
 
     </>
     

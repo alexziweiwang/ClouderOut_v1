@@ -475,6 +475,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
         </div>
         
         <div className="visArea">
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="nodes_viewer"
@@ -501,6 +502,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
                     (next_x_val-15) + "," + (y_val + node_height / 2 - 10) + " " + 
                     (next_x_val-15) + "," + (y_val + node_height / 2 + 10) + " " + 
                     next_x_val + "," + (next_y_val + node_height / 2);
+                    
                   return (
                     <line
                       key={`line_${nodeIndex}_${nextIndex}`}
@@ -937,7 +939,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             nodeDataTemp[index].nextNodes = currNodeNextList;
             nodeDataTemp[index].spltCondt = currNodeCondtList;
 
-            
+
             updateNodeDateActions(nodeDataTemp);
             //setNodeDataFunc(nodeDataTemp);
             //    setViewBoxStr(); //TODO calculate needed scale
