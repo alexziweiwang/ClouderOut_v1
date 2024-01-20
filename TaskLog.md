@@ -138,3 +138,4 @@
 - 2024-Jan-18: Further exploration on svg and its setting
 - 2024-Jan-18: Setup testing-project priority action items (including data transmission)
 
+- 2024-Jan-19: Redesign resource related modal windows UI and UX
