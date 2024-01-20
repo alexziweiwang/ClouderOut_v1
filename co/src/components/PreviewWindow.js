@@ -47,8 +47,7 @@ export default function PreviewWindow({dataObj}) {
         <div className="previewWindow">
        
             <div className="preveiewArea">
-              <div> Current Data: 
-                <br></br>{dataObj.num}
+              <div> Current Data:
                 <br></br>{dataObj.content}
                 <br></br>{dataObj.speaker_name}
               </div>
