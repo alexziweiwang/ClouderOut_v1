@@ -95,7 +95,9 @@ export default function ProjectManageNew() {
         game_size_direction: "h450_800"
       };
       //TODO add collection "chapters"
-
+      console.log("Created project info: ");
+      console.log(obj);
+      
       // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
 
       //TODO call VM function here to pass the data

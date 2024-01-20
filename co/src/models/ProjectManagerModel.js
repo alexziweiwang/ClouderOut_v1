@@ -71,3 +71,11 @@ export async function deleteProject(projectToDelete, currUser) {
   await updateDoc(projRef, {trashed: true});
   
 }
+
+export async function createProject(currUser, projectName, projectObj) {
+  // TODO go to currUser's directory
+  // TODO create a directory of projectName
+  // TODO save any other info in projectObj
+
+  // TODO create default directories: chapters, etc.
+}
