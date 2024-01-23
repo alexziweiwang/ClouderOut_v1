@@ -487,17 +487,29 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     </table>
                     <button onClick={()=>{setIsClickableAddNEwConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
                     {isClickableAddNewConsq && <><br></br>
-                    <p className="plans">TODO new row info: 
-                        <br></br>- option1: assign a value to variable in game-data
-                        <br></br>- option2: increase/decrease some value of variable in game-data
-                    </p>
+                    <label>Target of change: </label>
+                    <select></select>
+                    <br></br>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input><label>Assign Value</label>
                     <br></br>
-                    <div>TODO</div>
+                    
+                    <div>
+                        <label>TODO</label>
+                        <br></br>
+                        <label>Set </label>
+                        
+                        <label> to </label>
+                        <input></input>
+                        <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
+                    </div>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input><label>Change Value</label>
                     <br></br>
+                    <label>Operation: </label>
+                    <select></select>      
+                    <input></input>
+                    <br></br><p className="plans">TODO: Operation of +, -, ? </p>
                     <div>TODO</div>
-                    
+
                     <br></br>
                     <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
                     </>}
