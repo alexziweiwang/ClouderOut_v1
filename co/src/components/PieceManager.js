@@ -129,23 +129,22 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
     return (
         <div className="pieceManager">
-            <p className="plans"> TODO consider: view-only(non-edit) mode list for quick view </p>
             <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
-            <br></br>
+            <br></br><br></br><br></br>
             {isManage === false && <button onClick={()=>{setIsManage(!isManage);}}>
                     Manage Mode
-            </button>}              
+            </button>} 
+
+            {isManage === true && <button onClick={()=>{setIsManage(!isManage);}}>
+                    View Mode
+            </button>}             
             <table>
         <thead>
             <tr>
             <th>Number</th>
             <th>Content</th>
             {isManage === true && 
-            <th>Operations
-            <button onClick={()=>{setIsManage(!isManage);}}>
-                    View Mode
-            </button>
-            </th>}
+            <th>Operations</th>}
             </tr>
         </thead>
         <tbody>

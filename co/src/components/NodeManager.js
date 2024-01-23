@@ -536,8 +536,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
                 </text>}
               </g>
             );
-          })}
-    
+          })}    
           </svg>
     
         </div>
@@ -557,7 +556,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
 
             /* rename this node to timeStamp+original_name */
             const timeStamp = moment().format("YYYYMM_DD_hhmmss");
-  console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
+console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
             let i = 0;
             let tempNodeData = nodeData;
             for (; i < tempNodeData.length; i++) {
@@ -577,10 +576,7 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
         </div>
         }
     
-        
-          <br></br>
-    
-    
+          <br></br>    
         {(clickedNode !== "") && 
         <>    
         <div>
@@ -615,7 +611,6 @@ console.log("Deleting this node...", clickedNode);  //TODO testing
             </thead>
  
             <tbody>
-
             {nextNodeList.map((item, index) => {
                 const nextNodeName = nodeData[item].nodeName;
                     
