@@ -990,8 +990,8 @@ button:hover {
     background-color: rgb(185, 191, 213);
     border: none;
     border-radius: 0px;
-    margin-left: 439px;
-    margin-top: 12px;
+    margin-left: 84%;
+    margin-top: 90%;
     transform: rotate(-90deg);
     font-size: 20px;
 }
@@ -1001,4 +1001,14 @@ button:hover {
     border-radius: 0px;
     margin-top: 10px;
     overflow: auto;
+}
+
+.chapterManagerSwitch {
+    background-color: rgb(198, 220, 205);
+    transform: rotate(-90deg);
+    height: 30px;
+    border: none;
+    border-radius: 0px;
+    margin-left: -60px;
+    margin-top: 100px;
 }

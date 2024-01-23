@@ -65,7 +65,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     return (
       <>
         {isCollapse === false && 
-  <div className="listBar">
+        <div className="listBar">
         
         <div className="chapterManagingArea"> 
           <label>Chapter Management</label>
@@ -136,7 +136,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
         </div>
         }
-        {isCollapse === true && <button onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>}
+
+
+        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>}
       </>
     );
 }
