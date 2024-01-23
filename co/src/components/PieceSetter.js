@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import ResourceSelector from './ResourceSelector';
 import styles from './webpage.css';
 import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { GiTrashCan } from "react-icons/gi";
+
 
 export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData, backToList}) {
     const navigate = useNavigate();
@@ -319,7 +321,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             <th>Position y</th>
             <th>Width</th>
             <th>Height</th>
-            <th>[Operation]</th>
 
         </tr>
     </thead>
@@ -333,9 +334,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <td>{item["posY"]}</td>
                     <td>{item["w"]}</td>
                     <td>{item["h"]}</td>
-                    {charPicDataPart.length > 0 && <td>
-                        <button onClick={()=>{removeRowInCharPicTable(index);}}>Remove</button>
-                    </td>}
+                    {charPicDataPart.length > 0 && 
+                        <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
+                    }
 
                 </tr>
             );

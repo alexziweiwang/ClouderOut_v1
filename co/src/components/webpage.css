@@ -522,6 +522,23 @@ th,td {
     padding-bottom: 10px;
 }
 
+.iconButtonSmall {
+    height: 20px;
+    width: 20px;
+    border-color:rgb(7, 7, 7);
+    background-color: #d7bfa1;
+    padding-bottom: 7px;
+}
+
+.iconButtonSmall:hover {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    border-color:rgb(7, 7, 7);
+    background-color: #c3c9dc;
+    padding-bottom: 7px;
+}
+
 .areaLeft {
     margin-left: 5px;
     margin-top: 3px;
