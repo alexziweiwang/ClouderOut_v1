@@ -211,7 +211,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
         const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
-        console.log("new render- piece setter: obj from cloud:", obj);
+        console.log("new render- piece setter: obj from cloud (resource list):");
+        console.log(obj);
         setAudioList(obj.audio);
         setVisualList(obj.visual);
     }
@@ -263,8 +264,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Speaker Name:  </label>
 
                     <input value={currentPieceDetail["speaker_name"]} onChange={handleSpeakerNameEnter}></input>
-                </div>
-                
+                </div>   
             }
             {!speakerNameAdd && <div className="textRight">------------(Collapsed)---------------</div>}
             
@@ -287,15 +287,19 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Position x:      </label>
+                    <label>TODO</label>
                     <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
                     <br></br>
                     <label>Position y:      </label>
+                    <label>TODO</label>
                     <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
                     <br></br>
                     <label>Width:         </label>
+                    <label>TODO</label>
                     <input type="number" min="0" max="9000" step="1" defaultValue="800"></input>
                     <br></br>
                     <label>Height:        </label>
+                    <label>TODO</label>
                     <input type="number" min="0" max="9000" step="1" defaultValue="450"></input>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
@@ -530,6 +534,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     
                     <br></br>
                     <label>Volume:         </label>
+                    <label>TODO</label>
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
@@ -550,6 +555,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     <label>Volume:         </label>
+                    <label>TODO</label>
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
