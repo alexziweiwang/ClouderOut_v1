@@ -444,6 +444,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     </table>
                     <br></br>
                     <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add Another Clickable</button>
+                    <p className="plans"> area of working </p>
                     <br></br>
                      {displayClickableAdd && <div>
                     <label>Shape/Picture Source:  </label>
@@ -454,13 +455,16 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
-                    <label>Sound Effect:      </label>
+                    {/* <label>Sound Effect:      </label> //TODO future feature
+                    <label>TODO</label>
                     <select>
                         {audioList.map((item, index) => {
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
-                    </select>
+                    </select> */}
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    <br></br>
+                    <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
                     <br></br>
                     <label>Consequence:         </label>
                     <table>
@@ -469,17 +473,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                                 <th>Object</th>
                                 <th>Action</th>
                                 <th>Amount</th>
-                                <th>[Operation]</th>
                             </tr>
                         <tbody>
                             {<tr>
                                 <td>(obj1)</td>
                                 <td>(action1)</td>
                                 <td>(amount1)</td>
-                                <td>
-                                    <button>x</button>
-
-                                </td>
+                                <GiTrashCan onClick={()=>{}}  className="iconButtonSmall"/>                                
                             </tr>}
                         </tbody>
                     </table>
@@ -492,7 +492,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
                     </>}
-
 
                     <p className="plans"> Consequence: (logic organizer-related) 
                     <br></br> TODO: load game-data items for selection
