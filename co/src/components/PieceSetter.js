@@ -40,6 +40,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
+    const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(false);
     const [isClickableAddNewConsq, setIsClickableAddNEwConsq] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
@@ -411,15 +412,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <th>Shape/Picture Source</th>
                         <th>Sound Effect</th>
                         <th>Consequence</th>
-                        <th>[Operation]</th>
     
                     </tr>
                     </thead>
                     
                     <tbody>
-                        {clickableDataPart.map((item, index) => {
-
-                            
+                        {clickableDataPart.map((item, index) => {         
                             return (
                                 <tr className="clickableListItem3">
                                 <td>{item["shape"]}</td>
@@ -444,15 +442,19 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     </table>
                     <br></br>
                     <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add Another Clickable</button>
+        <div className="purpleArea">
                     <p className="plans"> area of working </p>
+                    
                     <br></br>
-                     {displayClickableAdd && <div>
+                     {displayClickableAdd && 
+            <div>
                     <label>Shape/Picture Source:  </label>
                     <select>
                         {visualList.map((item, index) => {
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
+       
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
                     <br></br>
                     {/* <label>Sound Effect:      </label> //TODO future feature
@@ -489,6 +491,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <br></br>- option1: assign a value to variable in game-data
                         <br></br>- option2: increase/decrease some value of variable in game-data
                     </p>
+                    <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input><label>Assign Value</label>
+                    <br></br>
+                    <div>TODO</div>
+                    <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input><label>Change Value</label>
+                    <br></br>
+                    <div>TODO</div>
+                    
                     <br></br>
                     <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
                     </>}
@@ -509,9 +518,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         setClickableDataPart(newlickableData);
                     }}>
                         Confirm Add</button>
-                    </div>
+            </div>
                     }
-                </div>}
+
+        </div>
+                </div>
+                
+                
+                }
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
             {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
