@@ -70,7 +70,7 @@ export default function NodeManager({projectName, currUser, nodeData, setNodeDat
                 //    setViewBoxStr(); //TODO calculate needed scale
         setFirstTimeEnter(false);
     }
-});
+    });
 
   async function getChapterDataFromCloud(chapter) {
     return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});

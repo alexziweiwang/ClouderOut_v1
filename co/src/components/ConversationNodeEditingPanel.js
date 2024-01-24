@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
 import GameUISetter from './GameUISetter';
@@ -42,6 +43,25 @@ export default function ConversationNodeEditingPanel() {
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
     console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
+
+    const [gameData, setGameData] = useState({});
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    useEffect(() => {
+    if (firstTimeEnter === true) {
+        getGameDataFromCloud();
+        setFirstTimeEnter(false);
+    }
+    });
+
+    async function getGameDataFromCloud() {
+        let isUpdated = true;
+        //TODO 
+        let gData = {};
+        //gData = await getProjectGameDataVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
+        
+        setGameData(gData);
+    }
+
 
     function goToGameMaker() {
         let stateObj = {selected_project_name: state.projectName, username: state.userName};
