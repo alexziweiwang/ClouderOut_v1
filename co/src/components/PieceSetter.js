@@ -441,11 +441,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     
                     </table>
                     <br></br>
-                    <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add Another Clickable</button>
-        <div className="purpleArea">
                     <p className="plans"> area of working </p>
-                    
-                    <br></br>
+
+                    {displayClickableAdd === false && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add a New Clickable</button>}
+                    {displayClickableAdd === true && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
+  
+                <div className="purpleArea">
                      {displayClickableAdd && 
             <div>
                     <label>Shape/Picture Source:  </label>
