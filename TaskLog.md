@@ -141,3 +141,4 @@
 - 2024-Jan-19: Redesign resource related modal windows UI and UX
 - 2024-Jan-19: Explore music playing functionality
 
+- 2024-Jan-23: Design piece-setter clickable consequence data structure
