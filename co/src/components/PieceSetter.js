@@ -464,7 +464,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select> */}
-                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    {/* <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button> */}
                     <br></br>
                     <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
                     <br></br>
@@ -486,7 +486,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         </tbody>
                     </table>
                     <button onClick={()=>{setIsClickableAddNEwConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
-                    {isClickableAddNewConsq && <><br></br>
+                    {isClickableAddNewConsq && <div className="orangeArea">
+
                     <label>Target of change: </label>
                     <select></select>
                     <br></br>
@@ -512,7 +513,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
                     <br></br>
                     <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
-                    </>}
+                    </div>}
 
                     <p className="plans"> Consequence: (logic organizer-related) 
                     <br></br> TODO: load game-data items for selection
