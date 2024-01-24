@@ -7,7 +7,7 @@ import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewMo
 import { GiTrashCan } from "react-icons/gi";
 
 
-export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData, backToList}) {
+export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList}) {
     const navigate = useNavigate();
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing

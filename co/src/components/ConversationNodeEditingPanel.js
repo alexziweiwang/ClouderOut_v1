@@ -46,20 +46,31 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameData, setGameData] = useState({});
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    
     useEffect(() => {
-    if (firstTimeEnter === true) {
-        getGameDataFromCloud();
-        setFirstTimeEnter(false);
-    }
+        if (firstTimeEnter === true) {
+            getGameDataFromCloud();
+            setFirstTimeEnter(false);
+        }
     });
 
     async function getGameDataFromCloud() {
         let isUpdated = true;
         //TODO 
-        let gData = {};
-        //gData = await getProjectGameDataVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
+        let gDataMap = {};
+        let project = state.projectName;
+        let currUser = state.userName;
+        gDataMap = await getProjectGameDataVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
+
+        // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
+        // console.log(state); //TODO remove later
+        console.log("$$$$$$$$$$$ game data from cloud = ");
+        console.log(gDataMap);
         
-        setGameData(gData);
+        //TODO transform to a list  
+
+
+        // setGameData(gData);
     }
 
 
@@ -135,7 +146,7 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
 
             {browseList === false && 
-                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList}/>
+                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>
             }
 
             {browseList === true &&
