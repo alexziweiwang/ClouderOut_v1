@@ -517,7 +517,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     </div>}
 
                     <p className="plans"> Consequence: (logic organizer-related) 
-                    <br></br> TODO: load game-data items for selection
                     <br></br> TODO: keep the *action* of updating game-data!! (not immediately, but when action triggered)
                    
                     <br></br>
