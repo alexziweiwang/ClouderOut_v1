@@ -141,6 +141,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             <table>
         <thead>
             <tr>
+            <th>Editor</th>
             <th>Number</th>
             <th>Content</th>
             {isManage === true && 
@@ -154,7 +155,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                 const currItem = pieceDataLocal[index];
                 return (
                     <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{doHighlightItem(currItem["content"]);assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>
-                
+                    <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
                     <td>{currItem["num"]}</td>
                     <td>{currItem["speaker_name"]}{(currItem["speaker_name"] === "") ? "" : ":"}{(currItem["speaker_name"] !== "") && <br></br>}{currItem["content"]}</td>
                     {isManage === true &&  <td>
@@ -164,15 +165,13 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                         <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
                         <br></br>
                         <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
-                        <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
-                        <br></br>
-                        <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
-                        {/* <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button> //TODO reconsider whether pieceData-updating needed*/}
-                    
+                        {/* <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button> //TODO reconsider whether pieceData-updating needed*/}                    
                         <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 
                     </div>
                     
                     </td>}
+                    <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
+
                 </tr>
                 );
             })} 
