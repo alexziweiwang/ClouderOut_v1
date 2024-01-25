@@ -70,6 +70,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         setClickedFileUrl(item["fileurl"]);
         setClickedFileName(item["filename"]);
         setClickedFileType(item["filetype"]);
+        console.log("clicked item: " + item["fileurl"]);
+        
     }
   
     function handleTempVarChange(event) {
@@ -254,6 +256,7 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                     {(clickedFileType === "visual") && 
                         <div>visual resource area {clickedFileUrl}
                             <div>
+
                                 <img src={clickedFileUrl} alt="preview_audio" />
                             </div>
                         </div>

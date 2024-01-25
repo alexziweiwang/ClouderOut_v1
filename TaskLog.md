@@ -144,5 +144,5 @@
 - 2024-Jan-23: Design piece-setter clickable consequence data structure
 - 2024-Jan-23: Explore clickable consequence parsing details
 
-
+- 2024-Jan-24: Handle resource-preview issue
 
