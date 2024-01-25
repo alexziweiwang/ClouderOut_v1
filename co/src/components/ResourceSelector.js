@@ -3,6 +3,10 @@ import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/Res
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
+    //TODO receive function for updating resource-pairs in piece-setter/conversation-node-editing page
+    //TODO for projectRsrcVisualList, update on the local list, and also (with save-option) on the cloud db list
+
+    
     let modalStyleName = "modalBackboardLighter";
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
