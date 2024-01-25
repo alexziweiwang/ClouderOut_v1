@@ -145,4 +145,5 @@
 - 2024-Jan-23: Explore clickable consequence parsing details
 
 - 2024-Jan-24: Handle resource-preview issue
+- 2024-Jan-24: Redesign component-tesing mini project plans
 

@@ -15,7 +15,7 @@ export async function submitFile({file, uname, filename}) {
     console.log("step2.RM model submitFile ...", filename); //TODO test
     if (filename === "" || filename === undefined) {
       console.log("returned");//TODO test
-      
+
       return;
     } else {
       const storageRef = ref(storage, `rm001test/${file}`);
