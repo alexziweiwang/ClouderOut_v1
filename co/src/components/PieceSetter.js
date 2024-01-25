@@ -468,6 +468,18 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     {/* <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button> */}
                     <br></br>
                     <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
+                    <label>Position x: </label>
+                    <label>TODO</label><input></input>
+                    <br></br>
+                    <label>Position y: </label>
+                    <label>TODO</label><input></input>
+                    <br></br>
+                    <label>Width: </label>
+                    <label>TODO</label><input></input>
+                    <br></br>
+                    <label>Height: </label>
+                    <label>TODO</label><input></input>
+                    <br></br>
                     <br></br>
                     <label>Consequence:         </label>
                     <table>
@@ -507,10 +519,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input><label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
-                    <select></select>      
-                    <input></input>
-                    <br></br><p className="plans">TODO: Operation of +, -, ? </p>
-                    <div>TODO</div>
+                    <label>TODO</label>
+                    <select>
+                        <option> Add </option>
+                        <option> Minus </option>
+                    </select>      
+                    <label>TODO</label><input></input>
+
 
                     <br></br>
                     <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
