@@ -1,6 +1,6 @@
 import db from '../googleCloudConnetions';
 import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
-import { storage } from '../googleCloudConnetions';
+ import { storage } from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 /**
@@ -18,7 +18,7 @@ export async function submitFile({file, uname, filename}) {
 
       return;
     } else {
-      const storageRef = ref(storage, `rm001test/${file}`);
+      const storageRef = ref(storage, `rm001test/${filename}`);
       
       const metadata = {
         contentType: 'image/jpeg',

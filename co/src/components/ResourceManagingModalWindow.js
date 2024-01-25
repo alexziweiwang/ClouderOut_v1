@@ -36,13 +36,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             console.log("File NOT chosen");
             return;
         }
+        console.log("fileSelected: ");
+        console.log(fileSelected); //TODO testing
+
         const fileName = `${username}_${fileSelected.name}`;
 
-        await submitFileVM({file: fileName , uname: username, filename: fileName});
+        await submitFileVM({file: fileSelected , uname: username, filename: fileName});
         
         console.log("continue to next steps of updating..."); //TODO test
         await updateUploadedFileRecords(username, fileName, type);
-        await updateUploadedFileRecords(username, fileName, type);
+        // await updateUploadedFileRecords(username, fileName, type); //TODO temp
 
     }
 
