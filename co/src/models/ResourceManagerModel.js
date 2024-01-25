@@ -19,12 +19,8 @@ export async function submitFile({file, uname, filename}) {
       return;
     } else {
       const storageRef = ref(storage, `rm001test/${filename}`);
-      
-      const metadata = {
-        contentType: 'image/jpeg',
-      };
-      
-      uploadBytes(storageRef, file, metadata);
+
+      uploadBytes(storageRef, file);
 
       console.log("file upload complete."); //TODO test
     }
