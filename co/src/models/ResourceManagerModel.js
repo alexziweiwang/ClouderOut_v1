@@ -15,11 +15,17 @@ export async function submitFile({file, uname, filename}) {
     console.log("step2.RM model submitFile ...", filename); //TODO test
     if (filename === "" || filename === undefined) {
       console.log("returned");//TODO test
+      
       return;
     } else {
-      const fileRef = ref(storage, `rm001test/${file}`);
-    
-      uploadBytes(fileRef, file);
+      const storageRef = ref(storage, `rm001test/${file}`);
+      
+      const metadata = {
+        contentType: 'image/jpeg',
+      };
+      
+      uploadBytes(storageRef, file, metadata);
+
       console.log("file upload complete."); //TODO test
     }
 }
