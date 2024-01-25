@@ -255,9 +255,8 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                     }
                     {(clickedFileType === "visual") && 
                         <div>visual resource area {clickedFileUrl}
-                            <div>
-
-                                <img src={clickedFileUrl} alt="preview_audio" />
+                            <div className="resourcePreviewWindow">
+                                <img src={clickedFileUrl} alt="preview_visual" />
                             </div>
                         </div>
                     }                    

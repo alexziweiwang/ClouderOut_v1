@@ -1048,3 +1048,8 @@ button:hover {
 .orangeArea {
     background-color: rgb(225, 205, 169);
 }
+
+.resourcePreviewWindow {
+    height: 600;
+    width: 800;
+}
