@@ -90,6 +90,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     function handleAudioRsrcSelectorSave(updatedList) {
         //TODO update audioList
+        console.log("!! Piece Setter, from Resource Selector: [audio]");
+        console.log(updatedList);
         setAudioList(updatedList);
     }
 

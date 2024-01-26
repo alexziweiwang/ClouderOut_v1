@@ -244,10 +244,15 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
                                 let obj = {var: tempVarName, content: item};                 
                                 projectRsrcAudioList.push(obj);  
                                 let value = {var: tempVarName, name: item["filename"]};
-                                localAudioList.push(value);                                           
+                                let tempLocalAList = localAudioList;
+                                tempLocalAList.push(value);
+                                setLocalAudioList(tempLocalAList);                                         
                                 setTempVarName("");
                                 //TODO update to the caller
-                                handleRsAudioSaveChanges(localVisualList);
+                                console.log("audio var-pair list updating... ");
+                                console.log(tempLocalAList);
+                                handleRsAudioSaveChanges(tempLocalAList);
+                                
 
                             }}>Add
                             </button>
