@@ -17,13 +17,6 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
         modalStyleName = "displayNone modalBackboardLighter";
     }
 
-    useEffect(() => {
-        if (firstTimeEnter === true) {
-            fetchRmFileList();
-            setFirstTimeEnter(false);
-        }
-    });
-
     const [cloudFileList, setCloudFileList] = useState([]);
     const [clickedFileUrl, setClickedFileUrl] = useState("");
     const [clickedFileName, setClickedFileName] = useState("");
@@ -43,6 +36,15 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
     const [tempVarName, setTempVarName] = useState("");
 
     const [isRmOpen, setIsRmOpen] = useState(false);
+
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            fetchRmFileList();
+            setFirstTimeEnter(false);
+        }
+    });
+
+
 
     async function fetchRmFileList() {
         let fileList = await getRmFileListVM({uname: username});
@@ -255,6 +257,9 @@ export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, 
                 <div className="rsrcPrevArea">
                     {(clickedFileType === "audio") && 
                         <div>audio resource area {clickedFileUrl}
+                            <br></br>
+                            <audio src={clickedFileUrl} controls />
+                            
                         </div>
                     }
                     {(clickedFileType === "visual") && 
