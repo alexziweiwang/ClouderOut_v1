@@ -147,3 +147,4 @@
 - 2024-Jan-24: Handle resource-preview issue
 - 2024-Jan-24: Redesign component-tesing mini project plans
 
+- 2024-Jan-25: Explore game-parsing audio playing and pausing/stopping strategy
