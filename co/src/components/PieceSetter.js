@@ -82,14 +82,15 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         setRmSelectorOpen(false);
     }
 
-    function handleVisualRsrcSelectorSave() {
-        //TODO update visualList 
+    function handleVisualRsrcSelectorSave(updatedList) {
+        //TODO update visualList
+        setVisualList(updatedList);
 
     }
 
-    function handleAudioRsrcSelectorSave() {
-                //TODO update audioList
-
+    function handleAudioRsrcSelectorSave(updatedList) {
+        //TODO update audioList
+        setAudioList(updatedList);
     }
 
     function handleTextContentEnter(event) {
@@ -249,6 +250,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     handleRsCancel={handleResourceSelectorCancel} 
                     handleRsVisualSaveChanges={handleVisualRsrcSelectorSave}
                     handleRsAudioSaveChanges={handleAudioRsrcSelectorSave}
+                    visualListContent={visualList}
+                    audioListContent={audioList}
 
                     isDisplay={rmSelectorOpen}/>
             }

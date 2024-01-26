@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
-export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVisualSaveChanges, handleRsAudioSaveChanges}) {
+export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVisualSaveChanges, handleRsAudioSaveChanges, visualListContent, audioListContent}) {
     //TODO receive function for updating resource-pairs in piece-setter/conversation-node-editing page
     //TODO for projectRsrcVisualList, update on the local list, and also (with save-option) on the cloud db list
 
@@ -22,8 +22,8 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
     const [clickedFileName, setClickedFileName] = useState("");
     const [clickedFileType, setClickedFileType] = useState("");
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-    const [visualList, setVisualList] = useState([]);
-    const [audioList, setAudioList] = useState([]);
+    const [visualList, setVisualList] = useState(visualListContent);
+    const [audioList, setAudioList] = useState(audioListContent);
 
     const [isAddNewPair, setIsAddNewPair] = useState(false);
 
@@ -222,6 +222,9 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
                                 let value = {var: tempVarName, name: item["filename"]};
                                 localVisualList.push(value);                                                         
                                 setTempVarName("");
+                                //TODO update to the caller
+                                handleRsVisualSaveChanges(localVisualList);
+
                                 }}>Add
                             </button>
                                                                    
@@ -243,6 +246,9 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
                                 let value = {var: tempVarName, name: item["filename"]};
                                 localAudioList.push(value);                                           
                                 setTempVarName("");
+                                //TODO update to the caller
+                                handleRsAudioSaveChanges(localVisualList);
+
                             }}>Add
                             </button>
                             
