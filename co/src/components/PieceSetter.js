@@ -12,6 +12,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
+    const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
+
     let name = "/gamenodeconvpiecedatasec";
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -304,19 +306,23 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Position x:      </label>
                     <label>TODO</label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <input type="range" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <label>[value]</label>
                     <br></br>
                     <label>Position y:      </label>
                     <label>TODO</label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <input type="range" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <label>[value]</label>
                     <br></br>
                     <label>Width:         </label>
                     <label>TODO</label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="800"></input>
+                    <input type="range" min="0" max="9000" step="1" defaultValue="800"></input>
+                    <label>[value]</label>
                     <br></br>
                     <label>Height:        </label>
                     <label>TODO</label>
-                    <input type="number" min="0" max="9000" step="1" defaultValue="450"></input>
+                    <input type="range" min="0" max="9000" step="1" defaultValue="450"></input>
+                    <label>[value]</label>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
@@ -372,16 +378,20 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
     <br></br>
     <label>Position x:      </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="0" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
+    <input type="number" min="0" max={positionMaxX} step="1" defaultValue="0" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
+    <input type="range" min="0" max={positionMaxX} value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="0" value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" defaultValue="0" value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
+    <input type="range" min="0" max={positionMaxY} value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="60" value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
+    <input type="number" min="0" max={widthMax} step="1" defaultValue="60" value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
+    <input type="range" min="0" max={widthMax} value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max="9000" step="1" defaultValue="210" value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
+    <input type="number" min="0" max={heightMax} step="1" defaultValue="210" value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
+    <input type="range" min="0" max={heightMax} value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
         let newcharPicData = charPicDataPart;
