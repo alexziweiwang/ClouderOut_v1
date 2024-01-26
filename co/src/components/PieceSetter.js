@@ -378,19 +378,19 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
     <br></br>
     <label>Position x:      </label>
-    <input type="number" min="0" max={positionMaxX} step="1" defaultValue="0" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
+    <input type="number" min="0" max={positionMaxX} step="1" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
     <input type="range" min="0" max={positionMaxX} value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" defaultValue="0" value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
     <input type="range" min="0" max={positionMaxY} value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" defaultValue="60" value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
     <input type="range" min="0" max={widthMax} value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" defaultValue="210" value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
     <input type="range" min="0" max={heightMax} value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
