@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
-export default function ResourceSelector ({handleRsCancel, handleRsSaveChanges, isDisplay}) {
+export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVisualSaveChanges, handleRsAudioSaveChanges}) {
     //TODO receive function for updating resource-pairs in piece-setter/conversation-node-editing page
     //TODO for projectRsrcVisualList, update on the local list, and also (with save-option) on the cloud db list
 

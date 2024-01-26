@@ -82,8 +82,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         setRmSelectorOpen(false);
     }
 
-    function handleResourceSelectorSave() {
-        console.log("saving for handleResourceSelectorSave ... "); //TODO
+    function handleVisualRsrcSelectorSave() {
+        //TODO update visualList 
+
+    }
+
+    function handleAudioRsrcSelectorSave() {
+                //TODO update audioList
+
     }
 
     function handleTextContentEnter(event) {
@@ -241,7 +247,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             {rmSelectorOpen && 
                 <ResourceSelector 
                     handleRsCancel={handleResourceSelectorCancel} 
-                    handleRsSaveChanges={handleResourceSelectorSave} 
+                    handleRsVisualSaveChanges={handleVisualRsrcSelectorSave}
+                    handleRsAudioSaveChanges={handleAudioRsrcSelectorSave}
+
                     isDisplay={rmSelectorOpen}/>
             }
             <label>Piece: {pieceNumber}</label>
