@@ -605,10 +605,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
                 
-            {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
-            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>}
+            {/* {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
+            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>} */}
 
-            {voicelineAdd && 
+            {/* {voicelineAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
@@ -625,12 +625,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
-        
+         */}
+        {/* <br></br>
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
-        <br></br>
+        <br></br> */} //TODO add voiceline feature later
         <button onClick={updateToCaller}>Save</button>
 
         <br></br>
