@@ -79,11 +79,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         <div className="modalArea">
 
             <div>
-                <div>
+            <button onClick={handleRmCancel}> Close </button>
+
+                <div className="parallelFrame">
                     <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
                     <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
-                    <button onClick={handleRmCancel}> Close </button>
-
                 </div>
 
                 {isTabVisual && 
