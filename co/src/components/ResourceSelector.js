@@ -201,8 +201,10 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
                 <div className="rsrcListArea">
 
                 {isRmOpen && <ResourceManagingModalWindow isDisplay = {isRmOpen} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
-
-                <button onClick={()=>{setIsRmOpen(!isRmOpen);}}>Resource Manager</button>
+                        
+                <button onClick={()=>{setIsRmOpen(!isRmOpen);setClickedFileUrl("");setClickedFileName("");setClickedFileType("");}}>
+                    Resource Manager
+                </button>
                 <br></br>
                 <label>New Variable Name:</label>
                 <input value={tempVarName} onChange={handleTempVarChange}></input>
@@ -251,8 +253,7 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
                                 //TODO update to the caller
                                 console.log("audio var-pair list updating... ");
                                 console.log(tempLocalAList);
-                                handleRsAudioSaveChanges(tempLocalAList);
-                                
+                                handleRsAudioSaveChanges(tempLocalAList);          
 
                             }}>Add
                             </button>

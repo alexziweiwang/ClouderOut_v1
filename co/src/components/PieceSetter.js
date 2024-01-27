@@ -71,6 +71,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         if (firstTimeEnter === true) {
             /* initialization of project-resource-list in drop-down list */
             fetchProjResourceLists();
+            // TODO fetch visualList and audioList from cloud-db to setup the local lists
             setFirstTimeEnter(false);
         }
     });
