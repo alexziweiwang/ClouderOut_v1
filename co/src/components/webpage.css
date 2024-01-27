@@ -1053,3 +1053,8 @@ button:hover {
     height: 600;
     width: 800;
 }
+
+.slider {
+    accent-color: rgb(187, 143, 193);
+    
+}
