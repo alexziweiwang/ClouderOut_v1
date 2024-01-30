@@ -175,6 +175,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
   }
 
   function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
+    
     const nodeDataTemp = nodeData;
 
     if (createNewNodeGameType === "") {
@@ -183,8 +184,9 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
     }
   
     if (createNewNodeName.length > 0) {
-      //TODO later: check if node name duplicate in cloud-db
-      //TODO now searching in temp "nodeData" testing data
+      //TODO later: check if node name duplicate in local node-data (fetched from cloud earlier)
+      
+      //TODO search in temp "nodeData"
       const found = nodeData.some((item) => item.nodeName === createNewNodeName);
       if (found) {
         console.log("Invalid node name: duplicate")
@@ -192,26 +194,38 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         console.log("create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
         
         //TODO calculate in-grou-position by filtering the same depth
+// format:
+//    { nodeName: "plot1", 
+// depth: 1, 
+// inGroupPosition:0, 
+// nextNodes:[1], 
+// spltCondt: ["Default: Always Reachable"], 
+// display: true, 
+// nodeType:"Conversation", 
+// screenSize: "h450_800"},
 
         const newDataItem = { 
           nodeName: `${createNewNodeName}`, 
           depth: test_new_node_depth,
           inGroupPosition:0,
           nextNodes:[], 
-          spltCondt:[], 
+          spltCondt:["Default: Always Reachable"], 
           display: true, 
           nodeType:`${createNewNodeGameType}`,
-          screenSize: createdNewNodeScreenSize}; //TODO temp
+          screenSize: createdNewNodeScreenSize
+        
+        }; //TODO temp
 
         nodeDataTemp.push(newDataItem); //TODO temp
-        // setNodeData(nodeDataTemp); //TODO later: update to cloud db
-        // //    setViewBoxStr(); //TODO calculate needed scale
+        setNodeData(nodeDataTemp); //TODO later: update to cloud db
+        
         updateNodeDateActions(nodeDataTemp);
         
         set_test_new_node_depth(test_new_node_depth+1); //TODO test
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
         //TODO reset the look of dropdown list here
+
       }
 
     } else {
@@ -471,13 +485,11 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
         {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">+ Add A New Node</label></div>}
 
-
         {addNewNodeAreaDisplay && <div>
         <label>Node Name: </label>
         <input 
           className="setting_item"
           type="text" value={createNewNodeName} 
-          // onBlur={e => {console.log(e.target.value);}      //TODO now not in use}
           onChange={e => {setCreateNewNodeName(e.target.value)}}  
         />
         <br></br>
