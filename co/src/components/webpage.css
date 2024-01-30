@@ -1058,3 +1058,8 @@ button:hover {
     accent-color: rgb(187, 143, 193);
     
 }
+
+.visPanel {
+    width: 1200px;
+
+}

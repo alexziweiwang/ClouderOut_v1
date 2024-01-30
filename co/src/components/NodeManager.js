@@ -90,7 +90,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
    const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
    const x_base = 1, y_base = 1, y_dist=100, node_gap=480;
    const node_width = 380, node_height = 120;
-   const [viewBoxStr, setViewBoxStr] = useState("10 -10 3000 600");
+   const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700");
 
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -139,9 +139,14 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
       setClickedNode("");
     }
 
-    let tempNextList = nodeData.filter(item => (item.display === true && name === item.nodeName));
+    let tempNextList = nodeData
+      .filter(item => (item.display === true && name === item.nodeName));
+
     tempNextList = tempNextList[0].nextNodes;
-    let tempNextCondtList = nodeData.filter(item => (item.display === true && name === item.nodeName));
+
+    let tempNextCondtList = nodeData
+      .filter(item => (item.display === true && name === item.nodeName));
+
     tempNextCondtList = tempNextCondtList[0].spltCondt;
 
     console.log("nodeData: ", nodeData);
@@ -517,7 +522,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         </div>}
         </div>
         
-        <div className="visArea">
+        <div className="visArea visPanel">
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -583,6 +588,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
           </svg>
     
         </div>
+   
           {clickedNode !== "" && 
         <div>
         <button 
@@ -619,8 +625,9 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         }
     
           <br></br>    
-        {(clickedNode !== "") && 
-        <>    
+      {  (clickedNode !== "") && 
+        <div>    
+        
         <div>
         <p className="sectionHeader">*** Node Info ***</p>
         <div>
@@ -705,7 +712,8 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
                 })}
         </select>
         </div>
-        </>}
+
+    </>}
 
 
         </div>}
@@ -1014,8 +1022,10 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
 
       
         </div>
-        </>
+    </div>
       }
+
+
       <br></br><br></br><br></br><br></br><br></br>
       <p className="plans"> revert options : later change into collapsable section with simple icon</p>
         <div className="trashNodeArea">
