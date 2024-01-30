@@ -154,7 +154,7 @@
 - 2024-Jan-26: Design default UI options for the users
 - 2024-Jan-26: Consider customer-player-profile/account design
 
-
+- 2024-Jan-29: Consider project-game-UI setting UX
 
 
 
