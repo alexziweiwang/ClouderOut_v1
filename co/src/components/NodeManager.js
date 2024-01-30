@@ -100,7 +100,6 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         let chapterData = getChapterDataFromCloud(chapter);
         //updateNodeDataActions(chapterData);
                 //    setNodeData(chapterData);
-                //    setViewBoxStr(); //TODO calculate needed scale
         console.log("First enter node data: ");
         console.log(nodeData);
         setFirstTimeEnter(false);
@@ -114,7 +113,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
 
   function updateNodeDataActions(data) {
        setNodeData(data);
-       setViewBoxStr(); //TODO calculate needed scale
+       //TODO calculate needed scale
        console.log("new node data:");
        console.log(data); //TODO test
 
