@@ -98,9 +98,11 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
     if (firstTimeEnter === true) {
         let chapter = "chapter0"; //TODO test, later: fetch from user-input
         let chapterData = getChapterDataFromCloud(chapter);
-        //updateNodeDateActions(chapterData);
+        //updateNodeDataActions(chapterData);
                 //    setNodeData(chapterData);
                 //    setViewBoxStr(); //TODO calculate needed scale
+        console.log("First enter node data: ");
+        console.log(nodeData);
         setFirstTimeEnter(false);
     }
     });
@@ -110,9 +112,13 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
    
   }
 
-  function updateNodeDateActions(data) {
+  function updateNodeDataActions(data) {
        setNodeData(data);
        setViewBoxStr(); //TODO calculate needed scale
+       console.log("new node data:");
+       console.log(data); //TODO test
+
+       //TODO later: update to cloud db
   }
 
   async function updateNodeRelationship() {
@@ -209,23 +215,20 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
           depth: test_new_node_depth,
           inGroupPosition:0,
           nextNodes:[], 
-          spltCondt:["Default: Always Reachable"], 
+          spltCondt:[], 
           display: true, 
           nodeType:`${createNewNodeGameType}`,
           screenSize: createdNewNodeScreenSize
-        
         }; //TODO temp
 
         nodeDataTemp.push(newDataItem); //TODO temp
-        setNodeData(nodeDataTemp); //TODO later: update to cloud db
         
-        updateNodeDateActions(nodeDataTemp);
+        updateNodeDataActions(nodeDataTemp);
         
+        // reset the creation layout
         set_test_new_node_depth(test_new_node_depth+1); //TODO test
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
-        //TODO reset the look of dropdown list here
-
       }
 
     } else {
@@ -251,9 +254,8 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
       }
     }
 
-    updateNodeDateActions(nodeDataTemp);
-    //setNodeData(nodeDataTemp);
-    //    setViewBoxStr(); //TODO calculate needed scale
+    updateNodeDataActions(nodeDataTemp);
+ 
     setToRevert("");
   }
 
@@ -320,9 +322,8 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         setNextCondtList(tempCondtList); 
         nodeDataTemp[fromNodeIndex].nextCondtList = tempCondtList;
 
-        updateNodeDateActions(nodeDataTemp);
-        //setNodeData(nodeDataTemp); //TODO later: update to cloud db
-//    setViewBoxStr(); //TODO calculate needed scale
+        updateNodeDataActions(nodeDataTemp);
+
         setNextNodeList(newArr);
       }
     } 
@@ -359,9 +360,8 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
       }
 
     }
-    updateNodeDateActions(nodeDataTemp);
-    //setNodeData(nodeDataTemp);
-    //    setViewBoxStr(); //TODO calculate needed scale
+    updateNodeDataActions(nodeDataTemp);
+
     setDeletingNodeName("");
   }
 
@@ -460,9 +460,8 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         tempNodeData[clickedIndex].nodeName = tempNewName;
       }
     }
-    updateNodeDateActions(tempNodeData);
-    //setNodeData(tempNodeData);
-    //    setViewBoxStr(); //TODO calculate needed scale
+    updateNodeDataActions(tempNodeData);
+
     setClickedNode(tempNewName);
     setTempNewName("");
 
@@ -610,9 +609,8 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
               }
             }
 
-            updateNodeDateActions(tempNodeData);
-            //setNodeData(tempNodeData);
-            //    setViewBoxStr(); //TODO calculate needed scale
+            updateNodeDataActions(tempNodeData);
+
             setClickedNode(""); /* reset clicked node's name */
           }}>
             Delete [{clickedNode}]
@@ -980,9 +978,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
             nodeDataTemp[index].spltCondt = currNodeCondtList;
 
 
-            updateNodeDateActions(nodeDataTemp);
-            //setNodeData(nodeDataTemp);
-            //    setViewBoxStr(); //TODO calculate needed scale
+            updateNodeDataActions(nodeDataTemp);
 
             //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
             //TODO add link between nodes 
