@@ -42,33 +42,6 @@ export default function GameMaker() {
     navigate('/projectmanagingpanel', { replace: true });
   }
 
-  const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "plot2",depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  ]); //TODO testing data
-  
-  const [nodeRelationship, setNodeRelationship] = useState([
-    { nodeName: "plot1", depth: 1, prevNode: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "plot2", depth: 2, prevNode: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option x", depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option y", depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    { nodeName: "end node", depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  ]); //TODO new data-design
-  // prevNode: an clue to search for previous-node, and get the prev-node's next-node list length, for visualization
-  // improvement on prevNode involved: adding link & deleting link, involved fields: current node's prevNode, previous nodes' nextPairs
-
-  const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    "plot1": {depth: 1, prevNode: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "plot2": {depth: 2, prevNode: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option x": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option y": {depth: 3, prevNode: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    "end node": {depth: 4, prevNode: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  }); //TODO new data-design
-  //TODO: node-visualization point: keep the max-length of "nextPairs", as the total height reference for svg drawing
-  //TODO: calculation strategy for placing odd and even number of nodes in the same depth-level
 
   function updateChapterNodeData() {
     // TODO fetch currChapter
@@ -93,7 +66,7 @@ export default function GameMaker() {
         <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
   
 
-        <NodeManager currUser={username} projectName={projectName} setNodeDataFunc={setNodeData} nodeData={nodeData} chapterTitle={currChapter}/>
+        <NodeManager currUser={username} projectName={projectName} chapterTitle={currChapter}/>
 
 
     </div>
