@@ -157,6 +157,6 @@
 - 2024-Jan-29: Consider project-game-UI setting UX
 - 2024-Jan-29: Consider customer-player data efficiency
 
-
+- 2024-Jan-30: Research on more svg interactions
 
 
