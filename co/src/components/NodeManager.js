@@ -597,30 +597,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
             Enter Editor for [{clickedNode}]
         </button>
     
-        <button 
-          className="setting_item"
-          onClick={()=>{
-console.log("Deleting this node...", clickedNode);  //TODO testing
-            handleDeleteNodeWithParam(clickedNode);
-
-            /* rename this node to timeStamp+original_name */
-            const timeStamp = moment().format("YYYYMM_DD_hhmmss");
-console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
-            let i = 0;
-            let tempNodeData = nodeData;
-            for (; i < tempNodeData.length; i++) {
-              if (tempNodeData[i].nodeName === clickedNode) {
-                tempNodeData[i]["nodeName"] = timeStamp + "=" +clickedNode;
-              }
-            }
-
-            updateNodeDataActions(tempNodeData);
-
-            setClickedNode(""); /* reset clicked node's name */
-          }}>
-            Delete [{clickedNode}]
-        </button>
-        
+      
         </div>
         }
     
@@ -1022,9 +999,42 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
 
       
         </div>
+
+
+
+
+
+        <p className="sectionHeader">*** Node Operation ***</p>
+
+
+        <button 
+          className="setting_item"
+          onClick={()=>{
+console.log("Deleting this node...", clickedNode);  //TODO testing
+            handleDeleteNodeWithParam(clickedNode);
+
+            /* rename this node to timeStamp+original_name */
+            const timeStamp = moment().format("YYYYMM_DD_hhmmss");
+console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
+            let i = 0;
+            let tempNodeData = nodeData;
+            for (; i < tempNodeData.length; i++) {
+              if (tempNodeData[i].nodeName === clickedNode) {
+                tempNodeData[i]["nodeName"] = timeStamp + "=" +clickedNode;
+              }
+            }
+
+            updateNodeDataActions(tempNodeData);
+
+            setClickedNode(""); /* reset clicked node's name */
+          }}>
+            Delete [{clickedNode}]
+        </button>
+        
     </div>
       }
 
+      
 
       <br></br><br></br><br></br><br></br><br></br>
       <p className="plans"> revert options : later change into collapsable section with simple icon</p>
