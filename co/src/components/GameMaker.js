@@ -38,6 +38,17 @@ export default function GameMaker() {
   const [currChapter, setCurrChapter] = useState("");
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display"], ["key2", "testChapter2", "display"]]); //TODO fetch from cloud db
   
+  const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+  useEffect(() => {
+    if (firstTimeEnter === true) {
+        //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
+        //TODO format: localChapterInfo = <chapter title, node-relationship-map>
+        //TODO the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
+        setFirstTimeEnter(false);
+    }
+  });
+
+
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });
   }
