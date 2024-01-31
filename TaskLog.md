@@ -159,5 +159,4 @@
 
 - 2024-Jan-30: Research on more svg interactions
 - 2024-Jan-30: Consider necessary events for the tool
-
-
+- 2024-Jan-30: Research on mouse events options
