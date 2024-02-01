@@ -42,6 +42,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
+    const [clickableConsequenceSelectedGameDataItem, setClickableConsequenceSelectedGameDataItem] = useState("");
     const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(false);
     const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
@@ -533,15 +534,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     {isClickableAddNewConsq && <div className="orangeArea">
 
                     <label>Target of change: </label>
-                    <select>
-                      
-
-
+                    <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);}} value={clickableConsequenceSelectedGameDataItem}>
                     {Object.keys(gameDataList).map((currKey) => {
-                        console.log("game data list: ");
-                        console.log(gameDataList);
                         return (
-                        <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
+                            <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
                         );
                     })}
 
