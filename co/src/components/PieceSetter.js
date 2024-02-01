@@ -493,16 +493,16 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
                     <label>Position x: </label>
-                    <label>TODO</label><input></input>
+                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
                     <br></br>
                     <label>Position y: </label>
-                    <label>TODO</label><input></input>
+                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
                     <br></br>
                     <label>Width: </label>
-                    <label>TODO</label><input></input>
+                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
                     <br></br>
                     <label>Height: </label>
-                    <label>TODO</label><input></input>
+                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
                     <br></br>
                     <br></br>
                     <label>Consequence:         </label>
