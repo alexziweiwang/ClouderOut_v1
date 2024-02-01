@@ -307,22 +307,22 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Position x:      </label>
                     <label>TODO</label>
-                    <input type="range" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0"></input>
                     <label>[value]</label>
                     <br></br>
                     <label>Position y:      </label>
                     <label>TODO</label>
-                    <input type="range" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0"></input>
                     <label>[value]</label>
                     <br></br>
                     <label>Width:         </label>
                     <label>TODO</label>
-                    <input type="range" min="0" max="9000" step="1" defaultValue="800"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="800"></input>
                     <label>[value]</label>
                     <br></br>
                     <label>Height:        </label>
                     <label>TODO</label>
-                    <input type="range" min="0" max="9000" step="1" defaultValue="450"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="450"></input>
                     <label>[value]</label>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
