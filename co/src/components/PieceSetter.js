@@ -43,7 +43,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
     const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(false);
-    const [isClickableAddNewConsq, setIsClickableAddNEwConsq] = useState(false);
+    const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
@@ -514,15 +514,20 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                                 <th>Amount</th>
                             </tr>
                         <tbody>
-                            {<tr>
-                                <td>(obj1)</td>
-                                <td>(action1)</td>
-                                <td>(amount1)</td>
-                                <GiTrashCan onClick={()=>{}}  className="iconButtonSmall"/>                                
-                            </tr>}
+                            {clickableConsequenceArray.map((item, index) => {         
+                            return (
+                                <tr className="clickableListItem3">
+                                    <td>(obj1)</td>
+                                    <td>(action1)</td>
+                                    <td>(amount1)</td>
+                                    <GiTrashCan onClick={()=>{}}  className="iconButtonSmall"/>                                
+                                </tr>
+                                );
+                            })}
+                        
                         </tbody>
                     </table>
-                    <button onClick={()=>{setIsClickableAddNEwConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
+                    <button onClick={()=>{setIsClickableAddNewConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
                     {isClickableAddNewConsq && <div className="orangeArea">
 
                     <label>Target of change: </label>
@@ -556,14 +561,18 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Operation: </label>
                     <label>TODO</label>
                     <select>
-                        <option> Add </option>
+                        <option> Plus </option>
                         <option> Minus </option>
                     </select>      
                     <label>TODO</label><input></input>
 
 
                     <br></br>
-                    <button onClick={()=>{setIsClickableAddNEwConsq(false);}}>Add</button>
+                    <button onClick={()=>{
+                        setIsClickableAddNewConsq(false);
+                        //TODO save the change: target name + action + magnitude
+                        //TODO push to clickableConsequenceArray
+                    }}>Add</button>
                     </div>}
 
                     <p className="plans"> Consequence: (logic organizer-related) 
