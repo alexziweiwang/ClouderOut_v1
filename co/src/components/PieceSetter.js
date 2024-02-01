@@ -520,7 +520,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                                     <td>(obj1)</td>
                                     <td>(action1)</td>
                                     <td>(amount1)</td>
-                                    <GiTrashCan onClick={()=>{}}  className="iconButtonSmall"/>                                
+                                    <GiTrashCan onClick={()=>{
+                                        //TODO remove from consequence table
+                                    }}  className="iconButtonSmall"/>                                
                                 </tr>
                                 );
                             })}
@@ -536,6 +538,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
 
                     {Object.keys(gameDataList).map((currKey) => {
+                        console.log("game data list: ");
+                        console.log(gameDataList);
                         return (
                         <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
                         );
@@ -546,7 +550,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input><label>Assign Value</label>
                     <br></br>
-                    
+                    <label>TODO: get current selected game-data-item & get type of it & respond accordingly </label>
                     <div>
                         <label>TODO</label>
                         <br></br>
