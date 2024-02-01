@@ -534,20 +534,24 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     {isClickableAddNewConsq && <div className="orangeArea">
 
                     <label>Target of change: </label>
-                    <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);}} value={clickableConsequenceSelectedGameDataItem}>
-                    {Object.keys(gameDataList).map((currKey) => {
-                        return (
-                            <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
-                        );
-                    })}
-
+                    <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);console.log("selected game data (consq) = ", event.target.value);}} value={clickableConsequenceSelectedGameDataItem}>
+                        {Object.keys(gameDataList).map((currKey) => {
+                            console.log("game data list item = ");
+                            console.log(gameDataList[currKey]);
+                            return (
+                                <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
+                            );
+                        })}
                     </select>
 
-                    <br></br>
+                    <br></br><br></br>
+
+                    {
+                    <div>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input><label>Assign Value</label>
                     <br></br>
                     <label>TODO: get current selected game-data-item & get type of it & respond accordingly </label>
-                    <div>
+                    
                         <label>TODO</label>
                         <br></br>
                         <label>Set </label>
@@ -555,7 +559,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <label> to </label>
                         <input></input>
                         <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
-                    </div>
+                    </div>}
+                    {
+                    <div>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input><label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
@@ -565,7 +571,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <option> Minus </option>
                     </select>      
                     <label>TODO</label><input></input>
-
+                    </div>}
 
                     <br></br>
                     <button onClick={()=>{
