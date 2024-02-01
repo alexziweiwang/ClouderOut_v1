@@ -526,7 +526,18 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     {isClickableAddNewConsq && <div className="orangeArea">
 
                     <label>Target of change: </label>
-                    <select></select>
+                    <select>
+                      
+
+
+                    {Object.keys(gameDataList).map((currKey) => {
+                        return (
+                        <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
+                        );
+                    })}
+
+                    </select>
+
                     <br></br>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input><label>Assign Value</label>
                     <br></br>

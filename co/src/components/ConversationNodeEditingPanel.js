@@ -70,7 +70,7 @@ export default function ConversationNodeEditingPanel() {
         //TODO transform to a list  
 
 
-        // setGameData(gData);
+        setGameData(gDataMap);
     }
 
 
