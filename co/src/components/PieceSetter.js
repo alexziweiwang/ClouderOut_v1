@@ -44,8 +44,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
     const [clickableConsequenceSelectedGameDataItem, setClickableConsequenceSelectedGameDataItem] = useState("");
     const [clickableConsequenceSelectedGameDataItemType, setClickableConsequenceSelectedGameDataItemType] = useState("");
-
-    const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(false);
+    const [consequenceIsPlus, setConsequenceIsPlus] = useState("");
+    const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(true);
     const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
@@ -560,7 +560,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
                     <div>
                     
-                    {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input>} 
+                    {clickableConsequenceSelectedGameDataItemType === "number" && 
+                        <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input>} 
                     <label>Assign Value</label>
                     
                     <br></br>
@@ -594,9 +595,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Operation: </label>
                     <label>TODO</label>
-                    <select>
-                        <option> Plus </option>
-                        <option> Minus </option>
+                    <select value={consequenceIsPlus} onChange={(event)=>{setConsequenceIsPlus(event.target.value);}}>
+                        <option value="" key=""> -- Select Operation -- </option>
+                        <option value="plus" key="plus"> Plus </option>
+                        <option value="minus" key="minus"> Minus </option>
                     </select>      
                     <label>TODO</label><input></input>
                     </div>}
@@ -607,10 +609,21 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
                         obj.target = clickableConsequenceSelectedGameDataItem;
-                        // obj.action = ; //TODO
+                        if (clickableConsequenceAssignValue === false) { // plus or minus
+                            if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
+                                console.log("consequence-invalid action");
+                                return;
+                            } else {
+                                obj.action = consequenceIsPlus;
+                            }
+                        } else { // direct assign value 
+                            obj.action = "becomes";
+                        }
+
                         // obj.amount = ; //TODO
-                        
-                        //TODO push to clickableConsequenceArray
+
+                        /* push to clickableConsequenceArray */
+                        clickableConsequenceArray.push(obj);
 
                     }}>Add</button>
                     </div>}
