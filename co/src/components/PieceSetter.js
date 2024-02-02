@@ -588,7 +588,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     
                     { clickableConsequenceSelectedGameDataItemType === "number" &&
                     <div>
-                    {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input>}
+                
+                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input>}
                     <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
@@ -603,8 +604,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <button onClick={()=>{
                         setIsClickableAddNewConsq(false);
-                        //TODO save the change: target name + action + magnitude
+                        //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
+                        let obj = {};
+                        obj.target = clickableConsequenceSelectedGameDataItem;
+                        // obj.action = ; //TODO
+                        // obj.amount = ; //TODO
+                        
                         //TODO push to clickableConsequenceArray
+
                     }}>Add</button>
                     </div>}
 
