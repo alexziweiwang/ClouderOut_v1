@@ -508,16 +508,18 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Consequence:         </label>
                     <table>
-                        <thead></thead>
+                        <thead>
                             <tr>
                                 <th>Object</th>
                                 <th>Action</th>
                                 <th>Amount</th>
                             </tr>
+                        </thead>
+                        
                         <tbody>
                             {clickableConsequenceArray.map((item, index) => {         
                             return (
-                                <tr className="clickableListItem3">
+                                <tr className="clickableListItem3" key={item}>
                                     <td>(obj1)</td>
                                     <td>(action1)</td>
                                     <td>(amount1)</td>
@@ -527,7 +529,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                                 </tr>
                                 );
                             })}
-                        
                         </tbody>
                     </table>
                     <button onClick={()=>{setIsClickableAddNewConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
