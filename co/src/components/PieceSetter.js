@@ -300,7 +300,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Source Link:  </label>
                     <select>
                     {visualList.map((item, index) => {
-                        return (<option key={index} value={item["var"]}>{item["var"]}</option>);
+                        return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
                     })}
 
                     </select>
@@ -355,11 +355,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <td>{item["posX"]}</td>
                     <td>{item["posY"]}</td>
                     <td>{item["w"]}</td>
-                    <td>{item["h"]}</td>
-                    {charPicDataPart.length > 0 && 
-                        <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
-                    }
-
+                    <td>{item["h"]}</td>                    
+                        {charPicDataPart.length > 0 && 
+                        <td><GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/></td>
+                        }
                 </tr>
             );
         })}
@@ -374,7 +373,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     <label>Source Link:  </label>
     <select>
         {visualList.map((item, index) => {
-            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
+            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
         })}
     </select>
     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
@@ -477,7 +476,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Shape/Picture Source:  </label>
                     <select>
                         {visualList.map((item, index) => {
-                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
+                            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
        
@@ -519,13 +518,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <tbody>
                             {clickableConsequenceArray.map((item, index) => {         
                             return (
-                                <tr className="clickableListItem3" key={item}>
+                                <tr className="clickableListItem3" key={item.toString()}>
                                     <td>(obj1)</td>
                                     <td>(action1)</td>
                                     <td>(amount1)</td>
-                                    <GiTrashCan onClick={()=>{
+                                    <td><GiTrashCan 
+                                        onClick={()=>{
                                         //TODO remove from consequence table
-                                    }}  className="iconButtonSmall"/>                                
+                                    }}  className="iconButtonSmall"/></td>
                                 </tr>
                                 );
                             })}
@@ -537,10 +537,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Target of change: </label>
                     <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);console.log("selected game data (consq) = ", event.target.value);}} value={clickableConsequenceSelectedGameDataItem}>
                         {Object.keys(gameDataList).map((currKey) => {
-                            console.log("game data list item = ");
-                            console.log(gameDataList[currKey]);
+                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={currKey} key={gameDataList[currKey]}>{currKey}</option>
+                                <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
                             );
                         })}
                     </select>
@@ -617,7 +616,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <label>Source Link:  </label>
                     <select>
                         {audioList.map((item, index) => {
-                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
+                            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
