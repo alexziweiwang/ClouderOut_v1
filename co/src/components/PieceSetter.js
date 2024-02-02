@@ -558,9 +558,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
                     <br></br><br></br>
 
-                    {
                     <div>
-                    <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input><label>Assign Value</label>
+                    
+                    {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input>} 
+                    <label>Assign Value</label>
+                    
                     <br></br>
                     <label>TODO: get current selected game-data-item & get type of it & respond accordingly </label>
                     
@@ -569,13 +571,25 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <label>Set </label>
                         
                         <label> to </label>
-                        <input></input>
+                        
+                        { (clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
+                        <input></input>}
+                        {clickableConsequenceSelectedGameDataItemType === "boolean" && 
+                        <select>
+                            <option>True</option>
+                            <option>False</option>
+                        </select>}
+
                         <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
-                    </div>}
+                    </div>
+
+
+
                     
                     { clickableConsequenceSelectedGameDataItemType === "number" &&
                     <div>
-                    <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input><label>Change Value</label>
+                    {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input>}
+                    <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
                     <label>TODO</label>
