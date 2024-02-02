@@ -535,11 +535,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     {isClickableAddNewConsq && <div className="orangeArea">
 
                     <label>Target of change: </label>
-                    <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);console.log("selected game data (consq) = ", event.target.value);}} value={clickableConsequenceSelectedGameDataItem}>
+                    <br></br><label>?? ...{clickableConsequenceSelectedGameDataItem.name}...</label><br></br>
+                    
+                    <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);console.log("selected game data (consq) = ");console.log(event.target.value.name);}} value={clickableConsequenceSelectedGameDataItem}>
+                        <option value="" key=""> -- Select Game Data Item --</option>
                         {Object.keys(gameDataList).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
+                                <option value={gameDataList[currKey]} key={gameDataList[currKey]["name"]}>{currKey}</option>
                             );
                         })}
                     </select>
