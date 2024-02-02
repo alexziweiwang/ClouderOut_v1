@@ -163,3 +163,6 @@
 - 2024-Jan-30: Design aspect-based goal list
 
 - 2024-Jan-31: Consider improvement of user flow
+
+- 2024-Feb-01: Consider better node branch visualization strategy
+
