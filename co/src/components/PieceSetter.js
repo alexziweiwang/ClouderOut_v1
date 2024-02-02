@@ -43,6 +43,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
     const [clickableConsequenceSelectedGameDataItem, setClickableConsequenceSelectedGameDataItem] = useState("");
+    const [clickableConsequenceSelectedGameDataItemType, setClickableConsequenceSelectedGameDataItemType] = useState("");
+
     const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(false);
     const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
@@ -535,14 +537,21 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     {isClickableAddNewConsq && <div className="orangeArea">
 
                     <label>Target of change: </label>
-                    <br></br><label>?? ...{clickableConsequenceSelectedGameDataItem.name}...</label><br></br>
-                    
-                    <select onChange={(event)=>{setClickableConsequenceSelectedGameDataItem(event.target.value);console.log("selected game data (consq) = ");console.log(event.target.value.name);}} value={clickableConsequenceSelectedGameDataItem}>
+
+                    <br></br><label>TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
+
+                    <select onChange={(event)=>{
+                                setClickableConsequenceSelectedGameDataItem(event.target.value);
+                                console.log("selected game data (consq) = ");
+                                console.log(event.target.value);
+                                setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
+                            }} 
+                            value={clickableConsequenceSelectedGameDataItem}>
                         <option value="" key=""> -- Select Game Data Item --</option>
                         {Object.keys(gameDataList).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={gameDataList[currKey]} key={gameDataList[currKey]["name"]}>{currKey}</option>
+                                <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
                             );
                         })}
                     </select>
@@ -563,7 +572,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         <input></input>
                         <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
                     </div>}
-                    {
+                    
+                    { clickableConsequenceSelectedGameDataItemType === "number" &&
                     <div>
                     <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input><label>Change Value</label>
                     <br></br>
