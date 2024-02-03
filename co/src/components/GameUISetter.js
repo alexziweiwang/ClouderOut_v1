@@ -9,9 +9,9 @@ export default function GameUISetter({dataObj}) {
             Provide setting options for game menu, game UI, side menut, etc.
             <br></br>
             Features:
-            <br></br>* Opening menu
-            <br></br>* in-game side bar
-            <br></br>* in-game menu (pause page)
+            <br></br>* Opening menu (TODO: consider as a special page or node, etc.)
+            <br></br>* in-game side bar (TODO: consider a list/table of multiple designs by users)
+            <br></br>* in-game menu (pause page) (TODO: consider the jumping logic ***)
             <br></br>* text-content frames
 
             <br></br>TODO: provide 1 default look, and provide custom options
