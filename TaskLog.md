@@ -169,7 +169,7 @@
 - 2024-Feb-02: Consider necessary visual effect features for future
 - 2024-Feb-02: Explore efficiency optimization in preview and formal-parser
 - 2024-Feb-02: Consider default UI interaction settings
-
+- 2024-Feb-02: Consider Game-UI-Setup window user-choice switching
 
 
 
