@@ -15,8 +15,8 @@ export default function ProfilePage({}) {
     let name = "/profilepage";
 
     let profile = [];
-    const [profileText, setProfile] = useState({});
-
+    const [profileInfo, setProfile] = useState({});
+    const [profileEditInput, setProfileEditInput] = useState("");
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
 
@@ -24,6 +24,9 @@ export default function ProfilePage({}) {
         if (firstTimeEnter === true) {
             const profile = getProfile();
             console.log("profile from cloud:", profile); //TODO test
+            if (profileInfo.size > 0) {
+                setProfileEditInput(profileInfo["introduction"]);
+            }
             setFirstTimeEnter(false);
         }
     });
@@ -38,7 +41,6 @@ export default function ProfilePage({}) {
         setProfile(profile);
     }
 
-
     return (
   <div className="page">
     <Sidebar compName = {name}/>
@@ -47,14 +49,15 @@ export default function ProfilePage({}) {
 
       <p className="plans"> This is Profile Page!  </p>
       <button onClick={getProfile}> Load my profile </button>
-      <ul>
-                {
-                Object.keys(profileText).map((key) => {
-                return (
-                    <li className="clickableListItem2" key={key}>{key}:               {profileText[key]}</li>
-                )
-                })}
-      </ul>
+
+      <br></br>
+      <label>Username: </label>
+      <label>{profileInfo["username"]}</label>
+
+      <br></br>
+      <label>Instruction: {profileInfo["introduction"]}</label>
+      <input type="text" onChange={(event)=>{setProfileEditInput(event.target.value);}} value={profileEditInput}></input>
+      <button>Change</button>
       
     </div>
  
