@@ -35,6 +35,7 @@ export default function GameUISetter({dataObj}) {
                 TODO: opening music selection
                 <br></br>
                 TODO: player profile/account feature
+                <br></br>Current design: [start game, load game, settings, gallery(future)]
             </p>
 
             <p className="plans">
@@ -43,6 +44,7 @@ export default function GameUISetter({dataObj}) {
                 TODO: a series of buttons (table) to allow users to add
                 <br></br>
                 TODO: setup options for button UX
+                <br></br>Current design: menu single button + return + auto? 
             </p>
 
             <p className="plans">
@@ -51,6 +53,7 @@ export default function GameUISetter({dataObj}) {
                 TODO: pause effect (modal-like)
                 <br></br>
                 TODO: a series of buttons (table) to allow users to add
+                <br></br>Current design: [save, load, settings, properties, store(future)]
             </p>
 
             <p className="plans">
