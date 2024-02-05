@@ -132,7 +132,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         
                 <ul>
                     {fileListVisual.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(cloudFileList[index]);}}>{item["filename"]}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                         ))}
                 </ul>
                 </div>
@@ -176,7 +176,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         
                 <ul>
                     {fileListAudio.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(cloudFileList[index]);}}>{item["filename"]}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                     ))}
                 </ul>
                 </div>
