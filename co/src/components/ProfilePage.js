@@ -43,6 +43,7 @@ export default function ProfilePage({}) {
 
     return (
   <div className="page">
+    
     <Sidebar compName = {name}/>
 
     <div className="dashboard_content">
