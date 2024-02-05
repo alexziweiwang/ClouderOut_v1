@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
+import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
 
     if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
@@ -14,6 +17,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     useEffect(() => {
         if (firstTimeEnter === true) {
             fetchRmFileList();
+            fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
     });
@@ -25,6 +29,21 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [fileListAudio, setFileListAudio] = useState([]);
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
+    const [audioList, setAudioList] = useState([]);
+    const [visualList, setVisualList] = useState([]); 
+    const [clickedFileUrl, setClickedFileUrl] = useState("");
+    const [clickedFileName, setClickedFileName] = useState("");
+    const [clickedFileType, setClickedFileType] = useState("");
+
+    async function fetchProjResourceLists() {
+        console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+        /* fetch from cloud db */
+        const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
+        console.log("new render- piece setter: obj from cloud (resource list):");
+        console.log(obj);
+        setAudioList(obj.audio);
+        setVisualList(obj.visual);
+    }
 
     function fileSelectChange(event) {
         setFileSelected(event.target.files[0]);
@@ -47,6 +66,23 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await updateUploadedFileRecords(username, fileName, type);
         // await updateUploadedFileRecords(username, fileName, type); //TODO temp
 
+    }
+
+
+    async function itemClicked(item) {
+        console.log("item clicked: ");
+        console.log(item);
+
+        if (clickedFileName === item["filename"]) { /* reset */
+            setClickedFileUrl("");
+            setClickedFileName("");
+            setClickedFileType("");
+            return;
+        }
+        setClickedFileUrl(item["fileurl"]);
+        setClickedFileName(item["filename"]);
+        setClickedFileType(item["filetype"]);
+        console.log("clicked item: " + item["fileurl"]);
     }
 
     async function updateUploadedFileRecords(username, fileName, type) {
@@ -96,7 +132,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         
                 <ul>
                     {fileListVisual.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]);}}>{item["filename"]}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(cloudFileList[index]);}}>{item["filename"]}</li>
                         ))}
                 </ul>
                 </div>
@@ -108,6 +144,18 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         onChange={fileSelectChange}
                     /> 
                     <button onClick={()=>{submitFile("visual");}}> Submit </button>
+                
+                    <br></br>
+                    <div className="rsrcPrevArea">
+                             
+                    
+                        <div>visual resource area <br></br>{clickedFileUrl}
+                            <div className="resourcePreviewWindow">
+                                <img src={clickedFileUrl} alt="preview_visual" />
+                            </div>
+                        </div>
+                    
+                </div>
                 </div>
 
 
@@ -128,7 +176,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         
                 <ul>
                     {fileListAudio.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]);}}>{item["filename"]}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(cloudFileList[index]);}}>{item["filename"]}</li>
                     ))}
                 </ul>
                 </div>
@@ -140,6 +188,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         onChange={fileSelectChange}
                     /> 
                     <button onClick={()=>{submitFile("audio");}}> Submit </button>
+
+                        <div>audio resource area <br></br>{clickedFileUrl}
+                            <br></br>
+                            <audio src={clickedFileUrl} controls />
+                            
+                        </div>      
+                    
 
                     <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?

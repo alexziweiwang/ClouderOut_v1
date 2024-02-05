@@ -15,7 +15,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
 
     let name = "/gamenodeconvpiecedatasec";
-    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     const [pieceNumber, setPieceNumber] = useState(pieceNum);
 
@@ -68,6 +67,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [audioList, setAudioList] = useState([]);
     const [visualList, setVisualList] = useState([]); 
 
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         const allPiece = getAllPieceData();
         setPieceDataLocal(allPiece);       
@@ -235,7 +236,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         setVisualList(obj.visual);
     }
   
-
     return (
       
 

@@ -77,7 +77,6 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
         setClickedFileName(item["filename"]);
         setClickedFileType(item["filetype"]);
         console.log("clicked item: " + item["fileurl"]);
-        
     }
   
     function handleTempVarChange(event) {
