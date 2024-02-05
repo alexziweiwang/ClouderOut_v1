@@ -60,7 +60,7 @@ div {
 
 .dashboard_content {
     background-color: rgb(247, 246, 244);
-    width: 91%;
+    width: 90%;
     height: 100vh; 
     float: right;
 }
@@ -1063,4 +1063,9 @@ button:hover {
 .visPanel {
     width: 900px;
 
+}
+
+.profilePage {
+    text-align: left;
+    padgging: 2px;
 }

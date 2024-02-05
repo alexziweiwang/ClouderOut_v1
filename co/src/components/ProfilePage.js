@@ -47,18 +47,22 @@ export default function ProfilePage({}) {
     <Sidebar compName = {name}/>
 
     <div className="dashboard_content">
+        <div className="profilePage">
+            <p className="plans"> This is Profile Page!  </p>
+            <button onClick={getProfile}> Load my profile </button>
 
-      <p className="plans"> This is Profile Page!  </p>
-      <button onClick={getProfile}> Load my profile </button>
+            <br></br>
+            <label>Username: </label>
+            <label>{profileInfo["username"]}</label>
 
-      <br></br>
-      <label>Username: </label>
-      <label>{profileInfo["username"]}</label>
+            <br></br>
+            <label>Instruction: {profileInfo["introduction"]}</label>
+            <input type="text" onChange={(event)=>{setProfileEditInput(event.target.value);}} value={profileEditInput}></input>
+            <button>Change</button>
 
-      <br></br>
-      <label>Instruction: {profileInfo["introduction"]}</label>
-      <input type="text" onChange={(event)=>{setProfileEditInput(event.target.value);}} value={profileEditInput}></input>
-      <button>Change</button>
+        </div>
+
+
       
     </div>
  
