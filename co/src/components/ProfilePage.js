@@ -58,7 +58,7 @@ export default function ProfilePage({}) {
             <br></br>
             <label>Instruction: {profileInfo["introduction"]}</label>
             <input type="text" onChange={(event)=>{setProfileEditInput(event.target.value);}} value={profileEditInput}></input>
-            <button>Change</button>
+            <button onClick={()=>{let obj = {}; obj["username"] = profileInfo["username"]; obj["introduction"] = "\"" + profileEditInput + "\""; setProfile(obj);}}>Change</button>
 
         </div>
 
