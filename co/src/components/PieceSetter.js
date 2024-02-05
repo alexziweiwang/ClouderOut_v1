@@ -36,6 +36,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     const [charPicDataWidth, setCharPicDataWidth] = useState(60);
     const [charPicDataHeight, setCharPicDataHeight] = useState(210);
 
+    const [bgPicDataPart, setBgPicDataPart] = useState([]);
+    const [bgPicDataPosX, setBgPicDataPosX] = useState(0);
+    const [bgPicDataPosY, setBgPicDataPosY] = useState(0);
+    const [bgPicDataWidth, setBgPicDataWidth] = useState(800);
+    const [bgPicDataHeight, setBgPicDataHeight] = useState(600);
+
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [clickableDataPart, setClickableDataPart] = useState([]);
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
@@ -307,25 +313,26 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    
                     <br></br>
                     <label>Position x:      </label>
                     <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0" value={bgPicDataPosX}></input>
                     <label>[value]</label>
                     <br></br>
                     <label>Position y:      </label>
                     <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0" value={bgPicDataPosY}></input>
                     <label>[value]</label>
                     <br></br>
                     <label>Width:         </label>
                     <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="800"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="800" value={bgPicDataWidth}></input>
                     <label>[value]</label>
                     <br></br>
                     <label>Height:        </label>
                     <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="450"></input>
+                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="450" value={bgPicDataHeight}></input>
                     <label>[value]</label>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
