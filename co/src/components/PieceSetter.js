@@ -316,24 +316,22 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     
                     <br></br>
                     <label>Position x:      </label>
-                    <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0" value={bgPicDataPosX}></input>
-                    <label>[value]</label>
+                    <input type="number" min="0" max="1200" step="1" defaultValue="0" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="1200" step="1" defaultValue="0" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
+                    <label>{bgPicDataPosX}</label>
                     <br></br>
                     <label>Position y:      </label>
-                    <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="0" value={bgPicDataPosY}></input>
-                    <label>[value]</label>
+                    <input type="number" min="0" max="900" step="1" defaultValue="0" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="900" step="1" defaultValue="0" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
+                    <label>{bgPicDataPosY}</label>
                     <br></br>
                     <label>Width:         </label>
-                    <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="800" value={bgPicDataWidth}></input>
-                    <label>[value]</label>
+                    <input type="number" min="0" max="1200" step="1" defaultValue="800" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="1200" step="1" defaultValue="800" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
                     <br></br>
                     <label>Height:        </label>
-                    <label>TODO</label>
-                    <input className="slider" type="range" min="0" max="9000" step="1" defaultValue="450" value={bgPicDataHeight}></input>
-                    <label>[value]</label>
+                    <input type="number" min="0" max="900" step="1" defaultValue="450" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="900" step="1" defaultValue="450" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
