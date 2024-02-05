@@ -171,6 +171,7 @@
 - 2024-Feb-02: Consider default UI interaction settings
 - 2024-Feb-02: Consider Game-UI-Setup window user-choice switching
 
+- 2024-Feb-05: Design Game-UI-Setup UI
 
 
 
