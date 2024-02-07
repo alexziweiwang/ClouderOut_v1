@@ -174,4 +174,5 @@
 - 2024-Feb-05: Design Game-UI-Setup UI
 
 - 2024-Feb-06: Design new-user tutorial flow
+- 2024-Feb-06: Explore tool UX optimization on easy-to-use aspect
 
