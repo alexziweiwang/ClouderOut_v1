@@ -22,6 +22,14 @@ export default function AccountPage({}) {
     <div className="dashboard_content">
 
       <p className="plans"> This is Account Page!  </p>
+      <p className="plans"> Feature list: 
+        <br></br> login username
+        <br></br> password resetting
+        <br></br> linked email
+        <br></br> linked phone number
+        <br></br> tool store related (credits, etc.)
+        <br></br> account operations (deactivate, etc.)
+      </p>
       
     </div>
  
