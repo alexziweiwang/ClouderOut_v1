@@ -63,9 +63,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await submitFileVM({file: fileSelected , uname: username, filename: fileName});
         
         console.log("continue to next steps of updating..."); //TODO test
-        await updateUploadedFileRecords(username, fileName, type);
-        // await updateUploadedFileRecords(username, fileName, type); //TODO temp
 
+        await updateUploadedFileRecords(username, fileName, type);
     }
 
 
@@ -109,6 +108,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         console.log("alist = ", aList); //TODO test
 
     }
+
+    function submitFileAction(type) {
+        submitFile(type);
+        let i = 0;
+        for (; i < 5000; i++) {
+            console.log("");
+        }
+        submitFile(type);
+    }
   
     return (
       <div className={modalStyleName}>
@@ -143,7 +151,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         accept=".png,.jpg,.jpeg,"
                         onChange={fileSelectChange}
                     /> 
-                    <button onClick={()=>{submitFile("visual");}}> Submit </button>
+                    <button onClick={()=>{submitFileAction("visual");}}> Submit </button>
                 
                     <br></br>
                     <div className="rsrcPrevArea">
@@ -187,7 +195,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         accept=".wav,.mp3,.aac,.m4a"
                         onChange={fileSelectChange}
                     /> 
-                    <button onClick={()=>{submitFile("audio");}}> Submit </button>
+                    <button onClick={()=>{submitFileAction("audio");}}> Submit </button>
                     <div className="rsrcPrevArea">
                         {clickedFileUrl !== "" && <div>audio resource area <br></br>{clickedFileUrl}
                             <br></br>
