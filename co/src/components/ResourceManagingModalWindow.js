@@ -85,13 +85,21 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     async function updateUploadedFileRecords(username, fileName, type) {
-        const url = await fetchUrlByFilenameVM({fullFilename: fileName});
-        console.log("uploaded url in window: ", url); //TODO test
+        let url = await fetchUrlByFilenameVM({fullFilename: fileName});
+        console.log("1 uploaded url in window: ", url); //TODO test
+        if (url === undefined || url === "") {
+            console.log("Error: empty url"); //TODO test
+        }
+        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
+ 
+        url = await fetchUrlByFilenameVM({fullFilename: fileName});
+        console.log("2 uploaded url in window: ", url); //TODO test
         if (url === undefined || url === "") {
             console.log("Error: empty url"); //TODO test
             return;
         }
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
+        
         await fetchRmFileList();
     }
 
@@ -110,11 +118,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     function submitFileAction(type) {
-        submitFile(type);
-        let i = 0;
-        for (; i < 5000; i++) {
-            console.log("");
-        }
         submitFile(type);
     }
   
