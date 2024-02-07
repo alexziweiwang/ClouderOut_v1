@@ -175,4 +175,4 @@
 
 - 2024-Feb-06: Design new-user tutorial flow
 - 2024-Feb-06: Explore tool UX optimization on easy-to-use aspect
-
+- 2024-Feb-06: Work on second-upload issue in resource-manager
