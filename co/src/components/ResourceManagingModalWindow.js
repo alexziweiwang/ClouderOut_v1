@@ -36,7 +36,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [clickedFileType, setClickedFileType] = useState("");
 
     async function fetchProjResourceLists() {
-        console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+        console.log("piece-setter: fetchProjResourceLists-function"); //TODO test
         /* fetch from cloud db */
         const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
         console.log("new render- piece setter: obj from cloud (resource list):");
@@ -149,13 +149,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <div className="rsrcPrevArea">
                              
                     
-                        <div>visual resource area <br></br>{clickedFileUrl}
+                        {clickedFileUrl !== "" && <div>visual resource area <br></br>{clickedFileUrl}
                             <div className="resourcePreviewWindow">
                                 <img src={clickedFileUrl} alt="preview_visual" />
                             </div>
-                        </div>
+                        </div>}
                     
-                </div>
+                    </div>
                 </div>
 
 
@@ -188,13 +188,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         onChange={fileSelectChange}
                     /> 
                     <button onClick={()=>{submitFile("audio");}}> Submit </button>
-
-                        <div>audio resource area <br></br>{clickedFileUrl}
+                    <div className="rsrcPrevArea">
+                        {clickedFileUrl !== "" && <div>audio resource area <br></br>{clickedFileUrl}
                             <br></br>
                             <audio src={clickedFileUrl} controls />
                             
-                        </div>      
-                    
+                        </div>}      
+                        </div>
 
                     <p className="plans">
                     TODO: improve to clickable customizable list items & image preview?
