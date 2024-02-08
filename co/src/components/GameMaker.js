@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
+import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+
 
 export default function GameMaker() {
 
@@ -37,7 +39,8 @@ export default function GameMaker() {
 
   const [currChapter, setCurrChapter] = useState("");
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display"], ["key2", "testChapter2", "display"]]); //TODO fetch from cloud db
-  
+  const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
@@ -61,6 +64,16 @@ export default function GameMaker() {
     // TODO consider data structure to store, balance efficiency and cloud traffic
   }
 
+  function handleResourceManagerCancel() {
+    setDisplayRmModal(false);
+  }
+
+  function handleResourceManagerSaveChanges() {
+    console.log("modal save changes!");
+    //TODO update to cloud db
+    setDisplayRmModal(false);
+  }
+
 
   return (
   <div>
@@ -68,6 +81,9 @@ export default function GameMaker() {
     <div className="returning_buttons">
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
       <p>projectName: {projectName}</p>
+      <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> Resource Manager </button>
+      {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
+
 
     </div>
 
