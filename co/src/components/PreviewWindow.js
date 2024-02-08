@@ -50,6 +50,7 @@ export default function PreviewWindow({dataObj}) {
               <div> Current Data:
                 <br></br>{dataObj.content}
                 <br></br>{dataObj.speaker_name}
+                <br></br>{dataObj.bgp_source_link}
               </div>
             
                 

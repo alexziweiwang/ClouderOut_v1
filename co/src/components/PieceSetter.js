@@ -306,10 +306,11 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select>
-                    {visualList.map((item, index) => {
-                        return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
-                    })}
+                    <select value={currentPieceDetail["bgp_source_link"]} onChange={(event)=>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": event.target.value});}}>
+                        <option key="bgp01" value=""> -- Select picture name -- </option>
+                        {visualList.map((item, index) => {
+                            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
+                        })}
 
                     </select>
                     <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
