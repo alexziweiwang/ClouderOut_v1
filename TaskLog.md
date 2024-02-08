@@ -182,3 +182,6 @@
 - 2024-Feb-07: Consider preloading for resource preparation
 - 2024-Feb-07: Setup preload option plan for various situations (resource managing, previewing, actual-game-parsing)
 - 2024-Feb-07: Explore dynamic css
+
+- 2024-Feb-08: Design detailed Game-UI other subpages (in-game, text-frame, etc.)
+
