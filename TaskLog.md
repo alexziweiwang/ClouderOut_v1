@@ -180,3 +180,4 @@
 
 
 - 2024-Feb-07: Consider preloading for resource preparation
+- 2024-Feb-07: Setup preload option plan for various situations (resource managing, previewing, actual-game-parsing)
