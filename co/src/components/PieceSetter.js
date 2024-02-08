@@ -56,14 +56,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
-        "bgp_source_link": allPieceData[pieceNum-1]["bgp_source_link"], 
+        "bgp_source_filename": allPieceData[pieceNum-1]["bgp_source_filename"], 
         "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
         "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
         "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
         "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
-        "bgm_source_link": allPieceData[pieceNum-1]["bgm_source_link"], 
+        "bgm_source_filename": allPieceData[pieceNum-1]["bgm_source_filename"], 
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
         "bgm_volume": allPieceData[pieceNum-1]["bgm_volume"], 
         "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
@@ -241,6 +241,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         setAudioList(obj.audio);
         setVisualList(obj.visual);
     }
+
+    function setBgpFilenameByVar(event) {
+        let varName = event.target.value;
+        let filename = "";
+        // TODO fetch actual filename from list, by varName
+        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_filename": filename});
+    }
   
     return (
       
@@ -303,10 +310,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_filename": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select value={currentPieceDetail["bgp_source_link"]} onChange={(event)=>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": event.target.value});}}>
+                    <select value={currentPieceDetail["bgp_source_filename"]} onChange={(event)=>{setBgpFilenameByVar(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
                         {visualList.map((item, index) => {
                             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
@@ -664,7 +671,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_link": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_filename": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
                     <select>
