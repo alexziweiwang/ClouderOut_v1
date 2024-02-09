@@ -90,8 +90,7 @@ export default function GameMaker() {
     <div className="parallelFrame">
       
    
-        <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>
-  
+        {!isDisplayRmBool && <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>}
 
         <NodeManager currUser={username} projectName={projectName} chapterTitle={currChapter}/>
 
