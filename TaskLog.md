@@ -184,4 +184,6 @@
 - 2024-Feb-07: Explore dynamic css
 
 - 2024-Feb-08: Design detailed Game-UI other subpages (in-game, text-frame, etc.)
+- 2024-Feb-08: Consider varioud options for menu elements (transferring page: direct list of sublist)
+
 
