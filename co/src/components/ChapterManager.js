@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 
 export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter}) {
+//TODO: improve of chapter info: each chapter should have a "starting node" (like root node) as the starting point
+//TODO: keeps the node key of starting-node
 
   const [isCollapse, setIsCollapse] = useState(false);
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
