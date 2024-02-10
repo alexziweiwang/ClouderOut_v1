@@ -187,3 +187,4 @@
 - 2024-Feb-08: Consider varioud options for menu elements (transferring page: direct list of sublist)
 
 - 2024-Feb-09: Debug chapter manager issue
+- 2024-Feb-09: redesign resource managing and selecting UI
