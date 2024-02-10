@@ -186,4 +186,4 @@
 - 2024-Feb-08: Design detailed Game-UI other subpages (in-game, text-frame, etc.)
 - 2024-Feb-08: Consider varioud options for menu elements (transferring page: direct list of sublist)
 
-
+- 2024-Feb-09: Debug chapter manager issue

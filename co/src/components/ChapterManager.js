@@ -14,6 +14,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
+    console.log("tempChapterData[index]: ");
+    console.log(index);
+    console.log(tempChapterData[index]);
     tempChapterData[index][1] = newTitle;
     updateChapterData(tempChapterData);
     setEditingChapterTitle("");
@@ -88,7 +91,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
             <>
               <label>*Change Chapter Name*</label><br></br>
               <label>Chapter Name:</label>
-              <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);}}></input>
+              <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);console.log("changing title: ");console.log(event.target.value);}}></input>
               <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
               <button onClick={()=>{setEditingChapterTitle("");}}>Cancel</button>
               <br></br>
