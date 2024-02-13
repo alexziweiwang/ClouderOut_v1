@@ -178,7 +178,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     
                         {clickedFileUrl !== "" && <div>visual resource area <br></br>{clickedFileUrl}
                             <div>
-                                <img className="resourcePreviewWindow" src={clickedFileUrl} alt="preview_visual" />
+                                <img className="picResource" src={clickedFileUrl} alt="preview_visual" />
                             </div>
 
                             <div className="resourceVarPairWindow">Variable Pair management - Visual
@@ -240,7 +240,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                             <audio src={clickedFileUrl} controls />
 
                             <div className="resourceVarPairWindow">Variable Pair management - Audio
-                                
+                                TODO : if var-pair contains this url, provide options to view and edit
                             </div>    
                         </div>}      
                     

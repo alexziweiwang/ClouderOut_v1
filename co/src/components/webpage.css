@@ -1075,3 +1075,8 @@ button:hover {
     text-align: left;
     padgging: 2px;
 }
+
+.picResource {
+    max-width: 600px;
+    max-height: 480px;
+}
