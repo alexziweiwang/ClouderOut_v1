@@ -183,6 +183,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             
                 <div className="areaNote2"> audio area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
+                <div> TODO: 
+                    <select onChange={()=>{}}>
+                        <option value="curr" key="currAu">In this project</option>
+                        <option value="all" key="allAu">All resources</option>
+                        <option value="not" key="notAu">Not in this project</option>
+                    </select>
+                </div>
                 <br></br><br></br>
         
                 <ul>
