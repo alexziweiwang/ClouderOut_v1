@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
@@ -181,9 +181,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                                 <img className="picResource" src={clickedFileUrl} alt="preview_visual" />
                             </div>
 
+                           
                             <div className="resourceVarPairWindow">Variable Pair management - Visual
-                                
-                            </div> 
+                                <br></br>TODO : if var-pair contains this url, provide options to view and edit
+                                <br></br>TODO check local-visual-list, element of this url
+                                {<> <br></br>
+                                    <label>Variable Name: </label><input></input> 
+                                    {<button>Add</button>}
+                                    {<button>Edit</button>}
+                                </>}
+                            </div>   
 
                             
                         </div>}
@@ -240,7 +247,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                             <audio src={clickedFileUrl} controls />
 
                             <div className="resourceVarPairWindow">Variable Pair management - Audio
-                                TODO : if var-pair contains this url, provide options to view and edit
+                                <br></br>TODO : if var-pair contains this url, provide options to view and edit
+                                <br></br>TODO check local-audio-list, element of this url
+                                <br></br>
+                                <label>Variable Name: </label><input></input>
+                                {<button>Add</button>}
+                                {<button>Edit</button>}
+                           
+
                             </div>    
                         </div>}      
                     
