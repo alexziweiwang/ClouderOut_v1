@@ -51,18 +51,18 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setFileSelected(event.target.files[0]);
     }
 
-    async function submitFile(type) {
+    async function submitFile(type, selectedFile) {
         console.log("Window: called ... submitFile"); //TODO
-        if (fileSelected === "") {
+        if (selectedFile === "") {
             console.log("File NOT chosen");
             return;
         }
-        console.log("fileSelected: ");
-        console.log(fileSelected); //TODO testing
+        console.log("temp selectedFile: ");
+        console.log(selectedFile); //TODO testing
 
-        const fileName = `${username}_${fileSelected.name}`;
+        const fileName = `${username}_${selectedFile.name}`;
 
-        await submitFileVM({file: fileSelected , uname: username, filename: fileName});
+        await submitFileVM({file: selectedFile , uname: username, filename: fileName});
         
         console.log("continue to next steps of updating..."); //TODO test
 
@@ -91,6 +91,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         console.log("1 uploaded url in window: ", url); //TODO test
         if (url === undefined || url === "") {
             console.log("Error: empty url"); //TODO test
+            return;
         }
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
  
@@ -110,10 +111,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         console.log("alist = ", aList); //TODO test
     }
 
-    function submitFileAction(type) {
-        submitFile(type);
-    }
-  
     return (
       <div className={modalStyleName}>
         <div className="modalArea">
@@ -152,9 +149,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <input 
                         type="file"
                         accept=".png,.jpg,.jpeg,"
-                        onChange={fileSelectChange}
+                        onChange={(event)=>{submitFile("visual", event.target.files[0]);setFileSelected(event.target.files[0]);}} //TODO improve later
                     /> 
-                    <button onClick={()=>{submitFileAction("visual");}}> Submit </button>
+                    <button onClick={()=>{submitFile("visual", fileSelected);}}> Submit </button>
                 
                 </div>
 
@@ -222,9 +219,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <input 
                         type="file"
                         accept=".wav,.mp3,.aac,.m4a"
-                        onChange={fileSelectChange}
+                        onChange={(event)=>{submitFile("audio", event.target.files[0]);setFileSelected(event.target.files[0]);}} //TODO improve later
                         /> 
-                    <button onClick={()=>{submitFileAction("audio");}}> Submit </button>
+                    <button onClick={()=>{submitFile("audio", fileSelected);}}> Submit </button>
                 </div>
 
                 </div>
