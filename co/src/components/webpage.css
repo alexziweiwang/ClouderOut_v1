@@ -1051,9 +1051,15 @@ button:hover {
 }
 
 .resourcePreviewWindow {
-    height: 600;
-    width: 800;
+    height: 600px;
+    width: 800px;
 }
+
+.resourceVarPairWindow {
+    height: 300px;
+    width: 800px;
+}
+
 
 .slider {
     accent-color: rgb(187, 143, 193);

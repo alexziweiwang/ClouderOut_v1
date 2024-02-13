@@ -177,9 +177,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                              
                     
                         {clickedFileUrl !== "" && <div>visual resource area <br></br>{clickedFileUrl}
-                            <div className="resourcePreviewWindow">
-                                <img src={clickedFileUrl} alt="preview_visual" />
+                            <div>
+                                <img className="resourcePreviewWindow" src={clickedFileUrl} alt="preview_visual" />
                             </div>
+
+                            <div className="resourceVarPairWindow">Variable Pair management - Visual
+                                
+                            </div> 
+
+                            
                         </div>}
                     
                     </div>
@@ -232,25 +238,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         {clickedFileUrl !== "" && <div>audio resource area <br></br>{clickedFileUrl}
                             <br></br>
                             <audio src={clickedFileUrl} controls />
-                            
+
+                            <div className="resourceVarPairWindow">Variable Pair management - Audio
+                                
+                            </div>    
                         </div>}      
-                        </div>
-
-                    <p className="plans">
-                    TODO: improve to clickable customizable list items & image preview?
-                </p>
-
-                <p className="plans">
-                    TODO: refactor to fetch from cloud when only needed...
-                </p>
-
-                <p className="plans">
-                    Allow user to pull the "resource pool" from cloud, and click to choose?
-                    <br></br> User can either choose the resource or upload new ones
-                    <br></br> Then: add "tag" for each resource for quick filter/search when developing
-                    <br></br> Later: add "folder"-like sections for different types/purposes
-                </p>
-
+                    
+                    
+                    </div>
+                    
                 </div>
 
 
