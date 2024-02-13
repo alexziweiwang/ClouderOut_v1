@@ -34,6 +34,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [clickedFileUrl, setClickedFileUrl] = useState("");
     const [clickedFileName, setClickedFileName] = useState("");
     const [clickedFileType, setClickedFileType] = useState("");
+    
+    const [visualListFilter, setVisualListFilter] = useState("");
+    const [audioListFilter, setAudioListFilter] = useState("");
 
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists-function"); //TODO test
@@ -139,6 +142,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                  
                 <div className="areaNote1"> visual area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
+                <div>
+                    <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value);}}>
+                        <option value="curr" key="currVis">In this project</option>
+                        <option value="all" key="allVis">All resources</option>
+                        <option value="not" key="notVis">Not in this project</option>
+                    </select>
+                </div>
                 <br></br><br></br>
         
                 <ul>
@@ -183,8 +193,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             
                 <div className="areaNote2"> audio area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
-                <div> TODO: 
-                    <select onChange={()=>{}}>
+                <div>
+                    <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value);}}>
                         <option value="curr" key="currAu">In this project</option>
                         <option value="all" key="allAu">All resources</option>
                         <option value="not" key="notAu">Not in this project</option>
