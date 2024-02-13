@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRmFileListVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { getRmFileListVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVisualSaveChanges, handleRsAudioSaveChanges, visualListContent, audioListContent}) {
@@ -63,7 +63,7 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
         //TODO 
         console.log("Resource-selector: Updating the db data structure...", tempObj); //TODO test
         
-        await updateProjectResourcePairsVM({userName: username, projectName: projName, obj: tempObj});
+        await updateProjectResourceVarPairsVM({userName: username, projectName: projName, obj: tempObj});
     }
 
     async function itemClicked(item) {

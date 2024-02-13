@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
@@ -39,11 +39,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [audioListFilter, setAudioListFilter] = useState("");
 
     async function fetchProjResourceLists() {
-        console.log("piece-setter: fetchProjResourceLists-function"); //TODO test
         /* fetch from cloud db */
-        const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
-        console.log("new render- piece setter: obj from cloud (resource list):");
+        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         console.log(obj);
+
         setAudioList(obj.audio);
         setVisualList(obj.visual);
     }
@@ -95,14 +94,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
  
-        url = await fetchUrlByFilenameVM({fullFilename: fileName});
-        console.log("2 uploaded url in window: ", url); //TODO test
-        if (url === undefined || url === "") {
-            console.log("Error: empty url"); //TODO test
-            return;
-        }
-        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
-        
         await fetchRmFileList();
     }
 
@@ -117,7 +108,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
         console.log("vlist = ", vList); //TODO test
         console.log("alist = ", aList); //TODO test
-
     }
 
     function submitFileAction(type) {

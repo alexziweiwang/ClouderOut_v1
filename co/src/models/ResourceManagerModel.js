@@ -113,7 +113,7 @@ export async function fetchUrlByFilename({fullFilename}) {
  * @param {*} projectName project name
  * @returns resource-pair data
  */
-export async function fetchProjectResourcePairs({userName, projectName}) {
+export async function fetchProjectResourceVarPairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
 
               // const docRef = doc(db, "user_projects", userName);
@@ -136,7 +136,7 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
   audioList = audioList["proj_resource_audio"];
 
   const obj = {audio: audioList, visual: visualList};
-  console.log("rm-model, fetchProjectResourcePairs: ", obj); //TODO test
+  console.log("rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
 
   return obj;
 }
@@ -149,7 +149,7 @@ export async function fetchProjectResourcePairs({userName, projectName}) {
  * @param {*} obj resource pair data object
  * @returns void
  */
-export async function updateProjectResourcePairs({userName, projectName, obj}) {
+export async function updateProjectResourceVarPairs({userName, projectName, obj}) {
                 // const docRef = doc(db, "user_projects", userName);
                 // const docSnap = await getDoc(docRef);
 

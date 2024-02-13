@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResourceSelector from './ResourceSelector';
 import styles from './webpage.css';
-import { fetchProjectResourcePairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
 
 
@@ -235,7 +235,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
-        const obj = await fetchProjectResourcePairsVM({userName: username, projectName: projName});
+        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         console.log("new render- piece setter: obj from cloud (resource list):");
         console.log(obj);
         setAudioList(obj.audio);
