@@ -38,6 +38,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [visualListFilter, setVisualListFilter] = useState("");
     const [audioListFilter, setAudioListFilter] = useState("");
 
+    const [fileLog, setFileLog] = useState([]); // stores filename of un-uploaded files
+
     async function fetchProjResourceLists() {
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
@@ -59,6 +61,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
         console.log("temp selectedFile: ");
         console.log(selectedFile); //TODO testing
+
+        // TODO operations about fileLog, 
+        // TODO     if not yet in filelog, add this filename to filelog (1, 3)
+        // TODO     if already in filelog, then it's at least the second time submitting (2), remove from filelog
 
         const fileName = `${username}_${selectedFile.name}`;
 
