@@ -150,15 +150,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     </select>
                 </div>
                 <br></br><br></br>
-        
+                
+                <div className="orangeArea">
                 <ul>
                     {fileListVisual.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                         ))}
                 </ul>
                 </div>
-                
-                <div className="areaBlue">
+                <div> New File Upload<br></br>
                     <input 
                         type="file"
                         accept=".png,.jpg,.jpeg,"
@@ -166,6 +166,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     /> 
                     <button onClick={()=>{submitFileAction("visual");}}> Submit </button>
                 
+                </div>
+
+
+                </div>
+                
+                <div className="areaBlue">
                     <br></br>
                     <div className="rsrcPrevArea">
                              
@@ -202,20 +208,26 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 <br></br><br></br>
         
+                <div className="orangeArea">
                 <ul>
                     {fileListAudio.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                     ))}
                 </ul>
                 </div>
-                
-                <div className="areaBlue">
+                <div> New File Upload<br></br>
                     <input 
                         type="file"
                         accept=".wav,.mp3,.aac,.m4a"
                         onChange={fileSelectChange}
-                    /> 
+                        /> 
                     <button onClick={()=>{submitFileAction("audio");}}> Submit </button>
+                </div>
+
+                </div>
+                
+                <div className="areaBlue">
+
                     <div className="rsrcPrevArea">
                         {clickedFileUrl !== "" && <div>audio resource area <br></br>{clickedFileUrl}
                             <br></br>
