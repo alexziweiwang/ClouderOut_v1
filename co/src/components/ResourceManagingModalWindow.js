@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import PicturePreview from './PicturePreview';
+
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -167,33 +169,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <br></br>
                     <div className="rsrcPrevArea">
                              
-                    
-                        {clickedFileUrl !== "" && <div>visual resource  preview area <br></br>{clickedFileUrl}
-                            <div>
-                         
-                               {fileListVisual.map((item, index) => {
-                                    return(
-                                        <div key={index}>
-                                            {item["fileurl"] === clickedFileUrl && <img className="picResource" src={item["fileurl"]} alt="preview_visual" />}
-                                        </div>);
-                                    }
-                                )}
-                            </div>
-
-                           
-                            <div className="resourceVarPairWindow">Variable Pair management - Visual
-                                <br></br>TODO : if var-pair contains this url, provide options to view and edit
-                                <br></br>TODO check local-visual-list, element of this url
-                                {<> <br></br>
-                                    <label>Variable Name: </label><input></input> 
-                                    {<button>Add</button>}
-                                    {<button>Edit</button>}
-                                </>}
-                            </div>   
-
-                            
-                        </div>}
-                    
+                        {clickedFileUrl !== "" && <PicturePreview urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
                     </div>
                 </div>
 
