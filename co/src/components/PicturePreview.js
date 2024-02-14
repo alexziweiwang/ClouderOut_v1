@@ -8,12 +8,12 @@ export default function PicturePreview ({urlList, selectedUrl, varPairData, upda
             {urlList.map((item, index) => {
                 return(
                 <div key={index}>
-                    {item["fileurl"] === selectedUrl && 
-                        <img 
-                            className="picResource" 
-                            src={item["fileurl"]} 
-                            alt="preview_visual" 
-                        />}
+                    <img 
+                        className="picResource" 
+                        src={item["fileurl"]} 
+                        alt="preview_visual" 
+                        style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}
+                    />
                 </div>);
             }
             )}
