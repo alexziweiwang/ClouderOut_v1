@@ -15,6 +15,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         modalStyleName = "displayNone modalBackboard";
     }
 
+    const [uploadConfirm, setUploadConfirm] = useState(false);
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
@@ -72,10 +73,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
         console.log("temp selectedFile: ");
         console.log(selectedFile); //TODO testing
-
-        // TODO operations about fileLog, 
-        // TODO     if not yet in filelog, add this filename to filelog (1, 3)
-        // TODO     if already in filelog, then it's at least the second time submitting (2), remove from filelog
 
         const fileName = `${username}_${selectedFile.name}`;
 
@@ -136,8 +133,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             <button onClick={handleRmCancel}> Close </button>
 
                 <div className="parallelFrame">
-                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{setIsTabVisual(true);}}>Tab Visual</button>
-                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{setIsTabVisual(false);}}>Tab Audio</button>
+                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{setIsTabVisual(true); setUploadConfirm(false);}}>Tab Visual</button>
+                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{setIsTabVisual(false); setUploadConfirm(false);}}>Tab Audio</button>
                 </div>
 
                 {isTabVisual && 
@@ -163,13 +160,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </ul>
                 </div>
                 <div> New File Upload<br></br>
-                    <input 
+                    {uploadConfirm === false && <input 
                         type="file"
                         accept=".png,.jpg,.jpeg,"
-                        onChange={(event)=>{submitFile("visual", event.target.files[0]);setFileSelected(event.target.files[0]);}} //TODO improve later
-                    /> 
-                    <button onClick={()=>{submitFile("visual", fileSelected);}}> Submit </button>
-                
+                        onChange={(event)=>{setFileSelected(event.target.files[0]);}}
+                    />}
+                    {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
+                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
+                    {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
+                    {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
+
                 </div>
 
 
@@ -217,7 +217,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         accept=".wav,.mp3,.aac,.m4a"
                         onChange={(event)=>{submitFile("audio", event.target.files[0]);setFileSelected(event.target.files[0]);}} //TODO improve later
                         /> 
+                    <button onClick={()=>{submitFile("audio", fileSelected);}}> Confirm </button>
                     <button onClick={()=>{submitFile("audio", fileSelected);}}> Submit </button>
+
                 </div>
 
                 </div>
