@@ -166,10 +166,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    <br></br>
                     <div className="rsrcPrevArea">
-                             
-                        {clickedFileUrl !== "" && <PicturePreview urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
+                        {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
                     </div>
                 </div>
 

@@ -1080,3 +1080,8 @@ button:hover {
     max-width: 600px;
     max-height: 480px;
 }
+
+.paddings {
+    padding: 10px;
+    background-color: rgb(223, 222, 220);
+}

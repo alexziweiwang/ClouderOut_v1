@@ -4,7 +4,7 @@ export default function PicturePreview ({urlList, selectedUrl, varPairData, upda
 
 
     return (
-        <div>
+        <div className="paddings">
             {urlList.map((item, index) => {
                 return(
                 <div key={index}>
