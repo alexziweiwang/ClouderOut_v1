@@ -15,20 +15,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         modalStyleName = "displayNone modalBackboard";
     }
 
-    useEffect(() => {
-        if (firstTimeEnter === true) {
-            fetchRmFileList();
-            fetchProjResourceLists();
-            setFirstTimeEnter(false);
-        }
-    });
-
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
     const [fileListVisual, setFileListVisual] = useState([]);
     const [fileListAudio, setFileListAudio] = useState([]);
-    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     const [audioList, setAudioList] = useState([]);
     const [visualList, setVisualList] = useState([]); 
@@ -39,7 +30,26 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [visualListFilter, setVisualListFilter] = useState("");
     const [audioListFilter, setAudioListFilter] = useState("");
 
+    const [visualVarPairs, setVisualVarPairs] = useState([]);
+    const [audioVarPairs, setAudioVarPairs] = useState([]);
+
     const [fileLog, setFileLog] = useState([]); // stores filename of un-uploaded files
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            fetchRmFileList();
+            fetchProjResourceLists();
+            //TODO fetch varPairData of this project, from cloud 
+            setFirstTimeEnter(false);
+        }
+    });
+
+    function updateVarPairDataFunc() {
+        //TODO:
+        console.log("updateVarPairDataFunc()");
+    }
+
 
     async function fetchProjResourceLists() {
         /* fetch from cloud db */
@@ -148,7 +158,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="orangeArea">
                 <ul>
                     {fileListVisual.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
+                        <li className="clickableListItem" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
                         ))}
                 </ul>
                 </div>
@@ -167,7 +177,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
                     <div className="rsrcPrevArea">
-                        {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
+                        {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>}
                     </div>
                 </div>
 
