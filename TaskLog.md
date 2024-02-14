@@ -189,3 +189,6 @@
 - 2024-Feb-09: Debug chapter manager issue
 - 2024-Feb-09: Redesign resource managing and selecting UI
 - 2024-Feb-09: Reconsider resource managing and selecting data structure
+
+- 2024-Feb-13: Redesign splitting-needed components for rerender efficiency
+
