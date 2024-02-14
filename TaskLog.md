@@ -184,11 +184,12 @@
 - 2024-Feb-07: Explore dynamic css
 
 - 2024-Feb-08: Design detailed Game-UI other subpages (in-game, text-frame, etc.)
-- 2024-Feb-08: Consider varioud options for menu elements (transferring page: direct list of sublist)
+- 2024-Feb-08: Consider various options for menu elements (transferring page: direct list of sublist)
 
 - 2024-Feb-09: Debug chapter manager issue
 - 2024-Feb-09: Redesign resource managing and selecting UI
 - 2024-Feb-09: Reconsider resource managing and selecting data structure
 
 - 2024-Feb-13: Redesign splitting-needed components for rerender efficiency
+- 2024-Feb-13: Improve, redesign and test for var-pair data structure optimization
 
