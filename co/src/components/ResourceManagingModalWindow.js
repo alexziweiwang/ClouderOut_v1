@@ -159,7 +159,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         ))}
                 </ul>
                 </div>
-                <div> New File Upload<br></br>
+                <div> New File Upload <br></br>
                     {uploadConfirm === false && <input 
                         type="file"
                         accept=".png,.jpg,.jpeg,"
@@ -169,7 +169,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
                     {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
                     {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
-
                 </div>
 
 
@@ -211,15 +210,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     ))}
                 </ul>
                 </div>
-                <div> New File Upload<br></br>
-                    <input 
+                <div> New File Upload <br></br>
+                    {uploadConfirm === false &&  <input 
                         type="file"
                         accept=".wav,.mp3,.aac,.m4a"
-                        onChange={(event)=>{submitFile("audio", event.target.files[0]);setFileSelected(event.target.files[0]);}} //TODO improve later
-                        /> 
-                    <button onClick={()=>{submitFile("audio", fileSelected);}}> Confirm </button>
-                    <button onClick={()=>{submitFile("audio", fileSelected);}}> Submit </button>
-
+                        onChange={(event)=>{setFileSelected(event.target.files[0]);}}
+                        /> }
+                    {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
+                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
+                    {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
+                    {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
                 </div>
 
                 </div>
