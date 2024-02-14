@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
     const username = "user002"; //TODO testing
@@ -175,7 +174,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                                {fileListVisual.map((item, index) => {
                                     return(
                                         <div key={index}>
-                                            TODO: split into a separate component for rendering consideration
                                             {item["fileurl"] === clickedFileUrl && <img className="picResource" src={item["fileurl"]} alt="preview_visual" />}
                                         </div>);
                                     }
