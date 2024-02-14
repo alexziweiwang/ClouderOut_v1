@@ -171,7 +171,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     
                         {clickedFileUrl !== "" && <div>visual resource area <br></br>{clickedFileUrl}
                             <div>
-                                <img className="picResource" src={clickedFileUrl} alt="preview_visual" />
+                         
+                                    {fileListVisual.map((item, index) => {
+                                        return(
+                                           <div key={index}>
+                                            {item["fileurl"] === clickedFileUrl && <img className="picResource" src={item["fileurl"]} alt="preview_visual" />}
+                                           </div>);
+                                        }
+                                    )}
                             </div>
 
                            
