@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import PicturePreview from './PicturePreview';
-
+import AudioPreview from './AudioPreview';
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -227,30 +227,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="areaBlue">
 
                     <div className="rsrcPrevArea">
-                        {clickedFileUrl !== "" && <div>audio resource area <br></br>{clickedFileUrl}
-                            <br></br>
-                            <audio src={clickedFileUrl} controls />
-
-                            <div className="resourceVarPairWindow">Variable Pair management - Audio
-                                <br></br>TODO : if var-pair contains this url, provide options to view and edit
-                                <br></br>TODO check local-audio-list, element of this url
-                                <br></br>
-                                <label>Variable Name: </label><input></input>
-                                {<button>Add</button>}
-                                {<button>Edit</button>}
-                           
-
-                            </div>    
-                        </div>}      
-                    
-                    
+                        <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>
                     </div>
                     
                 </div>
-
-
-
-
 
                 </div>
 
