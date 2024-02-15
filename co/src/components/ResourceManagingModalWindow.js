@@ -139,27 +139,28 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 {isTabVisual && 
                 <div className="rmTypeAreaV"> 
-                <div className="modalContent parallelFrame">
                  
                 <div className="areaNote1"> visual area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
-                <div>
-                    <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value);}}>
+                
+                <br></br>
+                <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value);}}>
                         <option value="curr" key="currVis">In this project</option>
                         <option value="all" key="allVis">All resources</option>
                         <option value="not" key="notVis">Not in this project</option>
-                    </select>
-                </div>
-                <br></br><br></br>
+                </select>
                 
-                <div className="orangeArea">
+                
+                <div className="rsrcListArea">
                 <ul>
                     {fileListVisual.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
                         ))}
                 </ul>
                 </div>
-                <div> New File Upload <br></br>
+
+
+                <div className="uploadArea"> New File Upload <br></br>
                     {uploadConfirm === false && <input 
                         type="file"
                         accept=".png,.jpg,.jpeg,"
@@ -182,10 +183,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
 
 
-
-
-                </div>
-
                 </div>}
 
                 {!isTabVisual && 
@@ -194,23 +191,23 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             
                 <div className="areaNote2"> audio area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
-                <div>
-                    <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value);}}>
+               
+                <br></br>
+                <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value);}}>
                         <option value="curr" key="currAu">In this project</option>
                         <option value="all" key="allAu">All resources</option>
                         <option value="not" key="notAu">Not in this project</option>
-                    </select>
-                </div>
-                <br></br><br></br>
+                </select>
+                
         
-                <div className="orangeArea">
+                <div className="rsrcListArea">
                 <ul>
                     {fileListAudio.map((item, index) => (
                         <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                     ))}
                 </ul>
                 </div>
-                <div> New File Upload <br></br>
+                <div className="uploadArea"> New File Upload <br></br>
                     {uploadConfirm === false &&  <input 
                         type="file"
                         accept=".wav,.mp3,.aac,.m4a"
