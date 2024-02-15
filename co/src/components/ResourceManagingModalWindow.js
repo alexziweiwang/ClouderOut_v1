@@ -139,7 +139,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 {isTabVisual && 
                 <div className="rmTypeAreaV"> 
-                 
+                <div className="modalContent parallelFrame">
+         
                 <div className="areaNote1"> visual area
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 
@@ -150,11 +151,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         <option value="not" key="notVis">Not in this project</option>
                 </select>
                 
-                
                 <div className="rsrcListArea">
                 <ul>
                     {fileListVisual.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
+                        <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
                         ))}
                 </ul>
                 </div>
@@ -182,7 +182,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
 
 
-
+                </div>
                 </div>}
 
                 {!isTabVisual && 
@@ -203,7 +203,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="rsrcListArea">
                 <ul>
                     {fileListAudio.map((item, index) => (
-                        <li className="clickableListItem" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
+                        <li className="clickableListItem5" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                     ))}
                 </ul>
                 </div>

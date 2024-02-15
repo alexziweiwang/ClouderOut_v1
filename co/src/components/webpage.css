@@ -370,6 +370,31 @@ div {
     overflow: auto;
 }
 
+.clickableListItem5 {
+    background-color: rgb(181, 202, 223);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+    text-align: left;
+    padding-left: 5px;
+    overflow: auto;
+    outline: 1px solid rgb(123, 123, 123);
+    cursor: pointer;
+}
+
+.clickableListItem5:hover {
+    background-color: rgb(86, 105, 126);
+    color: rgb(237, 236, 235);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+    text-align: left;
+    padding-left: 5px;
+    overflow: auto;
+    outline: 1px solid rgb(123, 123, 123);
+    cursor: pointer;
+}
+
 .clickableListItem3 {
     background-color: rgb(240, 239, 242);
     margin: 1px;
@@ -678,13 +703,10 @@ td {
 
 .rsrcListArea {
     background-color: rgb(183, 208, 170);
-    margin-left: 5px;
     color:rgb(7, 7, 7);
     overflow: auto;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 3px;
     margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .rsrcSelectorArea {
@@ -1073,7 +1095,7 @@ button:hover {
 
 .profilePage {
     text-align: left;
-    padgging: 2px;
+    padding: 2px;
 }
 
 .picResource {
@@ -1087,11 +1109,11 @@ button:hover {
 }
 
 .uploadArea {
-    background-color: rgb(210, 192, 210);
+    background-color: rgb(199, 196, 199);
     border-radius: 0px;
 }
 
 .rsrcListArea {
-    background-color: rgb(72, 67, 66);
+    background-color: rgb(210, 192, 210);
     border-radius: 0px; 
 }
