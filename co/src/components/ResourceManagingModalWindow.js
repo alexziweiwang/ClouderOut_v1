@@ -188,9 +188,17 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    <div className="rsrcPrevArea">
-                        {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>}
-                    </div>
+                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>}
+                    
+                    <div className="resourceVarPairWindow">Variable Pair management - Visual
+                    <br></br>TODO: from varPairData, check if this url is in var-pair record
+                    {<> <br></br>
+                        <label>Variable Name: </label>
+                        <input></input> 
+                        {<button>Add</button>}
+                        {<button>Edit</button>}
+                    </>}
+            </div>   
                 </div>
 
 
@@ -235,9 +243,18 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
 
-                    <div className="rsrcPrevArea">
-                        <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>
-                    </div>
+                    {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>}
+    
+                    <br></br>
+                    <div className="resourceVarPairWindow">Variable Pair management - Audio
+                    <br></br>TODO: from varPairData, check if this url is in var-pair record
+                    {<> <br></br>
+                        <label>Variable Name: </label>
+                        <input></input> 
+                        {<button>Add</button>}
+                        {<button>Edit</button>}
+                    </>}
+            </div>   
                     
                 </div>
 

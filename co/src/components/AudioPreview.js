@@ -3,30 +3,18 @@ export default function AudioPreview ({urlList, selectedUrl, varPairData, update
     //TODO call updateVarPairData when var-pair editted by user
 
     return (
-        <div className="paddings">
-
+        <div className="rsrcPrevArea paddings">
             {urlList.map((item, index) => {
                 return(
-                <div key={index}>
-                    <label>{item["filename"]}</label><br></br><br></br>
-                    <audio 
-                        src={item["fileurl"]} 
-                        style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}
-                        controls />
-                </div>);
+                    <div style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}>
+                        <label>{item["filename"]}</label><br></br><br></br>
+                        <audio 
+                            src={item["fileurl"]} 
+                            controls />
+                    
+                    </div>);
             }
             )}
-
-            <br></br>
-            <div className="resourceVarPairWindow">Variable Pair management - Audio
-                <br></br>TODO: from varPairData, check if this url is in var-pair record
-                {<> <br></br>
-                    <label>Variable Name: </label>
-                    <input></input> 
-                    {<button>Add</button>}
-                    {<button>Edit</button>}
-                </>}
-            </div>   
         </div>
     );
 }

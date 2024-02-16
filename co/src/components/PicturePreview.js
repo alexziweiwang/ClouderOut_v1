@@ -3,31 +3,20 @@ export default function PicturePreview ({urlList, selectedUrl, varPairData, upda
     //TODO call updateVarPairData when var-pair editted by user
 
     return (
-        <div className="paddings">
+        <div className="rsrcPrevArea paddings">
             {urlList.map((item, index) => {
                 return(
-                <div key={index}>
+                <div key={index} style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}>
                     <label>{item["filename"]}</label><br></br><br></br>
                     <img 
                         className="picResource" 
                         src={item["fileurl"]} 
-                        alt="preview_visual" 
-                        style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}
+                        alt="preview_visual"
                     />
                 </div>);
             }
             )}
 
-            <br></br>
-            <div className="resourceVarPairWindow">Variable Pair management - Visual
-                <br></br>TODO: from varPairData, check if this url is in var-pair record
-                {<> <br></br>
-                    <label>Variable Name: </label>
-                    <input></input> 
-                    {<button>Add</button>}
-                    {<button>Edit</button>}
-                </>}
-            </div>   
         </div>
     );
 }
