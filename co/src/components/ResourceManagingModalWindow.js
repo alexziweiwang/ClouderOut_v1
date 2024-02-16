@@ -188,7 +188,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>}
+                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
                     
                     <div className="resourceVarPairWindow">Variable Pair management - Visual
                     <br></br>TODO: from varPairData, check if this url is in var-pair record
@@ -243,9 +243,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
 
-                    {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl} updateVarPairData={updateVarPairDataFunc}/>}
-    
-                    <br></br>
+                    {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl}/>}
+{/*     
                     <div className="resourceVarPairWindow">Variable Pair management - Audio
                     <br></br>TODO: from varPairData, check if this url is in var-pair record
                     {<> <br></br>
@@ -255,7 +254,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         {<button>Edit</button>}
                     </>}
             </div>   
-                    
+                     */}
                 </div>
 
                 </div>
