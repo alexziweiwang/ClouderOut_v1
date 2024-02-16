@@ -3,6 +3,8 @@ import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM,
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
+import ItemVarPairManage from './ItemVarPairManage';
+
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
@@ -46,9 +48,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
     });
 
-    function updateVarPairDataFunc() {
+    function updateVarPairDataFuncVis() {
         //TODO:
-        console.log("updateVarPairDataFunc()");
+        console.log("updateVarPairDataFunc visual ()");
+    }
+
+    function updateVarPairDataFuncAu() {
+        //TODO:
+        console.log("updateVarPairDataFunc audio ()");
     }
 
 
@@ -189,16 +196,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
-                    
-                    <div className="resourceVarPairWindow">Variable Pair management - Visual
-                    <br></br>TODO: from varPairData, check if this url is in var-pair record
-                    {<> <br></br>
-                        <label>Variable Name: </label>
-                        <input></input> 
-                        {<button>Add</button>}
-                        {<button>Edit</button>}
-                    </>}
-            </div>   
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncVis}/>}
+
                 </div>
 
 
@@ -242,19 +241,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl}/>}
-{/*     
-                    <div className="resourceVarPairWindow">Variable Pair management - Audio
-                    <br></br>TODO: from varPairData, check if this url is in var-pair record
-                    {<> <br></br>
-                        <label>Variable Name: </label>
-                        <input></input> 
-                        {<button>Add</button>}
-                        {<button>Edit</button>}
-                    </>}
-            </div>   
-                     */}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncAu}/>}
                 </div>
 
                 </div>
