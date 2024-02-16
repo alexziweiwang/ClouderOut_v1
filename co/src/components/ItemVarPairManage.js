@@ -1,10 +1,7 @@
 import { useState } from "react";
 
 
-export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarPairDataFunction}) {
-    console.log("var-pair-manage: render once. "); //TODO testing
-    console.log(" current url: ", selectedUrl);
-
+export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarPairDataFunction, fileType}) {
     const displayPart = varPairInfo.filter(elem => elem["url"] === selectedUrl);
     const displayItem = displayPart[0];
     let isInVarPair = false;
@@ -20,8 +17,8 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
             {isInVarPair == true && <><label>{displayItem["var"]}</label><br></br></>}
             
             <input onChange={(event)=>{setInputContent(event.target.value);}}></input> 
-            {isInVarPair == false && <button onClick={()=>{updateVarPairDataFunction("add", selectedUrl, inputContent);}}>Add</button>}
-            {isInVarPair == true && <button onClick={()=>{updateVarPairDataFunction("edit", selectedUrl, inputContent);}}>Edit</button>}
+            {isInVarPair == false && <button onClick={()=>{updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
+            {isInVarPair == true && <button onClick={()=>{updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Edit</button>}
             
         </div>
     );

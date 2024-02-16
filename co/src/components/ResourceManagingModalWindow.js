@@ -43,10 +43,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
     });
 
-    function updateVarPairDataFuncVis(type, url, givenContent) {
+    function updateVarPairDataFuncGen(type, url, givenContent, fileType) {
         let updatePart = "";
+        let updatePartArr = [];
 
-        console.log("updateVarPairDataFunc visual ()...");
         console.log(type, url, givenContent);
 
         if (type === "add") {
@@ -54,30 +54,49 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             updatePart["url"] = url;
             updatePart["var"] = givenContent;
         } else if (type === "edit") {
-            let updatePartArr = visualVarPairs.filter(elem => elem["url"] === url);
+
+            if (fileType === "visual") {
+                updatePartArr = visualVarPairs.filter(elem => elem["url"] === url);
+            } else if (fileType === "audio") {
+                updatePartArr = audioVarPairs.filter(elem => elem["url"] === url);
+            } else {
+                return;
+            }
             updatePart = updatePartArr[0];
             updatePart["var"] = givenContent;
         } else {
             return;
         }
 
-        let other = visualVarPairs.filter(e => e["url"] !== url);
+        let other = [];
+        if (fileType === "visual") {
+            other = visualVarPairs.filter(e => e["url"] !== url);
+        } else if (fileType === "audio") {
+            other = audioVarPairs.filter(e => e["url"] !== url);
+        } else {
+            return;
+        }
+        
         other.push(updatePart);
-        setVisualVarPairs(other);
-        console.log("after updating: ");
-        console.log(other);
 
         let object = {};
-        object["audio"] = audioVarPairs;
-        object["visual"] = other;
-        //format:  updateProjectResourceVarPairsVM({userName, projectName, obj});
-    }
+        if (fileType === "visual") {
+            setVisualVarPairs(other);
+            object["visual"] = other;
+            object["audio"] = audioVarPairs;
+        } else if (fileType === "audio") {
+            setAudioVarPairs(other);
+            object["audio"] = other;
+            object["visual"] = visualVarPairs;
+        } else {
+            return;
+        }
 
-    function updateVarPairDataFuncAu(type, url, givenContent) {
-        //TODO:
-        console.log("updateVarPairDataFunc audio ()");
+        console.log("... before update to cloud db: ");
+        console.log(object);
+    
+        //TODO updateProjectResourceVarPairsVM({userName, projectName, obj});
     }
-
 
     async function fetchProjResourceVarPairLists() {
         /* fetch from cloud db */
@@ -212,7 +231,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncVis}/>}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual"/>}
                 </div>
 
 
@@ -257,7 +276,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncAu}/>}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="audio"/>}
                 </div>
 
                 </div>
