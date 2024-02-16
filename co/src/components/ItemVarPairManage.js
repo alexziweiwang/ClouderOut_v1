@@ -15,12 +15,12 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
     return (
         <div className="resourceVarPairWindow">
             {isInVarPair == true && <label>Data Content: {displayItem["fileurl"]}</label>}
-            {<> <br></br>
+            
             <label>Variable Name: </label>
             <input onChange={(event)=>{setInputContent(event.target.value);}}></input> 
             {isInVarPair == false && <button onClick={()=>{updateVarPairDataFunction("add", selectedUrl, inputContent);}}>Add</button>}
             {isInVarPair == true && <button onClick={()=>{updateVarPairDataFunction("edit", selectedUrl, inputContent);}}>Edit</button>}
-            </>}
+            
         </div>
     );
 }

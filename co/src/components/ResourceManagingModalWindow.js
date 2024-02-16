@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
+import { fetchProjectResourceVarPairsVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
@@ -24,8 +24,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [fileListVisual, setFileListVisual] = useState([]);
     const [fileListAudio, setFileListAudio] = useState([]);
 
-    const [audioList, setAudioList] = useState([]);
-    const [visualList, setVisualList] = useState([]); 
     const [clickedFileUrl, setClickedFileUrl] = useState("");
     const [clickedFileName, setClickedFileName] = useState("");
     const [clickedFileType, setClickedFileType] = useState("");
@@ -36,22 +34,35 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [visualVarPairs, setVisualVarPairs] = useState([]);
     const [audioVarPairs, setAudioVarPairs] = useState([]);
 
-    const [fileLog, setFileLog] = useState([]); // stores filename of un-uploaded files
-
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
             fetchRmFileList();
-            fetchProjResourceLists();
-            //TODO fetch varPairData of this project, from cloud 
+            fetchProjResourceVarPairLists();
             setFirstTimeEnter(false);
         }
     });
 
     function updateVarPairDataFuncVis(type, url, givenContent) {
-        //TODO:
-        console.log("updateVarPairDataFunc visual ()");
-        // "updateVarPairDataFunction("edit", selectedUrl, inputContent);"
+        let updatePart = "";
+
+        console.log("updateVarPairDataFunc visual ()...");
+
+        if (type === "add") {
+            updatePart = {};
+            updatePart["url"] = url;
+            updatePart["var"] = givenContent;
+        } else if (type === "edit") {
+            let updatePartArr = visualVarPairs.filter(elem => elem["url"] === url);
+            updatePart = updatePartArr[0];
+            updatePart["var"] = givenContent;
+        } else {
+            return;
+        }
+
+        let other = visualVarPairs.filter(e => e["url"] !== url);
+        other.push(updatePart);
+        setVisualListFilter(other);
     }
 
     function updateVarPairDataFuncAu(type, url, givenContent) {
@@ -60,13 +71,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
 
-    async function fetchProjResourceLists() {
+    async function fetchProjResourceVarPairLists() {
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         console.log(obj);
 
-        setAudioList(obj.audio);
-        setVisualList(obj.visual);
+        setVisualVarPairs(obj.visual);
+        setAudioVarPairs(obj.audio);
     }
 
     function fileSelectChange(event) {
@@ -127,10 +138,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setFileListVisual(vList);
         const aList = fileList.filenames.filter((item)=>(item.filetype === "audio"));
         setFileListAudio(aList);
-        console.log("gen list = ", cloudFileList); //TODO test
+        console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
 
-        console.log("vlist = ", vList); //TODO test
-        console.log("alist = ", aList); //TODO test
+        console.log("raw-rsrc vlist = ", vList); //TODO test
+        console.log("raw-rsrc alist = ", aList); //TODO test
     }
 
     return (
@@ -198,7 +209,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="areaBlue">
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncVis}/>}
-
                 </div>
 
 
