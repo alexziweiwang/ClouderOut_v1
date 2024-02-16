@@ -48,12 +48,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
     });
 
-    function updateVarPairDataFuncVis() {
+    function updateVarPairDataFuncVis(type, url, givenContent) {
         //TODO:
         console.log("updateVarPairDataFunc visual ()");
+        // "updateVarPairDataFunction("edit", selectedUrl, inputContent);"
     }
 
-    function updateVarPairDataFuncAu() {
+    function updateVarPairDataFuncAu(type, url, givenContent) {
         //TODO:
         console.log("updateVarPairDataFunc audio ()");
     }

@@ -1,7 +1,7 @@
 export default function AudioPreview ({urlList, selectedUrl}) {
     
     return (
-        <div className="rsrcPrevArea paddings">
+        <div className="rsrcPrevArea">
             {urlList.map((item, index) => {
                 return(
                     <div style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}>

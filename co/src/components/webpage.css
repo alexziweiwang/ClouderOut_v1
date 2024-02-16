@@ -1078,14 +1078,18 @@ button:hover {
 }
 
 .resourceVarPairWindow {
-    height: 300px;
-    width: 800px;
+    background-color: beige;
+    width: 100%;
+    color:rgb(7, 7, 7);
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: scroll;
+    margin-top: 5px;
 }
 
 
 .slider {
     accent-color: rgb(187, 143, 193);
-    
 }
 
 .visPanel {

@@ -1,6 +1,7 @@
+import { useState } from "react";
+
+
 export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarPairDataFunction}) {
-    //TODO use varPairData to display add or edit of variable-pair for this resource in this project
-    //TODO call updateVarPairData when var-pair editted by user
 
     const displayPart = varPairInfo.filter(elem => elem["fileurl"] === selectedUrl);
     const displayItem = displayPart[0];
@@ -9,15 +10,16 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
         isInVarPair = true;
     }
 
+    const [inputContent, setInputContent] = useState("");
+
     return (
         <div className="resourceVarPairWindow">
-            <br></br>TODO: from varPairData, check if this url is in var-pair record
             {isInVarPair == true && <label>Data Content: {displayItem["fileurl"]}</label>}
             {<> <br></br>
             <label>Variable Name: </label>
-            <input></input> 
-            {isInVarPair == false && <button onClick={()=>{}}>Add</button>}
-            {isInVarPair == true && <button onClick={()=>{}}>Edit</button>}
+            <input onChange={(event)=>{setInputContent(event.target.value);}}></input> 
+            {isInVarPair == false && <button onClick={()=>{updateVarPairDataFunction("add", selectedUrl, inputContent);}}>Add</button>}
+            {isInVarPair == true && <button onClick={()=>{updateVarPairDataFunction("edit", selectedUrl, inputContent);}}>Edit</button>}
             </>}
         </div>
     );
