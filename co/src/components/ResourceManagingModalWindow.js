@@ -47,6 +47,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         let updatePart = "";
 
         console.log("updateVarPairDataFunc visual ()...");
+        console.log(type, url, givenContent);
 
         if (type === "add") {
             updatePart = {};
@@ -62,7 +63,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
         let other = visualVarPairs.filter(e => e["url"] !== url);
         other.push(updatePart);
-        setVisualListFilter(other);
+        setVisualVarPairs(other);
+        console.log("after updating: ");
+        console.log(other);
+
+        let object = {};
+        object["audio"] = audioVarPairs;
+        object["visual"] = other;
+        //format:  updateProjectResourceVarPairsVM({userName, projectName, obj});
     }
 
     function updateVarPairDataFuncAu(type, url, givenContent) {
@@ -104,9 +112,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
 
     async function itemClicked(item) {
-        console.log("item clicked: ");
-        console.log(item);
-
         if (clickedFileName === item["filename"]) { /* reset */
             setClickedFileUrl("");
             setClickedFileName("");
@@ -116,7 +121,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setClickedFileUrl(item["fileurl"]);
         setClickedFileName(item["filename"]);
         setClickedFileType(item["filetype"]);
-        console.log("clicked item: " + item["fileurl"]);
     }
 
     async function updateUploadedFileRecords(username, fileName, type) {
