@@ -4,10 +4,15 @@ export default function AudioPreview ({urlList, selectedUrl, varPairData, update
 
     return (
         <div className="paddings">
+
             {urlList.map((item, index) => {
                 return(
                 <div key={index}>
-                    <audio src={item["fileurl"]} controls />
+                    <label>{item["filename"]}</label><br></br><br></br>
+                    <audio 
+                        src={item["fileurl"]} 
+                        style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}
+                        controls />
                 </div>);
             }
             )}

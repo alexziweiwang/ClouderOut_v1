@@ -7,6 +7,7 @@ export default function PicturePreview ({urlList, selectedUrl, varPairData, upda
             {urlList.map((item, index) => {
                 return(
                 <div key={index}>
+                    <label>{item["filename"]}</label><br></br><br></br>
                     <img 
                         className="picResource" 
                         src={item["fileurl"]} 

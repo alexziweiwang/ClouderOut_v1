@@ -133,8 +133,20 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             <button onClick={handleRmCancel}> Close </button>
 
                 <div className="parallelFrame">
-                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{setIsTabVisual(true); setUploadConfirm(false);}}>Tab Visual</button>
-                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{setIsTabVisual(false); setUploadConfirm(false);}}>Tab Audio</button>
+                    <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{
+                                setIsTabVisual(true);
+                                setUploadConfirm(false); 
+                                setClickedFileUrl("");
+                                setClickedFileName("");
+                                setClickedFileType("");
+                    }}>Tab Visual</button>
+                    <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{
+                                setIsTabVisual(false); 
+                                setUploadConfirm(false); 
+                                setClickedFileUrl("");
+                                setClickedFileName("");
+                                setClickedFileType("");
+                    }}>Tab Audio</button>
                 </div>
 
                 {isTabVisual && 
