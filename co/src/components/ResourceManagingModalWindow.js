@@ -183,19 +183,31 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         if (visualListFilter === "currVis") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
             // TODO setFileListVisual();
-            console.log("in");
+            console.log("in vis");
         } else if (visualListFilter === "notVis") { // not-in-this-project
             // TODO if var-pair does not contain this item's url, then it's not-in-this-project
             // TODO setFileListVisual();       
-            console.log("not in");
+            console.log("not in vis");
         } else if (visualListFilter !== "allVis") { // unexpected input
             return;
         }
     }
 
-    function changeAuFilter() {
+    function changeAuFilter(list) {
         // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
+        let fileListAudioTemp = list;
 
+        if (audioListFilter === "currAu") { // in-this-project
+            // TODO if var-pair contains this item's url, then it's in-this-project
+            // TODO setFileListAudio();
+            console.log("in au");
+        } else if (audioListFilter === "notAu") { // not-in-this-project
+            // TODO if var-pair does not contain this item's url, then it's not-in-this-project
+            // TODO setFileListAudio();  
+            console.log("not in au");
+        } else if (audioListFilter !== "allAu") { // unexpected input
+            return;
+        }
     }
 
     return (
@@ -285,7 +297,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                
                 <br></br>
-                <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value);}}>
+                <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value); changeAuFilter(event.target.value);}}>
                         <option value="curr" key="currAu">In this project</option>
                         <option value="all" key="allAu">All resources</option>
                         <option value="not" key="notAu">Not in this project</option>
