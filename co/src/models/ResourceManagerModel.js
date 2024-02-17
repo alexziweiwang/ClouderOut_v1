@@ -156,7 +156,11 @@ export async function updateProjectResourceVarPairs({userName, projectName, obj}
                 // if (!docSnap.exists()) {
                 //   return;
                 // }
-
+          console.log("model - updateProjectResourceVarPairs()");
+          console.log(userName);
+          console.log(projectName);
+          console.log(obj);
+  
   const projectRef = doc(db, "user_projects", userName, "projects", projectName);
   const projectSnap = await getDoc(projectRef);
 
@@ -164,7 +168,8 @@ export async function updateProjectResourceVarPairs({userName, projectName, obj}
     return;
   }
 
-  console.log("before updating to cloud db: ", obj); //TODO test
+  console.log("VM - before updating to cloud db: ", obj); //TODO test
+  
   await updateDoc(projectRef, {
     "proj_resource_audio": obj.audio,
   });

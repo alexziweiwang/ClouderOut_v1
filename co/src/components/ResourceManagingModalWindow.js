@@ -44,10 +44,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     });
 
     function updateVarPairDataFuncGen(type, url, givenContent, fileType) {
+        if (givenContent.length === 0) {
+            console.log("empty input in updateVarPairDataFuncGen(), direct return");
+            return;
+        }
         let updatePart = "";
         let updatePartArr = [];
-
-        console.log(type, url, givenContent);
 
         if (type === "add") {
             updatePart = {};
@@ -92,10 +94,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             return;
         }
 
-        console.log("... before update to cloud db: ");
-        console.log(object);
-    
-        //TODO updateProjectResourceVarPairsVM({userName, projectName, obj});
+        const info = {};
+        info["userName"] = username;
+        info["projectName"] = projName;
+        info["obj"] = object;
+
+        updateProjectResourceVarPairsVM(info);
     }
 
     async function fetchProjResourceVarPairLists() {
