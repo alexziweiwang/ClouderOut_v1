@@ -177,6 +177,27 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         console.log("raw-rsrc alist = ", aList); //TODO test
     }
 
+    function changeVisFilter(list) {
+        let fileListVisualTemp = list;
+        // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
+        if (visualListFilter === "currVis") { // in-this-project
+            // TODO if var-pair contains this item's url, then it's in-this-project
+            // TODO setFileListVisual();
+            console.log("in");
+        } else if (visualListFilter === "notVis") { // not-in-this-project
+            // TODO if var-pair does not contain this item's url, then it's not-in-this-project
+            // TODO setFileListVisual();       
+            console.log("not in");
+        } else if (visualListFilter !== "allVis") { // unexpected input
+            return;
+        }
+    }
+
+    function changeAuFilter() {
+        // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
+
+    }
+
     return (
       <div className={modalStyleName}>
         <div className="modalArea">
@@ -217,7 +238,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <button onClick={fetchRmFileList}> Load Resource List </button>
                 
                 <br></br>
-                <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value);}}>
+                <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value); changeVisFilter(event.target.value);}}>
                         <option value="curr" key="currVis">In this project</option>
                         <option value="all" key="allVis">All resources</option>
                         <option value="not" key="notVis">Not in this project</option>
@@ -227,7 +248,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <ul>
                     {fileListVisual.map((item, index) => (
                         <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
-                        ))}
+                    ))}
                 </ul>
                 </div>
 
@@ -270,7 +291,6 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         <option value="not" key="notAu">Not in this project</option>
                 </select>
                 
-        
                 <div className="rsrcListArea">
                 <ul>
                     {fileListAudio.map((item, index) => (
