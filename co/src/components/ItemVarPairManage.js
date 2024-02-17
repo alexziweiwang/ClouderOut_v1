@@ -16,9 +16,9 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
             <label>Variable Name: </label>
             {isInVarPair == true && <><label>{displayItem["var"]}</label><br></br></>}
             
-            <input onChange={(event)=>{setInputContent(event.target.value);}}></input> 
-            {isInVarPair == false && <button onClick={()=>{updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
-            {isInVarPair == true && <button onClick={()=>{updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Edit</button>}
+            <input value={inputContent} onChange={(event)=>{setInputContent(event.target.value);}}></input> 
+            {isInVarPair == false && <button onClick={()=>{setInputContent(""); updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
+            {isInVarPair == true && <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Edit</button>}
             
         </div>
     );
