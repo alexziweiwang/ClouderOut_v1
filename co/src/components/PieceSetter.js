@@ -269,7 +269,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         <br></br>
 
             {rmSelectorOpen && 
-                <ResourceManagingModalWindow  isDisplay={rmSelectorOpen} handleRsCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
+                <ResourceManagingModalWindow  isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
 
             }
             <label>Piece: {pieceNumber}</label>
@@ -316,7 +316,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                         })}
 
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
                     
                     <br></br>
                     <label>Position x:      </label>
@@ -383,11 +383,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         <br></br>
     <label>Source Link:  </label>
     <select>
+        <option key="charp01" value=""> -- Select picture name -- </option>
+
         {visualList.map((item, index) => {
             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
         })}
     </select>
-    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
@@ -486,12 +488,14 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             <div>
                     <label>Shape/Picture Source:  </label>
                     <select>
+                        <option key="clck01" value=""> -- Select base-pic name -- </option>
+
                         {visualList.map((item, index) => {
                             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
        
-                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
                     <br></br>
                     {/* <label>Sound Effect:      </label> //TODO future feature
                     <label>TODO</label>
@@ -500,7 +504,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select> */}
-                    {/* <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button> */}
+                    {/* <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button> */}
                     <br></br>
                     <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
                     <label>Position x: </label>
@@ -671,11 +675,13 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                     <br></br>
                     <label>Source Link:  </label>
                     <select>
+                        <option key="bgm01" value=""> -- Select music name -- </option>
+
                         {audioList.map((item, index) => {
                             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
                     <br></br>
                     <label>Loop:  </label>
                     <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
@@ -700,7 +706,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}> add resource name-pair </button>
+                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
                     <br></br>
                     <label>Volume:         </label>
                     <label>TODO</label>
