@@ -33,7 +33,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
     const [visualVarPairs, setVisualVarPairs] = useState([]);
     const [audioVarPairs, setAudioVarPairs] = useState([]);
-    const [varPairToCloud, setVarPairToCloud] = useState({});
+    const [varPairToCloud, setVarPairToCloud] = useState("default");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -105,6 +105,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
     async function updateVarPairToCloud() {
         await updateProjectResourceVarPairsVM(varPairToCloud);
+        setVarPairToCloud("default");
     }
 
     async function fetchProjResourceVarPairLists() {
@@ -181,7 +182,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         <div className="modalArea">
 
             <div>
-            <button onClick={handleRmCancel}> Close </button>
+            <button onClick={()=>{
+                if (varPairToCloud !== "default") {
+                    console.log("!!! please save to cloud first");
+                } else {
+                    handleRmCancel(); 
+                }
+            }}> Close </button>
 
                 <div className="parallelFrame">
                     <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{
