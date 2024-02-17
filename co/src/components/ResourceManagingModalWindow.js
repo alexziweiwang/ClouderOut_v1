@@ -33,6 +33,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
     const [visualVarPairs, setVisualVarPairs] = useState([]);
     const [audioVarPairs, setAudioVarPairs] = useState([]);
+    const [varPairToCloud, setVarPairToCloud] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -99,7 +100,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         info["projectName"] = projName;
         info["obj"] = object;
 
-        updateProjectResourceVarPairsVM(info);
+        setVarPairToCloud(info);
+    }
+
+    async function updateVarPairToCloud() {
+        await updateProjectResourceVarPairsVM(varPairToCloud);
     }
 
     async function fetchProjResourceVarPairLists() {
@@ -193,6 +198,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                                 setClickedFileName("");
                                 setClickedFileType("");
                     }}>Tab Audio</button>
+
+                    <button className="buttonRight" onClick={()=>{updateVarPairToCloud();}}>Save To Cloud</button>
                 </div>
 
                 {isTabVisual && 
