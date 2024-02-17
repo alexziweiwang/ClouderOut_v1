@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ResourceSelector from './ResourceSelector';
-import styles from './webpage.css';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
+import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 
 export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList}) {
@@ -248,6 +247,9 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         // TODO fetch actual filename from list, by varName
         setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_filename": filename});
     }
+    function handleResourceManagerSaveChanges() {
+        console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
+    }
   
     return (
       
@@ -267,14 +269,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         <br></br>
 
             {rmSelectorOpen && 
-                <ResourceSelector 
-                    handleRsCancel={handleResourceSelectorCancel} 
-                    handleRsVisualSaveChanges={handleVisualRsrcSelectorSave}
-                    handleRsAudioSaveChanges={handleAudioRsrcSelectorSave}
-                    visualListContent={visualList}
-                    audioListContent={audioList}
+                <ResourceManagingModalWindow  isDisplay={rmSelectorOpen} handleRsCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
 
-                    isDisplay={rmSelectorOpen}/>
             }
             <label>Piece: {pieceNumber}</label>
             <br></br>
