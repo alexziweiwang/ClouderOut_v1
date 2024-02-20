@@ -193,3 +193,4 @@
 - 2024-Feb-13: Redesign splitting-needed components for rerender efficiency
 - 2024-Feb-13: Improve, redesign and test for var-pair data structure optimization
 
+- 2024-Feb-19: Design adaptive UI for various screen sizes
