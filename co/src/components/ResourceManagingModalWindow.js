@@ -196,27 +196,23 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         let inList = [];
         let notInList = [];
 
-        inList = fileListVisual.map((item, index) => {
+        fileListVisual.map((item, index) => {
             let i = 0;
-                                        console.log("item: ");
-                                        console.log(item);
             for(; i < visualVarPairs.length; i++) {
                 if (visualVarPairs[i]["url"] === item["fileurl"]) {
-                                        console.log("...... adding in-project item:");
-                                        console.log(item);
-                    inList.push(item);
-                                        console.log(" now list: ");
-                                        console.log(inList);
-                    
+
+                    inList.push(item);  
                 }
             }
         });
-  
-        console.log("~~~ in list (vis): ");
-        console.log(inList);
-        console.log("~~~ TODO ... not in list (vis): ");
-        console.log(notInList);
 
+        let j = 0;
+        for (; j < fileListVisual.length; j++) {
+            if (!inList.includes(fileListVisual[j])) {
+                notInList.push(fileListVisual[j]);
+            }
+        }
+  
         // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
         if (type === "curr") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
