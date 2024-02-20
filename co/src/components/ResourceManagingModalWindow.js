@@ -29,13 +29,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [clickedFileName, setClickedFileName] = useState("");
     const [clickedFileType, setClickedFileType] = useState("");
     
-    const [visualListFilter, setVisualListFilter] = useState("");
-    const [audioListFilter, setAudioListFilter] = useState("");
-    const [visualListFilteredList, setVisualListFilteredList] = useState("");
-    const [audioListFilteredList, setAudioListFilteredList] = useState("");
+    const [visualListFilter, setVisualListFilter] = useState("allVis");
+    const [audioListFilter, setAudioListFilter] = useState("allAu");
+    const [visualListFilteredList, setVisualListFilteredList] = useState([]);
+    const [audioListFilteredList, setAudioListFilteredList] = useState([]);
 
     const [visualVarPairs, setVisualVarPairs] = useState([]);
     const [audioVarPairs, setAudioVarPairs] = useState([]);
+    
     const [varPairToCloud, setVarPairToCloud] = useState("default");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -172,13 +173,18 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setCloudFileList(fileList.filenames);
         const vList = fileList.filenames.filter((item)=>(item.filetype === "visual"));
         setFileListVisual(vList);
+        if (visualListFilter !== "allVis") {
+            setVisualListFilteredList(vList);
+        }
         const aList = fileList.filenames.filter((item)=>(item.filetype === "audio"));
         setFileListAudio(aList);
+        if (audioListFilter !== "allAu") {
+            setAudioListFilteredList(aList);
+        }
+                                // console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
 
-        console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
-
-        console.log("raw-rsrc vlist = ", vList); //TODO test
-        console.log("raw-rsrc alist = ", aList); //TODO test
+                                // console.log("raw-rsrc vlist = ", vList); //TODO test
+                                // console.log("raw-rsrc alist = ", aList); //TODO test
     }
 
     function changeVisFilter(type) {
@@ -191,15 +197,21 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         let notInList = [];
         let i = 0;
         let j = 0;
+        console.log("fileListVisual");
+        console.log(fileListVisual);
+        console.log("visualVarPairs");
+        console.log(visualVarPairs);
+
         for(; i < fileListVisual; i++) {
             for(; j < visualVarPairs; j++) {
                 if (visualVarPairs[j]["url"] === fileListVisual[i]["fileurl"]) {
                     inList.push(fileListVisual[i]);
-                } else {
-                    notInList.push(fileListVisual[i]);
                 }
             }
         }
+
+        //TODO update not-in-project-list
+
 
         console.log("in list (vis): ");
         console.log(inList);
