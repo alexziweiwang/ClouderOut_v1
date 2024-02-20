@@ -177,35 +177,36 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         console.log("raw-rsrc alist = ", aList); //TODO test
     }
 
-    function changeVisFilter(list) {
-        let fileListVisualTemp = list;
+    function changeVisFilter(type) {
+        let fileListVisualTemp = fileListVisual;
         // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
-        if (visualListFilter === "currVis") { // in-this-project
+        if (type === "currVis") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
             // TODO setFileListVisual();
-            console.log("in vis");
-        } else if (visualListFilter === "notVis") { // not-in-this-project
+            console.log("filter: in vis");
+        } else if (type === "notVis") { // not-in-this-project
             // TODO if var-pair does not contain this item's url, then it's not-in-this-project
             // TODO setFileListVisual();       
-            console.log("not in vis");
-        } else if (visualListFilter !== "allVis") { // unexpected input
+            console.log("filter: not in vis");
+        } else if (type !== "allVis") { // unexpected input
             return;
         }
     }
 
-    function changeAuFilter(list) {
+    function changeAuFilter(type) {
         // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
-        let fileListAudioTemp = list;
+        let fileListAudioTemp = fileListAudio;
 
-        if (audioListFilter === "currAu") { // in-this-project
+        if (type === "currAu") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
+
             // TODO setFileListAudio();
-            console.log("in au");
-        } else if (audioListFilter === "notAu") { // not-in-this-project
+            console.log("filter: in au");
+        } else if (type === "notAu") { // not-in-this-project
             // TODO if var-pair does not contain this item's url, then it's not-in-this-project
             // TODO setFileListAudio();  
-            console.log("not in au");
-        } else if (audioListFilter !== "allAu") { // unexpected input
+            console.log("filter: not in au");
+        } else if (type !== "allAu") { // unexpected input
             return;
         }
     }
