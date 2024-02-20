@@ -21,6 +21,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
+
     const [fileListVisual, setFileListVisual] = useState([]);
     const [fileListAudio, setFileListAudio] = useState([]);
 
@@ -173,6 +174,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setFileListVisual(vList);
         const aList = fileList.filenames.filter((item)=>(item.filetype === "audio"));
         setFileListAudio(aList);
+
         console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
 
         console.log("raw-rsrc vlist = ", vList); //TODO test
@@ -185,16 +187,33 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             return;
         }
 
-        let listVisualFiltered = fileListVisual;
+        let inList = [];
+        let notInList = [];
+        let i = 0;
+        let j = 0;
+        for(; i < fileListVisual; i++) {
+            for(; j < visualVarPairs; j++) {
+                if (visualVarPairs[j]["url"] === fileListVisual[i]["fileurl"]) {
+                    inList.push(fileListVisual[i]);
+                } else {
+                    notInList.push(fileListVisual[i]);
+                }
+            }
+        }
+
+        console.log("in list (vis): ");
+        console.log(inList);
+        console.log("not in list (vis): ");
+        console.log(notInList);
 
         // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
         if (type === "currVis") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
-            // TODO setVisualListFilteredList(); 
+            setVisualListFilteredList(inList); 
             console.log("filter: in vis");
         } else if (type === "notVis") { // not-in-this-project
             // TODO if var-pair does not contain this item's url, then it's not-in-this-project
-            // TODO setVisualListFilteredList(); 
+            setVisualListFilteredList(notInList); 
             console.log("filter: not in vis");
         } else if (type !== "allVis") { // unexpected input
             return;
@@ -208,7 +227,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
 
         let listAudioFiltered = fileListAudio;
-        
+
         // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
         if (type === "currAu") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
@@ -271,7 +290,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="rsrcListArea">
                 <ul>
-                    {fileListVisual.map((item, index) => (
+                    {visualListFilteredList.map((item, index) => (
                         <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
                     ))}
                 </ul>
@@ -294,7 +313,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={fileListVisual} selectedUrl={clickedFileUrl}/>}
+                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual"/>}
                 </div>
 
