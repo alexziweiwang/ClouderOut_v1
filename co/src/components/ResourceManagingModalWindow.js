@@ -29,14 +29,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const [clickedFileName, setClickedFileName] = useState("");
     const [clickedFileType, setClickedFileType] = useState("");
     
-    const [visualListFilter, setVisualListFilter] = useState("allVis");
-    const [audioListFilter, setAudioListFilter] = useState("allAu");
+    const [visualListFilter, setVisualListFilter] = useState("all");
+    const [audioListFilter, setAudioListFilter] = useState("all");
     const [visualListFilteredList, setVisualListFilteredList] = useState([]);
     const [audioListFilteredList, setAudioListFilteredList] = useState([]);
 
     const [visualVarPairs, setVisualVarPairs] = useState([]);
     const [audioVarPairs, setAudioVarPairs] = useState([]);
-    
+
     const [varPairToCloud, setVarPairToCloud] = useState("default");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -188,46 +188,45 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     function changeVisFilter(type) {
-        if (type === "allVis") {
+        if (type === "all") {
             setVisualListFilteredList(fileListVisual);
             return;
         }
 
         let inList = [];
         let notInList = [];
-        let i = 0;
-        let j = 0;
-        console.log("fileListVisual");
-        console.log(fileListVisual);
-        console.log("visualVarPairs");
-        console.log(visualVarPairs);
 
-        for(; i < fileListVisual; i++) {
-            for(; j < visualVarPairs; j++) {
-                if (visualVarPairs[j]["url"] === fileListVisual[i]["fileurl"]) {
-                    inList.push(fileListVisual[i]);
+        inList = fileListVisual.map((item, index) => {
+            let i = 0;
+                                        console.log("item: ");
+                                        console.log(item);
+            for(; i < visualVarPairs.length; i++) {
+                if (visualVarPairs[i]["url"] === item["fileurl"]) {
+                                        console.log("...... adding in-project item:");
+                                        console.log(item);
+                    inList.push(item);
+                                        console.log(" now list: ");
+                                        console.log(inList);
+                    
                 }
             }
-        }
-
-        //TODO update not-in-project-list
-
-
-        console.log("in list (vis): ");
+        });
+  
+        console.log("~~~ in list (vis): ");
         console.log(inList);
-        console.log("not in list (vis): ");
+        console.log("~~~ TODO ... not in list (vis): ");
         console.log(notInList);
 
         // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
-        if (type === "currVis") { // in-this-project
+        if (type === "curr") { // in-this-project
             // TODO if var-pair contains this item's url, then it's in-this-project
             setVisualListFilteredList(inList); 
-            console.log("filter: in vis");
-        } else if (type === "notVis") { // not-in-this-project
+            console.log("filter: in vis...");
+        } else if (type === "not") { // not-in-this-project
             // TODO if var-pair does not contain this item's url, then it's not-in-this-project
             setVisualListFilteredList(notInList); 
-            console.log("filter: not in vis");
-        } else if (type !== "allVis") { // unexpected input
+            console.log("filter: not in vis...");
+        } else if (type !== "all") { // unexpected input
             return;
         }
     }
