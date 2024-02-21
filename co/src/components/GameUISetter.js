@@ -6,50 +6,6 @@ export default function GameUISetter({dataObj}) {
 
     return(<div className="previewWindow">
 
-        <div className="settings">
-            1. Button Look, Defualt
-            <br></br><label>Corner Radius: </label><input></input>
-            <br></br><label>Transparency: </label><input></input>
-
-            <br></br><input type="radio"></input><label>Rectangle: </label>
-                <label>Button Shade </label><input></input>
-            <br></br><input type="radio"></input><label>Base Picture </label>
-            <select></select><button>Resource Adding</button>
-            <br></br>Min-Width: <input></input>
-            <br></br>Max-Width: <input></input>
-            <br></br>Height: <input></input>
-
-            <br></br><br></br><br></br>
-            2. Text Frame
-            <br></br><label>Corner Radius: </label><input></input>
-            <br></br><label>Transparency: </label><input></input>
-
-            <br></br><input type="radio"></input><label>Rectangle: </label>
-                <label>Button Shade </label><input></input>
-            <br></br><input type="radio"></input><label>Base Picture </label>
-            <select></select><button>Resource Adding</button>
-            <br></br>Width: <input></input>
-            <br></br>Height: <input></input>
-            <br></br>Position X: <input></input>
-            <br></br>Position Y: <input></input>
-
-            <br></br><br></br><br></br>
-
-            3. In-game Side-bar
-            <br></br>Back Button: TODO
-            <br></br><labrl>Menu Option: </labrl>   
-            <br></br><input type="radio"></input><label>Single Menu Option</label>
-            <br></br>Position X: <input></input>
-            <br></br>Position Y: <input></input>
-            <br></br>TODO: jump to pause page
-            <br></br><input type="radio"></input><label>Menu Option List</label>
-            <br></br>TODO: select needed options (checkbox items)
-            <br></br><select></select> TODO: vertical or horizontal
-            <br></br>TODO: list position
-            <br></br>Position X: <input></input>
-            <br></br>Position Y: <input></input>
-        </div>
-
         <div> <br></br><br></br><br></br>Outside: <br></br>
             A1. Title Screen (special node before chapter?)<br></br>
             A2. Pause Screen (special node within chapter?)

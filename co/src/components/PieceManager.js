@@ -14,6 +14,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
     const [isManage, setIsManage] = useState(false);
 
+    const [guiAreaDisplay, setGuiAreaDisplay] = useState(false);
+
 
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -182,6 +184,55 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         </tbody>
     </table>
     <button onClick={createNewListItem}>Add New Row</button>
+
+            <br></br><br></br><br></br>
+    
+    <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings</button>
+    {guiAreaDisplay === true && <div className="guiSettings">
+            1. Button Look, Defualt
+            <br></br><label>Corner Radius: </label><input></input>
+            <br></br><label>Transparency: </label><input></input>
+
+            <br></br><input type="radio"></input><label>Rectangle: </label>
+                <label>Button Shade </label><input></input>
+            <br></br><input type="radio"></input><label>Base Picture </label>
+            <select></select><button>Resource Adding</button>
+            <br></br>Min-Width: <input></input>
+            <br></br>Max-Width: <input></input>
+            <br></br>Height: <input></input>
+
+            <br></br><br></br><br></br>
+            2. Text Frame
+            <br></br><label>Corner Radius: </label><input></input>
+            <br></br><label>Transparency: </label><input></input>
+
+            <br></br><input type="radio"></input><label>Rectangle: </label>
+                <label>Button Shade </label><input></input>
+            <br></br><input type="radio"></input><label>Base Picture </label>
+            <select></select><button>Resource Adding</button>
+            <br></br>Width: <input></input>
+            <br></br>Height: <input></input>
+            <br></br>Position X: <input></input>
+            <br></br>Position Y: <input></input>
+
+            <br></br><br></br><br></br>
+
+            3. In-game Side-bar
+            <br></br>Back Button: TODO
+            <br></br><labrl>Menu Option: </labrl>   
+            <br></br><input type="radio"></input><label>Single Menu Option</label>
+            <br></br>Position X: <input></input>
+            <br></br>Position Y: <input></input>
+            <br></br>TODO: jump to pause page
+            <br></br><input type="radio"></input><label>Menu Option List</label>
+            <br></br>TODO: select needed options (checkbox items)
+            <br></br><select></select> TODO: vertical or horizontal
+            <br></br>TODO: list position
+            <br></br>Position X: <input></input>
+            <br></br>Position Y: <input></input>
+
+            <br></br><button>Save</button>
+    </div>}
         </div>
     );
 }
