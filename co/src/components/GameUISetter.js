@@ -36,7 +36,18 @@ export default function GameUISetter({dataObj}) {
             <br></br><br></br><br></br>
 
             3. In-game Side-bar
-
+            <br></br>Back Button: TODO
+            <br></br><labrl>Menu Option: </labrl>   
+            <br></br><input type="radio"></input><label>Single Menu Option</label>
+            <br></br>Position X: <input></input>
+            <br></br>Position Y: <input></input>
+            <br></br>TODO: jump to pause page
+            <br></br><input type="radio"></input><label>Menu Option List</label>
+            <br></br>TODO: select needed options (checkbox items)
+            <br></br><select></select> TODO: vertical or horizontal
+            <br></br>TODO: list position
+            <br></br>Position X: <input></input>
+            <br></br>Position Y: <input></input>
         </div>
 
         <div> <br></br><br></br><br></br>Outside: <br></br>
