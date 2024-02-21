@@ -194,3 +194,7 @@
 - 2024-Feb-13: Improve, redesign and test for var-pair data structure optimization
 
 - 2024-Feb-19: Design adaptive UI for various screen sizes
+
+- 2024-Feb-20: Design improvement of UX for resource-manager saving (local and cloud)
+
+

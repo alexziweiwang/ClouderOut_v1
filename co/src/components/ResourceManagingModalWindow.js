@@ -73,6 +73,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             info["obj"] = object;
     
             setVarPairToCloud(info);
+            //TODO pop some reminder to user: provide option to update to cloud-db?
 
             return;
         }
@@ -306,6 +307,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             <button onClick={()=>{
                 if (varPairToCloud !== "default") {
                     console.log("!!! please save to cloud first");
+                    //TODO pop some reminder to user
+
+                    
                 } else {
                     handleRmCancel(); 
                 }
