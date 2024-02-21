@@ -250,6 +250,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             }
         }
 
+        console.log(" in list: ");
+        console.log(inList);
+
+        console.log(" not in the list: ");
+        console.log(notInList);
+
         // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
         if (type === "curr") { // in-this-project
             setAudioListFilteredList(inList); 
@@ -357,7 +363,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="rsrcListArea">
                 <ul>
-                    {fileListAudio.map((item, index) => (
+                    {audioListFilteredList.map((item, index) => (
                         <li className="clickableListItem5" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
                     ))}
                 </ul>
@@ -377,7 +383,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={fileListAudio} selectedUrl={clickedFileUrl}/>}
+                    {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="audio"/>}
                 </div>
 
