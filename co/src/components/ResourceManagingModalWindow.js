@@ -49,6 +49,41 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     });
 
     function updateVarPairDataFuncGen(type, url, givenContent, fileType) {
+        if (type === "delete") {
+            let updatedArr = [];
+            if (fileType === "visual") {
+                updatePartArr = visualVarPairs.filter(elem => elem["url"] !== url);
+            } else if (fileType === "audio") {
+                updatePartArr = audioVarPairs.filter(elem => elem["url"] !== url);
+            } else {
+                return;
+            }
+
+            let object = {};
+            if (fileType === "visual") {
+                setVisualVarPairs(updatePartArr);
+                object["visual"] = updatePartArr;
+                object["audio"] = audioVarPairs;
+            } else if (fileType === "audio") {
+                setAudioVarPairs(updatePartArr);
+                object["audio"] = updatePartArr;
+                object["visual"] = visualVarPairs;
+            } else {
+                return;
+            }
+    
+            const info = {};
+            info["userName"] = username;
+            info["projectName"] = projName;
+            info["obj"] = object;
+    
+            setVarPairToCloud(info);
+
+            return;
+        }
+
+
+
         if (givenContent.length === 0) {
             console.log("empty input in updateVarPairDataFuncGen(), direct return");
             return;
