@@ -314,13 +314,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         <option value="not" key="notVis">Not in this project</option>
                 </select>
                 
-                <div className="rsrcListArea">
-                <ul>
-                    {visualListFilteredList.map((item, index) => (
+                {visualListFilteredList.length > 0 && <div className="rsrcListArea">
+                    <ul>
+                        {visualListFilteredList.map((item, index) => (
                         <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
-                    ))}
-                </ul>
-                </div>
+                        ))}
+                    </ul>
+                </div>}
 
 
                 <div className="uploadArea"> New File Upload <br></br>
@@ -361,13 +361,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         <option value="not" key="notAu">Not in this project</option>
                 </select>
                 
-                <div className="rsrcListArea">
-                <ul>
-                    {audioListFilteredList.map((item, index) => (
+                {audioListFilteredList.length > 0&& <div className="rsrcListArea">
+                    <ul>
+                        {audioListFilteredList.map((item, index) => (
                         <li className="clickableListItem5" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
-                    ))}
-                </ul>
-                </div>
+                        ))}
+                    </ul>
+                </div>}
                 <div className="uploadArea"> New File Upload <br></br>
                     {uploadConfirm === false &&  <input 
                         type="file"
