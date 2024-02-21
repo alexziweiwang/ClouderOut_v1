@@ -14,13 +14,27 @@ export default function GameUISetter({dataObj}) {
             <br></br><input type="radio"></input><label>Rectangle: </label>
                 <label>Button Shade </label><input></input>
             <br></br><input type="radio"></input><label>Base Picture </label>
-            <select></select> TODO: from var-pair
-            <button>Resource Adding</button>
-            
-            <br></br>
-            2. Text Frame
+            <select></select><button>Resource Adding</button>
+            <br></br>Min-Width: <input></input>
+            <br></br>Max-Width: <input></input>
+            <br></br>Height: <input></input>
 
-            <br></br>
+            <br></br><br></br><br></br>
+            2. Text Frame
+            <br></br><label>Corner Radius: </label><input></input>
+            <br></br><label>Transparency: </label><input></input>
+
+            <br></br><input type="radio"></input><label>Rectangle: </label>
+                <label>Button Shade </label><input></input>
+            <br></br><input type="radio"></input><label>Base Picture </label>
+            <select></select><button>Resource Adding</button>
+            <br></br>Width: <input></input>
+            <br></br>Height: <input></input>
+            <br></br>Position X: <input></input>
+            <br></br>Position Y: <input></input>
+
+            <br></br><br></br><br></br>
+
             3. In-game Side-bar
 
         </div>
