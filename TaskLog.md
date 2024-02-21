@@ -197,4 +197,7 @@
 
 - 2024-Feb-20: Design improvement of UX for resource-manager saving (local and cloud)
 
+- 2024-Feb-21: Consider special pages (title-screen and pause-screen) in game-playing
+
+
 

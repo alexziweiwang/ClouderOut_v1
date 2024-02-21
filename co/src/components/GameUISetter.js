@@ -5,7 +5,8 @@ import styles from './webpage.css';
 export default function GameUISetter({dataObj}) {
 
     return(<div className="previewWindow">
-
+            <div className="preveiewArea">
+            </div>
         <div> <br></br><br></br><br></br>Outside: <br></br>
             A1. Title Screen (special node before chapter?)<br></br>
             A2. Pause Screen (special node within chapter?)
