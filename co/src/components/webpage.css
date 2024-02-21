@@ -276,7 +276,7 @@ div {
 }
 
 .previewWindow {
-    background-color: rgb(235, 242, 235);
+    background-color: rgb(82, 82, 82);
     width: 840px;
     flex: 2;
     margin-left: 10px;
@@ -293,6 +293,7 @@ div {
     background-color: rgb(222, 222, 235);
     margin-left: 2%;
     margin-right: 2%;
+    margin-top: 2%;
 }
 
 .pieceSetterArea {
@@ -964,8 +965,7 @@ button:hover {
 }
 
 .topBarTab {
-    background-color: rgb(217, 225, 233);
-    border: none;
+    background-color: rgb(235, 242, 235);
     border-radius: 0px;
     margin-bottom: -2px;
     margin-top: 10px;
@@ -974,11 +974,14 @@ button:hover {
     padding-right: 9px;
     margin-left: 10px;
     margin-right: 10px;
+    border-radius: 2px;
+    border-color: rgb(82, 82, 82);
+    border-radius: 0px;
 }
 
 .topBarTab:hover {
-    background-color: rgb(155, 169, 186);
-    border: none;
+    background-color: rgb(197, 218, 197);
+    color:rgb(2, 2, 2);
     border-radius: 0px;
     margin-bottom: -2px;
     margin-top: 10px;
@@ -987,11 +990,14 @@ button:hover {
     padding-right: 9px;
     margin-left: 10px;
     margin-right: 10px;
+    border-radius: 2px;
+    border-color: rgb(82, 82, 82);
+    border-radius: 0px;
 }
 
 .topBarTabSelected {
-    background-color: rgb(55, 61, 69);
-    color: white;
+    background-color: rgb(82, 82, 82);
+    color: rgb(253, 253, 253);
     border: none;
     border-radius: 0px;
     margin-bottom: -2px;
@@ -1001,10 +1007,11 @@ button:hover {
     padding-right: 9px;
     margin-left: 10px;
     margin-right: 10px;
+    border-radius: 0px;
 }
 
 .topBarTabSelected:hover {
-    background-color: rgb(55, 61, 69);
+    background-color: rgb(82, 82, 82);
     border: none;
     border-radius: 0px;
     margin-bottom: -2px;
@@ -1014,6 +1021,8 @@ button:hover {
     padding-right: 9px;
     margin-left: 10px;
     margin-right: 10px;
+    cursor: pointer;
+    border-radius: 0px;
 }
 
 .shrinkTab {
