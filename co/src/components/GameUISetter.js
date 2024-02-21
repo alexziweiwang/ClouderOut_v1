@@ -5,6 +5,31 @@ import styles from './webpage.css';
 export default function GameUISetter({dataObj}) {
 
     return(<div className="previewWindow">
+
+        <div className="settings">
+            1. Button Look, Defualt
+            <br></br><label>Corner Radius: </label><input></input>
+            <br></br><label>Transparency: </label><input></input>
+
+            <br></br><input type="radio"></input><label>Rectangle: </label>
+                <label>Button Shade </label><input></input>
+            <br></br><input type="radio"></input><label>Base Picture </label>
+            <select></select> TODO: from var-pair
+            <button>Resource Adding</button>
+            
+            <br></br>
+            2. Text Frame
+
+            <br></br>
+            3. In-game Side-bar
+
+        </div>
+
+        <div> <br></br><br></br><br></br>Outside: <br></br>
+            A1. Title Screen (special node before chapter?)<br></br>
+            A2. Pause Screen (special node within chapter?)
+        </div>
+
         <p className="plans">
             Provide setting options for game menu, game UI, side menut, etc.
             <br></br>

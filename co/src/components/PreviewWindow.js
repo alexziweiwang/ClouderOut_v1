@@ -38,7 +38,7 @@ export default function PreviewWindow({dataObj}) {
     function updateGameSizeSetting() {
         console.log("new game size setting:", gameScreenSize);
         //TODO pop some kind of warning to remind the user
-        //TODO design: each node and have one size, and different nodes can have various nodes?
+        //TODO design: each node and have one size, and different nodes can have various sizes?
 
     } 
 
