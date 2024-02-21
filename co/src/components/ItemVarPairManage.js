@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarPairDataFunction, fileType}) {
+export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarPairDataFunction, fileType, saveToCloudFunc}) {
     const displayPart = varPairInfo.filter(elem => elem["url"] === selectedUrl);
     const displayItem = displayPart[0];
     let isInVarPair = false;
@@ -19,7 +19,8 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
             <input value={inputContent} onChange={(event)=>{setInputContent(event.target.value);}}></input> 
             {isInVarPair == false && <button onClick={()=>{setInputContent(""); updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
             {isInVarPair == true && <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Edit</button>}
-            
+            <button className="buttonRight" onClick={()=>{}}> Save Changes to Cloud </button>
+
         </div>
     );
 }
