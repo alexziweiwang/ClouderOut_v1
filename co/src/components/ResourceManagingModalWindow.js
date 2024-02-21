@@ -50,21 +50,16 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
     function updateVarPairDataFuncGen(type, url, givenContent, fileType) {
         if (type === "delete") {
-            let updatedArr = [];
+            let updatePartArr = [];
+            let object = {};
+            
             if (fileType === "visual") {
                 updatePartArr = visualVarPairs.filter(elem => elem["url"] !== url);
-            } else if (fileType === "audio") {
-                updatePartArr = audioVarPairs.filter(elem => elem["url"] !== url);
-            } else {
-                return;
-            }
-
-            let object = {};
-            if (fileType === "visual") {
                 setVisualVarPairs(updatePartArr);
                 object["visual"] = updatePartArr;
                 object["audio"] = audioVarPairs;
             } else if (fileType === "audio") {
+                updatePartArr = audioVarPairs.filter(elem => elem["url"] !== url);
                 setAudioVarPairs(updatePartArr);
                 object["audio"] = updatePartArr;
                 object["visual"] = visualVarPairs;
