@@ -220,6 +220,10 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                 <br></br>Position X: <input></input>
                 <br></br>Position Y: <input></input>
             </div>
+            <label>Font: </label><input></input>
+            <br></br>
+            <label>Font Size: </label><input></input>
+
             <br></br><br></br><br></br>
 
             3. In-game Side-bar
@@ -233,6 +237,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             </div>
             <br></br><input type="radio"></input><label>Menu Option List</label>
             <div className="indentOne">
+                <input type="checkbox"></input><labe>Audo</labe>
+                <br></br>
                 <input type="checkbox"></input><labe>Save</labe>
                 <br></br>
                 <input type="checkbox"></input><labe>Load</labe>

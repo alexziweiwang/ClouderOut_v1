@@ -7,19 +7,15 @@ export default function GameUISetter({dataObj}) {
     return(<div className="previewWindow">
             <div className="preveiewArea">
             </div>
+
+            
         <div> <br></br><br></br><br></br>Outside: <br></br>
-            A1. Title Screen (special node before chapter?)<br></br>
-            A2. Pause Screen (special node within chapter?)
+            A1. Title Screen
+            <br></br>
+            A2. Pause Screen 
         </div>
 
         <p className="plans">
-            Provide setting options for game menu, game UI, side menut, etc.
-            <br></br>
-            Features:
-            <br></br>* Opening menu (TODO: consider as a special page or node, etc.)
-            <br></br>* in-game side bar (TODO: consider a list/table of multiple designs by users)
-            <br></br>* in-game menu (pause page) (TODO: consider the jumping logic ***)
-            <br></br>* text-content frames
 
             <br></br>TODO: provide 1 default look, and provide custom options
             <br></br>customizable: color adjustment
@@ -30,12 +26,11 @@ export default function GameUISetter({dataObj}) {
             <br></br>customizable: button look
             <br></br><br></br>
 
-            TODO: consider menu setting-list
         </p>
 
         <div>
             <p className="plans">
-                The opening-menu:
+                The opening-menu (title screen):
                 <br></br>
                 TODO: a series of buttons (table) to allow users to add
                 <br></br>
@@ -46,16 +41,7 @@ export default function GameUISetter({dataObj}) {
             </p>
 
             <p className="plans">
-                The in-game side bar:
-                <br></br>
-                TODO: a series of buttons (table) to allow users to add
-                <br></br>
-                TODO: setup options for button UX
-                <br></br>Current design: menu single button + return + auto? 
-            </p>
-
-            <p className="plans">
-                The in-game menu (pause page):
+                The in-game menu (pause screen):
                 <br></br>
                 TODO: pause effect (modal-like)
                 <br></br>
@@ -63,21 +49,13 @@ export default function GameUISetter({dataObj}) {
                 <br></br>Current design: [save, load, settings, properties, store(future)]
             </p>
 
-            <p className="plans">
-                The text-content frames:
-                <br></br>
-                TODO: Text display options (animation)
-                <br></br>
-                TODO: Text looks - font, font size, color, etc.
-            </p>
 
             <p className="plans">
-                The Game Progress save/load:
+                The Game Progress save/load managing page:
                 <br></br>
                 TODO: allow authors to arrangne save/load spots
                 <br></br>
                 TODO: trigger of saving [game progress + game state]
-
             </p>
 
 
