@@ -253,6 +253,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
   
     return (
       
+    <div>
+    {rmSelectorOpen && 
+        <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
+    }
 
     <div className="pieceSetterArea userChoice">
         <button onClick={()=>{backToList();}}>← List</button><br></br>
@@ -268,10 +272,6 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         <br></br>
         <br></br>
 
-            {rmSelectorOpen && 
-                <ResourceManagingModalWindow  isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
-
-            }
             <label>Piece: {pieceNumber}</label>
             <br></br>
             <label> Text to display: </label>
@@ -727,6 +727,8 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             <button onClick={collapseAllOptions}> Collapse All </button>
             <button onClick={expandAllOptions}> Expand All </button>
         </div>
+  </div>
+
   </div>
  
     );

@@ -8,6 +8,7 @@ import ItemVarPairManage from './ItemVarPairManage';
 
 export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay}) {
     let modalStyleName = "modalBackboard";
+    
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -309,7 +310,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     console.log("!!! please save to cloud first");
                     //TODO pop some reminder to user
 
-                    
+
                 } else {
                     handleRmCancel(); 
                 }

@@ -256,6 +256,7 @@ div {
     overflow: auto;
     white-space: nowrap;
 }
+
 .pieceManager {
     background-color: rgb(234, 232, 240);
     width: 450px;
