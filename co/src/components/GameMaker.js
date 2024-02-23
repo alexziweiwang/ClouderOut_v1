@@ -74,6 +74,10 @@ export default function GameMaker() {
     setDisplayRmModal(false);
   }
 
+  function updateLinkingNodeFunc(position, nodename, chapterkey) {
+    //TODO either update "starting" or "ending" node of a chapter
+  }
+
 
   return (
   <div>
@@ -90,7 +94,7 @@ export default function GameMaker() {
     <div className="parallelFrame">
       
    
-        {!isDisplayRmBool && <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter}/>}
+        {!isDisplayRmBool && <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter} updateLinkingNode={updateLinkingNodeFunc}/>}
 
         <NodeManager currUser={username} projectName={projectName} chapterTitle={currChapter}/>
 

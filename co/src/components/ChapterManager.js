@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter}) {
+export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode}) {
 //TODO: improve of chapter info: each chapter should have a "starting node" (like root node) as the starting point
 //TODO: keeps the node key of starting-node
 
@@ -97,8 +97,16 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               <button onClick={()=>{updateChapterDataByLine(selectedChpt, editingChapterTitle);}}>Save</button>
               <button onClick={()=>{setEditingChapterTitle("");}}>Cancel</button>
               <br></br>
+              
               <label>*Delete Chapter</label><br></br>
-              <button onClick={()=>{hideChapter(index);}}>Delete</button>
+              <button onClick={()=>{hideChapter(index);}}>Delete</button><br></br>
+              
+              <label>*Starting Node</label><br></br>
+              <select></select><button>Update</button><br></br>
+              
+              <label>*Ending Node</label><br></br>
+              <select></select><button>Update</button><br></br>
+
             </>
           
           }
