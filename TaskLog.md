@@ -201,11 +201,7 @@
 - 2024-Feb-21: Consider multiple Game-UI-setting-plans for different nodes
 
 - 2024-Feb-22: Design data structure for multiple Game-UI-plans
-
-
-
-
-
+- 2024-Feb-22: Consider display strategy for users to setup Game-UI on preview window
 
 
 
