@@ -237,7 +237,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             </div>
             <br></br><input type="radio"></input><label>Menu Option List</label>
             <div className="indentOne">
-                <input type="checkbox"></input><labe>Audo</labe>
+                <input type="checkbox"></input><labe>Auto</labe>
                 <br></br>
                 <input type="checkbox"></input><labe>Save</labe>
                 <br></br>

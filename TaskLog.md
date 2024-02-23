@@ -200,4 +200,23 @@
 - 2024-Feb-21: Consider special pages (title-screen and pause-screen) in game-playing
 - 2024-Feb-21: Consider multiple Game-UI-setting-plans for different nodes
 
+- 2024-Feb-22: Design data structure for multiple Game-UI-plans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
