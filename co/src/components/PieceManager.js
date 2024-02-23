@@ -190,7 +190,12 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings</button>
     {guiAreaDisplay === true && <div className="guiSettings">
             1. Button Look, Defualt
-            <br></br><label>Corner Radius: </label><input></input>
+            <br></br><label>Corner Radius: </label>
+                <select>
+                    <option value="0" key="0">0</option>
+                    <option value="1" key="1">1</option>
+                    <option value="5" key="5">5</option>
+                </select>
             <br></br><label>Transparency: </label><input></input>
 
             <br></br><input type="radio"></input><label>Rectangle: </label>
@@ -207,7 +212,12 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
             <br></br><br></br><br></br>
             2. Text Frame
-            <br></br><label>Corner Radius: </label><input></input>
+            <br></br><label>Corner Radius: </label>
+                <select>
+                    <option value="0" key="0">0</option>
+                    <option value="1" key="1">1</option>
+                    <option value="5" key="5">5</option>
+                </select>
             <br></br><label>Transparency: </label><input></input>
 
             <br></br><input type="radio"></input><label>Rectangle: </label>
