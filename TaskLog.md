@@ -203,7 +203,7 @@
 - 2024-Feb-22: Design data structure for multiple Game-UI-plans
 - 2024-Feb-22: Consider display strategy for users to setup Game-UI on preview window
 - 2024-Feb-22: Consider Game-UI-setter secdion placing and UI structure for reusability in all game-types
-
+- 2024-Feb-22: Consider text-frame text-displaying animations
 
 
 
