@@ -50,12 +50,59 @@ export default function GameUISetter({}) {
     <br></br><br></br><br></br>
 
     3. In-game Side-bar
-    <br></br>Back Button: TODO
-    <br></br><labrl>Menu Option: </labrl>   
+    <br></br>Back Button: 
+    <div className="indentOne">
+    <label>Corner Radius: </label>
+        <select>
+            <option value="0" key="0">0</option>
+            <option value="1" key="1">1</option>
+            <option value="5" key="5">5</option>
+        </select>
+    <br></br><label>Transparency: </label><input></input>
+
+    <br></br><input type="radio"></input><label>Rectangle: </label>
+        <div className="indentOne">
+        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
+        </div>
+    <br></br><input type="radio"></input><label>Base Picture </label>
+    <select></select><button>Resource Adding</button>
+    <div className="indentOne">
+        <br></br>Width: <input></input>
+        <br></br>Height: <input></input>
+    </div>
+
+    </div>
+    
+
+
+
+
+    
+    <br></br><labrl>Menu Option: </labrl>  
+    <br></br>Position X: <input></input>
+    <br></br>Position Y: <input></input>
+    <br></br> 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
     <div className="indentOne">
-        <br></br>Position X: <input></input>
-        <br></br>Position Y: <input></input>
+        <label>Corner Radius: </label>
+        <select>
+            <option value="0" key="0">0</option>
+            <option value="1" key="1">1</option>
+            <option value="5" key="5">5</option>
+        </select>
+    <br></br><label>Transparency: </label><input></input>
+
+    <br></br><input type="radio"></input><label>Rectangle: </label>
+        <div className="indentOne">
+        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
+        </div>
+    <br></br><input type="radio"></input><label>Base Picture </label>
+    <select></select><button>Resource Adding</button>
+    <div className="indentOne">
+        Width: <input></input>
+        <br></br>Height: <input></input>
+    </div>
+
         <br></br>TODO: jump to pause page
     </div>
     <br></br><input type="radio"></input><label>Menu Option List</label>
@@ -79,8 +126,7 @@ export default function GameUISetter({}) {
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
     </div>
-    <br></br>Position X: <input></input>
-    <br></br>Position Y: <input></input>
+
 
     <br></br><button>Save</button>
 </div>);
