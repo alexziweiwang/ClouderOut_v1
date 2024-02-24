@@ -187,7 +187,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
             <br></br><br></br><br></br>
     
-    <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings</button>
+    <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings Options</button>
     {guiAreaDisplay === true && <div className="guiSettings">
             1. Button Look, Defualt
             <br></br><label>Corner Radius: </label>

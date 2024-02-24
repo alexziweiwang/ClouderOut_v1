@@ -6,7 +6,7 @@ import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
-import GameUISetter from './GameUISetter';
+import GameUIPreviewWindow from './GameUIPreviewWindow';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -154,7 +154,7 @@ export default function ConversationNodeEditingPanel() {
             }
  
             {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
-            {isDisplayPreview === false && <GameUISetter/>}
+            {isDisplayPreview === false && <GameUIPreviewWindow/>}
 
             
             </div>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import styles from './webpage.css';
-import GameUISetter from './GameUISetter';
+import GameUIPreviewWindow from './GameUIPreviewWindow';
 
 
 export default function PreviewWindow({dataObj}) {
