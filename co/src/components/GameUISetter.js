@@ -2,7 +2,10 @@ import * as React from 'react';
 
 export default function GameUISetter({}) {
     return (<div className="guiSettings">
-    1. Button Look, Defualt
+    1. Individual Button Look, Defualt
+    <br></br>Min-Width: <input></input>
+    <br></br>Max-Width: <input></input>
+    <br></br>Height: <input></input>
     <br></br><label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -12,19 +15,17 @@ export default function GameUISetter({}) {
     <br></br><label>Transparency: </label><input></input>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
-        <div className="indentOne">
-        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
-        </div>
-    <br></br><input type="radio"></input><label>Base Picture </label>
-    <select></select><button>Resource Adding</button>
-    <div className="indentOne">
-        <br></br>Min-Width: <input></input>
-        <br></br>Max-Width: <input></input>
-        <br></br>Height: <input></input>
-    </div>
+        <input type="color"></input><label>[shade value]</label>
+        
+    <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
+
 
     <br></br><br></br><br></br>
     2. Text Frame
+    <br></br>Width: <input></input>
+        <br></br>Height: <input></input>
+        <br></br>Position X: <input></input>
+        <br></br>Position Y: <input></input>
     <br></br><label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -34,18 +35,15 @@ export default function GameUISetter({}) {
     <br></br><label>Transparency: </label><input></input>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
-        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
-    <br></br><input type="radio"></input><label>Base Picture </label>
-    <div className="indentOne">
-        <select></select><button>Resource Adding</button>
-        <br></br>Width: <input></input>
-        <br></br>Height: <input></input>
-        <br></br>Position X: <input></input>
-        <br></br>Position Y: <input></input>
-    </div>
+        <input type="color"></input><label>[shade value]</label>
+    <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
+
     <label>Font: </label><input></input>
     <br></br>
     <label>Font Size: </label><input></input>
+    <br></br><label>Font: </label><input></input>
+    <br></br><label>Font Shade: </label><input></input>
+
 
     <br></br><br></br><br></br>
 
@@ -59,31 +57,26 @@ export default function GameUISetter({}) {
             <option value="5" key="5">5</option>
         </select>
     <br></br><label>Transparency: </label><input></input>
-
+    <br></br>Position X: <input></input>
+    <br></br>Position Y: <input></input>
+    <br></br>Width: <input></input>
+    <br></br>Height: <input></input>
     <br></br><input type="radio"></input><label>Rectangle: </label>
-        <div className="indentOne">
-        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
-        </div>
-    <br></br><input type="radio"></input><label>Base Picture </label>
-    <select></select><button>Resource Adding</button>
-    <div className="indentOne">
-        <br></br>Width: <input></input>
-        <br></br>Height: <input></input>
-    </div>
+    <input type="color"></input><label>[shade value]</label>
+    <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
+
 
     </div>
-    
-
-
-
-
     
     <br></br><labrl>Menu Option: </labrl>  
     <br></br>Position X: <input></input>
     <br></br>Position Y: <input></input>
     <br></br> 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
+
     <div className="indentOne">
+        <label>Width: </label><input></input><br></br>
+        <label>Height: </label><input></input>
         <label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -93,15 +86,8 @@ export default function GameUISetter({}) {
     <br></br><label>Transparency: </label><input></input>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
-        <div className="indentOne">
-        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
-        </div>
-    <br></br><input type="radio"></input><label>Base Picture </label>
-    <select></select><button>Resource Adding</button>
-    <div className="indentOne">
-        Width: <input></input>
-        <br></br>Height: <input></input>
-    </div>
+    <input type="color"></input><label>[shade value]</label>
+    <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
         <br></br>TODO: jump to pause page
     </div>
