@@ -38,7 +38,7 @@ export default function GameMaker() {
   const name = "/gamemaker";
 
   const [currChapter, setCurrChapter] = useState("");
-  const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1"], ["key2", "testChapter2", "display", "plot1"]]); //TODO fetch from cloud db
+  const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "plot1", "end node"]]); //TODO fetch from cloud db
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);

@@ -2,8 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 
 export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode}) {
-//TODO: improve of chapter info: each chapter should have a "starting node" (like root node) as the starting point
-//TODO: keeps the node key of starting-node
+//TODO get list of all nodes key for each chapter (when needed?)
 
   const [isCollapse, setIsCollapse] = useState(false);
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
@@ -67,6 +66,20 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     //TODO improve: rerender trigger from caller's data structure
   }
 
+  function updateStartingNode() {
+    // TODO by currChapter, get chapterKey from chapterData, or send chapter-key directly
+    let nodename = "temp";
+    let chapterkey = "temp";
+    updateLinkingNode("starting", nodename, chapterkey);
+  }
+
+  function updateEndingNode() {
+    // TODO by currChapter, get chapterKey from chapterData, or send chapter-key directly
+    let nodename = "temp";
+    let chapterkey = "temp";
+    updateLinkingNode("ending", nodename, chapterkey);
+  }
+
     return (
       <>
         {isCollapse === false && 
@@ -102,11 +115,10 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               <button onClick={()=>{hideChapter(index);}}>Delete</button><br></br>
               
               <label>*Starting Node</label><br></br>
-              <select></select><button>Update</button><br></br>
+              <select></select><button onClick={()=>{updateStartingNode();}}>Update</button><br></br>
               
               <label>*Ending Node</label><br></br>
-              <select></select><button>Update</button><br></br>
-
+              <select></select><button onClick={()=>{updateEndingNode();}}>Update</button><br></br>
             </>
           
           }
