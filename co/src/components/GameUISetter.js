@@ -38,9 +38,8 @@ export default function GameUISetter({}) {
         <input type="color"></input><label>[shade value]</label>
     <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
-    <label>Font: </label><input></input>
-    <br></br>
-    <label>Font Size: </label><input></input>
+    <br></br><label>Font: </label><input></input>
+    <br></br><label>Font Size: </label><input></input>
     <br></br><label>Font: </label><input></input>
     <br></br><label>Font Shade: </label><input></input>
 
@@ -69,14 +68,15 @@ export default function GameUISetter({}) {
     </div>
     
     <br></br><labrl>Menu Option: </labrl>  
-    <br></br>Position X: <input></input>
+    <div className="indentOne">
+    Position X: <input></input>
     <br></br>Position Y: <input></input>
     <br></br> 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
 
     <div className="indentOne">
         <label>Width: </label><input></input><br></br>
-        <label>Height: </label><input></input>
+        <label>Height: </label><input></input><br></br>
         <label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -107,12 +107,14 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="checkbox"></input><labe>Store</labe>
         <br></br>
-        <select>
+        List Format: <select>
             <option key="v" value="vertical">Vertical</option>    
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
+        <br></br><label>Padding: </label><input></input>
     </div>
 
+    </div>
 
     <br></br><button>Save</button>
 </div>);
