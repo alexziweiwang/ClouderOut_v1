@@ -13,7 +13,7 @@ export default function GameUISetter({}) {
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
         <div className="indentOne">
-        <label>Button Shade </label><input></input>
+        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
         </div>
     <br></br><input type="radio"></input><label>Base Picture </label>
     <select></select><button>Resource Adding</button>
@@ -34,7 +34,7 @@ export default function GameUISetter({}) {
     <br></br><label>Transparency: </label><input></input>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
-        <label>Button Shade </label><input></input>
+        <label>Button Shade </label><input type="color"></input><label>[shade value]</label>
     <br></br><input type="radio"></input><label>Base Picture </label>
     <div className="indentOne">
         <select></select><button>Resource Adding</button>
