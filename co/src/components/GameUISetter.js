@@ -3,16 +3,16 @@ import * as React from 'react';
 export default function GameUISetter({}) {
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
-    <br></br>Min-Width: <input></input>
-    <br></br>Max-Width: <input></input>
-    <br></br>Height: <input></input>
+    <br></br>Min-Width: <input type="range"></input><input type="number"></input>
+    <br></br>Max-Width: <input type="range"></input><input type="number"></input>
+    <br></br>Height: <input type="range"></input><input type="number"></input>
     <br></br><label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
             <option value="1" key="1">1</option>
             <option value="5" key="5">5</option>
         </select>
-    <br></br><label>Transparency: </label><input></input>
+    <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
         <input type="color"></input><label>[shade value]</label>
@@ -32,7 +32,7 @@ export default function GameUISetter({}) {
             <option value="1" key="1">1</option>
             <option value="5" key="5">5</option>
         </select>
-    <br></br><label>Transparency: </label><input></input>
+        <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
         <input type="color"></input><label>[shade value]</label>
@@ -55,7 +55,7 @@ export default function GameUISetter({}) {
             <option value="1" key="1">1</option>
             <option value="5" key="5">5</option>
         </select>
-    <br></br><label>Transparency: </label><input></input>
+        <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
     <br></br>Position X: <input></input>
     <br></br>Position Y: <input></input>
     <br></br>Width: <input></input>
@@ -83,7 +83,7 @@ export default function GameUISetter({}) {
             <option value="1" key="1">1</option>
             <option value="5" key="5">5</option>
         </select>
-    <br></br><label>Transparency: </label><input></input>
+        <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
     <input type="color"></input><label>[shade value]</label>
