@@ -68,14 +68,14 @@ export default function GameUISetter({}) {
     
     <br></br><labrl>Menu Option: </labrl>  
     <div className="indentOne">
-    Position X: <input></input>
-    <br></br>Position Y: <input></input>
+    Position X: <input type="range"></input><input type="number"></input>
+    <br></br>Position Y: <input type="range"></input><input type="number"></input>
     <br></br> 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
 
     <div className="indentOne">
-        <label>Width: </label><input></input><br></br>
-        <label>Height: </label><input></input><br></br>
+        <label>Width: </label><input type="range"></input><input type="number"></input><br></br>
+        <label>Height: </label><input type="range"></input><input type="number"></input><br></br>
         <label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -110,7 +110,7 @@ export default function GameUISetter({}) {
             <option key="v" value="vertical">Vertical</option>    
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
-        <br></br><label>Padding: </label><input></input>
+        <br></br><label>Padding: </label><input type="range"></input><input type="number"></input>
     </div>
 
     </div>
