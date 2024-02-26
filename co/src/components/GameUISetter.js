@@ -1,17 +1,30 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 export default function GameUISetter({}) {
+
+    const [idvButtonMinW, setIdvButtonMinW] = useState(0);
+    const [idvButtonMaxW, setIdvButtonMaxW] = useState(0);
+    const [idvButtonHeight, setIdvButtonHeight] = useState(0);
+    const [idvButtonCnrRadius, setIdvButtonCnrRadius] = useState(0);
+    const [idvButtonTransparency, setIdvButtonTransparency] = useState(0);
+    const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
+    const [idvButtonColor, setIdvButtonColor] = useState(true);
+    const [idvButtonPicVar, setIdvButtonPicVar] = useState(true);
+
+
+
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
     <br></br>Min-Width: <input type="range"></input><input type="number"></input>
     <br></br>Max-Width: <input type="range"></input><input type="number"></input>
     <br></br>Height: <input type="range"></input><input type="number"></input>
     <br></br><label>Corner Radius: </label>
-        <select>
-            <option value="0" key="0">0</option>
-            <option value="1" key="1">1</option>
-            <option value="5" key="5">5</option>
-        </select>
+                                <select>
+                                    <option value="0" key="0">0</option>
+                                    <option value="1" key="1">1</option>
+                                    <option value="5" key="5">5</option>
+                                </select>
     <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
