@@ -7,7 +7,7 @@ export default function GameUISetter({}) {
     const [idvButtonMaxW, setIdvButtonMaxW] = useState(0);
     const [idvButtonHeight, setIdvButtonHeight] = useState(0);
     const [idvButtonCnrRadius, setIdvButtonCnrRadius] = useState(0);
-    const [idvButtonTransparency, setIdvButtonTransparency] = useState(0);
+    const [idvButtonTransparency, setIdvButtonTransparency] = useState(90);
     const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
     const [idvButtonColor, setIdvButtonColor] = useState(true);
     const [idvButtonPicVar, setIdvButtonPicVar] = useState(true);
@@ -38,7 +38,7 @@ export default function GameUISetter({}) {
                                     <option value="1" key="1">1</option>
                                     <option value="5" key="5">5</option>
                                 </select>
-    <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
+    <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
 
     <br></br><input type="radio"></input><label>Rectangle: </label>
         <input type="color"></input><label>[shade value]</label>
