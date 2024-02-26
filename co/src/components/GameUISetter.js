@@ -22,10 +22,10 @@ export default function GameUISetter({}) {
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <br></br>Width: <input></input>
-        <br></br>Height: <input></input>
-        <br></br>Position X: <input></input>
-        <br></br>Position Y: <input></input>
+    <br></br>Width: <input type="range"></input><input type="number"></input>
+        <br></br>Height: <input type="range"></input><input type="number"></input>
+        <br></br>Position X: <input type="range"></input><input type="number"></input>
+        <br></br>Position Y: <input type="range"></input><input type="number"></input>
     <br></br><label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -38,10 +38,9 @@ export default function GameUISetter({}) {
         <input type="color"></input><label>[shade value]</label>
     <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
-    <br></br><label>Font: </label><input></input>
-    <br></br><label>Font Size: </label><input></input>
-    <br></br><label>Font: </label><input></input>
-    <br></br><label>Font Shade: </label><input></input>
+    <br></br><label>Font: </label><select></select>
+    <br></br><label>Font Size: </label><input type="range"></input><input type="number"></input>
+    <br></br><label>Font Shade: </label><input type="color"></input><label>[shade]</label>
 
 
     <br></br><br></br><br></br>
@@ -56,10 +55,10 @@ export default function GameUISetter({}) {
             <option value="5" key="5">5</option>
         </select>
         <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
-    <br></br>Position X: <input></input>
-    <br></br>Position Y: <input></input>
-    <br></br>Width: <input></input>
-    <br></br>Height: <input></input>
+    <br></br>Position X: <input type="range"></input><input type="number"></input>
+    <br></br>Position Y: <input type="range"></input><input type="number"></input>
+    <br></br>Width: <input type="range"></input><input type="number"></input>
+    <br></br>Height: <input type="range"></input><input type="number"></input>
     <br></br><input type="radio"></input><label>Rectangle: </label>
     <input type="color"></input><label>[shade value]</label>
     <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
