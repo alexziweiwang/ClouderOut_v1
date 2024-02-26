@@ -12,6 +12,18 @@ export default function GameUISetter({}) {
     const [idvButtonColor, setIdvButtonColor] = useState(true);
     const [idvButtonPicVar, setIdvButtonPicVar] = useState(true);
 
+    const [txtFrameW, setTxtFrameW] = useState(0);
+    const [txtFrameH, setTxtFrameH] = useState(0);
+    const [txtFrameX, setTxtFrameX] = useState(0);
+    const [txtFrameY, setTxtFrameY] = useState(0);
+    const [txtFrameCnrRadius, setTxtFrameCnrRadius] = useState(0);
+    const [txtFrameTransparency, setTxtFrameTransparency] = useState(0);
+    const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
+    const [txtFrameColor, setTxtFrameColor] = useState(true);
+    const [txtFramePicVar, setTxtFramePicVar] = useState(true);
+    const [txtFrameFontName, setTxtFrameFontName] = useState(0);
+    const [txtFrameFontSize, setTxtFrameFontSize] = useState(0);
+    const [txtFrameFontColor, setTxtFrameFontColor] = useState(0);
 
 
     return (<div className="guiSettings">
