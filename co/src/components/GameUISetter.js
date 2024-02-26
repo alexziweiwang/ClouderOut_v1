@@ -28,8 +28,9 @@ export default function GameUISetter({}) {
 
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
-    <br></br>Min-Width: <input type="range"></input><input type="number"></input>
-    <br></br>Max-Width: <input type="range"></input><input type="number"></input>
+
+    <br></br>Min-Width: <input type="range" value={idvButtonMinW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input><input value={idvButtonMinW} min="0" max="900" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input>
+    <br></br>Max-Width: <input type="range" value={idvButtonMaxW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input><input value={idvButtonMaxW} min="0" max="900" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input>
     <br></br>Height: <input type="range"></input><input type="number"></input>
     <br></br><label>Corner Radius: </label>
                                 <select>
