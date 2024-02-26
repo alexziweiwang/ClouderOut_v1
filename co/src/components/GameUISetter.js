@@ -31,10 +31,10 @@ export default function GameUISetter({}) {
 
     <br></br>Min-Width: <input type="range" value={idvButtonMinW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input><input value={idvButtonMinW} min="0" max="900" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input>
     <br></br>Max-Width: <input type="range" value={idvButtonMaxW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input><input value={idvButtonMaxW} min="0" max="900" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input>
-    <br></br>Height: <input type="range"></input><input type="number"></input>
+    <br></br>Height: <input type="range" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input><input type="number" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input>
     <br></br><label>Corner Radius: </label>
-                                <select>
-                                    <option value="0" key="0">0</option>
+                                <select onChange={(event)=>{setIdvButtonCnrRadius(event.target.value);}} value={idvButtonCnrRadius}>
+                                    <option value="0" key="0">-- Corner Radius (default 0)--</option>
                                     <option value="1" key="1">1</option>
                                     <option value="5" key="5">5</option>
                                 </select>
