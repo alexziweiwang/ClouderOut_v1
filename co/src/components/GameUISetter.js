@@ -44,8 +44,7 @@ export default function GameUISetter({}) {
         {idvButtonIsShape && <><input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label></>}
         
     <br></br><input type="radio" value={idvButtonIsShape} checked={!idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(false);}}></input><label>Base Picture </label>
-        {!idvButtonIsShape && <><select></select><button>Resource Adding</button></>}
-
+        {!idvButtonIsShape && <><select value={idvButtonPicVar} onChange={(event)=>{setIdvButtonPicVar(event.target.value);}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
 
     <br></br><br></br><br></br>
     2. Text Frame
