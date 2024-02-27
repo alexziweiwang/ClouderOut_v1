@@ -60,9 +60,9 @@ export default function GameUISetter({}) {
         </select>
         <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
-    <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={}></input><label>Rectangle: </label>
-        <input type="color" value={txtFrameColor} onChange={}></input><label>[shade value]</label>
-    <br></br><input type="radio" value={txtFrameIsShape} checked={!txtFrameIsShape} onChange={}></input><label>Base Picture </label><select></select><button>Resource Adding</button>
+    <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(true);}}></input><label>Rectangle: </label>
+        <input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label>
+    <br></br><input type="radio" value={txtFrameIsShape} checked={!txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(false);}}></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
     <br></br><label>Font: </label><select></select>
     <br></br><label>Font Size: </label><input type="range"></input><input type="number"></input>
