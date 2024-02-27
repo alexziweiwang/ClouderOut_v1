@@ -41,7 +41,7 @@ export default function GameUISetter({}) {
     <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
 
     <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label>Rectangle: </label>
-        <input type="color"></input><label>[shade value]</label>
+        <input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label>
         
     <br></br><input type="radio" value={idvButtonIsShape} checked={!idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(false);}}></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
@@ -60,9 +60,9 @@ export default function GameUISetter({}) {
         </select>
         <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
-    <br></br><input type="radio"></input><label>Rectangle: </label>
-        <input type="color"></input><label>[shade value]</label>
-    <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
+    <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={}></input><label>Rectangle: </label>
+        <input type="color" value={txtFrameColor} onChange={}></input><label>[shade value]</label>
+    <br></br><input type="radio" value={txtFrameIsShape} checked={!txtFrameIsShape} onChange={}></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
     <br></br><label>Font: </label><select></select>
     <br></br><label>Font Size: </label><input type="range"></input><input type="number"></input>
