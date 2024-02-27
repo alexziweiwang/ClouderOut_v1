@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 
 export default function GameUISetter({}) {
 
-    const [idvButtonMinW, setIdvButtonMinW] = useState(0);
-    const [idvButtonMaxW, setIdvButtonMaxW] = useState(0);
+    const [idvButtonMinW, setIdvButtonMinW] = useState(200);
+    const [idvButtonMaxW, setIdvButtonMaxW] = useState(500);
     const [idvButtonHeight, setIdvButtonHeight] = useState(0);
     const [idvButtonCnrRadius, setIdvButtonCnrRadius] = useState(0);
     const [idvButtonTransparency, setIdvButtonTransparency] = useState(90);
@@ -12,7 +12,7 @@ export default function GameUISetter({}) {
     const [idvButtonColor, setIdvButtonColor] = useState(true);
     const [idvButtonPicVar, setIdvButtonPicVar] = useState(true);
 
-    const [txtFrameW, setTxtFrameW] = useState(0);
+    const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(0);
     const [txtFrameX, setTxtFrameX] = useState(0);
     const [txtFrameY, setTxtFrameY] = useState(0);
@@ -48,7 +48,7 @@ export default function GameUISetter({}) {
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <br></br>Width: <input type="range"></input><input type="number"></input>
+    <br></br>Width: <input type="range" value={txtFrameW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
         <br></br>Height: <input type="range"></input><input type="number"></input>
         <br></br>Position X: <input type="range"></input><input type="number"></input>
         <br></br>Position Y: <input type="range"></input><input type="number"></input>
