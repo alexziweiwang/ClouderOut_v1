@@ -58,7 +58,7 @@ export default function GameUISetter({}) {
                                     <option value="1" key="1tf">1</option>
                                     <option value="5" key="5tf">5</option>
                                 </select>
-        <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
+        <br></br><label>Transparency: </label><input type="range" value={txtFrameTransparency} min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameTransparency(event.target.value);}}></input><label>{txtFrameTransparency}%</label>
 
     <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(true);}}></input><label onClick={()=>{setTxtFrameIsShape(true);}}>Rectangle: </label>
         {txtFrameIsShape && <><input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label></>}
