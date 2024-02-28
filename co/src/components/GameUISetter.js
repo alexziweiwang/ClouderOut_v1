@@ -50,7 +50,7 @@ export default function GameUISetter({}) {
     2. Text Frame
     <br></br>Width: <input type="range" value={txtFrameW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
         <br></br>Height: <input type="range" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input><input type="number" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input>
-        <br></br>Position X: <input type="range"></input><input type="number"></input>
+        <br></br>Position X: <input type="range" value={txtFrameX} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input><input type="number" value={txtFrameX} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input>
         <br></br>Position Y: <input type="range"></input><input type="number"></input>
     <br></br><label>Corner Radius: </label>
         <select>
