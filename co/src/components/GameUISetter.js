@@ -66,7 +66,11 @@ export default function GameUISetter({}) {
         {!txtFrameIsShape && <><select value={txtFramePicVar} onChange={(event)=>{setTxtFramePicVar(event.target.value);}}><option key="tfvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
 
 
-    <br></br><label>Font: </label><select></select>
+    <br></br><label>Font: </label>
+        <select value={txtFrameFontName} onChange={(event)=>{setTxtFrameFontName(event.target.value);}}>
+            <option key="fontDefault" value="default">-- Select Font --</option>
+        </select>
+    
     <br></br><label>Font Size: </label><input type="range"></input><input type="number"></input>
     <br></br><label>Font Shade: </label><input type="color"></input><label>[shade]</label>
 
