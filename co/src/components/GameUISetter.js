@@ -10,7 +10,7 @@ export default function GameUISetter({}) {
     const [idvButtonTransparency, setIdvButtonTransparency] = useState(90);
     const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
     const [idvButtonColor, setIdvButtonColor] = useState("#000000");
-    const [idvButtonPicVar, setIdvButtonPicVar] = useState(true);
+    const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
 
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
@@ -20,10 +20,10 @@ export default function GameUISetter({}) {
     const [txtFrameTransparency, setTxtFrameTransparency] = useState(90);
     const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
     const [txtFrameColor, setTxtFrameColor] = useState("#000000");
-    const [txtFramePicVar, setTxtFramePicVar] = useState(true);
+    const [txtFramePicVar, setTxtFramePicVar] = useState("");
     const [txtFrameFontName, setTxtFrameFontName] = useState(0);
-    const [txtFrameFontSize, setTxtFrameFontSize] = useState(0);
-    const [txtFrameFontColor, setTxtFrameFontColor] = useState(0);
+    const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
+    const [txtFrameFontColor, setTxtFrameFontColor] = useState("#000000");
 
 
     return (<div className="guiSettings">
@@ -71,8 +71,8 @@ export default function GameUISetter({}) {
             <option key="fontDefault" value="default">-- Select Font --</option>
         </select>
     
-    <br></br><label>Font Size: </label><input type="range"></input><input type="number"></input>
-    <br></br><label>Font Shade: </label><input type="color"></input><label>[shade]</label>
+    <br></br><label>Font Size: </label><input type="range" value={txtFrameFontSize} min="0" max="32" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input><input type="number" value={txtFrameFontSize} min="0" max="32" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input>
+    <br></br><label>Font Shade: </label><input type="color" value={txtFrameFontColor} onChange={(event)=>{setTxtFrameFontColor(event.target.value);}}></input><label>{txtFrameFontColor}</label>
 
 
     <br></br><br></br><br></br>
