@@ -34,9 +34,9 @@ export default function GameUISetter({}) {
     <br></br>Height: <input type="range" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input><input type="number" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input>
     <br></br><label>Corner Radius: </label>
                                 <select onChange={(event)=>{setIdvButtonCnrRadius(event.target.value);}} value={idvButtonCnrRadius}>
-                                    <option value="0" key="0">-- Corner Radius (default 0)--</option>
-                                    <option value="1" key="1">1</option>
-                                    <option value="5" key="5">5</option>
+                                    <option value="0" key="0ib">-- Corner Radius (default 0)--</option>
+                                    <option value="1" key="1ib">1</option>
+                                    <option value="5" key="5ib">5</option>
                                 </select>
     <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
 
@@ -52,12 +52,12 @@ export default function GameUISetter({}) {
         <br></br>Height: <input type="range" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input><input type="number" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input>
         <br></br>Position X: <input type="range" value={txtFrameX} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input><input type="number" value={txtFrameX} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input>
         <br></br>Position Y: <input type="range" value={txtFrameY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input><input type="number" value={txtFrameY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input>
-    <br></br><label>Corner Radius: </label>
-        <select>
-            <option value="0" key="0">0</option>
-            <option value="1" key="1">1</option>
-            <option value="5" key="5">5</option>
-        </select>
+        <br></br><label>Corner Radius: </label>
+                                <select onChange={(event)=>{setTxtFrameCnrRadius(event.target.value);}} value={txtFrameCnrRadius}>
+                                    <option value="0" key="0tf">-- Corner Radius (default 0)--</option>
+                                    <option value="1" key="1tf">1</option>
+                                    <option value="5" key="5tf">5</option>
+                                </select>
         <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
 
     <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(true);}}></input><label onClick={()=>{setTxtFrameIsShape(true);}}>Rectangle: </label>
