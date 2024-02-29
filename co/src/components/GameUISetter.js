@@ -117,12 +117,14 @@ export default function GameUISetter({}) {
     
     <br></br><labrl>Menu Option: </labrl>  
     <div className="indentOne">
-    Position X: <input type="range"></input><input type="number"></input>
-    <br></br>Position Y: <input type="range"></input><input type="number"></input>
+    Position X: <input type="range" value={igsidebarMenuPosX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input><input type="number" value={igsidebarMenuPosX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input>
+    <br></br>
+    Position Y: <input type="range"></input><input type="number"></input>
     <br></br> 
-    <br></br><input type="radio"></input><label>Single Menu Option</label>
     <label>Width: </label><input type="range"></input><input type="number"></input><br></br>
     <label>Height: </label><input type="range"></input><input type="number"></input><br></br>
+
+    <br></br><input type="radio"></input><label>Single Menu Option</label>
 
     <div className="indentOne">
 
