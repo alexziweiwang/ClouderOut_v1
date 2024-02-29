@@ -25,15 +25,23 @@ export default function GameUISetter({}) {
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
     const [txtFrameFontColor, setTxtFrameFontColor] = useState("#000000");
 
-    const[igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
-    const[igsidebarBackBtnTransparency, setIgsidebarBackBtnTransparency] = useState(90);
-    const[igsidebarBackBtnPosX, setIgsidebarBackBtnPosX] = useState(100);
-    const[igsidebarBackBtnPosY, setIgsidebarBackBtnPosY] = useState(100);
-    const[igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
-    const[igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
-    const[igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
+    const [igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
+    const [igsidebarBackBtnTransparency, setIgsidebarBackBtnTransparency] = useState(90);
+    const [igsidebarBackBtnPosX, setIgsidebarBackBtnPosX] = useState(100);
+    const [igsidebarBackBtnPosY, setIgsidebarBackBtnPosY] = useState(100);
+    const [igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
+    const [igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
+    const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#000000");
     const [igsidebarBackBtnPicVar, setigsidebarBackBtnPicVar] = useState("");
+
+    const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
+    const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
+    const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
+    const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
+    const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
+
+
 
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
@@ -113,10 +121,11 @@ export default function GameUISetter({}) {
     <br></br>Position Y: <input type="range"></input><input type="number"></input>
     <br></br> 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
+    <label>Width: </label><input type="range"></input><input type="number"></input><br></br>
+    <label>Height: </label><input type="range"></input><input type="number"></input><br></br>
 
     <div className="indentOne">
-        <label>Width: </label><input type="range"></input><input type="number"></input><br></br>
-        <label>Height: </label><input type="range"></input><input type="number"></input><br></br>
+
         <label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
