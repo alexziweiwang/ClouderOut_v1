@@ -25,6 +25,15 @@ export default function GameUISetter({}) {
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
     const [txtFrameFontColor, setTxtFrameFontColor] = useState("#000000");
 
+    const[igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
+    const[igsidebarBackBtnTransparency, setIgsidebarBackBtnTransparency] = useState(90);
+    const[igsidebarBackBtnPosX, setIgsidebarBackBtnPosX] = useState(100);
+    const[igsidebarBackBtnPosY, setIgsidebarBackBtnPosY] = useState(100);
+    const[igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
+    const[igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
+    const[igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
+    const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#000000");
+    const [igsidebarBackBtnPicVar, setigsidebarBackBtnPicVar] = useState("");
 
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
