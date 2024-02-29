@@ -46,8 +46,8 @@ export default function GameUISetter({}) {
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
 
-    <br></br>Min-Width: <input type="range" value={idvButtonMinW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input><input value={idvButtonMinW} min="0" max="900" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input>
-    <br></br>Max-Width: <input type="range" value={idvButtonMaxW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input><input value={idvButtonMaxW} min="0" max="900" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input>
+    <br></br>Min-Width: <input type="range" value={idvButtonMinW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input><input value={idvButtonMinW} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input>
+    <br></br>Max-Width: <input type="range" value={idvButtonMaxW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input><input value={idvButtonMaxW} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input>
     <br></br>Height: <input type="range" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input><input type="number" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input>
     <br></br><label>Corner Radius: </label>
                                 <select onChange={(event)=>{setIdvButtonCnrRadius(event.target.value);}} value={idvButtonCnrRadius}>
@@ -65,9 +65,9 @@ export default function GameUISetter({}) {
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <br></br>Width: <input type="range" value={txtFrameW} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
+    <br></br>Width: <input type="range" value={txtFrameW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
         <br></br>Height: <input type="range" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input><input type="number" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input>
-        <br></br>Position X: <input type="range" value={txtFrameX} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input><input type="number" value={txtFrameX} min="0" max="900" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input>
+        <br></br>Position X: <input type="range" value={txtFrameX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input><input type="number" value={txtFrameX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input>
         <br></br>Position Y: <input type="range" value={txtFrameY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input><input type="number" value={txtFrameY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input>
         <br></br><label>Corner Radius: </label>
                                 <select onChange={(event)=>{setTxtFrameCnrRadius(event.target.value);}} value={txtFrameCnrRadius}>
@@ -98,10 +98,10 @@ export default function GameUISetter({}) {
     <br></br>Back Button: 
     <div className="indentOne">
     <label>Corner Radius: </label>
-        <select>
-            <option value="0" key="0">0</option>
-            <option value="1" key="1">1</option>
-            <option value="5" key="5">5</option>
+        <select value={igsidebarBackBtnCnrRadius} onChange={(event)=>{setIgsidebarBackBtnCnrRadius(event.target.value);}}>
+            <option value="0" key="0igsBbtn">-- Select Radius (default 0) --</option>
+            <option value="1" key="1igsBbtn">1</option>
+            <option value="5" key="5igsBbtn">5</option>
         </select>
         <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
     <br></br>Position X: <input type="range"></input><input type="number"></input>
