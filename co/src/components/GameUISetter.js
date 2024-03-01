@@ -104,7 +104,7 @@ export default function GameUISetter({}) {
             <option value="5" key="5igsBbtn">5</option>
         </select>
         <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
-    <br></br>Position X: <input type="range"></input><input type="number"></input>
+    <br></br>Position X: <input value={igsidebarBackBtnPosX} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input>
     <br></br>Position Y: <input type="range"></input><input type="number"></input>
     <br></br>Width: <input type="range"></input><input type="number"></input>
     <br></br>Height: <input type="range"></input><input type="number"></input>
