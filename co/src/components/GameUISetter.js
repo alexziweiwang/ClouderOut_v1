@@ -33,7 +33,7 @@ export default function GameUISetter({}) {
     const [igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#000000");
-    const [igsidebarBackBtnPicVar, setigsidebarBackBtnPicVar] = useState("");
+    const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
@@ -111,9 +111,11 @@ export default function GameUISetter({}) {
     <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(true);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(true);}}>Rectangle: </label>
     {igsidebarBackBtnIsShape && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
     <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={!igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(false);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(false);}}>Base Picture: </label>
-    {!igsidebarBackBtnIsShape && <><select></select><button>Resource Adding</button></>}
-
-
+    {!igsidebarBackBtnIsShape && <>
+        <select value={igsidebarBackBtnPicVar} onChange={(event)=>{setIgsidebarBackBtnPicVar(event.target.value);}}>
+            <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
+        </select>
+        <button>Resource Adding</button></>}
     </div>
     
     <br></br><labrl>Menu Option: </labrl>  
