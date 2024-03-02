@@ -124,7 +124,7 @@ export default function GameUISetter({}) {
     <br></br>
     Position Y: <input type="range" value={igsidebarMenuPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input><input type="number" value={igsidebarMenuPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input>
     <br></br> 
-    <label>Width: </label><input type="range"></input><input type="number"></input><br></br>
+    <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
     <label>Height: </label><input type="range"></input><input type="number"></input><br></br>
 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
