@@ -103,7 +103,7 @@ export default function GameUISetter({}) {
             <option value="1" key="1igsBbtn">1</option>
             <option value="5" key="5igsBbtn">5</option>
         </select>
-        <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
+        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnTransparency} type="range" min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnTransparency(event.target.value);}}></input><label>{igsidebarBackBtnTransparency}</label>
     <br></br>Position X: <input value={igsidebarBackBtnPosX} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input>
     <br></br>Position Y: <input value={igsidebarBackBtnPosY} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input>
     <br></br>Width: <input type="range"></input><input type="number"></input>
