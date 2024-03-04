@@ -40,6 +40,8 @@ export default function GameUISetter({}) {
     const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
+    const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(0);
+
 
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
@@ -125,7 +127,7 @@ export default function GameUISetter({}) {
     <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
     <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
 
-    <br></br><input type="radio" value={gsidebarMenuIsSingleBtn} checked={gsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
+    <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
 
     <div className="indentOne">
 
@@ -145,7 +147,7 @@ export default function GameUISetter({}) {
     </div>
 
 
-    <br></br><input type="radio"  value={gsidebarMenuIsSingleBtn} checked={!gsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
+    <br></br><input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
     <div className="indentOne">
         <input type="checkbox"></input><labe>Auto</labe>
         <br></br>
@@ -165,7 +167,7 @@ export default function GameUISetter({}) {
             <option key="v" value="vertical">Vertical</option>    
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
-        <br></br><label>Padding: </label><input type="range"></input><input type="number"></input>
+        <br></br><label>Padding: </label><input type="range" value={igsidebarMenuListPadding}></input><input type="number" value={igsidebarMenuListPadding}></input>
     </div>
 
     </div>
