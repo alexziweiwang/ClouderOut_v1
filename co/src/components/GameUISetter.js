@@ -125,7 +125,7 @@ export default function GameUISetter({}) {
     <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
     <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
 
-    <br></br><input type="radio"></input><label>Single Menu Option</label>
+    <br></br><input type="radio" value={gsidebarMenuIsSingleBtn} checked={gsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
 
     <div className="indentOne">
 
@@ -143,7 +143,9 @@ export default function GameUISetter({}) {
 
         <br></br>TODO: jump to pause page
     </div>
-    <br></br><input type="radio"></input><label>Menu Option List</label>
+
+
+    <br></br><input type="radio"  value={gsidebarMenuIsSingleBtn} checked={!gsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
     <div className="indentOne">
         <input type="checkbox"></input><labe>Auto</labe>
         <br></br>
