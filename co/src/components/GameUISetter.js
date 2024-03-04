@@ -40,7 +40,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
-    const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(0);
+    const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
 
 
     return (<div className="guiSettings">
@@ -167,7 +167,7 @@ export default function GameUISetter({}) {
             <option key="v" value="vertical">Vertical</option>    
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
-        <br></br><label>Padding: </label><input type="range" value={igsidebarMenuListPadding}></input><input type="number" value={igsidebarMenuListPadding}></input>
+        <br></br><label>Padding: </label><input type="range" min="0" max="15" step="1" defaultValue="1" value={igsidebarMenuListPadding} onChange={(event)=>{setIgsidebarMenuListPadding(event.target.value);}}></input><input type="number" min="0" max="15" step="1" defaultValue="1" value={igsidebarMenuListPadding} onChange={(event)=>{setIgsidebarMenuListPadding(event.target.value);}}></input>
     </div>
 
     </div>
