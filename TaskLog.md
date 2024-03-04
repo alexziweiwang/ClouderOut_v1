@@ -209,7 +209,7 @@
 - 2024-Feb-23: Consider game-UI-setter-preview and actual-piece preview strategy
 - 2024-Feb-23: Consider picture-based-button auto-stretching strategy
 
-
+- 2024-Mar-04: Consider product general procedure
 
 
 
