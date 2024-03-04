@@ -41,8 +41,6 @@ export default function GameUISetter({}) {
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
 
-
-
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
 
@@ -125,7 +123,7 @@ export default function GameUISetter({}) {
     Position Y: <input type="range" value={igsidebarMenuPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input><input type="number" value={igsidebarMenuPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input>
     <br></br> 
     <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
-    <label>Height: </label><input type="range"></input><input type="number"></input><br></br>
+    <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
 
     <br></br><input type="radio"></input><label>Single Menu Option</label>
 
