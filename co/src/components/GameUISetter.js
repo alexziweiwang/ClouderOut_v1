@@ -126,27 +126,21 @@ export default function GameUISetter({}) {
     <br></br> 
     <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
     <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
-
-    <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
-
-    <div className="indentOne">
-
-        <label>Corner Radius: </label>
+    <label>Transparency: </label><input type="range"></input><label>[percent]</label>
+    <br></br>        <label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
             <option value="1" key="1">1</option>
             <option value="5" key="5">5</option>
         </select>
-        <br></br><label>Transparency: </label><input type="range"></input><label>[percent]</label>
-
     <br></br><input type="radio"></input><label>Rectangle: </label>
     <input type="color"></input><label>[shade value]</label>
     <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
 
         <br></br>TODO: jump to pause page
-    </div>
-
-
+    
+        <br></br><br></br>
+    <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
     <br></br><input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
     <div className="indentOne">
         <input type="checkbox"></input><labe>Auto</labe>
