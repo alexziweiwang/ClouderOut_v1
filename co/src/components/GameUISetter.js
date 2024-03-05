@@ -169,7 +169,7 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="checkbox" value={loadBtn} checked={loadBtn} onChange={()=>{setLoadBtn(!loadBtn);}}></input><labe>Load</labe>
         <br></br>
-        <input type="checkbox"></input><labe>Settings</labe>
+        <input type="checkbox" value={settingsBtn} checked={settingsBtn} onChange={()=>{setSettingsBtn(!settingsBtn);}}></input><labe>Settings</labe>
         <br></br>
         <input type="checkbox"></input><labe>Return to Title-Page</labe>
         <br></br>
