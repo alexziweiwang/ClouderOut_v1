@@ -143,15 +143,27 @@ export default function GameUISetter({}) {
         </select>
     <br></br><input type="radio"></input><label>Rectangle: </label>
     <input type="color"></input><label>[shade value]</label>
-    <br></br><input type="radio"></input><label>Base Picture </label><select></select><button>Resource Adding</button>
-
-        <br></br>TODO: jump to pause page
+    <br></br>
+    <input type="radio"></input><label>Base Picture</label><select></select><button>Resource Adding</button>
     
         <br></br><br></br>
     <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
+    <br></br>(single menu button: jump to pause page)
+
     <br></br><input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
     <div className="indentOne">
-        <input type="checkbox"></input><labe>Auto</labe>
+
+    <p className="plans">
+    autoBtn
+    saveBtn
+    loadBtn
+    settingsBtn
+    returnTitlePageBtn
+    inGameDataBtn
+    dealBtn
+    </p>
+
+        <input type="checkbox" checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><labe>Auto</labe>
         <br></br>
         <input type="checkbox"></input><labe>Save</labe>
         <br></br>
