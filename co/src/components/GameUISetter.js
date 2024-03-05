@@ -42,6 +42,14 @@ export default function GameUISetter({}) {
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
 
+    const [autoBtn, setAutoBtn] = useState(false);
+    const [saveBtn, setSaveBtn] = useState(false);
+    const [loadBtn, setLoadBtn] = useState(false);
+    const [settingsBtn, setSettingsBtn] = useState(false);
+    const [returnTitlePageBtn, setReturnTitlePageBtn] = useState(false);
+    const [inGameDataBtn, setInGameDataBtn] = useState(false);
+    const [dealBtn, setDealBtn] = useState(false);
+
 
     return (<div className="guiSettings">
     1. Individual Button Look, Defualt
@@ -155,7 +163,7 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="checkbox"></input><labe>In-Game Data</labe>
         <br></br>
-        <input type="checkbox"></input><labe>Store</labe>
+        <input type="checkbox"></input><labe>Deal</labe>
         <br></br>
         List Format: <select>
             <option key="v" value="vertical">Vertical</option>    
