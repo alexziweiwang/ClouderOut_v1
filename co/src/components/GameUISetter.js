@@ -175,7 +175,7 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="checkbox" value={inGameDataBtn} checked={inGameDataBtn} onChange={()=>{setInGameDataBtn(!inGameDataBtn);}}></input><labe>In-Game Data</labe>
         <br></br>
-        <input type="checkbox"></input><labe>Deal</labe>
+        <input type="checkbox" value={dealBtn} checked={dealBtn} onChange={()=>{setDealBtn(!dealBtn);}}></input><labe>Deal</labe>
         <br></br>
         List Format: <select>
             <option key="v" value="vertical">Vertical</option>    
