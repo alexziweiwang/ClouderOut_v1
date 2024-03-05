@@ -173,7 +173,7 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="checkbox" value={returnTitlePageBtn} checked={returnTitlePageBtn} onChange={()=>{setReturnTitlePageBtn(!returnTitlePageBtn);}}></input><labe>Return to Title-Page</labe>
         <br></br>
-        <input type="checkbox"></input><labe>In-Game Data</labe>
+        <input type="checkbox" value={inGameDataBtn} checked={inGameDataBtn} onChange={()=>{setInGameDataBtn(!inGameDataBtn);}}></input><labe>In-Game Data</labe>
         <br></br>
         <input type="checkbox"></input><labe>Deal</labe>
         <br></br>
