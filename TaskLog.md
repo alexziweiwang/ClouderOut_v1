@@ -210,7 +210,7 @@
 - 2024-Feb-23: Consider picture-based-button auto-stretching strategy
 
 - 2024-Mar-04: Consider product general procedure
-
+- 2024-Mar-04: Optimize Game-UI-Menu in-game-layout and pause-layout options
 
 
 
