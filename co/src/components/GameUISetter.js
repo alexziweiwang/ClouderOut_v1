@@ -42,13 +42,13 @@ export default function GameUISetter({}) {
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
 
-    const [autoBtn, setAutoBtn] = useState(false);
-    const [saveBtn, setSaveBtn] = useState(false);
-    const [loadBtn, setLoadBtn] = useState(false);
-    const [settingsBtn, setSettingsBtn] = useState(false);
-    const [returnTitlePageBtn, setReturnTitlePageBtn] = useState(false);
-    const [inGameDataBtn, setInGameDataBtn] = useState(false);
-    const [dealBtn, setDealBtn] = useState(false);
+    const [autoBtn, setAutoBtn] = useState(true);
+    const [saveBtn, setSaveBtn] = useState(true);
+    const [loadBtn, setLoadBtn] = useState(true);
+    const [settingsBtn, setSettingsBtn] = useState(true);
+    const [returnTitlePageBtn, setReturnTitlePageBtn] = useState(true);
+    const [inGameDataBtn, setInGameDataBtn] = useState(true);
+    const [dealBtn, setDealBtn] = useState(true);
 
 
     return (<div className="guiSettings">
@@ -163,9 +163,9 @@ export default function GameUISetter({}) {
     dealBtn
     </p>
 
-        <input type="checkbox" checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><labe>Auto</labe>
+        <input type="checkbox" value={autoBtn} checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><labe>Auto</labe>
         <br></br>
-        <input type="checkbox"></input><labe>Save</labe>
+        <input type="checkbox" value={saveBtn} checked={saveBtn} onChange={()=>{setSaveBtn(!saveBtn);}}></input><labe>Save</labe>
         <br></br>
         <input type="checkbox"></input><labe>Load</labe>
         <br></br>
