@@ -41,6 +41,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
+    const [igsidebarMenuTransparency, setIgsidebarMenuTransparency] = useState(90);
 
     const [autoBtn, setAutoBtn] = useState(true);
     const [saveBtn, setSaveBtn] = useState(true);
@@ -111,7 +112,7 @@ export default function GameUISetter({}) {
             <option value="1" key="1igsBbtn">1</option>
             <option value="5" key="5igsBbtn">5</option>
         </select>
-        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnTransparency} type="range" min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnTransparency(event.target.value);}}></input><label>{igsidebarBackBtnTransparency}</label>
+        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnTransparency} type="range" min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnTransparency(event.target.value);}}></input><label>{igsidebarBackBtnTransparency}%</label>
     <br></br>Position X: <input value={igsidebarBackBtnPosX} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input>
     <br></br>Position Y: <input value={igsidebarBackBtnPosY} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input>
     <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input><input type="number" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
@@ -134,7 +135,7 @@ export default function GameUISetter({}) {
     <br></br> 
     <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
     <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
-    <label>Transparency: </label><input type="range"></input><label>[percent]</label>
+    <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label>
     <br></br>        <label>Corner Radius: </label>
         <select>
             <option value="0" key="0">0</option>
@@ -152,16 +153,6 @@ export default function GameUISetter({}) {
 
     <br></br><input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
     <div className="indentOne">
-
-    <p className="plans">
-    autoBtn
-    saveBtn
-    loadBtn
-    settingsBtn
-    returnTitlePageBtn
-    inGameDataBtn
-    dealBtn
-    </p>
 
         <input type="checkbox" value={autoBtn} checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><labe>Auto</labe>
         <br></br>
