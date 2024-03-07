@@ -39,6 +39,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
     const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
+    const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
     const [igsidebarMenuTransparency, setIgsidebarMenuTransparency] = useState(90);
@@ -143,10 +144,10 @@ export default function GameUISetter({}) {
             <option value="1" key="1">1</option>
             <option value="5" key="5">5</option>
         </select>
-    <br></br><input type="radio"></input><label>Rectangle: </label>
+    <br></br><input type="radio" value={igsidebarMenuIsShape} checked={igsidebarMenuIsShape} onChange={()=>{setIgsidebarMenuIsShape(true);}}></input><label>Rectangle: </label>
     <input type="color" value={igsidebarMenuShade} onChange={(event)=>{setIgsidebarMenuShade(event.target.value);}}></input><label>{igsidebarMenuShade}</label>
     <br></br>
-    <input type="radio"></input><label>Base Picture</label><select></select><button>Resource Adding</button>
+    <input type="radio" value={igsidebarMenuIsShape} checked={!igsidebarMenuIsShape} onChange={()=>{setIgsidebarMenuIsShape(false);}}></input><label>Base Picture</label><select></select><button>Resource Adding</button>
     
         <br></br><br></br>
     <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
