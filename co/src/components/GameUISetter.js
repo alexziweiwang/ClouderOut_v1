@@ -151,10 +151,10 @@ export default function GameUISetter({}) {
     {igsidebarMenuIsShape === false && <><select></select><button>Resource Adding</button></>}
     
         <br></br><br></br>
-    <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label>Single Menu Option</label>
+    <br></br><input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}>Single Menu Option</label>
     <br></br>(single menu button: jump to pause page)
 
-    <br></br><input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label>Menu Option List</label>
+    <br></br><input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}>Menu Option List</label>
     <div className="indentOne">
 
         <input type="checkbox" value={autoBtn} checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><labe>Auto</labe>
@@ -171,7 +171,8 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="checkbox" value={dealBtn} checked={dealBtn} onChange={()=>{setDealBtn(!dealBtn);}}></input><labe>Deal</labe>
         <br></br>
-        List Format: <select>
+        List Format: 
+        <select>
             <option key="v" value="vertical">Vertical</option>    
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
