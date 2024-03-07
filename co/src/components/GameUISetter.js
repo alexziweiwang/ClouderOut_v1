@@ -42,6 +42,8 @@ export default function GameUISetter({}) {
     const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
+    const [igsidebarMenuIsListDirection, setIgsidebarMenuIsListDirection] = useState(1);
+
     const [igsidebarMenuTransparency, setIgsidebarMenuTransparency] = useState(90);
     const [igsidebarMenuShade, setIgsidebarMenuShade] = useState("#000000");
 
@@ -172,7 +174,7 @@ export default function GameUISetter({}) {
         <input type="checkbox" value={dealBtn} checked={dealBtn} onChange={()=>{setDealBtn(!dealBtn);}}></input><labe>Deal</labe>
         <br></br>
         List Format: 
-        <select>
+        <select value={igsidebarMenuIsListDirection} onChange={(event)=>{setIgsidebarMenuIsListDirection(event.target.value);}}>
             <option key="v" value="vertical">Vertical</option>    
             <option key="h" value="horizontal">Horizontal</option>    
         </select>
