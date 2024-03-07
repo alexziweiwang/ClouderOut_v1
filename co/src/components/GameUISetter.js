@@ -42,6 +42,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
     const [igsidebarMenuTransparency, setIgsidebarMenuTransparency] = useState(90);
+    const [igsidebarMenuShade, setIgsidebarMenuShade] = useState("#000000");
 
     const [autoBtn, setAutoBtn] = useState(true);
     const [saveBtn, setSaveBtn] = useState(true);
@@ -143,7 +144,7 @@ export default function GameUISetter({}) {
             <option value="5" key="5">5</option>
         </select>
     <br></br><input type="radio"></input><label>Rectangle: </label>
-    <input type="color"></input><label>[shade value]</label>
+    <input type="color" value={igsidebarMenuShade} onChange={(event)=>{setIgsidebarMenuShade(event.target.value);}}></input><label>{igsidebarMenuShade}</label>
     <br></br>
     <input type="radio"></input><label>Base Picture</label><select></select><button>Resource Adding</button>
     
