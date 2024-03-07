@@ -39,6 +39,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
     const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
+    const [igsidebarMenuCnrRaius, setIgsidebarMenuCnrRaius] = useState(100);
     const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
@@ -56,7 +57,9 @@ export default function GameUISetter({}) {
     const [dealBtn, setDealBtn] = useState(true);
 
 
-    return (<div className="guiSettings">
+    return (
+    
+    <div className="guiSettings">
     1. Individual Button Look, Defualt
 
     <br></br>Min-Width: <input type="range" value={idvButtonMinW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input><input value={idvButtonMinW} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input>
@@ -140,11 +143,12 @@ export default function GameUISetter({}) {
     <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
     <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
     <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label>
-    <br></br>        <label>Corner Radius: </label>
-        <select>
-            <option value="0" key="0">0</option>
-            <option value="1" key="1">1</option>
-            <option value="5" key="5">5</option>
+    <br></br>       
+    <label>Corner Radius: </label>
+        <select value={igsidebarMenuCnrRaius} onChange={(event)=>{setIgsidebarMenuCnrRaius(event.target.value);}}>
+            <option value="0" key="0menu">0</option>
+            <option value="1" key="1menu">1</option>
+            <option value="5" key="5menu">5</option>
         </select>
     <br></br><input type="radio" value={igsidebarMenuIsShape} checked={igsidebarMenuIsShape} onChange={()=>{setIgsidebarMenuIsShape(true);}}></input><label onChange={()=>{setIgsidebarMenuIsShape(true);}}>Rectangle: </label>
     {igsidebarMenuIsShape === true && <><input type="color" value={igsidebarMenuShade} onChange={(event)=>{setIgsidebarMenuShade(event.target.value);}}></input><label>{igsidebarMenuShade}</label></>}
