@@ -12,7 +12,16 @@ export default function GameUISetter({}) {
     const [idvButtonColor, setIdvButtonColor] = useState("#000000");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
 
-    const [defaultButtonObj, setDefaultButtonObj] = useState({});
+    const [defaultButtonObj, setDefaultButtonObj] = useState(
+        {"widthMin": idvButtonMinW,
+        "widthMax": idvButtonMaxW,
+        "height": idvButtonHeight,
+        "cornerRadius": idvButtonCnrRadius,
+        "transparency": idvButtonTransparency,
+        "isShape": idvButtonIsShape,
+        "color": idvButtonColor,
+        "picVar": idvButtonPicVar}
+    );
 
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
@@ -66,7 +75,7 @@ export default function GameUISetter({}) {
 
     useEffect(() => {
        console.log("TODO: update any object data..."); //TODO test
-       
+
     });
 
 
