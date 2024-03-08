@@ -61,7 +61,17 @@ export default function GameUISetter({}) {
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#000000");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
 
-    const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState({});
+    const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
+        {"width": igsidebarBackBtnW,
+        "height": igsidebarBackBtnH,
+        "positionX": igsidebarBackBtnPosX,
+        "positionY": igsidebarBackBtnPosY,
+        "cornerRadius": igsidebarBackBtnCnrRadius,
+        "transparency": igsidebarBackBtnTransparency,
+        "isShape": igsidebarBackBtnIsShape,
+        "bgColor": igsidebarBackBtnColor,
+        "picVar": igsidebarBackBtnPicVar}
+    );
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
