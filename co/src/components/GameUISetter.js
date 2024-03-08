@@ -19,7 +19,7 @@ export default function GameUISetter({}) {
         "cornerRadius": idvButtonCnrRadius,
         "transparency": idvButtonTransparency,
         "isShape": idvButtonIsShape,
-        "color": idvButtonColor,
+        "bgColor": idvButtonColor,
         "picVar": idvButtonPicVar}
     );
 
@@ -36,7 +36,20 @@ export default function GameUISetter({}) {
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
     const [txtFrameFontColor, setTxtFrameFontColor] = useState("#000000");
 
-    const [txtFrameObj, setTxtFrameObj] = useState({});
+    const [txtFrameObj, setTxtFrameObj] = useState(
+        {"width": txtFrameW,
+        "height": txtFrameH,
+        "positionX": txtFrameX,
+        "positionY": txtFrameY,
+        "cornerRadius": txtFrameCnrRadius,
+        "transparency": txtFrameTransparency,
+        "isShape": txtFrameIsShape,
+        "bgColor": txtFrameColor,
+        "picVar": txtFramePicVar,
+        "fontName": txtFrameFontName,
+        "fontSize": txtFrameFontSize,
+        "fontColor": txtFrameFontColor}
+    );
 
     const [igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
     const [igsidebarBackBtnTransparency, setIgsidebarBackBtnTransparency] = useState(90);
