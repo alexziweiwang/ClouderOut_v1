@@ -151,7 +151,26 @@ export default function GameUISetter({}) {
             "isShape": igsidebarBackBtnIsShape,
             "bgColor": igsidebarBackBtnColor,
             "picVar": igsidebarBackBtnPicVar});
-        //setIgsidebarMenuObj();
+        
+        setIgsidebarMenuObj({"width": igsidebarMenuW,
+            "height": igsidebarMenuH,
+            "positionX": igsidebarMenuPosX,
+            "positionY": igsidebarMenuPosY,
+            "cornerRadius": igsidebarMenuCnrRadius,
+            "transparency": igsidebarMenuTransparency,
+            "isShape": igsidebarMenuIsShape,
+            "bgColor": igsidebarMenuShade,
+            "picVar": igsidebarMenuPicVar,
+            "isSingleButton": igsidebarMenuIsSingleBtn,
+            "listItemPadding": igsidebarMenuListPadding,
+            "listDirection": igsidebarMenuIsListDirection,
+            "autoOption": autoBtn,
+            "saveGameOption": saveBtn,
+            "loadGameOption": loadBtn,
+            "settingsOption": settingsBtn,
+            "returnToTitleOption": returnTitlePageBtn,
+            "inGameDataOption": inGameDataBtn,
+            "dealOption": dealBtn});    
 
     });
 
