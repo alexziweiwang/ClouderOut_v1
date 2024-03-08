@@ -129,7 +129,19 @@ export default function GameUISetter({}) {
             "bgColor": idvButtonColor,
             "picVar": idvButtonPicVar});
         
-        //setTxtFrameObj
+        setTxtFrameObj({"width": txtFrameW,
+            "height": txtFrameH,
+            "positionX": txtFrameX,
+            "positionY": txtFrameY,
+            "cornerRadius": txtFrameCnrRadius,
+            "transparency": txtFrameTransparency,
+            "isShape": txtFrameIsShape,
+            "bgColor": txtFrameColor,
+            "picVar": txtFramePicVar,
+            "fontName": txtFrameFontName,
+            "fontSize": txtFrameFontSize,
+            "fontColor": txtFrameFontColor});
+            
         //setIgsidebarBackBtnObj
         //setIgsidebarMenuObj
 
