@@ -12,6 +12,8 @@ export default function GameUISetter({}) {
     const [idvButtonColor, setIdvButtonColor] = useState("#000000");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
 
+    const [defaultButtonObj, setDefaultButtonObj] = useState({});
+
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
     const [txtFrameX, setTxtFrameX] = useState(100);
@@ -25,6 +27,8 @@ export default function GameUISetter({}) {
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
     const [txtFrameFontColor, setTxtFrameFontColor] = useState("#000000");
 
+    const [txtFrameObj, setTxtFrameObj] = useState({});
+
     const [igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
     const [igsidebarBackBtnTransparency, setIgsidebarBackBtnTransparency] = useState(90);
     const [igsidebarBackBtnPosX, setIgsidebarBackBtnPosX] = useState(100);
@@ -34,6 +38,8 @@ export default function GameUISetter({}) {
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#000000");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
+
+    const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState({});
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
@@ -55,6 +61,13 @@ export default function GameUISetter({}) {
     const [returnTitlePageBtn, setReturnTitlePageBtn] = useState(true);
     const [inGameDataBtn, setInGameDataBtn] = useState(true);
     const [dealBtn, setDealBtn] = useState(true);
+
+    const [igsidebarMenuObj, setIgsidebarMenuObj] = useState({});
+
+    useEffect(() => {
+       console.log("TODO: update any object data..."); //TODO test
+       
+    });
 
 
     return (
