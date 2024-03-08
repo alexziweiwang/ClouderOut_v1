@@ -119,7 +119,19 @@ export default function GameUISetter({}) {
     });
 
     useEffect(() => {
-       console.log("TODO: update any object data..."); //TODO test
+        console.log("TODO: update any object data..."); //TODO test
+        setDefaultButtonObj({"widthMin": idvButtonMinW,
+            "widthMax": idvButtonMaxW,
+            "height": idvButtonHeight,
+            "cornerRadius": idvButtonCnrRadius,
+            "transparency": idvButtonTransparency,
+            "isShape": idvButtonIsShape,
+            "bgColor": idvButtonColor,
+            "picVar": idvButtonPicVar});
+        
+        //setTxtFrameObj
+        //setIgsidebarBackBtnObj
+        //setIgsidebarMenuObj
 
     });
 
