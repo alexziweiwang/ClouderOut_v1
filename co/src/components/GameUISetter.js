@@ -142,8 +142,16 @@ export default function GameUISetter({}) {
             "fontSize": txtFrameFontSize,
             "fontColor": txtFrameFontColor});
             
-        //setIgsidebarBackBtnObj
-        //setIgsidebarMenuObj
+        setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
+            "height": igsidebarBackBtnH,
+            "positionX": igsidebarBackBtnPosX,
+            "positionY": igsidebarBackBtnPosY,
+            "cornerRadius": igsidebarBackBtnCnrRadius,
+            "transparency": igsidebarBackBtnTransparency,
+            "isShape": igsidebarBackBtnIsShape,
+            "bgColor": igsidebarBackBtnColor,
+            "picVar": igsidebarBackBtnPicVar});
+        //setIgsidebarMenuObj();
 
     });
 
