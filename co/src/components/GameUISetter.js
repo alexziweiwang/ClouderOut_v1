@@ -77,8 +77,10 @@ export default function GameUISetter({}) {
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
     const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
     const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
-    const [igsidebarMenuCnrRaius, setIgsidebarMenuCnrRaius] = useState(100);
+    const [igsidebarMenuCnrRadius, setIgsidebarMenuCnrRadius] = useState(100);
     const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
+    const [igsidebarMenuPicVar, setIgsidebarMenuPicVar] = useState("");
+
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
     const [igsidebarMenuIsListDirection, setIgsidebarMenuIsListDirection] = useState(1);
@@ -94,7 +96,27 @@ export default function GameUISetter({}) {
     const [inGameDataBtn, setInGameDataBtn] = useState(true);
     const [dealBtn, setDealBtn] = useState(true);
 
-    const [igsidebarMenuObj, setIgsidebarMenuObj] = useState({});
+    const [igsidebarMenuObj, setIgsidebarMenuObj] = useState({
+        "width": igsidebarMenuW,
+        "height": igsidebarMenuH,
+        "positionX": igsidebarMenuPosX,
+        "positionY": igsidebarMenuPosY,
+        "cornerRadius": igsidebarMenuCnrRadius,
+        "transparency": igsidebarMenuTransparency,
+        "isShape": igsidebarMenuIsShape,
+        "bgColor": igsidebarMenuShade,
+        "picVar": igsidebarMenuPicVar,
+        "isSingleButton": igsidebarMenuIsSingleBtn,
+        "listItemPadding": igsidebarMenuListPadding,
+        "listDirection": igsidebarMenuIsListDirection,
+        "autoOption": autoBtn,
+        "saveGameOption": saveBtn,
+        "loadGameOption": loadBtn,
+        "settingsOption": settingsBtn,
+        "returnToTitleOption": returnTitlePageBtn,
+        "inGameDataOption": inGameDataBtn,
+        "dealOption": dealBtn
+    });
 
     useEffect(() => {
        console.log("TODO: update any object data..."); //TODO test
@@ -204,7 +226,7 @@ export default function GameUISetter({}) {
         <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label>
         <br></br>       
         <label>Corner Radius: </label>
-            <select value={igsidebarMenuCnrRaius} onChange={(event)=>{setIgsidebarMenuCnrRaius(event.target.value);}}>
+            <select value={igsidebarMenuCnrRadius} onChange={(event)=>{setIgsidebarMenuCnrRadius(event.target.value);}}>
                 <option value="0" key="0menu">0</option>
                 <option value="1" key="1menu">1</option>
                 <option value="5" key="5menu">5</option>
