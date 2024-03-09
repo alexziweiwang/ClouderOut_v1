@@ -179,7 +179,6 @@ export default function GameUISetter({}) {
     
     <div className="guiSettings">
     1. Individual Button Look, Defualt
-    <p className="plans">TODO: integrate into 1 object about default-button</p>
 
     <label> Default Button </label>
         <div className="indentOne">
@@ -201,8 +200,9 @@ export default function GameUISetter({}) {
             {!idvButtonIsShape && <><select value={idvButtonPicVar} onChange={(event)=>{setIdvButtonPicVar(event.target.value);}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
         
     </div>
-    <div>
+    <div className="buttonPreviewArea">
         *Default Button Preview Area*
+
     </div>
 
     <br></br><br></br>
@@ -235,7 +235,6 @@ export default function GameUISetter({}) {
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <p className="plans">TODO: integrate into 1 object about text-frame</p>
     <br></br>Width: <input type="range" value={txtFrameW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
     <br></br>Height: <input type="range" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input><input type="number" value={txtFrameH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input>
     <br></br>Position X: <input type="range" value={txtFrameX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input><input type="number" value={txtFrameX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input>
@@ -264,7 +263,6 @@ export default function GameUISetter({}) {
     <br></br><br></br><br></br>
 
     3. In-game Side-bar
-    <p className="plans">TODO: integrate into 1 object about menu</p>
  
     <br></br><labrl>Menu Option: </labrl>  
     <div className="indentOne">

@@ -1137,3 +1137,10 @@ button:hover {
     background-color: rgb(210, 192, 210);
     border-radius: 0px; 
 }
+
+.buttonPreviewArea {
+    background-color: green;
+    border-radius: 0px;
+    margin: 5px;
+    padding: 3px;
+}
