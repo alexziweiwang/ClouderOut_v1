@@ -9,7 +9,7 @@ export default function GameUISetter({}) {
     const [idvButtonCnrRadius, setIdvButtonCnrRadius] = useState(0);
     const [idvButtonTransparency, setIdvButtonTransparency] = useState(90);
     const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
-    const [idvButtonColor, setIdvButtonColor] = useState("#000000");
+    const [idvButtonColor, setIdvButtonColor] = useState("#a8d1d6");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
 
     const [defaultButtonObj, setDefaultButtonObj] = useState(
@@ -30,11 +30,11 @@ export default function GameUISetter({}) {
     const [txtFrameCnrRadius, setTxtFrameCnrRadius] = useState(0);
     const [txtFrameTransparency, setTxtFrameTransparency] = useState(90);
     const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
-    const [txtFrameColor, setTxtFrameColor] = useState("#000000");
+    const [txtFrameColor, setTxtFrameColor] = useState("#a8d1d6");
     const [txtFramePicVar, setTxtFramePicVar] = useState("");
     const [txtFrameFontName, setTxtFrameFontName] = useState(0);
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
-    const [txtFrameFontColor, setTxtFrameFontColor] = useState("#000000");
+    const [txtFrameFontColor, setTxtFrameFontColor] = useState("#a8d1d6");
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": txtFrameW,
@@ -58,7 +58,7 @@ export default function GameUISetter({}) {
     const [igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
     const [igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
-    const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#000000");
+    const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#a8d1d6");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
@@ -86,7 +86,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuIsListDirection, setIgsidebarMenuIsListDirection] = useState(1);
 
     const [igsidebarMenuTransparency, setIgsidebarMenuTransparency] = useState(90);
-    const [igsidebarMenuShade, setIgsidebarMenuShade] = useState("#000000");
+    const [igsidebarMenuShade, setIgsidebarMenuShade] = useState("#a8d1d6");
 
     const [autoBtn, setAutoBtn] = useState(true);
     const [saveBtn, setSaveBtn] = useState(true);
@@ -180,7 +180,6 @@ export default function GameUISetter({}) {
     <div className="guiSettings">
     1. Individual Button Look, Defualt
 
-    <label> Default Button </label>
         <div className="indentOne">
         <br></br>Min-Width: <input type="range" value={idvButtonMinW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input><input value={idvButtonMinW} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMinW(event.target.value);}}></input>
         <br></br>Max-Width: <input type="range" value={idvButtonMaxW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input><input value={idvButtonMaxW} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input>
@@ -192,11 +191,12 @@ export default function GameUISetter({}) {
                         <option value="5" key="5ib">5</option>
                     </select>
         <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
-
-        <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label onClick={(event)=>{setIdvButtonIsShape(true);}}>Rectangle </label>
+        <br></br><label>Font Color: </label><input type="color"></input>
+        <br></br><label>Button Looking: </label>
+        <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label onClick={(event)=>{setIdvButtonIsShape(true);}}>Rectangle: </label>
             {idvButtonIsShape && <><input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label></>}
             
-        <br></br><input type="radio" value={idvButtonIsShape} checked={!idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(false);}}></input><label onClick={(event)=>{setIdvButtonIsShape(false);}}>Base Picture </label>
+        <br></br><input type="radio" value={idvButtonIsShape} checked={!idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(false);}}></input><label onClick={(event)=>{setIdvButtonIsShape(false);}}>Base Picture: </label>
             {!idvButtonIsShape && <><select value={idvButtonPicVar} onChange={(event)=>{setIdvButtonPicVar(event.target.value);}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
         
     </div>

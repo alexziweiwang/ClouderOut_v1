@@ -1139,8 +1139,9 @@ button:hover {
 }
 
 .buttonPreviewArea {
-    background-color: green;
+    background-color: grey;
     border-radius: 0px;
     margin: 5px;
     padding: 3px;
+    height: 100px;
 }
