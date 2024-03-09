@@ -86,7 +86,6 @@ export default function GameUISetter({}) {
     const [igsidebarMenuPicVar, setIgsidebarMenuPicVar] = useState("");
     const [igsidebarMenuTextColor, setIgsidebarMenuTextColor] = useState("#000000");
 
-
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
     const [igsidebarMenuIsListDirection, setIgsidebarMenuIsListDirection] = useState(1);
@@ -240,7 +239,6 @@ export default function GameUISetter({}) {
    
 
 
-
     <br></br><br></br><br></br>
     2. Text Frame
     <br></br>Width: <input type="range" value={txtFrameW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
@@ -280,7 +278,8 @@ export default function GameUISetter({}) {
         <br></br>
         <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
         <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
-        <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label>
+        <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label><br></br>
+        <label>Font Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label>{igsidebarMenuTextColor}</label>
         <br></br>       
         <label>Corner Radius: </label>
             <select value={igsidebarMenuCnrRadius} onChange={(event)=>{setIgsidebarMenuCnrRadius(event.target.value);}}>
