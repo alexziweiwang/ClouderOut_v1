@@ -11,6 +11,7 @@ export default function GameUISetter({}) {
     const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
     const [idvButtonColor, setIdvButtonColor] = useState("#a8d1d6");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
+    const [idvButtonTextColor, setIdvButtonTextColor] = useState("");
 
     const [defaultButtonObj, setDefaultButtonObj] = useState(
         {"widthMin": idvButtonMinW,
@@ -20,7 +21,8 @@ export default function GameUISetter({}) {
         "transparency": idvButtonTransparency,
         "isShape": idvButtonIsShape,
         "bgColor": idvButtonColor,
-        "picVar": idvButtonPicVar}
+        "picVar": idvButtonPicVar,
+        "textColor": idvButtonTextColor}
     );
 
     const [txtFrameW, setTxtFrameW] = useState(200);
@@ -34,7 +36,7 @@ export default function GameUISetter({}) {
     const [txtFramePicVar, setTxtFramePicVar] = useState("");
     const [txtFrameFontName, setTxtFrameFontName] = useState(0);
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
-    const [txtFrameFontColor, setTxtFrameFontColor] = useState("#a8d1d6");
+    const [txtFrameTextColor, setTxtFrameTextColor] = useState("#a8d1d6");
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": txtFrameW,
@@ -48,7 +50,7 @@ export default function GameUISetter({}) {
         "picVar": txtFramePicVar,
         "fontName": txtFrameFontName,
         "fontSize": txtFrameFontSize,
-        "fontColor": txtFrameFontColor}
+        "textColor": txtFrameTextColor}
     );
 
     const [igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
@@ -129,7 +131,8 @@ export default function GameUISetter({}) {
             "transparency": idvButtonTransparency,
             "isShape": idvButtonIsShape,
             "bgColor": idvButtonColor,
-            "picVar": idvButtonPicVar});
+            "picVar": idvButtonPicVar,
+            "textColor": idvButtonTextColor});
         
         setTxtFrameObj({"width": txtFrameW,
             "height": txtFrameH,
@@ -142,7 +145,7 @@ export default function GameUISetter({}) {
             "picVar": txtFramePicVar,
             "fontName": txtFrameFontName,
             "fontSize": txtFrameFontSize,
-            "fontColor": txtFrameFontColor});
+            "textColor": txtFrameTextColor});
             
         setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
         "height": igsidebarBackBtnH,
@@ -261,7 +264,7 @@ export default function GameUISetter({}) {
     </select>
     
     <br></br><label>Font Size: </label><input type="range" value={txtFrameFontSize} min="0" max="32" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input><input type="number" value={txtFrameFontSize} min="0" max="32" step="1" defaultValue="0" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input>
-    <br></br><label>Font Shade: </label><input type="color" value={txtFrameFontColor} onChange={(event)=>{setTxtFrameFontColor(event.target.value);}}></input><label>{txtFrameFontColor}</label>
+    <br></br><label>Font Shade: </label><input type="color" value={txtFrameTextColor} onChange={(event)=>{setTxtFrameTextColor(event.target.value);}}></input><label>{txtFrameTextColor}</label>
 
     <br></br><br></br><br></br>
 
