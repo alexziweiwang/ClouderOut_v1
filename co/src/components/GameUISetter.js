@@ -60,6 +60,7 @@ export default function GameUISetter({}) {
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#a8d1d6");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
+    const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#a8d1d6");
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": igsidebarBackBtnW,
@@ -70,7 +71,8 @@ export default function GameUISetter({}) {
         "transparency": igsidebarBackBtnTransparency,
         "isShape": igsidebarBackBtnIsShape,
         "bgColor": igsidebarBackBtnColor,
-        "picVar": igsidebarBackBtnPicVar}
+        "picVar": igsidebarBackBtnPicVar,
+        "textColor": igsidebarBackBtnTextColor}
     );
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
@@ -143,14 +145,15 @@ export default function GameUISetter({}) {
             "fontColor": txtFrameFontColor});
             
         setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
-            "height": igsidebarBackBtnH,
-            "positionX": igsidebarBackBtnPosX,
-            "positionY": igsidebarBackBtnPosY,
-            "cornerRadius": igsidebarBackBtnCnrRadius,
-            "transparency": igsidebarBackBtnTransparency,
-            "isShape": igsidebarBackBtnIsShape,
-            "bgColor": igsidebarBackBtnColor,
-            "picVar": igsidebarBackBtnPicVar});
+        "height": igsidebarBackBtnH,
+        "positionX": igsidebarBackBtnPosX,
+        "positionY": igsidebarBackBtnPosY,
+        "cornerRadius": igsidebarBackBtnCnrRadius,
+        "transparency": igsidebarBackBtnTransparency,
+        "isShape": igsidebarBackBtnIsShape,
+        "bgColor": igsidebarBackBtnColor,
+        "picVar": igsidebarBackBtnPicVar,
+        "textColor": igsidebarBackBtnTextColor});
         
         setIgsidebarMenuObj({"width": igsidebarMenuW,
             "height": igsidebarMenuH,
