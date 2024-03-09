@@ -11,7 +11,7 @@ export default function GameUISetter({}) {
     const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
     const [idvButtonColor, setIdvButtonColor] = useState("#a8d1d6");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
-    const [idvButtonTextColor, setIdvButtonTextColor] = useState("");
+    const [idvButtonTextColor, setIdvButtonTextColor] = useState("#000000");
 
     const [defaultButtonObj, setDefaultButtonObj] = useState(
         {"widthMin": idvButtonMinW,
@@ -36,7 +36,7 @@ export default function GameUISetter({}) {
     const [txtFramePicVar, setTxtFramePicVar] = useState("");
     const [txtFrameFontName, setTxtFrameFontName] = useState(0);
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
-    const [txtFrameTextColor, setTxtFrameTextColor] = useState("#a8d1d6");
+    const [txtFrameTextColor, setTxtFrameTextColor] = useState("#000000");
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": txtFrameW,
@@ -62,7 +62,7 @@ export default function GameUISetter({}) {
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#a8d1d6");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
-    const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#a8d1d6");
+    const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#000000");
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": igsidebarBackBtnW,
@@ -84,7 +84,7 @@ export default function GameUISetter({}) {
     const [igsidebarMenuCnrRadius, setIgsidebarMenuCnrRadius] = useState(100);
     const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
     const [igsidebarMenuPicVar, setIgsidebarMenuPicVar] = useState("");
-    const [igsidebarMenuTextColor, setIgsidebarMenuTextColor] = useState("");
+    const [igsidebarMenuTextColor, setIgsidebarMenuTextColor] = useState("#000000");
 
 
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
@@ -180,7 +180,6 @@ export default function GameUISetter({}) {
             "returnToTitleOption": returnTitlePageBtn,
             "inGameDataOption": inGameDataBtn,
             "dealOption": dealBtn});    
-
     });
 
 
@@ -200,7 +199,7 @@ export default function GameUISetter({}) {
                         <option value="5" key="5ib">5</option>
                     </select>
         <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
-        <br></br><label>Font Color: </label><input type="color"></input>
+        <br></br><label>Font Color: </label><input type="color" value={idvButtonTextColor}></input><label>{idvButtonTextColor}</label>
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label onClick={(event)=>{setIdvButtonIsShape(true);}}>Rectangle: </label>
             {idvButtonIsShape && <><input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label></>}
@@ -224,12 +223,13 @@ export default function GameUISetter({}) {
                 <option value="5" key="5igsBbtn">5</option>
             </select>
         <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnTransparency} type="range" min="0" max="100" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnTransparency(event.target.value);}}></input><label>{igsidebarBackBtnTransparency}%</label>
+        <br></br><label>Font Color: </label><input type="color" value={igsidebarBackBtnTextColor}></input><label>{igsidebarBackBtnTextColor}</label>
         <br></br>Position X: <input value={igsidebarBackBtnPosX} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosX} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input>
         <br></br>Position Y: <input value={igsidebarBackBtnPosY} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosY} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input>
         <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input><input type="number" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
         <br></br>Height: <input type="range" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input><input type="number" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(true);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(true);}}>Rectangle: </label>
-        
+        <br></br>
         {igsidebarBackBtnIsShape && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={!igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(false);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(false);}}>Base Picture: </label>
         {!igsidebarBackBtnIsShape && <>
