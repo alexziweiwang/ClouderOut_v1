@@ -199,7 +199,7 @@ export default function GameUISetter({}) {
                         <option value="5" key="5ib">5</option>
                     </select>
         <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
-        <br></br><label>Font Color: </label><input type="color" value={idvButtonTextColor}></input><label>{idvButtonTextColor}</label>
+        <br></br><label>Font Color: </label><input type="color" value={idvButtonTextColor} onChange={(event)=>{setIdvButtonTextColor(event.target.value);}}></input><label>{idvButtonTextColor}</label>
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label onClick={(event)=>{setIdvButtonIsShape(true);}}>Rectangle: </label>
             {idvButtonIsShape && <><input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label></>}
@@ -229,7 +229,6 @@ export default function GameUISetter({}) {
         <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input><input type="number" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
         <br></br>Height: <input type="range" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input><input type="number" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(true);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(true);}}>Rectangle: </label>
-        <br></br>
         {igsidebarBackBtnIsShape && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={!igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(false);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(false);}}>Base Picture: </label>
         {!igsidebarBackBtnIsShape && <>
