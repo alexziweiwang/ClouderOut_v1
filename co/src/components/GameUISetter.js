@@ -84,6 +84,8 @@ export default function GameUISetter({}) {
     const [igsidebarMenuCnrRadius, setIgsidebarMenuCnrRadius] = useState(100);
     const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
     const [igsidebarMenuPicVar, setIgsidebarMenuPicVar] = useState("");
+    const [igsidebarMenuTextColor, setIgsidebarMenuTextColor] = useState("");
+
 
     const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
     const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
@@ -148,15 +150,15 @@ export default function GameUISetter({}) {
             "textColor": txtFrameTextColor});
             
         setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
-        "height": igsidebarBackBtnH,
-        "positionX": igsidebarBackBtnPosX,
-        "positionY": igsidebarBackBtnPosY,
-        "cornerRadius": igsidebarBackBtnCnrRadius,
-        "transparency": igsidebarBackBtnTransparency,
-        "isShape": igsidebarBackBtnIsShape,
-        "bgColor": igsidebarBackBtnColor,
-        "picVar": igsidebarBackBtnPicVar,
-        "textColor": igsidebarBackBtnTextColor});
+            "height": igsidebarBackBtnH,
+            "positionX": igsidebarBackBtnPosX,
+            "positionY": igsidebarBackBtnPosY,
+            "cornerRadius": igsidebarBackBtnCnrRadius,
+            "transparency": igsidebarBackBtnTransparency,
+            "isShape": igsidebarBackBtnIsShape,
+            "bgColor": igsidebarBackBtnColor,
+            "picVar": igsidebarBackBtnPicVar,
+            "textColor": igsidebarBackBtnTextColor});
         
         setIgsidebarMenuObj({"width": igsidebarMenuW,
             "height": igsidebarMenuH,
@@ -167,6 +169,7 @@ export default function GameUISetter({}) {
             "isShape": igsidebarMenuIsShape,
             "bgColor": igsidebarMenuShade,
             "picVar": igsidebarMenuPicVar,
+            "textColor": igsidebarMenuTextColor,
             "isSingleButton": igsidebarMenuIsSingleBtn,
             "listItemPadding": igsidebarMenuListPadding,
             "listDirection": igsidebarMenuIsListDirection,
