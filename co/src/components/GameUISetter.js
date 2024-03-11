@@ -3,15 +3,6 @@ import { useState, useEffect } from 'react';
 
 export default function GameUISetter({}) {
 
-    // const [idvButtonMinW, setIdvButtonMinW] = useState(200);
-    // const [idvButtonMaxW, setIdvButtonMaxW] = useState(700);
-    // const [idvButtonHeight, setIdvButtonHeight] = useState(500);
-    // const [idvButtonCnrRadius, setIdvButtonCnrRadius] = useState(0);
-    // const [idvButtonTransparency, setIdvButtonTransparency] = useState(90);
-    // const [idvButtonIsShape, setIdvButtonIsShape] = useState(true);
-    // const [idvButtonColor, setIdvButtonColor] = useState("#a8d1d6");
-    // const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
-    // const [idvButtonTextColor, setIdvButtonTextColor] = useState("#000000");
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2px");
     const [idvButtonBorderString, setIdvButtonBorderString] = useState("2px solid #000000");
@@ -142,7 +133,7 @@ export default function GameUISetter({}) {
         console.log("TODO: update any object data..."); //TODO test
         // setDefaultButtonObj({"widthMin": idvButtonMinW,
         //     "widthMax": idvButtonMaxW,
-        //     "height": idvButtonHeight,
+        //     "height": defaultButtonObj["height"],
         //     "cornerRadius": idvButtonCnrRadius,
         //     "transparency": idvButtonTransparency,
         //     "isShape": idvButtonIsShape,
@@ -196,7 +187,7 @@ export default function GameUISetter({}) {
         //     "dealOption": dealBtn});  
             
         // setIdvButtonStyle({
-        //     "height": idvButtonHeight,
+        //     "height": defaultButtonObj["height"],
         //     "border-radius": idvButtonCnrRadius,
         //     "color": idvButtonTextColor,
         //     "opacity": idvButtonTransparency/100,
@@ -211,10 +202,14 @@ export default function GameUISetter({}) {
     1. Individual Button Look, Defualt
 
         <div className="indentOne">
-        <br></br>Min-Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
+        <br></br>Min-Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
         }}></input><input value={defaultButtonObj["widthMin"]} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
-        <br></br>Max-Width: <input type="range" value={idvButtonMaxW} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input><input value={idvButtonMaxW} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{setIdvButtonMaxW(event.target.value);}}></input>
-        <br></br>Height: <input type="range" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input><input type="number" value={idvButtonHeight} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setIdvButtonHeight(event.target.value);}}></input>
+        <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
+            }}></input><input value={defaultButtonObj["widthMax"]} min="0" max="1200" step="1" defaultValue="0" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
+        }}></input>
+        <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
                     <select onChange={(event)=>{setIdvButtonCnrRadius(event.target.value);}} value={idvButtonCnrRadius}>
                         <option value="0" key="0ib">-- Corner Radius (default 0)--</option>
