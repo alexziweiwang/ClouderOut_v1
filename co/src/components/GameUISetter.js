@@ -12,6 +12,14 @@ export default function GameUISetter({}) {
     const [idvButtonColor, setIdvButtonColor] = useState("#a8d1d6");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
     const [idvButtonTextColor, setIdvButtonTextColor] = useState("#000000");
+    const buttonTextSample1 = "Sample";
+    const [idvButtonStyle, setIdvButtonStyle] = useState({
+        "height": idvButtonHeight,
+        "border-radius": idvButtonCnrRadius,
+        "color": idvButtonTextColor,
+        "opacity": idvButtonTransparency/100
+    });
+
 
     const [defaultButtonObj, setDefaultButtonObj] = useState(
         {"widthMin": idvButtonMinW,
@@ -178,7 +186,14 @@ export default function GameUISetter({}) {
             "settingsOption": settingsBtn,
             "returnToTitleOption": returnTitlePageBtn,
             "inGameDataOption": inGameDataBtn,
-            "dealOption": dealBtn});    
+            "dealOption": dealBtn});  
+            
+        setIdvButtonStyle({
+            "height": idvButtonHeight,
+            "border-radius": idvButtonCnrRadius,
+            "color": idvButtonTextColor,
+            "opacity": idvButtonTransparency/100
+        })
     });
 
 
@@ -209,6 +224,9 @@ export default function GameUISetter({}) {
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
+        <div style={idvButtonStyle}>
+            {buttonTextSample1}
+        </div>
 
     </div>
 
