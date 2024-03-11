@@ -134,12 +134,12 @@ export default function GameUISetter({}) {
         // setDefaultButtonObj({"widthMin": idvButtonMinW,
         //     "widthMax": idvButtonMaxW,
         //     "height": defaultButtonObj["height"],
-        //     "cornerRadius": idvButtonCnrRadius,
-        //     "transparency": idvButtonTransparency,
+        //     "cornerRadius": defaultButtonObj["cornerRadius"],
+        //     "transparency": defaultButtonObj["transparency"],
         //     "isShape": idvButtonIsShape,
         //     "bgColor": idvButtonColor,
         //     "picVar": idvButtonPicVar,
-        //     "textColor": idvButtonTextColor});
+        //     "textColor": defaultButtonObj["textColor"]});
         
         // setTxtFrameObj({"width": txtFrameW,
         //     "height": txtFrameH,
@@ -188,9 +188,9 @@ export default function GameUISetter({}) {
             
         // setIdvButtonStyle({
         //     "height": defaultButtonObj["height"],
-        //     "border-radius": idvButtonCnrRadius,
-        //     "color": idvButtonTextColor,
-        //     "opacity": idvButtonTransparency/100,
+        //     "border-radius": defaultButtonObj["cornerRadius"],
+        //     "color": defaultButtonObj["textColor"],
+        //     "opacity": defaultButtonObj["transparency"]/100,
         //     "border": idvButtonBorderString
         // })
     });
@@ -211,13 +211,13 @@ export default function GameUISetter({}) {
         }}></input>
         <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
-                    <select onChange={(event)=>{setIdvButtonCnrRadius(event.target.value);}} value={idvButtonCnrRadius}>
+                    <select onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}} value={defaultButtonObj["cornerRadius"]}>
                         <option value="0" key="0ib">-- Corner Radius (default 0)--</option>
                         <option value="1" key="1ib">1</option>
                         <option value="5" key="5ib">5</option>
                     </select>
-        <br></br><label>Transparency: </label><input type="range" value={idvButtonTransparency} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setIdvButtonTransparency(event.target.value);}}></input><label>{idvButtonTransparency}%</label>
-        <br></br><label>Font Color: </label><input type="color" value={idvButtonTextColor} onChange={(event)=>{setIdvButtonTextColor(event.target.value);}}></input><label>{idvButtonTextColor}</label>
+        <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}%</label>
+        <br></br><label>Font Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label onClick={(event)=>{setIdvButtonIsShape(true);}}>Rectangle: </label>
             {idvButtonIsShape && <><input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label></>}
