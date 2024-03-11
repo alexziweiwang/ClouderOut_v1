@@ -131,15 +131,6 @@ export default function GameUISetter({}) {
 
     useEffect(() => {
         console.log("TODO: update any object data..."); //TODO test
-        // setDefaultButtonObj({"widthMin": idvButtonMinW,
-        //     "widthMax": idvButtonMaxW,
-        //     "height": defaultButtonObj["height"],
-        //     "cornerRadius": defaultButtonObj["cornerRadius"],
-        //     "transparency": defaultButtonObj["transparency"],
-        //     "isShape": idvButtonIsShape,
-        //     "bgColor": idvButtonColor,
-        //     "picVar": idvButtonPicVar,
-        //     "textColor": defaultButtonObj["textColor"]});
         
         // setTxtFrameObj({"width": txtFrameW,
         //     "height": txtFrameH,
@@ -219,11 +210,11 @@ export default function GameUISetter({}) {
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="100" step="1" defaultValue="90" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}%</label>
         <br></br><label>Font Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
         <br></br><label>Button Looking: </label>
-        <br></br><input type="radio" value={idvButtonIsShape} checked={idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(true);}}></input><label onClick={(event)=>{setIdvButtonIsShape(true);}}>Rectangle: </label>
-            {idvButtonIsShape && <><input type="color" value={idvButtonColor} onChange={(event)=>{setIdvButtonColor(event.target.value);}}></input><label>{idvButtonColor}</label></>}
+        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});;}}>Rectangle: </label>
+            {defaultButtonObj["isShape"] && <><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label>{defaultButtonObj["bgColor"]}</label></>}
             
-        <br></br><input type="radio" value={idvButtonIsShape} checked={!idvButtonIsShape} onChange={(event)=>{setIdvButtonIsShape(false);}}></input><label onClick={(event)=>{setIdvButtonIsShape(false);}}>Base Picture: </label>
-            {!idvButtonIsShape && <><select value={idvButtonPicVar} onChange={(event)=>{setIdvButtonPicVar(event.target.value);}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
+        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
+            {!defaultButtonObj["isShape"] && <><select value={idvButtonPicVar} onChange={(event)=>{setIdvButtonPicVar(event.target.value);}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
         
     </div>
     <div className="buttonPreviewArea">
