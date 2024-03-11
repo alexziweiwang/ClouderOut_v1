@@ -21,15 +21,6 @@ export default function GameUISetter({}) {
     });
 
     const buttonTextSample1 = "Sample: Default Button";
-    const [idvButtonStyle, setIdvButtonStyle] = useState({
-        "height": defaultButtonObj["height"],
-        "border-radius": defaultButtonObj["cornerRadius"],
-        "color": defaultButtonObj["bgColor"],
-        "opacity": defaultButtonObj["transparency"],
-        "border": idvButtonBorderString
-    });
-
-
 
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
@@ -214,12 +205,20 @@ export default function GameUISetter({}) {
             {defaultButtonObj["isShape"] && <><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label>{defaultButtonObj["bgColor"]}</label></>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
-            {!defaultButtonObj["isShape"] && <><select value={idvButtonPicVar} onChange={(event)=>{setIdvButtonPicVar(event.target.value);}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
+            {!defaultButtonObj["isShape"] && <><select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
         
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
-        <div style={idvButtonStyle}>
+        <div style={
+            {
+                "height": defaultButtonObj["height"],
+                "border-radius": defaultButtonObj["cornerRadius"],
+                "color": defaultButtonObj["textColor"],
+                "opacity": defaultButtonObj["transparency"],
+                "border": idvButtonBorderString
+            }
+        }>
             {buttonTextSample1}
         </div>
 
@@ -314,19 +313,19 @@ export default function GameUISetter({}) {
         <br></br>
         <input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}>Menu Option List</label>
         <div className="indentOne">
-            <input type="checkbox" value={autoBtn} checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><labe>Auto</labe>
+            <input type="checkbox" value={autoBtn} checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><label>Auto</label>
             <br></br>
-            <input type="checkbox" value={saveBtn} checked={saveBtn} onChange={()=>{setSaveBtn(!saveBtn);}}></input><labe>Save</labe>
+            <input type="checkbox" value={saveBtn} checked={saveBtn} onChange={()=>{setSaveBtn(!saveBtn);}}></input><label>Save</label>
             <br></br>
-            <input type="checkbox" value={loadBtn} checked={loadBtn} onChange={()=>{setLoadBtn(!loadBtn);}}></input><labe>Load</labe>
+            <input type="checkbox" value={loadBtn} checked={loadBtn} onChange={()=>{setLoadBtn(!loadBtn);}}></input><label>Load</label>
             <br></br>
-            <input type="checkbox" value={settingsBtn} checked={settingsBtn} onChange={()=>{setSettingsBtn(!settingsBtn);}}></input><labe>Settings</labe>
+            <input type="checkbox" value={settingsBtn} checked={settingsBtn} onChange={()=>{setSettingsBtn(!settingsBtn);}}></input><label>Settings</label>
             <br></br>
-            <input type="checkbox" value={returnTitlePageBtn} checked={returnTitlePageBtn} onChange={()=>{setReturnTitlePageBtn(!returnTitlePageBtn);}}></input><labe>Return to Title-Page</labe>
+            <input type="checkbox" value={returnTitlePageBtn} checked={returnTitlePageBtn} onChange={()=>{setReturnTitlePageBtn(!returnTitlePageBtn);}}></input><label>Return to Title-Page</label>
             <br></br>
-            <input type="checkbox" value={inGameDataBtn} checked={inGameDataBtn} onChange={()=>{setInGameDataBtn(!inGameDataBtn);}}></input><labe>In-Game Data</labe>
+            <input type="checkbox" value={inGameDataBtn} checked={inGameDataBtn} onChange={()=>{setInGameDataBtn(!inGameDataBtn);}}></input><label>In-Game Data</label>
             <br></br>
-            <input type="checkbox" value={dealBtn} checked={dealBtn} onChange={()=>{setDealBtn(!dealBtn);}}></input><labe>Deal</labe>
+            <input type="checkbox" value={dealBtn} checked={dealBtn} onChange={()=>{setDealBtn(!dealBtn);}}></input><label>Deal</label>
             <br></br>
             List Format: 
             <select value={igsidebarMenuIsListDirection} onChange={(event)=>{setIgsidebarMenuIsListDirection(event.target.value);}}>
