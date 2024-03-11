@@ -12,12 +12,17 @@ export default function GameUISetter({}) {
     const [idvButtonColor, setIdvButtonColor] = useState("#a8d1d6");
     const [idvButtonPicVar, setIdvButtonPicVar] = useState("");
     const [idvButtonTextColor, setIdvButtonTextColor] = useState("#000000");
+    const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
+    const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2px");
+    const [idvButtonBorderString, setIdvButtonBorderString] = useState("2px solid #000000");
+
     const buttonTextSample1 = "Sample";
     const [idvButtonStyle, setIdvButtonStyle] = useState({
         "height": idvButtonHeight,
         "border-radius": idvButtonCnrRadius,
         "color": idvButtonTextColor,
-        "opacity": idvButtonTransparency/100
+        "opacity": idvButtonTransparency/100,
+        "border": idvButtonBorderString
     });
 
 
@@ -133,67 +138,68 @@ export default function GameUISetter({}) {
 
     useEffect(() => {
         console.log("TODO: update any object data..."); //TODO test
-        setDefaultButtonObj({"widthMin": idvButtonMinW,
-            "widthMax": idvButtonMaxW,
-            "height": idvButtonHeight,
-            "cornerRadius": idvButtonCnrRadius,
-            "transparency": idvButtonTransparency,
-            "isShape": idvButtonIsShape,
-            "bgColor": idvButtonColor,
-            "picVar": idvButtonPicVar,
-            "textColor": idvButtonTextColor});
+        // setDefaultButtonObj({"widthMin": idvButtonMinW,
+        //     "widthMax": idvButtonMaxW,
+        //     "height": idvButtonHeight,
+        //     "cornerRadius": idvButtonCnrRadius,
+        //     "transparency": idvButtonTransparency,
+        //     "isShape": idvButtonIsShape,
+        //     "bgColor": idvButtonColor,
+        //     "picVar": idvButtonPicVar,
+        //     "textColor": idvButtonTextColor});
         
-        setTxtFrameObj({"width": txtFrameW,
-            "height": txtFrameH,
-            "positionX": txtFrameX,
-            "positionY": txtFrameY,
-            "cornerRadius": txtFrameCnrRadius,
-            "transparency": txtFrameTransparency,
-            "isShape": txtFrameIsShape,
-            "bgColor": txtFrameColor,
-            "picVar": txtFramePicVar,
-            "fontName": txtFrameFontName,
-            "fontSize": txtFrameFontSize,
-            "textColor": txtFrameTextColor});
+        // setTxtFrameObj({"width": txtFrameW,
+        //     "height": txtFrameH,
+        //     "positionX": txtFrameX,
+        //     "positionY": txtFrameY,
+        //     "cornerRadius": txtFrameCnrRadius,
+        //     "transparency": txtFrameTransparency,
+        //     "isShape": txtFrameIsShape,
+        //     "bgColor": txtFrameColor,
+        //     "picVar": txtFramePicVar,
+        //     "fontName": txtFrameFontName,
+        //     "fontSize": txtFrameFontSize,
+        //     "textColor": txtFrameTextColor});
             
-        setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
-            "height": igsidebarBackBtnH,
-            "positionX": igsidebarBackBtnPosX,
-            "positionY": igsidebarBackBtnPosY,
-            "cornerRadius": igsidebarBackBtnCnrRadius,
-            "transparency": igsidebarBackBtnTransparency,
-            "isShape": igsidebarBackBtnIsShape,
-            "bgColor": igsidebarBackBtnColor,
-            "picVar": igsidebarBackBtnPicVar,
-            "textColor": igsidebarBackBtnTextColor});
+        // setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
+        //     "height": igsidebarBackBtnH,
+        //     "positionX": igsidebarBackBtnPosX,
+        //     "positionY": igsidebarBackBtnPosY,
+        //     "cornerRadius": igsidebarBackBtnCnrRadius,
+        //     "transparency": igsidebarBackBtnTransparency,
+        //     "isShape": igsidebarBackBtnIsShape,
+        //     "bgColor": igsidebarBackBtnColor,
+        //     "picVar": igsidebarBackBtnPicVar,
+        //     "textColor": igsidebarBackBtnTextColor});
         
-        setIgsidebarMenuObj({"width": igsidebarMenuW,
-            "height": igsidebarMenuH,
-            "positionX": igsidebarMenuPosX,
-            "positionY": igsidebarMenuPosY,
-            "cornerRadius": igsidebarMenuCnrRadius,
-            "transparency": igsidebarMenuTransparency,
-            "isShape": igsidebarMenuIsShape,
-            "bgColor": igsidebarMenuShade,
-            "picVar": igsidebarMenuPicVar,
-            "textColor": igsidebarMenuTextColor,
-            "isSingleButton": igsidebarMenuIsSingleBtn,
-            "listItemPadding": igsidebarMenuListPadding,
-            "listDirection": igsidebarMenuIsListDirection,
-            "autoOption": autoBtn,
-            "saveGameOption": saveBtn,
-            "loadGameOption": loadBtn,
-            "settingsOption": settingsBtn,
-            "returnToTitleOption": returnTitlePageBtn,
-            "inGameDataOption": inGameDataBtn,
-            "dealOption": dealBtn});  
+        // setIgsidebarMenuObj({"width": igsidebarMenuW,
+        //     "height": igsidebarMenuH,
+        //     "positionX": igsidebarMenuPosX,
+        //     "positionY": igsidebarMenuPosY,
+        //     "cornerRadius": igsidebarMenuCnrRadius,
+        //     "transparency": igsidebarMenuTransparency,
+        //     "isShape": igsidebarMenuIsShape,
+        //     "bgColor": igsidebarMenuShade,
+        //     "picVar": igsidebarMenuPicVar,
+        //     "textColor": igsidebarMenuTextColor,
+        //     "isSingleButton": igsidebarMenuIsSingleBtn,
+        //     "listItemPadding": igsidebarMenuListPadding,
+        //     "listDirection": igsidebarMenuIsListDirection,
+        //     "autoOption": autoBtn,
+        //     "saveGameOption": saveBtn,
+        //     "loadGameOption": loadBtn,
+        //     "settingsOption": settingsBtn,
+        //     "returnToTitleOption": returnTitlePageBtn,
+        //     "inGameDataOption": inGameDataBtn,
+        //     "dealOption": dealBtn});  
             
-        setIdvButtonStyle({
-            "height": idvButtonHeight,
-            "border-radius": idvButtonCnrRadius,
-            "color": idvButtonTextColor,
-            "opacity": idvButtonTransparency/100
-        })
+        // setIdvButtonStyle({
+        //     "height": idvButtonHeight,
+        //     "border-radius": idvButtonCnrRadius,
+        //     "color": idvButtonTextColor,
+        //     "opacity": idvButtonTransparency/100,
+        //     "border": idvButtonBorderString
+        // })
     });
 
 
