@@ -17,10 +17,12 @@ export default function GameUISetter({}) {
         "isShape": true,
         "bgColor": "#a8d1d6",
         "picVar": "",
-        "textColor": "#000000"
+        "textColor": "#000000",
+        "margin": 5
     });
 
-    const buttonTextSample1 = "Sample: Default Button";
+    const buttonTextSample1 = "Sample1: Default Button";
+    const buttonTextSample2 = "Sample2: Default Button, Longer Content";
 
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
@@ -206,7 +208,14 @@ export default function GameUISetter({}) {
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
             {!defaultButtonObj["isShape"] && <><select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
-        
+        <br></br><label>Gap between buttons: </label>
+        <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "margin": event.target.value});
+        }}
+            min="0" max="100" step="1" defaultValue="2" 
+        ></input>
+        {defaultButtonObj["margin"]}
+
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
@@ -216,10 +225,24 @@ export default function GameUISetter({}) {
                 "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                 "color": defaultButtonObj["textColor"],
                 "opacity": defaultButtonObj["transparency"],
-                "border": idvButtonBorderString
+                "border": idvButtonBorderString,
+                "margin-bottom": `${defaultButtonObj["margin"]}px`
             }
         }>
             {buttonTextSample1}
+        </div>
+
+        <div style={
+            {
+                "height": `${defaultButtonObj["height"]}px`,
+                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                "color": defaultButtonObj["textColor"],
+                "opacity": defaultButtonObj["transparency"],
+                "border": idvButtonBorderString,
+                "margin-bottom": `${defaultButtonObj["margin"]}px`
+            }
+        }>
+            {buttonTextSample2}
         </div>
 
     </div>
