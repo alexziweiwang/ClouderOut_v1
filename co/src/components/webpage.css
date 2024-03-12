@@ -261,6 +261,7 @@ div {
     text-align: left;
     padding: 15px;
     background-color: rgb(230, 221, 205);
+    overflow: auto;
 }
 
 .pieceManager {
@@ -1143,5 +1144,6 @@ button:hover {
     border-radius: 0px;
     margin: 5px;
     padding: 3px;
-    height: 100px;
+    height: 300px;
+    overflow: auto;
 }

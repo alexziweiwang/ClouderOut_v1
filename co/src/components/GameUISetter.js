@@ -195,11 +195,7 @@ export default function GameUISetter({}) {
         }}></input>
         <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" defaultValue="20" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="1200" step="1" defaultValue="0" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
-                    <select onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}} value={defaultButtonObj["cornerRadius"]}>
-                        <option value="0" key="0ib">-- Corner Radius (default 0)--</option>
-                        <option value="1" key="1ib">1</option>
-                        <option value="5" key="5ib">5</option>
-                    </select>
+        <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" defaultValue="3" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" defaultValue="0.9" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
         <br></br><label>Font Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
         <br></br><label>Button Looking: </label>
