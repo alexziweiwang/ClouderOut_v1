@@ -19,7 +19,8 @@ export default function GameUISetter({}) {
         "picVar": "",
         "textColor": "#000000",
         "margin": 5,
-        "alignText": "left"
+        "justifyContent": "start",
+        "alignItems": "start"
     });
 
     const buttonTextSample1 = "Sample1: Default Button";
@@ -200,12 +201,12 @@ export default function GameUISetter({}) {
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
         <br></br><label>Text Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
         <br></br><label>Text Horizontal Position: </label>
-            <select value={defaultButtonObj["alignText"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "alignText": event.target.value});}}>
+            <select value={defaultButtonObj["justifyContent"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "justifyContent": event.target.value});}}>
                 <option value="center" key="defaultButtonTextAlignCenter">Center</option>
-                <option value="left" key="defaultButtonTextAlignLeft">Left</option>
+                <option value="start" key="defaultButtonTextAlignLeft">Left</option>
             </select>
         <br></br><label>Text Vertical Position: </label>
-            <select>
+            <select value={defaultButtonObj["alignItems"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "alignItems": event.target.value});}}>
                 <option value="center" key="defaultButtonAlignItemsCenter">Center</option>
                 <option value="start" key="defaultButtonAlignItemsTop">Top</option>
                 <option value="end" key="defaultButtonAlignItemsBottom">Bottom</option>
@@ -245,9 +246,9 @@ export default function GameUISetter({}) {
                 "border": idvButtonBorderString,
                 "margin-bottom": `${defaultButtonObj["margin"]}px`,
                 "padding-left": `10px`,
-                "text-align": defaultButtonObj["alignText"],
+                "justify-content": defaultButtonObj["justifyContent"],
                 "display": "flex",
-                "align-items": "center"
+                "align-items": defaultButtonObj["alignItems"]
             }
         }>
             {buttonTextSample1}
@@ -261,7 +262,9 @@ export default function GameUISetter({}) {
                 "border": idvButtonBorderString,
                 "margin-bottom": `${defaultButtonObj["margin"]}px`,
                 "padding-left": `10px`,
-                "text-align": defaultButtonObj["alignText"]
+                "justify-content": defaultButtonObj["justifyContent"],
+                "display": "flex",
+                "align-items": defaultButtonObj["alignItems"]
             }
         }>
             {buttonTextSample1}
