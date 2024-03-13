@@ -18,7 +18,8 @@ export default function GameUISetter({}) {
         "bgColor": "#a8d1d6",
         "picVar": "",
         "textColor": "#000000",
-        "margin": 5
+        "margin": 5,
+        "alignText": "left"
     });
 
     const buttonTextSample1 = "Sample1: Default Button";
@@ -199,15 +200,23 @@ export default function GameUISetter({}) {
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
         <br></br><label>Text Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
         <br></br><label>Text Position: </label>
-            <select>
-                <option>Center</option>
-                <option>Left</option>
+            <select value={defaultButtonObj["alignText"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "alignText": event.target.value});}}>
+                <option value="center" key="defaultButtonTextAlignCenter">Center</option>
+                <option value="left" key="defaultButtonTextAlignLeft">Left</option>
             </select>
         <br></br><label>Button Looking: </label>
-        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});;}}>Rectangle: </label>
+        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
+            //TODO setup to-record-style-data for is-shape-base
+            
+        }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});;}}>Rectangle: </label>
             {defaultButtonObj["isShape"] && <><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label>{defaultButtonObj["bgColor"]}</label></>}
             
-        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
+        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
+            //TODO setup to-record-style-data for is-picture-base
+
+        }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
             {!defaultButtonObj["isShape"] && <><select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
         <br></br><label>Gap between buttons: </label>
         <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
@@ -229,7 +238,8 @@ export default function GameUISetter({}) {
                 "opacity": defaultButtonObj["transparency"],
                 "border": idvButtonBorderString,
                 "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`
+                "padding-left": `10px`,
+                "text-align": defaultButtonObj["alignText"]
             }
         }>
             {buttonTextSample1}
@@ -242,7 +252,8 @@ export default function GameUISetter({}) {
                 "opacity": defaultButtonObj["transparency"],
                 "border": idvButtonBorderString,
                 "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`
+                "padding-left": `10px`,
+                "text-align": defaultButtonObj["alignText"]
             }
         }>
             {buttonTextSample1}
