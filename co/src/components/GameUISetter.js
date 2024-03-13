@@ -215,8 +215,9 @@ export default function GameUISetter({}) {
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
-        <div style={
-            {
+        {defaultButtonObj["isShape"] === true && <div style={
+            {   
+                "background": defaultButtonObj["bgColor"],
                 "height": `${defaultButtonObj["height"]}px`,
                 "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                 "color": defaultButtonObj["textColor"],
@@ -226,7 +227,19 @@ export default function GameUISetter({}) {
             }
         }>
             {buttonTextSample1}
-        </div>
+        </div>}
+        {defaultButtonObj["isShape"] === false && <div style={
+            {   
+                "height": `${defaultButtonObj["height"]}px`,
+                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                "color": defaultButtonObj["textColor"],
+                "opacity": defaultButtonObj["transparency"],
+                "border": idvButtonBorderString,
+                "margin-bottom": `${defaultButtonObj["margin"]}px`
+            }
+        }>
+            {buttonTextSample1}
+        </div>}
 
         <div style={
             {
