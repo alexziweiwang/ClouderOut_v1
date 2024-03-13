@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-export default function GameUISetter({}) {
+export default function GameUISetter({gameDataList}) {
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2px");
@@ -224,7 +224,17 @@ export default function GameUISetter({}) {
             //TODO setup to-record-style-data for is-picture-base
 
         }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
-            {!defaultButtonObj["isShape"] && <><select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}><option key="idvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
+            {!defaultButtonObj["isShape"] && <>
+                <select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}>
+                    
+                    <option key="idvDefault" value="">-- Select Resource --</option>
+                    {Object.keys(gameDataList).map((currKey) => {
+                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            return (
+                                <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
+                            );
+                    })}
+                </select><button>Resource Adding</button></>}
         <br></br><label>Gap between buttons: </label>
         <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "margin": event.target.value});

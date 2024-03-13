@@ -188,7 +188,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             <br></br><br></br><br></br>
     
     <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings Options</button>
-    {guiAreaDisplay === true && <GameUISetter/>}
+    {guiAreaDisplay === true && <GameUISetter gameDataList={}/>}
         </div>
     );
     
