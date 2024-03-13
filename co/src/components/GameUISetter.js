@@ -197,7 +197,12 @@ export default function GameUISetter({}) {
         <br></br><label>Corner Radius: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" defaultValue="3" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" defaultValue="0.9" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
-        <br></br><label>Font Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
+        <br></br><label>Text Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
+        <br></br><label>Text Position: </label>
+            <select>
+                <option>Center</option>
+                <option>Left</option>
+            </select>
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});}}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});;}}>Rectangle: </label>
             {defaultButtonObj["isShape"] && <><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label>{defaultButtonObj["bgColor"]}</label></>}
@@ -223,7 +228,8 @@ export default function GameUISetter({}) {
                 "color": defaultButtonObj["textColor"],
                 "opacity": defaultButtonObj["transparency"],
                 "border": idvButtonBorderString,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`
+                "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                "padding-left": `10px`
             }
         }>
             {buttonTextSample1}
@@ -235,7 +241,8 @@ export default function GameUISetter({}) {
                 "color": defaultButtonObj["textColor"],
                 "opacity": defaultButtonObj["transparency"],
                 "border": idvButtonBorderString,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`
+                "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                "padding-left": `10px`
             }
         }>
             {buttonTextSample1}
@@ -248,7 +255,8 @@ export default function GameUISetter({}) {
                 "color": defaultButtonObj["textColor"],
                 "opacity": defaultButtonObj["transparency"],
                 "border": idvButtonBorderString,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`
+                "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                "padding-left": `10px`
             }
         }>
             {buttonTextSample2}
