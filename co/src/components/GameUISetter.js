@@ -199,10 +199,16 @@ export default function GameUISetter({}) {
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
         <br></br><label>Text Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label>{defaultButtonObj["textColor"]}</label>
-        <br></br><label>Text Position: </label>
+        <br></br><label>Text Horizontal Position: </label>
             <select value={defaultButtonObj["alignText"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "alignText": event.target.value});}}>
                 <option value="center" key="defaultButtonTextAlignCenter">Center</option>
                 <option value="left" key="defaultButtonTextAlignLeft">Left</option>
+            </select>
+        <br></br><label>Text Vertical Position: </label>
+            <select>
+                <option value="center" key="defaultButtonAlignItemsCenter">Center</option>
+                <option value="start" key="defaultButtonAlignItemsTop">Top</option>
+                <option value="end" key="defaultButtonAlignItemsBottom">Bottom</option>
             </select>
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
@@ -239,7 +245,9 @@ export default function GameUISetter({}) {
                 "border": idvButtonBorderString,
                 "margin-bottom": `${defaultButtonObj["margin"]}px`,
                 "padding-left": `10px`,
-                "text-align": defaultButtonObj["alignText"]
+                "text-align": defaultButtonObj["alignText"],
+                "display": "flex",
+                "align-items": "center"
             }
         }>
             {buttonTextSample1}
