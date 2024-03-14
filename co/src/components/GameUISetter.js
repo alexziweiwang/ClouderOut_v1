@@ -224,12 +224,12 @@ export default function GameUISetter({gameDataList, openRm}) {
                         setIdvButtonBorderColor(event.target.value);
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
-                    }}></input>
-                    <br></br><label>Border Size: </label><input type="range" value={idvButtonBorderSize} min="0" max="72" step="1" onChange={(event)=>{
+                    }}></input><label> {idvButtonBorderColor}</label>
+                    <br></br><label>Border Size: </label><input type="range" value={idvButtonBorderSize} min="0" max="5" step="1" onChange={(event)=>{
                         setIdvButtonBorderSize(event.target.value);
-                        let temp = event.target.value + " solid " + idvButtonBorderColor;
+                        let temp = event.target.value + "px solid " + idvButtonBorderColor;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
-                    }}></input>
+                    }}></input><label>{idvButtonBorderSize}px</label>
                 </div>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
@@ -268,6 +268,7 @@ export default function GameUISetter({gameDataList, openRm}) {
                 <div style={
                     {   
                         "background": defaultButtonObj["bgColor"],
+                        
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
@@ -276,8 +277,9 @@ export default function GameUISetter({gameDataList, openRm}) {
                         "margin-bottom": `${defaultButtonObj["margin"]}px`,
                         "padding-left": `10px`,
                         "justify-content": defaultButtonObj["justifyContent"],
-                        "display": "flex",
-                        "align-items": defaultButtonObj["alignItems"]
+                        "align-items": defaultButtonObj["alignItems"],
+                        
+                        "display": "flex"
                     }
                 }>
                 {buttonTextSampleArr[index]}
@@ -300,8 +302,9 @@ export default function GameUISetter({gameDataList, openRm}) {
                         "margin-bottom": `${defaultButtonObj["margin"]}px`,
                         "padding-left": `10px`,
                         "justify-content": defaultButtonObj["justifyContent"],
-                        "display": "flex",
-                        "align-items": defaultButtonObj["alignItems"]
+                        "align-items": defaultButtonObj["alignItems"],
+                        
+                        "display": "flex"
                     }
                 }>
                 {buttonTextSampleArr[index]}
