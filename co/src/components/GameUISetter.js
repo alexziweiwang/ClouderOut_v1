@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export default function GameUISetter({gameDataList, openRm}) {
     
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
-    const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2px");
+    const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("12");
     const [idvButtonBorderString, setIdvButtonBorderString] = useState("2px solid #000000");
 
     //TODO current: defualt-reset when start rendering this component
@@ -220,8 +220,8 @@ export default function GameUISetter({gameDataList, openRm}) {
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
                     <label>Background Shade: </label><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label> {defaultButtonObj["bgColor"]}</label>
-                    <br></br><label>Border Shade: </label><input type="color"></input>
-                    <br></br><label>Border Size: </label><input type="range"></input>
+                    <br></br><label>Border Shade: </label><input type="color" value={idvButtonBorderColor} ></input>
+                    <br></br><label>Border Size: </label><input type="range" value={idvButtonBorderSize} min="0" max="72" step="1"></input>
                 </div>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
