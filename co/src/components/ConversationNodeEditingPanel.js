@@ -7,6 +7,7 @@ import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
 import GameUIPreviewWindow from './GameUIPreviewWindow';
+import GameUISetter from './GameUISetter';
 
 export default function ConversationNodeEditingPanel() {
 
@@ -150,7 +151,7 @@ export default function ConversationNodeEditingPanel() {
             }
 
             {browseList === true &&
-                 <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} gameDataList={gameData}/>           
+                <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} gameDataList={gameData}/>   
             }
  
             {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}

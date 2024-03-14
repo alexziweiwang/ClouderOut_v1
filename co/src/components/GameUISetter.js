@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 export default function GameUISetter({gameDataList}) {
+    const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
+    
+    function handleResourceSelectorCancel() {
+        setRmSelectorOpen(false);
+    }
+    function handleResourceManagerSaveChanges() {
+        console.log("Game-UI-Setter handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
+    }
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2px");
@@ -183,8 +192,12 @@ export default function GameUISetter({gameDataList}) {
 
 
     return (
+    <div>
+        {rmSelectorOpen && 
+            <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
     
     <div className="guiSettings">
+
     1. Individual Button Look, Defualt
 
         <div className="indentOne">
@@ -234,7 +247,7 @@ export default function GameUISetter({gameDataList}) {
                                 <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
                             );
                     })}
-                </select><button>Resource Adding</button></>}
+                </select><button onClick={() => {setRmSelectorOpen(true)}}>Resource Adding</button></>}
         <br></br><label>Gap between buttons: </label>
         <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "margin": event.target.value});
@@ -318,7 +331,7 @@ export default function GameUISetter({gameDataList}) {
             <select value={igsidebarBackBtnPicVar} onChange={(event)=>{setIgsidebarBackBtnPicVar(event.target.value);}}>
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
-        <button>Resource Adding</button></>}
+        <button onClick={() => {setRmSelectorOpen(true)}}>Resource Adding</button></>}
     </div>
    
 
@@ -340,7 +353,8 @@ export default function GameUISetter({gameDataList}) {
     <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(true);}}></input><label onClick={()=>{setTxtFrameIsShape(true);}}>Rectangle: </label>
         {txtFrameIsShape && <><input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label></>}
     <br></br><input type="radio" value={txtFrameIsShape} checked={!txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(false);}}></input><label onClick={()=>{setTxtFrameIsShape(false);}}>Base Picture </label>
-        {!txtFrameIsShape && <><select value={txtFramePicVar} onChange={(event)=>{setTxtFramePicVar(event.target.value);}}><option key="tfvDefault" value="">-- Select Resource --</option></select><button>Resource Adding</button></>}
+        {!txtFrameIsShape && <><select value={txtFramePicVar} onChange={(event)=>{setTxtFramePicVar(event.target.value);}}><option key="tfvDefault" value="">-- Select Resource --</option></select>
+        <button onClick={() => {setRmSelectorOpen(true)}}>Resource Adding</button></>}
 
     <br></br><label>Font: </label>
     <select value={txtFrameFontName} onChange={(event)=>{setTxtFrameFontName(event.target.value);}}>
@@ -376,7 +390,7 @@ export default function GameUISetter({gameDataList}) {
         {igsidebarMenuIsShape === true && <><input type="color" value={igsidebarMenuShade} onChange={(event)=>{setIgsidebarMenuShade(event.target.value);}}></input><label>{igsidebarMenuShade}</label></>}
         <br></br>
         <input type="radio" value={igsidebarMenuIsShape} checked={!igsidebarMenuIsShape} onChange={()=>{setIgsidebarMenuIsShape(false);}}></input><label onChange={()=>{setIgsidebarMenuIsShape(false);}}>Base Picture: </label>
-        {igsidebarMenuIsShape === false && <><select></select><button>Resource Adding</button></>}
+        {igsidebarMenuIsShape === false && <><select></select><button onClick={() => {setRmSelectorOpen(true)}}>Resource Adding</button></>}
         
         <br></br><br></br><br></br>
         <input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}>Single Menu Option</label>
@@ -410,5 +424,11 @@ export default function GameUISetter({gameDataList}) {
     </div>
 
     <br></br><button>Save</button>
-</div>);
+</div>
+
+</div>
+);
+
+
+
 }
