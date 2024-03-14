@@ -80,6 +80,10 @@ export default function ConversationNodeEditingPanel() {
         navigate('/gamemaker', { replace: true, state: stateObj });
     }
 
+    function handleResourceManagerOpen() {
+        setDisplayRmModal(true);
+    }
+
 
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
@@ -141,8 +145,6 @@ export default function ConversationNodeEditingPanel() {
                 </div>
                
             </div>
-
-            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
      
             <div className="parallelFrame">
 
@@ -151,7 +153,7 @@ export default function ConversationNodeEditingPanel() {
             }
 
             {browseList === true &&
-                <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} gameDataList={gameData}/>   
+                <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} gameDataList={gameData} openRm={handleResourceManagerOpen}/>   
             }
  
             {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
@@ -159,6 +161,7 @@ export default function ConversationNodeEditingPanel() {
 
             
             </div>
+            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
 
         </div>
     );
