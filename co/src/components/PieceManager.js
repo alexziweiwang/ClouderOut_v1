@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUISetter from './GameUISetter';
 
-export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData, gameDataList, openRm}) {
+export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData}) {
 
     let name = "/piecemanager";
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
@@ -13,9 +13,6 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     const [isManage, setIsManage] = useState(false);
-
-    const [guiAreaDisplay, setGuiAreaDisplay] = useState(false);
-
 
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -184,11 +181,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         </tbody>
     </table>
     <button onClick={createNewListItem}>Add New Row</button>
-
-            <br></br><br></br><br></br>
     
-    <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings Options</button>
-    {guiAreaDisplay === true && <GameUISetter gameDataList={gameDataList} openRmWindow={openRm}/>}
         </div>
     );
     
