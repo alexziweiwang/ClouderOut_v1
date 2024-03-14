@@ -3,7 +3,7 @@ import * as React from 'react';
 export default function GameUIPreviewWindow({dataObj}) {
 
     return(<div className="previewWindow">
-            <div className="preveiewArea">
+            <div className="preveiewArea2">
             </div>
 
             

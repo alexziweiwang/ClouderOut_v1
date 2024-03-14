@@ -183,7 +183,6 @@ export default function GameUISetter({gameDataList, openRmWindow}) {
 
 
     return (
-    <div>
  
     <div className="guiSettings">
 
@@ -415,7 +414,6 @@ export default function GameUISetter({gameDataList, openRmWindow}) {
     <br></br><button>Save</button>
 </div>
 
-</div>
 );
 
 

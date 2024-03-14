@@ -259,6 +259,7 @@ div {
 }
 
 .guiSettings {
+    margin-left: 5px;
     width: 450px;
     height: 550px;
     text-align: left;
@@ -305,6 +306,17 @@ div {
     margin-right: 2%;
     margin-top: 2%;
 }
+
+.preveiewArea2 {
+    height: 450px;
+    width: 96%;
+    height: 90%;
+    background-color: rgb(230, 221, 205);
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+
 
 .pieceSetterArea {
     background-color: rgb(186, 208, 205);

@@ -139,13 +139,11 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
-                    <button onClick={()=>{setGameUISetterOpen(false);}}>Piece Setting</button>
-                    <button onClick={()=>{setGameUISetterOpen(true);}}>Game UI Setting</button>
 
                 </div>
                 <div className="topParalBarRightPart">
-                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
-                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false);}}>Game UI Setup</button>
+                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>Game Content</button>
+                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false); setGameUISetterOpen(true);}}>Game UI</button>
                 </div>
                
             </div>
@@ -161,7 +159,7 @@ export default function ConversationNodeEditingPanel() {
 
             {browseList === true &&
                 <div>                 
-                    {gameUISetterOpen === false && <div><PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/></div>}   
+                    {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
                     {gameUISetterOpen === true && <GameUISetter gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
                 </div>
             }
