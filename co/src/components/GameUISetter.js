@@ -23,8 +23,7 @@ export default function GameUISetter({gameDataList, openRmWindow}) {
         "alignItems": "start"
     });
 
-    const buttonTextSample1 = "Sample1: Default Button";
-    const buttonTextSample2 = "Sample2: Default Button, Longer Content";
+    const buttonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
@@ -247,53 +246,57 @@ export default function GameUISetter({gameDataList, openRmWindow}) {
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
-        {defaultButtonObj["isShape"] === true && <div style={
-            {   
-                "background": defaultButtonObj["bgColor"],
-                "height": `${defaultButtonObj["height"]}px`,
-                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                "color": defaultButtonObj["textColor"],
-                "opacity": defaultButtonObj["transparency"],
-                "border": idvButtonBorderString,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`,
-                "justify-content": defaultButtonObj["justifyContent"],
-                "display": "flex",
-                "align-items": defaultButtonObj["alignItems"]
-            }
-        }>
-            {buttonTextSample1}
-        </div>}
-        {defaultButtonObj["isShape"] === false && <div style={
-            {   
-                "height": `${defaultButtonObj["height"]}px`,
-                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                "color": defaultButtonObj["textColor"],
-                "opacity": defaultButtonObj["transparency"],
-                "border": idvButtonBorderString,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`,
-                "justify-content": defaultButtonObj["justifyContent"],
-                "display": "flex",
-                "align-items": defaultButtonObj["alignItems"]
-            }
-        }>
-            {buttonTextSample1}
-        </div>}
+        
+        
+        {defaultButtonObj["isShape"] === true && 
+        <>
+            {buttonTextSampleArr.map((item, index)=>{
+                return (
+                <div style={
+                    {   
+                        "background": defaultButtonObj["bgColor"],
+                        "height": `${defaultButtonObj["height"]}px`,
+                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                        "color": defaultButtonObj["textColor"],
+                        "opacity": defaultButtonObj["transparency"],
+                        "border": idvButtonBorderString,
+                        "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                        "padding-left": `10px`,
+                        "justify-content": defaultButtonObj["justifyContent"],
+                        "display": "flex",
+                        "align-items": defaultButtonObj["alignItems"]
+                    }
+                }>
+                {buttonTextSampleArr[index]}
+                </div>);
+            }                
+            )}
+        </>}
 
-        <div style={
-            {
-                "height": `${defaultButtonObj["height"]}px`,
-                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                "color": defaultButtonObj["textColor"],
-                "opacity": defaultButtonObj["transparency"],
-                "border": idvButtonBorderString,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`
-            }
-        }>
-            {buttonTextSample2}
-        </div>
+
+        {defaultButtonObj["isShape"] === false &&  <>
+            {buttonTextSampleArr.map((item, index)=>{
+                return (
+                <div style={
+                    {   
+                        "height": `${defaultButtonObj["height"]}px`,
+                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                        "color": defaultButtonObj["textColor"],
+                        "opacity": defaultButtonObj["transparency"],
+                        "border": idvButtonBorderString,
+                        "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                        "padding-left": `10px`,
+                        "justify-content": defaultButtonObj["justifyContent"],
+                        "display": "flex",
+                        "align-items": defaultButtonObj["alignItems"]
+                    }
+                }>
+                {buttonTextSampleArr[index]}
+                </div>);
+            }                
+            )}
+        </>}
+
 
     </div>
 
