@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUISetter from './GameUISetter';
 
-export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData}) {
+export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData, gameDataList}) {
 
     let name = "/piecemanager";
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
@@ -188,7 +188,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             <br></br><br></br><br></br>
     
     <button onClick={()=>{setGuiAreaDisplay(!guiAreaDisplay);}}>Game UI Settings Options</button>
-    {guiAreaDisplay === true && <GameUISetter gameDataList={}/>}
+    {guiAreaDisplay === true && <GameUISetter gameDataList={gameDataList}/>}
         </div>
     );
     
