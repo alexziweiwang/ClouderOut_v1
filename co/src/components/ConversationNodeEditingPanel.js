@@ -30,6 +30,7 @@ export default function ConversationNodeEditingPanel() {
     const [previewingIndex, setPreviewingIndex] = useState(0);
     const [isDisplayPreview, setIsDisplayPreview] = useState(true);
 
+    const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
     const returnGameMakerButtonText = ["Return To GameMaker!"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
     const buttonLanguageIndex = 0;
@@ -138,6 +139,9 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+                    <button onClick={()=>{setGameUISetterOpen(false);}}>Piece Setting</button>
+                    <button onClick={()=>{setGameUISetterOpen(true);}}>Game UI Setting</button>
+
                 </div>
                 <div className="topParalBarRightPart">
                     <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true);}}>Preview</button>
@@ -149,13 +153,16 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
 
             {browseList === false && 
-                <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>
+                <div>
+                    {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
+                    {gameUISetterOpen === true && <GameUISetter gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
+                </div>
             }
 
             {browseList === true &&
-                <div>
-                    <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>   
-                    {<GameUISetter gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
+                <div>                 
+                    {gameUISetterOpen === false && <div><PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/></div>}   
+                    {gameUISetterOpen === true && <GameUISetter gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
                 </div>
             }
  

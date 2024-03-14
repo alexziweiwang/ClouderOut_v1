@@ -155,7 +155,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                 return (
                     <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{doHighlightItem(currItem["content"]);assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>
                     <td>
-                        <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Edit</button>
+                        <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Detail</button>
                     </td>
                     <td>{currItem["num"]}</td>
                     <td>{currItem["speaker_name"]}{(currItem["speaker_name"] === "") ? "" : ":"}{(currItem["speaker_name"] !== "") && <br></br>}{currItem["content"]}</td>
@@ -171,9 +171,9 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     </div>
                     
                     </td>}
-                    <td>
+                    {isManage === true && <td>
                         <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
-                    </td>
+                    </td>}
                 </tr>
                 );
             })} 
