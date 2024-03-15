@@ -1,8 +1,20 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({gameDataList, openRm}) {
-    
+export default function GameUISetter({openRm}) {
+    const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
+
+    const [visualList, setVisualList] = useState([]); 
+    async function fetchProjResourceLists() {
+        console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+        /* fetch from cloud db */
+        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+        console.log(obj);
+        setVisualList(obj.visual);
+    }
+
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
 
@@ -123,9 +135,13 @@ export default function GameUISetter({gameDataList, openRm}) {
         "dealOption": dealBtn
     });
 
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         console.log("TODO: update any object data..."); //TODO test
-        
+        if (firstTimeEnter === true) {
+            fetchProjResourceLists();
+            setFirstTimeEnter(false);
+        }
         // setTxtFrameObj({"width": txtFrameW,
         //     "height": txtFrameH,
         //     "positionX": txtFrameX,
@@ -241,10 +257,10 @@ export default function GameUISetter({gameDataList, openRm}) {
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}>
                     
                     <option key="idvDefault" value="">-- Select Resource --</option>
-                    {Object.keys(gameDataList).map((currKey) => {
+                    {Object.keys(visualList).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
+                                <option value={currKey} key={visualList[currKey]["name"]}>{currKey}</option>
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button></>}

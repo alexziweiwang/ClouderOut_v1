@@ -160,7 +160,7 @@ export default function ConversationNodeEditingPanel() {
             {browseList === true &&
                 <div>                 
                     {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
-                    {gameUISetterOpen === true && <GameUISetter gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen}/>}
                 </div>
             }
  
