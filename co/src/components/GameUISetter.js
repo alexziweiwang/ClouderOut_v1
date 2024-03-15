@@ -253,9 +253,7 @@ export default function GameUISetter({gameDataList, openRm}) {
             setDefaultButtonObj({...defaultButtonObj,  "margin": event.target.value});
         }}
             min="0" max="100" step="1"
-        ></input>
-        {defaultButtonObj["margin"]}
-
+        ></input>{defaultButtonObj["margin"]}
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
@@ -265,7 +263,7 @@ export default function GameUISetter({gameDataList, openRm}) {
         <>
             {buttonTextSampleArr.map((item, index)=>{
                 return (
-                <div style={
+                <div key={index} style={
                     {   
                         "background": defaultButtonObj["bgColor"],
                         
@@ -279,7 +277,9 @@ export default function GameUISetter({gameDataList, openRm}) {
                         "justify-content": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
                         
-                        "display": "flex"
+                        "display": "flex",
+                        "cursor": "pointer",
+                        "user-select": "none"
                     }
                 }>
                 {buttonTextSampleArr[index]}
@@ -292,7 +292,7 @@ export default function GameUISetter({gameDataList, openRm}) {
         {defaultButtonObj["isShape"] === false &&  <>
             {buttonTextSampleArr.map((item, index)=>{
                 return (
-                <div style={
+                <div key={index} style={
                     {   
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
@@ -304,9 +304,13 @@ export default function GameUISetter({gameDataList, openRm}) {
                         "justify-content": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
                         
-                        "display": "flex"
+                        "display": "flex",
+                        "cursor": "pointer",
+                        "user-select": "none"
                     }
-                }>
+                }
+                onClick={()=>{}}
+                >
                 {buttonTextSampleArr[index]}
                 </div>);
             }                
