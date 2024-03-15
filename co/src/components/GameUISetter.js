@@ -78,6 +78,7 @@ export default function GameUISetter({openRm}) {
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
+    const [idvButtonBgPicUrl, setIdvButtonBgPicUrl] = useState("");
 
     //TODO current: defualt-reset when start rendering this component
     const [defaultButtonObj, setDefaultButtonObj] = useState({
@@ -253,11 +254,15 @@ export default function GameUISetter({openRm}) {
 
         }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
             {!defaultButtonObj["isShape"] && <>
-                <select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}>
+                <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
+                            setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
+                            setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);                     
+                        }}>
                     
                     <option key="idvDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+
                             return (
                                 <option value={currKey} key={currKey}>{visualMap[currKey]["var"]}</option>
                             );
@@ -309,6 +314,8 @@ export default function GameUISetter({openRm}) {
                 return (
                 <div key={index} style={
                     {   
+                        "background-image": `url('${idvButtonBgPicUrl}')`,
+
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
