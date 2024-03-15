@@ -3,10 +3,70 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function GameUISetter({openRm}) {
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            fetchProjResourceLists();
+            setFirstTimeEnter(false);
+        }
+        // setTxtFrameObj({"width": txtFrameW,
+        //     "height": txtFrameH,
+        //     "positionX": txtFrameX,
+        //     "positionY": txtFrameY,
+        //     "cornerRadius": txtFrameCnrRadius,
+        //     "transparency": txtFrameTransparency,
+        //     "isShape": txtFrameIsShape,
+        //     "bgColor": txtFrameColor,
+        //     "picVar": txtFramePicVar,
+        //     "fontName": txtFrameFontName,
+        //     "fontSize": txtFrameFontSize,
+        //     "textColor": txtFrameTextColor});
+            
+        // setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
+        //     "height": igsidebarBackBtnH,
+        //     "positionX": igsidebarBackBtnPosX,
+        //     "positionY": igsidebarBackBtnPosY,
+        //     "cornerRadius": igsidebarBackBtnCnrRadius,
+        //     "transparency": igsidebarBackBtnTransparency,
+        //     "isShape": igsidebarBackBtnIsShape,
+        //     "bgColor": igsidebarBackBtnColor,
+        //     "picVar": igsidebarBackBtnPicVar,
+        //     "textColor": igsidebarBackBtnTextColor});
+        
+        // setIgsidebarMenuObj({"width": igsidebarMenuW,
+        //     "height": igsidebarMenuH,
+        //     "positionX": igsidebarMenuPosX,
+        //     "positionY": igsidebarMenuPosY,
+        //     "cornerRadius": igsidebarMenuCnrRadius,
+        //     "transparency": igsidebarMenuTransparency,
+        //     "isShape": igsidebarMenuIsShape,
+        //     "bgColor": igsidebarMenuShade,
+        //     "picVar": igsidebarMenuPicVar,
+        //     "textColor": igsidebarMenuTextColor,
+        //     "isSingleButton": igsidebarMenuIsSingleBtn,
+        //     "listItemPadding": igsidebarMenuListPadding,
+        //     "listDirection": igsidebarMenuIsListDirection,
+        //     "autoOption": autoBtn,
+        //     "saveGameOption": saveBtn,
+        //     "loadGameOption": loadBtn,
+        //     "settingsOption": settingsBtn,
+        //     "returnToTitleOption": returnTitlePageBtn,
+        //     "inGameDataOption": inGameDataBtn,
+        //     "dealOption": dealBtn});  
+            
+        // setIdvButtonStyle({
+        //     "height": defaultButtonObj["height"],
+        //     "border-radius": defaultButtonObj["cornerRadius"],
+        //     "color": defaultButtonObj["textColor"],
+        //     "opacity": defaultButtonObj["transparency"]/100,
+        //     "border": idvButtonBorderString
+        // })
+    });
+
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
-    const [visualList, setVisualList] = useState([]); 
+    const [visualMap, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
@@ -135,68 +195,6 @@ export default function GameUISetter({openRm}) {
         "dealOption": dealBtn
     });
 
-    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-    useEffect(() => {
-        console.log("TODO: update any object data..."); //TODO test
-        if (firstTimeEnter === true) {
-            fetchProjResourceLists();
-            setFirstTimeEnter(false);
-        }
-        // setTxtFrameObj({"width": txtFrameW,
-        //     "height": txtFrameH,
-        //     "positionX": txtFrameX,
-        //     "positionY": txtFrameY,
-        //     "cornerRadius": txtFrameCnrRadius,
-        //     "transparency": txtFrameTransparency,
-        //     "isShape": txtFrameIsShape,
-        //     "bgColor": txtFrameColor,
-        //     "picVar": txtFramePicVar,
-        //     "fontName": txtFrameFontName,
-        //     "fontSize": txtFrameFontSize,
-        //     "textColor": txtFrameTextColor});
-            
-        // setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
-        //     "height": igsidebarBackBtnH,
-        //     "positionX": igsidebarBackBtnPosX,
-        //     "positionY": igsidebarBackBtnPosY,
-        //     "cornerRadius": igsidebarBackBtnCnrRadius,
-        //     "transparency": igsidebarBackBtnTransparency,
-        //     "isShape": igsidebarBackBtnIsShape,
-        //     "bgColor": igsidebarBackBtnColor,
-        //     "picVar": igsidebarBackBtnPicVar,
-        //     "textColor": igsidebarBackBtnTextColor});
-        
-        // setIgsidebarMenuObj({"width": igsidebarMenuW,
-        //     "height": igsidebarMenuH,
-        //     "positionX": igsidebarMenuPosX,
-        //     "positionY": igsidebarMenuPosY,
-        //     "cornerRadius": igsidebarMenuCnrRadius,
-        //     "transparency": igsidebarMenuTransparency,
-        //     "isShape": igsidebarMenuIsShape,
-        //     "bgColor": igsidebarMenuShade,
-        //     "picVar": igsidebarMenuPicVar,
-        //     "textColor": igsidebarMenuTextColor,
-        //     "isSingleButton": igsidebarMenuIsSingleBtn,
-        //     "listItemPadding": igsidebarMenuListPadding,
-        //     "listDirection": igsidebarMenuIsListDirection,
-        //     "autoOption": autoBtn,
-        //     "saveGameOption": saveBtn,
-        //     "loadGameOption": loadBtn,
-        //     "settingsOption": settingsBtn,
-        //     "returnToTitleOption": returnTitlePageBtn,
-        //     "inGameDataOption": inGameDataBtn,
-        //     "dealOption": dealBtn});  
-            
-        // setIdvButtonStyle({
-        //     "height": defaultButtonObj["height"],
-        //     "border-radius": defaultButtonObj["cornerRadius"],
-        //     "color": defaultButtonObj["textColor"],
-        //     "opacity": defaultButtonObj["transparency"]/100,
-        //     "border": idvButtonBorderString
-        // })
-    });
-
-
     return (
  
     <div className="guiSettings">
@@ -257,10 +255,10 @@ export default function GameUISetter({openRm}) {
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value});}}>
                     
                     <option key="idvDefault" value="">-- Select Resource --</option>
-                    {Object.keys(visualList).map((currKey) => {
+                    {Object.keys(visualMap).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={currKey} key={visualList[currKey]["name"]}>{currKey}</option>
+                                <option value={currKey} key={currKey}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button></>}
