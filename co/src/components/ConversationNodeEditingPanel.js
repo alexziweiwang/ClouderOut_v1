@@ -10,6 +10,7 @@ import GameUIPreviewWindow from './GameUIPreviewWindow';
 import GameUISetter from './GameUISetter';
 
 export default function ConversationNodeEditingPanel() {
+// TODO here, keeps all sub-component's "unsaved local" data structures
 
     const navigate = useNavigate();
     const {state} = useLocation();

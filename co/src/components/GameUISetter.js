@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function GameUISetter({openRm}) {
+    //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
+    
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -66,13 +68,12 @@ export default function GameUISetter({openRm}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
-    const [visualMap, setVisualList] = useState([]); 
+    const [visualMap, setVisualMap] = useState([]); 
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        console.log(obj);
-        setVisualList(obj.visual);
+        setVisualMap(obj.visual);
     }
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
