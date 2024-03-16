@@ -87,7 +87,7 @@ export default function GameUISetter({openRm}) {
         "height": 20,
         "cornerRadius": 0,
         "transparency": 0.9,
-        "isShape": true,
+        "isShape": false,
         "bgColor": "#a8d1d6",
         "picVar": "",
         "textColor": "#000000",
@@ -314,8 +314,9 @@ export default function GameUISetter({openRm}) {
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
-                            setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);                     
-                        }}>
+                            setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);  
+                            setDefaultButtonStyle({...defaultButtonStyle, "background-image": `url('${visualMap[event.target.value]["url"]}')`});             
+                }}>
                     
                     <option key="idvDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
