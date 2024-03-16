@@ -259,8 +259,23 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
-            //TODO setup to-record-style-data for is-shape-base
-            
+            setDefaultButtonStyle({   
+                "background": defaultButtonObj["bgColor"],
+                
+                "height": `${defaultButtonObj["height"]}px`,
+                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                "color": defaultButtonObj["textColor"],
+                "opacity": defaultButtonObj["transparency"],
+                "border": `${defaultButtonObj["border"]}`,
+                "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                "padding-left": `10px`,
+                "justify-content": defaultButtonObj["justifyContent"],
+                "align-items": defaultButtonObj["alignItems"],
+                
+                "display": "flex",
+                "cursor": "pointer",
+                "user-select": "none"
+            });
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
                 setDefaultButtonStyle({   
@@ -284,16 +299,54 @@ export default function GameUISetter({openRm}) {
                 }}>Rectangle: </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
-                    <label>Background Shade: </label><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label> {defaultButtonObj["bgColor"]}</label>
+                    <label>Background Shade: </label>
+                    <input type="color" value={defaultButtonObj["bgColor"]} 
+                    onChange={(event)=>{
+                        setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});
+                        setDefaultButtonStyle({   
+                            "background": event.target.value,
+                            
+                            "height": `${defaultButtonObj["height"]}px`,
+                            "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                            "color": defaultButtonObj["textColor"],
+                            "opacity": defaultButtonObj["transparency"],
+                            "border": `${defaultButtonObj["border"]}`,
+                            "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                            "padding-left": `10px`,
+                            "justify-content": defaultButtonObj["justifyContent"],
+                            "align-items": defaultButtonObj["alignItems"],
+                            
+                            "display": "flex",
+                            "cursor": "pointer",
+                            "user-select": "none"
+                        });
+                        
+                        }}></input><label> {defaultButtonObj["bgColor"]}</label>
                 </div>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
-            //TODO setup to-record-style-data for is-picture-base
+            setDefaultButtonStyle({   
+                "background-image": `url('${idvButtonBgPicUrl}')`,
+                "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
 
+                "height": `${defaultButtonObj["height"]}px`,
+                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                "color": defaultButtonObj["textColor"],
+                "opacity": defaultButtonObj["transparency"],
+                "border": `${defaultButtonObj["border"]}`,
+                "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                "padding-left": `10px`,
+                "justify-content": defaultButtonObj["justifyContent"],
+                "align-items": defaultButtonObj["alignItems"],
+                
+                "display": "flex",
+                "cursor": "pointer",
+                "user-select": "none"
+            });
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
-                setDefaultButtonStyle(         {   
+                setDefaultButtonStyle({   
                     "background-image": `url('${idvButtonBgPicUrl}')`,
                     "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
 
@@ -315,7 +368,24 @@ export default function GameUISetter({openRm}) {
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
                             setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);  
-                            setDefaultButtonStyle({...defaultButtonStyle, "background-image": `url('${visualMap[event.target.value]["url"]}')`});             
+                            setDefaultButtonStyle(         {   
+                                "background-image": `url('${visualMap[event.target.value]["url"]}')`,
+                                "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
+
+                                "height": `${defaultButtonObj["height"]}px`,
+                                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                                "color": defaultButtonObj["textColor"],
+                                "opacity": defaultButtonObj["transparency"],
+                                "border": `${defaultButtonObj["border"]}`,
+                                "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                                "padding-left": `10px`,
+                                "justify-content": defaultButtonObj["justifyContent"],
+                                "align-items": defaultButtonObj["alignItems"],
+                                
+                                "display": "flex",
+                                "cursor": "pointer",
+                                "user-select": "none"
+                            });
                 }}>
                     
                     <option key="idvDefault" value="">-- Select Resource --</option>
