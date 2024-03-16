@@ -218,3 +218,4 @@
 
 - 2024-Mar-12: Consider dynamic button-length and height strategy for any-length text in buttons
 
+- 2024-Mar-15: Consider in-game next-piece and menu clicking strategy
