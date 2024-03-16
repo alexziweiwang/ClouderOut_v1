@@ -227,16 +227,7 @@ export default function GameUISetter({openRm}) {
                 <option value="start" key="defaultButtonAlignItemsTop">Top</option>
                 <option value="end" key="defaultButtonAlignItemsBottom">Bottom</option>
             </select>
-        <br></br><label>Button Looking: </label>
-        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
-            setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
-            //TODO setup to-record-style-data for is-shape-base
-            
-        }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});}}>Rectangle: </label>
-            {defaultButtonObj["isShape"] && 
-                <div className="indentOne">
-                    <label>Background Shade: </label><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label> {defaultButtonObj["bgColor"]}</label>
-                    <br></br><label>Border Shade: </label><input type="color" value={idvButtonBorderColor} onChange={(event)=>{
+        <br></br><label>Border Shade: </label><input type="color" value={idvButtonBorderColor} onChange={(event)=>{
                         setIdvButtonBorderColor(event.target.value);
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
@@ -246,6 +237,15 @@ export default function GameUISetter({openRm}) {
                         let temp = event.target.value + "px solid " + idvButtonBorderColor;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
                     }}></input><label>{idvButtonBorderSize}px</label>
+        <br></br><label>Button Looking: </label>
+        <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
+            //TODO setup to-record-style-data for is-shape-base
+            
+        }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});}}>Rectangle: </label>
+            {defaultButtonObj["isShape"] && 
+                <div className="indentOne">
+                    <label>Background Shade: </label><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label> {defaultButtonObj["bgColor"]}</label>
                 </div>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
