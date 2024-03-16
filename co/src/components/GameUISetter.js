@@ -79,6 +79,7 @@ export default function GameUISetter({openRm}) {
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
     const [idvButtonBgPicUrl, setIdvButtonBgPicUrl] = useState("");
+    const [idvButtonBgPicRotated, setIdvButtonBgPicRotated] = useState(false);
 
     //TODO current: defualt-reset when start rendering this component
     const [defaultButtonObj, setDefaultButtonObj] = useState({
@@ -95,21 +96,6 @@ export default function GameUISetter({openRm}) {
         "justifyContent": "start",
         "alignItems": "start",
         "border": "2px solid #000000"
-    });
-
-    const [defaultButtonStyle, setDefaultButtonStyle] = useState({
-        "height": `${defaultButtonObj["height"]}px`,
-        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-        "color": defaultButtonObj["textColor"],
-        "opacity": defaultButtonObj["transparency"],
-        "border": `${defaultButtonObj["border"]}`,
-        "margin-bottom": `${defaultButtonObj["margin"]}px`,
-        "padding-left": `10px`,
-        "justify-content": defaultButtonObj["justifyContent"],
-        "align-items": defaultButtonObj["alignItems"],
-        "display": "flex",
-        "cursor": "pointer",
-        "user-select": "none"
     });
 
     const buttonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
@@ -259,42 +245,9 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Button Looking: </label>
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
-            setDefaultButtonStyle({   
-                "background": defaultButtonObj["bgColor"],
-                
-                "height": `${defaultButtonObj["height"]}px`,
-                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                "color": defaultButtonObj["textColor"],
-                "opacity": defaultButtonObj["transparency"],
-                "border": `${defaultButtonObj["border"]}`,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`,
-                "justify-content": defaultButtonObj["justifyContent"],
-                "align-items": defaultButtonObj["alignItems"],
-                
-                "display": "flex",
-                "cursor": "pointer",
-                "user-select": "none"
-            });
+          
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
-                setDefaultButtonStyle({   
-                    "background": defaultButtonObj["bgColor"],
-                    
-                    "height": `${defaultButtonObj["height"]}px`,
-                    "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                    "color": defaultButtonObj["textColor"],
-                    "opacity": defaultButtonObj["transparency"],
-                    "border": `${defaultButtonObj["border"]}`,
-                    "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                    "padding-left": `10px`,
-                    "justify-content": defaultButtonObj["justifyContent"],
-                    "align-items": defaultButtonObj["alignItems"],
-                    
-                    "display": "flex",
-                    "cursor": "pointer",
-                    "user-select": "none"
-                });
                 
                 }}>Rectangle: </label>
             {defaultButtonObj["isShape"] && 
@@ -303,89 +256,21 @@ export default function GameUISetter({openRm}) {
                     <input type="color" value={defaultButtonObj["bgColor"]} 
                     onChange={(event)=>{
                         setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});
-                        setDefaultButtonStyle({   
-                            "background": event.target.value,
-                            
-                            "height": `${defaultButtonObj["height"]}px`,
-                            "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                            "color": defaultButtonObj["textColor"],
-                            "opacity": defaultButtonObj["transparency"],
-                            "border": `${defaultButtonObj["border"]}`,
-                            "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                            "padding-left": `10px`,
-                            "justify-content": defaultButtonObj["justifyContent"],
-                            "align-items": defaultButtonObj["alignItems"],
-                            
-                            "display": "flex",
-                            "cursor": "pointer",
-                            "user-select": "none"
-                        });
-                        
+                       
                         }}></input><label> {defaultButtonObj["bgColor"]}</label>
                 </div>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
-            setDefaultButtonStyle({   
-                "background-image": `url('${idvButtonBgPicUrl}')`,
-                "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
-
-                "height": `${defaultButtonObj["height"]}px`,
-                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                "color": defaultButtonObj["textColor"],
-                "opacity": defaultButtonObj["transparency"],
-                "border": `${defaultButtonObj["border"]}`,
-                "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                "padding-left": `10px`,
-                "justify-content": defaultButtonObj["justifyContent"],
-                "align-items": defaultButtonObj["alignItems"],
-                
-                "display": "flex",
-                "cursor": "pointer",
-                "user-select": "none"
-            });
+        
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
-                setDefaultButtonStyle({   
-                    "background-image": `url('${idvButtonBgPicUrl}')`,
-                    "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
-
-                    "height": `${defaultButtonObj["height"]}px`,
-                    "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                    "color": defaultButtonObj["textColor"],
-                    "opacity": defaultButtonObj["transparency"],
-                    "border": `${defaultButtonObj["border"]}`,
-                    "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                    "padding-left": `10px`,
-                    "justify-content": defaultButtonObj["justifyContent"],
-                    "align-items": defaultButtonObj["alignItems"],
-                    
-                    "display": "flex",
-                    "cursor": "pointer",
-                    "user-select": "none"
-                });}}>Base Picture: </label>
+              }}>Base Picture: </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
                             setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);  
-                            setDefaultButtonStyle(         {   
-                                "background-image": `url('${visualMap[event.target.value]["url"]}')`,
-                                "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
-
-                                "height": `${defaultButtonObj["height"]}px`,
-                                "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                                "color": defaultButtonObj["textColor"],
-                                "opacity": defaultButtonObj["transparency"],
-                                "border": `${defaultButtonObj["border"]}`,
-                                "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                                "padding-left": `10px`,
-                                "justify-content": defaultButtonObj["justifyContent"],
-                                "align-items": defaultButtonObj["alignItems"],
-                                
-                                "display": "flex",
-                                "cursor": "pointer",
-                                "user-select": "none"
-                            });
+                
                 }}>
                     
                     <option key="idvDefault" value="">-- Select Resource --</option>
@@ -396,7 +281,11 @@ export default function GameUISetter({openRm}) {
                                 <option value={currKey} key={currKey}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
-                </select><button onClick={() => {openRm();}}>Resource Adding</button></>}
+                </select><button onClick={() => {openRm();}}>Resource Adding</button>
+                <div className="indentOne">               
+                    <input type="checkbox" value={idvButtonBgPicRotated} checked={idvButtonBgPicRotated} onChange={(event)=>{setIdvButtonBgPicRotated(!idvButtonBgPicRotated);}}></input><label> Rotate 90 degrees</label>
+                </div>
+                </>}
         <br></br><label>Gap between buttons: </label>
         <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "margin": event.target.value});
@@ -411,7 +300,41 @@ export default function GameUISetter({openRm}) {
         
             {buttonTextSampleArr.map((item, index)=>{
                 return (
-                <div key={index} style={defaultButtonStyle}>
+                <div key={index} style={
+                    defaultButtonObj["isShape"] === true ? {   
+                        "background": defaultButtonObj["bgColor"],
+                        
+                        "height": `${defaultButtonObj["height"]}px`,
+                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                        "color": defaultButtonObj["textColor"],
+                        "opacity": defaultButtonObj["transparency"],
+                        "border": `${defaultButtonObj["border"]}`,
+                        "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                        "padding-left": `10px`,
+                        "justify-content": defaultButtonObj["justifyContent"],
+                        "align-items": defaultButtonObj["alignItems"],
+                        
+                        "display": "flex",
+                        "cursor": "pointer",
+                        "user-select": "none"
+                    } : {"background-image": `url('${idvButtonBgPicUrl}')`,
+                        "background-size": idvButtonBgPicRotated? `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px` : `${defaultButtonObj["height"]}px ${defaultButtonObj["widthMax"]}px`,
+        
+                        "height": `${defaultButtonObj["height"]}px`,
+                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                        "color": defaultButtonObj["textColor"],
+                        "opacity": defaultButtonObj["transparency"],
+                        "border": `${defaultButtonObj["border"]}`,
+                        "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                        "padding-left": `10px`,
+                        "justify-content": defaultButtonObj["justifyContent"],
+                        "align-items": defaultButtonObj["alignItems"],
+                        
+                        "display": "flex",
+                        "cursor": "pointer",
+                        "user-select": "none"
+                    }      
+                }>
                 {buttonTextSampleArr[index]}
                 </div>);
             }                
