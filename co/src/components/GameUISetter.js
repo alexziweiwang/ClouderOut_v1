@@ -97,6 +97,8 @@ export default function GameUISetter({openRm}) {
         "border": "2px solid #000000"
     });
 
+    const [defaultButtonStyle, setDefaultButtonStyle] = useState({});
+
     const buttonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
     const [txtFrameW, setTxtFrameW] = useState(200);
@@ -246,7 +248,27 @@ export default function GameUISetter({openRm}) {
             setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
             //TODO setup to-record-style-data for is-shape-base
             
-        }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": true});}}>Rectangle: </label>
+        }}></input><label onClick={(event)=>{
+                setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
+                setDefaultButtonStyle({   
+                    "background": defaultButtonObj["bgColor"],
+                    
+                    "height": `${defaultButtonObj["height"]}px`,
+                    "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                    "color": defaultButtonObj["textColor"],
+                    "opacity": defaultButtonObj["transparency"],
+                    "border": `${defaultButtonObj["border"]}`,
+                    "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                    "padding-left": `10px`,
+                    "justify-content": defaultButtonObj["justifyContent"],
+                    "align-items": defaultButtonObj["alignItems"],
+                    
+                    "display": "flex",
+                    "cursor": "pointer",
+                    "user-select": "none"
+                });
+                
+                }}>Rectangle: </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
                     <label>Background Shade: </label><input type="color" value={defaultButtonObj["bgColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});}}></input><label> {defaultButtonObj["bgColor"]}</label>
@@ -256,7 +278,26 @@ export default function GameUISetter({openRm}) {
             setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
             //TODO setup to-record-style-data for is-picture-base
 
-        }}></input><label onClick={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "isShape": false});;}}>Base Picture: </label>
+        }}></input><label onClick={(event)=>{
+                setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
+                setDefaultButtonStyle(         {   
+                    "background-image": `url('${idvButtonBgPicUrl}')`,
+                    "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
+
+                    "height": `${defaultButtonObj["height"]}px`,
+                    "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                    "color": defaultButtonObj["textColor"],
+                    "opacity": defaultButtonObj["transparency"],
+                    "border": `${defaultButtonObj["border"]}`,
+                    "margin-bottom": `${defaultButtonObj["margin"]}px`,
+                    "padding-left": `10px`,
+                    "justify-content": defaultButtonObj["justifyContent"],
+                    "align-items": defaultButtonObj["alignItems"],
+                    
+                    "display": "flex",
+                    "cursor": "pointer",
+                    "user-select": "none"
+                });}}>Base Picture: </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
@@ -283,66 +324,17 @@ export default function GameUISetter({openRm}) {
         *Default Button Preview Area*
         
         
-        {defaultButtonObj["isShape"] === true && 
-        <>
+        
             {buttonTextSampleArr.map((item, index)=>{
                 return (
-                <div key={index} style={
-                    {   
-                        "background": defaultButtonObj["bgColor"],
-                        
-                        "height": `${defaultButtonObj["height"]}px`,
-                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                        "color": defaultButtonObj["textColor"],
-                        "opacity": defaultButtonObj["transparency"],
-                        "border": `${defaultButtonObj["border"]}`,
-                        "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                        "padding-left": `10px`,
-                        "justify-content": defaultButtonObj["justifyContent"],
-                        "align-items": defaultButtonObj["alignItems"],
-                        
-                        "display": "flex",
-                        "cursor": "pointer",
-                        "user-select": "none"
-                    }
-                }>
+                <div key={index} style={defaultButtonStyle}>
                 {buttonTextSampleArr[index]}
                 </div>);
             }                
             )}
-        </>}
+        
 
 
-        {defaultButtonObj["isShape"] === false &&  <>
-            {buttonTextSampleArr.map((item, index)=>{
-                return (
-                <div key={index} style={
-                    {   
-                        "background-image": `url('${idvButtonBgPicUrl}')`,
-                        "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
-
-                        "height": `${defaultButtonObj["height"]}px`,
-                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
-                        "color": defaultButtonObj["textColor"],
-                        "opacity": defaultButtonObj["transparency"],
-                        "border": `${defaultButtonObj["border"]}`,
-                        "margin-bottom": `${defaultButtonObj["margin"]}px`,
-                        "padding-left": `10px`,
-                        "justify-content": defaultButtonObj["justifyContent"],
-                        "align-items": defaultButtonObj["alignItems"],
-                        
-                        "display": "flex",
-                        "cursor": "pointer",
-                        "user-select": "none"
-                    }
-                }
-                onClick={()=>{}}
-                >
-                {buttonTextSampleArr[index]}
-                </div>);
-            }                
-            )}
-        </>}
 
 
     </div>
