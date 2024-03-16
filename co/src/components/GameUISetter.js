@@ -319,6 +319,7 @@ export default function GameUISetter({openRm}) {
                 <div key={index} style={
                     {   
                         "background-image": `url('${idvButtonBgPicUrl}')`,
+                        "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
 
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
