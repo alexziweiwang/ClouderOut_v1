@@ -113,18 +113,22 @@ export default function GameUISetter({openRm}) {
     const [txtFrameTextColor, setTxtFrameTextColor] = useState("#000000");
 
     const [txtFrameObj, setTxtFrameObj] = useState(
-        {"width": txtFrameW,
-        "height": txtFrameH,
-        "positionX": txtFrameX,
-        "positionY": txtFrameY,
-        "cornerRadius": txtFrameCnrRadius,
-        "transparency": txtFrameTransparency,
-        "isShape": txtFrameIsShape,
-        "bgColor": txtFrameColor,
-        "picVar": txtFramePicVar,
-        "fontName": txtFrameFontName,
-        "fontSize": txtFrameFontSize,
-        "textColor": txtFrameTextColor}
+        {"width": 200,
+        "height": 500,
+        "positionX": 100,
+        "positionY": 100,
+        "cornerRadius": 0,
+        "transparency": 0.9,
+        "isShape": true,
+        "bgColor": "#a8d1d6",
+        "picVar": "",
+        "fontName": "",
+        "fontSize": 12,
+        "textColor": "#000000",
+        "justifyContent": "start",
+        "alignItems": "start",
+        "border": "2px solid #000000"
+    }
     );
 
     const [igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
