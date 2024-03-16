@@ -97,7 +97,20 @@ export default function GameUISetter({openRm}) {
         "border": "2px solid #000000"
     });
 
-    const [defaultButtonStyle, setDefaultButtonStyle] = useState({});
+    const [defaultButtonStyle, setDefaultButtonStyle] = useState({
+        "height": `${defaultButtonObj["height"]}px`,
+        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+        "color": defaultButtonObj["textColor"],
+        "opacity": defaultButtonObj["transparency"],
+        "border": `${defaultButtonObj["border"]}`,
+        "margin-bottom": `${defaultButtonObj["margin"]}px`,
+        "padding-left": `10px`,
+        "justify-content": defaultButtonObj["justifyContent"],
+        "align-items": defaultButtonObj["alignItems"],
+        "display": "flex",
+        "cursor": "pointer",
+        "user-select": "none"
+    });
 
     const buttonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
