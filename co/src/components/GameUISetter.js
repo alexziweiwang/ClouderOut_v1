@@ -11,58 +11,6 @@ export default function GameUISetter({openRm}) {
             fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
-        // setTxtFrameObj({"width": txtFrameW,
-        //     "height": txtFrameH,
-        //     "positionX": txtFrameX,
-        //     "positionY": txtFrameY,
-        //     "cornerRadius": txtFrameCnrRadius,
-        //     "transparency": txtFrameTransparency,
-        //     "isShape": txtFrameIsShape,
-        //     "bgColor": txtFrameColor,
-        //     "picVar": txtFramePicVar,
-        //     "fontName": txtFrameFontName,
-        //     "fontSize": txtFrameFontSize,
-        //     "textColor": txtFrameTextColor});
-            
-        // setIgsidebarBackBtnObj({"width": igsidebarBackBtnW,
-        //     "height": igsidebarBackBtnH,
-        //     "positionX": igsidebarBackBtnPosX,
-        //     "positionY": igsidebarBackBtnPosY,
-        //     "cornerRadius": igsidebarBackBtnCnrRadius,
-        //     "transparency": igsidebarBackBtnTransparency,
-        //     "isShape": igsidebarBackBtnIsShape,
-        //     "bgColor": igsidebarBackBtnColor,
-        //     "picVar": igsidebarBackBtnPicVar,
-        //     "textColor": igsidebarBackBtnTextColor});
-        
-        // setIgsidebarMenuObj({"width": igsidebarMenuW,
-        //     "height": igsidebarMenuH,
-        //     "positionX": igsidebarMenuPosX,
-        //     "positionY": igsidebarMenuPosY,
-        //     "cornerRadius": igsidebarMenuCnrRadius,
-        //     "transparency": igsidebarMenuTransparency,
-        //     "isShape": igsidebarMenuIsShape,
-        //     "bgColor": igsidebarMenuShade,
-        //     "picVar": igsidebarMenuPicVar,
-        //     "textColor": igsidebarMenuTextColor,
-        //     "isSingleButton": igsidebarMenuIsSingleBtn,
-        //     "listItemPadding": igsidebarMenuListPadding,
-        //     "listDirection": igsidebarMenuIsListDirection,
-        //     "autoOption": autoBtn,
-        //     "saveGameOption": saveBtn,
-        //     "loadGameOption": loadBtn,
-        //     "settingsOption": settingsBtn,
-        //     "returnToTitleOption": returnTitlePageBtn,
-        //     "inGameDataOption": inGameDataBtn,
-        //     "dealOption": dealBtn});  
-            
-        // setIdvButtonStyle({
-        //     "height": defaultButtonObj["height"],
-        //     "border-radius": defaultButtonObj["cornerRadius"],
-        //     "color": defaultButtonObj["textColor"],
-        //     "opacity": defaultButtonObj["transparency"]/100,
-        //     "border": idvButtonBorderString
-        // })
     });
 
     const username = "user002"; //TODO testing
@@ -82,6 +30,7 @@ export default function GameUISetter({openRm}) {
     const [idvButtonBgPicRotated, setIdvButtonBgPicRotated] = useState(false);
 
     //TODO current: defualt-reset when start rendering this component
+    //TODO later: fetch from cloud-db for setting records
     const [defaultButtonObj, setDefaultButtonObj] = useState({
         "widthMin": 200,
         "widthMax": 700,
@@ -144,16 +93,16 @@ export default function GameUISetter({openRm}) {
     const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#000000");
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
-        {"width": igsidebarBackBtnW,
-        "height": igsidebarBackBtnH,
-        "positionX": igsidebarBackBtnPosX,
-        "positionY": igsidebarBackBtnPosY,
-        "cornerRadius": igsidebarBackBtnCnrRadius,
-        "transparency": igsidebarBackBtnTransparency,
-        "isShape": igsidebarBackBtnIsShape,
-        "bgColor": igsidebarBackBtnColor,
-        "picVar": igsidebarBackBtnPicVar,
-        "textColor": igsidebarBackBtnTextColor}
+        {"width": 100,
+        "height": 100,
+        "positionX": 100,
+        "positionY": 100,
+        "cornerRadius": 0,
+        "transparency": 0.9,
+        "isShape": false,
+        "bgColor": "#a8d1d6",
+        "picVar": "",
+        "textColor": "#000000"}
     );
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
