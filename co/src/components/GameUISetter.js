@@ -81,8 +81,6 @@ export default function GameUISetter({openRm}) {
     }
     );
 
-    const [igsidebarBackBtnCnrRadius, setIgsidebarBackBtnCnrRadius] = useState(0);
-    const [igsidebarBackBtnTransparency, setIgsidebarBackBtnTransparency] = useState(90);
     const [igsidebarBackBtnPosX, setIgsidebarBackBtnPosX] = useState(100);
     const [igsidebarBackBtnPosY, setIgsidebarBackBtnPosY] = useState(100);
     const [igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
@@ -315,17 +313,23 @@ export default function GameUISetter({openRm}) {
     <br></br>Back Button: 
     <div className="indentOne">
         <label>Corner Radius: </label>
-            <select value={igsidebarBackBtnCnrRadius} onChange={(event)=>{setIgsidebarBackBtnCnrRadius(event.target.value);}}>
+            <select value={igsidebarBackBtnObj["cornerRadius"]} onChange={(event)=>{
+                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "cornerRadius": event.target.value});
+                }}>
                 <option value="0" key="0igsBbtn">-- Select Radius (default 0) --</option>
                 <option value="1" key="1igsBbtn">1</option>
                 <option value="5" key="5igsBbtn">5</option>
             </select>
-        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnTransparency} type="range" min="0" max="100" step="1" onChange={(event)=>{setIgsidebarBackBtnTransparency(event.target.value);}}></input><label>{igsidebarBackBtnTransparency}%</label>
+        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnObj["transparency"]} type="range" min="0.9" max="1" step="0.1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "transparency": event.target.value});
+            }}></input><label>{igsidebarBackBtnObj["transparency"]}%</label>
         <br></br><label>Font Color: </label><input type="color" value={igsidebarBackBtnTextColor} onChange={(event)=>{setIgsidebarBackBtnTextColor(event.target.value);}}></input><label>{igsidebarBackBtnTextColor}</label>
         <br></br>Position X: <input value={igsidebarBackBtnPosX} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosX} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnPosX(event.target.value);}}></input>
         <br></br>Position Y: <input value={igsidebarBackBtnPosY} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosY} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input>
-        <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input><input type="number" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
-        <br></br>Height: <input type="range" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input><input type="number" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
+        <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
+            <input type="number" value={igsidebarBackBtnW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
+        <br></br>Height: <input type="range" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
+            <input type="number" value={igsidebarBackBtnH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(true);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(true);}}>Rectangle: </label>
         {igsidebarBackBtnIsShape && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={!igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(false);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(false);}}>Base Picture: </label>
