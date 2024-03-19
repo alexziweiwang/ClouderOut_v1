@@ -81,7 +81,6 @@ export default function GameUISetter({openRm}) {
     }
     );
 
-    const [igsidebarBackBtnPosY, setIgsidebarBackBtnPosY] = useState(100);
     const [igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
     const [igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
@@ -328,7 +327,11 @@ export default function GameUISetter({openRm}) {
             }}></input><input type="number" value={igsidebarBackBtnObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
             }}></input>
-        <br></br>Position Y: <input value={igsidebarBackBtnPosY} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input><input type="number" value={igsidebarBackBtnPosY} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnPosY(event.target.value);}}></input>
+        <br></br>Position Y: <input value={igsidebarBackBtnObj["positionY"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
+            }}></input><input type="number" value={igsidebarBackBtnObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
+                }}></input>
         <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
             <input type="number" value={igsidebarBackBtnW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
         <br></br>Height: <input type="range" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
