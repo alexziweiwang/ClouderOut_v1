@@ -81,7 +81,6 @@ export default function GameUISetter({openRm}) {
     }
     );
 
-    const [igsidebarBackBtnW, setIgsidebarBackBtnW] = useState(100);
     const [igsidebarBackBtnH, setIgsidebarBackBtnH] = useState(100);
     const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#a8d1d6");
@@ -332,8 +331,12 @@ export default function GameUISetter({openRm}) {
             }}></input><input type="number" value={igsidebarBackBtnObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
                 }}></input>
-        <br></br>Width: <input type="range" value={igsidebarBackBtnW} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
-            <input type="number" value={igsidebarBackBtnW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnW(event.target.value);}}></input>
+        <br></br>Width: <input type="range" value={igsidebarBackBtnObj["width"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
+            }}></input>
+            <input type="number" value={igsidebarBackBtnObj["width"]} min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
+            }}></input>
         <br></br>Height: <input type="range" value={igsidebarBackBtnH} type="range" min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
             <input type="number" value={igsidebarBackBtnH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarBackBtnH(event.target.value);}}></input>
         <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(true);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(true);}}>Rectangle: </label>
