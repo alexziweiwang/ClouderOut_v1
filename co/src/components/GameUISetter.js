@@ -318,7 +318,8 @@ export default function GameUISetter({openRm}) {
                         
                         "display": "flex",
                         "cursor": "pointer",
-                        "user-select": "none"
+                        "user-select": "none",
+                        "transition": "all 0.2s ease-out"
                     } : {"background-image": `url('${idvButtonBgPicUrl}')`,
                         "background-size": idvButtonBgPicRotated? `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px` : `${defaultButtonObj["height"]}px ${defaultButtonObj["widthMax"]}px`,
         
@@ -334,23 +335,18 @@ export default function GameUISetter({openRm}) {
                         
                         "display": "flex",
                         "cursor": "pointer",
-                        "user-select": "none"
+                        "user-select": "none",
+                        "transition": "all 0.2s ease-out"
                     }      
                 }
                 onMouseDown={
                     ()=>{
-                        let largerBorder = parseInt(idvButtonBorderSize) + 1;
-                        let smallerBorder = parseInt(idvButtonBorderSize) - 1;
-
-                        document.getElementById(currId).style.borderLeft = `${largerBorder}px solid #000000`;
-                        document.getElementById(currId).style.borderTop = `${largerBorder}px solid #000000`;
-                        document.getElementById(currId).style.borderRight = `${smallerBorder}px solid #000000`;
-                        document.getElementById(currId).style.borderBottom = `${smallerBorder}px solid #000000`;
+                        document.getElementById(currId).style.filter = "invert(100%)";
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById(currId).style.border = `${defaultButtonObj["border"]}`;
+                        document.getElementById(currId).style.filter = "invert(0%)";
                     }
                 }
                 
