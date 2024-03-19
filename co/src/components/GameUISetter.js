@@ -237,7 +237,8 @@ export default function GameUISetter({openRm}) {
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
                     }}></input><label> {idvButtonBorderColor}</label>
-                    <br></br><label>Border Size: </label><input type="range" value={idvButtonBorderSize} min="0" max="5" step="1" onChange={(event)=>{
+                    <br></br><label>Border Size: </label>
+                    <input type="range" value={idvButtonBorderSize} min="0" max="3" step="1" onChange={(event)=>{
                         setIdvButtonBorderSize(event.target.value);
                         let temp = event.target.value + "px solid " + idvButtonBorderColor;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
@@ -249,7 +250,7 @@ export default function GameUISetter({openRm}) {
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
                 
-                }}>Rectangle: </label>
+                }}>Rectangle & Color Filled: </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
                     <label>Background Shade: </label>
@@ -299,8 +300,9 @@ export default function GameUISetter({openRm}) {
         
         
             {buttonTextSampleArr.map((item, index)=>{
+                let currId = "defaultButtonDiv" + index;
                 return (
-                <div key={index} style={
+                <div id={currId} key={index} style={
                     defaultButtonObj["isShape"] === true ? {   
                         "background": defaultButtonObj["bgColor"],
                         
@@ -334,7 +336,25 @@ export default function GameUISetter({openRm}) {
                         "cursor": "pointer",
                         "user-select": "none"
                     }      
-                }>
+                }
+                onMouseDown={
+                    ()=>{
+                        let largerBorder = parseInt(idvButtonBorderSize) + 1;
+                        let smallerBorder = parseInt(idvButtonBorderSize) - 1;
+
+                        document.getElementById(currId).style.borderLeft = `${largerBorder}px solid #000000`;
+                        document.getElementById(currId).style.borderTop = `${largerBorder}px solid #000000`;
+                        document.getElementById(currId).style.borderRight = `${smallerBorder}px solid #000000`;
+                        document.getElementById(currId).style.borderBottom = `${smallerBorder}px solid #000000`;
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById(currId).style.border = `${defaultButtonObj["border"]}`;
+                    }
+                }
+                
+                >
                 {buttonTextSampleArr[index]}
                 </div>);
             }                
