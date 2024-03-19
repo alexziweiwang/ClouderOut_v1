@@ -94,7 +94,7 @@ export default function GameUISetter({openRm}) {
         "textColor": "#000000",
         "margin": 5,
         "justifyContent": "start",
-        "alignItems": "start",
+        "alignItems": "center",
         "border": "2px solid #000000"
     });
 
@@ -284,7 +284,7 @@ export default function GameUISetter({openRm}) {
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
                 <div className="indentOne">               
-                    <input type="checkbox" value={idvButtonBgPicRotated} checked={idvButtonBgPicRotated} onChange={(event)=>{setIdvButtonBgPicRotated(!idvButtonBgPicRotated);}}></input><label> Rotate 90 degrees</label>
+                    <input type="checkbox" value={idvButtonBgPicRotated} checked={idvButtonBgPicRotated} onChange={(event)=>{setIdvButtonBgPicRotated(!idvButtonBgPicRotated);}}></input><label> Rotate Picture for 90 degrees</label>
                 </div>
                 </>}
         <br></br><label>Gap between buttons: </label>
@@ -385,6 +385,9 @@ export default function GameUISetter({openRm}) {
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
         <button onClick={() => {openRm()}}>Resource Adding</button></>}
+        <div className="buttonPreviewArea2">
+        *Back Button Preview Area*
+        </div>
     </div>
    
 

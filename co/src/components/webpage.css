@@ -1155,10 +1155,21 @@ button:hover {
 }
 
 .buttonPreviewArea {
-    background-color: grey;
+    background-color: rgb(191, 191, 191);
     border-radius: 0px;
     margin: 5px;
     padding: 3px;
     height: 300px;
+    overflow: auto;
+}
+
+
+.buttonPreviewArea2 {
+    background-color: rgb(191, 191, 191);
+    border-radius: 0px;
+    margin: 5px;
+    padding: 3px;
+    height: 300px;
+    width: 300px;
     overflow: auto;
 }
