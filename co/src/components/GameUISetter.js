@@ -47,7 +47,7 @@ export default function GameUISetter({openRm}) {
         "border": "2px solid #000000"
     });
 
-    const buttonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
+    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
     const [txtFrameW, setTxtFrameW] = useState(200);
     const [txtFrameH, setTxtFrameH] = useState(500);
@@ -93,6 +93,9 @@ export default function GameUISetter({openRm}) {
         "picVar": "",
         "textColor": "#000000"}
     );
+
+    const backButtonTextSampleArr = "<-";
+
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
@@ -237,7 +240,7 @@ export default function GameUISetter({openRm}) {
         
         
         
-            {buttonTextSampleArr.map((item, index)=>{
+            {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
                 <div id={currId} key={index} style={
@@ -289,7 +292,7 @@ export default function GameUISetter({openRm}) {
                 }
                 
                 >
-                {buttonTextSampleArr[index]}
+                {defaultButtonTextSampleArr[index]}
                 </div>);
             }                
             )}
@@ -357,6 +360,28 @@ export default function GameUISetter({openRm}) {
         <button onClick={() => {openRm()}}>Resource Adding</button></>}
         <div className="buttonPreviewArea2">
         *Back Button Preview Area*
+        
+                <div id="backButtonDiv" key="backButtonPreview"
+                    style={{
+                        "border": "2px solid #000000"
+                    }}
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("backButtonDiv").style.filter = "invert(100%)";
+                        }
+                        }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("backButtonDiv").style.filter = "invert(0%)";
+                        }
+                    }
+                >
+                {backButtonTextSampleArr}
+                </div>
+        
+        
+
+
         </div>
     </div>
    
