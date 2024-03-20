@@ -81,7 +81,7 @@ export default function GameUISetter({openRm}) {
     }
     );
 
-    const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
+    const [igsidebarBackBtnObj["picVar"], setIgsidebarBackBtnPicVar] = useState("");
     const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#000000");
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
@@ -350,7 +350,9 @@ export default function GameUISetter({openRm}) {
             }}></input><label>{igsidebarBackBtnObj["bgColor"]}</label></>}
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
         {!igsidebarBackBtnObj["isShape"] && <>
-            <select value={igsidebarBackBtnPicVar} onChange={(event)=>{setIgsidebarBackBtnPicVar(event.target.value);}}>
+            <select value={igsidebarBackBtnObj["picVar"]} onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "picVar": event.target.value});
+            }}>
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
         <button onClick={() => {openRm()}}>Resource Adding</button></>}
