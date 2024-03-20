@@ -1169,7 +1169,10 @@ button:hover {
     border-radius: 0px;
     margin: 5px;
     padding: 3px;
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     overflow: auto;
+    padding-left: 30%;
+    padding-top: 30%;
+
 }

@@ -82,8 +82,8 @@ export default function GameUISetter({openRm}) {
     );
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
-        {"width": 100,
-        "height": 100,
+        {"width": 50,
+        "height": 50,
         "positionX": 100,
         "positionY": 100,
         "cornerRadius": 0,
@@ -235,9 +235,10 @@ export default function GameUISetter({openRm}) {
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
     </div>
-    <div className="buttonPreviewArea">
-        *Default Button Preview Area*
-              
+    
+    <br></br><br></br><br></br>
+    *Default Button Preview Area*
+    <div className="buttonPreviewArea">              
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
@@ -356,8 +357,10 @@ export default function GameUISetter({openRm}) {
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
         <button onClick={() => {openRm()}}>Resource Adding</button></>}
-        <div className="buttonPreviewArea2">
+        <br></br><br></br><br></br>
         *Back Button Preview Area*
+
+        <div className="buttonPreviewArea2">
         
                 <div id="backButtonDiv" key="backButtonPreview"
                     style={igsidebarBackBtnObj["isShape"] === true ?{
