@@ -362,8 +362,16 @@ export default function GameUISetter({openRm}) {
         *Back Button Preview Area*
         
                 <div id="backButtonDiv" key="backButtonPreview"
-                    style={{
+                    style={igsidebarBackBtnObj["isShape"] === true ?{
+                        "background": igsidebarBackBtnObj["bgColor"],
+
+
                         "border": "2px solid #000000"
+                    } : {
+                        "background-image": `url('')`,
+                        "background-size": true ? `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px` : `${igsidebarBackBtnObj["height"]}px ${igsidebarBackBtnObj["width"]}px`,
+
+                        
                     }}
                     onMouseDown={
                         ()=>{
