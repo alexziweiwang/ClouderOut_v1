@@ -81,7 +81,6 @@ export default function GameUISetter({openRm}) {
     }
     );
 
-    const [igsidebarBackBtnIsShape, setIgsidebarBackBtnIsShape] = useState(true);
     const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#a8d1d6");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
     const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#000000");
@@ -342,10 +341,14 @@ export default function GameUISetter({openRm}) {
             <input type="number" value={igsidebarBackBtnObj["height"]} min="0" max="1200" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "height": event.target.value});
             }}></input>
-        <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(true);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(true);}}>Rectangle: </label>
-        {igsidebarBackBtnIsShape && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
-        <br></br><input type="radio" value={igsidebarBackBtnIsShape} checked={!igsidebarBackBtnIsShape} onChange={()=>{setIgsidebarBackBtnIsShape(false);}}></input><label onClick={()=>{setIgsidebarBackBtnIsShape(false);}}>Base Picture: </label>
-        {!igsidebarBackBtnIsShape && <>
+        <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={igsidebarBackBtnObj["isShape"]} onChange={()=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": true});
+            }}></input><label onClick={()=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": true});
+                }}>Rectangle: </label>
+        {igsidebarBackBtnObj["isShape"] && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
+        <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
+        {!igsidebarBackBtnObj["isShape"] && <>
             <select value={igsidebarBackBtnPicVar} onChange={(event)=>{setIgsidebarBackBtnPicVar(event.target.value);}}>
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
