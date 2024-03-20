@@ -237,9 +237,7 @@ export default function GameUISetter({openRm}) {
     </div>
     <div className="buttonPreviewArea">
         *Default Button Preview Area*
-        
-        
-        
+              
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
@@ -365,14 +363,37 @@ export default function GameUISetter({openRm}) {
                     style={igsidebarBackBtnObj["isShape"] === true ?{
                         "background": igsidebarBackBtnObj["bgColor"],
 
+                        "width": igsidebarBackBtnObj["width"],
+                        "height": igsidebarBackBtnObj["height"],
+                        "top": igsidebarBackBtnObj["positionX"],
+                        "left": igsidebarBackBtnObj["positionY"],
+                        "color": igsidebarBackBtnObj["textColor"],
+                        "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
+                        "opacity": igsidebarBackBtnObj["transparency"],
 
-                        "border": "2px solid #000000"
+                        "border": "2px solid #000000",
+                        "cursor": "pointer",
+                        "user-select": "none",
+                        "transition": "all 0.2s ease-out"
                     } : {
                         "background-image": `url('')`,
                         "background-size": true ? `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px` : `${igsidebarBackBtnObj["height"]}px ${igsidebarBackBtnObj["width"]}px`,
 
-                        
+                        "width": igsidebarBackBtnObj["width"],
+                        "height": igsidebarBackBtnObj["height"],
+                        "top": igsidebarBackBtnObj["positionX"],
+                        "left": igsidebarBackBtnObj["positionY"],
+                        "color": igsidebarBackBtnObj["textColor"],
+                        "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
+                        "opacity": igsidebarBackBtnObj["transparency"],
+
+                        "border": "2px solid #000000",
+                        "cursor": "pointer",
+                        "user-select": "none",
+                        "transition": "all 0.2s ease-out"
                     }}
+
+                   
                     onMouseDown={
                         ()=>{
                             document.getElementById("backButtonDiv").style.filter = "invert(100%)";
@@ -386,10 +407,7 @@ export default function GameUISetter({openRm}) {
                 >
                 {backButtonTextSampleArr}
                 </div>
-        
-        
-
-
+ 
         </div>
     </div>
    
