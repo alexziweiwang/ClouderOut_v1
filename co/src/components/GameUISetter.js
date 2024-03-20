@@ -81,7 +81,6 @@ export default function GameUISetter({openRm}) {
     }
     );
 
-    const [igsidebarBackBtnColor, setIgsidebarBackBtnColor] = useState("#a8d1d6");
     const [igsidebarBackBtnPicVar, setIgsidebarBackBtnPicVar] = useState("");
     const [igsidebarBackBtnTextColor, setIgsidebarBackBtnTextColor] = useState("#000000");
 
@@ -346,7 +345,9 @@ export default function GameUISetter({openRm}) {
             }}></input><label onClick={()=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": true});
                 }}>Rectangle: </label>
-        {igsidebarBackBtnObj["isShape"] && <><input type="color" value={igsidebarBackBtnColor} onChange={(event)=>{setIgsidebarBackBtnColor(event.target.value);}}></input><label>{igsidebarBackBtnColor}</label></>}
+        {igsidebarBackBtnObj["isShape"] && <><input type="color" value={igsidebarBackBtnObj["bgColor"]} onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "bgColor": event.target.value});
+            }}></input><label>{igsidebarBackBtnObj["bgColor"]}</label></>}
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
         {!igsidebarBackBtnObj["isShape"] && <>
             <select value={igsidebarBackBtnPicVar} onChange={(event)=>{setIgsidebarBackBtnPicVar(event.target.value);}}>
