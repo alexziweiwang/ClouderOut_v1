@@ -84,6 +84,8 @@ export default function GameUISetter({openRm}) {
 
     const [igsidebarBackBtnBorderColor, setIgsidebarBackBtnBorderColor] = useState("#000000");
     const [igsidebarBackBtnBorderSize, setIgsidebarBackBtnBorderSize] = useState("2");
+    const [igsidebarBackBtnBgPicUrl, setIgsidebarBackBtnBgPicUrl] = useState("");
+    const [igsidebarBackBtnBgPicRotated, setIgsidebarBackBtnBgPicRotated] = useState(false);
 
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": 50,
@@ -355,7 +357,7 @@ export default function GameUISetter({openRm}) {
         {!igsidebarBackBtnObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setIgsidebarBackBtnObj({...defaultButtonObj,  "picVar": event.target.value}); 
-                            // TODO: set back-button selected url 
+                            setIgsidebarBackBtnBgPicUrl(visualMap[event.target.value]["url"]);
                 }}>                    
                     <option key="idvBackButton" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
@@ -406,7 +408,7 @@ export default function GameUISetter({openRm}) {
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
                     } : {
-                        "background-image": `url('')`,
+                        "background-image": `url('${igsidebarBackBtnBgPicUrl}')`,
                         "background-size": true ? `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px` : `${igsidebarBackBtnObj["height"]}px ${igsidebarBackBtnObj["width"]}px`,
                 
                         "width": `${igsidebarBackBtnObj["width"]}px`,
