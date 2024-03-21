@@ -355,10 +355,11 @@ export default function GameUISetter({openRm}) {
             }}></input><label>{igsidebarBackBtnObj["bgColor"]}</label></>}
         
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{
-            setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
+            setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});
+            }}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
         {!igsidebarBackBtnObj["isShape"] && <>
-                <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                            setIgsidebarBackBtnObj({...defaultButtonObj,  "picVar": event.target.value}); 
+                <select value={igsidebarBackBtnObj["picVar"]} onChange={(event)=>{
+                            setIgsidebarBackBtnObj({...igsidebarBackBtnObj,  "picVar": event.target.value}); 
                             setIgsidebarBackBtnBgPicUrl(visualMap[event.target.value]["url"]);
                 }}>                    
                     <option key="idvBackButton" value="">-- Select Resource --</option>
