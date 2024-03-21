@@ -95,11 +95,11 @@ export default function GameUISetter({openRm}) {
         "isShape": false,
         "bgColor": "#a8d1d6",
         "picVar": "",
-        "textColor": "#000000"}
+        "textColor": "#000000",
+        "buttonText": "<-"
+    
+    }
     );
-
-    const [backButtonTextSample, setBackButtonTextSample] = useState("<-");
-
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
@@ -351,7 +351,7 @@ export default function GameUISetter({openRm}) {
 
         <br></br><label>Border Color: </label>
         <input type="color" value={igsidebarBackBtnBorderColor} onChange={(event)=>{setIgsidebarBackBtnBorderColor(event.target.value);}}></input>
-        <label>{igsidebarBackBtnBorderColor}</label>
+        <label> {igsidebarBackBtnBorderColor}</label>
 
         <br></br><label>Button Looking:</label>
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={igsidebarBackBtnObj["isShape"]} onChange={()=>{
@@ -370,7 +370,9 @@ export default function GameUISetter({openRm}) {
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
         <button onClick={() => {openRm()}}>Resource Adding</button>
-        <br></br><label>Text Content: </label><input value={backButtonTextSample} onChange={(event)=>{setBackButtonTextSample(event.target.value);}}></input>
+        <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
+            setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
+            }}></input>
         </>}
         <br></br><br></br><br></br>
         *Back Button Preview Area*
@@ -429,7 +431,7 @@ export default function GameUISetter({openRm}) {
                         }
                     }
                 >
-                {backButtonTextSample}
+                {igsidebarBackBtnObj["buttonText"]}
                 </div>
  
         </div>
@@ -463,7 +465,7 @@ export default function GameUISetter({openRm}) {
     </select>
     
     <br></br><label>Font Size: </label><input type="range" value={txtFrameFontSize} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input><input type="number" value={txtFrameFontSize} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input>
-    <br></br><label>Font Color: </label><input type="color" value={txtFrameTextColor} onChange={(event)=>{setTxtFrameTextColor(event.target.value);}}></input><label>{txtFrameTextColor}</label>
+    <br></br><label>Font Color: </label><input type="color" value={txtFrameTextColor} onChange={(event)=>{setTxtFrameTextColor(event.target.value);}}></input><label> {txtFrameTextColor}</label>
 
     <br></br><br></br><br></br>
 
@@ -478,7 +480,7 @@ export default function GameUISetter({openRm}) {
         <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
         <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
         <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label><br></br>
-        <label>Font Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label>{igsidebarMenuTextColor}</label>
+        <label>Font Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label> {igsidebarMenuTextColor}</label>
         <br></br>       
         <label>Corner Radius: </label>
             <select value={igsidebarMenuCnrRadius} onChange={(event)=>{setIgsidebarMenuCnrRadius(event.target.value);}}>
