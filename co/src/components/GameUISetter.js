@@ -27,7 +27,6 @@ export default function GameUISetter({openRm}) {
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
     const [idvButtonBgPicUrl, setIdvButtonBgPicUrl] = useState("");
-    const [idvButtonBgPicRotated, setIdvButtonBgPicRotated] = useState(false);
 
     //TODO current: defualt-reset when start rendering this component
     //TODO later: fetch from cloud-db for setting records
@@ -85,8 +84,7 @@ export default function GameUISetter({openRm}) {
     const [igsidebarBackBtnBorderColor, setIgsidebarBackBtnBorderColor] = useState("#000000");
     const [igsidebarBackBtnBorderSize, setIgsidebarBackBtnBorderSize] = useState("2");
     const [igsidebarBackBtnBgPicUrl, setIgsidebarBackBtnBgPicUrl] = useState("");
-    const [igsidebarBackBtnBgPicRotated, setIgsidebarBackBtnBgPicRotated] = useState(false);
-
+    
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": 50,
         "height": 50,
@@ -229,9 +227,7 @@ export default function GameUISetter({openRm}) {
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
-                <div className="indentOne">               
-                    <input type="checkbox" value={idvButtonBgPicRotated} checked={idvButtonBgPicRotated} onChange={(event)=>{setIdvButtonBgPicRotated(!idvButtonBgPicRotated);}}></input><label> Rotate Picture for 90 degrees</label>
-                </div>
+         
                 </>}
         <br></br><label>Gap between buttons: </label>
         <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
@@ -266,8 +262,7 @@ export default function GameUISetter({openRm}) {
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
                     } : {"background-image": `url('${idvButtonBgPicUrl}')`,
-                        "background-size": idvButtonBgPicRotated ? `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px` : `${defaultButtonObj["height"]}px ${defaultButtonObj["widthMax"]}px`,
-                        "transform": idvButtonBgPicRotated ? "rotate(90deg)" :  "rotate(0deg)",
+                        "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
@@ -371,9 +366,6 @@ export default function GameUISetter({openRm}) {
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
-                <br></br><div className="indentOne">
-                    <input type="checkbox" value={igsidebarBackBtnBgPicRotated} checked={igsidebarBackBtnBgPicRotated} onChange={()=>{setIgsidebarBackBtnBgPicRotated(!igsidebarBackBtnBgPicRotated);}}></input><label>Rotate Picture for 90 degrees</label>
-                </div>
         </>}
 
         <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
@@ -417,9 +409,8 @@ export default function GameUISetter({openRm}) {
                         "transition": "all 0.2s ease-out"
                     } : {
                         "background-image": `url('${igsidebarBackBtnBgPicUrl}')`,
-                        "background-size": igsidebarBackBtnBgPicRotated ? `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px` : `${igsidebarBackBtnObj["height"]}px ${igsidebarBackBtnObj["width"]}px`,
+                        "background-size": `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px`,
                         
-                        "transform": igsidebarBackBtnBgPicRotated ? "rotate(90deg)" :  "rotate(0deg)",
                         "width": `${igsidebarBackBtnObj["width"]}px`,
                         "height": `${igsidebarBackBtnObj["height"]}px`,
                         "color": igsidebarBackBtnObj["textColor"],
