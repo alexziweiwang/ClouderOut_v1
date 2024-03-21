@@ -217,14 +217,13 @@ export default function GameUISetter({openRm}) {
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
                             setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);  
                 
-                }}>
-                    
+                }}>                    
                     <option key="idvDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "defaultButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-
                             return (
-                                <option value={currKey} key={currKey}>{visualMap[currKey]["var"]}</option>
+                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
@@ -322,7 +321,7 @@ export default function GameUISetter({openRm}) {
             }}></input><label>{igsidebarBackBtnObj["transparency"]}</label>
         <br></br><label>Font Color: </label><input type="color" value={igsidebarBackBtnObj["textColor"]} onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
-            }}></input><label>{igsidebarBackBtnObj["textColor"]}</label>
+            }}></input><label> {igsidebarBackBtnObj["textColor"]}</label>
         <br></br>Width: <input type="range" value={igsidebarBackBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
             }}></input>
@@ -354,12 +353,19 @@ export default function GameUISetter({openRm}) {
             }}></input><label>{igsidebarBackBtnObj["bgColor"]}</label></>}
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
         {!igsidebarBackBtnObj["isShape"] && <>
-            <select value={igsidebarBackBtnObj["picVar"]} onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "picVar": event.target.value});
-            }}>
-                <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
-            </select>
-        <button onClick={() => {openRm()}}>Resource Adding</button>
+                <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
+                            setIgsidebarBackBtnObj({...defaultButtonObj,  "picVar": event.target.value}); 
+                            // TODO: set back-button selected url 
+                }}>                    
+                    <option key="idvBackButton" value="">-- Select Resource --</option>
+                    {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "backtButton" + currKey;
+                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            return (
+                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                            );
+                    })}
+                </select><button onClick={() => {openRm();}}>Resource Adding</button>
         <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
             setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
             }}></input>
