@@ -98,7 +98,7 @@ export default function GameUISetter({openRm}) {
         "textColor": "#000000"}
     );
 
-    const backButtonTextSampleArr = "<-";
+    const [backButtonTextSample, setBackButtonTextSample] = useState("<-");
 
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
@@ -346,11 +346,12 @@ export default function GameUISetter({openRm}) {
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "height": event.target.value});
             }}></input>
         <br></br><label>Border Size: </label>
-            <input type="range"></input>
-
+            <input type="range" value={igsidebarBackBtnBorderSize} min="0" max="3" step="1" onChange={(event)=>{setIgsidebarBackBtnBorderSize(event.target.value);}}></input>
+            <label>{igsidebarBackBtnBorderSize}</label>
 
         <br></br><label>Border Color: </label>
-        <input type="color"></input>
+        <input type="color" value={igsidebarBackBtnBorderColor} onChange={(event)=>{setIgsidebarBackBtnBorderColor(event.target.value);}}></input>
+        <label>{igsidebarBackBtnBorderColor}</label>
 
         <br></br><label>Button Looking:</label>
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={igsidebarBackBtnObj["isShape"]} onChange={()=>{
@@ -368,7 +369,9 @@ export default function GameUISetter({openRm}) {
             }}>
                 <option key="igsidebarBackBtnDefault" value="">-- Select Resource --</option>
             </select>
-        <button onClick={() => {openRm()}}>Resource Adding</button></>}
+        <button onClick={() => {openRm()}}>Resource Adding</button>
+        <br></br><label>Text Content: </label><input value={backButtonTextSample} onChange={(event)=>{setBackButtonTextSample(event.target.value);}}></input>
+        </>}
         <br></br><br></br><br></br>
         *Back Button Preview Area*
 
@@ -386,6 +389,9 @@ export default function GameUISetter({openRm}) {
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
 
+                        "justify-content": "center",
+                        "align-items": "center",                        
+                        "display": "flex",
                         "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnBorderColor}`,
                         "cursor": "pointer",
                         "user-select": "none",
@@ -402,7 +408,10 @@ export default function GameUISetter({openRm}) {
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
 
-                        "border": "2px solid #000000",
+                        "justify-content": "center",
+                        "align-items": "center",
+                        "display": "flex",
+                        "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnBorderColor}`,
                         "cursor": "pointer",
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
@@ -420,7 +429,7 @@ export default function GameUISetter({openRm}) {
                         }
                     }
                 >
-                {backButtonTextSampleArr}
+                {backButtonTextSample}
                 </div>
  
         </div>
