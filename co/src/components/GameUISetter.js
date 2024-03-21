@@ -81,6 +81,10 @@ export default function GameUISetter({openRm}) {
     }
     );
 
+
+    const [igsidebarBackBtnBorderColor, setIgsidebarBackBtnBorderColor] = useState("#000000");
+    const [igsidebarBackBtnBorderSize, setIgsidebarBackBtnBorderSize] = useState("2");
+
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": 50,
         "height": 50,
@@ -313,9 +317,9 @@ export default function GameUISetter({openRm}) {
                 <option value="1" key="1igsBbtn">1</option>
                 <option value="5" key="5igsBbtn">5</option>
             </select>
-        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnObj["transparency"]} type="range" min="0.9" max="1" step="0.1" onChange={(event)=>{
+        <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnObj["transparency"]} type="range" min="0" max="1" step="0.1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "transparency": event.target.value});
-            }}></input><label>{igsidebarBackBtnObj["transparency"]}%</label>
+            }}></input><label>{igsidebarBackBtnObj["transparency"]}</label>
         <br></br><label>Font Color: </label><input type="color" value={igsidebarBackBtnObj["textColor"]} onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
             }}></input><label>{igsidebarBackBtnObj["textColor"]}</label>
@@ -361,7 +365,7 @@ export default function GameUISetter({openRm}) {
         *Back Button Preview Area*
 
         <div className="buttonPreviewArea2">
-        
+
                 <div id="backButtonDiv" key="backButtonPreview"
                     style={igsidebarBackBtnObj["isShape"] === true ?{
                         "background": igsidebarBackBtnObj["bgColor"],
@@ -374,7 +378,7 @@ export default function GameUISetter({openRm}) {
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
 
-                        "border": "2px solid #000000",
+                        "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnBorderColor}`,
                         "cursor": "pointer",
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
