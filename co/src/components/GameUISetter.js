@@ -266,8 +266,8 @@ export default function GameUISetter({openRm}) {
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
                     } : {"background-image": `url('${idvButtonBgPicUrl}')`,
-                        "background-size": idvButtonBgPicRotated? `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px` : `${defaultButtonObj["height"]}px ${defaultButtonObj["widthMax"]}px`,
-        
+                        "background-size": idvButtonBgPicRotated ? `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px` : `${defaultButtonObj["height"]}px ${defaultButtonObj["widthMax"]}px`,
+                        "transform": idvButtonBgPicRotated ? "rotate(90deg)" :  "rotate(0deg)",
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
@@ -353,7 +353,9 @@ export default function GameUISetter({openRm}) {
         {igsidebarBackBtnObj["isShape"] && <><input type="color" value={igsidebarBackBtnObj["bgColor"]} onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "bgColor": event.target.value});
             }}></input><label>{igsidebarBackBtnObj["bgColor"]}</label></>}
-        <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
+        
+        <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{
+            setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
         {!igsidebarBackBtnObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setIgsidebarBackBtnObj({...defaultButtonObj,  "picVar": event.target.value}); 
@@ -368,10 +370,15 @@ export default function GameUISetter({openRm}) {
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
+                <br></br><div className="indentOne">
+                    <input type="checkbox" value={igsidebarBackBtnBgPicRotated} checked={igsidebarBackBtnBgPicRotated} onChange={()=>{setIgsidebarBackBtnBgPicRotated(!igsidebarBackBtnBgPicRotated);}}></input><label>Rotate Picture for 90 degrees</label>
+                </div>
+        </>}
+
         <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
             setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
-            }}></input>
-        
+        }}></input>
+
         <br></br><br></br><label>(In right-side Preview window): </label>
         <br></br>Position X: <input value={igsidebarBackBtnObj["positionX"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
@@ -384,7 +391,7 @@ export default function GameUISetter({openRm}) {
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
                 }}></input>
 
-        </>}
+        
         <br></br><br></br><br></br>
         *Back Button Preview Area*
 
@@ -409,8 +416,9 @@ export default function GameUISetter({openRm}) {
                         "transition": "all 0.2s ease-out"
                     } : {
                         "background-image": `url('${igsidebarBackBtnBgPicUrl}')`,
-                        "background-size": true ? `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px` : `${igsidebarBackBtnObj["height"]}px ${igsidebarBackBtnObj["width"]}px`,
-                
+                        "background-size": igsidebarBackBtnBgPicRotated ? `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px` : `${igsidebarBackBtnObj["height"]}px ${igsidebarBackBtnObj["width"]}px`,
+                        
+                        "transform": igsidebarBackBtnBgPicRotated ? "rotate(90deg)" :  "rotate(0deg)",
                         "width": `${igsidebarBackBtnObj["width"]}px`,
                         "height": `${igsidebarBackBtnObj["height"]}px`,
                         "color": igsidebarBackBtnObj["textColor"],
@@ -426,7 +434,6 @@ export default function GameUISetter({openRm}) {
                         "transition": "all 0.2s ease-out"
                     }}
 
-                   
                     onMouseDown={
                         ()=>{
                             document.getElementById("backButtonDiv").style.filter = "invert(100%)";
