@@ -323,16 +323,6 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Font Color: </label><input type="color" value={igsidebarBackBtnObj["textColor"]} onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
             }}></input><label>{igsidebarBackBtnObj["textColor"]}</label>
-        <br></br>Position X: <input value={igsidebarBackBtnObj["positionX"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
-            }}></input><input type="number" value={igsidebarBackBtnObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
-            }}></input>
-        <br></br>Position Y: <input value={igsidebarBackBtnObj["positionY"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
-            }}></input><input type="number" value={igsidebarBackBtnObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
-                }}></input>
         <br></br>Width: <input type="range" value={igsidebarBackBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
             }}></input>
@@ -373,6 +363,19 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
             setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
             }}></input>
+        
+        <br></br><br></br><label>(In right-side Preview window): </label>
+        <br></br>Position X: <input value={igsidebarBackBtnObj["positionX"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
+            }}></input><input type="number" value={igsidebarBackBtnObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
+            }}></input>
+        <br></br>Position Y: <input value={igsidebarBackBtnObj["positionY"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
+            }}></input><input type="number" value={igsidebarBackBtnObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
+                }}></input>
+
         </>}
         <br></br><br></br><br></br>
         *Back Button Preview Area*
@@ -385,8 +388,6 @@ export default function GameUISetter({openRm}) {
 
                         "width": `${igsidebarBackBtnObj["width"]}px`,
                         "height": `${igsidebarBackBtnObj["height"]}px`,
-                        "top": `${igsidebarBackBtnObj["positionX"]}px`,
-                        "left": `${igsidebarBackBtnObj["positionY"]}px`,
                         "color": igsidebarBackBtnObj["textColor"],
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
@@ -404,8 +405,6 @@ export default function GameUISetter({openRm}) {
                 
                         "width": `${igsidebarBackBtnObj["width"]}px`,
                         "height": `${igsidebarBackBtnObj["height"]}px`,
-                        "top": `${igsidebarBackBtnObj["positionX"]}px`,
-                        "left": `${igsidebarBackBtnObj["positionY"]}px`,
                         "color": igsidebarBackBtnObj["textColor"],
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
