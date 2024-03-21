@@ -84,19 +84,17 @@ export default function GameUISetter({openRm}) {
     const [igsidebarBackBtnBorderColor, setIgsidebarBackBtnBorderColor] = useState("#000000");
     const [igsidebarBackBtnBorderSize, setIgsidebarBackBtnBorderSize] = useState("2");
     const [igsidebarBackBtnBgPicUrl, setIgsidebarBackBtnBgPicUrl] = useState("");
-    
+
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": 50,
         "height": 50,
-        "positionX": 100,
-        "positionY": 100,
         "cornerRadius": 0,
         "transparency": 0.9,
         "isShape": false,
         "bgColor": "#a8d1d6",
         "picVar": "",
         "textColor": "#000000",
-        "buttonText": "<-"
+        "buttonText": "←"
     
     }
     );
@@ -306,13 +304,9 @@ export default function GameUISetter({openRm}) {
     <br></br>Back Button: 
     <div className="indentOne">
         <label>Corner Radius: </label>
-            <select value={igsidebarBackBtnObj["cornerRadius"]} onChange={(event)=>{
+            <input type="range" value={igsidebarBackBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
                     setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "cornerRadius": event.target.value});
-                }}>
-                <option value="0" key="0igsBbtn">-- Select Radius (default 0) --</option>
-                <option value="1" key="1igsBbtn">1</option>
-                <option value="5" key="5igsBbtn">5</option>
-            </select>
+                }}></input><label>{igsidebarBackBtnObj["cornerRadius"]}</label>
         <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnObj["transparency"]} type="range" min="0" max="1" step="0.1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "transparency": event.target.value});
             }}></input><label>{igsidebarBackBtnObj["transparency"]}</label>
@@ -372,19 +366,6 @@ export default function GameUISetter({openRm}) {
             setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
         }}></input>
 
-        <br></br><br></br><label>(In right-side Preview window): </label>
-        <br></br>Position X: <input value={igsidebarBackBtnObj["positionX"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
-            }}></input><input type="number" value={igsidebarBackBtnObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionX": event.target.value});
-            }}></input>
-        <br></br>Position Y: <input value={igsidebarBackBtnObj["positionY"]} type="range" min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
-            }}></input><input type="number" value={igsidebarBackBtnObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "positionY": event.target.value});
-                }}></input>
-
-        
         <br></br><br></br><br></br>
         *Back Button Preview Area*
 
