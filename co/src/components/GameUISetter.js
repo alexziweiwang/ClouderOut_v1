@@ -48,7 +48,6 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameY, setTxtFrameY] = useState(100);
     const [txtFrameCnrRadius, setTxtFrameCnrRadius] = useState(0);
     const [txtFrameTransparency, setTxtFrameTransparency] = useState(90);
     const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
@@ -443,7 +442,11 @@ export default function GameUISetter({openRm}) {
         }}></input><input type="number" value={txtFrameObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionX": event.target.value});    
             }}></input>
-    <br></br>Position Y: <input type="range" value={txtFrameY} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input><input type="number" value={txtFrameY} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input>
+    <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
+        }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
+            }}></input>
     <br></br><label>Corner Radius: </label>
         <select onChange={(event)=>{setTxtFrameCnrRadius(event.target.value);}} value={txtFrameCnrRadius}>
             <option value="0" key="0tf">-- Corner Radius (default 0)--</option>
