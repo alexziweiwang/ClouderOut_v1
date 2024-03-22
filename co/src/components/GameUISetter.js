@@ -48,7 +48,7 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
+    const [txtFrameObj["isShape"], setTxtFrameIsShape] = useState(true);
     const [txtFrameColor, setTxtFrameColor] = useState("#a8d1d6");
     const [txtFramePicVar, setTxtFramePicVar] = useState("");
     const [txtFrameFontName, setTxtFrameFontName] = useState(0);
@@ -457,10 +457,13 @@ export default function GameUISetter({openRm}) {
         setTxtFrameObj({...txtFrameObj, "transparency": event.target.value});    
         }}></input><label>{txtFrameObj["transparency"]}%</label>
 
-    <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(true);}}></input><label onClick={()=>{setTxtFrameIsShape(true);}}>Rectangle: </label>
-        {txtFrameIsShape && <><input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label></>}
-    <br></br><input type="radio" value={txtFrameIsShape} checked={!txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(false);}}></input><label onClick={()=>{setTxtFrameIsShape(false);}}>Base Picture </label>
-        {!txtFrameIsShape && <><select value={txtFramePicVar} onChange={(event)=>{setTxtFramePicVar(event.target.value);}}><option key="tfvDefault" value="">-- Select Resource --</option></select>
+    <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={txtFrameObj["isShape"]} onChange={()=>{
+        setTxtFrameObj({...txtFrameObj, "isShape": true});    
+
+        }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>Rectangle: </label>
+        {txtFrameObj["isShape"] && <><input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label></>}
+    <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
+        {!txtFrameObj["isShape"] && <><select value={txtFramePicVar} onChange={(event)=>{setTxtFramePicVar(event.target.value);}}><option key="tfvDefault" value="">-- Select Resource --</option></select>
         <button onClick={() => {openRm()}}>Resource Adding</button></>}
 
     <br></br><label>Font: </label>
