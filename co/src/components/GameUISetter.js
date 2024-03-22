@@ -43,7 +43,8 @@ export default function GameUISetter({openRm}) {
         "margin": 5,
         "justifyContent": "start",
         "alignItems": "center",
-        "border": "2px solid #000000"
+        "border": "2px solid #000000",
+        "textSize": 12
     });
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
@@ -62,7 +63,7 @@ export default function GameUISetter({openRm}) {
         "bgColor": "#a8d1d6",
         "picVar": "",
         "fontName": "",
-        "fontSize": 12,
+        "textSize": 12,
         "textColor": "#000000",
         "justifyContent": "start",
         "alignItems": "start",
@@ -152,6 +153,7 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Corner Radius: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
+        <br></br><label>Text Size: </label><input type="range" value={defaultButtonObj["textSize"]}  min="0" max="90" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textSize": event.target.value});}}></input><label> {defaultButtonObj["textSize"]} px</label>
         <br></br><label>Text Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label> {defaultButtonObj["textColor"]}</label>
         <br></br><label>Text Horizontal Position: </label>
             <select value={defaultButtonObj["justifyContent"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "justifyContent": event.target.value});}}>
