@@ -48,8 +48,6 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameW, setTxtFrameW] = useState(200);
-    const [txtFrameH, setTxtFrameH] = useState(500);
     const [txtFrameX, setTxtFrameX] = useState(100);
     const [txtFrameY, setTxtFrameY] = useState(100);
     const [txtFrameCnrRadius, setTxtFrameCnrRadius] = useState(0);
@@ -310,9 +308,6 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnObj["transparency"]} type="range" min="0" max="1" step="0.1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "transparency": event.target.value});
             }}></input><label>{igsidebarBackBtnObj["transparency"]}</label>
-        <br></br><label>Font Color: </label><input type="color" value={igsidebarBackBtnObj["textColor"]} onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
-            }}></input><label> {igsidebarBackBtnObj["textColor"]}</label>
         <br></br>Width: <input type="range" value={igsidebarBackBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
             }}></input>
@@ -365,6 +360,12 @@ export default function GameUISetter({openRm}) {
         <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
             setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
         }}></input>
+        <br></br><label>Text Color: </label><input type="color" value={igsidebarBackBtnObj["textColor"]} onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
+            }}></input><label> {igsidebarBackBtnObj["textColor"]}</label>
+        <br></br><label>Text Size:</label>
+            <input type="range"></input>
+
 
         <br></br><br></br><br></br>
         *Back Button Preview Area*
@@ -428,8 +429,16 @@ export default function GameUISetter({openRm}) {
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <br></br>Width: <input type="range" value={txtFrameW} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input><input value={txtFrameW} type="number" min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameW(event.target.value);;}}></input>
-    <br></br>Height: <input type="range" value={txtFrameH} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input><input type="number" value={txtFrameH} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameH(event.target.value);}}></input>
+    <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max="1200" step="1" onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "width": event.target.value});
+        }}></input><input value={txtFrameObj["width"]} type="number" min="0" max="1200" step="1" onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "width": event.target.value});    
+        }}></input>
+    <br></br>Height: <input type="range" value={txtFrameObj["height"]} min="0" max="1200" step="1" onChange={(event)=>{
+        setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
+        }}></input><input type="number" value={txtFrameObj["height"]} min="0" max="1200" step="1" onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
+        }}></input>
     <br></br>Position X: <input type="range" value={txtFrameX} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input><input type="number" value={txtFrameX} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameX(event.target.value);}}></input>
     <br></br>Position Y: <input type="range" value={txtFrameY} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input><input type="number" value={txtFrameY} min="0" max="1200" step="1" onChange={(event)=>{setTxtFrameY(event.target.value);}}></input>
     <br></br><label>Corner Radius: </label>
