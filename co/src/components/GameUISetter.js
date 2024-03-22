@@ -48,10 +48,8 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameObj["picVar"], setTxtFramePicVar] = useState("");
-    const [txtFrameFontName, setTxtFrameFontName] = useState(0);
-    const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
-    const [txtFrameTextColor, setTxtFrameTextColor] = useState("#000000");
+    const [txtFrameFontName, setTxtFrameFontName] = useState(0); //TODO
+    const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": 200,
@@ -86,8 +84,7 @@ export default function GameUISetter({openRm}) {
         "bgColor": "#a8d1d6",
         "picVar": "",
         "textColor": "#000000",
-        "buttonText": "←"
-    
+        "buttonText": "←" 
     }
     );
 
@@ -358,7 +355,7 @@ export default function GameUISetter({openRm}) {
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
             }}></input><label> {igsidebarBackBtnObj["textColor"]}</label>
         <br></br><label>Text Size:</label>
-            <input type="range"></input>
+            <input type="range"></input>TODO
 
 
         <br></br><br></br><br></br>
@@ -472,7 +469,9 @@ export default function GameUISetter({openRm}) {
     </select>
     
     <br></br><label>Font Size: </label><input type="range" value={txtFrameFontSize} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input><input type="number" value={txtFrameFontSize} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input>
-    <br></br><label>Font Color: </label><input type="color" value={txtFrameTextColor} onChange={(event)=>{setTxtFrameTextColor(event.target.value);}}></input><label> {txtFrameTextColor}</label>
+    <br></br><label>Text Color: </label><input type="color" value={txtFrameObj["textColor"]} onChange={(event)=>{
+        setTxtFrameObj({...txtFrameObj, "textColor": event.target.value});            
+    }}></input><label> {txtFrameObj["textColor"]}</label>
 
     <br></br><br></br><br></br>
 
@@ -487,7 +486,7 @@ export default function GameUISetter({openRm}) {
         <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
         <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
         <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label><br></br>
-        <label>Font Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label> {igsidebarMenuTextColor}</label>
+        <label>Text Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label> {igsidebarMenuTextColor}</label>
         <br></br>       
         <label>Corner Radius: </label>
             <select value={igsidebarMenuCnrRadius} onChange={(event)=>{setIgsidebarMenuCnrRadius(event.target.value);}}>
