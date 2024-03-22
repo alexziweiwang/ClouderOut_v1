@@ -48,7 +48,6 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameTransparency, setTxtFrameTransparency] = useState(90);
     const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
     const [txtFrameColor, setTxtFrameColor] = useState("#a8d1d6");
     const [txtFramePicVar, setTxtFramePicVar] = useState("");
@@ -454,7 +453,9 @@ export default function GameUISetter({openRm}) {
             <option value="1" key="1tf">1</option>
             <option value="5" key="5tf">5</option>
         </select>
-    <br></br><label>Transparency: </label><input type="range" value={txtFrameTransparency} min="0" max="100" step="1" onChange={(event)=>{setTxtFrameTransparency(event.target.value);}}></input><label>{txtFrameTransparency}%</label>
+    <br></br><label>Transparency: </label><input type="range" value={txtFrameObj["transparency"]} min="0" max="100" step="1" onChange={(event)=>{
+        setTxtFrameObj({...txtFrameObj, "transparency": event.target.value});    
+        }}></input><label>{txtFrameObj["transparency"]}%</label>
 
     <br></br><input type="radio" value={txtFrameIsShape} checked={txtFrameIsShape} onChange={()=>{setTxtFrameIsShape(true);}}></input><label onClick={()=>{setTxtFrameIsShape(true);}}>Rectangle: </label>
         {txtFrameIsShape && <><input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label></>}
