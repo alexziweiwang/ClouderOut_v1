@@ -48,7 +48,6 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameCnrRadius, setTxtFrameCnrRadius] = useState(0);
     const [txtFrameTransparency, setTxtFrameTransparency] = useState(90);
     const [txtFrameIsShape, setTxtFrameIsShape] = useState(true);
     const [txtFrameColor, setTxtFrameColor] = useState("#a8d1d6");
@@ -448,7 +447,9 @@ export default function GameUISetter({openRm}) {
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
             }}></input>
     <br></br><label>Corner Radius: </label>
-        <select onChange={(event)=>{setTxtFrameCnrRadius(event.target.value);}} value={txtFrameCnrRadius}>
+        <select onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "cornerRadius": event.target.value});    
+        }} value={txtFrameObj["cornerRadius"]}>
             <option value="0" key="0tf">-- Corner Radius (default 0)--</option>
             <option value="1" key="1tf">1</option>
             <option value="5" key="5tf">5</option>
