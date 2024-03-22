@@ -245,6 +245,7 @@ export default function GameUISetter({openRm}) {
                         "padding-left": `10px`,
                         "justify-content": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
+                        "font-size": `${defaultButtonObj["textSize"]}px`,
                         
                         "display": "flex",
                         "cursor": "pointer",
@@ -261,7 +262,8 @@ export default function GameUISetter({openRm}) {
                         "padding-left": `10px`,
                         "justify-content": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
-                        
+                        "font-size": `${defaultButtonObj["textSize"]}px`,
+
                         "display": "flex",
                         "cursor": "pointer",
                         "user-select": "none",
