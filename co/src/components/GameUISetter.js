@@ -48,8 +48,6 @@ export default function GameUISetter({openRm}) {
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
-    const [txtFrameObj["isShape"], setTxtFrameIsShape] = useState(true);
-    const [txtFrameColor, setTxtFrameColor] = useState("#a8d1d6");
     const [txtFramePicVar, setTxtFramePicVar] = useState("");
     const [txtFrameFontName, setTxtFrameFontName] = useState(0);
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12);
@@ -456,12 +454,12 @@ export default function GameUISetter({openRm}) {
     <br></br><label>Transparency: </label><input type="range" value={txtFrameObj["transparency"]} min="0" max="100" step="1" onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "transparency": event.target.value});    
         }}></input><label>{txtFrameObj["transparency"]}%</label>
-
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={txtFrameObj["isShape"]} onChange={()=>{
         setTxtFrameObj({...txtFrameObj, "isShape": true});    
-
         }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>Rectangle: </label>
-        {txtFrameObj["isShape"] && <><input type="color" value={txtFrameColor} onChange={(event)=>{setTxtFrameColor(event.target.value);}}></input><label>{txtFrameColor}</label></>}
+        {txtFrameObj["isShape"] && <><input type="color" value={txtFrameObj["bgColor"]} onChange={(event)=>{
+            setTxtFrameObj({...txtFrameObj, "bgColor": event.target.value});    
+            }}></input><label>{txtFrameObj["bgColor"]}</label></>}
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
         {!txtFrameObj["isShape"] && <><select value={txtFramePicVar} onChange={(event)=>{setTxtFramePicVar(event.target.value);}}><option key="tfvDefault" value="">-- Select Resource --</option></select>
         <button onClick={() => {openRm()}}>Resource Adding</button></>}
