@@ -1,10 +1,21 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 
-export default function GameUIPreviewWindow({dataObj}) {
+export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
+
+    useEffect(() => {
+        
+        
+        console.log("!!! GameUIPreviewWindow - gameUITextFrame: ");
+        let data = getTextFrameData();
+        console.log(data);
+    });
+    
 
     return(<div className="previewWindow">
             <div className="preveiewArea2">
             </div>
+
 
             
         <div> <br></br><br></br><br></br>Outside: <br></br>

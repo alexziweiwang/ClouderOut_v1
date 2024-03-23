@@ -22,7 +22,7 @@ export default function ConversationNodeEditingPanel() {
         uname = state.userName;
         projectName = state.selected_project_name;
     } 
-    console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
+    // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
@@ -45,7 +45,8 @@ export default function ConversationNodeEditingPanel() {
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
-    console.log("current testing piece data is at [ConversationNodeEditingPanel.js]");
+
+    const [gameUITextFrame, setGameUITextFrame] = useState({});
 
     const [gameData, setGameData] = useState({});
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -55,6 +56,7 @@ export default function ConversationNodeEditingPanel() {
             getGameDataFromCloud();
             setFirstTimeEnter(false);
         }
+
     });
 
     async function getGameDataFromCloud() {
@@ -129,8 +131,13 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function updateTextFrameData(data) {
-        console.log("conversational-node editor: "); //TODO test
+        console.log("conversational-node editor updateTextFrameData: "); //TODO test
         console.log(data); //TODO test
+        setGameUITextFrame(data);
+    }
+
+    function passInTextFrameData(data) {
+        return gameUITextFrame;
     }
 
     return (
@@ -170,9 +177,10 @@ export default function ConversationNodeEditingPanel() {
             }
  
             {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
-            {isDisplayPreview === false && <GameUIPreviewWindow/>}
+            {isDisplayPreview === false && 
+                <GameUIPreviewWindow getTextFrameData={passInTextFrameData}/>
+            }
 
-            
             </div>
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
 
