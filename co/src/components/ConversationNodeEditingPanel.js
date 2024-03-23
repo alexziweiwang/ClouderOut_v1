@@ -128,6 +128,10 @@ export default function ConversationNodeEditingPanel() {
         setBrowseList(!browseList);
     }
 
+    function updateTextFrameData(data) {
+        console.log("conversational-node editor: "); //TODO test
+        console.log(data); //TODO test
+    }
 
     return (
 
@@ -154,14 +158,14 @@ export default function ConversationNodeEditingPanel() {
             {browseList === false && 
                 <div>
                     {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
-                    {gameUISetterOpen === true && <GameUISetter gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData}/>}
                 </div>
             }
 
             {browseList === true &&
                 <div>                 
                     {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData}/>}
                 </div>
             }
  

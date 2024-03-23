@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm}) {
+export default function GameUISetter({openRm, updateTextFrameSettings}) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -11,6 +11,7 @@ export default function GameUISetter({openRm}) {
             fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
+        updateTextFrameSettings(txtFrameObj);
     });
 
     const username = "user002"; //TODO testing
@@ -44,7 +45,7 @@ export default function GameUISetter({openRm}) {
         "justifyContent": "start",
         "alignItems": "center",
         "border": "2px solid #000000",
-        "textSize": 12
+        "textSize": 15
     });
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
@@ -63,14 +64,13 @@ export default function GameUISetter({openRm}) {
         "bgColor": "#a8d1d6",
         "picVar": "",
         "fontName": "",
-        "textSize": 12,
+        "textSize": 15,
         "textColor": "#000000",
         "justifyContent": "start",
         "alignItems": "start",
         "border": "2px solid #000000"
     }
     );
-
 
     const [igsidebarBackBtnBorderColor, setIgsidebarBackBtnBorderColor] = useState("#000000");
     const [igsidebarBackBtnBorderSize, setIgsidebarBackBtnBorderSize] = useState("2");
@@ -86,7 +86,7 @@ export default function GameUISetter({openRm}) {
         "picVar": "",
         "textColor": "#000000",
         "buttonText": "←",
-        "textSize": 12
+        "textSize": 15
     }
     );
 
@@ -424,8 +424,6 @@ export default function GameUISetter({openRm}) {
  
         </div>
     </div>
-   
-
 
     <br></br><br></br><br></br>
     2. Text Frame
