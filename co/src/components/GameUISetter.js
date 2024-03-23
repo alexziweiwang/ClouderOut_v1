@@ -85,7 +85,8 @@ export default function GameUISetter({openRm}) {
         "bgColor": "#a8d1d6",
         "picVar": "",
         "textColor": "#000000",
-        "buttonText": "←" 
+        "buttonText": "←",
+        "textSize": 12
     }
     );
 
@@ -359,7 +360,9 @@ export default function GameUISetter({openRm}) {
                 setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
             }}></input><label> {igsidebarBackBtnObj["textColor"]}</label>
         <br></br><label>Text Size:</label>
-            <input type="range"></input>TODO
+            <input type="range" value={igsidebarBackBtnObj["textSize"]}
+                onChange={(event)=>{ setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textSize": event.target.value});}}
+            ></input>
 
 
         <br></br><br></br><br></br>
@@ -376,6 +379,7 @@ export default function GameUISetter({openRm}) {
                         "color": igsidebarBackBtnObj["textColor"],
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
+                        "font-size": `${igsidebarBackBtnObj["textSize"]}px`,
 
                         "justify-content": "center",
                         "align-items": "center",                        
@@ -393,6 +397,7 @@ export default function GameUISetter({openRm}) {
                         "color": igsidebarBackBtnObj["textColor"],
                         "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
                         "opacity": igsidebarBackBtnObj["transparency"],
+                        "font-size": `${igsidebarBackBtnObj["textSize"]}px`,
 
                         "justify-content": "center",
                         "align-items": "center",
