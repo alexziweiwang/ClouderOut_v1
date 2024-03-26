@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function GameUISetter({openRm, updateTextFrameSettings}) {
-    const screenWidth = 1200;
+    const screenWidth = 800;
     
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -13,7 +13,9 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
             fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
+
         updateTextFrameSettings(txtFrameObj);
+
     });
 
     const username = "user002"; //TODO testing
@@ -58,7 +60,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": 500,
         "height": 200,
-        "positionX": 100,
+        "positionX": 150,
         "positionY": 100,
         "cornerRadius": 0,
         "transparency": 0.9,
@@ -72,7 +74,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         "justifyContent": "start",
         "alignItems": "start",
         "border": "2px solid #000000",
-        "horizontalMid": true
+        "horizontalMid": false
     }
     );
 
@@ -147,14 +149,14 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     1. Individual Button Look, Defualt
 
         <div className="indentOne">
-        <br></br>Min-Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="1200" step="1" onChange={(event)=>{
+        <br></br>Min-Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
-        }}></input><input value={defaultButtonObj["widthMin"]} min="0" max="1200" step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
-        <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max="1200" step="1" onChange={(event)=>{
+        }}></input><input value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
+        <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
-            }}></input><input value={defaultButtonObj["widthMax"]} min="0" max="1200" step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
+            }}></input><input value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
         }}></input>
-        <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="1200" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
+        <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="800" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label>
@@ -431,34 +433,22 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max="1200" step="1" onChange={(event)=>{
-            setTxtFrameObj({...txtFrameObj, "width": event.target.value});
-        }}></input><input value={txtFrameObj["width"]} type="number" min="0" max="1200" step="1" onChange={(event)=>{
-            setTxtFrameObj({...txtFrameObj, "width": event.target.value});    
+    <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max="800" step="1" onChange={(event)=>{
+            let posX = (screenWidth - txtFrameObj["width"]) / 2;
+            setTxtFrameObj({...txtFrameObj, "width": event.target.value, "positionX": posX});
+
+        }}></input><input value={txtFrameObj["width"]} type="number" min="0" max="800" step="1" onChange={(event)=>{
+            let posX = (screenWidth - txtFrameObj["width"]) / 2;
+            setTxtFrameObj({...txtFrameObj, "width": event.target.value, "positionX": posX});        
         }}></input>
-    <br></br>Height: <input type="range" value={txtFrameObj["height"]} min="0" max="1200" step="1" onChange={(event)=>{
+    <br></br>Height: <input type="range" value={txtFrameObj["height"]} min="0" max="800" step="1" onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
-        }}></input><input type="number" value={txtFrameObj["height"]} min="0" max="1200" step="1" onChange={(event)=>{
+        }}></input><input type="number" value={txtFrameObj["height"]} min="0" max="800" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
         }}></input>
-    <br></br>Position X: <input type="range" value={txtFrameObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
-            setTxtFrameObj({...txtFrameObj, "positionX": event.target.value});    
-        }}></input><input type="number" value={txtFrameObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
-            setTxtFrameObj({...txtFrameObj, "positionX": event.target.value});    
-            }}></input>
-    <br></br><input type="checkbox" value={txtFrameObj["horizontalMid"]} checked={txtFrameObj["horizontalMid"]} onChange={()=>{
-            if (txtFrameObj["horizontalMid"] === false) { // going to be true
-                //recalculate positionX
-                //TODO temp screenWidth == 1200
-                let centeredPosX = (screenWidth - txtFrameObj["width"]) / 2;
-                setTxtFrameObj({...txtFrameObj, "positionX": centeredPosX});    
-            }   
-            setTxtFrameObj({...txtFrameObj, "horizontalMid": !txtFrameObj["horizontalMid"]}); 
-
-    }}></input>Horizontally centered
-    <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
+    <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
-        }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
+        }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
             }}></input>
     <br></br><label>Corner Radius: </label>
@@ -497,12 +487,12 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
  
     <br></br><label>Menu Option: </label>  
     <div className="indentOne">
-        Position X: <input type="range" value={igsidebarMenuPosX} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input><input type="number" value={igsidebarMenuPosX} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input>
+        Position X: <input type="range" value={igsidebarMenuPosX} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input><input type="number" value={igsidebarMenuPosX} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input>
         <br></br>
-        Position Y: <input type="range" value={igsidebarMenuPosY} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input><input type="number" value={igsidebarMenuPosY} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input>
+        Position Y: <input type="range" value={igsidebarMenuPosY} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input><input type="number" value={igsidebarMenuPosY} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input>
         <br></br>
-        <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
-        <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="1200" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
+        <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
+        <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
         <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label><br></br>
         <label>Text Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label> {igsidebarMenuTextColor}</label>
         <br></br>       

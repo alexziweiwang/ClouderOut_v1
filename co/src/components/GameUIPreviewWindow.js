@@ -6,9 +6,9 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
 
     useEffect(() => {
         
-        console.log("!!! GameUIPreviewWindow - gameUITextFrame: ");
+        // console.log("!!! GameUIPreviewWindow - gameUITextFrame: "); //TODO
         let data = getTextFrameData();
-        console.log(data);
+        // console.log(data); //TODO
         setTxtFrameData(data);
     });
     
@@ -16,11 +16,11 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
     return(<div className="previewWindow">
 
 
-            <div className="preveiewArea2">
+            <div className="preveiewArea2" style={{"width": 800}}>
 
-                {Object.keys(txtFrameData).map((k) => {
+                {/* {Object.keys(txtFrameData).map((k) => {
                     console.log(k, ":", txtFrameData[k]);
-                })}
+                })} */}
 
 
                 

@@ -131,8 +131,8 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function updateTextFrameData(data) {
-        console.log("conversational-node editor updateTextFrameData: "); //TODO test
-        console.log(data); //TODO test
+        // console.log("conversational-node editor updateTextFrameData: "); //TODO test
+        // console.log(data); //TODO test
         setGameUITextFrame(data);
     }
 
