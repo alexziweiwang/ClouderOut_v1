@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function GameUISetter({openRm, updateTextFrameSettings}) {
+    const screenWidth = 1200;
+    
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -69,7 +71,8 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         "textColor": "#000000",
         "justifyContent": "start",
         "alignItems": "start",
-        "border": "2px solid #000000"
+        "border": "2px solid #000000",
+        "horizontalMid": true
     }
     );
 
@@ -443,6 +446,16 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         }}></input><input type="number" value={txtFrameObj["positionX"]} min="0" max="1200" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionX": event.target.value});    
             }}></input>
+    <br></br><input type="checkbox" value={txtFrameObj["horizontalMid"]} checked={txtFrameObj["horizontalMid"]} onChange={()=>{
+            if (txtFrameObj["horizontalMid"] === false) { // going to be true
+                //recalculate positionX
+                //TODO temp screenWidth == 1200
+                let centeredPosX = (screenWidth - txtFrameObj["width"]) / 2;
+                setTxtFrameObj({...txtFrameObj, "positionX": centeredPosX});    
+            }   
+            setTxtFrameObj({...txtFrameObj, "horizontalMid": !txtFrameObj["horizontalMid"]}); 
+
+    }}></input>Horizontally centered
     <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
         }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="1200" step="1" onChange={(event)=>{

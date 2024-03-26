@@ -22,18 +22,29 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
                     console.log(k, ":", txtFrameData[k]);
                 })}
 
-                <div style={txtFrameData["isShape"] === true ? {
-                    "background": txtFrameData["bgColor"],
 
-                    "width": `${txtFrameData["width"]}px`,
-                    "height": `${txtFrameData["height"]}px`,
-                } : {
-                    "background-size": `${txtFrameData["width"]}px ${txtFrameData["height"]}px`,
-                    
-                    "width": `${txtFrameData["width"]}px`,
-                    "height": `${txtFrameData["height"]}px`,
-                }}>
-                Text Frame</div>
+                
+                    <div style={txtFrameData["isShape"] === true ? {
+                        "background": txtFrameData["bgColor"],
+
+                        "width": `${txtFrameData["width"]}px`,
+                        "height": `${txtFrameData["height"]}px`,
+                        "position": "relative",
+                        "top": `${txtFrameData["positionY"]}px`,
+                        "left": `${txtFrameData["positionX"]}px`,      
+                    } : {
+                        "background-size": `${txtFrameData["width"]}px ${txtFrameData["height"]}px`,
+                        
+                        "width": `${txtFrameData["width"]}px`,
+                        "height": `${txtFrameData["height"]}px`,
+                        "position": "relative",
+                        "top": `${txtFrameData["positionY"]}px`,
+                        "left": `${txtFrameData["positionX"]}px`,
+
+                    }}>
+                    Text Frame</div>
+
+         
 
 
 
