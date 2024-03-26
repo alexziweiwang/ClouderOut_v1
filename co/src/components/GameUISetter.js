@@ -74,7 +74,11 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         "justifyContent": "start",
         "alignItems": "start",
         "border": "2px solid #000000",
-        "horizontalMid": false
+        "horizontalMid": false,
+        "TextContentArea-x": 0,
+        "TextContentArea-y": 0,
+        "TextContentArea-w": 560,
+        "TextContentArea-h": 190 
     }
     );
 
@@ -453,7 +457,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
             }}></input>
     <br></br><label>Corner Radius: </label>
-    <input type="range" min="0" max="20" step="1" onChange={(event)=>{
+    <input type="range" min="0" max="100" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "cornerRadius": event.target.value});    
         }} value={txtFrameObj["cornerRadius"]}></input><label> {txtFrameObj["cornerRadius"]}</label>
        
@@ -481,6 +485,16 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     <br></br><label>Text Color: </label><input type="color" value={txtFrameObj["textColor"]} onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "textColor": event.target.value});            
     }}></input><label> {txtFrameObj["textColor"]}</label>
+    <br></br>Text Content Area:
+    <div className="indentOne">
+        TextContentArea-x: 
+        <br></br>
+        TextContentArea-y: 
+        <br></br>
+        TextContentArea-w: 
+        <br></br>
+        TextContentArea-h:  
+    </div>
 
     <br></br><br></br><br></br>
 

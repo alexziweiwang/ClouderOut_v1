@@ -49,7 +49,19 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
                         "opacity": txtFrameData["transparency"],
                         "font-size": `${txtFrameData["textSize"]}px`,  
                     }}>
-                    Text Frame</div>
+                        <div style={{
+                            "position": "relative",
+                            "left": `${txtFrameData["TextContentArea-x"]}px`,
+                            "top" : `${txtFrameData["TextContentArea-y"]}px`,
+                            "width" : `${txtFrameData["TextContentArea-w"]}px`,
+                            "height" : `${txtFrameData["TextContentArea-h"]}px`,
+                            "border": "2px solid #e99a2b",
+                            "border-radius": "0px"
+                        }}>
+                            Text Content...
+                        </div>
+                    
+                    </div>
 
          
 
