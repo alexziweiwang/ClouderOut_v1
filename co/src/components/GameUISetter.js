@@ -54,8 +54,8 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
 
     const [txtFrameObj, setTxtFrameObj] = useState(
-        {"width": 200,
-        "height": 500,
+        {"width": 500,
+        "height": 200,
         "positionX": 100,
         "positionY": 100,
         "cornerRadius": 0,
@@ -63,6 +63,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         "isShape": true,
         "bgColor": "#a8d1d6",
         "picVar": "",
+        "picUrl": "",
         "fontName": "",
         "textSize": 15,
         "textColor": "#000000",
@@ -448,13 +449,10 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
             }}></input>
     <br></br><label>Corner Radius: </label>
-        <select onChange={(event)=>{
+    <input type="range" min="0" max="20" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "cornerRadius": event.target.value});    
-        }} value={txtFrameObj["cornerRadius"]}>
-            <option value="0" key="0tf">-- Corner Radius (default 0)--</option>
-            <option value="1" key="1tf">1</option>
-            <option value="5" key="5tf">5</option>
-        </select>
+        }} value={txtFrameObj["cornerRadius"]}></input><label> {txtFrameObj["cornerRadius"]}</label>
+       
     <br></br><label>Transparency: </label><input type="range" value={txtFrameObj["transparency"]} min="0" max="100" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "transparency": event.target.value});    
         }}></input><label>{txtFrameObj["transparency"]}%</label>
