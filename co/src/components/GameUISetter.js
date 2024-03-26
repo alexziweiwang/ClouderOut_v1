@@ -75,7 +75,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         "alignItems": "start",
         "border": "2px solid #000000",
         "horizontalMid": false,
-        "TextContentArea-x": 0,
+        "TextContentArea-x": 18,
         "TextContentArea-y": 0,
         "TextContentArea-w": 560,
         "TextContentArea-h": 190 
@@ -487,13 +487,29 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     }}></input><label> {txtFrameObj["textColor"]}</label>
     <br></br>Text Content Area:
     <div className="indentOne">
-        TextContentArea-x: 
+        TextContentArea-x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="0" max="800" step="1" 
+        onChange={(event) => {
+            setTxtFrameObj({...txtFrameObj, "TextContentArea-x": event.target.value});    
+        }}
+        ></input>{txtFrameObj["TextContentArea-x"]}
         <br></br>
-        TextContentArea-y: 
+        TextContentArea-y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="0" max="800" step="1" 
+     onChange={(event) => {
+        setTxtFrameObj({...txtFrameObj, "TextContentArea-y": event.target.value});    
+    }}
+        ></input>{txtFrameObj["TextContentArea-y"]}
         <br></br>
-        TextContentArea-w: 
+        TextContentArea-w: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max="800" step="1" 
+     onChange={(event) => {
+        setTxtFrameObj({...txtFrameObj, "TextContentArea-w": event.target.value});    
+    }}
+        ></input>{txtFrameObj["TextContentArea-w"]}
         <br></br>
-        TextContentArea-h:  
+        TextContentArea-h:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max="800" step="1" 
+     onChange={(event) => {
+        setTxtFrameObj({...txtFrameObj, "TextContentArea-h": event.target.value});    
+    }}
+        ></input>{txtFrameObj["TextContentArea-h"]}
     </div>
 
     <br></br><br></br><br></br>
