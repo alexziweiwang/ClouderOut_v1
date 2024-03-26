@@ -14,13 +14,29 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
     
 
     return(<div className="previewWindow">
+
+
             <div className="preveiewArea2">
-            
-            {Object.keys(txtFrameData).map((k) => {
-                return (<>
-                    -{k}: {txtFrameData[k]}<br></br>
-                </>);
-            })}
+
+                {Object.keys(txtFrameData).map((k) => {
+                    console.log(k, ":", txtFrameData[k]);
+                })}
+
+                <div style={txtFrameData["isShape"] === true ? {
+                    "background": txtFrameData["bgColor"],
+
+                    "width": `${txtFrameData["width"]}px`,
+                    "height": `${txtFrameData["height"]}px`,
+                } : {
+                    "background-size": `${txtFrameData["width"]}px ${txtFrameData["height"]}px`,
+                    
+                    "width": `${txtFrameData["width"]}px`,
+                    "height": `${txtFrameData["height"]}px`,
+                }}>
+                Text Frame</div>
+
+
+
             </div>
 
             
