@@ -58,12 +58,12 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
 
     const [txtFrameObj, setTxtFrameObj] = useState(
-        {"width": 500,
+        {"width": 600,
         "height": 200,
-        "positionX": 150,
-        "positionY": 100,
+        "positionX": 100,
+        "positionY": 270,
         "cornerRadius": 0,
-        "transparency": 0.9,
+        "transparency": 0.7,
         "isShape": true,
         "bgColor": "#a8d1d6",
         "picVar": "",
@@ -434,8 +434,9 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
     <br></br><br></br><br></br>
     2. Text Frame
     <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max="800" step="1" onChange={(event)=>{
-            let posX = (screenWidth - txtFrameObj["width"]) / 2;
-            setTxtFrameObj({...txtFrameObj, "width": event.target.value, "positionX": posX});
+            let posX = (screenWidth - txtFrameObj["width"]) / 2 - 1;
+          
+            setTxtFrameObj({...txtFrameObj, "positionX": posX, "width": event.target.value});
 
         }}></input><input value={txtFrameObj["width"]} type="number" min="0" max="800" step="1" onChange={(event)=>{
             let posX = (screenWidth - txtFrameObj["width"]) / 2;
@@ -456,9 +457,9 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
             setTxtFrameObj({...txtFrameObj, "cornerRadius": event.target.value});    
         }} value={txtFrameObj["cornerRadius"]}></input><label> {txtFrameObj["cornerRadius"]}</label>
        
-    <br></br><label>Transparency: </label><input type="range" value={txtFrameObj["transparency"]} min="0" max="100" step="1" onChange={(event)=>{
+    <br></br><label>Transparency: </label><input type="range" value={txtFrameObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "transparency": event.target.value});    
-        }}></input><label>{txtFrameObj["transparency"]}%</label>
+        }}></input><label>{txtFrameObj["transparency"]}</label>
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={txtFrameObj["isShape"]} onChange={()=>{
             setTxtFrameObj({...txtFrameObj, "isShape": true});    
         }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>Rectangle: </label>

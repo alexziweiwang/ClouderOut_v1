@@ -31,7 +31,11 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
                         "height": `${txtFrameData["height"]}px`,
                         "position": "relative",
                         "top": `${txtFrameData["positionY"]}px`,
-                        "left": `${txtFrameData["positionX"]}px`,      
+                        "left": `${txtFrameData["positionX"]}px`,  
+                        "color": txtFrameData["textColor"],
+                        "border-radius": `${txtFrameData["cornerRadius"]}px`,
+                        "opacity": txtFrameData["transparency"],
+                        "font-size": `${txtFrameData["textSize"]}px`,    
                     } : {
                         "background-size": `${txtFrameData["width"]}px ${txtFrameData["height"]}px`,
                         
@@ -40,7 +44,10 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
                         "position": "relative",
                         "top": `${txtFrameData["positionY"]}px`,
                         "left": `${txtFrameData["positionX"]}px`,
-
+                        "color": txtFrameData["textColor"],
+                        "border-radius": `${txtFrameData["cornerRadius"]}px`,
+                        "opacity": txtFrameData["transparency"],
+                        "font-size": `${txtFrameData["textSize"]}px`,  
                     }}>
                     Text Frame</div>
 
