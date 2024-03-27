@@ -45,7 +45,7 @@ export default function ConversationNodeEditingPanel() {
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
-
+    const [gameUIDefaultButton, setGameUIDefaultButton] = useState({});
     const [gameUITextFrame, setGameUITextFrame] = useState({});
 
     const [gameData, setGameData] = useState({});
@@ -131,9 +131,15 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function updateTextFrameData(data) {
-        // console.log("conversational-node editor updateTextFrameData: "); //TODO test
-        // console.log(data); //TODO test
         setGameUITextFrame(data);
+    }
+
+    function updateDefaultButtonData(data) {
+        setGameUIDefaultButton(data);        
+    }
+
+    function passInDefaultButtonData(data) {
+        return gameUIDefaultButton;
     }
 
     function passInTextFrameData(data) {
@@ -165,14 +171,14 @@ export default function ConversationNodeEditingPanel() {
             {browseList === false && 
                 <div>
                     {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData}/>}
                 </div>
             }
 
             {browseList === true &&
                 <div>                 
                     {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData}/>}
                 </div>
             }
  

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, updateTextFrameSettings}) {
+export default function GameUISetter({openRm, updateDefaultButtonSettings, updateTextFrameSettings}) {
     const screenWidth = 800;
     
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
@@ -13,7 +13,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
             fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
-
+        updateDefaultButtonSettings(defaultButtonObj);
         updateTextFrameSettings(txtFrameObj);
 
     });
@@ -51,6 +51,7 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
         "border": "2px solid #000000",
         "textSize": 15
     });
+    const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(false);
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
@@ -239,7 +240,12 @@ export default function GameUISetter({openRm, updateTextFrameSettings}) {
 
     <br></br><br></br><br></br>
     *Default Button Preview Area*
-    <div className="buttonPreviewArea">              
+    <input type="checkbox" 
+        value={displayDefaultButtonPreview}
+        onChange={()=>{setDisplayDefaultButtonPreview(!displayDefaultButtonPreview);}}
+                ></input><label>Preview in right window</label>  
+    <br></br>            
+    <div className="buttonPreviewArea">
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
