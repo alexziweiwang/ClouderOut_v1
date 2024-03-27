@@ -105,7 +105,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
 
                         "width": `${txtFrameData["width"]}px`,
                         "height": `${txtFrameData["height"]}px`,
-                        "position": "relative",
+                        "position": "absolute",
                         "top": `${txtFrameData["positionY"]}px`,
                         "left": `${txtFrameData["positionX"]}px`,  
                         "color": txtFrameData["textColor"],
@@ -117,7 +117,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                         
                         "width": `${txtFrameData["width"]}px`,
                         "height": `${txtFrameData["height"]}px`,
-                        "position": "relative",
+                        "position": "absolute",
                         "top": `${txtFrameData["positionY"]}px`,
                         "left": `${txtFrameData["positionX"]}px`,
                         "color": txtFrameData["textColor"],

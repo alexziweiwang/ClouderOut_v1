@@ -247,7 +247,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         onChange={()=>{setDisplayDefaultButtonPreview(!displayDefaultButtonPreview);}}
                 ></input><label>Preview in right window</label>  
     <br></br>            
-    <div className="buttonPreviewArea">
+    <div className="buttonPreviewArea" style={{"position": "relative"}}>
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
@@ -461,16 +461,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         }}></input>
     <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
-                //TODO calculate new-text-frame coordinates after buttons
-        //(defualtBtnData["margin"] + defualtBtnData["height"]) * defualtBtnData.size
-        
-
         }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
-            setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
-                      //TODO calculate new-text-frame coordinates after buttons
-        //(defualtBtnData["margin"] + defualtBtnData["height"]) * defualtBtnData.size
-        
-        
+            setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});           
         }}></input>
     <br></br><label>Corner Radius: </label>
     <input type="range" min="0" max="100" step="1" onChange={(event)=>{
