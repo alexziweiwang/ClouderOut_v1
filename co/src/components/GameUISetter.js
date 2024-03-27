@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, updateDefaultButtonSettings, updateTextFrameSettings}) {
+export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameSettings}) {
     const screenWidth = 800;
     
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
@@ -13,7 +13,9 @@ export default function GameUISetter({openRm, updateDefaultButtonSettings, updat
             fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
+        updateIsDisplayDefaultButtonPreview(displayDefaultButtonPreview);
         updateDefaultButtonSettings(defaultButtonObj);
+  
         updateTextFrameSettings(txtFrameObj);
 
     });

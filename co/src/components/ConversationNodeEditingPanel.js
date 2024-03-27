@@ -45,8 +45,9 @@ export default function ConversationNodeEditingPanel() {
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
-    const [gameUIDefaultButton, setGameUIDefaultButton] = useState({});
-    const [gameUITextFrame, setGameUITextFrame] = useState({});
+    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(false); //TODO fetch frmo cloud-db
+    const [gameUIDefaultButton, setGameUIDefaultButton] = useState({}); //TODO fetch from cloud-db
+    const [gameUITextFrame, setGameUITextFrame] = useState({}); //TODO fetch from cloud-db
 
     const [gameData, setGameData] = useState({});
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -138,12 +139,20 @@ export default function ConversationNodeEditingPanel() {
         setGameUIDefaultButton(data);        
     }
 
-    function passInDefaultButtonData(data) {
+    function updateIsDisplayDefaultButtonPreviewSetting(val) {
+        setGameUIisDisplayDefaultButton(val);
+    }
+
+    function passInDefaultButtonData() {
         return gameUIDefaultButton;
     }
 
-    function passInTextFrameData(data) {
+    function passInTextFrameData() {
         return gameUITextFrame;
+    }
+
+    function passInIsDisplayDefaultButton() {
+        return gameUIisDisplayDefaultButton;
     }
 
     return (
@@ -171,20 +180,20 @@ export default function ConversationNodeEditingPanel() {
             {browseList === false && 
                 <div>
                     {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting}/>}
                 </div>
             }
 
             {browseList === true &&
                 <div>                 
                     {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting}/>}
                 </div>
             }
  
             {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
             {isDisplayPreview === false && 
-                <GameUIPreviewWindow getTextFrameData={passInTextFrameData}/>
+                <GameUIPreviewWindow getTextFrameData={passInTextFrameData} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton}/>
             }
 
             </div>

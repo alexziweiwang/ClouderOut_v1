@@ -1,15 +1,25 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
+export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData}) {
+    const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
+
+    const [defualtBtnData, setDefualtBtnData] = useState({});
+    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
+
     const [txtFrameData, setTxtFrameData] = useState({});
 
     useEffect(() => {
         
-        // console.log("!!! GameUIPreviewWindow - gameUITextFrame: "); //TODO
-        let data = getTextFrameData();
-        // console.log(data); //TODO
-        setTxtFrameData(data);
+        // console.log("!!! GameUIPreviewWindow - gameUITextFrame: "); //TODO test
+
+        let txtFramedata = getTextFrameData();
+        setTxtFrameData(txtFramedata);
+        let isDisplayDefaultVal = getIsDisplayDefaultButton();
+        setIsDisplayDefualtBtnData(isDisplayDefaultVal);
+        let defaultBtnData = getDefaultButtonData();
+        setDefualtBtnData(defaultBtnData);
+
     });
     
 
@@ -18,9 +28,14 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData}) {
 
             <div className="preveiewArea2" style={{"width": 800}}>
 
-                {/* {Object.keys(txtFrameData).map((k) => {
+                {Object.keys(defualtBtnData).map((k) => {
                     console.log(k, ":", txtFrameData[k]);
-                })} */}
+                })}
+
+                <div>
+                    button area...
+                    {isDisplayDefualtBtnData && <>clicked to display</>}
+                </div>
 
 
                 
