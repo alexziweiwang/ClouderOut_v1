@@ -35,7 +35,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
              
                     {isDisplayDefualtBtnData && 
 
-                       <div> (button list area)
+                       <div>
                        {defaultButtonTextSampleArr.map((item, index)=>{
                            let currId = "defaultButtonDivPreviewWindow" + index;
                            return (
@@ -43,6 +43,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                                defualtBtnData["isShape"] === true ? {   
                                    "background": defualtBtnData["bgColor"],
                                    
+                                   "width": `${defualtBtnData["widthMin"]}px`,
                                    "height": `${defualtBtnData["height"]}px`,
                                    "border-radius": `${defualtBtnData["cornerRadius"]}px`,
                                    "color": defualtBtnData["textColor"],
@@ -57,10 +58,13 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                                    "display": "flex",
                                    "cursor": "pointer",
                                    "user-select": "none",
-                                   "transition": "all 0.2s ease-out"
+                                   "transition": "all 0.2s ease-out",
+                                   "overflow": "scroll"
                                } : {
 
                                    "background-size": `${defualtBtnData["widthMax"]}px ${defualtBtnData["height"]}px`,
+                                   
+                                   "width": `${defualtBtnData["widthMin"]}px`,
                                    "height": `${defualtBtnData["height"]}px`,
                                    "border-radius": `${defualtBtnData["cornerRadius"]}px`,
                                    "color": defualtBtnData["textColor"],
@@ -75,7 +79,8 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                                    "display": "flex",
                                    "cursor": "pointer",
                                    "user-select": "none",
-                                   "transition": "all 0.2s ease-out"
+                                   "transition": "all 0.2s ease-out",
+                                   "overflow": "scroll"
                                }      
                            }
                            onMouseDown={

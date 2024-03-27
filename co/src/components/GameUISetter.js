@@ -38,8 +38,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     //TODO current: defualt-reset when start rendering this component
     //TODO later: fetch from cloud-db for setting records
     const [defaultButtonObj, setDefaultButtonObj] = useState({
-        "widthMin": 200,
-        "widthMax": 700,
+        "widthMin": 50,
+        "widthMax": 150,
         "height": 20,
         "cornerRadius": 0,
         "transparency": 0.9,
@@ -238,6 +238,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         }}
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
+        
+        <br></br>TODO button-list positions xy
+        <br></br>TODO button-list: horizontally center, vertical center
+
     </div>
 
     <br></br><br></br><br></br>
@@ -254,7 +258,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 <div id={currId} key={index} style={
                     defaultButtonObj["isShape"] === true ? {   
                         "background": defaultButtonObj["bgColor"],
-                        
+
+                        "width": `${defaultButtonObj["widthMin"]}px`,
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
@@ -269,9 +274,12 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "display": "flex",
                         "cursor": "pointer",
                         "user-select": "none",
-                        "transition": "all 0.2s ease-out"
+                        "transition": "all 0.2s ease-out",
+                        "overflow": "scroll"
                     } : {"background-image": `url('${idvButtonBgPicUrl}')`,
                         "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
+                        
+                        "width": `${defaultButtonObj["widthMin"]}px`,
                         "height": `${defaultButtonObj["height"]}px`,
                         "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
@@ -286,7 +294,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "display": "flex",
                         "cursor": "pointer",
                         "user-select": "none",
-                        "transition": "all 0.2s ease-out"
+                        "transition": "all 0.2s ease-out",
+                        "overflow": "scroll"
                     }      
                 }
                 onMouseDown={
