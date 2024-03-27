@@ -51,7 +51,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "justifyContent": "start",
         "alignItems": "center",
         "border": "2px solid #000000",
-        "textSize": 15
+        "textSize": 15,
+        "groupX": 200,
+        "groupY": 100
+
     });
     const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(false);
 
@@ -153,7 +156,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
  
     <div className="guiSettings">
 
-    1. Individual Button Look, Defualt
+    1. Defualt Button (group)
 
         <div className="indentOne">
         <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" onChange={(event)=>{
@@ -239,25 +242,25 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
 
-        <br></br><label>Button Group PositionX:</label><br></br>
+        <br></br><label>Button Group PositionX: TODO</label><br></br>
             <div className="indentOne">
-                <input type="range"></input>
-                <input type="number"></input>
+                <input type="range" value={defaultButtonObj["groupX"]}></input>
+                <input type="number" value={defaultButtonObj["groupX"]}></input>
                 
                 <br></br>
                 <input type="checkbox"></input><label>Horizontally Centered</label>
             </div>
-        <br></br><label>Button Group PositionY:</label><br></br>
+        <br></br><label>Button Group PositionY: TODO</label><br></br>
             <div className="indentOne">
    
-                <input type="range"></input>
-                <input type="number"></input>              
+                <input type="range" value={defaultButtonObj["groupY"]}></input>
+                <input type="number"  value={defaultButtonObj["groupY"]}></input>              
                 <br></br>
                 <input type="checkbox"></input><label>Vertically Centered</label>
             </div>
     </div>
 
-    <br></br><br></br><br></br>
+    <br></br><br></br>
     *Default Button Preview Area*
     <input type="checkbox" 
         value={displayDefaultButtonPreview}
@@ -265,6 +268,9 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 ></input><label>Preview in right window</label>  
     <br></br>            
     <div className="buttonPreviewArea" style={{"position": "relative"}}>
+        <div style={{"left": `${defaultButtonObj["groupX"]}px`,
+                    "top": `${defaultButtonObj["groupY"]}px`,                       
+                    "position": "absolute"}}>
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
@@ -283,7 +289,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "justify-content": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
                         "font-size": `${defaultButtonObj["textSize"]}px`,
-                        
+
                         "display": "flex",
                         "cursor": "pointer",
                         "user-select": "none",
@@ -327,7 +333,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 </div>);
             }                
             )}
-        
+        </div>
 
 
 

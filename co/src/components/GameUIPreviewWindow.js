@@ -33,6 +33,9 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                 })}
 
              
+                    <div style={{"left": `${defualtBtnData["groupX"]}px`,
+                    "top": `${defualtBtnData["groupY"]}px`,                       
+                    "position": "absolute"}}>
                     {isDisplayDefualtBtnData && 
 
                        <div>
@@ -102,7 +105,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                </div>              
                     }
       
-
+                    </div>
 
                 
                     <div style={txtFrameData["isShape"] === true ? {
