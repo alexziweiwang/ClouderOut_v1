@@ -461,9 +461,17 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         }}></input>
     <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
+                //TODO calculate new-text-frame coordinates after buttons
+        //(defualtBtnData["margin"] + defualtBtnData["height"]) * defualtBtnData.size
+        
+
         }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
-            }}></input>
+                      //TODO calculate new-text-frame coordinates after buttons
+        //(defualtBtnData["margin"] + defualtBtnData["height"]) * defualtBtnData.size
+        
+        
+        }}></input>
     <br></br><label>Corner Radius: </label>
     <input type="range" min="0" max="100" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "cornerRadius": event.target.value});    

@@ -32,10 +32,71 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                     console.log(k, ":", txtFrameData[k]);
                 })}
 
-                <div>
-                    button area...
-                    {isDisplayDefualtBtnData && <>clicked to display</>}
-                </div>
+             
+                    {isDisplayDefualtBtnData && 
+
+                       <div> (button list area)
+                       {defaultButtonTextSampleArr.map((item, index)=>{
+                           let currId = "defaultButtonDivPreviewWindow" + index;
+                           return (
+                           <div id={currId} key={index} style={
+                               defualtBtnData["isShape"] === true ? {   
+                                   "background": defualtBtnData["bgColor"],
+                                   
+                                   "height": `${defualtBtnData["height"]}px`,
+                                   "border-radius": `${defualtBtnData["cornerRadius"]}px`,
+                                   "color": defualtBtnData["textColor"],
+                                   "opacity": defualtBtnData["transparency"],
+                                   "border": `${defualtBtnData["border"]}`,
+                                   "margin-bottom": `${defualtBtnData["margin"]}px`,
+                                   "padding-left": `10px`,
+                                   "justify-content": defualtBtnData["justifyContent"],
+                                   "align-items": defualtBtnData["alignItems"],
+                                   "font-size": `${defualtBtnData["textSize"]}px`,
+                                   
+                                   "display": "flex",
+                                   "cursor": "pointer",
+                                   "user-select": "none",
+                                   "transition": "all 0.2s ease-out"
+                               } : {
+
+                                   "background-size": `${defualtBtnData["widthMax"]}px ${defualtBtnData["height"]}px`,
+                                   "height": `${defualtBtnData["height"]}px`,
+                                   "border-radius": `${defualtBtnData["cornerRadius"]}px`,
+                                   "color": defualtBtnData["textColor"],
+                                   "opacity": defualtBtnData["transparency"],
+                                   "border": `${defualtBtnData["border"]}`,
+                                   "margin-bottom": `${defualtBtnData["margin"]}px`,
+                                   "padding-left": `10px`,
+                                   "justify-content": defualtBtnData["justifyContent"],
+                                   "align-items": defualtBtnData["alignItems"],
+                                   "font-size": `${defualtBtnData["textSize"]}px`,
+           
+                                   "display": "flex",
+                                   "cursor": "pointer",
+                                   "user-select": "none",
+                                   "transition": "all 0.2s ease-out"
+                               }      
+                           }
+                           onMouseDown={
+                               ()=>{
+                                   document.getElementById(currId).style.filter = "invert(100%)";
+                               }
+                           }
+                           onMouseUp={
+                               ()=>{
+                                   document.getElementById(currId).style.filter = "invert(0%)";
+                               }
+                           }
+                           
+                           >
+                           {defaultButtonTextSampleArr[index]}
+                           </div>);
+                       }                
+                       )}
+               </div>              
+                    }
+      
 
 
                 
