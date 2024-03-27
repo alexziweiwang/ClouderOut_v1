@@ -156,13 +156,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     1. Individual Button Look, Defualt
 
         <div className="indentOne">
-        <br></br>Min-Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" onChange={(event)=>{
+        <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
         }}></input><input value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
-        <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" onChange={(event)=>{
+        {/* <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
             }}></input><input value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
-        }}></input>
+        }}></input> */}
         <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="800" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
@@ -238,10 +238,23 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         }}
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
-        
-        <br></br>TODO button-list positions xy
-        <br></br>TODO button-list: horizontally center, vertical center
 
+        <br></br><label>Button Group PositionX:</label><br></br>
+            <div className="indentOne">
+                <input type="range"></input>
+                <input type="number"></input>
+                
+                <br></br>
+                <input type="checkbox"></input><label>Horizontally Centered</label>
+            </div>
+        <br></br><label>Button Group PositionY:</label><br></br>
+            <div className="indentOne">
+   
+                <input type="range"></input>
+                <input type="number"></input>              
+                <br></br>
+                <input type="checkbox"></input><label>Vertically Centered</label>
+            </div>
     </div>
 
     <br></br><br></br><br></br>
