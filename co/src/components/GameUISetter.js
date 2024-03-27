@@ -38,8 +38,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     //TODO current: defualt-reset when start rendering this component
     //TODO later: fetch from cloud-db for setting records
     const [defaultButtonObj, setDefaultButtonObj] = useState({
-        "widthMin": 50,
-        "widthMax": 150,
+        "widthMin": 300,
+        "widthMax": 370,
         "height": 20,
         "cornerRadius": 0,
         "transparency": 0.9,
@@ -244,8 +244,19 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
 
         <br></br><label>Button Group PositionX: TODO</label><br></br>
             <div className="indentOne">
-                <input type="range" value={defaultButtonObj["groupX"]}></input>
-                <input type="number" value={defaultButtonObj["groupX"]}></input>
+                <input type="range" value={defaultButtonObj["groupX"]}
+                    onChange={(event)=>{
+                        setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value});
+                    }}
+                    min="0" max="800" step="1"
+                ></input>
+                <input type="number" value={defaultButtonObj["groupX"]}
+                    onChange={(event)=>{
+                            setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value});
+                    }}
+                    min="0" max="800" step="1"
+
+                ></input>
                 
                 <br></br>
                 <input type="checkbox"></input><label>Horizontally Centered</label>
@@ -253,8 +264,20 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         <br></br><label>Button Group PositionY: TODO</label><br></br>
             <div className="indentOne">
    
-                <input type="range" value={defaultButtonObj["groupY"]}></input>
-                <input type="number"  value={defaultButtonObj["groupY"]}></input>              
+                <input type="range" value={defaultButtonObj["groupY"]}
+                    onChange={(event)=>{
+                        setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value});
+                    }}
+                    min="0" max="800" step="1"
+                
+                ></input>
+                <input type="number"  value={defaultButtonObj["groupY"]}
+                    onChange={(event)=>{
+                        setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value});
+                    }}
+                    min="0" max="800" step="1"
+                   
+                ></input>              
                 <br></br>
                 <input type="checkbox"></input><label>Vertically Centered</label>
             </div>
