@@ -53,8 +53,9 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "border": "2px solid #000000",
         "textSize": 15,
         "groupX": 200,
-        "groupY": 100
-
+        "groupY": 100,
+        "horizontalMid": false,
+        "verticalMid": false,
     });
     const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(false);
 
@@ -259,7 +260,15 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 ></input>
                 
                 <br></br>
-                <input type="checkbox"></input><label>Horizontally Centered</label>
+                <input type="checkbox" value={defaultButtonObj["horizontalMid"]}
+                    onChange={()=>{
+                        //TODO
+                        if (defaultButtonObj["horizontalMid"] === false) { // going to be true
+                            //recalculate
+                        }
+                        setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
+                    }}
+                ></input><label>Horizontally Centered</label>
             </div>
         <br></br><label>Button Group PositionY: TODO</label><br></br>
             <div className="indentOne">
@@ -279,7 +288,15 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                    
                 ></input>              
                 <br></br>
-                <input type="checkbox"></input><label>Vertically Centered</label>
+                <input type="checkbox" value={defaultButtonObj["verticalMid"]}
+                    onChange={()=>{
+                        //TODO
+                        if (defaultButtonObj["verticalMid"] === false) { // going to be true
+                            //TODO recalculate
+                        }
+                        setDefaultButtonObj({...defaultButtonObj,  "verticalMid": !defaultButtonObj["verticalMid"]});
+                    }}
+                ></input><label>Vertically Centered</label>
             </div>
     </div>
 
