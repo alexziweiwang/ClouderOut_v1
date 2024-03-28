@@ -244,7 +244,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
 
-        <br></br><label>Button Group PositionX: TODO</label><br></br>
+        {displayDefaultButtonPreview && <>
+        <br></br><label>Button Group PositionX: </label><br></br>
             <div className="indentOne">
                 <input type="range" value={defaultButtonObj["groupX"]}
                     onChange={(event)=>{
@@ -274,7 +275,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                     }}
                 ></input><label>Horizontally Centered</label>
             </div>
-        <br></br><label>Button Group PositionY: TODO</label><br></br>
+        <br></br><label>Button Group PositionY: </label><br></br>
             <div className="indentOne">
    
                 <input type="range" value={defaultButtonObj["groupY"]}
@@ -307,7 +308,9 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                     
                     }}
                 ></input><label>Vertically Centered</label>
-            </div>
+
+               
+            </div> </>}
     </div>
 
     <br></br><br></br>
@@ -319,9 +322,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 ></input><label>Preview in right window</label>  
     <br></br>            
     <div className="buttonPreviewArea" style={{"position": "relative"}}>
-        <div style={{"left": `${defaultButtonObj["groupX"]}px`,
-                    "top": `${defaultButtonObj["groupY"]}px`,                       
-                    "position": "absolute"}}>
+     
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
@@ -384,11 +385,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 </div>);
             }                
             )}
-        </div>
-
-
-
-
+       
     </div>
 
     <br></br><br></br>
