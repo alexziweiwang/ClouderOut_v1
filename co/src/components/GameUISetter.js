@@ -58,7 +58,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "horizontalMid": false,
         "verticalMid": false,
     });
-    const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(false);
+    const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(true);
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
 
@@ -248,13 +248,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             <div className="indentOne">
                 <input type="range" value={defaultButtonObj["groupX"]}
                     onChange={(event)=>{
-                        setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value});
+                        setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value, "horizontalMid": false});
                     }}
                     min="0" max="800" step="1"
                 ></input>
                 <input type="number" value={defaultButtonObj["groupX"]}
                     onChange={(event)=>{
-                            setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value});
+                            setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value, "horizontalMid": false});
                     }}
                     min="0" max="800" step="1"
 
@@ -262,6 +262,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 
                 <br></br>
                 <input type="checkbox" value={defaultButtonObj["horizontalMid"]}
+                    checked={defaultButtonObj["horizontalMid"]}
                     onChange={()=>{
                         if (defaultButtonObj["horizontalMid"] === false) { // going to be true
                             //recalculate                            
@@ -278,20 +279,21 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
    
                 <input type="range" value={defaultButtonObj["groupY"]}
                     onChange={(event)=>{
-                        setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value});
+                        setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value, "verticalMid": false});
                     }}
                     min="0" max="800" step="1"
                 
                 ></input>
                 <input type="number"  value={defaultButtonObj["groupY"]}
                     onChange={(event)=>{
-                        setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value});
+                        setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value, "verticalMid": false});
                     }}
                     min="0" max="800" step="1"
                    
                 ></input>              
                 <br></br>
                 <input type="checkbox" value={defaultButtonObj["verticalMid"]}
+                    checked={defaultButtonObj["verticalMid"]}
                     onChange={()=>{
 
                         if (defaultButtonObj["verticalMid"] === false) { // going to be true
@@ -312,6 +314,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     *Default Button Preview Area*
     <input type="checkbox" 
         value={displayDefaultButtonPreview}
+        checked={displayDefaultButtonPreview}
         onChange={()=>{setDisplayDefaultButtonPreview(!displayDefaultButtonPreview);}}
                 ></input><label>Preview in right window</label>  
     <br></br>            
