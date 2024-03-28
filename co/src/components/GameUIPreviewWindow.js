@@ -64,7 +64,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                                    "transition": "all 0.2s ease-out",
                                    "overflow": "scroll"
                                } : {
-                                    "background-image": `url('${defualtBtnData["picUrl"]}')`,
+                                   "background-image": `url('${defualtBtnData["picUrl"]}')`,
                                    "background-size": `${defualtBtnData["widthMax"]}px ${defualtBtnData["height"]}px`,
                                    
                                    "width": `${defualtBtnData["widthMin"]}px`,
@@ -121,6 +121,8 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                         "opacity": txtFrameData["transparency"],
                         "font-size": `${txtFrameData["textSize"]}px`,    
                     } : {
+                        "background-image": `url('${txtFrameData["picUrl"]}')`,
+
                         "background-size": `${txtFrameData["width"]}px ${txtFrameData["height"]}px`,
                         
                         "width": `${txtFrameData["width"]}px`,
