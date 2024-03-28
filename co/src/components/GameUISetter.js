@@ -64,12 +64,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
 
     const [txtFrameFontName, setTxtFrameFontName] = useState(0); //TODO
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
+    const [txtFrameContentAreaCentered, setTxtFrameContentAreaCentered] = useState(true);
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": 600,
         "height": 200,
         "positionX": 100,
-        "positionY": 270,
+        "positionY": 360,
         "cornerRadius": 0,
         "transparency": 0.7,
         "isShape": true,
@@ -309,6 +310,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                             //recalculate                            
                             let groupHeight = (defaultButtonObj["height"] + defaultButtonObj["margin"]) * defaultButtonTextSampleArr.length - defaultButtonObj["margin"];
                             let posY = (screenHeight - groupHeight) / 2 - 1;
+                            //TODO improve the calculation later
+
                             setDefaultButtonObj({...defaultButtonObj,  "groupY": posY, "verticalMid": !defaultButtonObj["verticalMid"]});
                         } else {
                             setDefaultButtonObj({...defaultButtonObj, "verticalMid": !defaultButtonObj["verticalMid"]});
@@ -578,30 +581,41 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     }}></input><label> {txtFrameObj["textColor"]}</label>
     <br></br>Text Content Area:
     <div className="indentOne">
-        TextContentArea-x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="0" max="800" step="1" 
-        onChange={(event) => {
-            setTxtFrameObj({...txtFrameObj, "TextContentArea-x": event.target.value});    
-        }}
-        ></input>{txtFrameObj["TextContentArea-x"]}
+    <input type="radio" value={txtFrameContentAreaCentered} checked={txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
+    </input><label>Centered: </label>
+        {txtFrameContentAreaCentered && <div className="indentOne">
+                ... centered settings
+        </div>}
         <br></br>
-        TextContentArea-y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="0" max="800" step="1" 
-     onChange={(event) => {
-        setTxtFrameObj({...txtFrameObj, "TextContentArea-y": event.target.value});    
-    }}
-        ></input>{txtFrameObj["TextContentArea-y"]}
-        <br></br>
-        TextContentArea-w: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max="800" step="1" 
-     onChange={(event) => {
-        setTxtFrameObj({...txtFrameObj, "TextContentArea-w": event.target.value});    
-    }}
-        ></input>{txtFrameObj["TextContentArea-w"]}
-        <br></br>
-        TextContentArea-h:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max="800" step="1" 
-     onChange={(event) => {
-        setTxtFrameObj({...txtFrameObj, "TextContentArea-h": event.target.value});    
-    }}
-        ></input>{txtFrameObj["TextContentArea-h"]}
+        <input type="radio" value={txtFrameContentAreaCentered} checked={!txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
+            </input><label>Customized: </label>
+            {!txtFrameContentAreaCentered && <div className="indentOne">
+                TextContentArea-x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="0" max="800" step="1" 
+                onChange={(event) => {
+                    setTxtFrameObj({...txtFrameObj, "TextContentArea-x": event.target.value});    
+                }}
+                ></input>{txtFrameObj["TextContentArea-x"]}
+                <br></br>
+                TextContentArea-y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="0" max="800" step="1" 
+            onChange={(event) => {
+                setTxtFrameObj({...txtFrameObj, "TextContentArea-y": event.target.value});    
+            }}
+                ></input>{txtFrameObj["TextContentArea-y"]}
+                <br></br>
+                TextContentArea-w: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max="800" step="1" 
+            onChange={(event) => {
+                setTxtFrameObj({...txtFrameObj, "TextContentArea-w": event.target.value});    
+            }}
+                ></input>{txtFrameObj["TextContentArea-w"]}
+                <br></br>
+                TextContentArea-h:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max="800" step="1" 
+            onChange={(event) => {
+                setTxtFrameObj({...txtFrameObj, "TextContentArea-h": event.target.value});    
+            }}
+                ></input>{txtFrameObj["TextContentArea-h"]}            
+        </div>}
     </div>
+
 
     <br></br><br></br><br></br>
 
