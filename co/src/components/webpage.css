@@ -253,7 +253,7 @@ div {
     text-align: left;
     padding: 15px;
     flex: 1;
-    height: 550px;
+    height: 620px;
     overflow: auto;
     white-space: nowrap;
 }
@@ -261,7 +261,7 @@ div {
 .guiSettings {
     margin-left: 5px;
     width: 450px;
-    height: 550px;
+    height: 620px;
     text-align: left;
     padding: 15px;
     background-color: rgb(230, 221, 205);
@@ -276,7 +276,7 @@ div {
     text-align: left;
     padding: 15px;
     flex: 1;
-    height: 550px;
+    height: 620px;
     overflow: auto;
     white-space: nowrap;
 }
@@ -288,19 +288,18 @@ div {
 
 .previewWindow {
     background-color: rgb(124, 129, 124);
-    width: 840px;
+    width: 860px;
     flex: 2;
     margin-left: 10px;
     margin-right: 10px;
     white-space: nowrap;
     overflow: auto;
-    height: 550px;
+    height: 660px;
 }
 
 .preveiewArea {
-    height: 450px;
-    width: 96%;
-    height: 90%;
+    height: 620px;
+    width: 800px;
     background-color: rgb(222, 222, 235);
     margin-left: 2%;
     margin-right: 2%;
@@ -308,9 +307,8 @@ div {
 }
 
 .preveiewArea2 {
-    height: 450px;
-    width: 96%;
-    height: 90%;
+    height: 620px;
+    width: 800px;
     background-color: rgb(230, 221, 205);
     margin-left: 2%;
     margin-right: 2%;
@@ -330,7 +328,7 @@ div {
     padding-top: 3px;
     padding-bottom: 3px;
     margin: 3px;
-    height: 90%;
+    height: 100%;
 
 }
 
@@ -1106,7 +1104,7 @@ button:hover {
 }
 
 .resourcePreviewWindow {
-    height: 600px;
+    height: 620px;
     width: 800px;
 }
 

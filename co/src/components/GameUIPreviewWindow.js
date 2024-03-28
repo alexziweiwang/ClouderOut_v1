@@ -162,18 +162,6 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
             A2. Pause Screen 
         </div>
 
-        <p className="plans">
-
-            <br></br>TODO: provide 1 default look, and provide custom options
-            <br></br>customizable: color adjustment
-            <br></br>customizable: background-picture based
-            <br></br>customizable: size
-            <br></br>customizable: position
-            <br></br>customizable: button position
-            <br></br>customizable: button look
-            <br></br><br></br>
-
-        </p>
 
         <div>
             <p className="plans">

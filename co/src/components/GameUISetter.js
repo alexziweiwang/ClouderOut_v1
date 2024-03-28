@@ -4,7 +4,7 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 
 export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameSettings}) {
     const screenWidth = 800;
-    const screenHeight = 450;
+    const screenHeight = 600;
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
