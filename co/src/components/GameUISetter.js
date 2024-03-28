@@ -262,11 +262,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 <br></br>
                 <input type="checkbox" value={defaultButtonObj["horizontalMid"]}
                     onChange={()=>{
-                        //TODO
                         if (defaultButtonObj["horizontalMid"] === false) { // going to be true
-                            //recalculate
+                            //recalculate                            
+                            let posX = (screenWidth - defaultButtonObj["widthMin"]) / 2 - 1;
+                            setDefaultButtonObj({...defaultButtonObj,  "groupX": posX, "horizontalMid": !defaultButtonObj["horizontalMid"]});
+                        } else {
+                            setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
                         }
-                        setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
                     }}
                 ></input><label>Horizontally Centered</label>
             </div>
@@ -293,6 +295,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         //TODO
                         if (defaultButtonObj["verticalMid"] === false) { // going to be true
                             //TODO recalculate
+
                         }
                         setDefaultButtonObj({...defaultButtonObj,  "verticalMid": !defaultButtonObj["verticalMid"]});
                     }}
