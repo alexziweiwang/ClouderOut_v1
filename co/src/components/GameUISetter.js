@@ -243,8 +243,17 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         }}
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
+    
+    </div>
 
-        {displayDefaultButtonPreview && <>
+    <br></br><br></br>
+    <input type="checkbox" 
+        value={displayDefaultButtonPreview}
+        checked={displayDefaultButtonPreview}
+        onChange={()=>{setDisplayDefaultButtonPreview(!displayDefaultButtonPreview);}}
+                ></input><label>Preview in right window</label>  
+    <br></br>
+    {displayDefaultButtonPreview && <>
         <br></br><label>Button Group PositionX: </label><br></br>
             <div className="indentOne">
                 <input type="range" value={defaultButtonObj["groupX"]}
@@ -310,19 +319,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 ></input><label>Vertically Centered</label>
 
                
-            </div> </>}
-    </div>
-
-    <br></br><br></br>
-    *Default Button Preview Area*
-    <input type="checkbox" 
-        value={displayDefaultButtonPreview}
-        checked={displayDefaultButtonPreview}
-        onChange={()=>{setDisplayDefaultButtonPreview(!displayDefaultButtonPreview);}}
-                ></input><label>Preview in right window</label>  
-    <br></br>            
-    <div className="buttonPreviewArea" style={{"position": "relative"}}>
-     
+            </div> </>}            
+    {!displayDefaultButtonPreview && <label>*Default Button Preview Area*</label>}
+    {!displayDefaultButtonPreview && <div className="buttonPreviewArea" style={{"position": "relative"}}>
+    
             {defaultButtonTextSampleArr.map((item, index)=>{
                 let currId = "defaultButtonDiv" + index;
                 return (
@@ -386,7 +386,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             }                
             )}
        
-    </div>
+    </div>}
 
     <br></br><br></br>
     <br></br>Back Button: 
