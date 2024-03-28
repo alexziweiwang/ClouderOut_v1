@@ -4,7 +4,8 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 
 export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameSettings}) {
     const screenWidth = 800;
-    
+    const screenHeight = 450;
+
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -292,12 +293,16 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 <br></br>
                 <input type="checkbox" value={defaultButtonObj["verticalMid"]}
                     onChange={()=>{
-                        //TODO
-                        if (defaultButtonObj["verticalMid"] === false) { // going to be true
-                            //TODO recalculate
 
-                        }
-                        setDefaultButtonObj({...defaultButtonObj,  "verticalMid": !defaultButtonObj["verticalMid"]});
+                        if (defaultButtonObj["verticalMid"] === false) { // going to be true
+                            //recalculate                            
+                            let groupHeight = (defaultButtonObj["height"] + defaultButtonObj["margin"]) * defaultButtonTextSampleArr.length - defaultButtonObj["margin"];
+                            let posY = (screenHeight - groupHeight) / 2 - 1;
+                            setDefaultButtonObj({...defaultButtonObj,  "groupY": posY, "verticalMid": !defaultButtonObj["verticalMid"]});
+                        } else {
+                            setDefaultButtonObj({...defaultButtonObj, "verticalMid": !defaultButtonObj["verticalMid"]});
+                        }     
+                    
                     }}
                 ></input><label>Vertically Centered</label>
             </div>
