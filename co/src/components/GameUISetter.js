@@ -34,7 +34,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
-    const [idvButtonBgPicUrl, setIdvButtonBgPicUrl] = useState("");
 
     //TODO current: defualt-reset when start rendering this component
     //TODO later: fetch from cloud-db for setting records
@@ -47,6 +46,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "isShape": false,
         "bgColor": "#a8d1d6",
         "picVar": "",
+        "picUrl": "",
         "textColor": "#000000",
         "margin": 5,
         "justifyContent": "start",
@@ -222,8 +222,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
               }}>Base Picture: </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                            setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
-                            setIdvButtonBgPicUrl(visualMap[event.target.value]["url"]);  
+                            setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
                 
                 }}>                    
                     <option key="idvDefault" value="">-- Select Resource --</option>
@@ -347,7 +346,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "user-select": "none",
                         "transition": "all 0.2s ease-out",
                         "overflow": "scroll"
-                    } : {"background-image": `url('${idvButtonBgPicUrl}')`,
+                    } : {"background-image": `url('${defaultButtonObj["picUrl"]}')`,
                         "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
                         
                         "width": `${defaultButtonObj["widthMin"]}px`,

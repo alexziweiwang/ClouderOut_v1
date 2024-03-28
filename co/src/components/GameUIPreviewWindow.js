@@ -64,7 +64,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                                    "transition": "all 0.2s ease-out",
                                    "overflow": "scroll"
                                } : {
-
+                                    "background-image": `url('${defualtBtnData["picUrl"]}')`,
                                    "background-size": `${defualtBtnData["widthMax"]}px ${defualtBtnData["height"]}px`,
                                    
                                    "width": `${defualtBtnData["widthMin"]}px`,
