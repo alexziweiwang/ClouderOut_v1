@@ -65,6 +65,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     const [txtFrameFontName, setTxtFrameFontName] = useState(0); //TODO
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
     const [txtFrameContentAreaCentered, setTxtFrameContentAreaCentered] = useState(true);
+    const [txtFrameContentAreaHgap, setTxtFrameContentAreaHgap] = useState(0);
+    const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(0);
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": 600,
@@ -87,7 +89,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "TextContentArea-x": 18,
         "TextContentArea-y": 0,
         "TextContentArea-w": 560,
-        "TextContentArea-h": 190 
+        "TextContentArea-h": 190
+
     }
     );
 
@@ -564,17 +567,44 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     <input type="radio" value={txtFrameContentAreaCentered} checked={txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
     </input><label>Centered: </label>
         {txtFrameContentAreaCentered && <div className="indentOne">
+
+        const [txtFrameContentAreaHgap, setTxtFrameContentAreaHgap] = useState(0);
+    const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(0);
                 <label>Horizontal Gap: </label>
                 <br></br>
-                    <input type="range"></input>
-                    <input type="number"></input>
-                    horiztonalGap * 2 + contentAreaWidth = frameWidth
+                    <input type="range" value={txtFrameContentAreaHgap}
+                        min="0" max="30" step="1"
+                        onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
+                            //TODO horiztonalGap * 2 + contentAreaWidth = frameWidth
+
+                        }}
+                    
+                    ></input>
+                    <input type="number" value={txtFrameContentAreaHgap}
+                        min="0" max="30" step="1"
+                        onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
+                            //TODO horiztonalGap * 2 + contentAreaWidth = frameWidth
+
+                        }}
+                    ></input>
+                    
                 <br></br>
                 <label>Vertical Gap: </label>
                 <br></br>
-                    <input type="range"></input>
-                    <input type="number"></input>
-                    verticalGap * 2 + contentAreaHeight = frameHeight
+                    <input type="range" value={txtFrameContentAreaVgap}
+                        min="0" max="30" step="1"
+                        onChange={(event)=>{setTxtFrameContentAreaVgap(event.target.value);
+                            //TODO verticalGap * 2 + contentAreaHeight = frameHeight
+
+                        }}                    
+                    ></input>
+                    <input type="number" value={txtFrameContentAreaVgap}
+                        min="0" max="30" step="1"
+                        onChange={(event)=>{setTxtFrameContentAreaVgap(event.target.value);
+                            //TODO verticalGap * 2 + contentAreaHeight = frameHeight
+
+                        }}                    
+                    ></input>
         </div>}
         <br></br>
         <input type="radio" value={txtFrameContentAreaCentered} checked={!txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
