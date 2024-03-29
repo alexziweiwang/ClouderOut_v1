@@ -60,7 +60,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     });
     const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(true);
 
-    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
+    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
     const [txtFrameFontName, setTxtFrameFontName] = useState(0); //TODO
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
@@ -301,26 +301,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                     min="0" max="800" step="1"
                    
                 ></input>              
-                <br></br>
-                <input type="checkbox" value={defaultButtonObj["verticalMid"]}
-                    checked={defaultButtonObj["verticalMid"]}
-                    onChange={()=>{
-
-                        if (defaultButtonObj["verticalMid"] === false) { // going to be true
-                            //recalculate                            
-                            let groupHeight = (defaultButtonObj["height"] + defaultButtonObj["margin"]) * defaultButtonTextSampleArr.length - defaultButtonObj["margin"];
-                            let posY = (screenHeight - groupHeight) / 2 - 1;
-                            //TODO improve the calculation later
-
-                            setDefaultButtonObj({...defaultButtonObj,  "groupY": posY, "verticalMid": !defaultButtonObj["verticalMid"]});
-                        } else {
-                            setDefaultButtonObj({...defaultButtonObj, "verticalMid": !defaultButtonObj["verticalMid"]});
-                        }     
-                    
-                    }}
-                ></input><label>Vertically Centered</label>
-
-               
             </div> </>}            
     {!displayDefaultButtonPreview && <label>*Default Button Preview Area*</label>}
     {!displayDefaultButtonPreview && <div className="buttonPreviewArea" style={{"position": "relative"}}>

@@ -5,7 +5,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
     const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
 
     const [defualtBtnData, setDefualtBtnData] = useState({});
-    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content"];
+    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
     const [txtFrameData, setTxtFrameData] = useState({});
 
