@@ -90,7 +90,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "TextContentArea-y": 10,
         "TextContentArea-w": 580,
         "TextContentArea-h": 180
-
     }
     );
 
@@ -574,7 +573,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         min="10" max={(txtFrameObj["width"] - 20) / 2} step="1"
                         onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
                             // horiztonalGap * 2 + contentAreaWidth = frameWidth
-                            let contentAreaWidth = txtFrameObj["width"] - 2 * event.target.value;
+                            let contentAreaWidth = txtFrameObj["width"] - 2 * event.target.value - 2;
                             setTxtFrameObj({...txtFrameObj, 
                                 "TextContentArea-x": event.target.value, 
                                 "TextContentArea-w": contentAreaWidth}); 
@@ -585,7 +584,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         min="10" max={(txtFrameObj["width"] - 20) / 2} step="1"
                         onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
                             // horiztonalGap * 2 + contentAreaWidth = frameWidth
-                            let contentAreaWidth = txtFrameObj["width"] - 2 * event.target.value;
+                            let contentAreaWidth = txtFrameObj["width"] - 2 * event.target.value - 2;
                             setTxtFrameObj({...txtFrameObj, 
                                 "TextContentArea-x": event.target.value, 
                                 "TextContentArea-w": contentAreaWidth}); 
@@ -596,20 +595,25 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 <label>Vertical Gap: </label>
                 <br></br>
                     <input type="range" value={txtFrameContentAreaVgap}
-                        min="0" max="30" step="1"
+                        min="10" max={(txtFrameObj["height"] - 20) / 2} step="1"
                         onChange={(event)=>{setTxtFrameContentAreaVgap(event.target.value);
-                            //TODO verticalGap * 2 + contentAreaHeight = frameHeight
-                            let vGapVal = event.target.value;
-                            let contentAreaHeight = txtFrameObj["height"] - 2 * vGapVal;
-                            setTxtFrameObj({...txtFrameObj, "TextContentArea-h": contentAreaHeight }); 
-                            //TODO calculate new text-content-area-posY   
+                            // verticalGap * 2 + contentAreaHeight = frameHeight
+                            let contentAreaHeight = txtFrameObj["height"] - 2 * event.target.value - 2;
+                            setTxtFrameObj({...txtFrameObj, 
+                                "TextContentArea-y":event.target.value,
+                                "TextContentArea-h": contentAreaHeight
+                            }); 
                         }}                    
                     ></input>
                     <input type="number" value={txtFrameContentAreaVgap}
-                        min="0" max="30" step="1"
+                        min="10" max={(txtFrameObj["height"] - 20) / 2} step="1"
                         onChange={(event)=>{setTxtFrameContentAreaVgap(event.target.value);
-                            //TODO verticalGap * 2 + contentAreaHeight = frameHeight
-
+                            // verticalGap * 2 + contentAreaHeight = frameHeight
+                            let contentAreaHeight = txtFrameObj["height"] - 2 * event.target.value - 2;
+                            setTxtFrameObj({...txtFrameObj, 
+                                "TextContentArea-y":event.target.value,
+                                "TextContentArea-h": contentAreaHeight
+                            }); 
                         }}                    
                     ></input>
         </div>}
