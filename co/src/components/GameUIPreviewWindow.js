@@ -135,6 +135,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                         "opacity": txtFrameData["transparency"],
                         "font-size": `${txtFrameData["textSize"]}px`,  
                     }}>
+                        
                         <div style={{
                             "position": "relative",
                             "left": `${txtFrameData["TextContentArea-x"]}px`,
@@ -144,7 +145,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                             "border": "2px solid #e99a2b",
                             "border-radius": "0px"
                         }}>
-                            Text Content...
+                            Text Content Area...
                         </div>
                     
                     </div>

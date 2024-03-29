@@ -86,10 +86,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "alignItems": "start",
         "border": "2px solid #000000",
         "horizontalMid": false,
-        "TextContentArea-x": 18,
-        "TextContentArea-y": 0,
-        "TextContentArea-w": 560,
-        "TextContentArea-h": 190
+        "TextContentArea-x": 10,
+        "TextContentArea-y": 10,
+        "TextContentArea-w": 580,
+        "TextContentArea-h": 180
 
     }
     );
@@ -571,10 +571,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 <label>Horizontal Gap: </label>
                 <br></br>
                     <input type="range" value={txtFrameContentAreaHgap}
-                        min="0" max="30" step="1"
+                        min="20" max="50" step="1"
                         onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
-                            //TODO horiztonalGap * 2 + contentAreaWidth = frameWidth
-
+                            // horiztonalGap * 2 + contentAreaWidth = frameWidth
+                            let hGapVal = event.target.value;
+                            let contentAreaWidth = txtFrameObj["width"] - 2 * hGapVal;
+                            setTxtFrameObj({...txtFrameObj, "TextContentArea-w": contentAreaWidth}); 
+                            //TODO calculate new text-content-area-posX   
                         }}
                     
                     ></input>
@@ -593,7 +596,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         min="0" max="30" step="1"
                         onChange={(event)=>{setTxtFrameContentAreaVgap(event.target.value);
                             //TODO verticalGap * 2 + contentAreaHeight = frameHeight
-
+                            let vGapVal = event.target.value;
+                            let contentAreaHeight = txtFrameObj["height"] - 2 * vGapVal;
+                            setTxtFrameObj({...txtFrameObj, "TextContentArea-h": contentAreaHeight }); 
+                            //TODO calculate new text-content-area-posY   
                         }}                    
                     ></input>
                     <input type="number" value={txtFrameContentAreaVgap}
