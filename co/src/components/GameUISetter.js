@@ -584,7 +584,17 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     <input type="radio" value={txtFrameContentAreaCentered} checked={txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
     </input><label>Centered: </label>
         {txtFrameContentAreaCentered && <div className="indentOne">
-                ... centered settings
+                <label>Horizontal Gap: </label>
+                <br></br>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                    horiztonalGap * 2 + contentAreaWidth = frameWidth
+                <br></br>
+                <label>Vertical Gap: </label>
+                <br></br>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                    verticalGap * 2 + contentAreaHeight = frameHeight
         </div>}
         <br></br>
         <input type="radio" value={txtFrameContentAreaCentered} checked={!txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
