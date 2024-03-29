@@ -65,8 +65,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     const [txtFrameFontName, setTxtFrameFontName] = useState(0); //TODO
     const [txtFrameFontSize, setTxtFrameFontSize] = useState(12); //TODO
     const [txtFrameContentAreaCentered, setTxtFrameContentAreaCentered] = useState(true);
-    const [txtFrameContentAreaHgap, setTxtFrameContentAreaHgap] = useState(0);
-    const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(0);
+    const [txtFrameContentAreaHgap, setTxtFrameContentAreaHgap] = useState(10);
+    const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(10);
 
     const [txtFrameObj, setTxtFrameObj] = useState(
         {"width": 600,
@@ -571,21 +571,24 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 <label>Horizontal Gap: </label>
                 <br></br>
                     <input type="range" value={txtFrameContentAreaHgap}
-                        min="20" max="50" step="1"
+                        min="10" max={(txtFrameObj["width"] - 20) / 2} step="1"
                         onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
                             // horiztonalGap * 2 + contentAreaWidth = frameWidth
-                            let hGapVal = event.target.value;
-                            let contentAreaWidth = txtFrameObj["width"] - 2 * hGapVal;
-                            setTxtFrameObj({...txtFrameObj, "TextContentArea-w": contentAreaWidth}); 
-                            //TODO calculate new text-content-area-posX   
+                            let contentAreaWidth = txtFrameObj["width"] - 2 * event.target.value;
+                            setTxtFrameObj({...txtFrameObj, 
+                                "TextContentArea-x": event.target.value, 
+                                "TextContentArea-w": contentAreaWidth}); 
                         }}
                     
                     ></input>
                     <input type="number" value={txtFrameContentAreaHgap}
-                        min="0" max="30" step="1"
+                        min="10" max={(txtFrameObj["width"] - 20) / 2} step="1"
                         onChange={(event)=>{setTxtFrameContentAreaHgap(event.target.value);
-                            //TODO horiztonalGap * 2 + contentAreaWidth = frameWidth
-
+                            // horiztonalGap * 2 + contentAreaWidth = frameWidth
+                            let contentAreaWidth = txtFrameObj["width"] - 2 * event.target.value;
+                            setTxtFrameObj({...txtFrameObj, 
+                                "TextContentArea-x": event.target.value, 
+                                "TextContentArea-w": contentAreaWidth}); 
                         }}
                     ></input>
                     
