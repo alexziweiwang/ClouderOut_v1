@@ -568,8 +568,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     </input><label>Centered: </label>
         {txtFrameContentAreaCentered && <div className="indentOne">
 
-        const [txtFrameContentAreaHgap, setTxtFrameContentAreaHgap] = useState(0);
-    const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(0);
                 <label>Horizontal Gap: </label>
                 <br></br>
                     <input type="range" value={txtFrameContentAreaHgap}
