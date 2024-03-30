@@ -11,7 +11,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     let modalStyleName = "modalBackboard";
 
     const GoogleDrivePrefix = "https://drive.google.com/thumbnail?id=";
-    const [googleDriveFileId, setGoogleDriveFileId] = useState(""); //testing
+    const [googleDriveFileId, setGoogleDriveFileId] = useState("");
 
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -361,7 +361,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     </ul>
                 </div>}
 
-
+                <br></br><br></br>
+                <label>Add New Picture</label>
                 <div className="uploadArea"> New File Upload <br></br>
                     {uploadConfirm === false && <input 
                         type="file"
@@ -374,6 +375,17 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
                 </div>
 
+                <br></br><br></br>      
+                <div className="uploadArea"> From Google Drive <br></br>
+                Please provide a share-link from Google Drive.
+                <br></br>Example: "https://drive.google.com/file/d/[resource id]/view?usp=sharing"
+                <br></br>
+                    <input></input>
+                    <button onClick={()=>{
+                        //TODO parse and extract id, update id-var for this resource
+                    }}>Preview</button>
+                </div>
+
 
                 </div>
                 
@@ -384,7 +396,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     <img 
                         className="picResource" 
                         src= {GoogleDrivePrefix+googleDriveFileId}
-                        alt="test"
+                        alt="GoogleDriveResourcePreview"
                     />
 
                 </div>
