@@ -208,7 +208,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await fetchRmFileList();
     }
 
-    async function updateGoogleDriveFileRecord(type, addedFileName) {
+    async function updateGoogleDriveFileRecords(type, addedFileName) {
         await addToRmFileListVM({uname: username, filetitle: addedFileName, fileUrl: googleDriveFileDisplayLink, fileType: type});
         
         await fetchRmFileList();
@@ -409,14 +409,15 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         console.log("arr: ");
                         console.log(arr);
                         
-
+                        setClickedFileName("");
+                        setClickedFileType("");
+                        setClickedFileUrl("");
                     }}>Preview</button>
 
-                    <label>File Name: </label>
-                    <input></input>
                     <br></br><button onClick={()=>{
-                        //TODO set file name and type and pass into func
-                        //updateGoogleDriveFileRecord(type, addedFileName);
+                        updateGoogleDriveFileRecords("visual", googleDriveFileId);
+                        setGoogleDriveFileId("");
+                        setGoogleDriveFileSharedLink("");
                     }}>Add</button>
                 </div>}
                 </div>
@@ -427,11 +428,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
-                    {googleDriveFileId !== "" && <img 
+                    {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
                         className="picResource" 
                         src= {GoogleDrivePrefix+googleDriveFileId}
                         alt="GoogleDriveResourcePreview"
-                    />} Testing...
+                    />}
 
                 </div>
 
