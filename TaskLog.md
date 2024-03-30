@@ -223,3 +223,5 @@
 - 2024-Mar-21: Consider resource-manager reusing for various size & directions on visual materials
 
 - 2024-Mar-25: Consider text-frame-content-area displaying
+
+- 2024-Mar-29: Resource managing - Google Drive source option consideration and design
