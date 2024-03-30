@@ -11,6 +11,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     let modalStyleName = "modalBackboard";
 
     const GoogleDrivePrefix = "https://drive.google.com/thumbnail?id=";
+    const [googleDriveFileSharedLink, setGoogleDriveFileSharedLink] = useState("");
     const [googleDriveFileId, setGoogleDriveFileId] = useState("");
 
     const username = "user002"; //TODO testing
@@ -377,12 +378,27 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 <br></br><br></br>      
                 <div className="uploadArea"> From Google Drive <br></br>
-                Please provide a share-link from Google Drive.
+                Enter a public sharing link from Google Drive
                 <br></br>Example: "https://drive.google.com/file/d/[resource id]/view?usp=sharing"
                 <br></br>
-                    <input></input>
+                    <input value={googleDriveFileSharedLink} onChange={(event)=>{setGoogleDriveFileSharedLink(event.target.value);}}></input>
                     <button onClick={()=>{
-                        //TODO parse and extract id, update id-var for this resource
+                        //parse and extract id, update id-var for this resource
+                        let arr = googleDriveFileSharedLink.split("/");
+                        let i = 0;
+                        for (; i < arr.length; i++) {
+                            if (arr[i] == "d" && (i+1) < arr.length) {
+                                setGoogleDriveFileId(arr[i+1]);
+                                //TODO update the url of this GoogleDrive resource
+                                //GoogleDrivePrefix + arr[i+1]
+                                
+                                i = arr.length;
+                            }
+                        }
+                        console.log("arr: ");
+                        console.log(arr);
+                        
+
                     }}>Preview</button>
                 </div>
 
