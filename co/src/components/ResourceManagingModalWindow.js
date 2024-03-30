@@ -366,7 +366,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 {visualListFilteredList.length > 0 && <div className="rsrcListArea">
                     <ul>
                         {visualListFilteredList.map((item, index) => (
-                        <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>{item["filename"]}</li>
+                        <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>
+                            {item["filename"]}</li>
                         ))}
                     </ul>
                 </div>}
@@ -374,7 +375,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <br></br><br></br>
                 <label> Add a New Picture: </label> <br></br>
                 <div  style={{"text-align": "left", "padding": "3px"}}>
-                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input> New File Upload
+                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input> New File Upload <br></br>
                 {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 
                         type="file"
@@ -385,7 +386,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
                     {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
                     {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
-                </div>}<br></br>
+                </div>}
                 
                 <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input>  From Google Drive
                 {!isSourceByUpload && <div className="uploadArea" style={{"color": "#000000"}}>

@@ -14,18 +14,16 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
     return (
         <div className="resourceVarPairWindow">            
             <label>Variable Name: </label>
-            {isInVarPair == true && <><label>{displayItem["var"]}</label><br></br></>}
+            {isInVarPair == true && <><label>{displayItem["var"]}</label>
+                <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("delete", selectedUrl, inputContent, fileType);}}>Delete this Naming</button>
+            <br></br>
+            <label>Rename: </label></>}
             
             <input value={inputContent} onChange={(event)=>{setInputContent(event.target.value);}}></input> 
             {isInVarPair == false && <button onClick={()=>{setInputContent(""); updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
             {isInVarPair == true && 
-                <>
-                    <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Edit</button>
-                    <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("delete", selectedUrl, inputContent, fileType);}}>Delete</button>
-                </>
-            }
-            
-            
+                <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Update</button>}
+                        
             <button className="buttonRight" onClick={()=>{}}> Save Changes to Cloud </button>
 
         </div>
