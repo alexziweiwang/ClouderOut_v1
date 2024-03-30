@@ -3,6 +3,21 @@ import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
  import { storage } from '../googleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
+
+/*
+List of functions:
+
+submitFile({file, uname, filename}) //upload a file
+getRmFileList({uname}) // get rm list in db (not in storage)
+addToRmFileList({uname, filetitle, fileUrl, fileType}) // add tp rm list in db (not in storage)
+fetchUrlByFilename({fullFilename}) // fetch url by filename, in storage
+fetchProjectResourceVarPairs({userName, projectName}) // fetch var-pair lists
+updateProjectResourceVarPairs({userName, projectName, obj}) // update car-pair lists
+
+
+*/
+
+
 /**
  * Upload a file to storage
  * 
@@ -27,7 +42,7 @@ export async function submitFile({file, uname, filename}) {
 }
 
 /**
- * Fetch list of uploaded files in resource-manager
+ * Fetch list of uploaded files in resource-manager (in database)
  * 
  * @param {*} uname username
  * @returns list of uploaded files
@@ -50,7 +65,7 @@ export async function getRmFileList({uname}) {
 }
 
 /**
- * Add file name to resource-manager file-list
+ * Add file name to resource-manager file-list (in database)
  * 
  * @param {*} uname username
  * @param {*} filetitle file name title
@@ -85,7 +100,7 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 }
 
 /**
- * Fetch download url of a uploaded file by filename
+ * Fetch download url of a uploaded file by filename (from storage)
  * 
  * @param {*} fullFilename file name
  * @returns file url
@@ -107,7 +122,7 @@ export async function fetchUrlByFilename({fullFilename}) {
 }
 
 /**
- * Get specific proejct's resource-pair data
+ * Get specific proejct's resource-pair data (in database)
  * 
  * @param {*} userName username
  * @param {*} projectName project name
@@ -142,7 +157,7 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
 }
 
 /**
- * Update specific project's resource-pair data
+ * Update specific project's resource-pair data (in database)
  * 
  * @param {*} userName username
  * @param {*} projectName project name
@@ -177,5 +192,18 @@ export async function updateProjectResourceVarPairs({userName, projectName, obj}
   await updateDoc(projectRef, {
     "proj_resource_visual": obj.visual
   });
+
+}
+
+export async function deleteUploadedFile({username, filename}) {
+  // for direct-uploaded file
+  // in both storage and db, delete the specified file or file-record
+
+  await removeFromRmFileList();
+
+}
+
+export async function removeFromRmFileList({username, filename}) { // in database
+  // in user -> projects -> resource_manager -> filenames
 
 }
