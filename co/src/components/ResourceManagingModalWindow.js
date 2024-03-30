@@ -23,6 +23,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         modalStyleName = "displayNone modalBackboard";
     }
 
+    const [isSourceByUpload, setIsSourceByUpload] = useState(true);
+
     const [uploadConfirm, setUploadConfirm] = useState(false);
     const [fileSelected, setFileSelected] = useState("");
     const [cloudFileList, setCloudFileList] = useState([]);
@@ -363,8 +365,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>}
 
                 <br></br><br></br>
-                <label>Add New Picture</label>
-                <div className="uploadArea"> New File Upload <br></br>
+                <label> Add a New Picture: </label> <br></br>
+                <div  style={{"text-align": "left", "padding": "3px"}}>
+                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input> New File Upload
+                {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 
                         type="file"
                         accept=".png,.jpg,.jpeg,"
@@ -374,12 +378,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
                     {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
                     {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
-                </div>
-
-                <br></br><br></br>      
-                <div className="uploadArea"> From Google Drive <br></br>
-                Enter a public sharing link from Google Drive
-                <br></br>Example: "https://drive.google.com/file/d/[resource id]/view?usp=sharing"
+                </div>}<br></br>
+                
+                <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input>  From Google Drive
+                {!isSourceByUpload && <div className="uploadArea" style={{"color": "#000000"}}>
+                Enter a public sharing link from Google Drive...
+                <br></br><label style={{"font-style": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
                 <br></br>
                     <input value={googleDriveFileSharedLink} onChange={(event)=>{setGoogleDriveFileSharedLink(event.target.value);}}></input>
                     <button onClick={()=>{
@@ -400,8 +404,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         
 
                     }}>Preview</button>
+                </div>}
                 </div>
-
 
                 </div>
                 
@@ -409,11 +413,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
-                    <img 
+                    {googleDriveFileId !== "" && <img 
                         className="picResource" 
                         src= {GoogleDrivePrefix+googleDriveFileId}
                         alt="GoogleDriveResourcePreview"
-                    />
+                    />} Testing...
 
                 </div>
 
