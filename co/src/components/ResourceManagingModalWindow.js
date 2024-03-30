@@ -9,7 +9,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
     let modalStyleName = "modalBackboard";
-    
+
+    const GoogleDrivePrefix = "https://drive.google.com/thumbnail?id=";
+    const [googleDriveFileId, setGoogleDriveFileId] = useState(""); //testing
+
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -377,6 +380,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <div className="areaBlue">
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
+                
+                    <img 
+                        className="picResource" 
+                        src= {GoogleDrivePrefix+googleDriveFileId}
+                        alt="test"
+                    />
+
                 </div>
 
 
