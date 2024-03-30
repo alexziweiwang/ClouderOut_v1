@@ -13,6 +13,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     const GoogleDrivePrefix = "https://drive.google.com/thumbnail?id=";
     const [googleDriveFileSharedLink, setGoogleDriveFileSharedLink] = useState("");
     const [googleDriveFileId, setGoogleDriveFileId] = useState("");
+    const [googleDriveFileDisplayLink, setGoogleDriveFileDisplayLink] = useState("");
 
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -207,6 +208,12 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await fetchRmFileList();
     }
 
+    async function updateGoogleDriveFileRecord(type, addedFileName) {
+        await addToRmFileListVM({uname: username, filetitle: addedFileName, fileUrl: googleDriveFileDisplayLink, fileType: type});
+        
+        await fetchRmFileList();
+    }
+
     async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
         setCloudFileList(fileList.filenames);
@@ -394,8 +401,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                             if (arr[i] == "d" && (i+1) < arr.length) {
                                 setGoogleDriveFileId(arr[i+1]);
                                 //TODO update the url of this GoogleDrive resource
-                                //GoogleDrivePrefix + arr[i+1]
-                                
+                                let temp = GoogleDrivePrefix + arr[i+1]
+                                setGoogleDriveFileDisplayLink(temp);
                                 i = arr.length;
                             }
                         }
@@ -404,6 +411,13 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                         
 
                     }}>Preview</button>
+
+                    <label>File Name: </label>
+                    <input></input>
+                    <br></br><button onClick={()=>{
+                        //TODO set file name and type and pass into func
+                        //updateGoogleDriveFileRecord(type, addedFileName);
+                    }}>Add</button>
                 </div>}
                 </div>
 
