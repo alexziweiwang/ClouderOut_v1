@@ -1,6 +1,4 @@
-import { removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
-
-export default function PicturePreview ({urlList, selectedUrl, username, filename}) {
+export default function PicturePreview ({urlList, selectedUrl, removeFileFromAll}) {
     return (
         <div className="rsrcPrevArea">
             {urlList.map((item, index) => {
@@ -16,7 +14,7 @@ export default function PicturePreview ({urlList, selectedUrl, username, filenam
 
                 <br></br>   
                 <button className="buttonRight" onClick={()=>{
-                    removeFromRmFileListVM({uname: username, filetitle: filename});
+                    removeFileFromAll();
                 }}> Delete (from all projects)</button>
 
 

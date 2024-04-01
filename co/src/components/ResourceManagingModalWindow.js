@@ -314,6 +314,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
     }
 
+    async function removeOneResource() {
+        await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
+        await fetchRmFileList();
+    }
+
     return (
       <div className={modalStyleName}>
         <div className="modalArea">
@@ -426,7 +431,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} username={username} filename={clickedFileName}/>}
+                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} username={username} filename={clickedFileName} removeFileFromAll={removeOneResource}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
