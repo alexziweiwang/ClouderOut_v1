@@ -380,7 +380,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <br></br><br></br>
                 <label> Add a New Picture: </label> <br></br>
                 <div  style={{"text-align": "left", "padding": "3px"}}>
-                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input> New File Upload <br></br>
+                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(true);}}></input> <label onClick={()=>{setIsSourceByUpload(true);}}>New File Upload</label> <br></br>
                 {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 
                         type="file"
@@ -393,7 +393,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
                 </div>}
                 
-                <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(!isSourceByUpload);}}></input>  From Google Drive
+                <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(false);}}></input>  <label onClick={()=>{setIsSourceByUpload(false);}}>From Google Drive</label>
                 {!isSourceByUpload && <div className="uploadArea" style={{"color": "#000000"}}>
                 Enter a public sharing link from Google Drive...
                 <br></br><label style={{"font-style": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
