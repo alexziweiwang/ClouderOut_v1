@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
-import { fetchProjectResourceVarPairsVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
@@ -90,7 +90,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
 
         if (givenContent.length === 0) {
-            console.log("empty input in storeNewVarPairDataFuncGen(), direct return");
+            console.log("empty input in storeNewVarPairDataFuncGen(), direct return");//TODO 
             return;
         }
         let updatePart = "";
@@ -148,14 +148,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     async function updateVarPairToCloud() {
-        await updateProjectResourceVarPairsVM(varPairToCloud);
+        await storeProjectResourceVarPairsToCloudVM(varPairToCloud);
         setVarPairToCloud("default");
     }
 
     async function fetchProjResourceVarPairLists() {
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        console.log(obj);
+        console.log(obj);//TODO 
 
         setVisualVarPairs(obj.visual);
         setAudioVarPairs(obj.audio);
@@ -168,18 +168,14 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     async function submitFile(type, selectedFile) {
         console.log("Window: called ... submitFile"); //TODO
         if (selectedFile === "") {
-            console.log("File NOT chosen");
+            console.log("File NOT chosen"); //TODO
             return;
         }
-        console.log("temp selectedFile: ");
-        console.log(selectedFile); //TODO testing
 
         const fileName = `${username}_${selectedFile.name}`;
 
         await submitFileVM({file: selectedFile , uname: username, filename: fileName});
         
-        console.log("continue to next steps of updating..."); //TODO test
-
         await updateUploadedFileRecords(username, fileName, type);
     }
 
@@ -262,10 +258,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
         if (type === "curr") { // in-this-project
             setVisualListFilteredList(inList); 
-            console.log("filter: in vis...");
+            console.log("filter: in vis...");//TODO 
         } else if (type === "not") { // not-in-this-project
             setVisualListFilteredList(notInList); 
-            console.log("filter: not in vis...");
+            console.log("filter: not in vis...");//TODO 
         } else if (type !== "all") { // unexpected input
             return;
         }
@@ -296,19 +292,19 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             }
         }
 
-        console.log(" in list: ");
-        console.log(inList);
+        console.log(" in list: ");//TODO 
+        console.log(inList);//TODO 
 
-        console.log(" not in the list: ");
-        console.log(notInList);
+        console.log(" not in the list: ");//TODO 
+        console.log(notInList);//TODO 
 
         // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
         if (type === "curr") { // in-this-project
             setAudioListFilteredList(inList); 
-            console.log("filter: in au");
+            console.log("filter: in au");//TODO 
         } else if (type === "not") { // not-in-this-project
             setAudioListFilteredList(notInList); 
-            console.log("filter: not in au");
+            console.log("filter: not in au");//TODO 
         } else if (type !== "all") { // unexpected input
             return;
         }
@@ -317,7 +313,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     async function removeOneResource() {
         await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
         await fetchRmFileList();
-        //update resource's car-pair local list...
+        //update resource's var-pair list
         let emptyObj = {};
         storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);
         setClickedFileName("");
@@ -418,8 +414,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                                 i = arr.length;
                             }
                         }
-                        console.log("arr: ");
-                        console.log(arr);
+                        console.log("arr: ");//TODO 
+                        console.log(arr);//TODO 
                         
                         setClickedFileName("");
                         setClickedFileType("");
@@ -469,7 +465,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 {audioListFilteredList.length > 0&& <div className="rsrcListArea">
                     <ul>
                         {audioListFilteredList.map((item, index) => (
-                        <li className="clickableListItem5" key={index} onClick={()=>{console.log("list clicked.", cloudFileList[index]["filename"]); itemClicked(item);}}>{item["filename"]}</li>
+                        <li className="clickableListItem5" key={index} onClick={()=>{
+                            console.log("list clicked.", cloudFileList[index]["filename"]); //TODO 
+                            itemClicked(item);
+                        
+                        }}>{item["filename"]}</li>
                         ))}
                     </ul>
                 </div>}

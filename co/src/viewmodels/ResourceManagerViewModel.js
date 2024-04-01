@@ -1,4 +1,4 @@
-import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, updateProjectResourceVarPairs, removeFromRmFileList } from "../models/ResourceManagerModel";
+import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, storeProjectResourceVarPairsToCloud, removeFromRmFileList } from "../models/ResourceManagerModel";
 
 export async function submitFileVM({file, uname, filename}) {
     if (filename === "" || filename === undefined) {
@@ -30,6 +30,6 @@ export async function fetchProjectResourceVarPairsVM({userName, projectName}) {
     return await fetchProjectResourceVarPairs({userName, projectName});
 }
 
-export async function updateProjectResourceVarPairsVM({userName, projectName, obj}) {
-    await updateProjectResourceVarPairs({userName, projectName, obj})
+export async function storeProjectResourceVarPairsToCloudVM({userName, projectName, obj}) {
+    await storeProjectResourceVarPairsToCloud({userName, projectName, obj})
 }

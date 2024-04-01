@@ -12,7 +12,7 @@ getRmFileList({uname}) // get rm list in db (not in storage)
 addToRmFileList({uname, filetitle, fileUrl, fileType}) // add tp rm list in db (not in storage)
 fetchUrlByFilename({fullFilename}) // fetch url by filename, in storage
 fetchProjectResourceVarPairs({userName, projectName}) // fetch var-pair lists
-updateProjectResourceVarPairs({userName, projectName, obj}) // update car-pair lists
+storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-pair lists
 
 
 */
@@ -74,16 +74,7 @@ export async function getRmFileList({uname}) {
  * @returns void
  */
 export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
-                  // const docRef = doc(db, "user_projects", uname);
-                  // const docSnap = await getDoc(docRef);
-  
-                  // if (!docSnap.exists()) {
-                  //   return;
-                  // }
 
-    /* add filename to resource-manage file-list */
-    /* data structure: map <k, v> is <filetitle, fileUrl> */
-                  // const ref = doc(docRef, "projects", "resource_manager");
     const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
     let currFileData = await getDoc(ref, "fileRecord");
     let currFileList = currFileData.data().filenames;
@@ -147,14 +138,6 @@ export async function fetchUrlByFilename({fullFilename}) {
 export async function fetchProjectResourceVarPairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
 
-              // const docRef = doc(db, "user_projects", userName);
-              // const docSnap = await getDoc(docRef);
-
-              // if (!docSnap.exists()) {
-              //   return;
-              // }
-
-              // const ref = doc(docRef, "projects", projectName);
   const ref = doc(db, "user_projects", userName, "projects", projectName);
   let visualListSnap = await getDoc(ref, "proj_resource_visual");
   //TODO validate visualListSnap
@@ -180,14 +163,9 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
  * @param {*} obj resource pair data object
  * @returns void
  */
-export async function updateProjectResourceVarPairs({userName, projectName, obj}) {
-                // const docRef = doc(db, "user_projects", userName);
-                // const docSnap = await getDoc(docRef);
+export async function storeProjectResourceVarPairsToCloud({userName, projectName, obj}) {
 
-                // if (!docSnap.exists()) {
-                //   return;
-                // }
-          console.log("model - updateProjectResourceVarPairs()");
+          console.log("model - storeProjectResourceVarPairsToCloud()");
           console.log(userName);
           console.log(projectName);
           console.log(obj);
