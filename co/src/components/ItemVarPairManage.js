@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarPairDataFunction, fileType, saveToCloudFunc}) {
+export default function ItemVarPairManage ({varPairInfo, selectedUrl, storeNewVarPairDataFunction, fileType, saveToCloudFunc}) {
     const displayPart = varPairInfo.filter(elem => elem["url"] === selectedUrl);
     const displayItem = displayPart[0];
     let isInVarPair = false;
@@ -15,14 +15,14 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
         <div className="resourceVarPairWindow">            
             <label>Variable Name: </label>
             {isInVarPair == true && <><label>{displayItem["var"]}</label>
-                <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("delete", selectedUrl, inputContent, fileType);}}>Delete this Naming</button>
+                <button onClick={()=>{ setInputContent(""); storeNewVarPairDataFunction("delete", selectedUrl, inputContent, fileType);}}>Delete this Naming</button>
             <br></br>
             <label>Rename: </label></>}
             
             <input value={inputContent} onChange={(event)=>{setInputContent(event.target.value);}}></input> 
-            {isInVarPair == false && <button onClick={()=>{setInputContent(""); updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
+            {isInVarPair == false && <button onClick={()=>{setInputContent(""); storeNewVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
             {isInVarPair == true && 
-                <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Update</button>}
+                <button onClick={()=>{ setInputContent(""); storeNewVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Update</button>}
 
             <button className="buttonRight" onClick={()=>{}}> Save Changes to Cloud </button>
         </div>

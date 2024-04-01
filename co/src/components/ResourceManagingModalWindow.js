@@ -57,7 +57,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         }
     });
 
-    function updateVarPairDataFuncGen(type, url, givenContent, fileType) {
+    function storeNewVarPairDataFuncGen(type, url, givenContent, fileType) {
         if (type === "delete") {
             let updatePartArr = [];
             let object = {};
@@ -82,7 +82,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
             info["obj"] = object;
     
             setVarPairToCloud(info);
-            //TODO pop some reminder to user: provide option to update to cloud-db?
+            //TODO pop some alert to user: provide option to update to cloud-db?
 
             return;
         }
@@ -90,7 +90,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
 
         if (givenContent.length === 0) {
-            console.log("empty input in updateVarPairDataFuncGen(), direct return");
+            console.log("empty input in storeNewVarPairDataFuncGen(), direct return");
             return;
         }
         let updatePart = "";
@@ -317,6 +317,9 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     async function removeOneResource() {
         await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
         await fetchRmFileList();
+        //update resource's car-pair local list...
+        let emptyObj = {};
+        storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType)
     }
 
     return (
@@ -431,8 +434,8 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} username={username} filename={clickedFileName} removeFileFromAll={removeOneResource}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
+                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} removeFileFromAll={removeOneResource}/>}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
                         className="picResource" 
@@ -483,7 +486,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 
                 <div className="areaBlue">
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud}/>}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud}/>}
                 </div>
 
                 </div>
