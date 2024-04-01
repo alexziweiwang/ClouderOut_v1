@@ -319,7 +319,10 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         await fetchRmFileList();
         //update resource's car-pair local list...
         let emptyObj = {};
-        storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType)
+        storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);
+        setClickedFileName("");
+        setClickedFileType("");
+        setClickedFileUrl("");
     }
 
     return (
