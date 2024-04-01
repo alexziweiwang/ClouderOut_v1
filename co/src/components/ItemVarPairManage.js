@@ -23,9 +23,8 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, updateVarP
             {isInVarPair == false && <button onClick={()=>{setInputContent(""); updateVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
             {isInVarPair == true && 
                 <button onClick={()=>{ setInputContent(""); updateVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Update</button>}
-                        
-            <button className="buttonRight" onClick={()=>{}}> Save Changes to Cloud </button>
 
+            <button className="buttonRight" onClick={()=>{}}> Save Changes to Cloud </button>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, updateProjectResourceVarPairs } from "../models/ResourceManagerModel";
+import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, updateProjectResourceVarPairs, removeFromRmFileList } from "../models/ResourceManagerModel";
 
 export async function submitFileVM({file, uname, filename}) {
     if (filename === "" || filename === undefined) {

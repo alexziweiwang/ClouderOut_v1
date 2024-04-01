@@ -106,6 +106,7 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
   let currFileList = currFileData.data().filenames;
 
   // remove the given filename from the list
+
   const otherPart = currFileList.filter(item => item.filename !== filetitle);
 
   await updateDoc(ref, {filenames: otherPart});

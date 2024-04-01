@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 import { fetchProjectResourceVarPairsVM, updateProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
@@ -426,7 +426,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 </div>
                 
                 <div className="areaBlue">
-                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl}/>}
+                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} username={username} filename={clickedFileName}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} updateVarPairDataFunction={updateVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
