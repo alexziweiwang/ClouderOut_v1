@@ -18,6 +18,10 @@ export async function addToRmFileListVM({uname, filetitle, fileUrl, fileType}) {
     addToRmFileList({uname, filetitle, fileUrl, fileType});
 }
 
+export async function removeFromRmFileListVM({uname, filetitle})  {
+    removeFromRmFileList({uname, filetitle});
+}
+
 export async function fetchUrlByFilenameVM({fullFilename}) {
     return await fetchUrlByFilename({fullFilename});
 }

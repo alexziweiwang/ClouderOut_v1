@@ -1,7 +1,7 @@
 import db from '../googleCloudConnetions';
 import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
  import { storage } from '../googleCloudConnetions';
-import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, collection, query, where, updateDoc, deleteField  } from "firebase/firestore"; 
 
 
 /*
@@ -98,6 +98,21 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
     console.log("update file list:", currFileList);//TODO test
     await updateDoc(ref, {filenames: currFileList});
 }
+
+export async function removeFromRmFileList({uname, filetitle}) { // in database
+  // in user -> projects -> resource_manager -> filenames
+  const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
+  let currFileData = await getDoc(ref, "fileRecord");
+  let currFileList = currFileData.data().filenames;
+
+  // remove the given filename from the list
+  const otherPart = currFileList.filter(item => item.filename !== filetitle);
+
+  await updateDoc(ref, {filenames: otherPart});
+}
+
+
+
 
 /**
  * Fetch download url of a uploaded file by filename (from storage)
@@ -200,10 +215,5 @@ export async function deleteUploadedFile({username, filename}) {
   // in both storage and db, delete the specified file or file-record
 
   await removeFromRmFileList();
-
-}
-
-export async function removeFromRmFileList({username, filename}) { // in database
-  // in user -> projects -> resource_manager -> filenames
 
 }
