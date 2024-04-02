@@ -556,8 +556,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     <select value={txtFrameFontName} onChange={(event)=>{setTxtFrameFontName(event.target.value);}}>
         <option key="fontDefault" value="default">-- Select Font --</option>
     </select>
-    
-    <br></br><label>Font Size: </label><input type="range" value={txtFrameFontSize} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input><input type="number" value={txtFrameFontSize} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameFontSize(event.target.value);}}></input>
+  
+    <br></br><label>Text Size: </label><input type="range" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{
+        setTxtFrameObj({...txtFrameObj, "textSize": event.target.value});            
+    }}></input><input type="number" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameObj({...txtFrameObj, "textSize": event.target.value});}}></input>
     <br></br><label>Text Color: </label><input type="color" value={txtFrameObj["textColor"]} onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "textColor": event.target.value});            
     }}></input><label> {txtFrameObj["textColor"]}</label>
