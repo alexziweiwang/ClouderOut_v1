@@ -120,6 +120,9 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                             "opacity": backButtonData["transparency"],
                             "font-size": `${backButtonData["textSize"]}px`,
 
+                            "position": "absolute",
+                            "left": `${backButtonData["posX"]}px`,
+                            "top": `${backButtonData["posY"]}px`,
                             "justify-content": "center",
                             "align-items": "center",                        
                             "display": "flex",
@@ -138,6 +141,9 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                             "opacity": backButtonData["transparency"],
                             "font-size": `${backButtonData["textSize"]}px`,
 
+                            "position": "absolute",
+                            "left": `${backButtonData["posX"]}px`,
+                            "top": `${backButtonData["posY"]}px`,
                             "justify-content": "center",
                             "align-items": "center",
                             "display": "flex",

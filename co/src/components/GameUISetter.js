@@ -452,11 +452,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 onChange={(event)=>{
                     setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posX": event.target.value});                   
                 }}
+                min="0" max="800" step="1" 
             ></input>
             <input type="number" value={igsidebarBackBtnObj["posX"]}
                 onChange={(event)=>{
                     setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posX": event.target.value});                   
-                }}            
+                }} 
+                min="0" max="800" step="1"            
             ></input>
 
         <br></br><label>Position Y:</label>
@@ -464,11 +466,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 onChange={(event)=>{
                     setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posY": event.target.value});                   
                 }}            
+                min="0" max="800" step="1" 
             ></input>
             <input type="number" value={igsidebarBackBtnObj["posY"]}
                 onChange={(event)=>{
                     setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posY": event.target.value});                   
-                }}            
+                }}           
+                min="0" max="800" step="1"  
             ></input>
 
     </div>
