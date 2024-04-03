@@ -94,8 +94,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     }
     );
 
-    const [igsidebarBackBtnBgPicUrl, setIgsidebarBackBtnBgPicUrl] = useState("");
-
     const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
         {"width": 50,
         "height": 50,
@@ -423,8 +421,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             }}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
         {!igsidebarBackBtnObj["isShape"] && <>
                 <select value={igsidebarBackBtnObj["picVar"]} onChange={(event)=>{
-                            setIgsidebarBackBtnObj({...igsidebarBackBtnObj,  "picVar": event.target.value}); 
-                            setIgsidebarBackBtnBgPicUrl(visualMap[event.target.value]["url"]);
+                            setIgsidebarBackBtnObj({...igsidebarBackBtnObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
                 }}>                    
                     <option key="idvBackButton" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
@@ -473,7 +470,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
                     } : {
-                        "background-image": `url('${igsidebarBackBtnBgPicUrl}')`,
+                        "background-image": `url('${igsidebarBackBtnObj["picUrl"]}')`,
                         "background-size": `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px`,
                         
                         "width": `${igsidebarBackBtnObj["width"]}px`,
