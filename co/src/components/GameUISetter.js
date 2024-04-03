@@ -501,6 +501,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 </div>
  
         </div>
+    
+    
     </div>
 
     <br></br><br></br><br></br>

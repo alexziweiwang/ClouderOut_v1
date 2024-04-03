@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData}) {
+export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
     const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
 
     const [defualtBtnData, setDefualtBtnData] = useState({});
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
     const [txtFrameData, setTxtFrameData] = useState({});
+
+    const [backButtonData, setBackButtonData] = useState({});
 
     useEffect(() => {
         
@@ -19,6 +21,8 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
         setIsDisplayDefualtBtnData(isDisplayDefaultVal);
         let defaultBtnData = getDefaultButtonData();
         setDefualtBtnData(defaultBtnData);
+        let backBtnData = getBackButtonData();
+        setBackButtonData(backBtnData);
 
     });
     
@@ -28,11 +32,9 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
 
             <div className="preveiewArea2" style={{"width": 800}}>
 
-                {Object.keys(defualtBtnData).map((k) => {
-                    console.log(k, ":", txtFrameData[k]);
-                })}
 
-             
+
+            
                     <div style={{"left": `${defualtBtnData["groupX"]}px`,
                     "top": `${defualtBtnData["groupY"]}px`,                       
                     "position": "absolute"}}>
@@ -106,6 +108,63 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                     }
       
                     </div>
+
+
+
+                    <div id="backButtonDiv" key="backButtonPreview"
+                        style={backButtonData["isShape"] === true ?{
+                            "background": backButtonData["bgColor"],
+
+                            "width": `${backButtonData["width"]}px`,
+                            "height": `${backButtonData["height"]}px`,
+                            "color": backButtonData["textColor"],
+                            "border-radius": `${backButtonData["cornerRadius"]}px`,
+                            "opacity": backButtonData["transparency"],
+                            "font-size": `${backButtonData["textSize"]}px`,
+
+                            "justify-content": "center",
+                            "align-items": "center",                        
+                            "display": "flex",
+                            "border": `${backButtonData["borderSize"]}px solid ${backButtonData["borderColor"]}`,
+                            "cursor": "pointer",
+                            "user-select": "none",
+                            "transition": "all 0.2s ease-out"
+                        } : {
+                            "background-image": `url('${backButtonData["picUrl"]}')`,
+                            "background-size": `${backButtonData["width"]}px ${backButtonData["height"]}px`,
+                            
+                            "width": `${backButtonData["width"]}px`,
+                            "height": `${backButtonData["height"]}px`,
+                            "color": backButtonData["textColor"],
+                            "border-radius": `${backButtonData["cornerRadius"]}px`,
+                            "opacity": backButtonData["transparency"],
+                            "font-size": `${backButtonData["textSize"]}px`,
+
+                            "justify-content": "center",
+                            "align-items": "center",
+                            "display": "flex",
+                            "border": `${backButtonData["borderSize"]}px solid ${backButtonData["borderColor"]}`,
+                            "cursor": "pointer",
+                            "user-select": "none",
+                            "transition": "all 0.2s ease-out"
+                        }}
+
+                        onMouseDown={
+                            ()=>{
+                                document.getElementById("backButtonDiv").style.filter = "invert(100%)";
+                            }
+                            }
+                        onMouseUp={
+                            ()=>{
+                                document.getElementById("backButtonDiv").style.filter = "invert(0%)";
+                            }
+                        }
+                    >
+                    {backButtonData["buttonText"]}
+                </div>
+
+
+
 
                 
                     <div style={txtFrameData["isShape"] === true ? {
