@@ -76,7 +76,6 @@ export default function ConversationNodeEditingPanel() {
         
         //TODO transform to a list  
 
-
         setGameData(gDataMap);
     }
 
@@ -196,7 +195,7 @@ export default function ConversationNodeEditingPanel() {
             {browseList === true &&
                 <div>                 
                     {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting}  updateBackButtonSettings={updateBackButtonData}/>}
+                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
                 </div>
             }
  
@@ -206,7 +205,7 @@ export default function ConversationNodeEditingPanel() {
             }
 
             </div>
-            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
+            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={}/>}
 
         </div>
     );
