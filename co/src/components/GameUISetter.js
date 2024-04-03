@@ -108,6 +108,8 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "textSize": 15,
         "borderColor": "#000000",
         "borderSize": 2,
+        "posX": 0,
+        "posY": 0
     }
     );
 
@@ -445,67 +447,30 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 onChange={(event)=>{ setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textSize": event.target.value});}}
             ></input>
 
+        <br></br><label>Position X:</label>
+            <input type="range" value={igsidebarBackBtnObj["posX"]}
+                onChange={(event)=>{
+                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posX": event.target.value});                   
+                }}
+            ></input>
+            <input type="number" value={igsidebarBackBtnObj["posX"]}
+                onChange={(event)=>{
+                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posX": event.target.value});                   
+                }}            
+            ></input>
 
-        <br></br><br></br><br></br>
-        *Back Button Preview Area*
+        <br></br><label>Position Y:</label>
+            <input type="range" value={igsidebarBackBtnObj["posY"]}
+                onChange={(event)=>{
+                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posY": event.target.value});                   
+                }}            
+            ></input>
+            <input type="number" value={igsidebarBackBtnObj["posY"]}
+                onChange={(event)=>{
+                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posY": event.target.value});                   
+                }}            
+            ></input>
 
-        <div className="buttonPreviewArea2">
-
-                <div id="backButtonDiv" key="backButtonPreview"
-                    style={igsidebarBackBtnObj["isShape"] === true ?{
-                        "background": igsidebarBackBtnObj["bgColor"],
-
-                        "width": `${igsidebarBackBtnObj["width"]}px`,
-                        "height": `${igsidebarBackBtnObj["height"]}px`,
-                        "color": igsidebarBackBtnObj["textColor"],
-                        "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
-                        "opacity": igsidebarBackBtnObj["transparency"],
-                        "font-size": `${igsidebarBackBtnObj["textSize"]}px`,
-
-                        "justify-content": "center",
-                        "align-items": "center",                        
-                        "display": "flex",
-                        "border": `${igsidebarBackBtnObj["borderSize"]}px solid ${igsidebarBackBtnObj["borderColor"]}`,
-                        "cursor": "pointer",
-                        "user-select": "none",
-                        "transition": "all 0.2s ease-out"
-                    } : {
-                        "background-image": `url('${igsidebarBackBtnObj["picUrl"]}')`,
-                        "background-size": `${igsidebarBackBtnObj["width"]}px ${igsidebarBackBtnObj["height"]}px`,
-                        
-                        "width": `${igsidebarBackBtnObj["width"]}px`,
-                        "height": `${igsidebarBackBtnObj["height"]}px`,
-                        "color": igsidebarBackBtnObj["textColor"],
-                        "border-radius": `${igsidebarBackBtnObj["cornerRadius"]}px`,
-                        "opacity": igsidebarBackBtnObj["transparency"],
-                        "font-size": `${igsidebarBackBtnObj["textSize"]}px`,
-
-                        "justify-content": "center",
-                        "align-items": "center",
-                        "display": "flex",
-                        "border": `${igsidebarBackBtnObj["borderSize"]}px solid ${igsidebarBackBtnObj["borderColor"]}`,
-                        "cursor": "pointer",
-                        "user-select": "none",
-                        "transition": "all 0.2s ease-out"
-                    }}
-
-                    onMouseDown={
-                        ()=>{
-                            document.getElementById("backButtonDiv").style.filter = "invert(100%)";
-                        }
-                        }
-                    onMouseUp={
-                        ()=>{
-                            document.getElementById("backButtonDiv").style.filter = "invert(0%)";
-                        }
-                    }
-                >
-                {igsidebarBackBtnObj["buttonText"]}
-                </div>
- 
-        </div>
-    
-    
     </div>
 
     <br></br><br></br><br></br>
