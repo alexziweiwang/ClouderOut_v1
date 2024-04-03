@@ -94,7 +94,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     }
     );
 
-    const [igsidebarBackBtnBorderColor, setIgsidebarBackBtnBorderColor] = useState("#000000");
     const [igsidebarBackBtnBorderSize, setIgsidebarBackBtnBorderSize] = useState("2");
     const [igsidebarBackBtnBgPicUrl, setIgsidebarBackBtnBgPicUrl] = useState("");
 
@@ -106,9 +105,12 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         "isShape": false,
         "bgColor": "#a8d1d6",
         "picVar": "",
+        "picUrl": "",
         "textColor": "#000000",
         "buttonText": "←",
-        "textSize": 15
+        "textSize": 15,
+        "borderColor": "#000000",
+        "borderSIze": 2,
     }
     );
 
@@ -400,8 +402,10 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             <label>{igsidebarBackBtnBorderSize}</label>
 
         <br></br><label>Border Color: </label>
-        <input type="color" value={igsidebarBackBtnBorderColor} onChange={(event)=>{setIgsidebarBackBtnBorderColor(event.target.value);}}></input>
-        <label> {igsidebarBackBtnBorderColor}</label>
+        <input type="color" value={igsidebarBackBtnObj["borderColor"]} onChange={(event)=>{
+                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "borderColor": event.target.value});           
+            }}></input>
+        <label> {igsidebarBackBtnObj["borderColor"]}</label>
 
         <br></br><label>Button Looking:</label>
         <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={igsidebarBackBtnObj["isShape"]} onChange={()=>{
@@ -463,7 +467,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "justify-content": "center",
                         "align-items": "center",                        
                         "display": "flex",
-                        "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnBorderColor}`,
+                        "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnObj["borderColor"]}`,
                         "cursor": "pointer",
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"
@@ -481,7 +485,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                         "justify-content": "center",
                         "align-items": "center",
                         "display": "flex",
-                        "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnBorderColor}`,
+                        "border": `${igsidebarBackBtnBorderSize}px solid ${igsidebarBackBtnObj["borderColor"]}`,
                         "cursor": "pointer",
                         "user-select": "none",
                         "transition": "all 0.2s ease-out"

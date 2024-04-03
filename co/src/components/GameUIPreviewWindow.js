@@ -13,8 +13,6 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
 
     useEffect(() => {
         
-        // console.log("!!! GameUIPreviewWindow - gameUITextFrame: "); //TODO test
-
         let txtFramedata = getTextFrameData();
         setTxtFrameData(txtFramedata);
         let isDisplayDefaultVal = getIsDisplayDefaultButton();
@@ -111,7 +109,7 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
 
 
 
-                    <div id="backButtonDiv" key="backButtonPreview"
+                    <div id="backButtonDivPreview" key="backButtonPreview"
                         style={backButtonData["isShape"] === true ?{
                             "background": backButtonData["bgColor"],
 
@@ -151,12 +149,12 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
 
                         onMouseDown={
                             ()=>{
-                                document.getElementById("backButtonDiv").style.filter = "invert(100%)";
+                                document.getElementById("backButtonDivPreview").style.filter = "invert(100%)";
                             }
                             }
                         onMouseUp={
                             ()=>{
-                                document.getElementById("backButtonDiv").style.filter = "invert(0%)";
+                                document.getElementById("backButtonDivPreview").style.filter = "invert(0%)";
                             }
                         }
                     >
