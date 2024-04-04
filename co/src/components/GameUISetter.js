@@ -528,10 +528,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     3. Menu System
 
 
-    <br></br><input type="radio" value={isMenuStoryCore} checked={!isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(false);}}></input>
-    <label>3.1 comprehensive experience</label>
-    <br></br>Back Button: 
-    <div className="indentOne">
+    <br></br><input type="radio" value={isMenuStoryCore} checked={!isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(false);}}
+    ></input>
+    <label onClick={()=>{setIsMenuStoryCore(false);}}
+    >3.1 comprehensive experience</label>
+
+
+    {!isMenuStoryCore && <div className="indentOne">
         <label>Corner Radius: </label>
             <input type="range" value={igsidebarBackBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
                     setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "cornerRadius": event.target.value});
@@ -631,12 +634,13 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
             ></input>
 
     </div>
+    }
 
-
-    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(true);}}></input>
-    <label>3.2: story core</label>
-    <br></br><label>Menu Option: </label>  
-    <div className="indentOne">
+    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(true);}}
+    ></input>
+    <label onClick={()=>{setIsMenuStoryCore(true);}}
+    >3.2: story core</label>
+    {isMenuStoryCore && <div className="indentOne">
         Position X: <input type="range" value={igsidebarMenuPosX} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input><input type="number" value={igsidebarMenuPosX} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input>
         <br></br>
         Position Y: <input type="range" value={igsidebarMenuPosY} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input><input type="number" value={igsidebarMenuPosY} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input>
@@ -689,7 +693,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         </div>
 
     </div>
-
+    }
     <br></br><button>Save</button>
 </div>
 
