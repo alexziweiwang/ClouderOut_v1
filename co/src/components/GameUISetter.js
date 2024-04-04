@@ -528,17 +528,43 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     3. Menu System
 
 
-    <br></br><input type="radio" value={isMenuStoryCore} checked={!isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(false);}}
+    <br></br><input type="radio" value={isMenuStoryCore} checked={!isMenuStoryCore} onChange={()=>{
+        setIsMenuStoryCore(false);
+        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "←"});    
+
+    }}
     ></input>
-    <label onClick={()=>{setIsMenuStoryCore(false);}}
+    <label onClick={()=>{
+        setIsMenuStoryCore(false);
+        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "←"});    
+
+    }}
     >3.1 comprehensive experience</label>
+    {!isMenuStoryCore && <div className="indentOne">
+    <label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
+            setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
+    }}></input>             
 
-    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(true);}}
+    </div>}
+
+
+    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{
+        setIsMenuStoryCore(true);
+        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});    
+    }}
     ></input>
-    <label onClick={()=>{setIsMenuStoryCore(true);}}
+    <label onClick={()=>{setIsMenuStoryCore(true);
+        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});        
+}}
     >3.2: story core</label>
-    
+    {isMenuStoryCore && <div className="indentOne">
+        <label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
+            setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
+        }}></input>            
 
+    </div>}
+
+    <br></br><br></br><br></br>
     <div className="indentOne">
         <label>Corner Radius: </label>
             <input type="range" value={igMenuBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
@@ -598,10 +624,6 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                     })}
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
         </>}
-
-        <br></br><label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
-            setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
-        }}></input>
         <br></br><label>Text Color: </label><input type="color" value={igMenuBtnObj["textColor"]} onChange={(event)=>{
                 setIgMenuBtnObj({...igMenuBtnObj, "textColor": event.target.value});
             }}></input><label> {igMenuBtnObj["textColor"]}</label>
