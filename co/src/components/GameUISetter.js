@@ -522,6 +522,15 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         </div>}
     </div>
 
+    <br></br>
+
+    2.5 Text Options:<br></br>
+    Auto & Fast & Log<br></br>
+    Horizontal / Vertical Direction <br></br>
+    group position X <br></br>
+    group position Y <br></br>
+    pic/shape base
+    
 
     <br></br><br></br><br></br>
 
