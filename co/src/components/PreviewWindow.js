@@ -52,8 +52,30 @@ export default function PreviewWindow({dataObj}) {
                 <br></br>{dataObj.speaker_name}
                 <br></br>{dataObj.bgp_source_link}
               </div>
-            
-                
+              
+              <div>Game content layer (Data from piece-setter; data change frequently)</div>
+
+              <div>Game UI layer (Data from GameUI-setter; data change less frequently)</div>
+
+            </div>
+
+            <div>
+                    <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
+                        <option value="" key=""> ----- Select Size and Direction ----- </option>
+                        <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                        <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+                        <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                        <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+
+                    </select>
+                    <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
+                </div>
+
+
+
+
+
+                      
             <p className="plans">
                 needed data: game size and direction info setting from the user/author
                 <br></br> reads all data for current piece and present here
@@ -90,20 +112,6 @@ export default function PreviewWindow({dataObj}) {
                     <br></br>but this feature is provided so user can utilize the existing node-content
                     </p>
 
-
-            </div>
-
-            <div>
-                    <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
-                        <option value="" key=""> ----- Select Size and Direction ----- </option>
-                        <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                        <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-                        <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                        <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-
-                    </select>
-                    <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
-                </div>
                
         </div>
     );

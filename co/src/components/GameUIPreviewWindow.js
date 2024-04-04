@@ -168,8 +168,6 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
                 </div>
 
 
-
-
                 
                     <div style={txtFrameData["isShape"] === true ? {
                         "background": txtFrameData["bgColor"],
