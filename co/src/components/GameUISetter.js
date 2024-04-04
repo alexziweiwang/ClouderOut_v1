@@ -18,7 +18,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
         updateDefaultButtonSettings(defaultButtonObj);
   
         updateTextFrameSettings(txtFrameObj);
-        updateBackButtonSettings(igsidebarBackBtnObj);
+        updateBackButtonSettings(igMenuBtnObj);
 
     });
 
@@ -96,7 +96,7 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
 
     const [isMenuStoryCore, setIsMenuStoryCore] = useState(false);
 
-    const [igsidebarBackBtnObj, setIgsidebarBackBtnObj] = useState(
+    const [igMenuBtnObj, setIgMenuBtnObj] = useState(
         {"width": 50,
         "height": 50,
         "cornerRadius": 0,
@@ -533,55 +533,60 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
     <label onClick={()=>{setIsMenuStoryCore(false);}}
     >3.1 comprehensive experience</label>
 
+    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(true);}}
+    ></input>
+    <label onClick={()=>{setIsMenuStoryCore(true);}}
+    >3.2: story core</label>
+    
 
-    {!isMenuStoryCore && <div className="indentOne">
+    <div className="indentOne">
         <label>Corner Radius: </label>
-            <input type="range" value={igsidebarBackBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
-                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "cornerRadius": event.target.value});
-                }}></input><label>{igsidebarBackBtnObj["cornerRadius"]}</label>
-        {/* <br></br><label>Transparency: </label><input type="range" value={igsidebarBackBtnObj["transparency"]} type="range" min="0" max="1" step="0.1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "transparency": event.target.value});
-            }}></input><label>{igsidebarBackBtnObj["transparency"]}</label> */}
-        <br></br>Width: <input type="range" value={igsidebarBackBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
+            <input type="range" value={igMenuBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
+                    setIgMenuBtnObj({...igMenuBtnObj, "cornerRadius": event.target.value});
+                }}></input><label>{igMenuBtnObj["cornerRadius"]}</label>
+        {/* <br></br><label>Transparency: </label><input type="range" value={igMenuBtnObj["transparency"]} type="range" min="0" max="1" step="0.1" onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "transparency": event.target.value});
+            }}></input><label>{igMenuBtnObj["transparency"]}</label> */}
+        <br></br>Width: <input type="range" value={igMenuBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "width": event.target.value});
             }}></input>
-            <input type="number" value={igsidebarBackBtnObj["width"]} min="0" max="300" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "width": event.target.value});
+            <input type="number" value={igMenuBtnObj["width"]} min="0" max="300" step="1" onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "width": event.target.value});
             }}></input>
-        <br></br>Height: <input type="range" value={igsidebarBackBtnObj["height"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "height": event.target.value});
+        <br></br>Height: <input type="range" value={igMenuBtnObj["height"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "height": event.target.value});
             }}></input>
-            <input type="number" value={igsidebarBackBtnObj["height"]} min="0" max="300" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "height": event.target.value});
+            <input type="number" value={igMenuBtnObj["height"]} min="0" max="300" step="1" onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "height": event.target.value});
             }}></input>
         <br></br><label>Border Size: </label>
-            <input type="range" value={igsidebarBackBtnObj["borderSize"]} min="0" max="3" step="1" onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "borderSize": event.target.value});
+            <input type="range" value={igMenuBtnObj["borderSize"]} min="0" max="3" step="1" onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "borderSize": event.target.value});
                 }}></input>
-            <label>{igsidebarBackBtnObj["borderSize"]}</label>
+            <label>{igMenuBtnObj["borderSize"]}</label>
 
         <br></br><label>Border Color: </label>
-        <input type="color" value={igsidebarBackBtnObj["borderColor"]} onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "borderColor": event.target.value});           
+        <input type="color" value={igMenuBtnObj["borderColor"]} onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "borderColor": event.target.value});           
             }}></input>
-        <label> {igsidebarBackBtnObj["borderColor"]}</label>
+        <label> {igMenuBtnObj["borderColor"]}</label>
 
         <br></br><label>Button Looking:</label>
-        <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={igsidebarBackBtnObj["isShape"]} onChange={()=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": true});
+        <br></br><input type="radio" value={igMenuBtnObj["isShape"]} checked={igMenuBtnObj["isShape"]} onChange={()=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "isShape": true});
             }}></input><label onClick={()=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": true});
+                setIgMenuBtnObj({...igMenuBtnObj, "isShape": true});
                 }}>Rectangle: </label>
-        {igsidebarBackBtnObj["isShape"] && <><input type="color" value={igsidebarBackBtnObj["bgColor"]} onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "bgColor": event.target.value});
-            }}></input><label>{igsidebarBackBtnObj["bgColor"]}</label></>}
+        {igMenuBtnObj["isShape"] && <><input type="color" value={igMenuBtnObj["bgColor"]} onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "bgColor": event.target.value});
+            }}></input><label>{igMenuBtnObj["bgColor"]}</label></>}
         
-        <br></br><input type="radio" value={igsidebarBackBtnObj["isShape"]} checked={!igsidebarBackBtnObj["isShape"]} onChange={()=>{
-            setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});
-            }}></input><label onClick={()=>{setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "isShape": false});}}>Base Picture: </label>
-        {!igsidebarBackBtnObj["isShape"] && <>
-                <select value={igsidebarBackBtnObj["picVar"]} onChange={(event)=>{
-                            setIgsidebarBackBtnObj({...igsidebarBackBtnObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
+        <br></br><input type="radio" value={igMenuBtnObj["isShape"]} checked={!igMenuBtnObj["isShape"]} onChange={()=>{
+            setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});
+            }}></input><label onClick={()=>{setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});}}>Base Picture: </label>
+        {!igMenuBtnObj["isShape"] && <>
+                <select value={igMenuBtnObj["picVar"]} onChange={(event)=>{
+                            setIgMenuBtnObj({...igMenuBtnObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
                 }}>                    
                     <option key="idvBackButton" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
@@ -594,106 +599,47 @@ export default function GameUISetter({openRm, updateIsDisplayDefaultButtonPrevie
                 </select><button onClick={() => {openRm();}}>Resource Adding</button>
         </>}
 
-        <br></br><label>Text Content: </label><input value={igsidebarBackBtnObj["buttonText"]} onChange={(event)=>{
-            setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "buttonText": event.target.value});
+        <br></br><label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
+            setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
         }}></input>
-        <br></br><label>Text Color: </label><input type="color" value={igsidebarBackBtnObj["textColor"]} onChange={(event)=>{
-                setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textColor": event.target.value});
-            }}></input><label> {igsidebarBackBtnObj["textColor"]}</label>
+        <br></br><label>Text Color: </label><input type="color" value={igMenuBtnObj["textColor"]} onChange={(event)=>{
+                setIgMenuBtnObj({...igMenuBtnObj, "textColor": event.target.value});
+            }}></input><label> {igMenuBtnObj["textColor"]}</label>
         <br></br><label>Text Size:</label>
-            <input type="range" value={igsidebarBackBtnObj["textSize"]}
-                onChange={(event)=>{ setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "textSize": event.target.value});}}
+            <input type="range" value={igMenuBtnObj["textSize"]}
+                onChange={(event)=>{ setIgMenuBtnObj({...igMenuBtnObj, "textSize": event.target.value});}}
             ></input>
 
         <br></br><label>Position X:</label>
-            <input type="range" value={igsidebarBackBtnObj["posX"]}
+            <input type="range" value={igMenuBtnObj["posX"]}
                 onChange={(event)=>{
-                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posX": event.target.value});                   
+                    setIgMenuBtnObj({...igMenuBtnObj, "posX": event.target.value});                   
                 }}
                 min="0" max="800" step="1" 
             ></input>
-            <input type="number" value={igsidebarBackBtnObj["posX"]}
+            <input type="number" value={igMenuBtnObj["posX"]}
                 onChange={(event)=>{
-                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posX": event.target.value});                   
+                    setIgMenuBtnObj({...igMenuBtnObj, "posX": event.target.value});                   
                 }} 
                 min="0" max="800" step="1"            
             ></input>
 
         <br></br><label>Position Y:</label>
-            <input type="range" value={igsidebarBackBtnObj["posY"]}
+            <input type="range" value={igMenuBtnObj["posY"]}
                 onChange={(event)=>{
-                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posY": event.target.value});                   
+                    setIgMenuBtnObj({...igMenuBtnObj, "posY": event.target.value});                   
                 }}            
                 min="0" max="800" step="1" 
             ></input>
-            <input type="number" value={igsidebarBackBtnObj["posY"]}
+            <input type="number" value={igMenuBtnObj["posY"]}
                 onChange={(event)=>{
-                    setIgsidebarBackBtnObj({...igsidebarBackBtnObj, "posY": event.target.value});                   
+                    setIgMenuBtnObj({...igMenuBtnObj, "posY": event.target.value});                   
                 }}           
                 min="0" max="800" step="1"  
             ></input>
 
     </div>
-    }
-
-    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{setIsMenuStoryCore(true);}}
-    ></input>
-    <label onClick={()=>{setIsMenuStoryCore(true);}}
-    >3.2: story core</label>
-    {isMenuStoryCore && <div className="indentOne">
-        Position X: <input type="range" value={igsidebarMenuPosX} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input><input type="number" value={igsidebarMenuPosX} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosX(event.target.value);}}></input>
-        <br></br>
-        Position Y: <input type="range" value={igsidebarMenuPosY} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input><input type="number" value={igsidebarMenuPosY} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuPosY(event.target.value);}}></input>
-        <br></br>
-        <label>Width: </label><input type="range" value={igsidebarMenuW} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><input type="number" value={igsidebarMenuW} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuW(event.target.value);}}></input><br></br>
-        <label>Height: </label><input type="range" value={igsidebarMenuH} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><input type="number" value={igsidebarMenuH} min="0" max="800" step="1" onChange={(event)=>{setIgsidebarMenuH(event.target.value);}}></input><br></br>
-        {/* <label>Transparency: </label><input type="range" value={igsidebarMenuTransparency} min="0" max="100" step="1" onChange={(event)=>{setIgsidebarMenuTransparency(event.target.value);}}></input><label>{igsidebarMenuTransparency}%</label><br></br> */}
-        <label>Text Color: </label><input type="color" value={igsidebarMenuTextColor} onChange={(event)=>{setIgsidebarMenuTextColor(event.target.value);}}></input><label> {igsidebarMenuTextColor}</label>
-        <br></br>       
-        <label>Corner Radius: </label>
-            <select value={igsidebarMenuCnrRadius} onChange={(event)=>{setIgsidebarMenuCnrRadius(event.target.value);}}>
-                <option value="0" key="0menu">0</option>
-                <option value="1" key="1menu">1</option>
-                <option value="5" key="5menu">5</option>
-            </select>
-        <br></br>
-        <input type="radio" value={igsidebarMenuIsShape} checked={igsidebarMenuIsShape} onChange={()=>{setIgsidebarMenuIsShape(true);}}></input><label onChange={()=>{setIgsidebarMenuIsShape(true);}}>Rectangle: </label>
-        {igsidebarMenuIsShape === true && <><input type="color" value={igsidebarMenuColor} onChange={(event)=>{setIgsidebarMenuColor(event.target.value);}}></input><label>{igsidebarMenuColor}</label></>}
-        <br></br>
-        <input type="radio" value={igsidebarMenuIsShape} checked={!igsidebarMenuIsShape} onChange={()=>{setIgsidebarMenuIsShape(false);}}></input><label onChange={()=>{setIgsidebarMenuIsShape(false);}}>Base Picture: </label>
-        {igsidebarMenuIsShape === false && <><select></select><button onClick={() => {openRm()}}>Resource Adding</button></>}
-        
-        <br></br><br></br><br></br>
-        <input type="radio" value={igsidebarMenuIsSingleBtn} checked={igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}></input><label onChange={()=>{setIgsidebarMenuIsSingleBtn(true);}}>Single Menu Option</label>
-        <br></br>(single menu button: jump to pause page)
-
-        <br></br>
-        <input type="radio"  value={igsidebarMenuIsSingleBtn} checked={!igsidebarMenuIsSingleBtn} onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}></input><label onChange={()=>{setIgsidebarMenuIsSingleBtn(false);}}>Menu Option List</label>
-        <div className="indentOne">
-            <input type="checkbox" value={autoBtn} checked={autoBtn} onChange={()=>{setAutoBtn(!autoBtn);}}></input><label>Auto</label>
-            <br></br>
-            <input type="checkbox" value={saveBtn} checked={saveBtn} onChange={()=>{setSaveBtn(!saveBtn);}}></input><label>Save</label>
-            <br></br>
-            <input type="checkbox" value={loadBtn} checked={loadBtn} onChange={()=>{setLoadBtn(!loadBtn);}}></input><label>Load</label>
-            <br></br>
-            <input type="checkbox" value={settingsBtn} checked={settingsBtn} onChange={()=>{setSettingsBtn(!settingsBtn);}}></input><label>Settings</label>
-            <br></br>
-            <input type="checkbox" value={returnTitlePageBtn} checked={returnTitlePageBtn} onChange={()=>{setReturnTitlePageBtn(!returnTitlePageBtn);}}></input><label>Return to Title-Page</label>
-            <br></br>
-            <input type="checkbox" value={inGameDataBtn} checked={inGameDataBtn} onChange={()=>{setInGameDataBtn(!inGameDataBtn);}}></input><label>In-Game Data</label>
-            <br></br>
-            <input type="checkbox" value={dealBtn} checked={dealBtn} onChange={()=>{setDealBtn(!dealBtn);}}></input><label>Deal</label>
-            <br></br>
-            List Format: 
-            <select value={igsidebarMenuIsListDirection} onChange={(event)=>{setIgsidebarMenuIsListDirection(event.target.value);}}>
-                <option key="v" value="vertical">Vertical</option>    
-                <option key="h" value="horizontal">Horizontal</option>    
-            </select>
-            <br></br><label>Padding: </label><input type="range" min="0" max="15" step="1" value={igsidebarMenuListPadding} onChange={(event)=>{setIgsidebarMenuListPadding(event.target.value);}}></input><input type="number" min="0" max="15" step="1" value={igsidebarMenuListPadding} onChange={(event)=>{setIgsidebarMenuListPadding(event.target.value);}}></input>
-        </div>
-
-    </div>
-    }
+    
     <br></br><button>Save</button>
 </div>
 
