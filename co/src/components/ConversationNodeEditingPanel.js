@@ -163,6 +163,10 @@ export default function ConversationNodeEditingPanel() {
         return gameUIBackButton;
     }
 
+    function tempTrigerRmUpdate() {
+        console.log("TODO: resource-managing update");
+    }
+
     return (
 
         <div>
@@ -205,7 +209,7 @@ export default function ConversationNodeEditingPanel() {
             }
 
             </div>
-            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={}/>}
+            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={tempTrigerRmUpdate}/>}
 
         </div>
     );

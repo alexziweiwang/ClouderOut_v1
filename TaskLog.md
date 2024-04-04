@@ -226,3 +226,5 @@
 
 - 2024-Mar-29: Resource managing - Google Drive source option consideration and design
 - 2024-Mar-29: Research on resource-deletion for cloud-storage and consider UI/UX for this functionality
+
+- 2024-Apr-03: Analyze and abstract modal of menu systems; decide options for users
