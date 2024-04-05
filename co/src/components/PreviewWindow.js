@@ -65,8 +65,6 @@ export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDis
 
             
 
-
-
             </div>
 
             <div>

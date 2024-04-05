@@ -203,7 +203,8 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
                 "border": "2px solid #e99a2b",
                 "border-radius": "0px"
             }}>
-                Text Content Area...
+                {dataObj.speaker_name}<br></br>
+                {dataObj.content}
             </div>
         
         </div>

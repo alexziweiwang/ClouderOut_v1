@@ -45,7 +45,7 @@ export default function ConversationNodeEditingPanel() {
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
-    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(false); //TODO fetch frmo cloud-db
+    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //TODO fetch frmo cloud-db
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
         "widthMin": 300,
         "widthMax": 370,
