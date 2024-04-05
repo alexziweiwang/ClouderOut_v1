@@ -46,9 +46,67 @@ export default function ConversationNodeEditingPanel() {
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
     const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(false); //TODO fetch frmo cloud-db
-    const [gameUIDefaultButton, setGameUIDefaultButton] = useState({}); //TODO fetch from cloud-db
-    const [gameUITextFrame, setGameUITextFrame] = useState({}); //TODO fetch from cloud-db
-    const [gameUIBackButton, setGameUIBackButton] = useState({}); //TODO fetch from cloud-db
+    const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
+        "widthMin": 300,
+        "widthMax": 370,
+        "height": 20,
+        "cornerRadius": 0,
+        "transparency": 0.9,
+        "isShape": false,
+        "bgColor": "#a8d1d6",
+        "picVar": "",
+        "picUrl": "",
+        "textColor": "#000000",
+        "margin": 5,
+        "justifyContent": "start",
+        "alignItems": "center",
+        "border": "2px solid #000000",
+        "textSize": 15,
+        "groupX": 200,
+        "groupY": 100,
+        "horizontalMid": false,
+        "verticalMid": false,
+    }); //TODO fetch from cloud-db
+    const [gameUITextFrame, setGameUITextFrame] = useState({"width": 600,
+    "height": 200,
+    "positionX": 100,
+    "positionY": 360,
+    "cornerRadius": 0,
+    "transparency": 0.7,
+    "isShape": true,
+    "bgColor": "#a8d1d6",
+    "picVar": "",
+    "picUrl": "",
+    "fontName": "",
+    "textSize": 15,
+    "textColor": "#000000",
+    "justifyContent": "start",
+    "alignItems": "start",
+    "border": "2px solid #000000",
+    "horizontalMid": false,
+    "TextContentArea-x": 10,
+    "TextContentArea-y": 10,
+    "TextContentArea-w": 580,
+    "TextContentArea-h": 180}); //TODO fetch from cloud-db
+    const [gameUIBackButton, setGameUIBackButton] = useState({"width": 50,
+    "height": 50,
+    "cornerRadius": 0,
+    "transparency": 0.9,
+    "isShape": false,
+    "bgColor": "#a8d1d6",
+    "picVar": "",
+    "picUrl": "",
+    "textColor": "#000000",
+    "buttonText": "←",
+    "textSize": 15,
+    "borderColor": "#000000",
+    "borderSize": 2,
+    "posX": 0,
+    "posY": 0
+}); //TODO fetch from cloud-db
+
+
+
 
     const [gameData, setGameData] = useState({});
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -192,14 +250,20 @@ export default function ConversationNodeEditingPanel() {
             {browseList === false && 
                 <div>
                     {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
+                    {gameUISetterOpen === true && 
+                    <GameUISetter 
+                    iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
+                    openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
                 </div>
             }
 
             {browseList === true &&
                 <div>                 
                     {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
-                    {gameUISetterOpen === true && <GameUISetter openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
+                    {gameUISetterOpen === true && 
+                        <GameUISetter 
+                        iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
+                        openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
                 </div>
             }
  

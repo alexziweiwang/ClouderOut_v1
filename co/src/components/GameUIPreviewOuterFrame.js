@@ -3,48 +3,22 @@ import { useState, useEffect } from 'react';
 import GameUIPureContent from './GameUIPureContent';
 
 export default function GameUIPreviewOuterFrame({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
-    // const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
-
-    // const [defualtBtnData, setDefualtBtnData] = useState({});
-    // const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
-
-    // const [txtFrameData, setTxtFrameData] = useState({});
-
-    // const [backButtonData, setBackButtonData] = useState({});
-
-    // useEffect(() => {
-        
-    //     let txtFramedata = getTextFrameData();
-    //     setTxtFrameData(txtFramedata);
-    //     let isDisplayDefaultVal = getIsDisplayDefaultButton();
-    //     setIsDisplayDefualtBtnData(isDisplayDefaultVal);
-    //     let defaultBtnData = getDefaultButtonData();
-    //     setDefualtBtnData(defaultBtnData);
-    //     let backBtnData = getBackButtonData();
-    //     setBackButtonData(backBtnData);
-
-    // });
-    
 
     return(<div className="previewWindow">
 
-
-            <div className="preveiewArea2">
-
-
-
+        <div className="preveiewArea2">
   
-        <GameUIPureContent dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
-                </div>
+            <GameUIPureContent dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+                    </div>
 
-        <div> <br></br><br></br><br></br>Outside: <br></br>
-            A1. Title Screen
-            <br></br>
-            A2. Pause Screen 
-        </div>
+            <div> <br></br><br></br><br></br>Outside: <br></br>
+                A1. Title Screen
+                <br></br>
+                A2. Pause Screen 
+            </div>
 
 
-        <div>
+          <div>
             <p className="plans">
                 The opening-menu (title screen):
                 <br></br>
@@ -81,5 +55,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameData, getI
 
 
     
-    </div>);
+        </div>
+    
+    );
 }

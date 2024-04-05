@@ -60,7 +60,8 @@ export default function PreviewWindow({dataObj, getTextFrameData, getIsDisplayDe
               </div>
 
 
-              <GameUIPureContent style={{"position": "absolute", "top": "0px", "left": "0px"}} dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+              <GameUIPureContent style={{"position": "absolute", "top": "0px", "left": "0px"}} 
+              dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
 
             
 
