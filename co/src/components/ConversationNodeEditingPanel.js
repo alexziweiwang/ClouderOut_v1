@@ -193,7 +193,7 @@ export default function ConversationNodeEditingPanel() {
         setGameUITextFrame(data);
     }
 
-    function updateDefaultButtonData(data) {
+    function updateDefaultButtonUISettings(data) {
         setGameUIDefaultButton(data);        
     }
 
@@ -201,11 +201,11 @@ export default function ConversationNodeEditingPanel() {
         setGameUIisDisplayDefaultButton(val);
     }
 
-    function updateBackButtonData(data) {
+    function updateBackButtonUISettings(data) {
         setGameUIBackButton(data);
     }
 
-    function passInDefaultButtonData() {
+    function passInDefaultButtonUISettings() {
         return gameUIDefaultButton;
     }
 
@@ -217,7 +217,7 @@ export default function ConversationNodeEditingPanel() {
         return gameUIisDisplayDefaultButton;
     }
 
-    function passInBackButtonData() {
+    function passInBackButtonUISettings() {
         return gameUIBackButton;
     }
 
@@ -253,7 +253,7 @@ export default function ConversationNodeEditingPanel() {
                     {gameUISetterOpen === true && 
                     <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                    openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
+                    openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}/>}
                 </div>
             }
 
@@ -263,13 +263,13 @@ export default function ConversationNodeEditingPanel() {
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                         iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                        openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
+                        openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}/>}
                 </div>
             }
  
-            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>}
+            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
-                <GameUIPreviewOuterFrame getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>
+                <GameUIPreviewOuterFrame getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>
             }
 
             </div>

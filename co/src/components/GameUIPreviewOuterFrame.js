@@ -2,13 +2,13 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUIPureInner from './GameUIPureInner';
 
-export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
+export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     return(<div className="previewWindow">
 
         <div className="preveiewArea2">
   
-            <GameUIPureInner dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+            <GameUIPureInner dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
                     </div>
 
             <div> <br></br><br></br><br></br>Outside: <br></br>

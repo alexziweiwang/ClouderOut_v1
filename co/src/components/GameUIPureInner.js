@@ -1,27 +1,27 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
+export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
-    const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
+    const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
-    const [defualtBtnData, setDefualtBtnData] = useState({});
+    const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
-    const [backButtonData, setBackButtonData] = useState({});
+    const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
     useEffect(() => {
         
         let txtFrameUISettings = getTextFrameUISettings();
         setTxtFrameUISettings(txtFrameUISettings);
         let isDisplayDefaultVal = getIsDisplayDefaultButton();
-        setIsDisplayDefualtBtnData(isDisplayDefaultVal);
-        let defaultBtnData = getDefaultButtonData();
-        setDefualtBtnData(defaultBtnData);
-        let backBtnData = getBackButtonData();
-        setBackButtonData(backBtnData);
+        setIsDisplayDefualtBtnUISettings(isDisplayDefaultVal);
+        let defaultBtnUISettings = getDefaultButtonUISettings();
+        setDefualtBtnUISettings(defaultBtnUISettings);
+        let backBtnUISettings = getBackButtonUISettings();
+        setBackButtonUISettings(backBtnUISettings);
 
     });
     
@@ -30,30 +30,30 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
     return (
         <div style={{"width": 800}}>
    
-        <div style={{"left": `${defualtBtnData["groupX"]}px`,
-        "top": `${defualtBtnData["groupY"]}px`,                       
+        <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
+        "top": `${defualtBtnUISettings["groupY"]}px`,                       
         "position": "absolute"}}>
-        {isDisplayDefualtBtnData && 
+        {isDisplayDefualtBtnUISettings && 
 
         <div>
         {defaultButtonTextSampleArr.map((item, index)=>{
             let currId = "defaultButtonDivPreviewWindow" + index;
             return (
             <div id={currId} key={index} style={
-                defualtBtnData["isShape"] === true ? {   
-                    "background": defualtBtnData["bgColor"],
+                defualtBtnUISettings["isShape"] === true ? {   
+                    "background": defualtBtnUISettings["bgColor"],
                     
-                    "width": `${defualtBtnData["widthMin"]}px`,
-                    "height": `${defualtBtnData["height"]}px`,
-                    "border-radius": `${defualtBtnData["cornerRadius"]}px`,
-                    "color": defualtBtnData["textColor"],
-                    "opacity": defualtBtnData["transparency"],
-                    "border": `${defualtBtnData["border"]}`,
-                    "margin-bottom": `${defualtBtnData["margin"]}px`,
+                    "width": `${defualtBtnUISettings["widthMin"]}px`,
+                    "height": `${defualtBtnUISettings["height"]}px`,
+                    "border-radius": `${defualtBtnUISettings["cornerRadius"]}px`,
+                    "color": defualtBtnUISettings["textColor"],
+                    "opacity": defualtBtnUISettings["transparency"],
+                    "border": `${defualtBtnUISettings["border"]}`,
+                    "margin-bottom": `${defualtBtnUISettings["margin"]}px`,
                     "padding-left": `10px`,
-                    "justify-content": defualtBtnData["justifyContent"],
-                    "align-items": defualtBtnData["alignItems"],
-                    "font-size": `${defualtBtnData["textSize"]}px`,
+                    "justify-content": defualtBtnUISettings["justifyContent"],
+                    "align-items": defualtBtnUISettings["alignItems"],
+                    "font-size": `${defualtBtnUISettings["textSize"]}px`,
                     
                     "display": "flex",
                     "cursor": "pointer",
@@ -61,20 +61,20 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
                     "transition": "all 0.2s ease-out",
                     "overflow": "scroll"
                 } : {
-                    "background-image": `url('${defualtBtnData["picUrl"]}')`,
-                    "background-size": `${defualtBtnData["widthMax"]}px ${defualtBtnData["height"]}px`,
+                    "background-image": `url('${defualtBtnUISettings["picUrl"]}')`,
+                    "background-size": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
-                    "width": `${defualtBtnData["widthMin"]}px`,
-                    "height": `${defualtBtnData["height"]}px`,
-                    "border-radius": `${defualtBtnData["cornerRadius"]}px`,
-                    "color": defualtBtnData["textColor"],
-                    "opacity": defualtBtnData["transparency"],
-                    "border": `${defualtBtnData["border"]}`,
-                    "margin-bottom": `${defualtBtnData["margin"]}px`,
+                    "width": `${defualtBtnUISettings["widthMin"]}px`,
+                    "height": `${defualtBtnUISettings["height"]}px`,
+                    "border-radius": `${defualtBtnUISettings["cornerRadius"]}px`,
+                    "color": defualtBtnUISettings["textColor"],
+                    "opacity": defualtBtnUISettings["transparency"],
+                    "border": `${defualtBtnUISettings["border"]}`,
+                    "margin-bottom": `${defualtBtnUISettings["margin"]}px`,
                     "padding-left": `10px`,
-                    "justify-content": defualtBtnData["justifyContent"],
-                    "align-items": defualtBtnData["alignItems"],
-                    "font-size": `${defualtBtnData["textSize"]}px`,
+                    "justify-content": defualtBtnUISettings["justifyContent"],
+                    "align-items": defualtBtnUISettings["alignItems"],
+                    "font-size": `${defualtBtnUISettings["textSize"]}px`,
 
                     "display": "flex",
                     "cursor": "pointer",
@@ -107,44 +107,44 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
 
 
         <div id="backButtonDivPreview" key="backButtonPreview"
-            style={backButtonData["isShape"] === true ?{
-                "background": backButtonData["bgColor"],
+            style={backButtonUISettings["isShape"] === true ?{
+                "background": backButtonUISettings["bgColor"],
 
-                "width": `${backButtonData["width"]}px`,
-                "height": `${backButtonData["height"]}px`,
-                "color": backButtonData["textColor"],
-                "border-radius": `${backButtonData["cornerRadius"]}px`,
-                "opacity": backButtonData["transparency"],
-                "font-size": `${backButtonData["textSize"]}px`,
+                "width": `${backButtonUISettings["width"]}px`,
+                "height": `${backButtonUISettings["height"]}px`,
+                "color": backButtonUISettings["textColor"],
+                "border-radius": `${backButtonUISettings["cornerRadius"]}px`,
+                "opacity": backButtonUISettings["transparency"],
+                "font-size": `${backButtonUISettings["textSize"]}px`,
 
                 "position": "absolute",
-                "left": `${backButtonData["posX"]}px`,
-                "top": `${backButtonData["posY"]}px`,
+                "left": `${backButtonUISettings["posX"]}px`,
+                "top": `${backButtonUISettings["posY"]}px`,
                 "justify-content": "center",
                 "align-items": "center",                        
                 "display": "flex",
-                "border": `${backButtonData["borderSize"]}px solid ${backButtonData["borderColor"]}`,
+                "border": `${backButtonUISettings["borderSize"]}px solid ${backButtonUISettings["borderColor"]}`,
                 "cursor": "pointer",
                 "user-select": "none",
                 "transition": "all 0.2s ease-out"
             } : {
-                "background-image": `url('${backButtonData["picUrl"]}')`,
-                "background-size": `${backButtonData["width"]}px ${backButtonData["height"]}px`,
+                "background-image": `url('${backButtonUISettings["picUrl"]}')`,
+                "background-size": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
                 
-                "width": `${backButtonData["width"]}px`,
-                "height": `${backButtonData["height"]}px`,
-                "color": backButtonData["textColor"],
-                "border-radius": `${backButtonData["cornerRadius"]}px`,
-                "opacity": backButtonData["transparency"],
-                "font-size": `${backButtonData["textSize"]}px`,
+                "width": `${backButtonUISettings["width"]}px`,
+                "height": `${backButtonUISettings["height"]}px`,
+                "color": backButtonUISettings["textColor"],
+                "border-radius": `${backButtonUISettings["cornerRadius"]}px`,
+                "opacity": backButtonUISettings["transparency"],
+                "font-size": `${backButtonUISettings["textSize"]}px`,
 
                 "position": "absolute",
-                "left": `${backButtonData["posX"]}px`,
-                "top": `${backButtonData["posY"]}px`,
+                "left": `${backButtonUISettings["posX"]}px`,
+                "top": `${backButtonUISettings["posY"]}px`,
                 "justify-content": "center",
                 "align-items": "center",
                 "display": "flex",
-                "border": `${backButtonData["borderSize"]}px solid ${backButtonData["borderColor"]}`,
+                "border": `${backButtonUISettings["borderSize"]}px solid ${backButtonUISettings["borderColor"]}`,
                 "cursor": "pointer",
                 "user-select": "none",
                 "transition": "all 0.2s ease-out"
@@ -161,7 +161,7 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
                 }
             }
         >
-        {backButtonData["buttonText"]}
+        {backButtonUISettings["buttonText"]}
     </div>
 
 

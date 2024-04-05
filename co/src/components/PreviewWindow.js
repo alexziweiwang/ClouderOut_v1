@@ -5,7 +5,7 @@ import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUIPureInner from './GameUIPureInner';
 
 
-export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
+export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     console.log("re-rendering @preview window");
     console.log(dataObj);
@@ -61,7 +61,7 @@ export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDis
 
 
               <GameUIPureInner style={{"position": "absolute", "top": "0px", "left": "0px"}} 
-              dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+              dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
 
             
 
