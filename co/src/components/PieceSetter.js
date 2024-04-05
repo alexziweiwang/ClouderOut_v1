@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 
-export default function PieceSetter({pieceNum, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList}) {
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList}) {
     const navigate = useNavigate();
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -171,9 +171,10 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
             setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber-2]);
-
+            assignPreviewIndex(lookingPieceNumber); // TODO to test
         } else {
             setLookingPieceNumber(1);
+            assignPreviewIndex(0); // TODO to test
         }
     }
 
@@ -184,10 +185,12 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
             //TODO change *all* form content here in display...
             
             setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber]);
-
+            assignPreviewIndex(lookingPieceNumber); // TODO to test
 
         } else {
             setLookingPieceNumber(pieceDataLocal.length);
+            assignPreviewIndex(pieceDataLocal.length-1); // TODO to test
+
         }
     }
 

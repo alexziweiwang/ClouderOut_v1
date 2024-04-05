@@ -180,8 +180,8 @@ export default function ConversationNodeEditingPanel() {
         return pieceDataStructure;
     }
 
-    function getPreviewingIndex(index) {
-        console.log("conv-edit-panel, getPreviewingIndex:" , index); 
+    function getUpdatePreviewingIndex(index) {
+        console.log("conv-edit-panel, getUpdatePreviewingIndex:" , index); 
         setPreviewingIndex(index);
     }
 
@@ -253,7 +253,7 @@ export default function ConversationNodeEditingPanel() {
 
             {browseList === false && 
                 <div>
-                    {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
+                    {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} assignPreviewIndex={getUpdatePreviewingIndex} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
                     {gameUISetterOpen === true && 
                     <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
@@ -263,7 +263,12 @@ export default function ConversationNodeEditingPanel() {
 
             {browseList === true &&
                 <div>                 
-                    {gameUISetterOpen === false && <PieceManager allPieceData={pieceDataStructure} assignPieceNum={getSelectedPiece} assignPreviewIndex={getPreviewingIndex} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData}/>}   
+                    {gameUISetterOpen === false && <PieceManager 
+                            allPieceData={pieceDataStructure} 
+                            assignPieceNum={getSelectedPiece} 
+                            assignPreviewIndex={getUpdatePreviewingIndex} 
+                            updatePieceData={changePieceData} 
+                            getAllPieceData={fetchAllPieceData}/>}   
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                         iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}

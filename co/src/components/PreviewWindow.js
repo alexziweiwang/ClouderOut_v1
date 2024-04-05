@@ -19,8 +19,6 @@ export default function PreviewWindow({dataObj, getCurrentPiece, getTextFrameUIS
   
     useEffect(() => {
       let objTemp = getCurrentPiece();
-      console.log("preview-window:");
-      console.log(objTemp);
       setCurrentPiece(objTemp);
     });
 
