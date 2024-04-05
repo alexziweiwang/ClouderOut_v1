@@ -47,10 +47,10 @@ export default function PreviewWindow({dataObj, getTextFrameData, getIsDisplayDe
     return (
         <div className="previewWindow">
        
-            <div className="preveiewArea" style={{"position": "absolute"}}>
+            <div className="preveiewArea" style={{"position": "relative"}}>
 
               
-              <div style={{"position": "relative", "top": "0px", "left": "0px"}}>Game content layer (Data from piece-setter; data change frequently)
+              <div style={{"position": "absolute", "top": "0px", "left": "0px"}}>Game content layer (Data from piece-setter; data change frequently)
                   <br></br>Current Data:
                     <br></br>{dataObj.content}
                     <br></br>{dataObj.speaker_name}
@@ -60,7 +60,7 @@ export default function PreviewWindow({dataObj, getTextFrameData, getIsDisplayDe
               </div>
 
 
-              <GameUIPureContent style={{"position": "relative", "top": "0px", "left": "0px"}} dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+              <GameUIPureContent style={{"position": "absolute", "top": "0px", "left": "0px"}} dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
 
             
 

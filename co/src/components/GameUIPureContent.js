@@ -28,11 +28,8 @@ export default function GameUIPureContent({dataObj, getTextFrameData, getIsDispl
 
 
     return (
-        <div className="preveiewArea2" style={{"width": 800}}>
-
-
-
-                
+        <div style={{"width": 800}}>
+   
         <div style={{"left": `${defualtBtnData["groupX"]}px`,
         "top": `${defualtBtnData["groupY"]}px`,                       
         "position": "absolute"}}>
