@@ -6,7 +6,7 @@ import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
-import GameUIPreviewWindow from './GameUIPreviewWindow';
+import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUISetter from './GameUISetter';
 
 export default function ConversationNodeEditingPanel() {
@@ -203,9 +203,9 @@ export default function ConversationNodeEditingPanel() {
                 </div>
             }
  
-            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]}/>}
+            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameData={passInTextFrameData} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>}
             {isDisplayPreview === false && 
-                <GameUIPreviewWindow getTextFrameData={passInTextFrameData} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>
+                <GameUIPreviewOuterFrame getTextFrameData={passInTextFrameData} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>
             }
 
             </div>

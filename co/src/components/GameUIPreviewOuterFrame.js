@@ -1,33 +1,34 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import GameUIPureContent from './GameUIPureContent';
 
-export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
-    const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
+export default function GameUIPreviewOuterFrame({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
+    // const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
 
-    const [defualtBtnData, setDefualtBtnData] = useState({});
-    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
+    // const [defualtBtnData, setDefualtBtnData] = useState({});
+    // const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
-    const [txtFrameData, setTxtFrameData] = useState({});
+    // const [txtFrameData, setTxtFrameData] = useState({});
 
-    const [backButtonData, setBackButtonData] = useState({});
+    // const [backButtonData, setBackButtonData] = useState({});
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        let txtFramedata = getTextFrameData();
-        setTxtFrameData(txtFramedata);
-        let isDisplayDefaultVal = getIsDisplayDefaultButton();
-        setIsDisplayDefualtBtnData(isDisplayDefaultVal);
-        let defaultBtnData = getDefaultButtonData();
-        setDefualtBtnData(defaultBtnData);
-        let backBtnData = getBackButtonData();
-        setBackButtonData(backBtnData);
+    //     let txtFramedata = getTextFrameData();
+    //     setTxtFrameData(txtFramedata);
+    //     let isDisplayDefaultVal = getIsDisplayDefaultButton();
+    //     setIsDisplayDefualtBtnData(isDisplayDefaultVal);
+    //     let defaultBtnData = getDefaultButtonData();
+    //     setDefualtBtnData(defaultBtnData);
+    //     let backBtnData = getBackButtonData();
+    //     setBackButtonData(backBtnData);
 
-    });
+    // });
     
 
     return(<div className="previewWindow">
 
-
+{/* 
             <div className="preveiewArea2" style={{"width": 800}}>
 
 
@@ -215,8 +216,8 @@ export default function GameUIPreviewWindow({dataObj, getTextFrameData, getIsDis
 
 
 
-            </div>
-
+            </div> */}
+        <GameUIPureContent dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
             
         <div> <br></br><br></br><br></br>Outside: <br></br>
             A1. Title Screen

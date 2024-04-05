@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
 import styles from './webpage.css';
-import GameUIPreviewWindow from './GameUIPreviewWindow';
+import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
+import GameUIPureContent from './GameUIPureContent';
 
 
-export default function PreviewWindow({dataObj}) {
+export default function PreviewWindow({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
 
     console.log("re-rendering @preview window");
     console.log(dataObj);
@@ -46,16 +47,24 @@ export default function PreviewWindow({dataObj}) {
     return (
         <div className="previewWindow">
        
-            <div className="preveiewArea">
-              <div> Current Data:
-                <br></br>{dataObj.content}
-                <br></br>{dataObj.speaker_name}
-                <br></br>{dataObj.bgp_source_link}
-              </div>
-              
-              <div>Game content layer (Data from piece-setter; data change frequently)</div>
+            <div className="preveiewArea" style={{"position": "absolute"}}>
 
-              <div>Game UI layer (Data from GameUI-setter; data change less frequently)</div>
+              
+              <div style={{"position": "relative", "top": "0px", "left": "0px"}}>Game content layer (Data from piece-setter; data change frequently)
+                  <br></br>Current Data:
+                    <br></br>{dataObj.content}
+                    <br></br>{dataObj.speaker_name}
+                    <br></br>{dataObj.bgp_source_link}
+
+   
+              </div>
+
+
+              <GameUIPureContent style={{"position": "relative", "top": "0px", "left": "0px"}} dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+
+            
+
+
 
             </div>
 
