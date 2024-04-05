@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameSettings, updateBackButtonSettings}) {
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings}) {
     const screenWidth = 800;
     const screenHeight = 600;
 
@@ -17,7 +17,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         updateIsDisplayDefaultButtonPreview(displayDefaultButtonPreview);
         updateDefaultButtonSettings(defaultButtonObj);
   
-        updateTextFrameSettings(txtFrameObj);
+        updateTextFrameUISettings(txtFrameObj);
         updateBackButtonSettings(igMenuBtnObj);
 
     });

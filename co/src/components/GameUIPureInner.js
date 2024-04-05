@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIPureContent({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
+export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
 
     const [isDisplayDefualtBtnData, setIsDisplayDefualtBtnData] = useState({});
 
     const [defualtBtnData, setDefualtBtnData] = useState({});
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
-    const [txtFrameData, setTxtFrameData] = useState({});
+    const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
     const [backButtonData, setBackButtonData] = useState({});
 
     useEffect(() => {
         
-        let txtFramedata = getTextFrameData();
-        setTxtFrameData(txtFramedata);
+        let txtFrameUISettings = getTextFrameUISettings();
+        setTxtFrameUISettings(txtFrameUISettings);
         let isDisplayDefaultVal = getIsDisplayDefaultButton();
         setIsDisplayDefualtBtnData(isDisplayDefaultVal);
         let defaultBtnData = getDefaultButtonData();
@@ -166,40 +166,40 @@ export default function GameUIPureContent({dataObj, getTextFrameData, getIsDispl
 
 
 
-        <div style={txtFrameData["isShape"] === true ? {
-            "background": txtFrameData["bgColor"],
+        <div style={txtFrameUISettings["isShape"] === true ? {
+            "background": txtFrameUISettings["bgColor"],
 
-            "width": `${txtFrameData["width"]}px`,
-            "height": `${txtFrameData["height"]}px`,
+            "width": `${txtFrameUISettings["width"]}px`,
+            "height": `${txtFrameUISettings["height"]}px`,
             "position": "absolute",
-            "top": `${txtFrameData["positionY"]}px`,
-            "left": `${txtFrameData["positionX"]}px`,  
-            "color": txtFrameData["textColor"],
-            "border-radius": `${txtFrameData["cornerRadius"]}px`,
-            "opacity": txtFrameData["transparency"],
-            "font-size": `${txtFrameData["textSize"]}px`,    
+            "top": `${txtFrameUISettings["positionY"]}px`,
+            "left": `${txtFrameUISettings["positionX"]}px`,  
+            "color": txtFrameUISettings["textColor"],
+            "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
+            "opacity": txtFrameUISettings["transparency"],
+            "font-size": `${txtFrameUISettings["textSize"]}px`,    
         } : {
-            "background-image": `url('${txtFrameData["picUrl"]}')`,
+            "background-image": `url('${txtFrameUISettings["picUrl"]}')`,
 
-            "background-size": `${txtFrameData["width"]}px ${txtFrameData["height"]}px`,
+            "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
             
-            "width": `${txtFrameData["width"]}px`,
-            "height": `${txtFrameData["height"]}px`,
+            "width": `${txtFrameUISettings["width"]}px`,
+            "height": `${txtFrameUISettings["height"]}px`,
             "position": "absolute",
-            "top": `${txtFrameData["positionY"]}px`,
-            "left": `${txtFrameData["positionX"]}px`,
-            "color": txtFrameData["textColor"],
-            "border-radius": `${txtFrameData["cornerRadius"]}px`,
-            "opacity": txtFrameData["transparency"],
-            "font-size": `${txtFrameData["textSize"]}px`,  
+            "top": `${txtFrameUISettings["positionY"]}px`,
+            "left": `${txtFrameUISettings["positionX"]}px`,
+            "color": txtFrameUISettings["textColor"],
+            "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
+            "opacity": txtFrameUISettings["transparency"],
+            "font-size": `${txtFrameUISettings["textSize"]}px`,  
         }}>
             
             <div style={{
                 "position": "relative",
-                "left": `${txtFrameData["TextContentArea-x"]}px`,
-                "top" : `${txtFrameData["TextContentArea-y"]}px`,
-                "width" : `${txtFrameData["TextContentArea-w"]}px`,
-                "height" : `${txtFrameData["TextContentArea-h"]}px`,
+                "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
+                "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
+                "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
+                "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                 "border": "2px solid #e99a2b",
                 "border-radius": "0px"
             }}>

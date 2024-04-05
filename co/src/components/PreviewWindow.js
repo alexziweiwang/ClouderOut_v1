@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useState } from 'react';
 import styles from './webpage.css';
 import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
-import GameUIPureContent from './GameUIPureContent';
+import GameUIPureInner from './GameUIPureInner';
 
 
-export default function PreviewWindow({dataObj, getTextFrameData, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
+export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonData, getBackButtonData}) {
 
     console.log("re-rendering @preview window");
     console.log(dataObj);
@@ -60,8 +60,8 @@ export default function PreviewWindow({dataObj, getTextFrameData, getIsDisplayDe
               </div>
 
 
-              <GameUIPureContent style={{"position": "absolute", "top": "0px", "left": "0px"}} 
-              dataObj={dataObj} getTextFrameData={getTextFrameData} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
+              <GameUIPureInner style={{"position": "absolute", "top": "0px", "left": "0px"}} 
+              dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonData={getDefaultButtonData} getBackButtonData={getBackButtonData}/> 
 
             
 

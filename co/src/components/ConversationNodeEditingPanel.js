@@ -189,7 +189,7 @@ export default function ConversationNodeEditingPanel() {
         setBrowseList(!browseList);
     }
 
-    function updateTextFrameData(data) {
+    function updateTextFrameUISettings(data) {
         setGameUITextFrame(data);
     }
 
@@ -209,7 +209,7 @@ export default function ConversationNodeEditingPanel() {
         return gameUIDefaultButton;
     }
 
-    function passInTextFrameData() {
+    function passInTextFrameUISettings() {
         return gameUITextFrame;
     }
 
@@ -253,7 +253,7 @@ export default function ConversationNodeEditingPanel() {
                     {gameUISetterOpen === true && 
                     <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                    openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
+                    openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
                 </div>
             }
 
@@ -263,13 +263,13 @@ export default function ConversationNodeEditingPanel() {
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                         iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                        openRm={handleResourceManagerOpen} updateTextFrameSettings={updateTextFrameData} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
+                        openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonData} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonData}/>}
                 </div>
             }
  
-            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameData={passInTextFrameData} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>}
+            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>}
             {isDisplayPreview === false && 
-                <GameUIPreviewOuterFrame getTextFrameData={passInTextFrameData} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>
+                <GameUIPreviewOuterFrame getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonData={passInDefaultButtonData} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonData={passInBackButtonData}/>
             }
 
             </div>
