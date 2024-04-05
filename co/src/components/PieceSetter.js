@@ -15,7 +15,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     let name = "/gamenodeconvpiecedatasec";
 
-    const [pieceNumber, setPieceNumber] = useState(pieceNum);
+    const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
 
@@ -164,30 +164,30 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
 
     function jumpToPrevPiece() {
         console.log("TOOD: jump to previous piece..."); //TODO testing
-        if (pieceNumber > 1) {
-            setPieceNumber(pieceNumber-1);
+        if (lookingPieceNumber > 1) {
+            setLookingPieceNumber(lookingPieceNumber-1);
             //TODO change *all* form content here in display...
 
-            //TODO: fetch "pieceNumber-2"'s data            
+            //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
-            setCurrentPieceDetail(pieceDataLocal[pieceNumber-2]);
+            setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber-2]);
 
         } else {
-            setPieceNumber(1);
+            setLookingPieceNumber(1);
         }
     }
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        if (pieceNumber < pieceDataLocal.length) {
-            setPieceNumber(pieceNumber+1);
+        if (lookingPieceNumber < pieceDataLocal.length) {
+            setLookingPieceNumber(lookingPieceNumber+1);
             //TODO change *all* form content here in display...
             
-            setCurrentPieceDetail(pieceDataLocal[pieceNumber]);
+            setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber]);
 
 
         } else {
-            setPieceNumber(pieceDataLocal.length);
+            setLookingPieceNumber(pieceDataLocal.length);
         }
     }
 
@@ -199,7 +199,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         let i = 0;
         console.log("before changing and updateing to caller..", pieceDataLocal); //TODO test
         for (; i < pieceDataLocal.length; i++) {
-            if (i+1 !== pieceNumber) {
+            if (i+1 !== lookingPieceNumber) {
                 newPieceData.push(pieceDataLocal[i]);
             } else {
                 
@@ -272,7 +272,7 @@ export default function PieceSetter({pieceNum, allPieceData, updatePieceData, ge
         <br></br>
         <br></br>
 
-            <label>Piece: {pieceNumber}</label>
+            <label>Piece: {lookingPieceNumber}</label>
             <br></br>
             <label> Text to display: </label>
             <br></br>

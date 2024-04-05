@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUIPureInner from './GameUIPureInner';
 
 
-export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PreviewWindow({dataObj, getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     console.log("re-rendering @preview window");
     console.log(dataObj);
@@ -13,6 +13,18 @@ export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDis
     let name = "/previewwindow";
 
     const [gameScreenSize, setGameScreenSize] = useState("");
+
+    const [currentPiece, setCurrentPiece] = useState(dataObj);
+
+  
+    useEffect(() => {
+      let objTemp = getCurrentPiece();
+      console.log("preview-window:");
+      console.log(objTemp);
+      setCurrentPiece(objTemp);
+    });
+
+
 
     function changeGameScreenSizeSetting(event) {
         const input = event.target.value;
@@ -52,16 +64,16 @@ export default function PreviewWindow({dataObj, getTextFrameUISettings, getIsDis
               
               <div style={{"position": "absolute", "top": "0px", "left": "0px"}}>Game content layer (Data from piece-setter; data change frequently)
                   <br></br>Current Data:
-                    <br></br>{dataObj.content}
-                    <br></br>{dataObj.speaker_name}
-                    <br></br>{dataObj.bgp_source_link}
+                    <br></br>{currentPiece.content}
+                    {/* <br></br>{currentPiece.speaker_name}
+                    <br></br>{currentPiece.bgp_source_link} */}
 
    
               </div>
 
 
-              <GameUIPureInner style={{"position": "absolute", "top": "0px", "left": "0px"}} 
-              dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
+              <GameUIPureInner dataObj={dataObj} style={{"position": "absolute", "top": "0px", "left": "0px"}} 
+              getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
 
             
 

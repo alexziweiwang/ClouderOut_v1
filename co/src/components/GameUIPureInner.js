@@ -162,6 +162,7 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
             }
         >
         {backButtonUISettings["buttonText"]}
+  
     </div>
 
 

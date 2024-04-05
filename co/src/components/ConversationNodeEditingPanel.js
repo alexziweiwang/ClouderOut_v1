@@ -225,6 +225,10 @@ export default function ConversationNodeEditingPanel() {
         console.log("TODO: resource-managing update");
     }
 
+    function passInCurrentPieceObj() {
+        return pieceDataStructure[previewingIndex];
+    }
+
     return (
 
         <div>
@@ -267,9 +271,9 @@ export default function ConversationNodeEditingPanel() {
                 </div>
             }
  
-            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
+            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
-                <GameUIPreviewOuterFrame getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>
+                <GameUIPreviewOuterFrame dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>
             }
 
             </div>
