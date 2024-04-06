@@ -179,6 +179,7 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
             "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
             "opacity": txtFrameUISettings["transparency"],
             "font-size": `${txtFrameUISettings["textSize"]}px`,    
+            "user-select": "none",
         } : {
             "background-image": `url('${txtFrameUISettings["picUrl"]}')`,
 
@@ -192,7 +193,8 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
             "color": txtFrameUISettings["textColor"],
             "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
             "opacity": txtFrameUISettings["transparency"],
-            "font-size": `${txtFrameUISettings["textSize"]}px`,  
+            "font-size": `${txtFrameUISettings["textSize"]}px`, 
+            "user-select": "none", 
         }}>
             
             <div style={{
@@ -204,7 +206,7 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
                 "border": "2px solid #e99a2b",
                 "border-radius": "0px"
             }}>
-                {dataObj.speaker_name}<br></br>
+                {dataObj.speaker_name !== "" && <><label>{dataObj.speaker_name}</label><br></br></>}
                 {dataObj.content}
             </div>
         
