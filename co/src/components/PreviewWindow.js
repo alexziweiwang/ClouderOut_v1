@@ -5,16 +5,15 @@ import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUIPureInner from './GameUIPureInner';
 
 
-export default function PreviewWindow({dataObj, getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     console.log("re-rendering @preview window");
-    console.log(dataObj);
 
     let name = "/previewwindow";
 
     const [gameScreenSize, setGameScreenSize] = useState("");
 
-    const [currentPiece, setCurrentPiece] = useState(dataObj);
+    const [currentPiece, setCurrentPiece] = useState({});
 
   
     useEffect(() => {
@@ -63,17 +62,16 @@ export default function PreviewWindow({dataObj, getCurrentPiece, getTextFrameUIS
               <div style={{"position": "absolute", "top": "0px", "left": "0px"}}>Game content layer (Data from piece-setter; data change frequently)
                   <br></br>Current Data:
                     <br></br>{currentPiece.content}
-                    {/* <br></br>{currentPiece.speaker_name}
-                    <br></br>{currentPiece.bgp_source_link} */}
+                    <br></br>{currentPiece.speaker_name}
+                    <br></br>{currentPiece.bgp_source_link}
 
    
               </div>
 
 
-              <GameUIPureInner dataObj={dataObj} style={{"position": "absolute", "top": "0px", "left": "0px"}} 
+              <GameUIPureInner dataObj={currentPiece} style={{"position": "absolute", "top": "0px", "left": "0px"}} 
               getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
 
-            
 
             </div>
 
@@ -88,9 +86,6 @@ export default function PreviewWindow({dataObj, getCurrentPiece, getTextFrameUIS
                     </select>
                     <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
                 </div>
-
-
-
 
 
                       

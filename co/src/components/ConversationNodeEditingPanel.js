@@ -253,9 +253,10 @@ export default function ConversationNodeEditingPanel() {
 
             {browseList === false && 
                 <div>
-                    {gameUISetterOpen === false && <PieceSetter pieceNum={pieceNumber} assignPreviewIndex={getUpdatePreviewingIndex} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
+                    {gameUISetterOpen === false && 
+                        <PieceSetter pieceNum={previewingIndex+1} assignPreviewIndex={getUpdatePreviewingIndex} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
                     {gameUISetterOpen === true && 
-                    <GameUISetter 
+                        <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
                     openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}/>}
                 </div>
@@ -276,7 +277,8 @@ export default function ConversationNodeEditingPanel() {
                 </div>
             }
  
-            {isDisplayPreview === true && <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
+            {isDisplayPreview === true && 
+                <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
                 <GameUIPreviewOuterFrame dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>
             }
