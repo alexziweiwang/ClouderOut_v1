@@ -171,10 +171,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
             setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber-2]);
-            assignPreviewIndex(lookingPieceNumber); // TODO to test
+            assignPreviewIndex(lookingPieceNumber-2); // TODO to test; note : number = index+1, index = num-1
         } else {
             setLookingPieceNumber(1);
-            assignPreviewIndex(0); // TODO to test
+            assignPreviewIndex(0); // TODO to test; note : number = index+1, index = num-1
         }
     }
 
@@ -185,12 +185,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             //TODO change *all* form content here in display...
             
             setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber]);
-            assignPreviewIndex(lookingPieceNumber); // TODO to test
+            assignPreviewIndex(lookingPieceNumber); // TODO to test; note : number = index+1, index = num-1
 
         } else {
             setLookingPieceNumber(pieceDataLocal.length);
-            assignPreviewIndex(pieceDataLocal.length-1); // TODO to test
-
+            assignPreviewIndex(pieceDataLocal.length-1); // TODO to test; note : number = index+1, index = num-1
         }
     }
 
