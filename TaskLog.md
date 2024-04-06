@@ -229,3 +229,5 @@
 
 - 2024-Apr-03: Analyze and abstract modal of menu systems; decide options for users
 - 2024-Apr-03: Consider and design data flow for General Preview Displaying (both game-content and game-UI)
+
+- 2024-Apr-05: Consider optimization of Piece-Setter piece-switching (more stable way)
