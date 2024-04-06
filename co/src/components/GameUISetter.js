@@ -39,27 +39,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     //TODO current: defualt-reset when start rendering this component
     //TODO later: fetch from cloud-db for setting records
     const [defaultButtonObj, setDefaultButtonObj] = useState(iniDefaultButtonObj);
-    // useState({
-    //     "widthMin": 300,
-    //     "widthMax": 370,
-    //     "height": 20,
-    //     "cornerRadius": 0,
-    //     "transparency": 0.9,
-    //     "isShape": false,
-    //     "bgColor": "#a8d1d6",
-    //     "picVar": "",
-    //     "picUrl": "",
-    //     "textColor": "#000000",
-    //     "margin": 5,
-    //     "justifyContent": "start",
-    //     "alignItems": "center",
-    //     "border": "2px solid #000000",
-    //     "textSize": 15,
-    //     "groupX": 200,
-    //     "groupY": 100,
-    //     "horizontalMid": false,
-    //     "verticalMid": false,
-    // });
+
     const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(true);
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
@@ -71,53 +51,10 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(10);
 
     const [txtFrameObj, setTxtFrameObj] = useState(iniTxtFrameObj);
-    // useState(
-    //     {"width": 600,
-        // "height": 200,
-        // "positionX": 100,
-        // "positionY": 360,
-        // "cornerRadius": 0,
-        // "transparency": 0.7,
-        // "isShape": true,
-        // "bgColor": "#a8d1d6",
-        // "picVar": "",
-        // "picUrl": "",
-        // "fontName": "",
-        // "textSize": 15,
-        // "textColor": "#000000",
-        // "justifyContent": "start",
-        // "alignItems": "start",
-        // "border": "2px solid #000000",
-        // "horizontalMid": false,
-        // "TextContentArea-x": 10,
-        // "TextContentArea-y": 10,
-        // "TextContentArea-w": 580,
-        // "TextContentArea-h": 180
-    // }
-    // );
 
     const [isMenuStoryCore, setIsMenuStoryCore] = useState(false);
 
     const [igMenuBtnObj, setIgMenuBtnObj] = useState(iniMenuButtonObj);
-    // useState(
-    //     {
-        // "width": 50,
-        // "height": 50,
-        // "cornerRadius": 0,
-        // "transparency": 0.9,
-        // "isShape": false,
-        // "bgColor": "#a8d1d6",
-        // "picVar": "",
-        // "picUrl": "",
-        // "textColor": "#000000",
-        // "buttonText": "←",
-        // "textSize": 15,
-        // "borderColor": "#000000",
-        // "borderSize": 2,
-        // "posX": 0,
-    //     // "posY": 0
-    // }
-    // );
 
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
