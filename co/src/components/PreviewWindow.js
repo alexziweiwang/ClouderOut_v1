@@ -59,18 +59,24 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
             <div className="preveiewArea" style={{"position": "relative"}}>
 
               
-              <div style={{"position": "absolute", "top": "0px", "left": "0px"}}>Game content layer (Data from piece-setter; data change frequently)
-                  <br></br>Current Data:
-                    <br></br>{currentPiece.content}
-                    <br></br>{currentPiece.speaker_name}
-                    <br></br>{currentPiece.bgp_source_link}
-
-   
+              <div style={{"position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}
+                onClick={()=>{console.log("clicked. next piece!");}}
+                >Game content layer (Data from piece-setter; data here changes frequently...)
+                TODO: 
+                  <br></br> [bg-pic] char-pics, clickable
+                  <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
+                  
               </div>
 
 
-              <GameUIPureInner dataObj={currentPiece} style={{"position": "absolute", "top": "0px", "left": "0px"}} 
-              getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
+              <GameUIPureInner 
+                dataObj={currentPiece} 
+                style={{"position": "absolute", "top": "0px", "left": "0px"}} 
+                getTextFrameUISettings={getTextFrameUISettings} 
+                getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
+                getDefaultButtonUISettings={getDefaultButtonUISettings} 
+                getBackButtonUISettings={getBackButtonUISettings}
+              /> 
 
 
             </div>
