@@ -52,6 +52,17 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
     } 
 
+    function triggerContinue(action, valueObj) {
+      //when players click on everywhere except for game-content-button or menu-button
+        //action is "direct next-piece"?
+      
+      //when players click on game-content-button or menu-button (trigger a change of game-data, etc.)
+        //action is "changed game-data and see"?
+
+    }
+
+
+
  
     return (
         <div className="previewWindow">
