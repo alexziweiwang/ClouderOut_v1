@@ -234,6 +234,10 @@ export default function ConversationNodeEditingPanel() {
         setMenuType(value);
     }
 
+    function passInMenuType() {
+        return menuType;
+    }
+
     return (
 
         <div>
@@ -290,7 +294,9 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayPreview === true && 
                 <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
-                <GameUIPreviewOuterFrame dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>
+                <GameUIPreviewOuterFrame dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}
+                    getMenuType={passInMenuType}
+                />
             }
 
             </div>

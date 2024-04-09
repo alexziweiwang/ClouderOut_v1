@@ -2,10 +2,17 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUIPureInner from './GameUIPureInner';
 
-export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType}) {
+
+    const [menuType, setMenuType] = useState("(default)");
+
+    useEffect(() => {
+        let tempType = getMenuType();
+        setMenuType(tempType);
+    });
+
 
     return(<div className="previewWindow">
-
         <div className="preveiewArea2">
         
   
@@ -31,7 +38,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
                 </div>
         </div>
 
-        {<div className="preveiewArea2">
+        {menuType === "storyCore" && <div className="preveiewArea2">
 
             <div style={{"height": "600px", "width": "800px"}}>
                 A2.1 Pause Screen, Modal (story core)
@@ -46,14 +53,14 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
             </div>
         </div>}
 
-        {<div className="preveiewArea2">
+        {menuType === "notStoryCore" && <div className="preveiewArea2">
 
             <div>
                 A2.2 Chapter Selection or  Branch Screen, Entry of all chapters (comprehensive experience)
             </div>
         </div>}
         
-        <div className="preveiewArea2">
+        {menuType === "storyCore" && <div className="preveiewArea2">
 
             <div>
                 A3.Save/Load screen (story core)
@@ -69,7 +76,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
 
 
             </div>
-        </div>
+        </div>}
 
 
 
