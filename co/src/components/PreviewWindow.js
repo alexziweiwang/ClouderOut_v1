@@ -71,11 +71,12 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
               
               <div style={{"position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
+                  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                   Game content layer (Data from piece-setter; data here changes frequently...)
-                TODO: 
-                  <br></br> [bg-pic] char-pics, clickable
-                  <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
-                  
+                  TODO: 
+                    <br></br> [bg-pic] char-pics, clickable
+                    <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
+                    
               </div>
 
 
