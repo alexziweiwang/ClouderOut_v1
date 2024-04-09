@@ -41,6 +41,8 @@ export default function GameMaker() {
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "plot1", "end node"]]); //TODO fetch from cloud db
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
+  const [showChapterMaker, setShowChapterMaker] = useState(true);
+
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
@@ -86,20 +88,40 @@ export default function GameMaker() {
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
       <p>projectName: {projectName}</p>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> Resource Manager </button>
-      {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
-
-
+      {isDisplayRmBool && 
+      <ResourceManagingModalWindow 
+        isDisplay = {isDisplayRmBool} 
+        handleRmCancel={handleResourceManagerCancel} 
+        handleRmSaveChanges={handleResourceManagerSaveChanges}
+      />}
+    </div>
+    <div>
+      <button>Chapters</button>
+      <button>Menu & Main Page</button>
     </div>
 
-    <div className="parallelFrame">
+    {showChapterMaker && <div className="parallelFrame"> Chapters
       
-   
-        {!isDisplayRmBool && <ChapterManager chapterData={chapterList} updateChapterData={setChapterList} chosenChapter={currChapter} updateChosenChapter={setCurrChapter} updateLinkingNode={updateLinkingNodeFunc}/>}
+        {!isDisplayRmBool && 
+        <ChapterManager 
+          chapterData={chapterList} 
+          updateChapterData={setChapterList} 
+          chosenChapter={currChapter} 
+          updateChosenChapter={setCurrChapter} 
+          updateLinkingNode={updateLinkingNodeFunc}
+        />}
 
-        <NodeManager currUser={username} projectName={projectName} chapterTitle={currChapter}/>
+        <NodeManager 
+          currUser={username} 
+          projectName={projectName} 
+          chapterTitle={currChapter}
+        />
+    </div>}
 
-
-    </div>
+    {!showChapterMaker && 
+    <div> Structure & Menu 
+      
+    </div>}
    
     <p className="plans">TODO: dynamic setup of "nodedata" for specific chapter, according to user choice</p> 
 
