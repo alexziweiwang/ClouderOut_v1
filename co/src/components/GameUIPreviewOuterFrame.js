@@ -4,7 +4,7 @@ import GameUIPureInner from './GameUIPureInner';
 
 export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType}) {
 
-    const [menuType, setMenuType] = useState("(default)");
+    const [menuType, setMenuType] = useState("notStoryCore");
 
     useEffect(() => {
         let tempType = getMenuType();
@@ -19,10 +19,10 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
             <GameUIPureInner dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
         </div>
 
-        <div className="preveiewArea2">
+        {menuType === "storyCore" && <div className="preveiewArea2">
 
                 <div style={{"height": "600px", "width": "800px"}}>
-                    A1. Title(Main) Screen
+                    A1.1 Title(Main) Screen (story core)
                 
 
                     <p className="plans">
@@ -36,7 +36,26 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
                     <br></br>Current design: [start game, load game, settings, gallery(future)]
                     </p>
                 </div>
-        </div>
+        </div>}
+
+        {menuType !== "storyCore" && <div className="preveiewArea2">
+
+            <div style={{"height": "600px", "width": "800px"}}>
+                A1.2 Title(Main) Screen (comprehensive experience)
+
+
+                <p className="plans">
+                The opening-menu (title screen):
+                <br></br>
+                TODO: a series of buttons (table) to allow users to add
+                <br></br>
+                TODO: opening music selection
+                <br></br>
+                TODO: player profile/account feature
+                <br></br>Current design: [start game, load game, settings, gallery(future)]
+                </p>
+            </div>
+        </div>}
 
         {menuType === "storyCore" && <div className="preveiewArea2">
 
@@ -53,7 +72,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
             </div>
         </div>}
 
-        {menuType === "notStoryCore" && <div className="preveiewArea2">
+        {menuType !== "storyCore" && <div className="preveiewArea2">
 
             <div>
                 A2.2 Chapter Selection or  Branch Screen, Entry of all chapters (comprehensive experience)
@@ -78,16 +97,6 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
             </div>
         </div>}
 
-
-
-
-
-
-        <br></br>
-
-
-
-    
         </div>
     
     );
