@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings}) {
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, sendMenuType}) {
     const screenWidth = 800;
     const screenHeight = 600;
 
@@ -481,12 +481,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br><input type="radio" value={isMenuStoryCore} checked={!isMenuStoryCore} onChange={()=>{
         setIsMenuStoryCore(false);
         setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "←"});    
-
+        sendMenuType("notStoryCore");
     }}
     ></input>
     <label onClick={()=>{
         setIsMenuStoryCore(false);
         setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "←"});    
+        sendMenuType("notStoryCore");
 
     }}
     >3.1 comprehensive experience</label>
@@ -501,9 +502,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{
         setIsMenuStoryCore(true);
         setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});    
+        sendMenuType("storyCore");
+
     }}
     ></input>
-    <label onClick={()=>{setIsMenuStoryCore(true);
+    <label onClick={()=>{
+        setIsMenuStoryCore(true);        
+        sendMenuType("storyCore");
         setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});        
 }}
     >3.2: story core</label>

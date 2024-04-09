@@ -31,11 +31,10 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
                 </div>
         </div>
 
-        <div className="preveiewArea2">
+        {<div className="preveiewArea2">
 
             <div style={{"height": "600px", "width": "800px"}}>
                 A2.1 Pause Screen, Modal (story core)
-
                 <p className="plans">
                 The in-game menu (pause screen):
                 <br></br>
@@ -43,16 +42,16 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
                 <br></br>
                 TODO: a series of buttons (table) to allow users to add
                 <br></br>Current design: [save, load, settings, properties, store(future)]
-            </p>
-
+                </p>
             </div>
-        </div>
-        <div className="preveiewArea2">
+        </div>}
+
+        {<div className="preveiewArea2">
 
             <div>
                 A2.2 Chapter Selection or  Branch Screen, Entry of all chapters (comprehensive experience)
             </div>
-        </div>
+        </div>}
         
         <div className="preveiewArea2">
 

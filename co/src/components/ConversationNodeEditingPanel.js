@@ -30,6 +30,7 @@ export default function ConversationNodeEditingPanel() {
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
     const [isDisplayPreview, setIsDisplayPreview] = useState(true);
+    const [menuType, setMenuType] = useState("");
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
     const returnGameMakerButtonText = ["Return To GameMaker!"];
@@ -229,6 +230,10 @@ export default function ConversationNodeEditingPanel() {
         return pieceDataStructure[previewingIndex];
     }
 
+    function fetchMenuType(value) {
+        setMenuType(value);
+    }
+
     return (
 
         <div>
@@ -258,7 +263,9 @@ export default function ConversationNodeEditingPanel() {
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                    openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}/>}
+                    openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}
+                    sendMenuType={fetchMenuType}
+                    />}
                 </div>
             }
 
@@ -273,7 +280,10 @@ export default function ConversationNodeEditingPanel() {
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                         iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                        openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}/>}
+                        openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}
+                        sendMenuType={fetchMenuType}
+                        />}
+                
                 </div>
             }
  
