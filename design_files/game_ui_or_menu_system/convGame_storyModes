@@ -1,0 +1,15 @@
+When entering story part...
+
+1. with save/load system
+present load page
+(else: if new player, start from the beginning)
+(continue until end of story)
+
+2. without save/load system
+present all entries for volumes/chapters/parts
+(when finish the current small unit, return to this selection-page)
+
+3. branch selection (* consider later as extra)
+present all the experienced paths and branches, allow reselect
+
+
