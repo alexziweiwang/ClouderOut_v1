@@ -494,7 +494,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     {!isMenuStoryCore && <div className="indentOne">
     <label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
             setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
-    }}></input>             
+    }}></input><br></br>   
+    <label>Main Screen: </label>
+            <p className="plans">
+
+                
+            </p>
+
+
+
 
     </div>}
 

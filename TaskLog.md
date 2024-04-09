@@ -232,3 +232,5 @@
 
 - 2024-Apr-05: Consider optimization of Piece-Setter piece-switching (more stable way)
 - 2024-Apr-05: Consider and design other generalizations for comprehensive-experience type of conversation node, level of menu systems, non-sequential pages reach-and-leave during games
+
+- 2024-Apr-08: Reconsider Conversational-game menu-system, improve generalization of story models

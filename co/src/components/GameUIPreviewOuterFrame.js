@@ -45,14 +45,13 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
 
 
                 <p className="plans">
-                The opening-menu (title screen):
+                Main page:
                 <br></br>
                 TODO: a series of buttons (table) to allow users to add
                 <br></br>
-                TODO: opening music selection
+                TODO: bg-music selection
                 <br></br>
                 TODO: player profile/account feature
-                <br></br>Current design: [start game, load game, settings, gallery(future)]
                 </p>
             </div>
         </div>}
@@ -96,6 +95,8 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
 
             </div>
         </div>}
+
+        <br></br>
 
         </div>
     
