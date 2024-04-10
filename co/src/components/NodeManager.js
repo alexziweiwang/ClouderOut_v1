@@ -226,6 +226,12 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         set_test_new_node_depth(test_new_node_depth+1); //TODO test
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
+
+        if (nodeData.length > 5) { //TODO testing: update svg's size
+          setViewBoxStr("10 -10 5200 700"); //TODO later calculate for precise size (current: 3200 to 5200)
+          //TODO better scalling in viewing
+          //TODO for different depth of the nodes, increase height of svg as well
+        }
       }
 
     } else {
@@ -515,7 +521,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         </div>}
         </div>
         
-        <div className="visArea visPanel">
+        <div className="visArea visPanel" style={{"overflow": "scroll"}}>
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
