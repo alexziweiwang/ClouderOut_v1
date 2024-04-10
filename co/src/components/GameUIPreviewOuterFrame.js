@@ -18,7 +18,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
   
             <GameUIPureInner dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
         </div>
-
+{/* 
         {menuType === "storyCore" && <div className="preveiewArea2">
 
                 <div style={{"height": "600px", "width": "800px"}}>
@@ -94,7 +94,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
 
 
             </div>
-        </div>}
+        </div>} */}
 
         <br></br>
 

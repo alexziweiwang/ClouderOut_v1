@@ -145,6 +145,18 @@ export default function GameMaker() {
 
       </div>
 
+      <br></br><br></br>
+      <p className="plans">
+        TODO: Menu UI setter (main page, etc.)
+        <br></br>TODO: Navigation setter
+        <br></br>Path: main-page to story seciton, to either s/l, chapter list, or branch page         
+        <br></br>Path: main-page to other parts? player profile(including game data/status?), game settings, meeting(optional), shop(optional), achievements(optional), gallery/memory(optional)  
+      </p>
+
+
+
+
+
 
       
     </div>}

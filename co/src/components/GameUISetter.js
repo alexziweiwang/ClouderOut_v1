@@ -472,7 +472,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     group position Y <br></br>
     pic/shape base
     
-
+{/* 
     <br></br><br></br><br></br>
 
     3. Menu System
@@ -496,18 +496,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
     }}></input><br></br>   
     <label>Main Screen: </label>
-            <p className="plans">
 
-                
-            </p>
+    </div>} */}
 
 
-
-
-    </div>}
-
-
-    <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{
+    {/* <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{
         setIsMenuStoryCore(true);
         setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});    
         sendMenuType("storyCore");
@@ -525,17 +518,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
         }}></input>            
 
-    </div>}
+    </div>} */}
 
-    <br></br><br></br><br></br>
+    {/* <br></br><br></br><br></br>
     <div className="indentOne">
         <label>Corner Radius: </label>
             <input type="range" value={igMenuBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
                     setIgMenuBtnObj({...igMenuBtnObj, "cornerRadius": event.target.value});
                 }}></input><label>{igMenuBtnObj["cornerRadius"]}</label>
-        {/* <br></br><label>Transparency: </label><input type="range" value={igMenuBtnObj["transparency"]} type="range" min="0" max="1" step="0.1" onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "transparency": event.target.value});
-            }}></input><label>{igMenuBtnObj["transparency"]}</label> */}
         <br></br>Width: <input type="range" value={igMenuBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
                 setIgMenuBtnObj({...igMenuBtnObj, "width": event.target.value});
             }}></input>
@@ -580,7 +570,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <option key="idvBackButton" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "backtButton" + currKey;
-                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
                             return (
                                 <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
@@ -624,7 +614,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             ></input>
 
     </div>
-    
+     */}
     <br></br><button>Save</button>
 </div>
 
