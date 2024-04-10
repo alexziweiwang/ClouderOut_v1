@@ -521,13 +521,15 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
         </div>}
         </div>
         
-        <div className="visArea visPanel" style={{"overflow": "scroll"}}>
+        <div className="visArea visPanel" style={{"overflow": "auto"}}>
 
           <svg
+            height="100%"
+            width="100%"
+            preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg"
             className="nodes_viewer"
             viewBox={viewBoxStr}
-            overflow="auto"
           >
     
           {Object.keys(nodeData).map((nodeIndex, index) => {
