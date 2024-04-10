@@ -42,6 +42,7 @@ export default function GameMaker() {
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
   const [showChapterMaker, setShowChapterMaker] = useState(true);
+  const [selectedProgressStrategy, setSelectedProgressStrategy] = useState("");
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -121,22 +122,22 @@ export default function GameMaker() {
     {!showChapterMaker && 
     <div className="sectionArea"> Menu & Navigations 
 
-      <br></br><label>Game Progress Type:</label>
+      <br></br><label>Game Progress Strategy:</label>
       <div className="parallelFrame" style={{"justify-content": "center"}}>
         <div className="selectableRectangle">
-            <input type="radio"></input><label>Save/Load:</label>
+            <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input><label>Save/Load:</label>
             <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
         </div>
 
         <div className="selectableRectangle">
-            <input type="radio"></input><label></label>Short experience in each chapter:
+            <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("echpt");}}></input><label></label>Short experience in each chapter:
             
             <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
 
         </div>
 
         <div className="selectableRectangle">
-            <input type="radio"></input><label>Branch and Selection:</label>
+            <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("brnch");}}></input><label>Branch and Selection:</label>
           
             <br></br>present entire "story-branch" to the players; players can change some decisions (which impact branches and paths)
 
