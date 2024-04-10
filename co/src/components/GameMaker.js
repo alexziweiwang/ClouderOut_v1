@@ -122,21 +122,23 @@ export default function GameMaker() {
     <div className="sectionArea"> Menu & Navigations 
 
       <br></br><label>Game Progress Type:</label>
-      <div className="parallelFrame">
-        <div className="selectableRectangle">with save/load:
+      <div className="parallelFrame" style={{"justify-content": "center"}}>
+        <div className="selectableRectangle">
+            <input type="radio"></input><label>Save/Load:</label>
             <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
-            <br></br><input type="radio"></input><label>Select</label>
         </div>
 
-        <div className="selectableRectangle">short experience on each chapter:
+        <div className="selectableRectangle">
+            <input type="radio"></input><label></label>Short experience in each chapter:
+            
             <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
-            <br></br><input type="radio"></input><label>Select</label>
 
         </div>
 
-        <div className="selectableRectangle">branch and selection:
+        <div className="selectableRectangle">
+            <input type="radio"></input><label>Branch and Selection:</label>
+          
             <br></br>present entire "story-branch" to the players; players can change some decisions (which impact branches and paths)
-            <br></br><input type="radio"></input><label>Select</label>
 
         </div>
 

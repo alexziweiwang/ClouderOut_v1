@@ -618,7 +618,8 @@ td {
 }
 
 .sectionArea {
-    background-color: #dee2e9;
+    background-color: #e6dfd7;
+    margin-top: -3px;
 }
 
 .tabBar1 {
@@ -701,44 +702,44 @@ td {
 }
 
 .tabBarGM {
-    background-color: #d8cbbb;
+    background-color: #edeceb;
     border-radius: 0px;
     border: none;
     height: 30px;
     margin-top: 10px;
     margin-right: 30px;
+    color: #828282;
 }
 
 .tabBarGM:hover {
-    background-color: #6f6962;
+    background-color: #e6dfd7;
     border-radius: 0px;
     border: none;
     height: 30px;
     cursor: pointer;
     margin-top: 10px;
     margin-right: 30px;
-
+    color: #000000;
 }
 
 .tabBarGMSelected {
-    background-color: #8c8275;
+    background-color: #e6dfd7;
     border-radius: 0px;
     border: none;
     height: 30px;
-    color: #FFFFFF;
     margin-top: 10px;
     margin-right: 30px;
 
 }
 
 .tabBarGMSelected:hover {
-    background-color: #8c8275;
+    background-color: #e6dfd7;
     border-radius: 0px;
     border: none;
     height: 30px;
-    color: #FFFFFF;
     margin-top: 10px;
     margin-right: 30px;
+    color: #000000;
 
 }
 
@@ -1224,4 +1225,6 @@ button:hover {
     height: 260px;
     width: 320px;
     margin: 5px;
+    text-align: left;
+    padding: 5px;
 }
