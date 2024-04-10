@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
-
+import styles from './webpage.css';
 
 export default function GameMaker() {
 
@@ -41,7 +41,7 @@ export default function GameMaker() {
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "plot1", "end node"]]); //TODO fetch from cloud db
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
-  const [showChapterMaker, setShowChapterMaker] = useState(true);
+  const [showChapterMaker, setShowChapterMaker] = useState(false);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -96,11 +96,11 @@ export default function GameMaker() {
       />}
     </div>
     <div>
-      <button>Chapters</button>
-      <button>Menu & Main Page</button>
+      <button className="tabBarGM" onClick={()=>{setShowChapterMaker(true);}}>Content Chapters</button>
+      <button className="tabBarGM" onClick={()=>{setShowChapterMaker(false);}}>Menu & Navigations</button>
     </div>
-
-    {showChapterMaker && <div className="parallelFrame"> Chapters
+    
+    {showChapterMaker && <div className="parallelFrame sectionArea">
       
         {!isDisplayRmBool && 
         <ChapterManager 
@@ -119,7 +119,7 @@ export default function GameMaker() {
     </div>}
 
     {!showChapterMaker && 
-    <div> Structure & Menu 
+    <div className="sectionArea"> Structure & Menu 
       
     </div>}
    

@@ -617,6 +617,10 @@ td {
     color:rgb(7, 7, 7);
 }
 
+.sectionArea {
+    background-color: #dee2e9;
+}
+
 .tabBar1 {
     background-color: rgb(198, 193, 186);
     border-color: rgb(198, 193, 186);
@@ -696,6 +700,35 @@ td {
     border-bottom: none;
 }
 
+.tabBarGM {
+    background-color: #d8cbbb;
+    border-radius: 0px;
+    border: none;
+    height: 30px;
+
+}
+
+.tabBarGM:hover {
+    background-color: #8c8275;
+    border-radius: 0px;
+    border: none;
+    height: 30px;
+
+}
+
+.tabBarGMSelected {
+    background-color: #8c8275;
+    border-radius: 0px;
+    border: none;
+
+}
+
+.tabBarGMSelected:hover {
+    background-color: #aca9a6;
+    border-radius: 0px;
+    border: none;
+
+}
 
 .tabBarASelected:hover {
     background-color: rgb(125, 141, 171);
