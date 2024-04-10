@@ -41,7 +41,7 @@ export default function GameMaker() {
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "plot1", "end node"]]); //TODO fetch from cloud db
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
-  const [showChapterMaker, setShowChapterMaker] = useState(false);
+  const [showChapterMaker, setShowChapterMaker] = useState(true);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -96,8 +96,8 @@ export default function GameMaker() {
       />}
     </div>
     <div>
-      <button className="tabBarGM" onClick={()=>{setShowChapterMaker(true);}}>Content Chapters</button>
-      <button className="tabBarGM" onClick={()=>{setShowChapterMaker(false);}}>Menu & Navigations</button>
+      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>Content Chapters</button>
+      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>Menu & Navigations</button>
     </div>
     
     {showChapterMaker && <div className="parallelFrame sectionArea">

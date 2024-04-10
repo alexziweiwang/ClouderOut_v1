@@ -705,14 +705,18 @@ td {
     border-radius: 0px;
     border: none;
     height: 30px;
-
+    margin-top: 10px;
+    margin-right: 30px;
 }
 
 .tabBarGM:hover {
-    background-color: #8c8275;
+    background-color: #6f6962;
     border-radius: 0px;
     border: none;
     height: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 30px;
 
 }
 
@@ -720,13 +724,21 @@ td {
     background-color: #8c8275;
     border-radius: 0px;
     border: none;
+    height: 30px;
+    color: #FFFFFF;
+    margin-top: 10px;
+    margin-right: 30px;
 
 }
 
 .tabBarGMSelected:hover {
-    background-color: #aca9a6;
+    background-color: #8c8275;
     border-radius: 0px;
     border: none;
+    height: 30px;
+    color: #FFFFFF;
+    margin-top: 10px;
+    margin-right: 30px;
 
 }
 
