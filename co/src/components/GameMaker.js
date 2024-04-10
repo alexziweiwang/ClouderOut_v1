@@ -119,7 +119,30 @@ export default function GameMaker() {
     </div>}
 
     {!showChapterMaker && 
-    <div className="sectionArea"> Structure & Menu 
+    <div className="sectionArea"> Menu & Navigations 
+
+      <br></br><label>Game Progress Type:</label>
+      <div className="parallelFrame">
+        <div className="selectableRectangle">with save/load:
+            <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
+            <br></br><input type="radio"></input><label>Select</label>
+        </div>
+
+        <div className="selectableRectangle">short experience on each chapter:
+            <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
+            <br></br><input type="radio"></input><label>Select</label>
+
+        </div>
+
+        <div className="selectableRectangle">branch and selection:
+            <br></br>present entire "story-branch" to the players; players can change some decisions (which impact branches and paths)
+            <br></br><input type="radio"></input><label>Select</label>
+
+        </div>
+
+      </div>
+
+
       
     </div>}
    
