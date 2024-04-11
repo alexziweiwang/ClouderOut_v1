@@ -1101,7 +1101,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         </div>
         }
 
-        {chapterKey === "" && <div>Please Select or Setup Chapters in Chapter Management Area...</div>}
+        {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
 
       </>
     );

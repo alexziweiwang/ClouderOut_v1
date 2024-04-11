@@ -37,7 +37,7 @@ export default function GameMaker() {
   const navigate = useNavigate();
   const name = "/gamemaker";
 
-  const [currChapterKey, setCurrChapter] = useState("");
+  const [currChapterKey, setCurrChapterKey] = useState("");
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "", ""]]); //TODO fetch from cloud db
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
@@ -86,6 +86,9 @@ export default function GameMaker() {
   function fetchCurrChapterNodeList(chapterKey) {
     // with chapter key, return the node list from cloud(?)
     console.log("fetchCurrChapterNodeList - ", chapterKey); //TODO
+    if (chapterKey === -1) {
+      setCurrChapterKey("");
+    }
   }
 
 
@@ -115,7 +118,7 @@ export default function GameMaker() {
           chapterData={chapterList} 
           updateChapterData={setChapterList} 
           chosenChapter={currChapterKey} 
-          updateChosenChapter={setCurrChapter} 
+          updateChosenChapter={setCurrChapterKey} 
           updateLinkingNode={updateLinkingNodeFunc}
           getCurrentChapterNodeList={fetchCurrChapterNodeList}
         />}
