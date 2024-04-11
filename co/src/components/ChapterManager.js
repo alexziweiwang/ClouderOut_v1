@@ -33,7 +33,6 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   }
 
   function addNewChapterLine() {
-    //TODO validation of newChapterKeyInput, if duplicate or empty, not allowing creation
 
     //1. not allowing empty chapter key or chapter title
     if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
@@ -42,7 +41,6 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     }
 
     //2. not allowing duplicate chapter key
-    //TODO from chapterData
     let i = 0;
     for (; i < chapterData.length; i++) {
       let tempKey = chapterData[i][0];
@@ -53,7 +51,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     }
 
     let tempChapterData = chapterData;
-    let line = [newChapterKeyInput, newChapterTitleInput];
+    let line = [newChapterKeyInput, newChapterTitleInput, "display", "", ""];
     tempChapterData.push(line);
     updateChapterData(tempChapterData);
     setNewChapterKeyInput("");
