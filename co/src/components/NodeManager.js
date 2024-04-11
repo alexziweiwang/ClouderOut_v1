@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import GameDataManager from './GameDataManager';
 
-export default function NodeManager({projectName, currUser, chapterTitle}) {
+export default function NodeManager({projectName, currUser, chapterKey}) {
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
@@ -474,8 +474,8 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
     return (      
         <>
 
-        {chapterTitle!== "" && <div className="setting_area"> 
-        <label>Chapter Title: {chapterTitle}</label><br></br>
+        {chapterKey!== "" && <div className="setting_area"> 
+        <label>Chapter Key: {chapterKey}</label><br></br>
         <label>Node Management</label>
 
         <button onClick={()=>{getChapterDataFromCloud("chapter0");}}> temp: Fetch chapter data </button>
@@ -1101,7 +1101,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         </div>
         }
 
-        {chapterTitle === "" && <div>Please Select or Setup Chapters in Chapter Management Area...</div>}
+        {chapterKey === "" && <div>Please Select or Setup Chapters in Chapter Management Area...</div>}
 
       </>
     );

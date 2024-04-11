@@ -57,7 +57,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       setSelectedChpt(-1);
     } else {
       setSelectedChpt(item[0]);
-      updateChosenChapter(item[1]); //TODO change later
+      updateChosenChapter(item[0]); // sends chapter-key info
     }
   }
 

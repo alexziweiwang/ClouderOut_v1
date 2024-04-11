@@ -37,7 +37,7 @@ export default function GameMaker() {
   const navigate = useNavigate();
   const name = "/gamemaker";
 
-  const [currChapter, setCurrChapter] = useState("");
+  const [currChapterKey, setCurrChapter] = useState("");
   const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "plot1", "end node"]]); //TODO fetch from cloud db
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
@@ -48,8 +48,10 @@ export default function GameMaker() {
   useEffect(() => {
     if (firstTimeEnter === true) {
         //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
+            //TODO setChapterList(); // from cloud-db
         //TODO format: localChapterInfo = <chapter title, node-relationship-map>
-        //TODO the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
+        
+        //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         setFirstTimeEnter(false);
     }
   });
@@ -61,7 +63,7 @@ export default function GameMaker() {
 
 
   function updateChapterNodeData() {
-    // TODO fetch currChapter
+    // TODO fetch currChapterKey
     // TODO update nodeRelationshipMap by chapter title
     // TODO strategy: from cloud? local?
     // TODO consider data structure to store, balance efficiency and cloud traffic
@@ -112,7 +114,7 @@ export default function GameMaker() {
         <ChapterManager 
           chapterData={chapterList} 
           updateChapterData={setChapterList} 
-          chosenChapter={currChapter} 
+          chosenChapter={currChapterKey} 
           updateChosenChapter={setCurrChapter} 
           updateLinkingNode={updateLinkingNodeFunc}
           getCurrentChapterNodeList={fetchCurrChapterNodeList}
@@ -121,7 +123,7 @@ export default function GameMaker() {
         <NodeManager 
           currUser={username} 
           projectName={projectName} 
-          chapterTitle={currChapter}
+          chapterKey={currChapterKey}
         />
     </div>}
 
