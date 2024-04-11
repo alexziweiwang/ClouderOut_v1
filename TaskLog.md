@@ -236,3 +236,6 @@
 - 2024-Apr-08: Reconsider Conversational-game menu-system, improve generalization of story models
 
 - 2024-Apr-09: Reconsider and plan for node-visualization (from svg to other, possibly html+css representation)
+
+- 2024-Apr-10: Design for cloud-db data structure finalizing plan; multiple preparations and considerations
+
