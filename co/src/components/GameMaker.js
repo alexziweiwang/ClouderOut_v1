@@ -81,6 +81,11 @@ export default function GameMaker() {
     //TODO either update "starting" or "ending" node of a chapter
   }
 
+  function fetchCurrChapterNodeList(chapterKey) {
+    // with chapter key, return the node list from cloud(?)
+    console.log("fetchCurrChapterNodeList - ", chapterKey); //TODO
+  }
+
 
   return (
   <div>
@@ -110,6 +115,7 @@ export default function GameMaker() {
           chosenChapter={currChapter} 
           updateChosenChapter={setCurrChapter} 
           updateLinkingNode={updateLinkingNodeFunc}
+          getCurrentChapterNodeList={fetchCurrChapterNodeList}
         />}
 
         <NodeManager 

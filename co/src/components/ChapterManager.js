@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode}) {
+export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode, getCurrentChapterNodeList}) {
 //TODO get list of all nodes key for each chapter (when needed?)
 
   const [isCollapse, setIsCollapse] = useState(false);
@@ -9,9 +9,17 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
   const [editedLine, setEditedLine] = useState(-1);
-  const [selectedChpt, setSelectedChpt] = useState(-1);
+  const [selectedChptKey, setSelectedChpt] = useState(-1);
   const [isAddNewChpater, setIsAddNewChapter] = useState(false);
   const [deletedLocalList, setDeletedLocalList] = useState([]);
+
+  const [currChapterNodeList, setCurrChapterNodeList] = useState([]);
+
+  useEffect(() => {
+    let fetchedNodeList = getCurrentChapterNodeList(selectedChptKey);
+    setCurrChapterNodeList(fetchedNodeList);
+    
+  });
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
@@ -45,7 +53,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   }
   
   function handleSelectChapterKey(item) {
-    if (selectedChpt === item[0]) {
+    if (selectedChptKey === item[0]) {
       setSelectedChpt(-1);
     } else {
       setSelectedChpt(item[0]);
@@ -99,11 +107,11 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         return (
         <>
         {hide === "display" && <>
-          <li className={selectedChpt === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
+          <li className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
               onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
             {item[0]}:{item[1]}
           </li>
-          {selectedChpt === item[0] && 
+          {selectedChptKey === item[0] && 
             <>
               <label>*Change Chapter Name*</label><br></br>
               <label>Chapter Name:</label>
@@ -116,10 +124,14 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               <button onClick={()=>{hideChapter(index);}}>Delete</button><br></br>
               
               <label>*Starting Node</label><br></br>
-              <select></select><button onClick={()=>{updateStartingNode();}}>Update</button><br></br>
+              <select>
+              
+              </select><button onClick={()=>{updateStartingNode();}}>Update</button><br></br>
               
               <label>*Ending Node</label><br></br>
-              <select></select><button onClick={()=>{updateEndingNode();}}>Update</button><br></br>
+              <select>
+              
+              </select><button onClick={()=>{updateEndingNode();}}>Update</button><br></br>
             </>
           
           }
