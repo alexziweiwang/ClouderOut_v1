@@ -33,6 +33,25 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   }
 
   function addNewChapterLine() {
+    //TODO validation of newChapterKeyInput, if duplicate or empty, not allowing creation
+
+    //1. not allowing empty chapter key or chapter title
+    if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
+      console.log("warning: can not have empty chapter key or empty chapter title");
+      return;
+    }
+
+    //2. not allowing duplicate chapter key
+    //TODO from chapterData
+    let i = 0;
+    for (; i < chapterData.length; i++) {
+      let tempKey = chapterData[i][0];
+      if (newChapterKeyInput === tempKey) {
+        console.log("warning: can not use duplicate chapter key");
+        return;
+      }
+    }
+
     let tempChapterData = chapterData;
     let line = [newChapterKeyInput, newChapterTitleInput];
     tempChapterData.push(line);
@@ -139,13 +158,18 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         </>
         );
         })}
-        <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{setIsAddNewChapter(!isAddNewChpater);setSelectedChpt(-1);updateChosenChapter("");
+        <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{
+          setIsAddNewChapter(!isAddNewChpater);
+          setSelectedChpt(-1);
+          updateChosenChapter("");
+          console.log("chapterData: ", chapterData); //TODO testing
         }}>
           + New Chapter
         </ul>
         {isAddNewChpater === true && <ul>
           <label>New Chapter Keyname (unchangable): </label><br></br>
           <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
+          <br></br>
           <label>New Chapter Keyname (editable later): </label><br></br>
           <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
           <br></br>

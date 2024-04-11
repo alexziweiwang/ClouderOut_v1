@@ -478,7 +478,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <label>Chapter Key: {chapterKey}</label><br></br>
         <label>Node Management</label>
 
-        <button onClick={()=>{getChapterDataFromCloud("chapter0");}}> temp: Fetch chapter data </button>
+        <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
 
         {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 

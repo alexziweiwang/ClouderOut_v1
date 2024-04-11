@@ -58,6 +58,7 @@ export async function getChapterData({projectName, uname, chapterName}) {
   const chapterRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterName);
   const chapterSnap = await getDoc(chapterRef);
   if (!chapterSnap.exists()) {
+    console.log("chapter-key does not exist..."); //TODO test
     return;
   }
 
