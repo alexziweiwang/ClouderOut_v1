@@ -15,12 +15,13 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
-    console.log("tempChapterData[index]: ");
-    console.log(index);
-    console.log(tempChapterData[index]);
+    // console.log("tempChapterData[index]: "); //TODO test
+    // console.log(index);//TODO test
+    console.log(tempChapterData[index]); //TODO test
     tempChapterData[index][1] = newTitle;
     updateChapterData(tempChapterData);
     setEditingChapterTitle("");
+    updateChosenChapter(newTitle);
   }
 
   function addNewChapterLine() {

@@ -90,7 +90,7 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
    useEffect(() => {
     if (firstTimeEnter === true) {
         let chapter = "chapter0"; //TODO test, later: fetch from user-input
-        let chapterData = getChapterDataFromCloud(chapter);
+        // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
         //updateNodeDataActions(chapterData);
                 //    setNodeData(chapterData);
         console.log("First enter node data: ");

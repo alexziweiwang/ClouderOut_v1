@@ -63,7 +63,7 @@ export async function getChapterData({projectName, uname, chapterName}) {
 
   let projectData = chapterSnap.data();
  
-  console.log("getChapterData", projectData); //TODO test
+  console.log("game-data-model(cloud): getChapterData", projectData); //TODO test
 
   return projectData;
 }
