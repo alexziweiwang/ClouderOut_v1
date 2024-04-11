@@ -472,9 +472,9 @@ export default function NodeManager({projectName, currUser, chapterTitle}) {
 
 
     return (      
+        <>
 
-
-        <div className="setting_area"> 
+        {chapterTitle!== "" && <div className="setting_area"> 
         <label>Chapter Title: {chapterTitle}</label><br></br>
         <label>Node Management</label>
 
@@ -1099,7 +1099,10 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         </button>
     
         </div>
-    
+        }
 
+        {chapterTitle === "" && <div>Please Select or Setup Chapters in Chapter Management Area...</div>}
+
+      </>
     );
 }
