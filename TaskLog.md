@@ -239,3 +239,4 @@
 
 - 2024-Apr-10: Design for cloud-db data structure finalizing plan; multiple preparations and considerations
 
+- 2024-Apr-11: Design game-maker menu-setting UI
