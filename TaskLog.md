@@ -244,4 +244,6 @@
 - 2024-Apr-11: Design navigation system visualization and UI for user
 - 2024-Apr-11: Consider general parsing/displaying strategy for different game-progress strategies
 - 2024-Apr-11: Consider user-resource-managing limitation rules (upload limit plans) for efficiency of cloud storage and potential membership mode in future
+- 2024-Apr-11: Design and experiment with new node-visualization strategy
+
 
