@@ -84,12 +84,11 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     for (; i < tempChapterData.length; i++) {
       if (tempChapterData[i][0] === keyStr) {
         tempChapterData[i][2] = "display";
+        setSelectedChpt(i);
       }
     }
     updateChapterData(tempChapterData);
 
-    //TODO test 
-    //TODO improve: rerender trigger from caller's data structure
   }
 
   function updateStartingNode() {
