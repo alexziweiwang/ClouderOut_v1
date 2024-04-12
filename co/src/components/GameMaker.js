@@ -188,7 +188,6 @@ export default function GameMaker() {
       
     </div>}
    
-    <p className="plans">TODO: dynamic setup of "nodedata" for specific chapter, according to user choice</p> 
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
