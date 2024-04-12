@@ -132,6 +132,22 @@ export default function GameMaker() {
 
     {!showChapterMaker && 
     <div className="sectionArea"> Menu & Navigations 
+      <br></br>Main Page Setup
+      <br></br>TODO list of entries
+      <br></br>TODO table of all entry-buttons & settings (position & destination page)
+
+      <br></br>Settings Page Setup
+      <br></br>TODO list of options of settings (speed, volume of bgm, etc.)
+      <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
+
+      <br></br>Profile Page Setup
+      <br></br>TODO elements (pic) and data displaying
+
+      <br></br>Game Status/Data Page Setup
+      <br></br>TODO data displaying
+      <br></br>TODO layout
+
+
 
       <br></br><label>Game Progress Strategy:</label>
       <div className="parallelFrame" style={{"justify-content": "center"}}>
