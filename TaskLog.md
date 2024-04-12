@@ -241,3 +241,4 @@
 
 - 2024-Apr-11: Design game-maker menu-setting UI
 - 2024-Apr-11: Design options of navigation system functionality
+- 2024-Apr-11: Design navigation system visualization and UI for user
