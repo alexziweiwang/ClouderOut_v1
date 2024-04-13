@@ -191,15 +191,7 @@ export default function GameMaker() {
 
     <p className="plans"> Game Maker page 
     <br></br>this is the place to edit for a specific game </p>
-   
-    <p className="plans"> TODO: game-flow controller:
-     <br></br> in charge of where the game flow goes, including using logic organizer to decide on branches, progress, etc. 
-     <br></br> - need a "pointer" that keeps track of "current game progress", so that it points to the current place, and be ready to continue in the flow
-     <br></br> idea: it keeps the "current node", and keeps possible "next node" (decide according to logic splitter)
-     <br></br> * should provide [understandable keywords] for decision flow, and the actual game-file parse should understand and decide real-time game-flow
-     <br></br> 
-     </p>
-
+    
     <p className="plans">
       *** design of interactable graph *** 
       <br></br>visualization and operation panel: view, hover and click

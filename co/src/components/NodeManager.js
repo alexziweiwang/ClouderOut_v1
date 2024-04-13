@@ -47,7 +47,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   //TODO functionality design:
   //TODO always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
-
+  //TODO: use a "next-node-pointer" for each node: usually it is the next-one node, but if with multiple nodes,
+  //TODO -- devide the next-node-pointer after entire node finished, then review all game-data, according to next-node-condition-pairs, change "next-node-pointer" value then go to "next-node-pointer"
+  //TODO for some button that do direct-jump, change "next-node-pointer" as button-action, then next node points to the jump-target
 
 
    /* variable area */
