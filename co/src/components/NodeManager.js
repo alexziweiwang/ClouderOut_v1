@@ -532,7 +532,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>}
         </div>
         
-        <div className="visArea visPanel" style={{"overflow": "auto"}}>
+        <div className="visArea visPanel" style={{"overflow": "scroll"}}>
 
           <svg
             height="100%"
@@ -600,7 +600,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           </svg>
     
         </div>
-   
+
+        <p className="plans">TODO: clickable grid for nodes...?
+          <br></br>user can click an empty-grid to create a node there...
+          <br></br>(path will auto-generate after specifying linkings)
+          <br></br>user can also add column or row for new grids 
+          <br></br>TODO: consider adjustment of node-place
+          <br></br>other settings (next-node condition, etc.) are the same 
+          
+        </p>
+ 
+
+
           {clickedNode !== "" && 
         <div>
         <button 
