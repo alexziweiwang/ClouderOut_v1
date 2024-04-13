@@ -246,4 +246,4 @@
 - 2024-Apr-11: Consider user-resource-managing limitation rules (upload limit plans) for efficiency of cloud storage and potential membership mode in future
 - 2024-Apr-11: Design and experiment with new node-visualization strategy
 
-
+- 2024-Apr-12: Design and consideration for grid-node-creation-UI details

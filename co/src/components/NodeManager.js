@@ -609,7 +609,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <br></br>other settings (next-node condition, etc.) are the same 
           
         </p>
- 
 
 
           {clickedNode !== "" && 
