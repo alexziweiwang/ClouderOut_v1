@@ -28,18 +28,27 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   ]); //TODO testing data
 
   //TODO node data from cloud: fetch by username + project_name + chapter_key  
-  
+  const chStartName = "chapterStart-"+chapterKey;
+  const chEndName = "chapterEnd-"+chapterKey;
+
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    "plot1": {nodeName: "plot1", depth: 1, prevNodes: [], nextPairs:[["plot2","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "plot2": {nodeName: "plot2",depth: 2, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option x": {nodeName: "option x", depth: 3, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option y": {nodeName: "option y", depth: 3, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    "end node": {nodeName: "end node", depth: 4, prevNodes: ["option x", "option y"], nextPairs:[], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    chStartName: {nodeName: chStartName, depth: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
+    "plot1": {nodeName: "plot1", depth: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "plot2": {nodeName: "plot2",depth: 3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option x": {nodeName: "option x", depth: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option y": {nodeName: "option y", depth: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    "end node": {nodeName: "end node", depth: 5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    chEndName: {nodeName: chEndName, depth: 6, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
   }); //TODO new data-design
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
   //TODO depth of this node is (prev-node's depth + 1); if multiple prev-nodes? choose max prev-depth
   //TODO: node-visualization point: keep the max-length of "nextPairs", as the total height reference for svg drawing
   //TODO: calculation strategy for placing odd and even number of nodes in the same depth-level
+
+  //TODO functionality design:
+  //TODO always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
+
+
 
    /* variable area */
    const navigate = useNavigate();
