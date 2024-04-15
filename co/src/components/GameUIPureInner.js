@@ -167,7 +167,7 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
 
 
 
-        <div style={txtFrameUISettings["isShape"] === true ? {
+        { dataObj.displayTextFrame && <div style={txtFrameUISettings["isShape"] === true ? {
             "background": txtFrameUISettings["bgColor"],
 
             "width": `${txtFrameUISettings["width"]}px`,
@@ -207,11 +207,11 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
                 "border-radius": "0px"
             }}>
                 {dataObj.speaker_name !== "" && <><label>{dataObj.speaker_name}</label><br></br></>}
-                {dataObj.content}
+                {dataObj.content}               
             </div>
         
         </div>
-
+        }
 
         TODO: textframe and standard-button-group can be 0 or 1 -- need to fetch current-piece data to decide 
         <br></br>TODO: textframe should be clickable for next-piece (default) as the game-content

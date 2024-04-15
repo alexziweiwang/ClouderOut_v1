@@ -93,7 +93,13 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                   getBackButtonUISettings={getBackButtonUISettings}
               /> 
 
+
+              
+
             </div>
+
+
+
 
             <div>
                     <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
