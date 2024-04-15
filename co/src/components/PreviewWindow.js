@@ -76,7 +76,10 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                   TODO: 
                     <br></br> [bg-pic] char-pics, clickable
                     <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
-                    
+                    <br></br>
+                    {currentPiece["bgp_source_link"]}
+                    {currentPiece["bgp_source_varname"]}
+
               </div>
 
 

@@ -193,11 +193,25 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         }
     }
 
+    function matchUrlWithVarName() {
+        //TODO background-picture, 0 or 1
+        //current var-name: currentPieceDetail["bgp_source_varname"]
+            //to set up: currentPieceDetail["bgp_source_link"]
+        //"var" "url"
+
+        let bgpUrlList = visualList.filter(e => e["var"] = currentPieceDetail["bgp_source_varname"]);
+        let bgpUrl = bgpUrlList[0];
+        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": bgpUrl});
+        console.log("mathcing... bgp", bgpUrl); 
+        //TODO character-picture, 0 or more
+
+        //TODO clickable-customize, 0 or more
+
+        //TODO background-music, 0 or more
+    }
+
     function updateToCaller() {
-        //TODO: !important, all resource-var-url-fetching is completed in this step, if update varname, etc. need to press here again
-
-
-
+        matchUrlWithVarName();
 
         //TODO later: conclude all the current info in this piece, update to the caller's update-function
 
@@ -242,8 +256,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        console.log("new render- piece setter: obj from cloud (resource list):");
-        console.log(obj);
+        console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
+        console.log(obj); //TODO test
         setAudioList(obj.audio);
         setVisualList(obj.visual);
     }
@@ -319,7 +333,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setBgpFilenameByVar(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
                         {visualList.map((item, index) => {
-                            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
+                            let keyStr = "bgp" + item["var"];
+                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
 
                     </select>
