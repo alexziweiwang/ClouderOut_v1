@@ -259,15 +259,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let varName = event.target.value;
         console.log("setupBgpInfo var = ", varName); //TODO test
         
-        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
+        let urlList = visualList.filter((e) => (e["var"] === varName));
+        let url = urlList[0]["url"];
+                
+        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
         let tempObj = currentPieceDetail;
         tempObj["bgp_source_varname"] = varName;
-        //TODO tempObj for current version of data
-
-        // let url = item["url"]
-        //setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
-        // console.log("changing bgp: ", varName, ", ", url); //TODO test
-
+        tempObj["bgp_source_link"] = url;
 
         updateToCaller(tempObj);
     }
