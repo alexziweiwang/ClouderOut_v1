@@ -68,10 +68,11 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
         <div className="previewWindow">
        
             <div className="preveiewArea" style={{"position": "relative"}}>
-
-              
+            
               <div style={{"position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
-                  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                  
+                    <img style={{"height": "600px", "width": "800px"}} src={currentPiece["bgp_source_link"]} alt="background_picture" />
+
                   Game content layer (Data from piece-setter; data here changes frequently...)
                   TODO: 
                     <br></br> [bg-pic] char-pics, clickable
@@ -83,16 +84,14 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
               </div>
 
-
               <GameUIPureInner 
-                dataObj={currentPiece} 
-                style={{"position": "absolute", "top": "0px", "left": "0px"}} 
-                getTextFrameUISettings={getTextFrameUISettings} 
-                getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
-                getDefaultButtonUISettings={getDefaultButtonUISettings} 
-                getBackButtonUISettings={getBackButtonUISettings}
+                  dataObj={currentPiece} 
+                  style={{"position": "absolute", "top": "0px", "left": "0px"}} 
+                  getTextFrameUISettings={getTextFrameUISettings} 
+                  getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
+                  getDefaultButtonUISettings={getDefaultButtonUISettings} 
+                  getBackButtonUISettings={getBackButtonUISettings}
               /> 
-
 
             </div>
 

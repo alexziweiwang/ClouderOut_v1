@@ -336,26 +336,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         })}
 
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
-                    
-                    <br></br>
-                    <label>Position x:      </label>
-                    <input type="number" min="0" max="1200" step="1" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="1200" step="1" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
-                    <label>{bgPicDataPosX}</label>
-                    <br></br>
-                    <label>Position y:      </label>
-                    <input type="number" min="0" max="900" step="1" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="900" step="1" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
-                    <label>{bgPicDataPosY}</label>
-                    <br></br>
-                    <label>Width:         </label>
-                    <input type="number" min="0" max="1200" step="1" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="1200" step="1" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
-                    <br></br>
-                    <label>Height:        </label>
-                    <input type="number" min="0" max="900" step="1" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="900" step="1" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
+                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>   
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
