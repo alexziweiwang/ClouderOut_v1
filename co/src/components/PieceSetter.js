@@ -16,7 +16,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     let name = "/gamenodeconvpiecedatasec";
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
-    
+
     const [bgpicAdd, setBgPicAdd] = useState(true);
     const [charPicAdd, setCharPicAdd] = useState(true);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(true);
@@ -110,11 +110,18 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function handleTextContentEnter(event) {
-        setCurrentPieceDetail({...currentPieceDetail,  "content": event.target.value});
+        let contentStr = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "content": contentStr});
+        let tempObj = currentPieceDetail;
+        tempObj["content"] = contentStr;
+        updateToCaller(tempObj);
     }
 
     function handleSpeakerNameEnter(event) {
         setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": event.target.value});
+        let tempObj = currentPieceDetail;
+        tempObj["speaker_name"] = event.target.value;
+        updateToCaller(tempObj);
     }
 
     function toggleBgPicOption() {
@@ -196,7 +203,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
 
-    function updateToCaller() {
+    function updateToCaller(obj) {
         //TODO later: conclude all the current info in this piece, update to the caller's update-function
 
         let newPieceData = [];
@@ -208,8 +215,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 newPieceData.push(pieceAllDataLocal[i]);
             } else {
                 
-                console.log("Saving...", currentPieceDetail); //TODO test
-                newPieceData.push(currentPieceDetail); // important: new content updated
+                console.log("Saving...", obj); //TODO test
+                newPieceData.push(obj); // important: new content updated
             }
         }
 
@@ -253,14 +260,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("setupBgpInfo var = ", varName); //TODO test
         
         setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
-
+        let tempObj = currentPieceDetail;
+        tempObj["bgp_source_varname"] = varName;
+        //TODO tempObj for current version of data
 
         // let url = item["url"]
         //setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
         // console.log("changing bgp: ", varName, ", ", url); //TODO test
 
 
-        updateToCaller();
+        updateToCaller(tempObj);
     }
     function handleResourceManagerSaveChanges() {
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
@@ -290,7 +299,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             <br></br>
             <textarea
                 value={currentPieceDetail["content"]}
-                onChange={handleTextContentEnter}
+                onChange={(event)=>{handleTextContentEnter(event);}}
             >
                 {currentPieceDetail["content"]}
             </textarea>
@@ -306,7 +315,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br>
                     <label>Speaker Name:  </label>
 
-                    <input value={currentPieceDetail["speaker_name"]} onChange={handleSpeakerNameEnter}></input>
+                    <input value={currentPieceDetail["speaker_name"]} onChange={(event)=>{handleSpeakerNameEnter(event);}}></input>
                 </div>   
             }
             {!speakerNameAdd && <div className="textRight">------------(Collapsed)---------------</div>}
@@ -732,7 +741,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         <br></br>
         <br></br>
         <br></br> */} //TODO add voiceline feature later
-        <button onClick={()=>{updateToCaller();}}>Save</button>
+        <button >Save</button>
 
         <br></br>
         <br></br>
