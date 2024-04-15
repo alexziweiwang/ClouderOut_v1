@@ -55,14 +55,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
-        "bgp_source_filename": allPieceData[pieceNum-1]["bgp_source_filename"], 
+        "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
         "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
         "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
         "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
         "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
-        "bgm_source_filename": allPieceData[pieceNum-1]["bgm_source_filename"], 
+        "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
         "bgm_volume": allPieceData[pieceNum-1]["bgm_volume"], 
         "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
@@ -194,6 +194,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function updateToCaller() {
+        //TODO: !important, all resource-var-url-fetching is completed in this step, if update varname, etc. need to press here again
+
+
+
+
         //TODO later: conclude all the current info in this piece, update to the caller's update-function
 
         let newPieceData = [];
@@ -247,7 +252,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let varName = event.target.value;
         let filename = "";
         // TODO fetch actual filename from list, by varName
-        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_filename": filename});
+        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
     }
     function handleResourceManagerSaveChanges() {
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
@@ -308,10 +313,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_filename": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select value={currentPieceDetail["bgp_source_filename"]} onChange={(event)=>{setBgpFilenameByVar(event);}}>
+                    <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setBgpFilenameByVar(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
                         {visualList.map((item, index) => {
                             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
@@ -673,7 +678,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_filename": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
                     <select>
