@@ -16,9 +16,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     let name = "/gamenodeconvpiecedatasec";
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
-
-    const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
-
+    
     const [bgpicAdd, setBgPicAdd] = useState(true);
     const [charPicAdd, setCharPicAdd] = useState(true);
     const [speakerNameAdd, setSpeakerNameAdd] = useState(true);
@@ -51,6 +49,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [consequenceIsPlus, setConsequenceIsPlus] = useState("");
     const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(true);
     const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
+    
+    const [pieceAllDataLocal, setPieceAllDataLocal] = useState(allPieceData);
+
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
@@ -76,7 +77,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         const allPiece = getAllPieceData();
-        setPieceDataLocal(allPiece);       
+        setPieceAllDataLocal(allPiece);  
+
         if (firstTimeEnter === true) {
             /* initialization of project-resource-list in drop-down list */
             fetchProjResourceLists();
@@ -170,7 +172,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
-            setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber-2]);
+            setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber-2]);
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
         } else {
             setLookingPieceNumber(1);
@@ -180,54 +182,37 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     function jumpToNextpiece() {
         console.log("TOOD: jump to next piece..."); //TODO testing
-        if (lookingPieceNumber < pieceDataLocal.length) {
+        if (lookingPieceNumber < pieceAllDataLocal.length) {
             setLookingPieceNumber(lookingPieceNumber+1);
             //TODO change *all* form content here in display...
             
-            setCurrentPieceDetail(pieceDataLocal[lookingPieceNumber]);
+            setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber]);
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
 
         } else {
-            setLookingPieceNumber(pieceDataLocal.length);
-            assignPreviewIndex(pieceDataLocal.length-1); // TODO note : number = index+1, index = num-1
+            setLookingPieceNumber(pieceAllDataLocal.length);
+            assignPreviewIndex(pieceAllDataLocal.length-1); // TODO note : number = index+1, index = num-1
         }
     }
 
-    function matchUrlWithVarName() {
-        //TODO background-picture, 0 or 1
-        //current var-name: currentPieceDetail["bgp_source_varname"]
-            //to set up: currentPieceDetail["bgp_source_link"]
-        //"var" "url"
-
-        let bgpUrlList = visualList.filter(e => e["var"] = currentPieceDetail["bgp_source_varname"]);
-        let bgpUrl = bgpUrlList[0];
-        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_link": bgpUrl});
-        console.log("mathcing... bgp", bgpUrl); 
-        //TODO character-picture, 0 or more
-
-        //TODO clickable-customize, 0 or more
-
-        //TODO background-music, 0 or more
-    }
 
     function updateToCaller() {
-        matchUrlWithVarName();
-
         //TODO later: conclude all the current info in this piece, update to the caller's update-function
 
         let newPieceData = [];
 
         let i = 0;
-        console.log("before changing and updateing to caller..", pieceDataLocal); //TODO test
-        for (; i < pieceDataLocal.length; i++) {
+        console.log("before changing and updateing to caller..", pieceAllDataLocal); //TODO test
+        for (; i < pieceAllDataLocal.length; i++) {
             if (i+1 !== lookingPieceNumber) {
-                newPieceData.push(pieceDataLocal[i]);
+                newPieceData.push(pieceAllDataLocal[i]);
             } else {
                 
                 console.log("Saving...", currentPieceDetail); //TODO test
                 newPieceData.push(currentPieceDetail); // important: new content updated
             }
         }
+
         updatePieceData(newPieceData);
     }
 
@@ -262,11 +247,20 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setVisualList(obj.visual);
     }
 
-    function setBgpFilenameByVar(event) {
+    function setupBgpInfo(event) {
+    
         let varName = event.target.value;
-        let filename = "";
-        // TODO fetch actual filename from list, by varName
+        console.log("setupBgpInfo var = ", varName); //TODO test
+        
         setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
+
+
+        // let url = item["url"]
+        //setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
+        // console.log("changing bgp: ", varName, ", ", url); //TODO test
+
+
+        updateToCaller();
     }
     function handleResourceManagerSaveChanges() {
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
@@ -275,9 +269,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     return (
       
     <div>
-    {rmSelectorOpen && 
-        <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
-    }
 
     <div className="pieceSetterArea userChoice">
         <button onClick={()=>{backToList();}}>← List</button><br></br>
@@ -330,10 +321,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
                     <label>Source Link:  </label>
-                    <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setBgpFilenameByVar(event);}}>
+                    <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
                         {visualList.map((item, index) => {
-                            let keyStr = "bgp" + item["var"];
+                            let keyStr = "bgp-" + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
 
@@ -342,22 +333,22 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     
                     <br></br>
                     <label>Position x:      </label>
-                    <input type="number" min="0" max="1200" step="1" defaultValue="0" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="1200" step="1" defaultValue="0" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
+                    <input type="number" min="0" max="1200" step="1" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="1200" step="1" value={bgPicDataPosX} onChange={(event)=>{setBgPicDataPosX(event.target.value);}}></input>
                     <label>{bgPicDataPosX}</label>
                     <br></br>
                     <label>Position y:      </label>
-                    <input type="number" min="0" max="900" step="1" defaultValue="0" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="900" step="1" defaultValue="0" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
+                    <input type="number" min="0" max="900" step="1" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="900" step="1" value={bgPicDataPosY} onChange={(event)=>{setBgPicDataPosY(event.target.value);}}></input>
                     <label>{bgPicDataPosY}</label>
                     <br></br>
                     <label>Width:         </label>
-                    <input type="number" min="0" max="1200" step="1" defaultValue="800" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="1200" step="1" defaultValue="800" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
+                    <input type="number" min="0" max="1200" step="1" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="1200" step="1" value={bgPicDataWidth} onChange={(event)=>{setBgPicDataWidth(event.target.value);}}></input>
                     <br></br>
                     <label>Height:        </label>
-                    <input type="number" min="0" max="900" step="1" defaultValue="450" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
-                    <input className="slider" type="range" min="0" max="900" step="1" defaultValue="450" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
+                    <input type="number" min="0" max="900" step="1" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
+                    <input className="slider" type="range" min="0" max="900" step="1" value={bgPicDataHeight} onChange={(event)=>{setBgPicDataHeight(event.target.value);}}></input>
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
@@ -741,7 +732,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         <br></br>
         <br></br>
         <br></br> */} //TODO add voiceline feature later
-        <button onClick={updateToCaller}>Save</button>
+        <button onClick={()=>{updateToCaller();}}>Save</button>
 
         <br></br>
         <br></br>
@@ -750,6 +741,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             <button onClick={expandAllOptions}> Expand All </button>
         </div>
   </div>
+
+  {rmSelectorOpen && 
+        <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
+    }
 
   </div>
  
