@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList}) {
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm}) {
     const navigate = useNavigate();
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -336,7 +336,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         })}
 
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>   
+                    <button onClick={() => {openRm()}}>+ new variable linking</button>   
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
@@ -390,7 +390,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
         })}
     </select>
-    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
+    <button onClick={() => {openRm()}}>+ new variable linking</button>
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
@@ -496,7 +496,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         })}
                     </select>
        
-                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
+                    <button onClick={() => {openRm()}}>+ new variable linking</button>
                     <br></br>
                     {/* <label>Sound Effect:      </label> //TODO future feature
                     <label>TODO</label>
@@ -505,7 +505,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select> */}
-                    {/* <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button> */}
+                    {/* <button onClick={() => {openRm()}}>+ new variable linking</button> */}
                     <br></br>
                     <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
                     <label>Position x: </label>
@@ -682,7 +682,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
+                    <button onClick={() => {openRm()}}>+ new variable linking</button>
                     <br></br>
                     <label>Loop:  </label>
                     <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
@@ -707,7 +707,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
-                    <button onClick={() => {setRmSelectorOpen(true)}}>+ new variable linking</button>
+                    <button onClick={() => {openRm()}}>+ new variable linking</button>
                     <br></br>
                     <label>Volume:         </label>
                     <label>TODO</label>

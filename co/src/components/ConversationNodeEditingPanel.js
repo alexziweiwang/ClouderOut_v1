@@ -259,11 +259,11 @@ export default function ConversationNodeEditingPanel() {
             </div>
      
             <div className="parallelFrame">
-
+            
             {browseList === false && 
                 <div>
                     {gameUISetterOpen === false && 
-                        <PieceSetter pieceNum={previewingIndex+1} assignPreviewIndex={getUpdatePreviewingIndex} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData}/>}
+                        <PieceSetter pieceNum={previewingIndex+1} assignPreviewIndex={getUpdatePreviewingIndex} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
@@ -290,7 +290,8 @@ export default function ConversationNodeEditingPanel() {
                 
                 </div>
             }
- 
+
+                      
             {isDisplayPreview === true && 
                 <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
@@ -299,6 +300,7 @@ export default function ConversationNodeEditingPanel() {
                 />
             }
 
+ 
             </div>
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={tempTrigerRmUpdate}/>}
 
