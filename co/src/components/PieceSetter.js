@@ -55,7 +55,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
         {"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
-        "displayTextFrame": true,
+        "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
         "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
         "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
@@ -324,7 +324,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             }}
     
             ></input>
-            <label>Display Textframe</label>
+            <label
+            style={{"userSelect": "none"}}
+            onClick={()=>{
+                if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
+                    setupHideTextFrame(true);
+                } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
+                    setupHideTextFrame(false);
+                }                   
+            }}
+            >Display Textframe</label>
 
             <br></br>
             <br></br>
