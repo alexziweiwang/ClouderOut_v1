@@ -165,6 +165,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function changeAddAnotherCharPicOption() {
+        if (anotherCharpic === true) { //going to be false
+            setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
+
+        } else { //going to be true
+            setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120]});
+     
+        }
         setAnotherCharPic(!anotherCharpic);
     }
 
@@ -297,7 +304,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function resetAddingCharPicRow() {
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120]});
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
     }
   
     return (
@@ -411,11 +418,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             
             return (
                 <tr key={index}>
-                    {charPicDataTable.length > 0 && <td>{item["var"]}</td>}
-                    <td>{item["x"]}</td>
-                    <td>{item["y"]}</td>
-                    <td>{item["w"]}</td>
-                    <td>{item["h"]}</td>                    
+                    {charPicDataTable.length > 0 && <td>{item[0]}</td>}
+                    <td>{item[1]}</td>
+                    <td>{item[2]}</td>
+                    <td>{item[3]}</td>
+                    <td>{item[4]}</td>                    
                         {charPicDataTable.length > 0 && 
                         <td><GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/></td>
                         }
@@ -465,16 +472,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <br></br>
     <button onClick={()=>{
         let newcharPicData = charPicDataTable;
-        const newRow = {var: currentPieceDetail["chp_curr"][0],
-            x: currentPieceDetail["chp_curr"][1], 
-            y: currentPieceDetail["chp_curr"][2], 
-            w: currentPieceDetail["chp_curr"][3], 
-            h: currentPieceDetail["chp_curr"][4]
-        }; 
+        // const newRow = {var: currentPieceDetail["chp_curr"][0],
+        //     x: currentPieceDetail["chp_curr"][1], 
+        //     y: currentPieceDetail["chp_curr"][2], 
+        //     w: currentPieceDetail["chp_curr"][3], 
+        //     h: currentPieceDetail["chp_curr"][4]
+        // }; 
 
-        console.log("new row: ", newRow);
+        // console.log("new row: ", newRow);
 
-        newcharPicData.push(newRow);
+        // newcharPicData.push(newRow);
+        newcharPicData.push(currentPieceDetail["chp_curr"]);
         setCharPicDataTable(newcharPicData);
 
 
@@ -484,12 +492,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let tempTable = currentPieceDetail["chp_arr"];
         tempTable.push(newcharPicData);
 
-        // let tempObj = currentPieceDetail;
-        // tempObj["chp_arr"] = tempArr;
-        // updateToCaller(tempObj); //TODO immediate preview for all elements in table, test
-
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable});
-        
+
+        updateToCaller(currentPieceDetail); //TODO test
+
+
         resetAddingCharPicRow();
         changeAddAnotherCharPicOption();
     }}>

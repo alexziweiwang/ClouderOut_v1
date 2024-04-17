@@ -15,10 +15,13 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
     const [currentPiece, setCurrentPiece] = useState({});
 
+    let charPicArr = currentPiece["chp_arr"];
   
     useEffect(() => {
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp);
+
+      console.log(" currentPiece[chp_arr]? ",  currentPiece["chp_arr"]);
     });
 
 
@@ -75,6 +78,9 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
                   Game content layer (Data from piece-setter; data here changes frequently...)
                   TODO: 
+                  <br></br><br></br><br></br><br></br><br></br><br></br>
+                  <br></br><br></br><br></br><br></br><br></br><br></br>
+
                     <br></br> [bg-pic] char-pics, clickable
                     <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
                     <br></br>
@@ -82,9 +88,12 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     !{currentPiece["bgp_source_varname"]}
                     <br></br>
-                    Char-pic part1, current adjusting {currentPiece["chp_curr"]}
+                    Char-pic part1, current adjusting -- {currentPiece["chp_curr"]}
                     <br></br>
-                    Char-pic part2, already added
+                    Char-pic part2, already added -- 
+                    {charPicArr !== undefined && charPicArr.map((item, index) => {
+                      return (<label>{item}</label>);
+                    })}
 
               </div>
 
