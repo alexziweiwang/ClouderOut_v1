@@ -233,25 +233,27 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function onChangeCharPicDataPosX(event) {
-        setCharPicDataPosX(event.target.value);
         let chp_curr_obj = currentPieceDetail["chp_curr"];
         chp_curr_obj["x"] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataPosY(event) {
-        setCharPicDataPosY(event.target.value);
         let chp_curr_obj = currentPieceDetail["chp_curr"];
         chp_curr_obj["y"] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataW(event) {
-        setCharPicDataWidth(event.target.value);
         let chp_curr_obj = currentPieceDetail["chp_curr"];
         chp_curr_obj["w"] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
+    }
 
+    function onChangeCharPicDataVar(event) {
+        let chp_curr_obj = currentPieceDetail["chp_curr"];
+        chp_curr_obj["var"] = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataH(event) {
@@ -307,7 +309,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setCharPicDataWidth(60);
         setCharPicDataHeight(210);
         setCharPicVar("");
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": {}});
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
 
     }
   
@@ -446,7 +448,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <>
         <br></br>
     <label>Source Link:  </label>
-    <select value={charPicVar} onChange={(event)=>{setCharPicVar(event.target.value);}}>
+    <select value={currentPieceDetail["chp_curr"]["var"]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
         <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
@@ -458,21 +460,21 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
-        value={charPicDataPosX}
+        value={currentPieceDetail["chp_curr"]["x"]}
         onChange={()=>{onChangeCharPicDataPosX();}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxX} value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
+    <input className="slider" type="range" min="0" max={currentPieceDetail["chp_curr"]["x"]} value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={charPicDataPosY} onChange={onChangeCharPicDataPosY}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={currentPieceDetail["chp_curr"]["y"]} onChange={onChangeCharPicDataPosY}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={currentPieceDetail["chp_curr"]["y"]} onChange={onChangeCharPicDataPosY}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={charPicDataWidth} onChange={onChangeCharPicDataW}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={currentPieceDetail["chp_curr"]["w"]} onChange={onChangeCharPicDataW}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={currentPieceDetail["chp_curr"]["w"]} onChange={onChangeCharPicDataW}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"]["h"]} onChange={onChangeCharPicDataH}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"]["h"]} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
         let newcharPicData = charPicDataTable;
