@@ -243,24 +243,40 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let chp_curr_arr = currentPieceDetail["chp_curr"];
         chp_curr_arr[1] = event.target.value;        
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = chp_curr_arr;
+        updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataPosY(event) {
         let chp_curr_arr = currentPieceDetail["chp_curr"];
         chp_curr_arr[2] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = chp_curr_arr;
+        updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataW(event) {
         let chp_curr_arr = currentPieceDetail["chp_curr"];
         chp_curr_arr[3] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = chp_curr_arr;
+        updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataH(event) {
         let chp_curr_arr = currentPieceDetail["chp_curr"];
         chp_curr_arr[4] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = chp_curr_arr;
+        updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataVar(event) {
@@ -270,10 +286,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         
         //also store the url
         let urlList = visualList.filter((e) => (e["var"] === event.target.value));
+        if (urlList.length < 0) {
+            return;
+        }
         let url = urlList[0]["url"];
         chp_curr_arr[5] = url;
 
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = chp_curr_arr;
+        updateToCaller(tempObj);
     }
 
     async function fetchProjResourceLists() {
@@ -454,6 +477,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     {anotherCharpic &&
     <>
         <br></br>
+
     <label>Source Link:  </label>
     <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
         <option key="charp01" value=""> -- Select picture name -- </option>
@@ -490,12 +514,12 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         tempTable.push(currentPieceDetail["chp_curr"]);
         setCharPicDataTable(tempTable);
 
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable});
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable, "chp_curr": []});
         
         updateToCaller(currentPieceDetail); //TODO test
-
-        resetAddingCharPicRow();
+       
         changeAddAnotherCharPicOption();
+   
     }}>
         Confirm Add
     </button>        {/* //TODO later */}

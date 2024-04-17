@@ -87,11 +87,14 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     !{currentPiece["bgp_source_varname"]}
                     <br></br>
-                    Char-pic part1, current adjusting -- {currentPiece["chp_curr"]}
+                    Char-pic part1, current adjusting -- 
                     <br></br>
+                    {currentPiece["chp_curr"] !== undefined && <p>
+                    ~{currentPiece["chp_curr"][0]}~{currentPiece["chp_curr"][1]}~{currentPiece["chp_curr"][2]}~{currentPiece["chp_curr"][3]}~{currentPiece["chp_curr"][4]}
+                    </p>}
                     Char-pic part2, already added -- 
                     {charPicArr !== undefined && charPicArr.map((item, index) => {
-                      return (<p key={index}>{item[0]}</p>);
+                      return (<div key={index}>...{item[0]}...</div>);
                     })}
 
               </div>
