@@ -29,6 +29,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
     const [charPicVar, setCharPicVar] = useState(0);
+
     const [charPicDataPosX, setCharPicDataPosX] = useState(0);
     const [charPicDataPosY, setCharPicDataPosY] = useState(0);
     const [charPicDataWidth, setCharPicDataWidth] = useState(60);
@@ -64,6 +65,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
+        "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
@@ -232,18 +234,31 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     function onChangeCharPicDataPosX(event) {
         setCharPicDataPosX(event.target.value);
+        let chp_curr_obj = currentPieceDetail["chp_curr"];
+        chp_curr_obj["x"] = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataPosY(event) {
         setCharPicDataPosY(event.target.value);
+        let chp_curr_obj = currentPieceDetail["chp_curr"];
+        chp_curr_obj["y"] = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataW(event) {
         setCharPicDataWidth(event.target.value);
+        let chp_curr_obj = currentPieceDetail["chp_curr"];
+        chp_curr_obj["w"] = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
+
     }
 
     function onChangeCharPicDataH(event) {
         setCharPicDataHeight(event.target.value);
+        let chp_curr_obj = currentPieceDetail["chp_curr"];
+        chp_curr_obj["h"] = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     async function fetchProjResourceLists() {
@@ -286,12 +301,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
     }
 
-    function resetADdingCharPicRow() {
+    function resetAddingCharPicRow() {
         setCharPicDataPosX(0);
         setCharPicDataPosY(0);
         setCharPicDataWidth(60);
         setCharPicDataHeight(210);
         setCharPicVar("");
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": {}});
+
     }
   
     return (
@@ -422,7 +439,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <br></br>
     <button onClick={()=>{
         if (anotherCharpic === true) { // going to be false (closed)
-            resetADdingCharPicRow();
+            resetAddingCharPicRow();
         }
         changeAddAnotherCharPicOption();}}>Add Another Character Picture</button>
     {anotherCharpic &&
@@ -440,7 +457,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <button onClick={() => {openRm()}}>+ new variable linking</button>
     <br></br>
     <label>Position x:      </label>
-    <input type="number" min="0" max={positionMaxX} step="1" value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
+    <input type="number" min="0" max={positionMaxX} step="1" 
+        value={charPicDataPosX}
+        onChange={()=>{onChangeCharPicDataPosX();}}></input>
     <input className="slider" type="range" min="0" max={positionMaxX} value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
     <br></br>
     <label>Position y:      </label>
@@ -461,12 +480,19 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         newcharPicData.push(newRow);
         changeAddAnotherCharPicOption();
         setCharPicDataTable(newcharPicData);
+
         /* update to cloud db for this field: character-pic */
         let tempArr = currentPieceDetail["chp_arr"];
         tempArr.push(newcharPicData);
+
+        // let tempObj = currentPieceDetail;
+        // tempObj["chp_arr"] = tempArr;
+        // updateToCaller(tempObj); //TODO immediate preview for all elements in table, test
+
+        resetAddingCharPicRow();
+        
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempArr});
 
-        resetADdingCharPicRow();
     }}>
         Confirm Add
     </button>        {/* //TODO later */}

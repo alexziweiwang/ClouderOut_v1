@@ -81,6 +81,10 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     ?{currentPiece["bgp_source_link"]}
                     <br></br>
                     !{currentPiece["bgp_source_varname"]}
+                    <br></br>
+                    Char-pic part1, current adjusting {currentPiece["chp_curr"]}
+                    <br></br>
+                    Char-pic part2, already added
 
               </div>
 
