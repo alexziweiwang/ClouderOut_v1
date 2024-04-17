@@ -595,7 +595,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <option key="clck01" value=""> -- Select base-pic name -- </option>
 
                         {visualList.map((item, index) => {
-                            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
+                            let keyStr = "clickable-" + index + "-" + item["var"];
+                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
        
@@ -667,8 +668,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <option value="" key=""> -- Select Game Data Item --</option>
                         {Object.keys(gameDataList).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            let keyStr = "gameData" + gameDataList[currKey]["name"];
                             return (
-                                <option value={currKey} key={gameDataList[currKey]["name"]}>{currKey}</option>
+                                
+                                <option value={currKey} key={keyStr}>{currKey}</option>
                             );
                         })}
                     </select>
@@ -782,7 +785,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <option key="bgm01" value=""> -- Select music name -- </option>
 
                         {audioList.map((item, index) => {
-                            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
+                            let keyStr = "bgmusic-" + index + item["var"];
+                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
                     <button onClick={() => {openRm()}}>+ new variable linking</button>
