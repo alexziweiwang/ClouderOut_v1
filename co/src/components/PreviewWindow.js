@@ -71,15 +71,13 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
        
             <div className="preveiewArea" style={{"position": "relative"}}>
             
-              <div style={{"position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
+              <div style={{
+                "background-image": `url(${currentPiece["bgp_source_link"]})`,
+                "background-size": `800px 600px`,
+                "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
                   
-                    <img style={{"height": "600px", "width": "800px"}} src={currentPiece["bgp_source_link"]} alt="background_picture" />
-
-                  Game content layer (Data from piece-setter; data here changes frequently...)
-                  TODO: 
-                  <br></br><br></br><br></br><br></br><br></br><br></br>
-                  <br></br><br></br><br></br><br></br><br></br><br></br>
-
+                  <div> data-previewing area:
+                    <br></br>
                     <br></br> [bg-pic] char-pics, clickable
                     <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
                     <br></br>
@@ -95,8 +93,12 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     Char-pic part2, already added -- 
                     {charPicArr !== undefined && charPicArr.map((item, index) => {
                       return (<div key={index}>...{item[0]}...</div>);
-                    })}
+                    })}<br></br>
+                    !!bgp_source_link: {currentPiece["bgp_source_link"]}
 
+                  </div>
+                  Game content layer (Data from piece-setter; data here changes frequently...)
+               
               </div>
 
               <GameUIPureInner 
