@@ -28,12 +28,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [anotherCharpic, setAnotherCharPic] = useState(false);
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
-    const [charPicVar, setCharPicVar] = useState(0);
-
-    const [charPicDataPosX, setCharPicDataPosX] = useState(0);
-    const [charPicDataPosY, setCharPicDataPosY] = useState(0);
-    const [charPicDataWidth, setCharPicDataWidth] = useState(60);
-    const [charPicDataHeight, setCharPicDataHeight] = useState(210);
 
     const [bgPicDataPart, setBgPicDataPart] = useState([]);
     const [bgPicDataPosX, setBgPicDataPosX] = useState(0);
@@ -234,32 +228,31 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     function onChangeCharPicDataPosX(event) {
         let chp_curr_obj = currentPieceDetail["chp_curr"];
-        chp_curr_obj["x"] = event.target.value;
+        chp_curr_obj[1] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataPosY(event) {
         let chp_curr_obj = currentPieceDetail["chp_curr"];
-        chp_curr_obj["y"] = event.target.value;
+        chp_curr_obj[2] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataW(event) {
         let chp_curr_obj = currentPieceDetail["chp_curr"];
-        chp_curr_obj["w"] = event.target.value;
+        chp_curr_obj[3] = event.target.value;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
+    }
+
+    function onChangeCharPicDataH(event) {
+        let chp_curr_obj = currentPieceDetail["chp_curr"];
+        chp_curr_obj[4] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
     function onChangeCharPicDataVar(event) {
         let chp_curr_obj = currentPieceDetail["chp_curr"];
-        chp_curr_obj["var"] = event.target.value;
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
-    }
-
-    function onChangeCharPicDataH(event) {
-        setCharPicDataHeight(event.target.value);
-        let chp_curr_obj = currentPieceDetail["chp_curr"];
-        chp_curr_obj["h"] = event.target.value;
+        chp_curr_obj[0] = event.target.value;
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_obj});
     }
 
@@ -304,13 +297,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function resetAddingCharPicRow() {
-        setCharPicDataPosX(0);
-        setCharPicDataPosY(0);
-        setCharPicDataWidth(60);
-        setCharPicDataHeight(210);
-        setCharPicVar("");
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
-
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120]});
     }
   
     return (
@@ -448,7 +435,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <>
         <br></br>
     <label>Source Link:  </label>
-    <select value={currentPieceDetail["chp_curr"]["var"]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
+    <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
         <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
@@ -460,41 +447,50 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
-        value={currentPieceDetail["chp_curr"]["x"]}
+        value={currentPieceDetail["chp_curr"][1]}
         onChange={()=>{onChangeCharPicDataPosX();}}></input>
-    <input className="slider" type="range" min="0" max={currentPieceDetail["chp_curr"]["x"]} value={charPicDataPosX} onChange={onChangeCharPicDataPosX}></input>
+    <input className="slider" type="range" min="0" max={positionMaxX} value={currentPieceDetail["chp_curr"][1]} onChange={onChangeCharPicDataPosX}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={currentPieceDetail["chp_curr"]["y"]} onChange={onChangeCharPicDataPosY}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={currentPieceDetail["chp_curr"]["y"]} onChange={onChangeCharPicDataPosY}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={currentPieceDetail["chp_curr"][2]} onChange={onChangeCharPicDataPosY}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={currentPieceDetail["chp_curr"][2]} onChange={onChangeCharPicDataPosY}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={currentPieceDetail["chp_curr"]["w"]} onChange={onChangeCharPicDataW}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={currentPieceDetail["chp_curr"]["w"]} onChange={onChangeCharPicDataW}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={currentPieceDetail["chp_curr"][3]} onChange={onChangeCharPicDataW}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={currentPieceDetail["chp_curr"][3]} onChange={onChangeCharPicDataW}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"]["h"]} onChange={onChangeCharPicDataH}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"]["h"]} onChange={onChangeCharPicDataH}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"][4]} onChange={onChangeCharPicDataH}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
         let newcharPicData = charPicDataTable;
-        const newRow = {var: charPicVar ,posX: charPicDataPosX, posY: charPicDataPosY, w: charPicDataWidth, h: charPicDataHeight}; //TODO fill in data from fields    
+        const newRow = {var: currentPieceDetail["chp_arr"][0],
+            x: currentPieceDetail["chp_arr"][1], 
+            y: currentPieceDetail["chp_arr"][2], 
+            w: currentPieceDetail["chp_arr"][3], 
+            h: currentPieceDetail["chp_arr"][4]
+        }; 
+        
+        console.log("new row: ", newRow);
+
         newcharPicData.push(newRow);
         changeAddAnotherCharPicOption();
         setCharPicDataTable(newcharPicData);
+        console.log("new table: ", newcharPicData);
 
         /* update to cloud db for this field: character-pic */
-        let tempArr = currentPieceDetail["chp_arr"];
-        tempArr.push(newcharPicData);
+        let tempTable = currentPieceDetail["chp_arr"];
+        tempTable.push(newcharPicData);
 
         // let tempObj = currentPieceDetail;
         // tempObj["chp_arr"] = tempArr;
         // updateToCaller(tempObj); //TODO immediate preview for all elements in table, test
 
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable});
+        
         resetAddingCharPicRow();
         
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempArr});
-
     }}>
         Confirm Add
     </button>        {/* //TODO later */}
