@@ -27,7 +27,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
 
-    const [charPicDataPart, setCharPicDataPart] = useState([]);
+    const [charPicDataTable, setCharPicDataTable] = useState([]);
     const [charPicVar, setCharPicVar] = useState(0);
     const [charPicDataPosX, setCharPicDataPosX] = useState(0);
     const [charPicDataPosY, setCharPicDataPosY] = useState(0);
@@ -226,8 +226,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function removeRowInCharPicTable(index) {
-        let tempCharPicDataPart = charPicDataPart.filter((item) => (item !== charPicDataPart[index]));
-        setCharPicDataPart(tempCharPicDataPart);
+        let tempCharPicDataPart = charPicDataTable.filter((item) => (item !== charPicDataTable[index]));
+        setCharPicDataTable(tempCharPicDataPart);
     }
 
     function onChangeCharPicDataPosX(event) {
@@ -284,6 +284,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     function handleResourceManagerSaveChanges() {
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
+    }
+
+    function resetADdingCharPicRow() {
+        setCharPicDataPosX(0);
+        setCharPicDataPosY(0);
+        setCharPicDataWidth(60);
+        setCharPicDataHeight(210);
+        setCharPicVar("");
     }
   
     return (
@@ -393,16 +401,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         </tr>
     </thead>
     <tbody>
-        {charPicDataPart.map((item, index) => {
+        {charPicDataTable.map((item, index) => {
             
             return (
                 <tr key={index}>
-                    {charPicDataPart.length > 0 && <td>{item["var"]}</td>}
+                    {charPicDataTable.length > 0 && <td>{item["var"]}</td>}
                     <td>{item["posX"]}</td>
                     <td>{item["posY"]}</td>
                     <td>{item["w"]}</td>
                     <td>{item["h"]}</td>                    
-                        {charPicDataPart.length > 0 && 
+                        {charPicDataTable.length > 0 && 
                         <td><GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/></td>
                         }
                 </tr>
@@ -412,7 +420,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     </table>
     <br></br>
-    <button onClick={changeAddAnotherCharPicOption}>Add Another Character Picture</button>
+    <button onClick={()=>{
+        if (anotherCharpic === true) { // going to be false (closed)
+            resetADdingCharPicRow();
+        }
+        changeAddAnotherCharPicOption();}}>Add Another Character Picture</button>
     {anotherCharpic &&
     <>
         <br></br>
@@ -444,19 +456,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <input className="slider" type="range" min="0" max={heightMax} value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
-        let newcharPicData = charPicDataPart;
+        let newcharPicData = charPicDataTable;
         const newRow = {var: charPicVar ,posX: charPicDataPosX, posY: charPicDataPosY, w: charPicDataWidth, h: charPicDataHeight}; //TODO fill in data from fields    
         newcharPicData.push(newRow);
         changeAddAnotherCharPicOption();
-        setCharPicDataPart(newcharPicData);
+        setCharPicDataTable(newcharPicData);
         /* update to cloud db for this field: character-pic */
         let tempArr = currentPieceDetail["chp_arr"];
         tempArr.push(newcharPicData);
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempArr});
-        setCharPicDataPosX(0);
-        setCharPicDataPosY(0);
-        setCharPicDataWidth(60);
-        setCharPicDataHeight(210);
+
+        resetADdingCharPicRow();
     }}>
         Confirm Add
     </button>        {/* //TODO later */}
