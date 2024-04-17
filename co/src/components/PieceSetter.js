@@ -27,6 +27,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
 
+    const [creatingCharPicDataPart, setCreatingCharPicDataPart] = useState(false);
     const [charPicDataPart, setCharPicDataPart] = useState([]);
     const [charPicVar, setCharPicVar] = useState(0);
     const [charPicDataPosX, setCharPicDataPosX] = useState(0);
@@ -262,13 +263,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("setupBgpInfo var = ", varName); //TODO test
         
         let urlList = visualList.filter((e) => (e["var"] === varName));
-        let url = urlList[0]["url"];
-                
+        let url = urlList[0]["url"];                
         setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
         let tempObj = currentPieceDetail;
         tempObj["bgp_source_varname"] = varName;
         tempObj["bgp_source_link"] = url;
-
         updateToCaller(tempObj);
     }
 
@@ -279,11 +278,24 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let tempObj = currentPieceDetail;
         tempObj["displayTextFrame"] = isDisplay;
         updateToCaller(tempObj);
+    }
 
+    function setupCharaPicArr(dataPart) {
+        let tempObj = currentPieceDetail;
+        // tempObj[""] = dataPart;
     }
 
     function handleResourceManagerSaveChanges() {
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
+    }
+
+    function resetCharPicDataPart() {
+        setCharPicDataPosX(0);
+        setCharPicDataPosY(0);
+        setCharPicDataWidth(60);
+        setCharPicDataHeight(210);
+        setCharPicDataPart({});
+        setCreatingCharPicDataPart(!creatingCharPicDataPart);
     }
   
     return (
@@ -412,7 +424,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     </table>
     <br></br>
-    <button onClick={changeAddAnotherCharPicOption}>Add Another Character Picture</button>
+    <button onClick={()=>{changeAddAnotherCharPicOption();
+        resetCharPicDataPart();
+    }}>Add Another Character Picture</button>
     {anotherCharpic &&
     <>
         <br></br>
@@ -444,19 +458,23 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <input className="slider" type="range" min="0" max={heightMax} value={charPicDataHeight} onChange={onChangeCharPicDataH}></input>
     <br></br>
     <button onClick={()=>{
+        // add this new row to the table, updates the setter-table
         let newcharPicData = charPicDataPart;
         const newRow = {var: charPicVar ,posX: charPicDataPosX, posY: charPicDataPosY, w: charPicDataWidth, h: charPicDataHeight}; //TODO fill in data from fields    
         newcharPicData.push(newRow);
+
         changeAddAnotherCharPicOption();
         setCharPicDataPart(newcharPicData);
-        /* update to cloud db for this field: character-pic */
+
         let tempArr = currentPieceDetail["chp_arr"];
         tempArr.push(newcharPicData);
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_arr"] = tempArr;
+        updateToCaller(tempObj); // fast-pass new-contact array to previewer
+
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempArr});
-        setCharPicDataPosX(0);
-        setCharPicDataPosY(0);
-        setCharPicDataWidth(60);
-        setCharPicDataHeight(210);
+        resetCharPicDataPart();
     }}>
         Confirm Add
     </button>        {/* //TODO later */}
