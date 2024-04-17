@@ -91,7 +91,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     Char-pic part2, already added -- 
                     {charPicArr !== undefined && charPicArr.map((item, index) => {
-                      return (<label key={index}>{item}</label>);
+                      return (<p key={index}>{item[0]}</p>);
                     })}
 
               </div>

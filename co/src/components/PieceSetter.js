@@ -229,9 +229,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function removeRowInCharPicTable(index) {
-        let tempCharPicDataPart = charPicDataTable.filter((item) => (item !== charPicDataTable[index]));
-        setCharPicDataTable(tempCharPicDataPart);
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempCharPicDataPart});
+        let tempCharPicDataTable = charPicDataTable.filter((item) => (item !== charPicDataTable[index]));
+        setCharPicDataTable(tempCharPicDataTable);
+        let tempObj = currentPieceDetail;
+        tempObj["chp_arr"] = tempCharPicDataTable;
+
+        updateToCaller(tempObj);
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempCharPicDataTable});
 
     }
 
