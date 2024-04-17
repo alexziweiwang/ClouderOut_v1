@@ -471,31 +471,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
     <button onClick={()=>{
-        let newcharPicData = charPicDataTable;
-        // const newRow = {var: currentPieceDetail["chp_curr"][0],
-        //     x: currentPieceDetail["chp_curr"][1], 
-        //     y: currentPieceDetail["chp_curr"][2], 
-        //     w: currentPieceDetail["chp_curr"][3], 
-        //     h: currentPieceDetail["chp_curr"][4]
-        // }; 
-
-        // console.log("new row: ", newRow);
-
-        // newcharPicData.push(newRow);
-        newcharPicData.push(currentPieceDetail["chp_curr"]);
-        setCharPicDataTable(newcharPicData);
-
-
-        console.log("new table: ", newcharPicData);
-
+    
         /* update to cloud db for this field: character-pic */
         let tempTable = currentPieceDetail["chp_arr"];
-        tempTable.push(newcharPicData);
+        tempTable.push(currentPieceDetail["chp_curr"]);
+        setCharPicDataTable(tempTable);
 
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable});
-
+        
         updateToCaller(currentPieceDetail); //TODO test
-
 
         resetAddingCharPicRow();
         changeAddAnotherCharPicOption();

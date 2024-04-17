@@ -21,7 +21,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp);
 
-      console.log(" currentPiece[chp_arr]? ",  currentPiece["chp_arr"]);
     });
 
 
@@ -92,7 +91,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     Char-pic part2, already added -- 
                     {charPicArr !== undefined && charPicArr.map((item, index) => {
-                      return (<label>{item}</label>);
+                      return (<label key={index}>{item}</label>);
                     })}
 
               </div>
