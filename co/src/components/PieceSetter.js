@@ -425,7 +425,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
                         {visualList.map((item, index) => {
-                            let keyStr = "bgp-" + item["var"];
+                            let keyStr = "bgp-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
 
@@ -486,7 +486,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
-            return (<option key={item["var"]} value={item["var"]}>{item["var"]}</option>);
+            let keyStr = "charpic" + index + item["var"];
+            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
         })}
     </select >
 
