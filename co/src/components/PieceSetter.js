@@ -167,6 +167,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     function changeAddAnotherCharPicOption() {
         if (anotherCharpic === true) { //going to be false
             setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
+            let tempObj = currentPieceDetail;
+            tempObj["chp_curr"] = [];
+            updateToCaller(tempObj);
 
         } else { //going to be true
             setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, ""]});
@@ -418,7 +421,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
                     <br></br>
-                    <label>Source Link:  </label>
+                    <label>Source:  </label>
                     <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
                         {visualList.map((item, index) => {
@@ -478,7 +481,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <>
         <br></br>
 
-    <label>Source Link:  </label>
+    <label>Source:  </label>
     <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
         <option key="charp01" value=""> -- Select picture name -- </option>
 
@@ -773,7 +776,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
                     <br></br>
-                    <label>Source Link:  </label>
+                    <label>Source:  </label>
                     <select>
                         <option key="bgm01" value=""> -- Select music name -- </option>
 
@@ -800,7 +803,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
-                    <label>Source Link:  </label>
+                    <label>Source:  </label>
                     <select>
                         {audioList.map((item, index) => {
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
