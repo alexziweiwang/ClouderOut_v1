@@ -169,7 +169,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
 
         } else { //going to be true
-            setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120]});
+            setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, ""]});
      
         }
         setAnotherCharPic(!anotherCharpic);
@@ -261,7 +261,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     function onChangeCharPicDataVar(event) {
         let chp_curr_arr = currentPieceDetail["chp_curr"];
+        //store selected variable name
         chp_curr_arr[0] = event.target.value;
+        
+        //also store the url
+        let urlList = visualList.filter((e) => (e["var"] === event.target.value));
+        let url = urlList[0]["url"];
+        chp_curr_arr[5] = url;
+
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
     }
 
