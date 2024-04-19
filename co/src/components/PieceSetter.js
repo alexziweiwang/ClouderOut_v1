@@ -289,12 +289,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         
         //also store the url
         let urlList = visualList.filter((e) => (e["var"] === event.target.value));
-        if (urlList.length < 0) {
-            return;
+        
+        if (urlList.length == 0) {
+            chp_curr_arr[5] = "";        
+        } else {
+            let url = urlList[0]["url"];
+            chp_curr_arr[5] = url;        
         }
-        let url = urlList[0]["url"];
-        chp_curr_arr[5] = url;
-
+    
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentPieceDetail;
