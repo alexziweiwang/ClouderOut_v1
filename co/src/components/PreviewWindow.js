@@ -85,12 +85,16 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     Char-pic part1, current adjusting -- 
                     <br></br>
-                    {currentPiece["chp_curr"] !== undefined && <img style={{
-                      "position": "absolute", 
-                      "top": `${currentPiece["chp_curr"][2]}px`, "left": `${currentPiece["chp_curr"][1]}px`,
-                      "width": `${currentPiece["chp_curr"][3]}px`, "height": `${currentPiece["chp_curr"][4]}px`,
-                    }}
-                      src={currentPiece["chp_curr"][5]} alt="currently being added character picture" />
+                    {(currentPiece["chp_curr"] !== undefined && currentPiece["chp_curr"][0] !== "" && currentPiece["chp_curr"][5] !== "") && 
+                          <><img style={{
+                            "position": "absolute", 
+                            "top": `${currentPiece["chp_curr"][2]}px`, "left": `${currentPiece["chp_curr"][1]}px`,
+                            "width": `${currentPiece["chp_curr"][3]}px`, "height": `${currentPiece["chp_curr"][4]}px`,
+                          }}
+                            src={currentPiece["chp_curr"][5]} 
+                            alt="currently being added character picture" 
+                          />???
+                          </>
                     }
 
                     {currentPiece["chp_curr"] !== undefined && <p>
@@ -98,7 +102,17 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     </p>}
                     Char-pic part2, already added -- 
                     {charPicArr !== undefined && charPicArr.map((item, index) => {
-                      return (<div key={index}>...{item[0]}...</div>);
+                      let altStr = index+"already added character picture";
+                      return (
+                        <img style={{
+                            "position": "absolute", 
+                            "top": `${item[2]}px`, "left": `${item[1]}px`,
+                            "width": `${item[3]}px`, "height": `${item[4]}px`,
+                            }}
+                          src={item[5]} 
+                          alt={altStr}
+                        />
+                      );
                     })}<br></br>
                     !!bgp_source_link: {currentPiece["bgp_source_link"]}
 
