@@ -318,14 +318,25 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("setupBgpInfo var = ", varName); //TODO test
         
         let urlList = visualList.filter((e) => (e["var"] === varName));
-        let url = urlList[0]["url"];
-                
-        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
-        let tempObj = currentPieceDetail;
-        tempObj["bgp_source_varname"] = varName;
-        tempObj["bgp_source_link"] = url;
+        if (urlList.length == 0) {
 
-        updateToCaller(tempObj);
+            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": "", "bgp_source_link": ""});
+            let tempObj = currentPieceDetail;
+            tempObj["bgp_source_varname"] = "";
+            tempObj["bgp_source_link"] = "";
+    
+            updateToCaller(tempObj);
+        } else {
+            let url = urlList[0]["url"];
+                
+            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
+            let tempObj = currentPieceDetail;
+            tempObj["bgp_source_varname"] = varName;
+            tempObj["bgp_source_link"] = url;
+    
+            updateToCaller(tempObj);
+        }
+
     }
 
     function setupHideTextFrame(boolVar) {

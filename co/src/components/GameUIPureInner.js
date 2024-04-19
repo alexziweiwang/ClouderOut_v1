@@ -212,11 +212,7 @@ export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsD
         
         </div>
         }
-
-        TODO: textframe and standard-button-group can be 0 or 1 -- need to fetch current-piece data to decide 
-        <br></br>TODO: textframe should be clickable for next-piece (default) as the game-content
-
-
+ 
     </div>
 
 

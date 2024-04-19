@@ -77,10 +77,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                 "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
                   
                   <div> data-previewing area:
-                    <br></br>
-                    <br></br> [bg-pic] char-pics, clickable
-                    <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
-                    <br></br>
+                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                     ?{currentPiece["bgp_source_link"]}
                     <br></br>
                     !{currentPiece["bgp_source_varname"]}
@@ -97,8 +94,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     !!bgp_source_link: {currentPiece["bgp_source_link"]}
 
                   </div>
-                  Game content layer (Data from piece-setter; data here changes frequently...)
-               
+             
               </div>
 
               <GameUIPureInner 
@@ -167,7 +163,18 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
                     <br></br>but this feature is provided so user can utilize the existing node-content
                     </p>
+            <p className="plans">
+                    [bg-pic] char-pics, clickable
+                    <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
+                    <br></br>
+            </p>
 
+            <p>
+            TODO: textframe and standard-button-group can be 0 or 1 -- need to fetch current-piece data to decide 
+            <br></br>TODO: textframe should be clickable for next-piece (default) as the game-content
+
+
+            </p>
                
         </div>
     );
