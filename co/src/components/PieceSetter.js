@@ -352,7 +352,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function resetAddingCharPicRow() {
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
     }
   
     return (
@@ -521,17 +521,23 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
     <button onClick={()=>{
-    
-        /* update to cloud db for this field: character-pic */
-        let tempTable = currentPieceDetail["chp_arr"];
-        tempTable.push(currentPieceDetail["chp_curr"]);
-        setCharPicDataTable(tempTable);
+        if (currentPieceDetail["chp_curr"][5] === "default-none") {
+            console.log("warning: variable cannot be empty"); //TODO warning popping
 
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable, "chp_curr": []});
-        
-        updateToCaller(currentPieceDetail); //TODO test
+        } else {
+            /* update to cloud db for this field: character-pic */
+            let tempTable = currentPieceDetail["chp_arr"];
+            tempTable.push(currentPieceDetail["chp_curr"]);
+            setCharPicDataTable(tempTable);
+
+            setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable, "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
+            
+            updateToCaller(currentPieceDetail); //TODO test
+
+            changeAddAnotherCharPicOption();
+        }
+    
        
-        changeAddAnotherCharPicOption();
    
     }}>
         Confirm Add

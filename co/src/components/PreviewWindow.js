@@ -79,14 +79,8 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                   
                   <div> data-previewing area:
                     
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                    ?{currentPiece["bgp_source_link"]}
-                    <br></br>
-                    !{currentPiece["bgp_source_varname"]}
-                    <br></br>
-                    Char-pic part1, current adjusting -- 
-                    <br></br>
-                    
+                
+            
                     {(charaPicCurr !== undefined && charaPicCurr !== [] && charaPicCurr[5] !== "default-none" && charaPicCurr[5] !== "") && 
                           
                             <img style={{
@@ -99,18 +93,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                             />
                     }
 
-                    {(charaPicCurr !== undefined && charaPicCurr[5] !== "default-none") && <p>
-                    testing
-                    <br></br>~{charaPicCurr[0]}
-                    <br></br>~{charaPicCurr[1]}
-                    <br></br>~{charaPicCurr[2]}
-                    <br></br>~{charaPicCurr[3]}
-                    <br></br>~{charaPicCurr[4]}
-                    <br></br>~{charaPicCurr[5]}
-                    </p>}
-
-                    
-                    Char-pic part2, already added -- 
                     {charaPicArr !== undefined && charaPicArr.map((item, index) => {
                       let altStr = index+"already added character picture";
                       return (
