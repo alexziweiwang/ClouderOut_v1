@@ -77,6 +77,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                 "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
                   
                   <div> data-previewing area:
+                    
                     <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                     ?{currentPiece["bgp_source_link"]}
                     <br></br>
@@ -84,6 +85,14 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     Char-pic part1, current adjusting -- 
                     <br></br>
+                    {currentPiece["chp_curr"] !== undefined && <img style={{
+                      "position": "absolute", 
+                      "top": `${currentPiece["chp_curr"][2]}px`, "left": `${currentPiece["chp_curr"][1]}px`,
+                      "width": `${currentPiece["chp_curr"][3]}px`, "height": `${currentPiece["chp_curr"][4]}px`,
+                    }}
+                      src={currentPiece["chp_curr"][5]} alt="currently being added character picture" />
+                    }
+
                     {currentPiece["chp_curr"] !== undefined && <p>
                     ~{currentPiece["chp_curr"][0]}~{currentPiece["chp_curr"][1]}~{currentPiece["chp_curr"][2]}~{currentPiece["chp_curr"][3]}~{currentPiece["chp_curr"][4]}
                     </p>}
