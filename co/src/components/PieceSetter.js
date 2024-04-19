@@ -29,13 +29,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [bgPicDataPart, setBgPicDataPart] = useState([]);
-    const [bgPicDataPosX, setBgPicDataPosX] = useState(0);
-    const [bgPicDataPosY, setBgPicDataPosY] = useState(0);
-    const [bgPicDataWidth, setBgPicDataWidth] = useState(800);
-    const [bgPicDataHeight, setBgPicDataHeight] = useState(600);
-
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
+    const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [clickableDataTable, setClickableDataPart] = useState([]);
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
@@ -562,7 +557,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <thead>
                             <tr>
                                 <th>Index</th>
-                                <th>Sound Effect</th>
+                                <th>Button Text</th>
                                 <th>Consequence</th>
             
                             </tr>
@@ -593,12 +588,125 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     
                         </table>
                         <button onClick={()=>{
-
+                            setDisplayStndButtonAdd(!displayStndButtonAdd);
                         }}>
                             Add Another Button
                         </button>
-                        {<div className="indentOne">
-                            
+                        {displayStndButtonAdd && <div className="purpleArea">
+                            consequence table
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Object</th>
+                                    <th>Action</th>
+                                    <th>Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                </tbody>
+
+                            </table>
+                            <button className="indentOne" onClick={()=>{
+                                setIsClickableAddNewConsq(!isClickableAddNewConsq);
+                                }}>Add Another Consequence</button>
+                            {isClickableAddNewConsq && 
+                    <div className="orangeArea indentOne">
+
+                    <label>Target of change: </label>
+
+                    <br></br><label>TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
+
+                    <select onChange={(event)=>{
+                                setClickableConsequenceSelectedGameDataItem(event.target.value);
+                                console.log("selected game data (consq) = ");
+                                console.log(event.target.value);
+                                setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
+                            }} 
+                            value={clickableConsequenceSelectedGameDataItem}>
+                        <option value="" key=""> -- Select Game Data Item --</option>
+                        {Object.keys(gameDataList).map((currKey) => {
+                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            let keyStr = "gameData" + gameDataList[currKey]["name"];
+                            return (
+                                
+                                <option value={currKey} key={keyStr}>{currKey}</option>
+                            );
+                        })}
+                    </select>
+
+                    <br></br><br></br>
+
+                    <div>
+                    
+                    {clickableConsequenceSelectedGameDataItemType === "number" && 
+                        <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input>} 
+                    <label>Assign Value</label>
+                    
+                    <br></br>
+                    <label>TODO: get current selected game-data-item & get type of it & respond accordingly </label>
+                    
+                        <label>TODO</label>
+                        <br></br>
+                        <label>Set </label>
+                        
+                        <label> to </label>
+                        
+                        { (clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
+                        <input></input>}
+                        {clickableConsequenceSelectedGameDataItemType === "boolean" && 
+                        <select>
+                            <option>True</option>
+                            <option>False</option>
+                        </select>}
+
+                        <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
+                    </div>
+
+
+
+                    
+                    { clickableConsequenceSelectedGameDataItemType === "number" &&
+                    <div>
+                
+                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input>}
+                    <label>Change Value</label>
+                    <br></br>
+                    <label>Operation: </label>
+                    <label>TODO</label>
+                    <select value={consequenceIsPlus} onChange={(event)=>{setConsequenceIsPlus(event.target.value);}}>
+                        <option value="" key=""> -- Select Operation -- </option>
+                        <option value="plus" key="plus"> Plus </option>
+                        <option value="minus" key="minus"> Minus </option>
+                    </select>      
+                    <label>TODO</label><input></input>
+                    </div>}
+
+                    <br></br>
+                    <button onClick={()=>{
+                        setIsClickableAddNewConsq(false);
+                        //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
+                        let obj = {};
+                        obj.target = clickableConsequenceSelectedGameDataItem;
+                        if (clickableConsequenceAssignValue === false) { // plus or minus
+                            if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
+                                console.log("consequence-invalid action");
+                                return;
+                            } else {
+                                obj.action = consequenceIsPlus;
+                            }
+                        } else { // direct assign value 
+                            obj.action = "becomes";
+                        }
+
+                        // obj.amount = ; //TODO
+
+                        /* push to clickableConsequenceArray */
+                        clickableConsequenceArray.push(obj);
+
+                    }}>Add</button>
+                    </div>}
 
                         </div>}
 
@@ -620,7 +728,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <thead>
                     <tr>
                         <th>Shape/Picture Source</th>
-                        <th>Sound Effect</th>
                         <th>Consequence</th>
     
                     </tr>
@@ -721,7 +828,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         </tbody>
                     </table>
                     <button onClick={()=>{setIsClickableAddNewConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
-                    {isClickableAddNewConsq && <div className="orangeArea">
+                    {isClickableAddNewConsq && 
+                    <div className="orangeArea">
 
                     <label>Target of change: </label>
 
