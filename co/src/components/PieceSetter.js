@@ -36,7 +36,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [bgPicDataHeight, setBgPicDataHeight] = useState(600);
 
     const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
-    const [clickableDataPart, setClickableDataPart] = useState([]);
+    const [clickableDataTable, setClickableDataPart] = useState([]);
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
     const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
@@ -555,6 +555,60 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             {clickableAdd && 
                 <div className="optionAreaSelected2">
+                    <div><label>1. Standard Button (option) Group</label>
+                        <div className="indentOne">
+
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Sound Effect</th>
+                                <th>Consequence</th>
+            
+                            </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {clickableDataTable.map((item, index) => {         
+                                    return (
+                                        <tr className="clickableListItem3">
+                                        <td>{item["shape"]}</td>
+                                        <td>{item["sound"]}</td>
+                                        <td>
+                                            {<>
+                                                {item["consequence"].map((row, rowIndex)=>{
+                                                    return(<>{row[rowIndex]}</>);
+                                                })}
+                                            </>}
+                                        </td>
+                                        <td>
+                                            <button className="cursor_pointer" onClick={()=>{console.log("remove a clickable-item")}}>Remove</button>
+                                        </td>
+                                    </tr>
+                                    
+                                        );
+                                })}
+                                
+                            </tbody>
+                    
+                        </table>
+                        <button onClick={()=>{
+
+                        }}>
+                            Add Another Button
+                        </button>
+                        {<div className="indentOne">
+                            
+
+                        </div>}
+
+
+                        </div>
+                    
+                    </div>
+
+
+
                     <p className="plans"> (modularizable: multiple items allowed) 
                     <br></br> TODO: add data structure of clickable-setting records!
                     </p>
@@ -573,7 +627,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     </thead>
                     
                     <tbody>
-                        {clickableDataPart.map((item, index) => {         
+                        {clickableDataTable.map((item, index) => {         
                             return (
                                 <tr className="clickableListItem3">
                                 <td>{item["shape"]}</td>
@@ -772,7 +826,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     </p>
                     <button  onClick={()=>{
-                        let newlickableData = clickableDataPart;
+                        let newlickableData = clickableDataTable;
                         const newRow = ""; //TODO fill in data from fields
                         newlickableData.push(newRow);
                         setClickableDataPart(newlickableData);

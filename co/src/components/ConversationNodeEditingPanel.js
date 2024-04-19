@@ -21,7 +21,7 @@ export default function ConversationNodeEditingPanel() {
         nodeName = state.selectedNode;
         uname = state.userName;
         projectName = state.selected_project_name;
-    } 
+    }
     // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     
 
@@ -245,7 +245,8 @@ export default function ConversationNodeEditingPanel() {
                 <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
                 <p>projectName: {state.projectName}</p>
             </div>
-            
+
+            {state!= undefined  &&<>
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
@@ -303,6 +304,8 @@ export default function ConversationNodeEditingPanel() {
  
             </div>
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={tempTrigerRmUpdate}/>}
+            </>}
+
 
         </div>
     );

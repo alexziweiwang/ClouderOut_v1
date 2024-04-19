@@ -104,7 +104,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                               }}
                             src={item[5]} 
                             alt={altStr}
-                          />!!!
+                          />
                         </>
                       );
                     })}<br></br>
