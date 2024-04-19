@@ -14,9 +14,10 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     const [gameScreenSize, setGameScreenSize] = useState("");
 
     const [currentPiece, setCurrentPiece] = useState({});
+    
+    let charaPicCurr = currentPiece["chp_curr"];
+    let charaPicArr = currentPiece["chp_arr"];
 
-    let charPicArr = currentPiece["chp_arr"];
-  
     useEffect(() => {
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp);
@@ -85,33 +86,44 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     <br></br>
                     Char-pic part1, current adjusting -- 
                     <br></br>
-                    {(currentPiece["chp_curr"] !== undefined && currentPiece["chp_curr"][0] !== "" && currentPiece["chp_curr"][5] !== "") && 
-                          <><img style={{
-                            "position": "absolute", 
-                            "top": `${currentPiece["chp_curr"][2]}px`, "left": `${currentPiece["chp_curr"][1]}px`,
-                            "width": `${currentPiece["chp_curr"][3]}px`, "height": `${currentPiece["chp_curr"][4]}px`,
-                          }}
-                            src={currentPiece["chp_curr"][5]} 
-                            alt="currently being added character picture" 
-                          />???
-                          </>
+                    
+                    {(charaPicCurr !== undefined && charaPicCurr !== [] && charaPicCurr[5] !== "default-none" && charaPicCurr[5] !== "") && 
+                          
+                            <img style={{
+                              "position": "absolute", 
+                              "top": `${charaPicCurr[2]}px`, "left": `${charaPicCurr[1]}px`,
+                              "width": `${charaPicCurr[3]}px`, "height": `${charaPicCurr[4]}px`,
+                            }}
+                              src={charaPicCurr[5]} 
+                              alt="currently being added character picture" 
+                            />
                     }
 
-                    {currentPiece["chp_curr"] !== undefined && <p>
-                    ~{currentPiece["chp_curr"][0]}~{currentPiece["chp_curr"][1]}~{currentPiece["chp_curr"][2]}~{currentPiece["chp_curr"][3]}~{currentPiece["chp_curr"][4]}
+                    {(charaPicCurr !== undefined && charaPicCurr[5] !== "default-none") && <p>
+                    testing
+                    <br></br>~{charaPicCurr[0]}
+                    <br></br>~{charaPicCurr[1]}
+                    <br></br>~{charaPicCurr[2]}
+                    <br></br>~{charaPicCurr[3]}
+                    <br></br>~{charaPicCurr[4]}
+                    <br></br>~{charaPicCurr[5]}
                     </p>}
+
+                    
                     Char-pic part2, already added -- 
-                    {charPicArr !== undefined && charPicArr.map((item, index) => {
+                    {charaPicArr !== undefined && charaPicArr.map((item, index) => {
                       let altStr = index+"already added character picture";
                       return (
-                        <img style={{
-                            "position": "absolute", 
-                            "top": `${item[2]}px`, "left": `${item[1]}px`,
-                            "width": `${item[3]}px`, "height": `${item[4]}px`,
-                            }}
-                          src={item[5]} 
-                          alt={altStr}
-                        />
+                        <>
+                          <img style={{
+                              "position": "absolute", 
+                              "top": `${item[2]}px`, "left": `${item[1]}px`,
+                              "width": `${item[3]}px`, "height": `${item[4]}px`,
+                              }}
+                            src={item[5]} 
+                            alt={altStr}
+                          />!!!
+                        </>
                       );
                     })}<br></br>
                     !!bgp_source_link: {currentPiece["bgp_source_link"]}

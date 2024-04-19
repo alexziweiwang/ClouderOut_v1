@@ -165,17 +165,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function changeAddAnotherCharPicOption() {
-        if (anotherCharpic === true) { //going to be false
-            setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": []});
-            let tempObj = currentPieceDetail;
-            tempObj["chp_curr"] = [];
-            updateToCaller(tempObj);
-
-        } else { //going to be true
-            setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, ""]});
-     
-        }
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
         setAnotherCharPic(!anotherCharpic);
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = ["", 0, 0, 60, 120, "default-none"];
+        updateToCaller(tempObj);
+
     }
 
 
@@ -290,8 +286,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         //also store the url
         let urlList = visualList.filter((e) => (e["var"] === event.target.value));
         
-        if (urlList.length == 0) {
-            chp_curr_arr[5] = "";        
+        if (urlList.length === 0) {
+            chp_curr_arr[5] = "default-none";        
         } else {
             let url = urlList[0]["url"];
             chp_curr_arr[5] = url;        
@@ -320,12 +316,12 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("setupBgpInfo var = ", varName); //TODO test
         
         let urlList = visualList.filter((e) => (e["var"] === varName));
-        if (urlList.length == 0) {
+        if (urlList.length === 0) {
 
-            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": "", "bgp_source_link": ""});
+            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": "", "bgp_source_link": "default-none"});
             let tempObj = currentPieceDetail;
             tempObj["bgp_source_varname"] = "";
-            tempObj["bgp_source_link"] = "";
+            tempObj["bgp_source_link"] = "default-none";
     
             updateToCaller(tempObj);
         } else {
