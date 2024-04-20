@@ -352,8 +352,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             tempObj["bgm_source_link"] = "defualt-none";
             setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": "defualt-none", "bgm_source_varname": varName});
         } else {
-            tempObj["bgm_source_link"] = urlArr[0];
-            setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": tempObj["bgm_source_link"], "bgm_source_varname": varName});
+            let url =  urlArr[0]["url"];
+            tempObj["bgm_source_link"] = url;
+            setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": url, "bgm_source_varname": varName});
         }
         tempObj["bgm_source_varname"] = varName;
 
@@ -982,7 +983,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br>
                     <label>Source:  </label>
                     
-                    <select value={currentPieceDetail["bgm_source_link"]} onChange={(event)=>{
+                    <select value={currentPieceDetail["bgm_source_varname"]} onChange={(event)=>{
                             setupBgmInfo(event);
                         }}>
                         <option key="bgm01" value=""> -- Select music name -- </option>

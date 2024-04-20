@@ -111,7 +111,11 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     !!bgp_source_link: {currentPiece["bgp_source_link"]}
 
 
-                    {currentPiece["bgm_source_link"] !== undefined && <audio src={currentPiece["bgm_source_link"]} autoplay/>}
+                    {/* {currentPiece["bgm_source_link"] !== undefined &&  */}
+                    <audio src={currentPiece["bgm_source_link"]} autoplay controls/>
+                    bgm = {currentPiece["bgm_source_link"]}
+                    bgm_var = {currentPiece["bgm_source_varname"]}
+                    {/* } */}
 
                   </div>
              
