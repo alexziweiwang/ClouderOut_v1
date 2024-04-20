@@ -962,7 +962,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
                     <br></br>
                     <label>Source:  </label>
-                    <select>
+                    
+                    <select value={currentPieceDetail["bgm_source_link"]} onChange={()=>{
+                        //TODO with var name, fetch audio url, and update data structure
+                        }}>
                         <option key="bgm01" value=""> -- Select music name -- </option>
 
                         {audioList.map((item, index) => {
