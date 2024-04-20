@@ -247,3 +247,5 @@
 - 2024-Apr-11: Design and experiment with new node-visualization strategy
 
 - 2024-Apr-12: Design and consideration for grid-node-creation-UI details
+
+- 2024-Apr-19: Explore bgm playing with cloud storage link

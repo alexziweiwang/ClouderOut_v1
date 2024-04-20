@@ -661,7 +661,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <option>False</option>
                         </select>}
 
-                        <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
+                        <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
                     </div>
 
 
@@ -684,11 +684,12 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     </div>}
 
                     <br></br>
-                    <button onClick={()=>{
-                        setIsClickableAddNewConsq(false);
+                    <button 
+                        onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
                         obj.target = clickableConsequenceSelectedGameDataItem;
+                        
                         if (clickableConsequenceAssignValue === false) { // plus or minus
                             if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
                                 console.log("consequence-invalid action");
@@ -704,6 +705,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                         /* push to clickableConsequenceArray */
                         clickableConsequenceArray.push(obj);
+                        
+                        
+                        setIsClickableAddNewConsq(false);
 
                     }}>Add</button>
                     </div>}
@@ -878,7 +882,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <option>False</option>
                         </select>}
 
-                        <br></br><p className="plans"> TODO: consider validation or typed option for game data types </p>
+                        <br></br><p className="plans"> 2 TODO: consider validation or typed option for game data types </p>
                     </div>
 
 
