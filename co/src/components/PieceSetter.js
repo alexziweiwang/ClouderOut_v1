@@ -57,6 +57,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
+        "bgm_source_link":allPieceData[pieceNum-1]["bgm_source_link"],
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
         "bgm_volume": allPieceData[pieceNum-1]["bgm_volume"], 
         "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
@@ -338,6 +339,24 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setCurrentPieceDetail({...currentPieceDetail,  "displayTextFrame": isDisplay});
         let tempObj = currentPieceDetail;
         tempObj["displayTextFrame"] = isDisplay;
+        updateToCaller(tempObj);
+
+    }
+
+    function setupBgmInfo(event) {
+        let varName = event.target.value;
+        let urlArr = audioList.filter((e)=>(e["var"] === varName));
+        let tempObj = currentPieceDetail;
+
+        if (urlArr.length == 0) {
+            tempObj["bgm_source_link"] = "defualt-none";
+            setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": "defualt-none", "bgm_source_varname": varName});
+        } else {
+            tempObj["bgm_source_link"] = urlArr[0];
+            setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": tempObj["bgm_source_link"], "bgm_source_varname": varName});
+        }
+        tempObj["bgm_source_varname"] = varName;
+
         updateToCaller(tempObj);
 
     }
@@ -963,8 +982,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br>
                     <label>Source:  </label>
                     
-                    <select value={currentPieceDetail["bgm_source_link"]} onChange={()=>{
-                        //TODO with var name, fetch audio url, and update data structure
+                    <select value={currentPieceDetail["bgm_source_link"]} onChange={(event)=>{
+                            setupBgmInfo(event);
                         }}>
                         <option key="bgm01" value=""> -- Select music name -- </option>
 
