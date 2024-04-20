@@ -249,3 +249,4 @@
 - 2024-Apr-12: Design and consideration for grid-node-creation-UI details
 
 - 2024-Apr-19: Explore bgm playing with cloud storage link
+- 2024-Apr-19: Consider strategy of bgm-continuous playing and stopping mechanism
