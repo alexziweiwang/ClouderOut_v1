@@ -34,7 +34,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [clickableDataTable, setClickableDataPart] = useState([]);
     const [clickableSource, setClickableSource] = useState("default source"); //TODO test
     const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
-    const [clickableConsequenceArray, setClickableConsequenceArray] = useState(["consq1", "consq"]);
+    const [clickableConsequenceArray, setClickableConsequenceArray] = useState([]);
     const [clickableConsequenceSelectedGameDataItem, setClickableConsequenceSelectedGameDataItem] = useState("");
     const [clickableConsequenceSelectedGameDataItemType, setClickableConsequenceSelectedGameDataItemType] = useState("");
     const [consequenceIsPlus, setConsequenceIsPlus] = useState("");
@@ -635,15 +635,24 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             consequence table
                             <table>
                                 <thead>
-                                <tr>
-                                    <th>Object</th>
-                                    <th>Action</th>
-                                    <th>Amount</th>
-                                </tr>
+                                    <tr>
+                                        <th>Object</th>
+                                        <th>Action</th>
+                                        <th>Amount</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-
-
+                                    {clickableConsequenceArray.map((item, index) => {  
+                                        console.log("1standard button group: item = ", item);       
+                                    return (
+                                        <tr className="clickableListItem3">
+                                            <td>{item["target"]}</td>
+                                            <td>{item["action"]}</td>
+                                            <td>{}</td>
+                                        </tr>
+  
+                                );
+                        })}
                                 </tbody>
 
                             </table>
@@ -965,6 +974,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         /* push to clickableConsequenceArray */
                         clickableConsequenceArray.push(obj);
 
+                        console.log("just added a new conseuquence, now: ", clickableConsequenceArray);
+
                     }}>Add</button>
                     </div>}
 
@@ -1026,7 +1037,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                  */}
 
 
-            {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
+
+
+
+            {/* {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
             {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>}
 
             {voicelineAdd && 
@@ -1050,7 +1064,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
-        
+         */}
 
         <button >Save</button>
 
