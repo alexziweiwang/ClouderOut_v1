@@ -38,7 +38,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [clickableConsequenceSelectedGameDataItem, setClickableConsequenceSelectedGameDataItem] = useState("");
     const [clickableConsequenceSelectedGameDataItemType, setClickableConsequenceSelectedGameDataItemType] = useState("");
     const [consequenceIsPlus, setConsequenceIsPlus] = useState("");
-    const [clickableConsequenceAssignValue, setClickableConsequenceAssignValue] = useState(true);
+    const [clickableConsequenceIsAssignValue, setClickableConsequenceIsAssignValue] = useState(true);
+    const [clickableConsequenceBecomeAmount, setClickableConsequenceBecomeAmount] = useState("");
+
     const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
     
     const [pieceAllDataLocal, setPieceAllDataLocal] = useState(allPieceData);
@@ -648,7 +650,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                         <tr className="clickableListItem3">
                                             <td>{item["target"]}</td>
                                             <td>{item["action"]}</td>
-                                            <td>{}</td>
+                                            <td>{item["amount"]}</td>
                                         </tr>
   
                                 );
@@ -689,7 +691,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <div>
                     
                     {clickableConsequenceSelectedGameDataItemType === "number" && 
-                        <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input>} 
+                        <input type="radio" value={clickableConsequenceIsAssignValue} checked={clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(true);}}></input>} 
                     <label>Assign Value</label>
                     
                     <br></br>
@@ -701,12 +703,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         
                         <label> to </label>
                         
-                        { (clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
-                        <input></input>}
+                        {(clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
+                        <input onChange={(event)=>{
+                            setClickableConsequenceBecomeAmount(event.target.value);}}></input>}
+                        
                         {clickableConsequenceSelectedGameDataItemType === "boolean" && 
-                        <select>
-                            <option>True</option>
-                            <option>False</option>
+                        <select 
+                            onChange={(event)=>{setClickableConsequenceBecomeAmount(event.target.value);}}>
+                                <option value="" key="becomeBoolDefault">-- True or False --</option>
+                                <option value="true" key="becomeTrue">True</option>
+                                <option value="false" key="becomeFalse">False</option>
                         </select>}
 
                         <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
@@ -718,7 +724,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     { clickableConsequenceSelectedGameDataItemType === "number" &&
                     <div>
                 
-                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input>}
+                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceIsAssignValue} checked={!clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(false);}}></input>}
                     <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
@@ -728,7 +734,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
-                    <label>TODO</label><input></input>
+                    <label>TODO</label>
+                        <input onChange={(event)=>{setClickableConsequenceBecomeAmount(event.target.value);}}></input>
                     </div>}
 
                     <br></br>
@@ -738,7 +745,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         let obj = {};
                         obj.target = clickableConsequenceSelectedGameDataItem;
                         
-                        if (clickableConsequenceAssignValue === false) { // plus or minus
+                        if (clickableConsequenceIsAssignValue === false) { // plus or minus
                             if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
                                 console.log("consequence-invalid action");
                                 return;
@@ -749,11 +756,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             obj.action = "becomes";
                         }
 
-                        // obj.amount = ; //TODO
+                        obj.amount = clickableConsequenceBecomeAmount; //TODO
 
                         /* push to clickableConsequenceArray */
                         clickableConsequenceArray.push(obj);
-                        
                         
                         setIsClickableAddNewConsq(false);
 
@@ -910,7 +916,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <div>
                     
                     {clickableConsequenceSelectedGameDataItemType === "number" && 
-                        <input type="radio" value={clickableConsequenceAssignValue} checked={clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(true);}}></input>} 
+                        <input type="radio" value={clickableConsequenceIsAssignValue} checked={clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(true);}}></input>} 
                     <label>Assign Value</label>
                     
                     <br></br>
@@ -939,7 +945,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     { clickableConsequenceSelectedGameDataItemType === "number" &&
                     <div>
                 
-                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceAssignValue} checked={!clickableConsequenceAssignValue} onChange={()=>{setClickableConsequenceAssignValue(false);}}></input>}
+                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceIsAssignValue} checked={!clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(false);}}></input>}
                     <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
@@ -958,7 +964,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
                         obj.target = clickableConsequenceSelectedGameDataItem;
-                        if (clickableConsequenceAssignValue === false) { // plus or minus
+                        if (clickableConsequenceIsAssignValue === false) { // plus or minus
                             if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
                                 console.log("consequence-invalid action");
                                 return;
