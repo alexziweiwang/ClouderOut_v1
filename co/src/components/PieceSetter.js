@@ -362,6 +362,25 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     }
 
+
+    function setupVoicelineInfo(event) {
+        let varName = event.target.value;
+        let urlArr = audioList.filter((e)=>(e["var"] === varName));
+        let tempObj = currentPieceDetail;
+
+        if (urlArr.length == 0) {
+            tempObj["vl_source_link"] = "defualt-none";
+            setCurrentPieceDetail({...currentPieceDetail, "vl_source_link": "defualt-none", "vl_source_varname": varName});
+        } else {
+            let url =  urlArr[0]["url"];
+            tempObj["vl_source_link"] = url;
+            setCurrentPieceDetail({...currentPieceDetail, "vl_source_link": url, "vl_source_varname": varName});
+        }
+        tempObj["vl_source_varname"] = varName;
+
+        updateToCaller(tempObj);        
+    }
+ 
     function handleResourceManagerSaveChanges() {
         console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
     }
@@ -974,7 +993,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 }
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
+            {/* {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
             {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - Background Music Setting </button>}
 
             {bgMusicAdd && 
@@ -1004,16 +1023,22 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
-                
-            {/* {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
-            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>} */}
+                 */}
 
-            {/* {voicelineAdd && 
+
+            {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
+            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>}
+
+            {voicelineAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
                     <label>Source:  </label>
-                    <select>
+                    <select value={currentPieceDetail["vl_source_varname"]}
+                    onChange={(event)=>{setupVoicelineInfo(event);}}
+                    >
+                        <option key="vl" value=""> -- Select voiceline name -- </option>
+   
                         {audioList.map((item, index) => {
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
@@ -1025,12 +1050,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
-         */}
-        {/* <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br> */} //TODO add voiceline feature later
+        
+
         <button >Save</button>
 
         <br></br>

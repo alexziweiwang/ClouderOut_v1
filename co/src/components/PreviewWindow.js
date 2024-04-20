@@ -109,6 +109,9 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                       );
                     })}<br></br>
                     !!bgp_source_link: {currentPiece["bgp_source_link"]}
+
+                    <br></br>
+                    voiceline: {currentPiece[["vl_source_varname"]]}...
                   </div>
              
               </div>
