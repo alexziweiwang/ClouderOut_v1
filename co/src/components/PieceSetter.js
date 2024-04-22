@@ -1027,34 +1027,34 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             updateToCaller(tempObj);
 
                     }}>
-                        <option key="bgmSelect" value="">-- Select Action --</option>
-                        <option key="maintainBgm" value="maintainBgm">maintain</option>
-                        <option key="startNewBgm" value="startNewBgm">startNew</option>
-                        <option key="stopBgm" value="stopBgm">stopPlaying</option>
+                        <option key="maintainBgm" value="maintainBgm">-- Select Action (default: maintain)--</option>
+                        <option key="startNewBgm" value="startNewBgm">start new</option>
+                        <option key="stopBgm" value="stopBgm">stop playing</option>
                     </select>
 
-                    <br></br>
-                    <label>Source:  </label>
-                    
-                    <select value={currentPieceDetail["bgm_source_varname"]} onChange={(event)=>{
-                            setupBgmInfo(event);
-                        }}>
-                        <option key="bgm01" value=""> -- Select music name -- </option>
+                    {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
+                        <label>Source:  </label>
+                        
+                        <select value={currentPieceDetail["bgm_source_varname"]} onChange={(event)=>{
+                                setupBgmInfo(event);
+                            }}>
+                            <option key="bgm01" value=""> -- Select music name -- </option>
 
-                        {audioList.map((item, index) => {
-                            let keyStr = "bgmusic-" + index + item["var"];
-                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                        })}
-                    </select>
-                    <button onClick={() => {openRm()}}>+ new variable linking</button>
-                    <br></br>
-                    <label>Loop:  </label>
-                    <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
-                    
-                    <br></br>
-                    <label>Volume:         </label>
-                    <label>TODO</label>
-                    <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
+                            {audioList.map((item, index) => {
+                                let keyStr = "bgmusic-" + index + item["var"];
+                                return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                            })}
+                        </select>
+                        <button onClick={() => {openRm()}}>+ new variable linking</button>
+                        <br></br>
+                        <label>Loop:  </label>
+                        <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
+                        
+                        <br></br>
+                        <label>Volume:         </label>
+                        <label>TODO</label>
+                        <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
+                        </div>}
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
                 
