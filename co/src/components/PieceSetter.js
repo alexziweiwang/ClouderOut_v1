@@ -951,7 +951,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <label>Operation: </label>
                     <label>TODO</label>
                     <select value={consequenceIsPlus} onChange={(event)=>{setConsequenceIsPlus(event.target.value);}}>
-                        <option value="" key=""> -- Select Operation -- </option>
+                        <option value="" key="selectConseq"> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
@@ -1010,12 +1010,23 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 }
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            {/* {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
+            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
             {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - Background Music Setting </button>}
 
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
+                    <br></br>
+                    <label>Action</label>
+                    <br></br>
+
+                    <select>
+                        <option key="bgmSelect" value="">-- Select an Action --</option>
+                        <option key="maintainBgm" value="maintainBgm">maintain</option>
+                        <option key="startNewBgm" value="startNewBgm">startNew</option>
+                        <option key="stopBgm" value="stopBgm">stopPlaying</option>
+                    </select>
+
                     <br></br>
                     <label>Source:  </label>
                     
@@ -1040,7 +1051,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
             {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
-                 */}
+                
 
 
 
