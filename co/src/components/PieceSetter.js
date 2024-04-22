@@ -60,6 +60,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
         "bgm_source_link":allPieceData[pieceNum-1]["bgm_source_link"],
+        "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
         "bgm_volume": allPieceData[pieceNum-1]["bgm_volume"], 
         "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
@@ -1017,11 +1018,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
                     <br></br>
-                    <label>Action</label>
-                    <br></br>
+                    <label>Action: </label>
+                    <select value={currentPieceDetail["bgm_action"]}
+                        onChange={(event)=>{
+                            setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value});
+                            let tempObj = currentPieceDetail;
+                            tempObj["bgm_action"] = event.target.value;
+                            updateToCaller(tempObj);
 
-                    <select>
-                        <option key="bgmSelect" value="">-- Select an Action --</option>
+                    }}>
+                        <option key="bgmSelect" value="">-- Select Action --</option>
                         <option key="maintainBgm" value="maintainBgm">maintain</option>
                         <option key="startNewBgm" value="startNewBgm">startNew</option>
                         <option key="stopBgm" value="stopBgm">stopPlaying</option>
