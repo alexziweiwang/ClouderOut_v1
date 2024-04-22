@@ -667,13 +667,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <label>Target of change: </label>
 
-                    <br></br><label>TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
+                    <br></br><label>1TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
 
                     <select onChange={(event)=>{
                                 setClickableConsequenceSelectedGameDataItem(event.target.value);
                                 console.log("selected game data (consq) = ");
                                 console.log(event.target.value);
-                                setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
+                                if (event.target.value !== "nextNodePointer") {
+                                    setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
+                                } else {
+                                    setClickableConsequenceSelectedGameDataItemType("nodePointer");
+                                }
                             }} 
                             value={clickableConsequenceSelectedGameDataItem}>
                         <option value="" key=""> -- Select Game Data Item --</option>
@@ -685,38 +689,49 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 <option value={currKey} key={keyStr}>{currKey}</option>
                             );
                         })}
+                        <option value="nextNodePointer" key="nextNodePointer">*Next Node</option>
                     </select>
 
                     <br></br><br></br>
 
                     <div>
+
+                    {clickableConsequenceSelectedGameDataItemType === "nodePointer" &&
+                    <div>
+                        TODO: target node list
+                    </div>
+                    }
                     
                     {clickableConsequenceSelectedGameDataItemType === "number" && 
                         <input type="radio" value={clickableConsequenceIsAssignValue} checked={clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(true);}}></input>} 
-                    <label>Assign Value</label>
                     
-                    <br></br>
-                    <label>TODO: get current selected game-data-item & get type of it & respond accordingly </label>
-                    
-                        <label>TODO</label>
-                        <br></br>
-                        <label>Set </label>
-                        
-                        <label> to </label>
-                        
-                        {(clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
-                        <input onChange={(event)=>{
-                            setClickableConsequenceBecomeAmount(event.target.value);}}></input>}
-                        
-                        {clickableConsequenceSelectedGameDataItemType === "boolean" && 
-                        <select 
-                            onChange={(event)=>{setClickableConsequenceBecomeAmount(event.target.value);}}>
-                                <option value="" key="becomeBoolDefault">-- True or False --</option>
-                                <option value="true" key="becomeTrue">True</option>
-                                <option value="false" key="becomeFalse">False</option>
-                        </select>}
+                        {<div>
+                            <label>Assign Value</label>
+                            
+                            <br></br>
+                            <label>1TODO: get current selected game-data-item & get type of it & respond accordingly </label>
+                            
+                                <label>TODO</label>
+                                <br></br>
+                                <label>Set </label>
+                                
+                                <label> to </label>
+                                
+                                {(clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
+                                <input onChange={(event)=>{
+                                    setClickableConsequenceBecomeAmount(event.target.value);}}></input>}
+                                
+                                {clickableConsequenceSelectedGameDataItemType === "boolean" && 
+                                <select 
+                                    onChange={(event)=>{setClickableConsequenceBecomeAmount(event.target.value);}}>
+                                        <option value="" key="becomeBoolDefault">-- True or False --</option>
+                                        <option value="true" key="becomeTrue">True</option>
+                                        <option value="false" key="becomeFalse">False</option>
+                                </select>}
 
-                        <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
+                                <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
+                            
+                        </div>}
                     </div>
 
 
@@ -921,7 +936,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <label>Assign Value</label>
                     
                     <br></br>
-                    <label>TODO: get current selected game-data-item & get type of it & respond accordingly </label>
+                    <label>2TODO: get current selected game-data-item & get type of it & respond accordingly </label>
                     
                         <label>TODO</label>
                         <br></br>
