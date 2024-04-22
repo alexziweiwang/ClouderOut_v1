@@ -1032,7 +1032,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <option key="stopBgm" value="stopBgm">stop playing</option>
                     </select>
 
-                    {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
+                    {currentPieceDetail["bgm_action"] === "startNewBgm" && <div className="indentOne">
                         <label>Source:  </label>
                         
                         <select value={currentPieceDetail["bgm_source_varname"]} onChange={(event)=>{
