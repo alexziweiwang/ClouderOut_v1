@@ -15,16 +15,26 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
     const [currentPiece, setCurrentPiece] = useState({});
     
+    const [bgmSource, setBgmSource] = useState("");
+
     let charaPicCurr = currentPiece["chp_curr"];
     let charaPicArr = currentPiece["chp_arr"];
 
     useEffect(() => {
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp);
+      updateBgmSource();
 
     });
 
 
+    function updateBgmSource() {
+      if (currentPiece["bgm_action"] === "startNewBgm") {
+        setBgmSource(currentPiece["bgm_source_link"]);
+      } else if (currentPiece["bgm_action"] === "stopBgm") {
+        setBgmSource("");
+      }
+    }
 
     function changeGameScreenSizeSetting(event) {
         const input = event.target.value;
@@ -130,9 +140,11 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
             </div>
 
-                    {(currentPiece["bgm_source_link"] !== undefined && currentPiece["bgm_action"] !== "stopBgm") && 
-                    <audio src={currentPiece["bgm_source_link"]} autoplay="autoplay" controls/>
-                    }
+                  {(bgmSource !== undefined) && 
+                      <audio src={bgmSource} controls/> //TODO actual game-playing
+                      // <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
+
+                  }
                  
 
 
