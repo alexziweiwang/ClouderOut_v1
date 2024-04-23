@@ -699,6 +699,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     {clickableConsequenceSelectedGameDataItemType === "nodePointer" &&
                     <div>
                         TODO: target node list
+                        TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
+                        TODO: NodeManager components has parameter function that takes its current node list, and Game-Maker cathes that returned value, then pass this list into Convo-Editor to PieceSetter
                     </div>
                     }
                     
