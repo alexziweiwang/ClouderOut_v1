@@ -674,8 +674,12 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 console.log("selected game data (consq) = ");
                                 console.log(event.target.value);
                                 if (event.target.value !== "nextNodePointer") {
+                                    if (event.target.value === "") {
+                                        return;
+                                    }
                                     setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
                                 } else {
+                                
                                     setClickableConsequenceSelectedGameDataItemType("nodePointer");
                                 }
                             }} 
@@ -707,18 +711,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     {clickableConsequenceSelectedGameDataItemType === "number" && 
                         <input type="radio" value={clickableConsequenceIsAssignValue} checked={clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(true);}}></input>} 
                     
-                        {<div>
+                    {clickableConsequenceSelectedGameDataItem !== "" && <>
                             <label>Assign Value</label>
                             
                             <br></br>
-                            <label>1TODO: get current selected game-data-item & get type of it & respond accordingly </label>
-                            
-                                <label>TODO</label>
+  
                                 <br></br>
-                                <label>Set </label>
-                                
-                                <label> to </label>
-                                
+                                <label>Set to</label>
+                                                                
                                 {(clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
                                 <input onChange={(event)=>{
                                     setClickableConsequenceBecomeAmount(event.target.value);}}></input>}
@@ -733,7 +733,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                                 <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
                             
-                        </div>}
+                        </>}
                     </div>
 
 
@@ -912,6 +912,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br><label>TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
 
                     <select onChange={(event)=>{
+                        if (event.target.value === "") {
+                            return;
+                        }
                                 setClickableConsequenceSelectedGameDataItem(event.target.value);
                                 console.log("selected game data (consq) = ");
                                 console.log(event.target.value);
@@ -964,7 +967,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <div>
                 
                 {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceIsAssignValue} checked={!clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(false);}}></input>}
-                    <label>Change Value</label>
+                    <label>Update Value</label>
                     <br></br>
                     <label>Operation: </label>
                     <label>TODO</label>
