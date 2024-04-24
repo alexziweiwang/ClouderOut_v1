@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
-import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUIInnerPreview from './GameUIInnerPreview';
+import GameUIInnerPlay from './GameUIInnerPreview';
 
 
 export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
@@ -167,6 +167,10 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
               /> 
+
+              <GameUIInnerPlay
+              
+              />
 
 
               

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
-import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
+import GameUIOuterPreview from './GameUIOuterPreview';
 import GameUIInnerPreview from './GameUIInnerPreview';
 
 
