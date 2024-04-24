@@ -67,7 +67,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
-        "btn_arr": allPieceData[pieceNum-1]["btn_arr"], 
+        "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], 
+        "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
         "bgm_source_link":allPieceData[pieceNum-1]["bgm_source_link"],
         "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
@@ -79,7 +80,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     const [audioList, setAudioList] = useState([]);
     const [visualList, setVisualList] = useState([]); 
-
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -605,7 +605,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
            
                 <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
 
-                    <div><label>1. Standard Button (option) Group</label>
+                    <div><label>1. Standard Button/Option Group</label>
                         <div className="indentOne">
 
                         <table>
@@ -779,6 +779,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
                         obj.target = stdnBtnConseqGDataItemSelected;
+                        if (stdnBtnConseqGDataItemSelected === "") {
+                            return;
+                        }
                         
                         if (stdnBtnConseqIsAssignValue === false) { // plus or minus
                             if (consequenceStndBtnIsPlus !== "plus" && consequenceStndBtnIsPlus !== "minus") {
