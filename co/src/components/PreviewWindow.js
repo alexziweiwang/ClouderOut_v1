@@ -14,7 +14,10 @@ export default function PreviewWindow({getCurrentPiece, getCurrentPieceIndex, ge
     const [gameScreenSize, setGameScreenSize] = useState("");
 
     const [currentPiece, setCurrentPiece] = useState({});
-    
+    const [currentPieceIndex, setCurrentPieceIndex] = useState({});
+
+
+    const [bgpSource, setBgpSource] = useState("");    
     const [bgmSource, setBgmSource] = useState("");
 
     let charaPicCurr = currentPiece["chp_curr"];
@@ -23,20 +26,27 @@ export default function PreviewWindow({getCurrentPiece, getCurrentPieceIndex, ge
     useEffect(() => {
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp);
-      updateBgpSource();
-      updateBgmSource();
 
-      //TODO check and deicde change or not of the previewing content...
+      let indexTemp = getCurrentPieceIndex();
+      if (indexTemp !== currentPieceIndex) { // need to update current-piece
+
+        updateBgpSource();
+        updateBgmSource();
+  
+        //TODO check and deicde change or not of the previewing content...
+  
+        setCurrentPieceIndex(indexTemp);
+      }
+
 
 
     });
 
     function updateBgpSource() {
-      console.log("update bpg source..."); 
+      console.log("update bgp source..."); 
       //TODO 
 
     }
-
 
     function updateBgmSource() {
       if (currentPiece["bgm_action"] === "startNewBgm") {
