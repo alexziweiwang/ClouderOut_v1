@@ -642,11 +642,18 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             </tbody>
                     
                         </table>
-                        <button onClick={()=>{
+                        {!displayStndButtonAdd && <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
                         }}>
                             Add a New Button
-                        </button>
+                        </button>}
+                        {displayStndButtonAdd && <button onClick={()=>{
+                            setDisplayStndButtonAdd(!displayStndButtonAdd);
+                        }}>-- Collapse Adding New Button --
+                        </button>}
+                       
+
+
                         {displayStndButtonAdd && 
                         <div className="purpleArea">
                             <div>
@@ -804,6 +811,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     }}>Add</button>
                     </div>}
                     </div>
+                    <br></br>
+                    <button className="buttonRight" onClick={()=>{
+                        //TODO add to stdnButtonDataTable
+                    }}
+                    >Add this Button</button>
                         
                         </div>}
 
@@ -872,14 +884,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 </thead>
                                 <tbody>
 
-    const [cstmClkbConseqGDataItemSelected, setCstmClkbConseqGDataItemSelected] = useState("");
-    const [cstmClkbConseqGDataTypeSelected, setCstmClkbConseqGDataTypeSelected] = useState("");
-    const [consequenceCstmClkbIsPlus, setConsequenceCstmClkbIsPlus] = useState("");
-    const [cstmClkbConseqIsAssignValue, setCstmClkbConseqIsAssignValue] = useState(true);
-    const [cstmClkbConseqBecomeAmount, setCstmClkbConseqBecomeAmount] = useState("");
-    
-
-
                                     {cstmClkbConsequenceArray.map((item, index) => {  
                                         console.log("1standard button group: item = ", item);       
                                     return (
@@ -905,17 +909,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br><label>2TEST: game-data-item-type: {cstmClkbConseqGDataTypeSelected}:::</label><br></br>
 
                     <select onChange={(event)=>{
-                                setStdnBtnConseqGDataItemSelected(event.target.value);
+                                setCstmClkbConseqGDataItemSelected(event.target.value);
                                 console.log("selected game data (consq) = ");
                                 console.log(event.target.value);
                                 if (event.target.value !== "nextNodePointer") {
                                     if (event.target.value === "") {
                                         return;
                                     }
-                                    setStdnBtnConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
+                                    setCstmClkbConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
                                 } else {
                                 
-                                    setStdnBtnConseqGDataTypeSelected("nodePointer");
+                                    setCstmClkbConseqGDataTypeSelected("nodePointer");
                                 }
                             }} 
                             value={cstmClkbConseqGDataItemSelected}>
@@ -999,6 +1003,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
                         obj.target = cstmClkbConseqGDataItemSelected;
+                        if (cstmClkbConseqGDataItemSelected === "") {
+                            return;
+                        }
                         
                         if (cstmClkbConseqIsAssignValue === false) { // plus or minus
                             if (consequenceCstmClkbIsPlus !== "plus" && consequenceCstmClkbIsPlus !== "minus") {
@@ -1020,7 +1027,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     }}>Add</button>
                     </div>}
                     </div>
-                        
+                    <br></br>
+                    <button className="buttonRight" onClick={()=>{
+                        //TODO add to cstmClkbDataTable
+                    }}
+                    >Add this Button</button>
                                     
                         </div>}
 
