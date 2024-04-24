@@ -627,7 +627,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                             <td>{item["buttonText"]}</td>
                                             <td>{item["conseq"]}</td>
                                             <td>
-                                                <button className="cursor_pointer" onClick={()=>{console.log("remove a clickable-item")}}>Remove</button>
+                                                <GiTrashCan 
+                                                    className="cursor_pointer iconButtonSmall" 
+                                                    onClick={()=>{
+                                                        //TODO remove item of current index from stndButtonDataTable
+                                                    }} />
                                             </td>
                                         </tr>
                                     
@@ -675,6 +679,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                             <td>{item[0]}</td>
                                             <td>{item[1]}</td>
                                             <td>{item[2]}</td>
+                                            <GiTrashCan className="cursor_pointer iconButtonSmall" 
+                                            onClick={()=>{
+                                                //TODO remove item of current index from stndButtonConsequenceArray
+                                            }}  
+                                            />
                                         </tr>
   
                                 );
@@ -788,6 +797,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = [];
+                       
                         if (stndBtnConseqGDataItemSelected === "" || stndBtnConseqBecomeAmount === "") {
                             return;
                         }
@@ -823,6 +833,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             return;
                         }
                         let obj = {};
+                        
                         obj.buttonText = stndButtonText;
                         obj.conseq = stndButtonConsequenceArray.toString();
                         
