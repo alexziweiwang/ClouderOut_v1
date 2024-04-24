@@ -622,17 +622,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <tbody>
                                 {stndButtonDataTable.map((item, index) => {         
                                     return (
-                                        <tr className="clickableListItem3">
+                                        <tr>
                                             <td>{index}</td>
                                             <td>{item["buttonText"]}</td>
                                             <td>{item["conseq"]}</td>
-                                            <td>
-                                                {<>
-                                                    {item["conseq"].map((row, rowIndex)=>{
-                                                        return(<>{row[rowIndex]}</>);
-                                                    })}
-                                                </>}
-                                            </td>
                                             <td>
                                                 <button className="cursor_pointer" onClick={()=>{console.log("remove a clickable-item")}}>Remove</button>
                                             </td>
@@ -795,7 +788,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = [];
-                        if (stndBtnConseqGDataItemSelected === "") {
+                        if (stndBtnConseqGDataItemSelected === "" || stndBtnConseqBecomeAmount === "") {
                             return;
                         }
                         obj.push(stndBtnConseqGDataItemSelected)
@@ -811,9 +804,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             
                             obj.push("becomes");
                         }
-
+                        
                         obj.push(stndBtnConseqBecomeAmount); //TODO
-
+                      
                         /* push to stndButtonConsequenceArray */
                         stndButtonConsequenceArray.push(obj);
                         
@@ -824,10 +817,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     </div>}
                     </div>
                     <br></br>
+
                     <button className="buttonRight" onClick={()=>{
+                        if (stndButtonText === "") {
+                            return;
+                        }
                         let obj = {};
                         obj.buttonText = stndButtonText;
-                        obj.conseq = stndButtonConsequenceArray;
+                        obj.conseq = stndButtonConsequenceArray.toString();
                         
                         let tableTemp = stndButtonDataTable;
                         tableTemp.push(obj);
@@ -835,6 +832,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                         console.log("current standard-button group: ");
                         console.log(tableTemp);
+
+                        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tableTemp});
+            
+                        updateToCaller(currentPieceDetail); //TODO test
                     }}
                     >Confirm Add</button>
                         
