@@ -656,8 +656,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                         {displayStndButtonAdd && 
                         <div className="purpleArea">
+
+                            <label>Button Text:</label>
+                            <input></input>TODO
                             <div>
-                            Consequence Table
+                            Consequence(s)
                             <table>
                                 <thead>
                                     <tr>
@@ -681,9 +684,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 </tbody>
 
                             </table>
-                            <button className="indentOne" onClick={()=>{
+                            {!isStndBtnAddNewConsq && <button className="indentOne" onClick={()=>{
                                 setIsStndBtnAddNewConsq(!isStndBtnAddNewConsq);
-                                }}>Add a New Consequence</button>
+                                }}>Add a New Consequence</button>}
                             {isStndBtnAddNewConsq && 
                     <div className="orangeArea indentOne">
 
@@ -780,8 +783,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <br></br>
 
-                    
-                    <button 
+                    <button onClick={()=>{
+                        setIsStndBtnAddNewConsq(false);
+                    }}>Cancel</button>                    
+                    <button className="buttonRight"
                         onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
@@ -809,13 +814,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         setIsStndBtnAddNewConsq(false);
 
                     }}>Add</button>
+
                     </div>}
                     </div>
                     <br></br>
                     <button className="buttonRight" onClick={()=>{
                         //TODO add to stdnButtonDataTable
                     }}
-                    >Add this Button</button>
+                    >Confirm Add</button>
                         
                         </div>}
 
@@ -898,9 +904,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 </tbody>
 
                             </table>
-                            <button className="indentOne" onClick={()=>{
+                            {!isCstmClkbAddNewConsq && <button className="indentOne" onClick={()=>{
                                 setIsCstmClkbAddNewConsq(!isCstmClkbAddNewConsq);
-                                }}>Add a New Consequence</button>
+                            }}>Add a New Consequence</button>}
                             {isCstmClkbAddNewConsq && 
                     <div className="orangeArea indentOne">
 
@@ -997,8 +1003,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <br></br>
 
-                    
-                    <button 
+                    <button onClick={()=>{setIsCstmClkbAddNewConsq(false);}}>Cancel</button>
+
+                    <button className="buttonRight"
                         onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
@@ -1031,7 +1038,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <button className="buttonRight" onClick={()=>{
                         //TODO add to cstmClkbDataTable
                     }}
-                    >Add this Button</button>
+                    >Confirm Add</button>
                                     
                         </div>}
 
