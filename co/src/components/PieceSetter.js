@@ -50,9 +50,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [cstmClkbConseqIsAssignValue, setCstmClkbConseqIsAssignValue] = useState(true);
     const [cstmClkbConseqBecomeAmount, setCstmClkbConseqBecomeAmount] = useState("");
     
+    const [isStndBtnAddNewConsq, setIsStndBtnAddNewConsq] = useState(false);
+    const [isCstmClkbAddNewConsq, setIsCstmClkbAddNewConsq] = useState(false);
 
-    const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
-    
     const [pieceAllDataLocal, setPieceAllDataLocal] = useState(allPieceData);
 
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
@@ -675,9 +675,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                             </table>
                             <button className="indentOne" onClick={()=>{
-                                setIsClickableAddNewConsq(!isClickableAddNewConsq);
+                                setIsStndBtnAddNewConsq(!isStndBtnAddNewConsq);
                                 }}>Add a New Consequence</button>
-                            {isClickableAddNewConsq && 
+                            {isStndBtnAddNewConsq && 
                     <div className="orangeArea indentOne">
 
                     <label>Target of change: </label>
@@ -799,7 +799,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         /* push to stdnButtonConsequenceArray */
                         stdnButtonConsequenceArray.push(obj);
                         
-                        setIsClickableAddNewConsq(false);
+                        setIsStndBtnAddNewConsq(false);
 
                     }}>Add</button>
                     </div>}
@@ -895,9 +895,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                             </table>
                             <button className="indentOne" onClick={()=>{
-                                setIsClickableAddNewConsq(!isClickableAddNewConsq);
+                                setIsCstmClkbAddNewConsq(!isCstmClkbAddNewConsq);
                                 }}>Add a New Consequence</button>
-                            {isClickableAddNewConsq && 
+                            {isCstmClkbAddNewConsq && 
                     <div className="orangeArea indentOne">
 
                     <label>Target of change: </label>
@@ -1015,7 +1015,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                         cstmClkbConsequenceArray.push(obj);
                         
-                        setIsClickableAddNewConsq(false);
+                        setIsCstmClkbAddNewConsq(false);
 
                     }}>Add</button>
                     </div>}
