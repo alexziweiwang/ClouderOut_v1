@@ -29,17 +29,20 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [displayClickableAdd, setDisplayClickableAdd] = useState(false);
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
-    const [clickableDataTable, setClickableDataPart] = useState([]);
-    const [clickableSource, setClickableSource] = useState("default source"); //TODO test
-    const [clickableSound, setClickableSound] = useState("default sound"); //TODO test
-    const [clickableConsequenceArray, setClickableConsequenceArray] = useState([]);
-    const [clickableConsequenceSelectedGameDataItem, setClickableConsequenceSelectedGameDataItem] = useState("");
-    const [clickableConsequenceSelectedGameDataItemType, setClickableConsequenceSelectedGameDataItemType] = useState("");
-    const [consequenceIsPlus, setConsequenceIsPlus] = useState("");
-    const [clickableConsequenceIsAssignValue, setClickableConsequenceIsAssignValue] = useState(true);
-    const [clickableConsequenceBecomeAmount, setClickableConsequenceBecomeAmount] = useState("");
+
+    const [stdnButtonDataTable, setStdnButtonDataTable] = useState([]);
+    const [stdnButtonSound, setStdnButtonSound] = useState("default sound"); //TODO test
+    const [stdnButtonConsequenceArray, setStdnButtonConsequenceArray] = useState([]);
+    const [stdnBtnConseqGDataItemSelected, setStdnBtnConseqGDataItemSelected] = useState("");
+    const [stdnBtnConseqGDataTypeSelected, setStdnBtnConseqGDataTypeSelected] = useState("");
+    const [consequenceStndBtnIsPlus, setConsequenceStndBtnIsPlus] = useState("");
+    const [stdnBtnConseqIsAssignValue, setStdnBtnConseqIsAssignValue] = useState(true);
+    const [stdnBtnConseqBecomeAmount, setStdnBtnConseqBecomeAmount] = useState("");
+
+    const [displayCstmClickableAdd, setDisplayCstmClickableAdd] = useState(false);
+    
+
 
     const [isClickableAddNewConsq, setIsClickableAddNewConsq] = useState(false);
     
@@ -609,7 +612,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             </thead>
                             
                             <tbody>
-                                {clickableDataTable.map((item, index) => {         
+                                {stdnButtonDataTable.map((item, index) => {         
                                     return (
                                         <tr className="clickableListItem3">
                                         <td>{item["shape"]}</td>
@@ -639,7 +642,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         </button>
                         {displayStndButtonAdd && 
                         <div className="purpleArea">
-                            consequence table
+                            <div>
+                            Consequence Table
                             <table>
                                 <thead>
                                     <tr>
@@ -649,7 +653,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {clickableConsequenceArray.map((item, index) => {  
+                                    {stdnButtonConsequenceArray.map((item, index) => {  
                                         console.log("1standard button group: item = ", item);       
                                     return (
                                         <tr className="clickableListItem3">
@@ -671,23 +675,23 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <label>Target of change: </label>
 
-                    <br></br><label>1TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
+                    <br></br><label>1TEST: game-data-item-type: {stdnBtnConseqGDataTypeSelected}:::</label><br></br>
 
                     <select onChange={(event)=>{
-                                setClickableConsequenceSelectedGameDataItem(event.target.value);
+                                setStdnBtnConseqGDataItemSelected(event.target.value);
                                 console.log("selected game data (consq) = ");
                                 console.log(event.target.value);
                                 if (event.target.value !== "nextNodePointer") {
                                     if (event.target.value === "") {
                                         return;
                                     }
-                                    setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
+                                    setStdnBtnConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
                                 } else {
                                 
-                                    setClickableConsequenceSelectedGameDataItemType("nodePointer");
+                                    setStdnBtnConseqGDataTypeSelected("nodePointer");
                                 }
                             }} 
-                            value={clickableConsequenceSelectedGameDataItem}>
+                            value={stdnBtnConseqGDataItemSelected}>
                         <option value="" key=""> -- Select Game Data Item --</option>
                         {Object.keys(gameDataList).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
@@ -704,7 +708,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <div>
 
-                    {clickableConsequenceSelectedGameDataItemType === "nodePointer" &&
+                    {stdnBtnConseqGDataTypeSelected === "nodePointer" &&
                     <div>
                         TODO: target node list
                         TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
@@ -712,10 +716,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     </div>
                     }
                     
-                    {clickableConsequenceSelectedGameDataItemType === "number" && 
-                        <input type="radio" value={clickableConsequenceIsAssignValue} checked={clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(true);}}></input>} 
+                    {stdnBtnConseqGDataTypeSelected === "number" && 
+                        <input type="radio" value={stdnBtnConseqIsAssignValue} checked={stdnBtnConseqIsAssignValue} onChange={()=>{setStdnBtnConseqIsAssignValue(true);}}></input>} 
                     
-                    {clickableConsequenceSelectedGameDataItem !== "" && <>
+                    {stdnBtnConseqGDataItemSelected !== "" && <>
                             <label>Assign Value</label>
                             
                             <br></br>
@@ -723,13 +727,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 <br></br>
                                 <label>Set to</label>
                                                                 
-                                {(clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
+                                {(stdnBtnConseqGDataTypeSelected === "number" || stdnBtnConseqGDataTypeSelected === "string") &&
                                 <input onChange={(event)=>{
-                                    setClickableConsequenceBecomeAmount(event.target.value);}}></input>}
+                                    setStdnBtnConseqBecomeAmount(event.target.value);}}></input>}
                                 
-                                {clickableConsequenceSelectedGameDataItemType === "boolean" && 
+                                {stdnBtnConseqGDataTypeSelected === "boolean" && 
                                 <select 
-                                    onChange={(event)=>{setClickableConsequenceBecomeAmount(event.target.value);}}>
+                                    onChange={(event)=>{setStdnBtnConseqBecomeAmount(event.target.value);}}>
                                         <option value="" key="becomeBoolDefault">-- True or False --</option>
                                         <option value="true" key="becomeTrue">True</option>
                                         <option value="false" key="becomeFalse">False</option>
@@ -743,51 +747,54 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
 
                     
-                    { clickableConsequenceSelectedGameDataItemType === "number" &&
+                    { stdnBtnConseqGDataTypeSelected === "number" &&
                     <div>
                 
-                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceIsAssignValue} checked={!clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(false);}}></input>}
+                {stdnBtnConseqGDataTypeSelected === "number" && <input type="radio" value={stdnBtnConseqIsAssignValue} checked={!stdnBtnConseqIsAssignValue} onChange={()=>{setStdnBtnConseqIsAssignValue(false);}}></input>}
                     <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
                     <label>TODO</label>
-                    <select value={consequenceIsPlus} onChange={(event)=>{setConsequenceIsPlus(event.target.value);}}>
+                    <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
                         <option value="" key=""> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
                     <label>TODO</label>
-                        <input onChange={(event)=>{setClickableConsequenceBecomeAmount(event.target.value);}}></input>
+                        <input onChange={(event)=>{setStdnBtnConseqBecomeAmount(event.target.value);}}></input>
                     </div>}
 
                     <br></br>
+
+                    
                     <button 
                         onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = {};
-                        obj.target = clickableConsequenceSelectedGameDataItem;
+                        obj.target = stdnBtnConseqGDataItemSelected;
                         
-                        if (clickableConsequenceIsAssignValue === false) { // plus or minus
-                            if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
+                        if (stdnBtnConseqIsAssignValue === false) { // plus or minus
+                            if (consequenceStndBtnIsPlus !== "plus" && consequenceStndBtnIsPlus !== "minus") {
                                 console.log("consequence-invalid action");
                                 return;
                             } else {
-                                obj.action = consequenceIsPlus;
+                                obj.action = consequenceStndBtnIsPlus;
                             }
                         } else { // direct assign value 
                             obj.action = "becomes";
                         }
 
-                        obj.amount = clickableConsequenceBecomeAmount; //TODO
+                        obj.amount = stdnBtnConseqBecomeAmount; //TODO
 
-                        /* push to clickableConsequenceArray */
-                        clickableConsequenceArray.push(obj);
+                        /* push to stdnButtonConsequenceArray */
+                        stdnButtonConsequenceArray.push(obj);
                         
                         setIsClickableAddNewConsq(false);
 
                     }}>Add</button>
                     </div>}
-
+                    </div>
+                        
                         </div>}
 
 
@@ -813,9 +820,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         </thead>
                         
                         </table>
-                        {displayClickableAdd === false && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add a New Clickable</button>}
-                        {displayClickableAdd === true && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
-                        {displayClickableAdd=== true && <div className="purpleArea">
+                        {displayCstmClickableAdd === false && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}>Add a New Clickable</button>}
+                        {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
+                        {displayCstmClickableAdd=== true && <div className="purpleArea">
                             <label>Position x: </label>
                             <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
                             <br></br>
@@ -829,17 +836,171 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>                       
                             <br></br>
                             <label>Shape/Picture Source:  </label>
-                    <select>
-                        <option key="clck01" value=""> -- Select base-pic name -- </option>
 
-                        {visualList.map((item, index) => {
-                            let keyStr = "clickable-" + index + "-" + item["var"];
-                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                <select>
+                                    <option key="clck01" value=""> -- Select base-pic name -- </option>
+
+                                    {visualList.map((item, index) => {
+                                        let keyStr = "clickable-" + index + "-" + item["var"];
+                                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
+                                </select>
+                                <button onClick={() => {openRm()}}>+ new variable linking</button>
+                            <br></br>
+                            <label>Consequence Table</label>
+                            <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Object</th>
+                                        <th>Action</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {stdnButtonConsequenceArray.map((item, index) => {  
+                                        console.log("1standard button group: item = ", item);       
+                                    return (
+                                        <tr className="clickableListItem3">
+                                            <td>{item["target"]}</td>
+                                            <td>{item["action"]}</td>
+                                            <td>{item["amount"]}</td>
+                                        </tr>
+  
+                                );
                         })}
-                    </select>
-                    <button onClick={() => {openRm()}}>+ new variable linking</button>
+                                </tbody>
 
+                            </table>
+                            <button className="indentOne" onClick={()=>{
+                                setIsClickableAddNewConsq(!isClickableAddNewConsq);
+                                }}>Add a New Consequence</button>
+                            {isClickableAddNewConsq && 
+                    <div className="orangeArea indentOne">
+
+                    <label>Target of change: </label>
+
+                    <br></br><label>1TEST: game-data-item-type: {stdnBtnConseqGDataTypeSelected}:::</label><br></br>
+
+                    <select onChange={(event)=>{
+                                setStdnBtnConseqGDataItemSelected(event.target.value);
+                                console.log("selected game data (consq) = ");
+                                console.log(event.target.value);
+                                if (event.target.value !== "nextNodePointer") {
+                                    if (event.target.value === "") {
+                                        return;
+                                    }
+                                    setStdnBtnConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
+                                } else {
+                                
+                                    setStdnBtnConseqGDataTypeSelected("nodePointer");
+                                }
+                            }} 
+                            value={stdnBtnConseqGDataItemSelected}>
+                        <option value="" key=""> -- Select Game Data Item --</option>
+                        {Object.keys(gameDataList).map((currKey) => {
+                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            let keyStr = "gameData" + gameDataList[currKey]["name"];
+                            return (
+                                
+                                <option value={currKey} key={keyStr}>{currKey}</option>
+                            );
+                        })}
+                        <option value="nextNodePointer" key="nextNodePointer">*Next Node</option>
+                    </select>
+
+                    <br></br><br></br>
+
+                    <div>
+
+                    {stdnBtnConseqGDataTypeSelected === "nodePointer" &&
+                    <div>
+                        TODO: target node list
+                        TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
+                        TODO: NodeManager components has parameter function that takes its current node list, and Game-Maker cathes that returned value, then pass this list into Convo-Editor to PieceSetter
+                    </div>
+                    }
+                    
+                    {stdnBtnConseqGDataTypeSelected === "number" && 
+                        <input type="radio" value={stdnBtnConseqIsAssignValue} checked={stdnBtnConseqIsAssignValue} onChange={()=>{setStdnBtnConseqIsAssignValue(true);}}></input>} 
+                    
+                    {stdnBtnConseqGDataItemSelected !== "" && <>
+                            <label>Assign Value</label>
+                            
+                            <br></br>
+  
+                                <br></br>
+                                <label>Set to</label>
+                                                                
+                                {(stdnBtnConseqGDataTypeSelected === "number" || stdnBtnConseqGDataTypeSelected === "string") &&
+                                <input onChange={(event)=>{
+                                    setStdnBtnConseqBecomeAmount(event.target.value);}}></input>}
+                                
+                                {stdnBtnConseqGDataTypeSelected === "boolean" && 
+                                <select 
+                                    onChange={(event)=>{setStdnBtnConseqBecomeAmount(event.target.value);}}>
+                                        <option value="" key="becomeBoolDefault">-- True or False --</option>
+                                        <option value="true" key="becomeTrue">True</option>
+                                        <option value="false" key="becomeFalse">False</option>
+                                </select>}
+
+                                <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
+                            
+                        </>}
+                    </div>
+
+
+
+                    
+                    { stdnBtnConseqGDataTypeSelected === "number" &&
+                    <div>
+                
+                {stdnBtnConseqGDataTypeSelected === "number" && <input type="radio" value={stdnBtnConseqIsAssignValue} checked={!stdnBtnConseqIsAssignValue} onChange={()=>{setStdnBtnConseqIsAssignValue(false);}}></input>}
+                    <label>Change Value</label>
+                    <br></br>
+                    <label>Operation: </label>
+                    <label>TODO</label>
+                    <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
+                        <option value="" key=""> -- Select Operation -- </option>
+                        <option value="plus" key="plus"> Plus </option>
+                        <option value="minus" key="minus"> Minus </option>
+                    </select>      
+                    <label>TODO</label>
+                        <input onChange={(event)=>{setStdnBtnConseqBecomeAmount(event.target.value);}}></input>
+                    </div>}
+
+                    <br></br>
+
+                    
+                    <button 
+                        onClick={()=>{
+                        //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
+                        let obj = {};
+                        obj.target = stdnBtnConseqGDataItemSelected;
                         
+                        if (stdnBtnConseqIsAssignValue === false) { // plus or minus
+                            if (consequenceStndBtnIsPlus !== "plus" && consequenceStndBtnIsPlus !== "minus") {
+                                console.log("consequence-invalid action");
+                                return;
+                            } else {
+                                obj.action = consequenceStndBtnIsPlus;
+                            }
+                        } else { // direct assign value 
+                            obj.action = "becomes";
+                        }
+
+                        obj.amount = stdnBtnConseqBecomeAmount; //TODO
+
+                        /* push to stdnButtonConsequenceArray */
+                        stdnButtonConsequenceArray.push(obj);
+                        
+                        setIsClickableAddNewConsq(false);
+
+                    }}>Add</button>
+                    </div>}
+                    </div>
+                        
+                                    
                         </div>}
 
                     </div>
