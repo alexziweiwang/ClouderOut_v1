@@ -2,10 +2,13 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
-import GameUIPureInner from './GameUIPureInner';
+import GameUIInnerPreview from './GameUIInnerPreview';
 
 
-export default function PlayWindow({getCurrentPieceIndex, AllPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+//TODO important: keeps a node's game-content
+//TODO important: interact with play-tracker
+//TODO important: refactor to stable-UI-setting input
 
     console.log("re-rendering @play window");
 
@@ -98,7 +101,7 @@ export default function PlayWindow({getCurrentPieceIndex, AllPieces, getTextFram
 
     } 
 
-    function triggerContinue(action, valueObj) {
+    function triggerContinue(action, valueObj) { //TODO important for play-window
       //when players click on everywhere except for game-content-button or menu-button
         //action is "direct next-piece"?
       
@@ -156,7 +159,7 @@ export default function PlayWindow({getCurrentPieceIndex, AllPieces, getTextFram
              
               </div>
 
-              <GameUIPureInner 
+              <GameUIInnerPreview 
                   dataObj={currentPiece} 
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getTextFrameUISettings={getTextFrameUISettings} 

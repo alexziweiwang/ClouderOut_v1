@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import GameUIPureInner from './GameUIPureInner';
+import GameUIInnerPreview from './GameUIInnerPreview';
 
 export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType}) {
 
@@ -16,7 +16,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
         <div className="preveiewArea2">
         
   
-            <GameUIPureInner dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
+            <GameUIInnerPreview dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/> 
         </div>
 {/* 
         {menuType === "storyCore" && <div className="preveiewArea2">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIPureInner({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 

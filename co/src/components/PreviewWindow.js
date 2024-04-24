@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
-import GameUIPureInner from './GameUIPureInner';
+import GameUIInnerPreview from './GameUIInnerPreview';
 
 
 export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
@@ -17,13 +17,13 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     
     const [bgmSource, setBgmSource] = useState("");
 
-    let charaPicCurr = currentPiece["chp_curr"];
-    let charaPicArr = currentPiece["chp_arr"];
+    let charaPicCurr = currentPiece["chp_curr"]; //only displays immediate adjustments
+    let charaPicArr = currentPiece["chp_arr"];//only displays immediate adjustments
 
     useEffect(() => {
       let objTemp = getCurrentPiece();
-      setCurrentPiece(objTemp);
-      updateBgmSource();
+      setCurrentPiece(objTemp); //only fetches the most-updated current piece
+      updateBgmSource(); // special because of across-piece setting
 
     });
 
@@ -64,18 +64,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
         //TODO design: each node and have one size, and different nodes can have various sizes?
 
     } 
-
-    function triggerContinue(action, valueObj) {
-      //when players click on everywhere except for game-content-button or menu-button
-        //action is "direct next-piece"?
-      
-      //when players click on game-content-button or menu-button (trigger a change of game-data, etc.)
-        //action is "changed game-data and see"?
-
-    }
-
-
-
  
     return (
         <div className="previewWindow">
@@ -89,8 +77,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                   
                   <div> data-previewing area:
                     
-                
-            
                     {(charaPicCurr !== undefined && charaPicCurr !== [] && charaPicCurr[5] !== "default-none" && charaPicCurr[5] !== "") && 
                           
                             <img style={{
@@ -126,7 +112,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
              
               </div>
 
-              <GameUIPureInner 
+              <GameUIInnerPreview 
                   dataObj={currentPiece} 
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getTextFrameUISettings={getTextFrameUISettings} 
