@@ -5,7 +5,7 @@ import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUIPureInner from './GameUIPureInner';
 
 
-export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PreviewWindow({getCurrentPiece, getCurrentPieceIndex, getAllPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     console.log("re-rendering @preview window");
 
@@ -23,9 +23,19 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     useEffect(() => {
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp);
+      updateBgpSource();
       updateBgmSource();
 
+      //TODO check and deicde change or not of the previewing content...
+
+
     });
+
+    function updateBgpSource() {
+      console.log("update bpg source..."); 
+      //TODO 
+
+    }
 
 
     function updateBgmSource() {
