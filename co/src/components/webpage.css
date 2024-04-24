@@ -297,6 +297,17 @@ div {
     height: 660px;
 }
 
+.playWindow {
+    background-color: rgb(124, 129, 124);
+    width: 660px;
+    flex: 2;
+    margin-left: 10px;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: auto;
+    height: 660px;
+}
+
 .preveiewArea {
     height: 600px;
     width: 800px;

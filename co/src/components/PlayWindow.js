@@ -5,28 +5,61 @@ import GameUIPreviewOuterFrame from './GameUIPreviewOuterFrame';
 import GameUIPureInner from './GameUIPureInner';
 
 
-export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PlayWindow({getCurrentPieceIndex, AllPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
-    console.log("re-rendering @preview window");
+    console.log("re-rendering @play window");
 
-    let name = "/previewwindow";
+    let name = "/playwindow";
 
     const [gameScreenSize, setGameScreenSize] = useState("");
 
     const [currentPiece, setCurrentPiece] = useState({});
-    
+    const [currentPieceIndex, setCurrentPieceIndex] = useState(0);
+
+    const [bgpSource, setBgpSource] = useState("");    
     const [bgmSource, setBgmSource] = useState("");
 
-    let charaPicCurr = currentPiece["chp_curr"];
-    let charaPicArr = currentPiece["chp_arr"];
+    const [charaPicCurr, setCharacPicCurr] = useState([]);
+    const [charaPicArr, setCharaPicArr] = useState([]);
+
+    // let charaPicCurr = currentPiece["chp_curr"];
+    // let charaPicArr = currentPiece["chp_arr"];
 
     useEffect(() => {
-      let objTemp = getCurrentPiece();
-      setCurrentPiece(objTemp);
+      // let objTemp = getCurrentPiece();
+      // setCurrentPiece(objTemp);
+
+
+      let indexTemp = getCurrentPieceIndex();
+      if (indexTemp !== currentPieceIndex) { // need to update current-piece
+        setCurrentPieceIndex(indexTemp);
+        let len = currentPiece.length;
+        if (len === 0) {
+          setCharacPicCurr(currentPiece["chp_curr"]);
+          setCharaPicArr(currentPiece["chp_arr"]);
+        }
+        
+        let tempAllPieces = getAllPieces();
+        setCurrentPiece(tempAllPieces[indexTemp]);
+        
+
+        //TODO strategy: only update when change happens ...
+
+      }
+
+      updateBgpSource();
       updateBgmSource();
+
+
+
 
     });
 
+    function updateBgpSource() {
+      if (bgpSource !== currentPiece["bgp_source_link"]) {
+        setBgpSource(currentPiece["bgp_source_link"]);
+      }
+    }
 
     function updateBgmSource() {
       if (currentPiece["bgm_action"] === "startNewBgm") {
@@ -78,19 +111,16 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
  
     return (
-        <div className="previewWindow">
-       
+        <div className="playWindow">
+       currentPieceIndex: {currentPieceIndex}
             <div className="preveiewArea" style={{"position": "relative"}}>
             
               <div style={{
-                "background-image": `url(${currentPiece["bgp_source_link"]})`,
+                "background-image": `url(${bgpSource})`,
                 "background-size": `800px 600px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
                   
-                  <div> data-previewing area:
-                    
-                
-            
+                  <div> data:
                     {(charaPicCurr !== undefined && charaPicCurr !== [] && charaPicCurr[5] !== "default-none" && charaPicCurr[5] !== "") && 
                           
                             <img style={{
@@ -118,7 +148,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                         </>
                       );
                     })}<br></br>
-                    !!bgp_source_link: {currentPiece["bgp_source_link"]}
+                    !!bgp_source_link: {bgpSource}
 
                     <br></br>
                     voiceline: {currentPiece[["vl_source_varname"]]}...
@@ -139,77 +169,10 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
               
 
             </div>
-
                   {(bgmSource !== undefined) && 
-                      <audio src={bgmSource} controls/> //TODO actual game-playing
-                      // <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
-
+                      <audio src={bgmSource} controls/> // actual game-playing
                   }
-                 
-
-
-            <div>
-                    <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
-                        <option value="" key=""> ----- Select Size and Direction ----- </option>
-                        <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                        <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-                        <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                        <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-
-                    </select>
-                    <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
-                </div>
-
-
-                      
-            <p className="plans">
-                needed data: game size and direction info setting from the user/author
-                <br></br> reads all data for current piece and present here
-            </p>
-
-
-            <p className="plans">
-            This is conversation-node editing panel
-            <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)
-
-            <br></br> TODO: load game-data here, and pass to piece-setter
-            <br></br> for "consequence" by some clickable, make sure it updates the game-data
-            <br></br> conosider local-version keeping, and syncing to cloud
-
-            <br></br> After fetching the data above, previewer should reflect the adjustment and present this piece (refresh with local data)
-            <br></br> also, save and update to db if requested by user.
-
-
-            </p>
-
-            <p className="plans">
-                * idea: provide "game-data-viewer" for authors:
-                <br></br> at all points (pieces) of the game, the author can check game-data for that progress to keep track of everything in game
-                <br></br> toggle in preview-related component
-            </p>
-
-            <p className="plans">
-                TODO: fetch the current game-size for this node
-            </p>
-
-            <p className="plans">
-                    Below is ... Adjustment area: setting of size & direction for current *node*
-                    <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
-                    <br></br>but this feature is provided so user can utilize the existing node-content
-                    </p>
-            <p className="plans">
-                    [bg-pic] char-pics, clickable
-                    <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
-                    <br></br>
-            </p>
-
-            <p>
-            TODO: textframe and standard-button-group can be 0 or 1 -- need to fetch current-piece data to decide 
-            <br></br>TODO: textframe should be clickable for next-piece (default) as the game-content
-
-
-            </p>
-               
+         
         </div>
     );
 }

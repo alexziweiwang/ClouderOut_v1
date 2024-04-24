@@ -230,14 +230,6 @@ export default function ConversationNodeEditingPanel() {
         return pieceDataStructure[previewingIndex];
     }
 
-    function passInCurrentPieceIndex() {
-        return previewingIndex;
-    }
-    
-    function passInAllPieces() {
-        return pieceDataStructure;
-    }
-
     function fetchMenuType(value) {
         setMenuType(value);
     }
@@ -302,17 +294,7 @@ export default function ConversationNodeEditingPanel() {
 
                       
             {isDisplayPreview === true && 
-                <PreviewWindow 
-                    dataObj={pieceDataStructure[previewingIndex]} 
-                    getCurrentPiece={passInCurrentPieceObj} 
-                    getCurrentPieceIndex={passInCurrentPieceIndex}
-                    getAllPieces={passInAllPieces}
-                    getTextFrameUISettings={passInTextFrameUISettings} 
-                    getDefaultButtonUISettings={passInDefaultButtonUISettings} 
-                    getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
-                    getBackButtonUISettings={passInBackButtonUISettings}
-                />}
-
+                <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
                 <GameUIPreviewOuterFrame dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}
                     getMenuType={passInMenuType}
