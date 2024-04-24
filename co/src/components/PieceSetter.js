@@ -522,7 +522,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         if (anotherCharpic === true) { // going to be false (closed)
             resetAddingCharPicRow();
         }
-        changeAddAnotherCharPicOption();}}>Add Another Character Picture</button>
+        changeAddAnotherCharPicOption();}}>Add a New Character Picture</button>
     {anotherCharpic &&
     <>
         <br></br>
@@ -592,6 +592,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             {clickableAdd && 
                 <div className="optionAreaSelected2">
+           
+                <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
+
                     <div><label>1. Standard Button (option) Group</label>
                         <div className="indentOne">
 
@@ -632,9 +635,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
                         }}>
-                            Add Another Button
+                            Add a New Button
                         </button>
-                        {displayStndButtonAdd && <div className="purpleArea">
+                        {displayStndButtonAdd && 
+                        <div className="purpleArea">
                             consequence table
                             <table>
                                 <thead>
@@ -661,7 +665,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             </table>
                             <button className="indentOne" onClick={()=>{
                                 setIsClickableAddNewConsq(!isClickableAddNewConsq);
-                                }}>Add Another Consequence</button>
+                                }}>Add a New Consequence</button>
                             {isClickableAddNewConsq && 
                     <div className="orangeArea indentOne">
 
@@ -791,58 +795,40 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     
                     </div>
 
-
-
-                    <p className="plans"> (modularizable: multiple items allowed) 
-                    <br></br> TODO: add data structure of clickable-setting records!
-                    </p>
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
-                    
                     <br></br>
-                   
-                    <table>
-                    <thead>
-                    <tr>
-                        <th>Shape/Picture Source</th>
-                        <th>Consequence</th>
-    
-                    </tr>
-                    </thead>
+                    <label>2. Custom Clickable(s)</label>
                     
-                    <tbody>
-                        {clickableDataTable.map((item, index) => {         
-                            return (
-                                <tr className="clickableListItem3">
-                                <td>{item["shape"]}</td>
-                                <td>{item["sound"]}</td>
-                                <td>
-                                    {<>
-                                        {item["consequence"].map((row, rowIndex)=>{
-                                            return(<>{row[rowIndex]}</>);
-                                        })}
-                                    </>}
-                                </td>
-                                <td>
-                                    <button className="cursor_pointer" onClick={()=>{console.log("remove a clickable-item")}}>Remove</button>
-                                </td>
-                            </tr>
-                            
-                                );
-                        })}
+                    <div className="indentOne">
+                        <table>
+                        <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Postiion</th>
+                            <th>Size</th>
+                            <th>Text</th>
+                            <th>Shape/Picture-Base</th>
+                            <th>Consequence</th>
+        
+                        </tr>
+                        </thead>
                         
-                    </tbody>
-                    
-                    </table>
-                    <br></br>
-                    <p className="plans"> area of working </p>
-
-                    {displayClickableAdd === false && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add a New Clickable</button>}
-                    {displayClickableAdd === true && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
-  
-                <div className="purpleArea">
-                     {displayClickableAdd && 
-            <div>
-                    <label>Shape/Picture Source:  </label>
+                        </table>
+                        {displayClickableAdd === false && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}>Add a New Clickable</button>}
+                        {displayClickableAdd === true && <button onClick={()=>{setDisplayClickableAdd(!displayClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
+                        {displayClickableAdd=== true && <div className="purpleArea">
+                            <label>Position x: </label>
+                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
+                            <br></br>
+                            <label>Position y: </label>
+                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
+                            <br></br>
+                            <label>Width: </label>
+                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
+                            <br></br>
+                            <label>Height: </label>
+                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>                       
+                            <br></br>
+                            <label>Shape/Picture Source:  </label>
                     <select>
                         <option key="clck01" value=""> -- Select base-pic name -- </option>
 
@@ -851,183 +837,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
-       
                     <button onClick={() => {openRm()}}>+ new variable linking</button>
-                    <br></br>
-                    {/* <label>Sound Effect:      </label> //TODO future feature
-                    <label>TODO</label>
-                    <select>
-                        {audioList.map((item, index) => {
-                            return (<option key={index} value={item["var"]}>{item["var"]}</option>);
-                        })}
-                    </select> */}
-                    {/* <button onClick={() => {openRm()}}>+ new variable linking</button> */}
-                    <br></br>
-                    <p className="plans"> TODO: add basic info for buttons: posx, posy, width, height</p>
-                    <label>Position x: </label>
-                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
-                    <br></br>
-                    <label>Position y: </label>
-                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
-                    <br></br>
-                    <label>Width: </label>
-                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
-                    <br></br>
-                    <label>Height: </label>
-                    <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
-                    <br></br>
-                    <br></br>
-                    <label>Consequence:         </label>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Object</th>
-                                <th>Action</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
+
                         
-                        <tbody>
-                            {clickableConsequenceArray.map((item, index) => {         
-                            return (
-                                <tr className="clickableListItem3" key={item.toString()}>
-                                    <td>(obj1)</td>
-                                    <td>(action1)</td>
-                                    <td>(amount1)</td>
-                                    <td><GiTrashCan 
-                                        onClick={()=>{
-                                        //TODO remove from consequence table
-                                    }}  className="iconButtonSmall"/></td>
-                                </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                    <button onClick={()=>{setIsClickableAddNewConsq(!isClickableAddNewConsq);}}>Add a new consequence</button>
-                    {isClickableAddNewConsq && 
-                    <div className="orangeArea">
+                        </div>}
 
-                    <label>Target of change: </label>
-
-                    <br></br><label>TEST: game-data-item-type: {clickableConsequenceSelectedGameDataItemType}:::</label><br></br>
-
-                    <select onChange={(event)=>{
-                        if (event.target.value === "") {
-                            return;
-                        }
-                                setClickableConsequenceSelectedGameDataItem(event.target.value);
-                                console.log("selected game data (consq) = ");
-                                console.log(event.target.value);
-                                setClickableConsequenceSelectedGameDataItemType(gameDataList[event.target.value]["data_type"]);
-                            }} 
-                            value={clickableConsequenceSelectedGameDataItem}>
-                        <option value="" key=""> -- Select Game Data Item --</option>
-                        {Object.keys(gameDataList).map((currKey) => {
-                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                            let keyStr = "gameData" + gameDataList[currKey]["name"];
-                            return (
-                                
-                                <option value={currKey} key={keyStr}>{currKey}</option>
-                            );
-                        })}
-                    </select>
-
-                    <br></br><br></br>
-
-                    <div>
-                    
-                    {clickableConsequenceSelectedGameDataItemType === "number" && 
-                        <input type="radio" value={clickableConsequenceIsAssignValue} checked={clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(true);}}></input>} 
-                    <label>Assign Value</label>
-                    
-                    <br></br>
-                    <label>2TODO: get current selected game-data-item & get type of it & respond accordingly </label>
-                    
-                        <label>TODO</label>
-                        <br></br>
-                        <label>Set </label>
-                        
-                        <label> to </label>
-                        
-                        { (clickableConsequenceSelectedGameDataItemType === "number" || clickableConsequenceSelectedGameDataItemType === "string") &&
-                        <input></input>}
-                        {clickableConsequenceSelectedGameDataItemType === "boolean" && 
-                        <select>
-                            <option>True</option>
-                            <option>False</option>
-                        </select>}
-
-                        <br></br><p className="plans"> 2 TODO: consider validation or typed option for game data types </p>
                     </div>
-
-
-
-                    
-                    { clickableConsequenceSelectedGameDataItemType === "number" &&
-                    <div>
-                
-                {clickableConsequenceSelectedGameDataItemType === "number" && <input type="radio" value={clickableConsequenceIsAssignValue} checked={!clickableConsequenceIsAssignValue} onChange={()=>{setClickableConsequenceIsAssignValue(false);}}></input>}
-                    <label>Update Value</label>
-                    <br></br>
-                    <label>Operation: </label>
-                    <label>TODO</label>
-                    <select value={consequenceIsPlus} onChange={(event)=>{setConsequenceIsPlus(event.target.value);}}>
-                        <option value="" key="selectConseq"> -- Select Operation -- </option>
-                        <option value="plus" key="plus"> Plus </option>
-                        <option value="minus" key="minus"> Minus </option>
-                    </select>      
-                    <label>TODO</label><input></input>
-                    </div>}
-
-                    <br></br>
-                    <button onClick={()=>{
-                        setIsClickableAddNewConsq(false);
-                        //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
-                        let obj = {};
-                        obj.target = clickableConsequenceSelectedGameDataItem;
-                        if (clickableConsequenceIsAssignValue === false) { // plus or minus
-                            if (consequenceIsPlus !== "plus" && consequenceIsPlus !== "minus") {
-                                console.log("consequence-invalid action");
-                                return;
-                            } else {
-                                obj.action = consequenceIsPlus;
-                            }
-                        } else { // direct assign value 
-                            obj.action = "becomes";
-                        }
-
-                        // obj.amount = ; //TODO
-
-                        /* push to clickableConsequenceArray */
-                        clickableConsequenceArray.push(obj);
-
-                        console.log("just added a new conseuquence, now: ", clickableConsequenceArray);
-
-                    }}>Add</button>
-                    </div>}
-
-                    <p className="plans"> Consequence: (logic organizer-related) 
-                    <br></br> TODO: keep the *action* of updating game-data!! (not immediately, but when action triggered)
-                   
-                    <br></br>
-                    <select></select>
-
-
-                    </p>
-                    <button  onClick={()=>{
-                        let newlickableData = clickableDataTable;
-                        const newRow = ""; //TODO fill in data from fields
-                        newlickableData.push(newRow);
-                        setClickableDataPart(newlickableData);
-                    }}>
-                        Confirm Add</button>
-            </div>
-                    }
-
-        </div>
+  
+       
+               
                 </div>
-                
-                
+                              
                 }
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
