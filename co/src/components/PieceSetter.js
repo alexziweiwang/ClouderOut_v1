@@ -829,6 +829,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         
                         setIsStndBtnAddNewConsq(false);
 
+
                     }}>Add</button>
 
                     </div>}
@@ -854,6 +855,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tableTemp});
             
                         updateToCaller(currentPieceDetail); //TODO test
+
+
+                        setStndButtonText("");
+                        setStndButtonConsequenceArray([]);
+                        setDisplayStndButtonAdd(false);
+                        setStndBtnConseqGDataItemSelected("");
+                        setStndBtnConseqGDataTypeSelected("");
+                        setStndBtnConseqBecomeAmount("");
                     }}
                     >Confirm Add</button>
                         
