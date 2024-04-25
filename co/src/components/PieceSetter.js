@@ -625,7 +625,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                         <tr>
                                             <td>{index}</td>
                                             <td>{item["buttonText"]}</td>
-                                            <td>{item["conseq"]}</td>
+                                            <td><p>{item.conseq.map((elem, i) => {
+                                                let keyStr = "stnd-button-" + index + "-";
+                                                let str = "[" + elem[0] + "] " + elem[1] + ": [" + elem[2] + "]";
+                                                
+                                                return (<label key={keyStr}>{str}<br></br></label>);
+                                            })}
+                                          
+                                            </p></td>
                                             <td>
                                                 <GiTrashCan 
                                                     className="cursor_pointer iconButtonSmall" 
@@ -835,7 +842,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         let obj = {};
                         
                         obj.buttonText = stndButtonText;
-                        obj.conseq = stndButtonConsequenceArray.toString();
+                        obj.conseq = stndButtonConsequenceArray;
                         
                         let tableTemp = stndButtonDataTable;
                         tableTemp.push(obj);
