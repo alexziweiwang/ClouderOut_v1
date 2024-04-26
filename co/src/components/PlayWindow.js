@@ -160,6 +160,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
               </div>
 
               <GameUIInnerPreview 
+                  isSettingUpUI={false}
                   dataObj={currentPiece} 
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getTextFrameUISettings={getTextFrameUISettings} 

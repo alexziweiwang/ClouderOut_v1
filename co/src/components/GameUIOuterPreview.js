@@ -11,10 +11,18 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
         setMenuType(tempType);
     });
 
+    console.log("GameUIPreviewOuterFrame -- setting up Game-UI");
 
     return(<div className="previewWindow">
         <div className="preveiewArea2">
-            <GameUIInnerPreview dataObj={dataObj} getTextFrameUISettings={getTextFrameUISettings} getIsDisplayDefaultButton={getIsDisplayDefaultButton} getDefaultButtonUISettings={getDefaultButtonUISettings} getBackButtonUISettings={getBackButtonUISettings}/>  
+            <GameUIInnerPreview 
+                isSettingUpUI={true}
+                dataObj={dataObj} 
+                getTextFrameUISettings={getTextFrameUISettings} 
+                getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
+                getDefaultButtonUISettings={getDefaultButtonUISettings} 
+                getBackButtonUISettings={getBackButtonUISettings}
+            />  
         </div>
         <br></br>
 

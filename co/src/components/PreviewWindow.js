@@ -113,12 +113,14 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
               </div>
 
               <GameUIInnerPreview 
+                  isSettingUpUI={false}
                   dataObj={currentPiece} 
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getTextFrameUISettings={getTextFrameUISettings} 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
+                    
               /> 
 
 

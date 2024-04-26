@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function GameUIInnerPreview({isSettingUpUI, dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
     const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
-    const stndButtonTextArr = dataObj["stnd_btn_arr"] === undefined ? ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."] : dataObj["stnd_btn_arr"];
+    const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] : (dataObj["stnd_btn_arr"] !== undefined ? dataObj["stnd_btn_arr"] : []);
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
