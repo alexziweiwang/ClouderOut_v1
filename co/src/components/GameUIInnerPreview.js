@@ -12,6 +12,9 @@ export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, get
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
+    const [stndButtonTextArr, setStndButtonTextArr]  = useState([]);
+    setupStndButtonTextArr();
+
     useEffect(() => {
         
         let txtFrameUISettings = getTextFrameUISettings();
@@ -25,6 +28,22 @@ export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, get
 
     });
     
+    function setupStndButtonTextArr() {
+        if (dataObj === undefined || dataObj["stnd_btn_arr"] === undefined) {
+            return;
+        }
+        let arr = [];
+        let source = dataObj["stnd_btn_arr"];
+        let i = 0;
+        let len = source.length;
+
+        for (; i < len; i++) {
+            arr.push(source[i]["buttonText"]);
+        }
+        console.log("stnd_btn_arr...", source); //TODO test
+
+        console.log("previewing button text...", arr); //TODO test
+    }
 
 
     return (
