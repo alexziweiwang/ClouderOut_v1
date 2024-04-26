@@ -30,7 +30,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
-
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
     const [stndButtonSound, setStndButtonSound] = useState("default sound"); //TODO test
     const [stndButtonText, setStndButtonText] = useState(""); //TODO test
@@ -44,6 +43,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [displayCstmClickableAdd, setDisplayCstmClickableAdd] = useState(false);
     const [cstmClkbDataTable, setCstmClkbDataTable] = useState([]);
     const [cstmClkbSound, setCstmClkbSound] = useState("default sound"); //TODO test
+    const [cstmClkbText, setCstmClkbText] = useState(0);
+    const [cstmClkbPosX, setCstmClkbPosX] = useState(0);
+    const [cstmClkbPosY, setCstmClkbPosY] = useState(0);
+    const [cstmClkbW, setCstmClkbW] = useState(0);
+    const [cstmClkbH, setCstmClkbH] = useState(0);
+    const [cstmClkbIsShape, setCstmIsShape] = useState(false);
+    const [cstmClkbBgColor, setCstmSlkbBgColor] = useState("");
+    const [cstmClkbPicVar, setCstmSlkbPicVar] = useState("");
+
     const [cstmClkbConsequenceArray, setCstmClkbConsequenceArray] = useState([]);
     const [cstmClkbConseqGDataItemSelected, setCstmClkbConseqGDataItemSelected] = useState("");
     const [cstmClkbConseqGDataTypeSelected, setCstmClkbConseqGDataTypeSelected] = useState("");
