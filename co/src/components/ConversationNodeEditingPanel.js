@@ -6,7 +6,7 @@ import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
-import GameUIOuterPreview from './GameUIOuterPreview';
+import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
 import GameUISetter from './GameUISetter';
 
 export default function ConversationNodeEditingPanel() {
@@ -296,7 +296,7 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayPreview === true && 
                 <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
-                <GameUIOuterPreview dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}
+                <GameUIOuterPreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}
                     getMenuType={passInMenuType}
                 />
             }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUIInnerPreview from './GameUIInnerPreview';
+import GameUITextFramePreview from './GameUITextFramePreview';
 
 export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType}) {
 
@@ -11,18 +12,23 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
         setMenuType(tempType);
     });
 
-    console.log("GameUIPreviewOuterFrame -- setting up Game-UI");
+    return(
+    <div className="previewWindow">
 
-    return(<div className="previewWindow">
         <div className="preveiewArea2">
+
             <GameUIInnerPreview 
                 isSettingUpUI={true}
                 dataObj={dataObj} 
-                getTextFrameUISettings={getTextFrameUISettings} 
                 getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                 getDefaultButtonUISettings={getDefaultButtonUISettings} 
                 getBackButtonUISettings={getBackButtonUISettings}
             />  
+            <GameUITextFramePreview
+                dataObj={dataObj} 
+                getTextFrameUISettings={getTextFrameUISettings}
+            />
+            
         </div>
         <br></br>
 

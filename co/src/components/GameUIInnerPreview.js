@@ -1,23 +1,19 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIInnerPreview({isSettingUpUI, dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
     const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
     const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] : (dataObj["stnd_btn_arr"] !== undefined ? dataObj["stnd_btn_arr"] : []);
 
-    const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
-
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
     
 
     useEffect(() => {
-        
-        let txtFrameUISettings = getTextFrameUISettings();
-        setTxtFrameUISettings(txtFrameUISettings);
+
         let isDisplayDefaultVal = getIsDisplayDefaultButton();
         setIsDisplayDefualtBtnUISettings(isDisplayDefaultVal);
         let defaultBtnUISettings = getDefaultButtonUISettings();
@@ -168,53 +164,6 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getTextFrame
     </div>
 
 
-
-        { dataObj.displayTextFrame && <div style={txtFrameUISettings["isShape"] === true ? {
-            "background": txtFrameUISettings["bgColor"],
-
-            "width": `${txtFrameUISettings["width"]}px`,
-            "height": `${txtFrameUISettings["height"]}px`,
-            "position": "absolute",
-            "top": `${txtFrameUISettings["positionY"]}px`,
-            "left": `${txtFrameUISettings["positionX"]}px`,  
-            "color": txtFrameUISettings["textColor"],
-            "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
-            "opacity": txtFrameUISettings["transparency"],
-            "font-size": `${txtFrameUISettings["textSize"]}px`,    
-            "user-select": "none",
-        } : {
-            "background-image": `url('${txtFrameUISettings["picUrl"]}')`,
-
-            "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
-            
-            "width": `${txtFrameUISettings["width"]}px`,
-            "height": `${txtFrameUISettings["height"]}px`,
-            "position": "absolute",
-            "top": `${txtFrameUISettings["positionY"]}px`,
-            "left": `${txtFrameUISettings["positionX"]}px`,
-            "color": txtFrameUISettings["textColor"],
-            "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
-            "opacity": txtFrameUISettings["transparency"],
-            "font-size": `${txtFrameUISettings["textSize"]}px`, 
-            "user-select": "none", 
-        }}>
-            
-            <div style={{
-                "position": "relative",
-                "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
-                "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
-                "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
-                "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
-                "border": "2px solid #e99a2b",
-                "border-radius": "0px"
-            }}>
-                {dataObj.speaker_name !== "" && <><label>{dataObj.speaker_name}</label><br></br></>}
-                {dataObj.content}               
-            </div>
-        
-        </div>
-        }
- 
     </div>
 
 

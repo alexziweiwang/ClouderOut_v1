@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
-import GameUIOuterPreview from './GameUIOuterPreview';
+import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
 import GameUIInnerPreview from './GameUIInnerPreview';
+import GameUITextFramePreview from './GameUITextFramePreview';
 
 
 export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
@@ -112,11 +113,15 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
              
               </div>
 
+              <GameUITextFramePreview
+                dataObj={currentPiece} 
+                getTextFrameUISettings={getTextFrameUISettings}
+              />
+
               <GameUIInnerPreview 
                   isSettingUpUI={false}
                   dataObj={currentPiece} 
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
-                  getTextFrameUISettings={getTextFrameUISettings} 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
