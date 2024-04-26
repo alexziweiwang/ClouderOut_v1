@@ -6,14 +6,13 @@ export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, get
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
     const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
-    const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
+    const stndButtonTextArr = dataObj["stnd_btn_arr"] === undefined ? ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."] : dataObj["stnd_btn_arr"];
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
-    const [stndButtonTextArr, setStndButtonTextArr]  = useState([]);
-    setupStndButtonTextArr();
+    
 
     useEffect(() => {
         
@@ -27,24 +26,6 @@ export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, get
         setBackButtonUISettings(backBtnUISettings);
 
     });
-    
-    function setupStndButtonTextArr() {
-        if (dataObj === undefined || dataObj["stnd_btn_arr"] === undefined) {
-            return;
-        }
-        let arr = [];
-        let source = dataObj["stnd_btn_arr"];
-        let i = 0;
-        let len = source.length;
-
-        for (; i < len; i++) {
-            arr.push(source[i]["buttonText"]);
-        }
-        console.log("stnd_btn_arr...", source); //TODO test
-
-        console.log("previewing button text...", arr); //TODO test
-    }
-
 
     return (
         <div style={{"width": 800}}>
@@ -55,7 +36,8 @@ export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, get
         {isDisplayDefualtBtnUISettings && 
 
         <div>
-        {defaultButtonTextSampleArr.map((item, index)=>{
+        {stndButtonTextArr.map((item, index)=>{
+
             let currId = "defaultButtonDivPreviewWindow" + index;
             return (
             <div id={currId} key={index} style={
@@ -114,7 +96,8 @@ export default function GameUIInnerPreview({dataObj, getTextFrameUISettings, get
             }
             
             >
-            {defaultButtonTextSampleArr[index]}
+            {/* {defaultButtonTextSampleArr[index]} */}
+            {item["buttonText"]}
             </div>);
         }                
         )}
