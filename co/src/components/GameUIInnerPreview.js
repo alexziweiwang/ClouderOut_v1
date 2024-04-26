@@ -10,8 +10,6 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
-    
-
     useEffect(() => {
 
         let isDisplayDefaultVal = getIsDisplayDefaultButton();

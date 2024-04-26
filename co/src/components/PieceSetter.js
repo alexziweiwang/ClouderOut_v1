@@ -757,8 +757,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
   
                                 <br></br>
                                 <label>Set to</label>
+                                
+                                {stndBtnConseqGDataTypeSelected === "number" &&
+                                <input type="number"
+                                    onChange={(event)=>{
+                                    setStndBtnConseqBecomeAmount(event.target.value);}}></input>}
+                                   
                                                                 
-                                {(stndBtnConseqGDataTypeSelected === "number" || stndBtnConseqGDataTypeSelected === "string") &&
+                                {stndBtnConseqGDataTypeSelected === "string" &&
                                 <input onChange={(event)=>{
                                     setStndBtnConseqBecomeAmount(event.target.value);}}></input>}
                                 
@@ -1008,8 +1014,12 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
   
                                 <br></br>
                                 <label>Set to</label>
-                                                                
-                                {(cstmClkbConseqGDataTypeSelected === "number" || cstmClkbConseqGDataTypeSelected === "string") &&
+                                {cstmClkbConseqGDataTypeSelected === "number" &&
+                                <input type="number"
+                                    onChange={(event)=>{
+                                    setCstmClkbConseqBecomeAmount(event.target.value);}}></input>}
+
+                                {cstmClkbConseqGDataTypeSelected === "string" &&
                                 <input onChange={(event)=>{
                                     setCstmClkbConseqBecomeAmount(event.target.value);}}></input>}
                                 

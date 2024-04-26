@@ -76,7 +76,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                 "background-size": `800px 600px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
                   
-                  <div> data-previewing area:
+                  <div> 
                     
                     {(charaPicCurr !== undefined && charaPicCurr !== [] && charaPicCurr[5] !== "default-none" && charaPicCurr[5] !== "") && 
                           
@@ -104,19 +104,15 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                           />
                         </>
                       );
-                    })}<br></br>
-                    !!bgp_source_link: {currentPiece["bgp_source_link"]}
-
-                    <br></br>
-                    voiceline: {currentPiece[["vl_source_varname"]]}...
+                    })}
                   </div>
              
               </div>
 
-              <GameUITextFramePreview
+              {currentPiece.displayTextFrame && <GameUITextFramePreview
                 dataObj={currentPiece} 
                 getTextFrameUISettings={getTextFrameUISettings}
-              />
+              />}
 
               <GameUIInnerPreview 
                   isSettingUpUI={false}
