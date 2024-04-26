@@ -906,13 +906,23 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         </tr>
                         </thead>
                         <tbody>
-                            
+                            {cstmClkbDataTable.map((item, index) => {
+                                let keyStr = "clickable-table-row-" + index + "-";
+                                return (<tr key={keyStr}>
+                                    <td>{index}</td>
+                                </tr>);
+                            })}
                         </tbody>
                         TODO: cstmClkbDataTable
                         </table>
                         {displayCstmClickableAdd === false && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}>Add a New Clickable</button>}
                         {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
                         {displayCstmClickableAdd=== true && <div className="purpleArea">
+                            <label>Button Text:</label>
+                            <input onChange={(event)=>{
+                                setCstmClkbText(event.target.value);
+                            }}></input>
+                            <br></br>
                             <label>Position x: </label>
                             <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
                             <br></br>
@@ -1100,6 +1110,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br>
                     <button className="buttonRight" onClick={()=>{
                         //TODO add to cstmClkbDataTable
+
+
                     }}
                     >Confirm Add</button>
                                     
