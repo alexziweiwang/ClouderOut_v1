@@ -914,6 +914,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             })}
                         </tbody>
                         TODO: cstmClkbDataTable
+                                const [cstmClkbPosY, setCstmClkbPosY] = useState(0);
+                                const [cstmClkbW, setCstmClkbW] = useState(0);
+                                const [cstmClkbH, setCstmClkbH] = useState(0);
+                                const [cstmClkbIsShape, setCstmIsShape] = useState(false);
+                                const [cstmClkbBgColor, setCstmSlkbBgColor] = useState("");
+                                const [cstmClkbPicVar, setCstmSlkbPicVar] = useState("");
+
+
                         </table>
                         {displayCstmClickableAdd === false && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}>Add a New Clickable</button>}
                         {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
@@ -924,10 +932,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             }}></input>
                             <br></br>
                             <label>Position x: </label>
-                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
+                            <input type="number" value={cstmClkbPosX}
+                                onChange={(event)=>{
+                                    setCstmClkbPosX(event.target.value);
+                                }}>
+                            </input><input className="slider" type="range"></input>
                             <br></br>
                             <label>Position y: </label>
-                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
+                            <input type="number" value={cstmClkbPosY}
+                                onChange={(event)=>{
+                                    setCstmClkbPosY(event.target.value);
+                                }}></input><input className="slider" type="range"></input>
                             <br></br>
                             <label>Width: </label>
                             <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
