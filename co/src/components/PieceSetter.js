@@ -413,28 +413,23 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function updatePreviewingCstmClkb(obj) {
-        //TODO
-        //"clkb_previewing"
+
         let tempClkbPreviewing = [];
+        tempClkbPreviewing.push(obj.text);
+        tempClkbPreviewing.push(obj.posX);
+        tempClkbPreviewing.push(obj.posY);
+        tempClkbPreviewing.push(obj.w);
+        tempClkbPreviewing.push(obj.h);
+        tempClkbPreviewing.push(obj.isShape);
+        tempClkbPreviewing.push(obj.bgColor);
+        tempClkbPreviewing.push(obj.picVar);
 
 
-        //obj.text
-        //obj.posX
-        //obj.posY
-        //obj.w
-        //obj.h
-        //obj.isShape
-        //obj.bgColor
-        //obj.picVar
+        let tempObj = currentPieceDetail;
+        tempObj["clkb_previewing"] = tempClkbPreviewing;
+        updateToCaller(tempObj);
 
-        // cstmClkbText
-        // cstmClkbPosX
-        // cstmClkbPosY
-        // cstmClkbW
-        // cstmClkbH
-        // cstmClkbIsShape
-        // cstmClkbBgColor
-        // cstmClkbPicVar
+        setCurrentPieceDetail({...currentPieceDetail,  "clkb_previewing": tempClkbPreviewing});
     }
   
     return (
@@ -954,6 +949,18 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <input type="number" value={cstmClkbPosX}
                                 onChange={(event)=>{
                                     setCstmClkbPosX(event.target.value);
+                                    let prvwObj = {
+                                        "text": cstmClkbText,
+                                        "posX": event.target.value,
+                                        "posY": cstmClkbPosY,
+                                        "w": cstmClkbW,
+                                        "h": cstmClkbH,
+                                        "isShape": cstmClkbIsShape,
+                                        "bgColor": cstmClkbBgColor,
+                                        "picVar": cstmClkbPicVar
+                                    }
+                                    updatePreviewingCstmClkb(prvwObj);
+
                                 }}>
                             </input><input className="slider" type="range" value={cstmClkbPosX}
                                 onChange={(event)=>{
