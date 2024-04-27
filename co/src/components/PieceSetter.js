@@ -78,6 +78,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], 
         "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
+        "clkb_previewing": allPieceData[pieceNum-1]["clkb_previewing"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
         "bgm_source_link":allPieceData[pieceNum-1]["bgm_source_link"],
         "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
@@ -409,6 +410,31 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     function resetAddingCharPicRow() {
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
+    }
+
+    function updatePreviewingCstmClkb(obj) {
+        //TODO
+        //"clkb_previewing"
+        let tempClkbPreviewing = [];
+
+
+        //obj.text
+        //obj.posX
+        //obj.posY
+        //obj.w
+        //obj.h
+        //obj.isShape
+        //obj.bgColor
+        //obj.picVar
+
+        // cstmClkbText
+        // cstmClkbPosX
+        // cstmClkbPosY
+        // cstmClkbW
+        // cstmClkbH
+        // cstmClkbIsShape
+        // cstmClkbBgColor
+        // cstmClkbPicVar
     }
   
     return (
