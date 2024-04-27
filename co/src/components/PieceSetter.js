@@ -49,7 +49,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [cstmClkbW, setCstmClkbW] = useState(0);
     const [cstmClkbH, setCstmClkbH] = useState(0);
     const [cstmClkbIsShape, setCstmIsShape] = useState(false);
-    const [cstmClkbBgColor, setCstmClkbBgColor] = useState("");
+    const [cstmClkbBgColor, setCstmClkbBgColor] = useState("#000000");
     const [cstmClkbPicVar, setCstmClkbPicVar] = useState("");
 
     const [cstmClkbConsequenceArray, setCstmClkbConsequenceArray] = useState([]);
@@ -929,35 +929,48 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 onChange={(event)=>{
                                     setCstmClkbPosX(event.target.value);
                                 }}>
-                            </input><input className="slider" type="range"></input>
+                            </input><input className="slider" type="range" value={cstmClkbPosX}
+                                onChange={(event)=>{
+                                    setCstmClkbPosX(event.target.value);
+                                }}></input>
                             <br></br>
                             <label>Position y: </label>
                             <input type="number" value={cstmClkbPosY}
                                 onChange={(event)=>{
                                     setCstmClkbPosY(event.target.value);
-                                }}></input><input className="slider" type="range"></input>
+                                }}></input><input className="slider" type="range" value={cstmClkbPosY}
+                                onChange={(event)=>{
+                                    setCstmClkbPosY(event.target.value);
+                                }}></input>
                             <br></br>
                             <label>Width: </label>
                             <input type="number" value={cstmClkbW}
                                 onChange={(event)=>{
                                     setCstmClkbW(event.target.value);
-                                }}></input><input className="slider" type="range"></input>
+                                }}></input><input className="slider" type="range" value={cstmClkbW}
+                                onChange={(event)=>{
+                                    setCstmClkbW(event.target.value);
+                                }}></input>
                             <br></br>
                             <label>Height: </label>
-                            <input type="number"value={cstmClkbH}
+                            <input type="number" value={cstmClkbH}
                                 onChange={(event)=>{
                                     setCstmClkbH(event.target.value);
-                                }}></input><input className="slider" type="range"></input>                       
+                                }}></input><input className="slider" type="range" value={cstmClkbH}
+                                onChange={(event)=>{
+                                    setCstmClkbH(event.target.value);
+                                }}></input>                       
                             <br></br>
                             <input type="radio" value={cstmClkbIsShape} checked={cstmClkbIsShape} 
                                 onChange={()=>{setCstmIsShape(true);}}
-                            ></input><label>Rectangle & Color Filled: </label>
+                            ></input><label onClick={()=>{setCstmIsShape(true);}}>Rectangle & Color Filled: </label>
                                 {cstmClkbIsShape && <><br></br><input type="color" value={cstmClkbBgColor}
-                                    onChange={(event)=>{setCstmClkbBgColor(event.target.value);}}></input><label>{cstmClkbBgColor}</label></>}
+                                    onChange={(event)=>{setCstmClkbBgColor(event.target.value);}}></input>
+                                    <label>{cstmClkbBgColor}</label></>}
                             <br></br>
                             <input type="radio" value={cstmClkbIsShape} checked={!cstmClkbIsShape}
                                 onChange={()=>{setCstmIsShape(false);}}
-                            ></input><label>Base Picture: </label><br></br>
+                            ></input><label onClick={()=>{setCstmIsShape(false);}}>Base Picture: </label><br></br>
                             {!cstmClkbIsShape && <div className="indentOne">
                             <label>Shape/Picture Source:  </label>
 
