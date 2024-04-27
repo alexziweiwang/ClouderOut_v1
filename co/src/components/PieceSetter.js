@@ -49,8 +49,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [cstmClkbW, setCstmClkbW] = useState(0);
     const [cstmClkbH, setCstmClkbH] = useState(0);
     const [cstmClkbIsShape, setCstmIsShape] = useState(false);
-    const [cstmClkbBgColor, setCstmSlkbBgColor] = useState("");
-    const [cstmClkbPicVar, setCstmSlkbPicVar] = useState("");
+    const [cstmClkbBgColor, setCstmClkbBgColor] = useState("");
+    const [cstmClkbPicVar, setCstmClkbPicVar] = useState("");
 
     const [cstmClkbConsequenceArray, setCstmClkbConsequenceArray] = useState([]);
     const [cstmClkbConseqGDataItemSelected, setCstmClkbConseqGDataItemSelected] = useState("");
@@ -952,7 +952,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <input type="radio" value={cstmClkbIsShape} checked={cstmClkbIsShape} 
                                 onChange={()=>{setCstmIsShape(true);}}
                             ></input><label>Rectangle & Color Filled: </label>
-                                {cstmClkbIsShape && <><br></br><input type="color"></input></>}
+                                {cstmClkbIsShape && <><br></br><input type="color" value={cstmClkbBgColor}
+                                    onChange={(event)=>{setCstmClkbBgColor(event.target.value);}}></input><label>{cstmClkbBgColor}</label></>}
                             <br></br>
                             <input type="radio" value={cstmClkbIsShape} checked={!cstmClkbIsShape}
                                 onChange={()=>{setCstmIsShape(false);}}
@@ -960,7 +961,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             {!cstmClkbIsShape && <div className="indentOne">
                             <label>Shape/Picture Source:  </label>
 
-                                <select>
+                                <select value={cstmClkbPicVar} onChange={
+                                    (event)=>{setCstmClkbPicVar(event.target.value);}
+                                }>
                                     <option key="clck01" value=""> -- Select base-pic name -- </option>
 
                                     {visualList.map((item, index) => {
