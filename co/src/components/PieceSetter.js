@@ -914,10 +914,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             })}
                         </tbody>
                         TODO: cstmClkbDataTable
-                                const [cstmClkbIsShape, setCstmIsShape] = useState(false);
-                                const [cstmClkbBgColor, setCstmSlkbBgColor] = useState("");
-                                const [cstmClkbPicVar, setCstmSlkbPicVar] = useState("");
-
 
                         </table>
                         {displayCstmClickableAdd === false && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}>Add a New Clickable</button>}
@@ -953,11 +949,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                     setCstmClkbH(event.target.value);
                                 }}></input><input className="slider" type="range"></input>                       
                             <br></br>
-                            <input type="radio"></input><label>Rectangle & Color Filled: </label>
-                                <input type="color"></input>
+                            <input type="radio" value={cstmClkbIsShape} checked={cstmClkbIsShape} 
+                                onChange={()=>{setCstmIsShape(true);}}
+                            ></input><label>Rectangle & Color Filled: </label>
+                                {cstmClkbIsShape && <><br></br><input type="color"></input></>}
                             <br></br>
-                            <input type="radio"></input><label>Base Picture: </label><br></br>
-
+                            <input type="radio" value={cstmClkbIsShape} checked={!cstmClkbIsShape}
+                                onChange={()=>{setCstmIsShape(false);}}
+                            ></input><label>Base Picture: </label><br></br>
+                            {!cstmClkbIsShape && <div className="indentOne">
                             <label>Shape/Picture Source:  </label>
 
                                 <select>
@@ -969,6 +969,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                     })}
                                 </select>
                                 <button onClick={() => {openRm()}}>+ new variable linking</button>
+                            </div>}
                             <br></br>
                             <label>Consequence Table</label>
                             <div>
