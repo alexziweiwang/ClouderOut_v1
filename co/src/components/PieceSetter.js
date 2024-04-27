@@ -1109,7 +1109,35 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     </div>
                     <br></br>
                     <button className="buttonRight" onClick={()=>{
-                        //TODO add to cstmClkbDataTable
+                        // add to cstmClkbDataTable
+                        if (cstmClkbText === "") {
+                            return;
+                        }
+                        let obj = {};
+                        
+                        obj.buttonText = cstmClkbText;
+                        obj.conseq = cstmClkbConsequenceArray;
+                        
+                        let tableTemp = cstmClkbDataTable;
+                        tableTemp.push(obj);
+                        setCstmClkbDataTable(tableTemp);
+
+                        console.log("current sutom-clickable group: "); //TODO test
+                        console.log(tableTemp); //TODO test
+
+                        setCurrentPieceDetail({...currentPieceDetail,  "cstm_clkb_arr": tableTemp});
+                        
+                        let tempObj = currentPieceDetail;
+                        tempObj["cstm_clkb_arr"] = tableTemp;
+                        updateToCaller(tempObj);
+
+
+                        setCstmClkbText("");
+                        setCstmClkbConsequenceArray([]);
+                        setDisplayCstmClickableAdd(false);
+                        setCstmClkbConseqGDataItemSelected("");
+                        setCstmClkbConseqGDataTypeSelected("");
+                        setCstmClkbConseqBecomeAmount("");
 
 
                     }}
