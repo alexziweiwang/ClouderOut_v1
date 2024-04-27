@@ -914,9 +914,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             })}
                         </tbody>
                         TODO: cstmClkbDataTable
-                                const [cstmClkbPosY, setCstmClkbPosY] = useState(0);
-                                const [cstmClkbW, setCstmClkbW] = useState(0);
-                                const [cstmClkbH, setCstmClkbH] = useState(0);
                                 const [cstmClkbIsShape, setCstmIsShape] = useState(false);
                                 const [cstmClkbBgColor, setCstmSlkbBgColor] = useState("");
                                 const [cstmClkbPicVar, setCstmSlkbPicVar] = useState("");
@@ -945,11 +942,22 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 }}></input><input className="slider" type="range"></input>
                             <br></br>
                             <label>Width: </label>
-                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>
+                            <input type="number" value={cstmClkbW}
+                                onChange={(event)=>{
+                                    setCstmClkbW(event.target.value);
+                                }}></input><input className="slider" type="range"></input>
                             <br></br>
                             <label>Height: </label>
-                            <label>TODO</label><input type="number"></input><input className="slider" type="range"></input>                       
+                            <input type="number"value={cstmClkbH}
+                                onChange={(event)=>{
+                                    setCstmClkbH(event.target.value);
+                                }}></input><input className="slider" type="range"></input>                       
                             <br></br>
+                            <input type="radio"></input><label>Rectangle & Color Filled: </label>
+                                <input type="color"></input>
+                            <br></br>
+                            <input type="radio"></input><label>Base Picture: </label><br></br>
+
                             <label>Shape/Picture Source:  </label>
 
                                 <select>
