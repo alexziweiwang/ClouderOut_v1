@@ -33,19 +33,20 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
-    "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
   }); //TODO new data-design
+
+  // chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
+  // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  // "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+  // "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  // chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
 
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["","","","","","","","","",""], 
+    ["chStartName","","","","","","","","",""], 
     ["","","","","","","","","",""],
     ["","","","","","","","","",""]
   ]);
@@ -114,8 +115,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
         //updateNodeDataActions(chapterData);
                 //    setNodeData(chapterData);
-        console.log("First enter node data: ");
-        console.log(nodeData);
+        // console.log("First enter node data: ");
+        // console.log(nodeData);
         setFirstTimeEnter(false);
     }
     });
@@ -625,12 +626,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-        <div>TODO: visualization of node-grids</div>
+        <div style={{"overflow": "scroll"}}>TODO: visualization of node-grids</div>
 
           {gridBlocks.map((row, ir) => {
-              return (<div className="parallelFrame" style={{"width":" 1250px", "height": "53px", "backgroundColor": "grey", "borderRadius": "0px", "paddingLeft": "10px"}}>
+              return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
-                      return (<div style={{"width":" 150px", "height": "47px", "backgroundColor": "pink", "marginRight": "10px", "marginTop": "3px"}}></div>)
+                      return (<div className="gridNode">{gridBlocks[ir][ic]}</div>)
                     })}
               
               </div>);
