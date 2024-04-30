@@ -1266,3 +1266,23 @@ button:hover {
     overflow: scroll;
     text-align: center;
 }
+
+.gridNode:hover {
+    width: 150px;
+    height: 47px; 
+    background-color: #544c51;
+    margin-right: 10px;
+    margin-top: 3px;
+    overflow: scroll;
+    text-align: center;
+}
+
+.gridNodeOccupied {
+    width: 150px;
+    height: 47px; 
+    background-color: #dcc9d5;
+    margin-right: 10px;
+    margin-top: 3px;
+    overflow: scroll;
+    text-align: center;
+}

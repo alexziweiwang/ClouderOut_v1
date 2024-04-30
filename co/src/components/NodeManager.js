@@ -631,7 +631,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           {gridBlocks.map((row, ir) => {
               return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
-                      return (<div className="gridNode">{gridBlocks[ir][ic]}</div>)
+                      let content = gridBlocks[ir][ic];
+                      return (<div className={content === "" ? "gridNode" : "gridNodeOccupied"}>{gridBlocks[ir][ic]}</div>)
                     })}
               
               </div>);
