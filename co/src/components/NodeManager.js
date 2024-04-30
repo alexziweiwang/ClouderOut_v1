@@ -611,26 +611,32 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div>
 
-        <div>TODO: list of nodes<br></br>
 
+        <div>TODO: visualization of node-grids</div>
+
+            <p className="plans">TODO: clickable grid for nodes...?
+              <br></br>user can click an empty-grid to create a node there...
+              <br></br>(path will auto-generate after specifying linkings)
+              <br></br>user can also add column or row for new grids 
+              <br></br>TODO: consider adjustment of node-place
+              <br></br>other settings (next-node condition, etc.) are the same 
+              
+            </p>
+        
+        <div>
+
+        <div>List of nodes:<br></br>
               {Object.keys(nodeRelationshipMap).map((currKey) => {
-                  return (<><label>{currKey}</label><br></br></>);
+                console.log("nodeRelationshipMap key:  = ", currKey);
+                console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]);
+
+                let item = nodeRelationshipMap[currKey];
+                  return (<li className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
               })}
 
         </div>
-        <div>TODO: visualization of node-grids</div>
 
-        <p className="plans">TODO: clickable grid for nodes...?
-          <br></br>user can click an empty-grid to create a node there...
-          <br></br>(path will auto-generate after specifying linkings)
-          <br></br>user can also add column or row for new grids 
-          <br></br>TODO: consider adjustment of node-place
-          <br></br>other settings (next-node condition, etc.) are the same 
-          
-        </p>
-        
-        <div>
-  
+
         </div>
 
 
