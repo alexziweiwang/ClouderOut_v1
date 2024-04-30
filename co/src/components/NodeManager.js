@@ -493,7 +493,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
     return (      
-        <>
+        <div style={{"overflow": "scroll", "width": "1000px"}}>
 
         {chapterKey!== "" && <div className="setting_area"> 
         <label>Chapter Key: {chapterKey}</label><br></br>
@@ -503,8 +503,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
-
-        <div className="orangeArea">List of nodes:<br></br>
+          <div style={{"height": "350px"}} className="orangeArea">List of nodes:<br></br>
+            <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     console.log("nodeRelationshipMap key:  = ", currKey);
                     console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]);
@@ -512,10 +512,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     let item = nodeRelationshipMap[currKey];
                       return (<li className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
                   })}
+            </ul>
+          </div>  
 
-        </div>  
-
-        <div className="section">
+          <div className="section">
      
               {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
               {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">+ Add A New Node</label></div>}
@@ -554,6 +554,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </button>
             </div>}
         </div>
+     
+     
         {/* <div className="visArea visPanel" style={{"overflow": "scroll"}}>
 
           <svg
@@ -623,8 +625,19 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-
         <div>TODO: visualization of node-grids</div>
+
+          {gridBlocks.map((row, ir) => {
+              return (<div className="parallelFrame" style={{"width":" 1250px", "height": "53px", "backgroundColor": "grey", "borderRadius": "0px", "paddingLeft": "10px"}}>
+                    {row.map((col,ic) => {
+                      return (<div style={{"width":" 150px", "height": "47px", "backgroundColor": "pink", "marginRight": "10px", "marginTop": "3px"}}></div>)
+                    })}
+              
+              </div>);
+                    
+              })
+
+          }
 
             <p className="plans">TODO: clickable grid for nodes...?
               <br></br>user can click an empty-grid to create a node there...
@@ -641,7 +654,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
         </div>
-
 
           {clickedNode !== "" && 
         <div>
@@ -1156,6 +1168,6 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
 
         {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
 
-      </>
+      </div>
     );
 }
