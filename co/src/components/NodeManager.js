@@ -67,6 +67,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const navigate = useNavigate();
 
    const [clickedNode, setClickedNode] = useState("");
+   const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
+
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [createdNewNodeScreenSize, setCreatedNewNodeScreenSize] = useState("h450_800");
@@ -632,11 +634,19 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
                       let content = gridBlocks[ir][ic];
-                      return (<div className={content === "" ? "gridNode" : "gridNodeOccupied"}>{gridBlocks[ir][ic]}</div>)
+                      let crd = ir * 10000 + ic;
+
+                      return (<div 
+                          className={
+                            crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNode" : "gridNodeOccupied")}
+                          onClick={()=>{       
+                            console.log("clicked node2:", crd );
+                            console.log("on record clicked-node: ", clickedNode2);              
+                            setClickedNode2(crd);}}
+                          >{gridBlocks[ir][ic]}</div>)
                     })}
               
               </div>);
-                    
               })
 
           }
