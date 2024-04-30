@@ -7,6 +7,7 @@ import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../vie
 import GameDataManager from './GameDataManager';
 
 export default function NodeManager({projectName, currUser, chapterKey}) {
+
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
@@ -32,14 +33,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    chStartName: {nodeName: chStartName, depth: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
-    "plot1": {nodeName: "plot1", depth: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "plot2": {nodeName: "plot2",depth: 3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option x": {nodeName: "option x", depth: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    "option y": {nodeName: "option y", depth: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    "end node": {nodeName: "end node", depth: 5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    chEndName: {nodeName: chEndName, depth: 6, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
+    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
+    "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
+    "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+    chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
   }); //TODO new data-design
+
+  const [gridBlocks, setGridBlocks] = useState([
+    ["","","","","","","","","",""], 
+    ["","","","","","","","","",""],
+    ["","","","","","","","","",""], 
+    ["","","","","","","","","",""],
+    ["","","","","","","","","",""]
+  ]);
+
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
   //TODO depth of this node is (prev-node's depth + 1); if multiple prev-nodes? choose max prev-depth
   //TODO: node-visualization point: keep the max-length of "nextPairs", as the total height reference for svg drawing
@@ -601,6 +611,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div>
 
+        <div>TODO: list of nodes<br></br>
+
+              {Object.keys(nodeRelationshipMap).map((currKey) => {
+                  return (<><label>{currKey}</label><br></br></>);
+              })}
+
+        </div>
+        <div>TODO: visualization of node-grids</div>
+
         <p className="plans">TODO: clickable grid for nodes...?
           <br></br>user can click an empty-grid to create a node there...
           <br></br>(path will auto-generate after specifying linkings)
@@ -609,6 +628,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <br></br>other settings (next-node condition, etc.) are the same 
           
         </p>
+        
+        <div>
+  
+        </div>
 
 
           {clickedNode !== "" && 
