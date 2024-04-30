@@ -503,46 +503,58 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
-        <div className="section">
-        
-        {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
-        {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">+ Add A New Node</label></div>}
 
-        {addNewNodeAreaDisplay && <div>
-        <label>Node Name: </label>
-        <input 
-          className="setting_item"
-          type="text" value={createNewNodeName} 
-          onChange={e => {setCreateNewNodeName(e.target.value)}}  
-        />
-        <br></br>
-        <label>Node Game Type: </label>
-        <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
-          <option value="" key=""> -- Select Node's Game Type -- </option>
-          <option value="Card Game" key="Card Game">Card Game</option>
-          <option value="Board Game" key="Board Game">Board Game</option>
-          <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
-          <option value="Conversation" key="Conversation">Conversation</option>
-        </select>
-        <br></br>
-        <label>Screen Size: </label>
-        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-              <option value="" key=""> ----- Select Size and Direction ----- </option>
-              <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-              <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-              <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-              <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+        <div className="orangeArea">List of nodes:<br></br>
+                  {Object.keys(nodeRelationshipMap).map((currKey) => {
+                    console.log("nodeRelationshipMap key:  = ", currKey);
+                    console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]);
+
+                    let item = nodeRelationshipMap[currKey];
+                      return (<li className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
+                  })}
+
+        </div>  
+
+        <div className="section">
+     
+              {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
+              {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">+ Add A New Node</label></div>}
+
+              {addNewNodeAreaDisplay && <div>
+      
+            <label>Node Name: </label>
+            <input 
+              className="setting_item"
+              type="text" value={createNewNodeName} 
+              onChange={e => {setCreateNewNodeName(e.target.value)}}  
+            />
+            <br></br>
+            <label>Node Game Type: </label>
+            <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+              <option value="" key=""> -- Select Node's Game Type -- </option>
+              <option value="Card Game" key="Card Game">Card Game</option>
+              <option value="Board Game" key="Board Game">Board Game</option>
+              <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
+              <option value="Conversation" key="Conversation">Conversation</option>
             </select>
-        <br></br>
-        <button 
-          className="setting_item buttonRight"
-          onClick={addNewNode}>
-            Create
-        </button>
-        </div>}
+            <br></br>
+            <label>Screen Size: </label>
+            <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+                  <option value="" key=""> ----- Select Size and Direction ----- </option>
+                  <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                  <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+                  <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                  <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+                </select>
+            <br></br>
+            <button 
+              className="setting_item buttonRight"
+              onClick={addNewNode}>
+                Create
+            </button>
+            </div>}
         </div>
-        
-        <div className="visArea visPanel" style={{"overflow": "scroll"}}>
+        {/* <div className="visArea visPanel" style={{"overflow": "scroll"}}>
 
           <svg
             height="100%"
@@ -609,7 +621,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           })}    
           </svg>
     
-        </div>
+        </div> */}
 
 
         <div>TODO: visualization of node-grids</div>
@@ -625,16 +637,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         
         <div>
 
-        <div>List of nodes:<br></br>
-              {Object.keys(nodeRelationshipMap).map((currKey) => {
-                console.log("nodeRelationshipMap key:  = ", currKey);
-                console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]);
-
-                let item = nodeRelationshipMap[currKey];
-                  return (<li className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
-              })}
-
-        </div>
+ 
 
 
         </div>
