@@ -1294,6 +1294,22 @@ button:hover {
     align-items: center; 
 }
 
+.gridNodeOccupied:hover {
+    width: 150px;
+    height: 47px; 
+    background-color: #dcc9d5;
+    margin-right: 10px;
+    margin-top: 3px;
+    overflow: scroll;
+    text-align: center;
+    display: flex;    
+    justify-content: center;
+    align-items: center; 
+    cursor: pointer;
+}
+
+
+
 .gridNodeClicked {
     width: 150px;
     height: 47px; 

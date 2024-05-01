@@ -247,9 +247,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
         setCreatedNewNodeScreenSize("h600_800");
-
-
-
+        setClickedNode2(-1);
       } else {
         console.log("2Invalid node name: duplicate"); //TODO test
 
@@ -663,17 +661,21 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           onClick={()=>{       
                             console.log("clicked node2:", crd );
                             console.log("on record clicked-node: ", clickedNode2); 
-                            if (crd === clickedNode2) {
+                            if (crd === clickedNode2) { //cancel if already clicked
                               setClickedNode2(-1);
-                            } else {
+                            } else {//setup clicked node
                               setClickedNode2(crd);
                             }       
                             
-                            if (clickedNode2 !== "" && content === "") {
+                            if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
                               setAddNewNodeAreaDisplay(true);
                             }
 
-                            if (clickedNode2 !== "" && clickedNode2 == crd) {
+                            if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
+                              setAddNewNodeAreaDisplay(false);
+                            }
+
+                            if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
                               setAddNewNodeAreaDisplay(false);
                             }
 
@@ -684,7 +686,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                             {content !== "" && 
                               <label className="cursor_pointer">{gridBlocks[ir][ic]}</label>}
                             {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
-                            {(content === "" && crd === clickedNode2) && <label> Adding ... </label>}
+                            {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                           
                           </div>)
                     })}
@@ -732,11 +734,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 className="setting_item buttonRight"
                 onClick={()=>{
                   addNewNode();
-                  addNewNode2();}}>
+                  addNewNode2();
+                  setClickedNodeKey("");
+                  setAddNewNodeAreaDisplay(false);
+                  }}>
                   Create
               </button>
               <button
-                onClick={()=>{setAddNewNodeAreaDisplay(false);setClickedNode2(-1);}}
+                onClick={()=>{
+                  setAddNewNodeAreaDisplay(false);
+                  setClickedNode2(-1);}}
               >Cancel</button>
               </div>
             </div>}
