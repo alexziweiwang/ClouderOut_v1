@@ -700,12 +700,28 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                             crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
                           onClick={()=>{       
                             console.log("clicked node2:", crd );
-                            console.log("on record clicked-node: ", clickedNode2);              
-                            setClickedNode2(crd);}}
-                          >
-                            {content !== "" && <label>{gridBlocks[ir][ic]}</label>}
-                            {(content === "" && crd !== clickedNode2) && <label style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+                            console.log("on record clicked-node: ", clickedNode2); 
+                            if (crd === clickedNode2) {
+                              setClickedNode2(-1);
+                            } else {
+                              setClickedNode2(crd);
+                            }       
+                            
+                            if (clickedNode2 !== "" && content === "") {
+                              setAddNewNodeAreaDisplay(true);
+                            }
 
+                            if (clickedNode2 !== "" && clickedNode2 == crd) {
+                              setAddNewNodeAreaDisplay(false);
+                            }
+
+                            
+                          }}
+                          >
+                            {content !== "" && 
+                              <label className="cursor_pointer">{gridBlocks[ir][ic]}</label>}
+                            {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+                
                             
                           </div>)
                     })}

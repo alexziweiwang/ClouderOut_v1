@@ -1266,6 +1266,7 @@ button:hover {
     overflow: scroll;
     text-align: center;
     cursor: pointer;
+    user-select: none;
 }
 
 .gridNodeEmpty:hover {
@@ -1277,6 +1278,7 @@ button:hover {
     overflow: scroll;
     text-align: center;
     cursor: pointer;
+    user-select: none;
 }
 
 .gridNodeOccupied {
@@ -1287,7 +1289,9 @@ button:hover {
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
-    cursor: pointer;
+    display: flex;    
+    justify-content: center;
+    align-items: center; 
 }
 
 .gridNodeClicked {
@@ -1299,4 +1303,7 @@ button:hover {
     overflow: scroll;
     text-align: center;
     cursor: pointer;
+    display: flex;    
+    justify-content: center;
+    align-items: center; 
 }
