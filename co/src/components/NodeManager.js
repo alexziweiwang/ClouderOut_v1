@@ -550,6 +550,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   } 
 
+  function updateNodeToNewName2() {
+    let tempNodeData = nodeRelationshipMap;
+
+    tempNodeData[clickedNodeKey].nodeName = tempNewName;
+    setNodeRelationshipMap(tempNodeData);
+  
+    setTempNewName("");
+
+  } 
+
 
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
@@ -683,7 +693,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           }}
                           >
                             {content !== "" && 
-                              <label className="cursor_pointer">{gridBlocks[ir][ic]}</label>}
+                              <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
                             {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
                             {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                           
@@ -778,7 +788,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
             </div>
 
-          
+
+            <p className="sectionHeader">*** Node Settings ***</p>
+        <div>
+          <label>Rename Node: </label>
+          <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
+          <button onClick={()=>{updateNodeToNewName2();}}>Update</button>
+        </div>          
           
           
           
