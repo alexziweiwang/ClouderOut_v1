@@ -697,12 +697,17 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                       return (<div 
                           className={
-                            crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNode" : "gridNodeOccupied")}
+                            crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
                           onClick={()=>{       
                             console.log("clicked node2:", crd );
                             console.log("on record clicked-node: ", clickedNode2);              
                             setClickedNode2(crd);}}
-                          >{gridBlocks[ir][ic]}</div>)
+                          >
+                            {content !== "" && <label>{gridBlocks[ir][ic]}</label>}
+                            {(content === "" && crd !== clickedNode2) && <label style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+
+                            
+                          </div>)
                     })}
               
               </div>);

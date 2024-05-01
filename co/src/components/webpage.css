@@ -1257,7 +1257,7 @@ button:hover {
     padding-left: 10px;
 }
 
-.gridNode {
+.gridNodeEmpty {
     width: 150px;
     height: 47px; 
     background-color: #eee8ec;
@@ -1268,7 +1268,7 @@ button:hover {
     cursor: pointer;
 }
 
-.gridNode:hover {
+.gridNodeEmpty:hover {
     width: 150px;
     height: 47px; 
     background-color: #544c51;
