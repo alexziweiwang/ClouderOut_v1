@@ -120,10 +120,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         if (chapterData[index][2] === "delete") {
           hide = "hide";
         }
+        let divKey = "div"+index;
         return (
-        <>
+        <div key={divKey}>
         {hide === "display" && <>
-          <li className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
+          <li key={index}
+              className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
               onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
             {item[0]}:{item[1]}
           </li>
@@ -152,7 +154,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           
           }
           </>}
-        </>
+        </div>
         );
         })}
         <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{
@@ -184,7 +186,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         <div>
               Chapter Revert area<br></br>
               {deletedLocalList.map((item, index) => {
-                return (<label>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>Revert</button ></label>);
+                return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>Revert</button ></label>);
               })}
         </div>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>

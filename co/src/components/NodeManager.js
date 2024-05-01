@@ -509,11 +509,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <div style={{"height": "350px"}} className="orangeArea">List of nodes:<br></br>
             <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
-                    console.log("nodeRelationshipMap key:  = ", currKey);
-                    console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]);
+                      console.log("nodeRelationshipMap key:  = ", currKey); //TODO test
+                      console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]); //TODO test
 
-                    let item = nodeRelationshipMap[currKey];
-                      return (<li className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
+                      let item = nodeRelationshipMap[currKey];
+                      let liKey = "li" + currKey;
+                      return (<li key={liKey} className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
                   })}
             </ul>
           </div>  
