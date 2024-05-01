@@ -252,3 +252,5 @@
 - 2024-Apr-19: Consider strategy of bgm-continuous playing and stopping mechanism
 
 - 2024-Apr-29: Consider and design distributed sys (with Google Cloud)
+
+- 2024-May-01: Reconsider and redesign next-node linking and navigating with the new grid and jumping strategies

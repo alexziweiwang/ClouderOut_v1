@@ -794,7 +794,24 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
           <button onClick={()=>{updateNodeToNewName2();}}>Update</button>
-        </div>          
+        </div>   
+
+
+                 <p className="sectionHeader">*** Next Node(s) ***</p>
+        <div>
+            <table>
+                <thead>
+                    <tr key="head">
+                        <th>Next Node(s)</th>
+                        <th>Condition</th>
+                        <th>[Operation]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  TODO
+                </tbody>
+            </table>
+        </div>
           
           
           
