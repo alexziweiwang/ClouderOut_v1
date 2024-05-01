@@ -218,9 +218,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 // row: 3, col: 2, 
 // prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], 
 // display: true, nodeType:"Conversation", screenSize: "h600_800"},
-
-        let clickedRow = -1;
-        let clickedCol = -1;
+        //clickedNode2: ir * 10000 + ic;
+        let clickedCol = clickedNode2 % 10000;
+        let clickedRow = (clickedNode2 - clickedCol) / 10000;
         
         const newDataItem = { 
           nodeName: `${createNewNodeName}`, 
@@ -234,7 +234,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         }; //TODO temp
 
         tempNodeMap[createNewNodeName] = newDataItem;
+        
 
+        let tempGrid = gridBlocks;
+        gridBlocks[clickedRow][clickedCol] = createNewNodeName;
+        setGridBlocks(tempGrid);
         
         // updateNodeDataActions(nodeDataTemp); //TODO
         
