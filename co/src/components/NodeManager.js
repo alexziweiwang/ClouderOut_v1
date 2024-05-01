@@ -36,11 +36,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   }); //TODO new data-design
 
   // chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
-  // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  // "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-  // "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h450_800"},
+  // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h600_800"},
+  // "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
   // chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
 
   const [gridBlocks, setGridBlocks] = useState([
@@ -199,6 +199,60 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         }
         updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
      
+  }
+
+  function addNewNode2() { //TODO for new data structure
+    const tempNodeMap = nodeRelationshipMap;
+    if (createNewNodeGameType === "") {
+      console.log("Game type is required.") //TODO test
+      return;
+    }
+
+    if (createNewNodeName.length > 0) {
+      const found = nodeData.some((item) => item.nodeName === createNewNodeName);
+      if (tempNodeMap[createNewNodeName] !== undefined || tempNodeMap[createNewNodeName] !== "") {
+        console.log("2create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
+
+// example:
+// "plot1": {nodeName: "plot1", 
+// row: 3, col: 2, 
+// prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], 
+// display: true, nodeType:"Conversation", screenSize: "h600_800"},
+
+        let clickedRow = -1;
+        let clickedCol = -1;
+        
+        const newDataItem = { 
+          nodeName: `${createNewNodeName}`, 
+          nodeType:`${createNewNodeGameType}`,
+          screenSize: createdNewNodeScreenSize,
+          row: clickedRow,
+          col: clickedCol,
+          prevNodes: [],
+          nextPairs: [],
+          display: true,     
+        }; //TODO temp
+
+        tempNodeMap[createNewNodeName] = newDataItem;
+
+        
+        // updateNodeDataActions(nodeDataTemp); //TODO
+        
+        // reset the creation layout
+        setCreateNewNodeName("");
+        setCreateNewNodeGameType("");
+        setCreatedNewNodeScreenSize("h600_800");
+
+
+
+      } else {
+        console.log("2Invalid node name: duplicate"); //TODO test
+
+      }
+ 
+    } else {
+      console.log("warning: invalid empty node name"); //TODO test
+    }
   }
 
   function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
@@ -521,8 +575,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
           <div className="section">
      
-              {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">Add A New Node</label></div>}
-              {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">+ Add A New Node</label></div>}
+              {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
+                Add A New Node</label></div>}
+              {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
+                + Add A New Node</label></div>}
 
               {addNewNodeAreaDisplay && <div>
       
@@ -536,24 +592,26 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             <label>Node Game Type: </label>
             <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
               <option value="" key=""> -- Select Node's Game Type -- </option>
-              <option value="Card Game" key="Card Game">Card Game</option>
+              {/* <option value="Card Game" key="Card Game">Card Game</option>
               <option value="Board Game" key="Board Game">Board Game</option>
-              <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
+              <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
               <option value="Conversation" key="Conversation">Conversation</option>
             </select>
             <br></br>
             <label>Screen Size: </label>
             <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
                   <option value="" key=""> ----- Select Size and Direction ----- </option>
-                  <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                  <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+                  {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                  <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option> */}
+                  {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
                   <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                  <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
                 </select>
             <br></br>
             <button 
               className="setting_item buttonRight"
-              onClick={addNewNode}>
+              onClick={()=>{
+                addNewNode();
+                addNewNode2();}}>
                 Create
             </button>
             </div>}
