@@ -68,6 +68,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
    const [clickedNode, setClickedNode] = useState("");
    const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
+   const [clickedNodeKey, setClickedNodeKey] = useState(""); //TODO using for new data structure
 
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -577,49 +578,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </ul>
           </div>  
 
-          <div className="section">
-     
-              {addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
-                Add A New Node</label></div>}
-              {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
-                + Add A New Node</label></div>}
-
-              {addNewNodeAreaDisplay && <div>
-      
-            <label>Node Name: </label>
-            <input 
-              className="setting_item"
-              type="text" value={createNewNodeName} 
-              onChange={e => {setCreateNewNodeName(e.target.value)}}  
-            />
-            <br></br>
-            <label>Node Game Type: </label>
-            <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
-              <option value="" key=""> -- Select Node's Game Type -- </option>
-              {/* <option value="Card Game" key="Card Game">Card Game</option>
-              <option value="Board Game" key="Board Game">Board Game</option>
-              <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
-              <option value="Conversation" key="Conversation">Conversation</option>
-            </select>
-            <br></br>
-            <label>Screen Size: </label>
-            <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-                  <option value="" key=""> ----- Select Size and Direction ----- </option>
-                  {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                  <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option> */}
-                  {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
-                  <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                </select>
-            <br></br>
-            <button 
-              className="setting_item buttonRight"
-              onClick={()=>{
-                addNewNode();
-                addNewNode2();}}>
-                Create
-            </button>
-            </div>}
-        </div>
      
      
         {/* <div className="visArea visPanel" style={{"overflow": "scroll"}}>
@@ -691,7 +649,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-        <div style={{"overflow": "scroll"}}>TODO: visualization of node-grids</div>
+        <div style={{"overflow": "scroll"}}>TODO: visualization of node-grids grv </div>
 
           {gridBlocks.map((row, ir) => {
               return (<div className="parallelFrame gridRow">
@@ -719,14 +677,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               setAddNewNodeAreaDisplay(false);
                             }
 
+                            setClickedNodeKey(content);
                             
                           }}
                           >
                             {content !== "" && 
                               <label className="cursor_pointer">{gridBlocks[ir][ic]}</label>}
                             {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
-                
-                            
+                            {(content === "" && crd === clickedNode2) && <label> Adding ... </label>}
+                          
                           </div>)
                     })}
               
@@ -735,23 +694,73 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
           }
 
-            <p className="plans">TODO: clickable grid for nodes...?
-              <br></br>user can click an empty-grid to create a node there...
+
+          {addNewNodeAreaDisplay && <div className="section">
+                
+                <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
+                  Adding A New Node</label></div>
+                {/* {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
+                  + Add A New Node</label></div>} */}
+
+                <div>
+              <label>Node Name: </label>
+              <input 
+                className="setting_item"
+                type="text" value={createNewNodeName} 
+                onChange={e => {setCreateNewNodeName(e.target.value)}}  
+              />
+              <br></br>
+              <label>Node Game Type: </label>
+              <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+                <option value="" key=""> -- Select Node's Game Type -- </option>
+                {/* <option value="Card Game" key="Card Game">Card Game</option>
+                <option value="Board Game" key="Board Game">Board Game</option>
+                <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
+                <option value="Conversation" key="Conversation">Conversation</option>
+              </select>
+              <br></br>
+              <label>Screen Size: </label>
+              <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+                    <option value="" key=""> ----- Select Size and Direction ----- </option>
+                    {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                    <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option> */}
+                    {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
+                    <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                  </select>
+              <br></br>
+              <button 
+                className="setting_item buttonRight"
+                onClick={()=>{
+                  addNewNode();
+                  addNewNode2();}}>
+                  Create
+              </button>
+              <button
+                onClick={()=>{setAddNewNodeAreaDisplay(false);setClickedNode2(-1);}}
+              >Cancel</button>
+              </div>
+            </div>}
+
+
+
+            <p className="plans">TODO: 
               <br></br>(path will auto-generate after specifying linkings)
               <br></br>user can also add column or row for new grids 
               <br></br>TODO: consider adjustment of node-place
               <br></br>other settings (next-node condition, etc.) are the same 
-              
             </p>
-        
+
         <div>
 
  
 
 
         </div>
+                
+        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>node info...{clickedNodeKey}</div>}
 
-          {clickedNode !== "" && 
+
+          {(clickedNode !== "") && 
         <div>
         <button 
           className="setting_item"
