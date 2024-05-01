@@ -33,9 +33,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
+    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
+
   }); //TODO new data-design
 
-  // chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"", screenSize:""},
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
   // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
   // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -235,14 +236,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         }; //TODO temp
 
         tempNodeMap[createNewNodeName] = newDataItem;
-        
+        setNodeRelationshipMap(tempNodeMap);
 
         let tempGrid = gridBlocks;
         gridBlocks[clickedRow][clickedCol] = createNewNodeName;
         setGridBlocks(tempGrid);
-        
-        // updateNodeDataActions(nodeDataTemp); //TODO
-        
+ 
         // reset the creation layout
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
@@ -764,7 +763,26 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         </div>
                 
-        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>node info...{clickedNodeKey}</div>}
+        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
+          node info...{clickedNodeKey}
+          <br></br>
+              <p className="sectionHeader">*** Node Info ***</p>
+            <div>
+              <label>Node Name: </label>
+              <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
+              <br></br>
+              <label>Node Type: </label>
+              <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
+              <br></br>
+              <label>Screen Size: </label>
+              <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
+            </div>
+
+          
+          
+          
+          
+          </div>}
 
 
           {(clickedNode !== "") && 
