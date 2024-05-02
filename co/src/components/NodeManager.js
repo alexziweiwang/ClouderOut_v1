@@ -560,6 +560,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   } 
 
+  function updateCurrNodeNextNodeAlways(nextNodeName) {
+    let tempMap = nodeRelationshipMap;
+    let pair = [nextNodeName, "Default: Always Reachable"];
+    tempMap[clickedNodeKey].nextPairs.push(pair);
+    setNodeRelationshipMap(tempMap);
+  }
+
 
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
@@ -824,7 +831,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
           <br></br>
-          <select>
+          <select onChange={(event)=>{
+              let nextNodeName = event.target.value;
+              updateCurrNodeNextNodeAlways(nextNodeName);
+          }}>
 
           {Object.keys(nodeRelationshipMap).map((currKey) => {
               
@@ -837,6 +847,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           </select>
           <button onClick={()=>{
             //TODO
+
           }}>Confirm</button>
         </>}
      
