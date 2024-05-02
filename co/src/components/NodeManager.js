@@ -33,16 +33,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextPairs:[["plot1", "Default: Always Reachable"]], display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
+    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextNode:"plot1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
 
   }); //TODO new data-design
 
-  // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextPairs:[["option x","c1"], ["option y","c2"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextPairs:[["end node","Default: Always Reachable"]], display: true, nodeType:"Card Game", screenSize: "h600_800"},
-  // "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextPairs:[[chEndName, "Default: Always Reachable"]], display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextPairs: [], display:true, nodeType:"", screenSize:""}
+  // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextNode: "", display: true, nodeType:"Card Game", screenSize: "h600_800"},
+  // "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
+  // chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextNode: "", display:true, nodeType:"", screenSize:""}
 
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
@@ -204,7 +204,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   }
 
   function addNewNode2() { //TODO for new data structure
-    const tempNodeMap = nodeRelationshipMap;
+    let tempNodeMap = nodeRelationshipMap;
     if (createNewNodeGameType === "") {
       console.log("Game type is required.") //TODO test
       return;
@@ -224,16 +224,33 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         let clickedCol = clickedNode2 % 10000;
         let clickedRow = (clickedNode2 - clickedCol) / 10000;
         
-        const newDataItem = { 
-          nodeName: `${createNewNodeName}`, 
-          nodeType:`${createNewNodeGameType}`,
-          screenSize: createdNewNodeScreenSize,
-          row: clickedRow,
-          col: clickedCol,
-          prevNodes: [],
-          nextPairs: [],
-          display: true,     
-        }; //TODO temp
+        let newDataItem = {};
+
+        if (createNewNodeGameType === "LogicSplitter") {
+          newDataItem = { 
+            nodeName: `${createNewNodeName}`, 
+            nodeType:`${createNewNodeGameType}`,
+            screenSize: createdNewNodeScreenSize,
+            row: clickedRow,
+            col: clickedCol,
+            prevNodes: [],
+            nextPairs: [],
+            display: true,     
+          }; //TODO temp
+        } else {
+          newDataItem = { 
+            nodeName: `${createNewNodeName}`, 
+            nodeType:`${createNewNodeGameType}`,
+            screenSize: createdNewNodeScreenSize,
+            row: clickedRow,
+            col: clickedCol,
+            prevNodes: [],
+            nextNode: "",
+            display: true,     
+          }; //TODO temp
+        }
+
+
 
         tempNodeMap[createNewNodeName] = newDataItem;
         setNodeRelationshipMap(tempNodeMap);
@@ -562,8 +579,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   function updateCurrNodeNextNodeAlways(nextNodeName) {
     let tempMap = nodeRelationshipMap;
-    let pair = [nextNodeName, "Default: Always Reachable"];
-    tempMap[clickedNodeKey].nextPairs.push(pair);
+    tempMap[clickedNodeKey].nextNode = nextNodeName;
     setNodeRelationshipMap(tempMap);
   }
 
@@ -830,12 +846,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
-          <br></br>
           <select onChange={(event)=>{
-              let nextNodeName = event.target.value;
-              updateCurrNodeNextNodeAlways(nextNodeName);
-          }}>
-
+              let tempMap = nodeRelationshipMap;
+              tempMap[clickedNodeKey].nextNode = event.target.value;
+              setNodeRelationshipMap(tempMap);
+          }}
+          value={nodeRelationshipMap[clickedNodeKey].nextNode}
+          >
+            <option key="defaultNextNode" value="">-- Select a next-node --</option>
           {Object.keys(nodeRelationshipMap).map((currKey) => {
               
                       let item = nodeRelationshipMap[currKey];
