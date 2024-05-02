@@ -33,7 +33,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextNode:"plot1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
+    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
 
   }); //TODO new data-design
 
@@ -799,8 +799,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>
                 
         {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
-          node info...{clickedNodeKey}
-          <br></br>
+
               <p className="sectionHeader">*** Node Info ***</p>
             <div>
               <label>Node Name: </label>
@@ -847,12 +846,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
+          {nodeRelationshipMap[clickedNodeKey].nextNode !== "" && <><label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br></>}
           <select onChange={(event)=>{
               setSelectedNextNode(event.target.value);
           }}
           value={selectedNextNode}
           >
-            <option key="defaultNextNode" value="">-- Select a next-node --</option>
+            <option key="defaultNextNode" value="">-- Select the next-node --</option>
           {Object.keys(nodeRelationshipMap).map((currKey) => {
               
                       let item = nodeRelationshipMap[currKey];
@@ -865,7 +865,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <button onClick={()=>{
               let tempMap = nodeRelationshipMap;
               tempMap[clickedNodeKey].nextNode = selectedNextNode;
-              setNodeRelationshipMap(tempMap);            
+              setNodeRelationshipMap(tempMap);
               setSelectedNextNode("");
           }}>Confirm</button>
         </>}
