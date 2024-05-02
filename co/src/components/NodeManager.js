@@ -803,21 +803,42 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
   
-        <p className="sectionHeader">*** Next Node(s) ***</p>
-        <div>
-            <table>
-                <thead>
-                    <tr key="head">
-                        <th>Next Node(s)</th>
-                        <th>Condition</th>
-                        <th>[Operation]</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  TODO
-                </tbody>
-            </table>
-        </div>
+        {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
+          <p className="sectionHeader">*** Next Nodes ***</p>
+          <div>
+                <table>
+                    <thead>
+                        <tr key="head">
+                            <th>Next Node(s)</th>
+                            <th>Condition</th>
+                            <th>[Operation]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      TODO
+                    </tbody>
+                </table>
+          </div>
+        </>}
+
+        {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
+          <p className="sectionHeader">*** Next Node ***</p>
+          <br></br>
+          <select>
+
+          {Object.keys(nodeRelationshipMap).map((currKey) => {
+              
+                      let item = nodeRelationshipMap[currKey];
+                      let opKey = "opnextnode-" + currKey;
+                      return (
+                        <option key={opKey} value={item["nodeName"]}>{item["nodeName"]}</option>
+                      );
+                  })}
+          </select>
+          <button onClick={()=>{
+            //TODO
+          }}>Confirm</button>
+        </>}
      
           </div>}
 
