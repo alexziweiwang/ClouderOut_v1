@@ -70,6 +70,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [clickedNode, setClickedNode] = useState("");
    const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
    const [clickedNodeKey, setClickedNodeKey] = useState(""); //TODO using for new data structure
+   const [selectedNextNode, setSelectedNextNode] = useState("");
 
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -847,11 +848,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
           <select onChange={(event)=>{
-              let tempMap = nodeRelationshipMap;
-              tempMap[clickedNodeKey].nextNode = event.target.value;
-              setNodeRelationshipMap(tempMap);
+              setSelectedNextNode(event.target.value);
           }}
-          value={nodeRelationshipMap[clickedNodeKey].nextNode}
+          value={selectedNextNode}
           >
             <option key="defaultNextNode" value="">-- Select a next-node --</option>
           {Object.keys(nodeRelationshipMap).map((currKey) => {
@@ -864,8 +863,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   })}
           </select>
           <button onClick={()=>{
-            //TODO
-
+              let tempMap = nodeRelationshipMap;
+              tempMap[clickedNodeKey].nextNode = selectedNextNode;
+              setNodeRelationshipMap(tempMap);            
+              setSelectedNextNode("");
           }}>Confirm</button>
         </>}
      
