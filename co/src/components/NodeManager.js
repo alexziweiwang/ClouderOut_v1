@@ -722,15 +722,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               />
               <br></br>
               <label>Node Game Type: </label>
-              <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+              <select className="setting_item" onChange={(event)=>{addNewNodeGameType(event);}} value={createNewNodeGameType}>
                 <option value="" key=""> -- Select Node's Game Type -- </option>
                 {/* <option value="Card Game" key="Card Game">Card Game</option>
                 <option value="Board Game" key="Board Game">Board Game</option>
                 <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
+                <option value="LogicSplitter" key="LogicSplitter">*Logic Splitter</option>
                 <option value="Conversation" key="Conversation">Conversation</option>
               </select>
               <br></br>
-              <label>Screen Size: </label>
+              {createNewNodeGameType !== "LogicSplitter" && <><label>Screen Size: </label>
               <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
                     <option value="" key=""> ----- Select Size and Direction ----- </option>
                     {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
@@ -738,7 +739,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
                     <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
                   </select>
-              <br></br>
+              <br></br></>}
               <button 
                 className="setting_item buttonRight"
                 onClick={()=>{
@@ -784,8 +785,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               <label>Node Type: </label>
               <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
               <br></br>
+            
+            {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
               <label>Screen Size: </label>
               <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
+            </>}
+            
             </div>
 
 
@@ -797,7 +802,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>   
 
 
-                 <p className="sectionHeader">*** Next Node(s) ***</p>
+  
+        <p className="sectionHeader">*** Next Node(s) ***</p>
         <div>
             <table>
                 <thead>
@@ -812,9 +818,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 </tbody>
             </table>
         </div>
-          
-          
-          
+     
           </div>}
 
 
