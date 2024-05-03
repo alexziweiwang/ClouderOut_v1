@@ -11,8 +11,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
-  let nodeWidth = "150px";
-  let nodeHeight = "47px";
+  let nodeWidth = 150;
+  let nodeHeight = 47;
 
 
 // TODO testing, temp ----------------------------------------
@@ -690,10 +690,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       let crd = ir * 10000 + ic;
 
                       return (<div 
+                          style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
                           className={
                             crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
-                            style={{"width": {nodeHeight}, "height": {nodeWidth}}}
-                            onClick={()=>{       
+                            
+                          onClick={()=>{       
                             console.log("clicked node2:", crd );
                             console.log("on record clicked-node: ", clickedNode2); 
                             if (crd === clickedNode2) { //cancel if already clicked
@@ -848,7 +849,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
-          {nodeRelationshipMap[clickedNodeKey].nextNode !== "" && <><label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br></>}
+          {nodeRelationshipMap[clickedNodeKey].nextNode !== "" && <>Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br></>}
           <select onChange={(event)=>{
               setSelectedNextNode(event.target.value);
           }}
