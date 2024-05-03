@@ -681,17 +681,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-        <div style={{"overflow": "scroll", "position": "relative"}}>TODO: visualization of node-grids grv </div>
-        <div>
+        <div style={{"overflow": "scroll"}}>TODO: visualization of node-grids grv </div>
+ 
           {gridBlocks.map((row, ir) => {
-              return (<div className="parallelFrame gridRow" style={{"position": "absolute"}}>
+              return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
                       let content = gridBlocks[ir][ic];
                       let crd = ir * 10000 + ic;
 
-                      return (<div className="parallelFrame">
-                          <div>o1</div>
-                          <div 
+                      return (<div 
                           style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
                           className={
                             crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
@@ -726,19 +724,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                             {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
                             {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                           
-                          </div>
-                          <div>o2</div>
                           </div>)
                     })}
               
               </div>);
               })
+
           }
-         
-        </div>
-        <div style={{"position": "absolute"}}>
-            ~~~
-        </div>
 
 
           {addNewNodeAreaDisplay && <div className="section">
