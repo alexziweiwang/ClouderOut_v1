@@ -733,8 +733,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           
                           
                           <div className="centered">o2</div>
-
-                          
+                            calculation:
+                            <br></br>source-node's right line = (left-gap + node-width + right-gap) * (s_col + 1), (left gap + node-width + right-gap) * (s_col + 1) + right-gap
+                            <br></br>destination-node's left line = (left-gap + node-width + right-gap) * (d_col + 1), (left-gap + node-width + right-gap) * (d_col + 1) + left-gap
+                            <br></br>vetgical link = (top-gap + node-height/2) + s_col * (top-gap + node-height + bottom-gap), (top-gap + node-height/2) + d_col * (top-gap + node-height + bottom-gap)
                         </div>)
                     })}
               
