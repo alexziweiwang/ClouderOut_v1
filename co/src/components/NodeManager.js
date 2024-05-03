@@ -11,7 +11,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
-
+  let nodeWidth = "150px";
+  let nodeHeight = "47px";
 
 
 // TODO testing, temp ----------------------------------------
@@ -681,7 +682,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div> */}
 
         <div style={{"overflow": "scroll"}}>TODO: visualization of node-grids grv </div>
-
+ 
           {gridBlocks.map((row, ir) => {
               return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
@@ -691,7 +692,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       return (<div 
                           className={
                             crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
-                          onClick={()=>{       
+                            style={{"width": {nodeHeight}, "height": {nodeWidth}}}
+                            onClick={()=>{       
                             console.log("clicked node2:", crd );
                             console.log("on record clicked-node: ", clickedNode2); 
                             if (crd === clickedNode2) { //cancel if already clicked
