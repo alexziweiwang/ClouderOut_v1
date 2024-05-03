@@ -12,7 +12,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
   let nodeWidth = 150;
-  let nodeHeight = 47;
+  let nodeHeight = 50;
 
 
 // TODO testing, temp ----------------------------------------
@@ -858,7 +858,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
           {nodeRelationshipMap[clickedNodeKey].nextNode !== "" && <>Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br></>}
-          <select onChange={(event)=>{
+          <label>Update: </label><select onChange={(event)=>{
               setSelectedNextNode(event.target.value);
           }}
           value={selectedNextNode}

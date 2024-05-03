@@ -1251,20 +1251,20 @@ button:hover {
 
 .gridRow {
     width: 1250px;
-    height: 53px; 
-    background-color: #e4dee4;
+    height: 60px; 
+    background-color: #ede7ed;
     border-radius: 0px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
 .gridNodeGroup {
-    margin-left: 7px;
-    margin-right: 7px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .gridNodeEmpty {
-    background-color: #eee8ec;
+    background-color: #f4eff2;
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
@@ -1289,6 +1289,7 @@ button:hover {
     display: flex;    
     justify-content: center;
     align-items: center; 
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .gridNodeOccupied:hover {
