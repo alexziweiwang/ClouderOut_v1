@@ -681,7 +681,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-        <div style={{"overflow": "scroll"}}>TODO: visualization of node-grids grv </div>
+        <div style={{"overflow": "scroll", "width": "1250px"}}>TODO: visualization of node-grids grv 
  
           {gridBlocks.map((row, ir) => {
               return (<div className="parallelFrame gridRow">
@@ -689,49 +689,57 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       let content = gridBlocks[ir][ic];
                       let crd = ir * 10000 + ic;
 
-                      return (<div 
-                          style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
-                          className={
-                            crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
+                      return (
+                        <div className="parallelFrame gridNodeGroup">
+                          <div className="centered">o1</div>
+                          <div 
+                                style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
+                                className={
+                                  crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
+                                  
+                                onClick={()=>{       
+                                  console.log("clicked node2:", crd );
+                                  console.log("on record clicked-node: ", clickedNode2); 
+                                  if (crd === clickedNode2) { //cancel if already clicked
+                                    setClickedNode2(-1);
+                                  } else {//setup clicked node
+                                    setClickedNode2(crd);
+                                  }       
                             
-                          onClick={()=>{       
-                            console.log("clicked node2:", crd );
-                            console.log("on record clicked-node: ", clickedNode2); 
-                            if (crd === clickedNode2) { //cancel if already clicked
-                              setClickedNode2(-1);
-                            } else {//setup clicked node
-                              setClickedNode2(crd);
-                            }       
+                                  if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
+                                    setAddNewNodeAreaDisplay(true);
+                                  }
+
+                                  if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
+                                    setAddNewNodeAreaDisplay(false);
+                                  }
+
+                                  if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
+                                    setAddNewNodeAreaDisplay(false);
+                                  }
+
+                                  setClickedNodeKey(content);
                             
-                            if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
-                              setAddNewNodeAreaDisplay(true);
-                            }
-
-                            if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
-                              setAddNewNodeAreaDisplay(false);
-                            }
-
-                            if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
-                              setAddNewNodeAreaDisplay(false);
-                            }
-
-                            setClickedNodeKey(content);
-                            
-                          }}
-                          >
-                            {content !== "" && 
-                              <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
-                            {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
-                            {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
+                              }}
+                                >
+                                  {content !== "" && 
+                                    <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
+                                  {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+                                  {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
+                                
+                          </div>
                           
-                          </div>)
+                          
+                          <div className="centered">o2</div>
+                          
+                        </div>)
                     })}
               
-              </div>);
+                      </div>);
               })
 
           }
-
+        </div>
 
           {addNewNodeAreaDisplay && <div className="section">
                 

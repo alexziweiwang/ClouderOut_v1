@@ -1255,11 +1255,16 @@ button:hover {
     background-color: #e4dee4;
     border-radius: 0px;
     padding-left: 10px;
+    padding-right: 10px;
+}
+
+.gridNodeGroup {
+    margin-left: 7px;
+    margin-right: 7px;
 }
 
 .gridNodeEmpty {
     background-color: #eee8ec;
-    margin-right: 10px;
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
@@ -1269,7 +1274,6 @@ button:hover {
 
 .gridNodeEmpty:hover {
     background-color: #544c51;
-    margin-right: 10px;
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
@@ -1279,7 +1283,6 @@ button:hover {
 
 .gridNodeOccupied {
     background-color: #dcc9d5;
-    margin-right: 10px;
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
@@ -1290,7 +1293,6 @@ button:hover {
 
 .gridNodeOccupied:hover {
     background-color: #dcc9d5;
-    margin-right: 10px;
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
@@ -1302,11 +1304,16 @@ button:hover {
 
 .gridNodeClicked {
     background-color: #99c0da;
-    margin-right: 10px;
     margin-top: 3px;
     overflow: scroll;
     text-align: center;
     cursor: pointer;
+    display: flex;    
+    justify-content: center;
+    align-items: center; 
+}
+
+.centered {
     display: flex;    
     justify-content: center;
     align-items: center; 
