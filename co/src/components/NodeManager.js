@@ -681,8 +681,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-        <div style={{"overflow": "scroll", "width": "1250px"}}>TODO: visualization of node-grids grv 
- 
+        <div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
+          <div style={{"position": "absolute"}}><br></br>linking layer...</div>
+
+          <div>
           {gridBlocks.map((row, ir) => {
               return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
@@ -731,6 +733,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           
                           
                           <div className="centered">o2</div>
+
                           
                         </div>)
                     })}
@@ -739,6 +742,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })
 
           }
+          </div>
         </div>
 
           {addNewNodeAreaDisplay && <div className="section">
