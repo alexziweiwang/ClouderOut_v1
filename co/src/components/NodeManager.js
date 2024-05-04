@@ -35,7 +35,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
     chStartName: {nodeName: chStartName, row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
-    "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
   }); //TODO new data-design
 
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -47,8 +47,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
-    ["","","","","","","","","",""],
-    ["chStartName","node1","","","","","","","",""], 
+    ["","node1","","","","","","","",""],
+    ["chStartName","","","","","","","","",""], 
     ["","","","","","","","","",""],
     ["","","","","","","","","",""]
   ]);
@@ -687,19 +687,41 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           {gridBlocks.map((row, ir) => {
               return (<div style={{"position": "absolute"}}>
                     {row.map((col,ic) => {
+                      let currNodeKey = gridBlocks[ir][ic];
 
                       let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
                       let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
 
-                      let destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-                      let destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (ic);
+                      let destLeftLineVStart = 0;
+                      let destLeftLineHStart = 0;
+                      let betweenNodeUnit = nodeHeight + 10;
 
                       let oneNodeRowLen = nodeHeight + 10;
 
+                      let nextNodeKey = "";
+
+                      let hasNextNode = false;
+                      if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
+                        //such a node exists
+                        if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
+                        && nodeRelationshipMap[currNodeKey].nextNode !== "") {
+                          // not logic-splitter & has next-node
+                          hasNextNode = true;
+                          nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
+
+                          let nextR = nodeRelationshipMap[nextNodeKey].row;
+                          let nextC = nodeRelationshipMap[nextNodeKey].col;
+
+                          destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
+                          destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
+                        }
+                      }
+
                       return (
-                        <div>
+                        <>
+                        {currNodeKey !== "" && <div>
              
-                              <div 
+                              {hasNextNode && <div 
                                 style={{
                                   "position": "absolute",
                                   "top": `${sourceRightLineVStart}px`, 
@@ -709,9 +731,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "backgroundColor": "green",
                                   "borderRadius": `0px`}}
                                 >       
-                              </div>
+                              </div>}
                            
-                              <div 
+                              {<div 
                                 style={{
                                   "position": "absolute",
                                   "top": `${destLeftLineVStart}px`, 
@@ -721,9 +743,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "backgroundColor": "blue",
                                   "borderRadius": `0px`}}
                                 >       
-                              </div>
+                              </div>}
 
-                              <div 
+                              {<div 
                                 style={{
                                   "position": "absolute",
                                   "top": `${sourceRightLineVStart}px`, 
@@ -733,12 +755,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "backgroundColor": "orange",
                                   "borderRadius": `0px`}}
                                 >       
-                              </div>
+                              </div>}
 
 
                           <div></div>
                  
-                        </div>)
+                        </div>}
+                        </>)
                     })}
                       </div>);
               })
