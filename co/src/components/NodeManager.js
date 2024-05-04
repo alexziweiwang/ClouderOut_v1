@@ -683,65 +683,62 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         <div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
 
-        <div style={{"position": "absolute"}}>
-          {Object.keys(nodeRelationshipMap).map((currKey) => {
-              let linkingKey = "linking-" + currKey;
+     
+          {gridBlocks.map((row, ir) => {
+              return (<div style={{"position": "absolute"}}>
+                    {row.map((col,ic) => {
+                      let content = gridBlocks[ir][ic];
               
-              let item = nodeRelationshipMap[currKey];
-              let currR = item.row;
-              let currC = item.col;
-              let type = item.nodeType;
+                      let crd = ir * 10000 + ic;
+               
+                      let sourceRightLineVStart = 3 + 1+ (nodeHeight / 2) + (nodeHeight + 6) * (ir);
+                      let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
 
-              let nextNodeItem = "";
-              let nextR = -1;
-              let nextC = -1;
-              let beLinkingBool = false;
-              if (type !== "LogicSplitter") {
-                let nextNodeKey = item.nextNode;
-                if (nextNodeKey !== "") {
-                    nextNodeItem = nodeRelationshipMap[nextNodeKey];
-                    if (nextNodeItem !== undefined) {
-                      nextR = nextNodeItem.row;
-                      nextC = nextNodeItem.col;
-                      beLinkingBool = true;
-                    } 
-                }
-              } //TODO else for logic-splitter's case
-              console.log("node:" + currR + ", " + currC + " has link?" + beLinkingBool);
+                      let destLeftLineVStart = 0;
+                      let destLeftLineHStart = 0;
+
+                      return (
+                        <div>
+             
+                              <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart}px`, 
+                                  "left": `${sourceRightLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "green",
+                                  "borderRadius": `0px`}}
+                                >       
+                              </div>
+                           
+                              <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "blue",
+                                  "borderRadius": `0px`}}
+                                >       
+                              </div>
+
+                          <div></div>
+                 
+                        </div>)
+                    })}
               
-              let destLeftLineVStart = (nodeHeight/2 + 3) + (nodeHeight) * nextR + 2 + 16;
-              let destLeftLineHStart= (10 + nodeWidth + 10 + 2) * nextC + 10;
-              // calculation:
-              // destination-node's left line = (left-gap + node-width + right-gap) * (d_col + 1), (left-gap + node-width + right-gap) * (d_col + 1) + left-gap
-              // vetgical link = (top-gap + node-height/2) + s_col * (top-gap + node-height + bottom-gap), (top-gap + node-height/2) + d_col * (top-gap + node-height + bottom-gap)
-                     
-              return (
-              
-              <>{beLinkingBool && <div key={linkingKey} style={{"position": "absolute"}}>
-                    <div style={{
-                      "position": "absolute",
-                      "top": `${destLeftLineVStart}px`, 
-                      "left": `${destLeftLineHStart}px`, 
-                      "height": `1px`, 
-                      "width": `10px`, 
-                      "backgroundColor": "blue",
-                      "borderRadius": `0px`
-                    }}></div>
 
-                    <div style={{
-                    }}></div>
 
-              </div>}
+                      </div>);
+              })
 
-       
-              </>
-              );
-          })}
-          
-          </div>
+          }
+
   
 
-          <div>
+        <div>
           {gridBlocks.map((row, ir) => {
               return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
@@ -790,22 +787,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                                 
                           </div>
-                          
-                          {(nodeRelationshipMap[content] !== undefined && nodeRelationshipMap[content].nextNode !== undefined && nodeRelationshipMap[content].nextNode !== "") 
-                            && 
-                              <div 
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${sourceRightLineVStart}px`, 
-                                  "left": `${sourceRightLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "green",
-                                  "borderRadius": `0px`}}
-                                >       
-                              </div>
-                           }
- {/* //TODO for logic-splitter's case */}
 
                           <div></div>
                  
@@ -818,7 +799,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })
 
           }
-          </div>
+        </div>
 
  
         </div>
