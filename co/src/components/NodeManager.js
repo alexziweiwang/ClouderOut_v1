@@ -34,8 +34,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    chStartName: {nodeName: chStartName, row: 3, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
-
+    chStartName: {nodeName: chStartName, row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
+    "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
   }); //TODO new data-design
 
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -48,7 +48,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["chStartName","","","","","","","","",""], 
+    ["chStartName","node1","","","","","","","",""], 
     ["","","","","","","","","",""],
     ["","","","","","","","","",""]
   ]);
@@ -682,15 +682,20 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div> */}
 
         <div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
-          <div style={{"position": "absolute"}}><br></br>linking layer...
+
+        <div style={{"position": "absolute"}}>
           {Object.keys(nodeRelationshipMap).map((currKey) => {
               let linkingKey = "linking-" + currKey;
               
               let item = nodeRelationshipMap[currKey];
+              let currR = item.row;
+              let currC = item.col;
               let type = item.nodeType;
+
               let nextNodeItem = "";
               let nextR = -1;
               let nextC = -1;
+              let beLinkingBool = false;
               if (type !== "LogicSplitter") {
                 let nextNodeKey = item.nextNode;
                 if (nextNodeKey !== "") {
@@ -698,29 +703,43 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     if (nextNodeItem !== undefined) {
                       nextR = nextNodeItem.row;
                       nextC = nextNodeItem.col;
+                      beLinkingBool = true;
                     } 
                 }
-              }
+              } //TODO else for logic-splitter's case
+              console.log("node:" + currR + ", " + currC + " has link?" + beLinkingBool);
               
-
-
+              let destLeftLineVStart = (nodeHeight/2 + 3) + (nodeHeight) * nextR + 2 + 16;
+              let destLeftLineHStart= (10 + nodeWidth + 10 + 2) * nextC + 10;
+              // calculation:
+              // destination-node's left line = (left-gap + node-width + right-gap) * (d_col + 1), (left-gap + node-width + right-gap) * (d_col + 1) + left-gap
+              // vetgical link = (top-gap + node-height/2) + s_col * (top-gap + node-height + bottom-gap), (top-gap + node-height/2) + d_col * (top-gap + node-height + bottom-gap)
+                     
               return (
               
-              <>{type !== "LogicSplitter" && <div key={linkingKey} style={{"position": "absolute"}}>
+              <>{beLinkingBool && <div key={linkingKey} style={{"position": "absolute"}}>
                     <div style={{
-
+                      "position": "absolute",
+                      "top": `${destLeftLineVStart}px`, 
+                      "left": `${destLeftLineHStart}px`, 
+                      "height": `1px`, 
+                      "width": `10px`, 
+                      "backgroundColor": "blue",
+                      "borderRadius": `0px`
                     }}></div>
 
                     <div style={{
-
                     }}></div>
 
               </div>}
+
+       
               </>
               );
           })}
           
           </div>
+  
 
           <div>
           {gridBlocks.map((row, ir) => {
@@ -728,10 +747,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     {row.map((col,ic) => {
                       let content = gridBlocks[ir][ic];
               
-
                       let crd = ir * 10000 + ic;
+               
                       let sourceRightLineVStart = (nodeHeight-4) + (nodeHeight + 4 * 2) * ir + 2;
-                      let sourceRightLineHStart = (10 + nodeWidth + 10) * (ic + 1) + 1;
+                      let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
 
                       return (
                         <div className="parallelFrame gridNodeGroup">
@@ -786,6 +805,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 >       
                               </div>
                            }
+ {/* //TODO for logic-splitter's case */}
 
                           <div></div>
                  
@@ -799,11 +819,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
           }
           </div>
-          calculation:
-            <br></br>source-node's right line = (left-gap + node-width + right-gap) * (s_col + 1), (left gap + node-width + right-gap) * (s_col + 1) + right-gap
-            <br></br>destination-node's left line = (left-gap + node-width + right-gap) * (d_col + 1), (left-gap + node-width + right-gap) * (d_col + 1) + left-gap
-            <br></br>vetgical link = (top-gap + node-height/2) + s_col * (top-gap + node-height + bottom-gap), (top-gap + node-height/2) + d_col * (top-gap + node-height + bottom-gap)
-                        
+
+ 
         </div>
 
           {addNewNodeAreaDisplay && <div className="section">
