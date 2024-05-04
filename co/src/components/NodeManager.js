@@ -687,15 +687,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           {gridBlocks.map((row, ir) => {
               return (<div style={{"position": "absolute"}}>
                     {row.map((col,ic) => {
-                      let content = gridBlocks[ir][ic];
-              
-                      let crd = ir * 10000 + ic;
-               
-                      let sourceRightLineVStart = 3 + 1+ (nodeHeight / 2) + (nodeHeight + 6) * (ir);
+
+                      let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
                       let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
 
-                      let destLeftLineVStart = 0;
-                      let destLeftLineHStart = 0;
+                      let destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
+                      let destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (ic);
+
+                      let oneNodeRowLen = nodeHeight + 10;
 
                       return (
                         <div>
@@ -724,13 +723,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 >       
                               </div>
 
+                              <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart}px`, 
+                                  "left": `${sourceRightLineHStart+10}px`, 
+                                  "height": `${oneNodeRowLen}px`, 
+                                  "width": `1px`, 
+                                  "backgroundColor": "orange",
+                                  "borderRadius": `0px`}}
+                                >       
+                              </div>
+
+
                           <div></div>
                  
                         </div>)
                     })}
-              
-
-
                       </div>);
               })
 
@@ -746,9 +755,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               
                       let crd = ir * 10000 + ic;
                
-                      let sourceRightLineVStart = (nodeHeight-4) + (nodeHeight + 4 * 2) * ir + 2;
-                      let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
-
                       return (
                         <div className="parallelFrame gridNodeGroup">
                           <div 
