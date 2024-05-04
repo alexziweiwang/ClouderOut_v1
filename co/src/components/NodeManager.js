@@ -35,7 +35,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
     chStartName: {nodeName: chStartName, row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
-    "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"node2", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node2": {nodeName: "node2", row: 4, col: 2, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+
   }); //TODO new data-design
 
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -50,7 +52,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     ["","node1","","","","","","","",""],
     ["chStartName","","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["","","","","","","","","",""]
+    ["","","node2","","","","","","",""]
   ]);
 
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
@@ -694,13 +696,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                       let destLeftLineVStart = 0;
                       let destLeftLineHStart = 0;
+                      
                       let betweenNodeUnit = nodeHeight + 10;
-
-                      let oneNodeRowLen = nodeHeight + 10;
+                      let betweenNodesVerticalLink = 0;
+                      let unitDiff = 0;
 
                       let nextNodeKey = "";
 
                       let hasNextNode = false;
+                      let srcNodeUpHigher = true; 
                       if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                         //such a node exists
                         if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
@@ -714,6 +718,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                           destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
                           destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
+
+                          unitDiff = nextR - ir;
+                          if (unitDiff > 0) {
+                            srcNodeUpHigher = false;
+                          } else {
+                            unitDiff = unitDiff * -1;
+                          }
+
+                          betweenNodesVerticalLink = unitDiff * betweenNodeUnit + 1;
                         }
                       }
 
@@ -733,7 +746,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 >       
                               </div>}
                            
-                              {<div 
+                              {hasNextNode && <div 
                                 style={{
                                   "position": "absolute",
                                   "top": `${destLeftLineVStart}px`, 
@@ -745,21 +758,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 >       
                               </div>}
 
-                              {<div 
+                              {hasNextNode && <div 
                                 style={{
                                   "position": "absolute",
-                                  "top": `${sourceRightLineVStart}px`, 
-                                  "left": `${sourceRightLineHStart+10}px`, 
-                                  "height": `${oneNodeRowLen}px`, 
+                                  "top": (srcNodeUpHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": (srcNodeUpHigher === false ? `${sourceRightLineHStart+10}px` : `${destLeftLineHStart}px`), 
+                                  "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
                                   "backgroundColor": "orange",
                                   "borderRadius": `0px`}}
-                                >       
+                                >     
                               </div>}
 
-
-                          <div></div>
-                 
                         </div>}
                         </>)
                     })}
@@ -767,7 +777,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })
 
           }
-
+ {/* //TODO: for logic-splitter, and also: links between longer horizontal distance node linking */}
   
 
         <div>
