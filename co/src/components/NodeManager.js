@@ -692,7 +692,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               
 
                       let crd = ir * 10000 + ic;
-                      let sourceRightLineVStart = (nodeHeight-4) + (nodeHeight + 4 * 2) * ir;
+                      let sourceRightLineVStart = (nodeHeight-4) + (nodeHeight + 4 * 2) * ir + 2;
                       let sourceRightLineHStart = (10 + nodeWidth + 10) * (ic + 1) + 1;
 
                       return (
@@ -733,9 +733,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                                 
                           </div>
-{/*                             
+                          
                           {(nodeRelationshipMap[content] !== undefined && nodeRelationshipMap[content].nextNode !== undefined && nodeRelationshipMap[content].nextNode !== "") 
-                            && <div> */}
+                            && 
                               <div 
                                 style={{
                                   "position": "absolute",
@@ -747,7 +747,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "borderRadius": `0px`}}
                                 >       
                               </div>
-                           {/*</div>} */}
+                           }
 
                           <div></div>
                  
