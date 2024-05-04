@@ -689,7 +689,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               return (<div className="parallelFrame gridRow">
                     {row.map((col,ic) => {
                       let content = gridBlocks[ir][ic];
+              
+
                       let crd = ir * 10000 + ic;
+                      let sourceOffset = nodeHeight / 2;
+                      let sourceRightLineStart = (10 + nodeWidth + 10) * (ic + 1);
+                      let sourceRightLineEnd =  (10 + nodeWidth + 10) * (ic + 1) + 10;
 
                       return (
                         <div className="parallelFrame gridNodeGroup">
@@ -730,21 +735,31 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                                 
                           </div>
-                          
-                          
-                          <div className="centered">o2</div>
-                            calculation:
-                            <br></br>source-node's right line = (left-gap + node-width + right-gap) * (s_col + 1), (left gap + node-width + right-gap) * (s_col + 1) + right-gap
-                            <br></br>destination-node's left line = (left-gap + node-width + right-gap) * (d_col + 1), (left-gap + node-width + right-gap) * (d_col + 1) + left-gap
-                            <br></br>vetgical link = (top-gap + node-height/2) + s_col * (top-gap + node-height + bottom-gap), (top-gap + node-height/2) + d_col * (top-gap + node-height + bottom-gap)
+                            
+                          {(nodeRelationshipMap[content] !== undefined && nodeRelationshipMap[content].nextNode !== undefined && nodeRelationshipMap[content].nextNode !== "") 
+                            && <div 
+                            style={{"top": `${sourceOffset}`, "left": `${sourceRightLineStart}px`, "height": `2px`, "width": `10px`, "backgroundColor": "green"}}
+                            >
+                              
+                          </div>}
+
+                          <div></div>
+                 
                         </div>)
                     })}
               
+
+
                       </div>);
               })
 
           }
           </div>
+          calculation:
+            <br></br>source-node's right line = (left-gap + node-width + right-gap) * (s_col + 1), (left gap + node-width + right-gap) * (s_col + 1) + right-gap
+            <br></br>destination-node's left line = (left-gap + node-width + right-gap) * (d_col + 1), (left-gap + node-width + right-gap) * (d_col + 1) + left-gap
+            <br></br>vetgical link = (top-gap + node-height/2) + s_col * (top-gap + node-height + bottom-gap), (top-gap + node-height/2) + d_col * (top-gap + node-height + bottom-gap)
+                        
         </div>
 
           {addNewNodeAreaDisplay && <div className="section">
