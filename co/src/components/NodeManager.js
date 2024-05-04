@@ -11,8 +11,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
-  let nodeWidth = 150;
-  let nodeHeight = 50;
+  let nodeWidth = 152;
+  let nodeHeight = 52;
 
 
 // TODO testing, temp ----------------------------------------
@@ -682,7 +682,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div> */}
 
         <div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
-          <div style={{"position": "absolute"}}><br></br>linking layer...</div>
+          {/* <div style={{"position": "absolute"}}><br></br>linking layer...</div> */}
 
           <div>
           {gridBlocks.map((row, ir) => {
@@ -692,13 +692,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               
 
                       let crd = ir * 10000 + ic;
-                      let sourceOffset = nodeHeight / 2;
-                      let sourceRightLineStart = (10 + nodeWidth + 10) * (ic + 1);
-                      let sourceRightLineEnd =  (10 + nodeWidth + 10) * (ic + 1) + 10;
+                      let sourceRightLineVStart = (nodeHeight-4) + (nodeHeight + 4 * 2) * ir;
+                      let sourceRightLineHStart = (10 + nodeWidth + 10) * (ic + 1) + 1;
 
                       return (
                         <div className="parallelFrame gridNodeGroup">
-                          <div className="centered">o1</div>
                           <div 
                                 style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
                                 className={
@@ -728,20 +726,28 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   setClickedNodeKey(content);
                             
                               }}
-                                >
+                                > {ir},{ic}
                                   {content !== "" && 
                                     <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
                                   {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
                                   {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                                 
                           </div>
-                            
+{/*                             
                           {(nodeRelationshipMap[content] !== undefined && nodeRelationshipMap[content].nextNode !== undefined && nodeRelationshipMap[content].nextNode !== "") 
-                            && <div 
-                            style={{"top": `${sourceOffset}`, "left": `${sourceRightLineStart}px`, "height": `2px`, "width": `10px`, "backgroundColor": "green"}}
-                            >
-                              
-                          </div>}
+                            && <div> */}
+                              <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart}px`, 
+                                  "left": `${sourceRightLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "green",
+                                  "borderRadius": `0px`}}
+                                >       
+                              </div>
+                           {/*</div>} */}
 
                           <div></div>
                  
