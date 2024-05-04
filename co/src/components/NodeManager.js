@@ -682,7 +682,45 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div> */}
 
         <div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
-          {/* <div style={{"position": "absolute"}}><br></br>linking layer...</div> */}
+          <div style={{"position": "absolute"}}><br></br>linking layer...
+          {Object.keys(nodeRelationshipMap).map((currKey) => {
+              let linkingKey = "linking-" + currKey;
+              
+              let item = nodeRelationshipMap[currKey];
+              let type = item.nodeType;
+              let nextNodeItem = "";
+              let nextR = -1;
+              let nextC = -1;
+              if (type !== "LogicSplitter") {
+                let nextNodeKey = item.nextNode;
+                if (nextNodeKey !== "") {
+                    nextNodeItem = nodeRelationshipMap[nextNodeKey];
+                    if (nextNodeItem !== undefined) {
+                      nextR = nextNodeItem.row;
+                      nextC = nextNodeItem.col;
+                    } 
+                }
+              }
+              
+
+
+              return (
+              
+              <>{type !== "LogicSplitter" && <div key={linkingKey} style={{"position": "absolute"}}>
+                    <div style={{
+
+                    }}></div>
+
+                    <div style={{
+
+                    }}></div>
+
+              </div>}
+              </>
+              );
+          })}
+          
+          </div>
 
           <div>
           {gridBlocks.map((row, ir) => {
@@ -726,7 +764,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   setClickedNodeKey(content);
                             
                               }}
-                                > {ir},{ic}
+                                >
                                   {content !== "" && 
                                     <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
                                   {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
