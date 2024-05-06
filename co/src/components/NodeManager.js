@@ -30,13 +30,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   ]); //TODO testing data
 
   //TODO node data from cloud: fetch by username + project_name + chapter_key  
-  const chStartName = "chapterStart-"+chapterKey;
+  const chStartName = "chapterStart";
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    chStartName: {nodeName: chStartName, row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
+    "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
     "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"node2", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "node2": {nodeName: "node2", row: 4, col: 2, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
 
   }); //TODO new data-design
 
@@ -50,9 +50,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
     ["","node1","","","","","","","",""],
-    ["chStartName","","","","","","","","",""], 
+    ["chapterStart","","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["","","node2","","","","","","",""]
+    ["","","","node2","","","","","",""]
   ]);
 
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
@@ -693,18 +693,27 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                       let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
                       let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+                      let sourceRightLineHEnd = sourceRightLineHStart + 10;
+                      let extraHorizontalStart  = 0;
 
                       let destLeftLineVStart = 0;
                       let destLeftLineHStart = 0;
                       
-                      let betweenNodeUnit = nodeHeight + 10;
+                      let betweenNodeVerticalUnit = nodeHeight + 10;
                       let betweenNodesVerticalLink = 0;
-                      let unitDiff = 0;
+
+                      let betweenNodeHorizontalUnit = nodeWidth + 22;
+                      let betweenNodesHorizontalLink = 0;
+
+                      let unitDiffVert = 0;
+                      let unitDiffHori = 0;
 
                       let nextNodeKey = "";
 
                       let hasNextNode = false;
                       let srcNodeUpHigher = true; 
+                      let srcNodeUpLeft= true; 
+
                       if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                         //such a node exists
                         if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
@@ -718,22 +727,39 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                           destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
                           destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
+                          extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
 
-                          unitDiff = nextR - ir;
-                          if (unitDiff > 0) {
+
+                          unitDiffVert = nextR - ir;
+                          if (unitDiffVert > 0) {
                             srcNodeUpHigher = false;
-                          } else {
-                            unitDiff = unitDiff * -1;
+                            //TODO test for this case
+                          } else if (unitDiffVert < 0) {
+                            unitDiffVert = unitDiffVert * -1;
+                          } else { // vertical diff is 0
+                            console.log("TODO: vertical diff is 0"); //TODO later
                           }
+                          betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
 
-                          betweenNodesVerticalLink = unitDiff * betweenNodeUnit + 1;
+                          unitDiffHori = nextC - ic;
+                          if (unitDiffHori == 0) {
+                            srcNodeUpLeft = false;
+                            //TODO more operations
+                          } else if (unitDiffHori < 0) {
+                            unitDiffHori = unitDiffHori * -1;
+                            betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit;
+                            srcNodeUpLeft = false;
+                            //TODO test for this case
+                          } else {
+                            betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
+                          }
                         }
                       }
 
                       return (
                         <>
                         {currNodeKey !== "" && <div>
-             
+
                               {hasNextNode && <div 
                                 style={{
                                   "position": "absolute",
@@ -768,6 +794,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "backgroundColor": "orange",
                                   "borderRadius": `0px`}}
                                 >     
+                              </div>}
+
+                              {(hasNextNode && unitDiffHori !== 1 && unitDiffHori !== -1) && <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": (srcNodeUpLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": (srcNodeUpLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
+                                  "height": `1px`, 
+                                  "width": `${betweenNodesHorizontalLink}px`, 
+                                  "backgroundColor": "pink",
+                                  "borderRadius": `0px`}}
+                                >
                               </div>}
 
                         </div>}
