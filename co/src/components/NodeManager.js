@@ -16,7 +16,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
 // TODO testing, temp ----------------------------------------
-  console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
 
   const [test_new_node_depth, set_test_new_node_depth] = useState(5);
 
@@ -125,6 +124,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 //    setNodeData(chapterData);
         // console.log("First enter node data: ");
         // console.log(nodeData);
+        console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
+
         setFirstTimeEnter(false);
     }
     });
@@ -697,7 +698,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
      
           {gridBlocks.map((row, ir) => {
-              return (<div style={{"position": "absolute"}}>
+              let rowKeyStr = "linking" + ir;
+              return (<div key={rowKeyStr} style={{"position": "absolute"}}>
                     {row.map((col,ic) => {
                       let currNodeKey = gridBlocks[ir][ic];
 
@@ -772,9 +774,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           }
                         }
                       }
-
+                      let keyStr = "linking" + +ic+ "=" + currNodeKey;
                       return (
-                        <>
+                        <div key={keyStr}>
                         {currNodeKey !== "" && <div>
 
                               {hasNextNode && <div 
@@ -826,7 +828,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               </div>}
 
                         </div>}
-                        </>)
+                        </div>)
                     })}
                       </div>);
               })
@@ -837,14 +839,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         <div>
           {gridBlocks.map((row, ir) => {
-              return (<div className="parallelFrame gridRow">
+             let rowKeyStr = "grid" + ir;
+              return (<div key={rowKeyStr} className="parallelFrame gridRow">
                     {row.map((col,ic) => {
                       let content = gridBlocks[ir][ic];
               
                       let crd = ir * 10000 + ic;
-               
+                      let keyStr = "grid" + +ic+ "=" + content;
                       return (
-                        <div className="parallelFrame gridNodeGroup">
+                        <div key={keyStr} className="parallelFrame gridNodeGroup">
                           <div 
                                 style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
                                 className={
@@ -1162,8 +1165,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                     if (!nextNodeList.includes(index)) {
                         /* A node can link to itself or its parent(s) node, as it could be a potential design by the game-author */
-
-                        return (<option value={item.nodeName} key={item.nodeName}>{item.nodeName}</option>);
+                        let keyStr = "prevNextNodeOp" + item.nodeName;
+                        return (<option value={keyStr} key={item.nodeName}>{item.nodeName}</option>);
                     }
                 })}
         </select>

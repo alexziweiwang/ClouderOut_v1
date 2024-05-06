@@ -31,7 +31,6 @@ export default function GameMaker() {
     projectName = state.selected_project_name;
     username = state.username;
   }
-  console.log("GameMaker-state: ", state);//TODO testing
 
   /* variable area */
   const navigate = useNavigate();
@@ -47,6 +46,8 @@ export default function GameMaker() {
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
+      console.log("GameMaker-state: ", state);//TODO testing
+
         //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
             //TODO setChapterList(); // from cloud-db
         //TODO format: localChapterInfo = <chapter title, node-relationship-map>
