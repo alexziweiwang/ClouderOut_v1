@@ -140,16 +140,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               
               <label>*Delete Chapter</label><br></br>
               <button onClick={()=>{hideChapter(index);}}>Delete</button><br></br>
-              
-              <label>*Starting Node</label><br></br>
-              <select>
-              
-              </select><button onClick={()=>{updateStartingNode();}}>Update</button><br></br>
-              
-              <label>*Ending Node</label><br></br>
-              <select>
-              
-              </select><button onClick={()=>{updateEndingNode();}}>Update</button><br></br>
+
             </>
           
           }

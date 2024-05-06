@@ -34,7 +34,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
     "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
-    "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
 
   }); //TODO new data-design
@@ -48,8 +48,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
-    ["","node1","","","","","","","",""],
-    ["chapterStart","","","","","","","","",""], 
+    ["","","","","","","","","",""],
+    ["chapterStart","node1","","","","","","","",""], 
     ["","","","","","","","","",""],
     ["","","","node2","","","","","",""]
   ]);
@@ -600,7 +600,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     setNodeRelationshipMap(tempMap);
   }
 
-
+  function updateRenderCounter() {
+    setRenderCounter((renderCounter+1) % 100);
+  }
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
 
@@ -694,7 +696,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-        <div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
+        {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
 
      
           {gridBlocks.map((row, ir) => {
@@ -898,7 +900,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>
 
  
-        </div>
+        </div>}
 
           {addNewNodeAreaDisplay && <div className="section">
                 
@@ -954,10 +956,39 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         <div>
 
- 
-
 
         </div>
+
+        <div>
+          <button onClick={()=>{
+            let node = nodeRelationshipMap[clickedNodeKey];
+            let targetR = node.row;
+            let targetC = node.col-1;
+            if (targetC >= 0 && gridBlocks[targetR][targetC] === "") {
+              //TODO update position
+              let tempGrid = gridBlocks;
+              tempGrid[node.row][node.col] = "";
+              tempGrid[targetR][targetC] = clickedNodeKey;
+              setGridBlocks(tempGrid);
+
+              let tempMap = nodeRelationshipMap;
+              tempMap[clickedNodeKey].col = targetC;
+              setNodeRelationshipMap(tempMap);
+              let crd = targetR * 10000 + targetC;
+              setClickedNode2(crd);
+            }
+          }}>Left</button>
+          <button onClick={()=>{
+
+          }}>Right</button><br></br>
+          <button onClick={()=>{
+
+          }}>Up</button>
+          <button onClick={()=>{
+
+          }}>Down</button>
+        </div>
+
         {(clickedNode2 !== -1 
           && nodeRelationshipMap[clickedNodeKey] !== undefined
           && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
@@ -1047,7 +1078,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 tempMap[clickedNodeKey].nextNode = selectedNextNode;
                 setNodeRelationshipMap(tempMap);
                 setSelectedNextNode("-");
-                setRenderCounter((renderCounter+1) % 100);
+                updateRenderCounter();
               }
           }}>Confirm</button>
           <br></br><button
@@ -1055,7 +1086,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               let tempMap2 = nodeRelationshipMap;
               tempMap2[clickedNodeKey].nextNode = "-";
               setNodeRelationshipMap(tempMap2);
-              setRenderCounter((renderCounter+1) % 100);
+              updateRenderCounter();
             }}
           >Detach Linking</button>
         </>}
