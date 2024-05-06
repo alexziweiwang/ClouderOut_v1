@@ -711,8 +711,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       let nextNodeKey = "";
 
                       let hasNextNode = false;
-                      let srcNodeUpHigher = true; 
-                      let srcNodeUpLeft= true; 
+                      let srcNodeHigher = true; 
+                      let srcNodeAtLeft= true; 
 
                       if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                         //such a node exists
@@ -732,24 +732,30 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                           unitDiffVert = nextR - ir;
                           if (unitDiffVert > 0) {
-                            srcNodeUpHigher = false;
+                            srcNodeHigher = false;
                             //TODO test for this case
                           } else if (unitDiffVert < 0) {
                             unitDiffVert = unitDiffVert * -1;
-                          } else { // vertical diff is 0
+                          } else { // vertical diff is 0 //TODO on the same column
                             console.log("TODO: vertical diff is 0"); //TODO later
+                            //TODO extending to half-node lower for the "looping back": right-down, bottom-left, left-up 
                           }
                           betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
 
                           unitDiffHori = nextC - ic;
-                          if (unitDiffHori == 0) {
-                            srcNodeUpLeft = false;
-                            //TODO more operations
+                          if (unitDiffHori == 0) { // TODO: on the same row
+                            srcNodeAtLeft = false;
+                            //TODO impl
                           } else if (unitDiffHori < 0) {
                             unitDiffHori = unitDiffHori * -1;
                             betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit;
-                            srcNodeUpLeft = false;
-                            //TODO test for this case
+                            srcNodeAtLeft = false;
+                            //TODO special extending: (half-node-height + bottom-gap) at source node.
+                            //TODO                    (linking to the left) by (source minus dest)
+                            //TODO                    (vertical up, to link with dest node-horizontal-port)
+
+                            //TODO later: test for this case
+
                           } else {
                             betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
                           }
@@ -787,8 +793,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               {hasNextNode && <div 
                                 style={{
                                   "position": "absolute",
-                                  "top": (srcNodeUpHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": (srcNodeUpHigher === false ? `${sourceRightLineHStart+10}px` : `${destLeftLineHStart}px`), 
+                                  "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": (srcNodeHigher === false ? `${sourceRightLineHStart+10}px` : `${destLeftLineHStart}px`), 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
                                   "backgroundColor": "orange",
@@ -799,8 +805,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               {(hasNextNode && unitDiffHori !== 1 && unitDiffHori !== -1) && <div 
                                 style={{
                                   "position": "absolute",
-                                  "top": (srcNodeUpLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": (srcNodeUpLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
+                                  "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
                                   "backgroundColor": "pink",
@@ -1004,7 +1010,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           value={selectedNextNode}
           >
             <option key="defaultNextNode" value="">-- Select the next-node --</option>
-          {Object.keys(nodeRelationshipMap).map((currKey) => {
+            {Object.keys(nodeRelationshipMap).map((currKey) => {
               
                       let item = nodeRelationshipMap[currKey];
                       let opKey = "opnextnode-" + currKey;
