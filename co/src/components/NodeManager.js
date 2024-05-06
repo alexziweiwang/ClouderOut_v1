@@ -39,7 +39,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
 
   }); //TODO new data-design
-
+  const [renderCounter, setRenderCounter] = useState(0);
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
   // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
   // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -1015,16 +1015,20 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   })}
           </select>
           <button onClick={()=>{
-              let tempMap = nodeRelationshipMap;
-              tempMap[clickedNodeKey].nextNode = selectedNextNode;
-              setNodeRelationshipMap(tempMap);
-              setSelectedNextNode("-");
+              if (selectedNextNode !== "-") {
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].nextNode = selectedNextNode;
+                setNodeRelationshipMap(tempMap);
+                setSelectedNextNode("-");
+                setRenderCounter((renderCounter+1) % 100);
+              }
           }}>Confirm</button>
           <br></br><button
             onClick={()=>{
               let tempMap2 = nodeRelationshipMap;
               tempMap2[clickedNodeKey].nextNode = "-";
               setNodeRelationshipMap(tempMap2);
+              setRenderCounter((renderCounter+1) % 100);
             }}
           >Detach Linking</button>
         </>}
