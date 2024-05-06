@@ -34,7 +34,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
+    "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
     "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
 
@@ -192,6 +192,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
       navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName, userName } });
     } else if (currNodeType === "Conversation") {
       navigate('/conversationnode', { replace: true, state: { clickedNode, projectName, userName } });
+    }
+        //TODO later add conditions for board game and tower defense
+  }
+
+  function enterNodeEditor2() {
+    let currNodeType = nodeRelationshipMap[clickedNodeKey].nodeType;
+    let userName = currUser;
+    console.log("enter editor2:", clickedNodeKey, projectName, userName);
+    if (currNodeType === "Card Game") {
+      navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName } });
+    } else if (currNodeType === "Conversation") {
+      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName } });
     }
         //TODO later add conditions for board game and tower defense
   }
@@ -602,9 +614,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <div style={{"height": "350px"}} className="orangeArea">List of nodes:<br></br>
             <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
-                      console.log("nodeRelationshipMap key:  = ", currKey); //TODO test
-                      console.log("nodeRelationshipMap item:  = ", nodeRelationshipMap[currKey]); //TODO test
-
+               
                       let item = nodeRelationshipMap[currKey];
                       let liKey = "li" + currKey;
                       return (<li key={liKey} className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
@@ -841,8 +851,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
                                   
                                 onClick={()=>{       
-                                  console.log("clicked node2:", crd );
-                                  console.log("on record clicked-node: ", clickedNode2); 
+                           
                                   if (crd === clickedNode2) { //cancel if already clicked
                                     setClickedNode2(-1);
                                   } else {//setup clicked node
@@ -946,6 +955,21 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
         </div>
+        {(clickedNode2 !== -1 
+          && nodeRelationshipMap[clickedNodeKey] !== undefined
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*"
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*") && 
+        <div>
+        <button 
+          className="setting_item"
+          onClick={()=>{enterNodeEditor2();}}>
+            Enter Editor
+        </button>
+    
+      
+        </div>
+        }
                 
         {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
 
