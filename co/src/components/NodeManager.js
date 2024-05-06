@@ -35,7 +35,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
     "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapter start*", screenSize:"h600_800"},
-    "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"node2", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node1": {nodeName: "node1", row: 1, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
 
   }); //TODO new data-design
@@ -73,7 +73,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [clickedNode, setClickedNode] = useState("");
    const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
    const [clickedNodeKey, setClickedNodeKey] = useState(""); //TODO using for new data structure
-   const [selectedNextNode, setSelectedNextNode] = useState("");
+   const [selectedNextNode, setSelectedNextNode] = useState("-");
 
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -110,10 +110,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
  
    const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
 
-   const [isNextCondtDefault, setNextCondtIsDefault] = useState(true);
-   const x_base = 1, y_base = 1, y_dist=100, node_gap=480;
-   const node_width = 380, node_height = 120;
-   const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700");
+   const [isNextCondtDefault, setNextCondtIsDefault] = useState(true); //TODO remove later
+   const x_base = 1, y_base = 1, y_dist=100, node_gap=480; //TODO remove later
+   const node_width = 380, node_height = 120; //TODO remove later
+   const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700"); //TODO remove later
 
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -717,10 +717,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                         //such a node exists
                         if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
-                        && nodeRelationshipMap[currNodeKey].nextNode !== "") {
+                        && nodeRelationshipMap[currNodeKey].nextNode !== "" && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
                           // not logic-splitter & has next-node
                           hasNextNode = true;
                           nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
+
 
                           let nextR = nodeRelationshipMap[nextNodeKey].row;
                           let nextC = nodeRelationshipMap[nextNodeKey].col;
@@ -939,15 +940,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               </div>
             </div>}
 
-
-
-            <p className="plans">TODO: 
-              <br></br>(path will auto-generate after specifying linkings)
-              <br></br>user can also add column or row for new grids 
-              <br></br>TODO: consider adjustment of node-place
-              <br></br>other settings (next-node condition, etc.) are the same 
-            </p>
-
         <div>
 
  
@@ -970,9 +962,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               <label>Screen Size: </label>
               <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
             </>}
-            
             </div>
-
 
             <p className="sectionHeader">*** Node Settings ***</p>
         <div>
@@ -983,7 +973,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
   
-        {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
+        {/* {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Nodes ***</p>
           <div>
                 <table>
@@ -999,17 +989,22 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     </tbody>
                 </table>
           </div>
-        </>}
+        </>} */}
 
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
           <p className="sectionHeader">*** Next Node ***</p>
-          {nodeRelationshipMap[clickedNodeKey].nextNode !== "" && <>Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br></>}
-          <label>Update: </label><select onChange={(event)=>{
+          {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
+            && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
+              Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
+            </>}
+         
+          <label>Update: </label>
+          <select onChange={(event)=>{
               setSelectedNextNode(event.target.value);
           }}
-          value={selectedNextNode}
+            value={selectedNextNode}
           >
-            <option key="defaultNextNode" value="">-- Select the next-node --</option>
+            <option key="defaultNextNodeEmpty" value="-">-- Select the next-node --</option>
             {Object.keys(nodeRelationshipMap).map((currKey) => {
               
                       let item = nodeRelationshipMap[currKey];
@@ -1023,11 +1018,26 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               let tempMap = nodeRelationshipMap;
               tempMap[clickedNodeKey].nextNode = selectedNextNode;
               setNodeRelationshipMap(tempMap);
-              setSelectedNextNode("");
+              setSelectedNextNode("-");
           }}>Confirm</button>
+          <br></br><button
+            onClick={()=>{
+              let tempMap2 = nodeRelationshipMap;
+              tempMap2[clickedNodeKey].nextNode = "-";
+              setNodeRelationshipMap(tempMap2);
+            }}
+          >Detach Linking</button>
         </>}
      
           </div>}
+
+          <p className="plans">TODO: 
+              <br></br>user can also add column or row for new grids 
+              <br></br>TODO: consider adjustment of node-place
+              <br></br>other settings (next-node condition, etc.) are the same 
+          -------------------------------------------------------------
+          
+          </p>
 
 
           {(clickedNode !== "") && 
