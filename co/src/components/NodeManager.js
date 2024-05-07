@@ -965,7 +965,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             let targetR = node.row;
             let targetC = node.col-1;
             if (targetC >= 0 && gridBlocks[targetR][targetC] === "") {
-              //TODO update position
               let tempGrid = gridBlocks;
               tempGrid[node.row][node.col] = "";
               tempGrid[targetR][targetC] = clickedNodeKey;
@@ -979,7 +978,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             }
           }}>Left</button>
           <button onClick={()=>{
+            let node = nodeRelationshipMap[clickedNodeKey];
+            let targetR = node.row;
+            let targetC = node.col+1;
+            let len = gridBlocks[0].length;
 
+            if (targetC < len && gridBlocks[targetR][targetC] === "") {
+              let tempGrid = gridBlocks;
+              tempGrid[node.row][node.col] = "";
+              tempGrid[targetR][targetC] = clickedNodeKey;
+              setGridBlocks(tempGrid);
+
+              let tempMap = nodeRelationshipMap;
+              tempMap[clickedNodeKey].col = targetC;
+              setNodeRelationshipMap(tempMap);
+              let crd = targetR * 10000 + targetC;
+              setClickedNode2(crd);
+            }
           }}>Right</button><br></br>
           <button onClick={()=>{
 

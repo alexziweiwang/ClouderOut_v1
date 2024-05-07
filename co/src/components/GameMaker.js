@@ -100,12 +100,6 @@ export default function GameMaker() {
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
       <p>projectName: {projectName}</p>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> Resource Manager </button>
-      {isDisplayRmBool && 
-      <ResourceManagingModalWindow 
-        isDisplay = {isDisplayRmBool} 
-        handleRmCancel={handleResourceManagerCancel} 
-        handleRmSaveChanges={handleResourceManagerSaveChanges}
-      />}
     </div>
     <div>
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>Content Chapters</button>
@@ -200,7 +194,12 @@ export default function GameMaker() {
     </p>
 
     
-
+    {isDisplayRmBool && 
+      <ResourceManagingModalWindow 
+        isDisplay = {isDisplayRmBool} 
+        handleRmCancel={handleResourceManagerCancel} 
+        handleRmSaveChanges={handleResourceManagerSaveChanges}
+      />}
     
   </div>
 
