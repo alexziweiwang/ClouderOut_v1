@@ -256,3 +256,5 @@
 - 2024-May-01: Reconsider and redesign next-node linking and navigating with the new grid and jumping strategies
 
 - 2024-May-02: Consider new-grid-node linking calculation
+
+- 2024-May-08: Consider and plan for setting up sample data(all along the procedure) on cloud-db for testing
