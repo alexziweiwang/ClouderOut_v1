@@ -1243,7 +1243,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                     <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
                     
-                    <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
+                    <select onChange={(event)=>{
+                        let selectedV2 = event.target.value;
+
+                        let selectedV2Type = gameDataLocal[selectedV2]["data_type"];
+
+                        if (selectedV2Type !== "number") {
+                          alert("Please select a number type data item.");
+                        } else {
+                          setLsGdataVar2(selectedV2);
+                        }
+                        
+                      }} value={logicSplitter_gameDataVar2}>
                             <option value="" key="">--Game Data--</option>
 
                       {Object.keys(gameDataLocal).map((key) => {
