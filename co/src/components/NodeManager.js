@@ -36,7 +36,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
     "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], SpltLogicPairs: [], display: true, nodeType:"LogicSplitter"}
+    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], spltLogicPairs: [], display: true, nodeType:"LogicSplitter"}
   }); //TODO new data-design
   const [renderCounter, setRenderCounter] = useState(0);
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -1166,9 +1166,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               </thead>
               <tbody>
                 <tr></tr>
+      
                 <tr>
                   <td>(All other cases / "Else")</td>
                   <td>
+                 
                     <select 
                           value={lscElseSelected} 
                           onChange={(event)=>{
@@ -1184,6 +1186,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     <button 
                       onClick={()=>{
                         //TODO: update the else-target-node for this logic-splitter
+                        //update spltLogicPairs for ["else", lscElseSelected]
+                        // let len to be curr node's spltLogicPairs.length;
+                        // if (len === 0) {
+                        //   add new ["else", lscElseSelected]
+                        // } else {
+                        //   change the first element which must be else
+                        // }
+
                         console.log("else-target-node confirmed: ", lscElseSelected);
                       }}
                     >Update</button>
