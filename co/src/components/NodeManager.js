@@ -36,7 +36,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
     "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-
+    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], SpltLogicPairs: [], display: true, nodeType:"LogicSplitter"}
   }); //TODO new data-design
   const [renderCounter, setRenderCounter] = useState(0);
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -51,7 +51,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     ["","","","","","","","","",""],
     ["chapterStart","node1","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["","","","node2","","","","","",""]
+    ["lsc1","","","node2","","","","","",""]
   ]);
 
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
@@ -73,6 +73,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
    const [clickedNodeKey, setClickedNodeKey] = useState(""); //TODO using for new data structure
    const [selectedNextNode, setSelectedNextNode] = useState("-");
+   const [lscElseSelected, setLscElseSelected] = useState("");
 
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -696,9 +697,97 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
+<div className="parallelFrame">
+          <div>
+            <button
+              onClick={()=>{
+              let node = nodeRelationshipMap[clickedNodeKey];
+              let targetR = node.row;
+              let targetC = node.col-1;
+              if (targetC >= 0 && gridBlocks[targetR][targetC] === "") {
+                let tempGrid = gridBlocks;
+                tempGrid[node.row][node.col] = "";
+                tempGrid[targetR][targetC] = clickedNodeKey;
+                setGridBlocks(tempGrid);
+
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].col = targetC;
+                setNodeRelationshipMap(tempMap);
+                let crd = targetR * 10000 + targetC;
+                setClickedNode2(crd);
+              }
+            }}>Left</button>
+          </div>
+          <div>
+            <div className="centered"><button
+            onClick={()=>{
+              let node = nodeRelationshipMap[clickedNodeKey];
+              let targetR = node.row-1;
+              let targetC = node.col;
+
+              if (targetR >= 0 && gridBlocks[targetR][targetC] === "") {
+                let tempGrid = gridBlocks;
+                tempGrid[node.row][node.col] = "";
+                tempGrid[targetR][targetC] = clickedNodeKey;
+                setGridBlocks(tempGrid);
+
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].row = targetR;
+                setNodeRelationshipMap(tempMap);
+                let crd = targetR * 10000 + targetC;
+                setClickedNode2(crd);
+              }
+            }}>Up</button></div>
+            <div><button
+                onClick={()=>{
+                let node = nodeRelationshipMap[clickedNodeKey];
+                let targetR = node.row+1;
+                let targetC = node.col;
+                let len = gridBlocks.length;
+
+                if (targetR < len && gridBlocks[targetR][targetC] === "") {
+                  let tempGrid = gridBlocks;
+                  tempGrid[node.row][node.col] = "";
+                  tempGrid[targetR][targetC] = clickedNodeKey;
+                  setGridBlocks(tempGrid);
+
+                  let tempMap = nodeRelationshipMap;
+                  tempMap[clickedNodeKey].row = targetR;
+                  setNodeRelationshipMap(tempMap);
+                  let crd = targetR * 10000 + targetC;
+                  setClickedNode2(crd);
+                }
+            }}>Down</button></div>
+          </div>
+          <div style={{"alignItems": "end"}}>
+            <button
+              onClick={()=>{
+              let node = nodeRelationshipMap[clickedNodeKey];
+              let targetR = node.row;
+              let targetC = node.col+1;
+              let len = gridBlocks[0].length;
+
+              if (targetC < len && gridBlocks[targetR][targetC] === "") {
+                let tempGrid = gridBlocks;
+                tempGrid[node.row][node.col] = "";
+                tempGrid[targetR][targetC] = clickedNodeKey;
+                setGridBlocks(tempGrid);
+
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].col = targetC;
+                setNodeRelationshipMap(tempMap);
+                let crd = targetR * 10000 + targetC;
+                setClickedNode2(crd);
+              }
+            }}>Right</button>            
+          </div>
+
+        </div>
+
+
         {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
 
-     
+          {/* linking-drawing */}
           {gridBlocks.map((row, ir) => {
               let rowKeyStr = "linking" + ir;
               return (<div key={rowKeyStr} style={{"position": "absolute"}}>
@@ -736,14 +825,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           hasNextNode = true;
                           nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
 
-
                           let nextR = nodeRelationshipMap[nextNodeKey].row;
                           let nextC = nodeRelationshipMap[nextNodeKey].col;
 
                           destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
                           destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
                           extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
-
 
                           unitDiffVert = nextR - ir;
                           if (unitDiffVert > 0) {
@@ -774,6 +861,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           } else {
                             betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
                           }
+                        }
+
+                        if (nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter" 
+                          && nodeRelationshipMap[currNodeKey].nextNode !== "" && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
+                            // TODO
+
                         }
                       }
                       let keyStr = "linking" + +ic+ "=" + currNodeKey;
@@ -959,93 +1052,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         </div>
 
-        <div className="parallelFrame" style={{"backgroundColor": "pink"}}>
-          <div>
-            <button
-              onClick={()=>{
-              let node = nodeRelationshipMap[clickedNodeKey];
-              let targetR = node.row;
-              let targetC = node.col-1;
-              if (targetC >= 0 && gridBlocks[targetR][targetC] === "") {
-                let tempGrid = gridBlocks;
-                tempGrid[node.row][node.col] = "";
-                tempGrid[targetR][targetC] = clickedNodeKey;
-                setGridBlocks(tempGrid);
-
-                let tempMap = nodeRelationshipMap;
-                tempMap[clickedNodeKey].col = targetC;
-                setNodeRelationshipMap(tempMap);
-                let crd = targetR * 10000 + targetC;
-                setClickedNode2(crd);
-              }
-            }}>Left</button>
-          </div>
-          <div>
-            <div className="centered"><button
-            onClick={()=>{
-              let node = nodeRelationshipMap[clickedNodeKey];
-              let targetR = node.row-1;
-              let targetC = node.col;
-
-              if (targetR >= 0 && gridBlocks[targetR][targetC] === "") {
-                let tempGrid = gridBlocks;
-                tempGrid[node.row][node.col] = "";
-                tempGrid[targetR][targetC] = clickedNodeKey;
-                setGridBlocks(tempGrid);
-
-                let tempMap = nodeRelationshipMap;
-                tempMap[clickedNodeKey].row = targetR;
-                setNodeRelationshipMap(tempMap);
-                let crd = targetR * 10000 + targetC;
-                setClickedNode2(crd);
-              }
-            }}>Up</button></div>
-            <div><button
-                onClick={()=>{
-                let node = nodeRelationshipMap[clickedNodeKey];
-                let targetR = node.row+1;
-                let targetC = node.col;
-                let len = gridBlocks.length;
-
-                if (targetR < len && gridBlocks[targetR][targetC] === "") {
-                  let tempGrid = gridBlocks;
-                  tempGrid[node.row][node.col] = "";
-                  tempGrid[targetR][targetC] = clickedNodeKey;
-                  setGridBlocks(tempGrid);
-
-                  let tempMap = nodeRelationshipMap;
-                  tempMap[clickedNodeKey].row = targetR;
-                  setNodeRelationshipMap(tempMap);
-                  let crd = targetR * 10000 + targetC;
-                  setClickedNode2(crd);
-                }
-            }}>Down</button></div>
-          </div>
-          <div style={{"alignItems": "end"}}>
-            <button
-              onClick={()=>{
-              let node = nodeRelationshipMap[clickedNodeKey];
-              let targetR = node.row;
-              let targetC = node.col+1;
-              let len = gridBlocks[0].length;
-
-              if (targetC < len && gridBlocks[targetR][targetC] === "") {
-                let tempGrid = gridBlocks;
-                tempGrid[node.row][node.col] = "";
-                tempGrid[targetR][targetC] = clickedNodeKey;
-                setGridBlocks(tempGrid);
-
-                let tempMap = nodeRelationshipMap;
-                tempMap[clickedNodeKey].col = targetC;
-                setNodeRelationshipMap(tempMap);
-                let crd = targetR * 10000 + targetC;
-                setClickedNode2(crd);
-              }
-            }}>Right</button>            
-          </div>
-
-        </div>
-
+     
         {(clickedNode2 !== -1 
           && nodeRelationshipMap[clickedNodeKey] !== undefined
           && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
@@ -1147,7 +1154,43 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             }}
           >Detach Linking</button>
         </>}
-     
+
+
+
+        {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
+          <p className="sectionHeader">*** Target Nodes ***</p>
+            Path-deciding
+            <br></br>
+            <table>
+              <thead>
+                <tr>
+                  <th>Condition</th>
+                  <th>Target Node</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>...</tr>
+                <tr>
+                  <td>(Else)</td>
+                  <td>
+                    <select 
+                          value={lscElseSelected} 
+                          onChange={()=>{
+
+                          }}>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button>Add a New Condition & Target</button>
+
+
+lscElseSelected
+
+        </>}
+
           </div>}
 
           <p className="plans">TODO: 
