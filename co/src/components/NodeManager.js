@@ -809,7 +809,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 style={{
                                   "position": "absolute",
                                   "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": (srcNodeHigher === false ? `${sourceRightLineHStart+10}px` : `${destLeftLineHStart}px`), 
+                                  "left": `${sourceRightLineHStart+10}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
                                   "backgroundColor": "orange",
