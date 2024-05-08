@@ -1175,19 +1175,28 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   <td>
                     <select 
                           value={lscElseSelected} 
-                          onChange={()=>{
-
-                          }}>
+                          onChange={(event)=>{
+                            setLscElseSelected(event.target.value);
+                    }}>
+                        <option key="lscElse" value="-">-- Select --</option>
+                        {Object.keys(nodeRelationshipMap).map((currKey) => {                  
+                            let item = nodeRelationshipMap[currKey];
+                            let lscElseKey = "lscSettingElse" + currKey;
+                            return (<option key={lscElseKey}>{item["nodeName"]}</option>);
+                        })}          
                     </select>
+                    <button 
+                      onClick={()=>{
+                        //TODO: update the else-target-node for this logic-splitter
+                        console.log("else-target-node confirmed: ", lscElseSelected);
+                      }}
+                    >Update</button>
                   </td>
                 </tr>
               </tbody>
             </table>
 
             <button>Add a New Condition & Target</button>
-
-
-lscElseSelected
 
         </>}
 
