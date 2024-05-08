@@ -959,80 +959,91 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         </div>
 
-        <div>
-          <button onClick={()=>{
-            let node = nodeRelationshipMap[clickedNodeKey];
-            let targetR = node.row;
-            let targetC = node.col-1;
-            if (targetC >= 0 && gridBlocks[targetR][targetC] === "") {
-              let tempGrid = gridBlocks;
-              tempGrid[node.row][node.col] = "";
-              tempGrid[targetR][targetC] = clickedNodeKey;
-              setGridBlocks(tempGrid);
+        <div className="parallelFrame" style={{"backgroundColor": "pink"}}>
+          <div>
+            <button
+              onClick={()=>{
+              let node = nodeRelationshipMap[clickedNodeKey];
+              let targetR = node.row;
+              let targetC = node.col-1;
+              if (targetC >= 0 && gridBlocks[targetR][targetC] === "") {
+                let tempGrid = gridBlocks;
+                tempGrid[node.row][node.col] = "";
+                tempGrid[targetR][targetC] = clickedNodeKey;
+                setGridBlocks(tempGrid);
 
-              let tempMap = nodeRelationshipMap;
-              tempMap[clickedNodeKey].col = targetC;
-              setNodeRelationshipMap(tempMap);
-              let crd = targetR * 10000 + targetC;
-              setClickedNode2(crd);
-            }
-          }}>Left</button>
-          <button onClick={()=>{
-            let node = nodeRelationshipMap[clickedNodeKey];
-            let targetR = node.row;
-            let targetC = node.col+1;
-            let len = gridBlocks[0].length;
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].col = targetC;
+                setNodeRelationshipMap(tempMap);
+                let crd = targetR * 10000 + targetC;
+                setClickedNode2(crd);
+              }
+            }}>Left</button>
+          </div>
+          <div>
+            <div className="centered"><button
+            onClick={()=>{
+              let node = nodeRelationshipMap[clickedNodeKey];
+              let targetR = node.row-1;
+              let targetC = node.col;
 
-            if (targetC < len && gridBlocks[targetR][targetC] === "") {
-              let tempGrid = gridBlocks;
-              tempGrid[node.row][node.col] = "";
-              tempGrid[targetR][targetC] = clickedNodeKey;
-              setGridBlocks(tempGrid);
+              if (targetR >= 0 && gridBlocks[targetR][targetC] === "") {
+                let tempGrid = gridBlocks;
+                tempGrid[node.row][node.col] = "";
+                tempGrid[targetR][targetC] = clickedNodeKey;
+                setGridBlocks(tempGrid);
 
-              let tempMap = nodeRelationshipMap;
-              tempMap[clickedNodeKey].col = targetC;
-              setNodeRelationshipMap(tempMap);
-              let crd = targetR * 10000 + targetC;
-              setClickedNode2(crd);
-            }
-          }}>Right</button><br></br>
-          <button onClick={()=>{
-            let node = nodeRelationshipMap[clickedNodeKey];
-            let targetR = node.row-1;
-            let targetC = node.col;
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].row = targetR;
+                setNodeRelationshipMap(tempMap);
+                let crd = targetR * 10000 + targetC;
+                setClickedNode2(crd);
+              }
+            }}>Up</button></div>
+            <div><button
+                onClick={()=>{
+                let node = nodeRelationshipMap[clickedNodeKey];
+                let targetR = node.row+1;
+                let targetC = node.col;
+                let len = gridBlocks.length;
 
-            if (targetR >= 0 && gridBlocks[targetR][targetC] === "") {
-              let tempGrid = gridBlocks;
-              tempGrid[node.row][node.col] = "";
-              tempGrid[targetR][targetC] = clickedNodeKey;
-              setGridBlocks(tempGrid);
+                if (targetR < len && gridBlocks[targetR][targetC] === "") {
+                  let tempGrid = gridBlocks;
+                  tempGrid[node.row][node.col] = "";
+                  tempGrid[targetR][targetC] = clickedNodeKey;
+                  setGridBlocks(tempGrid);
 
-              let tempMap = nodeRelationshipMap;
-              tempMap[clickedNodeKey].row = targetR;
-              setNodeRelationshipMap(tempMap);
-              let crd = targetR * 10000 + targetC;
-              setClickedNode2(crd);
-            }
-          }}>Up</button>
-          <button onClick={()=>{
-            let node = nodeRelationshipMap[clickedNodeKey];
-            let targetR = node.row+1;
-            let targetC = node.col;
-            let len = gridBlocks.length;
+                  let tempMap = nodeRelationshipMap;
+                  tempMap[clickedNodeKey].row = targetR;
+                  setNodeRelationshipMap(tempMap);
+                  let crd = targetR * 10000 + targetC;
+                  setClickedNode2(crd);
+                }
+            }}>Down</button></div>
+          </div>
+          <div style={{"alignItems": "end"}}>
+            <button
+              onClick={()=>{
+              let node = nodeRelationshipMap[clickedNodeKey];
+              let targetR = node.row;
+              let targetC = node.col+1;
+              let len = gridBlocks[0].length;
 
-            if (targetR < len && gridBlocks[targetR][targetC] === "") {
-              let tempGrid = gridBlocks;
-              tempGrid[node.row][node.col] = "";
-              tempGrid[targetR][targetC] = clickedNodeKey;
-              setGridBlocks(tempGrid);
+              if (targetC < len && gridBlocks[targetR][targetC] === "") {
+                let tempGrid = gridBlocks;
+                tempGrid[node.row][node.col] = "";
+                tempGrid[targetR][targetC] = clickedNodeKey;
+                setGridBlocks(tempGrid);
 
-              let tempMap = nodeRelationshipMap;
-              tempMap[clickedNodeKey].row = targetR;
-              setNodeRelationshipMap(tempMap);
-              let crd = targetR * 10000 + targetC;
-              setClickedNode2(crd);
-            }
-          }}>Down</button>
+                let tempMap = nodeRelationshipMap;
+                tempMap[clickedNodeKey].col = targetC;
+                setNodeRelationshipMap(tempMap);
+                let crd = targetR * 10000 + targetC;
+                setClickedNode2(crd);
+              }
+            }}>Right</button>            
+          </div>
+
         </div>
 
         {(clickedNode2 !== -1 
