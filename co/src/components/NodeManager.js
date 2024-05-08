@@ -125,6 +125,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 //    setNodeData(chapterData);
         // console.log("First enter node data: ");
         // console.log(nodeData);
+        fetchGameDataFromCloud();
         console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
 
         setFirstTimeEnter(false);
@@ -548,11 +549,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   async function fetchGameDataFromCloud() {
 
-    let project = "";
-
-  
         console.log("!!! This is for project: ", projectName);
-        project  = projectName;
+        let project  = projectName;
         console.log("checking2 on project ... [", project, "]");
         if (project === undefined || project === null || project === "" || project.trim() === "") {
           return;
@@ -612,8 +610,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <label>Node Management</label>
 
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
-
-        {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
           <div style={{"height": "350px"}} className="orangeArea">List of nodes:<br></br>
             <ul style={{"width": "300px"}}>
@@ -1169,9 +1165,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 </tr>
               </thead>
               <tbody>
-                <tr>...</tr>
+                <tr></tr>
                 <tr>
-                  <td>(Else)</td>
+                  <td>(All other cases / "Else")</td>
                   <td>
                     <select 
                           value={lscElseSelected} 
@@ -1196,7 +1192,107 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               </tbody>
             </table>
 
-            <button>Add a New Condition & Target</button>
+            <button onClick={()=>{
+
+            }}>Add a New Condition & Target</button>
+            {<div>
+              <label>If</label>
+//TODO111
+
+              <div className="areaFrame">
+                <label>If</label><br></br>
+                
+                <div>
+                    <label> Variable 1: </label>
+
+                    <select 
+                          onChange={(event)=>{
+                            setLsGdataVar1(event.target.value);
+                            setCondtVar1Type(gameDataLocal[event.target.value]["data_type"]);
+                            console.log("var1 selected type = ", gameDataLocal[event.target.value]["data_type"]);
+                          }} 
+                          value={logicSplitter_gameDataVar1}>
+                        
+                        <option value="" key="">--Game Data--</option>
+                        {Object.keys(gameDataLocal).map((currKey) => {
+                            return (
+                            <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
+                            );
+                        })}
+                    </select>
+                    {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                </div>
+
+                <div>
+                    <label>Comparison: </label>
+              
+                    {(condtVar1Type === "number") && 
+                      <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
+                          <option key="" value="-"> -- Operator -- </option>
+                          <option key="larger" value="larger"> larger than </option>
+                          <option key="smaller" value="smaller"> smaller than </option>
+                          <option key="equal" value="equal"> equal to </option>
+                          <option key="largerequal" value="largerequal"> larger than or euqal to </option>
+                          <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
+                      </select>}
+                </div>
+              <div>
+                  {(condtVar1Type === "number") && <div>
+                    <label> Variable 2: </label>
+                    <br></br>
+
+                    <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
+                    
+                    <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
+                            <option value="" key="">--Game Data--</option>
+
+                      {Object.keys(gameDataLocal).map((key) => {
+                        return (
+                              <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
+                          );
+                        })}
+                    </select>
+                  {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+
+                  <br></br>
+                  <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
+                      <input type="number" min="-100000000" max="100000000" step="1" value={logicSplitter_gameDataVar2} onChange={(event)=>{setLsGdataVar2(event.target.value);}}></input>    
+                  </div>}
+
+                  {(condtVar1Type === "string") && <div>          
+                    <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
+                    <label> Is </label>
+                    <input></input>
+                  <br></br>                         
+                  <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
+                    <label> Is Not </label>
+                    <input></input>          
+                  
+                  </div>}
+
+                  {(condtVar1Type === "boolean") && <div>
+            
+                  <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
+                    <label> Is True</label>
+                  <br></br>                   
+                  <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);console.log("going to set: Var1-boolean-false");}} checked={!var1BoolTrue}></input>
+                    <label> Is False</label>  
+                  </div>}
+
+          </div>
+
+              <br></br>
+              <button onClick={()=>{
+                console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);
+                
+              }}>Add Condition</button>
+
+                    </div>
+            
+
+
+//TODO222
+            </div>}
 
         </>}
 
@@ -1228,7 +1324,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <div>    
         
         <div>
-        <p className="sectionHeader">*** Node Info ***</p>
+        {/* <p className="sectionHeader">*** Node Info ***</p>
         <div>
           <label>Node Name: </label>
           <label>{clickedNode}</label>
@@ -1238,17 +1334,17 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           <br></br>
           <label>Screen Size: </label>
           <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].screenSize}</label>
-        </div>
+        </div> */}
 
-        <p className="sectionHeader">*** Node Settings ***</p>
+        {/* <p className="sectionHeader">*** Node Settings ***</p>
         <div>
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
           <button onClick={updateNodeToNewName}>Update</button>
-        </div>
+        </div> */}
 
-        <p className="sectionHeader">*** Next Node(s) ***</p>
-        <div>
+        {/* <p className="sectionHeader">*** Next Node(s) ***</p> */}
+        {/* <div>
         <table>
             <thead>
                 <tr key="head">
@@ -1278,8 +1374,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </tbody>
         </table>
         </div>
-        
-        {(nextCondtList.includes("Default: Always Reachable")) && 
+         */}
+        {/* {(nextCondtList.includes("Default: Always Reachable")) && 
             <div className="hint"> 
             ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes
             </div>}
@@ -1288,12 +1384,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <br></br>
         <label>Add a Next-Node: </label>
         <br></br>
-        </>}
+        </>} */}
 
         {(!nextCondtList.includes("Default: Always Reachable")) && <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
-           
-
         {!isLinkNewNode && <>
         <br></br>
         <div>
@@ -1311,11 +1405,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 })}
         </select>
         </div>
-
-    </>}
-
-
-        </div>}
+    </>}        </div>}
         </div>
     
         {(!nextCondtList.includes("Default: Always Reachable")) && <div>
@@ -1424,7 +1514,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })}
           </select>
                 {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
-                <br></br>
     
                 <label>Comparison: </label>
           
@@ -1487,6 +1576,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               <button onClick={()=>{console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);}}>Add Condition</button>
 
                     </div>
+            
+            
               <br></br>
 
         </div>}
@@ -1723,6 +1814,9 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         }
 
         {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
+     
+     
+        {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
 
       </div>
     );
