@@ -997,6 +997,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             }
           }}>Right</button><br></br>
           <button onClick={()=>{
+            let node = nodeRelationshipMap[clickedNodeKey];
+            let targetR = node.row-1;
+            let targetC = node.col;
+
+            if (targetR >= 0 && gridBlocks[targetR][targetC] === "") {
+              let tempGrid = gridBlocks;
+              tempGrid[node.row][node.col] = "";
+              tempGrid[targetR][targetC] = clickedNodeKey;
+              setGridBlocks(tempGrid);
+
+              let tempMap = nodeRelationshipMap;
+              tempMap[clickedNodeKey].row = targetR;
+              setNodeRelationshipMap(tempMap);
+              let crd = targetR * 10000 + targetC;
+              setClickedNode2(crd);
+            }
+
 
           }}>Up</button>
           <button onClick={()=>{
