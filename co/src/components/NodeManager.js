@@ -1013,11 +1013,25 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               let crd = targetR * 10000 + targetC;
               setClickedNode2(crd);
             }
-
-
           }}>Up</button>
           <button onClick={()=>{
+            let node = nodeRelationshipMap[clickedNodeKey];
+            let targetR = node.row+1;
+            let targetC = node.col;
+            let len = gridBlocks.length;
 
+            if (targetR < len && gridBlocks[targetR][targetC] === "") {
+              let tempGrid = gridBlocks;
+              tempGrid[node.row][node.col] = "";
+              tempGrid[targetR][targetC] = clickedNodeKey;
+              setGridBlocks(tempGrid);
+
+              let tempMap = nodeRelationshipMap;
+              tempMap[clickedNodeKey].row = targetR;
+              setNodeRelationshipMap(tempMap);
+              let crd = targetR * 10000 + targetC;
+              setClickedNode2(crd);
+            }
           }}>Down</button>
         </div>
 
