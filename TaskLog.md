@@ -258,3 +258,5 @@
 - 2024-May-02: Consider new-grid-node linking calculation
 
 - 2024-May-08: Consider and plan for setting up sample data(all along the procedure) on cloud-db for testing
+
+- 2024-May-09: ConSider new-grid-node special position-cases' strategies
