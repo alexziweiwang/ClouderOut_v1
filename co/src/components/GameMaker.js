@@ -98,7 +98,7 @@ export default function GameMaker() {
     
     <div className="returning_buttons">
       <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
-      <p>projectName: {projectName}</p>
+      <p>Project Name: {projectName}</p>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> Resource Manager </button>
     </div>
     <div>

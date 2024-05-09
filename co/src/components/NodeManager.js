@@ -1170,8 +1170,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 <tr>
                   <td>(All other cases / "Else")</td>
                   <td>
-                 
-                    <select 
+                    <div className="parallelFrame">
+                    {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
+                      && 
+                      <div style={{"paddingRight": "20px"}}><label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}</label></div>}
+                      <div style={{"paddingRight": "2px"}}><select 
                           value={lscElseSelected} 
                           onChange={(event)=>{
                             setLscElseSelected(event.target.value);
@@ -1203,8 +1206,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         let tempNodeRelMap = nodeRelationshipMap;
                         tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
                         setNodeRelationshipMap(tempNodeRelMap);
+
+                        setLscElseSelected("");
                       }}
-                    >Update</button>
+                    >Update</button></div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
