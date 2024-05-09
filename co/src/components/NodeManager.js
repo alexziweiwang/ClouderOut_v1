@@ -90,7 +90,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [logicSplitter_gameDataVar2, setLsGdataVar2] = useState("");
    const [logicSplitterVar2IsGData, setLsV2IsGData] = useState(true);
    const [var2NumCompare, setVar2NumCompare] = useState("");
-
    const [condtVar1Type, setCondtVar1Type] = useState("");
    const [var1StringEq, setVar1StringEq] = useState(true);
    const [var1BoolTrue, setVar1BoolTrue] = useState(true);
@@ -1330,24 +1329,38 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 // logicSplitter_gameDataVar2 (range: logicSplitterVar2IsGData)
 
 // currNodeSplittedNum 
-                let stmtStr = logicSplitter_gameDataVar1 + ", type[" + condtVar1Type + "], ";
+                let stmtStr = logicSplitter_gameDataVar1 + ",type[" + condtVar1Type + "],";
                 if (condtVar1Type === "number") {
-                  stmtStr = stmtStr + var2NumCompare + ", isGameData?(" + logicSplitterVar2IsGData + ") " + logicSplitter_gameDataVar2;
-
+                  if (var2NumCompare === "") {
+                    alert("Please select the comparison");
+                    return;
+                  }
+                  if (logicSplitterVar2IsGData === true) {
+                    stmtStr = stmtStr + var2NumCompare + ",(gameData)," + logicSplitter_gameDataVar2;
+                  } else {
+                    stmtStr = stmtStr + var2NumCompare + ",(pureValue)," + logicSplitter_gameDataVar2;
+                  }
                 } else if (condtVar1Type === "boolean") {
                   stmtStr = stmtStr + var1BoolTrue;
 
                 } else if (condtVar1Type === "string"){
                   if (var1StringEq === true) {
-                    stmtStr = stmtStr + "equalsTo, " + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + "equalsTo," + logicSplitter_gameDataVar2;
                   } else {
-                    stmtStr = stmtStr + "notEqualTo, " + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + "notEqualTo," + logicSplitter_gameDataVar2;
 
                   }
                 }
 
+                setLsGdataVar1("");
+                setLsGdataVar2("");
+                setVar2NumCompare("");
+                setCondtVar1Type("");
+                setVar1StringEq(true);
+                setVar1BoolTrue(true);
+                setLsV2IsGData(true);
                 console.log("statement: ", stmtStr); // TODO test
-                
+
               }}>Add Condition</button>
 
                     </div>
