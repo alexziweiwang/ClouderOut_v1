@@ -1179,7 +1179,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     }
                     let keyStr = "tableLogicSplitter" + item[1];
                     return (
-                    <tr key={keyStr}><td>{item[2]}</td><td>{item[1]}</td></tr>
+                    <tr key={keyStr}>
+                        <td>{item[2]}</td>
+                        <td>{item[1]}</td>
+                        
+                          <GiTrashCan onClick={()=>{
+                              //TODO 
+                              console.log("remove from condt-pair table");
+                            }}  
+                              className="iconButtonSmall"/>
+                     
+                    
+                    </tr>
                     );
                   
                 })}
@@ -1228,6 +1239,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     >Update</button></div>
                     </div>
                   </td>
+                  
+                  <GiTrashCan onClick={()=>{
+                    //TODO 
+                    console.log("remove from condt-pair table");
+                    }}  
+                  className="iconButtonSmall"/>
+                      
                 </tr>
               </tbody>
             </table>
@@ -1269,9 +1287,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           <option key="" value="-"> -- Operator -- </option>
                           <option key="larger" value="larger"> larger than </option>
                           <option key="smaller" value="smaller"> smaller than </option>
-                          <option key="equal" value="equal"> equal to </option>
-                          <option key="largerequal" value="largerequal"> larger than or euqal to </option>
-                          <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
+                          <option key="equal" value="equal"> equals to </option>
+                          <option key="largerequal" value="largerequal"> larger than or equals to </option>
+                          <option key="smallerequal" value="smallerequal"> smaller than or equals to </option>
                       </select>}
                 </div>
               <div> 
@@ -1646,9 +1664,9 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
               <option key="smaller" value="smaller"> smaller than </option>
-              <option key="equal" value="equal"> equal to </option>
-              <option key="largerequal" value="largerequal"> larger than or euqal to </option>
-              <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
+              <option key="equal" value="equal"> equals to </option>
+              <option key="largerequal" value="largerequal"> larger than or equals to </option>
+              <option key="smallerequal" value="smallerequal"> smaller than or equals to </option>
           </select>}
          
           <div>
