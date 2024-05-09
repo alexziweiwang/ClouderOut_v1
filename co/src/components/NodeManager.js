@@ -36,7 +36,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
     "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], spltLogicPairs: [], display: true, nodeType:"LogicSplitter"}
+    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", ""],], display: true, nodeType:"LogicSplitter"}
   }); //TODO new data-design
   const [renderCounter, setRenderCounter] = useState(0);
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -1205,7 +1205,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         }
 
                         //TODO update for grid-node-visualization
-
+                        
                         let tempNodeRelMap = nodeRelationshipMap;
                         tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
                         setNodeRelationshipMap(tempNodeRelMap);
@@ -1340,6 +1340,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
               <br></br><br></br>
               <button onClick={()=>{
+                  if (lscCurrSelected === undefined || lscCurrSelected === "") {
+                    alert("Please choose a target node.");
+                    return;
+                  }
 // logicSplitter_gameDataVar1    (type: condtVar1Type)
 
 // var2NumCompare, var1StringEq
@@ -1348,26 +1352,24 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 // logicSplitter_gameDataVar2 (range: logicSplitterVar2IsGData)
 
 // currNodeSplittedNum 
-                let stmtStr = logicSplitter_gameDataVar1 + ",type[" + condtVar1Type + "],";
+                let stmtStr = "type[" + condtVar1Type + "]^" + logicSplitter_gameDataVar1 + "^";
                 if (condtVar1Type === "number") {
                   if (var2NumCompare === "") {
                     alert("Please select the comparison");
                     return;
                   }
                   if (logicSplitterVar2IsGData === true) {
-                    stmtStr = stmtStr + var2NumCompare + ",(gameData)," + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + var2NumCompare + "^(gameData)^" + logicSplitter_gameDataVar2;
                   } else {
-                    stmtStr = stmtStr + var2NumCompare + ",(pureValue)," + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + var2NumCompare + "^(pureValue)^" + logicSplitter_gameDataVar2;
                   }
                 } else if (condtVar1Type === "boolean") {
                   stmtStr = stmtStr + var1BoolTrue;
-
                 } else if (condtVar1Type === "string"){
                   if (var1StringEq === true) {
-                    stmtStr = stmtStr + "equalsTo," + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + "equalsTo^" + logicSplitter_gameDataVar2;
                   } else {
-                    stmtStr = stmtStr + "notEqualTo," + logicSplitter_gameDataVar2;
-
+                    stmtStr = stmtStr + "notEqualTo^" + logicSplitter_gameDataVar2;
                   }
                 }
 
@@ -1378,19 +1380,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 setVar1StringEq(true);
                 setVar1BoolTrue(true);
                 setLsV2IsGData(true);
-                console.log("statement: ", stmtStr); // TODO test
+console.log("statement: ", stmtStr); // TODO test
+              
+                let currStmtArr = [stmtStr, lscCurrSelected];
 
-                //TODO insert into the pairs of condition-targetNode for this game-node
+                let tempLogicPairs = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
+                tempLogicPairs.push(currStmtArr);
+
+                let tempNodeRelMap = nodeRelationshipMap;
+                tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs;
+                setNodeRelationshipMap(tempNodeRelMap);
+
+console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
 
               }}>Add Condition</button>
 
-
-            
-
                     </div>
             
-
-
 //TODO222
             </div>}
 
