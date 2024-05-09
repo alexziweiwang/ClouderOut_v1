@@ -1185,16 +1185,24 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     </select>
                     <button 
                       onClick={()=>{
-                        //TODO: update the else-target-node for this logic-splitter
-                        //update spltLogicPairs for ["else", lscElseSelected]
+                        let pairsArr = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
+                        if (pairsArr === undefined) {
+                          return;
+                        }
+                        let len = pairsArr.length;
                         // let len to be curr node's spltLogicPairs.length;
-                        // if (len === 0) {
-                        //   add new ["else", lscElseSelected]
-                        // } else {
-                        //   change the first element which must be else
-                        // }
+                        if (len === 0) {
+                          let pairItem = ["else", lscElseSelected];
+                          pairsArr.push(pairItem);
+                        } else {
+                          pairsArr[0][1] = lscElseSelected; // update the first element's target node
+                        }
 
-                        console.log("else-target-node confirmed: ", lscElseSelected);
+                        //TODO update for grid-node-visualization
+
+                        let tempNodeRelMap = nodeRelationshipMap;
+                        tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
+                        setNodeRelationshipMap(tempNodeRelMap);
                       }}
                     >Update</button>
                   </td>
