@@ -97,6 +97,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [var1BoolTrue, setVar1BoolTrue] = useState(true);
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
 
+   const [displayAddNewTargetCondt, setDisplayAddNewTargetCondt] = useState(false);
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
@@ -1232,11 +1233,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </table>
 
             <button onClick={()=>{
-
+              setDisplayAddNewTargetCondt(!displayAddNewTargetCondt);
             }}>Add a New Condition & Target</button>
-            {<div>
-              <label>If</label>
-//TODO111
+            {displayAddNewTargetCondt && <div>
 
               <div className="areaFrame">
                 <label>If</label><br></br>
@@ -1411,12 +1410,12 @@ console.log("statement: ", stmtStr); // TODO test
                 setNodeRelationshipMap(tempNodeRelMap);
 
 console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
-
+                
+                setDisplayAddNewTargetCondt(false);
               }}>Add Condition</button>
 
                     </div>
-            
-//TODO222
+
             </div>}
 
         </>}
