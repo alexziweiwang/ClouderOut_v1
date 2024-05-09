@@ -1168,8 +1168,20 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 </tr>
               </thead>
               <tbody>
-                <tr></tr>
-      
+                
+                
+                
+                {nodeRelationshipMap[clickedNodeKey].spltLogicPairs
+                .map((item, index) => {       
+                    if (item[0] === "else") {
+                      return;
+                    }
+                    let keyStr = "tableLogicSplitter" + item[1];
+                    return (
+                    <tr key={keyStr}><td>{item[0]}</td><td>{item[1]}</td></tr>
+                    );
+                  
+                })}
                 <tr>
                   <td>(All other cases / "Else")</td>
                   <td>
