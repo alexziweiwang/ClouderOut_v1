@@ -631,6 +631,24 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   }
 
+  function deleteFromCondtTable(index) {
+    //nodeRelationshipMap[clickedNodeKey].spltLogicPairs
+    let tempPairs = [];
+    let i = 0;
+    let len = nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length;
+    for (; i < len; i++) {
+      if (i !== index) {
+        tempPairs.push(nodeRelationshipMap[clickedNodeKey].spltLogicPairs[i]);
+      }
+    }
+
+    let tempNodeRelMap = nodeRelationshipMap;
+    tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempPairs;
+    setNodeRelationshipMap(tempNodeRelMap);
+
+    updateRenderCounter();
+  }
+
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
 
@@ -1209,9 +1227,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         <td>{item[1]}</td>
                         <td>
                           <GiTrashCan onClick={()=>{
-                         
-                              //TODO 
-                              console.log("remove from condt-pair table");
+                              deleteFromCondtTable(index);
                             }}  
                               className="iconButtonSmall"/>
                         </td>
