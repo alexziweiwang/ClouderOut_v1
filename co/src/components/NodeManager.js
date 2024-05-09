@@ -606,6 +606,31 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   function updateRenderCounter() {
     setRenderCounter((renderCounter+1) % 100);
   }
+
+  function updateTableCondt() {
+    let pairsArr = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
+    if (pairsArr === undefined) {
+      return;
+    }
+    let len = pairsArr.length;
+    
+
+      if (len === 0) {
+        let pairItem = ["else", lscElseSelected, "else"];
+        pairsArr.push(pairItem);
+      } else {
+        pairsArr[0][1] = lscElseSelected; // update the first element's target node
+      }
+ 
+
+    //TODO update for grid-node-visualization
+                        
+    let tempNodeRelMap = nodeRelationshipMap;
+    tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
+    setNodeRelationshipMap(tempNodeRelMap);
+
+  }
+
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
 
@@ -1182,13 +1207,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     <tr key={keyStr}>
                         <td>{item[2]}</td>
                         <td>{item[1]}</td>
-                        
+                        <td>
                           <GiTrashCan onClick={()=>{
+                         
                               //TODO 
                               console.log("remove from condt-pair table");
                             }}  
                               className="iconButtonSmall"/>
-                     
+                        </td>
                     
                     </tr>
                     );
@@ -1215,37 +1241,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     </select>
                     <button 
                       onClick={()=>{
-                        let pairsArr = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
-                        if (pairsArr === undefined) {
-                          return;
-                        }
-                        let len = pairsArr.length;
-                        // let len to be curr node's spltLogicPairs.length;
-                        if (len === 0) {
-                          let pairItem = ["else", lscElseSelected, "else"];
-                          pairsArr.push(pairItem);
-                        } else {
-                          pairsArr[0][1] = lscElseSelected; // update the first element's target node
-                        }
-
-                        //TODO update for grid-node-visualization
-                        
-                        let tempNodeRelMap = nodeRelationshipMap;
-                        tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
-                        setNodeRelationshipMap(tempNodeRelMap);
-
+                        updateTableCondt();
                         setLscElseSelected("");
                       }}
                     >Update</button></div>
                     </div>
                   </td>
-                  
-                  <GiTrashCan onClick={()=>{
-                    //TODO 
-                    console.log("remove from condt-pair table");
-                    }}  
-                  className="iconButtonSmall"/>
-                      
                 </tr>
               </tbody>
             </table>
