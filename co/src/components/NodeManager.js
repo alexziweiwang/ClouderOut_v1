@@ -36,7 +36,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
     "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", ""],], display: true, nodeType:"LogicSplitter"}
+    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", "", "else"],], display: true, nodeType:"LogicSplitter"}
   }); //TODO new data-design
   const [renderCounter, setRenderCounter] = useState(0);
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -1178,7 +1178,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     }
                     let keyStr = "tableLogicSplitter" + item[1];
                     return (
-                    <tr key={keyStr}><td>{item[0]}</td><td>{item[1]}</td></tr>
+                    <tr key={keyStr}><td>{item[2]}</td><td>{item[1]}</td></tr>
                     );
                   
                 })}
@@ -1210,7 +1210,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         let len = pairsArr.length;
                         // let len to be curr node's spltLogicPairs.length;
                         if (len === 0) {
-                          let pairItem = ["else", lscElseSelected];
+                          let pairItem = ["else", lscElseSelected, "else"];
                           pairsArr.push(pairItem);
                         } else {
                           pairsArr[0][1] = lscElseSelected; // update the first element's target node
@@ -1356,32 +1356,38 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     alert("Please choose a target node.");
                     return;
                   }
-// logicSplitter_gameDataVar1    (type: condtVar1Type)
 
-// var2NumCompare, var1StringEq
-
-// var1BoolTrue
-// logicSplitter_gameDataVar2 (range: logicSplitterVar2IsGData)
-
-// currNodeSplittedNum 
                 let stmtStr = "type[" + condtVar1Type + "]^" + logicSplitter_gameDataVar1 + "^";
+                let displayStr = "[" + logicSplitter_gameDataVar1 + "](type: " + condtVar1Type + ") \n ";
                 if (condtVar1Type === "number") {
                   if (var2NumCompare === "") {
                     alert("Please select the comparison");
                     return;
                   }
                   if (logicSplitterVar2IsGData === true) {
-                    stmtStr = stmtStr + var2NumCompare + "^(gameData)^" + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + var2NumCompare + "(gameData)^" + logicSplitter_gameDataVar2;
+                    displayStr = displayStr + var2NumCompare + " - \n" + "[" + logicSplitter_gameDataVar2 + "]";
                   } else {
-                    stmtStr = stmtStr + var2NumCompare + "^(pureValue)^" + logicSplitter_gameDataVar2;
+                    stmtStr = stmtStr + var2NumCompare + "(pureValue)^" + logicSplitter_gameDataVar2;
+                    displayStr = displayStr + var2NumCompare + "- \n(value) " + logicSplitter_gameDataVar2;
+
                   }
                 } else if (condtVar1Type === "boolean") {
-                  stmtStr = stmtStr + var1BoolTrue;
+                  if (var1BoolTrue === true) {
+                    stmtStr = stmtStr + "isTrue";
+                    displayStr = displayStr + "- \nis true";
+                  } else {
+                    stmtStr = stmtStr + "isFalse";
+                    displayStr = displayStr + "- \nis false";
+                  }
                 } else if (condtVar1Type === "string"){
                   if (var1StringEq === true) {
                     stmtStr = stmtStr + "equalsTo^" + logicSplitter_gameDataVar2;
+                    displayStr = displayStr + "- \nequals to " + logicSplitter_gameDataVar2;
                   } else {
                     stmtStr = stmtStr + "notEqualTo^" + logicSplitter_gameDataVar2;
+                    displayStr = displayStr + "- \nnot equals to " + logicSplitter_gameDataVar2;
+
                   }
                 }
 
@@ -1392,9 +1398,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 setVar1StringEq(true);
                 setVar1BoolTrue(true);
                 setLsV2IsGData(true);
+                setLscCurrSelected("");
 console.log("statement: ", stmtStr); // TODO test
               
-                let currStmtArr = [stmtStr, lscCurrSelected];
+                let currStmtArr = [stmtStr, lscCurrSelected, displayStr];
 
                 let tempLogicPairs = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
                 tempLogicPairs.push(currStmtArr);
