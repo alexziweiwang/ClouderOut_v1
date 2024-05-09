@@ -74,6 +74,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [clickedNodeKey, setClickedNodeKey] = useState(""); //TODO using for new data structure
    const [selectedNextNode, setSelectedNextNode] = useState("-");
    const [lscElseSelected, setLscElseSelected] = useState("");
+   const [lscCurrSelected, setLscCurrSelected] = useState("");
+
 
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
@@ -110,6 +112,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
 
    const [isNextCondtDefault, setNextCondtIsDefault] = useState(true); //TODO remove later
+
+
    const x_base = 1, y_base = 1, y_dist=100, node_gap=480; //TODO remove later
    const node_width = 380, node_height = 120; //TODO remove later
    const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700"); //TODO remove later
@@ -1319,7 +1323,22 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
           </div>
 
-              <br></br>
+          <br></br>
+              Target Node:
+              <select value={lscCurrSelected}
+                onChange={(event)=>{
+                  setLscCurrSelected(event.target.value);
+                }}>
+                <option key="lscCurrDefault">-- Select --</option>
+                        {Object.keys(nodeRelationshipMap).map((currKey) => {                  
+                            let item = nodeRelationshipMap[currKey];
+                            let lscCurrKey = "lscSettingCurr" + currKey;
+                            return (<option key={lscCurrKey}>{item["nodeName"]}</option>);
+                })} 
+              </select>
+
+
+              <br></br><br></br>
               <button onClick={()=>{
 // logicSplitter_gameDataVar1    (type: condtVar1Type)
 
@@ -1361,7 +1380,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 setLsV2IsGData(true);
                 console.log("statement: ", stmtStr); // TODO test
 
+                //TODO insert into the pairs of condition-targetNode for this game-node
+
               }}>Add Condition</button>
+
+
+            
 
                     </div>
             
