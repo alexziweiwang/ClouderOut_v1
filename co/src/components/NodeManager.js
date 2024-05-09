@@ -88,14 +88,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
    const [logicSplitter_gameDataVar1, setLsGdataVar1] = useState("");
    const [logicSplitter_gameDataVar2, setLsGdataVar2] = useState("");
-   const [logicSplitter_nextNode, setLsNextNode] = useState("");
    const [logicSplitterVar2IsGData, setLsV2IsGData] = useState(true);
+   const [var2NumCompare, setVar2NumCompare] = useState("");
 
    const [condtVar1Type, setCondtVar1Type] = useState("");
    const [var1StringEq, setVar1StringEq] = useState(true);
    const [var1BoolTrue, setVar1BoolTrue] = useState(true);
    const [currNodeSplittedNum, setCurrNodeSplitterNum] = useState(0);
-   const [var2NumCompare, setVar2NumCompare] = useState("");
+
 
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
@@ -1228,7 +1228,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 
                 <div>
                     <label> Variable 1: </label>
-
+                    
                     <select 
                           onChange={(event)=>{
                             setLsGdataVar1(event.target.value);
@@ -1249,7 +1249,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                 <div>
                     <label>Comparison: </label>
-              
+                    
                     {(condtVar1Type === "number") && 
                       <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
                           <option key="" value="-"> -- Operator -- </option>
@@ -1260,7 +1260,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           <option key="smallerequal" value="smallerequal"> smaller than or equal to</option>
                       </select>}
                 </div>
-              <div>
+              <div> 
                   {(condtVar1Type === "number") && <div>
                     <label> Variable 2: </label>
                     <br></br>
@@ -1280,7 +1280,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         
                       }} value={logicSplitter_gameDataVar2}>
                             <option value="" key="">--Game Data--</option>
-
+                            
                       {Object.keys(gameDataLocal).map((key) => {
                         return (
                               <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
@@ -1297,11 +1297,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   {(condtVar1Type === "string") && <div>          
                     <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
                     <label> Is </label>
-                    <input></input>
+                    <input value={logicSplitter_gameDataVar2} onChange={(event)=>{
+                      setLsGdataVar2(event.target.value);
+                    }}></input>
                   <br></br>                         
                   <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
                     <label> Is Not </label>
-                    <input></input>          
+                    <input value={logicSplitter_gameDataVar2} onChange={(event)=>{
+                      setLsGdataVar2(event.target.value);
+                    }}></input>       
                   
                   </div>}
 
@@ -1318,7 +1322,31 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
               <br></br>
               <button onClick={()=>{
-                console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);
+// logicSplitter_gameDataVar1    (type: condtVar1Type)
+
+// var2NumCompare, var1StringEq
+
+// var1BoolTrue
+// logicSplitter_gameDataVar2 (range: logicSplitterVar2IsGData)
+
+// currNodeSplittedNum 
+                let stmtStr = logicSplitter_gameDataVar1 + ", type[" + condtVar1Type + "], ";
+                if (condtVar1Type === "number") {
+                  stmtStr = stmtStr + var2NumCompare + ", isGameData?(" + logicSplitterVar2IsGData + ") " + logicSplitter_gameDataVar2;
+
+                } else if (condtVar1Type === "boolean") {
+                  stmtStr = stmtStr + var1BoolTrue;
+
+                } else if (condtVar1Type === "string"){
+                  if (var1StringEq === true) {
+                    stmtStr = stmtStr + "equalsTo, " + logicSplitter_gameDataVar2;
+                  } else {
+                    stmtStr = stmtStr + "notEqualTo, " + logicSplitter_gameDataVar2;
+
+                  }
+                }
+
+                console.log("statement: ", stmtStr); // TODO test
                 
               }}>Add Condition</button>
 
