@@ -945,7 +945,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": `${sourceRightLineHStart+10}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
-                                  "backgroundColor": "#000000",
+                                  "backgroundColor": "pink",
                                   "borderRadius": `0px`}}
                                 >     
                               </div>}
@@ -965,7 +965,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                 style={{
                                   "position": "absolute",
-                                  "top": `${destLeftLineVStart}px`, 
+                                  "top": `${destLeftLineVStart+(nodeHeight/2)+5}px`, 
                                   "left": `${destLeftLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
@@ -976,14 +976,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                 style={{
                                   "position": "absolute",
-                                  "top": `${destLeftLineVStart-10}px`, 
+                                  "top": `${destLeftLineVStart}px`, 
                                   "left": `${destLeftLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "blue",
+                                  "height": `${(nodeHeight/2)+5}px`, 
+                                  "width": `1px`, 
+                                  "backgroundColor": "red",
                                   "borderRadius": `0px`}}                              
                                 >
-                                </div>}
+                                </div>}                                
+
+
 
 
                         </div>}
