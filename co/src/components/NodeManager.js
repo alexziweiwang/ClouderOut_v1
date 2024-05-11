@@ -878,26 +878,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           unitDiffVert = nextR - ir;
                           if (unitDiffVert > 0) {
                             srcNodeHigher = false;
-                            //TODO test for this case
                           } else if (unitDiffVert < 0) {
                             unitDiffVert = unitDiffVert * -1;
-                          } else { // vertical diff is 0 //TODO on the same column
-                            console.log("TODO: vertical diff is 0"); //TODO later
-                            //TODO extending to half-node lower for the "looping back": right-down, bottom-left, left-up 
                           }
                           betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
 
                           unitDiffHori = nextC - ic;
                           if (unitDiffHori <= 0) { //source-node at right, dest-node at left
                             betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
-
                             srcNodeAtLeft = false;
-                            //TODO special extending: (half-node-height + bottom-gap) at source node.
-                            //TODO                    (linking to the left) by (source minus dest)
-                            //TODO                    (vertical up, to link with dest node-horizontal-port)
-
-                            //TODO later: test for this case
-
                           } else {
                             betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
                           }
@@ -906,6 +895,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         if (nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter" 
                           && nodeRelationshipMap[currNodeKey].nextNode !== "" && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
                             // TODO
+ {/* //TODO: for logic-splitter, and also: links between longer horizontal distance node linking */}
 
                         }
                       }
@@ -997,6 +987,29 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 </div>}
 
 
+                                {(hasNextNode === true && unitDiffVert === 0  && srcNodeAtLeft === false)
+                                && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart}px`, 
+                                  "left": `${sourceRightLineHStart+10}px`, 
+                                  "height": `10px`, 
+                                  "width": `1px`, 
+                                  "backgroundColor": "#000000",
+                                  "borderRadius": `0px`}}                                     
+                                ></div>}
+                               {(hasNextNode === true && unitDiffVert === 0 && srcNodeAtLeft === false)
+                               && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart+10}px`, 
+                                  "left": `${sourceRightLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "#000000",
+                                  "borderRadius": `0px`}}                                  
+                                ></div>}
+
 
                         </div>}
                         </div>)
@@ -1005,7 +1018,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })
 
           }
- {/* //TODO: for logic-splitter, and also: links between longer horizontal distance node linking */}
   
 
         <div>
