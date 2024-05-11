@@ -259,5 +259,7 @@
 
 - 2024-May-08: Consider and plan for setting up sample data(all along the procedure) on cloud-db for testing
 
-- 2024-May-09: ConSider new-grid-node special position-cases' strategies
+- 2024-May-09: Consider new-grid-node special position-cases' strategies
 - 2024-May-09: Consider chapter insertion strategies
+
+- 2024-May-10: Design data structure for main-data (non-game-data) for projects without save/load system; design navigation-setter UI for users
