@@ -1220,7 +1220,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       let item = nodeRelationshipMap[currKey];
                       let opKey = "opnextnode-" + currKey;
                       return (
-                        <option key={opKey} value={item["nodeName"]}>{item["nodeName"]}</option>
+                        <option key={opKey} value={currKey}>{item["nodeName"]}</option>
                       );
                   })}
           </select>
