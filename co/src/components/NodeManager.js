@@ -945,7 +945,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": `${sourceRightLineHStart+10}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
-                                  "backgroundColor": "pink",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}
                                 >     
                               </div>}
@@ -957,7 +957,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "orange",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}
                                 >
                               </div>}
@@ -965,7 +965,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                 style={{
                                   "position": "absolute",
-                                  "top": `${destLeftLineVStart+(nodeHeight/2)+5}px`, 
+                                  "top": `${destLeftLineVStart}px`, 
                                   "left": `${destLeftLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
@@ -976,15 +976,25 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                 style={{
                                   "position": "absolute",
-                                  "top": `${destLeftLineVStart}px`, 
+                                  "top": `${destLeftLineVStart-10}px`, 
                                   "left": `${destLeftLineHStart}px`, 
-                                  "height": `${(nodeHeight/2)+5}px`, 
+                                  "height": `10px`, 
                                   "width": `1px`, 
-                                  "backgroundColor": "red",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}                              
                                 >
                                 </div>}                                
-
+                                {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart-10}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "#000000",
+                                  "borderRadius": `0px`}}                              
+                                >
+                                </div>}
 
 
 
