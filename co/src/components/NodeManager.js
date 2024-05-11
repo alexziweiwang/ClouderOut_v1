@@ -889,8 +889,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                           unitDiffHori = nextC - ic;
                           if (unitDiffHori <= 0) { //source-node at right, dest-node at left
-                        
-                            betweenNodesHorizontalLink = (unitDiffHori * (-1)) * betweenNodeHorizontalUnit;
+                            betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
+
                             srcNodeAtLeft = false;
                             //TODO special extending: (half-node-height + bottom-gap) at source node.
                             //TODO                    (linking to the left) by (source minus dest)
@@ -950,14 +950,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                 >     
                               </div>}
 
-                              {(hasNextNode && unitDiffHori !== 1 && unitDiffHori !== -1) && <div 
+                              {(hasNextNode && unitDiffHori > 0) && <div 
                                 style={{
                                   "position": "absolute",
                                   "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
                                   "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "#000000",
+                                  "backgroundColor": "orange",
                                   "borderRadius": `0px`}}
                                 >
                               </div>}
@@ -965,14 +965,26 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                               {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                 style={{
                                   "position": "absolute",
-                                  "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "top": `${destLeftLineVStart}px`, 
                                   "left": `${destLeftLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
                                   "backgroundColor": "blue",
                                   "borderRadius": `0px`}}                              
-                                > ???
+                                >
                                 </div>}
+                                {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart-10}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "blue",
+                                  "borderRadius": `0px`}}                              
+                                >
+                                </div>}
+
 
                         </div>}
                         </div>)
