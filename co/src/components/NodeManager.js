@@ -257,7 +257,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             row: clickedRow,
             col: clickedCol,
             prevNodes: [],
-            nextPairs: [],
+            spltLogicPairs: [["else", "", "else"],],
             display: true,     
           }; //TODO temp
         } else {
@@ -888,12 +888,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
 
                           unitDiffHori = nextC - ic;
-                          if (unitDiffHori == 0) { // TODO: on the same row
-                            srcNodeAtLeft = false;
-                            //TODO impl
-                          } else if (unitDiffHori < 0) {
-                            unitDiffHori = unitDiffHori * -1;
-                            betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit;
+                          if (unitDiffHori <= 0) { //source-node at right, dest-node at left
+                        
+                            betweenNodesHorizontalLink = (unitDiffHori * (-1)) * betweenNodeHorizontalUnit;
                             srcNodeAtLeft = false;
                             //TODO special extending: (half-node-height + bottom-gap) at source node.
                             //TODO                    (linking to the left) by (source minus dest)
@@ -924,7 +921,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": `${sourceRightLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "green",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}
                                 >       
                               </div>}
@@ -936,7 +933,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": `${destLeftLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "blue",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}
                                 >       
                               </div>}
@@ -948,7 +945,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": `${sourceRightLineHStart+10}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
-                                  "backgroundColor": "orange",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}
                                 >     
                               </div>}
@@ -960,10 +957,22 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "pink",
+                                  "backgroundColor": "#000000",
                                   "borderRadius": `0px`}}
                                 >
                               </div>}
+
+                              {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `${betweenNodesHorizontalLink}px`, 
+                                  "backgroundColor": "blue",
+                                  "borderRadius": `0px`}}                              
+                                > ???
+                                </div>}
 
                         </div>}
                         </div>)
