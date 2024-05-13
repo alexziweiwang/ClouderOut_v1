@@ -243,14 +243,14 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons">
                 <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
-                <p>projectName: {state.projectName}</p>
+                <label>Project Name: {state.projectName}</label>
             </div>
 
             {state!= undefined  &&<>
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
                     <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
-
+                    
                 </div>
                 <div className="topParalBarRightPart">
                     <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>Game Content</button>

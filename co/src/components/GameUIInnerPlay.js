@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export default function GameUIInnerPlay({dataObj, gameUIObj}) {
+    const screenWidth = 800;
     //TODO change later: static info of game-UI
     //TODO change later: separate for text-frame-play
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
@@ -19,7 +20,7 @@ export default function GameUIInnerPlay({dataObj, gameUIObj}) {
 
     
     return (
-        <div style={{"width": 800}}>
+        <div style={{"width": screenWidth}}>
    
         <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
             "top": `${defualtBtnUISettings["groupY"]}px`,                       

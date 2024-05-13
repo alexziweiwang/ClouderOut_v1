@@ -109,14 +109,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     1. Defualt Button (group)
 
         <div className="indentOne">
-        <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" onChange={(event)=>{
+        <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
-        }}></input><input value={defaultButtonObj["widthMin"]} min="0" max="800" step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
-        {/* <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" onChange={(event)=>{
+        }}></input><input value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
+        {/* <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
-            }}></input><input value={defaultButtonObj["widthMax"]} min="0" max="800" step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
+            }}></input><input value={defaultButtonObj["widthMax"]} min="0" max={screenWidth} step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
         }}></input> */}
-        <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max="800" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
+        <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         {/* <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label> */}
@@ -207,13 +207,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onChange={(event)=>{
                         setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value, "horizontalMid": false});
                     }}
-                    min="0" max="800" step="1"
+                    min="0" max={screenWidth} step="1"
                 ></input>
                 <input type="number" value={defaultButtonObj["groupX"]}
                     onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "groupX": event.target.value, "horizontalMid": false});
                     }}
-                    min="0" max="800" step="1"
+                    min="0" max={screenWidth} step="1"
 
                 ></input>
                 
@@ -238,14 +238,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onChange={(event)=>{
                         setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value, "verticalMid": false});
                     }}
-                    min="0" max="800" step="1"
+                    min="0" max={screenWidth} step="1"
                 
                 ></input>
                 <input type="number"  value={defaultButtonObj["groupY"]}
                     onChange={(event)=>{
                         setDefaultButtonObj({...defaultButtonObj,  "groupY": event.target.value, "verticalMid": false});
                     }}
-                    min="0" max="800" step="1"
+                    min="0" max={screenWidth} step="1"
                    
                 ></input>              
             </div> </>}            
@@ -319,23 +319,23 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
     <br></br><br></br><br></br>
     2. Text Frame
-    <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max="800" step="1" onChange={(event)=>{
+    <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             let posX = (screenWidth - txtFrameObj["width"]) / 2 - 1;
           
             setTxtFrameObj({...txtFrameObj, "positionX": posX, "width": event.target.value});
 
-        }}></input><input value={txtFrameObj["width"]} type="number" min="0" max="800" step="1" onChange={(event)=>{
+        }}></input><input value={txtFrameObj["width"]} type="number" min="0" max={screenWidth} step="1" onChange={(event)=>{
             let posX = (screenWidth - txtFrameObj["width"]) / 2;
             setTxtFrameObj({...txtFrameObj, "width": event.target.value, "positionX": posX});        
         }}></input>
-    <br></br>Height: <input type="range" value={txtFrameObj["height"]} min="0" max="800" step="1" onChange={(event)=>{
+    <br></br>Height: <input type="range" value={txtFrameObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
-        }}></input><input type="number" value={txtFrameObj["height"]} min="0" max="800" step="1" onChange={(event)=>{
+        }}></input><input type="number" value={txtFrameObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
         }}></input>
-    <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
+    <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
-        }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max="800" step="1" onChange={(event)=>{
+        }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});           
         }}></input>
     <br></br><label>Corner Radius: </label>
@@ -437,25 +437,25 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <input type="radio" value={txtFrameContentAreaCentered} checked={!txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
             </input><label>Customized: </label>
             {!txtFrameContentAreaCentered && <div className="indentOne">
-                TextContentArea-x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="0" max="800" step="1" 
+                TextContentArea-x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="0" max={screenWidth} step="1" 
                 onChange={(event) => {
                     setTxtFrameObj({...txtFrameObj, "TextContentArea-x": event.target.value});    
                 }}
                 ></input>{txtFrameObj["TextContentArea-x"]}
                 <br></br>
-                TextContentArea-y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="0" max="800" step="1" 
+                TextContentArea-y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="0" max={screenWidth} step="1" 
             onChange={(event) => {
                 setTxtFrameObj({...txtFrameObj, "TextContentArea-y": event.target.value});    
             }}
                 ></input>{txtFrameObj["TextContentArea-y"]}
                 <br></br>
-                TextContentArea-w: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max="800" step="1" 
+                TextContentArea-w: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max={screenWidth} step="1" 
             onChange={(event) => {
                 setTxtFrameObj({...txtFrameObj, "TextContentArea-w": event.target.value});    
             }}
                 ></input>{txtFrameObj["TextContentArea-w"]}
                 <br></br>
-                TextContentArea-h:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max="800" step="1" 
+                TextContentArea-h:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max={screenWidth} step="1" 
             onChange={(event) => {
                 setTxtFrameObj({...txtFrameObj, "TextContentArea-h": event.target.value});    
             }}
@@ -590,13 +590,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onChange={(event)=>{
                     setIgMenuBtnObj({...igMenuBtnObj, "posX": event.target.value});                   
                 }}
-                min="0" max="800" step="1" 
+                min="0" max={screenWidth} step="1" 
             ></input>
             <input type="number" value={igMenuBtnObj["posX"]}
                 onChange={(event)=>{
                     setIgMenuBtnObj({...igMenuBtnObj, "posX": event.target.value});                   
                 }} 
-                min="0" max="800" step="1"            
+                min="0" max={screenWidth} step="1"            
             ></input>
 
         <br></br><label>Position Y:</label>
@@ -604,13 +604,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onChange={(event)=>{
                     setIgMenuBtnObj({...igMenuBtnObj, "posY": event.target.value});                   
                 }}            
-                min="0" max="800" step="1" 
+                min="0" max={screenWidth} step="1" 
             ></input>
             <input type="number" value={igMenuBtnObj["posY"]}
                 onChange={(event)=>{
                     setIgMenuBtnObj({...igMenuBtnObj, "posY": event.target.value});                   
                 }}           
-                min="0" max="800" step="1"  
+                min="0" max={screenWidth} step="1"  
             ></input>
 
     </div>

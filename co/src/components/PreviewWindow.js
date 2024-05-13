@@ -65,6 +65,9 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
         //TODO design: each node and have one size, and different nodes can have various sizes?
 
     } 
+
+    const screenWidth = 800;
+    const screenHeight = 600;
  
     return (
         <div className="previewWindow">
@@ -73,8 +76,8 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
             
               <div style={{
                 "background-image": `url(${currentPiece["bgp_source_link"]})`,
-                "background-size": `800px 600px`,
-                "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
+                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
                   
                   <div> 
                     

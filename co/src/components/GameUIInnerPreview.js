@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 
 export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+    const screenWidth = 800;
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
@@ -22,7 +23,7 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
     });
 
     return (
-        <div style={{"width": 800}}>
+        <div style={{"width": screenWidth}}>
    
         <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
         "top": `${defualtBtnUISettings["groupY"]}px`,                       
