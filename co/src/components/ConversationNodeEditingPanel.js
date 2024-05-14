@@ -33,7 +33,7 @@ export default function ConversationNodeEditingPanel() {
     const [menuType, setMenuType] = useState("");
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
-    const returnGameMakerButtonText = ["Return To GameMaker!"];
+    const returnGameMakerButtonText = [" ← Game Maker"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
     const buttonLanguageIndex = 0;
 

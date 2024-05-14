@@ -1284,29 +1284,32 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 <tr>
                   <td>(All other cases / "Else")</td>
                   <td>
-                    <div className="parallelFrame">
                     {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
                       && 
-                      <div style={{"paddingRight": "20px"}}><label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}</label></div>}
-                      <div style={{"paddingRight": "2px"}}><select 
+                      <label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}</label>}
+                
+                  </td>
+                  <td>
+                      <select 
                           value={lscElseSelected} 
                           onChange={(event)=>{
                             setLscElseSelected(event.target.value);
-                    }}>
-                        <option key="lscElse" value="-">-- Select --</option>
-                        {Object.keys(nodeRelationshipMap).map((currKey) => {                  
-                            let item = nodeRelationshipMap[currKey];
-                            let lscElseKey = "lscSettingElse" + currKey;
-                            return (<option key={lscElseKey}>{item["nodeName"]}</option>);
-                        })}          
-                    </select>
+                          }}>
+                          <option key="lscElse" value="-">-- Select --</option>
+                          {Object.keys(nodeRelationshipMap).map((currKey) => {                  
+                              let item = nodeRelationshipMap[currKey];
+                              let lscElseKey = "lscSettingElse" + currKey;
+                              return (
+                          <option key={lscElseKey}>{item["nodeName"]}</option>);
+                          })}          
+                      </select>
                     <button 
                       onClick={()=>{
                         updateTableCondt();
                         setLscElseSelected("");
                       }}
-                    >Update</button></div>
-                    </div>
+                    >Update</button>
+
                   </td>
                 </tr>
               </tbody>

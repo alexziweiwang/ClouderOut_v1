@@ -15,7 +15,7 @@ export default function CardGameNodeEditingPanel() {
     } 
     console.log("CardGameNodeEditingPanel-state: ", state);//TODO test
 
-    const returnGameMakerButtonText = ["Return To GameMaker!"];
+    const returnGameMakerButtonText = [" ← Game Maker"];
 
     function goToGameMaker() {
         const username = uname;
