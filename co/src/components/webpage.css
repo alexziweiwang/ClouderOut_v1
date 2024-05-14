@@ -256,7 +256,7 @@ div {
     padding: 15px;
     flex: 1;
     height: 620px;
-    overflow: auto;
+    overflow: scroll;
     white-space: nowrap;
 }
 
@@ -267,7 +267,7 @@ div {
     text-align: left;
     padding: 15px;
     background-color: rgb(230, 221, 205);
-    overflow: auto;
+    overflow: scroll;
 }
 
 .pieceManager {
@@ -279,7 +279,7 @@ div {
     padding: 15px;
     flex: 1;
     height: 620px;
-    overflow: auto;
+    overflow: scroll;
     white-space: nowrap;
 }
 
@@ -295,7 +295,7 @@ div {
     margin-left: 10px;
     margin-right: 10px;
     white-space: nowrap;
-    overflow: auto;
+    overflow: scroll;
     height: 660px;
 }
 
@@ -306,7 +306,7 @@ div {
     margin-left: 10px;
     margin-right: 10px;
     white-space: nowrap;
-    overflow: auto;
+    overflow: scroll;
     height: 660px;
 }
 
@@ -373,7 +373,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .clickableListItem:hover {
@@ -383,7 +383,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .clickableListItem2 {
@@ -393,7 +393,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .clickableListItem2:hover {
@@ -403,7 +403,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .clickableListItem5 {
@@ -413,7 +413,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
     outline: 1px solid rgb(123, 123, 123);
     cursor: pointer;
 }
@@ -426,7 +426,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
     outline: 1px solid rgb(123, 123, 123);
     cursor: pointer;
 }
@@ -438,7 +438,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .clickableListItem3:hover {
@@ -448,7 +448,7 @@ div {
     width: 90%;
     text-align: left;
     padding-left: 15px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 li {
@@ -457,7 +457,7 @@ li {
 
 .areaNote1 {
     width: 30%;
-    overflow: auto;
+    overflow: scroll;
     border-right: 2px solid rgb(0, 0, 0);
     height: 700px;
     background-color: rgb(167, 193, 184);;
@@ -465,14 +465,14 @@ li {
 
 .areaNote2 {
     width: 30%;
-    overflow: auto;
+    overflow: scroll;
     border-right: 2px solid rgb(0, 0, 0);
     height: 700px;
     background-color: rgb(154, 167, 191);
 }
 
 .areaBlue {
-    overflow: auto;
+    overflow: scroll;
     width:70%;
     height: 700px;
     padding: 3px;
@@ -520,7 +520,7 @@ th,td {
 }
 
 .projSelectionArea {
-    overflow: auto;
+    overflow: scroll;
     border:rgb(7, 7, 7);
     background-color: rgb(247, 246, 244);
     padding: 15px;
@@ -558,12 +558,12 @@ th,td {
     margin: 2px;
     padding: 3px;
     width: 500px;
-    overflow: auto;
+    overflow: scroll;
     user-select: none;
 }
 
 .scrollableArea {
-    overflow: auto;
+    overflow: scroll;
 }
 
 .iconButton {
@@ -786,7 +786,7 @@ td {
 .rsrcListArea {
     background-color: rgb(183, 208, 170);
     color:rgb(7, 7, 7);
-    overflow: auto;
+    overflow: scroll;
     margin-top: 0px;
     margin-bottom: 10px;
 }
@@ -803,7 +803,7 @@ td {
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 3px;
-    overflow: auto;
+    overflow: scroll;
     margin-bottom: 10px;
 }
 
@@ -994,7 +994,7 @@ button:hover {
     width: 25%;
     background-color: rgb(228, 237, 228);
     border-radius: 0px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .chapterListItem {
@@ -1130,7 +1130,7 @@ button:hover {
     background-color: rgb(237, 221, 223);
     border-radius: 0px;
     margin-top: 10px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .chapterManagerSwitch {
@@ -1175,6 +1175,7 @@ button:hover {
     margin-right: 5px;
     overflow: scroll;
     margin-top: 5px;
+    overflow: scroll;
 }
 
 
@@ -1218,7 +1219,7 @@ button:hover {
     margin: 5px;
     padding: 3px;
     height: 300px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 
@@ -1229,7 +1230,7 @@ button:hover {
     padding: 3px;
     height: 200px;
     width: 200px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 
