@@ -243,7 +243,7 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons">
                 <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
-                <label>Project Name: {state.projectName}</label>
+                <p>Project Name: {state.projectName}</p>
             </div>
 
             {state!= undefined  &&<>

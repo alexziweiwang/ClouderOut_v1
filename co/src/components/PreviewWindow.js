@@ -12,7 +12,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
     let name = "/previewwindow";
 
-    const [gameScreenSize, setGameScreenSize] = useState("");
+    const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
 
     const [currentPiece, setCurrentPiece] = useState({});
     
@@ -37,22 +37,22 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
       }
     }
 
-    function changeGameScreenSizeSetting(event) {
+    function changeselectedGameScreenSizeSetting(event) {
         const input = event.target.value;
         //TODO update information to cloud db
         if (event != null && event.target != null && event.target.value!= null) {
           if (input === "h450_800") {
             console.log("h450_800");
-            setGameScreenSize("h450_800");
+            setSelectedGameScreenSize("h450_800");
           } else if (input === "v800_450") {
             console.log("v800_450");
-            setGameScreenSize("v800_450");
+            setSelectedGameScreenSize("v800_450");
           } else if (input === "h600_800") {
             console.log("h600_800");
-            setGameScreenSize("h600_800");
+            setSelectedGameScreenSize("h600_800");
           } else if (input === "v800_600") {
             console.log("v800_600");
-            setGameScreenSize("v800_600");
+            setSelectedGameScreenSize("v800_600");
           } else {
             console.log("not selected!");
           }
@@ -60,10 +60,13 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     }
 
     function updateGameSizeSetting() {
-        console.log("new game size setting:", gameScreenSize);
+        console.log("new game size setting:", selectedGameScreenSize);
         //TODO pop some kind of warning to remind the user
         //TODO design: each node and have one size, and different nodes can have various sizes?
-
+        let respondGiven = confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments.");
+        if (respondGiven) {
+          alert("Game node size changed!");
+        } 
     } 
 
     const screenWidth = 800;
@@ -141,7 +144,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
 
             <div>
-                    <select value={gameScreenSize} onChange={changeGameScreenSizeSetting}>
+                    <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
                         <option value="" key=""> ----- Select Size and Direction ----- </option>
                         <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
                         <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>

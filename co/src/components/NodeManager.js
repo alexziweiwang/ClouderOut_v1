@@ -1613,27 +1613,28 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
         </div>
     
         {(!nextCondtList.includes("Default: Always Reachable")) && <div>
-        <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"} onClick={changeNextToNewNode}>
-        <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>A New Node
-        {isLinkNewNode && <>
-        <br></br>
+        {/* <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"} onClick={changeNextToNewNode}>
+        <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>
+        A New Node */}
+        {/* {isLinkNewNode && <> */}
+        {/* <br></br>
         <label>Node Name: </label>
         <input 
           className="setting_item"
           type="text" 
           value={createNewNodeName} 
           onChange={e => {setCreateNewNodeName(e.target.value);}}  
-        />
-        <br></br>
-        <label>Node Type:</label>
-        <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
+        /> */}
+        {/* <br></br>
+        <label>Node Type:</label> */}
+        {/* <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
           <option value="" key=""> -- Select Node's Game Type -- </option>
           <option value="Card Game" key="Card Game">Card Game</option>
           <option value="Board Game" key="Board Game">Board Game</option>
           <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
           <option value="Conversation" key="Conversation">Conversation</option>
-        </select>
-        <br></br>
+        </select> */}
+        {/* <br></br>
         <label>Screen Size:</label>
         <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
               <option value="" key=""> ----- Select Size and Direction ----- </option>
@@ -1641,17 +1642,17 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
               <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
               <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
               <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-            </select>
+            </select> */}
         
-        </>}
-        </div>
-        <br></br>
+        {/* </>} */}
+        {/* </div>
+        <br></br> */}
   
         <div className="areaBlue">
-            <br></br>
-        
+            {/* <br></br>
+         */}
         <div>
-            <label>Select a Condition to Reach this Node:</label>
+            {/* <label>Select a Condition to Reach this Node:</label>
             <br></br>
             
             {nextNodeList.length === 0 && <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
@@ -1662,10 +1663,10 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
               <div>
               ! If you want to set this node as "Default: Always Reachable", <br></br>delete connection(s) to other conditionally-reachable node(s).
               </div>
-            </div>}
+            </div>} */}
 
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
-                <div onClick={()=>{                        
+                {/* <div onClick={()=>{                        
                     if (needCloudGameData === true) {
                       fetchGameDataFromCloud();
                     }
@@ -1682,11 +1683,11 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                     }
                 }/>Customized Condition             
 
-                </div>
+                </div> */}
 
 
                 {!isNextCondtDefault && <div>
-                  <p className="plans">TODO: add "else" option here (for with at least 1 existing next-nodes)
+                  {/* <p className="plans">TODO: add "else" option here (for with at least 1 existing next-nodes)
                     <br></br> Current Design: convey "else" into parser, and game-flow decided automatically there
                     <br></br> Logic sequence is the adding sequence (by author)
                   </p>
@@ -1696,11 +1697,11 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                   <label>Destination Node: {toNodeName}</label><br></br>
                   <label>Conditions: {nextNodeList.includes(toNodeName) ? nextCondtList[nextCondtList.length-1] : "(Not Added)"}</label>
 
-                <br></br>
+                <br></br> */}
                 {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
         
                 <div className="areaFrame">
-                <label> Variable 1: </label>
+                {/* <label> Variable 1: </label>
 
           <select 
                 onChange={(event)=>{
@@ -1716,12 +1717,12 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                   <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
                   );
               })}
-          </select>
-                {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+          </select> */}
+                {/* {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
     
                 <label>Comparison: </label>
-          
-          
+           */}
+{/*           
 {(condtVar1Type === "number") && <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
               <option key="" value="-"> -- Operator -- </option>
               <option key="larger" value="larger"> larger than </option>
@@ -1730,14 +1731,15 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
               <option key="largerequal" value="largerequal"> larger than or equals to </option>
               <option key="smallerequal" value="smallerequal"> smaller than or equals to </option>
           </select>}
-         
+          */}
           <div>
 {(condtVar1Type === "number") && <div>
-                <label> Variable 2: </label>
-                <br></br>
+                {/* <label> Variable 2: </label>
+                <br></br> */}
 
-                <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
-                
+                {/* <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item:  */}
+
+{/*                 
                 <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
                         <option value="" key="">--Game Data--</option>
 
@@ -1746,38 +1748,39 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                           <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
                       );
                     })}
-                </select>
-              {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                </select> */}
+              {/* {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
 
               <br></br>
               <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
                   <input type="number" min="-100000000" max="100000000" step="1" value={logicSplitter_gameDataVar2} onChange={(event)=>{setLsGdataVar2(event.target.value);}}></input>    
+           */}
           </div>}
 
           {(condtVar1Type === "string") && <div>          
-            <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
+            {/* <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
             <label> Is </label>
             <input></input>
           <br></br>                         
           <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
             <label> Is Not </label>
             <input></input>          
-          
+           */}
           </div>}
 
           {(condtVar1Type === "boolean") && <div>
             
-          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
+          {/* <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
             <label> Is True</label>
           <br></br>                   
           <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);console.log("going to set: Var1-boolean-false");}} checked={!var1BoolTrue}></input>
             <label> Is False</label>
-          
+           */}
           </div>}
           </div>
-
+{/* 
               <br></br>
-              <button onClick={()=>{console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);}}>Add Condition</button>
+              <button onClick={()=>{console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);}}>Add Condition</button> */}
 
                     </div>
             
