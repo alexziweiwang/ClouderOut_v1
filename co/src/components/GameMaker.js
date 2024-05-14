@@ -126,55 +126,62 @@ export default function GameMaker() {
     </div>}
 
     {!showChapterMaker && 
-    <div className="sectionArea"> Menu & Navigations 
-      <br></br>Main Page Setup
-      <br></br>TODO list of entries
-      <br></br>TODO table of all entry-buttons & settings (position & destination page)
 
-      <br></br>Settings Page Setup
-      <br></br>TODO list of options of settings (speed, volume of bgm, etc.)
-      <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
-
-      <br></br>Profile Page Setup
-      <br></br>TODO elements (pic) and data displaying
-
-      <br></br>Game Status/Data Page Setup
-      <br></br>TODO data displaying
-      <br></br>TODO layout
-
-
-      <br></br><label>Game Progress Strategy:</label>
-      <div className="parallelFrame" style={{"justify-content": "center"}}>
-        <div className="selectableRectangle">
-            <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input>
-            <label>Save and Load System:</label>
-            <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
-        </div>
-
-        <div className="selectableRectangle">
-            <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("echpt");}}></input><label></label>
-            Short experience in each chapter:
-            
-            <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
-
-        </div>
-
-        {/* <div className="selectableRectangle">
-            <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("brnch");}}></input><label>Branch and Selection:</label>
+        <div className="parallelFrame sectionArea"> 
           
-            <br></br>present entire "story-branch" to the players; players can change some decisions (which impact branches and paths)
-//TODO future feature
-        </div> */} 
+          
+          <div className="guiSettings">
+              <label>Menu & Navigations</label>
 
-      </div>
+              <br></br>Main Page Setup
+              <br></br>TODO list of entries
+              <br></br>TODO table of all entry-buttons & settings (position & destination page)
 
-      <br></br><br></br>
-      <p className="plans">
-        TODO: Menu UI setter (main page, etc.)
-        <br></br>TODO: Navigation setter
-        <br></br>Path: main-page to story seciton, to either s/l, chapter list, or branch page         
-        <br></br>Path: main-page to other parts? player profile(including game data/status?), game settings, meeting(optional), shop(optional), achievements(optional), gallery/memory(optional)  
-      </p>
+              <br></br>Settings Page Setup
+              <br></br>TODO list of options of settings (speed, volume of bgm, etc.)
+              <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
+
+              <br></br>Profile Page Setup
+              <br></br>TODO elements (pic) and data displaying
+
+              <br></br>Game Status/Data Page Setup
+              <br></br>TODO data displaying
+              <br></br>TODO layout
+
+              <br></br><br></br>
+              <p className="plans">
+                TODO: Menu UI setter (main page, etc.)
+                <br></br>TODO: Navigation setter
+                <br></br>Path: main-page to story seciton, to either s/l, chapter list, or branch page         
+                <br></br>Path: main-page to other parts? player profile(including game data/status?), game settings, meeting(optional), shop(optional), achievements(optional), gallery/memory(optional)  
+              </p>
+
+
+              <br></br><label>Game Progress Strategy:</label>
+                <div className="parallelFrame" style={{"justify-content": "center"}}>
+                    <div className="selectableRectangle">
+                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input>
+                        <label>Save and Load System:</label>
+                        <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
+                    </div>
+
+                    <div className="selectableRectangle">
+                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("echpt");}}></input><label></label>
+                        Short experience in each chapter:
+                        
+                        <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
+
+                    </div>
+                </div>
+
+          </div>
+
+          <div className="previewWindow">
+            navigation preview area
+
+          </div>
+
+
 
 
 

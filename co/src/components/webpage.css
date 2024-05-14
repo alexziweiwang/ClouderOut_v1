@@ -478,6 +478,10 @@ li {
     padding: 3px;
 }
 
+.areaGreen {
+    background-color: green;
+}
+
 .sectionHeader {
     background-color: rgb(140, 198, 178);
     height: 30px;

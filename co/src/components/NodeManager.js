@@ -842,7 +842,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       if (currNodeKey !== "" 
                         && nodeRelationshipMap[currNodeKey] !== undefined 
                         && nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter") {
-
+                      // case1: not logic-splitter
                         let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
                         let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
                         let sourceRightLineHEnd = sourceRightLineHStart + 10;
@@ -1013,14 +1013,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   
   
                           </div>}
-                          </div>)
-                      } else { // is LogicSplitter
+                          </div>);
+
+                      } else if (currNodeKey !== "" 
+                        && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter"){
+                      //case2: is logic-splitter
+                        let lscNodeList = nodeRelationshipMap[currNodeKey].spltLogicPairs;
 
 
-
-
-
-//TODO working area2
+//TODO working area
 
                       }
 
