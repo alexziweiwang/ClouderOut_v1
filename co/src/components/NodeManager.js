@@ -833,186 +833,198 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           {/* linking-drawing */}
           {gridBlocks.map((row, ir) => {
               let rowKeyStr = "linking" + ir;
+              
               return (<div key={rowKeyStr} style={{"position": "absolute"}}>
                     {row.map((col,ic) => {
                       let currNodeKey = gridBlocks[ir][ic];
 
-                      let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-                      let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
-                      let sourceRightLineHEnd = sourceRightLineHStart + 10;
-                      let extraHorizontalStart  = 0;
 
-                      let destLeftLineVStart = 0;
-                      let destLeftLineHStart = 0;
-                      
-                      let betweenNodeVerticalUnit = nodeHeight + 10;
-                      let betweenNodesVerticalLink = 0;
+                      if (currNodeKey !== "" 
+                        && nodeRelationshipMap[currNodeKey] !== undefined 
+                        && nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter") {
 
-                      let betweenNodeHorizontalUnit = nodeWidth + 22;
-                      let betweenNodesHorizontalLink = 0;
-
-                      let unitDiffVert = 0;
-                      let unitDiffHori = 0;
-
-                      let nextNodeKey = "";
-
-                      let hasNextNode = false;
-                      let srcNodeHigher = true; 
-                      let srcNodeAtLeft= true; 
-
-                      if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
-                        //such a node exists
-                        if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
-                        && nodeRelationshipMap[currNodeKey].nextNode !== "" && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
-                          // not logic-splitter & has next-node
-                          hasNextNode = true;
-                          nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
-
-                          let nextR = nodeRelationshipMap[nextNodeKey].row;
-                          let nextC = nodeRelationshipMap[nextNodeKey].col;
-
-                          destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
-                          destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
-                          extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
-
-                          unitDiffVert = nextR - ir;
-                          if (unitDiffVert > 0) {
-                            srcNodeHigher = false;
-                          } else if (unitDiffVert < 0) {
-                            unitDiffVert = unitDiffVert * -1;
-                          }
-                          betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
-
-                          unitDiffHori = nextC - ic;
-                          if (unitDiffHori <= 0) { //source-node at right, dest-node at left
-                            betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
-                            srcNodeAtLeft = false;
-                          } else {
-                            betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
+                        let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
+                        let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+                        let sourceRightLineHEnd = sourceRightLineHStart + 10;
+                        let extraHorizontalStart  = 0;
+  
+                        let destLeftLineVStart = 0;
+                        let destLeftLineHStart = 0;
+                        
+                        let betweenNodeVerticalUnit = nodeHeight + 10;
+                        let betweenNodesVerticalLink = 0;
+  
+                        let betweenNodeHorizontalUnit = nodeWidth + 22;
+                        let betweenNodesHorizontalLink = 0;
+  
+                        let unitDiffVert = 0;
+                        let unitDiffHori = 0;
+  
+                        let nextNodeKey = "";
+  
+                        let hasNextNode = false;
+                        let srcNodeHigher = true; 
+                        let srcNodeAtLeft= true; 
+  
+                        if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
+                          //such a node exists
+                          if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
+                          && nodeRelationshipMap[currNodeKey].nextNode !== "" 
+                          && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
+                            // not logic-splitter & has next-node
+                            hasNextNode = true;
+                            nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
+  
+                            let nextR = nodeRelationshipMap[nextNodeKey].row;
+                            let nextC = nodeRelationshipMap[nextNodeKey].col;
+  
+                            destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
+                            destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
+                            extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
+  
+                            unitDiffVert = nextR - ir;
+                            if (unitDiffVert > 0) {
+                              srcNodeHigher = false;
+                            } else if (unitDiffVert < 0) {
+                              unitDiffVert = unitDiffVert * -1;
+                            }
+                            betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
+  
+                            unitDiffHori = nextC - ic;
+                            if (unitDiffHori <= 0) { //source-node at right, dest-node at left
+                              betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
+                              srcNodeAtLeft = false;
+                            } else {
+                              betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
+                            }
                           }
                         }
+                        let keyStr = "linking" + +ic+ "=" + currNodeKey;
+   
 
-                        if (nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter" 
-                          && nodeRelationshipMap[currNodeKey].nextNode !== "" && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
-                            // TODO
- {/* //TODO: for logic-splitter, and also: links between longer horizontal distance node linking */}
+                        return (
+                          <div key={keyStr}>
+                          {currNodeKey !== "" && <div>
+  
+                                {hasNextNode && <div 
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${sourceRightLineVStart}px`, 
+                                    "left": `${sourceRightLineHStart}px`, 
+                                    "height": `1px`, 
+                                    "width": `10px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}
+                                  >       
+                                </div>}
+                             
+                                {hasNextNode && <div 
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${destLeftLineVStart}px`, 
+                                    "left": `${destLeftLineHStart}px`, 
+                                    "height": `1px`, 
+                                    "width": `10px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}
+                                  >       
+                                </div>}
+  
+                                {hasNextNode && <div 
+                                  style={{
+                                    "position": "absolute",
+                                    "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                    "left": `${sourceRightLineHStart+10}px`, 
+                                    "height": `${betweenNodesVerticalLink}px`, 
+                                    "width": `1px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}
+                                  >     
+                                </div>}
+  
+                                {(hasNextNode && unitDiffHori > 0) && <div 
+                                  style={{
+                                    "position": "absolute",
+                                    "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                    "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
+                                    "height": `1px`, 
+                                    "width": `${betweenNodesHorizontalLink}px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}
+                                  >
+                                </div>}
+  
+                                {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${destLeftLineVStart}px`, 
+                                    "left": `${destLeftLineHStart}px`, 
+                                    "height": `1px`, 
+                                    "width": `${betweenNodesHorizontalLink}px`, 
+                                    "backgroundColor": "blue",
+                                    "borderRadius": `0px`}}                              
+                                  >
+                                  </div>}
+                                  {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${destLeftLineVStart-10}px`, 
+                                    "left": `${destLeftLineHStart}px`, 
+                                    "height": `10px`, 
+                                    "width": `1px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}                              
+                                  >
+                                  </div>}                                
+                                  {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${destLeftLineVStart-10}px`, 
+                                    "left": `${destLeftLineHStart}px`, 
+                                    "height": `1px`, 
+                                    "width": `10px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}                              
+                                  >
+                                  </div>}
+  
+                                  {(hasNextNode === true && unitDiffVert === 0  && srcNodeAtLeft === false)
+                                  && <div
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${sourceRightLineVStart}px`, 
+                                    "left": `${sourceRightLineHStart+10}px`, 
+                                    "height": `10px`, 
+                                    "width": `1px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}                                     
+                                  ></div>}
+                                 {(hasNextNode === true && unitDiffVert === 0 && srcNodeAtLeft === false)
+                                 && <div
+                                  style={{
+                                    "position": "absolute",
+                                    "top": `${sourceRightLineVStart+10}px`, 
+                                    "left": `${sourceRightLineHStart}px`, 
+                                    "height": `1px`, 
+                                    "width": `10px`, 
+                                    "backgroundColor": "#000000",
+                                    "borderRadius": `0px`}}                                  
+                                  ></div>}
+  
+  
+                          </div>}
+                          </div>)
+                      } else { // is LogicSplitter
 
-                        }
+
+
+
+
+//TODO working area2
+
                       }
-                      let keyStr = "linking" + +ic+ "=" + currNodeKey;
-                      return (
-                        <div key={keyStr}>
-                        {currNodeKey !== "" && <div>
 
-                              {hasNextNode && <div 
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${sourceRightLineVStart}px`, 
-                                  "left": `${sourceRightLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}
-                                >       
-                              </div>}
-                           
-                              {hasNextNode && <div 
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${destLeftLineVStart}px`, 
-                                  "left": `${destLeftLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}
-                                >       
-                              </div>}
-
-                              {hasNextNode && <div 
-                                style={{
-                                  "position": "absolute",
-                                  "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": `${sourceRightLineHStart+10}px`, 
-                                  "height": `${betweenNodesVerticalLink}px`, 
-                                  "width": `1px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}
-                                >     
-                              </div>}
-
-                              {(hasNextNode && unitDiffHori > 0) && <div 
-                                style={{
-                                  "position": "absolute",
-                                  "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
-                                  "height": `1px`, 
-                                  "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}
-                                >
-                              </div>}
-
-                              {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${destLeftLineVStart}px`, 
-                                  "left": `${destLeftLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "blue",
-                                  "borderRadius": `0px`}}                              
-                                >
-                                </div>}
-                                {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${destLeftLineVStart-10}px`, 
-                                  "left": `${destLeftLineHStart}px`, 
-                                  "height": `10px`, 
-                                  "width": `1px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}                              
-                                >
-                                </div>}                                
-                                {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${destLeftLineVStart-10}px`, 
-                                  "left": `${destLeftLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}                              
-                                >
-                                </div>}
-
-
-                                {(hasNextNode === true && unitDiffVert === 0  && srcNodeAtLeft === false)
-                                && <div
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${sourceRightLineVStart}px`, 
-                                  "left": `${sourceRightLineHStart+10}px`, 
-                                  "height": `10px`, 
-                                  "width": `1px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}                                     
-                                ></div>}
-                               {(hasNextNode === true && unitDiffVert === 0 && srcNodeAtLeft === false)
-                               && <div
-                                style={{
-                                  "position": "absolute",
-                                  "top": `${sourceRightLineVStart+10}px`, 
-                                  "left": `${sourceRightLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "#000000",
-                                  "borderRadius": `0px`}}                                  
-                                ></div>}
-
-
-                        </div>}
-                        </div>)
+       
                     })}
                       </div>);
               })
@@ -1252,7 +1264,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             <table>
               <thead>
                 <tr>
-                  <th>Condition</th>
+                  <th style={{"minWidth": "450px"}}>Condition</th>
                   <th>Target Node</th>
                 </tr>
               </thead>
