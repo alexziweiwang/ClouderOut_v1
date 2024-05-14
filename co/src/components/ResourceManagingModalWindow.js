@@ -316,14 +316,18 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     async function removeOneResource() {
-        await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
-        await fetchRmFileList();
-        //update resource's var-pair list
-        let emptyObj = {};
-        storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);
-        setClickedFileName("");
-        setClickedFileType("");
-        setClickedFileUrl("");
+        let userResponse = confirm("Are you sure to delete this resource from all projects?");
+        if (userResponse) {
+            await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
+            await fetchRmFileList();
+            //update resource's var-pair list
+            let emptyObj = {};
+            storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);
+            setClickedFileName("");
+            setClickedFileType("");
+            setClickedFileUrl("");
+        }
+
     }
 
     return (
@@ -435,7 +439,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 </div>
                 
-                <div className="areaBlue">
+                <div className="areaBlue" style={{"overflow": "scroll"}}>
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} removeFileFromAll={removeOneResource}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
@@ -490,7 +494,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
 
                 </div>
                 
-                <div className="areaBlue">
+                <div className="areaBlue" style={{"overflow": "scroll"}}>
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud}/>}
                 </div>

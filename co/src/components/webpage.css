@@ -781,6 +781,7 @@ td {
     margin-right: 5px;
     overflow: scroll;
     margin-top: 5px;
+    max-height: 420px;
 }
 
 .rsrcListArea {
