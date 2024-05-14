@@ -143,7 +143,7 @@ export default function GameMaker() {
               <br></br>
 
               <br></br><label>Game Progress Strategy:</label>
-                <div className="parallelFrame" style={{"justify-content": "center"}}>
+                <div style={{"justify-content": "center"}}>
                     <div className="selectableRectangle">
                         <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input>
                         <label>Save and Load System:</label>
@@ -155,20 +155,22 @@ export default function GameMaker() {
                         Short experience in each chapter:
                         
                         <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
-
                     </div>
                 </div>
 
-
-              <br></br>
               <br></br><label>Main Page Content: </label>
-              <br></br>TODO list of entries
-              <br></br><input type="radio"></input><label>Story</label>
-              <br></br><input type="radio"></input><label>Setting</label>
-              <br></br><input type="radio"></input><label>Shop</label>
+              <br></br><input type="checkbox"></input><label>Story</label>
+              <br></br><input type="checkbox"></input><label>Setting</label>
+              <br></br><input type="checkbox"></input><label>Player Profile</label>
+              <br></br><input type="checkbox"></input><label>Shop</label>
 
-              <br></br>TODO table of all entry-buttons & settings (position & destination page)
+              <br></br><br></br>
+              <label></label>List Direction:
+              <br></br><input type="radio"></input><label>Horizontal</label>
+              <br></br><input type="radio"></input><label>Vertical</label>
+              <br></br>
 
+              
               <br></br>Settings Page Setup
               <br></br>TODO list of options of settings (speed, volume of bgm, etc.)
               <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
