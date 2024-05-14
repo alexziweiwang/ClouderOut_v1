@@ -131,10 +131,42 @@ export default function GameMaker() {
           
           
           <div className="guiSettings">
-              <label>Menu & Navigations</label>
+              <br></br>
+              <label>Main Navigation Screen Size: </label><select>
+                        <option value="" key=""> ----- Select Size and Direction ----- </option>
+                        <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                        <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+                        <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                        <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+              </select>
+              TODO
+              <br></br>
 
-              <br></br>Main Page Setup
+              <br></br><label>Game Progress Strategy:</label>
+                <div className="parallelFrame" style={{"justify-content": "center"}}>
+                    <div className="selectableRectangle">
+                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input>
+                        <label>Save and Load System:</label>
+                        <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
+                    </div>
+
+                    <div className="selectableRectangle">
+                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("echpt");}}></input><label></label>
+                        Short experience in each chapter:
+                        
+                        <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
+
+                    </div>
+                </div>
+
+
+              <br></br>
+              <br></br><label>Main Page Content: </label>
               <br></br>TODO list of entries
+              <br></br><input type="radio"></input><label>Story</label>
+              <br></br><input type="radio"></input><label>Setting</label>
+              <br></br><input type="radio"></input><label>Shop</label>
+
               <br></br>TODO table of all entry-buttons & settings (position & destination page)
 
               <br></br>Settings Page Setup
@@ -157,22 +189,7 @@ export default function GameMaker() {
               </p>
 
 
-              <br></br><label>Game Progress Strategy:</label>
-                <div className="parallelFrame" style={{"justify-content": "center"}}>
-                    <div className="selectableRectangle">
-                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input>
-                        <label>Save and Load System:</label>
-                        <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
-                    </div>
 
-                    <div className="selectableRectangle">
-                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("echpt");}}></input><label></label>
-                        Short experience in each chapter:
-                        
-                        <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
-
-                    </div>
-                </div>
 
           </div>
 
