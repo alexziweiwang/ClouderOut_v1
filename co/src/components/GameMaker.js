@@ -168,7 +168,7 @@ export default function GameMaker() {
               <br></br><input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
                 onChange={()=>{setIsMainPageEntriesCustom(false);}}
               ></input><label></label>Fixed List
-                  <div className="indentOne">
+                  {!isMainPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
                     <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
                       onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
                     ></input>
@@ -189,13 +189,13 @@ export default function GameMaker() {
                     <br></br>
                     Group Height:
                       <input type="range"></input>
-                  </div>
+                  </div>}
               <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
                  onChange={()=>{setIsMainPageEntriesCustom(true);}}
               ></input>
               <label></label>Customized Positions
 
-              <br></br><br></br><br></br>
+              <br></br>
               <br></br><label>Main Page Content: </label>
               
               <br></br><input type="checkbox" value={mainPageEntries["story"]}
@@ -204,28 +204,61 @@ export default function GameMaker() {
                   let val = mainPageEntries["story"];
                   setMainPageEntries({...mainPageEntries, "story": !val});}}
               ></input><label>Story</label>
-              {isMainPageEntriesCustom && <div>position setting...</div>}
+              {(isMainPageEntriesCustom && mainPageEntries["story"]) && <div className="indentOne">
+                Position X:
+                      <input type="range"></input>
+                    <br></br>
+                Position Y:
+                     <input type="range"></input>
+                    <br></br>
+                Width:
+                      <input type="range"></input>
+                    <br></br>
+                Height:
+                      <input type="range"></input>
+                    <br></br>
+                Font:
+                      <select></select>
+                    <br></br>
+                Font Size:
+                      <input type="number"></input>
+                    <br></br>
+                Background Picture:
+                      <select></select><button>Resource</button>
+                
+                </div>}
               <br></br><input type="checkbox" value={mainPageEntries["setting"]}
                 checked={mainPageEntries["setting"]}
                 onChange={()=>{
                   let val = mainPageEntries["setting"];
                   setMainPageEntries({...mainPageEntries, "setting": !val});}}      
               ></input><label>Setting</label>
-              {isMainPageEntriesCustom && <div>position setting...</div>}
+              {isMainPageEntriesCustom && <div>
+                
+                position setting...
+                
+                </div>}
               <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
                 checked={mainPageEntries["playerProfile"]}
                 onChange={()=>{
                   let val = mainPageEntries["playerProfile"];
                   setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
               ></input><label>Player Profile</label>
-              {isMainPageEntriesCustom && <div>position setting...</div>}              
+              {isMainPageEntriesCustom && <div>
+                position setting...
+                
+                </div>}              
               <br></br><input type="checkbox" value={mainPageEntries["shop"]}
                 checked={mainPageEntries["shop"]}
                 onChange={()=>{
                   let val = mainPageEntries["shop"];
                   setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
               ></input><label>Shop</label>
-              {isMainPageEntriesCustom && <div>position setting...</div>}
+              {isMainPageEntriesCustom && <div>
+                
+                position setting...
+                
+                </div>}
 
 
 
