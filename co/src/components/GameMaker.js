@@ -50,7 +50,9 @@ export default function GameMaker() {
     "setting": false,
     "playerProfile": false
   });
+  const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(true);
 
+  
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
@@ -161,8 +163,24 @@ export default function GameMaker() {
                         <label onClick={()=>{setIsWithSL(false);}}>Without Save and Load System</label>
                     
                 </div>
+                <br></br><br></br>
+              Main Page Options:
+              <br></br><input type="radio"></input><label></label>List Direction
+                  <div className="indentOne">
+                    <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
+                      onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
+                    ></input>
+                    <label>Horizontal</label>
+                    <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
+                      onChange={()=>{setIsMainPageEntriesHorizontal(false);}}
+                    ></input>
+                    <label>Vertical</label>
+                  </div>
+              <br></br><input type="radio"></input><label></label>Each Position
 
+              <br></br><br></br><br></br>
               <br></br><label>Main Page Content: </label>
+              
               <br></br><input type="checkbox" value={mainPageEntries["story"]}
                 checked={mainPageEntries["story"]}
                 onChange={()=>{
@@ -188,11 +206,7 @@ export default function GameMaker() {
                   setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
               ></input><label>Shop</label>
 
-              <br></br><br></br>
-              <label></label>List Direction:
-              <br></br><input type="radio"></input><label>Horizontal</label>
-              <br></br><input type="radio"></input><label>Vertical</label>
-              <br></br>
+
 
               
               <br></br>Settings Page Setup
