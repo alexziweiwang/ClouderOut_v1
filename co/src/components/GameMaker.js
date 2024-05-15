@@ -51,6 +51,7 @@ export default function GameMaker() {
     "playerProfile": false
   });
   const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(true);
+  const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(false);
 
   
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -65,7 +66,6 @@ export default function GameMaker() {
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         setFirstTimeEnter(false);
     }
-    console.log("mainPageEntries: ", mainPageEntries); //TODO test
   });
 
 
@@ -154,7 +154,7 @@ export default function GameMaker() {
               <br></br>
 
               <br></br><label>Game Progress Strategy:</label>
-                <div style={{"justify-content": "center"}}>
+                <div style={{"justifyContent": "center"}}>
                         <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(true);}}></input>
                         <label onClick={()=>{setIsWithSL(true);}}>Save and Load System</label>                    
                     
@@ -165,7 +165,9 @@ export default function GameMaker() {
                 </div>
                 <br></br><br></br>
               Main Page Options:
-              <br></br><input type="radio"></input><label></label>List Direction
+              <br></br><input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
+                onChange={()=>{setIsMainPageEntriesCustom(false);}}
+              ></input><label></label>List Direction
                   <div className="indentOne">
                     <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
                       onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
@@ -176,7 +178,10 @@ export default function GameMaker() {
                     ></input>
                     <label>Vertical</label>
                   </div>
-              <br></br><input type="radio"></input><label></label>Each Position
+              <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
+                 onChange={()=>{setIsMainPageEntriesCustom(true);}}
+              ></input>
+              <label></label>Each Position
 
               <br></br><br></br><br></br>
               <br></br><label>Main Page Content: </label>
@@ -187,24 +192,28 @@ export default function GameMaker() {
                   let val = mainPageEntries["story"];
                   setMainPageEntries({...mainPageEntries, "story": !val});}}
               ></input><label>Story</label>
+              {isMainPageEntriesCustom && <div>position setting...</div>}
               <br></br><input type="checkbox" value={mainPageEntries["setting"]}
                 checked={mainPageEntries["setting"]}
                 onChange={()=>{
                   let val = mainPageEntries["setting"];
                   setMainPageEntries({...mainPageEntries, "setting": !val});}}      
               ></input><label>Setting</label>
+              {isMainPageEntriesCustom && <div>position setting...</div>}
               <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
                 checked={mainPageEntries["playerProfile"]}
                 onChange={()=>{
                   let val = mainPageEntries["playerProfile"];
                   setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
               ></input><label>Player Profile</label>
+              {isMainPageEntriesCustom && <div>position setting...</div>}              
               <br></br><input type="checkbox" value={mainPageEntries["shop"]}
                 checked={mainPageEntries["shop"]}
                 onChange={()=>{
                   let val = mainPageEntries["shop"];
                   setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
               ></input><label>Shop</label>
+              {isMainPageEntriesCustom && <div>position setting...</div>}
 
 
 
