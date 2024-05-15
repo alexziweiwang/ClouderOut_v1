@@ -44,6 +44,12 @@ export default function GameMaker() {
   const [selectedProgressStrategy, setSelectedProgressStrategy] = useState("");
 
   const [isWithSL, setIsWithSL] = useState(true);
+  const [mainPageEntries, setMainPageEntries] = useState({
+    "story": false,
+    "shop": false,
+    "setting": false,
+    "playerProfile": false
+  });
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -156,10 +162,10 @@ export default function GameMaker() {
                 </div>
 
               <br></br><label>Main Page Content: </label>
-              <br></br><input type="checkbox"></input><label>Story</label>
-              <br></br><input type="checkbox"></input><label>Setting</label>
-              <br></br><input type="checkbox"></input><label>Player Profile</label>
-              <br></br><input type="checkbox"></input><label>Shop</label>
+              <br></br><input type="checkbox" value={mainPageEntries["story"]}></input><label>Story</label>
+              <br></br><input type="checkbox" value={mainPageEntries["setting"]}></input><label>Setting</label>
+              <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}></input><label>Player Profile</label>
+              <br></br><input type="checkbox" value={mainPageEntries["shop"]}></input><label>Shop</label>
 
               <br></br><br></br>
               <label></label>List Direction:
