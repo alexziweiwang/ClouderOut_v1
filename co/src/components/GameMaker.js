@@ -150,171 +150,186 @@ export default function GameMaker() {
                         <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
                         <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
               </select>
-              TODO
+              <button>Update</button>
               <br></br>
 
               <br></br><label>Game Progress Strategy:</label>
                 <div style={{"justifyContent": "center"}}>
                         <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(true);}}></input>
-                        <label onClick={()=>{setIsWithSL(true);}}>Save and Load System</label>                    
+                        <label onClick={()=>{setIsWithSL(true);}}>SaveLoad System</label>                    
                     
                         <br></br>
                         <input type="radio" name="progressStrategy" checked={!isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(false);}}></input>
-                        <label onClick={()=>{setIsWithSL(false);}}>Without Save and Load System</label>
+                        <label onClick={()=>{setIsWithSL(false);}}>Without SaveLoad System</label>
                     
                 </div>
                 <br></br><br></br>
               Main Page Options:
-              <br></br><input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
-                onChange={()=>{setIsMainPageEntriesCustom(false);}}
-              ></input><label></label>Fixed List
-                  {!isMainPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
-                    <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
-                      onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
-                    ></input>
-                    <label>Horizontal</label>
-                    <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
-                      onChange={()=>{setIsMainPageEntriesHorizontal(false);}}
-                    ></input>
-                    <label>Vertical</label>
-                    <br></br>
-                    Group Position X:
-                      <input type="range"></input>
-                    <br></br>
-                    Group Position Y:
-                     <input type="range"></input>
-                    <br></br>
-                    Group Width:
-                      <input type="range"></input>
-                    <br></br>
-                    Group Height:
-                      <input type="range"></input>
-                  </div>}
-              <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
-                 onChange={()=>{setIsMainPageEntriesCustom(true);}}
-              ></input>
-              <label></label>Customized Positions
+              <div className="indentOne">
+                  <input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
+                    onChange={()=>{setIsMainPageEntriesCustom(false);}}
+                  ></input><label></label>Fixed List
+                      {!isMainPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
+                        <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
+                          onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
+                        ></input>
+                        <label>Horizontal</label>
+                        <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
+                          onChange={()=>{setIsMainPageEntriesHorizontal(false);}}
+                        ></input>
+                        <label>Vertical</label>
+                        <br></br>
+                        Group Position X:
+                          <input type="range"></input>
+                        <br></br>
+                        Group Position Y:
+                        <input type="range"></input>
+                        <br></br>
+                        Group Width:
+                          <input type="range"></input>
+                        <br></br>
+                        Group Height:
+                          <input type="range"></input>
+                      </div>}
+                  <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
+                    onChange={()=>{setIsMainPageEntriesCustom(true);}}
+                  ></input>
+                  <label></label>Customized Positions
 
-              <br></br>
-              <br></br><label>Main Page Content: </label>
-              
-              <br></br><input type="checkbox" value={mainPageEntries["story"]}
-                checked={mainPageEntries["story"]}
-                onChange={()=>{
-                  let val = mainPageEntries["story"];
-                  setMainPageEntries({...mainPageEntries, "story": !val});}}
-              ></input><label>Story</label>
-              {(isMainPageEntriesCustom && mainPageEntries["story"]) && <div className="indentOne">
-                Position X:
-                      <input type="range"></input>
-                    <br></br>
-                Position Y:
-                     <input type="range"></input>
-                    <br></br>
-                Width:
-                      <input type="range"></input>
-                    <br></br>
-                Height:
-                      <input type="range"></input>
-                    <br></br>
-                Font:
-                      <select></select>
-                    <br></br>
-                Font Size:
-                      <input type="number"></input>
-                    <br></br>
-                Background Picture:
-                      <select></select><button>Resource</button>
-                </div>}
-              <br></br><input type="checkbox" value={mainPageEntries["setting"]}
-                checked={mainPageEntries["setting"]}
-                onChange={()=>{
-                  let val = mainPageEntries["setting"];
-                  setMainPageEntries({...mainPageEntries, "setting": !val});}}      
-              ></input><label>Setting</label>
-              {(isMainPageEntriesCustom && mainPageEntries["setting"]) && <div className="indentOne">
-                Position X:
-                      <input type="range"></input>
-                    <br></br>
-                Position Y:
-                     <input type="range"></input>
-                    <br></br>
-                Width:
-                      <input type="range"></input>
-                    <br></br>
-                Height:
-                      <input type="range"></input>
-                    <br></br>
-                Font:
-                      <select></select>
-                    <br></br>
-                Font Size:
-                      <input type="number"></input>
-                    <br></br>
-                Background Picture:
-                      <select></select><button>Resource</button>
-                </div>}
-              <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
-                checked={mainPageEntries["playerProfile"]}
-                onChange={()=>{
-                  let val = mainPageEntries["playerProfile"];
-                  setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
-              ></input><label>Player Profile</label>
-             {(isMainPageEntriesCustom && mainPageEntries["playerProfile"]) && <div className="indentOne">
-                Position X:
-                      <input type="range"></input>
-                    <br></br>
-                Position Y:
-                     <input type="range"></input>
-                    <br></br>
-                Width:
-                      <input type="range"></input>
-                    <br></br>
-                Height:
-                      <input type="range"></input>
-                    <br></br>
-                Font:
-                      <select></select>
-                    <br></br>
-                Font Size:
-                      <input type="number"></input>
-                    <br></br>
-                Background Picture:
-                      <select></select><button>Resource</button>
-                </div>}             
-              <br></br><input type="checkbox" value={mainPageEntries["shop"]}
-                checked={mainPageEntries["shop"]}
-                onChange={()=>{
-                  let val = mainPageEntries["shop"];
-                  setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
-              ></input><label>Shop</label>
-             {(isMainPageEntriesCustom && mainPageEntries["shop"]) && <div className="indentOne">
-                Position X:
-                      <input type="range"></input>
-                    <br></br>
-                Position Y:
-                     <input type="range"></input>
-                    <br></br>
-                Width:
-                      <input type="range"></input>
-                    <br></br>
-                Height:
-                      <input type="range"></input>
-                    <br></br>
-                Font:
-                      <select></select>
-                    <br></br>
-                Font Size:
-                      <input type="number"></input>
-                    <br></br>
-                Background Picture:
-                      <select></select><button>Resource</button>
-                </div>} 
+                  <br></br>
+                  <br></br><label>Main Page Items: </label>
+                  
+                  <br></br><input type="checkbox" value={mainPageEntries["story"]}
+                    checked={mainPageEntries["story"]}
+                    onChange={()=>{
+                      let val = mainPageEntries["story"];
+                      setMainPageEntries({...mainPageEntries, "story": !val});}}
+                  ></input><label>Story</label>
+                  {(isMainPageEntriesCustom && mainPageEntries["story"]) && <div className="indentOne">
+                    Position X:
+                          <input type="range"></input>
+                        <br></br>
+                    Position Y:
+                        <input type="range"></input>
+                        <br></br>
+                    Width:
+                          <input type="range"></input>
+                        <br></br>
+                    Height:
+                          <input type="range"></input>
+                        <br></br>
+                    Font:
+                          <select></select>
+                        <br></br>
+                    Font Size:
+                          <input type="number"></input>
+                        <br></br>
+                    Background Picture:
+                          <select></select><button>Resource</button>
+                    </div>}
+                  <br></br><input type="checkbox" value={mainPageEntries["setting"]}
+                    checked={mainPageEntries["setting"]}
+                    onChange={()=>{
+                      let val = mainPageEntries["setting"];
+                      setMainPageEntries({...mainPageEntries, "setting": !val});}}      
+                  ></input><label>Setting</label>
+                  {(isMainPageEntriesCustom && mainPageEntries["setting"]) && <div className="indentOne">
+                    Position X:
+                          <input type="range"></input>
+                        <br></br>
+                    Position Y:
+                        <input type="range"></input>
+                        <br></br>
+                    Width:
+                          <input type="range"></input>
+                        <br></br>
+                    Height:
+                          <input type="range"></input>
+                        <br></br>
+                    Font:
+                          <select></select>
+                        <br></br>
+                    Font Size:
+                          <input type="number"></input>
+                        <br></br>
+                    Background Picture:
+                          <select></select><button>Resource</button>
+                    </div>}
+                  <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
+                    checked={mainPageEntries["playerProfile"]}
+                    onChange={()=>{
+                      let val = mainPageEntries["playerProfile"];
+                      setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
+                  ></input><label>Player Profile</label>
+                {(isMainPageEntriesCustom && mainPageEntries["playerProfile"]) && <div className="indentOne">
+                    Position X:
+                          <input type="range"></input>
+                        <br></br>
+                    Position Y:
+                        <input type="range"></input>
+                        <br></br>
+                    Width:
+                          <input type="range"></input>
+                        <br></br>
+                    Height:
+                          <input type="range"></input>
+                        <br></br>
+                    Font:
+                          <select></select>
+                        <br></br>
+                    Font Size:
+                          <input type="number"></input>
+                        <br></br>
+                    Background Picture:
+                          <select></select><button>Resource</button>
+                    </div>}             
+                  <br></br><input type="checkbox" value={mainPageEntries["shop"]}
+                    checked={mainPageEntries["shop"]}
+                    onChange={()=>{
+                      let val = mainPageEntries["shop"];
+                      setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
+                  ></input><label>Shop</label>
+                {(isMainPageEntriesCustom && mainPageEntries["shop"]) && <div className="indentOne">
+                    Position X:
+                          <input type="range"></input>
+                        <br></br>
+                    Position Y:
+                        <input type="range"></input>
+                        <br></br>
+                    Width:
+                          <input type="range"></input>
+                        <br></br>
+                    Height:
+                          <input type="range"></input>
+                        <br></br>
+                    Font:
+                          <select></select>
+                        <br></br>
+                    Font Size:
+                          <input type="number"></input>
+                        <br></br>
+                    Background Picture:
+                          <select></select><button>Resource</button>
+                    </div>} 
+              </div>
 
 
+              <br></br><br></br>
 
-              
-              <br></br>Settings Page Setup
+              <br></br>Settings Page Options
+              <div className="indentOne">
+                <input type="radio"></input><label>Fixed List</label>
+                <br></br>
+                <input type="radio"></input><label>Customized Positions</label>
+                <br></br>
+                <label>Settings Page Items</label>
+                <div className="indentOne">
+
+                </div>
+
+              </div>
+            
+
               <br></br>TODO list of options of settings (speed, volume of bgm, etc.)
               <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
 
