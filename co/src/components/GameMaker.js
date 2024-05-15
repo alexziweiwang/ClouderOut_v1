@@ -63,6 +63,7 @@ export default function GameMaker() {
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         setFirstTimeEnter(false);
     }
+    console.log("mainPageEntries: ", mainPageEntries); //TODO test
   });
 
 
@@ -162,10 +163,30 @@ export default function GameMaker() {
                 </div>
 
               <br></br><label>Main Page Content: </label>
-              <br></br><input type="checkbox" value={mainPageEntries["story"]}></input><label>Story</label>
-              <br></br><input type="checkbox" value={mainPageEntries["setting"]}></input><label>Setting</label>
-              <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}></input><label>Player Profile</label>
-              <br></br><input type="checkbox" value={mainPageEntries["shop"]}></input><label>Shop</label>
+              <br></br><input type="checkbox" value={mainPageEntries["story"]}
+                checked={mainPageEntries["story"]}
+                onChange={()=>{
+                  let val = mainPageEntries["story"];
+                  setMainPageEntries({...mainPageEntries, "story": !val});}}
+              ></input><label>Story</label>
+              <br></br><input type="checkbox" value={mainPageEntries["setting"]}
+                checked={mainPageEntries["setting"]}
+                onChange={()=>{
+                  let val = mainPageEntries["setting"];
+                  setMainPageEntries({...mainPageEntries, "setting": !val});}}      
+              ></input><label>Setting</label>
+              <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
+                checked={mainPageEntries["playerProfile"]}
+                onChange={()=>{
+                  let val = mainPageEntries["playerProfile"];
+                  setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
+              ></input><label>Player Profile</label>
+              <br></br><input type="checkbox" value={mainPageEntries["shop"]}
+                checked={mainPageEntries["shop"]}
+                onChange={()=>{
+                  let val = mainPageEntries["shop"];
+                  setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
+              ></input><label>Shop</label>
 
               <br></br><br></br>
               <label></label>List Direction:
