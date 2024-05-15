@@ -167,7 +167,7 @@ export default function GameMaker() {
               Main Page Options:
               <br></br><input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
                 onChange={()=>{setIsMainPageEntriesCustom(false);}}
-              ></input><label></label>List Direction
+              ></input><label></label>Fixed List
                   <div className="indentOne">
                     <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
                       onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
@@ -177,11 +177,23 @@ export default function GameMaker() {
                       onChange={()=>{setIsMainPageEntriesHorizontal(false);}}
                     ></input>
                     <label>Vertical</label>
+                    <br></br>
+                    Group Position X:
+                      <input type="range"></input>
+                    <br></br>
+                    Group Position Y:
+                     <input type="range"></input>
+                    <br></br>
+                    Group Width:
+                      <input type="range"></input>
+                    <br></br>
+                    Group Height:
+                      <input type="range"></input>
                   </div>
               <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
                  onChange={()=>{setIsMainPageEntriesCustom(true);}}
               ></input>
-              <label></label>Each Position
+              <label></label>Customized Positions
 
               <br></br><br></br><br></br>
               <br></br><label>Main Page Content: </label>
