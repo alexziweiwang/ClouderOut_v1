@@ -260,21 +260,56 @@ export default function GameMaker() {
                   let val = mainPageEntries["playerProfile"];
                   setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
               ></input><label>Player Profile</label>
-              {isMainPageEntriesCustom && <div>
-                position setting...
-                
-                </div>}              
+             {(isMainPageEntriesCustom && mainPageEntries["playerProfile"]) && <div className="indentOne">
+                Position X:
+                      <input type="range"></input>
+                    <br></br>
+                Position Y:
+                     <input type="range"></input>
+                    <br></br>
+                Width:
+                      <input type="range"></input>
+                    <br></br>
+                Height:
+                      <input type="range"></input>
+                    <br></br>
+                Font:
+                      <select></select>
+                    <br></br>
+                Font Size:
+                      <input type="number"></input>
+                    <br></br>
+                Background Picture:
+                      <select></select><button>Resource</button>
+                </div>}             
               <br></br><input type="checkbox" value={mainPageEntries["shop"]}
                 checked={mainPageEntries["shop"]}
                 onChange={()=>{
                   let val = mainPageEntries["shop"];
                   setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
               ></input><label>Shop</label>
-              {isMainPageEntriesCustom && <div>
-                
-                position setting...
-                
-                </div>}
+             {(isMainPageEntriesCustom && mainPageEntries["shop"]) && <div className="indentOne">
+                Position X:
+                      <input type="range"></input>
+                    <br></br>
+                Position Y:
+                     <input type="range"></input>
+                    <br></br>
+                Width:
+                      <input type="range"></input>
+                    <br></br>
+                Height:
+                      <input type="range"></input>
+                    <br></br>
+                Font:
+                      <select></select>
+                    <br></br>
+                Font Size:
+                      <input type="number"></input>
+                    <br></br>
+                Background Picture:
+                      <select></select><button>Resource</button>
+                </div>} 
 
 
 
