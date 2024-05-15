@@ -225,7 +225,6 @@ export default function GameMaker() {
                     <br></br>
                 Background Picture:
                       <select></select><button>Resource</button>
-                
                 </div>}
               <br></br><input type="checkbox" value={mainPageEntries["setting"]}
                 checked={mainPageEntries["setting"]}
@@ -233,10 +232,27 @@ export default function GameMaker() {
                   let val = mainPageEntries["setting"];
                   setMainPageEntries({...mainPageEntries, "setting": !val});}}      
               ></input><label>Setting</label>
-              {isMainPageEntriesCustom && <div>
-                
-                position setting...
-                
+              {(isMainPageEntriesCustom && mainPageEntries["setting"]) && <div className="indentOne">
+                Position X:
+                      <input type="range"></input>
+                    <br></br>
+                Position Y:
+                     <input type="range"></input>
+                    <br></br>
+                Width:
+                      <input type="range"></input>
+                    <br></br>
+                Height:
+                      <input type="range"></input>
+                    <br></br>
+                Font:
+                      <select></select>
+                    <br></br>
+                Font Size:
+                      <input type="number"></input>
+                    <br></br>
+                Background Picture:
+                      <select></select><button>Resource</button>
                 </div>}
               <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
                 checked={mainPageEntries["playerProfile"]}
