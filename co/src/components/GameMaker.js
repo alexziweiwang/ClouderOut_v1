@@ -319,18 +319,104 @@ export default function GameMaker() {
               <br></br>Settings Page Options
               <div className="indentOne">
                 <input type="radio"></input><label>Fixed List</label>
-                <br></br>
+                <div className="indentOne" style={{"backgroundColor": "grey"}}>
+                        <input type="radio"></input>
+                        <label>Horizontal</label>
+                        <br></br>
+                        <input type="radio"></input>
+                        <label>Vertical</label>
+                        <br></br>
+                        Group Position X:
+                          <input type="range"></input>
+                        <br></br>
+                        Group Position Y:
+                        <input type="range"></input>
+                        <br></br>
+                        Group Width:
+                          <input type="range"></input>
+                        <br></br>
+                        Group Height:
+                          <input type="range"></input>
+                </div>
+
                 <input type="radio"></input><label>Customized Positions</label>
                 <br></br>
-                <label>Settings Page Items</label>
-                <div className="indentOne">
+                <label>Settings Page Items:</label>
+                <div>
+                  <input type="checkbox"></input><label>Play Speed</label>
+                  {<div className="indentOne">
+                      Position X:
+                              <input type="range"></input>
+                            <br></br>
+                        Position Y:
+                            <input type="range"></input>
+                            <br></br>
+                        Width:
+                              <input type="range"></input>
+                            <br></br>
+                        Height:
+                              <input type="range"></input>
+                            <br></br>
+                        Font:
+                              <select></select>
+                            <br></br>
+                        Font Size:
+                              <input type="number"></input>
+                            <br></br>
+                        Slider Looking: TODO
+                  </div>}
+                  <br></br>
+                  <input type="checkbox"></input><label>Background Music Volume</label>
+                  {<div className="indentOne">
+                      Position X:
+                              <input type="range"></input>
+                            <br></br>
+                        Position Y:
+                            <input type="range"></input>
+                            <br></br>
+                        Width:
+                              <input type="range"></input>
+                            <br></br>
+                        Height:
+                              <input type="range"></input>
+                            <br></br>
+                        Font:
+                              <select></select>
+                            <br></br>
+                        Font Size:
+                              <input type="number"></input>
+                            <br></br>
+                        Slider Looking: TODO
+                  </div>}
+                  <br></br>
+                  <input type="checkbox"></input><label>Sound Effect Volume</label>
+                  {<div className="indentOne">
+                      Position X:
+                              <input type="range"></input>
+                            <br></br>
+                        Position Y:
+                            <input type="range"></input>
+                            <br></br>
+                        Width:
+                              <input type="range"></input>
+                            <br></br>
+                        Height:
+                              <input type="range"></input>
+                            <br></br>
+                        Font:
+                              <select></select>
+                            <br></br>
+                        Font Size:
+                              <input type="number"></input>
+                            <br></br>
+                        Slider Looking: TODO
+                  </div>}
 
                 </div>
 
+
               </div>
             
-
-              <br></br>TODO list of options of settings (speed, volume of bgm, etc.)
               <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
 
               <br></br>Profile Page Setup
