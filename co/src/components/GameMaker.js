@@ -53,7 +53,16 @@ export default function GameMaker() {
   const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(true);
   const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(false);
 
+  const [settingsPageEntries, setSettingsPageEntries] = useState({
+    "playSpeed": false,
+    "bgmVol": false,
+    "seVol": false
+  });
+  const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(true);
+  const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(false);
+ 
   
+
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
@@ -318,12 +327,18 @@ export default function GameMaker() {
 
               <br></br>Settings Page Options
               <div className="indentOne">
-                <input type="radio"></input><label>Fixed List</label>
-                <div className="indentOne" style={{"backgroundColor": "grey"}}>
-                        <input type="radio"></input>
+                <input type="radio" value={isSettingsPageEntriesCustom} checked={!isSettingsPageEntriesCustom}
+                  onChange={()=>{setIsSettingsPageEntriesCustom(false);}}
+                ></input><label>Fixed List</label>
+                {!isSettingsPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
+                        <input type="radio" value={isSettingsPageEntriesHorizontal} checked={isSettingsPageEntriesHorizontal}
+                          onChange={()=>{setIsSettingsPageEntriesHorizontal(true);}}
+                        ></input>
                         <label>Horizontal</label>
                         <br></br>
-                        <input type="radio"></input>
+                        <input type="radio" value={isSettingsPageEntriesHorizontal} checked={!isSettingsPageEntriesHorizontal}
+                          onChange={()=>{setIsSettingsPageEntriesHorizontal(false);}}
+                        ></input>
                         <label>Vertical</label>
                         <br></br>
                         Group Position X:
@@ -337,14 +352,17 @@ export default function GameMaker() {
                         <br></br>
                         Group Height:
                           <input type="range"></input>
-                </div>
-
-                <input type="radio"></input><label>Customized Positions</label>
+                </div>}
+                
+                <br></br>
+                <input type="radio" value={isSettingsPageEntriesCustom} checked={isSettingsPageEntriesCustom}
+                  onChange={()=>{setIsSettingsPageEntriesCustom(true);}} 
+                ></input><label>Customized Positions</label>
                 <br></br>
                 <label>Settings Page Items:</label>
                 <div>
                   <input type="checkbox"></input><label>Play Speed</label>
-                  {<div className="indentOne">
+                  {!isSettingsPageEntriesCustom && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -367,7 +385,7 @@ export default function GameMaker() {
                   </div>}
                   <br></br>
                   <input type="checkbox"></input><label>Background Music Volume</label>
-                  {<div className="indentOne">
+                  {!isSettingsPageEntriesCustom && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -390,7 +408,7 @@ export default function GameMaker() {
                   </div>}
                   <br></br>
                   <input type="checkbox"></input><label>Sound Effect Volume</label>
-                  {<div className="indentOne">
+                  {!isSettingsPageEntriesCustom && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
