@@ -43,6 +43,8 @@ export default function GameMaker() {
   const [showChapterMaker, setShowChapterMaker] = useState(true);
   const [selectedProgressStrategy, setSelectedProgressStrategy] = useState("");
 
+  const [isWithSL, setIsWithSL] = useState(true);
+
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
@@ -144,18 +146,13 @@ export default function GameMaker() {
 
               <br></br><label>Game Progress Strategy:</label>
                 <div style={{"justify-content": "center"}}>
-                    <div className="selectableRectangle">
-                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("sl");}}></input>
-                        <label>Save and Load System:</label>
-                        <br></br>enter game from start, or by loading the saved entries; game progress & data/status recorded by save/load slots
-                    </div>
-
-                    <div className="selectableRectangle">
-                        <input type="radio" name="progressStrategy" value={selectedProgressStrategy} onChange={()=>{setSelectedProgressStrategy("echpt");}}></input><label></label>
-                        Short experience in each chapter:
-                        
-                        <br></br>enter and view chapters, and experience all options as needed; no game data/status recorded during game-play
-                    </div>
+                        <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(true);}}></input>
+                        <label onClick={()=>{setIsWithSL(true);}}>Save and Load System</label>                    
+                    
+                        <br></br>
+                        <input type="radio" name="progressStrategy" checked={!isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(false);}}></input>
+                        <label onClick={()=>{setIsWithSL(false);}}>Without Save and Load System</label>
+                    
                 </div>
 
               <br></br><label>Main Page Content: </label>
