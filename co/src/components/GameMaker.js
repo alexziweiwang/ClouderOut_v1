@@ -394,7 +394,14 @@ export default function GameMaker() {
                   </div>}
                   <br></br>
 
-                  <input type="checkbox"></input><label>Background Music Volume</label>
+                  <input type="checkbox"
+                    value={settingsPageEntries["bgmVol"]}
+                    checked={settingsPageEntries["bgmVol"]}
+                    onChange={()=>{
+                      let currVal = settingsPageEntries["bgmVol"];
+                      setSettingsPageEntries({...settingsPageEntries, "bgmVol": !currVal});}}                  
+                  
+                  ></input><label>Background Music Volume</label>
                   {(isSettingsPageEntriesCustom && settingsPageEntries["bgmVol"]) 
                   && <div className="indentOne">
                       Position X:
