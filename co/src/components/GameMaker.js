@@ -400,7 +400,6 @@ export default function GameMaker() {
                     onChange={()=>{
                       let currVal = settingsPageEntries["bgmVol"];
                       setSettingsPageEntries({...settingsPageEntries, "bgmVol": !currVal});}}                  
-                  
                   ></input><label>Background Music Volume</label>
                   {(isSettingsPageEntriesCustom && settingsPageEntries["bgmVol"]) 
                   && <div className="indentOne">
@@ -425,7 +424,13 @@ export default function GameMaker() {
                         Slider Looking: TODO
                   </div>}
                   <br></br>
-                  <input type="checkbox"></input><label>Sound Effect Volume</label>
+                  <input type="checkbox"
+                    value={settingsPageEntries["seVol"]}
+                    checked={settingsPageEntries["seVol"]}
+                    onChange={()=>{
+                      let currVal = settingsPageEntries["seVol"];
+                      setSettingsPageEntries({...settingsPageEntries, "seVol": !currVal});}}                  
+                  ></input><label>Sound Effect Volume</label>
                   {(isSettingsPageEntriesCustom && settingsPageEntries["seVol"]) 
                   && <div className="indentOne">
                       Position X:
