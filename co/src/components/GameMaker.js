@@ -151,6 +151,9 @@ export default function GameMaker() {
           
           
           <div className="guiSettings">
+            <button>Save Changes</button>
+
+
               <br></br>
               <label>Main Navigation Screen Size: </label><select>
                         <option value="" key=""> ----- Select Size and Direction ----- </option>
@@ -159,7 +162,6 @@ export default function GameMaker() {
                         <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
                         <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
               </select>
-              <button>Update</button>
               <br></br>
 
               <br></br><label>Game Progress Strategy:</label>
@@ -362,7 +364,7 @@ export default function GameMaker() {
                 <label>Settings Page Items:</label>
                 <div>
                   <input type="checkbox"></input><label>Play Speed</label>
-                  {!isSettingsPageEntriesCustom && <div className="indentOne">
+                  {isSettingsPageEntriesCustom && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -385,7 +387,7 @@ export default function GameMaker() {
                   </div>}
                   <br></br>
                   <input type="checkbox"></input><label>Background Music Volume</label>
-                  {!isSettingsPageEntriesCustom && <div className="indentOne">
+                  {isSettingsPageEntriesCustom && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -408,7 +410,7 @@ export default function GameMaker() {
                   </div>}
                   <br></br>
                   <input type="checkbox"></input><label>Sound Effect Volume</label>
-                  {!isSettingsPageEntriesCustom && <div className="indentOne">
+                  {isSettingsPageEntriesCustom && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -435,14 +437,19 @@ export default function GameMaker() {
 
               </div>
             
-              <br></br>TODO table of all checkbox/option-buttons/sliders & settings (position & destination page)
+              <br></br>
+              <br></br>Profile Page
+                <div className="indentOne">
+                    TODO elements (pic) and data displaying
 
-              <br></br>Profile Page Setup
-              <br></br>TODO elements (pic) and data displaying
+                </div>
 
-              <br></br>Game Status/Data Page Setup
-              <br></br>TODO data displaying
-              <br></br>TODO layout
+              <br></br>Game Status Data Page
+                <div className="indentOne">
+                    TODO data displaying
+                    <br></br>TODO layout
+                </div>
+
 
               <br></br><br></br>
               <p className="plans">
@@ -452,6 +459,7 @@ export default function GameMaker() {
                 <br></br>Path: main-page to other parts? player profile(including game data/status?), game settings, meeting(optional), shop(optional), achievements(optional), gallery/memory(optional)  
               </p>
 
+              <button>Save Changes</button>
 
 
 
