@@ -363,8 +363,15 @@ export default function GameMaker() {
                 <br></br>
                 <label>Settings Page Items:</label>
                 <div>
-                  <input type="checkbox"></input><label>Play Speed</label>
-                  {isSettingsPageEntriesCustom && <div className="indentOne">
+                  <input type="checkbox"
+                    value={settingsPageEntries["playSpeed"]}
+                    checked={settingsPageEntries["playSpeed"]}
+                    onChange={()=>{
+                      let currVal = settingsPageEntries["playSpeed"];
+                      setSettingsPageEntries({...settingsPageEntries, "playSpeed": !currVal});}}
+                  ></input><label>Play Speed</label>
+                  {(isSettingsPageEntriesCustom && settingsPageEntries["playSpeed"]) 
+                  && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -386,8 +393,10 @@ export default function GameMaker() {
                         Slider Looking: TODO
                   </div>}
                   <br></br>
+
                   <input type="checkbox"></input><label>Background Music Volume</label>
-                  {isSettingsPageEntriesCustom && <div className="indentOne">
+                  {(isSettingsPageEntriesCustom && settingsPageEntries["bgmVol"]) 
+                  && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
@@ -410,7 +419,8 @@ export default function GameMaker() {
                   </div>}
                   <br></br>
                   <input type="checkbox"></input><label>Sound Effect Volume</label>
-                  {isSettingsPageEntriesCustom && <div className="indentOne">
+                  {(isSettingsPageEntriesCustom && settingsPageEntries["seVol"]) 
+                  && <div className="indentOne">
                       Position X:
                               <input type="range"></input>
                             <br></br>
