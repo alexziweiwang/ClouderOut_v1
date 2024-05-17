@@ -5,20 +5,4 @@ co/src/googleCloudConnetions.js
 /design_files/db_design
 /design_files/game_ui_or_menu_system
 /design_files/testing_project01
-.ResourceManaging_DataStructureOperationWithNewDesign.png.icloud
-design_files/component_design/GameProgressSaveLoad_design.png
-design_files/db_design/chapter_data_cloud_db.png
-design_files/db_design/new_project_creation_default.png
-design_files/db_design/nodeVisualizationOptimization.png
-design_files/engineering_materials/Pre-test1_task_list_3&4.png
-design_files/engineering_materials/Pre-test1_task_list_5&6.png
-design_files/game_ui_or_menu_system/Game_UI_DefaultDesignList.png
-design_files/game_ui_or_menu_system/Game_UI_setup_textFrame.png
-design_files/project engineering map.png
-design_files/ResourceManaging_newDesign.png
-design_files/structures/Interaction_among_components01.png
-design_files/testing_project01/TestProject01_featureList_4.png
-design_files/testing_project01/TestProject01_featureList_5.png
-design_files/testing_project01/TestProject01_featureList_6&7.png
-design_files/testing_project01/TestProject01_featureList_8.png
-ResourceManaging_DataStructureOperationWithNewDesign.png
+*.png
