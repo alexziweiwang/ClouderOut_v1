@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function NavigationSetter() {
+export default function NavigationSetter({navObj}) {
     const [isWithSL, setIsWithSL] = useState(true);
     const [mainPageEntries, setMainPageEntries] = useState({
       "story": false,
@@ -33,7 +33,7 @@ export default function NavigationSetter() {
    <button>Save Changes</button>
 
 
-     <br></br>
+     <br></br><br></br>
      <label>Main Navigation Screen Size: </label><select>
                <option value="" key=""> ----- Select Size and Direction ----- </option>
                <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>

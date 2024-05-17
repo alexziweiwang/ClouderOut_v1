@@ -44,6 +44,8 @@ export default function GameMaker() {
   const [showChapterMaker, setShowChapterMaker] = useState(true);
   const [selectedProgressStrategy, setSelectedProgressStrategy] = useState("");
 
+
+//TODO ------------------------------------------------------
   const [isWithSL, setIsWithSL] = useState(true);
   const [mainPageEntries, setMainPageEntries] = useState({
     "story": false,
@@ -61,6 +63,26 @@ export default function GameMaker() {
   });
   const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(true);
   const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(false);
+
+  const [currentProjectNav, setCurrentProjectNav] = useState({
+    "isWithSL": true,
+    "mainPage-story": false,
+    "mainPage-shop": false,
+    "mainPage-setting": false,
+    "mainPage-playerProfile": false,    
+    "mainPage-entriesHorizontal": true,
+    "mainPage-entiresCustom": false,
+    "settingPage-playSpeed": false,
+    "settingPage-bgmVol": false,
+    "settingPage-seVol": false,
+    "settingPage-entriesHorizontal": true,
+    "settingPage-entiresCustom": false,
+  }); //TODO now: default initial values
+
+  function updateCurrProjectNavObj() {
+    setCurrentProjectNav();
+  }
+//TODO ------------------------------------------------------
  
   
 
