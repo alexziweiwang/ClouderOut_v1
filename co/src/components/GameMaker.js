@@ -327,7 +327,21 @@ export default function GameMaker() {
 
               <br></br><br></br>
 
-              <br></br>Settings Page Options
+              <br></br>Story Page
+                <div className="indentOne">
+                    Chapter List:
+                    <input type="radio"></input><label>Horizontal</label>
+                    <br></br>
+                    <input type="radio"></input><label>Vertical</label>
+                    <br></br>
+
+                    <label>Title base</label>
+                    <select></select>
+                    TODO shape
+
+                </div>
+
+              <br></br>Settings Page
               <div className="indentOne">
                 <input type="radio" value={isSettingsPageEntriesCustom} checked={!isSettingsPageEntriesCustom}
                   onChange={()=>{setIsSettingsPageEntriesCustom(false);}}
@@ -460,7 +474,7 @@ export default function GameMaker() {
               </div>
             
               <br></br>
-              <br></br>Profile Page
+              <br></br>Player Profile Page
                 <div className="indentOne">
                     TODO elements (pic) and data displaying
 
@@ -470,6 +484,12 @@ export default function GameMaker() {
                 <div className="indentOne">
                     TODO data displaying
                     <br></br>TODO layout
+                </div>
+
+              <br></br>Shop Page
+                <div className="indentOne">
+                    TODO shop page content (in separate editor?)
+
                 </div>
 
 
