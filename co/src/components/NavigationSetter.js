@@ -132,7 +132,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={mainPageEntries["story"]}
            onChange={()=>{
              let val = mainPageEntries["story"];
-             setMainPageEntries({...mainPageEntries, "story": !val});}}
+             setMainPageEntries({...mainPageEntries, "story": !val});
+
+             let tempObj = navObj;
+             navObj["mainPage-story"] = !val;
+             updateNavObj(tempObj);              
+            }}
          ></input><label>Story</label>
          {(isMainPageEntriesCustom && mainPageEntries["story"]) && <div className="indentOne">
            Position X:
@@ -160,7 +165,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={mainPageEntries["setting"]}
            onChange={()=>{
              let val = mainPageEntries["setting"];
-             setMainPageEntries({...mainPageEntries, "setting": !val});}}      
+             setMainPageEntries({...mainPageEntries, "setting": !val});
+
+             let tempObj = navObj;
+             navObj["mainPage-setting"] = !val;
+             updateNavObj(tempObj);  
+            }}      
          ></input><label>Setting</label>
          {(isMainPageEntriesCustom && mainPageEntries["setting"]) && <div className="indentOne">
            Position X:
@@ -188,7 +198,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={mainPageEntries["playerProfile"]}
            onChange={()=>{
              let val = mainPageEntries["playerProfile"];
-             setMainPageEntries({...mainPageEntries, "playerProfile": !val});}}               
+             setMainPageEntries({...mainPageEntries, "playerProfile": !val});
+
+             let tempObj = navObj;
+             navObj["mainPage-playerProfile"] = !val;
+             updateNavObj(tempObj);              
+            }}               
          ></input><label>Player Profile</label>
        {(isMainPageEntriesCustom && mainPageEntries["playerProfile"]) && <div className="indentOne">
            Position X:
@@ -216,7 +231,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={mainPageEntries["shop"]}
            onChange={()=>{
              let val = mainPageEntries["shop"];
-             setMainPageEntries({...mainPageEntries, "shop": !val});}}                     
+             setMainPageEntries({...mainPageEntries, "shop": !val});
+            
+             let tempObj = navObj;
+             navObj["mainPage-shop"] = !val;
+             updateNavObj(tempObj);
+            }}                     
          ></input><label>Shop</label>
        {(isMainPageEntriesCustom && mainPageEntries["shop"]) && <div className="indentOne">
            Position X:
