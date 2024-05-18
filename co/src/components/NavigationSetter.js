@@ -79,15 +79,28 @@ export default function NavigationSetter({navObj, updateNavObj}) {
      Main Page Options:
      <div className="indentOne">
          <input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
-           onChange={()=>{setIsMainPageEntriesCustom(false);}}
+           onChange={()=>{
+               setIsMainPageEntriesCustom(false);
+               let tempObj = navObj;
+               navObj["mainPage-entiresCustom"] = false;
+               updateNavObj(tempObj);  
+            }}
          ></input><label></label>Fixed List
              {!isMainPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
                <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
-                 onChange={()=>{setIsMainPageEntriesHorizontal(true);}}
+                 onChange={()=>{setIsMainPageEntriesHorizontal(true);
+                    let tempObj = navObj;
+                    navObj["mainPage-entriesHorizontal"] = true;
+                    updateNavObj(tempObj);                 
+                }}
                ></input>
                <label>Horizontal</label>
                <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
-                 onChange={()=>{setIsMainPageEntriesHorizontal(false);}}
+                 onChange={()=>{setIsMainPageEntriesHorizontal(false);
+                    let tempObj = navObj;
+                    navObj["mainPage-entriesHorizontal"] = false;
+                    updateNavObj(tempObj);    
+                }}
                ></input>
                <label>Vertical</label>
                <br></br>
@@ -104,7 +117,11 @@ export default function NavigationSetter({navObj, updateNavObj}) {
                  <input type="range"></input>
              </div>}
          <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
-           onChange={()=>{setIsMainPageEntriesCustom(true);}}
+            onChange={()=>{setIsMainPageEntriesCustom(true);
+                let tempObj = navObj;
+                navObj["mainPage-entiresCustom"] = true;
+                updateNavObj(tempObj);  
+            }}
          ></input>
          <label></label>Customized Positions
 
