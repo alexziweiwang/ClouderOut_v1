@@ -1,25 +1,40 @@
 import { useState, useEffect } from 'react';
 
-export default function NavigationSetter({navObj, updateNavObj}) {
+export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
-    const [isWithSL, setIsWithSL] = useState(navObj["isWithSL"]);
+    const [isWithSL, setIsWithSL] = useState(initialNavObj["isWithSL"]);
     const [mainPageEntries, setMainPageEntries] = useState({
-      "story": navObj["mainPage-story"],
-      "shop": navObj["mainPage-shop"],
-      "setting": navObj["mainPage-setting"],
-      "playerProfile": navObj["mainPage-playerProfile"],
+      "story": initialNavObj["mainPage-story"],
+      "shop": initialNavObj["mainPage-shop"],
+      "setting": initialNavObj["mainPage-setting"],
+      "playerProfile": initialNavObj["mainPage-playerProfile"],
     });
-    const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(navObj["mainPage-entriesHorizontal"]);
-    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(navObj["mainPage-entriesCustom"]);
+    const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(initialNavObj["mainPage-entriesHorizontal"]);
+    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(initialNavObj["mainPage-entriesCustom"]);
   
     const [settingsPageEntries, setSettingsPageEntries] = useState({
-      "playSpeed": navObj["settingPage-playSpeed"],
-      "bgmVol": navObj["settingPage-bgmVol"],
-      "seVol": navObj["settingPage-seVol"]
+      "playSpeed": initialNavObj["settingPage-playSpeed"],
+      "bgmVol": initialNavObj["settingPage-bgmVol"],
+      "seVol": initialNavObj["settingPage-seVol"]
     });
-    const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(navObj["settingPage-entriesHorizontal"]);
-    const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(navObj["settingPage-entriesCustom"]);
+    const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(initialNavObj["settingPage-entriesHorizontal"]);
+    const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(initialNavObj["settingPage-entriesCustom"]);
  
+
+    const [currentProjectNav, setCurrentProjectNav] = useState({
+      "isWithSL": initialNavObj["isWithSL"],
+      "mainPage-story": initialNavObj["mainPage-story"],
+      "mainPage-shop": initialNavObj["mainPage-shop"],
+      "mainPage-setting": initialNavObj["mainPage-setting"],
+      "mainPage-playerProfile": initialNavObj["mainPage-playerProfile"],    
+      "mainPage-entriesHorizontal": initialNavObj["mainPage-entriesHorizontal"],
+      "mainPage-entriesCustom": initialNavObj["mainPage-entriesCustom"],
+      "settingPage-playSpeed": initialNavObj["settingPage-playSpeed"],
+      "settingPage-bgmVol": initialNavObj["settingPage-bgmVol"],
+      "settingPage-seVol": initialNavObj["settingPage-seVol"],
+      "settingPage-entriesHorizontal": initialNavObj["settingPage-entriesHorizontal"],
+      "settingPage-entriesCustom": initialNavObj["settingPage-entriesCustom"]
+    });
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -49,28 +64,28 @@ export default function NavigationSetter({navObj, updateNavObj}) {
        <div style={{"justifyContent": "center"}}>
                <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{
                    setIsWithSL(true);
-                   let tempObj = navObj;
-                   navObj["isWithSL"] = true;
+                   let tempObj = initialNavObj;
+                   initialNavObj["isWithSL"] = true;
                    updateNavObj(tempObj);
                    }}></input>
                <label onClick={()=>{
                    setIsWithSL(true);
-                   let tempObj = navObj;
-                   navObj["isWithSL"] = true;
+                   let tempObj = initialNavObj;
+                   initialNavObj["isWithSL"] = true;
                    updateNavObj(tempObj);                       
             }}>SaveLoad System</label>                    
            
                <br></br>
                <input type="radio" name="progressStrategy" checked={!isWithSL} value={isWithSL} onChange={()=>{
                    setIsWithSL(false);
-                   let tempObj = navObj;
-                   navObj["isWithSL"] = false;
+                   let tempObj = initialNavObj;
+                   initialNavObj["isWithSL"] = false;
                    updateNavObj(tempObj);  
                    }}></input>
                <label onClick={()=>{
                    setIsWithSL(false);
-                   let tempObj = navObj;
-                   navObj["isWithSL"] = false;
+                   let tempObj = initialNavObj;
+                   initialNavObj["isWithSL"] = false;
                    updateNavObj(tempObj);  
                    }}>Without SaveLoad System</label>
            
@@ -81,24 +96,24 @@ export default function NavigationSetter({navObj, updateNavObj}) {
          <input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
            onChange={()=>{
                setIsMainPageEntriesCustom(false);
-               let tempObj = navObj;
-               navObj["mainPage-entriesCustom"] = false;
+               let tempObj = initialNavObj;
+               initialNavObj["mainPage-entriesCustom"] = false;
                updateNavObj(tempObj);  
             }}
          ></input><label></label>Fixed List
              {!isMainPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
                <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
                  onChange={()=>{setIsMainPageEntriesHorizontal(true);
-                    let tempObj = navObj;
-                    navObj["mainPage-entriesHorizontal"] = true;
+                    let tempObj = initialNavObj;
+                    initialNavObj["mainPage-entriesHorizontal"] = true;
                     updateNavObj(tempObj);                 
                 }}
                ></input>
                <label>Horizontal</label>
                <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
                  onChange={()=>{setIsMainPageEntriesHorizontal(false);
-                    let tempObj = navObj;
-                    navObj["mainPage-entriesHorizontal"] = false;
+                    let tempObj = initialNavObj;
+                    initialNavObj["mainPage-entriesHorizontal"] = false;
                     updateNavObj(tempObj);    
                 }}
                ></input>
@@ -118,8 +133,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              </div>}
          <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
             onChange={()=>{setIsMainPageEntriesCustom(true);
-                let tempObj = navObj;
-                navObj["mainPage-entriesCustom"] = true;
+                let tempObj = initialNavObj;
+                initialNavObj["mainPage-entriesCustom"] = true;
                 updateNavObj(tempObj);  
             }}
          ></input>
@@ -134,8 +149,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let val = mainPageEntries["story"];
              setMainPageEntries({...mainPageEntries, "story": !val});
 
-             let tempObj = navObj;
-             navObj["mainPage-story"] = !val;
+             let tempObj = initialNavObj;
+             initialNavObj["mainPage-story"] = !val;
              updateNavObj(tempObj);              
             }}
          ></input><label>Story</label>
@@ -167,8 +182,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let val = mainPageEntries["setting"];
              setMainPageEntries({...mainPageEntries, "setting": !val});
 
-             let tempObj = navObj;
-             navObj["mainPage-setting"] = !val;
+             let tempObj = initialNavObj;
+             initialNavObj["mainPage-setting"] = !val;
              updateNavObj(tempObj);  
             }}      
          ></input><label>Setting</label>
@@ -200,8 +215,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let val = mainPageEntries["playerProfile"];
              setMainPageEntries({...mainPageEntries, "playerProfile": !val});
 
-             let tempObj = navObj;
-             navObj["mainPage-playerProfile"] = !val;
+             let tempObj = initialNavObj;
+             initialNavObj["mainPage-playerProfile"] = !val;
              updateNavObj(tempObj);              
             }}               
          ></input><label>Player Profile</label>
@@ -233,8 +248,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let val = mainPageEntries["shop"];
              setMainPageEntries({...mainPageEntries, "shop": !val});
             
-             let tempObj = navObj;
-             navObj["mainPage-shop"] = !val;
+             let tempObj = initialNavObj;
+             initialNavObj["mainPage-shop"] = !val;
              updateNavObj(tempObj);
             }}                     
          ></input><label>Shop</label>
@@ -285,8 +300,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
        <input type="radio" value={isSettingsPageEntriesCustom} checked={!isSettingsPageEntriesCustom}
          onChange={()=>{setIsSettingsPageEntriesCustom(false);
         
-            let tempObj = navObj;
-            navObj["settingPage-entriesCustom"] = false;
+            let tempObj = initialNavObj;
+            initialNavObj["settingPage-entriesCustom"] = false;
             updateNavObj(tempObj);        
         }}
        ></input><label>Fixed List</label>
@@ -294,8 +309,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
                <input type="radio" value={isSettingsPageEntriesHorizontal} checked={isSettingsPageEntriesHorizontal}
                  onChange={()=>{setIsSettingsPageEntriesHorizontal(true);
                 
-                    let tempObj = navObj;
-                    navObj["settingPage-entriesHorizontal"] = true;
+                    let tempObj = initialNavObj;
+                    initialNavObj["settingPage-entriesHorizontal"] = true;
                     updateNavObj(tempObj);     
                 }}
                ></input>
@@ -303,8 +318,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
                <br></br>
                <input type="radio" value={isSettingsPageEntriesHorizontal} checked={!isSettingsPageEntriesHorizontal}
                  onChange={()=>{setIsSettingsPageEntriesHorizontal(false);
-                    let tempObj = navObj;
-                    navObj["settingPage-entriesHorizontal"] = false;
+                    let tempObj = initialNavObj;
+                    initialNavObj["settingPage-entriesHorizontal"] = false;
                     updateNavObj(tempObj);   
                 }}
                ></input>
@@ -327,8 +342,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
        <input type="radio" value={isSettingsPageEntriesCustom} checked={isSettingsPageEntriesCustom}
          onChange={()=>{setIsSettingsPageEntriesCustom(true);
         
-            let tempObj = navObj;
-            navObj["settingPage-entriesCustom"] = true;
+            let tempObj = initialNavObj;
+            initialNavObj["settingPage-entriesCustom"] = true;
             updateNavObj(tempObj);          
         }} 
        ></input><label>Customized Positions</label>
@@ -342,8 +357,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let currVal = settingsPageEntries["playSpeed"];
              setSettingsPageEntries({...settingsPageEntries, "playSpeed": !currVal});
                   
-             let tempObj = navObj;
-             navObj["settingPage-playSpeed"] = !currVal;
+             let tempObj = initialNavObj;
+             initialNavObj["settingPage-playSpeed"] = !currVal;
              updateNavObj(tempObj);     
             }}
          ></input><label>Play Speed</label>
@@ -378,8 +393,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let currVal = settingsPageEntries["bgmVol"];
              setSettingsPageEntries({...settingsPageEntries, "bgmVol": !currVal});
                     
-             let tempObj = navObj;
-             navObj["settingPage-bgmVol"] = !currVal;
+             let tempObj = initialNavObj;
+             initialNavObj["settingPage-bgmVol"] = !currVal;
              updateNavObj(tempObj);     
             }}                  
          ></input><label>Background Music Volume</label>
@@ -413,8 +428,8 @@ export default function NavigationSetter({navObj, updateNavObj}) {
              let currVal = settingsPageEntries["seVol"];
              setSettingsPageEntries({...settingsPageEntries, "seVol": !currVal});
                                          
-             let tempObj = navObj;
-             navObj["settingPage-seVol"] = !currVal;
+             let tempObj = initialNavObj;
+             initialNavObj["settingPage-seVol"] = !currVal;
              updateNavObj(tempObj); 
             }}                  
          ></input><label>Sound Effect Volume</label>

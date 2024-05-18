@@ -182,7 +182,7 @@ export default function GameMaker() {
         <div className="parallelFrame sectionArea"> 
           
      
-          <NavigationSetter navObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
+          <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
           
 
           <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} />
