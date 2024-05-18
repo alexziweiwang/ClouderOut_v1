@@ -5,6 +5,7 @@ import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import NavigationSetter from './NavigationSetter';
+import NavigationPreview from './NavigationPreview';
 import styles from './webpage.css';
 
 export default function GameMaker() {
@@ -79,9 +80,6 @@ export default function GameMaker() {
     "settingPage-entriesCustom": false,
   }); //TODO now: default initial values
 
-  function updateCurrProjectNavObj(obj) {
-    setCurrentProjectNav(obj);
-  }
 //TODO ------------------------------------------------------
  
   
@@ -135,6 +133,17 @@ export default function GameMaker() {
     }
   }
 
+  function updateCurrProjectNavObj(obj) {
+    setCurrentProjectNav(obj);
+    console.log("updated, now nav-obj is...", obj);
+  }
+
+  function passInNavObj() {
+    console.log("passing in nav-obj...", currentProjectNav);
+
+    return currentProjectNav;
+  }
+
 
   return (
   <div>
@@ -175,11 +184,8 @@ export default function GameMaker() {
      
           <NavigationSetter navObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
           
-          
-          <div className="previewWindow">
-            navigation preview area
 
-          </div>
+          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} />
 
 
 
