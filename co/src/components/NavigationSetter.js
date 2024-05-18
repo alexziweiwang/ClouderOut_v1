@@ -340,7 +340,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={settingsPageEntries["playSpeed"]}
            onChange={()=>{
              let currVal = settingsPageEntries["playSpeed"];
-             setSettingsPageEntries({...settingsPageEntries, "playSpeed": !currVal});}}
+             setSettingsPageEntries({...settingsPageEntries, "playSpeed": !currVal});
+                  
+             let tempObj = navObj;
+             navObj["settingPage-playSpeed"] = !currVal;
+             updateNavObj(tempObj);     
+            }}
          ></input><label>Play Speed</label>
          {(isSettingsPageEntriesCustom && settingsPageEntries["playSpeed"]) 
          && <div className="indentOne">
@@ -371,7 +376,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={settingsPageEntries["bgmVol"]}
            onChange={()=>{
              let currVal = settingsPageEntries["bgmVol"];
-             setSettingsPageEntries({...settingsPageEntries, "bgmVol": !currVal});}}                  
+             setSettingsPageEntries({...settingsPageEntries, "bgmVol": !currVal});
+                    
+             let tempObj = navObj;
+             navObj["settingPage-bgmVol"] = !currVal;
+             updateNavObj(tempObj);     
+            }}                  
          ></input><label>Background Music Volume</label>
          {(isSettingsPageEntriesCustom && settingsPageEntries["bgmVol"]) 
          && <div className="indentOne">
@@ -401,7 +411,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            checked={settingsPageEntries["seVol"]}
            onChange={()=>{
              let currVal = settingsPageEntries["seVol"];
-             setSettingsPageEntries({...settingsPageEntries, "seVol": !currVal});}}                  
+             setSettingsPageEntries({...settingsPageEntries, "seVol": !currVal});
+                                         
+             let tempObj = navObj;
+             navObj["settingPage-seVol"] = !currVal;
+             updateNavObj(tempObj); 
+            }}                  
          ></input><label>Sound Effect Volume</label>
          {(isSettingsPageEntriesCustom && settingsPageEntries["seVol"]) 
          && <div className="indentOne">
