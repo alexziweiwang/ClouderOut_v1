@@ -47,12 +47,32 @@ export default function NavigationSetter({navObj, updateNavObj}) {
 
      <br></br><label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
-               <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(true);}}></input>
-               <label onClick={()=>{setIsWithSL(true);}}>SaveLoad System</label>                    
+               <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{
+                   setIsWithSL(true);
+                   let tempObj = navObj;
+                   navObj["isWithSL"] = true;
+                   updateNavObj(tempObj);
+                   }}></input>
+               <label onClick={()=>{
+                   setIsWithSL(true);
+                   let tempObj = navObj;
+                   navObj["isWithSL"] = true;
+                   updateNavObj(tempObj);                       
+            }}>SaveLoad System</label>                    
            
                <br></br>
-               <input type="radio" name="progressStrategy" checked={!isWithSL} value={isWithSL} onChange={()=>{setIsWithSL(false);}}></input>
-               <label onClick={()=>{setIsWithSL(false);}}>Without SaveLoad System</label>
+               <input type="radio" name="progressStrategy" checked={!isWithSL} value={isWithSL} onChange={()=>{
+                   setIsWithSL(false);
+                   let tempObj = navObj;
+                   navObj["isWithSL"] = false;
+                   updateNavObj(tempObj);  
+                   }}></input>
+               <label onClick={()=>{
+                   setIsWithSL(false);
+                   let tempObj = navObj;
+                   navObj["isWithSL"] = false;
+                   updateNavObj(tempObj);  
+                   }}>Without SaveLoad System</label>
            
        </div>
        <br></br><br></br>
