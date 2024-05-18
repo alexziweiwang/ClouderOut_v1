@@ -10,7 +10,7 @@ export default function NavigationSetter({navObj, updateNavObj}) {
       "playerProfile": navObj["mainPage-playerProfile"],
     });
     const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(navObj["mainPage-entriesHorizontal"]);
-    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(navObj["mainPage-entiresCustom"]);
+    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(navObj["mainPage-entriesCustom"]);
   
     const [settingsPageEntries, setSettingsPageEntries] = useState({
       "playSpeed": navObj["settingPage-playSpeed"],
@@ -18,7 +18,7 @@ export default function NavigationSetter({navObj, updateNavObj}) {
       "seVol": navObj["settingPage-seVol"]
     });
     const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(navObj["settingPage-entriesHorizontal"]);
-    const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(navObj["settingPage-entiresCustom"]);
+    const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(navObj["settingPage-entriesCustom"]);
  
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -82,7 +82,7 @@ export default function NavigationSetter({navObj, updateNavObj}) {
            onChange={()=>{
                setIsMainPageEntriesCustom(false);
                let tempObj = navObj;
-               navObj["mainPage-entiresCustom"] = false;
+               navObj["mainPage-entriesCustom"] = false;
                updateNavObj(tempObj);  
             }}
          ></input><label></label>Fixed List
@@ -119,7 +119,7 @@ export default function NavigationSetter({navObj, updateNavObj}) {
          <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
             onChange={()=>{setIsMainPageEntriesCustom(true);
                 let tempObj = navObj;
-                navObj["mainPage-entiresCustom"] = true;
+                navObj["mainPage-entriesCustom"] = true;
                 updateNavObj(tempObj);  
             }}
          ></input>
@@ -283,16 +283,30 @@ export default function NavigationSetter({navObj, updateNavObj}) {
      <br></br>Settings Page
      <div className="indentOne">
        <input type="radio" value={isSettingsPageEntriesCustom} checked={!isSettingsPageEntriesCustom}
-         onChange={()=>{setIsSettingsPageEntriesCustom(false);}}
+         onChange={()=>{setIsSettingsPageEntriesCustom(false);
+        
+            let tempObj = navObj;
+            navObj["settingPage-entriesCustom"] = false;
+            updateNavObj(tempObj);        
+        }}
        ></input><label>Fixed List</label>
        {!isSettingsPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
                <input type="radio" value={isSettingsPageEntriesHorizontal} checked={isSettingsPageEntriesHorizontal}
-                 onChange={()=>{setIsSettingsPageEntriesHorizontal(true);}}
+                 onChange={()=>{setIsSettingsPageEntriesHorizontal(true);
+                
+                    let tempObj = navObj;
+                    navObj["settingPage-entriesHorizontal"] = true;
+                    updateNavObj(tempObj);     
+                }}
                ></input>
                <label>Horizontal</label>
                <br></br>
                <input type="radio" value={isSettingsPageEntriesHorizontal} checked={!isSettingsPageEntriesHorizontal}
-                 onChange={()=>{setIsSettingsPageEntriesHorizontal(false);}}
+                 onChange={()=>{setIsSettingsPageEntriesHorizontal(false);
+                    let tempObj = navObj;
+                    navObj["settingPage-entriesHorizontal"] = false;
+                    updateNavObj(tempObj);   
+                }}
                ></input>
                <label>Vertical</label>
                <br></br>
@@ -311,7 +325,12 @@ export default function NavigationSetter({navObj, updateNavObj}) {
        
        <br></br>
        <input type="radio" value={isSettingsPageEntriesCustom} checked={isSettingsPageEntriesCustom}
-         onChange={()=>{setIsSettingsPageEntriesCustom(true);}} 
+         onChange={()=>{setIsSettingsPageEntriesCustom(true);
+        
+            let tempObj = navObj;
+            navObj["settingPage-entriesCustom"] = true;
+            updateNavObj(tempObj);          
+        }} 
        ></input><label>Customized Positions</label>
        <br></br>
        <label>Settings Page Items:</label>

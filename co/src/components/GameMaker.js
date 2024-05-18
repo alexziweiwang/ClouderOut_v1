@@ -71,12 +71,12 @@ export default function GameMaker() {
     "mainPage-setting": false,
     "mainPage-playerProfile": false,    
     "mainPage-entriesHorizontal": true,
-    "mainPage-entiresCustom": false,
+    "mainPage-entriesCustom": false,
     "settingPage-playSpeed": false,
     "settingPage-bgmVol": false,
     "settingPage-seVol": false,
     "settingPage-entriesHorizontal": true,
-    "settingPage-entiresCustom": false,
+    "settingPage-entriesCustom": false,
   }); //TODO now: default initial values
 
   function updateCurrProjectNavObj(obj) {
