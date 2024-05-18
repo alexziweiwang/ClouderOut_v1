@@ -1,24 +1,26 @@
 import { useState, useEffect } from 'react';
 
-export default function NavigationSetter({navObj}) {
-    const [isWithSL, setIsWithSL] = useState(true);
+export default function NavigationSetter({navObj, updateNavObj}) {
+
+    const [isWithSL, setIsWithSL] = useState(navObj["isWithSL"]);
     const [mainPageEntries, setMainPageEntries] = useState({
-      "story": false,
-      "shop": false,
-      "setting": false,
-      "playerProfile": false
+      "story": navObj["mainPage-story"],
+      "shop": navObj["mainPage-shop"],
+      "setting": navObj["mainPage-setting"],
+      "playerProfile": navObj["mainPage-playerProfile"],
     });
-    const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(true);
-    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(false);
+    const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(navObj["mainPage-entriesHorizontal"]);
+    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(navObj["mainPage-entiresCustom"]);
   
     const [settingsPageEntries, setSettingsPageEntries] = useState({
-      "playSpeed": false,
-      "bgmVol": false,
-      "seVol": false
+      "playSpeed": navObj["settingPage-playSpeed"],
+      "bgmVol": navObj["settingPage-bgmVol"],
+      "seVol": navObj["settingPage-seVol"]
     });
-    const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(true);
-    const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(false);
+    const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(navObj["settingPage-entriesHorizontal"]);
+    const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(navObj["settingPage-entiresCustom"]);
  
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {

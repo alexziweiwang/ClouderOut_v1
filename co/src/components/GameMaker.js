@@ -79,8 +79,8 @@ export default function GameMaker() {
     "settingPage-entiresCustom": false,
   }); //TODO now: default initial values
 
-  function updateCurrProjectNavObj() {
-    setCurrentProjectNav();
+  function updateCurrProjectNavObj(obj) {
+    setCurrentProjectNav(obj);
   }
 //TODO ------------------------------------------------------
  
@@ -173,7 +173,7 @@ export default function GameMaker() {
         <div className="parallelFrame sectionArea"> 
           
      
-          <NavigationSetter/>
+          <NavigationSetter navObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
           
           
           <div className="previewWindow">
