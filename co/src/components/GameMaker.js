@@ -61,6 +61,7 @@ export default function GameMaker() {
     "settingPage-seVol": false,
     "settingPage-entriesHorizontal": true,
     "settingPage-entriesCustom": false,
+    "storyPage-chapterListHorizontal": true
   }); //TODO now: default initial values
 
 //TODO ------------------------------------------------------

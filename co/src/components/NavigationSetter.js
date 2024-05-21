@@ -14,9 +14,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
       "settingPage-bgmVol": initialNavObj["settingPage-bgmVol"],
       "settingPage-seVol": initialNavObj["settingPage-seVol"],
       "settingPage-entriesHorizontal": initialNavObj["settingPage-entriesHorizontal"],
-      "settingPage-entriesCustom": initialNavObj["settingPage-entriesCustom"]
+      "settingPage-entriesCustom": initialNavObj["settingPage-entriesCustom"],
+      "storyPage-chapterListHorizontal": initialNavObj["storyPage-chapterListHorizontal"]
     });
-
+    
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -217,7 +218,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              tempObj["mainPage-playerProfile"] = !val;
              updateNavObj(tempObj);              
 
-             setCurrentProjectNav({...currentProjectNav, "playerProfile": !val});
+             setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
             }}               
          ></input><label>Player Profile</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
@@ -251,7 +252,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              tempObj["mainPage-shop"] = !val;
              updateNavObj(tempObj);
 
-             setCurrentProjectNav({...currentProjectNav, "shop": !val});
+             setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
             }}                     
          ></input><label>Shop</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
@@ -285,9 +286,29 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
        <div className="indentOne">
            Chapter List:
            <br></br>
-           <input type="radio"></input><label>Horizontal</label>
+           <input type="radio" 
+            value={currentProjectNav["storyPage-chapterListHorizontal"]} 
+            checked={currentProjectNav["storyPage-chapterListHorizontal"]}
+            onChange={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["storyPage-chapterListHorizontal"] = true;
+              updateNavObj(tempObj);
+ 
+              setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": true});
+            }}
+            ></input><label>Horizontal</label>
            <br></br>
-           <input type="radio"></input><label>Vertical</label>
+           <input type="radio"
+              value={currentProjectNav["storyPage-chapterListHorizontal"]} 
+              checked={!currentProjectNav["storyPage-chapterListHorizontal"]}    
+              onChange={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["storyPage-chapterListHorizontal"] = false;
+                updateNavObj(tempObj);
+   
+                setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": false});
+              }}     
+           ></input><label>Vertical</label>
            <br></br>
 
            <label>Title base</label>
@@ -367,7 +388,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              tempObj["settingPage-playSpeed"] = !currVal;
              updateNavObj(tempObj);     
 
-             setCurrentProjectNav({...currentProjectNav, "playSpeed": !currVal});
+             setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeed": !currVal});
             }}
          ></input><label>Play Speed</label>
          {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-playSpeed"]) 
@@ -404,7 +425,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              tempObj["settingPage-bgmVol"] = !currVal;
              updateNavObj(tempObj);     
 
-             setCurrentProjectNav({...currentProjectNav, "bgmVol": !currVal});
+             setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVol": !currVal});
             }}                  
          ></input><label>Background Music Volume</label>
          {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-bgmVol"]) 
@@ -440,7 +461,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              tempObj["settingPage-seVol"] = !currVal;
              updateNavObj(tempObj); 
 
-             setCurrentProjectNav({...currentProjectNav, "seVol": !currVal});
+             setCurrentProjectNav({...currentProjectNav, "settingPage-seVol": !currVal});
             }}                  
          ></input><label>Sound Effect Volume</label>
          {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-seVol"]) 
