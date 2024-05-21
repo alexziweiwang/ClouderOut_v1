@@ -140,7 +140,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={currentProjectNav["mainPage-story"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-story"];
-             setCurrentProjectNav({...currentProjectNav, "story": !val});
+             setCurrentProjectNav({...currentProjectNav, "mainPage-story": !val});
 
              let tempObj = currentProjectNav;
              tempObj["mainPage-story"] = !val;
@@ -173,7 +173,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={currentProjectNav["mainPage-setting"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-setting"];
-             setCurrentProjectNav({...currentProjectNav, "setting": !val});
+             setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
 
              let tempObj = currentProjectNav;
              tempObj["mainPage-setting"] = !val;
@@ -202,10 +202,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            Background Picture:
                  <select></select><button>Resource</button>
            </div>}
-         <br></br><input type="checkbox" value={currentProjectNav["playerProfile"]}
-           checked={currentProjectNav["playerProfile"]}
+         <br></br><input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
+           checked={currentProjectNav["mainPage-playerProfile"]}
            onChange={()=>{
-             let val = currentProjectNav["playerProfile"];
+             let val = currentProjectNav["mainPage-playerProfile"];
              setCurrentProjectNav({...currentProjectNav, "playerProfile": !val});
 
              let tempObj = currentProjectNav;
@@ -213,7 +213,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);              
             }}               
          ></input><label>Player Profile</label>
-       {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["playerProfile"]) && <div className="indentOne">
+       {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
