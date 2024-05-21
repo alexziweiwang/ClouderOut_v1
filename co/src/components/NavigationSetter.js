@@ -2,12 +2,6 @@ import { useState, useEffect } from 'react';
 
 export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
-    const [settingsPageEntries, setSettingsPageEntries] = useState({
-      "playSpeed": initialNavObj["settingPage-playSpeed"],
-      "bgmVol": initialNavObj["settingPage-bgmVol"],
-      "seVol": initialNavObj["settingPage-seVol"]
-    });
-
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "isWithSL": initialNavObj["isWithSL"],
       "mainPage-story": initialNavObj["mainPage-story"],
@@ -50,7 +44,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
      <br></br><label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
-               <input type="radio" name="progressStrategy" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
+               <input type="radio" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
                    setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
 
                    let tempObj = currentProjectNav;
@@ -66,7 +60,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
             }}>SaveLoad System</label>                    
            
                <br></br>
-               <input type="radio" name="progressStrategy" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
+               <input type="radio" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
                    setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
 
                    let tempObj = currentProjectNav;
@@ -356,10 +350,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
        <label>Settings Page Items:</label>
        <div>
          <input type="checkbox"
-           value={settingsPageEntries["playSpeed"]}
-           checked={settingsPageEntries["playSpeed"]}
+           value={ currentProjectNav["settingPage-playSpeed"]}
+           checked={ currentProjectNav["settingPage-playSpeed"]}
            onChange={()=>{
-             let currVal = settingsPageEntries["playSpeed"];
+             let currVal =  currentProjectNav["settingPage-playSpeed"];
              setCurrentProjectNav({...currentProjectNav, "playSpeed": !currVal});
                   
              let tempObj = currentProjectNav;
@@ -367,7 +361,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);     
             }}
          ></input><label>Play Speed</label>
-         {(currentProjectNav["settingPage-entriesCustom"] && settingsPageEntries["playSpeed"]) 
+         {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-playSpeed"]) 
          && <div className="indentOne">
              Position X:
                      <input type="range"></input>
@@ -392,10 +386,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
          <br></br>
 
          <input type="checkbox"
-           value={settingsPageEntries["bgmVol"]}
-           checked={settingsPageEntries["bgmVol"]}
+           value={ currentProjectNav["settingPage-bgmVol"]}
+           checked={ currentProjectNav["settingPage-bgmVol"]}
            onChange={()=>{
-             let currVal = settingsPageEntries["bgmVol"];
+             let currVal =  currentProjectNav["settingPage-bgmVol"];
              setCurrentProjectNav({...currentProjectNav, "bgmVol": !currVal});
                     
              let tempObj = currentProjectNav;
@@ -403,7 +397,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);     
             }}                  
          ></input><label>Background Music Volume</label>
-         {(currentProjectNav["settingPage-entriesCustom"] && settingsPageEntries["bgmVol"]) 
+         {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-bgmVol"]) 
          && <div className="indentOne">
              Position X:
                      <input type="range"></input>
@@ -427,10 +421,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
          </div>}
          <br></br>
          <input type="checkbox"
-           value={settingsPageEntries["seVol"]}
-           checked={settingsPageEntries["seVol"]}
+           value={ currentProjectNav["settingPage-seVol"]}
+           checked={ currentProjectNav["settingPage-seVol"]}
            onChange={()=>{
-             let currVal = settingsPageEntries["seVol"];
+             let currVal =  currentProjectNav["settingPage-seVol"];
              setCurrentProjectNav({...currentProjectNav, "seVol": !currVal});
                                          
              let tempObj = currentProjectNav;
@@ -438,7 +432,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj); 
             }}                  
          ></input><label>Sound Effect Volume</label>
-         {(currentProjectNav["settingPage-entriesCustom"] && settingsPageEntries["seVol"]) 
+         {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-seVol"]) 
          && <div className="indentOne">
              Position X:
                      <input type="range"></input>
