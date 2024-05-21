@@ -2,13 +2,6 @@ import { useState, useEffect } from 'react';
 
 export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
-    const [mainPageEntries, setMainPageEntries] = useState({
-      "story": initialNavObj["mainPage-story"],
-      "shop": initialNavObj["mainPage-shop"],
-      "setting": initialNavObj["mainPage-setting"],
-      "playerProfile": initialNavObj["mainPage-playerProfile"],
-    });
-  
     const [settingsPageEntries, setSettingsPageEntries] = useState({
       "playSpeed": initialNavObj["settingPage-playSpeed"],
       "bgmVol": initialNavObj["settingPage-bgmVol"],
@@ -149,18 +142,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
          <br></br>
          <br></br><label>Main Page Items: </label>
          
-         <br></br><input type="checkbox" value={mainPageEntries["story"]}
-           checked={mainPageEntries["story"]}
+         <br></br><input type="checkbox" value={currentProjectNav["mainPage-story"]}
+           checked={currentProjectNav["mainPage-story"]}
            onChange={()=>{
-             let val = mainPageEntries["story"];
-             setMainPageEntries({...mainPageEntries, "story": !val});
+             let val = currentProjectNav["mainPage-story"];
+             setCurrentProjectNav({...currentProjectNav, "story": !val});
 
              let tempObj = currentProjectNav;
              tempObj["mainPage-story"] = !val;
              updateNavObj(tempObj);              
             }}
          ></input><label>Story</label>
-         {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["story"]) && <div className="indentOne">
+         {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -182,18 +175,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            Background Picture:
                  <select></select><button>Resource</button>
            </div>}
-         <br></br><input type="checkbox" value={mainPageEntries["setting"]}
-           checked={mainPageEntries["setting"]}
+         <br></br><input type="checkbox" value={currentProjectNav["mainPage-setting"]}
+           checked={currentProjectNav["mainPage-setting"]}
            onChange={()=>{
-             let val = mainPageEntries["setting"];
-             setMainPageEntries({...mainPageEntries, "setting": !val});
+             let val = currentProjectNav["mainPage-setting"];
+             setCurrentProjectNav({...currentProjectNav, "setting": !val});
 
              let tempObj = currentProjectNav;
              tempObj["mainPage-setting"] = !val;
              updateNavObj(tempObj);  
             }}      
          ></input><label>Setting</label>
-         {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["setting"]) && <div className="indentOne">
+         {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -215,18 +208,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            Background Picture:
                  <select></select><button>Resource</button>
            </div>}
-         <br></br><input type="checkbox" value={mainPageEntries["playerProfile"]}
-           checked={mainPageEntries["playerProfile"]}
+         <br></br><input type="checkbox" value={currentProjectNav["playerProfile"]}
+           checked={currentProjectNav["playerProfile"]}
            onChange={()=>{
-             let val = mainPageEntries["playerProfile"];
-             setMainPageEntries({...mainPageEntries, "playerProfile": !val});
+             let val = currentProjectNav["playerProfile"];
+             setCurrentProjectNav({...currentProjectNav, "playerProfile": !val});
 
              let tempObj = currentProjectNav;
              tempObj["mainPage-playerProfile"] = !val;
              updateNavObj(tempObj);              
             }}               
          ></input><label>Player Profile</label>
-       {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["playerProfile"]) && <div className="indentOne">
+       {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["playerProfile"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -248,18 +241,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            Background Picture:
                  <select></select><button>Resource</button>
            </div>}             
-         <br></br><input type="checkbox" value={mainPageEntries["shop"]}
-           checked={mainPageEntries["shop"]}
+         <br></br><input type="checkbox" value={currentProjectNav["mainPage-shop"]}
+           checked={currentProjectNav["mainPage-shop"]}
            onChange={()=>{
-             let val = mainPageEntries["shop"];
-             setMainPageEntries({...mainPageEntries, "shop": !val});
+             let val = currentProjectNav["mainPage-shop"];
+             setCurrentProjectNav({...currentProjectNav, "shop": !val});
             
              let tempObj = currentProjectNav;
              tempObj["mainPage-shop"] = !val;
              updateNavObj(tempObj);
             }}                     
          ></input><label>Shop</label>
-       {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["shop"]) && <div className="indentOne">
+       {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -367,7 +360,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={settingsPageEntries["playSpeed"]}
            onChange={()=>{
              let currVal = settingsPageEntries["playSpeed"];
-             setSettingsPageEntries({...settingsPageEntries, "playSpeed": !currVal});
+             setCurrentProjectNav({...currentProjectNav, "playSpeed": !currVal});
                   
              let tempObj = currentProjectNav;
              tempObj["settingPage-playSpeed"] = !currVal;
@@ -403,7 +396,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={settingsPageEntries["bgmVol"]}
            onChange={()=>{
              let currVal = settingsPageEntries["bgmVol"];
-             setSettingsPageEntries({...settingsPageEntries, "bgmVol": !currVal});
+             setCurrentProjectNav({...currentProjectNav, "bgmVol": !currVal});
                     
              let tempObj = currentProjectNav;
              tempObj["settingPage-bgmVol"] = !currVal;
@@ -438,7 +431,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={settingsPageEntries["seVol"]}
            onChange={()=>{
              let currVal = settingsPageEntries["seVol"];
-             setSettingsPageEntries({...settingsPageEntries, "seVol": !currVal});
+             setCurrentProjectNav({...currentProjectNav, "seVol": !currVal});
                                          
              let tempObj = currentProjectNav;
              tempObj["settingPage-seVol"] = !currVal;
