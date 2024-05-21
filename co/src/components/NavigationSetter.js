@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function NavigationSetter({initialNavObj, updateNavObj}) {
+export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) {
 
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "isWithSL": initialNavObj["isWithSL"],
@@ -81,7 +81,43 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
        <br></br><br></br>
      Main Page Options:
      <div className="indentOne">
+          <label>List item looking:</label>
+          <div className="indentOne">
+                
+            <input type="radio" 
+              
+              onChange={(event)=>{          
+              }}></input><label onClick={(event)=>{
+                      
+                      }}>Rectangle & Color Filled: </label>
+                  {
+                      <div className="indentOne">
+                          <label>Background Color: </label>
+                          <input type="color"
+                          onChange={(event)=>{
+                            
+                              }}></input>
+                          <label></label>
+                      </div>}
+                  
+              <br></br><input type="radio"
+                onChange={(event)=>{
+                
+              }}></input><label onClick={(event)=>{
+                    }}>Base Picture: </label>
+                  {
+                  <>
+                      <select onChange={(event)=>{
+                      }}>                    
+                          <option key="mpliDefault" value="">-- Select Resource --</option>
+                
+                      </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+              </>}
 
+ 
+         </div>
+
+         <label>List item positions: </label><br></br>
          <input type="radio" value={currentProjectNav["mainPage-entriesCustom"]} checked={!currentProjectNav["mainPage-entriesCustom"]}
            onChange={()=>{
               let tempObj = currentProjectNav;
@@ -90,7 +126,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
               setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false });
             }}
-         ></input><label></label>Fixed List
+         ></input><label></label>
+         Fixed List
              {!currentProjectNav["mainPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
 
                <input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={currentProjectNav["mainPage-entriesHorizontal"]}

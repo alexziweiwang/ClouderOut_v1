@@ -27,7 +27,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
 
 
         <br></br>
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(194, 223, 194)", "marginLeft": `20px`}}
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
             >
             main page
             <br></br>
@@ -39,14 +39,14 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
             {navObj["mainPage-entriesCustom"].toString()}<br></br>
         </div>
         <br></br>
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(194, 223, 194)", "marginLeft": `20px`}}
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             story page
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
         </div>
         <br></br>
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(194, 223, 194)", "marginLeft": `20px`}}
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             setting page
             <br></br>   
