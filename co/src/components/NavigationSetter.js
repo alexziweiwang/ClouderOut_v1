@@ -9,7 +9,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
       "playerProfile": initialNavObj["mainPage-playerProfile"],
     });
     const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(initialNavObj["mainPage-entriesHorizontal"]);
-    const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(initialNavObj["mainPage-entriesCustom"]);
   
     const [settingsPageEntries, setSettingsPageEntries] = useState({
       "playSpeed": initialNavObj["settingPage-playSpeed"],
@@ -18,7 +17,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
     });
     const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(initialNavObj["settingPage-entriesHorizontal"]);
     const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(initialNavObj["settingPage-entriesCustom"]);
- 
+
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "isWithSL": initialNavObj["isWithSL"],
       "mainPage-story": initialNavObj["mainPage-story"],
@@ -96,27 +95,29 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
        <br></br><br></br>
      Main Page Options:
      <div className="indentOne">
-         <input type="radio" value={isMainPageEntriesCustom} checked={!isMainPageEntriesCustom}
+
+         <input type="radio" value={currentProjectNav["mainPage-entriesCustom"]} checked={!currentProjectNav["mainPage-entriesCustom"]}
            onChange={()=>{
-               setIsMainPageEntriesCustom(false);
-               let tempObj = initialNavObj;
-               initialNavObj["mainPage-entriesCustom"] = false;
-               updateNavObj(tempObj);  
+              setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false })
+
+              let tempObj = currentProjectNav;
+              currentProjectNav["mainPage-entriesCustom"] = false;
+              updateNavObj(tempObj);  
             }}
          ></input><label></label>Fixed List
-             {!isMainPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
+             {!currentProjectNav["mainPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
                <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
                  onChange={()=>{setIsMainPageEntriesHorizontal(true);
-                    let tempObj = initialNavObj;
-                    initialNavObj["mainPage-entriesHorizontal"] = true;
+                  let tempObj = currentProjectNav;
+                  currentProjectNav["mainPage-entriesCustom"] = true;
                     updateNavObj(tempObj);                 
                 }}
                ></input>
                <label>Horizontal</label>
                <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
                  onChange={()=>{setIsMainPageEntriesHorizontal(false);
-                    let tempObj = initialNavObj;
-                    initialNavObj["mainPage-entriesHorizontal"] = false;
+                  let tempObj = currentProjectNav;
+                  currentProjectNav["mainPage-entriesCustom"] = false;
                     updateNavObj(tempObj);    
                 }}
                ></input>
@@ -134,10 +135,13 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
                Group Height:
                  <input type="range"></input>
              </div>}
-         <br></br><input type="radio"  value={isMainPageEntriesCustom} checked={isMainPageEntriesCustom}
-            onChange={()=>{setIsMainPageEntriesCustom(true);
-                let tempObj = initialNavObj;
-                initialNavObj["mainPage-entriesCustom"] = true;
+         <br></br><input type="radio"  value={currentProjectNav["mainPage-entriesCustom"]} checked={currentProjectNav["mainPage-entriesCustom"]}
+            onChange={()=>{
+
+                setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true })
+
+                let tempObj = currentProjectNav;
+                currentProjectNav["mainPage-entriesCustom"] = true;
                 updateNavObj(tempObj);  
             }}
          ></input>
@@ -157,7 +161,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);              
             }}
          ></input><label>Story</label>
-         {(isMainPageEntriesCustom && mainPageEntries["story"]) && <div className="indentOne">
+         {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["story"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -190,7 +194,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);  
             }}      
          ></input><label>Setting</label>
-         {(isMainPageEntriesCustom && mainPageEntries["setting"]) && <div className="indentOne">
+         {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["setting"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -223,7 +227,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);              
             }}               
          ></input><label>Player Profile</label>
-       {(isMainPageEntriesCustom && mainPageEntries["playerProfile"]) && <div className="indentOne">
+       {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["playerProfile"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
@@ -256,7 +260,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              updateNavObj(tempObj);
             }}                     
          ></input><label>Shop</label>
-       {(isMainPageEntriesCustom && mainPageEntries["shop"]) && <div className="indentOne">
+       {(currentProjectNav["mainPage-entriesCustom"] && mainPageEntries["shop"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
                <br></br>
