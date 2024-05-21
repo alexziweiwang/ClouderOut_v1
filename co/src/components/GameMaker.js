@@ -128,6 +128,9 @@ export default function GameMaker() {
     return currentProjectNav;
   }
 
+  function handleResourceManagerOpen() {
+    setDisplayRmModal(true);
+}
 
   return (
   <div>
@@ -166,7 +169,7 @@ export default function GameMaker() {
         <div className="parallelFrame sectionArea"> 
           
      
-          <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
+          <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj} openRm={handleResourceManagerOpen}/>
           
           <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} />
 

@@ -81,7 +81,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
        <br></br><br></br>
      Main Page Options:
      <div className="indentOne">
-          <label>List item looking:</label>
+          <label>List Item Looking:</label>
           <div className="indentOne">
                 
             <input type="radio" 
@@ -209,8 +209,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            Font Size:
                  <input type="number"></input>
                <br></br>
-           Background Picture:
-                 <select></select><button>Resource</button>
            </div>}
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-setting"]}
            checked={currentProjectNav["mainPage-setting"]}
@@ -243,8 +241,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            Font Size:
                  <input type="number"></input>
                <br></br>
-           Background Picture:
-                 <select></select><button>Resource</button>
            </div>}
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
            checked={currentProjectNav["mainPage-playerProfile"]}
@@ -277,8 +273,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            Font Size:
                  <input type="number"></input>
                <br></br>
-           Background Picture:
-                 <select></select><button>Resource</button>
+
            </div>}             
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-shop"]}
            checked={currentProjectNav["mainPage-shop"]}
@@ -311,8 +306,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            Font Size:
                  <input type="number"></input>
                <br></br>
-           Background Picture:
-                 <select></select><button>Resource</button>
            </div>} 
      </div>
 
@@ -348,14 +341,83 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            ></input><label>Vertical</label>
            <br></br>
 
-           <label>Title base</label>
-           <select></select>
-           TODO shape
+           <label>Chapter Title Looking:</label>
+          <div className="indentOne">
+                
+            <input type="radio" 
+              
+              onChange={(event)=>{          
+              }}></input><label onClick={(event)=>{
+                      
+                      }}>Rectangle & Color Filled: </label>
+                  {
+                      <div className="indentOne">
+                          <label>Background Color: </label>
+                          <input type="color"
+                          onChange={(event)=>{
+                            
+                              }}></input>
+                          <label></label>
+                      </div>}
+                  
+              <br></br><input type="radio"
+                onChange={(event)=>{
+                
+              }}></input><label onClick={(event)=>{
+                    }}>Base Picture: </label>
+                  {
+                  <>
+                      <select onChange={(event)=>{
+                      }}>                    
+                          <option key="mpliDefault" value="">-- Select Resource --</option>
+                
+                      </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+              </>}
+
+ 
+         </div>
+
 
        </div>
 
      <br></br>Settings Page
      <div className="indentOne">
+
+          <label>List Item Looking:</label>
+          <div className="indentOne">
+                
+            <input type="radio" 
+              
+              onChange={(event)=>{          
+              }}></input><label onClick={(event)=>{
+                      
+                      }}>Rectangle & Color Filled: </label>
+                  {
+                      <div className="indentOne">
+                          <label>Background Color: </label>
+                          <input type="color"
+                          onChange={(event)=>{
+                            
+                              }}></input>
+                          <label></label>
+                      </div>}
+                  
+              <br></br><input type="radio"
+                onChange={(event)=>{
+                
+              }}></input><label onClick={(event)=>{
+                    }}>Base Picture: </label>
+                  {
+                  <>
+                      <select onChange={(event)=>{
+                      }}>                    
+                          <option key="mpliDefault" value="">-- Select Resource --</option>
+                
+                      </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+              </>}
+
+ 
+         </div>
 
        <input type="radio" value={currentProjectNav["settingPage-entriesCustom"]} checked={!currentProjectNav["settingPage-entriesCustom"]}
          onChange={()=>{
