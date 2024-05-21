@@ -8,7 +8,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
       "setting": initialNavObj["mainPage-setting"],
       "playerProfile": initialNavObj["mainPage-playerProfile"],
     });
-    const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(initialNavObj["mainPage-entriesHorizontal"]);
   
     const [settingsPageEntries, setSettingsPageEntries] = useState({
       "playSpeed": initialNavObj["settingPage-playSpeed"],
@@ -101,23 +100,26 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
               setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false })
 
               let tempObj = currentProjectNav;
-              currentProjectNav["mainPage-entriesCustom"] = false;
+              tempObj["mainPage-entriesCustom"] = false;
               updateNavObj(tempObj);  
             }}
          ></input><label></label>Fixed List
              {!currentProjectNav["mainPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
-               <input type="radio" value={isMainPageEntriesHorizontal} checked={isMainPageEntriesHorizontal}
-                 onChange={()=>{setIsMainPageEntriesHorizontal(true);
-                  let tempObj = currentProjectNav;
-                  currentProjectNav["mainPage-entriesCustom"] = true;
+
+               <input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={currentProjectNav["mainPage-entriesHorizontal"]}
+                 onChange={()=>{
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": true})
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-entriesCustom"] = true;
                     updateNavObj(tempObj);                 
                 }}
                ></input>
                <label>Horizontal</label>
-               <br></br><input type="radio" value={isMainPageEntriesHorizontal} checked={!isMainPageEntriesHorizontal}
-                 onChange={()=>{setIsMainPageEntriesHorizontal(false);
-                  let tempObj = currentProjectNav;
-                  currentProjectNav["mainPage-entriesCustom"] = false;
+               <br></br><input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={!currentProjectNav["mainPage-entriesHorizontal"]}
+                 onChange={()=>{
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": false})
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-entriesCustom"] = false;
                     updateNavObj(tempObj);    
                 }}
                ></input>
@@ -137,11 +139,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
              </div>}
          <br></br><input type="radio"  value={currentProjectNav["mainPage-entriesCustom"]} checked={currentProjectNav["mainPage-entriesCustom"]}
             onChange={()=>{
-
                 setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true })
 
                 let tempObj = currentProjectNav;
-                currentProjectNav["mainPage-entriesCustom"] = true;
+                tempObj["mainPage-entriesCustom"] = true;
                 updateNavObj(tempObj);  
             }}
          ></input>
