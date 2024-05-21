@@ -14,9 +14,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
       "bgmVol": initialNavObj["settingPage-bgmVol"],
       "seVol": initialNavObj["settingPage-seVol"]
     });
-    const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(initialNavObj["settingPage-entriesHorizontal"]);
     const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(initialNavObj["settingPage-entriesCustom"]);
-
+  
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "isWithSL": initialNavObj["isWithSL"],
       "mainPage-story": initialNavObj["mainPage-story"],
@@ -314,9 +313,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
         }}
        ></input><label>Fixed List</label>
        {!isSettingsPageEntriesCustom && <div className="indentOne" style={{"backgroundColor": "grey"}}>
-               <input type="radio" value={isSettingsPageEntriesHorizontal} checked={isSettingsPageEntriesHorizontal}
-                 onChange={()=>{setIsSettingsPageEntriesHorizontal(true);
-                
+               <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={currentProjectNav["settingPage-entriesHorizontal"]}
+                 onChange={()=>{
+                  setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": true});
+
                     let tempObj = currentProjectNav;
                     tempObj["settingPage-entriesHorizontal"] = true;
                     updateNavObj(tempObj);     
@@ -324,8 +324,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
                ></input>
                <label>Horizontal</label>
                <br></br>
-               <input type="radio" value={isSettingsPageEntriesHorizontal} checked={!isSettingsPageEntriesHorizontal}
-                 onChange={()=>{setIsSettingsPageEntriesHorizontal(false);
+               <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={!currentProjectNav["settingPage-entriesHorizontal"]}
+                 onChange={()=>{
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": false});
+
                     let tempObj = currentProjectNav;
                     tempObj["settingPage-entriesHorizontal"] = false;
                     updateNavObj(tempObj);   
