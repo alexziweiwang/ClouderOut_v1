@@ -19,8 +19,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
 
     return (<div className="previewWindow">
         navigation preview area?
-
-        {navObj["isWithSL"]} <br></br>
+        <br></br>
+        {navObj["isWithSL"].toString()} <br></br>
 
         {navObj["mainPage-story"].toString()}<br></br>
         {navObj["mainPage-shop"].toString()}<br></br>

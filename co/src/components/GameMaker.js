@@ -167,44 +167,10 @@ export default function GameMaker() {
      
           <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
           
+          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} />
 
-          {/* <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} /> */}
-
-
-          <div className="previewWindow">
-        navigation preview area3:
-
-        {currentProjectNav["isWithSL"]} <br></br>
-
-        {currentProjectNav["mainPage-story"].toString()}<br></br>
-        {currentProjectNav["mainPage-shop"].toString()}<br></br>
-        {currentProjectNav["mainPage-setting"].toString()}<br></br>
-        {currentProjectNav["mainPage-playerProfile"].toString()} <br></br>
-        {currentProjectNav["mainPage-entriesHorizontal"].toString()}<br></br>
-        {currentProjectNav["mainPage-entriesCustom"].toString()}<br></br>
-        {currentProjectNav["settingPage-playSpeed"].toString()}<br></br>
-        {currentProjectNav["settingPage-bgmVol"].toString()}<br></br>
-        {currentProjectNav["settingPage-seVol"].toString()}<br></br>
-        {currentProjectNav["settingPage-entriesHorizontal"].toString()}<br></br>
-        {currentProjectNav["settingPage-entriesCustom"].toString()}
-    </div>
-
-
-
-
-
-      
     </div>}
    
-
-    <p className="plans"> Game Maker page 
-    <br></br>this is the place to edit for a specific game </p>
-    
-    <p className="plans">
-      *** design of interactable graph *** 
-      <br></br>visualization and operation panel: view, hover and click
-      <br></br>hover a node would show the starting wording/desciption of this node [later]
-    </p>
 
     
     {isDisplayRmBool && 

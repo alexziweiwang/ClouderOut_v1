@@ -45,34 +45,35 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
        <div style={{"justifyContent": "center"}}>
 
                <input type="radio" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
-
                    let tempObj = currentProjectNav;
                    tempObj["isWithSL"] = true;
                    updateNavObj(tempObj);
-                   }}></input>
-               <label onClick={()=>{
+
                    setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
 
+                   }}></input>
+               <label onClick={()=>{
                    let tempObj = currentProjectNav;
                    tempObj["isWithSL"] = true;
-                   updateNavObj(tempObj);                       
+                   updateNavObj(tempObj);       
+                   
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
             }}>SaveLoad System</label>                    
            
                <br></br>
                <input type="radio" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
-
                    let tempObj = currentProjectNav;
                    tempObj["isWithSL"] = false;
                    updateNavObj(tempObj);  
+
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
                    }}></input>
-               <label onClick={()=>{
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
-
+               <label onClick={()=>{                   
                    let tempObj = currentProjectNav;
                    tempObj["isWithSL"] = false;
                    updateNavObj(tempObj);  
+
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
                    }}>Without SaveLoad System</label>
            
        </div>
@@ -82,30 +83,33 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
          <input type="radio" value={currentProjectNav["mainPage-entriesCustom"]} checked={!currentProjectNav["mainPage-entriesCustom"]}
            onChange={()=>{
-              setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false })
-
               let tempObj = currentProjectNav;
               tempObj["mainPage-entriesCustom"] = false;
               updateNavObj(tempObj);  
+
+              setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false });
             }}
          ></input><label></label>Fixed List
              {!currentProjectNav["mainPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
 
                <input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={currentProjectNav["mainPage-entriesHorizontal"]}
                  onChange={()=>{
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": true})
+                    
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-entriesCustom"] = true;
                     updateNavObj(tempObj);                 
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": true});
                 }}
                ></input>
                <label>Horizontal</label>
                <br></br><input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={!currentProjectNav["mainPage-entriesHorizontal"]}
-                 onChange={()=>{
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": false})
+                 onChange={()=>{                    
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-entriesCustom"] = false;
                     updateNavObj(tempObj);    
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": false});
                 }}
                ></input>
                <label>Vertical</label>
@@ -123,12 +127,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
                  <input type="range"></input>
              </div>}
          <br></br><input type="radio"  value={currentProjectNav["mainPage-entriesCustom"]} checked={currentProjectNav["mainPage-entriesCustom"]}
-            onChange={()=>{
-                setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true })
-
+            onChange={()=>{              
                 let tempObj = currentProjectNav;
                 tempObj["mainPage-entriesCustom"] = true;
-                updateNavObj(tempObj);  
+                updateNavObj(tempObj); 
+                
+                setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true });
             }}
          ></input>
          <label></label>Customized Positions
@@ -140,11 +144,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={currentProjectNav["mainPage-story"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-story"];
-             setCurrentProjectNav({...currentProjectNav, "mainPage-story": !val});
 
              let tempObj = currentProjectNav;
              tempObj["mainPage-story"] = !val;
-             updateNavObj(tempObj);              
+             updateNavObj(tempObj);  
+
+             setCurrentProjectNav({...currentProjectNav, "mainPage-story": !val});             
             }}
          ></input><label>Story</label>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && <div className="indentOne">
@@ -173,11 +178,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={currentProjectNav["mainPage-setting"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-setting"];
-             setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
-
+             
              let tempObj = currentProjectNav;
              tempObj["mainPage-setting"] = !val;
              updateNavObj(tempObj);  
+
+             setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
             }}      
          ></input><label>Setting</label>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
@@ -206,11 +212,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={currentProjectNav["mainPage-playerProfile"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-playerProfile"];
-             setCurrentProjectNav({...currentProjectNav, "playerProfile": !val});
-
+             
              let tempObj = currentProjectNav;
              tempObj["mainPage-playerProfile"] = !val;
              updateNavObj(tempObj);              
+
+             setCurrentProjectNav({...currentProjectNav, "playerProfile": !val});
             }}               
          ></input><label>Player Profile</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
@@ -239,11 +246,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={currentProjectNav["mainPage-shop"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-shop"];
-             setCurrentProjectNav({...currentProjectNav, "shop": !val});
             
              let tempObj = currentProjectNav;
              tempObj["mainPage-shop"] = !val;
              updateNavObj(tempObj);
+
+             setCurrentProjectNav({...currentProjectNav, "shop": !val});
             }}                     
          ></input><label>Shop</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
@@ -293,32 +301,32 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
        <input type="radio" value={currentProjectNav["settingPage-entriesCustom"]} checked={!currentProjectNav["settingPage-entriesCustom"]}
          onChange={()=>{
-            setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": false});
-
             let tempObj = currentProjectNav;
             tempObj["settingPage-entriesCustom"] = false;
             updateNavObj(tempObj);        
+
+            setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": false});
         }}
        ></input><label>Fixed List</label>
        {!currentProjectNav["settingPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
                <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={currentProjectNav["settingPage-entriesHorizontal"]}
                  onChange={()=>{
-                  setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": true});
-
                     let tempObj = currentProjectNav;
                     tempObj["settingPage-entriesHorizontal"] = true;
-                    updateNavObj(tempObj);     
+                    updateNavObj(tempObj);  
+                    
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": true});
                 }}
                ></input>
                <label>Horizontal</label>
                <br></br>
                <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={!currentProjectNav["settingPage-entriesHorizontal"]}
                  onChange={()=>{
-                    setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": false});
-
                     let tempObj = currentProjectNav;
                     tempObj["settingPage-entriesHorizontal"] = false;
                     updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": false});
                 }}
                ></input>
                <label>Vertical</label>
@@ -339,11 +347,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
        <br></br>
        <input type="radio" value={currentProjectNav["settingPage-entriesCustom"]} checked={currentProjectNav["settingPage-entriesCustom"]}
          onChange={()=>{
-          setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": true});
-
             let tempObj = currentProjectNav;
             tempObj["settingPage-entriesCustom"] = true;
             updateNavObj(tempObj);          
+
+            setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": true});
         }} 
        ></input><label>Customized Positions</label>
        <br></br>
@@ -354,11 +362,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={ currentProjectNav["settingPage-playSpeed"]}
            onChange={()=>{
              let currVal =  currentProjectNav["settingPage-playSpeed"];
-             setCurrentProjectNav({...currentProjectNav, "playSpeed": !currVal});
                   
              let tempObj = currentProjectNav;
              tempObj["settingPage-playSpeed"] = !currVal;
              updateNavObj(tempObj);     
+
+             setCurrentProjectNav({...currentProjectNav, "playSpeed": !currVal});
             }}
          ></input><label>Play Speed</label>
          {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-playSpeed"]) 
@@ -390,11 +399,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={ currentProjectNav["settingPage-bgmVol"]}
            onChange={()=>{
              let currVal =  currentProjectNav["settingPage-bgmVol"];
-             setCurrentProjectNav({...currentProjectNav, "bgmVol": !currVal});
                     
              let tempObj = currentProjectNav;
              tempObj["settingPage-bgmVol"] = !currVal;
              updateNavObj(tempObj);     
+
+             setCurrentProjectNav({...currentProjectNav, "bgmVol": !currVal});
             }}                  
          ></input><label>Background Music Volume</label>
          {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-bgmVol"]) 
@@ -425,11 +435,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
            checked={ currentProjectNav["settingPage-seVol"]}
            onChange={()=>{
              let currVal =  currentProjectNav["settingPage-seVol"];
-             setCurrentProjectNav({...currentProjectNav, "seVol": !currVal});
                                          
              let tempObj = currentProjectNav;
              tempObj["settingPage-seVol"] = !currVal;
              updateNavObj(tempObj); 
+
+             setCurrentProjectNav({...currentProjectNav, "seVol": !currVal});
             }}                  
          ></input><label>Sound Effect Volume</label>
          {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-seVol"]) 
