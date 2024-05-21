@@ -47,23 +47,6 @@ export default function GameMaker() {
 
 
 //TODO ------------------------------------------------------
-  const [isWithSL, setIsWithSL] = useState(true);
-  const [mainPageEntries, setMainPageEntries] = useState({
-    "story": false,
-    "shop": false,
-    "setting": false,
-    "playerProfile": false
-  });
-  const [isMainPageEntriesHorizontal, setIsMainPageEntriesHorizontal] = useState(true);
-  const [isMainPageEntriesCustom, setIsMainPageEntriesCustom] = useState(false);
-
-  const [settingsPageEntries, setSettingsPageEntries] = useState({
-    "playSpeed": false,
-    "bgmVol": false,
-    "seVol": false
-  });
-  const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(true);
-  const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(false);
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "isWithSL": true,
@@ -139,7 +122,7 @@ export default function GameMaker() {
   }
 
   function passInNavObj() {
-    console.log("passing in nav-obj...", currentProjectNav);
+    console.log("!! passing in nav-obj...", currentProjectNav);
 
     return currentProjectNav;
   }
@@ -185,10 +168,26 @@ export default function GameMaker() {
           <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj}/>
           
 
-          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} />
+          {/* <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} /> */}
 
 
+          <div className="previewWindow">
+        navigation preview area3:
 
+        {currentProjectNav["isWithSL"]} <br></br>
+
+        {currentProjectNav["mainPage-story"].toString()}<br></br>
+        {currentProjectNav["mainPage-shop"].toString()}<br></br>
+        {currentProjectNav["mainPage-setting"].toString()}<br></br>
+        {currentProjectNav["mainPage-playerProfile"].toString()} <br></br>
+        {currentProjectNav["mainPage-entriesHorizontal"].toString()}<br></br>
+        {currentProjectNav["mainPage-entriesCustom"].toString()}<br></br>
+        {currentProjectNav["settingPage-playSpeed"].toString()}<br></br>
+        {currentProjectNav["settingPage-bgmVol"].toString()}<br></br>
+        {currentProjectNav["settingPage-seVol"].toString()}<br></br>
+        {currentProjectNav["settingPage-entriesHorizontal"].toString()}<br></br>
+        {currentProjectNav["settingPage-entriesCustom"].toString()}
+    </div>
 
 
 

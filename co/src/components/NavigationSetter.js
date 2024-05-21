@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
-    const [isWithSL, setIsWithSL] = useState(initialNavObj["isWithSL"]);
     const [mainPageEntries, setMainPageEntries] = useState({
       "story": initialNavObj["mainPage-story"],
       "shop": initialNavObj["mainPage-shop"],
@@ -20,7 +19,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
     const [isSettingsPageEntriesHorizontal, setIsSettingsPageEntriesHorizontal] = useState(initialNavObj["settingPage-entriesHorizontal"]);
     const [isSettingsPageEntriesCustom, setIsSettingsPageEntriesCustom] = useState(initialNavObj["settingPage-entriesCustom"]);
  
-
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "isWithSL": initialNavObj["isWithSL"],
       "mainPage-story": initialNavObj["mainPage-story"],
@@ -62,30 +60,35 @@ export default function NavigationSetter({initialNavObj, updateNavObj}) {
 
      <br></br><label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
-               <input type="radio" name="progressStrategy" checked={isWithSL} value={isWithSL} onChange={()=>{
-                   setIsWithSL(true);
-                   let tempObj = initialNavObj;
-                   initialNavObj["isWithSL"] = true;
+
+               <input type="radio" name="progressStrategy" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
+
+                   let tempObj = currentProjectNav;
+                   tempObj["isWithSL"] = true;
                    updateNavObj(tempObj);
                    }}></input>
                <label onClick={()=>{
-                   setIsWithSL(true);
-                   let tempObj = initialNavObj;
-                   initialNavObj["isWithSL"] = true;
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
+
+                   let tempObj = currentProjectNav;
+                   tempObj["isWithSL"] = true;
                    updateNavObj(tempObj);                       
             }}>SaveLoad System</label>                    
            
                <br></br>
-               <input type="radio" name="progressStrategy" checked={!isWithSL} value={isWithSL} onChange={()=>{
-                   setIsWithSL(false);
-                   let tempObj = initialNavObj;
-                   initialNavObj["isWithSL"] = false;
+               <input type="radio" name="progressStrategy" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
+
+                   let tempObj = currentProjectNav;
+                   tempObj["isWithSL"] = false;
                    updateNavObj(tempObj);  
                    }}></input>
                <label onClick={()=>{
-                   setIsWithSL(false);
-                   let tempObj = initialNavObj;
-                   initialNavObj["isWithSL"] = false;
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
+
+                   let tempObj = currentProjectNav;
+                   tempObj["isWithSL"] = false;
                    updateNavObj(tempObj);  
                    }}>Without SaveLoad System</label>
            
