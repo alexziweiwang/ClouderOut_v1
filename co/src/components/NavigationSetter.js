@@ -588,8 +588,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
        </div>
     </div>}
 
-
-     <br></br>Settings Page
+    {currentSettingPage === "Settings Page" && <div>
+     <label>Settings Page:</label>
      <div className="indentOne">
      <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -834,9 +834,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
 
      </div>
-   
-     <br></br>
-     <br></br>Player Profile Page
+     </div>}
+
+
+     {currentSettingPage === "Player Profile Page" && <div>
+     <label>Player Profile Page:</label>
        <div className="indentOne">
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -877,8 +879,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            TODO elements (pic) and data displaying
 
        </div>
+    </div>}
 
-     <br></br>Game Status Data Page
+    {currentSettingPage === "Game Status Data Page" && <div>
+     <label>Game Status Data Page:</label>
        <div className="indentOne">
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -919,8 +923,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            TODO data displaying
            <br></br>TODO layout
        </div>
+    </div>}
 
-     <br></br>Shop Page
+    {currentSettingPage === "Shop Page" && <div>
+     <label>Shop Page:</label>
        <div className="indentOne">
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -961,7 +967,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            TODO shop page content (in separate editor?)
 
        </div>
-
+       </div>}
 
      <br></br><br></br>
      <p className="plans">
