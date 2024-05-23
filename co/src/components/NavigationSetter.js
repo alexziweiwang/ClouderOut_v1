@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) {
+    const [currentSettingPage, setCurrentSettingPage] = useState("");
 
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "isWithSL": initialNavObj["isWithSL"],
@@ -40,8 +41,21 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
                <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
      </select>
-     <br></br>
+     <br></br><br></br><br></br>
+     <label>Select a Page to setup:</label><br></br>
+      <select value={currentSettingPage}
+        onChange={(event)=>{setCurrentSettingPage(event.target.value);}}>
+          <option value="" key="defaultNonCurrPage">-- Select a Page Name --</option>
+          <option value="Game Progress Strategy" key="Game Progress Strategy">Game Progress Strategy</option>
+          <option value="Main Page" key="Main Page">Main Page</option>
+          <option value="Story Page" key="Story Page">Story Page</option>
+          <option value="Settings Page" key="Settings Page">Settings Page</option>
+          <option value="Player Profile Page" key="Player Profile Page">Player Profile Page</option>
+          <option value="Game Status Data Page" key="Game Status Data Page">Game Status Data Page</option>
+          <option value="Shop Page" key="Shop Page">Shop Page</option>
+      </select>
 
+      <br></br><br></br><br></br>
      <br></br><label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
@@ -64,7 +78,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
      
               <div className="indentOne" style={{"backgroundColor": "grey", "paddingLeft": "7px"}}>
    
-              <label>Background:</label><br></br>
+              <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
@@ -134,7 +148,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
           
                   </div>
                
-                <label>List Item Layout</label>
+                <label>Slot Layout</label>
                     <div className="indentOne">
                       <label>Number of rows:</label>
                         <select>
@@ -200,9 +214,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
            
        </div>
        <br></br><br></br>
-     Main Page Options:
+     Main Page:
      <div className="indentOne">
-     <label>Background:</label><br></br>
+     <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
@@ -470,7 +484,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
      <br></br>Story Page
        <div className="indentOne">
-       <label>Background:</label><br></br>
+       <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
@@ -573,7 +587,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
      <br></br>Settings Page
      <div className="indentOne">
-     <label>Background:</label><br></br>
+     <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
@@ -820,7 +834,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
      <br></br>
      <br></br>Player Profile Page
        <div className="indentOne">
-       <label>Background:</label><br></br>
+       <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
@@ -862,7 +876,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
      <br></br>Game Status Data Page
        <div className="indentOne">
-       <label>Background:</label><br></br>
+       <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
@@ -904,7 +918,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
      <br></br>Shop Page
        <div className="indentOne">
-       <label>Background:</label><br></br>
+       <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         
