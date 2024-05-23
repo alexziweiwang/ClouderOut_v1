@@ -93,7 +93,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -128,7 +128,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -136,8 +136,23 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                
                 <label>List Item Layout</label>
                     <div className="indentOne">
-                      <label>Number of rows:</label><input type="number"></input><br></br>                     
-                      <label>Number of columns:</label><input type="number"></input>
+                      <label>Number of rows:</label>
+                        <select>
+                          <option key="SLrowCountOne">1</option>
+                          <option key="SLrowCountTwo">2</option>
+                          <option key="SLrowCountThree">3</option>
+                        </select>
+                      <br></br>                     
+                      <label>Number of columns:</label>
+                      <select>
+                          <option key="SLcolCountOne">1</option>
+                          <option key="SLcolCountTwo">2</option>
+                          <option key="SLcolCountThree">3</option>
+                          <option key="SLcolCountFour">4</option>
+                        </select>
+                      <br></br>
+                      <label>Number of Pages:</label>
+                      <input type="number" min="1" max="99" step="1"></input>
                     </div>
                 <label>Group Positions:</label><br></br>
                     <div className="indentOne">
@@ -216,7 +231,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -252,7 +267,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
                 
-                      </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                      </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </>}
 
  
@@ -484,7 +499,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -547,7 +562,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
                 
-                      </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                      </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </>}
 
  
@@ -587,7 +602,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -624,7 +639,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
                 
-                      </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                      </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </>}
 
  
@@ -834,7 +849,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -876,7 +891,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
@@ -918,7 +933,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
