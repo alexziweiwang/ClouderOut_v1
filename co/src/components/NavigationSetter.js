@@ -437,6 +437,41 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
      <br></br>Story Page
        <div className="indentOne">
+       <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+       
            Chapter List:
            <br></br>
            <input type="radio" 
@@ -505,6 +540,41 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
      <br></br>Settings Page
      <div className="indentOne">
+     <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+       
 
           <label>List Item Looking:</label>
           <div className="indentOne">
@@ -717,18 +787,126 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
      <br></br>
      <br></br>Player Profile Page
        <div className="indentOne">
+       <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+       
+
            TODO elements (pic) and data displaying
 
        </div>
 
      <br></br>Game Status Data Page
        <div className="indentOne">
+       <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+       
+
            TODO data displaying
            <br></br>TODO layout
        </div>
 
      <br></br>Shop Page
        <div className="indentOne">
+       <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+       
+       
            TODO shop page content (in separate editor?)
 
        </div>
