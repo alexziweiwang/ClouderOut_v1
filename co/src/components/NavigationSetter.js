@@ -63,6 +63,42 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                  {currentProjectNav["isWithSL"] && <>
      
               <div className="indentOne" style={{"backgroundColor": "grey", "paddingLeft": "7px"}}>
+   
+              <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+               
                 <label>List Item Looking:</label>
                     <div className="indentOne">
                       <input type="radio" 
@@ -97,6 +133,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
           
                   </div>
+               
                 <label>List Item Layout</label>
                     <div className="indentOne">
                       <label>Number of rows:</label><input type="number"></input><br></br>                     
@@ -108,8 +145,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                           TODO<br></br>
                 <label>Group Item Gaps:</label><br></br>
                           TODO<br></br>
-
-
+ 
               </div> </>}
                 
            
@@ -133,6 +169,41 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
        <br></br><br></br>
      Main Page Options:
      <div className="indentOne">
+     <label>Background:</label><br></br>
+                <div className="indentOne">
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+             
           <label>List Item Looking:</label>
           <div className="indentOne">
                 
