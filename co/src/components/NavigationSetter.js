@@ -59,7 +59,49 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                    updateNavObj(tempObj);       
                    
                    setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
-            }}>SaveLoad System</label>                    
+            }}>SaveLoad System</label>    
+                 {currentProjectNav["isWithSL"] && <>
+     
+              <div className="indentOne">
+              <label>List Item Looking:</label>
+                    <div className="indentOne">
+                          
+                      <input type="radio" 
+                        
+                        onChange={(event)=>{          
+                        }}></input><label onClick={(event)=>{
+                                
+                                }}>Rectangle & Color Filled: </label>
+                            {
+                                <div className="indentOne">
+                                    <label>Background Color: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                      
+                                        }}></input>
+                                    <label></label>
+                                </div>}
+                            
+                        <br></br><input type="radio"
+                          onChange={(event)=>{
+                          
+                        }}></input><label onClick={(event)=>{
+                              }}>Base Picture: </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>Resource Adding</button><br></br><br></br>
+                        </>}
+
+          
+                  </div>
+                            
+
+              </div> </>}
+                
            
                <br></br>
                <input type="radio" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
