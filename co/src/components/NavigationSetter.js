@@ -56,7 +56,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
       </select>
 
       <br></br><br></br><br></br>
-     <br></br><label>Game Progress Strategy:</label>
+    {currentSettingPage === "Game Progress Strategy" && <div>
+     <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
                <input type="radio" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
@@ -213,8 +214,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                    }}>Without SaveLoad System</label>
            
        </div>
-       <br></br><br></br>
-     Main Page:
+    </div>}   
+       
+    {currentSettingPage === "Main Page" && <div>
+     <label>Main Page:</label>
      <div className="indentOne">
      <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -478,11 +481,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                <br></br>
            </div>} 
      </div>
+    </div>}
 
-
-     <br></br><br></br>
-
-     <br></br>Story Page
+    {currentSettingPage === "Story Page" && <div>
+     <label>Story Page:</label>
        <div className="indentOne">
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -584,6 +586,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
 
        </div>
+    </div>}
+
 
      <br></br>Settings Page
      <div className="indentOne">
