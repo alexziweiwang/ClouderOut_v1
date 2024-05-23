@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react';
 
 
-export default function NavigationPreview({initialNavObj, fetchNavObj}) {
+export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName}) {
     const screenWidth = 800;
     const screenHeight = 450;
 
 
     const [navObj, setNavObj] = useState(initialNavObj);
+    const [page, setPage] = useState("");
 
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
         console.log("Navigation Preview -- "); //TODO test
 
         let objTemp = fetchNavObj();
-        console.log("nav-preview... navObj? ", objTemp);
   
         setNavObj(objTemp);
+
+        let tempPage= fetchPageName();
+        setPage(tempPage);
       
     });
 
@@ -24,7 +27,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
         navigation preview area?
         <br></br>
         <br></br>
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {<div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
             >
             main page
             <br></br>
@@ -34,23 +37,25 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
             {navObj["mainPage-playerProfile"].toString()} <br></br>
             {navObj["mainPage-entriesHorizontal"].toString()}<br></br>
             {navObj["mainPage-entriesCustom"].toString()}<br></br>
-        </div>
+        </div>}
         <br></br>
-        {navObj["isWithSL"] && <>
+        {(navObj["isWithSL"]) && <>
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             
             saveload page preview</div>
         <br></br></>}
 
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {<div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             story page
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
-        </div>
+        </div>}
+
         <br></br>
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        
+        {<div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             setting page
             <br></br>   
@@ -59,7 +64,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
             {navObj["settingPage-seVol"].toString()}<br></br>
             {navObj["settingPage-entriesHorizontal"].toString()}<br></br>
             {navObj["settingPage-entriesCustom"].toString()} 
-        </div>
+        </div>}
+        <br></br>
 
 
     </div>);

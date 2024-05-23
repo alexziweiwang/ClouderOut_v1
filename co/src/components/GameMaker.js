@@ -43,8 +43,8 @@ export default function GameMaker() {
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
   const [showChapterMaker, setShowChapterMaker] = useState(true);
-  const [selectedProgressStrategy, setSelectedProgressStrategy] = useState("");
 
+  const [currPageName, setCurrPageName] = useState("");
 
 //TODO ------------------------------------------------------
 
@@ -130,7 +130,15 @@ export default function GameMaker() {
 
   function handleResourceManagerOpen() {
     setDisplayRmModal(true);
-}
+  }
+
+  function updateCurrPageName(name) {
+    setCurrPageName(name);
+  }
+
+  function passInCurrSelectedPage() {
+    return currPageName;
+  }
 
   return (
   <div>
@@ -169,9 +177,9 @@ export default function GameMaker() {
         <div className="parallelFrame sectionArea"> 
           
      
-          <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj} openRm={handleResourceManagerOpen}/>
+          <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj} openRm={handleResourceManagerOpen} updateCurrentPageName={updateCurrPageName}/>
           
-          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} />
+          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage}/>
 
     </div>}
    

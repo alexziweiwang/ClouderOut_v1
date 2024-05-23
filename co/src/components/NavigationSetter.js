@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) {
+export default function NavigationSetter({initialNavObj, updateNavObj, openRm, updateCurrentPageName}) {
     const [currentSettingPage, setCurrentSettingPage] = useState("");
 
     const [currentProjectNav, setCurrentProjectNav] = useState({
@@ -44,7 +44,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
      <br></br><br></br><br></br>
      <label>Select a Page to setup:</label><br></br>
       <select value={currentSettingPage}
-        onChange={(event)=>{setCurrentSettingPage(event.target.value);}}>
+        onChange={(event)=>{
+          setCurrentSettingPage(event.target.value);
+          updateCurrentPageName(event.target.value);
+        }}>
           <option value="" key="defaultNonCurrPage">-- Select a Page Name --</option>
           <option value="Game Progress Strategy" key="Game Progress Strategy">Game Progress Strategy</option>
           <option value="Main Page" key="Main Page">Main Page</option>
