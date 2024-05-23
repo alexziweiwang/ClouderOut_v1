@@ -140,11 +140,29 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
                       <label>Number of columns:</label><input type="number"></input>
                     </div>
                 <label>Group Positions:</label><br></br>
-                          TODO<br></br>
+                    <div className="indentOne">
+                        <label>position X:</label>
+                        <input type="range"></input>
+                        <br></br>
+                        <label>position Y:</label>
+                        <input type="range"></input>
+                    </div>
                 <label>Group Item Sizes:</label><br></br>
-                          TODO<br></br>
+                  <div className="indentOne">
+                      <label>Width:</label>
+                      <input type="range"></input>
+                      <br></br>
+                      <label>Height:</label>
+                      <input type="range"></input>
+                  </div>
                 <label>Group Item Gaps:</label><br></br>
-                          TODO<br></br>
+                  <div className="indentOne">
+                      <label>Vertical:</label>
+                      <input type="range"></input>
+                      <br></br>
+                      <label>Horizontal:</label>
+                      <input type="range"></input>
+                  </div>
  
               </div> </>}
                 
@@ -906,7 +924,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
           
                   </div>
        
-       
+
            TODO shop page content (in separate editor?)
 
        </div>
