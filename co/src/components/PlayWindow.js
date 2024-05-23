@@ -119,7 +119,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
     return (
         <div className="playWindow">
        currentPieceIndex: {currentPieceIndex}
-            <div className="preveiewArea" style={{"position": "relative", "height": `${screenWidth}px`,"width": `${screenHeight}px`}}>
+            <div className="preveiewArea" style={{"position": "relative", "height": `${screenHeight}px`,"width": `${screenWidth}px`}}>
             
               <div style={{
                 "background-image": `url(${bgpSource})`,

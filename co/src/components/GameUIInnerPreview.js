@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 
 export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
-    const screenWidth = 800;
+    const screenWidth = 800; //TODO change
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 

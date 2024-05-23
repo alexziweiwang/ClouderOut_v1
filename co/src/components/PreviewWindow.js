@@ -65,15 +65,31 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
         console.log("new game size setting:", selectedGameScreenSize);
         //TODO design: each node and have one size, and different nodes can have various sizes?
         let respondGiven = confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
-        if (respondGiven) {
+          if (respondGiven) {
+            if (selectedGameScreenSize === "h450_800") {
+              setScreenWidth(800);
+              setScreenHeight(450);
+          } else if (selectedGameScreenSize === "v800_450") {
+              setScreenWidth(450);
+              setScreenHeight(800);
+          } else if (selectedGameScreenSize === "h600_800") {
+              setScreenWidth(800);
+              setScreenHeight(600);
+          } else if (selectedGameScreenSize === "v800_600") {
+              setScreenWidth(600);
+              setScreenHeight(800);
+          }
           alert("Game node size changed!");
         } 
     } 
  
     return (
+
+    
+        
         <div className="previewWindow">
        
-            <div className="preveiewArea" style={{"position": "relative", "height": `${screenWidth}px`,"width": `${screenHeight}px`}}>
+            <div className="preveiewArea" style={{"position": "relative", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
             
               <div style={{
                 "background-image": `url(${currentPiece["bgp_source_link"]})`,
@@ -139,9 +155,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
                   }
                  
-
-
-            <div>
+                 <div>
                     <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
                         <option value="" key=""> ----- Select Size and Direction ----- </option>
                         <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
@@ -152,6 +166,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                     </select>
                     <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
                 </div>
+
 
 
                       
@@ -204,5 +219,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
             </p>
                
         </div>
+    
     );
 }
