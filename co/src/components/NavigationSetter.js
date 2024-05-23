@@ -62,10 +62,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
             }}>SaveLoad System</label>    
                  {currentProjectNav["isWithSL"] && <>
      
-              <div className="indentOne">
-              <label>List Item Looking:</label>
+              <div className="indentOne" style={{"backgroundColor": "grey", "paddingLeft": "7px"}}>
+                <label>List Item Looking:</label>
                     <div className="indentOne">
-                          
                       <input type="radio" 
                         
                         onChange={(event)=>{          
@@ -98,7 +97,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm}) 
 
           
                   </div>
-                            
+                <label>List Item Layout</label>
+                    <div className="indentOne">
+                      <label>Number of rows:</label><input type="number"></input><br></br>                     
+                      <label>Number of columns:</label><input type="number"></input>
+                    </div>
+                <label>Group Positions:</label><br></br>
+                          TODO<br></br>
+                <label>Group Item Sizes:</label><br></br>
+                          TODO<br></br>
+                <label>Group Item Gaps:</label><br></br>
+                          TODO<br></br>
+
 
               </div> </>}
                 

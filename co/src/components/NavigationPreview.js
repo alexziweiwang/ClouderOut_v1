@@ -23,9 +23,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
     return (<div className="previewWindow">
         navigation preview area?
         <br></br>
-        {navObj["isWithSL"].toString()} <br></br>
-
-
         <br></br>
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
             >
@@ -39,6 +36,13 @@ export default function NavigationPreview({initialNavObj, fetchNavObj}) {
             {navObj["mainPage-entriesCustom"].toString()}<br></br>
         </div>
         <br></br>
+        {navObj["isWithSL"] && <>
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+            
+            saveload page preview</div>
+        <br></br></>}
+
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             story page
