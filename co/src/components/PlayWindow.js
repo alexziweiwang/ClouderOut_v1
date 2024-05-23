@@ -10,6 +10,9 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
 //TODO important: interact with play-tracker
 //TODO important: refactor to stable-UI-setting input
 
+    const [screenWidth, setScreenWidth] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(800);
+
     console.log("re-rendering @play window");
 
     let name = "/playwindow";
@@ -116,7 +119,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
     return (
         <div className="playWindow">
        currentPieceIndex: {currentPieceIndex}
-            <div className="preveiewArea" style={{"position": "relative"}}>
+            <div className="preveiewArea" style={{"position": "relative", "height": `${screenWidth}px`,"width": `${screenHeight}px`}}>
             
               <div style={{
                 "background-image": `url(${bgpSource})`,

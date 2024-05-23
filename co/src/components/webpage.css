@@ -311,8 +311,6 @@ div {
 }
 
 .preveiewArea {
-    height: 600px;
-    width: 800px;
     background-color: rgb(222, 222, 235);
     margin-left: 2%;
     margin-right: 2%;
@@ -320,8 +318,6 @@ div {
 }
 
 .preveiewArea2 {
-    height: 600px;
-    width: 800px;
     background-color: rgb(230, 221, 205);
     margin-left: 2%;
     margin-right: 2%;

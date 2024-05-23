@@ -7,6 +7,8 @@ import GameUITextFramePreview from './GameUITextFramePreview';
 
 
 export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+    const [screenWidth, setScreenWidth] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(800);
 
     console.log("re-rendering @preview window");
 
@@ -67,14 +69,11 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
           alert("Game node size changed!");
         } 
     } 
-
-    const screenWidth = 800;
-    const screenHeight = 600;
  
     return (
         <div className="previewWindow">
        
-            <div className="preveiewArea" style={{"position": "relative"}}>
+            <div className="preveiewArea" style={{"position": "relative", "height": `${screenWidth}px`,"width": `${screenHeight}px`}}>
             
               <div style={{
                 "background-image": `url(${currentPiece["bgp_source_link"]})`,
