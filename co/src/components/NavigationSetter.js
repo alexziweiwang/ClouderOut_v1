@@ -63,6 +63,24 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
+              <input type="radio" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
+                   let tempObj = currentProjectNav;
+                   tempObj["isWithSL"] = false;
+                   updateNavObj(tempObj);  
+
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
+                   }}></input>
+               <label onClick={()=>{                   
+                   let tempObj = currentProjectNav;
+                   tempObj["isWithSL"] = false;
+                   updateNavObj(tempObj);  
+
+                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
+                   }}>Without SaveLoad System</label>
+
+              <br></br>
+
+
                <input type="radio" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
                    let tempObj = currentProjectNav;
                    tempObj["isWithSL"] = true;
@@ -199,22 +217,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
  
               </div> </>}
                 
-           
-               <br></br>
-               <input type="radio" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
-                   let tempObj = currentProjectNav;
-                   tempObj["isWithSL"] = false;
-                   updateNavObj(tempObj);  
-
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
-                   }}></input>
-               <label onClick={()=>{                   
-                   let tempObj = currentProjectNav;
-                   tempObj["isWithSL"] = false;
-                   updateNavObj(tempObj);  
-
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
-                   }}>Without SaveLoad System</label>
+          
            
        </div>
     </div>}   

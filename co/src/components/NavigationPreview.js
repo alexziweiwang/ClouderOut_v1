@@ -27,7 +27,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         navigation preview area?
         <br></br>
         <br></br>
-        {<div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {page === "Main Page"&& 
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
             >
             main page
             <br></br>
@@ -38,24 +39,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {navObj["mainPage-entriesHorizontal"].toString()}<br></br>
             {navObj["mainPage-entriesCustom"].toString()}<br></br>
         </div>}
-        <br></br>
-        {(navObj["isWithSL"]) && <>
+  
+        {(navObj["isWithSL"] && page === "Game Progress Strategy") && <>
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             
             saveload page preview</div>
         <br></br></>}
 
-        {<div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {page === "Story Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             story page
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
         </div>}
 
-        <br></br>
-        
-        {<div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {page === "Settings Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             setting page
             <br></br>   
@@ -65,8 +64,29 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {navObj["settingPage-entriesHorizontal"].toString()}<br></br>
             {navObj["settingPage-entriesCustom"].toString()} 
         </div>}
-        <br></br>
 
+        {page === "Player Profile Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+            player profile page
+            <br></br>        
+            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+        </div>}
+
+        {page === "Game Status Data Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+            game status data page
+            <br></br>        
+            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+        </div>}
+  
+        {page === "Shop Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+            shop page
+            <br></br>        
+            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+        </div>}
+
+        <br></br>              
 
     </div>);
 }
