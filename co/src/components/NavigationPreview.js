@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 
 export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName}) {
-    const screenWidth = 800;
-    const screenHeight = 450;
+    const [screenWidth, setScreenWidth] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(450);
 
 
     const [navObj, setNavObj] = useState(initialNavObj);
@@ -19,14 +19,28 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
         let tempPage= fetchPageName();
         setPage(tempPage);
+
+        if (navObj["screenSize"] === "h450_800") {
+            setScreenWidth(800);
+            setScreenHeight(450);
+        } else if (navObj["screenSize"] === "v800_450") {
+            setScreenWidth(450);
+            setScreenHeight(800);
+        } else if (navObj["screenSize"] === "h600_800") {
+            setScreenWidth(800);
+            setScreenHeight(600);
+        } else if (navObj["screenSize"] === "v800_600") {
+            setScreenWidth(600);
+            setScreenHeight(800);
+        }
       
     });
-
+    
 
     return (<div className="previewWindow">
-        navigation preview area?
+        navObj["screenSize"]: {navObj["screenSize"]}
         <br></br>
-        <br></br>
+
         {page === "Main Page"&& 
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
             >

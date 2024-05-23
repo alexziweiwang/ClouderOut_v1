@@ -4,6 +4,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     const [currentSettingPage, setCurrentSettingPage] = useState("");
 
     const [currentProjectNav, setCurrentProjectNav] = useState({
+      "screenSize": initialNavObj["screenSize"],
       "isWithSL": initialNavObj["isWithSL"],
       "mainPage-story": initialNavObj["mainPage-story"],
       "mainPage-shop": initialNavObj["mainPage-shop"],
@@ -34,7 +35,16 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
 
      <br></br><br></br>
-     <label>Main Navigation Screen Size: </label><select>
+     <label>Main Navigation Screen Size:</label>
+     <select
+     onChange={(event)=>{
+      let tempObj = currentProjectNav;
+      tempObj["screenSize"] = event.target.value;
+      updateNavObj(tempObj);  
+
+      setCurrentProjectNav({...currentProjectNav, "screenSize": event.target.value});
+     }}
+     >
                <option value="" key=""> ----- Select Size and Direction ----- </option>
                <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
                <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
@@ -48,7 +58,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           setCurrentSettingPage(event.target.value);
           updateCurrentPageName(event.target.value);
         }}>
-          <option value="" key="defaultNonCurrPage">-- Select a Page Name --</option>
+          <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
           <option value="Game Progress Strategy" key="Game Progress Strategy">Game Progress Strategy</option>
           <option value="Main Page" key="Main Page">Main Page</option>
           <option value="Story Page" key="Story Page">Story Page</option>
@@ -98,7 +108,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             }}>SaveLoad System</label>    
                  {currentProjectNav["isWithSL"] && <>
      
-              <div className="indentOne" style={{"backgroundColor": "grey", "paddingLeft": "7px"}}>
+              <div className="indentOne">
    
               <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -724,7 +734,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": true});
         }} 
        ></input><label>Customized Positions</label>
-       <br></br>
+       <br></br><br></br>
        <label>Settings Page Items:</label>
        <div>
          <input type="checkbox"
@@ -975,15 +985,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
        </div>
        </div>}
 
-     <br></br><br></br>
-     <p className="plans">
-       TODO: Menu UI setter (main page, etc.)
-       <br></br>TODO: Navigation setter
-       <br></br>Path: main-page to story seciton, to either s/l, chapter list, or branch page         
-       <br></br>Path: main-page to other parts? player profile(including game data/status?), game settings, meeting(optional), shop(optional), achievements(optional), gallery/memory(optional)  
-     </p>
-
-     <button>Save Changes</button>
+    <br></br>
+    <button>Save Changes</button>
 
 
 

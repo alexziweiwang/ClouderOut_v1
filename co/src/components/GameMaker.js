@@ -49,6 +49,7 @@ export default function GameMaker() {
 //TODO ------------------------------------------------------
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
+    "screenSize": "h450_800",
     "isWithSL": true,
     "mainPage-story": false,
     "mainPage-shop": false,
