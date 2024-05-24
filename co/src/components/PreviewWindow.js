@@ -8,7 +8,7 @@ import GameUITextFramePreview from './GameUITextFramePreview';
 
 export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
     const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(600);
 
     console.log("re-rendering @preview window");
 
@@ -88,8 +88,25 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     
         
         <div className="previewWindow">
+                 
+                 <>
+                    <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
+                        <option value="" key=""> ----- Select Size and Direction ----- </option>
+                        <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                        <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+                        <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                        <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+
+                    </select>
+                    <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
+                </>
+
        
-            <div className="preveiewArea" style={{"position": "relative", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
+            <div className="previewArea" 
+              style={{"position": "relative", 
+                      "height": `${screenHeight}px`, 
+                      "width": `${screenWidth}px`
+              }}>
             
               <div style={{
                 "background-image": `url(${currentPiece["bgp_source_link"]})`,
@@ -148,28 +165,16 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
               
 
             </div>
-
-                  {(bgmSource !== undefined) && 
+            
+            <br></br>
+            {(bgmSource !== undefined) && 
                       <audio src={bgmSource} controls/> //TODO actual game-playing
                       // <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
 
-                  }
-                 
-                 <div>
-                    <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
-                        <option value="" key=""> ----- Select Size and Direction ----- </option>
-                        <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                        <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-                        <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                        <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-
-                    </select>
-                    <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
-                </div>
+            }
 
 
 
-                      
             <p className="plans">
                 needed data: game size and direction info setting from the user/author
                 <br></br> reads all data for current piece and present here
