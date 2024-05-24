@@ -6,10 +6,8 @@ import GameUIInnerPreview from './GameUIInnerPreview';
 import GameUITextFramePreview from './GameUITextFramePreview';
 
 
-export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
-  //TODO getScreenSize (3 places)
-
-  const [screenWidth, setScreenWidth] = useState(800);
+export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+    const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
     console.log("re-rendering @preview window");
@@ -29,10 +27,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
       let objTemp = getCurrentPiece();
       setCurrentPiece(objTemp); //only fetches the most-updated current piece
       updateBgmSource(); // special because of across-piece setting
-
-      let screenSizePair = getScreenSize();
-      setScreenWidth(screenSizePair[0]);
-      setScreenHeight(screenSizePair[1]);
 
     });
 
@@ -164,7 +158,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
-                  getScreenSize={getScreenSize}
+                    
               /> 
 
 

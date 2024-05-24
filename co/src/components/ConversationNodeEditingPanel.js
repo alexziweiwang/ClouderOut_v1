@@ -238,10 +238,6 @@ export default function ConversationNodeEditingPanel() {
         return menuType;
     }
 
-    function passInScreenSize() {
-        console.log("passInScreenSize"); //TODO
-    }
-
     return (
 
         <div>
@@ -257,10 +253,8 @@ export default function ConversationNodeEditingPanel() {
                     
                 </div>
                 <div className="topParalBarRightPart">
-                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>
-                        Game Content</button>
-                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false); setGameUISetterOpen(true);}}>
-                        Game UI</button>
+                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>Game Content</button>
+                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false); setGameUISetterOpen(true);}}>Game UI</button>
                 </div>
                
             </div>
@@ -300,15 +294,7 @@ export default function ConversationNodeEditingPanel() {
 
                       
             {isDisplayPreview === true && 
-                <PreviewWindow 
-                    dataObj={pieceDataStructure[previewingIndex]} 
-                    getCurrentPiece={passInCurrentPieceObj} 
-                    getTextFrameUISettings={passInTextFrameUISettings} 
-                    getDefaultButtonUISettings={passInDefaultButtonUISettings} 
-                    getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
-                    getBackButtonUISettings={passInBackButtonUISettings}
-                    getScreenSize={passInScreenSize}
-                />}
+                <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
             {isDisplayPreview === false && 
                 <GameUIOuterPreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}
                     getMenuType={passInMenuType}

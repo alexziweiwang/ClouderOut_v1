@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
@@ -22,10 +22,6 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
         let backBtnUISettings = getBackButtonUISettings();
         setBackButtonUISettings(backBtnUISettings);
 
-        let screenSizePair = getScreenSize();
-        setScreenWidth(screenSizePair[0]);
-        setScreenHeight(screenSizePair[1]);
-  
     });
 
     return (
