@@ -106,7 +106,9 @@ export default function ConversationNodeEditingPanel() {
     "posY": 0
 }); //TODO fetch from cloud-db
 
-
+    const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
+    const [screenWidth, setScreenWidth] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(600);
 
 
     const [gameData, setGameData] = useState({});
@@ -238,8 +240,55 @@ export default function ConversationNodeEditingPanel() {
         return menuType;
     }
 
+    function changeselectedGameScreenSizeSetting(event) {
+        const input = event.target.value;
+        //TODO update information to cloud db
+        if (event != null && event.target != null && event.target.value!= null) {
+          if (input === "h450_800") {
+            console.log("h450_800");
+            setSelectedGameScreenSize("h450_800");
+          } else if (input === "v800_450") {
+            console.log("v800_450");
+            setSelectedGameScreenSize("v800_450");
+          } else if (input === "h600_800") {
+            console.log("h600_800");
+            setSelectedGameScreenSize("h600_800");
+          } else if (input === "v800_600") {
+            console.log("v800_600");
+            setSelectedGameScreenSize("v800_600");
+          } else {
+            console.log("not selected!");
+          }
+        }
+    }
+
+    function updateGameSizeSetting() {
+        console.log("new game size setting:", selectedGameScreenSize);
+        //TODO design: each node and have one size, and different nodes can have various sizes?
+        let respondGiven = confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
+          if (respondGiven) {
+            if (selectedGameScreenSize === "h450_800") {
+              setScreenWidth(800);
+              setScreenHeight(450);
+          } else if (selectedGameScreenSize === "v800_450") {
+              setScreenWidth(450);
+              setScreenHeight(800);
+          } else if (selectedGameScreenSize === "h600_800") {
+              setScreenWidth(800);
+              setScreenHeight(600);
+          } else if (selectedGameScreenSize === "v800_600") {
+              setScreenWidth(600);
+              setScreenHeight(800);
+          }
+          alert("Game node size changed!");
+        } 
+    } 
+ 
     function passInScreenSize() {
-        console.log("passInScreenSize"); //TODO 
+        let pair = [];
+        pair.push(screenWidth);
+        pair.push(screenHeight);
+        return pair;
     }
 
     return (
@@ -257,8 +306,24 @@ export default function ConversationNodeEditingPanel() {
                     
                 </div>
                 <div className="topParalBarRightPart">
-                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>Game Content</button>
-                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false); setGameUISetterOpen(true);}}>Game UI</button>
+                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>
+                        Game Content</button>
+                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false); setGameUISetterOpen(true);}}>
+                        Game UI</button>
+
+                    <>
+                        <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
+                            <option value="" key=""> ----- Select Size and Direction ----- </option>
+                            <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                            <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
+                            <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                            <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+
+                        </select>
+                        <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
+                    </>
+
+
                 </div>
                
             </div>
