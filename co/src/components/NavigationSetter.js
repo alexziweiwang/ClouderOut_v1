@@ -24,6 +24,31 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-listItemGroupWidth": 0,
       "mainPage-listItemGroupHeight": 0,
       
+      "mainPage-story-posX": 0,
+      "mainPage-story-posY": 0,
+      "mainPage-story-width": 0,
+      "mainPage-story-height": 0,
+      "mainPage-story-fontSize": 10,
+      "mainPage-story-fontColor": "",
+      "mainPage-setting-posX": 0,
+      "mainPage-setting-posY": 0,
+      "mainPage-setting-width": 0,
+      "mainPage-setting-height": 0,
+      "mainPage-setting-fontSize": 10,
+      "mainPage-setting-fontColor": "",
+      "mainPage-playerProfile-posX": 0,
+      "mainPage-playerProfile-posY": 0,
+      "mainPage-playerProfile-width": 0,
+      "mainPage-playerProfile-height": 0,
+      "mainPage-playerProfile-fontSize": 10,
+      "mainPage-playerProfile-fontColor": "",
+      "mainPage-shop-posX": 0,
+      "mainPage-shop-posY": 0,
+      "mainPage-shop-width": 0,
+      "mainPage-shop-height": 0,
+      "mainPage-shop-fontSize": 10,
+      "mainPage-shop-fontColor": "",
+  
       "saveloadPage-isBackgroundShape": false,
       "saveloadPage-bgsShapeName": "",
       "saveloadPage-bgPicName": "",
@@ -420,8 +445,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            Height:
                  <input type="range"></input>
                <br></br>
-           Font:
-                 <select></select>
+           Font Color:
+                 <input type="color"></input>
                <br></br>
            Font Size:
                  <input type="number"></input>
@@ -452,8 +477,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            Height:
                  <input type="range"></input>
                <br></br>
-           Font:
-                 <select></select>
+           Font Color:
+                <input type="color"></input>
                <br></br>
            Font Size:
                  <input type="number"></input>
@@ -484,8 +509,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            Height:
                  <input type="range"></input>
                <br></br>
-           Font:
-                 <select></select>
+           Font Color:
+                <input type="color"></input>
                <br></br>
            Font Size:
                  <input type="number"></input>
@@ -517,8 +542,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            Height:
                  <input type="range"></input>
                <br></br>
-           Font:
-                 <select></select>
+           Font Color:
+                <input type="color"></input>
                <br></br>
            Font Size:
                  <input type="number"></input>
@@ -792,8 +817,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                Height:
                      <input type="range"></input>
                    <br></br>
-               Font:
-                     <select></select>
+               Font Color:
+                    <input type="color"></input>
                    <br></br>
                Font Size:
                      <input type="number"></input>
@@ -829,8 +854,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                Height:
                      <input type="range"></input>
                    <br></br>
-               Font:
-                     <select></select>
+               Font Color:
+                    <input type="color"></input>
                    <br></br>
                Font Size:
                      <input type="number"></input>
@@ -865,8 +890,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                Height:
                      <input type="range"></input>
                    <br></br>
-               Font:
-                     <select></select>
+               Font Color:
+                    <input type="color"></input>
                    <br></br>
                Font Size:
                      <input type="number"></input>
