@@ -238,6 +238,10 @@ export default function ConversationNodeEditingPanel() {
         return menuType;
     }
 
+    function passInScreenSize() {
+        console.log("passInScreenSize"); //TODO 
+    }
+
     return (
 
         <div>
@@ -294,10 +298,24 @@ export default function ConversationNodeEditingPanel() {
 
                       
             {isDisplayPreview === true && 
-                <PreviewWindow dataObj={pieceDataStructure[previewingIndex]} getCurrentPiece={passInCurrentPieceObj} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}/>}
+                <PreviewWindow 
+                    dataObj={pieceDataStructure[previewingIndex]} 
+                    getCurrentPiece={passInCurrentPieceObj} 
+                    getTextFrameUISettings={passInTextFrameUISettings} 
+                    getDefaultButtonUISettings={passInDefaultButtonUISettings} 
+                    getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
+                    getBackButtonUISettings={passInBackButtonUISettings}
+                    getScreenSize={passInScreenSize}
+                />}
             {isDisplayPreview === false && 
-                <GameUIOuterPreviewWindow dataObj={pieceDataStructure[previewingIndex]} getTextFrameUISettings={passInTextFrameUISettings} getDefaultButtonUISettings={passInDefaultButtonUISettings} getIsDisplayDefaultButton={passInIsDisplayDefaultButton} getBackButtonUISettings={passInBackButtonUISettings}
+                <GameUIOuterPreviewWindow 
+                    dataObj={pieceDataStructure[previewingIndex]} 
+                    getTextFrameUISettings={passInTextFrameUISettings} 
+                    getDefaultButtonUISettings={passInDefaultButtonUISettings} 
+                    getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
+                    getBackButtonUISettings={passInBackButtonUISettings}
                     getMenuType={passInMenuType}
+                    getScreenSize={passInScreenSize}
                 />
             }
 

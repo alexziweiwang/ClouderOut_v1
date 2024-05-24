@@ -6,7 +6,7 @@ import GameUIInnerPreview from './GameUIInnerPreview';
 import GameUITextFramePreview from './GameUITextFramePreview';
 
 
-export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
