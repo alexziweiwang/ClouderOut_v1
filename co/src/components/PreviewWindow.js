@@ -142,7 +142,6 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
               <GameUITextFramePreview
                 dataObj={currentPiece} 
                 getTextFrameUISettings={getTextFrameUISettings}
-                getScreenSize={getScreenSize}
               />}
 
               <GameUIInnerPreview 

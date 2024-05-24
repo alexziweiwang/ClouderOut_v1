@@ -38,11 +38,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     
 
     return (<div className="previewWindow">
-        navObj["screenSize"]: {navObj["screenSize"]}
+
         <br></br>
 
         {page === "Main Page"&& 
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        <div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor": "rgb(222, 222, 235)", 
+                "marginLeft": `20px`,
+            
+                }}
             >
             main page
             <br></br>

@@ -280,7 +280,6 @@ export default function ConversationNodeEditingPanel() {
               setScreenWidth(600);
               setScreenHeight(800);
           }
-          alert("Game node size changed!");
         } 
     } 
  

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUITextFramePreview({dataObj, getTextFrameUISettings, getScreenSize}) {
+export default function GameUITextFramePreview({dataObj, getTextFrameUISettings}) {
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 

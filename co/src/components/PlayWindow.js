@@ -170,6 +170,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
+                  getScreenSize={getScreenSize}
               /> 
 
               <GameUIInnerPlay

@@ -31,13 +31,12 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
                 getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                 getDefaultButtonUISettings={getDefaultButtonUISettings} 
                 getBackButtonUISettings={getBackButtonUISettings}
-                getScreenSize={getScreenSize}
-                
-            />  
+                getScreenSize={getScreenSize}               
+            />
+              
             <GameUITextFramePreview
                 dataObj={dataObj} 
                 getTextFrameUISettings={getTextFrameUISettings}
-                getScreenSize={getScreenSize}
             />
             
         </div>

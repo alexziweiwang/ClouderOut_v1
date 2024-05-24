@@ -12,6 +12,23 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-playerProfile": initialNavObj["mainPage-playerProfile"],    
       "mainPage-entriesHorizontal": initialNavObj["mainPage-entriesHorizontal"],
       "mainPage-entriesCustom": initialNavObj["mainPage-entriesCustom"],
+
+      "mainPage-isBackgroundShape": false,
+      "mainPage-bgsShapeName": "",
+      "mainPage-bgPicName": "",
+      "mainPage-isSlotShape": false,
+      "mainPage-slotShapeName": "",
+      "mainPage-slotPicName": "",
+      "mainPage-slotRowCount": 1,
+      "mainPage-slotColCount": 1,
+      "mainPage-slotPageCount": 1,
+      "mainPage-slotWidth": 1,
+      "mainPage-slotHeight": 1,
+      "mainPage-slotHorizontalGap": 1, 
+      "mainPage-slotVerticalGap": 1,
+      "mainPage-groupPosX": 0,
+      "mainPage-groupPosY": 0,
+      
       "settingPage-playSpeed": initialNavObj["settingPage-playSpeed"],
       "settingPage-bgmVol": initialNavObj["settingPage-bgmVol"],
       "settingPage-seVol": initialNavObj["settingPage-seVol"],
@@ -35,7 +52,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
 
      <br></br><br></br>
-     <label>Main Navigation Screen Size:</label>
+     <label>Screen Size for all navigation pages:</label>
      <select
      onChange={(event)=>{
       let tempObj = currentProjectNav;
@@ -145,7 +162,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           
                   </div>
                
-                <label>List Item Looking:</label>
+                <label>Slot Looking:</label>
                     <div className="indentOne">
                       <input type="radio" 
                         
@@ -200,15 +217,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <label>Number of Pages:</label>
                       <input type="number" min="1" max="99" step="1"></input>
                     </div>
-                <label>Group Positions:</label><br></br>
-                    <div className="indentOne">
-                        <label>position X:</label>
-                        <input type="range"></input>
-                        <br></br>
-                        <label>position Y:</label>
-                        <input type="range"></input>
-                    </div>
-                <label>Group Item Sizes:</label><br></br>
+                <label>Slot Size:</label><br></br>
                   <div className="indentOne">
                       <label>Width:</label>
                       <input type="range"></input>
@@ -216,14 +225,22 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <label>Height:</label>
                       <input type="range"></input>
                   </div>
-                <label>Group Item Gaps:</label><br></br>
+                <label>Gaps between slots:</label><br></br>
                   <div className="indentOne">
-                      <label>Vertical:</label>
-                      <input type="range"></input>
-                      <br></br>
                       <label>Horizontal:</label>
                       <input type="range"></input>
+                      <br></br>
+                      <label>Vertical:</label>
+                      <input type="range"></input>
                   </div>
+                  <label>Group Positions:</label><br></br>
+                    <div className="indentOne">
+                        <label>position X:</label>
+                        <input type="range"></input>
+                        <br></br>
+                        <label>position Y:</label>
+                        <input type="range"></input>
+                    </div>
  
               </div> </>}
                 
