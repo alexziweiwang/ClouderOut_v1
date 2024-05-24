@@ -5,7 +5,7 @@ import GameUIInnerPreview from './GameUIInnerPreview';
 import GameUIInnerPlay from './GameUIInnerPreview';
 
 
-export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
+export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
 //TODO important: keeps a node's game-content
 //TODO important: interact with play-tracker
 //TODO important: refactor to stable-UI-setting input
@@ -170,6 +170,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
+                  getScreenSize={getScreenSize}
               /> 
 
               <GameUIInnerPlay
