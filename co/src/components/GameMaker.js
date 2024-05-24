@@ -115,7 +115,41 @@ export default function GameMaker() {
     "settingPage-seVol": false,
     "settingPage-entriesHorizontal": true,
     "settingPage-entriesCustom": false,
-    "storyPage-chapterListHorizontal": true
+
+    "storyPage-chapterListHorizontal": true,
+
+    "settingPage-isBackgroundShape": false,
+    "settingPage-bgsShapeName": "",
+    "settingPage-bgPicName": "",
+    "settingPage-isListItemShape": false,
+    "settingPage-listItemShapeName": "",
+    "settingPage-listItemPicName": "",
+    "settingPage-listItemGroupX": 0,
+    "settingPage-listItemGroupY": 0,
+    "settingPage-listItemGroupWidth": 0,
+    "settingPage-listItemGroupHeight": 0,
+
+    "settingPage-playSpeed-posX": 0,
+    "settingPage-playSpeed-posY": 0,
+    "settingPage-playSpeed-width": 0,
+    "settingPage-playSpeed-height": 0,
+    "settingPage-playSpeed-fontSize": 10,
+    "settingPage-playSpeed-fontColor": "",
+
+    "settingPage-bgmVol-posX": 0,
+    "settingPage-bgmVol-posY": 0,
+    "settingPage-bgmVol-width": 0,
+    "settingPage-bgmVol-height": 0,
+    "settingPage-bgmVol-fontSize": 10,
+    "settingPage-bgmVol-fontColor": "",
+
+    "settingPage-seVol-posX": 0,
+    "settingPage-seVol-posY": 0,
+    "settingPage-seVol-width": 0,
+    "settingPage-seVol-height": 0,
+    "settingPage-seVol-fontSize": 10,
+    "settingPage-seVol-fontColor": "",
+
   }); //TODO now: default initial values
 
 //TODO ------------------------------------------------------
