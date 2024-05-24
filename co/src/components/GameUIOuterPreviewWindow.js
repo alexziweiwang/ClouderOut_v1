@@ -7,12 +7,15 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
-
     const [menuType, setMenuType] = useState("notStoryCore");
 
     useEffect(() => {
         let tempType = getMenuType();
         setMenuType(tempType);
+        
+        let screenSizePair = getScreenSize();
+        setScreenWidth(screenSizePair[0]);
+        setScreenHeight(screenSizePair[1]);
     });
 
     return(

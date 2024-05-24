@@ -22,6 +22,10 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
         let backBtnUISettings = getBackButtonUISettings();
         setBackButtonUISettings(backBtnUISettings);
 
+        let screenSizePair = getScreenSize();
+        setScreenWidth(screenSizePair[0]);
+        setScreenHeight(screenSizePair[1]);
+
     });
 
     return (
