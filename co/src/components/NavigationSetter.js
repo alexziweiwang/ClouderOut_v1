@@ -327,14 +327,14 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         value={currentProjectNav["mainPage-isBackgroundShape"]}
                         checked={currentProjectNav["mainPage-isBackgroundShape"]}
                         onChange={()=>{     
+                          //TODO obj for previewing
                           setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});            
-                        //TODO obj for previewing
+                        
                         }}></input>
 
                         <label onClick={()=>{
-                          setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
                           //TODO obj for previewing
-
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
                         }}>Rectangle & Color Filled </label>
                             {currentProjectNav["mainPage-isBackgroundShape"] &&
                                 <div className="indentOne">
@@ -342,8 +342,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                     <input type="color"
                                       value={currentProjectNav["mainPage-bgShapeName"]}
                                       onChange={(event)=>{
-                                        setCurrentProjectNav({...currentProjectNav, "mainPage-bgShapeName": event.target.value});               
                                         //TODO obj for previewing
+                                        setCurrentProjectNav({...currentProjectNav, "mainPage-bgShapeName": event.target.value});               
+                                        
                                         }}></input>
                                     <label> {currentProjectNav["mainPage-bgShapeName"]}</label>
                                 </div>}
@@ -353,18 +354,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             value={currentProjectNav["mainPage-isBackgroundShape"]}
                             checked={!currentProjectNav["mainPage-isBackgroundShape"]}
                           onChange={()=>{
-                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
                             //TODO obj for previewing
-                        
+                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});                                                  
                           }}></input><label onClick={()=>{
-                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
                             //TODO obj for previewing
+                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
+                            
                               }}>Base Picture </label><br></br>
                             {!currentProjectNav["mainPage-isBackgroundShape"] &&
                             <div className="indentOne">
                                 <select onChange={(event)=>{
-                                    setCurrentProjectNav({...currentProjectNav, "mainPage-bgPicName": event.target.value});
                                     //TODO obj for previewing
+                                    setCurrentProjectNav({...currentProjectNav, "mainPage-bgPicName": event.target.value});
+                                    
                                 }}>  
                                 {/* //TODO  resource, var-name                */}
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
@@ -383,12 +385,14 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               value={currentProjectNav["mainPage-isListItemShape"]}
               checked={currentProjectNav["mainPage-isListItemShape"]}
               onChange={()=>{          
-                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 //TODO obj for previewing
+                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
+                
               }}></input>
               <label onClick={()=>{
-                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 //TODO obj for previewing
+                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
+                
               }}>Rectangle & Color Filled </label>
               
                   {currentProjectNav["mainPage-isListItemShape"] &&
@@ -397,8 +401,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           <input type="color"
                           value={currentProjectNav["mainPage-listItemShapeName"]}
                           onChange={(event)=>{
-                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShapeName": event.target.value});
                                 //TODO obj for previewing
+                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShapeName": event.target.value});
+                                
                               }}></input>
                           <label> {currentProjectNav["mainPage-listItemShapeName"]}</label>
                       </div>}
@@ -407,17 +412,20 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 value={currentProjectNav["mainPage-isListItemShape"]}
                 checked={!currentProjectNav["mainPage-isListItemShape"]}
                 onChange={()=>{
-                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
                   //TODO obj for previewing
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
+                  
               }}></input><label onClick={()=>{
-                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
                   //TODO obj for previewing
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
+                  
                     }}>Base Picture </label><br></br>
                   {!currentProjectNav["mainPage-isListItemShape"] &&
                   <div className="indentOne">
                       <select onChange={(event)=>{
-                          setCurrentProjectNav({...currentProjectNav, "mainPage-listItemPicName": event.target.value});
                           //TODO obj for previewing
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-listItemPicName": event.target.value});
+                          
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
                                                 {/* //TODO  resource, var-name                */}
@@ -493,6 +501,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  <input type="range"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
+                    //TODO obj for previewing
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
                     }
                   }
@@ -500,19 +509,58 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  <input type="number"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
+                    //TODO obj for previewing
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
-                    }
-                  }
+                    }}
                  ></input>                 
                <br></br>
                <label>Group Position Y:</label>
-               <input type="range"></input>
+               <input type="range"
+                  value={currentProjectNav["mainPage-listItemGroupY"]}
+                  onChange={(event)=>{
+                   //TODO obj for previewing
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupY": event.target.value});
+                    }}               
+               ></input>
+               <input type="number"
+                  value={currentProjectNav["mainPage-listItemGroupY"]}
+                  onChange={(event)=>{
+                  //TODO obj for previewing
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupY": event.target.value});
+                    }}               
+               ></input>               
                <br></br>
                <label>Group Width:</label>
-                 <input type="range"></input>
+               <input type="range"
+                  value={currentProjectNav["mainPage-listItemGroupWidth"]}
+                  onChange={(event)=>{
+                 //TODO obj for previewing
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupWidth": event.target.value});
+                    }}               
+               ></input>  
+               <input type="number"
+                  value={currentProjectNav["mainPage-listItemGroupWidth"]}
+                  onChange={(event)=>{
+                //TODO obj for previewing
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupWidth": event.target.value});
+                    }}               
+               ></input>                 
                <br></br>
                <label>Group Height:</label>
-                 <input type="range"></input>
+               <input type="range"
+                  value={currentProjectNav["mainPage-listItemGroupHeight"]}
+                  onChange={(event)=>{
+                 //TODO obj for previewing
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupHeight": event.target.value});
+                    }}               
+               ></input> 
+               <input type="number"
+                  value={currentProjectNav["mainPage-listItemGroupHeight"]}
+                  onChange={(event)=>{
+                 //TODO obj for previewing
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupHeight": event.target.value});
+                    }}               
+               ></input> 
              </div>}
          <br></br><input type="radio"  
             value={currentProjectNav["mainPage-entriesCustom"]} 
