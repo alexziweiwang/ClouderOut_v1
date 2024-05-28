@@ -324,11 +324,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
      <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
-                        }}></input><label onClick={(event)=>{
-                                
-                                }}>Rectangle & Color Filled: </label>
+                        value={currentProjectNav["mainPage-isBackgroundShape"]}
+                        checked={currentProjectNav["mainPage-isBackgroundShape"]}
+                        onChange={()=>{     
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});            
+                        //TODO obj for previewing
+                        }}></input>
+
+                        <label onClick={()=>{
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
+                          //TODO obj for previewing
+
+                        }}>Rectangle & Color Filled: </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -339,10 +346,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                     <label></label>
                                 </div>}
                             
-                        <br></br><input type="radio"
-                          onChange={(event)=>{
-                          
-                        }}></input><label onClick={(event)=>{
+                        <br></br>
+                        <input type="radio"
+                            value={currentProjectNav["mainPage-isBackgroundShape"]}
+                            checked={!currentProjectNav["mainPage-isBackgroundShape"]}
+                          onChange={()=>{
+                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
+                            //TODO obj for previewing
+                        
+                          }}></input><label onClick={()=>{
+                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
+                            //TODO obj for previewing
                               }}>Base Picture: </label>
                             {
                             <>
@@ -360,11 +374,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           <div className="indentOne">
                 
             <input type="radio" 
+              value={currentProjectNav["mainPage-isListItemShape"]}
+              checked={currentProjectNav["mainPage-isListItemShape"]}
+              onChange={()=>{          
+                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
+                //TODO obj for previewing
+              }}></input>
+              <label onClick={(event)=>{
+                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
+                //TODO obj for previewing
+              }}>Rectangle & Color Filled: </label>
               
-              onChange={(event)=>{          
-              }}></input><label onClick={(event)=>{
-                      
-                      }}>Rectangle & Color Filled: </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
@@ -376,9 +396,14 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       </div>}
                   
               <br></br><input type="radio"
-                onChange={(event)=>{
-                
-              }}></input><label onClick={(event)=>{
+                value={currentProjectNav["mainPage-isListItemShape"]}
+                checked={!currentProjectNav["mainPage-isListItemShape"]}
+                onChange={()=>{
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
+
+              }}></input><label onClick={()=>{
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
+
                     }}>Base Picture: </label>
                   {
                   <>
