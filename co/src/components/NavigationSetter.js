@@ -723,10 +723,40 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <label>Setting</label>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
            Position X:
-                 <input type="range"></input>
+                 <input type="range"
+                  value={currentProjectNav["mainPage-setting-posX"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-posX": event.target.value});             
+                  }}
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["mainPage-setting-posX"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-posX": event.target.value});             
+                  }}
+                 ></input>                 
                <br></br>
            Position Y:
-               <input type="range"></input>
+           <input type="range"
+                  value={currentProjectNav["mainPage-setting-posY"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-posY": event.target.value});             
+                  }}
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["mainPage-setting-posY"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-posY": event.target.value});             
+                  }}
+                 ></input>        
                <br></br>
            Width:
                  <input type="range"></input>
