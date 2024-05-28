@@ -996,14 +996,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <br></br>
                             <input type="radio" value={cstmClkbIsShape} checked={cstmClkbIsShape} 
                                 onChange={()=>{setCstmIsShape(true);}}
-                            ></input><label onClick={()=>{setCstmIsShape(true);}}>Rectangle & Color Filled: </label>
+                            ></input><label onClick={()=>{setCstmIsShape(true);}}>Rectangle & Color Filled </label>
                                 {cstmClkbIsShape && <><br></br><input type="color" value={cstmClkbBgColor}
                                     onChange={(event)=>{setCstmClkbBgColor(event.target.value);}}></input>
                                     <label>{cstmClkbBgColor}</label></>}
                             <br></br>
                             <input type="radio" value={cstmClkbIsShape} checked={!cstmClkbIsShape}
                                 onChange={()=>{setCstmIsShape(false);}}
-                            ></input><label onClick={()=>{setCstmIsShape(false);}}>Base Picture: </label><br></br>
+                            ></input><label onClick={()=>{setCstmIsShape(false);}}>Base Picture </label><br></br>
                             {!cstmClkbIsShape && <div className="indentOne">
                             <label>Shape/Picture Source:  </label>
 

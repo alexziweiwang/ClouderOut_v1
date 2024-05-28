@@ -151,7 +151,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
                 
-                }}>Rectangle & Color Filled: </label>
+                }}>Rectangle & Color Filled </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
                     <label>Background Color: </label>
@@ -167,7 +167,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
-              }}>Base Picture: </label>
+              }}>Base Picture </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
@@ -562,7 +562,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         
         <br></br><input type="radio" value={igMenuBtnObj["isShape"]} checked={!igMenuBtnObj["isShape"]} onChange={()=>{
             setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});
-            }}></input><label onClick={()=>{setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});}}>Base Picture: </label>
+            }}></input><label onClick={()=>{setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});}}>Base Picture </label>
         {!igMenuBtnObj["isShape"] && <>
                 <select value={igMenuBtnObj["picVar"]} onChange={(event)=>{
                             setIgMenuBtnObj({...igMenuBtnObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 

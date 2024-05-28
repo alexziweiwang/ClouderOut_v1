@@ -14,7 +14,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-entriesCustom": initialNavObj["mainPage-entriesCustom"],
 
       "mainPage-isBackgroundShape": false,
-      "mainPage-bgsShapeName": "",
+      "mainPage-bgShapeName": "",
       "mainPage-bgPicName": "",
       "mainPage-isListItemShape": false,
       "mainPage-listItemShapeName": "",
@@ -203,7 +203,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -218,7 +218,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -238,7 +238,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -253,7 +253,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -335,15 +335,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
                           //TODO obj for previewing
 
-                        }}>Rectangle & Color Filled: </label>
-                            {
+                        }}>Rectangle & Color Filled </label>
+                            {currentProjectNav["mainPage-isBackgroundShape"] &&
                                 <div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
-                                    onChange={(event)=>{
-                                      
+                                      value={currentProjectNav["mainPage-bgShapeName"]}
+                                      onChange={(event)=>{
+                                        setCurrentProjectNav({...currentProjectNav, "mainPage-bgShapeName": event.target.value});               
+                                        //TODO obj for previewing
                                         }}></input>
-                                    <label></label>
+                                    <label> {currentProjectNav["mainPage-bgShapeName"]}</label>
                                 </div>}
                             
                         <br></br>
@@ -357,8 +359,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           }}></input><label onClick={()=>{
                             setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
                             //TODO obj for previewing
-                              }}>Base Picture: </label>
-                            {
+                              }}>Base Picture </label>
+                            {!currentProjectNav["mainPage-isBackgroundShape"] &&
                             <>
                                 <select onChange={(event)=>{
                                 }}>                    
@@ -383,7 +385,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               <label onClick={(event)=>{
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 //TODO obj for previewing
-              }}>Rectangle & Color Filled: </label>
+              }}>Rectangle & Color Filled </label>
               
                   {
                       <div className="indentOne">
@@ -404,7 +406,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               }}></input><label onClick={()=>{
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
 
-                    }}>Base Picture: </label>
+                    }}>Base Picture </label>
                   {
                   <>
                       <select onChange={(event)=>{
@@ -620,7 +622,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -635,7 +637,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -683,7 +685,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               onChange={(event)=>{          
               }}></input><label onClick={(event)=>{
                       
-                      }}>Rectangle & Color Filled: </label>
+                      }}>Rectangle & Color Filled </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
@@ -698,7 +700,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 onChange={(event)=>{
                 
               }}></input><label onClick={(event)=>{
-                    }}>Base Picture: </label>
+                    }}>Base Picture </label>
                   {
                   <>
                       <select onChange={(event)=>{
@@ -725,7 +727,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -740,7 +742,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -762,7 +764,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               onChange={(event)=>{          
               }}></input><label onClick={(event)=>{
                       
-                      }}>Rectangle & Color Filled: </label>
+                      }}>Rectangle & Color Filled </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
@@ -777,7 +779,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 onChange={(event)=>{
                 
               }}></input><label onClick={(event)=>{
-                    }}>Base Picture: </label>
+                    }}>Base Picture </label>
                   {
                   <>
                       <select onChange={(event)=>{
@@ -974,7 +976,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -989,7 +991,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -1018,7 +1020,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -1033,7 +1035,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -1062,7 +1064,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         onChange={(event)=>{          
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled: </label>
+                                }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -1077,7 +1079,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture: </label>
+                              }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{

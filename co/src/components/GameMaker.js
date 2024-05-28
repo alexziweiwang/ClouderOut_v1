@@ -59,7 +59,7 @@ export default function GameMaker() {
     "mainPage-entriesCustom": false,
 
     "mainPage-isBackgroundShape": false,
-    "mainPage-bgsShapeName": "",
+    "mainPage-bgShapeName": "",
     "mainPage-bgPicName": "",
     "mainPage-isListItemShape": false,
     "mainPage-listItemShapeName": "",
