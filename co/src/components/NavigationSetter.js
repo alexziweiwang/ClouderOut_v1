@@ -386,7 +386,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 //TODO obj for previewing
               }}></input>
-              <label onClick={(event)=>{
+              <label onClick={()=>{
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 //TODO obj for previewing
               }}>Rectangle & Color Filled </label>
@@ -395,10 +395,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <div className="indentOne">
                           <label>Background Color: </label>
                           <input type="color"
+                          value={currentProjectNav["mainPage-listItemShapeName"]}
                           onChange={(event)=>{
-                            
+                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShapeName": event.target.value});
+                                //TODO obj for previewing
                               }}></input>
-                          <label></label>
+                          <label> {currentProjectNav["mainPage-listItemShapeName"]}</label>
                       </div>}
                   
               <br></br><input type="radio"
@@ -406,25 +408,28 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 checked={!currentProjectNav["mainPage-isListItemShape"]}
                 onChange={()=>{
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
-
+                  //TODO obj for previewing
               }}></input><label onClick={()=>{
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
-
+                  //TODO obj for previewing
                     }}>Base Picture </label><br></br>
                   {!currentProjectNav["mainPage-isListItemShape"] &&
                   <div className="indentOne">
                       <select onChange={(event)=>{
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-listItemPicName": event.target.value});
+                          //TODO obj for previewing
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
-                
+                                                {/* //TODO  resource, var-name                */}
+
                       </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </div>}
-
- 
          </div>
 
          <label>List item positions: </label><br></br>
-         <input type="radio" value={currentProjectNav["mainPage-entriesCustom"]} checked={!currentProjectNav["mainPage-entriesCustom"]}
+         <input type="radio" 
+          value={currentProjectNav["mainPage-entriesCustom"]} 
+          checked={!currentProjectNav["mainPage-entriesCustom"]}
            onChange={()=>{
               let tempObj = currentProjectNav;
               tempObj["mainPage-entriesCustom"] = false;
@@ -433,7 +438,15 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false });
             }}
          ></input><label></label>
-         Fixed List
+         <label
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["mainPage-entriesCustom"] = false;
+                      updateNavObj(tempObj);  
+        
+                      setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false });
+                    }}
+         >Fixed List</label>
              {!currentProjectNav["mainPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
 
                <input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={currentProjectNav["mainPage-entriesHorizontal"]}
@@ -470,7 +483,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                Group Height:
                  <input type="range"></input>
              </div>}
-         <br></br><input type="radio"  value={currentProjectNav["mainPage-entriesCustom"]} checked={currentProjectNav["mainPage-entriesCustom"]}
+         <br></br><input type="radio"  
+            value={currentProjectNav["mainPage-entriesCustom"]} 
+            checked={currentProjectNav["mainPage-entriesCustom"]}
             onChange={()=>{              
                 let tempObj = currentProjectNav;
                 tempObj["mainPage-entriesCustom"] = true;
@@ -479,7 +494,16 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true });
             }}
          ></input>
-         <label></label>Customized Positions
+         <label
+                     onClick={()=>{              
+                      let tempObj = currentProjectNav;
+                      tempObj["mainPage-entriesCustom"] = true;
+                      updateNavObj(tempObj); 
+                      
+                      setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true });
+                  }}
+         
+         >Customized Positions</label>
 
          <br></br>
          <br></br><label>Main Page Items: </label>
