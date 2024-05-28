@@ -453,34 +453,65 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  onChange={()=>{
                     
                     let tempObj = currentProjectNav;
-                    tempObj["mainPage-entriesCustom"] = true;
+                    tempObj["mainPage-entriesHorizontal"] = true;
                     updateNavObj(tempObj);                 
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": true});
                 }}
                ></input>
-               <label>Horizontal</label>
+               <label
+                onClick={()=>{
+                    
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-entriesHorizontal"] = true;
+                    updateNavObj(tempObj);                 
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": true});
+                }
+                }
+               >Horizontal</label>
                <br></br><input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={!currentProjectNav["mainPage-entriesHorizontal"]}
                  onChange={()=>{                    
                     let tempObj = currentProjectNav;
-                    tempObj["mainPage-entriesCustom"] = false;
+                    tempObj["mainPage-entriesHorizontal"] = false;
                     updateNavObj(tempObj);    
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": false});
                 }}
                ></input>
-               <label>Vertical</label>
+               <label
+                onClick={()=>{                    
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-entriesHorizontal"] = false;
+                    updateNavObj(tempObj);    
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": false});
+                }}
+               >Vertical</label>
                <br></br>
-               Group Position X:
-                 <input type="range"></input>
+               <label>Group Position X:</label>
+                 <input type="range"
+                  value={currentProjectNav["mainPage-listItemGroupX"]}
+                  onChange={(event)=>{
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
+                    }
+                  }
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["mainPage-listItemGroupX"]}
+                  onChange={(event)=>{
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
+                    }
+                  }
+                 ></input>                 
                <br></br>
-               Group Position Y:
+               <label>Group Position Y:</label>
                <input type="range"></input>
                <br></br>
-               Group Width:
+               <label>Group Width:</label>
                  <input type="range"></input>
                <br></br>
-               Group Height:
+               <label>Group Height:</label>
                  <input type="range"></input>
              </div>}
          <br></br><input type="radio"  
