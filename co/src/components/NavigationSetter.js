@@ -359,15 +359,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           }}></input><label onClick={()=>{
                             setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
                             //TODO obj for previewing
-                              }}>Base Picture </label>
+                              }}>Base Picture </label><br></br>
                             {!currentProjectNav["mainPage-isBackgroundShape"] &&
-                            <>
+                            <div className="indentOne">
                                 <select onChange={(event)=>{
-                                }}>                    
+                                    setCurrentProjectNav({...currentProjectNav, "mainPage-bgPicName": event.target.value});
+                                    //TODO obj for previewing
+                                }}>  
+                                {/* //TODO  resource, var-name                */}
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
-                        </>}
+                                </select>
+                                <button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
+                        </div>}
 
           
                   </div>
@@ -387,7 +391,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 //TODO obj for previewing
               }}>Rectangle & Color Filled </label>
               
-                  {
+                  {currentProjectNav["mainPage-isListItemShape"] &&
                       <div className="indentOne">
                           <label>Background Color: </label>
                           <input type="color"
@@ -406,15 +410,15 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               }}></input><label onClick={()=>{
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
 
-                    }}>Base Picture </label>
-                  {
-                  <>
+                    }}>Base Picture </label><br></br>
+                  {!currentProjectNav["mainPage-isListItemShape"] &&
+                  <div className="indentOne">
                       <select onChange={(event)=>{
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
                 
                       </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
-              </>}
+              </div>}
 
  
          </div>
