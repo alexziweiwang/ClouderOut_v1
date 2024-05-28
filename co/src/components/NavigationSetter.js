@@ -741,7 +741,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  ></input>                 
                <br></br>
            Position Y:
-           <input type="range"
+                <input type="range"
                   value={currentProjectNav["mainPage-setting-posY"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -759,10 +759,40 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  ></input>        
                <br></br>
            Width:
-                 <input type="range"></input>
+                <input type="range"
+                  value={currentProjectNav["mainPage-setting-width"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-width": event.target.value});             
+                  }}
+                 ></input>
+                <input type="number"
+                  value={currentProjectNav["mainPage-setting-width"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-width": event.target.value});             
+                  }}
+                 ></input>                 
                <br></br>
            Height:
-                 <input type="range"></input>
+                <input type="range"
+                  value={currentProjectNav["mainPage-setting-height"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-height": event.target.value});             
+                  }}
+                 ></input>
+                <input type="number"
+                  value={currentProjectNav["mainPage-setting-height"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-height": event.target.value});             
+                  }}
+                 ></input>                 
                <br></br>
            Font Color:
                 <input type="color"></input>
