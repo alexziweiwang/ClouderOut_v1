@@ -585,7 +585,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          >Customized Positions</label>
 
          <br></br>
-         <br></br><label>Main Page Items: </label>
+         <br></br>
+         <label>Main Page Items: </label>
          
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-story"]}
            checked={currentProjectNav["mainPage-story"]}
@@ -598,19 +599,81 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
              setCurrentProjectNav({...currentProjectNav, "mainPage-story": !val});             
             }}
-         ></input><label>Story</label>
-         {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && <div className="indentOne">
+         ></input>
+         <label>Story</label>
+         {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && 
+         <div className="indentOne">
            Position X:
-                 <input type="range"></input>
+               <input type="range"
+                value={currentProjectNav["mainPage-story-posX"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-posX": event.target.value});             
+                }}
+               ></input>
+                <input type="number"
+                value={currentProjectNav["mainPage-story-posX"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-posX": event.target.value});             
+                }}
+               ></input>
                <br></br>
            Position Y:
-               <input type="range"></input>
+              <input type="range"
+                value={currentProjectNav["mainPage-story-posY"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-posY": event.target.value});             
+                }}
+               ></input>
+              <input type="number"
+                value={currentProjectNav["mainPage-story-posY"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-posY": event.target.value});             
+                }}
+               ></input>               
                <br></br>
            Width:
-                 <input type="range"></input>
+              <input type="range"
+                value={currentProjectNav["mainPage-story-width"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-width": event.target.value});             
+                }}
+               ></input>
+              <input type="number"
+                value={currentProjectNav["mainPage-story-width"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-width": event.target.value});             
+                }}
+               ></input>               
                <br></br>
            Height:
-                 <input type="range"></input>
+              <input type="range"
+                value={currentProjectNav["mainPage-story-height"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-height": event.target.value});             
+                }}
+               ></input>
+              <input type="number"
+                value={currentProjectNav["mainPage-story-height"]}
+                onChange={(event)=>{
+                  //TODO obj for previewing
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-story-height": event.target.value});             
+                }}
+               ></input>
                <br></br>
            Font Color:
                  <input type="color"></input>
@@ -619,6 +682,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  <input type="number"></input>
                <br></br>
            </div>}
+
+
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-setting"]}
            checked={currentProjectNav["mainPage-setting"]}
            onChange={()=>{
@@ -630,7 +695,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
              setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
             }}      
-         ></input><label>Setting</label>
+         ></input>
+         <label>Setting</label>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
@@ -651,6 +717,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  <input type="number"></input>
                <br></br>
            </div>}
+         
+         
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
            checked={currentProjectNav["mainPage-playerProfile"]}
            onChange={()=>{
@@ -662,7 +730,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
             }}               
-         ></input><label>Player Profile</label>
+         ></input>
+         <label>Player Profile</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
@@ -684,6 +753,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
 
            </div>}             
+         
+         
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-shop"]}
            checked={currentProjectNav["mainPage-shop"]}
            onChange={()=>{
@@ -695,7 +766,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
              setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
             }}                     
-         ></input><label>Shop</label>
+         ></input>
+         <label>Shop</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
                  <input type="range"></input>
@@ -716,6 +788,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  <input type="number"></input>
                <br></br>
            </div>} 
+
      </div>
     </div>}
 
