@@ -841,10 +841,40 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <label>Player Profile</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
            Position X:
-                 <input type="range"></input>
+                 <input type="range"
+                  value={currentProjectNav["mainPage-playerProfile-posX"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posX": event.target.value});             
+                  }}                                 
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["mainPage-playerProfile-posX"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posX": event.target.value});             
+                  }}                                 
+                 ></input>
                <br></br>
            Position Y:
-               <input type="range"></input>
+           <input type="range"
+                  value={currentProjectNav["mainPage-playerProfile-posY"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posY": event.target.value});             
+                  }}                                 
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["mainPage-playerProfile-posY"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posY": event.target.value});             
+                  }}                                 
+                 ></input>
                <br></br>
            Width:
                  <input type="range"></input>
