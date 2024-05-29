@@ -913,10 +913,33 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  ></input>                 
                <br></br>
            Font Color:
-                <input type="color"></input>
+                <input type="color"
+                  value={currentProjectNav["mainPage-playerProfile-fontColor"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontColor": event.target.value});             
+                  }}                   
+                ></input>
+                <label> {currentProjectNav["mainPage-playerProfile-fontColor"]}</label>
                <br></br>
            Font Size:
-                 <input type="number"></input>
+              <input type="range"
+                  value={currentProjectNav["mainPage-playerProfile-fontSize"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
+                  }}                                 
+                 ></input>
+              <input type="number"
+                  value={currentProjectNav["mainPage-playerProfile-fontSize"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
+                  }}                                 
+                 ></input>                 
                <br></br>
 
            </div>}             
