@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
 export default function NavigationSetter({initialNavObj, updateNavObj, openRm, updateCurrentPageName}) {
-    const [currentSettingPage, setCurrentSettingPage] = useState("");
+  const screenWidth = 800; //TODO temp  
+  const screenHeihgt = 600; //TODO temp
+  
+  const [currentSettingPage, setCurrentSettingPage] = useState("");
 
     const [currentProjectNav, setCurrentProjectNav] = useState({
       "screenSize": initialNavObj["screenSize"],
@@ -499,6 +502,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                <label>Group Position X:</label>
                  <input type="range"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -507,6 +511,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }
                  ></input>
                  <input type="number"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -516,6 +521,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                <label>Group Position Y:</label>
                <input type="range"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
                   onChange={(event)=>{
                    //TODO obj for previewing
@@ -523,6 +529,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}               
                ></input>
                <input type="number"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
                   onChange={(event)=>{
                   //TODO obj for previewing
@@ -1032,10 +1039,34 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             ></input> 
                <br></br>
            Font Color:
-                <input type="color"></input>
+                <input type="color"
+                  value={currentProjectNav["mainPage-shop-fontColor"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-shop-fontColor": event.target.value});             
+                    }}  
+                ></input>
+                
+                <label> {currentProjectNav["mainPage-shop-fontColor"]}</label>
                <br></br>
            Font Size:
-                 <input type="number"></input>
+            <input type="range"
+                    value={currentProjectNav["mainPage-shop-fontSize"]}
+                    onChange={(event)=>{
+                      //TODO obj for previewing
+
+                      setCurrentProjectNav({...currentProjectNav, "mainPage-shop-fontSize": event.target.value});             
+                    }}                                 
+              ></input>
+            <input type="number"
+                    value={currentProjectNav["mainPage-shop-fontSize"]}
+                    onChange={(event)=>{
+                      //TODO obj for previewing
+
+                      setCurrentProjectNav({...currentProjectNav, "mainPage-shop-fontSize": event.target.value});             
+                    }}                                 
+              ></input>              
                <br></br>
            </div>} 
 
