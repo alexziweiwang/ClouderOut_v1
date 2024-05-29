@@ -689,7 +689,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Font Size:
                 <input type="range"
-                  value={currentProjectNav["mainPage-setting-fontSize"]}
+                  value={currentProjectNav["mainPage-story-fontSize"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
 
@@ -697,7 +697,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                ></input>
                 <input type="number"
-                  value={currentProjectNav["mainPage-setting-fontSize"]}
+                  value={currentProjectNav["mainPage-story-fontSize"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
 
@@ -795,10 +795,33 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  ></input>                 
                <br></br>
            Font Color:
-                <input type="color"></input>
+                <input type="color"
+                  value={currentProjectNav["mainPage-setting-fontColor"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-fontColor": event.target.value});             
+                  }}
+                 ></input>
+                 <label> {currentProjectNav["mainPage-setting-fontColor"]}</label>
                <br></br>
            Font Size:
-                 <input type="number"></input>
+                <input type="range"
+                  value={currentProjectNav["mainPage-setting-fontSize"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-fontSize": event.target.value});             
+                  }}
+                 ></input>
+                <input type="number"
+                  value={currentProjectNav["mainPage-setting-fontSize"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-fontSize": event.target.value});             
+                  }}
+                 ></input>                 
                <br></br>
            </div>}
          
