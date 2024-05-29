@@ -960,10 +960,40 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <label>Shop</label>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
-                 <input type="range"></input>
+            <input type="range"
+                  value={currentProjectNav["mainPage-shop-posX"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posX": event.target.value});             
+                  }}                                 
+            ></input>
+            <input type="number"
+                  value={currentProjectNav["mainPage-shop-posX"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posX": event.target.value});             
+                  }}                                 
+            ></input>
                <br></br>
            Position Y:
-               <input type="range"></input>
+           <input type="range"
+                  value={currentProjectNav["mainPage-shop-posY"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posY": event.target.value});             
+                  }}                                 
+            ></input>
+            <input type="number"
+                  value={currentProjectNav["mainPage-shop-posY"]}
+                  onChange={(event)=>{
+                    //TODO obj for previewing
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posY": event.target.value});             
+                  }}                                 
+            ></input>
                <br></br>
            Width:
                  <input type="range"></input>
