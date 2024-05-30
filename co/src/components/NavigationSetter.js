@@ -893,6 +893,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Position Y:
                 <input type="range"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-posY"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -901,6 +902,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
                  ></input>
                  <input type="number"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-posY"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -911,6 +913,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Width:
                 <input type="range"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-playerProfile-width"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -919,6 +922,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
                  ></input>
                <input type="number"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-playerProfile-width"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -929,6 +933,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Height:
                 <input type="range"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-height"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -937,6 +942,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
                  ></input>
                <input type="number"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-height"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -958,6 +964,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Font Size:
               <input type="range"
+                  min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-playerProfile-fontSize"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -966,6 +973,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
                  ></input>
               <input type="number"
+                  min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-playerProfile-fontSize"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -994,6 +1002,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
             <input type="range"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-posX"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1002,6 +1011,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
             ></input>
             <input type="number"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-posX"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1012,6 +1022,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Position Y:
            <input type="range"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-posY"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1020,6 +1031,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
             ></input>
             <input type="number"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-posY"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1030,6 +1042,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Width:
            <input type="range"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-width"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1038,6 +1051,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
             ></input>
            <input type="number"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-width"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1048,6 +1062,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Height:
            <input type="range"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-height"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1056,6 +1071,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
             ></input>
            <input type="number"
+                  min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-height"]}
                   onChange={(event)=>{
                     //TODO obj for previewing
@@ -1078,6 +1094,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
            Font Size:
             <input type="range"
+                    min="5" max="32" step="1"
                     value={currentProjectNav["mainPage-shop-fontSize"]}
                     onChange={(event)=>{
                       //TODO obj for previewing
