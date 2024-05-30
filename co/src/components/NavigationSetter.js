@@ -330,13 +330,21 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         value={currentProjectNav["mainPage-isBackgroundShape"]}
                         checked={currentProjectNav["mainPage-isBackgroundShape"]}
                         onChange={()=>{     
-                          //TODO obj for previewing
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+                          //TODO test
+
                           setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});            
                         
                         }}></input>
 
                         <label onClick={()=>{
-                          //TODO obj for previewing
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+                          //TODO test
+
                           setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
                         }}>Rectangle & Color Filled </label>
                             {currentProjectNav["mainPage-isBackgroundShape"] &&
@@ -345,7 +353,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                     <input type="color"
                                       value={currentProjectNav["mainPage-bgShapeName"]}
                                       onChange={(event)=>{
-                                        //TODO obj for previewing
+                                        let tempObj = currentProjectNav;
+                                        tempObj["mainPage-bgShapeName"] = event.target.value;
+                                        updateNavObj(tempObj);
+                                        //TODO test
+
                                         setCurrentProjectNav({...currentProjectNav, "mainPage-bgShapeName": event.target.value});               
                                         
                                         }}></input>
@@ -357,17 +369,29 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             value={currentProjectNav["mainPage-isBackgroundShape"]}
                             checked={!currentProjectNav["mainPage-isBackgroundShape"]}
                           onChange={()=>{
-                            //TODO obj for previewing
+                            let tempObj = currentProjectNav;
+                            tempObj["mainPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj);
+                            //TODO test
+
                             setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});                                                  
                           }}></input><label onClick={()=>{
-                            //TODO obj for previewing
-                            setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
+                              let tempObj = currentProjectNav;
+                              tempObj["mainPage-isBackgroundShape"] = false;
+                              updateNavObj(tempObj);
+                              //TODO test
+
+                              setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
                             
                               }}>Base Picture </label><br></br>
                             {!currentProjectNav["mainPage-isBackgroundShape"] &&
                             <div className="indentOne">
                                 <select onChange={(event)=>{
-                                    //TODO obj for previewing
+                                    let tempObj = currentProjectNav;
+                                    tempObj["mainPage-bgPicName"] = event.target.value;
+                                    updateNavObj(tempObj);
+                                    //TODO test
+
                                     setCurrentProjectNav({...currentProjectNav, "mainPage-bgPicName": event.target.value});
                                     
                                 }}>  
@@ -387,13 +411,21 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             <input type="radio" 
               value={currentProjectNav["mainPage-isListItemShape"]}
               checked={currentProjectNav["mainPage-isListItemShape"]}
-              onChange={()=>{          
-                //TODO obj for previewing
+              onChange={()=>{  
+                let tempObj = currentProjectNav;
+                tempObj["mainPage-isListItemShape"] = true;
+                updateNavObj(tempObj);                           
+                //TODO test
+
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 
               }}></input>
               <label onClick={()=>{
-                //TODO obj for previewing
+                let tempObj = currentProjectNav;
+                tempObj["mainPage-isListItemShape"] = true;
+                updateNavObj(tempObj);                  
+                //TODO test
+
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 
               }}>Rectangle & Color Filled </label>
