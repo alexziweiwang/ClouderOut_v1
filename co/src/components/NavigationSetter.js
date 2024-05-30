@@ -1100,7 +1100,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-height"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-height"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-height": event.target.value});             
                   }}                                 
@@ -1109,7 +1112,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-height"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-height"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-height": event.target.value});             
                   }}                                 
@@ -1119,7 +1125,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <input type="color"
                   value={currentProjectNav["mainPage-playerProfile-fontColor"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontColor": event.target.value});             
                   }}                   
@@ -1131,7 +1140,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-playerProfile-fontSize"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontSize"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
                   }}                                 
@@ -1140,7 +1152,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-playerProfile-fontSize"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontSize"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
                   }}                                 
@@ -1169,7 +1184,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-posX"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-shop-posX"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posX": event.target.value});             
                   }}                                 
@@ -1178,7 +1196,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-posX"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-shop-posX"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posX": event.target.value});             
                   }}                                 
@@ -1189,7 +1210,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-posY"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-shop-posY"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posY": event.target.value});             
                   }}                                 
@@ -1198,7 +1222,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-posY"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-shop-posY"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-shop-posY": event.target.value});             
                   }}                                 
