@@ -436,7 +436,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           <input type="color"
                           value={currentProjectNav["mainPage-listItemShapeName"]}
                           onChange={(event)=>{
-                                //TODO obj for previewing
+                                let tempObj = currentProjectNav;
+                                tempObj["mainPage-listItemShapeName"] = event.target.value;
+                                updateNavObj(tempObj);                  
+                                //TODO test
+                
                                 setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShapeName": event.target.value});
                                 
                               }}></input>
@@ -447,18 +451,30 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 value={currentProjectNav["mainPage-isListItemShape"]}
                 checked={!currentProjectNav["mainPage-isListItemShape"]}
                 onChange={()=>{
-                  //TODO obj for previewing
+                  let tempObj = currentProjectNav;
+                  tempObj["mainPage-isListItemShape"] = false;
+                  updateNavObj(tempObj);                  
+                  //TODO test
+
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
                   
               }}></input><label onClick={()=>{
-                  //TODO obj for previewing
+                let tempObj = currentProjectNav;
+                tempObj["mainPage-isListItemShape"] = false;
+                updateNavObj(tempObj);                  
+                //TODO test
+
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
                   
                     }}>Base Picture </label><br></br>
                   {!currentProjectNav["mainPage-isListItemShape"] &&
                   <div className="indentOne">
                       <select onChange={(event)=>{
-                          //TODO obj for previewing
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-listItemPicName"] = event.target.value;
+                          updateNavObj(tempObj);                  
+                          //TODO test
+             
                           setCurrentProjectNav({...currentProjectNav, "mainPage-listItemPicName": event.target.value});
                           
                       }}>                    
@@ -537,7 +553,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupX"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
                     }
                   }
@@ -546,7 +566,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
-                    //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupX"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
                     }}
                  ></input>                 
@@ -556,7 +580,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
                   onChange={(event)=>{
-                   //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupY"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupY": event.target.value});
                     }}               
                ></input>
@@ -564,7 +592,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
                   onChange={(event)=>{
-                  //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupY"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupY": event.target.value});
                     }}               
                ></input>               
@@ -574,7 +606,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupWidth"]}
                   onChange={(event)=>{
-                 //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemWidth"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupWidth": event.target.value});
                     }}               
                ></input>  
@@ -582,7 +618,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupWidth"]}
                   onChange={(event)=>{
-                //TODO obj for previewing
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemWidth"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+                    
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupWidth": event.target.value});
                     }}               
                ></input>                 
