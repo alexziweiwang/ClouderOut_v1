@@ -59,7 +59,7 @@ export default function GameMaker() {
     "mainPage-entriesCustom": false,
 
     "mainPage-isBackgroundShape": false,
-    "mainPage-bgShapeName": "",
+    "mainPage-bgShadeName": "",
     "mainPage-bgPicName": "",
     "mainPage-isListItemShape": false,
     "mainPage-listItemShapeName": "",
@@ -95,7 +95,7 @@ export default function GameMaker() {
     "mainPage-shop-fontColor": "",
 
     "saveloadPage-isBackgroundShape": false,
-    "saveloadPage-bgsShapeName": "",
+    "saveloadPage-bgShadeName": "",
     "saveloadPage-bgPicName": "",
     "saveloadPage-isSlotShape": false,
     "saveloadPage-slotShapeName": "",
@@ -119,7 +119,7 @@ export default function GameMaker() {
     "storyPage-chapterListHorizontal": true,
 
     "settingPage-isBackgroundShape": false,
-    "settingPage-bgsShapeName": "",
+    "settingPage-bgShadeName": "",
     "settingPage-bgPicName": "",
     "settingPage-isListItemShape": false,
     "settingPage-listItemShapeName": "",

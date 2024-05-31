@@ -17,7 +17,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-entriesCustom": initialNavObj["mainPage-entriesCustom"],
 
       "mainPage-isBackgroundShape": false,
-      "mainPage-bgShapeName": "",
+      "mainPage-bgShadeName": "",
       "mainPage-bgPicName": "",
       "mainPage-isListItemShape": false,
       "mainPage-listItemShapeName": "",
@@ -53,7 +53,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-shop-fontColor": "",
   
       "saveloadPage-isBackgroundShape": false,
-      "saveloadPage-bgsShapeName": "",
+      "saveloadPage-bgShadeName": "",
       "saveloadPage-bgPicName": "",
       "saveloadPage-isSlotShape": false,
       "saveloadPage-slotShapeName": "",
@@ -77,7 +77,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "storyPage-chapterListHorizontal": initialNavObj["storyPage-chapterListHorizontal"],
 
       "settingPage-isBackgroundShape": false,
-      "settingPage-bgsShapeName": "",
+      "settingPage-bgShadeName": "",
       "settingPage-bgPicName": "",
       "settingPage-isListItemShape": false,
       "settingPage-listItemShapeName": "",
@@ -351,17 +351,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                 <div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
-                                      value={currentProjectNav["mainPage-bgShapeName"]}
+                                      value={currentProjectNav["mainPage-bgShadeName"]}
                                       onChange={(event)=>{
                                         let tempObj = currentProjectNav;
-                                        tempObj["mainPage-bgShapeName"] = event.target.value;
+                                        tempObj["mainPage-bgShadeName"] = event.target.value;
                                         updateNavObj(tempObj);
                                         //TODO test
 
-                                        setCurrentProjectNav({...currentProjectNav, "mainPage-bgShapeName": event.target.value});               
+                                        setCurrentProjectNav({...currentProjectNav, "mainPage-bgShadeName": event.target.value});               
                                         
                                         }}></input>
-                                    <label> {currentProjectNav["mainPage-bgShapeName"]}</label>
+                                    <label> {currentProjectNav["mainPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br>
@@ -1439,25 +1439,54 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
      <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
-                        }}></input><label onClick={(event)=>{
-                                
-                                }}>Rectangle & Color Filled </label>
+                        value={currentProjectNav["settingPage-isBackgroundShape"]}
+                        checked={currentProjectNav["settingPage-isBackgroundShape"]}
+                        onChange={()=>{  
+                          let tempObj = currentProjectNav;
+                          tempObj["settingPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+
+                          setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": true});
+
+                        }}></input><label onClick={()=>{
+                              let tempObj = currentProjectNav;
+                              tempObj["settingPage-isBackgroundShape"] = true;
+                              updateNavObj(tempObj);
+
+                              setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": true});
+      
+                        }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
+                                    value={currentProjectNav["settingPage-bgShadeName"]}
                                     onChange={(event)=>{
-                                      
+                                      let tempObj = currentProjectNav;
+                                      tempObj["settingPage-bgShadeName"] = event.target.value;
+                                      updateNavObj(tempObj);                                      
+
+                                      setCurrentProjectNav({...currentProjectNav, "settingPage-bgShadeName": event.target.value});
+
                                         }}></input>
-                                    <label></label>
+                                    <label> {currentProjectNav["settingPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
-                          onChange={(event)=>{
-                          
-                        }}></input><label onClick={(event)=>{
+                          onChange={()=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["settingPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj);
+
+                            setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": false});
+                         
+                        }}></input><label onClick={()=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["settingPage-isBackgroundShape"] = false;
+                                updateNavObj(tempObj);
+
+                                setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": false});
+      
                               }}>Base Picture </label>
                             {
                             <>
