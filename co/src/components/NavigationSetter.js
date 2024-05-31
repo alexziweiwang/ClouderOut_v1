@@ -1560,6 +1560,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   {
                   <>
                       <select onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-listItemPicName"] = event.target.value;
+                        updateNavObj(tempObj);
+
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-listItemPicName": event.target.value});
+                                      
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
                 
@@ -1597,15 +1603,58 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     updateNavObj(tempObj);   
 
                     setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": false});
-                }}
+                
+                  }}
                ></input>
                <label>Vertical</label>
                <br></br>
                Group Position X:
-                 <input type="range"></input>
+                 <input type="range"
+                  value={currentProjectNav["settingPage-listItemGroupX"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupX"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupX": event.target.value});
+           
+                  }}
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["settingPage-listItemGroupX"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupX"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupX": event.target.value});
+           
+                  }}
+                 ></input>                 
                <br></br>
                Group Position Y:
-               <input type="range"></input>
+               <input type="range"
+                  value={currentProjectNav["settingPage-listItemGroupY"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupY"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupY": event.target.value});
+           
+                  }}
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["settingPage-listItemGroupY"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupY"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupY": event.target.value});
+           
+                  }}
+                 ></input>  
                <br></br>
                Group Width:
                  <input type="range"></input>
