@@ -1657,10 +1657,52 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  ></input>  
                <br></br>
                Group Width:
-                 <input type="range"></input>
+               <input type="range"
+                  value={currentProjectNav["settingPage-listItemGroupWidth"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupWidth"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupWidth": event.target.value});
+           
+                  }}
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["settingPage-listItemGroupWidth"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupWidth"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupWidth": event.target.value});
+           
+                  }}
+                  ></input>
                <br></br>
                Group Height:
-                 <input type="range"></input>
+               <input type="range"
+                  value={currentProjectNav["settingPage-listItemGroupHeight"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupHeight"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupHeight": event.target.value});
+           
+                  }}
+                 ></input>
+                 <input type="number"
+                  value={currentProjectNav["settingPage-listItemGroupHeight"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["settingPage-listItemGroupHeight"] = event.target.value;
+                    updateNavObj(tempObj);   
+
+                    setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGroupHeight": event.target.value});
+           
+                  }}
+                  ></input>
        </div>}
        
        <br></br>
