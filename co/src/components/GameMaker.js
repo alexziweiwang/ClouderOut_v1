@@ -168,8 +168,11 @@ export default function GameMaker() {
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         setFirstTimeEnter(false);
     }
+    if (projectName === "default-no-state projectname") {
+      alert("No project selected. Returning to project selection page...");
+      goToProjectManagingPanel();
+    }
   });
-
 
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });
@@ -232,7 +235,7 @@ export default function GameMaker() {
   <div>
     
     <div className="returning_buttons">
-      <button className="button" onClick={goToProjectManagingPanel}> ← Project Management </button>
+      <button className="button" onClick={()=>{goToProjectManagingPanel();}}> ← Project Management </button>
       <p>Project Name: {projectName}</p>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> Resource Manager </button>
     </div>

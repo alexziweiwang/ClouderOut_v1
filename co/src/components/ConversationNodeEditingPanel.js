@@ -119,8 +119,15 @@ export default function ConversationNodeEditingPanel() {
             getGameDataFromCloud();
             setFirstTimeEnter(false);
         }
-
-    });
+        if (projectName === "default-no-state projectName") {
+            alert("No project selected. Returning to project selection page...");
+            goToProjectManagingPanel();
+          }
+        });
+      
+    function goToProjectManagingPanel() {
+        navigate('/projectmanagingpanel', { replace: true });
+    }
 
     async function getGameDataFromCloud() {
         let isUpdated = true;
