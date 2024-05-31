@@ -1491,12 +1491,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             {
                             <>
                                 <select onChange={(event)=>{
+                                  let tempObj = currentProjectNav;
+                                  tempObj["settingPage-bgPicName"] = event.target.value;
+                                  updateNavObj(tempObj);
+
+                                  setCurrentProjectNav({...currentProjectNav, "settingPage-bgPicName": event.target.value});
+        
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
                                 </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
-
           
                   </div>
        
@@ -1506,25 +1511,52 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 
             <input type="radio" 
               
-              onChange={(event)=>{          
-              }}></input><label onClick={(event)=>{
-                      
+              onChange={()=>{      
+                let tempObj = currentProjectNav;
+                tempObj["settingPage-isListItemShape"] = true;
+                updateNavObj(tempObj);
+
+                setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": true});
+
+              }}></input><label onClick={()=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["settingPage-isListItemShape"] = true;
+                  updateNavObj(tempObj);
+
+                  setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": true});
+                        
                       }}>Rectangle & Color Filled </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
                           <input type="color"
                           onChange={(event)=>{
-                            
-                              }}></input>
+                                let tempObj = currentProjectNav;
+                                tempObj["settingPage-listItemShapeName"] = event.target.value;
+                                updateNavObj(tempObj);
+                
+                                setCurrentProjectNav({...currentProjectNav, "settingPage-listItemShapeName": event.target.value});
+                
+                            }}></input>
                           <label></label>
                       </div>}
                   
               <br></br><input type="radio"
-                onChange={(event)=>{
-                
-              }}></input><label onClick={(event)=>{
-                    }}>Base Picture </label>
+                onChange={()=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["settingPage-isListItemShape"] = false;
+                  updateNavObj(tempObj);
+
+                  setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": false});
+                           
+              }}></input><label onClick={()=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["settingPage-isListItemShape"] = false;
+                  updateNavObj(tempObj);
+
+                  setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": false});
+                        
+                }}>Base Picture </label>
                   {
                   <>
                       <select onChange={(event)=>{
