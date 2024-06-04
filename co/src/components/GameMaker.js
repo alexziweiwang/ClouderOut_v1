@@ -72,7 +72,6 @@ export default function GameMaker() {
     "mainPage-listItemGroupFontColor": "",
     "mainPage-listItemGroupFontSize": 10,
 
-
     "mainPage-story-posX": 100,
     "mainPage-story-posY": 100,
     "mainPage-story-width": 100,
@@ -97,6 +96,11 @@ export default function GameMaker() {
     "mainPage-shop-height": 60,
     "mainPage-shop-fontSize": 10,
     "mainPage-shop-fontColor": "",
+
+    "mainPage-story-name": "Story",
+    "mainPage-setting-name": "Settings",
+    "mainPage-playerProfile-name": "Player Profile",
+    "mainPage-shop-name": "shop",
 
     "saveloadPage-isBackgroundShape": false,
     "saveloadPage-bgShadeName": "",

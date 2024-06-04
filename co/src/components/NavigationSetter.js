@@ -54,6 +54,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-shop-height": initialNavObj["mainPage-shop-height"],
       "mainPage-shop-fontSize": initialNavObj["mainPage-shop-fontSize"],
       "mainPage-shop-fontColor": initialNavObj["mainPage-shop-fontColor"],
+
+      "mainPage-story-name": initialNavObj["mainPage-story-name"],
+      "mainPage-setting-name": initialNavObj["mainPage-setting-name"],
+      "mainPage-playerProfile-name": initialNavObj["mainPage-playerProfile-name"],
+      "mainPage-shop-name": initialNavObj["mainPage-shop-name"],
   
       "saveloadPage-isBackgroundShape": initialNavObj["saveloadPage-isBackgroundShape"],
       "saveloadPage-bgShadeName": initialNavObj["saveloadPage-bgShadeName"],
@@ -111,6 +116,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-seVol-fontSize": initialNavObj["settingPage-seVol-fontSize"],
       "settingPage-seVol-fontColor": initialNavObj["settingPage-seVol-fontColor"]
     });
+
+    const [mainPageStoryName, setMainPageStoryName] = useState("");
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -753,6 +760,25 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            onClick={()=>{alert("Story-option must be kept.");}}
          ></input>
          <label>Story</label>
+         <div className="indentOne">
+           <label>Display Naming: </label>
+           <input 
+            value={currentProjectNav["mainPage-story-name"]}
+            onChange={(event)=>{
+              setMainPageStoryName(event.target.value);
+            }}
+           ></input>
+           <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-story-name"] = mainPageStoryName;
+              updateNavObj(tempObj);                  
+              //TODO test
+              
+              setCurrentProjectNav({...currentProjectNav, "mainPage-story-name": mainPageStoryName});             
+
+           }}>Update</button>
+            //TODO
+         </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && 
          <div className="indentOne">
            Position X:
@@ -915,7 +941,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
              setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
             }}      
          ></input>
-         <label>Setting</label>
+         <label>Settings</label>
+         <div className="indentOne">
+           <label>Display Naming: </label><input></input> //TODO
+         </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
            Position X:
                  <input type="range"
@@ -1077,6 +1106,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             }}               
          ></input>
          <label>Player Profile</label>
+         <div className="indentOne">
+           <label>Display Naming: </label><input></input> //TODO
+         </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
            Position X:
                  <input type="range"
@@ -1239,6 +1271,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             }}                     
          ></input>
          <label>Shop</label>
+         <div className="indentOne">
+           <label>Display Naming: </label><input></input> //TODO
+         </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
             <input type="range"

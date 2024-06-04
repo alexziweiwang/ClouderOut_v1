@@ -14,7 +14,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "Player Profile": navObj["mainPage-playerProfile"],
         "Settings": navObj["mainPage-setting"],
         "Shop": navObj["mainPage-shop"],
-    });
+    }); //booleans
     const [mainPageMapSize, setMainPageMapSize] = useState(0);
     const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
 
@@ -89,13 +89,23 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}>
 
             {Object.keys(mainPageElementList).map((key) => {
+                let optionName = "";
+                if (key === "Story") {
+                    optionName = navObj["mainPage-story-name"];
+                } else if (key === "Player Profile") {
+                    optionName = navObj["mainPage-playerProfile-name"];
+                } else if (key === "Settings") {
+                    optionName = navObj["mainPage-setting-name"];
+                } else if (key === "Shop") {
+                    optionName = navObj["mainPage-shop-name"];
+                }
 
                 if (mainPageElementList[key] === true) {
                     
                     return (
-                    <>
-                        {navObj["mainPage-isListItemShape"] === true && <div
-                            style={{
+                    <>  
+                        <div style = {navObj["mainPage-isListItemShape"] === true ? 
+                            {
                                 "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
                                 "marginRight": `${navObj["mainPage-listItemGap"]}px`,
@@ -107,13 +117,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "justify-content": "center",
                                 "align-items": "center",
                                 "display": "flex",
-                            }}
-                        >
-                            <label>{key}</label>
-                        </div>}
-                        {navObj["mainPage-isListItemShape"] === false && <div
-                            style={{
-                                //TODO background image & backgound size
+                            } : {            
+
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
                                 "marginRight": `${navObj["mainPage-listItemGap"]}px`,
                                 "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
@@ -123,17 +128,15 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                                 "justify-content": "center",
                                 "align-items": "center",
-                                "display": "flex",
-                            }}
-                        >
-                            <label>{key}</label>
-                        </div>}                        
+                                "display": "flex",}
+                        }>
+                             <label>{optionName}</label>
+                        </div>
+                         
                     </>
                     );
                 }
 
-                
-          
             }
             )}
 
@@ -148,6 +151,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             style={{"position": "absolute",}}>
 
             {Object.keys(mainPageElementList).map((key) => {
+                let optionName = "";
+                if (key === "Story") {
+                    optionName = navObj["mainPage-story-name"];
+                } else if (key === "Player Profile") {
+                    optionName = navObj["mainPage-playerProfile-name"];
+                } else if (key === "Settings") {
+                    optionName = navObj["mainPage-setting-name"];
+                } else if (key === "Shop") {
+                    optionName = navObj["mainPage-shop-name"];
+                }
 
                 if (mainPageElementList[key] === true) {
                     let currItemPosX = 0;
@@ -210,7 +223,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "display": "flex",
                             }}
                         >
-                            <label>{key}</label>
+                            <label>{optionName}</label>
                         </div>}
                         {navObj["mainPage-isListItemShape"] === false && <div
                             style={{
@@ -230,7 +243,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "display": "flex",
                             }}
                         >
-                            <label>{key}</label>
+                            <label>{optionName}</label>
                         </div>}                        
                     </>
                     );
