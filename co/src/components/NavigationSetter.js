@@ -118,7 +118,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     });
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
-    
+    const [mainPagePlayerProfileName, setMainPagePlayerProfileName] = useState("");
+    const [mainPageSettingsName, setMainPageSettingsName] = useState("");
+    const [mainPageShopName, setMainPageShopName] = useState("");
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -763,7 +766,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
-            value={currentProjectNav["mainPage-story-name"]}
+            value={mainPageStoryName}
             onChange={(event)=>{
               setMainPageStoryName(event.target.value);
             }}
@@ -777,7 +780,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "mainPage-story-name": mainPageStoryName});             
 
            }}>Update</button>
-            //TODO
+
          </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && 
          <div className="indentOne">
@@ -943,7 +946,22 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          ></input>
          <label>Settings</label>
          <div className="indentOne">
-           <label>Display Naming: </label><input></input> //TODO
+           <label>Display Naming: </label>
+           <input 
+            value={mainPageSettingsName}
+            onChange={(event)=>{
+              setMainPageSettingsName(event.target.value);
+            }}
+           ></input>
+           <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-setting-name"] = mainPageSettingsName;
+              updateNavObj(tempObj);                  
+              //TODO test
+              
+              setCurrentProjectNav({...currentProjectNav, "mainPage-setting-name": mainPageSettingsName});             
+
+           }}>Update</button>
          </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
            Position X:
@@ -1107,7 +1125,22 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          ></input>
          <label>Player Profile</label>
          <div className="indentOne">
-           <label>Display Naming: </label><input></input> //TODO
+           <label>Display Naming: </label>
+           <input 
+            value={mainPagePlayerProfileName}
+            onChange={(event)=>{
+              setMainPagePlayerProfileName(event.target.value);
+            }}
+           ></input>
+           <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-playerProfile-name"] = mainPagePlayerProfileName;
+              updateNavObj(tempObj);                  
+              //TODO test
+              
+              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-name": mainPagePlayerProfileName});             
+
+           }}>Update</button>
          </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
            Position X:
