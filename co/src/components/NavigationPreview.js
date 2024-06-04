@@ -9,10 +9,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const [navObj, setNavObj] = useState(initialNavObj);
     const [page, setPage] = useState("");
     const [mainPageElementList, setMainPageElementList] = useState({
-        "story" : navObj["mainPage-story"],
-        "playerProfile": navObj["mainPage-playerProfile"],
-        "setting": navObj["mainPage-setting"],
-        "shop": navObj["mainPage-shop"],
+        "Story" : navObj["mainPage-story"],
+        "Player Profile": navObj["mainPage-playerProfile"],
+        "Settings": navObj["mainPage-setting"],
+        "Shop": navObj["mainPage-shop"],
     });
     const [mainPageMapSize, setMainPageMapSize] = useState(0);
 
@@ -41,10 +41,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         }
 
         setMainPageElementList({
-            "story" : objTemp["mainPage-story"],
-            "shop": objTemp["mainPage-shop"],
-            "setting": objTemp["mainPage-setting"],
-            "playerProfile": objTemp["mainPage-playerProfile"]
+            "Story" : objTemp["mainPage-story"],
+            "Player Profile": objTemp["mainPage-playerProfile"],
+            "Settings": objTemp["mainPage-setting"],
+            "Shop": objTemp["mainPage-shop"],
         });
         let mapCount = 0;
         Object.keys(mainPageElementList).map((key) => {
@@ -73,8 +73,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             >
             <div style={{
                 "position": "absolute",
-                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
-                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+
                 "marginLeft": `${navObj["mainPage-listItemGroupX"]}px`,
                 "marginTop": `${navObj["mainPage-listItemGroupY"]}px`,
                 }}>
@@ -82,21 +81,20 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
 
             {Object.keys(mainPageElementList).map((key) => {
-                let mapSize = mainPageMapSize;
-
-                let itemWidth = navObj["mainPage-entriesHorizontal"] === false ? ((navObj["mainPage-listItemGroupWidth"] - navObj["mainPage-listItemGap"]) / mapSize) : navObj["mainPage-listItemGroupWidth"];
-
-                let itemHeight = navObj["mainPage-entriesHorizontal"] === false ? navObj["mainPage-listItemGroupHeight"] : ((navObj["mainPage-listItemGroupHeight"] - navObj["mainPage-listItemGap"]) / mapSize); 
 
                 if (navObj["mainPage-entriesCustom"] === false && mainPageElementList[key] === true) {
+                    
                     return (
                     <>
                         {navObj["mainPage-isListItemShape"] === true && <div
                             style={{
                                 "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
-                                "width": `${itemWidth}px`,
-                                "height": `${itemHeight}px`,
+                                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
+                                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                                "justify-content": "center",
+                                "align-items": "center",
+                                "display": "flex",
                             }}
                         >
                             <label>{key}</label>

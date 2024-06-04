@@ -551,7 +551,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                <label>Group Position X:</label>
                  <input type="range"
-                  min="1" max={screenWidth} step="1"
+                  min="0" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -564,7 +564,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }
                  ></input>
                  <input type="number"
-                  min="1" max={screenWidth} step="1"
+                  min="0" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -578,7 +578,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                <label>Group Position Y:</label>
                <input type="range"
-                  min="1" max={screenHeight} step="1"
+                  min="0" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -590,7 +590,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}               
                ></input>
                <input type="number"
-                  min="1" max={screenHeight} step="1"
+                  min="0" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -602,7 +602,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}               
                ></input>               
                <br></br>
-               <label>Group Width:</label>
+               <label>Item Width:</label>
                <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupWidth"]}
@@ -616,7 +616,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}               
                ></input>  
                <input type="number"
-                  min="1" max={screenWidth} step="1"
+                  min="1" max={screenWidth/4} step="1"
                   value={currentProjectNav["mainPage-listItemGroupWidth"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -628,9 +628,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}               
                ></input>                 
                <br></br>
-               <label>Group Height:</label>
+               <label>Item Height:</label>
                <input type="range"
-                  min="1" max={screenHeight} step="1"
+                  min="1" max={screenHeight/4} step="1"
                   value={currentProjectNav["mainPage-listItemGroupHeight"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
