@@ -26,7 +26,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-listItemGroupY": initialNavObj["mainPage-listItemGroupY"],
       "mainPage-listItemGroupWidth": initialNavObj["mainPage-listItemGroupWidth"],
       "mainPage-listItemGroupHeight": initialNavObj["mainPage-listItemGroupHeight"],
-      
+      "mainPage-listItemGap": initialNavObj["mainPage-listItemGap"],
+
       "mainPage-story-posX": initialNavObj["mainPage-story-posX"],
       "mainPage-story-posY": initialNavObj["mainPage-story-posY"],
       "mainPage-story-width": initialNavObj["mainPage-story-width"],
@@ -652,6 +653,31 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupHeight": event.target.value});
                     }}               
                ></input> 
+               <br></br>
+               <label>Item gap:</label>
+               <input type="range" 
+                min="1" max="10" step="1"
+                value={currentProjectNav["mainPage-listItemGap"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["mainPage-listItemGap"] = event.target.value;
+                  updateNavObj(tempObj);                  
+                  //TODO test
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGap": event.target.value});
+                  }}                  
+                ></input>
+               <input type="number" 
+                value={currentProjectNav["mainPage-listItemGap"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["mainPage-listItemGap"] = event.target.value;
+                  updateNavObj(tempObj);                  
+                  //TODO test
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGap": event.target.value});
+                  }}  
+                ></input>
              </div>}
          <br></br><input type="radio"  
             value={currentProjectNav["mainPage-entriesCustom"]} 

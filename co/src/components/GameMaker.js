@@ -68,6 +68,7 @@ export default function GameMaker() {
     "mainPage-listItemGroupY": 100,
     "mainPage-listItemGroupWidth": 420,
     "mainPage-listItemGroupHeight": 160,
+    "mainPage-listItemGap": 3,
 
     "mainPage-story-posX": 100,
     "mainPage-story-posY": 100,
