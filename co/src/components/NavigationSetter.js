@@ -747,18 +747,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <br></br>
          <br></br>
          <label>Main Page Items: </label>
-         
+         <br></br>
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-story"]}
-           checked={currentProjectNav["mainPage-story"]}
-           onChange={()=>{
-             let val = currentProjectNav["mainPage-story"];
-
-             let tempObj = currentProjectNav;
-             tempObj["mainPage-story"] = !val;
-             updateNavObj(tempObj);  
-
-             setCurrentProjectNav({...currentProjectNav, "mainPage-story": !val});             
-            }}
+           checked={true}
+           onClick={()=>{alert("Story-option must be kept.");}}
          ></input>
          <label>Story</label>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && 

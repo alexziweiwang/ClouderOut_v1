@@ -59,7 +59,7 @@ export default function GameMaker() {
     "mainPage-entriesCustom": false,
 
     "mainPage-isBackgroundShape": false,
-    "mainPage-bgShadeName": "",
+    "mainPage-bgShadeName": "rgb(222, 222, 235)",
     "mainPage-bgPicName": "",
     "mainPage-isListItemShape": true,
     "mainPage-listItemShadeName": "#c0cfe2",

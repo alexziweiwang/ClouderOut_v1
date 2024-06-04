@@ -5,6 +5,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(450);
 
+    const [resourceList, setResourceList] = useState([]); //TODO for resource-selection
 
     const [navObj, setNavObj] = useState(initialNavObj);
     const [page, setPage] = useState("");
@@ -15,6 +16,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "Shop": navObj["mainPage-shop"],
     });
     const [mainPageMapSize, setMainPageMapSize] = useState(0);
+    const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
 
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
@@ -53,6 +55,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             }
         })
         setMainPageMapSize(mapCount);
+
+        //TODO setMainPageBgPicUrl()
       
     });
     
@@ -66,13 +70,15 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
-                "backgroundColor": "rgb(222, 222, 235)", 
+                "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
+                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${mainPageBgPicUrl}')` : "",
+                "background-size": `${screenWidth}px ${screenHeight}px`,
+                
                 "marginLeft": `20px`,
                 "position": "relative", 
             
                 }}
             >
-            
 
             {/* grouped items */}
             {navObj["mainPage-entriesCustom"] === false &&  <div style={{

@@ -26,7 +26,6 @@ export default function GameUITextFramePreview({dataObj, getTextFrameUISettings}
         "user-select": "none",
     } : {
         "background-image": `url('${txtFrameUISettings["picUrl"]}')`,
-
         "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
         
         "width": `${txtFrameUISettings["width"]}px`,
