@@ -55,7 +55,7 @@ export default function GameMaker() {
     "mainPage-shop": true,
     "mainPage-setting": true,
     "mainPage-playerProfile": true,
-    "mainPage-entriesHorizontal": true,
+    "mainPage-entriesHorizontal": false,
     "mainPage-entriesCustom": false,
 
     "mainPage-isBackgroundShape": false,

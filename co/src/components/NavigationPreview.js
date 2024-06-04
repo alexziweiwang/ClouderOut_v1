@@ -62,6 +62,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         <br></br>
 
         {page === "Main Page"&& 
+        <> main page
         <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -72,14 +73,14 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
             >
             
+
+            {/* grouped items */}
             {navObj["mainPage-entriesCustom"] === false &&  <div style={{
                 "position": "absolute",
-
+                "display": navObj["mainPage-entriesHorizontal"] === true ? "flex" : "inline",
                 "marginLeft": `${navObj["mainPage-listItemGroupX"]}px`,
                 "marginTop": `${navObj["mainPage-listItemGroupY"]}px`,
                 }}>
-            main page
-
 
             {Object.keys(mainPageElementList).map((key) => {
 
@@ -91,6 +92,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             style={{
                                 "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                "marginRight": `${navObj["mainPage-listItemGap"]}px`,
                                 "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
                                 "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
                                 "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
@@ -107,6 +109,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             style={{
                                 //TODO background image & backgound size
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                "marginRight": `${navObj["mainPage-listItemGap"]}px`,
                                 "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
                                 "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
                                 "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
@@ -129,26 +132,18 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             )}
 
 
-
-
-
-
-
-
-
             </div>}
         
         
         
         
-        
+            {/* customized items */}
             {navObj["mainPage-entriesCustom"] === true && <div
             style={{"position": "absolute",}}>
 
-
             {Object.keys(mainPageElementList).map((key) => {
 
-            if (mainPageElementList[key] === true) {
+                if (mainPageElementList[key] === true) {
                     let currItemPosX = 0;
                     let currItemPosY = 0;
                     let currItemWidth = 0;
@@ -240,8 +235,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             </div>}
         
         
-        </div>}
+        </div>
+        
+        </>}
   
+
+
         {(navObj["isWithSL"] && page === "Game Progress Strategy") && <>
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
