@@ -8,13 +8,18 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
     const [navObj, setNavObj] = useState(initialNavObj);
     const [page, setPage] = useState("");
+    const [mainPageElementList, setMainPageElementList] = useState({
+        "story" : navObj["mainPage-story"],
+        "shop": navObj["mainPage-shop"],
+        "setting": navObj["mainPage-setting"],
+        "playerProfile": navObj["mainPage-playerProfile"]
+    });
 
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
         console.log("Navigation Preview -- "); //TODO test
 
         let objTemp = fetchNavObj();
-  
         setNavObj(objTemp);
 
         let tempPage= fetchPageName();
@@ -33,6 +38,13 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             setScreenWidth(600);
             setScreenHeight(800);
         }
+
+        setMainPageElementList({
+            "story" : objTemp["mainPage-story"],
+            "shop": objTemp["mainPage-shop"],
+            "setting": objTemp["mainPage-setting"],
+            "playerProfile": objTemp["mainPage-playerProfile"]
+        });
       
     });
     
@@ -58,6 +70,23 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {navObj["mainPage-playerProfile"].toString()} <br></br>
             {navObj["mainPage-entriesHorizontal"].toString()}<br></br>
             {navObj["mainPage-entriesCustom"].toString()}<br></br>
+            <div>
+
+
+            {Object.keys(mainPageElementList).map((key) => {
+                if (navObj["mainPage-entriesCustom"] === false && mainPageElementList[key] === true) {
+                    return (
+                        <div>
+                            <label>?{key}?</label>
+                        </div>
+                    );
+                }
+
+            }
+            )}
+        
+
+            </div>
         </div>}
   
         {(navObj["isWithSL"] && page === "Game Progress Strategy") && <>
