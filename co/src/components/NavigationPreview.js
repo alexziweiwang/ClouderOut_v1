@@ -76,9 +76,18 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {Object.keys(mainPageElementList).map((key) => {
                 if (navObj["mainPage-entriesCustom"] === false && mainPageElementList[key] === true) {
                     return (
-                        <div>
-                            <label>?{key}?</label>
-                        </div>
+                    <>
+                        {navObj["mainPage-isListItemShape"] === true && <div
+                            style={{
+                                "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
+                                "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
+                                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                            }}
+                        >
+                            <label>{key}</label>
+                        </div>}
+                    </>
                     );
                 }
             }

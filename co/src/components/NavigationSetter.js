@@ -20,7 +20,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-bgShadeName": initialNavObj["mainPage-bgShadeName"],
       "mainPage-bgPicName": initialNavObj["mainPage-bgPicName"],
       "mainPage-isListItemShape": initialNavObj["mainPage-isListItemShape"],
-      "mainPage-listItemShapeName": initialNavObj["mainPage-listItemShapeName"],
+      "mainPage-listItemShadeName": initialNavObj["mainPage-listItemShadeName"],
       "mainPage-listItemPicName": initialNavObj["mainPage-listItemPicName"],
       "mainPage-listItemGroupX": initialNavObj["mainPage-listItemGroupX"],
       "mainPage-listItemGroupY": initialNavObj["mainPage-listItemGroupY"],
@@ -57,7 +57,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "saveloadPage-bgShadeName": initialNavObj["saveloadPage-bgShadeName"],
       "saveloadPage-bgPicName": initialNavObj["saveloadPage-bgPicName"],
       "saveloadPage-isSlotShape": initialNavObj["saveloadPage-isSlotShape"],
-      "saveloadPage-slotShapeName": initialNavObj["saveloadPage-slotShapeName"],
+      "saveloadPage-slotShadeName": initialNavObj["saveloadPage-slotShadeName"],
       "saveloadPage-slotPicName": initialNavObj["saveloadPage-slotPicName"],
       "saveloadPage-slotRowCount": initialNavObj["saveloadPage-slotRowCount"],
       "saveloadPage-slotColCount": initialNavObj["saveloadPage-slotColCount"],
@@ -81,7 +81,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-bgShadeName": initialNavObj["settingPage-bgShadeName"],
       "settingPage-bgPicName": initialNavObj[ "settingPage-bgPicName"],
       "settingPage-isListItemShape": initialNavObj["settingPage-isListItemShape"],
-      "settingPage-listItemShapeName": initialNavObj["settingPage-listItemShapeName"],
+      "settingPage-listItemShadeName": initialNavObj["settingPage-listItemShadeName"],
       "settingPage-listItemPicName": initialNavObj["settingPage-listItemPicName"],
       "settingPage-listItemGroupX": initialNavObj["settingPage-listItemGroupX"],
       "settingPage-listItemGroupY": initialNavObj["settingPage-listItemGroupY"],
@@ -435,17 +435,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <div className="indentOne">
                           <label>Background Color: </label>
                           <input type="color"
-                          value={currentProjectNav["mainPage-listItemShapeName"]}
+                          value={currentProjectNav["mainPage-listItemShadeName"]}
                           onChange={(event)=>{
                                 let tempObj = currentProjectNav;
-                                tempObj["mainPage-listItemShapeName"] = event.target.value;
+                                tempObj["mainPage-listItemShadeName"] = event.target.value;
                                 updateNavObj(tempObj);                  
                                 //TODO test
                 
-                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShapeName": event.target.value});
+                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShadeName": event.target.value});
                                 
                               }}></input>
-                          <label> {currentProjectNav["mainPage-listItemShapeName"]}</label>
+                          <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
                       </div>}
                   
               <br></br><input type="radio"
@@ -1558,10 +1558,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           <input type="color"
                           onChange={(event)=>{
                                 let tempObj = currentProjectNav;
-                                tempObj["settingPage-listItemShapeName"] = event.target.value;
+                                tempObj["settingPage-listItemShadeName"] = event.target.value;
                                 updateNavObj(tempObj);
                 
-                                setCurrentProjectNav({...currentProjectNav, "settingPage-listItemShapeName": event.target.value});
+                                setCurrentProjectNav({...currentProjectNav, "settingPage-listItemShadeName": event.target.value});
                 
                             }}></input>
                           <label></label>
