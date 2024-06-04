@@ -27,6 +27,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-listItemGroupWidth": initialNavObj["mainPage-listItemGroupWidth"],
       "mainPage-listItemGroupHeight": initialNavObj["mainPage-listItemGroupHeight"],
       "mainPage-listItemGap": initialNavObj["mainPage-listItemGap"],
+      "mainPage-listItemGroupFontColor": initialNavObj["mainPage-listItemGroupFontColor"],
+      "mainPage-listItemGroupFontSize": initialNavObj["mainPage-listItemGroupFontSize"],
 
       "mainPage-story-posX": initialNavObj["mainPage-story-posX"],
       "mainPage-story-posY": initialNavObj["mainPage-story-posY"],
@@ -678,6 +680,47 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGap": event.target.value});
                   }}  
                 ></input>
+                <br></br>
+                <label>Font Color:</label>
+                 <input type="color" 
+                  value={currentProjectNav["mainPage-listItemGroupFontColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupFontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+  
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontColor": event.target.value});             
+                            
+                  }}
+                 ></input>
+                 <label> {currentProjectNav["mainPage-listItemGroupFontColor"]}</label>
+               <br></br>
+                Font Size:
+                <input type="range"
+                  min="5" max="32" step="1"
+                  value={currentProjectNav["mainPage-listItemGroupFontSize"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupFontSize"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontSize": event.target.value});             
+                  }}
+               ></input>
+                <input type="number"
+                  min="5" max="32" step="1"
+                  value={currentProjectNav["mainPage-listItemGroupFontSize"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupFontSize"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontSize": event.target.value});             
+                  }}
+               ></input>    
              </div>}
          <br></br><input type="radio"  
             value={currentProjectNav["mainPage-entriesCustom"]} 
