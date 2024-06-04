@@ -656,7 +656,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                <label>Item gap:</label>
                <input type="range" 
-                min="1" max="10" step="1"
+                min="1" max="110" step="1"
                 value={currentProjectNav["mainPage-listItemGap"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;

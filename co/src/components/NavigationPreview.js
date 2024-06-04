@@ -10,10 +10,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const [page, setPage] = useState("");
     const [mainPageElementList, setMainPageElementList] = useState({
         "story" : navObj["mainPage-story"],
-        "shop": navObj["mainPage-shop"],
+        "playerProfile": navObj["mainPage-playerProfile"],
         "setting": navObj["mainPage-setting"],
-        "playerProfile": navObj["mainPage-playerProfile"]
+        "shop": navObj["mainPage-shop"],
     });
+    const [mainPageMapSize, setMainPageMapSize] = useState(0);
 
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
@@ -45,6 +46,13 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             "setting": objTemp["mainPage-setting"],
             "playerProfile": objTemp["mainPage-playerProfile"]
         });
+        let mapCount = 0;
+        Object.keys(mainPageElementList).map((key) => {
+            if (mainPageElementList[key] === true) {
+                mapCount++;
+            }
+        })
+        setMainPageMapSize(mapCount);
       
     });
     
@@ -59,21 +67,27 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "height": `${screenHeight}px`,
                 "backgroundColor": "rgb(222, 222, 235)", 
                 "marginLeft": `20px`,
+                "position": "relative", 
             
                 }}
             >
+            <div style={{
+                "position": "absolute",
+                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
+                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                "marginLeft": `${navObj["mainPage-listItemGroupX"]}px`,
+                "marginTop": `${navObj["mainPage-listItemGroupY"]}px`,
+                }}>
             main page
-            <br></br>
-            {navObj["mainPage-story"].toString()}<br></br>
-            {navObj["mainPage-shop"].toString()}<br></br>
-            {navObj["mainPage-setting"].toString()}<br></br>
-            {navObj["mainPage-playerProfile"].toString()} <br></br>
-            {navObj["mainPage-entriesHorizontal"].toString()}<br></br>
-            {navObj["mainPage-entriesCustom"].toString()}<br></br>
-            <div>
 
 
             {Object.keys(mainPageElementList).map((key) => {
+                let mapSize = mainPageMapSize;
+
+                let itemWidth = navObj["mainPage-entriesHorizontal"] === false ? ((navObj["mainPage-listItemGroupWidth"] - navObj["mainPage-listItemGap"]) / mapSize) : navObj["mainPage-listItemGroupWidth"];
+
+                let itemHeight = navObj["mainPage-entriesHorizontal"] === false ? navObj["mainPage-listItemGroupHeight"] : ((navObj["mainPage-listItemGroupHeight"] - navObj["mainPage-listItemGap"]) / mapSize); 
+
                 if (navObj["mainPage-entriesCustom"] === false && mainPageElementList[key] === true) {
                     return (
                     <>
@@ -81,8 +95,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             style={{
                                 "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
-                                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
-                                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                                "width": `${itemWidth}px`,
+                                "height": `${itemHeight}px`,
                             }}
                         >
                             <label>{key}</label>
