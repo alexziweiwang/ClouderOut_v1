@@ -71,7 +71,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             
                 }}
             >
-            <div style={{
+            
+            {navObj["mainPage-entriesCustom"] === false &&  <div style={{
                 "position": "absolute",
 
                 "marginLeft": `${navObj["mainPage-listItemGroupX"]}px`,
@@ -82,7 +83,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
             {Object.keys(mainPageElementList).map((key) => {
 
-                if (navObj["mainPage-entriesCustom"] === false && mainPageElementList[key] === true) {
+                if (mainPageElementList[key] === true) {
                     
                     return (
                     <>
@@ -92,6 +93,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
                                 "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
                                 "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                                "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
+                                "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
+
                                 "justify-content": "center",
                                 "align-items": "center",
                                 "display": "flex",
@@ -99,14 +103,143 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         >
                             <label>{key}</label>
                         </div>}
+                        {navObj["mainPage-isListItemShape"] === false && <div
+                            style={{
+                                //TODO background image & backgound size
+                                "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
+                                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                                "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
+                                "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
+
+                                "justify-content": "center",
+                                "align-items": "center",
+                                "display": "flex",
+                            }}
+                        >
+                            <label>{key}</label>
+                        </div>}                        
                     </>
                     );
                 }
+
+                
+          
             }
             )}
+
+
+
+
+
+
+
+
+
+            </div>}
+        
+        
+        
+        
+        
+            {navObj["mainPage-entriesCustom"] === true && <div
+            style={{"position": "absolute",}}>
+
+
+            {Object.keys(mainPageElementList).map((key) => {
+
+            if (mainPageElementList[key] === true) {
+                    let currItemPosX = 0;
+                    let currItemPosY = 0;
+                    let currItemWidth = 0;
+                    let currItemHeight = 0;
+                    let currItemFontColor = "";
+                    let currItemFontSize = 0;
+
+                    if (key === "Story") {
+                        currItemPosX = navObj["mainPage-story-posX"];
+                        currItemPosY = navObj["mainPage-story-posY"];
+                        currItemWidth = navObj["mainPage-story-width"];
+                        currItemHeight = navObj["mainPage-story-height"];
+                        currItemFontColor = navObj["mainPage-story-fontColor"];
+                        currItemFontSize = navObj["mainPage-story-fontSize"];
+                    } else if (key === "Player Profile") {
+                        currItemPosX = navObj["mainPage-playerProfile-posX"];
+                        currItemPosY = navObj["mainPage-playerProfile-posY"];
+                        currItemWidth = navObj["mainPage-playerProfile-width"];
+                        currItemHeight = navObj["mainPage-playerProfile-height"];
+                        currItemFontColor = navObj["mainPage-playerProfile-fontColor"];
+                        currItemFontSize = navObj["mainPage-playerProfile-fontSize"];
+                    } else if (key === "Settings") {
+                        currItemPosX = navObj["mainPage-setting-posX"];
+                        currItemPosY = navObj["mainPage-setting-posY"];
+                        currItemWidth = navObj["mainPage-setting-width"];
+                        currItemHeight = navObj["mainPage-setting-height"];
+                        currItemFontColor = navObj["mainPage-setting-fontColor"];
+                        currItemFontSize = navObj["mainPage-setting-fontSize"];
+                    } else if (key === "Shop") {
+                        currItemPosX = navObj["mainPage-shop-posX"];
+                        currItemPosY = navObj["mainPage-shop-posY"];
+                        currItemWidth = navObj["mainPage-shop-width"];
+                        currItemHeight = navObj["mainPage-shop-height"];
+                        currItemFontColor = navObj["mainPage-shop-fontColor"];
+                        currItemFontSize = navObj["mainPage-shop-fontSize"];
+                    } else {
+                        return;
+                    }
         
 
-            </div>
+                    return (
+                    <>
+                        {navObj["mainPage-isListItemShape"] === true && <div
+                            style={{
+                                "position": "absolute",
+                                "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
+                                "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                
+                                "marginLeft": `${currItemPosX}px`,
+                                "marginTop": `${currItemPosY}px`,
+                                "width": `${currItemWidth}px`,
+                                "height": `${currItemHeight}px`,
+                                "color": `${currItemFontColor}`,
+                                "fontSize": `${currItemFontSize}px`,
+
+                                "justify-content": "center",
+                                "align-items": "center",
+                                "display": "flex",
+                            }}
+                        >
+                            <label>{key}</label>
+                        </div>}
+                        {navObj["mainPage-isListItemShape"] === false && <div
+                            style={{
+                                //TODO background image & backgound size
+                                "position": "absolute",
+                                "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+
+                                "marginLeft": `${currItemPosX}px`,
+                                "marginTop": `${currItemPosY}px`,
+                                "width": `${currItemWidth}px`,
+                                "height": `${currItemHeight}px`,
+                                "color": `${currItemFontColor}`,
+                                "fontSize": `${currItemFontSize}px`,
+
+                                "justify-content": "center",
+                                "align-items": "center",
+                                "display": "flex",
+                            }}
+                        >
+                            <label>{key}</label>
+                        </div>}                        
+                    </>
+                    );
+                }   
+                
+            }
+            )}             
+            </div>}
+        
+        
         </div>}
   
         {(navObj["isWithSL"] && page === "Game Progress Strategy") && <>
