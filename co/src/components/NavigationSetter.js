@@ -33,6 +33,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-listItemGap": initialNavObj["mainPage-listItemGap"],
       "mainPage-listItemGroupFontColor": initialNavObj["mainPage-listItemGroupFontColor"],
       "mainPage-listItemGroupFontSize": initialNavObj["mainPage-listItemGroupFontSize"],
+      
+      "mainPage-story-isShape": initialNavObj["mainPage-story-isShape"],
+      "mainPage-story-shadeName": initialNavObj["mainPage-story-shadeName"],
+      "mainPage-story-picName": initialNavObj["mainPage-story-picName"],
+      "mainPage-setting-isShape": initialNavObj["mainPage-setting-isShape"],
+      "mainPage-setting-shadeName": initialNavObj["mainPage-setting-shadeName"],
+      "mainPage-setting-picName": initialNavObj["mainPage-setting-picName"],
+      "mainPage-playerProfile-isShape": initialNavObj["mainPage-playerProfile-isShape"],
+      "mainPage-playerProfile-shadeName": initialNavObj["mainPage-playerProfile-shadeName"],
+      "mainPage-playerProfiley-picName": initialNavObj["mainPage-playerProfiley-picName"],
+      "mainPage-shop-isShape": initialNavObj["mainPage-shop-isShape"],
+      "mainPage-shop-shadeName": initialNavObj["mainPage-shop-shadeName"],
+      "mainPage-shop-picName": initialNavObj["mainPage-shop-picName"],
 
       "mainPage-story-posX": initialNavObj["mainPage-story-posX"],
       "mainPage-story-posY": initialNavObj["mainPage-story-posY"],
@@ -1718,6 +1731,46 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}                                 
               ></input>              
                <br></br>
+               <input type="radio" 
+            
+            onChange={()=>{  
+//TODO implement             
+            }}></input>
+            <label onClick={()=>{
+//TODO implement
+            }}>Rectangle & Color Filled </label>
+            
+                {
+                    <div className="indentOne">
+                        <label>Background Color: </label>
+                        <input type="color"
+         
+                        onChange={(event)=>{
+//TODO implement                            
+                            }}></input>
+                        <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                    </div>}
+                
+            <br></br><input type="radio"
+   
+              onChange={()=>{
+//TODO implement                   
+            }}></input><label onClick={()=>{
+//TODO implement                
+                  }}>Base Picture </label><br></br>
+                {
+                <div className="indentOne">
+                    <select onChange={(event)=>{
+//TODO implement                         
+                    }}>                    
+                        <option key="mpliDefault" value="">-- Select Resource --</option>
+                        {visualList.map((item, index) => {
+                            let keyStr = "mainPage-li-" + index + item["var"];
+                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                        })}
+                    </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
+            </div>}
+               
            </div>} 
 
      </div>
