@@ -930,7 +930,187 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                ></input>               
                <br></br>
            </div>}
+     
+           <br></br><input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
+           checked={currentProjectNav["mainPage-playerProfile"]}
+           onChange={()=>{
+             let val = currentProjectNav["mainPage-playerProfile"];
+             
+             let tempObj = currentProjectNav;
+             tempObj["mainPage-playerProfile"] = !val;
+             updateNavObj(tempObj);              
 
+             setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
+            }}               
+         ></input>
+           <label>Player Profile</label>
+         <div className="indentOne">
+           <label>Display Naming: </label>
+           <input 
+            value={mainPagePlayerProfileName}
+            onChange={(event)=>{
+              setMainPagePlayerProfileName(event.target.value);
+            }}
+           ></input>
+           <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-playerProfile-name"] = mainPagePlayerProfileName;
+              updateNavObj(tempObj);                  
+              //TODO test
+              
+              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-name": mainPagePlayerProfileName});             
+
+           }}>Update</button>
+         </div>
+       {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
+           Position X:
+                 <input type="range"
+                  min="1" max={screenWidth} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-posX"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-posX"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posX": event.target.value});             
+                  }}                                 
+                 ></input>
+                 <input type="number"
+                  min="1" max={screenWidth} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-posX"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-posX"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posX": event.target.value});             
+                  }}                                 
+                 ></input>
+               <br></br>
+           Position Y:
+                <input type="range"
+                  min="1" max={screenHeight} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-posY"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-posY"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posY": event.target.value});             
+                  }}                                 
+                 ></input>
+                 <input type="number"
+                  min="1" max={screenHeight} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-posY"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-posY"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posY": event.target.value});             
+                  }}                                 
+                 ></input>
+               <br></br>
+           Width:
+                <input type="range"
+                  min="1" max={screenWidth} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-width"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-width"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-width": event.target.value});             
+                  }}                                 
+                 ></input>
+               <input type="number"
+                  min="1" max={screenWidth} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-width"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-width"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-width": event.target.value});             
+                  }}                                 
+                 ></input>                 
+               <br></br>
+           Height:
+                <input type="range"
+                  min="1" max={screenHeight} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-height"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-height"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-height": event.target.value});             
+                  }}                                 
+                 ></input>
+               <input type="number"
+                  min="1" max={screenHeight} step="1"
+                  value={currentProjectNav["mainPage-playerProfile-height"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-height"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-height": event.target.value});             
+                  }}                                 
+                 ></input>                 
+               <br></br>
+           Font Color:
+                <input type="color"
+                  value={currentProjectNav["mainPage-playerProfile-fontColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontColor": event.target.value});             
+                  }}                   
+                ></input>
+                <label> {currentProjectNav["mainPage-playerProfile-fontColor"]}</label>
+               <br></br>
+           Font Size:
+              <input type="range"
+                  min="5" max="32" step="1"
+                  value={currentProjectNav["mainPage-playerProfile-fontSize"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontSize"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
+                  }}                                 
+                 ></input>
+              <input type="number"
+                  min="5" max="32" step="1"
+                  value={currentProjectNav["mainPage-playerProfile-fontSize"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontSize"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
+                  }}                                 
+                 ></input>                 
+               <br></br>
+
+           </div>}             
+         
+         
 
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-setting"]}
            checked={currentProjectNav["mainPage-setting"]}
@@ -1109,188 +1289,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                  ></input>                 
                <br></br>
            </div>}
-         
-         
-         <br></br><input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
-           checked={currentProjectNav["mainPage-playerProfile"]}
-           onChange={()=>{
-             let val = currentProjectNav["mainPage-playerProfile"];
-             
-             let tempObj = currentProjectNav;
-             tempObj["mainPage-playerProfile"] = !val;
-             updateNavObj(tempObj);              
 
-             setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
-            }}               
-         ></input>
-         <label>Player Profile</label>
-         <div className="indentOne">
-           <label>Display Naming: </label>
-           <input 
-            value={mainPagePlayerProfileName}
-            onChange={(event)=>{
-              setMainPagePlayerProfileName(event.target.value);
-            }}
-           ></input>
-           <button onClick={()=>{
-              let tempObj = currentProjectNav;
-              tempObj["mainPage-playerProfile-name"] = mainPagePlayerProfileName;
-              updateNavObj(tempObj);                  
-              //TODO test
-              
-              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-name": mainPagePlayerProfileName});             
-
-           }}>Update</button>
-         </div>
-       {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
-           Position X:
-                 <input type="range"
-                  min="1" max={screenWidth} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-posX"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-posX"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posX": event.target.value});             
-                  }}                                 
-                 ></input>
-                 <input type="number"
-                  min="1" max={screenWidth} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-posX"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-posX"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posX": event.target.value});             
-                  }}                                 
-                 ></input>
-               <br></br>
-           Position Y:
-                <input type="range"
-                  min="1" max={screenHeight} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-posY"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-posY"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posY": event.target.value});             
-                  }}                                 
-                 ></input>
-                 <input type="number"
-                  min="1" max={screenHeight} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-posY"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-posY"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-posY": event.target.value});             
-                  }}                                 
-                 ></input>
-               <br></br>
-           Width:
-                <input type="range"
-                  min="1" max={screenWidth} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-width"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-width"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-width": event.target.value});             
-                  }}                                 
-                 ></input>
-               <input type="number"
-                  min="1" max={screenWidth} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-width"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-width"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-width": event.target.value});             
-                  }}                                 
-                 ></input>                 
-               <br></br>
-           Height:
-                <input type="range"
-                  min="1" max={screenHeight} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-height"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-height"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-height": event.target.value});             
-                  }}                                 
-                 ></input>
-               <input type="number"
-                  min="1" max={screenHeight} step="1"
-                  value={currentProjectNav["mainPage-playerProfile-height"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-height"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-height": event.target.value});             
-                  }}                                 
-                 ></input>                 
-               <br></br>
-           Font Color:
-                <input type="color"
-                  value={currentProjectNav["mainPage-playerProfile-fontColor"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-fontColor"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontColor": event.target.value});             
-                  }}                   
-                ></input>
-                <label> {currentProjectNav["mainPage-playerProfile-fontColor"]}</label>
-               <br></br>
-           Font Size:
-              <input type="range"
-                  min="5" max="32" step="1"
-                  value={currentProjectNav["mainPage-playerProfile-fontSize"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-fontSize"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
-                  }}                                 
-                 ></input>
-              <input type="number"
-                  min="5" max="32" step="1"
-                  value={currentProjectNav["mainPage-playerProfile-fontSize"]}
-                  onChange={(event)=>{
-                    let tempObj = currentProjectNav;
-                    tempObj["mainPage-playerProfile-fontSize"] = event.target.value;
-                    updateNavObj(tempObj);                  
-                    //TODO test
-
-                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
-                  }}                                 
-                 ></input>                 
-               <br></br>
-
-           </div>}             
-         
-         
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-shop"]}
            checked={currentProjectNav["mainPage-shop"]}
            onChange={()=>{
@@ -1305,7 +1304,22 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          ></input>
          <label>Shop</label>
          <div className="indentOne">
-           <label>Display Naming: </label><input></input> //TODO
+           <label>Display Naming: </label>
+           <input 
+            value={mainPageShopName}
+            onChange={(event)=>{
+              setMainPageShopName(event.target.value);
+            }}
+           ></input>
+           <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-shop-name"] = mainPageShopName;
+              updateNavObj(tempObj);                  
+              //TODO test
+              
+              setCurrentProjectNav({...currentProjectNav, "mainPage-shop-name": mainPageShopName});             
+
+           }}>Update</button>
          </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
