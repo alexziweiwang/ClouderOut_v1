@@ -101,10 +101,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }
 
                 if (mainPageElementList[key] === true) {
-                    
+                    let keyStr1 = key + "_groupedItems";
                     return (
-                    <>  
-                        <div style = {navObj["mainPage-isListItemShape"] === true ? 
+               
+                        <div 
+                            id={keyStr1}
+                            style = {navObj["mainPage-isListItemShape"] === true ? 
                             {
                                 "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
@@ -129,11 +131,20 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "justify-content": "center",
                                 "align-items": "center",
                                 "display": "flex",}
-                        }>
+                        }
+                        onMouseDown={
+                            ()=>{
+                                document.getElementById(keyStr1).style.filter = "invert(100%)";
+                            }
+                        }
+                        onMouseUp={
+                            ()=>{
+                                document.getElementById(keyStr1).style.filter = "invert(0%)";
+                            }
+                        }
+                        >
                              <label>{optionName}</label>
                         </div>
-                         
-                    </>
                     );
                 }
 
@@ -151,6 +162,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             style={{"position": "absolute",}}>
 
             {Object.keys(mainPageElementList).map((key) => {
+                let keyStr2 = key + "_customizedItems";
+
                 let optionName = "";
                 if (key === "Story") {
                     optionName = navObj["mainPage-story-name"];
@@ -204,9 +217,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         
 
                     return (
-                    <>
-                        {navObj["mainPage-isListItemShape"] === true && <div
-                            style={{
+                  
+                        <div
+                            id={keyStr2}
+                            style={
+                                navObj["mainPage-isListItemShape"] === true ?
+                                {
                                 "position": "absolute",
                                 "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
@@ -221,12 +237,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "justify-content": "center",
                                 "align-items": "center",
                                 "display": "flex",
-                            }}
-                        >
-                            <label>{optionName}</label>
-                        </div>}
-                        {navObj["mainPage-isListItemShape"] === false && <div
-                            style={{
+                            } :
+                            {
                                 //TODO background image & backgound size
                                 "position": "absolute",
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
@@ -241,11 +253,23 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "justify-content": "center",
                                 "align-items": "center",
                                 "display": "flex",
-                            }}
+                            }
+                            }
+                            onMouseDown={
+                                ()=>{
+                                    document.getElementById(keyStr2).style.filter = "invert(100%)";
+                                }
+                            }
+                            onMouseUp={
+                                ()=>{
+                                    document.getElementById(keyStr2).style.filter = "invert(0%)";
+                                }
+                            }
                         >
                             <label>{optionName}</label>
-                        </div>}                        
-                    </>
+                        </div>
+                     
+                 
                     );
                 }   
                 
