@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function NavigationSetter({initialNavObj, updateNavObj, openRm, updateCurrentPageName}) {
   const screenWidth = 800; //TODO temp  
@@ -126,9 +127,34 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     useEffect(() => {
       if (firstTimeEnter === true) {
             console.log("Navigation Setter -- "); //TODO test
+            fetchProjResourceLists();
             setFirstTimeEnter(false);
       }
     });
+
+
+    const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
+    const [visualList, setVisualList] = useState([]); 
+    async function fetchProjResourceLists() {
+      console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+      /* fetch from cloud db */
+      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+      console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
+      console.log(obj); //TODO test
+      setAudioList(obj.audio);
+      setVisualList(obj.visual);
+    }
+    function handleVisualRsrcSelectorSave(updatedList) {
+      //TODO update visualList
+      setVisualList(updatedList);
+
+    }
+    function handleAudioRsrcSelectorSave(updatedList) {
+      //TODO update audioList
+      console.log("!! Piece Setter, from Resource Selector: [audio]");
+      console.log(updatedList);
+      setAudioList(updatedList);
+    }
     
    return (
    
@@ -238,9 +264,13 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             {
                             <>
                                 <select onChange={(event)=>{
+                                  //TODO
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
-                          
+                                    {visualList.map((item, index) => {
+                                      let keyStr = "sl-bg-" + index + item["var"];
+                                      return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
                                 </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
@@ -275,7 +305,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                 <select onChange={(event)=>{
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
-                          
+                                    {visualList.map((item, index) => {
+                                      let keyStr = "sl-slot-" + index + item["var"];
+                                      return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
                                 </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
@@ -410,7 +443,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                 }}>  
                                 {/* //TODO  resource, var-name                */}
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
-                          
+                                    {visualList.map((item, index) => {
+                                      let keyStr = "mainPage-bg-" + index + item["var"];
+                                      return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
                                 </select>
                                 <button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </div>}
@@ -492,8 +528,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
-                                                {/* //TODO  resource, var-name                */}
-
+                          {visualList.map((item, index) => {
+                              let keyStr = "mainPage-li-" + index + item["var"];
+                              return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                          })}
                       </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </div>}
          </div>
