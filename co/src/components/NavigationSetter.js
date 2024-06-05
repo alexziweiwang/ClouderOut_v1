@@ -1061,10 +1061,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <input type="radio" 
             
                   onChange={()=>{  
-             
+//TODO implement             
                   }}></input>
                   <label onClick={()=>{
-                
+//TODO implement
                   }}>Rectangle & Color Filled </label>
                   
                       {
@@ -1073,7 +1073,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                               <input type="color"
                
                               onChange={(event)=>{
-                            
+//TODO implement                            
                                   }}></input>
                               <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
                           </div>}
@@ -1081,14 +1081,14 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   <br></br><input type="radio"
          
                     onChange={()=>{
-                   
+//TODO implement                   
                   }}></input><label onClick={()=>{
-                 
+//TODO implement                
                         }}>Base Picture </label><br></br>
                       {
                       <div className="indentOne">
                           <select onChange={(event)=>{
-                         
+//TODO implement                         
                           }}>                    
                               <option key="mpliDefault" value="">-- Select Resource --</option>
                               {visualList.map((item, index) => {
@@ -1277,6 +1277,46 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}                                 
                  ></input>                 
                <br></br>
+            
+               <input type="radio" 
+            
+            onChange={()=>{  
+//TODO implement             
+            }}></input>
+            <label onClick={()=>{
+//TODO implement
+            }}>Rectangle & Color Filled </label>
+            
+                {
+                    <div className="indentOne">
+                        <label>Background Color: </label>
+                        <input type="color"
+         
+                        onChange={(event)=>{
+//TODO implement                            
+                            }}></input>
+                        <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                    </div>}
+                
+            <br></br><input type="radio"
+   
+              onChange={()=>{
+//TODO implement                   
+            }}></input><label onClick={()=>{
+//TODO implement                
+                  }}>Base Picture </label><br></br>
+                {
+                <div className="indentOne">
+                    <select onChange={(event)=>{
+//TODO implement                         
+                    }}>                    
+                        <option key="mpliDefault" value="">-- Select Resource --</option>
+                        {visualList.map((item, index) => {
+                            let keyStr = "mainPage-li-" + index + item["var"];
+                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                        })}
+                    </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
+            </div>}
 
            </div>}             
          
@@ -1458,6 +1498,48 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                  ></input>                 
                <br></br>
+
+                      
+               <input type="radio" 
+            
+            onChange={()=>{  
+//TODO implement             
+            }}></input>
+            <label onClick={()=>{
+//TODO implement
+            }}>Rectangle & Color Filled </label>
+            
+                {
+                    <div className="indentOne">
+                        <label>Background Color: </label>
+                        <input type="color"
+         
+                        onChange={(event)=>{
+//TODO implement                            
+                            }}></input>
+                        <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                    </div>}
+                
+            <br></br><input type="radio"
+   
+              onChange={()=>{
+//TODO implement                   
+            }}></input><label onClick={()=>{
+//TODO implement                
+                  }}>Base Picture </label><br></br>
+                {
+                <div className="indentOne">
+                    <select onChange={(event)=>{
+//TODO implement                         
+                    }}>                    
+                        <option key="mpliDefault" value="">-- Select Resource --</option>
+                        {visualList.map((item, index) => {
+                            let keyStr = "mainPage-li-" + index + item["var"];
+                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                        })}
+                    </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
+            </div>}
+ 
            </div>}
 
          <br></br><input type="checkbox" value={currentProjectNav["mainPage-shop"]}
