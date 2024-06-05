@@ -469,90 +469,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
           
                   </div>
-             
-          <label>List Item Looking:</label>
-          {/* <div className="indentOne">
-                
-            <input type="radio" 
-              value={currentProjectNav["mainPage-isListItemShape"]}
-              checked={currentProjectNav["mainPage-isListItemShape"]}
-              onChange={()=>{  
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-isListItemShape"] = true;
-                updateNavObj(tempObj);                           
-                //TODO test
 
-                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
-                
-              }}></input>
-              <label onClick={()=>{
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-isListItemShape"] = true;
-                updateNavObj(tempObj);                  
-                //TODO test
-
-                setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
-                
-              }}>Rectangle & Color Filled </label>
-              
-                  {currentProjectNav["mainPage-isListItemShape"] &&
-                      <div className="indentOne">
-                          <label>Background Color: </label>
-                          <input type="color"
-                          value={currentProjectNav["mainPage-listItemShadeName"]}
-                          onChange={(event)=>{
-                                let tempObj = currentProjectNav;
-                                tempObj["mainPage-listItemShadeName"] = event.target.value;
-                                updateNavObj(tempObj);                  
-                                //TODO test
-                
-                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShadeName": event.target.value});
-                                
-                              }}></input>
-                          <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
-                      </div>}
-                  
-              <br></br><input type="radio"
-                value={currentProjectNav["mainPage-isListItemShape"]}
-                checked={!currentProjectNav["mainPage-isListItemShape"]}
-                onChange={()=>{
-                  let tempObj = currentProjectNav;
-                  tempObj["mainPage-isListItemShape"] = false;
-                  updateNavObj(tempObj);                  
-                  //TODO test
-
-                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
-                  
-              }}></input><label onClick={()=>{
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-isListItemShape"] = false;
-                updateNavObj(tempObj);                  
-                //TODO test
-
-                  setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
-                  
-                    }}>Base Picture </label><br></br>
-                  {!currentProjectNav["mainPage-isListItemShape"] &&
-                  <div className="indentOne">
-                      <select onChange={(event)=>{
-                          let tempObj = currentProjectNav;
-                          tempObj["mainPage-listItemPicName"] = event.target.value;
-                          updateNavObj(tempObj);                  
-                          //TODO test
-             
-                          setCurrentProjectNav({...currentProjectNav, "mainPage-listItemPicName": event.target.value});
-                          
-                      }}>                    
-                          <option key="mpliDefault" value="">-- Select Resource --</option>
-                          {visualList.map((item, index) => {
-                              let keyStr = "mainPage-li-" + index + item["var"];
-                              return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                          })}
-                      </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
-              </div>}
-         </div> */}
-
-         <label>List item positions: </label><br></br>
+         <label>List item configuration: </label><br></br>
          <input type="radio" 
           value={currentProjectNav["mainPage-entriesCustom"]} 
           checked={!currentProjectNav["mainPage-entriesCustom"]}
@@ -1064,13 +982,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                ></input>               
                <br></br>
-
-
-
-
-{/* //TODO working area1 */}
-
-              
+             
                 <input type="radio" 
                   value={currentProjectNav["mainPage-story-isShape"]}
                   checked={currentProjectNav["mainPage-story-isShape"]}
@@ -1148,8 +1060,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                               })}
                           </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                   </div>}
-  
-{/* //TODO working area2 */}
+
            </div>}
      
            <br></br><input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
@@ -1325,41 +1236,83 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontSize": event.target.value});             
+                 
                   }}                                 
                  ></input>                 
                <br></br>
             
                <input type="radio" 
-            
-            onChange={()=>{  
-//TODO implement             
-            }}></input>
-            <label onClick={()=>{
-//TODO implement
-            }}>Rectangle & Color Filled </label>
-            
+                  value={currentProjectNav["mainPage-playerProfile-isShape"]}
+                  checked={currentProjectNav["mainPage-playerProfile-isShape"]}
+                  onChange={()=>{ 
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-isShape"] = true;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": true});             
+                            
+                  }}></input>
+              <label onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["mainPage-playerProfile-isShape"] = true;
+                      updateNavObj(tempObj);                  
+                      //TODO test
+
+                      setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": true});             
+                          
+              }}>
+              Rectangle & Color Filled </label>
+              
                 {
                     <div className="indentOne">
                         <label>Background Color: </label>
                         <input type="color"
-         
+                          value={currentProjectNav["mainPage-playerProfile-shadeName"]}
                         onChange={(event)=>{
-//TODO implement                            
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-playerProfile-shadeName"] = event.target.value;
+                          updateNavObj(tempObj);                  
+                          //TODO test
+    
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-shadeName": event.target.value});             
+                                                   
                             }}></input>
-                        <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                        <label> {currentProjectNav["mainPage-playerProfile-shadeName"]}</label>
                     </div>}
                 
             <br></br><input type="radio"
-   
-              onChange={()=>{
-//TODO implement                   
-            }}></input><label onClick={()=>{
-//TODO implement                
+            
+              value={currentProjectNav["mainPage-playerProfile-isShape"]}
+              checked={!currentProjectNav["mainPage-playerProfile-isShape"]}
+              onChange={()=>{ 
+                let tempObj = currentProjectNav;
+                tempObj["mainPage-playerProfile-isShape"] = false;
+                updateNavObj(tempObj);                  
+                //TODO test
+
+                setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": false});             
+                        
+            }}></input>    
+                <label onClick={()=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["mainPage-playerProfile-isShape"] = false;
+                  updateNavObj(tempObj);                  
+                  //TODO test
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": false});             
+                                
                   }}>Base Picture </label><br></br>
                 {
                 <div className="indentOne">
                     <select onChange={(event)=>{
-//TODO implement                         
+                       let tempObj = currentProjectNav;
+                       tempObj["mainPage-playerProfiley-picName"] = event.target.value;
+                       updateNavObj(tempObj);                  
+                       //TODO test
+ 
+                       setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfiley-picName": event.target.value});             
+                                           
                     }}>                    
                         <option key="mpliDefault" value="">-- Select Resource --</option>
                         {visualList.map((item, index) => {
