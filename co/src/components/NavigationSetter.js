@@ -42,7 +42,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "mainPage-setting-picName": initialNavObj["mainPage-setting-picName"],
       "mainPage-playerProfile-isShape": initialNavObj["mainPage-playerProfile-isShape"],
       "mainPage-playerProfile-shadeName": initialNavObj["mainPage-playerProfile-shadeName"],
-      "mainPage-playerProfiley-picName": initialNavObj["mainPage-playerProfiley-picName"],
+      "mainPage-playerProfile-picName": initialNavObj["mainPage-playerProfile-picName"],
       "mainPage-shop-isShape": initialNavObj["mainPage-shop-isShape"],
       "mainPage-shop-shadeName": initialNavObj["mainPage-shop-shadeName"],
       "mainPage-shop-picName": initialNavObj["mainPage-shop-picName"],
@@ -448,7 +448,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                               }}>Base Picture </label><br></br>
                             {!currentProjectNav["mainPage-isBackgroundShape"] &&
                             <div className="indentOne">
-                                <select onChange={(event)=>{
+                                <select 
+                                  value={currentProjectNav["mainPage-bgPicName"]}
+                                  onChange={(event)=>{
                                     let tempObj = currentProjectNav;
                                     tempObj["mainPage-bgPicName"] = event.target.value;
                                     updateNavObj(tempObj);
@@ -766,7 +768,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}>Base Picture </label><br></br>
                   {!currentProjectNav["mainPage-isListItemShape"] &&
                   <div className="indentOne">
-                      <select onChange={(event)=>{
+                      <select
+                        value={currentProjectNav["mainPage-listItemPicName"]}
+                        onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["mainPage-listItemPicName"] = event.target.value;
                           updateNavObj(tempObj);                  
@@ -1044,14 +1048,16 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         }}>Base Picture </label><br></br>
                       {
                       <div className="indentOne">
-                          <select onChange={(event)=>{
-                            let tempObj = currentProjectNav;
-                            tempObj["mainPage-story-picName"] = event.target.value;
-                            updateNavObj(tempObj);                  
-                            //TODO test
+                          <select 
+                            value={currentProjectNav["mainPage-story-picName"]}
+                            onChange={(event)=>{
+                              let tempObj = currentProjectNav;
+                              tempObj["mainPage-story-picName"] = event.target.value;
+                              updateNavObj(tempObj);                  
+                              //TODO test
 
-                            setCurrentProjectNav({...currentProjectNav, "mainPage-story-picName": event.target.value});             
-                                                      
+                              setCurrentProjectNav({...currentProjectNav, "mainPage-story-picName": event.target.value});             
+                                                        
                           }}>                    
                               <option key="mpliDefault" value="">-- Select Resource --</option>
                               {visualList.map((item, index) => {
@@ -1305,13 +1311,15 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}>Base Picture </label><br></br>
                 {
                 <div className="indentOne">
-                    <select onChange={(event)=>{
+                    <select 
+                      value={currentProjectNav["mainPage-playerProfile-picName"]}
+                      onChange={(event)=>{
                        let tempObj = currentProjectNav;
-                       tempObj["mainPage-playerProfiley-picName"] = event.target.value;
+                       tempObj["mainPage-playerProfile-picName"] = event.target.value;
                        updateNavObj(tempObj);                  
                        //TODO test
  
-                       setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfiley-picName": event.target.value});             
+                       setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-picName": event.target.value});             
                                            
                     }}>                    
                         <option key="mpliDefault" value="">-- Select Resource --</option>
@@ -1560,7 +1568,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}>Base Picture </label><br></br>
                 {
                 <div className="indentOne">
-                    <select onChange={(event)=>{
+                    <select 
+                      value={currentProjectNav["mainPage-setting-picName"]}
+                      onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["mainPage-setting-picName"] = event.target.value;
                           updateNavObj(tempObj);                  
@@ -1755,36 +1765,71 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               ></input>              
                <br></br>
                <input type="radio" 
-            
-            onChange={()=>{  
-//TODO implement             
-            }}></input>
-            <label onClick={()=>{
-//TODO implement
-            }}>Rectangle & Color Filled </label>
+                value={currentProjectNav["mainPage-shop-isShape"]}
+                checked={currentProjectNav["mainPage-shop-isShape"]}
+                onChange={()=>{  
+                  let tempObj = currentProjectNav;
+                  tempObj["mainPage-shop-isShape"] = true;
+                  updateNavObj(tempObj);                  
+                  //TODO test
+
+                  setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": true});      
+                }}></input>
+              <label onClick={()=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-shop-isShape"] = true;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": true});     
+              }}>
+              Rectangle & Color Filled </label>
             
                 {
                     <div className="indentOne">
                         <label>Background Color: </label>
                         <input type="color"
-         
-                        onChange={(event)=>{
-//TODO implement                            
+                          value={currentProjectNav["mainPage-shop-shadeName"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["mainPage-shop-shadeName"] = event.target.value;
+                            updateNavObj(tempObj);                  
+                            //TODO test
+        
+                            setCurrentProjectNav({...currentProjectNav, "mainPage-shop-shadeName": event.target.value});                          
                             }}></input>
-                        <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                        <label> {currentProjectNav["mainPage-shop-shadeName"]}</label>
                     </div>}
                 
             <br></br><input type="radio"
-   
+              value={currentProjectNav["mainPage-shop-isShape"]}
+              checked={!currentProjectNav["mainPage-shop-isShape"]}
               onChange={()=>{
-//TODO implement                   
+                let tempObj = currentProjectNav;
+                tempObj["mainPage-shop-isShape"] = false;
+                updateNavObj(tempObj);                  
+                //TODO test
+
+                setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": false});                    
             }}></input><label onClick={()=>{
-//TODO implement                
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-shop-isShape"] = false;
+              updateNavObj(tempObj);                  
+              //TODO test
+
+              setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": false});                   
                   }}>Base Picture </label><br></br>
                 {
                 <div className="indentOne">
-                    <select onChange={(event)=>{
-//TODO implement                         
+                    <select 
+                      value={currentProjectNav["mainPage-shop-picName"]}
+                      onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-shop-picName"] = event.target.value;
+                          updateNavObj(tempObj);                  
+                          //TODO test
+        
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-shop-picName": event.target.value});               
                     }}>                    
                         <option key="mpliDefault" value="">-- Select Resource --</option>
                         {visualList.map((item, index) => {
