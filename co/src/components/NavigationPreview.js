@@ -15,6 +15,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "Settings": navObj["mainPage-setting"],
         "Shop": navObj["mainPage-shop"],
     }); //booleans
+    const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
+
     const [mainPageMapSize, setMainPageMapSize] = useState(0);
     const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
     const [mainPageFixedListItemPicUrl, setMainPageFixedListItemPicUrl] = useState("");
@@ -92,71 +94,71 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "marginTop": `${navObj["mainPage-listItemGroupY"]}px`,
                 }}>
 
-            {Object.keys(mainPageElementList).map((key) => {
-                let optionName = "";
-                if (key === "Story") {
-                    optionName = navObj["mainPage-story-name"];
-                } else if (key === "Player Profile") {
-                    optionName = navObj["mainPage-playerProfile-name"];
-                } else if (key === "Settings") {
-                    optionName = navObj["mainPage-setting-name"];
-                } else if (key === "Shop") {
-                    optionName = navObj["mainPage-shop-name"];
-                }
+                {mainPageEntryNames.map((item, index) => {
+                    //"mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"
+                    let optionName = "";
+                    if (index === 0) {
+                        optionName = navObj["mainPage-story-name"];
+                    } else if (index === 1) {
+                        optionName = navObj["mainPage-playerProfile-name"];
+                    } else if (index === 2) {
+                        optionName = navObj["mainPage-setting-name"];
+                    } else if (index === 3) {
+                        optionName = navObj["mainPage-shop-name"];
+                    }
 
-                if (mainPageElementList[key] === true) {
-                    let keyStr1 = key + "_groupedItems";
-                    return (
-               
-                        <div 
-                            id={keyStr1}
-                            style = {navObj["mainPage-isListItemShape"] === true ? 
-                            {
-                                "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
-                                "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
-                                "marginRight": `${navObj["mainPage-listItemGap"]}px`,
-                                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
-                                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
-                                "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
-                                "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
-
-                                "justify-content": "center",
-                                "align-items": "center",
-                                "display": "flex",
-                            } : {            
-                                "background-image": `url('')`,
-                                "background-size": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
-                                
-                                "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
-                                "marginRight": `${navObj["mainPage-listItemGap"]}px`,
-                                "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
-                                "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
-                                "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
-                                "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
-
-                                "justify-content": "center",
-                                "align-items": "center",
-                                "display": "flex",}
-                        }
-                        onMouseDown={
-                            ()=>{
-                                document.getElementById(keyStr1).style.filter = "invert(100%)";
+                    if (navObj[item] === true) {
+                        let keyStr1 = item + "_groupedItems";
+                        return (
+                            <div 
+                                id={keyStr1}
+                                style = {navObj["mainPage-isListItemShape"] === true ? 
+                                {
+                                    "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
+                                    "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                    "marginRight": `${navObj["mainPage-listItemGap"]}px`,
+                                    "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
+                                    "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                                    "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
+                                    "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
+    
+                                    "justify-content": "center",
+                                    "align-items": "center",
+                                    "display": "flex",
+                                } : {            
+                                    "background-image": `url('')`,
+                                    "background-size": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
+                                    
+                                    "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
+                                    "marginRight": `${navObj["mainPage-listItemGap"]}px`,
+                                    "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
+                                    "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
+                                    "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
+                                    "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
+    
+                                    "justify-content": "center",
+                                    "align-items": "center",
+                                    "display": "flex",}
                             }
-                        }
-                        onMouseUp={
-                            ()=>{
-                                document.getElementById(keyStr1).style.filter = "invert(0%)";
+                            onMouseDown={
+                                ()=>{
+                                    document.getElementById(keyStr1).style.filter = "invert(100%)";
+                                }
                             }
-                        }
-                        >
-                             <label>{optionName}</label>
-                        </div>
-                    );
+                            onMouseUp={
+                                ()=>{
+                                    document.getElementById(keyStr1).style.filter = "invert(0%)";
+                                }
+                            }
+                            >
+                                 <label>{optionName}</label>
+                            </div>
+                        );
+                    
+                    }
+
                 }
-
-            }
-            )}
-
+                )}        
 
             </div>}
         
