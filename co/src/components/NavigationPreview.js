@@ -1,23 +1,44 @@
 import { useState, useEffect } from 'react';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName}) {
+    const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
+
+
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(450);
 
     const [resourceList, setResourceList] = useState([]); //TODO for resource-selection
 
+    const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
+    const [visualList, setVisualList] = useState([]); 
+    async function fetchProjResourceLists() {
+      console.log("nav-preview: fetchProjResourceLists()"); //TODO test
+      /* fetch from cloud db */
+      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+      console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test
+      console.log(obj); //TODO test
+      setAudioList(obj.audio);
+      setVisualList(obj.visual);
+    }
+
     const [navObj, setNavObj] = useState(initialNavObj);
     const [page, setPage] = useState("");
-    const [mainPageElementList, setMainPageElementList] = useState({
-        "Story" : navObj["mainPage-story"],
-        "Player Profile": navObj["mainPage-playerProfile"],
-        "Settings": navObj["mainPage-setting"],
-        "Shop": navObj["mainPage-shop"],
-    }); //booleans
-    const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
 
-    const [mainPageMapSize, setMainPageMapSize] = useState(0);
+    const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
+    const mainPagePictureVariableNames = [
+        "mainPage-bgPicName",               //0
+        "mainPage-listItemPicName",         //1
+        "mainPage-story-picName",           //2
+        "mainPage-playerProfiley-picName",  //3
+        "mainPage-setting-picName",         //4
+        "mainPage-shop-picName"             //5
+    ]; //example: currVar = navObj[mainPagePictureVariableNames[1]]; //getting the variable name of list-item-pic-name
+    // in visualList array, when visualList[i]["var"]
+    // if currVar === visualList[i]["var"], then get the visualList[i]["url"]
+  
     const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
     const [mainPageFixedListItemPicUrl, setMainPageFixedListItemPicUrl] = useState("");
     const [mainPageCustomStoryPicUrl, setMainPageCustomStoryPicUrl] = useState("");
@@ -25,21 +46,25 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const [mainPageCustomSettingsPicUrl, setMainPageCustomSettingsPicUrl] = useState("");
     const [mainPageCustomShopPicUrl, setMainPageCustomShopPicUrl] = useState("");
 
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
         console.log("Navigation Preview -- "); //TODO test
+        
+        if (firstTimeEnter === true) {
+            fetchProjResourceLists();
+            setFirstTimeEnter(false);
+        }
 
         let objTemp = fetchNavObj();
         setNavObj(objTemp);
-        // setMainPageElementList({
-        //     "Story" : objTemp["mainPage-story"],
-        //     "Player Profile": objTemp["mainPage-playerProfile"],
-        //     "Settings": objTemp["mainPage-setting"],
-        //     "Shop": objTemp["mainPage-shop"],
-        // });
+
 
         let tempPage= fetchPageName();
         setPage(tempPage);
+
 
         if (navObj["screenSize"] === "h450_800") {
             setScreenWidth(800);
