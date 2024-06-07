@@ -56,6 +56,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
+    const [audioMapSize, setAudioMapSize] = useState(0);
+    const [visualMapSize, setVisualMapSize] = useState(0);
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -67,8 +70,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             fetchProjResourceLists();
             setFirstTimeEnter(false);
 
+        }
+
+        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
             let tempAudioMap = {};
+            setAudioMapSize(audioList.length);
             for (;i < audioList.length; i++) {
                 let item = audioList[i];
                 tempAudioMap[item["var"]] = item["url"];
@@ -77,15 +84,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
             i = 0;
             let tempVisualMap = {};
+            setVisualMapSize(visualList.length);
             for (;i < visualList.length; i++) {
                 let item = visualList[i];
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
-            console.log("audioMap", audioMap);
-            console.log("visualMap", visualMap);
-
-
         }
 
         let objTemp = fetchNavObj();
@@ -132,7 +136,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
-                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${mainPageBgPicUrl}')` : "",
+                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${""}')` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 
                 "marginLeft": `20px`,
