@@ -195,6 +195,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     let currItemHeight = 0;
                     let currItemFontColor = "";
                     let currItemFontSize = 0;
+                    let currItemBgShade = "";                   
+                    let currIsShapeBool = false;
 
                     if (key === "Story") {
                         currItemPosX = navObj["mainPage-story-posX"];
@@ -203,6 +205,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemHeight = navObj["mainPage-story-height"];
                         currItemFontColor = navObj["mainPage-story-fontColor"];
                         currItemFontSize = navObj["mainPage-story-fontSize"];
+                        currItemBgShade = navObj["mainPage-story-shadeName"];
+                        currIsShapeBool = navObj["mainPage-story-isShape"];
                     } else if (key === "Player Profile") {
                         currItemPosX = navObj["mainPage-playerProfile-posX"];
                         currItemPosY = navObj["mainPage-playerProfile-posY"];
@@ -210,6 +214,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemHeight = navObj["mainPage-playerProfile-height"];
                         currItemFontColor = navObj["mainPage-playerProfile-fontColor"];
                         currItemFontSize = navObj["mainPage-playerProfile-fontSize"];
+                        currItemBgShade = navObj["mainPage-playerProfile-shadeName"];
+                        currIsShapeBool = navObj["mainPage-playerProfile-isShape"];
                     } else if (key === "Settings") {
                         currItemPosX = navObj["mainPage-setting-posX"];
                         currItemPosY = navObj["mainPage-setting-posY"];
@@ -217,6 +223,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemHeight = navObj["mainPage-setting-height"];
                         currItemFontColor = navObj["mainPage-setting-fontColor"];
                         currItemFontSize = navObj["mainPage-setting-fontSize"];
+                        currItemBgShade = navObj["mainPage-setting-shadeName"];
+                        currIsShapeBool = navObj["mainPage-setting-isShape"];
                     } else if (key === "Shop") {
                         currItemPosX = navObj["mainPage-shop-posX"];
                         currItemPosY = navObj["mainPage-shop-posY"];
@@ -224,6 +232,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemHeight = navObj["mainPage-shop-height"];
                         currItemFontColor = navObj["mainPage-shop-fontColor"];
                         currItemFontSize = navObj["mainPage-shop-fontSize"];
+                        currItemBgShade = navObj["mainPage-shop-shadeName"];
+                        currIsShapeBool = navObj["mainPage-shop-isShape"];
                     } else {
                         return;
                     }
@@ -234,10 +244,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         <div
                             id={keyStr2}
                             style={
-                                navObj["mainPage-isListItemShape"] === true ?
+                                currIsShapeBool === true ?
                                 {
                                 "position": "absolute",
-                                "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
+                                "backgroundColor": `${currItemBgShade}`,
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
                                 
                                 "marginLeft": `${currItemPosX}px`,
