@@ -17,6 +17,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     }); //booleans
     const [mainPageMapSize, setMainPageMapSize] = useState(0);
     const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
+    const [mainPageFixedListItemPicUrl, setMainPageFixedListItemPicUrl] = useState("");
+    const [mainPageCustomStoryPicUrl, setMainPageCustomStoryPicUrl] = useState("");
+    const [mainPageCustomPlayerProfilePicUrl, setMainPageCustomPlayerProfilePicUrl] = useState("");
+    const [mainPageCustomSettingsPicUrl, setMainPageCustomSettingsPicUrl] = useState("");
+    const [mainPageCustomShopPicUrl, setMainPageCustomShopPicUrl] = useState("");
 
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
@@ -57,6 +62,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         setMainPageMapSize(mapCount);
 
         //TODO setMainPageBgPicUrl()
+        //TODO setMainPageFixedListItemPicUrl()
+        //TODO setMainPageFixedListItemPicUrl();
+        //TODO setMainPageCustomStoryPicUrl();
+        //TODO setMainPageCustomPlayerProfilePicUrl();
+        //TODO setMainPageCustomSettingsPicUrl();
+        //TODO setMainPageCustomShopPicUrl();
       
     });
     
@@ -120,7 +131,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "align-items": "center",
                                 "display": "flex",
                             } : {            
-
+                                "background-image": `url('')`,
+                                "background-size": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
+                                
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
                                 "marginRight": `${navObj["mainPage-listItemGap"]}px`,
                                 "width": `${navObj["mainPage-listItemGroupWidth"]}px`,
