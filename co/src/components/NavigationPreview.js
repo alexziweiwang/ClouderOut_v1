@@ -36,29 +36,14 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "mainPage-setting-picName",         //4
         "mainPage-shop-picName"             //5
     ]; 
-    // navObj[mainPagePictureVariableNames[i]]
-    // "mainPage-bgPicName",               //0
-    // "mainPage-listItemPicName",         //1
-    // "mainPage-story-picName",           //2
-    // "mainPage-playerProfiley-picName",  //3
-    // "mainPage-setting-picName",         //4
-    // "mainPage-shop-picName"             //5
-    //example: currVar = navObj[mainPagePictureVariableNames[1]]; //getting the variable name of list-item-pic-name
-    // in visualList array, when visualList[i]["var"] 
-    // if currVar === visualList[i]["var"], then get the visualList[i]["url"]
-  
-    const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
-    const [mainPageFixedListItemPicUrl, setMainPageFixedListItemPicUrl] = useState("");
-    const [mainPageCustomStoryPicUrl, setMainPageCustomStoryPicUrl] = useState("");
-    const [mainPageCustomPlayerProfilePicUrl, setMainPageCustomPlayerProfilePicUrl] = useState("");
-    const [mainPageCustomSettingsPicUrl, setMainPageCustomSettingsPicUrl] = useState("");
-    const [mainPageCustomShopPicUrl, setMainPageCustomShopPicUrl] = useState("");
+
 
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
     const [audioMapSize, setAudioMapSize] = useState(0);
     const [visualMapSize, setVisualMapSize] = useState(0);
 
+    
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -114,15 +99,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             setScreenHeight(800);
         }
 
-  
-        //TODO setMainPageBgPicUrl()
-        //TODO setMainPageFixedListItemPicUrl()
-        //TODO setMainPageFixedListItemPicUrl();
-        //TODO setMainPageCustomStoryPicUrl();
-        //TODO setMainPageCustomPlayerProfilePicUrl();
-        //TODO setMainPageCustomSettingsPicUrl();
-        //TODO setMainPageCustomShopPicUrl();
-      
     });
     
 
@@ -136,7 +112,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
-                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${""}')` : "",
+                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 
                 "marginLeft": `20px`,
@@ -185,7 +161,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "align-items": "center",
                                     "display": "flex",
                                 } : {            
-                                    "background-image": `url('')`,
+                                    "background-image": `url('${visualMap[navObj[mainPagePictureVariableNames[1]]]}')`,
                                     "background-size": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
                                     
                                     "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
