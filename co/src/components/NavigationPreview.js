@@ -29,6 +29,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
         let objTemp = fetchNavObj();
         setNavObj(objTemp);
+        // setMainPageElementList({
+        //     "Story" : objTemp["mainPage-story"],
+        //     "Player Profile": objTemp["mainPage-playerProfile"],
+        //     "Settings": objTemp["mainPage-setting"],
+        //     "Shop": objTemp["mainPage-shop"],
+        // });
 
         let tempPage= fetchPageName();
         setPage(tempPage);
@@ -47,20 +53,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             setScreenHeight(800);
         }
 
-        setMainPageElementList({
-            "Story" : objTemp["mainPage-story"],
-            "Player Profile": objTemp["mainPage-playerProfile"],
-            "Settings": objTemp["mainPage-setting"],
-            "Shop": objTemp["mainPage-shop"],
-        });
-        let mapCount = 0;
-        Object.keys(mainPageElementList).map((key) => {
-            if (mainPageElementList[key] === true) {
-                mapCount++;
-            }
-        })
-        setMainPageMapSize(mapCount);
-
+  
         //TODO setMainPageBgPicUrl()
         //TODO setMainPageFixedListItemPicUrl()
         //TODO setMainPageFixedListItemPicUrl();
