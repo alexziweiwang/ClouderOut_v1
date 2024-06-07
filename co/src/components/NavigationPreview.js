@@ -89,7 +89,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {/* grouped items */}
             {navObj["mainPage-entriesCustom"] === false &&  <div style={{
                 "position": "absolute",
-                "display": navObj["mainPage-entriesHorizontal"] === true ? "flex" : "inline",
+                "display": navObj["mainPage-entriesHorizontal"] === true ? "flex" : "",
                 "marginLeft": `${navObj["mainPage-listItemGroupX"]}px`,
                 "marginTop": `${navObj["mainPage-listItemGroupY"]}px`,
                 }}>
@@ -169,21 +169,23 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {navObj["mainPage-entriesCustom"] === true && <div
             style={{"position": "absolute",}}>
 
-            {Object.keys(mainPageElementList).map((key) => {
-                let keyStr2 = key + "_customizedItems";
+            {mainPageEntryNames.map((item, index) => {
+         
+                let keyStr2 = item + "_customizedItems";
 
                 let optionName = "";
-                if (key === "Story") {
+                if (index === 0) {
                     optionName = navObj["mainPage-story-name"];
-                } else if (key === "Player Profile") {
+                } else if (index === 1) {
                     optionName = navObj["mainPage-playerProfile-name"];
-                } else if (key === "Settings") {
+                } else if (index === 2) {
                     optionName = navObj["mainPage-setting-name"];
-                } else if (key === "Shop") {
+                } else if (index === 3) {
                     optionName = navObj["mainPage-shop-name"];
                 }
 
-                if (mainPageElementList[key] === true) {
+
+                if (navObj[item] === true) {
                     let currItemPosX = 0;
                     let currItemPosY = 0;
                     let currItemWidth = 0;
@@ -193,7 +195,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     let currItemBgShade = "";                   
                     let currIsShapeBool = false;
 
-                    if (key === "Story") {
+                    if (index === 0) {
                         currItemPosX = navObj["mainPage-story-posX"];
                         currItemPosY = navObj["mainPage-story-posY"];
                         currItemWidth = navObj["mainPage-story-width"];
@@ -202,7 +204,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemFontSize = navObj["mainPage-story-fontSize"];
                         currItemBgShade = navObj["mainPage-story-shadeName"];
                         currIsShapeBool = navObj["mainPage-story-isShape"];
-                    } else if (key === "Player Profile") {
+                    } else if (index === 1) {
                         currItemPosX = navObj["mainPage-playerProfile-posX"];
                         currItemPosY = navObj["mainPage-playerProfile-posY"];
                         currItemWidth = navObj["mainPage-playerProfile-width"];
@@ -211,7 +213,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemFontSize = navObj["mainPage-playerProfile-fontSize"];
                         currItemBgShade = navObj["mainPage-playerProfile-shadeName"];
                         currIsShapeBool = navObj["mainPage-playerProfile-isShape"];
-                    } else if (key === "Settings") {
+                    } else if (index === 2) {
                         currItemPosX = navObj["mainPage-setting-posX"];
                         currItemPosY = navObj["mainPage-setting-posY"];
                         currItemWidth = navObj["mainPage-setting-width"];
@@ -220,7 +222,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         currItemFontSize = navObj["mainPage-setting-fontSize"];
                         currItemBgShade = navObj["mainPage-setting-shadeName"];
                         currIsShapeBool = navObj["mainPage-setting-isShape"];
-                    } else if (key === "Shop") {
+                    } else if (index === 3) {
                         currItemPosX = navObj["mainPage-shop-posX"];
                         currItemPosY = navObj["mainPage-shop-posY"];
                         currItemWidth = navObj["mainPage-shop-width"];
