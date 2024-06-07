@@ -35,8 +35,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "mainPage-playerProfiley-picName",  //3
         "mainPage-setting-picName",         //4
         "mainPage-shop-picName"             //5
-    ]; //example: currVar = navObj[mainPagePictureVariableNames[1]]; //getting the variable name of list-item-pic-name
-    // in visualList array, when visualList[i]["var"]
+    ]; 
+    // navObj[mainPagePictureVariableNames[i]]
+    // "mainPage-bgPicName",               //0
+    // "mainPage-listItemPicName",         //1
+    // "mainPage-story-picName",           //2
+    // "mainPage-playerProfiley-picName",  //3
+    // "mainPage-setting-picName",         //4
+    // "mainPage-shop-picName"             //5
+    //example: currVar = navObj[mainPagePictureVariableNames[1]]; //getting the variable name of list-item-pic-name
+    // in visualList array, when visualList[i]["var"] 
     // if currVar === visualList[i]["var"], then get the visualList[i]["url"]
   
     const [mainPageBgPicUrl, setMainPageBgPicUrl] = useState("");
@@ -46,6 +54,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const [mainPageCustomSettingsPicUrl, setMainPageCustomSettingsPicUrl] = useState("");
     const [mainPageCustomShopPicUrl, setMainPageCustomShopPicUrl] = useState("");
 
+    const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
+    const [visualMap, setVisualMap] = useState({}); 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -56,6 +66,26 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         if (firstTimeEnter === true) {
             fetchProjResourceLists();
             setFirstTimeEnter(false);
+
+            let i = 0;
+            let tempAudioMap = {};
+            for (;i < audioList.length; i++) {
+                let item = audioList[i];
+                tempAudioMap[item["var"]] = item["url"];
+            }
+            setAudioMap(tempAudioMap);
+
+            i = 0;
+            let tempVisualMap = {};
+            for (;i < visualList.length; i++) {
+                let item = visualList[i];
+                tempVisualMap[item["var"]] = item["url"];
+            }
+            setVisualMap(tempVisualMap);
+            console.log("audioMap", audioMap);
+            console.log("visualMap", visualMap);
+
+
         }
 
         let objTemp = fetchNavObj();
