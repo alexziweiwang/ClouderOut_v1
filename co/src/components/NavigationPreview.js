@@ -32,7 +32,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "mainPage-bgPicName",               //0
         "mainPage-listItemPicName",         //1
         "mainPage-story-picName",           //2
-        "mainPage-playerProfiley-picName",  //3
+        "mainPage-playerProfile-picName",   //3
         "mainPage-setting-picName",         //4
         "mainPage-shop-picName"             //5
     ]; 
@@ -295,6 +295,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             } :
                             {
                                 //TODO background image & backgound size
+                                "background-image": `url('${visualMap[navObj[mainPagePictureVariableNames[index+2]]]}')`,
+                                "background-size": `${currItemWidth}px ${currItemHeight}px`,
+                                
                                 "position": "absolute",
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
 
