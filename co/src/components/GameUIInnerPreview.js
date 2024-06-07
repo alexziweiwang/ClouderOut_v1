@@ -63,7 +63,7 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
                     "transition": "all 0.2s ease-out",
                     "overflow": "scroll"
                 } : {
-                    "background-image": `url('${defualtBtnUISettings["picUrl"]}')`,
+                    "background-image": `url('${defualtBtnUISettings["picUrl"]}')`, //TODO improve later
                     "background-size": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
@@ -131,7 +131,7 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
                 "user-select": "none",
                 "transition": "all 0.2s ease-out"
             } : {
-                "background-image": `url('${backButtonUISettings["picUrl"]}')`,
+                "background-image": `url('${backButtonUISettings["picUrl"]}')`, //TODO improve later
                 "background-size": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
                 
                 "width": `${backButtonUISettings["width"]}px`,

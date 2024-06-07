@@ -70,6 +70,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
         "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
+        "bgp_source_link" : allPieceData[pieceNum-1]["bgp_source_link"],
+
+        "bgp_source_pair" : allPieceData[pieceNum-1]["bgp_source_pair"], //TODO impl
+
         "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
         "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
         "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
@@ -81,11 +85,20 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "clkb_previewing": allPieceData[pieceNum-1]["clkb_previewing"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
         "bgm_source_link":allPieceData[pieceNum-1]["bgm_source_link"],
+        
+        "bgm_source_pair" : allPieceData[pieceNum-1]["bgm_source_pair"], //TODO impl
+
         "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
         "bgm_volume": allPieceData[pieceNum-1]["bgm_volume"], 
         "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
-        "vl_volume": allPieceData[pieceNum-1]["vl_volume"]}
+        "vl_volume": allPieceData[pieceNum-1]["vl_volume"],
+
+        "vl_source_pair" : allPieceData[pieceNum-1]["vl_source_pair"], //TODO impl
+    }
+
+     
+
     );
 
     const [audioList, setAudioList] = useState([]);
@@ -330,7 +343,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function setupBgpInfo(event) {
-    
+//TODO improve in future
+
         let varName = event.target.value;
         console.log("setupBgpInfo var = ", varName); //TODO test
         

@@ -276,7 +276,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         "user-select": "none",
                         "transition": "all 0.2s ease-out",
                         "overflow": "scroll"
-                    } : {"background-image": `url('${defaultButtonObj["picUrl"]}')`,
+                    } : {
+                        "background-image": `url('${defaultButtonObj["picUrl"]}')`, //TODO improve later
                         "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
                         
                         "width": `${defaultButtonObj["widthMin"]}px`,

@@ -67,6 +67,9 @@ export default function ConversationNodeEditingPanel() {
         "groupY": 100,
         "horizontalMid": false,
         "verticalMid": false,
+        
+        "picPair": "" //TODO impl
+
     }); //TODO fetch from cloud-db
     const [gameUITextFrame, setGameUITextFrame] = useState({"width": 600,
     "height": 200,
@@ -88,7 +91,11 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-x": 10,
     "TextContentArea-y": 10,
     "TextContentArea-w": 580,
-    "TextContentArea-h": 180}); //TODO fetch from cloud-db
+    "TextContentArea-h": 180,
+
+    "picPair": "" //TODO impl
+
+}); //TODO fetch from cloud-db
     const [gameUIBackButton, setGameUIBackButton] = useState({"width": 50,
     "height": 50,
     "cornerRadius": 0,
@@ -103,7 +110,10 @@ export default function ConversationNodeEditingPanel() {
     "borderColor": "#000000",
     "borderSize": 2,
     "posX": 0,
-    "posY": 0
+    "posY": 0,
+
+    "picPair": "" //TODO impl
+    
 }); //TODO fetch from cloud-db
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");

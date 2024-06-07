@@ -263,3 +263,8 @@
 - 2024-May-09: Consider chapter insertion strategies
 
 - 2024-May-10: Design data structure for main-data (non-game-data) for projects without save/load system; design navigation-setter UI for users
+
+- 2024-Jun-06: Design and consider resource-naming-url fetching strategy for dynamic linking of a fixed variable name, for previewing and playing of the game
+
+
+
