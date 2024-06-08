@@ -131,7 +131,21 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-seVol-width": initialNavObj["settingPage-seVol-width"],
       "settingPage-seVol-height": initialNavObj["settingPage-seVol-height"],
       "settingPage-seVol-fontSize": initialNavObj["settingPage-seVol-fontSize"],
-      "settingPage-seVol-fontColor": initialNavObj["settingPage-seVol-fontColor"]
+      "settingPage-seVol-fontColor": initialNavObj["settingPage-seVol-fontColor"],
+
+      "storyPage-isBackgroundShape": initialNavObj["storyPage-isBackgroundShape"],
+      "storyPage-bgShadeName": initialNavObj["storyPage-bgShadeName"],
+      "storyPage-bgPicName": initialNavObj["storyPage-bgPicName"],
+      "storyPage-isListItemShape": initialNavObj["storyPage-isListItemShape"],
+      "storyPage-listItemShadeName": initialNavObj["storyPage-listItemShadeName"],
+      "storyPage-listItemPicName": initialNavObj["storyPage-listItemPicName"],
+      "storyPage-listItemGroupX": initialNavObj["storyPage-listItemGroupX"],
+      "storyPage-listItemGroupY": initialNavObj["storyPage-listItemGroupY"],
+      "storyPage-listItemGroupWidth": initialNavObj["storyPage-listItemGroupWidth"],
+      "storyPage-listItemGroupHeight": initialNavObj["storyPage-listItemGroupHeight"],
+      "storyPage-listItemGap": initialNavObj["storyPage-listItemGap"],
+      "storyPage-listItemGroupFontColor": initialNavObj["storyPage-listItemGroupFontColor"],
+      "storyPage-listItemGroupFontSize": initialNavObj["storyPage-listItemGroupFontSize"],
     });
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
@@ -1850,11 +1864,24 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{      
+                        value={currentProjectNav["storyPage-isBackgroundShape"]}
+                        value={currentProjectNav["storyPage-isBackgroundShape"]}
+                        onChange={()=>{      
+                          let tempObj = currentProjectNav;
+                          tempObj["storyPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+                          //TODO test
 
-                        }}></input><label onClick={(event)=>{
-                                
+                          setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": true});            
+                
+                        }}></input><label onClick={()=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["storyPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+                          //TODO test
+
+                          setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": true});            
+                                                
                         }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
