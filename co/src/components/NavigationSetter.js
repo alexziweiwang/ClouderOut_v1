@@ -1851,10 +1851,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <div className="indentOne">
                       <input type="radio" 
                         
-                        onChange={(event)=>{          
+                        onChange={(event)=>{      
+
                         }}></input><label onClick={(event)=>{
                                 
-                                }}>Rectangle & Color Filled </label>
+                        }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -1869,10 +1870,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           onChange={(event)=>{
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture </label>
+                        
+                        }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
+                        
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           

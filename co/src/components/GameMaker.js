@@ -171,6 +171,20 @@ export default function GameMaker() {
     "settingPage-seVol-fontSize": 10,
     "settingPage-seVol-fontColor": "",
 
+    "storyPage-isBackgroundShape": false,
+    "storyPage-bgShadeName": "rgb(222, 222, 235)",
+    "storyPage-bgPicName": "",
+    "storyPage-isListItemShape": true,
+    "storyPage-listItemShadeName": "#c0cfe2",
+    "storyPage-listItemPicName": "",
+    "storyPage-listItemGroupX": 0,
+    "storyPage-listItemGroupY": 0,
+    "storyPage-listItemGroupWidth": 120,
+    "storyPage-listItemGroupHeight": 60,
+    "storyPage-listItemGap": 3,
+    "storyPage-listItemGroupFontColor": "",
+    "storyPage-listItemGroupFontSize": 10,
+
   }); //TODO now: default initial values
 
 //TODO ------------------------------------------------------

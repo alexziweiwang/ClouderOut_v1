@@ -10,8 +10,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(450);
 
-    const [resourceList, setResourceList] = useState([]); //TODO for resource-selection
-
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
@@ -106,7 +104,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
         <br></br>
 
-        {page === "Main Page"&& 
+        {page === "Main Page" && 
         <> main page
         <div style={{
                 "width": `${screenWidth}px`, 
@@ -294,7 +292,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "display": "flex",
                             } :
                             {
-                                //TODO background image & backgound size
                                 "background-image": `url('${visualMap[navObj[mainPagePictureVariableNames[index+2]]]}')`,
                                 "background-size": `${currItemWidth}px ${currItemHeight}px`,
                                 
@@ -326,16 +323,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         >
                             <label>{optionName}</label>
                         </div>
-                     
-                 
+
                     );
-                }   
-                
+                }                  
             }
             )}             
-            </div>}
-        
-        
+            </div>}      
         </div>
         
         </>}
@@ -343,50 +336,91 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
 
         {(navObj["isWithSL"] && page === "Game Progress Strategy") && <>
+            game progress / saveload page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             
             saveload page preview</div>
-        <br></br></>}
+        <br></br>
+        
+        </>
+        
+        }
 
-        {page === "Story Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
-        >
+        {page === "Story Page" && <>
             story page
-            <br></br>        
-            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
-        </div>}
-
-        {page === "Settings Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
+            {/* elements on story page */}
+            <div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
+                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
+                "background-size": `${screenWidth}px ${screenHeight}px`,
+                
+                "marginLeft": `20px`,
+                "position": "relative", 
+                "overflow": "scroll",
+            
+                }}
+            >
+            
+            </div>
+
+            
+        </div>
+        
+        </>}
+
+        {page === "Settings Page" && 
+        <>
             setting page
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+  
             <br></br>   
             {navObj["settingPage-playSpeed"].toString()}<br></br>
             {navObj["settingPage-bgmVol"].toString()}<br></br>
             {navObj["settingPage-seVol"].toString()}<br></br>
             {navObj["settingPage-entriesHorizontal"].toString()}<br></br>
             {navObj["settingPage-entriesCustom"].toString()} 
-        </div>}
+        </div>
+        </>}
 
-        {page === "Player Profile Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {page === "Player Profile Page" && 
+        <>
+            player profile
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
-            player profile page
+       
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
-        </div>}
+        </div>
+        </>}
 
-        {page === "Game Status Data Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
-        >
+        {page === "Game Status Data Page" && 
+        <>
             game status data page
-            <br></br>        
-            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
-        </div>}
-  
-        {page === "Shop Page" && <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
-            shop page
+         
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
-        </div>}
+        </div>
+        </>
+        }
+  
+        {page === "Shop Page" && 
+        <>
+            shop page
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+         
+            <br></br>        
+            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+        </div>
+        </>}
 
         <br></br>              
 
