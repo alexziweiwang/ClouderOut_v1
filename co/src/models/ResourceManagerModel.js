@@ -1,6 +1,6 @@
-import db from '../googleCloudConnetions';
+import db from '../GoogleCloudConnetions';
 import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
- import { storage } from '../googleCloudConnetions';
+ import { storage } from '../GoogleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc, deleteField  } from "firebase/firestore"; 
 
 

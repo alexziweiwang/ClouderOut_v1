@@ -266,5 +266,5 @@
 
 - 2024-Jun-06: Design and consider resource-naming-url fetching strategy for dynamic linking of a fixed variable name, for previewing and playing of the game
 
-
+- 2024-Jun-10: Fix local file configurations for cloud-db and storage after issues
 

@@ -1,4 +1,4 @@
-import db from '../googleCloudConnetions';
+import db from '../GoogleCloudConnetions';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 
