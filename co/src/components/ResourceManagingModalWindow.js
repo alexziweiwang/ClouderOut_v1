@@ -151,10 +151,11 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
         setVarPairToCloud(info);
     }
 
-    async function updateVarPairToCloud() {
-        await storeProjectResourceVarPairsToCloudVM(varPairToCloud);
-        setVarPairToCloud("default");
-        triggerRmUpdate();
+    async function updateVarPairToCloud() { //TODO test and debug
+        if (varPairToCloud !== "default") {
+            await storeProjectResourceVarPairsToCloudVM(varPairToCloud);
+            setVarPairToCloud("default");
+        }
     }
 
     async function fetchProjResourceVarPairLists() {

@@ -242,6 +242,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function tempTrigerRmUpdate() {
+        console.log("tempTrigerRmUpdate");
         console.log("TODO: resource-managing update");
     }
 

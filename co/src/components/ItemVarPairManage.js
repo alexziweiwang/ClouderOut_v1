@@ -20,11 +20,19 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, storeNewVa
             <label>Rename: </label></>}
             
             <input value={inputContent} onChange={(event)=>{setInputContent(event.target.value);}}></input> 
-            {isInVarPair == false && <button onClick={()=>{setInputContent(""); storeNewVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}>Add</button>}
-            {isInVarPair == true && 
-                <button onClick={()=>{ setInputContent(""); storeNewVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}>Update</button>}
+            {isInVarPair == false && <button onClick={()=>{
+                setInputContent(""); 
+                storeNewVarPairDataFunction("add", selectedUrl, inputContent, fileType);}}
+            >Add</button>}
+            
+            {isInVarPair == true && <button onClick={()=>{ 
+                setInputContent(""); 
+                storeNewVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}
+            >Update</button>}
 
-            <button className="buttonRight" onClick={()=>{}}> Save Changes to Cloud </button>
+            <button className="buttonRight" onClick={()=>{
+                saveToCloudFunc();
+            }}> Save Changes to Cloud </button>
         </div>
     );
 }
