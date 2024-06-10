@@ -339,8 +339,25 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             game progress / saveload page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
+                <div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                "background-image": navObj["saveloadPage-isBackgroundShape"] === false 
+                    ? `url('${visualMap[navObj["saveloadPage-bgPicName"]]}')` : "",
+                "background-size": `${screenWidth}px ${screenHeight}px`,
+                
+
+                "position": "relative", 
+                "overflow": "scroll",
             
-            saveload page preview</div>
+                }}
+            >
+
+
+            </div>
+            
+            </div>
         <br></br>
         
         </>

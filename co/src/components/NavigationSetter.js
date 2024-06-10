@@ -302,7 +302,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             
                         <br></br><input type="radio"
                           value={currentProjectNav["saveloadPage-isBackgroundShape"]}
-                          checked={currentProjectNav["saveloadPage-isBackgroundShape"]}
+                          checked={!currentProjectNav["saveloadPage-isBackgroundShape"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-isBackgroundShape"] = false;
