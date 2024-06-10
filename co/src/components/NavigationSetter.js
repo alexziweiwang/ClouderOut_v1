@@ -1889,53 +1889,44 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                     <input type="color"
                                     value={currentProjectNav["storyPage-bgShadeName"]}
                                     onChange={(event)=>{
-                                      let tempObj = currentProjectNav;
-                                      tempObj["storyPage-bgShadeName"] = event.target.value;
-                                      updateNavObj(tempObj);
-                                      //TODO test
-            
-                                      setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": event.target.value});            
-                                                                              
-                                        }}></input>
-                                    <label> {currentProjectNav["storyPage-bgShadeName"]}</label>
+                                          let tempObj = currentProjectNav;
+                                          tempObj["storyPage-bgShadeName"] = event.target.value;
+                                          updateNavObj(tempObj);
+                                          //TODO test
+                
+                                          setCurrentProjectNav({...currentProjectNav, "storyPage-bgShadeName": event.target.value});            
+                                          
+                                      }}></input>
+                                    <label></label>
                                 </div>}
                             
                         <br></br><input type="radio"
                           value={currentProjectNav["storyPage-isBackgroundShape"]}
-                          checked={!currentProjectNav["storyPage-isBackgroundShape"]}
-                          onChange={()=>{
+                          checked={!currentProjectNav["storyPage-isBackgroundShape"]}             
+                          onChange={()=>{ 
                             let tempObj = currentProjectNav;
                             tempObj["storyPage-isBackgroundShape"] = false;
                             updateNavObj(tempObj);
                             //TODO test
   
                             setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": false});            
-                  
+                               
                         }}></input><label onClick={()=>{
-                          let tempObj = currentProjectNav;
-                          tempObj["storyPage-isBackgroundShape"] = false;
-                          updateNavObj(tempObj);
-                          //TODO test
+                            let tempObj = currentProjectNav;
+                            tempObj["storyPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj);
+                            //TODO test
 
-                          setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": false});            
-                
+                            setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": false});            
+            
                         }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
-                                      let tempObj = currentProjectNav;
-                                      tempObj["storyPage-bgPicName"] = event.target.value;
-                                      updateNavObj(tempObj);
-                                      //TODO test
-            
-                                      setCurrentProjectNav({...currentProjectNav, "storyPage-bgPicName": event.target.value});            
-                                            
+                        
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
-                                    {visualList.map((item, index) => {
-                                      let keyStr = "storyPage-bg-" + index + item["var"];
-                                      return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                                    })}
+                          
                                 </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
