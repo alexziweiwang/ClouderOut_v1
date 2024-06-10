@@ -355,17 +355,18 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
-                "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
-                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
+                "backgroundColor":  navObj["storyPage-isBackgroundShape"] === true ? `${navObj["storyPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                "background-image": navObj["storyPage-isBackgroundShape"] === false 
+                    ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 
-                "marginLeft": `20px`,
+
                 "position": "relative", 
                 "overflow": "scroll",
             
                 }}
             >
-            
+
             </div>
 
             
