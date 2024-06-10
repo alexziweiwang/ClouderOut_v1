@@ -8,3 +8,5 @@ co/src/googleCloudConnetions.js
 *.png
 .ResourceManaging_DataStructureOperationWithNewDesign.png.icloud
 *.png
+co/src/googleCloudConnections.js
+co/src/models/googleCloudConnections.js

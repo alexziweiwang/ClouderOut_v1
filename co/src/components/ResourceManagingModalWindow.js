@@ -83,7 +83,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     
             setVarPairToCloud(info);
 
-            let userResponse = confirm("Save to cloud?");
+            let userResponse = window.confirm("Save to cloud?");
             if (userResponse) {
                 console.log("saving to cloud...");
 //TODO save to cloud-db
@@ -316,7 +316,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
     }
 
     async function removeOneResource() {
-        let userResponse = confirm("Are you sure to delete this resource from all projects?");
+        let userResponse = window.confirm("Are you sure to delete this resource from all projects?");
         if (userResponse) {
             await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
             await fetchRmFileList();

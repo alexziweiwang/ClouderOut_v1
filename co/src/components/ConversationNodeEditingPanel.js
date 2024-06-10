@@ -282,7 +282,7 @@ export default function ConversationNodeEditingPanel() {
     function updateGameSizeSetting() {
         console.log("new game size setting:", selectedGameScreenSize);
         //TODO design: each node and have one size, and different nodes can have various sizes?
-        let respondGiven = confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
+        let respondGiven = window.confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
           if (respondGiven) {
             if (selectedGameScreenSize === "h450_800") {
               setScreenWidth(800);
