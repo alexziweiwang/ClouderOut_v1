@@ -271,30 +271,61 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
-                        }}></input><label onClick={(event)=>{
-                                
-                                }}>Rectangle & Color Filled </label>
+                        value={currentProjectNav["saveloadPage-isBackgroundShape"]}
+                        checked={currentProjectNav["saveloadPage-isBackgroundShape"]}
+                        onChange={()=>{          
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": true});    
+                        }}></input><label onClick={()=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-isBackgroundShape"] = true;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": true});    
+                        }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
                                     onChange={(event)=>{
+                                      let tempObj = currentProjectNav;
+                                      tempObj["saveloadPage-bgShadeName"] = event.target.value;
+                                      updateNavObj(tempObj);       
                                       
+                                      setCurrentProjectNav({...currentProjectNav, "saveloadPage-bgShadeName": event.target.value});    
                                         }}></input>
-                                    <label></label>
+                                    <label> {currentProjectNav["saveloadPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
+                          value={currentProjectNav["saveloadPage-isBackgroundShape"]}
+                          checked={currentProjectNav["saveloadPage-isBackgroundShape"]}
                           onChange={(event)=>{
-                          
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": false});   
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture </label>
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": false});   
+                        }}>Base Picture </label>
                             {
                             <>
-                                <select onChange={(event)=>{
-                                  //TODO
+                                <select 
+                                  value={currentProjectNav["saveloadPage-bgPicName"]}
+                                  onChange={(event)=>{
+                                    let tempObj = currentProjectNav;
+                                    tempObj["saveloadPage-bgPicName"] = event.target.value;
+                                    updateNavObj(tempObj);       
+                                    
+                                    setCurrentProjectNav({...currentProjectNav, "saveloadPage-bgPicName": event.target.value});   
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                                     {visualList.map((item, index) => {
@@ -2057,7 +2088,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                               }}>Base Picture </label>
                             {
                             <>
-                                <select onChange={(event)=>{
+                                <select 
+                                value={currentProjectNav["settingPage-bgPicName"]}
+                                onChange={(event)=>{
                                   let tempObj = currentProjectNav;
                                   tempObj["settingPage-bgPicName"] = event.target.value;
                                   updateNavObj(tempObj);
@@ -2126,7 +2159,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 }}>Base Picture </label>
                   {
                   <>
-                      <select onChange={(event)=>{
+                      <select 
+                      value={currentProjectNav["settingPage-listItemPicName"]}
+                      onChange={(event)=>{
                         let tempObj = currentProjectNav;
                         tempObj["settingPage-listItemPicName"] = event.target.value;
                         updateNavObj(tempObj);
