@@ -367,19 +367,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                       
                                       setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotShadeName": event.target.value});                         
                                       
-                                        }}></input>
+                                    }}></input>
                                     <label> {currentProjectNav["saveloadPage-slotShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
-                          onChange={(event)=>{
+                          onChange={()=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-isSlotShape"] = false;
                             updateNavObj(tempObj);       
                             
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": false}); 
                           
-                        }}></input><label onClick={(event)=>{
+                        }}></input><label onClick={()=>{
                               let tempObj = currentProjectNav;
                               tempObj["saveloadPage-isSlotShape"] = false;
                               updateNavObj(tempObj);       
@@ -389,6 +389,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             {
                             <>
                                 <select onChange={(event)=>{
+                                      let tempObj = currentProjectNav;
+                                      tempObj["saveloadPage-slotPicName"] = event.target.value;
+                                      updateNavObj(tempObj);       
+                                      
+                                      setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotPicName": event.target.value});                         
+                                      
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                                     {visualList.map((item, index) => {
@@ -407,7 +413,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         <select>
                           <option key="SLrowCountOne">1</option>
                           <option key="SLrowCountTwo">2</option>
-                          <option key="SLrowCountThree">3</option>
                         </select>
                       <br></br>                     
                       <label>Number of columns:</label>
@@ -415,7 +420,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           <option key="SLcolCountOne">1</option>
                           <option key="SLcolCountTwo">2</option>
                           <option key="SLcolCountThree">3</option>
-                          <option key="SLcolCountFour">4</option>
                         </select>
                       <br></br>
                       <label>Number of Pages:</label>
