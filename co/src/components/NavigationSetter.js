@@ -341,26 +341,51 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <label>Slot Looking:</label>
                     <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
+                        value={currentProjectNav["saveloadPage-isSlotShape"]}
+                        checked={currentProjectNav["saveloadPage-isSlotShape"]}
+                        onChange={()=>{   
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-isSlotShape"] = true;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": true});   
                         }}></input><label onClick={(event)=>{
-                                
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-isSlotShape"] = true;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": true});              
                                 }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
                                     onChange={(event)=>{
+                                      let tempObj = currentProjectNav;
+                                      tempObj["saveloadPage-slotShadeName"] = event.target.value;
+                                      updateNavObj(tempObj);       
+                                      
+                                      setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotShadeName": event.target.value});                         
                                       
                                         }}></input>
-                                    <label></label>
+                                    <label> {currentProjectNav["saveloadPage-slotShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
                           onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-isSlotShape"] = false;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": false}); 
                           
                         }}></input><label onClick={(event)=>{
-                              }}>Base Picture </label>
+                              let tempObj = currentProjectNav;
+                              tempObj["saveloadPage-isSlotShape"] = false;
+                              updateNavObj(tempObj);       
+                              
+                              setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": false}); 
+                        }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
