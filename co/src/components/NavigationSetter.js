@@ -396,7 +396,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotPerPage": event.target.value}); 
                       }}
                       >
-                       <option key="sl-slot-per-page-default" value=""></option>
                        <option key="sl-slot-per-page-2" value="2">2</option>
                        <option key="sl-slot-per-page-3" value="3">3</option>
                        <option key="sl-slot-per-page-4" value="4">4</option>
@@ -534,11 +533,52 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <label>Gaps between slots:</label><br></br>
                   <div className="indentOne">
                       <label>Horizontal:</label>
-                      <input type="range"></input>
-    
+                      <input type="range" 
+                          min="0" max="20" step="1"
+                          value={currentProjectNav["saveloadPage-slotHorizontalGap"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotHorizontalGap"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHorizontalGap": event.target.value});
+                          }}
+                        ></input>
+                      <input type="number" 
+                          min="0" max="20" step="1"
+                          value={currentProjectNav["saveloadPage-slotHorizontalGap"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotHorizontalGap"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHorizontalGap": event.target.value});
+                          }}
+                        ></input>    
                       <br></br>
                       <label>Vertical:</label>
-                      <input type="range"></input>
+                      <input type="range" 
+                          min="0" max="20" step="1"
+                          value={currentProjectNav["saveloadPage-slotVerticalGap"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotVerticalGap"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotVerticalGap": event.target.value});
+                          }}
+                        ></input>
+                      <input type="number" 
+                          min="0" max="20" step="1"
+                          value={currentProjectNav["saveloadPage-slotVerticalGap"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotVerticalGap"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotVerticalGap": event.target.value});
+                          }}
+                        ></input>    
        
                   </div>
                   <label>Group Positions:</label><br></br>
