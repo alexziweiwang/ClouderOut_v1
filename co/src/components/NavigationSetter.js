@@ -84,6 +84,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "saveloadPage-slotShadeName": initialNavObj["saveloadPage-slotShadeName"],
       "saveloadPage-slotPicName": initialNavObj["saveloadPage-slotPicName"],
       "saveloadPage-slotListIsHorizontal": initialNavObj["saveloadPage-slotListIsHorizontal"],
+      "saveloadPage-slotPerPage": initialNavObj["saveloadPage-slotPerPage"],
       "saveloadPage-slotRowCount": initialNavObj["saveloadPage-slotRowCount"],
       "saveloadPage-slotColCount": initialNavObj["saveloadPage-slotColCount"],
       "saveloadPage-slotPageCount": initialNavObj["saveloadPage-slotPageCount"],
@@ -376,47 +377,32 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                      ></input>
                      <label
                           onClick={()=>{
-                          let tempObj = currentProjectNav;
-                          tempObj["saveloadPage-slotListIsHorizontal"] = false;
-                          updateNavObj(tempObj);       
-                            
-                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": false});                 
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotListIsHorizontal"] = false;
+                            updateNavObj(tempObj);       
+                              
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": false});                 
                         }}
                      >Vertical</label>         
                      <br></br>
                      <label>Slot per page:</label>
-                     <input type="number"></input>
-                     <br></br>
-                      
-                      <label>Number of rows:</label>
-                        <select
-                          value={currentProjectNav["saveloadPage-slotRowCount"]}
-                          onChange={(event)=>{
-                            let tempObj = currentProjectNav;
-                            tempObj["saveloadPage-slotRowCount"] = event.target.value;
-                            updateNavObj(tempObj);       
-                            
-                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotRowCount": event.target.value});
-                          }}
-                        >
-                          <option key="SLrowCountOne">1</option>
-                          <option key="SLrowCountTwo">2</option>
-                        </select>
-                      <br></br>                     
-                      <label>Number of columns:</label>
-                      <select
-                        value={currentProjectNav["saveloadPage-slotColCount"]}
-                        onChange={(event)=>{
-                          let tempObj = currentProjectNav;
-                          tempObj["saveloadPage-slotColCount"] = event.target.value;
-                          updateNavObj(tempObj);       
+                     <select
+                      value={currentProjectNav["saveloadPage-slotPerPage"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["saveloadPage-slotPerPage"] = event.target.value;
+                        updateNavObj(tempObj);       
                           
-                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotColCount": event.target.value});
-                        }}>
-                          <option key="SLcolCountOne">1</option>
-                          <option key="SLcolCountTwo">2</option>
-                          <option key="SLcolCountThree">3</option>
-                        </select>
+                        setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotPerPage": event.target.value}); 
+                      }}
+                      >
+                       <option key="sl-slot-per-page-default" value=""></option>
+                       <option key="sl-slot-per-page-2" value="2">2</option>
+                       <option key="sl-slot-per-page-3" value="3">3</option>
+                       <option key="sl-slot-per-page-4" value="4">4</option>
+                       <option key="sl-slot-per-page-5" value="5">5</option>
+                     </select>        
+                 
                       <br></br>
                       <label>Number of Pages:</label>
                       <input type="number" min="1" max="15" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}

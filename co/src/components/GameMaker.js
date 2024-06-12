@@ -122,6 +122,7 @@ export default function GameMaker() {
     "saveloadPage-slotShadeName": "",
     "saveloadPage-slotPicName": "",
     "saveloadPage-slotListIsHorizontal": true,
+    "saveloadPage-slotPerPage": 3,
     "saveloadPage-slotRowCount": 2,
     "saveloadPage-slotColCount": 3,
     "saveloadPage-slotPageCount": 10,
