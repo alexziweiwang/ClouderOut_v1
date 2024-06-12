@@ -414,7 +414,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <label>Number of rows:</label>
                         <select
                           value={currentProjectNav["saveloadPage-slotRowCount"]}
-                          onChange={()=>{
+                          onChange={(event)=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-slotRowCount"] = event.target.value;
                             updateNavObj(tempObj);       
@@ -429,7 +429,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <label>Number of columns:</label>
                       <select
                         value={currentProjectNav["saveloadPage-slotColCount"]}
-                        onChange={()=>{
+                        onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotColCount"] = event.target.value;
                           updateNavObj(tempObj);       
@@ -442,7 +442,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         </select>
                       <br></br>
                       <label>Number of Pages:</label>
-                      <input type="number" min="1" max="99" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
+                      <input type="number" min="1" max="15" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotPageCount"] = event.target.value;
@@ -456,26 +456,62 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <label>Slot Size:</label><br></br>
                   <div className="indentOne">
                       <label>Width:</label>
-                      <input type="range"></input>
+                      <input type="range" value={currentProjectNav["saveloadPage-slotWidth"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotWidth"] = event.target.value;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotWidth": event.target.value});
+                        }}
+                      ></input>
+                      <input type="number" value={currentProjectNav["saveloadPage-slotWidth"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotWidth"] = event.target.value;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotWidth": event.target.value});
+                        }}></input>
                       <br></br>
                       <label>Height:</label>
-                      <input type="range"></input>
+                      <input type="range" value={currentProjectNav["saveloadPage-slotHeight"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotHeight"] = event.target.value;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHeight": event.target.value});
+                        }}
+                      ></input>
+                      <input type="number" value={currentProjectNav["saveloadPage-slotHeight"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotHeight"] = event.target.value;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHeight": event.target.value});
+                        }}></input>
                   </div>
                 <label>Gaps between slots:</label><br></br>
                   <div className="indentOne">
                       <label>Horizontal:</label>
                       <input type="range"></input>
+    
                       <br></br>
                       <label>Vertical:</label>
                       <input type="range"></input>
+       
                   </div>
                   <label>Group Positions:</label><br></br>
                     <div className="indentOne">
                         <label>position X:</label>
                         <input type="range"></input>
+                       
                         <br></br>
                         <label>position Y:</label>
                         <input type="range"></input>
+           
                     </div>
  
               </div> </>}
