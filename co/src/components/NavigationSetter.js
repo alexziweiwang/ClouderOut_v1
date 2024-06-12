@@ -83,6 +83,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "saveloadPage-isSlotShape": initialNavObj["saveloadPage-isSlotShape"],
       "saveloadPage-slotShadeName": initialNavObj["saveloadPage-slotShadeName"],
       "saveloadPage-slotPicName": initialNavObj["saveloadPage-slotPicName"],
+      "saveloadPage-slotListIsHorizontal": initialNavObj["saveloadPage-slotListIsHorizontal"],
       "saveloadPage-slotRowCount": initialNavObj["saveloadPage-slotRowCount"],
       "saveloadPage-slotColCount": initialNavObj["saveloadPage-slotColCount"],
       "saveloadPage-slotPageCount": initialNavObj["saveloadPage-slotPageCount"],
@@ -337,7 +338,101 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
           
                   </div>
+
+                  <label>Slot Layout</label>
+                    <div className="indentOne">
+                     <input 
+                      type="radio" 
+                      value={currentProjectNav["saveloadPage-slotListIsHorizontal"]}
+                      checked={currentProjectNav["saveloadPage-slotListIsHorizontal"]}
+                      onChange={()=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["saveloadPage-slotListIsHorizontal"] = true;
+                        updateNavObj(tempObj);       
+                        
+                        setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": true});                 
+                      }}
+                     ></input>
+                     <label
+                           onClick={()=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotListIsHorizontal"] = true;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": true});                 
+                          }}
+                     >Horizontal</label>
+                     <br></br>
+                     <input type="radio"
+                        value={currentProjectNav["saveloadPage-slotListIsHorizontal"]}
+                        checked={!currentProjectNav["saveloadPage-slotListIsHorizontal"]}
+                        onChange={()=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotListIsHorizontal"] = false;
+                          updateNavObj(tempObj);       
+                            
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": false});                 
+                        }}
+                     ></input>
+                     <label
+                          onClick={()=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotListIsHorizontal"] = false;
+                          updateNavObj(tempObj);       
+                            
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": false});                 
+                        }}
+                     >Vertical</label>         
+                     <br></br>
+                     <label>Slot per page:</label>
+                     <input type="number"></input>
+                     <br></br>
+                      
+                      <label>Number of rows:</label>
+                        <select
+                          value={currentProjectNav["saveloadPage-slotRowCount"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-slotRowCount"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotRowCount": event.target.value});
+                          }}
+                        >
+                          <option key="SLrowCountOne">1</option>
+                          <option key="SLrowCountTwo">2</option>
+                        </select>
+                      <br></br>                     
+                      <label>Number of columns:</label>
+                      <select
+                        value={currentProjectNav["saveloadPage-slotColCount"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotColCount"] = event.target.value;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotColCount": event.target.value});
+                        }}>
+                          <option key="SLcolCountOne">1</option>
+                          <option key="SLcolCountTwo">2</option>
+                          <option key="SLcolCountThree">3</option>
+                        </select>
+                      <br></br>
+                      <label>Number of Pages:</label>
+                      <input type="number" min="1" max="15" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["saveloadPage-slotPageCount"] = event.target.value;
+                          updateNavObj(tempObj);       
+                          
+                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotPageCount": event.target.value});
+                        }}
+                      ></input>
+                    
+                    </div>
                
+              
+                        <br></br>
                 <label>Slot Looking:</label>
                     <div className="indentOne">
                       <input type="radio" 
@@ -409,50 +504,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           
                   </div>
                
-                <label>Slot Layout</label>
-                    <div className="indentOne">
-                      <label>Number of rows:</label>
-                        <select
-                          value={currentProjectNav["saveloadPage-slotRowCount"]}
-                          onChange={(event)=>{
-                            let tempObj = currentProjectNav;
-                            tempObj["saveloadPage-slotRowCount"] = event.target.value;
-                            updateNavObj(tempObj);       
-                            
-                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotRowCount": event.target.value});
-                          }}
-                        >
-                          <option key="SLrowCountOne">1</option>
-                          <option key="SLrowCountTwo">2</option>
-                        </select>
-                      <br></br>                     
-                      <label>Number of columns:</label>
-                      <select
-                        value={currentProjectNav["saveloadPage-slotColCount"]}
-                        onChange={(event)=>{
-                          let tempObj = currentProjectNav;
-                          tempObj["saveloadPage-slotColCount"] = event.target.value;
-                          updateNavObj(tempObj);       
-                          
-                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotColCount": event.target.value});
-                        }}>
-                          <option key="SLcolCountOne">1</option>
-                          <option key="SLcolCountTwo">2</option>
-                          <option key="SLcolCountThree">3</option>
-                        </select>
-                      <br></br>
-                      <label>Number of Pages:</label>
-                      <input type="number" min="1" max="15" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
-                        onChange={(event)=>{
-                          let tempObj = currentProjectNav;
-                          tempObj["saveloadPage-slotPageCount"] = event.target.value;
-                          updateNavObj(tempObj);       
-                          
-                          setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotPageCount": event.target.value});
-                        }}
-                      ></input>
-                    
-                    </div>
+     
                 <label>Slot Size:</label><br></br>
                   <div className="indentOne">
                       <label>Width:</label>
