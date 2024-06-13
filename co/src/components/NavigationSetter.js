@@ -605,7 +605,24 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                        
                         <br></br>
                         <label>position Y:</label>
-                        <input type="range"></input>
+                        <input type="range" value={currentProjectNav["saveloadPage-groupPosY"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-groupPosY"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-groupPosY": event.target.value});                            
+                          }}
+                        ></input>
+                        <input type="number" value={currentProjectNav["saveloadPage-groupPosY"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["saveloadPage-groupPosY"] = event.target.value;
+                            updateNavObj(tempObj);       
+                            
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-groupPosY": event.target.value});                            
+                          }}
+                        ></input>
            
                     </div>
  
