@@ -2194,7 +2194,15 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
  
               setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": true});
             }}
-            ></input><label>Horizontal</label>
+            ></input><label
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["storyPage-chapterListHorizontal"] = true;
+                updateNavObj(tempObj);
+  
+                setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": true});
+              }}  
+            >Horizontal</label>
            <br></br>
            <input type="radio"
               value={currentProjectNav["storyPage-chapterListHorizontal"]} 
@@ -2206,18 +2214,36 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
    
                 setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": false});
               }}     
-           ></input><label>Vertical</label>
+           ></input><label
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["storyPage-chapterListHorizontal"] = false;
+                updateNavObj(tempObj);
+
+                setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": false});
+              }}    
+           >Vertical</label>
            <br></br>
 
            <label>Chapter Title Looking:</label>
           <div className="indentOne">
                 
             <input type="radio" 
-              
-              onChange={(event)=>{          
-              }}></input><label onClick={(event)=>{
-                      
-                      }}>Rectangle & Color Filled </label>
+              value={currentProjectNav["storyPage-isListItemShape"]}
+              checked={currentProjectNav["storyPage-isListItemShape"]}
+              onChange={()=>{          
+                let tempObj = currentProjectNav;
+                tempObj["storyPage-isListItemShape"] = true;
+                updateNavObj(tempObj);
+
+                setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": true});
+              }}></input><label onClick={()=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["storyPage-isListItemShape"] = true;
+                    updateNavObj(tempObj);
+
+                    setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": true});             
+              }}>Rectangle & Color Filled </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
