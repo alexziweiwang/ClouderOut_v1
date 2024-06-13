@@ -354,7 +354,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
             >
 
-                
+
 
 
             </div>
@@ -398,13 +398,21 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             setting page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
-  
-            <br></br>   
-            {navObj["settingPage-playSpeed"].toString()}<br></br>
-            {navObj["settingPage-bgmVol"].toString()}<br></br>
-            {navObj["settingPage-seVol"].toString()}<br></br>
-            {navObj["settingPage-entriesHorizontal"].toString()}<br></br>
-            {navObj["settingPage-entriesCustom"].toString()} 
+              <div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor":  navObj["settingPage-isBackgroundShape"] === true ? `${navObj["settingPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                "background-image": navObj["settingPage-isBackgroundShape"] === false 
+                    ? `url('${visualMap[navObj["settingPage-bgPicName"]]}')` : "",
+                "background-size": `${screenWidth}px ${screenHeight}px`,
+                
+
+                "position": "relative", 
+                "overflow": "scroll",
+            
+                }}
+            ></div>
+
         </div>
         </>}
 

@@ -2306,7 +2306,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
         
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
-                          
+                                    {visualList.map((item, index) => {
+                                        let keyStr = "settingsPage-li-" + index + item["var"];
+                                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
+                   
                                 </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
           
