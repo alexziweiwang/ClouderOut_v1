@@ -2248,16 +2248,34 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       <div className="indentOne">
                           <label>Background Color: </label>
                           <input type="color"
+                          value={currentProjectNav["storyPage-listItemShadeName"]}
                           onChange={(event)=>{
-                            
+                            let tempObj = currentProjectNav;
+                            tempObj["storyPage-listItemShadeName"] = event.target.value;
+                            updateNavObj(tempObj);
+        
+                            setCurrentProjectNav({...currentProjectNav, "storyPage-listItemShadeName": event.target.value}); 
                               }}></input>
-                          <label></label>
+                          <label> {currentProjectNav["storyPage-listItemShadeName"]}</label>
                       </div>}
                   
               <br></br><input type="radio"
-                onChange={(event)=>{
+                value={currentProjectNav["storyPage-isListItemShape"]}
+                checked={!currentProjectNav["storyPage-isListItemShape"]}
+                onChange={()=>{          
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-isListItemShape"] = false;
+                  updateNavObj(tempObj);
+
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": false});
+                }}
                 
-              }}></input><label onClick={(event)=>{
+              ></input><label onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["storyPage-isListItemShape"] = false;
+                updateNavObj(tempObj);
+
+                setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": false});
                     }}>Base Picture </label>
                   {
                   <>
