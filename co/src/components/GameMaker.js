@@ -133,9 +133,9 @@ export default function GameMaker() {
     "saveloadPage-groupPosX": 10,
     "saveloadPage-groupPosY": 10,
     
-    "settingPage-playSpeed": false,
-    "settingPage-bgmVol": false,
-    "settingPage-seVol": false,
+    "settingPage-playSpeed": true,
+    "settingPage-bgmVol": true,
+    "settingPage-seVol": true,
     "settingPage-entriesHorizontal": true,
     "settingPage-entriesCustom": false,
 

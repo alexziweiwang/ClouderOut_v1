@@ -35,6 +35,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "mainPage-shop-picName"             //5
     ]; 
 
+    const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
+    const settingsPagePictureVariableNames = [
+
+        
+    ];
+
 
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 

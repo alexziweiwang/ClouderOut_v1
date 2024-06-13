@@ -2158,12 +2158,25 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         }}>Base Picture </label>
                             {
                             <>
-                                <select onChange={(event)=>{
-                        
-                                }}>                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
-                          
-                                </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
+                                <select 
+                                  value={currentProjectNav["storyPage-bgPicName"]}
+                                  onChange={(event)=>{
+                                      let tempObj = currentProjectNav;
+                                      tempObj["storyPage-bgPicName"] = event.target.value;
+                                      updateNavObj(tempObj);                  
+                                      //TODO test
+                    
+                                      setCurrentProjectNav({...currentProjectNav, "storyPage-bgPicName": event.target.value});
+
+                                }}>               
+                                    <option key="stryBgDefault" value="">-- Select Resource --</option>
+
+                                     {visualList.map((item, index) => {
+                                        let keyStr = "storyPage-bg-pic" + index + item["var"];
+                                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
+
+                             </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
 
           
