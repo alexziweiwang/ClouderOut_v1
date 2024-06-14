@@ -148,12 +148,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "storyPage-listItemGap": initialNavObj["storyPage-listItemGap"],
       "storyPage-listItemGroupFontColor": initialNavObj["storyPage-listItemGroupFontColor"],
       "storyPage-listItemGroupFontSize": initialNavObj["storyPage-listItemGroupFontSize"],
+
+
+      "gsdPage-isBgShape": initialNavObj["gsdPage-isBgShape"],
+      "gsdPage-bgShadeName": initialNavObj["gsdPage-bgShadeName"],
+      "gsdPage-bgPicName": initialNavObj["gsdPage-bgPicName"]
     });
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
     const [mainPagePlayerProfileName, setMainPagePlayerProfileName] = useState("");
     const [mainPageSettingsName, setMainPageSettingsName] = useState("");
     const [mainPageShopName, setMainPageShopName] = useState("");
+
+    const [gsdPageMap, setGsdPageMap] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -2849,11 +2856,21 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
-                        }}></input><label onClick={(event)=>{
-                                
-                                }}>Rectangle & Color Filled </label>
+                        value={currentProjectNav["gsdPage-isBgShape"]}
+                        checked={currentProjectNav["gsdPage-isBgShape"]}
+                        onChange={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["gsdPage-isBgShape"] = true;
+                          updateNavObj(tempObj); 
+             
+                          setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": true});
+                        }}></input><label onClick={()=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["gsdPage-isBgShape"] = true;
+                            updateNavObj(tempObj); 
+              
+                            setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": true});                                
+                        }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -2865,10 +2882,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                 </div>}
                             
                         <br></br><input type="radio"
-                          onChange={(event)=>{
-                          
-                        }}></input><label onClick={(event)=>{
-                              }}>Base Picture </label>
+                          onChange={()=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["gsdPage-isBgShape"] = false;
+                            updateNavObj(tempObj); 
+              
+                            setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": false});             
+                        }}></input><label onClick={()=>{
+                              let tempObj = currentProjectNav;
+                              tempObj["gsdPage-isBgShape"] = false;
+                              updateNavObj(tempObj); 
+                
+                              setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": false});                           
+                        }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -2883,6 +2909,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
        
 
            TODO data displaying
+           gsdPageMap(local) to gameStatusDataPageArr(stored to cloud)
+           {/*//TODO setGsdPageMap() */}
+
            <br></br>TODO layout
        </div>
     </div>}

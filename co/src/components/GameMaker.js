@@ -186,6 +186,10 @@ export default function GameMaker() {
     "storyPage-listItemGroupFontColor": "",
     "storyPage-listItemGroupFontSize": 10,
 
+    "gsdPage-isBgShape": false,
+    "gsdPage-bgShadeName": "rgb(222, 222, 235)",
+    "gsdPage-bgPicName": ""
+
   }); //TODO now: default initial values
 
 //TODO ------------------------------------------------------
