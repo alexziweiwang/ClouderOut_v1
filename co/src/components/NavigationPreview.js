@@ -462,9 +462,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             game status data page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
-         
-            <br></br>        
-            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+            <div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor":  navObj["gsdPage-isBgShape"] === true ? `${navObj["gsdPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                "background-image": navObj["gsdPage-isBgShape"] === false 
+                    ? `url('${visualMap[navObj["gsdPage-bgPicName"]]}')` : "",
+                "background-size": `${screenWidth}px ${screenHeight}px`,
+                
+
+                "position": "relative", 
+                "overflow": "scroll",
+            
+                }}
+            ></div>
+
+            
         </div>
         </>
         }

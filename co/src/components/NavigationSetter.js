@@ -2293,12 +2293,48 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </>}
               <label>Item Width: </label>
-              <input type="range"></input>
-              <input type="number"></input>
+              <input type="range"
+                value={currentProjectNav["storyPage-listItemGroupWidth"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupWidth"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupWidth": event.target.value});                  
+                }}
+              ></input>
+              <input type="number"
+                value={currentProjectNav["storyPage-listItemGroupWidth"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupWidth"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupWidth": event.target.value});                  
+                }}
+              ></input>
               <br></br>
               <label>Item Height: </label>
-              <input type="range"></input>
-              <input type="number"></input>    
+              <input type="range"
+                value={currentProjectNav["storyPage-listItemGroupHeight"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupHeight"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupHeight": event.target.value});                  
+                }}
+              ></input>
+              <input type="number"
+                value={currentProjectNav["storyPage-listItemGroupHeight"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupHeight"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupHeight": event.target.value});                  
+                }}
+              ></input> 
               <br></br>
               <label>Group X: </label>    
               <input type="range"></input>
