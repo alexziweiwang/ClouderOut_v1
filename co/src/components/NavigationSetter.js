@@ -2285,6 +2285,33 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 
                       </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </>}
+              <label>Item Width: </label>
+              <input type="range"></input>
+              <input type="number"></input>
+              <br></br>
+              <label>Item Height: </label>
+              <input type="range"></input>
+              <input type="number"></input>    
+              <br></br>
+              <label>Group X: </label>    
+              <input type="range"></input>
+              <input type="number"></input>  
+              <br></br>
+              <label>Group Y: </label>    
+              <input type="range"></input>
+              <input type="number"></input>   
+              <br></br>    
+              <label>Item Gap: </label>  
+              <input type="range"></input>
+              <input type="number"></input>
+              <br></br>
+              <label>Font Shade: </label>
+              <input type="color"></input>   
+              <label>{currentProjectNav["storyPage-listItemGroupFontColor"]}</label>
+              <br></br>
+              <label>Font Size:</label>
+              <input type="range"></input>
+              <input type="number"></input>
 
  
          </div>
