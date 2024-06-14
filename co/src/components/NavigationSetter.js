@@ -2876,12 +2876,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                                     <label>Background Color: </label>
                                     <input type="color"
                                     onChange={(event)=>{
-                                      
+                                      let tempObj = currentProjectNav;
+                                      tempObj["gsdPage-bgShadeName"] = event.target.value;
+                                      updateNavObj(tempObj); 
+                        
+                                      setCurrentProjectNav({...currentProjectNav, "gsdPage-bgShadeName": event.target.value});      
                                         }}></input>
-                                    <label></label>
+                                    <label> {currentProjectNav["gsdPage-bgShadeName"]}</label>
                                 </div>}
                             
-                        <br></br><input type="radio"
+                        <input type="radio"
+                          value={currentProjectNav["gsdPage-isBgShape"]}
+                          checked={!currentProjectNav["gsdPage-isBgShape"]}
                           onChange={()=>{
                             let tempObj = currentProjectNav;
                             tempObj["gsdPage-isBgShape"] = false;
@@ -2897,9 +2903,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         }}>Base Picture </label>
                             {
                             <>
-                                <select onChange={(event)=>{
-                                }}>                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                              <select onChange={(event)=>{
+                                  let tempObj = currentProjectNav;
+                                  tempObj["gsdPage-bgPicName"] = event.target.value;
+                                  updateNavObj(tempObj); 
+                        
+                                  setCurrentProjectNav({...currentProjectNav, "gsdPage-bgPicName": event.target.value});                                     
+                              }}>                    
+                                    <option key="gsdPage-bgPicNameDefault" value="">-- Select Resource --</option>
+                                    {visualList.map((item, index) => {
+                                      let keyStr = "gsdPage-bgPic-" + index + item["var"];
+                                      return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}                                    
                           
                                 </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
                         </>}
