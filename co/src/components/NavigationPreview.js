@@ -38,7 +38,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
     const settingsPagePictureVariableNames = [
 
-        
+
+    ];
+
+    const storyPageSampleTitle = [
+        "test Ch.1",
+        "test Ch.2",
+        "test Ch.3",
+        "test Ch.4",
+        "test Ch.5",
+        "test Ch.6",
+        "test Ch.7",
+        "test Ch.8",
+        "test Ch.9"
     ];
 
 
@@ -373,7 +385,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         }
 
         {page === "Story Page" && <>
-            story page
+        story page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
             {/* elements on story page */}
@@ -385,12 +397,24 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 
+                "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
 
                 "position": "relative", 
                 "overflow": "scroll",
             
                 }}
             >
+
+                {storyPageSampleTitle.map((item, index) => {
+                    let keyStr = "storyPageSameplTitle" + index;
+                    return (<div key={keyStr}
+                        style={{
+                            "backgroundColor": navObj["storyPage-listItemShadeName"]
+                        }}
+                    >
+                        {item}
+                    </div>);
+                })}
 
             </div>
 

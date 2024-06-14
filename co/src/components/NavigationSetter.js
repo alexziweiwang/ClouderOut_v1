@@ -2117,10 +2117,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           //TODO test
 
                           setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": true});            
-                                                
+                      
                         }}>Rectangle & Color Filled </label>
-                            {
-                                <div className="indentOne">
+                           {/* Background of the entire page */}
+                            {<div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
                                     value={currentProjectNav["storyPage-bgShadeName"]}
@@ -2154,7 +2154,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             //TODO test
 
                             setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": false});            
-            
+                     {/* Background of the entire page */}
                         }}>Base Picture </label>
                             {
                             <>

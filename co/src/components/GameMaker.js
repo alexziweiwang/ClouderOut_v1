@@ -139,8 +139,6 @@ export default function GameMaker() {
     "settingPage-entriesHorizontal": true,
     "settingPage-entriesCustom": false,
 
-    "storyPage-chapterListHorizontal": true,
-
     "settingPage-isBackgroundShape": false,
     "settingPage-bgShadeName": "",
     "settingPage-bgPicName": "",
@@ -173,6 +171,7 @@ export default function GameMaker() {
     "settingPage-seVol-fontSize": 10,
     "settingPage-seVol-fontColor": "",
 
+    "storyPage-chapterListHorizontal": true,
     "storyPage-isBackgroundShape": false,
     "storyPage-bgShadeName": "rgb(222, 222, 235)",
     "storyPage-bgPicName": "",
