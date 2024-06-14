@@ -2381,16 +2381,63 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               ></input> 
               <br></br>    
               <label>Item Gap: </label>  
-              <input type="range"></input>
-              <input type="number"></input>
+              <input type="range"
+                max="20" min="1" step="1"
+                value={currentProjectNav["storyPage-listItemGap"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGap"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGap": event.target.value});                  
+                }}
+              ></input>
+              <input type="number"
+                max="20" min="1" step="1"
+                value={currentProjectNav["storyPage-listItemGap"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGap"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGap": event.target.value});                  
+                }}
+              ></input> 
               <br></br>
               <label>Font Shade: </label>
-              <input type="color"></input>   
+              <input type="color"
+                value={currentProjectNav["storyPage-listItemGroupFontColor"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupFontColor"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupFontColor": event.target.value});                    
+                }}
+              ></input>   
               <label>{currentProjectNav["storyPage-listItemGroupFontColor"]}</label>
               <br></br>
               <label>Font Size:</label>
-              <input type="range"></input>
-              <input type="number"></input>
+              <input type="range"
+                value={currentProjectNav["storyPage-listItemGroupFontSize"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupFontSize"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupFontSize": event.target.value});                  
+                }}
+              ></input>
+              <input type="number"
+                value={currentProjectNav["storyPage-listItemGroupFontSize"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupFontSize"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupFontSize": event.target.value});                  
+                }}
+              ></input> 
 
  
          </div>
