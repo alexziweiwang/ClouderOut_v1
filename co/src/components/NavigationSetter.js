@@ -2337,12 +2337,48 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               ></input> 
               <br></br>
               <label>Group X: </label>    
-              <input type="range"></input>
-              <input type="number"></input>  
+              <input type="range"
+                value={currentProjectNav["storyPage-listItemGroupX"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupX"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupX": event.target.value});                  
+                }}
+              ></input>
+              <input type="number"
+                value={currentProjectNav["storyPage-listItemGroupX"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupX"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupX": event.target.value});                  
+                }}
+              ></input> 
               <br></br>
               <label>Group Y: </label>    
-              <input type="range"></input>
-              <input type="number"></input>   
+              <input type="range"
+                value={currentProjectNav["storyPage-listItemGroupY"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupY"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupY": event.target.value});                  
+                }}
+              ></input>
+              <input type="number"
+                value={currentProjectNav["storyPage-listItemGroupY"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["storyPage-listItemGroupY"] = event.target.value;
+                  updateNavObj(tempObj);
+  
+                  setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupY": event.target.value});                  
+                }}
+              ></input> 
               <br></br>    
               <label>Item Gap: </label>  
               <input type="range"></input>
