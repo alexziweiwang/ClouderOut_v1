@@ -2436,6 +2436,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               <br></br>
               <label>Font Size:</label>
               <input type="range"
+                max="32" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupFontSize"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -2446,6 +2447,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 }}
               ></input>
               <input type="number"
+                max="32" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupFontSize"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;

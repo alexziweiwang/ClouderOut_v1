@@ -425,6 +425,13 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                                     "marginRight": `${navObj["storyPage-listItemGap"]}px`,
                                     "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
+
+                                    "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
+                                    "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
+
+                                    "justify-content": "center",
+                                    "align-items": "center",
+                                    "display": "flex",
                                 }}
                             >
                                 
