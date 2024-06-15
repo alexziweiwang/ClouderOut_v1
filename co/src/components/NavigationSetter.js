@@ -2286,10 +2286,21 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     }}>Base Picture </label>
                   {
                   <>
-                      <select onChange={(event)=>{
+                      <select
+                        value={currentProjectNav["storyPage-listItemPicName"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["storyPage-listItemPicName"] = event.target.value;
+                          updateNavObj(tempObj);
+          
+                          setCurrentProjectNav({...currentProjectNav, "storyPage-listItemPicName": event.target.value});
                       }}>                    
-                          <option key="mpliDefault" value="">-- Select Resource --</option>
-                
+                          <option key="storyPage-li-Default" value="">-- Select Resource --</option>
+                          {visualList.map((item, index) => {
+                              let keyStr = "storyPage-li-" + index + item["var"];
+                              return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                          })}
+                   
                       </select><button onClick={() => {openRm();}}>Resource+</button><br></br><br></br>
               </>}
               <label>Item Width: </label>

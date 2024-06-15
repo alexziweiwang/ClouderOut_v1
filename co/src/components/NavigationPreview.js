@@ -394,7 +394,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "height": `${screenHeight}px`,
                 "backgroundColor":  navObj["storyPage-isBackgroundShape"] === true ? `${navObj["storyPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
                 "background-image": navObj["storyPage-isBackgroundShape"] === false 
-                    ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
+                    ? `url('${visualMap[navObj["storyPage-bgPicName"]]}')` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 
                 "position": "relative", 
@@ -411,15 +411,15 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
                     "overflow": "scroll",
                 }}>
-            "left": {navObj["storyPage-listItemGroupX"]},
-                    "top": {navObj["storyPage-listItemGroupY"]}
 
                         {storyPageSampleTitle.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index;
                             return (<div key={keyStr}
                                 style={{
                                     "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
-
+                                    "background-image": navObj["storyPage-isListItemShape"] === false 
+                                    ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
+                                    
                                     "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
                                     "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
 
