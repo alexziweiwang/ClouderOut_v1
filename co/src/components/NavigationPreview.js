@@ -54,6 +54,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     ];
 
 
+    const [slSlotFrame, setSlSlotFrame] = useState(0);
+
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
     const [audioMapSize, setAudioMapSize] = useState(0);
@@ -69,6 +71,18 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         
         if (firstTimeEnter === true) {
             fetchProjResourceLists();
+
+            let i = 0;
+            let j = 0;
+
+            let currRow = [];
+            for (; j < navObj["saveloadPage-slotPerPage"]; j++) {
+                let num = j;
+                currRow.push(num);
+            }
+            setSlSlotFrame(currRow);
+            console.log("initial slot-per-page: ", currRow); //TODO Test
+
             setFirstTimeEnter(false);
 
         }
@@ -194,6 +208,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             onMouseDown={
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "invert(100%)";
+                                    console.log("main-page clicked: ", item);
+
                                 }
                             }
                             onMouseUp={
@@ -331,6 +347,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             onMouseDown={
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "invert(100%)";
+                                    console.log("main-page clicked: ", item);
                                 }
                             }
                             onMouseUp={
@@ -372,7 +389,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
             >
 
+                    {slSlotFrame.map((item, index) => {
+                        return (<div>
 
+
+                        </div>);
+                    })}
 
 
             </div>
@@ -414,7 +436,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                         {storyPageSampleTitle.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index;
-                            return (<div key={keyStr}
+                            return (<div key={keyStr} id={keyStr}
                                 style={{
                                     "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
                                     "background-image": navObj["storyPage-isListItemShape"] === false 
@@ -433,6 +455,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "align-items": "center",
                                     "display": "flex",
                                 }}
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById(keyStr).style.filter = "invert(100%)";
+                                        console.log("story-page clicked: ", item);
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById(keyStr).style.filter = "invert(0%)";
+                                    }
+                                }
                             >
                                 
                                 <label>{item}</label>
