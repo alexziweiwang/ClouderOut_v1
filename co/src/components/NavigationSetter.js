@@ -113,27 +113,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-listItemGroupY": initialNavObj["settingPage-listItemGroupY"],
       "settingPage-listItemGroupWidth": initialNavObj["settingPage-listItemGroupWidth"],
       "settingPage-listItemGroupHeight": initialNavObj["settingPage-listItemGroupHeight"],
-
-      "settingPage-playSpeed-posX": initialNavObj["settingPage-playSpeed-posX"],
-      "settingPage-playSpeed-posY": initialNavObj["settingPage-playSpeed-posY"],
-      "settingPage-playSpeed-width": initialNavObj["settingPage-playSpeed-width"],
-      "settingPage-playSpeed-height": initialNavObj["settingPage-playSpeed-height"],
-      "settingPage-playSpeed-fontSize": initialNavObj["settingPage-playSpeed-fontSize"],
-      "settingPage-playSpeed-fontColor": initialNavObj["settingPage-playSpeed-fontColor"],
-
-      "settingPage-bgmVol-posX": initialNavObj["settingPage-bgmVol-posX"],
-      "settingPage-bgmVol-posY": initialNavObj["settingPage-bgmVol-posY"],
-      "settingPage-bgmVol-width": initialNavObj["settingPage-bgmVol-width"],
-      "settingPage-bgmVol-height": initialNavObj["settingPage-bgmVol-height"],
-      "settingPage-bgmVol-fontSize": initialNavObj["settingPage-bgmVol-fontSize"],
-      "settingPage-bgmVol-fontColor": initialNavObj["settingPage-bgmVol-fontColor"],
-
-      "settingPage-seVol-posX": initialNavObj["settingPage-seVol-posX"],
-      "settingPage-seVol-posY": initialNavObj["settingPage-seVol-posY"],
-      "settingPage-seVol-width": initialNavObj["settingPage-seVol-width"],
-      "settingPage-seVol-height": initialNavObj["settingPage-seVol-height"],
-      "settingPage-seVol-fontSize": initialNavObj["settingPage-seVol-fontSize"],
-      "settingPage-seVol-fontColor": initialNavObj["settingPage-seVol-fontColor"],
+      "settingPage-listItemFontSize": initialNavObj["settingPage-listItemFontSize"],
+      "settingPage-listItemFontColor": initialNavObj["settingPage-listItemFontColor"],
 
       "storyPage-isBackgroundShape": initialNavObj["storyPage-isBackgroundShape"],
       "storyPage-bgShadeName": initialNavObj["storyPage-bgShadeName"],
@@ -2758,12 +2739,15 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   ></input>
                   <br></br>
                   Font Color:
-                    <input type="color"></input>
+                    <input type="color">
+                    </input>//TODO
                    <br></br>
                Font Size:
-                     <input type="number"></input>
+                     <input type="number">
+                     </input>//TODO
                    <br></br>
                Slider Looking: TODO
+               
   
        
   

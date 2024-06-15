@@ -505,27 +505,59 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
             >
 
+            
+            
+            <div style={{
+                "left": `${navObj["settingPage-listItemGroupX"]}px`,
+                "top": `${navObj["settingPage-listItemGroupY"]}px`,
+                "position": "absolute",
 
-                {settingsPageEntryNames.map((item, index) => {
-                      let optionName = "";
-                      if (index === 0) {
-                          optionName = navObj["settingPage-playSpeed"];
-                      } else if (index === 1) {
-                          optionName = navObj["settingPage-bgmVol"];
-                      } else if (index === 2) {
-                          optionName = navObj["settingPage-seVol"];
-                      }
-  
-                      if (navObj[item] === true) {
+                "display": navObj["settingPage-entriesHorizontal"] === true ? "flex" : "",
+                "overflow": "scroll",
+            }}>
 
-                        return (<div>
+                        {settingsPageEntryNames.map((item, index) => {
+                            let optionName = "";
+                            if (index === 0) {
+                                optionName = navObj["settingPage-playSpeed"];
+                            } else if (index === 1) {
+                                optionName = navObj["settingPage-bgmVol"];
+                            } else if (index === 2) {
+                                optionName = navObj["settingPage-seVol"];
+                            }
+        
+                            if (navObj[item] === true) {
+                             
+                                let title = "";
+                                if (item === "settingPage-playSpeed") {
+                                    title = "Play Speed";
+                                } else if (item === "settingPage-bgmVol") {
+                                    title = "Background Music Volume";
+                                } else if (item === "settingPage-seVol") {
+                                    title = "Sound Effect Volume";
+                                }
+
+                                //TODO: gap, font color, font size, slider bar, slider handle
+                            return (<div
+                                style={{
+                                    "width": `${navObj["settingPage-listItemGroupWidth"]}`,
+                                    "height": `${navObj["settingPage-listItemGroupHeight"]}`,
+
+                                    "color": `${navObj["settingPage-listItemFontColor"]}`,
+                                    "fontSize": `${navObj["settingPage-listItemFontSize"]}`
+                                }}
+                                
+                            >
+
+                                {title}
+                                </div>);
+
+                        }
+    
+                    })}
 
 
-                            </div>);
-                            
-                      }
- 
-                })}
+                </div>
 
             </div>
 
