@@ -409,10 +409,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     let keyStr = "storyPageSameplTitle" + index;
                     return (<div key={keyStr}
                         style={{
-                            "backgroundColor": navObj["storyPage-listItemShadeName"]
+                            "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
+
+                            "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
+                            "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
+
+                            "marginRight": `${navObj["storyPage-listItemGap"]}px`,
+                            "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
                         }}
                     >
-                        {item}
+                        
+                        <label>{item}</label>
                     </div>);
                 })}
 

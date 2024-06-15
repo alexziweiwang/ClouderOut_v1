@@ -2294,6 +2294,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               </>}
               <label>Item Width: </label>
               <input type="range"
+                max="560" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupWidth"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -2304,6 +2305,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 }}
               ></input>
               <input type="number"
+                max="560" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupWidth"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
