@@ -397,31 +397,45 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 
-                "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
-
                 "position": "relative", 
                 "overflow": "scroll",
-            
+
                 }}
             >
+                <div style={{
+                    "left": `${navObj["storyPage-listItemGroupX"]}px`,
+                    "top": `${navObj["storyPage-listItemGroupY"]}px`,
 
-                {storyPageSampleTitle.map((item, index) => {
-                    let keyStr = "storyPageSameplTitle" + index;
-                    return (<div key={keyStr}
-                        style={{
-                            "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
+                    "position": "absolute", 
 
-                            "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
-                            "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
+                    "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
+                    "overflow": "scroll",
+                }}>
+            "left": {navObj["storyPage-listItemGroupX"]},
+                    "top": {navObj["storyPage-listItemGroupY"]}
 
-                            "marginRight": `${navObj["storyPage-listItemGap"]}px`,
-                            "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
-                        }}
-                    >
-                        
-                        <label>{item}</label>
-                    </div>);
-                })}
+                        {storyPageSampleTitle.map((item, index) => {
+                            let keyStr = "storyPageSameplTitle" + index;
+                            return (<div key={keyStr}
+                                style={{
+                                    "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
+
+                                    "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
+                                    "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
+
+                                    "marginRight": `${navObj["storyPage-listItemGap"]}px`,
+                                    "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
+                                }}
+                            >
+                                
+                                <label>{item}</label>
+                            </div>);
+                        })}
+
+
+                </div>
+
+
 
             </div>
 

@@ -2340,6 +2340,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               <br></br>
               <label>Group X: </label>    
               <input type="range"
+                min="0" max="650" step="1"
                 value={currentProjectNav["storyPage-listItemGroupX"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -2350,6 +2351,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 }}
               ></input>
               <input type="number"
+                min="0" max="650" step="1"
                 value={currentProjectNav["storyPage-listItemGroupX"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -2362,6 +2364,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               <br></br>
               <label>Group Y: </label>    
               <input type="range"
+                min="0" max="600" step="1"
                 value={currentProjectNav["storyPage-listItemGroupY"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -2372,6 +2375,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 }}
               ></input>
               <input type="number"
+                min="0" max="600" step="1"
                 value={currentProjectNav["storyPage-listItemGroupY"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
