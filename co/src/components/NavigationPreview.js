@@ -36,10 +36,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     ]; 
 
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
-    const settingsPagePictureVariableNames = [
-
-
-    ];
+    // const settingsPagePictureVariableNames = [
+    //     "settingPage-bgPicName",
+    //     "settingPage-listItemPicName",
+    // ]; //TODO remove later
 
     const storyPageSampleTitle = [
         "test Ch.1",
@@ -502,7 +502,32 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "overflow": "scroll",
             
                 }}
-            ></div>
+
+            >
+
+
+                {settingsPageEntryNames.map((item, index) => {
+                      let optionName = "";
+                      if (index === 0) {
+                          optionName = navObj["settingPage-playSpeed"];
+                      } else if (index === 1) {
+                          optionName = navObj["settingPage-bgmVol"];
+                      } else if (index === 2) {
+                          optionName = navObj["settingPage-seVol"];
+                      }
+  
+                      if (navObj[item] === true) {
+
+                        return (<div>
+
+
+                            </div>);
+                            
+                      }
+ 
+                })}
+
+            </div>
 
         </div>
         </>}

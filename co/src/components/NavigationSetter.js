@@ -2620,26 +2620,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
  
          </div>
 
-       <input type="radio" 
-        value={currentProjectNav["settingPage-entriesCustom"]} 
-        checked={!currentProjectNav["settingPage-entriesCustom"]}
-        onChange={()=>{
-            let tempObj = currentProjectNav;
-            tempObj["settingPage-entriesCustom"] = false;
-            updateNavObj(tempObj);        
-
-            setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": false});
-        }}
-       ></input><label
-       onClick={()=>{
-        let tempObj = currentProjectNav;
-        tempObj["settingPage-entriesCustom"] = false;
-        updateNavObj(tempObj);        
-
-        setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": false});
-    }} 
-       >Fixed List</label>
-       {!currentProjectNav["settingPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
+         <label>List Direction: </label><br></br>             
                <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={currentProjectNav["settingPage-entriesHorizontal"]}
                  onChange={()=>{
                     let tempObj = currentProjectNav;
@@ -2775,26 +2756,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            
                   }}
                   ></input>
-       </div>}
+                  <br></br>
+                  Font Color:
+                    <input type="color"></input>
+                   <br></br>
+               Font Size:
+                     <input type="number"></input>
+                   <br></br>
+               Slider Looking: TODO
+  
        
-       <br></br>
-       <input type="radio" value={currentProjectNav["settingPage-entriesCustom"]} checked={currentProjectNav["settingPage-entriesCustom"]}
-         onChange={()=>{
-            let tempObj = currentProjectNav;
-            tempObj["settingPage-entriesCustom"] = true;
-            updateNavObj(tempObj);          
-
-            setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": true});
-        }} 
-       ></input><label
-       onClick={()=>{
-        let tempObj = currentProjectNav;
-        tempObj["settingPage-entriesCustom"] = true;
-        updateNavObj(tempObj);          
-
-        setCurrentProjectNav({...currentProjectNav, "settingPage-entriesCustom": true});
-    }}       
-       >Customized Positions</label>
+  
        <br></br><br></br>
        <label>Settings Page Items:</label>
        <div>
@@ -2821,28 +2793,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeed": !currVal});
             }}  
          >Play Speed</label>
-         {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-playSpeed"]) 
-         && <div className="indentOne">
-             Position X:
-                     <input type="range"></input>
-                   <br></br>
-               Position Y:
-                   <input type="range"></input>
-                   <br></br>
-               Width:
-                     <input type="range"></input>
-                   <br></br>
-               Height:
-                     <input type="range"></input>
-                   <br></br>
-               Font Color:
-                    <input type="color"></input>
-                   <br></br>
-               Font Size:
-                     <input type="number"></input>
-                   <br></br>
-               Slider Looking: TODO
-         </div>}
+
          <br></br>
 
          <input type="checkbox"
@@ -2868,28 +2819,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVol": !currVal});
             }}      
          >Background Music Volume</label>
-         {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-bgmVol"]) 
-         && <div className="indentOne">
-             Position X:
-                     <input type="range"></input>
-                   <br></br>
-               Position Y:
-                   <input type="range"></input>
-                   <br></br>
-               Width:
-                     <input type="range"></input>
-                   <br></br>
-               Height:
-                     <input type="range"></input>
-                   <br></br>
-               Font Color:
-                    <input type="color"></input>
-                   <br></br>
-               Font Size:
-                     <input type="number"></input>
-                   <br></br>
-               Slider Looking: TODO
-         </div>}
+       
          <br></br>
          <input type="checkbox"
            value={ currentProjectNav["settingPage-seVol"]}
@@ -2914,29 +2844,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "settingPage-seVol": !currVal});
             }}    
          >Sound Effect Volume</label>
-         {(currentProjectNav["settingPage-entriesCustom"] &&  currentProjectNav["settingPage-seVol"]) 
-         && <div className="indentOne">
-             Position X:
-                     <input type="range"></input>
-                   <br></br>
-               Position Y:
-                   <input type="range"></input>
-                   <br></br>
-               Width:
-                     <input type="range"></input>
-                   <br></br>
-               Height:
-                     <input type="range"></input>
-                   <br></br>
-               Font Color:
-                    <input type="color"></input>
-                   <br></br>
-               Font Size:
-                     <input type="number"></input>
-                   <br></br>
-               Slider Looking: TODO
-         </div>}
-
+     
        </div>
 
 
