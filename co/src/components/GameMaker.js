@@ -128,8 +128,7 @@ export default function GameMaker() {
     "saveloadPage-slotPageCount": 10,
     "saveloadPage-slotWidth": 90,
     "saveloadPage-slotHeight": 75,
-    "saveloadPage-slotHorizontalGap": 3, 
-    "saveloadPage-slotVerticalGap": 3,
+    "saveloadPage-slotGap": 3, 
     "saveloadPage-groupPosX": 10,
     "saveloadPage-groupPosY": 10,
     

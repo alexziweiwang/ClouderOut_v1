@@ -90,8 +90,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "saveloadPage-slotPageCount": initialNavObj["saveloadPage-slotPageCount"],
       "saveloadPage-slotWidth": initialNavObj["saveloadPage-slotWidth"],
       "saveloadPage-slotHeight": initialNavObj["saveloadPage-slotHeight"],
-      "saveloadPage-slotHorizontalGap": initialNavObj["saveloadPage-slotHorizontalGap"],
-      "saveloadPage-slotVerticalGap": initialNavObj["saveloadPage-slotVerticalGap"],
+      "saveloadPage-slotGap": initialNavObj["saveloadPage-slotGap"],
       "saveloadPage-groupPosX": initialNavObj["saveloadPage-groupPosX"],
       "saveloadPage-groupPosY": initialNavObj["saveloadPage-groupPosY"],
 
@@ -520,53 +519,30 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   </div>
                 <label>Gaps between slots:</label><br></br>
                   <div className="indentOne">
-                      <label>Horizontal:</label>
+                   
                       <input type="range" 
                           min="0" max="20" step="1"
-                          value={currentProjectNav["saveloadPage-slotHorizontalGap"]}
+                          value={currentProjectNav["saveloadPage-slotGap"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
-                            tempObj["saveloadPage-slotHorizontalGap"] = event.target.value;
+                            tempObj["saveloadPage-slotGap"] = event.target.value;
                             updateNavObj(tempObj);       
                             
-                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHorizontalGap": event.target.value});
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotGap": event.target.value});
                           }}
                         ></input>
                       <input type="number" 
                           min="0" max="20" step="1"
-                          value={currentProjectNav["saveloadPage-slotHorizontalGap"]}
+                          value={currentProjectNav["saveloadPage-slotGap"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
-                            tempObj["saveloadPage-slotHorizontalGap"] = event.target.value;
+                            tempObj["saveloadPage-slotGap"] = event.target.value;
                             updateNavObj(tempObj);       
                             
-                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHorizontalGap": event.target.value});
+                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotGap": event.target.value});
                           }}
                         ></input>    
-                      <br></br>
-                      <label>Vertical:</label>
-                      <input type="range" 
-                          min="0" max="20" step="1"
-                          value={currentProjectNav["saveloadPage-slotVerticalGap"]}
-                          onChange={(event)=>{
-                            let tempObj = currentProjectNav;
-                            tempObj["saveloadPage-slotVerticalGap"] = event.target.value;
-                            updateNavObj(tempObj);       
-                            
-                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotVerticalGap": event.target.value});
-                          }}
-                        ></input>
-                      <input type="number" 
-                          min="0" max="20" step="1"
-                          value={currentProjectNav["saveloadPage-slotVerticalGap"]}
-                          onChange={(event)=>{
-                            let tempObj = currentProjectNav;
-                            tempObj["saveloadPage-slotVerticalGap"] = event.target.value;
-                            updateNavObj(tempObj);       
-                            
-                            setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotVerticalGap": event.target.value});
-                          }}
-                        ></input>    
+                
        
                   </div>
                   <label>Group Positions:</label><br></br>
@@ -2747,7 +2723,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                      </input>//TODO
                    <br></br>
                Slider Looking: TODO
-               
+
   
        
   

@@ -51,7 +51,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         "test Ch.7",
         "test Ch.8",
         "test Ch.9"
-    ];
+    ]; //TODO use the data of chapter-management
 
 
     const [slSlotFrame, setSlSlotFrame] = useState(0);
@@ -388,14 +388,25 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             
                 }}
             >
-
+                <div style={{
+                    "left": `${"saveloadPage-groupPosX"}px`,
+                    "top": `${"saveloadPage-groupPosY"}px`,
+                    "position": "absolute"
+                }}>
                     {slSlotFrame.map((item, index) => {
-                        return (<div>
-
+                        return (<div style={{
+                            "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(222, 222, 235)", 
+                            "background-image": navObj["saveloadPage-isSlotShape"] === false ?
+                            `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                            "width": `${navObj["saveloadPage-slotWidth"]}px`,
+                            "height": `${navObj["saveloadPage-slotHeight"]}px`,
+                        
+                        }}>
+                            ?
 
                         </div>);
                     })}
-
+                </div>
 
             </div>
             
