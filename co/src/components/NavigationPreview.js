@@ -55,6 +55,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
 
     const [slSlotFrame, setSlSlotFrame] = useState(0);
+    const [slotPerPageLocal, setSlotPerPageLocal] = useState(initialNavObj["saveloadPage-slotPerPage"]);
 
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
@@ -109,6 +110,20 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
         let objTemp = fetchNavObj();
         setNavObj(objTemp);
+
+
+        if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
+            setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
+            let currRow = [];
+            let j = 0;
+            for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
+                let num = j;
+                currRow.push(num);
+            }
+            setSlSlotFrame(currRow);
+            console.log("initial slot-per-page: ", currRow); //TODO Test
+
+        }
 
 
         let tempPage= fetchPageName();
