@@ -406,15 +406,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 <div style={{
                     "left": `${"saveloadPage-groupPosX"}px`,
                     "top": `${"saveloadPage-groupPosY"}px`,
-                    "position": "absolute"
+                    "position": "absolute",
+                    "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
+                    "overflow": "scroll",
                 }}>
                     {slSlotFrame.map((item, index) => {
                         return (<div style={{
-                            "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(222, 222, 235)", 
+                            "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
                             "background-image": navObj["saveloadPage-isSlotShape"] === false ?
                             `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
                             "width": `${navObj["saveloadPage-slotWidth"]}px`,
                             "height": `${navObj["saveloadPage-slotHeight"]}px`,
+                            "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                            "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
                         
                         }}>
                             ?
