@@ -480,7 +480,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                 <label>Slot Size:</label><br></br>
                   <div className="indentOne">
                       <label>Width:</label>
-                      <input type="range" value={currentProjectNav["saveloadPage-slotWidth"]}
+                      <input type="range" 
+                        min="1" max="500" step="1"
+                        value={currentProjectNav["saveloadPage-slotWidth"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotWidth"] = event.target.value;
@@ -489,7 +491,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotWidth": event.target.value});
                         }}
                       ></input>
-                      <input type="number" value={currentProjectNav["saveloadPage-slotWidth"]}
+                      <input type="number" 
+                        min="1" max="500" step="1"
+                        value={currentProjectNav["saveloadPage-slotWidth"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotWidth"] = event.target.value;
@@ -499,7 +503,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         }}></input>
                       <br></br>
                       <label>Height:</label>
-                      <input type="range" value={currentProjectNav["saveloadPage-slotHeight"]}
+                      <input type="range" 
+                        min="1" max="240" step="1"
+                        value={currentProjectNav["saveloadPage-slotHeight"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotHeight"] = event.target.value;
@@ -508,7 +514,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHeight": event.target.value});
                         }}
                       ></input>
-                      <input type="number" value={currentProjectNav["saveloadPage-slotHeight"]}
+                      <input type="number" 
+                        min="1" max="240" step="1"
+                        value={currentProjectNav["saveloadPage-slotHeight"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotHeight"] = event.target.value;
@@ -548,7 +556,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   <label>Group Positions:</label><br></br>
                     <div className="indentOne">
                         <label>position X:</label>
-                        <input type="range" value={currentProjectNav["saveloadPage-groupPosX"]}
+                        <input type="range" 
+                          min="0" max="600" step="1"
+                          value={currentProjectNav["saveloadPage-groupPosX"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-groupPosX"] = event.target.value;
@@ -557,7 +567,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-groupPosX": event.target.value});                            
                           }}
                         ></input>
-                        <input type="number" value={currentProjectNav["saveloadPage-groupPosX"]}
+                        <input type="number" 
+                          min="0" max="600" step="1"
+                          value={currentProjectNav["saveloadPage-groupPosX"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-groupPosX"] = event.target.value;
@@ -569,7 +581,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                        
                         <br></br>
                         <label>position Y:</label>
-                        <input type="range" value={currentProjectNav["saveloadPage-groupPosY"]}
+                        <input type="range" 
+                          min="0" max="600" step="1"
+                          value={currentProjectNav["saveloadPage-groupPosY"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-groupPosY"] = event.target.value;
@@ -578,7 +592,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-groupPosY": event.target.value});                            
                           }}
                         ></input>
-                        <input type="number" value={currentProjectNav["saveloadPage-groupPosY"]}
+                        <input type="number" 
+                          min="0" max="600" step="1"
+                          value={currentProjectNav["saveloadPage-groupPosY"]}
                           onChange={(event)=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-groupPosY"] = event.target.value;

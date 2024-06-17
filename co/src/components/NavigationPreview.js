@@ -403,9 +403,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             
                 }}
             >
+
+
+                
                 <div style={{
-                    "left": `${"saveloadPage-groupPosX"}px`,
-                    "top": `${"saveloadPage-groupPosY"}px`,
+                    "left": `${navObj["saveloadPage-groupPosX"]}px`,
+                    "top": `${navObj["saveloadPage-groupPosY"]}px`,
                     "position": "absolute",
                     "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
                     "overflow": "scroll",
