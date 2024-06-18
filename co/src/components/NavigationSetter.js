@@ -141,6 +141,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     const [mainPageSettingsName, setMainPageSettingsName] = useState("");
     const [mainPageShopName, setMainPageShopName] = useState("");
 
+    const [settingsPagePlaySpeedName, setSettingsPagePlaySpeedName] = useState("");
+    const [settingsPageBgmVolName, setSettingsPageBgmVolName] = useState("");
+    const [settingsPageSeVolName, setSettingsPageSeVolName] = useState("");
+
+
     const [gsdPageMap, setGsdPageMap] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -2804,7 +2809,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                      ></input>
              
                    <br></br>
-              
+               
                Slider Looking: TODO
 
   
@@ -2836,8 +2841,12 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeed": !currVal});
             }}  
          >Play Speed</label>
-
          <br></br>
+          <div className="indentOne">
+            <label>Display Naming:</label>
+            <input></input>
+            <button>Update</button> TODO1
+          </div>
 
          <input type="checkbox"
            value={ currentProjectNav["settingPage-bgmVol"]}
@@ -2862,8 +2871,13 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVol": !currVal});
             }}      
          >Background Music Volume</label>
-       
-         <br></br>
+          <div className="indentOne">
+            <label>Display Naming:</label>
+            <input></input>
+            <button>Update</button>    TODO1
+          </div>
+     
+
          <input type="checkbox"
            value={ currentProjectNav["settingPage-seVol"]}
            checked={ currentProjectNav["settingPage-seVol"]}
@@ -2887,7 +2901,13 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               setCurrentProjectNav({...currentProjectNav, "settingPage-seVol": !currVal});
             }}    
          >Sound Effect Volume</label>
-     
+          <div className="indentOne">
+            <label>Display Naming:</label>
+            <input></input>
+            <button>Update</button> TODO1
+          </div>
+
+
        </div>
 
 
