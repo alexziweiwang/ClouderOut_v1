@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName}) {
+export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName, chapterData}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -54,6 +54,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     ]; //TODO use the data of chapter-management
 
 
+    const [storyPageChapterTitles, setStoryPageChapterTitles] = useState([]);
+
+
     const [slSlotFrame, setSlSlotFrame] = useState(0);
     const [slotPerPageLocal, setSlotPerPageLocal] = useState(initialNavObj["saveloadPage-slotPerPage"]);
 
@@ -84,8 +87,15 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             setSlSlotFrame(currRow);
             console.log("initial slot-per-page: ", currRow); //TODO Test
 
-            setFirstTimeEnter(false);
+            let initialChapterTitle = [];
+            let k = 0;
+            for(; k < chapterData.length; k++) {
+                initialChapterTitle.push(chapterData[k][1]);
+            }
+            setStoryPageChapterTitles(initialChapterTitle);
 
+            
+            setFirstTimeEnter(false);
         }
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
@@ -405,7 +415,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             >
 
 
-                
+
                 <div style={{
                     "left": `${navObj["saveloadPage-groupPosX"]}px`,
                     "top": `${navObj["saveloadPage-groupPosY"]}px`,
@@ -467,7 +477,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "overflow": "scroll",
                 }}>
 
-                        {storyPageSampleTitle.map((item, index) => {
+                        {storyPageChapterTitles.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index;
                             return (<div key={keyStr} id={keyStr}
                                 style={{
