@@ -592,7 +592,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "height": `${navObj["settingPage-listItemGroupHeight"]}px`,
 
                                     "color": `${navObj["settingPage-listItemFontColor"]}px`,
-                                    "fontSize": `${navObj["settingPage-listItemFontSize"]}px`
+                                    "fontSize": `${navObj["settingPage-listItemFontSize"]}px`,
+
+                                    "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
+                                    "marginBottom": navObj["settingPage-entriesHorizontal"] === false ? `${navObj["settingPage-listItemGap"]}px` : "0px",
                                 }}
                                 
                             >

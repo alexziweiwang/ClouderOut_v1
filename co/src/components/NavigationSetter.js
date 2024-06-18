@@ -2685,6 +2685,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                Group Width:
                <input type="range"
+                  min="1" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupWidth"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2696,6 +2697,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                  ></input>
                  <input type="number"
+                  min="1" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupWidth"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2709,6 +2711,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                Group Height:
                <input type="range"
+                  min="1" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupHeight"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2720,6 +2723,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                  ></input>
                  <input type="number"
+                  min="1" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupHeight"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2733,10 +2737,30 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
                   <br></br>
                   Item Gap: 
-                  <input type="range">
+                  <input type="range"
+                    min="0" max="150" step="1"
+                    value={currentProjectNav["settingPage-listItemGap"]}
+                    onChange={(event)=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["settingPage-listItemGap"] = event.target.value;
+                      updateNavObj(tempObj);   
+  
+                      setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGap": event.target.value});
+                    }}
+                  >
 
                   </input>
-                  <input type="number">
+                  <input type="number"
+                    min="0" max="150" step="1"
+                    value={currentProjectNav["settingPage-listItemGap"]}
+                    onChange={(event)=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["settingPage-listItemGap"] = event.target.value;
+                      updateNavObj(tempObj);   
+  
+                      setCurrentProjectNav({...currentProjectNav, "settingPage-listItemGap": event.target.value});
+                    }}
+                  >
 
                   </input>
 
