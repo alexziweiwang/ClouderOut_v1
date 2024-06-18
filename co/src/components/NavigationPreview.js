@@ -94,7 +94,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             }
             setStoryPageChapterTitles(initialChapterTitle);
 
-            
+
             setFirstTimeEnter(false);
         }
 
@@ -583,11 +583,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 //TODO: gap, font color, font size, slider bar, slider handle
                             return (<div
                                 style={{
-                                    "width": `${navObj["settingPage-listItemGroupWidth"]}`,
-                                    "height": `${navObj["settingPage-listItemGroupHeight"]}`,
+                                    "backgroundColor":  navObj["settingPage-isListItemShape"] === true ? `${navObj["settingPage-listItemShadeName"]}` : "rgb(200, 122, 135)", 
+                                    "background-image": navObj["settingPage-isListItemShape"] === false 
+                                        ? `url('${visualMap[navObj["settingPage-listItemPicName"]]}')` : "",
 
-                                    "color": `${navObj["settingPage-listItemFontColor"]}`,
-                                    "fontSize": `${navObj["settingPage-listItemFontSize"]}`
+
+                                    "width": `${navObj["settingPage-listItemGroupWidth"]}px`,
+                                    "height": `${navObj["settingPage-listItemGroupHeight"]}px`,
+
+                                    "color": `${navObj["settingPage-listItemFontColor"]}px`,
+                                    "fontSize": `${navObj["settingPage-listItemFontSize"]}px`
                                 }}
                                 
                             >

@@ -114,6 +114,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-listItemGroupHeight": initialNavObj["settingPage-listItemGroupHeight"],
       "settingPage-listItemFontSize": initialNavObj["settingPage-listItemFontSize"],
       "settingPage-listItemFontColor": initialNavObj["settingPage-listItemFontColor"],
+      "settingPage-listItemGap": initialNavObj["settingPage-listItemGap"],
 
       "storyPage-isBackgroundShape": initialNavObj["storyPage-isBackgroundShape"],
       "storyPage-bgShadeName": initialNavObj["storyPage-bgShadeName"],
@@ -2729,6 +2730,16 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
            
                   }}
                   ></input>
+
+                  <br></br>
+                  Item Gap: 
+                  <input type="range">
+
+                  </input>
+                  <input type="number">
+
+                  </input>
+
                   <br></br>
                   Font Color:
                     <input type="color">
@@ -2738,6 +2749,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                      <input type="number">
                      </input>//TODO
                    <br></br>
+              
                Slider Looking: TODO
 
   

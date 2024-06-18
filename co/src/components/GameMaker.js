@@ -150,6 +150,7 @@ export default function GameMaker() {
     "settingPage-listItemGroupHeight": 450,
     "settingPage-listItemFontSize": 10,
     "settingPage-listItemFontColor": "",
+    "settingPage-listItemGap": 3,
 
     "storyPage-chapterListHorizontal": true,
     "storyPage-isBackgroundShape": false,
