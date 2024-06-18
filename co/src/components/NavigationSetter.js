@@ -2637,6 +2637,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                Group Position X:
                  <input type="range"
+                  min="0" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2648,6 +2649,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                  ></input>
                  <input type="number"
+                  min="0" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2661,6 +2663,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <br></br>
                Group Position Y:
                <input type="range"
+                  min="0" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupY"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2672,6 +2675,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}
                  ></input>
                  <input type="number"
+                  min="0" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupY"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -2766,8 +2770,18 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
                   <br></br>
                   Font Color:
-                    <input type="color">
-                    </input>//TODO
+                    <input type="color" 
+                      value={currentProjectNav["settingPage-listItemFontColor"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-listItemFontColor"] = event.target.value;
+                        updateNavObj(tempObj);   
+    
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-listItemFontColor": event.target.value});   
+                      }}
+                    >
+                    </input>
+                    <label> {currentProjectNav["settingPage-listItemFontColor"]}</label>
                    <br></br>
                Font Size:
                      <input type="number">

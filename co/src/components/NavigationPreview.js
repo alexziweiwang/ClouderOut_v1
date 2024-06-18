@@ -591,7 +591,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "width": `${navObj["settingPage-listItemGroupWidth"]}px`,
                                     "height": `${navObj["settingPage-listItemGroupHeight"]}px`,
 
-                                    "color": `${navObj["settingPage-listItemFontColor"]}px`,
+                                    "color": `${navObj["settingPage-listItemFontColor"]}`,
                                     "fontSize": `${navObj["settingPage-listItemFontSize"]}px`,
 
                                     "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
