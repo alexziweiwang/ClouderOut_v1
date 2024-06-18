@@ -596,6 +596,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                                     "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
                                     "marginBottom": navObj["settingPage-entriesHorizontal"] === false ? `${navObj["settingPage-listItemGap"]}px` : "0px",
+
+                                    "justify-content": "center",
+                                    "align-items": "center",
+                                    "display": "flex",
                                 }}
                                 
                             >

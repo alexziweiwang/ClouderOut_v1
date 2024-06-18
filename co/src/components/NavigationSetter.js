@@ -2784,8 +2784,25 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                     <label> {currentProjectNav["settingPage-listItemFontColor"]}</label>
                    <br></br>
                Font Size:
-                     <input type="number">
-                     </input>//TODO
+                     <input type="range" value={currentProjectNav["settingPage-listItemFontSize"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-listItemFontSize"] = event.target.value;
+                        updateNavObj(tempObj);   
+    
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-listItemFontSize": event.target.value});  
+                      }}
+                     ></input>
+                     <input type="number" value={currentProjectNav["settingPage-listItemFontSize"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-listItemFontSize"] = event.target.value;
+                        updateNavObj(tempObj);   
+    
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-listItemFontSize": event.target.value});  
+                      }}
+                     ></input>
+             
                    <br></br>
               
                Slider Looking: TODO
