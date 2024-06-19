@@ -2446,9 +2446,34 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   setCurrentProjectNav({...currentProjectNav, "storyPage-listItemGroupFontSize": event.target.value});                  
                 }}
               ></input> 
-
  
          </div>
+
+         <br></br><br></br>
+             <label>Back Button Settings (for all pages): </label>
+             <div className="indentOne">
+                  <label>Width: </label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+
+                  <br></br><label>Height: </label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                  <br></br><label>Button Looking: </label>
+                  <br></br><input type="radio"></input><label>Rectangle & Color Filled</label>
+                      <div className="indentOne">
+                        <input type="color"></input>
+                        <label> </label>
+                      </div>
+                  <input type="radio"></input><label>Base Picture</label>
+                      
+                      <div className="indentOne">
+                        <select>
+                        </select>
+                      </div>
+                  <label>Display Text: </label><input></input><button>Update</button>
+              </div>
+
 
 
        </div>
