@@ -202,6 +202,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         return (
                             <div 
                                 id={keyStr1}
+                                key={keyStr1}
                                 style = {navObj["mainPage-isListItemShape"] === true ? 
                                 {
                                     "backgroundColor": `${navObj["mainPage-listItemShadeName"]}`,
@@ -332,6 +333,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                   
                         <div
                             id={keyStr2}
+                            key={keyStr2}
                             style={
                                 currIsShapeBool === true ?
                                 {
@@ -560,54 +562,71 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             }}>
 
                         {settingsPageEntryNames.map((item, index) => {
-                            let optionName = "";
+                            let optionName = "settingsDefault";
                             if (index === 0) {
                                 optionName = navObj["settingPage-playSpeed"];
                             } else if (index === 1) {
                                 optionName = navObj["settingPage-bgmVol"];
                             } else if (index === 2) {
                                 optionName = navObj["settingPage-seVol"];
+                            } else {
+                                optionName = "settingDefault" + index;
                             }
         
                             if (navObj[item] === true) {
-                             
-                                let title = "";
-                                if (item === "settingPage-playSpeed") {
-                                    title = navObj["settingPage-playSpeedName"];
-                                } else if (item === "settingPage-bgmVol") {
-                                    title = navObj["settingPage-bgmVolName"];
-                                } else if (item === "settingPage-seVol") {
-                                    title = "Sound Effect Volume";
-                                }
-
-                                //TODO: gap, font color, font size, slider bar, slider handle
-                            return (<div
-                                style={{
-                                    "backgroundColor":  navObj["settingPage-isListItemShape"] === true ? `${navObj["settingPage-listItemShadeName"]}` : "rgb(200, 122, 135)", 
-                                    "background-image": navObj["settingPage-isListItemShape"] === false 
-                                        ? `url('${visualMap[navObj["settingPage-listItemPicName"]]}')` : "",
-
-
-                                    "width": `${navObj["settingPage-listItemGroupWidth"]}px`,
-                                    "height": `${navObj["settingPage-listItemGroupHeight"]}px`,
-
-                                    "color": `${navObj["settingPage-listItemFontColor"]}`,
-                                    "fontSize": `${navObj["settingPage-listItemFontSize"]}px`,
-
-                                    "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
-                                    "marginBottom": navObj["settingPage-entriesHorizontal"] === false ? `${navObj["settingPage-listItemGap"]}px` : "0px",
-
-                        
-                                    "padding": "7px",
-                                    "display": "flex",
-                                }}
                                 
-                            >
+                                    let title = "";
+                                    if (item === "settingPage-playSpeed") {
+                                        title = navObj["settingPage-playSpeedName"];
+                                    } else if (item === "settingPage-bgmVol") {
+                                        title = navObj["settingPage-bgmVolName"];
+                                    } else if (item === "settingPage-seVol") {
+                                        title = navObj["settingPage-seVolName"];
+                                    }
 
-                                {title}
-                                </div>);
+                                    //TODO: slider bar, slider handle
 
-                        }
+                                   let keyStr3 = "settingItem" + index;
+
+                                    return (
+                                    <div
+                                        key={optionName}
+                                        id={keyStr3}
+                                        style={{
+                                            "background-color":  navObj["settingPage-isListItemShape"] === true ? `${navObj["settingPage-listItemShadeName"]}` : "rgb(200, 122, 135)", 
+                                            "background-image": navObj["settingPage-isListItemShape"] === false 
+                                                ? `url('${visualMap[navObj["settingPage-listItemPicName"]]}')` : "",
+
+
+                                            "width": `${navObj["settingPage-listItemGroupWidth"]}px`,
+                                            "height": `${navObj["settingPage-listItemGroupHeight"]}px`,
+
+                                            "color": `${navObj["settingPage-listItemFontColor"]}`,
+                                            "fontSize": `${navObj["settingPage-listItemFontSize"]}px`,
+
+                                            "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
+                                            "marginBottom": navObj["settingPage-entriesHorizontal"] === false ? `${navObj["settingPage-listItemGap"]}px` : "0px",
+
+                                            "padding": "7px",
+                                            "user-select": "none"
+                                        }}
+                                        onMouseDown={
+                                            ()=>{
+                                                document.getElementById(keyStr3).style.filter = "invert(100%)";
+                                                console.log("setting-page clicked: ", item);
+                                            }
+                                        }
+                                        onMouseUp={
+                                            ()=>{
+                                                document.getElementById(keyStr3).style.filter = "invert(0%)";
+                                            }
+                                        }
+                                    >
+
+                                        <label>{title}</label>
+                                        </div>);
+
+                            }
     
                     })}
 
