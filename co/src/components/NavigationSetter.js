@@ -160,10 +160,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       }
 
 
-      //TODO1 fetch from nav-previewer for current-page-name?
+      //fetch from nav-previewer for current-page-name
       let tempPage= fetchPageName();
       setCurrentSettingPage(tempPage);
-
 
     });
 
@@ -2449,7 +2448,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
  
          </div>
 
-         <br></br><br></br>
+         <br></br><br></br> //TODO1
              <label>Back Button Settings (for all pages): </label>
              <div className="indentOne">
                   <label>Width: </label>

@@ -403,10 +403,13 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
   
 
 
-        {(navObj["isWithSL"] && page === "Game Progress Strategy") && <>
+        {(navObj["isWithSL"] && 
+        page === "Game Progress Strategy") && <>
             game progress / saveload page
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`, "position": "relative"}}
         >
+                            
+                
                 <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -418,9 +421,35 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                 "position": "relative", 
                 "overflow": "scroll",
+                "userSelect": "none",
             
                 }}
             >
+
+
+             {/* //TODO1 */}
+             <div 
+                id="slPage-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": "pink",
+                }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("slPage-backButton").style.filter = "invert(100%)";
+                        console.log("slPage-backButton");
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("slPage-backButton").style.filter = "invert(0%)";
+                    }
+                }
+                >
+                    <label>←</label>
+                </div>
 
 
 
@@ -461,6 +490,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         story page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
+
+
             {/* elements on story page */}
             <div style={{
                 "width": `${screenWidth}px`, 
@@ -475,6 +506,32 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                 }}
             >
+
+             {/* //TODO1 */}
+             <div 
+                id="storyPage-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": "pink",
+                }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("storyPage-backButton").style.filter = "invert(100%)";
+                        console.log("storyPage-backButton");
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("storyPage-backButton").style.filter = "invert(0%)";
+                    }
+                }
+                >
+                    <label>←</label>
+                </div>
+
+
                 <div style={{
                     "left": `${navObj["storyPage-listItemGroupX"]}px`,
                     "top": `${navObj["storyPage-listItemGroupY"]}px`,
@@ -529,7 +586,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
 
             </div>
-
             
         </div>
         
@@ -556,7 +612,29 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
             >
 
-            
+             {/* //TODO1 */}
+             <div 
+                id="settingsPage-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": "pink",
+                }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("settingsPage-backButton").style.filter = "invert(100%)";
+                        console.log("settingsPage-backButton");
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("settingsPage-backButton").style.filter = "invert(0%)";
+                    }
+                }
+                >
+                    <label>←</label>
+                </div>            
             
             <div style={{
                 "left": `${navObj["settingPage-listItemGroupX"]}px`,
@@ -649,9 +727,38 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             player profile
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
-       
+            <div style={{"position": "relative",                 
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,}}>
+
+                {/* //TODO1 */}
+                <div 
+                id="playerProfilePage-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": "pink",
+                }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(100%)";
+                        console.log("playerProfilePage-backButton");
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(0%)";
+                    }
+                }
+                >
+                    <label>←</label>
+                </div>   
+
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+
+            </div>            
         </div>
         </>}
 
@@ -672,8 +779,35 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "position": "relative", 
                 "overflow": "scroll",
             
+                }}                
+            >
+                  {/* //TODO1 */}
+                  <div 
+                id="gsdPage-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": "pink",
                 }}
-            ></div>
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("gsdPage-backButton").style.filter = "invert(100%)";
+                        console.log("gsdPage-backButton");
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("gsdPage-backButton").style.filter = "invert(0%)";
+                    }
+                }
+                >
+                    <label>←</label>
+                </div>   
+
+
+
+            </div>
 
             
         </div>
@@ -685,9 +819,44 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             shop page
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
         >
-         
+        <div style={{"position": "relative",                 
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,}}>
+
+                {/* //TODO1 */}
+                <div 
+                id="playerProfilePage-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": "pink",
+                }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(100%)";
+                        console.log("playerProfilePage-backButton");
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(0%)";
+                    }
+                }
+                >
+                    <label>←</label>
+                </div>  
+
+
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+
+
+
+
+
+            
+            </div>
         </div>
         </>}
 
