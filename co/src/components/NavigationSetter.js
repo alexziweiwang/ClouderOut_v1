@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function NavigationSetter({initialNavObj, updateNavObj, openRm, updateCurrentPageName}) {
+export default function NavigationSetter({initialNavObj, updateNavObj, openRm, updateCurrentPageName, fetchPageName}) {
   const username = "user002"; //TODO testing
   const projName = "project001"; //TODO testing
   
@@ -10,7 +10,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
   
   const [currentSettingPage, setCurrentSettingPage] = useState("");
 
-    const [currentProjectNav, setCurrentProjectNav] = useState({
+  const [currentProjectNav, setCurrentProjectNav] = useState({
       "screenSize": initialNavObj["screenSize"],
       "isWithSL": initialNavObj["isWithSL"],
       "mainPage-story": initialNavObj["mainPage-story"],
@@ -158,6 +158,13 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
             fetchProjResourceLists();
             setFirstTimeEnter(false);
       }
+
+
+      //TODO1 fetch from nav-previewer for current-page-name?
+      let tempPage= fetchPageName();
+      setCurrentSettingPage(tempPage);
+
+
     });
 
 

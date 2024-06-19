@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName, chapterData}) {
+export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName, chapterData, updateCurrentPageName}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -187,14 +187,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 {mainPageEntryNames.map((item, index) => {
                     //"mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"
                     let optionName = "";
+                    let pageNaming = "";
                     if (index === 0) {
                         optionName = navObj["mainPage-story-name"];
+                        pageNaming = "Story Page";
                     } else if (index === 1) {
-                        optionName = navObj["mainPage-playerProfile-name"];
+                        optionName = navObj["mainPage-playerProfile-name"];             
+                        pageNaming = "Player Profile Page";
                     } else if (index === 2) {
                         optionName = navObj["mainPage-setting-name"];
+                        pageNaming = "Settings Page";
                     } else if (index === 3) {
                         optionName = navObj["mainPage-shop-name"];
+                        pageNaming = "Shop Page";
                     }
 
                     if (navObj[item] === true) {
@@ -235,6 +240,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "invert(100%)";
                                     console.log("main-page clicked: ", item);
+                                    updateCurrentPageName(pageNaming);
 
                                 }
                             }
