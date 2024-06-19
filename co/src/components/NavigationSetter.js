@@ -2926,8 +2926,16 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          >Sound Effect Volume</label>
           <div className="indentOne">
             <label>Display Naming:</label>
-            <input></input>
-            <button>Update</button> TODO1
+            <input value={settingsPageSeVolName} onChange={(event)=>{
+              setSettingsPageSeVolName(event.target.value);
+            }}></input>
+            <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["settingPage-seVolName"] = settingsPageSeVolName;
+              updateNavObj(tempObj); 
+
+              setCurrentProjectNav({...currentProjectNav, "settingPage-seVolName": settingsPageSeVolName});
+            }}>Update</button>
           </div>
 
 
