@@ -115,6 +115,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-listItemFontSize": initialNavObj["settingPage-listItemFontSize"],
       "settingPage-listItemFontColor": initialNavObj["settingPage-listItemFontColor"],
       "settingPage-listItemGap": initialNavObj["settingPage-listItemGap"],
+      "settingPage-playSpeedName": initialNavObj["settingPage-playSpeedName"],
 
       "storyPage-isBackgroundShape": initialNavObj["storyPage-isBackgroundShape"],
       "storyPage-bgShadeName": initialNavObj["storyPage-bgShadeName"],
@@ -2844,8 +2845,19 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <br></br>
           <div className="indentOne">
             <label>Display Naming:</label>
-            <input></input>
-            <button>Update</button> TODO1
+            <input value={settingsPagePlaySpeedName} onChange={
+              (event)=>{
+                setSettingsPagePlaySpeedName(event.target.value);
+              }
+            }></input>
+            <button
+            onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["settingPage-playSpeedName"] = settingsPagePlaySpeedName;
+              updateNavObj(tempObj);     
+
+              setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeedName": settingsPagePlaySpeedName});
+            }}>Update</button>
           </div>
 
          <input type="checkbox"

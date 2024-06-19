@@ -573,7 +573,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                              
                                 let title = "";
                                 if (item === "settingPage-playSpeed") {
-                                    title = "Play Speed";
+                                    title = navObj["settingPage-playSpeedName"];
                                 } else if (item === "settingPage-bgmVol") {
                                     title = "Background Music Volume";
                                 } else if (item === "settingPage-seVol") {

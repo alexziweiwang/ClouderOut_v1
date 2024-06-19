@@ -151,6 +151,8 @@ export default function GameMaker() {
     "settingPage-listItemFontSize": 20,
     "settingPage-listItemFontColor": "",
     "settingPage-listItemGap": 30,
+    "settingPage-playSpeedName":"Play Speed",
+
 
     "storyPage-chapterListHorizontal": true,
     "storyPage-isBackgroundShape": false,
