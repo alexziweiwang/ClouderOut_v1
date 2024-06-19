@@ -575,7 +575,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 if (item === "settingPage-playSpeed") {
                                     title = navObj["settingPage-playSpeedName"];
                                 } else if (item === "settingPage-bgmVol") {
-                                    title = "Background Music Volume";
+                                    title = navObj["settingPage-bgmVolName"];
                                 } else if (item === "settingPage-seVol") {
                                     title = "Sound Effect Volume";
                                 }

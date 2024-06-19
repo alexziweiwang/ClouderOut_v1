@@ -152,7 +152,8 @@ export default function GameMaker() {
     "settingPage-listItemFontColor": "",
     "settingPage-listItemGap": 30,
     "settingPage-playSpeedName":"Play Speed",
-
+    "settingPage-bgmVolName": "Background Music Volume",
+    "settingPage-seVolName": "Sound Effect Volume",
 
     "storyPage-chapterListHorizontal": true,
     "storyPage-isBackgroundShape": false,

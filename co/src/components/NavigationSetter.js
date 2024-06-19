@@ -116,6 +116,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "settingPage-listItemFontColor": initialNavObj["settingPage-listItemFontColor"],
       "settingPage-listItemGap": initialNavObj["settingPage-listItemGap"],
       "settingPage-playSpeedName": initialNavObj["settingPage-playSpeedName"],
+      "settingPage-bgmVolName": initialNavObj["settingPage-bgmVolName"],
+      "settingPage-seVolName": initialNavObj["settingPage-seVolName"],
 
       "storyPage-isBackgroundShape": initialNavObj["storyPage-isBackgroundShape"],
       "storyPage-bgShadeName": initialNavObj["storyPage-bgShadeName"],
@@ -2885,8 +2887,17 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          >Background Music Volume</label>
           <div className="indentOne">
             <label>Display Naming:</label>
-            <input></input>
-            <button>Update</button>    TODO1
+            <input value={settingsPageBgmVolName}
+            onChange={(event)=>{
+              setSettingsPageBgmVolName(event.target.value);
+            }}></input>
+            <button onClick={()=>{
+              let tempObj = currentProjectNav;
+              tempObj["settingPage-bgmVolName"] = settingsPageBgmVolName;
+              updateNavObj(tempObj);     
+
+              setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVolName": settingsPageBgmVolName});   
+            }}>Update</button> 
           </div>
      
 
