@@ -36,25 +36,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     ]; 
 
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
-    // const settingsPagePictureVariableNames = [
-    //     "settingPage-bgPicName",
-    //     "settingPage-listItemPicName",
-    // ]; //TODO remove later
-
-    const storyPageSampleTitle = [
-        "test Ch.1",
-        "test Ch.2",
-        "test Ch.3",
-        "test Ch.4",
-        "test Ch.5",
-        "test Ch.6",
-        "test Ch.7",
-        "test Ch.8",
-        "test Ch.9"
-    ]; //TODO use the data of chapter-management
-
 
     const [storyPageChapterTitles, setStoryPageChapterTitles] = useState([]);
+
+    const [slCurrentSlotPage, setSlCurrentSlotPage] = useState(1);
 
 
     const [slSlotFrame, setSlSlotFrame] = useState(0);
@@ -483,19 +468,37 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 <div style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
                     onClick={()=>{
                         console.log("prev sl page");//TODO2
+                        if (slCurrentSlotPage - 1 > 0) {
+                            setSlCurrentSlotPage(slCurrentSlotPage-1);
+                        } else {
+                            setSlCurrentSlotPage(1);
+                        }
+      
                     }}
                 >
                     <label>◂</label>
                 </div>
 
+                <div>
+                        <label>{slCurrentSlotPage}/{navObj["saveloadPage-slotPageCount"]}</label>
+                </div>
+
                 <div style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
                     onClick={()=>{
                         console.log("next sl page");//TODO2
+                        let pageLimit = navObj["saveloadPage-slotPageCount"];
+                        if (slCurrentSlotPage + 1 > pageLimit) {
+                            setSlCurrentSlotPage(pageLimit);
+                        } else {
+                            setSlCurrentSlotPage(slCurrentSlotPage+1);
+                        }
                     }}
                 >
                     <label>▸</label>
                 </div>
             </div>
+
+
             </div>
            
             </div>
