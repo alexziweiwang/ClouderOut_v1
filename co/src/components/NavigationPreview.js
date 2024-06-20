@@ -223,7 +223,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             }
                             onMouseDown={
                                 ()=>{
-                                    document.getElementById(keyStr1).style.filter = "invert(100%)";
+                                    document.getElementById(keyStr1).style.filter = "invert(20%)";
                                     console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
 
@@ -364,7 +364,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             }
                             onMouseDown={
                                 ()=>{
-                                    document.getElementById(keyStr2).style.filter = "invert(100%)";
+                                    document.getElementById(keyStr2).style.filter = "invert(20%)";
                                     console.log("main-page clicked: ", item);
                                 }
                             }
@@ -421,7 +421,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("slPage-backButton").style.filter = "invert(100%)";
+                        document.getElementById("slPage-backButton").style.filter = "invert(20%)";
                         console.log("slPage-backButton");
           
                         updateCurrentPageName("Main Page");
@@ -446,7 +446,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "overflow": "scroll",
                 }}>
                     {slSlotFrame.map((item, index) => {
-                        return (<div style={{
+                        let keyStr = "slSlot" + slCurrentSlotPage + "-" + index;
+                        return (<div 
+                            id={keyStr}
+                            key={keyStr}
+                            style={{
                             "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
                             "background-image": navObj["saveloadPage-isSlotShape"] === false ?
                             `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
@@ -455,7 +459,21 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
                             "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
                         
-                        }}>
+                        }}
+              
+                            onMouseDown={
+                                ()=>{
+                                    document.getElementById(keyStr).style.filter = "invert(20%)";
+                                    console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
+                                    //TODO data update operation
+                                }
+                            }
+                            onMouseUp={
+                                ()=>{
+                                    document.getElementById(keyStr).style.filter = "invert(0%)";
+                                }
+                            }
+                        >
                             ?
 
                         </div>);
@@ -465,7 +483,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
 
             <div style={{"display": "flex", "top": "357px", "left": "495px", "position": "absolute"}}>
-                <div style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
+                <div id="slSlotPageLeftControler" style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
                     onClick={()=>{
                         console.log("prev sl page");//TODO2
                         if (slCurrentSlotPage - 1 > 0) {
@@ -473,8 +491,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         } else {
                             setSlCurrentSlotPage(1);
                         }
-      
                     }}
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("slSlotPageLeftControler").style.filter = "invert(50%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("slSlotPageLeftControler").style.filter = "invert(0%)";
+                        }
+                    }
                 >
                     <label>◂</label>
                 </div>
@@ -483,7 +510,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         <label>{slCurrentSlotPage}/{navObj["saveloadPage-slotPageCount"]}</label>
                 </div>
 
-                <div style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
+                <div id="slSlotPageRightControler"
+                    style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
                     onClick={()=>{
                         console.log("next sl page");//TODO2
                         let pageLimit = navObj["saveloadPage-slotPageCount"];
@@ -493,6 +521,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             setSlCurrentSlotPage(slCurrentSlotPage+1);
                         }
                     }}
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("slSlotPageRightControler").style.filter = "invert(50%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("slSlotPageRightControler").style.filter = "invert(0%)";
+                        }
+                    }
                 >
                     <label>▸</label>
                 </div>
@@ -540,7 +578,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("storyPage-backButton").style.filter = "invert(100%)";
+                        document.getElementById("storyPage-backButton").style.filter = "invert(20%)";
                         console.log("storyPage-backButton");
                         updateCurrentPageName("Main Page");
                     }
@@ -588,7 +626,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 }}
                                 onMouseDown={
                                     ()=>{
-                                        document.getElementById(keyStr).style.filter = "invert(100%)";
+                                        document.getElementById(keyStr).style.filter = "invert(20%)";
                                         console.log("story-page clicked: ", item);
                                     }
                                 }
@@ -646,7 +684,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("settingsPage-backButton").style.filter = "invert(100%)";
+                        document.getElementById("settingsPage-backButton").style.filter = "invert(20%)";
                         console.log("settingsPage-backButton");
                         updateCurrentPageName("Main Page");
                     }
@@ -720,7 +758,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                         }}
                                         onMouseDown={
                                             ()=>{
-                                                document.getElementById(keyStr3).style.filter = "invert(100%)";
+                                                document.getElementById(keyStr3).style.filter = "invert(20%)";
                                                 console.log("setting-page clicked: ", item);
                                             }
                                         }
@@ -766,7 +804,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(100%)";
+                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
                         console.log("playerProfilePage-backButton");
                         updateCurrentPageName("Main Page");
                     }
@@ -817,7 +855,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("gsdPage-backButton").style.filter = "invert(100%)";
+                        document.getElementById("gsdPage-backButton").style.filter = "invert(20%)";
                         console.log("gsdPage-backButton");
                         updateCurrentPageName("Main Page");
                     }
@@ -860,7 +898,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(100%)";
+                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
                         console.log("playerProfilePage-backButton");
                         updateCurrentPageName("Main Page");
                     }
