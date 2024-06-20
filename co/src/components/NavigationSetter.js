@@ -271,12 +271,44 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       }
                     }></input>
                   <br></br><label>Button Looking: </label>
-                  <br></br><input type="radio"></input><label>Rectangle & Color Filled</label>
+                  <br></br><input type="radio" 
+                    value={currentProjectNav["backButton-isShape"]}
+                    checked={currentProjectNav["backButton-isShape"]}
+                    onChange={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["backButton-isShape"] = true;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-isShape": true});  
+                    }}
+                  ></input><label onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["backButton-isShape"] = true;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-isShape": true});       
+                  }}>Rectangle & Color Filled</label>
                       <div className="indentOne">
                         <input type="color"></input>
                         <label> </label>
                       </div>
-                  <input type="radio"></input><label>Base Picture</label>
+                  <input type="radio"
+                    value={currentProjectNav["backButton-isShape"]}
+                    checked={!currentProjectNav["backButton-isShape"]}
+                    onChange={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["backButton-isShape"] = false;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-isShape": false});  
+                    }}
+                  ></input><label onClick={()=>{
+                     let tempObj = currentProjectNav;
+                      tempObj["backButton-isShape"] = false;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-isShape": false});  
+                  }}>Base Picture</label>
                       
                       <div className="indentOne">
                         <select>
