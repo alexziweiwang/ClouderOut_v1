@@ -160,7 +160,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     return (<div className="previewWindow">
 
         <br></br>
-
+     
         {page === "Main Page" && 
         <> main page
         <div style={{
@@ -440,6 +440,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("slPage-backButton").style.filter = "invert(100%)";
                         console.log("slPage-backButton");
+          
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 onMouseUp={
@@ -520,6 +522,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("storyPage-backButton").style.filter = "invert(100%)";
                         console.log("storyPage-backButton");
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 onMouseUp={
@@ -625,6 +628,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("settingsPage-backButton").style.filter = "invert(100%)";
                         console.log("settingsPage-backButton");
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 onMouseUp={
@@ -744,6 +748,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(100%)";
                         console.log("playerProfilePage-backButton");
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 onMouseUp={
@@ -794,6 +799,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("gsdPage-backButton").style.filter = "invert(100%)";
                         console.log("gsdPage-backButton");
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 onMouseUp={
@@ -836,6 +842,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(100%)";
                         console.log("playerProfilePage-backButton");
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 onMouseUp={
@@ -855,7 +862,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
 
 
-            
+
             </div>
         </div>
         </>}

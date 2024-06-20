@@ -172,7 +172,15 @@ export default function GameMaker() {
 
     "gsdPage-isBgShape": false,
     "gsdPage-bgShadeName": "rgb(222, 222, 235)",
-    "gsdPage-bgPicName": ""
+    "gsdPage-bgPicName": "",
+
+
+    "backButton-width": 50,
+    "backButton-height": 50,
+    "backButton-isShape": 50,
+    "backButton-shapeColor": "#c0cfe2",
+    "backButton-picName": "",
+    "backButton-displayText": "←",
 
   }); //TODO now: default initial values
 

@@ -136,7 +136,15 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
       "gsdPage-isBgShape": initialNavObj["gsdPage-isBgShape"],
       "gsdPage-bgShadeName": initialNavObj["gsdPage-bgShadeName"],
-      "gsdPage-bgPicName": initialNavObj["gsdPage-bgPicName"]
+      "gsdPage-bgPicName": initialNavObj["gsdPage-bgPicName"],
+
+
+      "backButton-width": initialNavObj["backButton-width"],
+      "backButton-height": initialNavObj["backButton-height"],
+      "backButton-isShape": initialNavObj["backButton-isShape"],
+      "backButton-shapeColor": initialNavObj["backButton-shapeColor"],
+      "backButton-picName": initialNavObj["backButton-picName"],
+      "backButton-displayText": initialNavObj["backButton-displayText"],
     });
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
@@ -214,6 +222,34 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
      </select>
      <br></br><br></br><br></br>
+
+     {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
+         {/* //TODO1 */}
+             <label>Back Button Settings (for all pages): </label>
+             <div className="indentOne">
+                  <label>Width: </label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+
+                  <br></br><label>Height: </label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                  <br></br><label>Button Looking: </label>
+                  <br></br><input type="radio"></input><label>Rectangle & Color Filled</label>
+                      <div className="indentOne">
+                        <input type="color"></input>
+                        <label> </label>
+                      </div>
+                  <input type="radio"></input><label>Base Picture</label>
+                      
+                      <div className="indentOne">
+                        <select>
+                        </select>
+                      </div>
+                  <label>Display Text: </label><input></input><button>Update</button>
+              </div>
+     </div>}
+
      <label>Select a Page to setup:</label><br></br>
       <select value={currentSettingPage}
         onChange={(event)=>{
@@ -2447,33 +2483,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
               ></input> 
  
          </div>
-
-         <br></br><br></br> //TODO1
-             <label>Back Button Settings (for all pages): </label>
-             <div className="indentOne">
-                  <label>Width: </label>
-                    <input type="range"></input>
-                    <input type="number"></input>
-
-                  <br></br><label>Height: </label>
-                    <input type="range"></input>
-                    <input type="number"></input>
-                  <br></br><label>Button Looking: </label>
-                  <br></br><input type="radio"></input><label>Rectangle & Color Filled</label>
-                      <div className="indentOne">
-                        <input type="color"></input>
-                        <label> </label>
-                      </div>
-                  <input type="radio"></input><label>Base Picture</label>
-                      
-                      <div className="indentOne">
-                        <select>
-                        </select>
-                      </div>
-                  <label>Display Text: </label><input></input><button>Update</button>
-              </div>
-
-
 
        </div>
     </div>}
