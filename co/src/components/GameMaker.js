@@ -181,6 +181,7 @@ export default function GameMaker() {
     "backButton-shapeColor": "#c0cfe2",
     "backButton-picName": "",
     "backButton-displayText": "←",
+    "backButton-fontSize": 15,
 
   }); //TODO now: default initial values
 

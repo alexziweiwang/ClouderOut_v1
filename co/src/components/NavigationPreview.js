@@ -226,10 +226,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     document.getElementById(keyStr1).style.filter = "invert(20%)";
                                     console.log("main-page clicked: ", item);
 
-                                    let i = 0;
-                                    for (; i < 2000; i++) {
-                                        console.log("");
-                                    }
                                 }
                             }
                             onMouseUp={
@@ -375,11 +371,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "invert(20%)";
                                     console.log("main-page clicked: ", item);
-                                    
-                                    let i = 0;
-                                    for (; i < 2000; i++) {
-                                        console.log("");
-                                    }
+              
                                 }
                             }
                             onMouseUp={
@@ -433,15 +425,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": "pink",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("slPage-backButton").style.filter = "invert(20%)";
                         console.log("slPage-backButton");
-                        let i = 0;
-                        for (; i < 2000; i++) {
-                            console.log("");
-                        }
+
                     }
                 }
                 onMouseUp={
@@ -485,10 +481,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     document.getElementById(keyStr).style.filter = "invert(20%)";
                                     console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
                                     //TODO data update operation
-                                    let i = 0;
-                                    for (; i < 2000; i++) {
-                                        console.log("");
-                                    }
 
                                 }
                             }
@@ -599,16 +591,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": "pink",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("storyPage-backButton").style.filter = "invert(20%)";
                         console.log("storyPage-backButton");
-                        let i = 0;
-                        for (; i < 2000; i++) {
-                            console.log("");
-                        }
-                        
+                       
                     }
                 }
                 onMouseUp={
@@ -657,10 +652,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "invert(20%)";
                                         console.log("story-page-title clicked: ", item);
-                                        let i = 0;
-                                        for (; i < 2000; i++) {
-                                            console.log("");
-                                        }
+
                                     }
                                 }
                                 onMouseUp={
@@ -714,15 +706,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": "pink",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("settingsPage-backButton").style.filter = "invert(20%)";
                         console.log("settingsPage-backButton");
-                        let i = 0;
-                        for (; i < 2000; i++) {
-                            console.log("");
-                        }
+ 
                     }
                 }
                 onMouseUp={
@@ -839,15 +835,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": "pink",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
                         console.log("playerProfilePage-backButton");
-                        let i = 0;
-                        for (; i < 2000; i++) {
-                            console.log("");
-                        }
+  
                     }
                 }
                 onMouseUp={
@@ -894,15 +894,19 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": "pink",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("gsdPage-backButton").style.filter = "invert(20%)";
                         console.log("gsdPage-backButton");
-                        let i = 0;
-                        for (; i < 2000; i++) {
-                            console.log("");
-                        }
+  
                     }
                 }
                 onMouseUp={
@@ -941,15 +945,20 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": "pink",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
+
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
                         console.log("playerProfilePage-backButton");
-                        let i = 0;
-                        for (; i < 2000; i++) {
-                            console.log("");
-                        }
+ 
                     }
                 }
                 onMouseUp={

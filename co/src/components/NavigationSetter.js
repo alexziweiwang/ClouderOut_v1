@@ -145,6 +145,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       "backButton-shapeColor": initialNavObj["backButton-shapeColor"],
       "backButton-picName": initialNavObj["backButton-picName"],
       "backButton-displayText": initialNavObj["backButton-displayText"],
+      "backButton-fontSize": initialNavObj["backButton-fontSize"],
     });
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
@@ -223,7 +224,24 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
      </select>
      <br></br><br></br><br></br>
 
-     {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
+     <label>Select a Page to setup:</label><br></br>
+      <select value={currentSettingPage}
+        onChange={(event)=>{
+          setCurrentSettingPage(event.target.value);
+          updateCurrentPageName(event.target.value);
+        }}>
+          <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
+          <option value="Game Progress Strategy" key="Game Progress Strategy">Game Progress Strategy</option>
+          <option value="Main Page" key="Main Page">Main Page</option>
+          <option value="Story Page" key="Story Page">Story Page</option>
+          <option value="Settings Page" key="Settings Page">Settings Page</option>
+          <option value="Player Profile Page" key="Player Profile Page">Player Profile Page</option>
+          <option value="Game Status Data Page" key="Game Status Data Page">Game Status Data Page</option>
+          <option value="Shop Page" key="Shop Page">Shop Page</option>
+      </select>
+
+      <br></br><br></br><br></br>
+      {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
          {/* //TODO1 */}
              <label>Back Button Settings (for all pages): </label>
              <div className="indentOne">
@@ -315,24 +333,29 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         </select>
                       </div>
                   <label>Display Text: </label><input></input><button>Update</button>
+                  <br></br>
+                  <label>Font Size:</label>
+                  <input type="range" value={currentProjectNav["backButton-fontSize"]}
+                    onChange={(event)=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["backButton-fontSize"] = event.target.value;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-fontSize": event.target.value});  
+                    }}
+                  ></input>
+                  <input type="number" value={currentProjectNav["backButton-fontSize"]}
+                    onChange={(event)=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["backButton-fontSize"] = event.target.value;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-fontSize": event.target.value});  
+                    }}
+                  ></input>
+                  {/* TODO1 */}
               </div>
      </div>}
-
-     <label>Select a Page to setup:</label><br></br>
-      <select value={currentSettingPage}
-        onChange={(event)=>{
-          setCurrentSettingPage(event.target.value);
-          updateCurrentPageName(event.target.value);
-        }}>
-          <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
-          <option value="Game Progress Strategy" key="Game Progress Strategy">Game Progress Strategy</option>
-          <option value="Main Page" key="Main Page">Main Page</option>
-          <option value="Story Page" key="Story Page">Story Page</option>
-          <option value="Settings Page" key="Settings Page">Settings Page</option>
-          <option value="Player Profile Page" key="Player Profile Page">Player Profile Page</option>
-          <option value="Game Status Data Page" key="Game Status Data Page">Game Status Data Page</option>
-          <option value="Shop Page" key="Shop Page">Shop Page</option>
-      </select>
 
       <br></br><br></br><br></br>
     {currentSettingPage === "Game Progress Strategy" && <div>
