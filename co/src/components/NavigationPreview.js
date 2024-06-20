@@ -409,7 +409,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`, "position": "relative"}}
         >
                             
-                
                 <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -420,7 +419,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 
 
                 "position": "relative", 
-                "overflow": "scroll",
                 "userSelect": "none",
             
                 }}
@@ -454,7 +452,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 </div>
 
 
-
+                
                 <div style={{
                     "left": `${navObj["saveloadPage-groupPosX"]}px`,
                     "top": `${navObj["saveloadPage-groupPosY"]}px`,
@@ -478,9 +476,28 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         </div>);
                     })}
                 </div>
+         
 
+
+            <div style={{"display": "flex", "top": "357px", "left": "495px", "position": "absolute"}}>
+                <div style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
+                    onClick={()=>{
+                        console.log("prev sl page");//TODO2
+                    }}
+                >
+                    <label>◂</label>
+                </div>
+
+                <div style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
+                    onClick={()=>{
+                        console.log("next sl page");//TODO2
+                    }}
+                >
+                    <label>▸</label>
+                </div>
             </div>
-            
+            </div>
+           
             </div>
         <br></br>
         
