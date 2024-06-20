@@ -225,13 +225,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "invert(20%)";
                                     console.log("main-page clicked: ", item);
-                                    updateCurrentPageName(pageNaming);
 
+                                    let i = 0;
+                                    for (; i < 2000; i++) {
+                                        console.log("");
+                                    }
                                 }
                             }
                             onMouseUp={
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "invert(0%)";
+                                    updateCurrentPageName(pageNaming);
                                 }
                             }
                             >
@@ -256,16 +260,21 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             {mainPageEntryNames.map((item, index) => {
          
                 let keyStr2 = item + "_customizedItems";
+                let pageNaming = "default";
 
                 let optionName = "";
                 if (index === 0) {
                     optionName = navObj["mainPage-story-name"];
+                    pageNaming = "Story Page";
                 } else if (index === 1) {
                     optionName = navObj["mainPage-playerProfile-name"];
+                    pageNaming = "Player Profile Page";
                 } else if (index === 2) {
                     optionName = navObj["mainPage-setting-name"];
+                    pageNaming = "Settings Page";
                 } else if (index === 3) {
                     optionName = navObj["mainPage-shop-name"];
+                    pageNaming = "Shop Page";
                 }
 
 
@@ -366,11 +375,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "invert(20%)";
                                     console.log("main-page clicked: ", item);
+                                    
+                                    let i = 0;
+                                    for (; i < 2000; i++) {
+                                        console.log("");
+                                    }
                                 }
                             }
                             onMouseUp={
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "invert(0%)";
+                                    updateCurrentPageName(pageNaming);
                                 }
                             }
                         >
@@ -423,13 +438,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("slPage-backButton").style.filter = "invert(20%)";
                         console.log("slPage-backButton");
-          
-                        updateCurrentPageName("Main Page");
+                        let i = 0;
+                        for (; i < 2000; i++) {
+                            console.log("");
+                        }
                     }
                 }
                 onMouseUp={
                     ()=>{
                         document.getElementById("slPage-backButton").style.filter = "invert(0%)";
+
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 >
@@ -466,6 +485,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     document.getElementById(keyStr).style.filter = "invert(20%)";
                                     console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
                                     //TODO data update operation
+                                    let i = 0;
+                                    for (; i < 2000; i++) {
+                                        console.log("");
+                                    }
+
                                 }
                             }
                             onMouseUp={
@@ -580,12 +604,17 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("storyPage-backButton").style.filter = "invert(20%)";
                         console.log("storyPage-backButton");
-                        updateCurrentPageName("Main Page");
+                        let i = 0;
+                        for (; i < 2000; i++) {
+                            console.log("");
+                        }
+                        
                     }
                 }
                 onMouseUp={
                     ()=>{
                         document.getElementById("storyPage-backButton").style.filter = "invert(0%)";
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 >
@@ -627,7 +656,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 onMouseDown={
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "invert(20%)";
-                                        console.log("story-page clicked: ", item);
+                                        console.log("story-page-title clicked: ", item);
+                                        let i = 0;
+                                        for (; i < 2000; i++) {
+                                            console.log("");
+                                        }
                                     }
                                 }
                                 onMouseUp={
@@ -686,12 +719,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("settingsPage-backButton").style.filter = "invert(20%)";
                         console.log("settingsPage-backButton");
-                        updateCurrentPageName("Main Page");
+                        let i = 0;
+                        for (; i < 2000; i++) {
+                            console.log("");
+                        }
                     }
                 }
                 onMouseUp={
                     ()=>{
                         document.getElementById("settingsPage-backButton").style.filter = "invert(0%)";
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 >
@@ -760,6 +797,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                             ()=>{
                                                 document.getElementById(keyStr3).style.filter = "invert(20%)";
                                                 console.log("setting-page clicked: ", item);
+                                         
                                             }
                                         }
                                         onMouseUp={
@@ -806,12 +844,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
                         console.log("playerProfilePage-backButton");
-                        updateCurrentPageName("Main Page");
+                        let i = 0;
+                        for (; i < 2000; i++) {
+                            console.log("");
+                        }
                     }
                 }
                 onMouseUp={
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(0%)";
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 >
@@ -857,12 +899,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("gsdPage-backButton").style.filter = "invert(20%)";
                         console.log("gsdPage-backButton");
-                        updateCurrentPageName("Main Page");
+                        let i = 0;
+                        for (; i < 2000; i++) {
+                            console.log("");
+                        }
                     }
                 }
                 onMouseUp={
                     ()=>{
                         document.getElementById("gsdPage-backButton").style.filter = "invert(0%)";
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 >
@@ -900,12 +946,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
                         console.log("playerProfilePage-backButton");
-                        updateCurrentPageName("Main Page");
+                        let i = 0;
+                        for (; i < 2000; i++) {
+                            console.log("");
+                        }
                     }
                 }
                 onMouseUp={
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "invert(0%)";
+                        updateCurrentPageName("Main Page");
                     }
                 }
                 >
