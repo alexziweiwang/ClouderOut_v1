@@ -228,12 +228,48 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
              <label>Back Button Settings (for all pages): </label>
              <div className="indentOne">
                   <label>Width: </label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                    <input type="range" 
+                      value={currentProjectNav["backButton-width"]} onChange={
+                      (event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["backButton-width"] = event.target.value;
+                        updateNavObj(tempObj);       
+                        
+                        setCurrentProjectNav({...currentProjectNav, "backButton-width": event.target.value});  
+                      }
+                    }></input>
+                    <input type="number"
+                      value={currentProjectNav["backButton-width"]} onChange={
+                      (event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["backButton-width"] = event.target.value;
+                        updateNavObj(tempObj);       
+                        
+                        setCurrentProjectNav({...currentProjectNav, "backButton-width": event.target.value});  
+                      }
+                    }></input>
 
                   <br></br><label>Height: </label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                  <input type="range" 
+                      value={currentProjectNav["backButton-height"]} onChange={
+                      (event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["backButton-height"] = event.target.value;
+                        updateNavObj(tempObj);       
+                        
+                        setCurrentProjectNav({...currentProjectNav, "backButton-height": event.target.value});  
+                      }
+                    }></input>
+                    <input type="number"
+                      value={currentProjectNav["backButton-height"]} onChange={
+                      (event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["backButton-height"] = event.target.value;
+                        updateNavObj(tempObj);       
+                        
+                        setCurrentProjectNav({...currentProjectNav, "backButton-height": event.target.value});  
+                      }
+                    }></input>
                   <br></br><label>Button Looking: </label>
                   <br></br><input type="radio"></input><label>Rectangle & Color Filled</label>
                       <div className="indentOne">
