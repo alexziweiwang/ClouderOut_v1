@@ -678,13 +678,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                
                       let item = nodeRelationshipMap[currKey];
                       let liKey = "li" + currKey;
+                      let crdCal = highlightGridByKey(currKey);
+
                       return (<li 
                           key={liKey} 
-                          className="clickableListItem2" 
+                          className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
                           style={{"marginBottom": "3px"}}
                           onClick={()=>{
                             //highlight the clicked node in diagram
-                            let crdCal = highlightGridByKey(currKey);
+                            
                             
                             if (clickedNode2 === crdCal) {
                               setClickedNode2(-1); //cancel if already clicked on this node
@@ -771,7 +773,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
         </div> */}
 
-<div className="parallelFrame">
+{clickedNode2 !== -1 && <div className="parallelFrame">
           <div>
             <button
               onClick={()=>{
@@ -856,7 +858,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             }}>Right</button>            
           </div>
 
-        </div>
+</div>}
 
 
         {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
@@ -1062,8 +1064,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })
 
           }
-<br></br>  
-!!!test: clickedNode2 = {clickedNode2}
+
         <div>
           {gridBlocks.map((row, ir) => {
              let rowKeyStr = "grid" + ir;

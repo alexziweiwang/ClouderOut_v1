@@ -391,6 +391,7 @@ div {
     text-align: left;
     padding-left: 5px;
     overflow: scroll;
+    user-select: none;
 }
 
 .clickableListItem2:hover {
@@ -401,6 +402,33 @@ div {
     text-align: left;
     padding-left: 5px;
     overflow: scroll;
+    cursor: pointer;
+    user-select: none;
+}
+
+.clickableListItem2Clicked {
+    background-color: rgb(147, 141, 157);
+    color: rgb(245, 243, 239);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+    text-align: left;
+    padding-left: 5px;
+    overflow: scroll;
+    user-select: none;
+}
+
+.clickableListItem2Clicked:hover {
+    background-color: rgb(147, 141, 157);
+    color: rgb(245, 243, 239);
+    margin: 1px;
+    height: 25px;
+    width: 90%;
+    text-align: left;
+    padding-left: 5px;
+    overflow: scroll;
+    cursor: pointer;
+    user-select: none;
 }
 
 .clickableListItem5 {
