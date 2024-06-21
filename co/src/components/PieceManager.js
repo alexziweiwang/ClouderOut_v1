@@ -49,7 +49,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             itemCurr["num"] = index;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(content);        
+            setHighlightedPiece(index);   
         } else {
             return;
         }
@@ -65,14 +65,14 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             itemCurr["num"] = index+2;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(content);
+            setHighlightedPiece(index+2);    
         } else {
             return;
         }
     }
 
     function doHighlightItem(content) {
-        setHighlightedPiece(content);        
+        setHighlightedPiece(content);                 
     }
 
     function duplicatePiece(index) {
@@ -154,7 +154,13 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
                 const currItem = pieceDataLocal[index];
                 return (
-                    <tr key={index} className={(highlightedPiece === currItem["content"])? "tableItemSelected" : "tableItem"} onClick={()=>{doHighlightItem(currItem["content"]);assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>
+                    <tr key={index} className={
+                        
+                        (highlightedPiece === currItem["num"])      
+                            ? "tableItemSelected" : "tableItem"} onClick={()=>{
+                        doHighlightItem(currItem["num"]);   
+                        assignPreviewIndex(index);
+                        updatePieceData(pieceDataLocal);}}>
                     <td>
                         <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Detail</button>
                     </td>
