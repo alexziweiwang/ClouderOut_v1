@@ -664,7 +664,17 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                
                       let item = nodeRelationshipMap[currKey];
                       let liKey = "li" + currKey;
-                      return (<li key={liKey} className="clickableListItem2" style={{"marginBottom": "3px"}}>{currKey}: {item["nodeName"]}</li>);
+                      return (<li 
+                          key={liKey} 
+                          className="clickableListItem2" 
+                          style={{"marginBottom": "3px"}}
+                          onClick={()=>{
+                            //TODO1 plan: highlight the clicked node in diagram
+                          }}
+                        >
+                          {currKey}: {item["nodeName"]}
+                        </li>);
+
                   })}
             </ul>
           </div>  

@@ -301,7 +301,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }
                 onMouseDown={
                     ()=>{
-                        document.getElementById(currId).style.filter = "invert(20%)";
+                        document.getElementById(currId).style.filter = "invert(70%)";
                     }
                 }
                 onMouseUp={

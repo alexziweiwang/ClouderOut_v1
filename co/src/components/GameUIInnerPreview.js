@@ -87,7 +87,7 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
             }
             onMouseDown={
                 ()=>{
-                    document.getElementById(currId).style.filter = "invert(20%)";
+                    document.getElementById(currId).style.filter = "invert(70%)";
                 }
             }
             onMouseUp={
@@ -155,7 +155,7 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplay
 
             onMouseDown={
                 ()=>{
-                    document.getElementById("backButtonDivPreview").style.filter = "invert(20%)";
+                    document.getElementById("backButtonDivPreview").style.filter = "invert(70%)";
                 }
                 }
             onMouseUp={

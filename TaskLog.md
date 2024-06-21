@@ -273,3 +273,5 @@
 - 2024-Jun-17: Consider and design saveload page slot and page efficiency-strategies
 
 - 2024-Jun-19: Consider and design navigation-node data structure content
+
+- 2024-Jun-21: Consider and design improvement of piece-setting bgp switching
