@@ -243,7 +243,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
       <br></br><br></br><br></br>
       {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
-         {/* //TODO1 */}
+     
              <label>Back Button Settings (for all pages): </label>
              <div className="indentOne">
                   <label>Width: </label>
@@ -308,8 +308,14 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       setCurrentProjectNav({...currentProjectNav, "backButton-isShape": true});       
                   }}>Rectangle & Color Filled</label>
                       <div className="indentOne">
-                        <input type="color"></input>
-                        <label> </label>
+                        <input type="color" value={currentProjectNav["backButton-shapeColor"]} onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["backButton-shapeColor"] = event.target.value;
+                            updateNavObj(tempObj);       
+
+                            setCurrentProjectNav({...currentProjectNav, "backButton-shapeColor": event.target.value});    
+                        }}></input>
+                        <label> {currentProjectNav["backButton-shapeColor"]}</label>
                       </div>
                   <input type="radio"
                     value={currentProjectNav["backButton-isShape"]}
@@ -330,10 +336,22 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                   }}>Base Picture</label>
                       
                       <div className="indentOne">
-                        <select>
+                        <select value={currentProjectNav["backButton-picName"]} onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["backButton-picName"] = event.target.value;
+                          updateNavObj(tempObj);       
+
+                          setCurrentProjectNav({...currentProjectNav, "backButton-picName": event.target.value});  
+
+                        }}>
+                          <option key="backButtonDefault" value="">-- Select Resource --</option>
+                          {visualList.map((item, index) => {
+                              let keyStr = "backButton-" + index + item["var"];
+                                return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                              })}
                         </select>
                       </div>
-
+                      
                   <label>Display Text (default "←"): </label>
                   <div className="indentOne">
                     <input value={backButtonName} onChange={(event)=>{
@@ -366,7 +384,6 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       setCurrentProjectNav({...currentProjectNav, "backButton-fontSize": event.target.value});  
                     }}
                   ></input>
-                  {/* TODO1 */}
               </div>
      </div>}
 

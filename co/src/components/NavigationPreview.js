@@ -424,7 +424,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "position": "absolute",
                     "top": "0px",
                     "left": "0px",
-                    "backgroundColor": "pink",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "background-image": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
@@ -469,7 +471,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             style={{
                             "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
                             "background-image": navObj["saveloadPage-isSlotShape"] === false ?
-                            `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                                `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
                             "width": `${navObj["saveloadPage-slotWidth"]}px`,
                             "height": `${navObj["saveloadPage-slotHeight"]}px`,
                             "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
