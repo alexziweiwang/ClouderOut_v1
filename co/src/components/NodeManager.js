@@ -52,7 +52,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     ["chapterStart","node1","","","","","","","",""], 
     ["","","","","","","","","",""],
     ["lsc1","","","node2","","","","","",""]
-  ]);
+  ]); //stores node-keys
 
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
   //TODO depth of this node is (prev-node's depth + 1); if multiple prev-nodes? choose max prev-depth
@@ -649,6 +649,20 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     updateRenderCounter();
   }
 
+  function highlightGridByKey(keyName) {
+    let num = -1;
+    let i = 0, j = 0;
+    for(; i < gridBlocks.length; i++) {
+      j = 0;
+      for (; j < gridBlocks[0].length; j++) {
+        if (gridBlocks[i][j] == keyName) {
+          num = i * 10000 + j;
+        }
+      }
+    }
+    return num;
+  }
+
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
 
@@ -669,7 +683,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           className="clickableListItem2" 
                           style={{"marginBottom": "3px"}}
                           onClick={()=>{
-                            //TODO1 plan: highlight the clicked node in diagram
+                            //highlight the clicked node in diagram
+                            let crdCal = highlightGridByKey(currKey);
+                            
+                            if (clickedNode2 === crdCal) {
+                              setClickedNode2(-1); //cancel if already clicked on this node
+                            } else {
+                              setClickedNode2(crdCal);
+                            } 
                           }}
                         >
                           {currKey}: {item["nodeName"]}
@@ -1041,8 +1062,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               })
 
           }
-  
-
+<br></br>  
+!!!test: clickedNode2 = {clickedNode2}
         <div>
           {gridBlocks.map((row, ir) => {
              let rowKeyStr = "grid" + ir;
