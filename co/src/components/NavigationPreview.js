@@ -428,6 +428,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
+                    "font-size": `${navObj["backButton-fontSize"]}px`,
 
                     "justify-content": "center",
                     "align-items": "center",
@@ -448,7 +449,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                 }
                 >
-                    <label>←</label>
+                    <label>{navObj["backButton-displayText"]}</label>
                 </div>
 
 
@@ -594,6 +595,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
+                    "font-size": `${navObj["backButton-fontSize"]}px`,
 
                     "justify-content": "center",
                     "align-items": "center",
@@ -613,7 +615,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                 }
                 >
-                    <label>←</label>
+                    <label>{navObj["backButton-displayText"]}</label>
                 </div>
 
 
@@ -709,6 +711,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
+                    "font-size": `${navObj["backButton-fontSize"]}px`,
 
                     "justify-content": "center",
                     "align-items": "center",
@@ -728,7 +731,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                 }
                 >
-                    <label>←</label>
+                    <label>{navObj["backButton-displayText"]}</label>
                 </div>            
             
             <div style={{
@@ -838,6 +841,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
+                    "font-size": `${navObj["backButton-fontSize"]}px`,
 
                     "justify-content": "center",
                     "align-items": "center",
@@ -857,7 +861,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                 }
                 >
-                    <label>←</label>
+                    <label>{navObj["backButton-displayText"]}</label>
                 </div>   
 
             <br></br>        
@@ -897,6 +901,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
+                    "font-size": `${navObj["backButton-fontSize"]}px`,
 
                     "justify-content": "center",
                     "align-items": "center",
@@ -916,7 +921,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                 }
                 >
-                    <label>←</label>
+                    <label>{navObj["backButton-displayText"]}</label>
                 </div>   
 
 
@@ -948,7 +953,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "fontSize": `${navObj["backButton-fontSize"]}px`,
+                    "font-size": `${navObj["backButton-fontSize"]}px`,
 
                     "justify-content": "center",
                     "align-items": "center",
@@ -968,7 +973,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                 }
                 >
-                    <label>←</label>
+                    <label>{navObj["backButton-displayText"]}</label>
                 </div>  
 
 

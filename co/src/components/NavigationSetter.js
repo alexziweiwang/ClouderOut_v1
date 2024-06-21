@@ -157,6 +157,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     const [settingsPageBgmVolName, setSettingsPageBgmVolName] = useState("");
     const [settingsPageSeVolName, setSettingsPageSeVolName] = useState("");
 
+    const [backButtonName, setBackButtonName]= useState("");
 
     const [gsdPageMap, setGsdPageMap] = useState({});
 
@@ -321,7 +322,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                       setCurrentProjectNav({...currentProjectNav, "backButton-isShape": false});  
                     }}
                   ></input><label onClick={()=>{
-                     let tempObj = currentProjectNav;
+                      let tempObj = currentProjectNav;
                       tempObj["backButton-isShape"] = false;
                       updateNavObj(tempObj);       
 
@@ -332,8 +333,20 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                         <select>
                         </select>
                       </div>
-                  <label>Display Text: </label><input></input><button>Update</button>
-                  <br></br>
+
+                  <label>Display Text (default "←"): </label>
+                  <div className="indentOne">
+                    <input value={backButtonName} onChange={(event)=>{
+                      setBackButtonName(event.target.value);
+                    }}></input>
+                    <button onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["backButton-displayText"] = backButtonName;
+                      updateNavObj(tempObj);       
+
+                      setCurrentProjectNav({...currentProjectNav, "backButton-displayText": backButtonName});         
+                    }}>Update</button>
+                  </div>
                   <label>Font Size:</label>
                   <input type="range" value={currentProjectNav["backButton-fontSize"]}
                     onChange={(event)=>{
