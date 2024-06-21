@@ -1359,3 +1359,10 @@ button:hover {
     justify-content: center;
     align-items: center; 
 }
+
+textarea {
+    background-color: transparent;
+    border: none;
+    user-select: none;
+    cursor: pointer;
+}

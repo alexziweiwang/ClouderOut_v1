@@ -50,7 +50,10 @@ export default function GameUITextFramePreview({dataObj, getTextFrameUISettings}
             "border-radius": "0px"
         }}>
             {dataObj.speaker_name !== "" && <><label>{dataObj.speaker_name}</label><br></br></>}
-            {dataObj.content}               
+              
+            <textarea cols={txtFrameUISettings["TextContentArea-w"] / txtFrameUISettings["textSize"]} readonly>
+                {dataObj.content}  
+            </textarea>
         </div>
     
     </div>);

@@ -71,8 +71,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         }
     }
 
-    function doHighlightItem(content) {
-        setHighlightedPiece(content);                 
+    function doHighlightItem(num) {
+        setHighlightedPiece(num);                 
     }
 
     function duplicatePiece(index) {
@@ -152,25 +152,29 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         
             {pieceDataLocal.map((item, index) => {
 
-                const currItem = pieceDataLocal[index];
                 return (
                     <tr key={index} className={
                         
-                        (highlightedPiece === currItem["num"])      
+                        (highlightedPiece === item["num"])      
                             ? "tableItemSelected" : "tableItem"} onClick={()=>{
-                        doHighlightItem(currItem["num"]);   
-                        assignPreviewIndex(index);
+                        doHighlightItem(item["num"]);   
+                        assignPreviewIndex(index); //TODO1 check
+                        console.log("table row clicked: ", index, "; ", item["num"] );//TODO1 test
                         updatePieceData(pieceDataLocal);}}>
                     <td>
-                        <button onClick={()=>{assignPreviewIndex(index);assignPieceNum(currItem["num"]);}}>Detail</button>
+                        <button onClick={()=>{
+                            assignPreviewIndex(index); //TODO1 check
+                            console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
+
+                            assignPieceNum(item["num"]);}}>Edit</button>
                     </td>
-                    <td>{currItem["num"]}</td>
-                    <td>{currItem["speaker_name"]}{(currItem["speaker_name"] === "") ? "" : ":"}{(currItem["speaker_name"] !== "") && <br></br>}{currItem["content"]}</td>
+                    <td>{item["num"]}</td>
+                    <td>{item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}{ item["content"]}</td>
                     {isManage === true &&  <td>
                     <div>
-                        <button onClick={()=>{moveItemUpRow(index, currItem["content"]);}}>Move Up</button>
+                        <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>Move Up</button>
                         <br></br>
-                        <button onClick={()=>{moveItemDownRow(index, currItem["content"]);}}>Move Down</button>
+                        <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>Move Down</button>
                         <br></br>
                         <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
                         {/* <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button> //TODO reconsider whether pieceData-updating needed*/}                    
@@ -179,7 +183,16 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     
                     </td>}
                     {isManage === true && <td>
-                        <button onClick={()=>{deletePiece(index);updatePieceData(pieceDataLocal);}}>Delete</button>
+                        <button onClick={()=>{
+                            let content = "Are you sure to delete this node: " + item["num"] + ":" + item["content"] + "?";
+                            let respondGiven = window.confirm(content);
+                            if (respondGiven) {
+                                deletePiece(index);
+                                updatePieceData(pieceDataLocal);
+                            }       
+                        }}
+                        
+                        >Delete</button>
                     </td>}
                 </tr>
                 );

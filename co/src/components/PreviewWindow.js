@@ -16,7 +16,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
 
-    const [currentPiece, setCurrentPiece] = useState({});
+    const [currentPiece, setCurrentPiece] = useState({}); //TODO2 refactor for larger scope
     
     const [bgmSource, setBgmSource] = useState("");
 
