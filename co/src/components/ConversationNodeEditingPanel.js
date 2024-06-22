@@ -191,7 +191,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function changePieceData(updatedPieceData) {
-        console.log("!!! in editing-panel: new data now is ...", updatedPieceData);
+        console.log("!!! in editing-panel: changePieceData ...", updatedPieceData); //TODO test
         setPieceDatastructure(updatedPieceData);
         //TODO update to cloud
     }
@@ -248,6 +248,13 @@ export default function ConversationNodeEditingPanel() {
 
     function passInCurrentPieceObj() {
         return pieceDataStructure[previewingIndex];
+    }
+    function passInAllPieceDataContent() {
+        return pieceDataStructure;
+    }
+
+    function passInCurrentPieceNum() {
+        return previewingIndex;
     }
 
     function fetchMenuType(value) {
@@ -383,6 +390,8 @@ export default function ConversationNodeEditingPanel() {
                 <PreviewWindow 
                     dataObj={pieceDataStructure[previewingIndex]} 
                     getCurrentPiece={passInCurrentPieceObj} 
+                    getAllPieceContent={passInAllPieceDataContent}
+                    getCurrentPieceNum={passInCurrentPieceNum}
                     getTextFrameUISettings={passInTextFrameUISettings} 
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 

@@ -6,17 +6,18 @@ import GameUIInnerPreview from './GameUIInnerPreview';
 import GameUITextFramePreview from './GameUITextFramePreview';
 
 
-export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
-    console.log("re-rendering @preview window");
+    // console.log("re-rendering @preview window"); //TODO test temp
 
     let name = "/previewwindow";
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
 
     const [currentPiece, setCurrentPiece] = useState({}); //TODO2 refactor for larger scope
+    const [currentPieceNum, setCurrentPieceNum] = useState(-1);
     
     const [bgmSource, setBgmSource] = useState("");
 
@@ -24,8 +25,20 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     let charaPicArr = currentPiece["chp_arr"];//only displays immediate adjustments
 
     useEffect(() => {
-      let objTemp = getCurrentPiece();
-      setCurrentPiece(objTemp); //only fetches the most-updated current piece
+      // let objTemp = getCurrentPiece();
+      // setCurrentPiece(objTemp); //only fetches the most-updated current piece
+
+
+      let allPieceContentTemp = getAllPieceContent();
+      let currPieceNumTemp = getCurrentPieceNum();
+      if (currPieceNumTemp !== currentPieceNum) { //TODO2 only update when different pieceNum chosen
+        setCurrentPieceNum(currPieceNumTemp);
+        setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+      }
+
+
+
+
       updateBgmSource(); // special because of across-piece setting
 
       let screenSizePair = getScreenSize();
@@ -92,7 +105,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
     
         
         <div className="previewWindow">
-                 
+                 1currentPieceNum={currentPieceNum}
        
             <div className="previewArea" 
               style={{"position": "relative", 
@@ -135,7 +148,7 @@ export default function PreviewWindow({getCurrentPiece, getTextFrameUISettings, 
                       );
                     })}
                   </div>
-             
+                 
               </div>
 
               {currentPiece.displayTextFrame && 
