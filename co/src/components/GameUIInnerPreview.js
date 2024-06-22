@@ -1,19 +1,37 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIInnerPreview({isSettingUpUI, dataObj, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function GameUIInnerPreview({isSettingUpUI, dataObj, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
+    const [currentPiece, setCurrentPiece] = useState(dataObj); //TODO2 refactor for larger scope
+
+    const [currentPieceNum, setCurrentPieceNum] = useState(-1);
+    const [allPieceData, setAllPieceData] = useState();
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
     const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
-    const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] : (dataObj["stnd_btn_arr"] !== undefined ? dataObj["stnd_btn_arr"] : []);
+    const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] 
+        : (currentPiece["stnd_btn_arr"] !== undefined ? currentPiece["stnd_btn_arr"] : []);
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
     useEffect(() => {
+
+        let allPieceContentTemp = getAllPieceContent();
+        if (allPieceContentTemp !== allPieceData) {
+          setAllPieceData(allPieceContentTemp);
+        }
+        
+        let currPieceNumTemp = getCurrentPieceNum();
+        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+          setCurrentPieceNum(currPieceNumTemp);
+          setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+        }
+  
+  
 
         let isDisplayDefaultVal = getIsDisplayDefaultButton();
         setIsDisplayDefualtBtnUISettings(isDisplayDefaultVal);

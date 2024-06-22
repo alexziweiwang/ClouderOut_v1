@@ -1,12 +1,27 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUITextFramePreview({dataObj, getTextFrameUISettings}) {
+export default function GameUITextFramePreview({dataObj, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings}) {
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
+    const [currentPiece, setCurrentPiece] = useState(dataObj); //TODO2 refactor for larger scope
+
+    const [currentPieceNum, setCurrentPieceNum] = useState(-1);
+    const [allPieceData, setAllPieceData] = useState();
+
     useEffect(() => {
+        let allPieceContentTemp = getAllPieceContent();
+        if (allPieceContentTemp !== allPieceData) {
+          setAllPieceData(allPieceContentTemp);
+        }
         
+        let currPieceNumTemp = getCurrentPieceNum();
+        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+          setCurrentPieceNum(currPieceNumTemp);
+          setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+        }
+
         let txtFrameUISettings = getTextFrameUISettings();
         setTxtFrameUISettings(txtFrameUISettings);
     });
@@ -49,11 +64,10 @@ export default function GameUITextFramePreview({dataObj, getTextFrameUISettings}
             "border": "2px solid #e99a2b",
             "border-radius": "0px"
         }}>
-            {dataObj.speaker_name !== "" && <><label>{dataObj.speaker_name}</label><br></br></>}
+            {currentPiece.speaker_name !== "" && <><label>{currentPiece.speaker_name}</label><br></br></>}
               
-            <textarea cols={txtFrameUISettings["TextContentArea-w"] / txtFrameUISettings["textSize"]} readonly>
-                {dataObj.content}  
-            </textarea>
+           
+            {currentPiece.content}, {currentPieceNum}, {currentPieceNum >= 0 ? allPieceData[currentPieceNum].content : ""}  
         </div>
     
     </div>);

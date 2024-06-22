@@ -17,7 +17,9 @@ export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getC
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
 
     const [currentPiece, setCurrentPiece] = useState({}); //TODO2 refactor for larger scope
+
     const [currentPieceNum, setCurrentPieceNum] = useState(-1);
+    const [allPieceData, setAllPieceData] = useState();
     
     const [bgmSource, setBgmSource] = useState("");
 
@@ -25,13 +27,14 @@ export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getC
     let charaPicArr = currentPiece["chp_arr"];//only displays immediate adjustments
 
     useEffect(() => {
-      // let objTemp = getCurrentPiece();
-      // setCurrentPiece(objTemp); //only fetches the most-updated current piece
-
 
       let allPieceContentTemp = getAllPieceContent();
+      if (allPieceContentTemp !== allPieceData) {
+        setAllPieceData(allPieceContentTemp);
+      }
+      
       let currPieceNumTemp = getCurrentPieceNum();
-      if (currPieceNumTemp !== currentPieceNum) { //TODO2 only update when different pieceNum chosen
+      if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
         setCurrentPieceNum(currPieceNumTemp);
         setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
       }
@@ -99,6 +102,14 @@ export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getC
           alert("Game node size changed!");
         } 
     } 
+
+    function passInAllPieceDataContent() {
+      return allPieceData;
+    }
+
+    function passInCurrentPieceNum() {
+      return currentPieceNum;
+    }
  
     return (
 
@@ -154,12 +165,16 @@ export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getC
               {currentPiece.displayTextFrame && 
               <GameUITextFramePreview
                 dataObj={currentPiece} 
+                getAllPieceContent={passInAllPieceDataContent}
+                getCurrentPieceNum={passInCurrentPieceNum}
                 getTextFrameUISettings={getTextFrameUISettings}
               />}
 
               <GameUIInnerPreview 
                   isSettingUpUI={false}
                   dataObj={currentPiece} 
+                  getAllPieceContent={passInAllPieceDataContent}
+                  getCurrentPieceNum={passInCurrentPieceNum}
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
