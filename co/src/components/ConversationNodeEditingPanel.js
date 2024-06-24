@@ -390,6 +390,7 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayGameContentPreview === true && 
                 <PreviewWindow 
                     dataObj={pieceDataStructure[previewingIndex]} 
+                    initialAllPieceData={pieceDataStructure}
                     getCurrentPiece={passInCurrentPieceObj} 
                     getAllPieceContent={passInAllPieceDataContent}
                     getCurrentPieceNum={passInCurrentPieceNum}
@@ -402,6 +403,7 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayGameContentPreview === false && 
                 <GameUIOuterPreviewWindow 
                     dataObj={pieceDataStructure[previewingIndex]} 
+                    initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}
                     getCurrentPieceNum={passInCurrentPieceNum}
                     getTextFrameUISettings={passInTextFrameUISettings} 

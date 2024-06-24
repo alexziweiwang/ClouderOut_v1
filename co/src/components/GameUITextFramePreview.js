@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUITextFramePreview({dataObj, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings}) {
+export default function GameUITextFramePreview({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings}) {
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
-    const [currentPiece, setCurrentPiece] = useState(dataObj); //TODO2 refactor for larger scope
+    const [currentPiece, setCurrentPiece] = useState(initialAllPieceData[0]); //TODO2 refactor for larger scope
 
-    const [currentPieceNum, setCurrentPieceNum] = useState(-1);
-    const [allPieceData, setAllPieceData] = useState();
+    const [currentPieceNum, setCurrentPieceNum] = useState(0);
+    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
@@ -64,10 +64,14 @@ export default function GameUITextFramePreview({dataObj, getAllPieceContent, get
             "border": "2px solid #e99a2b",
             "border-radius": "0px"
         }}>
-            {currentPiece.speaker_name !== "" && <><label>{currentPiece.speaker_name}</label><br></br></>}
-              
-           
-            {currentPiece.content}, {currentPieceNum}, {currentPieceNum >= 0 ? allPieceData[currentPieceNum].content : ""}  
+            {currentPieceNum >= 0 && <div>
+                {allPieceData[currentPieceNum].speaker_name !== "" && <><label>{allPieceData[currentPieceNum].speaker_name}</label><br></br></>}
+                
+            
+                {currentPiece.content}, 
+                <br></br>{currentPieceNum}, 
+                <br></br>{allPieceData[currentPieceNum].content}  
+            </div>}
         </div>
     
     </div>);

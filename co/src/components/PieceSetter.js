@@ -151,7 +151,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": event.target.value});
         let tempObj = currentPieceDetail;
         tempObj["speaker_name"] = event.target.value;
+
+console.log("changing speaker in piece-setter...", event.target.value); //TODO test
+
         updateToCaller(tempObj);
+
     }
 
     function toggleBgPicOption() {
