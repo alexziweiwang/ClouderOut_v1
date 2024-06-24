@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUITextFramePreview({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings}) {
+export default function GameUITextFramePreview({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView}) {
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
@@ -40,7 +40,7 @@ export default function GameUITextFramePreview({dataObj, initialAllPieceData, ge
         "font-size": `${txtFrameUISettings["textSize"]}px`,    
         "user-select": "none",
     } : {
-        "background-image": `url('${txtFrameUISettings["picUrl"]}')`,       //TODO improve later
+        "background-image": txtFrameUISettings["picUrl"] === "" ? "" : `url('${txtFrameUISettings["picUrl"]}')`,       //TODO improve later
         "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
         
         "width": `${txtFrameUISettings["width"]}px`,
@@ -61,7 +61,7 @@ export default function GameUITextFramePreview({dataObj, initialAllPieceData, ge
             "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
             "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
             "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
-            "border": "2px solid #e99a2b",
+            "border": isInGameView === true ? "none" : "2px solid #e99a2b",
             "border-radius": "0px"
         }}>
 
@@ -81,12 +81,12 @@ export default function GameUITextFramePreview({dataObj, initialAllPieceData, ge
                     "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
-                    "overflow": "hidden"
+                  
                 }}>
                   
                         {allPieceData[currentPieceNum].content}
                 </div>
-            
+
             </div>}
 
         </div>

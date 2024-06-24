@@ -1362,5 +1362,6 @@ button:hover {
 
 .wrappingFrame {
     word-wrap: break-word;
-    text-wrap: wrap;
+    text-wrap: balance;
+    text-align: left;
 }

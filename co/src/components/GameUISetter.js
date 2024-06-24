@@ -355,13 +355,19 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             }}></input><label>{txtFrameObj["bgColor"]}</label></>}
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
         {!txtFrameObj["isShape"] && <><select value={txtFrameObj["picVar"]} onChange={(event)=>{
-            setTxtFrameObj({...txtFrameObj, "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]});    
-            }}><option key="tfvDefault" value="">-- Select Resource --</option>
+            if (event.target.value === "") {
+                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value, "picUrl": ""});    
+            } else {
+                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]});    
+            }
+            }}>
+                <option key="tfvDefault" value="">-- Select Resource --</option>
+                <option key="noPic" value="">(no picture)</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "tfvButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
             </select>

@@ -119,9 +119,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     
         
-        <div className="previewWindow">
-                 1currentPieceNum={currentPieceNum} (TESTing)
-       
+        <div className="previewWindow">       
             <div className="previewArea" 
               style={{"position": "relative", 
                       "height": `${screenHeight}px`, 
@@ -166,14 +164,15 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                   </div>
                  
               </div>
-
-              {currentPiece.displayTextFrame && 
+              
+              {(currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
               <GameUITextFramePreview
                 dataObj={currentPiece} 
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={passInAllPieceDataContent}
                 getCurrentPieceNum={passInCurrentPieceNum}
                 getTextFrameUISettings={getTextFrameUISettings}
+                isInGameView={true}
               />}
 
               <GameUIInnerPreview 
@@ -191,7 +190,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
               
 
             </div>
-            
+            1currentPieceNum={currentPieceNum} (TESTing)
+
             <br></br>
             {(bgmSource !== undefined) && 
                       <audio src={bgmSource} controls/> //TODO actual game-playing

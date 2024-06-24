@@ -496,7 +496,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     setupHideTextFrame(false);
                 }                   
             }}
-            >Display Textframe</label>
+            >Include Textframe Content</label>
 
             <br></br>
             <br></br>

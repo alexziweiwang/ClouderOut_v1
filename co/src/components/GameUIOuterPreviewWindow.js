@@ -45,6 +45,7 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 getAllPieceContent={getAllPieceContent}
                 getCurrentPieceNum={getCurrentPieceNum}
                 getTextFrameUISettings={getTextFrameUISettings}
+                isInGameView={false}
             />
             
         </div>
