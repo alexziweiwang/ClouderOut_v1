@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 import GameUIInnerPreview from './GameUIInnerPreview';
 import GameUITextFramePreview from './GameUITextFramePreview';
 
-export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType, getScreenSize}) {
+export default function GameUIPreviewOuterFrame({dataObj, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
     const [menuType, setMenuType] = useState("notStoryCore");
+    
 
     useEffect(() => {
         let tempType = getMenuType();
@@ -16,6 +17,7 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
         let screenSizePair = getScreenSize();
         setScreenWidth(screenSizePair[0]);
         setScreenHeight(screenSizePair[1]);
+
     });
 
     return(
@@ -28,6 +30,8 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
             <GameUIInnerPreview 
                 isSettingUpUI={true}
                 dataObj={dataObj} 
+                getAllPieceContent={getAllPieceContent}
+                getCurrentPieceNum={getCurrentPieceNum}
                 getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                 getDefaultButtonUISettings={getDefaultButtonUISettings} 
                 getBackButtonUISettings={getBackButtonUISettings}
@@ -36,6 +40,8 @@ export default function GameUIPreviewOuterFrame({dataObj, getTextFrameUISettings
               
             <GameUITextFramePreview
                 dataObj={dataObj} 
+                getAllPieceContent={getAllPieceContent}
+                getCurrentPieceNum={getCurrentPieceNum}
                 getTextFrameUISettings={getTextFrameUISettings}
             />
             

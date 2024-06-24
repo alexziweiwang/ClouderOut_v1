@@ -29,7 +29,7 @@ export default function ConversationNodeEditingPanel() {
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
-    const [isDisplayPreview, setIsDisplayPreview] = useState(true);
+    const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
     const [menuType, setMenuType] = useState("");
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
@@ -249,6 +249,7 @@ export default function ConversationNodeEditingPanel() {
     function passInCurrentPieceObj() {
         return pieceDataStructure[previewingIndex];
     }
+
     function passInAllPieceDataContent() {
         return pieceDataStructure;
     }
@@ -330,9 +331,9 @@ export default function ConversationNodeEditingPanel() {
                     
                 </div>
                 <div className="topParalBarRightPart">
-                    <button className={isDisplayPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayPreview(true); setGameUISetterOpen(false);}}>
+                    <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
                         Game Content</button>
-                    <button className={isDisplayPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayPreview(false); setGameUISetterOpen(true);}}>
+                    <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
                         Game UI</button>
 
                     <>
@@ -386,7 +387,7 @@ export default function ConversationNodeEditingPanel() {
             }
 
                       
-            {isDisplayPreview === true && 
+            {isDisplayGameContentPreview === true && 
                 <PreviewWindow 
                     dataObj={pieceDataStructure[previewingIndex]} 
                     getCurrentPiece={passInCurrentPieceObj} 
@@ -398,9 +399,11 @@ export default function ConversationNodeEditingPanel() {
                     getBackButtonUISettings={passInBackButtonUISettings}
                     getScreenSize={passInScreenSize}
                 />}
-            {isDisplayPreview === false && 
+            {isDisplayGameContentPreview === false && 
                 <GameUIOuterPreviewWindow 
                     dataObj={pieceDataStructure[previewingIndex]} 
+                    getAllPieceContent={passInAllPieceDataContent}
+                    getCurrentPieceNum={passInCurrentPieceNum}
                     getTextFrameUISettings={passInTextFrameUISettings} 
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 

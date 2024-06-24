@@ -165,6 +165,8 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
               <GameUIInnerPreview 
                   isSettingUpUI={false}
                   dataObj={currentPiece} 
+                  getAllPieceContent={passInAllPieceDataContent}
+                  getCurrentPieceNum={passInCurrentPieceNum}
                   style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getTextFrameUISettings={getTextFrameUISettings} 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 

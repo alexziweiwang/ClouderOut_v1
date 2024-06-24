@@ -116,7 +116,7 @@ export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getC
     
         
         <div className="previewWindow">
-                 1currentPieceNum={currentPieceNum}
+                 1currentPieceNum={currentPieceNum} (TESTing)
        
             <div className="previewArea" 
               style={{"position": "relative", 
@@ -125,6 +125,7 @@ export default function PreviewWindow({getCurrentPiece, getAllPieceContent, getC
               }}>
             
               <div style={{
+                "background-color": "#000000",
                 "background-image": `url(${currentPiece["bgp_source_link"]})`,
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
