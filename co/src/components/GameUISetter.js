@@ -386,8 +386,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     }}></input><label> {txtFrameObj["textColor"]}</label>
     <br></br>Text Content Area:
     <div className="indentOne">
-    <input type="radio" value={txtFrameContentAreaCentered} checked={txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
-    </input><label>Centered: </label>
+    <input type="radio" value={txtFrameContentAreaCentered} checked={txtFrameContentAreaCentered} onChange={()=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
+    </input><label onClick={()=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>Centered: </label>
         {txtFrameContentAreaCentered && <div className="indentOne">
 
                 <label>Horizontal Gap: </label>
@@ -441,28 +441,29 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
         </div>}
         <br></br>
-        <input type="radio" value={txtFrameContentAreaCentered} checked={!txtFrameContentAreaCentered} onChange={(event)=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
-            </input><label>Customized: </label>
+        <input type="radio" value={txtFrameContentAreaCentered} checked={!txtFrameContentAreaCentered} onChange={()=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
+            </input>
+            <label onClick={()=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>Customized: </label>
             {!txtFrameContentAreaCentered && <div className="indentOne">
-                TextContentArea-x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="0" max={screenWidth} step="1" 
+                Text Content Area - x: <input type="range" value={txtFrameObj["TextContentArea-x"]} min="-200" max={screenWidth} step="1" 
                 onChange={(event) => {
                     setTxtFrameObj({...txtFrameObj, "TextContentArea-x": event.target.value});    
                 }}
                 ></input>{txtFrameObj["TextContentArea-x"]}
                 <br></br>
-                TextContentArea-y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="0" max={screenWidth} step="1" 
+                Text Content Area - y: <input type="range" value={txtFrameObj["TextContentArea-y"]} min="-500" max={screenWidth} step="1" 
             onChange={(event) => {
                 setTxtFrameObj({...txtFrameObj, "TextContentArea-y": event.target.value});    
             }}
                 ></input>{txtFrameObj["TextContentArea-y"]}
                 <br></br>
-                TextContentArea-w: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max={screenWidth} step="1" 
+                Text Content Area - width: <input type="range" value={txtFrameObj["TextContentArea-w"]} min="0" max={screenWidth} step="1" 
             onChange={(event) => {
                 setTxtFrameObj({...txtFrameObj, "TextContentArea-w": event.target.value});    
             }}
                 ></input>{txtFrameObj["TextContentArea-w"]}
                 <br></br>
-                TextContentArea-h:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max={screenWidth} step="1" 
+                Text Content Area - height:  <input type="range" value={txtFrameObj["TextContentArea-h"]} min="0" max={screenWidth} step="1" 
             onChange={(event) => {
                 setTxtFrameObj({...txtFrameObj, "TextContentArea-h": event.target.value});    
             }}
@@ -473,155 +474,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br>
 
     2.5 Text Options:<br></br>
-    Auto & Fast & Log<br></br>
-    Horizontal / Vertical Direction <br></br>
-    group position X <br></br>
-    group position Y <br></br>
-    pic/shape base
-    
-{/* 
-    <br></br><br></br><br></br>
-
-    3. Menu System
+    Auto & Fast & Log<br></br> ...TODO1
 
 
-    <br></br><input type="radio" value={isMenuStoryCore} checked={!isMenuStoryCore} onChange={()=>{
-        setIsMenuStoryCore(false);
-        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "←"});    
-        sendMenuType("notStoryCore");
-    }}
-    ></input>
-    <label onClick={()=>{
-        setIsMenuStoryCore(false);
-        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "←"});    
-        sendMenuType("notStoryCore");
-
-    }}
-    >3.1 comprehensive experience</label>
-    {!isMenuStoryCore && <div className="indentOne">
-    <label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
-            setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
-    }}></input><br></br>   
-    <label>Main Screen: </label>
-
-    </div>} */}
-
-
-    {/* <br></br><input type="radio" value={isMenuStoryCore} checked={isMenuStoryCore} onChange={()=>{
-        setIsMenuStoryCore(true);
-        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});    
-        sendMenuType("storyCore");
-
-    }}
-    ></input>
-    <label onClick={()=>{
-        setIsMenuStoryCore(true);        
-        sendMenuType("storyCore");
-        setIgMenuBtnObj({...igMenuBtnObj, "buttonText": "Menu"});        
-}}
-    >3.2: story core</label>
-    {isMenuStoryCore && <div className="indentOne">
-        <label>Text Content: </label><input value={igMenuBtnObj["buttonText"]} onChange={(event)=>{
-            setIgMenuBtnObj({...igMenuBtnObj, "buttonText": event.target.value});
-        }}></input>            
-
-    </div>} */}
-
-    {/* <br></br><br></br><br></br>
-    <div className="indentOne">
-        <label>Corner Radius: </label>
-            <input type="range" value={igMenuBtnObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{
-                    setIgMenuBtnObj({...igMenuBtnObj, "cornerRadius": event.target.value});
-                }}></input><label>{igMenuBtnObj["cornerRadius"]}</label>
-        <br></br>Width: <input type="range" value={igMenuBtnObj["width"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "width": event.target.value});
-            }}></input>
-            <input type="number" value={igMenuBtnObj["width"]} min="0" max="300" step="1" onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "width": event.target.value});
-            }}></input>
-        <br></br>Height: <input type="range" value={igMenuBtnObj["height"]} type="range" min="0" max="300" step="1" onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "height": event.target.value});
-            }}></input>
-            <input type="number" value={igMenuBtnObj["height"]} min="0" max="300" step="1" onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "height": event.target.value});
-            }}></input>
-        <br></br><label>Border Size: </label>
-            <input type="range" value={igMenuBtnObj["borderSize"]} min="0" max="3" step="1" onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "borderSize": event.target.value});
-                }}></input>
-            <label>{igMenuBtnObj["borderSize"]}</label>
-
-        <br></br><label>Border Color: </label>
-        <input type="color" value={igMenuBtnObj["borderColor"]} onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "borderColor": event.target.value});           
-            }}></input>
-        <label> {igMenuBtnObj["borderColor"]}</label>
-
-        <br></br><label>Button Looking:</label>
-        <br></br><input type="radio" value={igMenuBtnObj["isShape"]} checked={igMenuBtnObj["isShape"]} onChange={()=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "isShape": true});
-            }}></input><label onClick={()=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "isShape": true});
-                }}>Rectangle: </label>
-        {igMenuBtnObj["isShape"] && <><input type="color" value={igMenuBtnObj["bgColor"]} onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "bgColor": event.target.value});
-            }}></input><label>{igMenuBtnObj["bgColor"]}</label></>}
-        
-        <br></br><input type="radio" value={igMenuBtnObj["isShape"]} checked={!igMenuBtnObj["isShape"]} onChange={()=>{
-            setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});
-            }}></input><label onClick={()=>{setIgMenuBtnObj({...igMenuBtnObj, "isShape": false});}}>Base Picture </label>
-        {!igMenuBtnObj["isShape"] && <>
-                <select value={igMenuBtnObj["picVar"]} onChange={(event)=>{
-                            setIgMenuBtnObj({...igMenuBtnObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
-                }}>                    
-                    <option key="idvBackButton" value="">-- Select Resource --</option>
-                    {Object.keys(visualMap).map((currKey) => {
-                            let keyName = "backtButton" + currKey;
-                            // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
-                            return (
-                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
-                            );
-                    })}
-                </select><button onClick={() => {openRm();}}>Resource Adding</button>
-        </>}
-        <br></br><label>Text Color: </label><input type="color" value={igMenuBtnObj["textColor"]} onChange={(event)=>{
-                setIgMenuBtnObj({...igMenuBtnObj, "textColor": event.target.value});
-            }}></input><label> {igMenuBtnObj["textColor"]}</label>
-        <br></br><label>Text Size:</label>
-            <input type="range" value={igMenuBtnObj["textSize"]}
-                onChange={(event)=>{ setIgMenuBtnObj({...igMenuBtnObj, "textSize": event.target.value});}}
-            ></input>
-
-        <br></br><label>Position X:</label>
-            <input type="range" value={igMenuBtnObj["posX"]}
-                onChange={(event)=>{
-                    setIgMenuBtnObj({...igMenuBtnObj, "posX": event.target.value});                   
-                }}
-                min="0" max={screenWidth} step="1" 
-            ></input>
-            <input type="number" value={igMenuBtnObj["posX"]}
-                onChange={(event)=>{
-                    setIgMenuBtnObj({...igMenuBtnObj, "posX": event.target.value});                   
-                }} 
-                min="0" max={screenWidth} step="1"            
-            ></input>
-
-        <br></br><label>Position Y:</label>
-            <input type="range" value={igMenuBtnObj["posY"]}
-                onChange={(event)=>{
-                    setIgMenuBtnObj({...igMenuBtnObj, "posY": event.target.value});                   
-                }}            
-                min="0" max={screenWidth} step="1" 
-            ></input>
-            <input type="number" value={igMenuBtnObj["posY"]}
-                onChange={(event)=>{
-                    setIgMenuBtnObj({...igMenuBtnObj, "posY": event.target.value});                   
-                }}           
-                min="0" max={screenWidth} step="1"  
-            ></input>
-
-    </div>
-     */}
     <br></br><button>Save</button>
 </div>
 

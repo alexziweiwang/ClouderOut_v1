@@ -1364,4 +1364,5 @@ button:hover {
     word-wrap: break-word;
     text-wrap: balance;
     text-align: left;
+    white-space: pre-wrap;
 }
