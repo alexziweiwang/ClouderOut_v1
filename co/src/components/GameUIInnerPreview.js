@@ -47,8 +47,8 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getAllPieceC
     });
 
     return (
-        <div style={{"width": screenWidth}}>
-   
+        <div style={{"width": screenWidth, "position": "absolute", "top": "0px", "left": "0px"}} >
+
         <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
         "top": `${defualtBtnUISettings["groupY"]}px`,                       
         "position": "absolute"}}>

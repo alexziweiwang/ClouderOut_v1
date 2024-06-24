@@ -152,8 +152,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let tempObj = currentPieceDetail;
         tempObj["speaker_name"] = event.target.value;
 
-console.log("changing speaker in piece-setter...", event.target.value); //TODO test
-
         updateToCaller(tempObj);
 
     }

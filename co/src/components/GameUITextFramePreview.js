@@ -64,14 +64,22 @@ export default function GameUITextFramePreview({dataObj, initialAllPieceData, ge
             "border": "2px solid #e99a2b",
             "border-radius": "0px"
         }}>
-            {currentPieceNum >= 0 && <div>
-                {allPieceData[currentPieceNum].speaker_name !== "" && <><label>{allPieceData[currentPieceNum].speaker_name}</label><br></br></>}
-                
+
+            {currentPieceNum >= 0 && 
+            <div>
             
-                {currentPiece.content}, 
-                <br></br>{currentPieceNum}, 
-                <br></br>{allPieceData[currentPieceNum].content}  
+                {allPieceData[currentPieceNum].speaker_name !== "" && 
+                    <><label>
+                        {allPieceData[currentPieceNum].speaker_name}
+                      </label><br></br></>}
+                
+                <label style={{"left": `${txtFrameUISettings["TextContentArea-x"]}px`,
+            "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,}}>
+                    {allPieceData[currentPieceNum].content}  
+                </label>
+            
             </div>}
+
         </div>
     
     </div>);

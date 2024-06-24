@@ -20,11 +20,11 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     const [currentPieceNum, setCurrentPieceNum] = useState(-1);
     const [allPieceData, setAllPieceData] = useState();
-    
+
     const [bgmSource, setBgmSource] = useState("");
 
-    let charaPicCurr = currentPiece["chp_curr"]; //only displays immediate adjustments
-    let charaPicArr = currentPiece["chp_arr"];//only displays immediate adjustments
+    const [charaPicCurr2, setCharaPicCurr2] = useState([]);
+    const [charaPicArr2, setCharaPicArr2] = useState([]);
 
     useEffect(() => {
 
@@ -39,7 +39,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
         setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
       }
 
-
+      setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
+      setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);
 
 
       updateBgmSource(); // special because of across-piece setting
@@ -52,9 +53,12 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
 
     function updateBgmSource() {
-      if (currentPiece["bgm_action"] === "startNewBgm") {
-        setBgmSource(currentPiece["bgm_source_link"]);
-      } else if (currentPiece["bgm_action"] === "stopBgm") {
+      if (currentPieceNum < 0) {
+        return;
+      }
+      if (allPieceData[currentPieceNum]["bgm_action"] === "startNewBgm") {
+        setBgmSource(allPieceData[currentPieceNum]["bgm_source_link"]);
+      } else if (allPieceData[currentPieceNum]["bgm_action"] === "stopBgm") {
         setBgmSource("");
       }
     }
@@ -123,28 +127,28 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                       "height": `${screenHeight}px`, 
                       "width": `${screenWidth}px`
               }}>
-            
+
               <div style={{
                 "background-color": "#000000",
-                "background-image": `url(${currentPiece["bgp_source_link"]})`,
+                "background-image": currentPieceNum >= 0 ? `url(${allPieceData[currentPieceNum]["bgp_source_link"]})` : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
                   
                   <div> 
                     
-                    {(charaPicCurr !== undefined && charaPicCurr !== [] && charaPicCurr[5] !== "default-none" && charaPicCurr[5] !== "") && 
+                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== [] && charaPicCurr2[5] !== "default-none" && charaPicCurr2[5] !== "") && 
                           
                             <img style={{
                               "position": "absolute", 
-                              "top": `${charaPicCurr[2]}px`, "left": `${charaPicCurr[1]}px`,
-                              "width": `${charaPicCurr[3]}px`, "height": `${charaPicCurr[4]}px`,
+                              "top": `${charaPicCurr2[2]}px`, "left": `${charaPicCurr2[1]}px`,
+                              "width": `${charaPicCurr2[3]}px`, "height": `${charaPicCurr2[4]}px`,
                             }}
-                              src={charaPicCurr[5]} 
-                              alt="currently being added character picture" 
+                              src={charaPicCurr2[5]} 
+                              alt="currently character-picture that's being added" 
                             />
                     }
 
-                    {charaPicArr !== undefined && charaPicArr.map((item, index) => {
+                    {charaPicArr2 !== undefined && charaPicArr2.map((item, index) => {
                       let altStr = index+"already added character picture";
                       return (
                         <>
@@ -177,7 +181,6 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                   dataObj={currentPiece} 
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
-                  style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
