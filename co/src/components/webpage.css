@@ -1359,3 +1359,8 @@ button:hover {
     justify-content: center;
     align-items: center; 
 }
+
+.wrappingFrame {
+    word-wrap: break-word;
+    text-wrap: wrap;
+}

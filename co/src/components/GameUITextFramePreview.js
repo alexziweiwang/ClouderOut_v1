@@ -69,14 +69,23 @@ export default function GameUITextFramePreview({dataObj, initialAllPieceData, ge
             <div>
             
                 {allPieceData[currentPieceNum].speaker_name !== "" && 
-                    <><label>
-                        {allPieceData[currentPieceNum].speaker_name}
-                      </label><br></br></>}
+                    <div>
+                        {allPieceData[currentPieceNum].speaker_name}<br></br>
+                    </div>}
                 
-                <label style={{"left": `${txtFrameUISettings["TextContentArea-x"]}px`,
-            "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,}}>
-                    {allPieceData[currentPieceNum].content}  
-                </label>
+                <div 
+                className="wrappingFrame"
+                style={{
+                    "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
+                    "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
+                    "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
+                    "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
+                    "justify-content": "left",
+                    "overflow": "hidden"
+                }}>
+                  
+                        {allPieceData[currentPieceNum].content}
+                </div>
             
             </div>}
 

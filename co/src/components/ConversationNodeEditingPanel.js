@@ -38,7 +38,7 @@ export default function ConversationNodeEditingPanel() {
     const buttonLanguageIndex = 0;
 
     const [pieceDataStructure, setPieceDatastructure] = useState([
-            {"num": 1, "content": "a1000", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, "default-none"], "chp_arr": [], "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "", "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_source_link": "", "vl_volume": 100}, 
+            {"num": 1, "content": "a100012345678987654321", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, "default-none"], "chp_arr": [], "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "", "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_source_link": "", "vl_volume": 100}, 
             {"num": 2, "content": "b2000", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, "default-none"], "chp_arr": [], "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "", "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_source_link": "", "vl_volume": 100}, 
             {"num": 3, "content": "c3000", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, "default-none"], "chp_arr": [], "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "", "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_source_link": "", "vl_volume": 100}, 
             {"num": 4, "content": "d4000", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "", "bgp_source_link": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, "default-none"], "chp_arr": [], "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "", "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_source_link": "", "vl_volume": 100}, 
@@ -82,7 +82,7 @@ export default function ConversationNodeEditingPanel() {
     "picVar": "",
     "picUrl": "",
     "fontName": "",
-    "textSize": 15,
+    "textSize": 30,
     "textColor": "#000000",
     "justifyContent": "start",
     "alignItems": "start",
