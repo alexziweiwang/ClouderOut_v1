@@ -53,7 +53,7 @@ export default function ConversationNodeEditingPanel() {
         "height": 20,
         "cornerRadius": 0,
         "transparency": 0.9,
-        "isShape": false,
+        "isShape": true,
         "bgColor": "#a8d1d6",
         "picVar": "",
         "picUrl": "",

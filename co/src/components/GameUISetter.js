@@ -301,12 +301,12 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }
                 onMouseDown={
                     ()=>{
-                        document.getElementById(currId).style.filter = "invert(70%)";
+                        document.getElementById(currId).style.filter = "brightness(120%)";
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById(currId).style.filter = "invert(0%)";
+                        document.getElementById(currId).style.filter = "brightness(100%)";
                     }
                 }
                 

@@ -105,12 +105,12 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getAllPieceC
             }
             onMouseDown={
                 ()=>{
-                    document.getElementById(currId).style.filter = "invert(70%)";
+                    document.getElementById(currId).style.filter = "brightness(120%)";
                 }
             }
             onMouseUp={
                 ()=>{
-                    document.getElementById(currId).style.filter = "invert(0%)";
+                    document.getElementById(currId).style.filter = "brightness(100%)";
                 }
             }
             
@@ -178,7 +178,7 @@ export default function GameUIInnerPreview({isSettingUpUI, dataObj, getAllPieceC
                 }
             onMouseUp={
                 ()=>{
-                    document.getElementById("backButtonDivPreview").style.filter = "invert(0%)";
+                    document.getElementById("backButtonDivPreview").style.filter = "brightness(100%)";
                 }
             }
         >

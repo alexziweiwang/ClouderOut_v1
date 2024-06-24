@@ -219,18 +219,21 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     
                                     "justify-content": "center",
                                     "align-items": "center",
-                                    "display": "flex",}
+                                    "display": "flex",
+                                
+                                    "transition": "all 0.2s ease-out",
+                                }
                             }
                             onMouseDown={
                                 ()=>{
-                                    document.getElementById(keyStr1).style.filter = "invert(20%)";
+                                    document.getElementById(keyStr1).style.filter = "brightness(120%)";
                                     console.log("main-page clicked: ", item);
 
                                 }
                             }
                             onMouseUp={
                                 ()=>{
-                                    document.getElementById(keyStr1).style.filter = "invert(0%)";
+                                    document.getElementById(keyStr1).style.filter = "brightness(100%)";
                                     updateCurrentPageName(pageNaming);
                                 }
                             }
@@ -362,6 +365,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "color": `${currItemFontColor}`,
                                 "fontSize": `${currItemFontSize}px`,
 
+                                "transition": "all 0.2s ease-out",
+
                                 "justify-content": "center",
                                 "align-items": "center",
                                 "display": "flex",
@@ -369,14 +374,14 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             }
                             onMouseDown={
                                 ()=>{
-                                    document.getElementById(keyStr2).style.filter = "invert(20%)";
+                                    document.getElementById(keyStr2).style.filter = "brightness(120%)";
                                     console.log("main-page clicked: ", item);
               
                                 }
                             }
                             onMouseUp={
                                 ()=>{
-                                    document.getElementById(keyStr2).style.filter = "invert(0%)";
+                                    document.getElementById(keyStr2).style.filter = "brightness(100%)";
                                     updateCurrentPageName(pageNaming);
                                 }
                             }
@@ -432,20 +437,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "height": `${navObj["backButton-height"]}px`,
                     "font-size": `${navObj["backButton-fontSize"]}px`,
 
+                    "transition": "all 0.2s ease-out",
+
                     "justify-content": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("slPage-backButton").style.filter = "invert(20%)";
+                        document.getElementById("slPage-backButton").style.filter = "brightness(120%)";
                         console.log("slPage-backButton");
 
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById("slPage-backButton").style.filter = "invert(0%)";
+                        document.getElementById("slPage-backButton").style.filter = "brightness(100%)";
 
                         updateCurrentPageName("Main Page");
                     }
@@ -477,11 +484,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
                             "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
                         
+                            "transition": "all 0.2s ease-out",
                         }}
               
                             onMouseDown={
                                 ()=>{
-                                    document.getElementById(keyStr).style.filter = "invert(20%)";
+                                    document.getElementById(keyStr).style.filter = "brightness(120%)";
                                     console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
                                     //TODO data update operation
 
@@ -489,7 +497,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             }
                             onMouseUp={
                                 ()=>{
-                                    document.getElementById(keyStr).style.filter = "invert(0%)";
+                                    document.getElementById(keyStr).style.filter = "brightness(100%)";
                                 }
                             }
                         >
@@ -518,7 +526,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                     onMouseUp={
                         ()=>{
-                            document.getElementById("slSlotPageLeftControler").style.filter = "invert(0%)";
+                            document.getElementById("slSlotPageLeftControler").style.filter = "brightness(100%)";
                         }
                     }
                 >
@@ -547,7 +555,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }
                     onMouseUp={
                         ()=>{
-                            document.getElementById("slSlotPageRightControler").style.filter = "invert(0%)";
+                            document.getElementById("slSlotPageRightControler").style.filter = "brightness(100%)";
                         }
                     }
                 >
@@ -599,20 +607,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "height": `${navObj["backButton-height"]}px`,
                     "font-size": `${navObj["backButton-fontSize"]}px`,
 
+                    "transition": "all 0.2s ease-out",
+
                     "justify-content": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("storyPage-backButton").style.filter = "invert(20%)";
+                        document.getElementById("storyPage-backButton").style.filter = "brightness(120%)";
                         console.log("storyPage-backButton");
                        
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById("storyPage-backButton").style.filter = "invert(0%)";
+                        document.getElementById("storyPage-backButton").style.filter = "brightness(100%)";
                         updateCurrentPageName("Main Page");
                     }
                 }
@@ -648,20 +658,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
 
+                                    "transition": "all 0.2s ease-out",
+
                                     "justify-content": "center",
                                     "align-items": "center",
                                     "display": "flex",
                                 }}
                                 onMouseDown={
                                     ()=>{
-                                        document.getElementById(keyStr).style.filter = "invert(20%)";
+                                        document.getElementById(keyStr).style.filter = "brightness(120%)";
                                         console.log("story-page-title clicked: ", item);
 
                                     }
                                 }
                                 onMouseUp={
                                     ()=>{
-                                        document.getElementById(keyStr).style.filter = "invert(0%)";
+                                        document.getElementById(keyStr).style.filter = "brightness(100%)";
                                     }
                                 }
                             >
@@ -715,20 +727,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "height": `${navObj["backButton-height"]}px`,
                     "font-size": `${navObj["backButton-fontSize"]}px`,
 
+                    "transition": "all 0.2s ease-out",
+
                     "justify-content": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("settingsPage-backButton").style.filter = "invert(20%)";
+                        document.getElementById("settingsPage-backButton").style.filter = "brightness(120%)";
                         console.log("settingsPage-backButton");
  
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById("settingsPage-backButton").style.filter = "invert(0%)";
+                        document.getElementById("settingsPage-backButton").style.filter = "brightness(100%)";
                         updateCurrentPageName("Main Page");
                     }
                 }
@@ -791,19 +805,21 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                             "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
                                             "marginBottom": navObj["settingPage-entriesHorizontal"] === false ? `${navObj["settingPage-listItemGap"]}px` : "0px",
 
+                                            "transition": "all 0.2s ease-out",
+
                                             "padding": "7px",
                                             "user-select": "none"
                                         }}
                                         onMouseDown={
                                             ()=>{
-                                                document.getElementById(keyStr3).style.filter = "invert(20%)";
+                                                document.getElementById(keyStr3).style.filter = "brightness(120%)";
                                                 console.log("setting-page clicked: ", item);
                                          
                                             }
                                         }
                                         onMouseUp={
                                             ()=>{
-                                                document.getElementById(keyStr3).style.filter = "invert(0%)";
+                                                document.getElementById(keyStr3).style.filter = "brightness(100%)";
                                             }
                                         }
                                     >
@@ -845,20 +861,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "height": `${navObj["backButton-height"]}px`,
                     "font-size": `${navObj["backButton-fontSize"]}px`,
 
+                    "transition": "all 0.2s ease-out",
+
                     "justify-content": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
+                        document.getElementById("playerProfilePage-backButton").style.filter = "brightness(120%)";
                         console.log("playerProfilePage-backButton");
   
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(0%)";
+                        document.getElementById("playerProfilePage-backButton").style.filter = "brightness(100%)";
                         updateCurrentPageName("Main Page");
                     }
                 }
@@ -905,20 +923,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "height": `${navObj["backButton-height"]}px`,
                     "font-size": `${navObj["backButton-fontSize"]}px`,
 
+                    "transition": "all 0.2s ease-out",
+
                     "justify-content": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("gsdPage-backButton").style.filter = "invert(20%)";
+                        document.getElementById("gsdPage-backButton").style.filter = "brightness(120%)";
                         console.log("gsdPage-backButton");
   
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById("gsdPage-backButton").style.filter = "invert(0%)";
+                        document.getElementById("gsdPage-backButton").style.filter = "brightness(100%)";
                         updateCurrentPageName("Main Page");
                     }
                 }
@@ -957,20 +977,22 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "height": `${navObj["backButton-height"]}px`,
                     "font-size": `${navObj["backButton-fontSize"]}px`,
 
+                    "transition": "all 0.2s ease-out",
+
                     "justify-content": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
                     ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(20%)";
+                        document.getElementById("playerProfilePage-backButton").style.filter = "brightness(120%)";
                         console.log("playerProfilePage-backButton");
  
                     }
                 }
                 onMouseUp={
                     ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "invert(0%)";
+                        document.getElementById("playerProfilePage-backButton").style.filter = "brightness(100%)";
                         updateCurrentPageName("Main Page");
                     }
                 }
