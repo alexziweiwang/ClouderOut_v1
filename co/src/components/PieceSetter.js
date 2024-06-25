@@ -81,6 +81,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
+        "chp_action": allPieceData[pieceNum-1]["chp_action"], 
         "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], 
         "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
         "clkb_previewing": allPieceData[pieceNum-1]["clkb_previewing"], 
@@ -171,6 +172,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             updateToCaller(tempObj);   
     }
+
+    function handleCharPicArrSwitchAction(event) {
+
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_action": event.target.value});
+        let tempObj = currentPieceDetail;
+        tempObj["chp_action"] = event.target.value;
+
+        updateToCaller(tempObj);   
+}
 
 
     function toggleBgPicOption() {
@@ -565,43 +575,58 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
                     <br></br>
-    <table>
-    <thead>        
-        <tr>
-            <th>Source</th>
-            <th>Position x</th>
-            <th>Position y</th>
-            <th>Width</th>
-            <th>Height</th>
+                    <label>Operation:</label>
+                    <select 
+                        value={currentPieceDetail["chp_action"]}
+                        onChange={(event)=>{
+                            handleCharPicArrSwitchAction(event);
+                        }}>
+                            <option key="maintainCharPicArr" value="maintainCharPicArr">-- Select Operation (default: maintain) --</option>
+                            <option key="changeCharPicArr" value="changeCharPicArr">Change Character-List</option>
+                    </select>
+                    <br></br>
 
-        </tr>
-    </thead>
-    <tbody>
-        {charPicDataTable.map((item, index) => {
-            
-            return (
-                <tr key={index}>
-                    {charPicDataTable.length > 0 && <td>{item[0]}</td>}
-                    <td>{item[1]}</td>
-                    <td>{item[2]}</td>
-                    <td>{item[3]}</td>
-                    <td>{item[4]}</td>                    
-                        {charPicDataTable.length > 0 && 
-                        <td><GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/></td>
-                        }
+    {currentPieceDetail["chp_action"] === "changeCharPicArr" && <div>
+            <table>
+            <thead>        
+                <tr>
+                    <th>Source</th>
+                    <th>Position x</th>
+                    <th>Position y</th>
+                    <th>Width</th>
+                    <th>Height</th>
+
                 </tr>
-            );
-        })}
-    </tbody>
+            </thead>
+            <tbody>
+                {charPicDataTable.map((item, index) => {
+                    
+                    return (
+                        <tr key={index}>
+                            {charPicDataTable.length > 0 && <td>{item[0]}</td>}
+                            <td>{item[1]}</td>
+                            <td>{item[2]}</td>
+                            <td>{item[3]}</td>
+                            <td>{item[4]}</td>                    
+                                {charPicDataTable.length > 0 && 
+                                <td><GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/></td>
+                                }
+                        </tr>
+                    );
+                })}
+            </tbody>
 
-    </table>
-    <br></br>
-    <button onClick={()=>{
-        if (anotherCharpic === true) { // going to be false (closed)
-            resetAddingCharPicRow();
-        }
-        changeAddAnotherCharPicOption();}}>Add a New Character Picture</button>
-    {anotherCharpic &&
+            </table>
+            <br></br>
+            
+            <button onClick={()=>{
+                if (anotherCharpic === true) { // going to be false (closed)
+                    resetAddingCharPicRow();
+                }
+                changeAddAnotherCharPicOption();}}>Add a New Character Picture</button>
+    </div>}
+
+    {(anotherCharpic === true && currentPieceDetail["chp_action"] === "changeCharPicArr") &&
     <>
         <br></br>
 
@@ -657,6 +682,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }}>
         Confirm Add
     </button>        {/* //TODO later */}
+    
     </>}
 
             

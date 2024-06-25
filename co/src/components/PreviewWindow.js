@@ -28,8 +28,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     const [bgmSource, setBgmSource] = useState("");
     const [bgpSource, setBgpSource] = useState("");
 
-    const [charaPicCurr2, setCharaPicCurr2] = useState([]);
-    const [charaPicArr2, setCharaPicArr2] = useState([]);
+    const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
+    const [charaPicArr2, setCharaPicArr2] = useState(initialAllPieceData[0]["chp_arr"]);
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
@@ -68,11 +68,11 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
       }
 
       setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
-      setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);
 
-
-      updateBgmSource(); // special because of across-piece setting
+      updateCharPicArr(allPieceContentTemp, currPieceNumTemp); //TODO1
+      updateBgmSource();
       updateBgpSource();
+      
 
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
@@ -102,6 +102,18 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     });
 
+    function updateCharPicArr(allPieceContentTemp, currPieceNumTemp) {
+      if (currentPieceNum < 0) {
+        return;
+      }
+      
+      //TODO1
+      if (allPieceData[currentPieceNum]["bgm_action"] === "changeCharPicArr") {
+        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);        
+      }
+
+    }
+
     function updateBgmSource() {
       if (currentPieceNum < 0) {
         return;
@@ -115,11 +127,10 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
       }
     }
 
-    function updateBgpSource() { //TODO1
+    function updateBgpSource() {
       if (currentPieceNum < 0) {
         return;
       }
-
       if (allPieceData[currentPieceNum]["bgp_action"] === "switchToNewBgp" && allPieceData[currentPieceNum]["bgp_source_varname"] !== "") {
         setBgpSource(visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]); //TODO1
       }
@@ -182,7 +193,6 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     
         
         <div className="previewWindow">       
-        bgp-action: {allPieceData[currentPieceNum["bgp_action"]]}...
          
             <div className="previewArea" 
               style={{"position": "relative", 
@@ -201,7 +211,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                   <div> 
       
       
-                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== [] && charaPicCurr2[5] !== "default-none" && charaPicCurr2[5] !== "") && 
+                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2 !== [] && charaPicCurr2[5] !== "default-none" && charaPicCurr2[5] !== "") && 
                           
                             <img style={{
                               "position": "absolute", 
