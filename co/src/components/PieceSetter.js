@@ -77,6 +77,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
         "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
+        "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
+
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], 
@@ -160,6 +162,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         tempObj["speaker_name"] = "";
 
         updateToCaller(tempObj);
+    }
+
+    function handleBgpSwitchAction(event) {
+
+            setCurrentPieceDetail({...currentPieceDetail,  "bgp_action": event.target.value});
+            let tempObj = currentPieceDetail;
+            tempObj["bgp_action"] = event.target.value;
+
+            updateToCaller(tempObj);   
     }
 
 
@@ -356,28 +367,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
         let varName = event.target.value;
         console.log("setupBgpInfo var = ", varName); //TODO test
+             
+        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
+        let tempObj = currentPieceDetail;
+        tempObj["bgp_source_varname"] = varName;
+    
+        updateToCaller(tempObj);
         
-        let urlList = visualList.filter((e) => (e["var"] === varName));
-        if (urlList.length === 0) {
-
-            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": ""});
-            let tempObj = currentPieceDetail;
-            tempObj["bgp_source_varname"] = "";
-    
-            updateToCaller(tempObj);
-        } else {
-            let url = urlList[0]["url"];
-                
-            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
-            let tempObj = currentPieceDetail;
-            tempObj["bgp_source_varname"] = varName;
-    
-            updateToCaller(tempObj);
-        }
-    }
-
-    function setupBgpInfo2(event) {
-        //TODO send pic-name only (fetch actual url in preview-part)
     }
 
     function resetBgpInfo() {
@@ -543,19 +539,34 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
+
                     <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> reset </button>
                     <br></br>
-                    <label>Source:  </label>
-                    <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
-                        <option key="bgp01" value=""> -- Select picture name -- </option>
-                        <option key="bgp_NoPic" value="">(no picture)</option>
-                        {visualList.map((item, index) => {
-                            let keyStr = "bgp-" + index + item["var"];
-                            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                        })}
-
+                    <label>Operation: </label>
+                    <select 
+                        value={currentPieceDetail["bgp_action"]}
+                        onChange={(event)=>{
+                            handleBgpSwitchAction(event);
+                        }}
+                    >
+                        <option key="bgpOperationDefaultMaintain" value="maintain">-- Select Operation (default: maintain) --</option>
+                        <option key="switchToNewBgp" value="switchToNewBgp">switchToNew</option>
                     </select>
-                    <button onClick={() => {openRm()}}>+ new variable linking</button>   
+
+
+                    {currentPieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
+                        <label>Source:  </label>
+                        <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
+                            <option key="bgp01" value=""> -- Select picture name -- </option>
+                            <option key="bgp_NoPic" value="">(no picture)</option>
+                            {visualList.map((item, index) => {
+                                let keyStr = "bgp-" + index + item["var"];
+                                return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                            })}
+
+                        </select>
+                        <button onClick={() => {openRm()}}>+ new variable linking</button>   
+                    </div>}
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
@@ -1273,7 +1284,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
                     <br></br>
-                    <label>Action: </label>
+                    <label>Operation: </label>
                     <select value={currentPieceDetail["bgm_action"]}
                         onChange={(event)=>{
                             setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value});
@@ -1282,7 +1293,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             updateToCaller(tempObj);
 
                     }}>
-                        <option key="maintainBgm" value="maintainBgm">-- Select Action (default: maintain)--</option>
+                        <option key="maintainBgm" value="maintainBgm">-- Select Operation (default: maintain)--</option>
                         <option key="startNewBgm" value="startNewBgm">start new</option>
                         <option key="stopBgm" value="stopBgm">stop playing</option>
                     </select>

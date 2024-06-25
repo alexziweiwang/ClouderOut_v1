@@ -169,6 +169,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     
         
         <div className="previewWindow">       
+        bgp-action: {allPieceData[currentPieceNum["bgp_action"]]}...
+         
             <div className="previewArea" 
               style={{"position": "relative", 
                       "height": `${screenHeight}px`, 
