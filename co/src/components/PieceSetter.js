@@ -70,7 +70,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
         "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
-        "bgp_source_link" : allPieceData[pieceNum-1]["bgp_source_link"],
 
         "bgp_source_pair" : allPieceData[pieceNum-1]["bgp_source_pair"], //TODO impl
 
@@ -361,19 +360,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         let urlList = visualList.filter((e) => (e["var"] === varName));
         if (urlList.length === 0) {
 
-            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": "", "bgp_source_link": "default-none"});
+            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": ""});
             let tempObj = currentPieceDetail;
             tempObj["bgp_source_varname"] = "";
-            tempObj["bgp_source_link"] = "default-none";
     
             updateToCaller(tempObj);
         } else {
             let url = urlList[0]["url"];
                 
-            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName, "bgp_source_link": url});
+            setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
             let tempObj = currentPieceDetail;
             tempObj["bgp_source_varname"] = varName;
-            tempObj["bgp_source_link"] = url;
     
             updateToCaller(tempObj);
         }
@@ -551,6 +548,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <label>Source:  </label>
                     <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
                         <option key="bgp01" value=""> -- Select picture name -- </option>
+                        <option key="bgp_NoPic" value="">(no picture)</option>
                         {visualList.map((item, index) => {
                             let keyStr = "bgp-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);

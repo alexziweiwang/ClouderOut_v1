@@ -177,7 +177,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
               <div style={{
                 "background-color": "#000000",
-                "background-image": currentPieceNum >= 0 ? 
+                "background-image": (currentPieceNum >= 0 && allPieceData[currentPieceNum]["bgp_source_varname"] !== "") ? 
                   `url(${visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]})` 
                     : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,

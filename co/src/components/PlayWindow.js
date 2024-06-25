@@ -62,9 +62,8 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
     });
 
     function updateBgpSource() {
-      if (bgpSource !== currentPiece["bgp_source_link"]) {
-        setBgpSource(currentPiece["bgp_source_link"]);
-      }
+
+      console.log("PlayWindow - updateBgpSource() _NONE_ TODO: fetch from resource-lists");
     }
 
     function updateBgmSource() {
@@ -154,7 +153,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
                         </>
                       );
                     })}<br></br>
-                    !!bgp_source_link: {bgpSource}
+                    !!(former)bgp _ source _ link: {bgpSource}
 
                     <br></br>
                     voiceline: {currentPiece[["vl_source_varname"]]}...
