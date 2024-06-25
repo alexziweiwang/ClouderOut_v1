@@ -68,7 +68,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
 
     function updateBgmSource() {
       if (currentPiece["bgm_action"] === "startNewBgm") {
-        setBgmSource(currentPiece["bgm_source_link"]);
+        // setBgmSource(currentPiece["bgm _ source _ link"]); //TODO refactor later
       } else if (currentPiece["bgm_action"] === "stopBgm") {
         setBgmSource("");
       }

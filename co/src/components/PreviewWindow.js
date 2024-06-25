@@ -107,7 +107,9 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
         return;
       }
       if (allPieceData[currentPieceNum]["bgm_action"] === "startNewBgm") {
-        setBgmSource(allPieceData[currentPieceNum]["bgm_source_link"]);
+        if (allPieceData[currentPieceNum]["bgm_source_varname"] !== "") {
+          setBgmSource(audioMap[allPieceData[currentPieceNum]["bgm_source_varname"]]);
+        }
       } else if (allPieceData[currentPieceNum]["bgm_action"] === "stopBgm") {
         setBgmSource("");
       }

@@ -28,7 +28,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
-        const item = {"num": number, "content": "", "speaker_name": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": {screenWidth}, "bgp_height": {screenHeight}, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
+        const item = {"num": number, "content": "", "speaker_name": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": {screenWidth}, "bgp_height": {screenHeight}, "chp_arr": [], "btn_arr": [], "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
         let pieceDataArr = pieceDataLocal;
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
@@ -119,7 +119,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             pieceDataArr.push(piece);
         }
 
-        const item = {"num": number+1, "content": "", "speaker_name": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": {screenWidth}, "bgp_height": {screenHeight}, "chp_arr": [], "btn_arr": [], "bgm_source_link": "", "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
+        const item = {"num": number+1, "content": "", "speaker_name": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": {screenWidth}, "bgp_height": {screenHeight}, "chp_arr": [], "btn_arr": [], "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
       
         pieceDataArr.push(item);
 

@@ -85,7 +85,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
         "clkb_previewing": allPieceData[pieceNum-1]["clkb_previewing"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
-        "bgm_source_link":allPieceData[pieceNum-1]["bgm_source_link"],
         
         "bgm_source_pair" : allPieceData[pieceNum-1]["bgm_source_pair"], //TODO impl
 
@@ -369,9 +368,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("setupBgpInfo var = ", varName); //TODO test
              
         setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
+
         let tempObj = currentPieceDetail;
         tempObj["bgp_source_varname"] = varName;
-    
         updateToCaller(tempObj);
         
     }
@@ -401,22 +400,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function setupBgmInfo(event) {
-        let varName = event.target.value;
-        let urlArr = audioList.filter((e)=>(e["var"] === varName));
         let tempObj = currentPieceDetail;
-
-        if (urlArr.length == 0) {
-            tempObj["bgm_source_link"] = "defualt-none";
-            setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": "defualt-none", "bgm_source_varname": varName});
-        } else {
-            let url =  urlArr[0]["url"];
-            tempObj["bgm_source_link"] = url;
-            setCurrentPieceDetail({...currentPieceDetail, "bgm_source_link": url, "bgm_source_varname": varName});
-        }
-        tempObj["bgm_source_varname"] = varName;
-
+        tempObj["bgm_source_varname"] = event.target.value;
         updateToCaller(tempObj);
 
+        setCurrentPieceDetail({...currentPieceDetail, "bgm_source_varname": event.target.value});
     }
 
 
