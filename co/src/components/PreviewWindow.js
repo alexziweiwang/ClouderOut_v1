@@ -22,8 +22,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     const [currentPiece, setCurrentPiece] = useState({}); //TODO2 refactor for larger scope
 
-    const [currentPieceNum, setCurrentPieceNum] = useState(-1);
-    const [allPieceData, setAllPieceData] = useState();
+    const [currentPieceNum, setCurrentPieceNum] = useState(0);
+    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
     const [bgmSource, setBgmSource] = useState("");
 
@@ -33,11 +33,11 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
-      console.log("nav-preview: fetchProjResourceLists()"); //TODO test
+      console.log("piece-preview: fetchProjResourceLists()"); //TODO test
       /* fetch from cloud db */
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-      console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test
-      console.log(obj); //TODO test
+      // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
+      // console.log(obj); //TODO test
       setAudioList(obj.audio);
       setVisualList(obj.visual);
     }
@@ -47,7 +47,13 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     const [audioMapSize, setAudioMapSize] = useState(0);
     const [visualMapSize, setVisualMapSize] = useState(0);
 
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+ 
+      if (firstTimeEnter === true) {
+        fetchProjResourceLists();
+      }
 
       let allPieceContentTemp = getAllPieceContent();
       if (allPieceContentTemp !== allPieceData) {
@@ -88,6 +94,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
+            
       }
 
 
@@ -177,7 +184,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
                   
                   <div> 
-                    
+      
+      
                     {(charaPicCurr2 !== undefined && charaPicCurr2 !== [] && charaPicCurr2[5] !== "default-none" && charaPicCurr2[5] !== "") && 
                           
                             <img style={{
@@ -206,7 +214,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
                       );
                     })}
                   </div>
-                 
+
               </div>
               
               {(currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 

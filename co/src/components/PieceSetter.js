@@ -346,8 +346,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
-        console.log(obj); //TODO test
+        // console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
+        // console.log(obj); //TODO test
         setAudioList(obj.audio);
         setVisualList(obj.visual);
     }
