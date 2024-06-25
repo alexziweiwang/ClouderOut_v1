@@ -6,7 +6,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
-
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(450);
 
@@ -53,7 +52,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-
     useEffect(() => {
         console.log("initial nav-preview: ", initialNavObj); //TODO test
         console.log("Navigation Preview -- "); //TODO test

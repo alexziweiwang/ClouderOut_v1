@@ -4,9 +4,13 @@ import styles from './webpage.css';
 import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
 import GameUIInnerPreview from './GameUIInnerPreview';
 import GameUITextFramePreview from './GameUITextFramePreview';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 export default function PreviewWindow({getCurrentPiece, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+    const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
+  
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
@@ -25,6 +29,23 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     const [charaPicCurr2, setCharaPicCurr2] = useState([]);
     const [charaPicArr2, setCharaPicArr2] = useState([]);
+
+    const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
+    const [visualList, setVisualList] = useState([]); 
+    async function fetchProjResourceLists() {
+      console.log("nav-preview: fetchProjResourceLists()"); //TODO test
+      /* fetch from cloud db */
+      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+      console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test
+      console.log(obj); //TODO test
+      setAudioList(obj.audio);
+      setVisualList(obj.visual);
+    }
+
+    const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
+    const [visualMap, setVisualMap] = useState({}); 
+    const [audioMapSize, setAudioMapSize] = useState(0);
+    const [visualMapSize, setVisualMapSize] = useState(0);
 
     useEffect(() => {
 
@@ -48,6 +69,27 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
       setScreenHeight(screenSizePair[1]);
+
+      if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+            let i = 0;
+            let tempAudioMap = {};
+            setAudioMapSize(audioList.length);
+            for (;i < audioList.length; i++) {
+                let item = audioList[i];
+                tempAudioMap[item["var"]] = item["url"];
+            }
+            setAudioMap(tempAudioMap);
+
+            i = 0;
+            let tempVisualMap = {};
+            setVisualMapSize(visualList.length);
+            for (;i < visualList.length; i++) {
+                let item = visualList[i];
+                tempVisualMap[item["var"]] = item["url"];
+            }
+            setVisualMap(tempVisualMap);
+      }
+
 
     });
 
@@ -128,7 +170,9 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
               <div style={{
                 "background-color": "#000000",
-                "background-image": currentPieceNum >= 0 ? `url(${allPieceData[currentPieceNum]["bgp_source_link"]})` : "",
+                "background-image": currentPieceNum >= 0 ? 
+                  `url(${visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]})` 
+                    : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
                   

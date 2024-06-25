@@ -153,8 +153,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         tempObj["speaker_name"] = event.target.value;
 
         updateToCaller(tempObj);
-
     }
+
+    function handleSpeakerNameReset() {
+        setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": ""});
+        let tempObj = currentPieceDetail;
+        tempObj["speaker_name"] = "";
+
+        updateToCaller(tempObj);
+    }
+
 
     function toggleBgPicOption() {
         setBgPicAdd(!bgpicAdd);
@@ -369,8 +377,25 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     
             updateToCaller(tempObj);
         }
-
     }
+
+    function setupBgpInfo2(event) {
+        //TODO send pic-name only (fetch actual url in preview-part)
+    }
+
+    function resetBgpInfo() {
+        let tempObj = currentPieceDetail;
+        tempObj["bgp_source_varname"] = "";
+        tempObj["bgp_pos_x"] = "";
+        tempObj["bgp_pos_y"] = "";
+        tempObj["bgp_width"] = "";
+        tempObj["bgp_height"] = "";
+        updateToCaller(tempObj);
+
+
+        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": "", "bgp_pos_x": "", "bgp_pos_y": "", "bgp_width": "", "bgp_height": ""});
+    }
+    
 
     function setupHideTextFrame(boolVar) {
         let isDisplay = boolVar;
@@ -505,7 +530,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             {speakerNameAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{handleSpeakerNameReset()}}> reset </button>
                     <br></br>
                     <label>Speaker Name:  </label>
 
@@ -521,7 +546,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_x": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_pos_y": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_width": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgp_height": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> reset </button>
                     <br></br>
                     <label>Source:  </label>
                     <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
