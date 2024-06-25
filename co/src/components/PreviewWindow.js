@@ -26,6 +26,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
     const [bgmSource, setBgmSource] = useState("");
+    const [bgpSource, setBgpSource] = useState("");
 
     const [charaPicCurr2, setCharaPicCurr2] = useState([]);
     const [charaPicArr2, setCharaPicArr2] = useState([]);
@@ -71,6 +72,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
 
       updateBgmSource(); // special because of across-piece setting
+      updateBgpSource();
 
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
@@ -100,7 +102,6 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     });
 
-
     function updateBgmSource() {
       if (currentPieceNum < 0) {
         return;
@@ -111,6 +112,16 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
         setBgmSource("");
       }
     }
+
+    function updateBgpSource() { //TODO1
+      if (currentPieceNum < 0) {
+        return;
+      }
+
+      if (allPieceData[currentPieceNum]["bgp_action"] === "switchToNewBgp" && allPieceData[currentPieceNum]["bgp_source_varname"] !== "") {
+        setBgpSource(visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]); //TODO1
+      }
+    }    
 
     function changeselectedGameScreenSizeSetting(event) {
         const input = event.target.value;
@@ -179,8 +190,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
               <div style={{
                 "background-color": "#000000",
-                "background-image": (currentPieceNum >= 0 && allPieceData[currentPieceNum]["bgp_source_varname"] !== "") ? 
-                  `url(${visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]})` 
+                "background-image": (currentPieceNum >= 0 && bgpSource !== "") ? 
+                  `url(${bgpSource})` 
                     : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
@@ -248,8 +259,8 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
             <br></br>
             {(bgmSource !== undefined) && 
-                      <audio src={bgmSource} controls/> //TODO actual game-playing
-                      // <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
+                      // <audio src={bgmSource} controls/> //TODO actual game-playing
+                  <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
 
             }
 

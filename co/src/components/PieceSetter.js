@@ -549,7 +549,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             handleBgpSwitchAction(event);
                         }}
                     >
-                        <option key="bgpOperationDefaultMaintain" value="maintain">-- Select Operation (default: maintain) --</option>
+                        <option key="bgpOperationDefaultMaintain" value="maintainBgp">-- Select Operation (default: maintain) --</option>
                         <option key="switchToNewBgp" value="switchToNewBgp">switchToNew</option>
                     </select>
 
