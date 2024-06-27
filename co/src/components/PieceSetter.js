@@ -1372,6 +1372,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
          */}
 
         <button >Save</button>
+        
+        <br></br>
+        <br></br>
+        <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
+        <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 
         <br></br>
         <br></br>

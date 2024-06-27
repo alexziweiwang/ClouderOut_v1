@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIInnerPreview({isSettingUpUI, dataObj, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function GameUIInnerPreview({isSettingUpUI, initialAllPieceData, dataObj, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
     const [currentPiece, setCurrentPiece] = useState(dataObj); //TODO2 refactor for larger scope
 
-    const [currentPieceNum, setCurrentPieceNum] = useState(-1);
-    const [allPieceData, setAllPieceData] = useState();
+    const [currentPieceNum, setCurrentPieceNum] = useState(0);
+    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
     const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
     const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] 
-        : (currentPiece["stnd_btn_arr"] !== undefined ? currentPiece["stnd_btn_arr"] : []);
+        : (allPieceData[currentPieceNum]["stnd_btn_arr"] !== undefined ? allPieceData[currentPieceNum]["stnd_btn_arr"] : []);
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 

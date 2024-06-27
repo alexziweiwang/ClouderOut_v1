@@ -259,6 +259,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
               <GameUIInnerPreview 
                   isSettingUpUI={false}
                   dataObj={currentPiece} 
+                  initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
