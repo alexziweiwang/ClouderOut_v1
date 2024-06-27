@@ -228,11 +228,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function changeAddAnotherCharPicOption() {
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
         setAnotherCharPic(!anotherCharpic);
 
         let tempObj = currentPieceDetail;
-        tempObj["chp_curr"] = ["", 0, 0, 60, 120, "default-none"];
+        tempObj["chp_curr"] = ["", 0, 0, 60, 120, 1];
         updateToCaller(tempObj);
 
     }
@@ -343,21 +343,22 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         updateToCaller(tempObj);
     }
 
+    function onChangeCharPicDataScale(event) {
+        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let val =  event.target.value;
+        chp_curr_arr[5] = val;
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+
+        let tempObj = currentPieceDetail;
+        tempObj["chp_curr"] = chp_curr_arr;
+        updateToCaller(tempObj);        
+    }
+
     function onChangeCharPicDataVar(event) {
         let chp_curr_arr = currentPieceDetail["chp_curr"];
         //store selected variable name
         chp_curr_arr[0] = event.target.value;
         
-        //also store the url
-        let urlList = visualList.filter((e) => (e["var"] === event.target.value));
-        
-        if (urlList.length === 0) {
-            chp_curr_arr[5] = "default-none";        
-        } else {
-            let url = urlList[0]["url"];
-            chp_curr_arr[5] = url;        
-        }
-    
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentPieceDetail;
@@ -445,7 +446,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function resetAddingCharPicRow() {
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
+        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
     }
 
     function updatePreviewingCstmClkb(obj) {
@@ -667,8 +668,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
+    <label>Scale: </label>
+    <input type="range" className="slider" min="1" max="10" step="1" value={currentPieceDetail["chp_curr"][5]}
+        onChange={(event)=>{
+            onChangeCharPicDataScale(event);
+        }}></input><label>{currentPieceDetail["chp_curr"][5]}x</label>
+
+    <br></br>
     <button onClick={()=>{
-        if (currentPieceDetail["chp_curr"][5] === "default-none") {
+        if (currentPieceDetail["chp_curr"][0] === "") {
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
@@ -679,11 +687,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             let tempPieceDetail = currentPieceDetail;
             tempPieceDetail["chp_arr"] = tempTable;
-            tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, "default-none"];
+            tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, 1];
 
             setCurrentPieceDetail({...currentPieceDetail,  
                 "chp_arr": tempTable, 
-                "chp_curr": ["", 0, 0, 60, 120, "default-none"]
+                "chp_curr": ["", 0, 0, 60, 120, 1]
             });
             
             updateToCaller(tempPieceDetail); //TODO test

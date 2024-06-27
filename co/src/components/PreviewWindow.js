@@ -223,7 +223,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                             <img style={{
                               "position": "absolute", 
                               "top": `${charaPicCurr2[2]}px`, "left": `${charaPicCurr2[1]}px`,
-                              "width": `${charaPicCurr2[3]}px`, "height": `${charaPicCurr2[4]}px`,
+                              "width": `${charaPicCurr2[3] * charaPicCurr2[5]}px`, "height": `${charaPicCurr2[4] * charaPicCurr2[5]}px`,
                             }}
                               src={visualMap[charaPicCurr2[0]]}  TODO1
                               
