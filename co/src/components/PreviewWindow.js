@@ -68,12 +68,12 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
         setCurrentPieceNum(currPieceNumTemp);
         setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
-        console.log("allPieceData[currentPieceNum].chp_action = ", allPieceData[currentPieceNum]["chp_action"] ); //TODO
       }
 
       setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
 
-      updateCharPicArr(allPieceContentTemp, currPieceNumTemp); //TODO1
+    
+      updateCharPicArr(allPieceContentTemp, currPieceNumTemp);
       updateBgmSource();
       updateBgpSource();
       
@@ -107,13 +107,16 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     });
 
     function updateCharPicArr(allPieceContentTemp, currPieceNumTemp) {
-      if (currentPieceNum < 0) {
+      if (currPieceNumTemp < 0) {
         return;
       }
       
       //TODO1
-      if (allPieceData[currentPieceNum]["chp_action"] === "changeCharPicArr") {
-        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);        
+      if (allPieceContentTemp[currPieceNumTemp]["chp_action"] === "changeCharPicArr") { 
+        console.log("chara-pic-arr CHANGED!!!");  
+
+        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
+    
       }
 
     }
@@ -197,6 +200,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     
         
         <div className="previewWindow">       
+allPieceData[currentPieceNum]["chp_action"] = {allPieceData[currentPieceNum]["chp_action"]}!!! TEST
+
 
             <div className="previewArea" 
               style={{"position": "relative", 

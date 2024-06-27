@@ -116,6 +116,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             // TODO fetch visualList and audioList from cloud-db to setup the local lists
             setFirstTimeEnter(false);
         }
+
+        setCharPicDataTable(currentPieceDetail["chp_arr"]);
     });
 
     function changeLoopingSetting() {
@@ -289,7 +291,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
 
     function removeRowInCharPicTable(index) {
-        let tempCharPicDataTable = charPicDataTable.filter((item) => (item !== charPicDataTable[index]));
+        let tempCharPicDataTable = charPicDataTable
+            .filter((item) => (
+                item !== charPicDataTable[index]));
         setCharPicDataTable(tempCharPicDataTable);
         let tempObj = currentPieceDetail;
         tempObj["chp_arr"] = tempCharPicDataTable;
@@ -673,9 +677,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             tempTable.push(currentPieceDetail["chp_curr"]);
             setCharPicDataTable(tempTable);
 
-            setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempTable, "chp_curr": ["", 0, 0, 60, 120, "default-none"]});
+            let tempPieceDetail = currentPieceDetail;
+            tempPieceDetail["chp_arr"] = tempTable;
+            tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, "default-none"];
+
+            setCurrentPieceDetail({...currentPieceDetail,  
+                "chp_arr": tempTable, 
+                "chp_curr": ["", 0, 0, 60, 120, "default-none"]
+            });
             
-            updateToCaller(currentPieceDetail); //TODO test
+            updateToCaller(tempPieceDetail); //TODO test
 
             changeAddAnotherCharPicOption();
         }
@@ -1372,7 +1383,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
          */}
 
         <button >Save</button>
-        
+
         <br></br>
         <br></br>
         <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
