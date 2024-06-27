@@ -5,6 +5,7 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 import { GiTrashCan } from "react-icons/gi";
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import GameDataManager from './GameDataManager';
+import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
 
 export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm}) {
@@ -16,7 +17,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     let name = "/gamenodeconvpiecedatasec";
 
+    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
     const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
+    const [needCloudGameData, setNeedCloudGameData] = useState(true);
+    const [gameDataLocal, setGameDataLocal] = useState({});
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -483,7 +487,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     async function fetchGameDataFromCloud() {
         let projectName = projName;
-        
+
         console.log("!!! This is for project: ", projectName);
         let project  = projectName;
         console.log("checking2 on project ... [", project, "]");
@@ -491,6 +495,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
           return;
         }
         const isUpdated = true;
+        let currUser = username; //TODO temp
+
         const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
      
         if (gdataTestResult === undefined) {
@@ -499,6 +505,34 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         }
         console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
         setGameDataLocal(gdataTestResult);
+    }
+
+
+    function updateGDataToCloud(gameDataLatest) {
+
+        let project = "";
+        project  = projName;
+        if (project.trim() === "") {
+        return;
+        }
+
+        let currUser = username; //TODO temp
+
+        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+    
+    }
+
+    async function displayGameDataFunc() {
+        setDisplayGameDataButton(false);
+    
+        if (needCloudGameData === true) {
+          await fetchGameDataFromCloud();
+        } else {
+          console.log("*from local* game-data: using existing data"); 
+        }
+        setDisplayGameDataWindow(!displayGameDataWindow);
+        setDisplayGameDataButton(true);
+    
     }
       
 
