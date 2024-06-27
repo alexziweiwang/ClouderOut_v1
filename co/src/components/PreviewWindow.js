@@ -54,6 +54,9 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
  
       if (firstTimeEnter === true) {
         fetchProjResourceLists();
+        setFirstTimeEnter(false);
+
+console.log("preview-window first-time entry, resource-list fetched."); //TODO test
       }
 
       let allPieceContentTemp = getAllPieceContent();
@@ -65,6 +68,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
       if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
         setCurrentPieceNum(currPieceNumTemp);
         setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+        console.log("allPieceData[currentPieceNum].chp_action = ", allPieceData[currentPieceNum]["chp_action"] ); //TODO
       }
 
       setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
@@ -108,7 +112,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
       }
       
       //TODO1
-      if (allPieceData[currentPieceNum]["bgm_action"] === "changeCharPicArr") {
+      if (allPieceData[currentPieceNum]["chp_action"] === "changeCharPicArr") {
         setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);        
       }
 
@@ -193,7 +197,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
     
         
         <div className="previewWindow">       
-         
+
             <div className="previewArea" 
               style={{"position": "relative", 
                       "height": `${screenHeight}px`, 
