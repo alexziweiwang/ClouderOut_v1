@@ -461,7 +461,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
 
 
-    
+
   return (
       
     <div>
@@ -968,16 +968,16 @@ console.log(event.target.value); //TODO test
                         tableTemp.push(obj);
                         setStndButtonDataTable(tableTemp);
 
+                        let tempObj = currentPieceDetail;
+                        tempObj["stnd_btn_arr"] = tableTemp;
+                        updateToCaller(tempObj);
+
                         console.log("current standard-button group: "); //TODO test
                         console.log(tableTemp); //TODO test
 
                         setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tableTemp});
                         
-                        let tempObj = currentPieceDetail;
-                        tempObj["stnd_btn_arr"] = tableTemp;
-                        updateToCaller(tempObj);
-
-
+                
                         setStndButtonText("");
                         setStndButtonConsequenceArray([]);
                         setDisplayStndButtonAdd(false);

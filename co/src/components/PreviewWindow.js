@@ -13,6 +13,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
   
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+    const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
 
     // console.log("re-rendering @preview window"); //TODO test temp
 
@@ -24,7 +25,7 @@ export default function PreviewWindow({getCurrentPiece, initialAllPieceData, get
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
-
+    
     const [bgmSource, setBgmSource] = useState("");
     const [bgpSource, setBgpSource] = useState("");
 
@@ -70,9 +71,15 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
         setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
       }
 
-      setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
+      if (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
+        allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0) {
+          setDirectNextPieceBool(false);
+      } else {
+          setDirectNextPieceBool(true);
+      }
 
-    
+
+      setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);    
       updateCharPicArr(allPieceContentTemp, currPieceNumTemp);
       updateBgmSource();
       updateBgpSource();
@@ -81,6 +88,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
       setScreenHeight(screenSizePair[1]);
+      
 
       if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
@@ -143,50 +151,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       }
     }    
 
-    function changeselectedGameScreenSizeSetting(event) {
-        const input = event.target.value;
-        //TODO update information to cloud db
-        if (event != null && event.target != null && event.target.value!= null) {
-          if (input === "h450_800") {
-            console.log("h450_800");
-            setSelectedGameScreenSize("h450_800");
-          } else if (input === "v800_450") {
-            console.log("v800_450");
-            setSelectedGameScreenSize("v800_450");
-          } else if (input === "h600_800") {
-            console.log("h600_800");
-            setSelectedGameScreenSize("h600_800");
-          } else if (input === "v800_600") {
-            console.log("v800_600");
-            setSelectedGameScreenSize("v800_600");
-          } else {
-            console.log("not selected!");
-          }
-        }
-    }
-
-    function updateGameSizeSetting() {
-        console.log("new game size setting:", selectedGameScreenSize);
-        //TODO design: each node and have one size, and different nodes can have various sizes?
-        let respondGiven = window.confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
-          if (respondGiven) {
-            if (selectedGameScreenSize === "h450_800") {
-              setScreenWidth(800);
-              setScreenHeight(450);
-          } else if (selectedGameScreenSize === "v800_450") {
-              setScreenWidth(450);
-              setScreenHeight(800);
-          } else if (selectedGameScreenSize === "h600_800") {
-              setScreenWidth(800);
-              setScreenHeight(600);
-          } else if (selectedGameScreenSize === "v800_600") {
-              setScreenWidth(600);
-              setScreenHeight(800);
-          }
-          alert("Game node size changed!");
-        } 
-    } 
-
     function passInAllPieceDataContent() {
       return allPieceData;
     }
@@ -207,6 +171,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                       "width": `${screenWidth}px`
               }}>
 
+
+
+
               <div style={{
                 "background-color": "#000000",
                 "background-image": (currentPieceNum >= 0 && bgpSource !== "") ? 
@@ -214,10 +181,10 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                     : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
-                  
+
+
                   <div> 
-      
-      
+            
                     {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2 !== [] && visualMap[charaPicCurr2[0]] !== undefined && visualMap[charaPicCurr2[0]] !== "") && 
                           
                             <img style={{
@@ -225,7 +192,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                               "top": `${charaPicCurr2[2]}px`, "left": `${charaPicCurr2[1]}px`,
                               "width": `${charaPicCurr2[3] * charaPicCurr2[5]}px`, "height": `${charaPicCurr2[4] * charaPicCurr2[5]}px`,
                             }}
-                              src={visualMap[charaPicCurr2[0]]}  TODO1
+                              src={visualMap[charaPicCurr2[0]]}
                               
                               alt="currently character-picture that's being added" 
                             />
@@ -277,6 +244,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
             </div>
             1currentPieceNum={currentPieceNum} (TESTing)
+
 
             <br></br>
             {(bgmSource !== undefined) && 
