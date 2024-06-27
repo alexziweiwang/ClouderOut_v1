@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
-import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
 import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
 import GameUISetter from './GameUISetter';
+import GameDataManager from './GameDataManager';
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
@@ -24,8 +25,14 @@ export default function ConversationNodeEditingPanel() {
     }
     // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     
+    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
+    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
+    const [gameDataLocal, setGameDataLocal] = useState({});
+    const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+
+
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
@@ -165,6 +172,10 @@ export default function ConversationNodeEditingPanel() {
 
     function handleResourceManagerOpen() {
         setDisplayRmModal(true);
+    }
+
+    function handleGameDataManagerOpen() {
+        setDisplayGameDataWindow(true);
     }
 
 
@@ -316,6 +327,48 @@ export default function ConversationNodeEditingPanel() {
         return pair;
     }
 
+    function handleGameDataManagerCancel() {
+        setDisplayGameDataWindow(!displayGameDataWindow);
+    }
+
+
+    function markNextNeedCloudGameData() {
+        setNeedCloudGameData(true);
+    }
+
+    async function fetchGameDataFromCloud() {
+
+        console.log("!!! This is for project: ", projectName);
+        let project  = projectName;
+        console.log("checking2 on project ... [", project, "]");
+        if (project === undefined || project === null || project === "" || project.trim() === "") {
+          return;
+        }
+        const isUpdated = true;
+        let currUser = uname;
+        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
+     
+        if (gdataTestResult === undefined) {
+          console.log("Error: no game_data in this project...");
+          return;
+        }
+        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+        setGameDataLocal(gdataTestResult);
+  }
+
+
+    function updateGDataToCloud(gameDataLatest) {
+
+        let project = "";
+        project  = projectName;
+        if (project.trim() === "") {
+        return;
+        }
+        let currUser = uname;
+        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+    
+    }
+
     return (
 
         <div>
@@ -358,7 +411,19 @@ export default function ConversationNodeEditingPanel() {
             {browseList === false && 
                 <div>
                     {gameUISetterOpen === false && 
-                        <PieceSetter pieceNum={previewingIndex+1} assignPreviewIndex={getUpdatePreviewingIndex} allPieceData={pieceDataStructure} updatePieceData={changePieceData} getAllPieceData={fetchAllPieceData} username={uname} projName={projectName} backToList={returnToList} gameDataList={gameData} openRm={handleResourceManagerOpen}/>}
+                        <PieceSetter 
+                            pieceNum={previewingIndex+1} 
+                            assignPreviewIndex={getUpdatePreviewingIndex} 
+                            allPieceData={pieceDataStructure} 
+                            updatePieceData={changePieceData} 
+                            getAllPieceData={fetchAllPieceData} 
+                            username={uname} 
+                            projName={projectName} 
+                            backToList={returnToList} 
+                            gameDataList={gameData} 
+                            openRm={handleResourceManagerOpen}
+                            openGameDataManager={handleGameDataManagerOpen}
+                        />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                     iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
@@ -419,6 +484,15 @@ export default function ConversationNodeEditingPanel() {
             </div>
             {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={tempTrigerRmUpdate}/>}
             </>}
+
+            {displayGameDataWindow && <GameDataManager 
+                isDisplay={displayGameDataWindow} 
+                handleGdmCancel={handleGameDataManagerCancel} 
+                gameData={gameDataLocal} 
+                resetNeedCloudData={markNextNeedCloudGameData} 
+                fetchFromCloud={fetchGameDataFromCloud} 
+                updateGameDataToCloud={updateGDataToCloud}
+            />}
 
 
         </div>

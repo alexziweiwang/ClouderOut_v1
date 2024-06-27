@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
-import GameDataManager from './GameDataManager';
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm}) {
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager}) {
     const navigate = useNavigate();
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -919,7 +918,7 @@ console.log(event.target.value); //TODO test
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
 
 
                     <br></br><br></br>
@@ -1241,7 +1240,7 @@ console.log(event.target.value); //TODO test
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
 
                     <br></br><br></br>
 
@@ -1484,14 +1483,6 @@ console.log(event.target.value); //TODO test
         <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
     }
 
-    {displayGameDataWindow && <GameDataManager 
-        isDisplay={displayGameDataWindow} 
-        handleGdmCancel={handleGameDataManagerCancel} 
-        gameData={gameDataLocal} 
-        resetNeedCloudData={markNextNeedCloudGameData} 
-        fetchFromCloud={fetchGameDataFromCloud} 
-        updateGameDataToCloud={updateGDataToCloud}
-    />}
 
 
   </div>

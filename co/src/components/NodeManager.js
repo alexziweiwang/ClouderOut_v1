@@ -2078,7 +2078,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
           resetNeedCloudData={markNextNeedCloudGameData} 
           fetchFromCloud={fetchGameDataFromCloud} 
           updateGameDataToCloud={updateGDataToCloud}
-        />}
+          />}
 
       </div>
     );
