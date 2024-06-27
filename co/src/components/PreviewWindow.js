@@ -200,8 +200,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     
         
         <div className="previewWindow">       
-allPieceData[currentPieceNum]["chp_action"] = {allPieceData[currentPieceNum]["chp_action"]}!!! TEST
-
 
             <div className="previewArea" 
               style={{"position": "relative", 
@@ -220,14 +218,15 @@ allPieceData[currentPieceNum]["chp_action"] = {allPieceData[currentPieceNum]["ch
                   <div> 
       
       
-                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2 !== [] && charaPicCurr2[5] !== "default-none" && charaPicCurr2[5] !== "") && 
+                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2 !== [] && visualMap[charaPicCurr2[0]] !== undefined && visualMap[charaPicCurr2[0]] !== "") && 
                           
                             <img style={{
                               "position": "absolute", 
                               "top": `${charaPicCurr2[2]}px`, "left": `${charaPicCurr2[1]}px`,
                               "width": `${charaPicCurr2[3]}px`, "height": `${charaPicCurr2[4]}px`,
                             }}
-                              src={charaPicCurr2[5]} 
+                              src={visualMap[charaPicCurr2[0]]}  TODO1
+                              
                               alt="currently character-picture that's being added" 
                             />
                     }
@@ -236,14 +235,16 @@ allPieceData[currentPieceNum]["chp_action"] = {allPieceData[currentPieceNum]["ch
                       let altStr = index+"already added character picture";
                       return (
                         <>
+                          {(visualMap[item[0]] !== undefined && visualMap[item[0]] !== "") && 
                           <img style={{
                               "position": "absolute", 
                               "top": `${item[2]}px`, "left": `${item[1]}px`,
                               "width": `${item[3]}px`, "height": `${item[4]}px`,
                               }}
-                            src={item[5]} 
+                            src={visualMap[item[0]]}  TODO1
+                            
                             alt={altStr}
-                          />
+                          />}
                         </>
                       );
                     })}
