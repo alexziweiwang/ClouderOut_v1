@@ -26,7 +26,6 @@ export default function ConversationNodeEditingPanel() {
     // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
-    const [gameDataLocal, setGameDataLocal] = useState({});
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
@@ -133,6 +132,7 @@ export default function ConversationNodeEditingPanel() {
     useEffect(() => {
         if (firstTimeEnter === true) {
             getGameDataFromCloud();
+            
             setFirstTimeEnter(false);
         }
         if (projectName === "default-no-state projectName") {
@@ -155,7 +155,7 @@ export default function ConversationNodeEditingPanel() {
 
         // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
         // console.log(state); //TODO remove later
-        console.log("$$$$$$$$$$$ game data from cloud = ");
+        console.log("Conv-editing-:$$$$$$$$$$$ game data from cloud = ");
         console.log(gDataMap);
         
         //TODO transform to a list  
@@ -352,7 +352,7 @@ export default function ConversationNodeEditingPanel() {
           return;
         }
         console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-        setGameDataLocal(gdataTestResult);
+        setGameData(gdataTestResult);
   }
 
 
@@ -487,7 +487,7 @@ export default function ConversationNodeEditingPanel() {
             {displayGameDataWindow && <GameDataManager 
                 isDisplay={displayGameDataWindow} 
                 handleGdmCancel={handleGameDataManagerCancel} 
-                gameData={gameDataLocal} 
+                gameData={gameData} 
                 resetNeedCloudData={markNextNeedCloudGameData} 
                 fetchFromCloud={fetchGameDataFromCloud} 
                 updateGameDataToCloud={updateGDataToCloud}

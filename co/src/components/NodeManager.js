@@ -122,18 +122,18 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
-    if (firstTimeEnter === true) {
-        let chapter = "chapter0"; //TODO test, later: fetch from user-input
-        // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
-        //updateNodeDataActions(chapterData);
-                //    setNodeData(chapterData);
-        // console.log("First enter node data: ");
-        // console.log(nodeData);
-        fetchGameDataFromCloud();
-        console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
+      if (firstTimeEnter === true) {
+          let chapter = "chapter0"; //TODO test, later: fetch from user-input
+          // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
+          //updateNodeDataActions(chapterData);
+                  //    setNodeData(chapterData);
+          // console.log("First enter node data: ");
+          // console.log(nodeData);
+          fetchGameDataFromCloud();
+          console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
 
-        setFirstTimeEnter(false);
-    }
+          setFirstTimeEnter(false);
+      }
     });
 
   async function getChapterDataFromCloud(chapter) {
