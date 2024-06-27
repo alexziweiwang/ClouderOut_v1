@@ -26,7 +26,6 @@ export default function ConversationNodeEditingPanel() {
     // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
-    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
     const [gameDataLocal, setGameDataLocal] = useState({});
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
@@ -380,8 +379,8 @@ export default function ConversationNodeEditingPanel() {
             {state!= undefined  &&<>
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
-                    <button onClick={() => {setDisplayRmModal(!isDisplayRmBool)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
-                    
+                    <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
+                    <button onClick={()=>{setDisplayGameDataWindow(true);}}>Game Data Manager</button>
                 </div>
                 <div className="topParalBarRightPart">
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>

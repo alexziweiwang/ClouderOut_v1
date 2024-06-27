@@ -3,12 +3,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
-import ResourceManagingModalWindow from './ResourceManagingModalWindow';
-import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
 
 
 export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager}) {
-    const navigate = useNavigate();
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -19,7 +17,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
     const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
-    const [gameDataLocal, setGameDataLocal] = useState({});
+    const [gameDataLocal, setGameDataLocal] = useState({}); //TODO1 later: fetch updated
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -120,10 +118,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             /* initialization of project-resource-list in drop-down list */
             fetchProjResourceLists();
             // TODO fetch visualList and audioList from cloud-db to setup the local lists
+            //TODO1: fetch game data for the first time
+
             setFirstTimeEnter(false);
         }
 
         setCharPicDataTable(currentPieceDetail["chp_arr"]);
+
+        //TDOO1 current: gameDataList, future: fetch updated game-data inside this component?
     });
 
     function changeLoopingSetting() {
@@ -531,7 +533,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         }
         setDisplayGameDataWindow(!displayGameDataWindow);
         setDisplayGameDataButton(true);
-    
     }
       
 
@@ -1478,12 +1479,6 @@ console.log(event.target.value); //TODO test
             <button onClick={expandAllOptions}> Expand All </button>
         </div>
   </div>
-
-    {rmSelectorOpen && 
-        <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
-    }
-
-
 
   </div>
  
