@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function GameUIInnerPlay({dataObj, gameUIObj}) {
+export default function GameUI2ButtonsPlay({dataObj, gameUIObj}) {
     const screenWidth = 800;
     //TODO change later: static info of game-UI
     //TODO change later: separate for text-frame-play

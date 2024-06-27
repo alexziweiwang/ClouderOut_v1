@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
-import GameUIInnerPreview from './GameUIInnerPreview';
-import GameUIInnerPlay from './GameUIInnerPreview';
+import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
+import GameUI2ButtonsPlay from './GameUI_2ButtonsPreview';
 
 
 export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings}) {
@@ -161,12 +161,11 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
              
               </div>
 
-              <GameUIInnerPreview 
+              <GameUI_2ButtonsPreview 
                   isSettingUpUI={false}
-                  dataObj={currentPiece} 
+                  initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
-                  style={{"position": "absolute", "top": "0px", "left": "0px"}} 
                   getTextFrameUISettings={getTextFrameUISettings} 
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
@@ -174,7 +173,7 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
                   getScreenSize={getScreenSize}
               /> 
 
-              <GameUIInnerPlay
+              <GameUI2ButtonsPlay
               
               />
 

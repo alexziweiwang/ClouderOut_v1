@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUIInnerPreview({isSettingUpUI, initialAllPieceData, dataObj, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
-
-    const [currentPiece, setCurrentPiece] = useState(dataObj); //TODO2 refactor for larger scope
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
@@ -28,7 +26,7 @@ export default function GameUIInnerPreview({isSettingUpUI, initialAllPieceData, 
         let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
           setCurrentPieceNum(currPieceNumTemp);
-          setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+
         }
   
   
@@ -105,7 +103,7 @@ export default function GameUIInnerPreview({isSettingUpUI, initialAllPieceData, 
             }
             onMouseDown={
                 ()=>{
-                    document.getElementById(currId).style.filter = "brightness(120%)";
+                    document.getElementById(currId).style.filter = "brightness(130%)";
                 }
             }
             onMouseUp={

@@ -301,7 +301,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }
                 onMouseDown={
                     ()=>{
-                        document.getElementById(currId).style.filter = "brightness(120%)";
+                        document.getElementById(currId).style.filter = "brightness(130%)";
                     }
                 }
                 onMouseUp={

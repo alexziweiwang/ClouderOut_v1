@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import GameUIInnerPreview from './GameUIInnerPreview';
-import GameUITextFramePreview from './GameUITextFramePreview';
+import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
+import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 
 export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getMenuType, getScreenSize}) {
     const [screenWidth, setScreenWidth] = useState(800);
@@ -27,9 +27,8 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
         style={{"height": `${screenHeight}px`,"width": `${screenWidth}px`}}
         >
 
-            <GameUIInnerPreview 
+            <GameUI_2ButtonsPreview 
                 isSettingUpUI={true}
-                dataObj={dataObj} 
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={getAllPieceContent}
                 getCurrentPieceNum={getCurrentPieceNum}
@@ -39,7 +38,7 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 getScreenSize={getScreenSize}               
             />
               
-            <GameUITextFramePreview
+            <GameUI_1TextFramePreview
                 dataObj={dataObj} 
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={getAllPieceContent}

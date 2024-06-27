@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
 import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
-import GameUIInnerPreview from './GameUIInnerPreview';
-import GameUITextFramePreview from './GameUITextFramePreview';
+import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
+import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
@@ -247,7 +247,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
               </div>
               
               {(currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
-              <GameUITextFramePreview
+              <GameUI_1TextFramePreview
                 dataObj={currentPiece} 
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={passInAllPieceDataContent}
@@ -256,9 +256,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 isInGameView={true}
               />}
 
-              <GameUIInnerPreview 
+              <GameUI_2ButtonsPreview 
                   isSettingUpUI={false}
-                  dataObj={currentPiece} 
                   initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
