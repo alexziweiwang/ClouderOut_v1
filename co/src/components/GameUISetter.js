@@ -229,7 +229,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
                         }
                     }}
-                ></input><label>Horizontally Centered</label>
+                ></input><label onClick={()=>{
+                    if (defaultButtonObj["horizontalMid"] === false) { // going to be true
+                        //recalculate                            
+                        let posX = (screenWidth - defaultButtonObj["widthMin"]) / 2 - 1;
+                        setDefaultButtonObj({...defaultButtonObj,  "groupX": posX, "horizontalMid": !defaultButtonObj["horizontalMid"]});
+                    } else {
+                        setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
+                    }   
+                }}>Horizontally Centered</label>
             </div>
         <br></br><label>Button Group PositionY: </label><br></br>
             <div className="indentOne">

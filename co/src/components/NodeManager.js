@@ -2071,7 +2071,14 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
      
      
-        {displayGameDataWindow && <GameDataManager isDisplay={displayGameDataWindow} handleGdmCancel={handleGameDataManagerCancel} gameData={gameDataLocal} resetNeedCloudData={markNextNeedCloudGameData} fetchFromCloud={fetchGameDataFromCloud} updateGameDataToCloud={updateGDataToCloud}/>}
+        {displayGameDataWindow && <GameDataManager 
+          isDisplay={displayGameDataWindow} 
+          handleGdmCancel={handleGameDataManagerCancel} 
+          gameData={gameDataLocal} 
+          resetNeedCloudData={markNextNeedCloudGameData} 
+          fetchFromCloud={fetchGameDataFromCloud} 
+          updateGameDataToCloud={updateGDataToCloud}
+        />}
 
       </div>
     );

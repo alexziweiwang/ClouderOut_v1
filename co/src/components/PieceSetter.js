@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+import GameDataManager from './GameDataManager';
 
 
 export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm}) {
@@ -14,6 +15,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
 
     let name = "/gamenodeconvpiecedatasec";
+
+    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -469,6 +472,36 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setCurrentPieceDetail({...currentPieceDetail,  "clkb_previewing": tempClkbPreviewing});
     }
   
+
+    function markNextNeedCloudGameData() {
+        setNeedCloudGameData(true);
+    }
+
+    function handleGameDataManagerCancel() {
+        setDisplayGameDataWindow(!displayGameDataWindow);
+    }
+
+    async function fetchGameDataFromCloud() {
+        let projectName = projName;
+        
+        console.log("!!! This is for project: ", projectName);
+        let project  = projectName;
+        console.log("checking2 on project ... [", project, "]");
+        if (project === undefined || project === null || project === "" || project.trim() === "") {
+          return;
+        }
+        const isUpdated = true;
+        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
+     
+        if (gdataTestResult === undefined) {
+          console.log("Error: no game_data in this project...");
+          return;
+        }
+        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+        setGameDataLocal(gdataTestResult);
+    }
+      
+
     return (
       
     <div>
@@ -591,7 +624,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     </select>
                     <br></br>
 
-    {<div>
+    {currentPieceDetail["chp_action"] === "changeCharPicArr"  && <div>
             <table>
             <thead>        
                 <tr>
@@ -600,6 +633,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <th>Position y</th>
                     <th>Width</th>
                     <th>Height</th>
+                    <th>Scale</th>
 
                 </tr>
             </thead>
@@ -613,11 +647,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             <td>{item[2]}</td>
                             <td>{item[3]}</td>
                             <td>{item[4]}</td>                    
+                            <td>{item[5]}x</td>
                                 {(charPicDataTable.length > 0 && currentPieceDetail["chp_action"] === "changeCharPicArr") && 
-                                    <td>
-                                        <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
+                             <td>
+                                <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
                                     </td>
                                 }
+                          
                         </tr>
                     );
                 })}
@@ -824,17 +860,19 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <select onChange={(event)=>{
                                 setStndBtnConseqGDataItemSelected(event.target.value);
-                                console.log("selected game data (consq) = ");
-                                console.log(event.target.value);
-                                if (event.target.value !== "nextNodePointer") {
+console.log("selected game data (consq) = "); //TODO test
+console.log(event.target.value); //TODO test
+                                // if (event.target.value !== "nextNodePointer") {
+                            
                                     if (event.target.value === "") {
                                         return;
                                     }
                                     setStndBtnConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
-                                } else {
+                              
+                                // } else {
                                 
-                                    setStndBtnConseqGDataTypeSelected("nodePointer");
-                                }
+                                //     setStndBtnConseqGDataTypeSelected("nodePointer");
+                                // }
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
                         <option value="" key=""> -- Select Game Data Item --</option>
@@ -846,20 +884,21 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 <option value={currKey} key={keyStr}>{currKey}</option>
                             );
                         })}
-                        <option value="nextNodePointer" key="nextNodePointer">*Next Node</option>
                     </select>
+                    {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+
 
                     <br></br><br></br>
 
                     <div>
 
-                    {stndBtnConseqGDataTypeSelected === "nodePointer" &&
+                    {/* {stndBtnConseqGDataTypeSelected === "nodePointer" &&
                     <div>
                         TODO: target node list
                         TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
                         TODO: NodeManager components has parameter function that takes its current node list, and Game-Maker cathes that returned value, then pass this list into Convo-Editor to PieceSetter
                     </div>
-                    }
+                    } */}
                     
                     {stndBtnConseqGDataTypeSelected === "number" && 
                         <input type="radio" value={stndBtnConseqIsAssignValue} checked={stndBtnConseqIsAssignValue} onChange={()=>{setStndBtnConseqIsAssignValue(true);}}></input>} 
@@ -1145,15 +1184,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 setCstmClkbConseqGDataItemSelected(event.target.value);
                                 console.log("selected game data (consq) = ");
                                 console.log(event.target.value);
-                                if (event.target.value !== "nextNodePointer") {
+                                // if (event.target.value !== "nextNodePointer") {
+                         
                                     if (event.target.value === "") {
                                         return;
                                     }
                                     setCstmClkbConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
-                                } else {
+                              
+                                // } else {
                                 
-                                    setCstmClkbConseqGDataTypeSelected("nodePointer");
-                                }
+                                //     setCstmClkbConseqGDataTypeSelected("nodePointer");
+                                // }
                             }} 
                             value={cstmClkbConseqGDataItemSelected}>
                         <option value="" key=""> -- Select Game Data Item --</option>
@@ -1165,20 +1206,20 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 <option value={currKey} key={keyStr}>{currKey}</option>
                             );
                         })}
-                        <option value="nextNodePointer" key="nextNodePointer">*Next Node</option>
                     </select>
+                    {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
 
                     <br></br><br></br>
 
                     <div>
 
-                    {cstmClkbConseqGDataTypeSelected === "nodePointer" &&
+                    {/* {cstmClkbConseqGDataTypeSelected === "nodePointer" &&
                     <div>
                         TODO: target node list
                         TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
                         TODO: NodeManager components has parameter function that takes its current node list, and Game-Maker cathes that returned value, then pass this list into Convo-Editor to PieceSetter
                     </div>
-                    }
+                    } */}
                     
                     {cstmClkbConseqGDataTypeSelected === "number" && 
                         <input type="radio" value={cstmClkbConseqIsAssignValue} checked={cstmClkbConseqIsAssignValue} onChange={()=>{setCstmClkbConseqIsAssignValue(true);}}></input>} 
@@ -1405,9 +1446,19 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         </div>
   </div>
 
-  {rmSelectorOpen && 
+    {rmSelectorOpen && 
         <ResourceManagingModalWindow isDisplay={rmSelectorOpen} handleRmCancel={handleResourceSelectorCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>
     }
+
+    {displayGameDataWindow && <GameDataManager 
+        isDisplay={displayGameDataWindow} 
+        handleGdmCancel={handleGameDataManagerCancel} 
+        gameData={gameDataLocal} 
+        resetNeedCloudData={markNextNeedCloudGameData} 
+        fetchFromCloud={fetchGameDataFromCloud} 
+        updateGameDataToCloud={updateGDataToCloud}
+    />}
+
 
   </div>
  

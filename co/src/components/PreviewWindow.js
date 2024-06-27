@@ -239,10 +239,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                           <img style={{
                               "position": "absolute", 
                               "top": `${item[2]}px`, "left": `${item[1]}px`,
-                              "width": `${item[3]}px`, "height": `${item[4]}px`,
+                              "width": `${item[3] * item[5]}px`, "height": `${item[4] * item[5]}px`,
                               }}
-                            src={visualMap[item[0]]}  TODO1
-                            
+                            src={visualMap[item[0]]}
                             alt={altStr}
                           />}
                         </>
