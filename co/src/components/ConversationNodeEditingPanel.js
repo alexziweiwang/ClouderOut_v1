@@ -359,9 +359,9 @@ export default function ConversationNodeEditingPanel() {
     function updateGDataToCloud(gameDataLatest) {
 
         let project = "";
-        project  = projectName;
-        if (project.trim() === "") {
-        return;
+        project  = state.selected_project_name;
+        if (project === "" || project === undefined || project.trim() === "") {
+            return;
         }
         let currUser = uname;
         updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});

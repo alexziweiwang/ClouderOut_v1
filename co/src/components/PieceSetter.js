@@ -14,10 +14,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     let name = "/gamenodeconvpiecedatasec";
 
-    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
     const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
-    const [needCloudGameData, setNeedCloudGameData] = useState(true);
-    const [gameDataLocal, setGameDataLocal] = useState({}); //TODO1 later: fetch updated
+
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -131,23 +129,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     function changeLoopingSetting() {
         setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
         console.log("looping? ", !isLooping); //TODO test
-    }
-
-    function handleResourceSelectorCancel() {
-        setRmSelectorOpen(false);
-    }
-
-    function handleVisualRsrcSelectorSave(updatedList) {
-        //TODO update visualList
-        setVisualList(updatedList);
-
-    }
-
-    function handleAudioRsrcSelectorSave(updatedList) {
-        //TODO update audioList
-        console.log("!! Piece Setter, from Resource Selector: [audio]");
-        console.log(updatedList);
-        setAudioList(updatedList);
     }
 
     function handleTextContentEnter(event) {
@@ -448,10 +429,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
         updateToCaller(tempObj);        
     }
- 
-    function handleResourceManagerSaveChanges() {
-        console.log("handleResourceManagerSaveChanges: TODO :change in cloud-db"); //TODO
-    }
+
 
     function resetAddingCharPicRow() {
         setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
@@ -478,65 +456,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }
   
 
-    function markNextNeedCloudGameData() {
-        setNeedCloudGameData(true);
-    }
-
-    function handleGameDataManagerCancel() {
-        setDisplayGameDataWindow(!displayGameDataWindow);
-    }
-
-    async function fetchGameDataFromCloud() {
-        let projectName = projName;
-
-        console.log("!!! This is for project: ", projectName);
-        let project  = projectName;
-        console.log("checking2 on project ... [", project, "]");
-        if (project === undefined || project === null || project === "" || project.trim() === "") {
-          return;
-        }
-        const isUpdated = true;
-        let currUser = username; //TODO temp
-
-        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
-     
-        if (gdataTestResult === undefined) {
-          console.log("Error: no game_data in this project...");
-          return;
-        }
-        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-        setGameDataLocal(gdataTestResult);
-    }
 
 
-    function updateGDataToCloud(gameDataLatest) {
 
-        let project = "";
-        project  = projName;
-        if (project.trim() === "") {
-        return;
-        }
 
-        let currUser = username; //TODO temp
 
-        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
     
-    }
-
-    async function displayGameDataFunc() {
-        setDisplayGameDataButton(false);
-    
-        if (needCloudGameData === true) {
-          await fetchGameDataFromCloud();
-        } else {
-          console.log("*from local* game-data: using existing data"); 
-        }
-        setDisplayGameDataWindow(!displayGameDataWindow);
-        setDisplayGameDataButton(true);
-    }
-      
-
-    return (
+  return (
       
     <div>
 

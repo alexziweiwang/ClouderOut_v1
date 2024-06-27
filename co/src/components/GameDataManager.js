@@ -266,8 +266,8 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
                     </select>
                     }
                     <br></br>
-                    <button onClick={showNewVarForm}> Cancel </button>
-                    <button onClick={addVarPair}>Submit</button>
+                    <button onClick={()=>{showNewVarForm()}}> Cancel </button>
+                    <button onClick={()=>{addVarPair()}}>Submit</button>
 
                 </div>
 
