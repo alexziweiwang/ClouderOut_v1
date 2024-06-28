@@ -236,10 +236,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
             setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber-2]);
+         
+            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber-2]["stnd_btn_arr"]);
+            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber-2]["clkb_arr"]);
+
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
         } else {
             setLookingPieceNumber(1);
             assignPreviewIndex(0); // TODO note : number = index+1, index = num-1
+
+            setStndButtonDataTable(pieceAllDataLocal[0]["stnd_btn_arr"]);
+            setStndButtonDataTable(pieceAllDataLocal[0]["clkb_arr"]);
         }
     }
 
@@ -250,11 +257,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             //TODO change *all* form content here in display...
             
             setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber]);
-            assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
 
+            assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
+            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
+            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["clkb_arr"]);
         } else {
             setLookingPieceNumber(pieceAllDataLocal.length);
             assignPreviewIndex(pieceAllDataLocal.length-1); // TODO note : number = index+1, index = num-1
+
+            setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["stnd_btn_arr"]);
+            setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["clkb_arr"]);
         }
     }
 
@@ -716,7 +728,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
            
                 <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
 
-                    <div><label>1. Standard Button/Option Group</label>
+                    <div><label>Standard Button/Option Group</label>
                         <div className="indentOne">
 
                         <table>
@@ -994,9 +1006,10 @@ console.log(event.target.value); //TODO test
                     
                     </div>
 
-                    <br></br>
-                    <label>2. Custom Clickable(s)</label>
-                    
+                    {/* <br></br>
+                    <label>2. Custom Clickable(s)</label> */} 
+                    {/* //TODO2 future */}
+{/*                     
                     <div className="indentOne">
                         <table>
                         <thead>
@@ -1159,7 +1172,7 @@ console.log(event.target.value); //TODO test
                             value={cstmClkbConseqGDataItemSelected}>
                         <option value="" key=""> -- Select Game Data Item --</option>
                         {Object.keys(gameDataList).map((currKey) => {
-                            /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                            // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
                             let keyStr = "gameData" + gameDataList[currKey]["name"];
                             return (
                                 
@@ -1173,13 +1186,7 @@ console.log(event.target.value); //TODO test
 
                     <div>
 
-                    {/* {cstmClkbConseqGDataTypeSelected === "nodePointer" &&
-                    <div>
-                        TODO: target node list
-                        TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
-                        TODO: NodeManager components has parameter function that takes its current node list, and Game-Maker cathes that returned value, then pass this list into Convo-Editor to PieceSetter
-                    </div>
-                    } */}
+                  
                     
                     {cstmClkbConseqGDataTypeSelected === "number" && 
                         <input type="radio" value={cstmClkbConseqIsAssignValue} checked={cstmClkbConseqIsAssignValue} onChange={()=>{setCstmClkbConseqIsAssignValue(true);}}></input>} 
@@ -1306,7 +1313,7 @@ console.log(event.target.value); //TODO test
 
                     </div>
   
-       
+        */}
                
                 </div>
                               

@@ -256,12 +256,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
 
             <p className="plans">
-                needed data: game size and direction info setting from the user/author
-                <br></br> reads all data for current piece and present here
-            </p>
-
-
-            <p className="plans">
             This is conversation-node editing panel
             <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)
 
@@ -272,7 +266,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
             <br></br> After fetching the data above, previewer should reflect the adjustment and present this piece (refresh with local data)
             <br></br> also, save and update to db if requested by user.
 
-
             </p>
 
             <p className="plans">
@@ -281,27 +274,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 <br></br> toggle in preview-related component
             </p>
 
-            <p className="plans">
-                TODO: fetch the current game-size for this node
-            </p>
-
-            <p className="plans">
-                    Below is ... Adjustment area: setting of size & direction for current *node*
-                    <br></br>should trigger warning if changing, and asking the user to re-organize things after a size/direciton change...
-                    <br></br>but this feature is provided so user can utilize the existing node-content
-                    </p>
-            <p className="plans">
-                    [bg-pic] char-pics, clickable
-                    <br></br> to-next-piece clicking area: everywhere(including text-frame) excepts(underneath) buttons & menu-button
-                    <br></br>
-            </p>
-
-            <p>
-            TODO: textframe and standard-button-group can be 0 or 1 -- need to fetch current-piece data to decide 
-            <br></br>TODO: textframe should be clickable for next-piece (default) as the game-content
-
-
-            </p>
                
         </div>
     
