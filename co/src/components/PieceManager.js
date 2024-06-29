@@ -28,6 +28,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             //fetch action from preview-screen
             //TODO1: update viewing index/num
             let receivedPieceIndex = getCurrentPieceNum();
+            doHighlightItem(receivedPieceIndex+1); //TODO1 testing
+
         }
     });
 

@@ -493,7 +493,6 @@ export default function ConversationNodeEditingPanel() {
                     getScreenSize={passInScreenSize}
                     triggerToDirectNext={triggerToDirectNextFunc}
                     setIsClickedOnSetters={setIsActionOnSetter}
-                    fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                 />}
             {isDisplayGameContentPreview === false && 
                 <GameUIOuterPreviewWindow 

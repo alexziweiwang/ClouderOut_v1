@@ -7,7 +7,7 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters, fetchClickedIsOnSetter}) {
+export default function PreviewWindow({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
@@ -77,13 +77,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       } else {
           setDirectNextPieceBool(true);
       }
-
-      let isActionOnSetter = fetchClickedIsOnSetter();
-      if (isActionOnSetter === true) {
-          //fetch action from setting-screens
-          //TODO: update viewing
-      }
-
 
       setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);    
       updateCharPicArr(allPieceContentTemp, currPieceNumTemp);

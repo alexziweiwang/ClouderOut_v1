@@ -29,7 +29,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const [isLooping, setIsLooping] = useState(true);
     const [anotherCharpic, setAnotherCharPic] = useState(false);
 
-    const [charPicDataTable, setCharPicDataTable] = useState([]); //TODO1
+    const [charPicDataTable, setCharPicDataTable] = useState([]);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
@@ -128,6 +128,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             //fetch action from preview-screen
             //TODO1: update viewing index/num
             let receivedPieceNum = getCurrentPieceNum();
+            setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
+            setLookingPieceNumber(receivedPieceNum+1);
+         
             
         }
 
