@@ -35,7 +35,6 @@ export default function ConversationNodeEditingPanel() {
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
     const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
-    const [menuType, setMenuType] = useState("");
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
     const returnGameMakerButtonText = [" ← Game Maker"];
@@ -268,14 +267,6 @@ export default function ConversationNodeEditingPanel() {
         return previewingIndex;
     }
 
-    function fetchMenuType(value) {
-        setMenuType(value);
-    }
-
-    function passInMenuType() {
-        return menuType;
-    }
-
     function changeselectedGameScreenSizeSetting(event) {
         const input = event.target.value;
         //TODO update information to cloud db
@@ -371,7 +362,14 @@ export default function ConversationNodeEditingPanel() {
 
     function triggerToDirectNextFunc() {
         //from preview window: make pieceNum to be the next for PieceSetter and PieceManager...
-
+        //TODO1
+        let currentIndex = previewingIndex;
+        let len = pieceDataStructure.length;
+        if (currentIndex + 1 < len) {
+            setPreviewingIndex(currentIndex+1);
+        } else {
+            setPreviewingIndex(len-1);
+        }
     }
 
     return (
@@ -431,16 +429,23 @@ export default function ConversationNodeEditingPanel() {
                         />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
-                    iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                    openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}
-                    sendMenuType={fetchMenuType}
+                            iniDefaultButtonObj={gameUIDefaultButton} 
+                            iniTxtFrameObj={gameUITextFrame} 
+                            iniMenuButtonObj={gameUIBackButton}
+                            openRm={handleResourceManagerOpen} 
+                            updateTextFrameUISettings={updateTextFrameUISettings} 
+                            updateDefaultButtonSettings={updateDefaultButtonUISettings} 
+                            updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
+                            updateBackButtonSettings={updateBackButtonUISettings}
+                     
                     />}
                 </div>
             }
 
             {browseList === true &&
                 <div>                 
-                    {gameUISetterOpen === false && <PieceManager 
+                    {gameUISetterOpen === false && 
+                        <PieceManager 
                             allPieceData={pieceDataStructure} 
                             assignPieceNum={getSelectedPiece} 
                             assignPreviewIndex={getUpdatePreviewingIndex} 
@@ -448,9 +453,15 @@ export default function ConversationNodeEditingPanel() {
                             getAllPieceData={fetchAllPieceData}/>}   
                     {gameUISetterOpen === true && 
                         <GameUISetter 
-                        iniDefaultButtonObj={gameUIDefaultButton} iniTxtFrameObj={gameUITextFrame} iniMenuButtonObj={gameUIBackButton}
-                        openRm={handleResourceManagerOpen} updateTextFrameUISettings={updateTextFrameUISettings} updateDefaultButtonSettings={updateDefaultButtonUISettings} updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} updateBackButtonSettings={updateBackButtonUISettings}
-                        sendMenuType={fetchMenuType}
+                            iniDefaultButtonObj={gameUIDefaultButton} 
+                            iniTxtFrameObj={gameUITextFrame} 
+                            iniMenuButtonObj={gameUIBackButton}
+                            openRm={handleResourceManagerOpen} 
+                            updateTextFrameUISettings={updateTextFrameUISettings} 
+                            updateDefaultButtonSettings={updateDefaultButtonUISettings} 
+                            updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
+                            updateBackButtonSettings={updateBackButtonUISettings}
+                     
                         />}
                 
                 </div>
@@ -481,7 +492,6 @@ export default function ConversationNodeEditingPanel() {
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
-                    getMenuType={passInMenuType}
                     getScreenSize={passInScreenSize}
                 />
             }

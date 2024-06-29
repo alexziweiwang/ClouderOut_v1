@@ -164,7 +164,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     }
 
     function triggerNextPieceFunc() {
-      //TODO1 make piece to the next one
+      //make piece to be the next one
       triggerToDirectNext();
     }
  
@@ -192,10 +192,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
                 
                   onClick={()=>{
-                    if (directNextPieceBool) {
+                    if (directNextPieceBool === true) {
                       triggerNextPieceFunc();
                     }
-                    
                   }}
                 >
 

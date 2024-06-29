@@ -102,7 +102,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
             }
             onMouseDown={
                 ()=>{
-                    document.getElementById(currId).style.filter = "brightness(130%)";
+                    document.getElementById(currId).style.filter = "brightness(150%)";
                 }
             }
             onMouseUp={
@@ -126,8 +126,8 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
         </div>
 
 
-
-        <div id="backButtonDivPreview" key="backButtonPreview"
+        {/* //TODO refactor: move back-button to nav-UI system */}
+        {/* <div id="backButtonDivPreview" key="backButtonPreview"
             style={backButtonUISettings["isShape"] === true ?{
                 "background": backButtonUISettings["bgColor"],
 
@@ -173,7 +173,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
 
             onMouseDown={
                 ()=>{
-                    document.getElementById("backButtonDivPreview").style.filter = "brightness(130%)";
+                    document.getElementById("backButtonDivPreview").style.filter = "brightness(150%)";
                 }
                 }
             onMouseUp={
@@ -185,7 +185,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
         {backButtonUISettings["buttonText"]}
   
     </div>
-
+ */}
 
     </div>
 
