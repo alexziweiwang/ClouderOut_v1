@@ -78,10 +78,12 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
           setDirectNextPieceBool(true);
       }
 
-      setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]);    
-      updateCharPicArr(allPieceContentTemp, currPieceNumTemp);
-      updateBgmSource();
-      updateBgpSource();
+      setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]); 
+      
+      let isForward = (currPieceNumTemp > currentPieceNum);
+      updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
+      updateBgmSource(isForward);
+      updateBgpSource(isForward);
       
 
       let screenSizePair = getScreenSize();
@@ -113,7 +115,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
     });
 
-    function updateCharPicArr(allPieceContentTemp, currPieceNumTemp) {
+    function updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward) {
       if (currPieceNumTemp < 0) {
         return;
       }
@@ -124,10 +126,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
         setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
       }
-
     }
 
-    function updateBgmSource() {
+    function updateBgmSource(isForward) {
       if (currentPieceNum < 0) {
         return;
       }
@@ -140,7 +141,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       }
     }
 
-    function updateBgpSource() {
+    function updateBgpSource(isForward) {
       if (currentPieceNum < 0) {
         return;
       }
@@ -151,7 +152,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
           setBgpSource("");
         }
       
-      } else if (allPieceData[currentPieceNum]["bgp_action"] === "maintainBgp") {
+      } else if (!isForward && allPieceData[currentPieceNum]["bgp_action"] === "maintainBgp") {
         //TODO1 fetch nearest bgp-assignment, check with current bgpSource
         let bgpSourceNameTemp = fetchNearestBgpName(currentPieceNum);
         if (bgpSourceNameTemp === "") {

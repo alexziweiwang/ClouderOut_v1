@@ -239,7 +239,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
 
     function jumpToPrevPiece() {
-        console.log("TOOD: jump to previous piece..."); //TODO testing
         if (lookingPieceNumber > 1) {
             setLookingPieceNumber(lookingPieceNumber-1);
             //TODO change *all* form content here in display...
@@ -252,17 +251,18 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber-2]["clkb_arr"]);
 
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
-        } else {
-            setLookingPieceNumber(1);
-            assignPreviewIndex(0); // TODO note : number = index+1, index = num-1
+        } 
+        // else {
+          
+        //     setLookingPieceNumber(1);
+        //     assignPreviewIndex(0); // TODO note : number = index+1, index = num-1
 
-            setStndButtonDataTable(pieceAllDataLocal[0]["stnd_btn_arr"]);
-            setStndButtonDataTable(pieceAllDataLocal[0]["clkb_arr"]);
-        }
+        //     setStndButtonDataTable(pieceAllDataLocal[0]["stnd_btn_arr"]);
+        //     setStndButtonDataTable(pieceAllDataLocal[0]["clkb_arr"]);
+        // }
     }
 
     function jumpToNextpiece() {
-        console.log("TOOD: jump to next piece..."); //TODO testing
         if (lookingPieceNumber < pieceAllDataLocal.length) {
             setLookingPieceNumber(lookingPieceNumber+1);
             //TODO change *all* form content here in display...
@@ -272,13 +272,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
             setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
             setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["clkb_arr"]);
-        } else {
-            setLookingPieceNumber(pieceAllDataLocal.length);
-            assignPreviewIndex(pieceAllDataLocal.length-1); // TODO note : number = index+1, index = num-1
+        } 
+        
+        // else {
+        //     setLookingPieceNumber(pieceAllDataLocal.length);
+        //     assignPreviewIndex(pieceAllDataLocal.length-1); // TODO note : number = index+1, index = num-1
 
-            setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["stnd_btn_arr"]);
-            setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["clkb_arr"]);
-        }
+        //     setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["stnd_btn_arr"]);
+        //     setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["clkb_arr"]);
+        // }
     }
 
 
@@ -1415,14 +1417,14 @@ console.log(event.target.value); //TODO test
 
         <br></br>
         <br></br>
-        <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
-        <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
+        <button onClick={()=>{jumpToPrevPiece()}} className="pairGroup"> ← </button>
+        <button onClick={()=>{jumpToNextpiece()}} className="pairGroup"> → </button>
 
         <br></br>
         <br></br>
         <div className="buttonRight">
-            <button onClick={collapseAllOptions}> Collapse All </button>
-            <button onClick={expandAllOptions}> Expand All </button>
+            <button onClick={()=>{collapseAllOptions()}}> Collapse All </button>
+            <button onClick={()=>{expandAllOptions()}}> Expand All </button>
         </div>
   </div>
 
