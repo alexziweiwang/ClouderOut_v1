@@ -7,7 +7,7 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow({getCurrentPiece, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function PreviewWindow({getCurrentPiece, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
@@ -163,9 +163,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       return directNextPieceBool;
     }
 
-    function triggerNextPiece() {
+    function triggerNextPieceFunc() {
       //TODO1 make piece to the next one
-
+      triggerToDirectNext();
     }
  
     return (
@@ -189,7 +189,15 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   `url(${bgpSource})` 
                     : "",
                 "background-size": `${screenWidth}px ${screenHeight}px`,
-                "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}>
+                "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
+                
+                  onClick={()=>{
+                    if (directNextPieceBool) {
+                      triggerNextPieceFunc();
+                    }
+                    
+                  }}
+                >
 
 
                   <div> 
@@ -203,7 +211,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                             }}
                               src={visualMap[charaPicCurr2[0]]}
                               
-                              alt="currently character-picture that's being added" 
+                              alt="currently character-picture that's being added"
                             />
                     }
 
@@ -234,7 +242,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 getAllPieceContent={passInAllPieceDataContent}
                 getCurrentPieceNum={passInCurrentPieceNum}
                 getIsDirectNextPiece={passInDirectNextPieceBool}
-                triggerNextPiece={triggerNextPiece}
+                triggerNextPiece={triggerNextPieceFunc}
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
               />}
@@ -244,7 +252,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
-                  triggerNextPiece={triggerNextPiece}
+                  triggerNextPiece={triggerNextPieceFunc}
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}

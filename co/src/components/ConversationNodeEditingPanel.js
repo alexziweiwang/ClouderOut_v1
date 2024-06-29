@@ -368,6 +368,12 @@ export default function ConversationNodeEditingPanel() {
     
     }
 
+
+    function triggerToDirectNextFunc() {
+        //from preview window: make pieceNum to be the next for PieceSetter and PieceManager...
+
+    }
+
     return (
 
         <div>
@@ -463,6 +469,7 @@ export default function ConversationNodeEditingPanel() {
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
                     getScreenSize={passInScreenSize}
+                    triggerToDirectNext={triggerToDirectNextFunc}
                 />}
             {isDisplayGameContentPreview === false && 
                 <GameUIOuterPreviewWindow 
