@@ -7,18 +7,17 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
-    const [menuType, setMenuType] = useState("notStoryCore");
-    
-
     useEffect(() => {
-        let tempType = getMenuType();
-        setMenuType(tempType);
-        
+    
         let screenSizePair = getScreenSize();
         setScreenWidth(screenSizePair[0]);
         setScreenHeight(screenSizePair[1]);
-
     });
+
+
+    function notUsing() {
+        return "";
+    }
 
     return(
     <div className="previewWindow">
@@ -35,7 +34,8 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                 getDefaultButtonUISettings={getDefaultButtonUISettings} 
                 getBackButtonUISettings={getBackButtonUISettings}
-                getScreenSize={getScreenSize}               
+                getScreenSize={getScreenSize}     
+                triggerNextPiece={notUsing}
             />
               
             <GameUI_1TextFramePreview
@@ -45,6 +45,8 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 getCurrentPieceNum={getCurrentPieceNum}
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={false}
+                getIsDirectNextPiece={notUsing}
+                triggerNextPiece={notUsing}
             />
             
         </div>

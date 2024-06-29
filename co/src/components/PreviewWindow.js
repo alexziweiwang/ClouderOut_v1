@@ -244,6 +244,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
+                  triggerNextPiece={triggerNextPiece}
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}

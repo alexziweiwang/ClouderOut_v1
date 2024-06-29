@@ -519,7 +519,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }}
                     onMouseDown={
                         ()=>{
-                            document.getElementById("slSlotPageLeftControler").style.filter = "invert(70%)";
+                            document.getElementById("slSlotPageLeftControler").style.filter = "brightness(130%)";
                         }
                     }
                     onMouseUp={
@@ -548,7 +548,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     }}
                     onMouseDown={
                         ()=>{
-                            document.getElementById("slSlotPageRightControler").style.filter = "invert(70%)";
+                            document.getElementById("slSlotPageRightControler").style.filter = "brightness(130%)";
                         }
                     }
                     onMouseUp={

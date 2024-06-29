@@ -170,7 +170,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
 
             onMouseDown={
                 ()=>{
-                    document.getElementById("backButtonDivPreview").style.filter = "invert(70%)";
+                    document.getElementById("backButtonDivPreview").style.filter = "brightness(130%)";
                 }
                 }
             onMouseUp={
