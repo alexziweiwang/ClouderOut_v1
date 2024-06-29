@@ -123,7 +123,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
         console.log("chara-pic-arr CHANGED!!!");  
 
         setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
-    
       }
 
     }
@@ -145,10 +144,35 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       if (currentPieceNum < 0) {
         return;
       }
-      if (allPieceData[currentPieceNum]["bgp_action"] === "switchToNewBgp" && allPieceData[currentPieceNum]["bgp_source_varname"] !== "") {
-        setBgpSource(visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]); //TODO1
+      if (allPieceData[currentPieceNum]["bgp_action"] === "switchToNewBgp") {
+        if (allPieceData[currentPieceNum]["bgp_source_varname"] !== "") {
+          setBgpSource(visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]);
+        } else {
+          setBgpSource("");
+        }
+      
+      } else if (allPieceData[currentPieceNum]["bgp_action"] === "maintainBgp") {
+        //TODO1 fetch nearest bgp-assignment, check with current bgpSource
+        let bgpSourceNameTemp = fetchNearestBgpName(currentPieceNum);
+        if (bgpSourceNameTemp === "") {
+          setBgpSource("");
+        } else {
+          if (bgpSource !== visualMap[bgpSourceNameTemp]) {
+            setBgpSource(visualMap[bgpSourceNameTemp]);
+          }
+        }
       }
     }    
+
+    function fetchNearestBgpName(currNum) {
+      let i = currNum-1;
+      for(; i >= 0; i--) {
+        if (allPieceData[i]["bgp_action"] === "switchToNewBgp") {
+          return allPieceData[i]["bgp_source_varname"];  
+        }
+      }
+      return "";
+    }
 
     function passInAllPieceDataContent() {
       return allPieceData;
