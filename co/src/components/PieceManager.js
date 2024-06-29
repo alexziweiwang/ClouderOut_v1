@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUISetter from './GameUISetter';
 
-export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData}) {
+export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum}) {
     const screenWidth = 800;
     const screenHeight =450;
     let name = "/piecemanager";
@@ -21,6 +21,13 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             console.log("piece manager: allpiece now is = ", allPiece);//TODO test
             setPieceDataLocal(allPiece);
             setFirstTimeEnter(false);
+        }
+
+        let isActionOnSetter = fetchClickedIsOnSetter();
+        if (isActionOnSetter === false) {
+            //fetch action from preview-screen
+            //TODO1: update viewing index/num
+            let receivedPieceIndex = getCurrentPieceNum();
         }
     });
 
@@ -128,7 +135,11 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     }
 
     return (
-        <div className="pieceManager">
+        <div className="pieceManager" 
+            onClick={()=>{
+                setIsClickedOnSetters(true);
+            }}
+        >
             <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
             <br></br><br></br><br></br>
             {isManage === false && <button onClick={()=>{setIsManage(!isManage);}}>

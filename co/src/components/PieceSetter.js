@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager}) {
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -122,6 +122,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         }
 
         setCharPicDataTable(currentPieceDetail["chp_arr"]);
+
+        let isActionOnSetter = fetchClickedIsOnSetter();
+        if (isActionOnSetter === false) {
+            //fetch action from preview-screen
+            //TODO1: update viewing index/num
+            let receivedPieceNum = getCurrentPieceNum();
+            
+        }
 
         //TDOO1 current: gameDataList, future: fetch updated game-data inside this component?
     });
@@ -476,7 +484,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
   return (
       
-    <div>
+    <div onClick={()=>{
+        setIsClickedOnSetters(true);
+    }}>
 
     <div className="pieceSetterArea userChoice">
         <button onClick={()=>{backToList();}}>← List</button><br></br>

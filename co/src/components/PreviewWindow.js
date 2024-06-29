@@ -7,7 +7,7 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow({getCurrentPiece, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext}) {
+export default function PreviewWindow({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters, fetchClickedIsOnSetter}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
@@ -76,6 +76,12 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
           setDirectNextPieceBool(false);
       } else {
           setDirectNextPieceBool(true);
+      }
+
+      let isActionOnSetter = fetchClickedIsOnSetter();
+      if (isActionOnSetter === true) {
+          //fetch action from setting-screens
+          //TODO: update viewing
       }
 
 
@@ -172,7 +178,11 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
     
         
-        <div className="previewWindow">       
+        <div className="previewWindow"  
+          onClick={()=>{
+            setIsClickedOnSetters(false);
+          }}
+        >       
 
             <div className="previewArea" 
               style={{"position": "relative", 

@@ -25,6 +25,8 @@ export default function ConversationNodeEditingPanel() {
     }
     // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     
+    const [isActionOnSetter, setIsActionOnSetter] = useState(true);
+
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
@@ -372,6 +374,10 @@ export default function ConversationNodeEditingPanel() {
         }
     }
 
+    function passInUserClickSideIsOnSetter() {
+        return isActionOnSetter;
+    }
+
     return (
 
         <div>
@@ -426,6 +432,9 @@ export default function ConversationNodeEditingPanel() {
                             gameDataList={gameData} 
                             openRm={handleResourceManagerOpen}
                             openGameDataManager={handleGameDataManagerOpen}
+                            setIsClickedOnSetters={setIsActionOnSetter}
+                            fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
+                            getCurrentPieceNum={passInCurrentPieceNum}
                         />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
@@ -437,7 +446,6 @@ export default function ConversationNodeEditingPanel() {
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
-                     
                     />}
                 </div>
             }
@@ -450,7 +458,11 @@ export default function ConversationNodeEditingPanel() {
                             assignPieceNum={getSelectedPiece} 
                             assignPreviewIndex={getUpdatePreviewingIndex} 
                             updatePieceData={changePieceData} 
-                            getAllPieceData={fetchAllPieceData}/>}   
+                            getAllPieceData={fetchAllPieceData}
+                            setIsClickedOnSetters={setIsActionOnSetter}
+                            fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
+                            getCurrentPieceNum={passInCurrentPieceNum}
+                        />}   
                     {gameUISetterOpen === true && 
                         <GameUISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
@@ -472,7 +484,6 @@ export default function ConversationNodeEditingPanel() {
                 <PreviewWindow 
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
-                    getCurrentPiece={passInCurrentPieceObj} 
                     getAllPieceContent={passInAllPieceDataContent}
                     getCurrentPieceNum={passInCurrentPieceNum}
                     getTextFrameUISettings={passInTextFrameUISettings} 
@@ -481,6 +492,8 @@ export default function ConversationNodeEditingPanel() {
                     getBackButtonUISettings={passInBackButtonUISettings}
                     getScreenSize={passInScreenSize}
                     triggerToDirectNext={triggerToDirectNextFunc}
+                    setIsClickedOnSetters={setIsActionOnSetter}
+                    fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                 />}
             {isDisplayGameContentPreview === false && 
                 <GameUIOuterPreviewWindow 
