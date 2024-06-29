@@ -158,6 +158,15 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     function passInCurrentPieceNum() {
       return currentPieceNum;
     }
+
+    function passInDirectNextPieceBool() {
+      return directNextPieceBool;
+    }
+
+    function triggerNextPiece() {
+      //TODO1 make piece to the next one
+
+    }
  
     return (
 
@@ -174,7 +183,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
 
 
-              <div style={{
+              {<div style={{
                 "background-color": "#000000",
                 "background-image": (currentPieceNum >= 0 && bgpSource !== "") ? 
                   `url(${bgpSource})` 
@@ -216,7 +225,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                     })}
                   </div>
 
-              </div>
+              </div>}
               
               {(currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
               <GameUI_1TextFramePreview
@@ -224,6 +233,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={passInAllPieceDataContent}
                 getCurrentPieceNum={passInCurrentPieceNum}
+                getIsDirectNextPiece={passInDirectNextPieceBool}
+                triggerNextPiece={triggerNextPiece}
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
               />}

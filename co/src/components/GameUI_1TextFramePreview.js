@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView}) {
+export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
@@ -9,6 +9,8 @@ export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, 
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
+
+    const [isDirectNext, setIsDirectNext] = useState(true);
 
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
@@ -24,36 +26,46 @@ export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, 
 
         let txtFrameUISettings = getTextFrameUISettings();
         setTxtFrameUISettings(txtFrameUISettings);
+
+        let tempDirectNext = getIsDirectNextPiece();
+        setIsDirectNext(tempDirectNext);
     });
 
-    return (<div style={txtFrameUISettings["isShape"] === true ? {
-        "background": txtFrameUISettings["bgColor"],
+    return (<div 
+        style={txtFrameUISettings["isShape"] === true ? {
+                "background": txtFrameUISettings["bgColor"],
 
-        "width": `${txtFrameUISettings["width"]}px`,
-        "height": `${txtFrameUISettings["height"]}px`,
-        "position": "absolute",
-        "top": `${txtFrameUISettings["positionY"]}px`,
-        "left": `${txtFrameUISettings["positionX"]}px`,  
-        "color": txtFrameUISettings["textColor"],
-        "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
-        "opacity": txtFrameUISettings["transparency"],
-        "font-size": `${txtFrameUISettings["textSize"]}px`,    
-        "user-select": "none",
-    } : {
-        "background-image": txtFrameUISettings["picUrl"] === "" ? "" : `url('${txtFrameUISettings["picUrl"]}')`,       //TODO improve later
-        "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
-        
-        "width": `${txtFrameUISettings["width"]}px`,
-        "height": `${txtFrameUISettings["height"]}px`,
-        "position": "absolute",
-        "top": `${txtFrameUISettings["positionY"]}px`,
-        "left": `${txtFrameUISettings["positionX"]}px`,
-        "color": txtFrameUISettings["textColor"],
-        "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
-        "opacity": txtFrameUISettings["transparency"],
-        "font-size": `${txtFrameUISettings["textSize"]}px`, 
-        "user-select": "none", 
-    }}>
+                "width": `${txtFrameUISettings["width"]}px`,
+                "height": `${txtFrameUISettings["height"]}px`,
+                "position": "absolute",
+                "top": `${txtFrameUISettings["positionY"]}px`,
+                "left": `${txtFrameUISettings["positionX"]}px`,  
+                "color": txtFrameUISettings["textColor"],
+                "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
+                "opacity": txtFrameUISettings["transparency"],
+                "font-size": `${txtFrameUISettings["textSize"]}px`,    
+                "user-select": "none",
+            } : {
+                "background-image": txtFrameUISettings["picUrl"] === "" ? "" : `url('${txtFrameUISettings["picUrl"]}')`,       //TODO improve later
+                "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
+                
+                "width": `${txtFrameUISettings["width"]}px`,
+                "height": `${txtFrameUISettings["height"]}px`,
+                "position": "absolute",
+                "top": `${txtFrameUISettings["positionY"]}px`,
+                "left": `${txtFrameUISettings["positionX"]}px`,
+                "color": txtFrameUISettings["textColor"],
+                "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
+                "opacity": txtFrameUISettings["transparency"],
+                "font-size": `${txtFrameUISettings["textSize"]}px`, 
+                "user-select": "none", 
+            }}
+            onClick={()=>{
+                if (isDirectNext === true) {
+                    triggerNextPiece();
+                }
+            }}
+        >
         
         <div style={{
             "position": "relative",

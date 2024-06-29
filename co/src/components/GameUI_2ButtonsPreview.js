@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize}) {
+export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerNextPiece}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
@@ -11,7 +11,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
     const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
 
     const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
-    
+
     const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] 
         : (allPieceData[currentPieceNum]["stnd_btn_arr"] !== undefined ? allPieceData[currentPieceNum]["stnd_btn_arr"] : []);
 
@@ -108,11 +108,11 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
             onMouseUp={
                 ()=>{
                     document.getElementById(currId).style.filter = "brightness(100%)";
+                    triggerNextPiece();
                 }
             }
             
             >
-            {/* {defaultButtonTextSampleArr[index]} */}
             {item["buttonText"]}
             </div>);
         }                
