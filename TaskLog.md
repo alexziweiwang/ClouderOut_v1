@@ -275,3 +275,6 @@
 - 2024-Jun-19: Consider and design navigation-node data structure content
 
 - 2024-Jun-21: Consider and design improvement of piece-setting bgp switching
+
+
+- 2024-Jul-01: Consider and design piece-content-typing "first-tap" and "second-tap" mechanism on conversational-game-node
