@@ -82,8 +82,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       
       let isForward = (currPieceNumTemp > currentPieceNum);
       updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
-      updateBgmSource(isForward);
-      updateBgpSource(isForward);
+      updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
+      updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
       
 
       let screenSizePair = getScreenSize();
@@ -115,16 +115,24 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
     });
 
-    function updateBgmSource(isForward) {
+    function updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward) {
       if (currentPieceNum < 0) {
         return;
       }
-      if (allPieceData[currentPieceNum]["bgm_action"] === "startNewBgm") {
-        if (allPieceData[currentPieceNum]["bgm_source_varname"] !== "") {
-          setBgmSource(audioMap[allPieceData[currentPieceNum]["bgm_source_varname"]]);
+      if (allPieceContentTemp[currentPieceNum]["bgm_action"] === "startNewBgm") {
+        if (allPieceContentTemp[currentPieceNum]["bgm_source_varname"] !== "") {
+          setBgmSource(audioMap[allPieceContentTemp[currentPieceNum]["bgm_source_varname"]]);
         }
-      } else if (allPieceData[currentPieceNum]["bgm_action"] === "stopBgm") {
+      } else if (allPieceContentTemp[currentPieceNum]["bgm_action"] === "stopBgm") {
         setBgmSource("");
+      } else if (!isForward && allPieceContentTemp[currentPieceNum]["bgm_action" === "maintainBgm"]) {
+        let bgmNameTemp = findNearestBgmName(currPieceNumTemp);
+        if (bgmNameTemp === "") {
+          setBgmSource("");
+        } else {
+          setBgmSource(audioMap[bgmNameTemp]);
+        }
+
       }
     }
 
@@ -146,19 +154,19 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     }
 
 
-    function updateBgpSource(isForward) {
-      if (currentPieceNum < 0) {
+    function updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward) {
+      if (currPieceNumTemp < 0) {
         return;
       }
-      if (allPieceData[currentPieceNum]["bgp_action"] === "switchToNewBgp") {
-        if (allPieceData[currentPieceNum]["bgp_source_varname"] !== "") {
-          setBgpSource(visualMap[allPieceData[currentPieceNum]["bgp_source_varname"]]);
+      if (allPieceContentTemp[currPieceNumTemp]["bgp_action"] === "switchToNewBgp") {
+        if (allPieceContentTemp[currPieceNumTemp]["bgp_source_varname"] !== "") {
+          setBgpSource(visualMap[allPieceContentTemp[currPieceNumTemp]["bgp_source_varname"]]);
         } else {
           setBgpSource("");
         }
       
-      } else if (!isForward && allPieceData[currentPieceNum]["bgp_action"] === "maintainBgp") {
-        let bgpSourceNameTemp = findNearestBgpName(currentPieceNum);
+      } else if (!isForward && allPieceContentTemp[currPieceNumTemp]["bgp_action"] === "maintainBgp") {
+        let bgpSourceNameTemp = findNearestBgpName(currPieceNumTemp);
         if (bgpSourceNameTemp === "") {
           setBgpSource("");
         } else {
@@ -186,6 +194,16 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
           return allPieceData[i]["chp_arr"];  
         }
       }
+    }
+
+    function findNearestBgmName(currNum) {
+      let i = currNum-1;
+      for(; i >= 0; i--) {
+        if (allPieceData[i]["bgm_action"] === "startNewBgm") {
+          return allPieceData[i]["bgm_source_varname"];  
+        }
+      }
+      return "";
     }
 
 
