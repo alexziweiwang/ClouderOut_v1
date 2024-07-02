@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
 export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
+    const typingSpeed = 100; //TODO testing
+
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
@@ -31,9 +33,7 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
         setIsDirectNext(tempDirectNext);
     });
 
-    function passInWordContent() {
-        return allPieceData[currentPieceNum].content;
-    }
+
 
     return (<div 
         style={txtFrameUISettings["isShape"] === true ? {
@@ -65,6 +65,7 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
                 "user-select": "none", 
             }}
             onClick={()=>{
+                //TODO1 add "firstTap" for all-content showing on one piece
                 if (isDirectNext === true) {
                     triggerNextPiece();
                 }
@@ -97,10 +98,14 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
                     "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
-                  
                 }}>
-                  
-                        <ConvTextContentViewer wordContent={allPieceData[currentPieceNum].content} updateWordContent={passInWordContent}/>
+                        <ConvTextContentViewer 
+                            initialAllPieceData={initialAllPieceData}
+                            initialPieceNum={currentPieceNum}
+                            getCurrentPieceNum={getCurrentPieceNum}
+                            getAllPieceContent={getAllPieceContent}
+                            displaySpeed={typingSpeed}
+                        />
                 </div>
 
             </div>}

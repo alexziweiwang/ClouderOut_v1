@@ -221,7 +221,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       return directNextPieceBool;
     }
 
-    function triggerNextPieceFunc() {
+    function triggerNextPiece() {
       //make piece to be the next one
       triggerToDirectNext();
     }
@@ -255,7 +255,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 
                   onClick={()=>{
                     if (directNextPieceBool === true) {
-                      triggerNextPieceFunc();
+                      //TODO1 add "firstTap" for all-content showing on one piece
+                      triggerNextPiece();
                     }
                   }}
                 >
@@ -303,7 +304,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 getAllPieceContent={passInAllPieceDataContent}
                 getCurrentPieceNum={passInCurrentPieceNum}
                 getIsDirectNextPiece={passInDirectNextPieceBool}
-                triggerNextPiece={triggerNextPieceFunc}
+                triggerNextPiece={triggerNextPiece}
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
               />}
@@ -313,7 +314,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
-                  triggerNextPiece={triggerNextPieceFunc}
+                  triggerNextPiece={triggerNextPiece}
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}

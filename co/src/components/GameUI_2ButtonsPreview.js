@@ -110,6 +110,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
                     document.getElementById(currId).style.filter = "brightness(100%)";
 
                     //TODO1 important: update game-data!!
+                //TODO1 add "firstTap" for all-content showing on one piece
 
                     triggerNextPiece();
                 }

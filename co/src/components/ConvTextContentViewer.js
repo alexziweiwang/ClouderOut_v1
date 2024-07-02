@@ -1,37 +1,71 @@
 import { useState, useEffect } from 'react';
 
 
-export default function ConvTextContentViewer({wordContent, updateWordContent}) {
+export default function ConvTextContentViewer({initialAllPieceData, initialPieceNum, getCurrentPieceNum, getAllPieceContent, displaySpeed}) {
+  
+    const [currentPieceNum, setCurrentPieceNum] = useState(0);
+    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
     const [displayedContent, setDisplayedContent] = useState("");
     const [displayLength, setDisplayLength] = useState(0);
     const [continueRefreshing, setContinueRefreshing] = useState(true);
 
-    const [fullContent, setFullContent] = useState(wordContent);
+    const [fullContent, setFullContent] = useState(initialAllPieceData[initialPieceNum]);
 
     useEffect(() => {
-        let tempFullContent = updateWordContent();
-        if (tempFullContent !== fullContent) {
-            setFullContent(tempFullContent);
-            setContinueRefreshing(true);
-        }
- 
-        console.log("displaycontent?", displayedContent);
-        console.log("continue refreshing?", continueRefreshing=== true);
+        let displayedContentTemp = displayedContent;
+        let allPieceContentTemp = getAllPieceContent();
+        if (allPieceContentTemp !== allPieceData) {
+          setAllPieceData(allPieceContentTemp);
 
-        if (continueRefreshing === true) {
-            
-            if (displayedContent.length < wordContent.length) {
-                setDisplayedContent(wordContent.substring(0, displayLength));
-                setDisplayLength(displayLength+1);
-                let i = 0;
-                for(; i < 1000; i++) {
-                    console.log("...");
-                }
-            } else {
-                setContinueRefreshing(false);
-            }
+          setDisplayedContent("");
+          setDisplayLength(0);
+          displayedContentTemp = "";
         }
+        
+        let currPieceNumTemp = getCurrentPieceNum();
+        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+          setCurrentPieceNum(currPieceNumTemp);
+          setContinueRefreshing(true);
+
+          setDisplayedContent("");
+          setDisplayLength(0);
+          displayedContentTemp = "";
+        }
+
+
+        //in this round, use allPieceContentTemp and currPieceNumTemp
+
+        let wordContent = allPieceContentTemp[currPieceNumTemp]["content"];
+
+        if (wordContent !== fullContent) {
+            setFullContent(wordContent);
+            setContinueRefreshing(true);
+            setDisplayedContent("");
+            setDisplayLength(0);
+            displayedContentTemp = "";
+        }
+        console.log("expected wordContent? ", wordContent);
+        console.log("displayedContentTemp? [", displayedContentTemp , "]");
+        console.log("continue refreshing?", continueRefreshing === true);
+
+        if (continueRefreshing === true || wordContent !== fullContent) {
+            
+                if (displayedContentTemp.length < wordContent.length) {
+                
+                    const timeout = setTimeout(
+                        () => {
+                            setDisplayedContent(wordContent.substring(0, displayLength));
+                            setDisplayLength(displayLength+1);
+                        }, 
+                        displaySpeed);
+                    return () => clearTimeout(timeout);
+
+                } else {     
+                    setContinueRefreshing(false);
+                }
+
+            }
     });
 
 
