@@ -1359,15 +1359,26 @@ console.log(event.target.value); //TODO test
                     <label>Operation: </label>
                     <select value={currentPieceDetail["bgm_action"]}
                         onChange={(event)=>{
-                            setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value});
-                            let tempObj = currentPieceDetail;
-                            tempObj["bgm_action"] = event.target.value;
-                            updateToCaller(tempObj);
+                            if (event.target.value === "naturalStopBgm") {
+                                let tempObj = currentPieceDetail;
+                                tempObj["bgm_loop"] = false;
+                                tempObj["bgm_action"] = event.target.value;
+                                updateToCaller(tempObj);
 
+                                setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value, "bgm_loop": false});
+                                setIsLooping(false);
+                            } else {
+                                let tempObj = currentPieceDetail;
+                                tempObj["bgm_action"] = event.target.value;
+                                updateToCaller(tempObj);
+
+                                setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value});
+                            }
                     }}>
                         <option key="maintainBgm" value="maintainBgm">-- Select Operation (default: maintain)--</option>
                         <option key="startNewBgm" value="startNewBgm">start new</option>
-                        <option key="stopBgm" value="stopBgm">stop playing</option>
+                        <option key="stopBgm" value="stopBgm">stop playing (immediately)</option>
+                        <option key="naturalStop" value="naturalStopBgm">naturally stop looping (after finish)</option>
                     </select>
 
                     {currentPieceDetail["bgm_action"] === "startNewBgm" && <div className="indentOne">
@@ -1384,10 +1395,11 @@ console.log(event.target.value); //TODO test
                             })}
                         </select>
                         <button onClick={() => {openRm()}}>+ new variable linking</button>
-                        <br></br>
-                        <label>Loop:  </label>
-                        <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
-                        
+                            
+                        {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
+                            <label>Loop:  </label>
+                            <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
+                        </div>}
                         <br></br>
                         <label>Volume:         </label>
                         <label>TODO</label>
