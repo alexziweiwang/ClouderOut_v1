@@ -125,7 +125,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
         }
       } else if (allPieceContentTemp[currentPieceNum]["bgm_action"] === "stopBgm") {
         setBgmSource("");
-      } else if (!isForward && allPieceContentTemp[currentPieceNum]["bgm_action" === "maintainBgm"]) {
+      } else if (!isForward && 
+            (allPieceContentTemp[currentPieceNum]["bgm_action" === "maintainBgm"] 
+            || allPieceContentTemp[currentPieceNum]["bgm_action"] === "naturalStopBgm")) {
         let bgmNameTemp = findNearestBgmName(currPieceNumTemp);
         if (bgmNameTemp === "") {
           setBgmSource("");

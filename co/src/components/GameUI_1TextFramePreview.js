@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import ConvTextContentViewer from './ConvTextContentViewer';
 
-
-export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
+export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
@@ -30,6 +30,10 @@ export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, 
         let tempDirectNext = getIsDirectNextPiece();
         setIsDirectNext(tempDirectNext);
     });
+
+    function passInWordContent() {
+        return allPieceData[currentPieceNum].content;
+    }
 
     return (<div 
         style={txtFrameUISettings["isShape"] === true ? {
@@ -96,7 +100,7 @@ export default function GameUI_1TextFramePreview({dataObj, initialAllPieceData, 
                   
                 }}>
                   
-                        {allPieceData[currentPieceNum].content}
+                        <ConvTextContentViewer wordContent={allPieceData[currentPieceNum].content} updateWordContent={passInWordContent}/>
                 </div>
 
             </div>}
