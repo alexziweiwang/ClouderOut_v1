@@ -328,8 +328,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
             <br></br>
             {(bgmSource !== undefined) && 
                       // <audio src={bgmSource} controls/> //TODO actual game-playing
-                  <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
-
+                //  <audio src={bgmSource} autoplay="autoplay" controls/> //TODO previewing/testing
+                <audio src={bgmSource} autoplay="autoplay" controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO previewing/testing
+//allPieceData[currentPieceNum]["bgm_loop"]
             }
 
 

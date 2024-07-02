@@ -138,8 +138,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     });
 
     function changeLoopingSetting() {
-        setIsLooping(!isLooping); //TODO later update to cloud db: use "!isLooping" if inside this function, not waiting for re-rendering
-        console.log("looping? ", !isLooping); //TODO test
+        let tempObj = currentPieceDetail;
+        tempObj["bgm_loop"] = !isLooping;
+        updateToCaller(tempObj);
+
+        setIsLooping(!isLooping);
     }
 
     function handleTextContentEnter(event) {
@@ -1348,7 +1351,10 @@ console.log(event.target.value); //TODO test
 
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{
+                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});
+                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});
+                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
                     <br></br>
                     <label>Operation: </label>
                     <select value={currentPieceDetail["bgm_action"]}
@@ -1380,7 +1386,7 @@ console.log(event.target.value); //TODO test
                         <button onClick={() => {openRm()}}>+ new variable linking</button>
                         <br></br>
                         <label>Loop:  </label>
-                        <input type="checkbox" checked={isLooping} onChange={changeLoopingSetting}/>
+                        <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
                         
                         <br></br>
                         <label>Volume:         </label>
