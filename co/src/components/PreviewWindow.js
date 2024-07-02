@@ -115,19 +115,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
     });
 
-    function updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward) {
-      if (currPieceNumTemp < 0) {
-        return;
-      }
-      
-      //TODO1
-      if (allPieceContentTemp[currPieceNumTemp]["chp_action"] === "changeCharPicArr") { 
-        console.log("chara-pic-arr CHANGED!!!");  
-
-        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
-      }
-    }
-
     function updateBgmSource(isForward) {
       if (currentPieceNum < 0) {
         return;
@@ -141,6 +128,24 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       }
     }
 
+    function updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward) {
+      if (currPieceNumTemp < 0) {
+        return;
+      }
+      
+      if (allPieceContentTemp[currPieceNumTemp]["chp_action"] === "changeCharPicArr") { 
+        console.log("chara-pic-arr CHANGED!!!");  
+
+        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
+      } else if (!isForward && allPieceContentTemp[currPieceNumTemp]["chp_action"] === "maintainCharPicArr") {
+        //TODO1 fetch nearest chp-arr
+        let charArrTemp = findNearestCharaArr(currPieceNumTemp);
+        setCharaPicArr2(charArrTemp);
+
+      }
+    }
+
+
     function updateBgpSource(isForward) {
       if (currentPieceNum < 0) {
         return;
@@ -153,8 +158,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
         }
       
       } else if (!isForward && allPieceData[currentPieceNum]["bgp_action"] === "maintainBgp") {
-        //TODO1 fetch nearest bgp-assignment, check with current bgpSource
-        let bgpSourceNameTemp = fetchNearestBgpName(currentPieceNum);
+        let bgpSourceNameTemp = findNearestBgpName(currentPieceNum);
         if (bgpSourceNameTemp === "") {
           setBgpSource("");
         } else {
@@ -165,7 +169,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       }
     }    
 
-    function fetchNearestBgpName(currNum) {
+    function findNearestBgpName(currNum) {
       let i = currNum-1;
       for(; i >= 0; i--) {
         if (allPieceData[i]["bgp_action"] === "switchToNewBgp") {
@@ -174,6 +178,16 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       }
       return "";
     }
+
+    function findNearestCharaArr(currNum) {
+      let i = currNum-1;
+      for(; i >= 0; i--) {
+        if (allPieceData[i]["chp_action"] === "changeCharPicArr") {
+          return allPieceData[i]["chp_arr"];  
+        }
+      }
+    }
+
 
     function passInAllPieceDataContent() {
       return allPieceData;

@@ -252,6 +252,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
         } 
+
+
+
         // else {
           
         //     setLookingPieceNumber(1);
@@ -260,6 +263,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         //     setStndButtonDataTable(pieceAllDataLocal[0]["stnd_btn_arr"]);
         //     setStndButtonDataTable(pieceAllDataLocal[0]["clkb_arr"]);
         // }
+
+
     }
 
     function jumpToNextpiece() {
@@ -274,6 +279,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["clkb_arr"]);
         } 
         
+
+
         // else {
         //     setLookingPieceNumber(pieceAllDataLocal.length);
         //     assignPreviewIndex(pieceAllDataLocal.length-1); // TODO note : number = index+1, index = num-1
@@ -281,6 +288,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         //     setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["stnd_btn_arr"]);
         //     setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["clkb_arr"]);
         // }
+
     }
 
 
