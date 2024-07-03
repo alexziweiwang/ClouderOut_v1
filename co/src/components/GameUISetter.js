@@ -485,43 +485,102 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <div className="indentOne">
         <label>Auto Toggle:</label>
         <div className="indentOne">
-            <input type="radio" value={txtFrameObj["buttonAutoIsTextFont"]}
-                checked={txtFrameObj["buttonAutoIsTextFont"]} 
-                onChange={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": true});
-                }}></input><label
-                onClick={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": true});
-                }}
-                >Font Color: </label>
-            <br></br><input type="color" value={txtFrameObj["buttonAutoShade"]} onChange={(event)=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoShade": event.target.value});
-            }}></input>
-            <label> {txtFrameObj["buttonAutoShade"]}</label>
+            <label>Unclicked:</label>
+            <div className="indentOne">
+                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont0"]}
+                        checked={txtFrameObj["buttonAutoIsTextFont0"]} 
+                        onChange={()=>{
+                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": true});
+                        }}></input><label
+                        onClick={()=>{
+                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": true});
+                        }}
+                        >Font Color: </label>
+                    <br></br><input type="color" value={txtFrameObj["buttonAutoShade0"]} onChange={(event)=>{
+                                setTxtFrameObj({...txtFrameObj,  "buttonAutoShade0": event.target.value});
+                    }}></input>
+                    <label> {txtFrameObj["buttonAutoShade0"]}</label>
 
+                    <br></br>
+                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont0"]} checked={!txtFrameObj["buttonAutoIsTextFont0"]}
+                        onChange={()=>{
+                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": false});
+                        }}
+                    ></input><label
+                        onClick={()=>{
+                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": false});
+                        }}
+                    >Base Picture: </label>
+                    <select value={defaultButtonObj["buttonAutoPicName0"]} onChange={(event)=>{
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoPicName0": event.target.value});     
+                    }}>                    
+                            <option key="autoDefault0" value="">-- Select Resource --</option>
+                            {Object.keys(visualMap).map((currKey) => {
+                                    let keyName = "autoButton0" + currKey;
+                                    return (
+                                        <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                    );
+                            })}
+                        </select><button onClick={() => {openRm();}}>Manage Resource</button>
+                    <br></br>
+                    <label>Display Text:</label>
+                    <input></input>
+                    <button>Update</button>
+                    <br></br>
+            </div>
+
+            <label>Pressed:</label>
+            <div className="indentOne">
+                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont1"]}
+                        checked={txtFrameObj["buttonAutoIsTextFont1"]} 
+                        onChange={()=>{
+                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": true});
+                        }}></input><label
+                        onClick={()=>{
+                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": true});
+                        }}
+                        >Font Color: </label>
+                    <br></br><input type="color" value={txtFrameObj["buttonAutoShade1"]} onChange={(event)=>{
+                                setTxtFrameObj({...txtFrameObj,  "buttonAutoShade1": event.target.value});
+                    }}></input>
+                    <label> {txtFrameObj["buttonAutoShade1"]}</label>
+
+                    <br></br>
+                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont1"]} checked={!txtFrameObj["buttonAutoIsTextFont1"]}
+                        onChange={()=>{
+                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": false});
+                        }}
+                    ></input><label
+                        onClick={()=>{
+                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": false});
+                        }}
+                    >Base Picture: </label>
+                    <select value={defaultButtonObj["buttonAutoPicName1"]} onChange={(event)=>{
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoPicName1": event.target.value});     
+                    }}>                    
+                            <option key="autoDefault1" value="">-- Select Resource --</option>
+                            {Object.keys(visualMap).map((currKey) => {
+                                    let keyName = "autoButton1" + currKey;
+                                    return (
+                                        <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                    );
+                            })}
+                        </select><button onClick={() => {openRm();}}>Manage Resource</button>
+                    <br></br>
+                    <label>Display Text:</label>
+                    <input></input>
+                    <button>Update</button>
+                    <br></br>
+            </div>
+
+          
+            <label>Font:</label>
+            <select></select>
             <br></br>
-            <input type="radio" value={txtFrameObj["buttonAutoIsTextFont"]} checked={!txtFrameObj["buttonAutoIsTextFont"]}
-                onChange={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": false});
-                }}
-            ></input><label
-                onClick={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": false});
-                }}
-            >Base Picture: </label>
-            <select value={defaultButtonObj["buttonAutoPicName"]} onChange={(event)=>{
-                setTxtFrameObj({...txtFrameObj,  "buttonAutoPicName": event.target.value});     
-            }}>                    
-                    <option key="autoDefault" value="">-- Select Resource --</option>
-                    {Object.keys(visualMap).map((currKey) => {
-                            let keyName = "autoButton" + currKey;
-                            return (
-                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
-                            );
-                    })}
-                </select><button onClick={() => {openRm();}}>Manage Resource</button>
+            <input type="checkbox"></input><em>Italic</em>
         </div>
 
+        <br></br><br></br>
         <label>Log Page Button:</label>
         <div className="indentOne">
         <input type="radio" value={txtFrameObj["buttonLogIsTextFont"]}
@@ -559,9 +618,18 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>Manage Resource</button>
+            <br></br>
+            <label>Display Text:</label>
+            <input></input>
+            <button>Update</button>
+            <br></br>
+            <label>Font:</label>
+            <select></select>
+            <br></br>
+            <input type="checkbox"></input><em>Italic</em>
 
         </div>
-                    
+        <br></br><br></br>
         <label>Default display Speed:</label>
         <div className="indentOne">
             <select value={txtFrameObj["textDisplaySpeed"]} 
