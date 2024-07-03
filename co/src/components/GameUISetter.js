@@ -524,12 +524,28 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
         <label>Log Page Button:</label>
         <div className="indentOne">
-            <input type="radio"></input><label>Rectangle: </label>
+        <input type="radio" value={txtFrameObj["buttonLogIsShape"]}
+                checked={txtFrameObj["buttonLogIsShape"]} 
+                onChange={()=>{
+                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": true});
+                }}></input><label
+                onClick={()=>{
+                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": true});
+                }}
+                >Rectangle: </label>
             <br></br><input type="color"></input>
             <label></label>
 
             <br></br>
-            <input type="radio"></input><label>Base Picture: </label>
+            <input type="radio" value={txtFrameObj["buttonLogIsShape"]} checked={!txtFrameObj["buttonLogIsShape"]}
+                onChange={()=>{
+                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": false});
+                }}
+            ></input><label
+                onClick={()=>{
+                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": false});
+                }}
+            >Base Picture: </label>
             <select value={defaultButtonObj[ "buttonLogPicName"]} onChange={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,   "buttonLogPicName": event.target.value});     
             }}>                    

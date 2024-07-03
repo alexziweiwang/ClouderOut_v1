@@ -99,10 +99,13 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-w": 580,
     "TextContentArea-h": 180,
     "textDisplaySpeed": 3,
-    
+
     "buttonAutoIsShape": false,
     "buttonAutoShade": "",
     "buttonAutoPicName": "",
+
+    "buttonLogIsShape": false,
+    "buttonLogShade": "",
     "buttonLogPicName": "",
 
     "picPair": "" //TODO impl

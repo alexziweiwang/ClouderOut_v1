@@ -132,6 +132,20 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
             </div>}
 
+            <div className="parallelFrame">
+                <div
+                    style={{
+                        "margin-right": "50px",
+                        "background": txtFrameUISettings["buttonAutoIsShape"] ? txtFrameUISettings["buttonAutoShade"] : "",
+                        "background-image": !txtFrameUISettings["buttonAutoIsShape"] ? txtFrameUISettings["buttonAutoPicName"] : "",  
+                        
+                    }}
+                >Auto</div>
+
+                <div>Log</div>
+            </div>
+
+
         </div>
     
     </div>);
