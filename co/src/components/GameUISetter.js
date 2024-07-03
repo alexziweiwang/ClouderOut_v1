@@ -485,12 +485,22 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <div className="indentOne">
         <label>Auto Button:</label>
         <div className="indentOne">
-            <input type="radio"></input><label>Rectangle: </label>
-            <br></br><input type="color"></input>
-            <label></label>
+            <input type="radio" value={txtFrameObj["buttonAutoIsShape"]}
+                checked={txtFrameObj["buttonAutoIsShape"]} 
+                onChange={()=>{
+                        setDefaultButtonObj({...defaultButtonObj,  "buttonAutoIsShape": true});
+                }}></input><label>Rectangle: </label>
+            <br></br><input type="color" value={txtFrameObj["buttonAutoShade"]} onChange={(event)=>{
+                        //TODO2
+            }}></input>
+            <label> {txtFrameObj["buttonAutoShade"]}</label>
 
             <br></br>
-            <input type="radio"></input><label>Base Picture: </label>
+            <input type="radio" value={txtFrameObj["buttonAutoIsShape"]} checked={!txtFrameObj["buttonAutoIsShape"]}
+                onChange={()=>{
+                    setDefaultButtonObj({...defaultButtonObj,  "buttonAutoIsShape": false});
+                }}
+            ></input><label>Base Picture: </label>
             <select value={defaultButtonObj["buttonAutoPicName"]} onChange={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "buttonAutoPicName": event.target.value});     
             }}>                    
@@ -538,10 +548,6 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option key="textDisplaySpeed4" value="4">4</option>
                 <option key="textDisplaySpeed5" value="5">5</option>
             </select>
-            <button onClick={()=>{
-                console.log("preview speed..."); //TODO test
-                
-            }}>Preview Speed</button>
         </div>
      
 

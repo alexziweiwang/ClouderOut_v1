@@ -111,6 +111,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
                 }}>
+
+                    
                         {!isEditing && 
                         <ConvTextContentViewer 
                             initialAllPieceData={initialAllPieceData}
