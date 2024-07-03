@@ -98,6 +98,7 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-y": 10,
     "TextContentArea-w": 580,
     "TextContentArea-h": 180,
+    "textDisplaySpeed": 3,
 
     "picPair": "" //TODO impl
 

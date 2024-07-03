@@ -497,16 +497,16 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             
         <label>Display Speed:</label>
         <div className="indentOne">
-            <label>Default Speed:</label>
-            <input type="range"></input>
-            <br></br>
-            <input type="radio"></input><label>Rectangle: </label>
-            <br></br><input type="color"></input>
-            <label></label>
-
-            <br></br>
-            <input type="radio"></input><label>Base Picture: </label>
-            <select></select>
+            <select value={txtFrameObj["textDisplaySpeed"]} 
+            onChange={(event)=>{                
+                setTxtFrameObj({...txtFrameObj, "textDisplaySpeed": event.target.value});    
+            }}>
+                <option key="textDisplaySpeed1" value="1">1</option>
+                <option key="textDisplaySpeed2" value="2">2</option>
+                <option key="textDisplaySpeed3" value="3">3</option>
+                <option key="textDisplaySpeed4" value="4">4</option>
+                <option key="textDisplaySpeed5" value="5">5</option>
+            </select>
         </div>
      
         <label>Log Page Button:</label>

@@ -114,7 +114,6 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
                             displaySpeed={typingSpeedBase}  //TODO1 change in future
                         /> */}
                         {allPieceData[currentPieceNum].content}
-
                 </div>
 
             </div>}
