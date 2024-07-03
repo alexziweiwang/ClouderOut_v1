@@ -299,6 +299,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
               
               {(currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
               <GameUI_1TextFramePreview
+                isEditing={true}
                 dataObj={currentPiece} 
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={passInAllPieceDataContent}

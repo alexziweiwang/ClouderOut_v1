@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
-export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
-    const typingSpeedBase = 90; //TODO testing 20-120
+export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
+    const typingSpeedBase = -20; //TODO testing 20-120
+    //100 - speed 1
+    //70  - speed 2
+    //40  - speed 3
+    //10  - speed 4
+    //0   - spped 5
 
-    const [typingSpeedOption, setTypingSpeedOption] = useState(0); //TODO1 change in future
+    const [typingSpeedValue, setTypingSpeedValue] = useState(0); //TODO1 change in future
 
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({});
 
@@ -32,9 +37,11 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
         let txtFrameUISettingsTemp = getTextFrameUISettings();
         if (txtFrameUISettingsTemp !== txtFrameUISettings) {
             setTxtFrameUISettings(txtFrameUISettingsTemp);
-            setBgpUrl(txtFrameUISettingsTemp["picUrl"]);       
+            setBgpUrl(txtFrameUISettingsTemp["picUrl"]);  
+            let speedLevel = txtFrameUISettingsTemp["textDisplaySpeed"];
+            let speedValue = 100 - ((speedLevel-1) * 30);    
+            setTypingSpeedValue(speedValue);
         }
-
 
         let tempDirectNext = getIsDirectNextPiece();
         setIsDirectNext(tempDirectNext);
@@ -106,14 +113,18 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
                 }}>
-                        {/* <ConvTextContentViewer 
+                        {!isEditing && 
+                        <ConvTextContentViewer 
                             initialAllPieceData={initialAllPieceData}
                             initialPieceNum={currentPieceNum}
                             getCurrentPieceNum={getCurrentPieceNum}
                             getAllPieceContent={getAllPieceContent}
-                            displaySpeed={typingSpeedBase}  //TODO1 change in future
-                        /> */}
-                        {allPieceData[currentPieceNum].content}
+                            displaySpeed={typingSpeedValue}
+                        />}
+
+                        {isEditing && <>
+                            {allPieceData[currentPieceNum].content}
+                        </>}
                 </div>
 
             </div>}

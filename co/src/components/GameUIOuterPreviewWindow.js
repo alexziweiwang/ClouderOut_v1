@@ -39,6 +39,7 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
             />
               
             <GameUI_1TextFramePreview
+                isEditing={false}
                 dataObj={dataObj} 
                 initialAllPieceData={initialAllPieceData}
                 getAllPieceContent={getAllPieceContent}
