@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
 export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
-    const typingSpeedBase = 100; //TODO testing
+    const typingSpeedBase = 90; //TODO testing 20-120
 
     const [typingSpeedOption, setTypingSpeedOption] = useState(0); //TODO1 change in future
 
