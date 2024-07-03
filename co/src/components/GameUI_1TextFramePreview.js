@@ -136,13 +136,18 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 <div
                     style={{
                         "margin-right": "50px",
-                        "background": txtFrameUISettings["buttonAutoIsShape"] ? txtFrameUISettings["buttonAutoShade"] : "",
-                        "background-image": !txtFrameUISettings["buttonAutoIsShape"] ? txtFrameUISettings["buttonAutoPicName"] : "",  
-                        
+                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? txtFrameUISettings["buttonAutoShade"] : "",
+                        "background-image": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
                     }}
                 >Auto</div>
 
-                <div>Log</div>
+                <div
+                    style={{
+                        "margin-right": "50px",
+                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade"] : "",
+                        "background-image": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
+                    }}
+                >Log</div>
             </div>
 
 

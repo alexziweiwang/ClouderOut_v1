@@ -100,11 +100,11 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-h": 180,
     "textDisplaySpeed": 3,
 
-    "buttonAutoIsShape": false,
+    "buttonAutoIsTextFont": false,
     "buttonAutoShade": "",
     "buttonAutoPicName": "",
 
-    "buttonLogIsShape": false,
+    "buttonLogIsTextFont": false,
     "buttonLogShade": "",
     "buttonLogPicName": "",
 

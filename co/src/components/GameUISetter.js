@@ -485,28 +485,28 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <div className="indentOne">
         <label>Auto Toggle:</label>
         <div className="indentOne">
-            <input type="radio" value={txtFrameObj["buttonAutoIsShape"]}
-                checked={txtFrameObj["buttonAutoIsShape"]} 
+            <input type="radio" value={txtFrameObj["buttonAutoIsTextFont"]}
+                checked={txtFrameObj["buttonAutoIsTextFont"]} 
                 onChange={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": true});
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": true});
                 }}></input><label
                 onClick={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": true});
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": true});
                 }}
-                >Rectangle: </label>
+                >Font Color: </label>
             <br></br><input type="color" value={txtFrameObj["buttonAutoShade"]} onChange={(event)=>{
                         setTxtFrameObj({...txtFrameObj,  "buttonAutoShade": event.target.value});
             }}></input>
             <label> {txtFrameObj["buttonAutoShade"]}</label>
 
             <br></br>
-            <input type="radio" value={txtFrameObj["buttonAutoIsShape"]} checked={!txtFrameObj["buttonAutoIsShape"]}
+            <input type="radio" value={txtFrameObj["buttonAutoIsTextFont"]} checked={!txtFrameObj["buttonAutoIsTextFont"]}
                 onChange={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": false});
+                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": false});
                 }}
             ></input><label
                 onClick={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": false});
+                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont": false});
                 }}
             >Base Picture: </label>
             <select value={defaultButtonObj["buttonAutoPicName"]} onChange={(event)=>{
@@ -524,26 +524,28 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
         <label>Log Page Button:</label>
         <div className="indentOne">
-        <input type="radio" value={txtFrameObj["buttonLogIsShape"]}
-                checked={txtFrameObj["buttonLogIsShape"]} 
+        <input type="radio" value={txtFrameObj["buttonLogIsTextFont"]}
+                checked={txtFrameObj["buttonLogIsTextFont"]} 
                 onChange={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": true});
+                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": true});
                 }}></input><label
                 onClick={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": true});
+                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": true});
                 }}
-                >Rectangle: </label>
-            <br></br><input type="color"></input>
-            <label></label>
+                >Font Color: </label>
+            <br></br><input type="color" value={txtFrameObj["buttonLogShade"]} onChange={(event)=>{
+                        setTxtFrameObj({...txtFrameObj,  "buttonLogShade": event.target.value});
+            }}></input>
+            <label> {txtFrameObj["buttonLogShade"]}</label>
 
             <br></br>
-            <input type="radio" value={txtFrameObj["buttonLogIsShape"]} checked={!txtFrameObj["buttonLogIsShape"]}
+            <input type="radio" value={txtFrameObj["buttonLogIsTextFont"]} checked={!txtFrameObj["buttonLogIsTextFont"]}
                 onChange={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": false});
+                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": false});
                 }}
             ></input><label
                 onClick={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsShape": false});
+                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": false});
                 }}
             >Base Picture: </label>
             <select value={defaultButtonObj[ "buttonLogPicName"]} onChange={(event)=>{
