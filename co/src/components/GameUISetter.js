@@ -483,26 +483,34 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
     Text Options:<br></br>
     <div className="indentOne">
-        <label>Auto Button:</label>
+        <label>Auto Toggle:</label>
         <div className="indentOne">
             <input type="radio" value={txtFrameObj["buttonAutoIsShape"]}
                 checked={txtFrameObj["buttonAutoIsShape"]} 
                 onChange={()=>{
-                        setDefaultButtonObj({...defaultButtonObj,  "buttonAutoIsShape": true});
-                }}></input><label>Rectangle: </label>
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": true});
+                }}></input><label
+                onClick={()=>{
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": true});
+                }}
+                >Rectangle: </label>
             <br></br><input type="color" value={txtFrameObj["buttonAutoShade"]} onChange={(event)=>{
-                        //TODO2
+                        setTxtFrameObj({...txtFrameObj,  "buttonAutoShade": event.target.value});
             }}></input>
             <label> {txtFrameObj["buttonAutoShade"]}</label>
 
             <br></br>
             <input type="radio" value={txtFrameObj["buttonAutoIsShape"]} checked={!txtFrameObj["buttonAutoIsShape"]}
                 onChange={()=>{
-                    setDefaultButtonObj({...defaultButtonObj,  "buttonAutoIsShape": false});
+                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": false});
                 }}
-            ></input><label>Base Picture: </label>
+            ></input><label
+                onClick={()=>{
+                    setTxtFrameObj({...txtFrameObj,  "buttonAutoIsShape": false});
+                }}
+            >Base Picture: </label>
             <select value={defaultButtonObj["buttonAutoPicName"]} onChange={(event)=>{
-                setDefaultButtonObj({...defaultButtonObj,  "buttonAutoPicName": event.target.value});     
+                setTxtFrameObj({...txtFrameObj,  "buttonAutoPicName": event.target.value});     
             }}>                    
                     <option key="autoDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
