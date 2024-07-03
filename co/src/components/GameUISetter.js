@@ -482,7 +482,39 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br>
 
     Text Options:<br></br>
-    Auto & Fast & Log<br></br> ...TODO1
+    <div className="indentOne">
+        <label>Auto Button:</label>
+        <div className="indentOne">
+            <input type="radio"></input><label>Rectangle: </label>
+            <br></br><input type="color"></input>
+            <label></label>
+
+            <br></br>
+            <input type="radio"></input><label>Base Picture: </label>
+            <select></select>
+
+        </div>
+            
+        <label>Display Speed Adjustment:</label>
+        <div className="indentOne">
+            <input type="range"></input>
+            <label></label>
+        </div>
+     
+        <label>Log Page Button:</label>
+        <div className="indentOne">
+            <input type="radio"></input><label>Rectangle: </label>
+            <br></br><input type="color"></input>
+            <label></label>
+
+            <br></br>
+            <input type="radio"></input><label>Base Picture: </label>
+            <select></select>
+
+        </div>
+    </div>
+  
+   
 
     <br></br><button>Save</button>
 </div>
