@@ -15,6 +15,8 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
 
     const [isDirectNext, setIsDirectNext] = useState(true);
 
+    const [bgpUrl, setBgpUrl] = useState(txtFrameUISettings["picUrl"]);
+
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
         if (allPieceContentTemp !== allPieceData) {
@@ -27,8 +29,12 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
           setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
         }
 
-        let txtFrameUISettings = getTextFrameUISettings();
-        setTxtFrameUISettings(txtFrameUISettings);
+        let txtFrameUISettingsTemp = getTextFrameUISettings();
+        if (txtFrameUISettingsTemp !== txtFrameUISettings) {
+            setTxtFrameUISettings(txtFrameUISettingsTemp);
+            setBgpUrl(txtFrameUISettingsTemp["picUrl"]);       
+        }
+
 
         let tempDirectNext = getIsDirectNextPiece();
         setIsDirectNext(tempDirectNext);
@@ -51,7 +57,7 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
                 "font-size": `${txtFrameUISettings["textSize"]}px`,    
                 "user-select": "none",
             } : {
-                "background-image": txtFrameUISettings["picUrl"] === "" ? "" : `url('${txtFrameUISettings["picUrl"]}')`,       //TODO improve later
+                "background-image": bgpUrl === "" ? "" : `url('${bgpUrl}')`,       //TODO improve later
                 "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
                 
                 "width": `${txtFrameUISettings["width"]}px`,
@@ -100,13 +106,15 @@ export default function GameUI_1TextFramePreview({initialAllPieceData, getAllPie
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
                 }}>
-                        <ConvTextContentViewer 
+                        {/* <ConvTextContentViewer 
                             initialAllPieceData={initialAllPieceData}
                             initialPieceNum={currentPieceNum}
                             getCurrentPieceNum={getCurrentPieceNum}
                             getAllPieceContent={getAllPieceContent}
                             displaySpeed={typingSpeedBase}  //TODO1 change in future
-                        />
+                        /> */}
+                        {allPieceData[currentPieceNum].content}
+
                 </div>
 
             </div>}
