@@ -480,7 +480,6 @@ export default function ConversationNodeEditingPanel() {
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
-                     
                         />}
                 
                 </div>

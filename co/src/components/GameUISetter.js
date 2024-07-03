@@ -526,7 +526,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
         </div>
                     
-        <label>Display Speed:</label>
+        <label>Default display Speed:</label>
         <div className="indentOne">
             <select value={txtFrameObj["textDisplaySpeed"]} 
             onChange={(event)=>{                
@@ -538,6 +538,10 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option key="textDisplaySpeed4" value="4">4</option>
                 <option key="textDisplaySpeed5" value="5">5</option>
             </select>
+            <button onClick={()=>{
+                console.log("preview speed..."); //TODO test
+                
+            }}>Preview Speed</button>
         </div>
      
 

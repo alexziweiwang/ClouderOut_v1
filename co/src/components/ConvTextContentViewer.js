@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 
-export default function ConvTextContentViewer({initialAllPieceData, initialPieceNum, getCurrentPieceNum, getAllPieceContent, displaySpeed}) {
+export default function ConvTextContentViewer({initialAllPieceData, initialPieceNum, getCurrentPieceNum, getAllPieceContent, getDisplaySpeed, displaySpeed}) {
   
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
@@ -11,6 +11,8 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
     const [continueRefreshing, setContinueRefreshing] = useState(true);
 
     const [fullContent, setFullContent] = useState(initialAllPieceData[initialPieceNum]);
+
+    const [currentSpeed, setCurrentSpeed] = useState(displaySpeed);
 
     useEffect(() => {
         let displayedContentTemp = displayedContent;
@@ -33,6 +35,16 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
           displayedContentTemp = "";
         }
 
+        let speedTemp = getDisplaySpeed();
+        if (speedTemp !== currentSpeed) {
+            setCurrentSpeed(speedTemp);
+         
+            setDisplayedContent("");
+            setDisplayLength(0);
+            displayedContentTemp = "";
+            setContinueRefreshing(true);
+        }
+
 
         //in this round, use allPieceContentTemp and currPieceNumTemp
 
@@ -45,9 +57,11 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
             setDisplayLength(0);
             displayedContentTemp = "";
         }
-        console.log("expected wordContent? ", wordContent);
-        console.log("displayedContentTemp? [", displayedContentTemp , "]");
-        console.log("continue refreshing?", continueRefreshing === true);
+
+        //TODO testing
+        // console.log("expected wordContent? ", wordContent);
+        // console.log("displayedContentTemp? [", displayedContentTemp , "]");
+        // console.log("continue refreshing?", continueRefreshing === true);
 
         if (continueRefreshing === true || wordContent !== fullContent) {
             
@@ -58,7 +72,7 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
                             setDisplayedContent(wordContent.substring(0, displayLength));
                             setDisplayLength(displayLength+1);
                         }, 
-                        displaySpeed);
+                        speedTemp);
                     return () => clearTimeout(timeout);
 
                 } else {     
