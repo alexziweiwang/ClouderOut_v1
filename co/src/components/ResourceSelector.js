@@ -92,6 +92,10 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
         //TODO: save changes onto cloud db
     }
 
+    function triggerRefresh() {
+        setFirstTimeEnter(true);
+    }
+
     return (
       <div className={modalStyleName}>
 
@@ -199,7 +203,13 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
 
                 <div className="rsrcListArea">
 
-                {isRmOpen && <ResourceManagingModalWindow isDisplay = {isRmOpen} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges}/>}
+                {isRmOpen && 
+                <ResourceManagingModalWindow 
+                    isDisplay = {isRmOpen} 
+                    handleRmCancel={handleResourceManagerCancel} 
+                    handleRmSaveChanges={handleResourceManagerSaveChanges}
+                    refresh={triggerRefresh}
+                    />}
                         
                 <button onClick={()=>{setIsRmOpen(!isRmOpen);setClickedFileUrl("");setClickedFileName("");setClickedFileType("");}}>
                     Resource Manager

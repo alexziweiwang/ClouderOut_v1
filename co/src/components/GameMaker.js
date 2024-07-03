@@ -264,6 +264,10 @@ export default function GameMaker() {
     return currPageName;
   }
 
+  function triggerRefresh() {
+    setFirstTimeEnter(true);
+  }
+
   return (
   <div>
     
@@ -314,6 +318,7 @@ export default function GameMaker() {
         isDisplay = {isDisplayRmBool} 
         handleRmCancel={handleResourceManagerCancel} 
         handleRmSaveChanges={handleResourceManagerSaveChanges}
+        refresh={triggerRefresh}
       />}
     
   </div>

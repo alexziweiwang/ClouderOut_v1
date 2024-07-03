@@ -378,6 +378,10 @@ export default function ConversationNodeEditingPanel() {
         return isActionOnSetter;
     }
 
+    function triggerRefresh() {
+        setFirstTimeEnter(true);
+    }
+
     return (
 
         <div>
@@ -510,7 +514,14 @@ export default function ConversationNodeEditingPanel() {
 
  
             </div>
-            {isDisplayRmBool && <ResourceManagingModalWindow isDisplay = {isDisplayRmBool} handleRmCancel={handleResourceManagerCancel} handleRmSaveChanges={handleResourceManagerSaveChanges} triggerRmUpdate={tempTrigerRmUpdate}/>}
+            {isDisplayRmBool && 
+                <ResourceManagingModalWindow 
+                    isDisplay = {isDisplayRmBool} 
+                    handleRmCancel={handleResourceManagerCancel} 
+                    handleRmSaveChanges={handleResourceManagerSaveChanges} 
+                    triggerRmUpdate={tempTrigerRmUpdate}
+                    refresh={triggerRefresh}
+                    />}
             </>}
 
             {displayGameDataWindow && <GameDataManager 

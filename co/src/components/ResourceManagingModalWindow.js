@@ -5,7 +5,7 @@ import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
 
-export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate}) {
+export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh}) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
     let modalStyleName = "modalBackboard";
@@ -342,6 +342,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                     alert("Please save to cloud first.");
                 } else {
                     handleRmCancel(); 
+                    refresh();
                 }
             }}> Close </button>
 

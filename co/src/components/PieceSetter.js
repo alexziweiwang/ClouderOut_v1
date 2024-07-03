@@ -599,7 +599,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             })}
 
                         </select>
-                        <button onClick={() => {openRm()}}>+ new variable linking</button>   
+                        <button onClick={() => {openRm()}}>Manage Resource</button>   
                     </div>}
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
@@ -682,7 +682,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         })}
     </select >
 
-    <button onClick={() => {openRm()}}>+ new variable linking</button>
+    <button onClick={() => {openRm()}}>Manage Resource</button>
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
@@ -1140,7 +1140,7 @@ console.log(event.target.value); //TODO test
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
                                 </select>
-                                <button onClick={() => {openRm()}}>+ new variable linking</button>
+                                <button onClick={() => {openRm()}}>Manage Resource</button>
                             </div>}
                             <br></br>
                             <label>Consequence Table</label>
@@ -1394,7 +1394,7 @@ console.log(event.target.value); //TODO test
                                 return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                             })}
                         </select>
-                        <button onClick={() => {openRm()}}>+ new variable linking</button>
+                        <button onClick={() => {openRm()}}>Manage Resource</button>
                             
                         {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
@@ -1430,7 +1430,7 @@ console.log(event.target.value); //TODO test
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>
-                    <button onClick={() => {openRm()}}>+ new variable linking</button>
+                    <button onClick={() => {openRm()}}>Manage Resource</button>
                     <br></br>
                     <label>Volume:         </label>
                     <label>TODO</label>
