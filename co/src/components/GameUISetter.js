@@ -181,7 +181,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
-                </select><button onClick={() => {openRm();}}>Resource Adding</button>
+                </select><button onClick={() => {openRm();}}>Manage Resource</button>
          
                 </>}
         <br></br><label>Gap between buttons: </label>
@@ -379,7 +379,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             );
                     })}
             </select>
-        <button onClick={() => {openRm()}}>Resource Adding</button></>}
+        <button onClick={() => {openRm()}}>Manage Resource</button></>}
 
     <br></br><label>Font: </label>
     <select value={txtFrameFontName} onChange={(event)=>{setTxtFrameFontName(event.target.value);}}>
@@ -491,10 +491,41 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
             <br></br>
             <input type="radio"></input><label>Base Picture: </label>
-            <select></select>
+            <select value={defaultButtonObj["buttonAutoPicName"]} onChange={(event)=>{
+                setDefaultButtonObj({...defaultButtonObj,  "buttonAutoPicName": event.target.value});     
+            }}>                    
+                    <option key="autoDefault" value="">-- Select Resource --</option>
+                    {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "autoButton" + currKey;
+                            return (
+                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                            );
+                    })}
+                </select><button onClick={() => {openRm();}}>Manage Resource</button>
+        </div>
+
+        <label>Log Page Button:</label>
+        <div className="indentOne">
+            <input type="radio"></input><label>Rectangle: </label>
+            <br></br><input type="color"></input>
+            <label></label>
+
+            <br></br>
+            <input type="radio"></input><label>Base Picture: </label>
+            <select value={defaultButtonObj[ "buttonLogPicName"]} onChange={(event)=>{
+                setDefaultButtonObj({...defaultButtonObj,   "buttonLogPicName": event.target.value});     
+            }}>                    
+                    <option key="logDefault" value="">-- Select Resource --</option>
+                    {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "logButton" + currKey;
+                            return (
+                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                            );
+                    })}
+                </select><button onClick={() => {openRm();}}>Manage Resource</button>
 
         </div>
-            
+                    
         <label>Display Speed:</label>
         <div className="indentOne">
             <select value={txtFrameObj["textDisplaySpeed"]} 
@@ -509,17 +540,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             </select>
         </div>
      
-        <label>Log Page Button:</label>
-        <div className="indentOne">
-            <input type="radio"></input><label>Rectangle: </label>
-            <br></br><input type="color"></input>
-            <label></label>
 
-            <br></br>
-            <input type="radio"></input><label>Base Picture: </label>
-            <select></select>
-
-        </div>
     </div>
   
    
