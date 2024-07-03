@@ -495,10 +495,18 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
         </div>
             
-        <label>Display Speed Adjustment:</label>
+        <label>Display Speed:</label>
         <div className="indentOne">
+            <label>Default Speed:</label>
             <input type="range"></input>
+            <br></br>
+            <input type="radio"></input><label>Rectangle: </label>
+            <br></br><input type="color"></input>
             <label></label>
+
+            <br></br>
+            <input type="radio"></input><label>Base Picture: </label>
+            <select></select>
         </div>
      
         <label>Log Page Button:</label>
