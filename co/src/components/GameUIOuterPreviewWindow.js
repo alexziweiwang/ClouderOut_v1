@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
+import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 
 export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, getUIConvNav}) {
     const [screenWidth, setScreenWidth] = useState(800);
@@ -50,6 +51,20 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 triggerNextPiece={notUsing}
                 triggerAutoMode={notUsing}
             />
+
+
+            <GameUI_3ConvNavPreview
+                  isSettingUpUI={false}
+                  initialAllPieceData={initialAllPieceData}
+                  getAllPieceContent={getAllPieceContent}
+                  getCurrentPieceNum={getCurrentPieceNum}
+                  triggerNextPiece={notUsing}
+                  getScreenSize={getScreenSize}
+                  getUIConvNav={getUIConvNav}
+                  triggerAutoMode={notUsing}
+                  isInGameView={false}
+
+              />
             
         </div>
         <br></br>

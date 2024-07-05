@@ -4,6 +4,7 @@ import styles from './webpage.css';
 import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
 import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
+import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
@@ -328,8 +329,17 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   getScreenSize={getScreenSize}
               /> 
 
-
-              
+              <GameUI_3ConvNavPreview
+                  isSettingUpUI={false}
+                  initialAllPieceData={initialAllPieceData}
+                  getAllPieceContent={passInAllPieceDataContent}
+                  getCurrentPieceNum={passInCurrentPieceNum}
+                  triggerNextPiece={triggerNextPiece}
+                  getScreenSize={getScreenSize}
+                  getUIConvNav={getUIConvNav}
+                  triggerAutoMode={triggerAutoMode}
+                  isInGameView={true}
+              />
 
             </div>
             1currentPieceNum={currentPieceNum} (TESTing)
