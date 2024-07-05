@@ -138,7 +138,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
 
 
-            <div className="parallelFrame">
+            {/* <div className="parallelFrame">
                 <div
                     style={{
                         "margin-right": "50px",
@@ -181,7 +181,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     {txtFrameUISettings["buttonLogFontItalic"] && <em>Log</em>}
 
                 </div>
-            </div>
+            </div> */}
 
 
         </div>
