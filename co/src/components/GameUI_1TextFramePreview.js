@@ -145,20 +145,26 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                             : "",
                         "background-image": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
                         "font-family": `${txtFrameUISettings["buttonAutoFontName"]}`,
+                        
                     }}
                     onClick={()=>{
                         //switch auto-status 
                         setAutoOn(!autoOn);
                     }}
-                >Auto</div>
+                > 
+                {!txtFrameUISettings["buttonAutoFontItalic"] && <label>Auto</label>}
+                {txtFrameUISettings["buttonAutoFontItalic"] && <em>Auto</em>}
+
+
+                </div>
 
                 <div
                     style={{
                         "margin-right": "50px",
-                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade"] : "",
+                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade0"] : "",
                         "background-image": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
                         "font-family": `${txtFrameUISettings["buttonLogFontName"]}`,
-
+                        "font-style:": "italic"
                     }}
                     onClick={()=>{
                         //trigger log-screen

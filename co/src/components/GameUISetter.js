@@ -591,7 +591,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             </select>
 
             <br></br>
-            <input type="checkbox"></input><em>Italic</em>
+            <input type="checkbox" 
+                value={txtFrameObj["buttonAutoFontItalic"]} 
+                checked={txtFrameObj["buttonAutoFontItalic"]}
+                onChange={()=>{
+                    let val = txtFrameObj["buttonAutoFontItalic"];
+                    setTxtFrameObj({...txtFrameObj,  "buttonAutoFontItalic": !val});
+                }}
+            ></input><em>Italic</em>
         </div>
 
         <br></br><br></br>
