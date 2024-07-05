@@ -17,6 +17,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
     const [bgpUrl, setBgpUrl] = useState(txtFrameUISettings["picUrl"]);
 
+    const [autoOn, setAutoOn] = useState(false);
+
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
         if (allPieceContentTemp !== allPieceData) {
@@ -37,7 +39,6 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
         let speedLevel = txtFrameUISettingsTemp["textDisplaySpeed"];   
         let speedValue = typingSpeedBase - ((speedLevel-1) * 30);    
         setTypingSpeedValue(speedValue);
-
 
         let tempDirectNext = getIsDirectNextPiece();
         setIsDirectNext(tempDirectNext);
@@ -137,13 +138,17 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 <div
                     style={{
                         "margin-right": "50px",
-                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? txtFrameUISettings["buttonAutoShade0"] : "",
+                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? 
+                            (autoOn ? 
+                                txtFrameUISettings["buttonAutoShade1"] 
+                                :  txtFrameUISettings["buttonAutoShade0"]) 
+                            : "",
                         "background-image": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
                         "font-family": `${txtFrameUISettings["buttonAutoFontName"]}`,
                     }}
                     onClick={()=>{
-                       //switch auto-status 
-
+                        //switch auto-status 
+                        setAutoOn(!autoOn);
                     }}
                 >Auto</div>
 

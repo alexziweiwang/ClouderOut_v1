@@ -100,15 +100,14 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-h": 180,
     "textDisplaySpeed": 3,
 
-    "buttonAutoIsTextFont": false,
-
+    "buttonAutoIsTextFont": true,
     "buttonAutoShade0": "",
     "buttonAutoPicName0": "",
-    "buttonAutoShade1": "",
+    "buttonAutoShade1": "#4a54a1",
     "buttonAutoPicName1": "",
     "buttonAutoFontName": "serif",
 
-    "buttonLogIsTextFont": false,
+    "buttonLogIsTextFont": true,
     "buttonLogShade0": "",
     "buttonLogPicName0": "",
     "buttonLogShade1": "",
