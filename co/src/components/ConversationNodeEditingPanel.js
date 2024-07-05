@@ -77,7 +77,6 @@ export default function ConversationNodeEditingPanel() {
         "fontName": "",
         "isFontItalic": false,
 
-        
         "picPair": "" //TODO impl
 
     }); //TODO fetch from cloud-db
@@ -142,6 +141,25 @@ export default function ConversationNodeEditingPanel() {
     "picPair": "" //TODO impl
     
 }); //TODO fetch from cloud-db
+
+    const [UIConvNav, setUIConvNav] = useState({
+        "buttonAutoIsTextFont": true,
+        "buttonAutoShade0": "#bf8da5",
+        "buttonAutoPicName0": "",
+        "buttonAutoShade1": "#4a54a1",
+        "buttonAutoPicName1": "",
+        "buttonAutoFontName": "serif",
+        "buttonAutoFontItalic": false,
+    
+        "buttonLogIsTextFont": true,
+        "buttonLogShade0": "#bf8da5",
+        "buttonLogPicName0":  "",
+        "buttonLogShade1": "#4a54a1",
+        "buttonLogPicName1": "",
+        "buttonLogFontName": "serif",
+        "buttonLogFontItalic": false,
+
+    });
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
     const [screenWidth, setScreenWidth] = useState(800);
@@ -257,6 +275,10 @@ export default function ConversationNodeEditingPanel() {
         setGameUIBackButton(data);
     }
 
+    function updateConvNavSettings(data) {
+        setUIConvNav(data);
+    }
+
     function passInDefaultButtonUISettings() {
         return gameUIDefaultButton;
     }
@@ -288,6 +310,10 @@ export default function ConversationNodeEditingPanel() {
 
     function passInCurrentPieceNum() {
         return previewingIndex;
+    }
+
+    function passInUIConvNav() {
+        return UIConvNav;
     }
 
     function changeselectedGameScreenSizeSetting(event) {
@@ -403,6 +429,7 @@ export default function ConversationNodeEditingPanel() {
         setFirstTimeEnter(true);
     }
 
+
     return (
 
         <div>
@@ -471,6 +498,7 @@ export default function ConversationNodeEditingPanel() {
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
+                            updateConvNavSettings={updateConvNavSettings}
                     />}
                 </div>
             }
@@ -498,6 +526,7 @@ export default function ConversationNodeEditingPanel() {
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
+                            updateConvNavSettings={updateConvNavSettings}
                         />}
                 
                 </div>
@@ -517,6 +546,7 @@ export default function ConversationNodeEditingPanel() {
                     getScreenSize={passInScreenSize}
                     triggerToDirectNext={triggerToDirectNextFunc}
                     setIsClickedOnSetters={setIsActionOnSetter}
+                    getUIConvNav={passInUIConvNav}
                 />}
             {isDisplayGameContentPreview === false && 
                 <GameUIOuterPreviewWindow 
@@ -529,6 +559,7 @@ export default function ConversationNodeEditingPanel() {
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
                     getScreenSize={passInScreenSize}
+                    getUIConvNav={passInUIConvNav}
                 />
             }
 

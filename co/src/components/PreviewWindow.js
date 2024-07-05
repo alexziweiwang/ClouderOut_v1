@@ -7,7 +7,7 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters}) {
+export default function PreviewWindow({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
