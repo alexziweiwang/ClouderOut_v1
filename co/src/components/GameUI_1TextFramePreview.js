@@ -136,8 +136,9 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 <div
                     style={{
                         "margin-right": "50px",
-                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? txtFrameUISettings["buttonAutoShade"] : "",
+                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? txtFrameUISettings["buttonAutoShade0"] : "",
                         "background-image": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
+                        "font-family": `${txtFrameUISettings["buttonAutoFontName"]}`,
                     }}
                 >Auto</div>
 

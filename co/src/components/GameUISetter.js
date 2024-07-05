@@ -383,8 +383,10 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
     <br></br><label>Font: </label>
     <select value={txtFrameFontName} onChange={(event)=>{setTxtFrameFontName(event.target.value);}}>
-    <select onChange={(event)=>{
-                setTxtFrameObj({...txtFrameObj,  "buttonAutoFontName": event.target.value});
+    <select 
+        value={txtFrameObj["fontName"]}
+        onChange={(event)=>{
+                setTxtFrameObj({...txtFrameObj,  "fontName": event.target.value});
             }}>
                 <option value="sans-serif" key="txf_sans-serif">sans-serif</option>
                 <option value="serif" key="txf_serif">serif</option>
@@ -581,7 +583,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
           
             <label>Font:</label>
-            <select value={} onChange={(event)=>{
+            <select value={txtFrameObj["buttonAutoFontName"]} onChange={(event)=>{
                 setTxtFrameObj({...txtFrameObj,  "buttonAutoFontName": event.target.value});
             }}>
                 <option value="sans-serif" key="autoBtn_sans-serif">sans-serif</option>
@@ -637,7 +639,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <button>Update</button>
             <br></br>
             <label>Font:</label>
-            <select></select>
+            <select 
+                value={txtFrameObj["buttonLogFontName"]}
+                onChange={(event)=>{
+                    setTxtFrameObj({...txtFrameObj,  "buttonLogFontName": event.target.value});
+            }}>
+                <option value="sans-serif" key="logBtn_sans-serif">sans-serif</option>
+                <option value="serif" key="logBtn_serif">serif</option>
+                <option value="cursive" key="logBtn_cursive">cursive</option>
+            </select>
             <br></br>
             <input type="checkbox"></input><em>Italic</em>
 
