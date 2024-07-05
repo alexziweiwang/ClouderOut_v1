@@ -110,6 +110,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
+                    "font-family": `${txtFrameUISettings["fontName"]}`,
                 }}>
            
 
@@ -140,6 +141,10 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         "background-image": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
                         "font-family": `${txtFrameUISettings["buttonAutoFontName"]}`,
                     }}
+                    onClick={()=>{
+                       //switch auto-status 
+
+                    }}
                 >Auto</div>
 
                 <div
@@ -147,6 +152,11 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         "margin-right": "50px",
                         "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade"] : "",
                         "background-image": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
+                        "font-family": `${txtFrameUISettings["buttonLogFontName"]}`,
+
+                    }}
+                    onClick={()=>{
+                        //trigger log-screen
                     }}
                 >Log</div>
             </div>

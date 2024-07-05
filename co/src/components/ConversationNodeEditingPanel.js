@@ -87,7 +87,7 @@ export default function ConversationNodeEditingPanel() {
     "bgColor": "#a8d1d6",
     "picVar": "",
     "picUrl": "",
-    "fontName": "",
+    "fontName": "serif",
     "textSize": 30,
     "textColor": "#000000",
     "justifyContent": "start",

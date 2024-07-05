@@ -382,7 +382,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <button onClick={() => {openRm()}}>Manage Resource</button></>}
 
     <br></br><label>Font: </label>
-    <select value={txtFrameFontName} onChange={(event)=>{setTxtFrameFontName(event.target.value);}}>
+
     <select 
         value={txtFrameObj["fontName"]}
         onChange={(event)=>{
@@ -392,7 +392,6 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option value="serif" key="txf_serif">serif</option>
                 <option value="cursive" key="txf_cursive">cursive</option>
             </select>
-    </select>
   
     <br></br><label>Text Size: </label><input type="range" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "textSize": event.target.value});            
