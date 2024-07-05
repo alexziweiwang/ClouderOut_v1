@@ -172,10 +172,10 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
                   getBackButtonUISettings={getBackButtonUISettings}
                   getScreenSize={getScreenSize}
               /> 
-
+{/* 
               <GameUI2ButtonsPlay
               
-              />
+              /> */}
 
 
               

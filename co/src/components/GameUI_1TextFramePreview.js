@@ -77,12 +77,6 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 "font-size": `${txtFrameUISettings["textSize"]}px`, 
                 "user-select": "none", 
             }}
-            onClick={()=>{
-                //TODO1 add "firstTap" for all-content showing on one piece
-                if (isDirectNext === true) {
-                    triggerNextPiece();
-                }
-            }}
         >
         
         <div style={{
@@ -112,7 +106,15 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justify-content": "left",
                     "font-family": `${txtFrameUISettings["fontName"]}`,
-                }}>
+                }}
+                onClick={()=>{
+                    //TODO1 add "firstTap" for all-content showing on one piece
+                    if (isDirectNext === true) {
+                        triggerNextPiece();
+                    }
+                }}
+                
+                >
            
 
                         {!isEditing && 
@@ -133,6 +135,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 </div>
 
             </div>}
+
+
 
             <div className="parallelFrame">
                 <div
