@@ -655,7 +655,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option value="cursive" key="logBtn_cursive">cursive</option>
             </select>
             <br></br>
-            <input type="checkbox"></input><em>Italic</em>
+            <input type="checkbox" 
+                value={txtFrameObj["buttonLogFontItalic"]} 
+                checked={txtFrameObj["buttonLogFontItalic"]}
+                onChange={()=>{
+                    let val = txtFrameObj["buttonLogFontItalic"];
+                    setTxtFrameObj({...txtFrameObj,  "buttonLogFontItalic": !val});
+                }}
+            ></input><em>Italic</em>
 
         </div>
         <br></br><br></br>

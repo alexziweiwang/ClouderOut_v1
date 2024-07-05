@@ -169,7 +169,11 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     onClick={()=>{
                         //trigger log-screen
                     }}
-                >Log</div>
+                >
+                    {!txtFrameUISettings["buttonLogFontItalic"] && <label>Log</label>}
+                    {txtFrameUISettings["buttonLogFontItalic"] && <em>Log</em>}
+                                    
+                </div>
             </div>
 
 
