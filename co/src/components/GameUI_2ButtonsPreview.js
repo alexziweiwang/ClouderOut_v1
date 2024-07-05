@@ -44,7 +44,7 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
     });
 
     return (
-        <div style={{"width": screenWidth, "position": "absolute", "top": "0px", "left": "0px"}} >
+        <div style={{"width": screenWidth, "position": "absolute", "top": "0px", "left": "0px"}}>
 
         <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
         "top": `${defualtBtnUISettings["groupY"]}px`,                       
@@ -56,29 +56,10 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
 
             let currId = "defaultButtonDivPreviewWindow" + index;
             return (
-            <div id={currId} key={index} style={
-                defualtBtnUISettings["isShape"] === true ? {   
+            <div id={currId} key={index} style={{   
                     "background": defualtBtnUISettings["bgColor"],
-                    
-                    "width": `${defualtBtnUISettings["widthMin"]}px`,
-                    "height": `${defualtBtnUISettings["height"]}px`,
-                    "border-radius": `${defualtBtnUISettings["cornerRadius"]}px`,
-                    "color": defualtBtnUISettings["textColor"],
-                    "opacity": defualtBtnUISettings["transparency"],
-                    "border": `${defualtBtnUISettings["border"]}`,
-                    "margin-bottom": `${defualtBtnUISettings["margin"]}px`,
-                    "padding-left": `10px`,
-                    "justify-content": defualtBtnUISettings["justifyContent"],
-                    "align-items": defualtBtnUISettings["alignItems"],
-                    "font-size": `${defualtBtnUISettings["textSize"]}px`,
-                    
-                    "display": "flex",
-                    "cursor": "pointer",
-                    "user-select": "none",
-                    "transition": "all 0.2s ease-out",
-                    "overflow": "scroll"
-                } : {
-                    "background-image": `url('${defualtBtnUISettings["picUrl"]}')`, //TODO improve later
+                    "background-image": defualtBtnUISettings["isShape"] === true ? "" 
+                        : `url('${defualtBtnUISettings["picUrl"]}')`, //TODO improve later
                     "background-size": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
@@ -92,14 +73,14 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
                     "justify-content": defualtBtnUISettings["justifyContent"],
                     "align-items": defualtBtnUISettings["alignItems"],
                     "font-size": `${defualtBtnUISettings["textSize"]}px`,
-
+                    "font-family": `${defualtBtnUISettings["fontName"]}`,
+                    
                     "display": "flex",
                     "cursor": "pointer",
                     "user-select": "none",
                     "transition": "all 0.2s ease-out",
                     "overflow": "scroll"
-                }      
-            }
+                }}
             onMouseDown={
                 ()=>{
                     document.getElementById(currId).style.filter = "brightness(150%)";

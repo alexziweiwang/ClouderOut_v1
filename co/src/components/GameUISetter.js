@@ -128,11 +128,22 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option value="start" key="defaultButtonTextAlignLeft">Left</option>
             </select>
         <br></br><label>Text Vertical Alignment: </label>
-            <select value={defaultButtonObj["alignItems"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "alignItems": event.target.value});}}>
+            <select value={defaultButtonObj["alignItems"]} onChange={
+                (event)=>{setDefaultButtonObj({...defaultButtonObj,  "alignItems": event.target.value})
+                ;}}>
                 <option value="center" key="defaultButtonAlignItemsCenter">Center</option>
                 <option value="start" key="defaultButtonAlignItemsTop">Top</option>
                 <option value="end" key="defaultButtonAlignItemsBottom">Bottom</option>
             </select>
+
+        <br></br><label>Text Font: </label>
+        <select value={defaultButtonObj["fontName"]} onChange={(event)=>{
+            setDefaultButtonObj({...defaultButtonObj,  "fontName": event.target.value})
+        }}>
+            <option value="sans-serif" key="deflBtn_sans-serif">sans-serif</option>
+            <option value="serif" key="deflBtn_serif">serif</option>
+            <option value="cursive" key="deflBtn_cursive">cursive</option>
+        </select>
         <br></br><label>Border Color: </label><input type="color" value={idvButtonBorderColor} onChange={(event)=>{
                         setIdvButtonBorderColor(event.target.value);
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;

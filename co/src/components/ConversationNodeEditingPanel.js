@@ -73,6 +73,10 @@ export default function ConversationNodeEditingPanel() {
         "groupY": 100,
         "horizontalMid": false,
         "verticalMid": false,
+
+        "fontName": "",
+        "isFontItalic": false,
+
         
         "picPair": "" //TODO impl
 
