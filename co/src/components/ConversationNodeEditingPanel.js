@@ -142,7 +142,7 @@ export default function ConversationNodeEditingPanel() {
     
 }); //TODO fetch from cloud-db
 
-    const [UIConvNav, setUIConvNav] = useState({
+    const [uiConvNav, setUIConvNav] = useState({
         "buttonAutoIsTextFont": true,
         "buttonAutoShade0": "#bf8da5",
         "buttonAutoPicName0": "",
@@ -313,7 +313,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function passInUIConvNav() {
-        return UIConvNav;
+        return uiConvNav;
     }
 
     function changeselectedGameScreenSizeSetting(event) {
@@ -358,6 +358,10 @@ export default function ConversationNodeEditingPanel() {
           }
         } 
     } 
+
+    function updateConvNavSettings(data) {
+        setUIConvNav(data);
+    }
  
     function passInScreenSize() {
         let pair = [];
@@ -493,6 +497,7 @@ export default function ConversationNodeEditingPanel() {
                             iniDefaultButtonObj={gameUIDefaultButton} 
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}
+                            iniConvNavObj={uiConvNav}
                             openRm={handleResourceManagerOpen} 
                             updateTextFrameUISettings={updateTextFrameUISettings} 
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
@@ -521,6 +526,7 @@ export default function ConversationNodeEditingPanel() {
                             iniDefaultButtonObj={gameUIDefaultButton} 
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}
+                            iniConvNavObj={uiConvNav}
                             openRm={handleResourceManagerOpen} 
                             updateTextFrameUISettings={updateTextFrameUISettings} 
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 

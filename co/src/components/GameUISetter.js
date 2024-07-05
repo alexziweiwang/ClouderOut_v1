@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings}) {
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings}) {
     const screenWidth = 800;
     const screenHeight = 600;
 
@@ -19,6 +19,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
   
         updateTextFrameUISettings(txtFrameObj);
         updateBackButtonSettings(igMenuBtnObj);
+
+
+        updateConvNavSettings(); //TODO test
 
     });
 
@@ -42,6 +45,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
     const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(true);
 
+    const [convNav, setConvNav] = useState(iniConvNavObj);
+
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
     const [txtFrameFontName, setTxtFrameFontName] = useState(0); //TODO
@@ -51,6 +56,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [txtFrameContentAreaVgap, setTxtFrameContentAreaVgap] = useState(10);
 
     const [txtFrameObj, setTxtFrameObj] = useState(iniTxtFrameObj);
+
 
     const [isMenuStoryCore, setIsMenuStoryCore] = useState(false);
 
@@ -498,39 +504,40 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     </div>
 
     <br></br>
+    <br></br><br></br>
 
-    Text Options:<br></br>
+    3.Text Viewing Options:<br></br>
     <div className="indentOne">
         <label>Auto Toggle:</label>
         <div className="indentOne">
             <label>Unclicked:</label>
             <div className="indentOne">
-                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont0"]}
-                        checked={txtFrameObj["buttonAutoIsTextFont0"]} 
+                    <input type="radio" value={convNav["buttonAutoIsTextFont0"]}
+                        checked={convNav["buttonAutoIsTextFont0"]} 
                         onChange={()=>{
-                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont0": true});
                         }}></input><label
                         onClick={()=>{
-                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont0": true});
                         }}
                         >Font Color: </label>
-                    <br></br><input type="color" value={txtFrameObj["buttonAutoShade0"]} onChange={(event)=>{
-                                setTxtFrameObj({...txtFrameObj,  "buttonAutoShade0": event.target.value});
+                    <br></br><input type="color" value={convNav["buttonAutoShade0"]} onChange={(event)=>{
+                                setConvNav({...convNav,  "buttonAutoShade0": event.target.value});
                     }}></input>
-                    <label> {txtFrameObj["buttonAutoShade0"]}</label>
+                    <label> {convNav["buttonAutoShade0"]}</label>
 
                     <br></br>
-                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont0"]} checked={!txtFrameObj["buttonAutoIsTextFont0"]}
+                    <input type="radio" value={convNav["buttonAutoIsTextFont0"]} checked={!convNav["buttonAutoIsTextFont0"]}
                         onChange={()=>{
-                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": false});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont0": false});
                         }}
                     ></input><label
                         onClick={()=>{
-                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont0": false});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont0": false});
                         }}
                     >Base Picture: </label>
-                    <select value={defaultButtonObj["buttonAutoPicName0"]} onChange={(event)=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoPicName0": event.target.value});     
+                    <select value={convNav["buttonAutoPicName0"]} onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonAutoPicName0": event.target.value});     
                     }}>                    
                             <option key="autoDefault0" value="">-- Select Resource --</option>
                             {Object.keys(visualMap).map((currKey) => {
@@ -549,32 +556,32 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
             <label>Pressed:</label>
             <div className="indentOne">
-                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont1"]}
-                        checked={txtFrameObj["buttonAutoIsTextFont1"]} 
+                    <input type="radio" value={convNav["buttonAutoIsTextFont1"]}
+                        checked={convNav["buttonAutoIsTextFont1"]} 
                         onChange={()=>{
-                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont1": true});
                         }}></input><label
                         onClick={()=>{
-                                setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont1": true});
                         }}
                         >Font Color: </label>
-                    <br></br><input type="color" value={txtFrameObj["buttonAutoShade1"]} onChange={(event)=>{
-                                setTxtFrameObj({...txtFrameObj,  "buttonAutoShade1": event.target.value});
+                    <br></br><input type="color" value={convNav["buttonAutoShade1"]} onChange={(event)=>{
+                                setConvNav({...convNav,  "buttonAutoShade1": event.target.value});
                     }}></input>
-                    <label> {txtFrameObj["buttonAutoShade1"]}</label>
+                    <label> {convNav["buttonAutoShade1"]}</label>
 
                     <br></br>
-                    <input type="radio" value={txtFrameObj["buttonAutoIsTextFont1"]} checked={!txtFrameObj["buttonAutoIsTextFont1"]}
+                    <input type="radio" value={convNav["buttonAutoIsTextFont1"]} checked={!convNav["buttonAutoIsTextFont1"]}
                         onChange={()=>{
-                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": false});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont1": false});
                         }}
                     ></input><label
                         onClick={()=>{
-                            setTxtFrameObj({...txtFrameObj,  "buttonAutoIsTextFont1": false});
+                            setConvNav({...txtFrameObj,  "buttonAutoIsTextFont1": false});
                         }}
                     >Base Picture: </label>
-                    <select value={defaultButtonObj["buttonAutoPicName1"]} onChange={(event)=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonAutoPicName1": event.target.value});     
+                    <select value={convNav["buttonAutoPicName1"]} onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonAutoPicName1": event.target.value});     
                     }}>                    
                             <option key="autoDefault1" value="">-- Select Resource --</option>
                             {Object.keys(visualMap).map((currKey) => {
@@ -593,8 +600,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
           
             <label>Font:</label>
-            <select value={txtFrameObj["buttonAutoFontName"]} onChange={(event)=>{
-                setTxtFrameObj({...txtFrameObj,  "buttonAutoFontName": event.target.value});
+            <select value={convNav["buttonAutoFontName"]} onChange={(event)=>{
+                setConvNav({...convNav,  "buttonAutoFontName": event.target.value});
             }}>
                 <option value="sans-serif" key="autoBtn_sans-serif">sans-serif</option>
                 <option value="serif" key="autoBtn_serif">serif</option>
@@ -603,11 +610,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
             <br></br>
             <input type="checkbox" 
-                value={txtFrameObj["buttonAutoFontItalic"]} 
-                checked={txtFrameObj["buttonAutoFontItalic"]}
+                value={convNav["buttonAutoFontItalic"]} 
+                checked={convNav["buttonAutoFontItalic"]}
                 onChange={()=>{
-                    let val = txtFrameObj["buttonAutoFontItalic"];
-                    setTxtFrameObj({...txtFrameObj,  "buttonAutoFontItalic": !val});
+                    let val = convNav["buttonAutoFontItalic"];
+                    setConvNav({...convNav,  "buttonAutoFontItalic": !val});
                 }}
             ></input><em>Italic</em>
         </div>
@@ -615,32 +622,32 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <br></br><br></br>
         <label>Log Page Button:</label>
         <div className="indentOne">
-        <input type="radio" value={txtFrameObj["buttonLogIsTextFont"]}
+        <input type="radio" value={convNav["buttonLogIsTextFont"]}
                 checked={txtFrameObj["buttonLogIsTextFont"]} 
                 onChange={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": true});
+                    setConvNav({...convNav,  "buttonLogIsTextFont": true});
                 }}></input><label
                 onClick={()=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": true});
+                    setConvNav({...convNav,  "buttonLogIsTextFont": true});
                 }}
                 >Font Color: </label>
-            <br></br><input type="color" value={txtFrameObj["buttonLogShade"]} onChange={(event)=>{
-                        setTxtFrameObj({...txtFrameObj,  "buttonLogShade": event.target.value});
+            <br></br><input type="color" value={convNav["buttonLogShade"]} onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonLogShade": event.target.value});
             }}></input>
-            <label> {txtFrameObj["buttonLogShade"]}</label>
+            <label> {convNav["buttonLogShade"]}</label>
 
             <br></br>
-            <input type="radio" value={txtFrameObj["buttonLogIsTextFont"]} checked={!txtFrameObj["buttonLogIsTextFont"]}
+            <input type="radio" value={convNav["buttonLogIsTextFont"]} checked={!convNav["buttonLogIsTextFont"]}
                 onChange={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": false});
+                    setConvNav({...convNav,  "buttonLogIsTextFont": false});
                 }}
             ></input><label
                 onClick={()=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonLogIsTextFont": false});
+                    setConvNav({...convNav,  "buttonLogIsTextFont": false});
                 }}
             >Base Picture: </label>
-            <select value={defaultButtonObj[ "buttonLogPicName"]} onChange={(event)=>{
-                setDefaultButtonObj({...defaultButtonObj,   "buttonLogPicName": event.target.value});     
+            <select value={convNav["buttonLogPicName"]} onChange={(event)=>{
+                setConvNav({...convNav,   "buttonLogPicName": event.target.value});     
             }}>                    
                     <option key="logDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
@@ -657,9 +664,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <br></br>
             <label>Font:</label>
             <select 
-                value={txtFrameObj["buttonLogFontName"]}
+                value={convNav["buttonLogFontName"]}
                 onChange={(event)=>{
-                    setTxtFrameObj({...txtFrameObj,  "buttonLogFontName": event.target.value});
+                    setConvNav({...convNav,  "buttonLogFontName": event.target.value});
             }}>
                 <option value="sans-serif" key="logBtn_sans-serif">sans-serif</option>
                 <option value="serif" key="logBtn_serif">serif</option>
@@ -667,11 +674,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             </select>
             <br></br>
             <input type="checkbox" 
-                value={txtFrameObj["buttonLogFontItalic"]} 
-                checked={txtFrameObj["buttonLogFontItalic"]}
+                value={convNav["buttonLogFontItalic"]} 
+                checked={convNav["buttonLogFontItalic"]}
                 onChange={()=>{
-                    let val = txtFrameObj["buttonLogFontItalic"];
-                    setTxtFrameObj({...txtFrameObj,  "buttonLogFontItalic": !val});
+                    let val = convNav["buttonLogFontItalic"];
+                    setConvNav({...convNav,  "buttonLogFontItalic": !val});
                 }}
             ></input><em>Italic</em>
 
@@ -679,9 +686,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <br></br><br></br>
         <label>Default display Speed:</label>
         <div className="indentOne">
-            <select value={txtFrameObj["textDisplaySpeed"]} 
+            <select value={convNav["textDisplaySpeed"]} 
             onChange={(event)=>{                
-                setTxtFrameObj({...txtFrameObj, "textDisplaySpeed": event.target.value});    
+                setConvNav({...convNav, "textDisplaySpeed": event.target.value});    
             }}>
                 <option key="textDisplaySpeed1" value="1">1</option>
                 <option key="textDisplaySpeed2" value="2">2</option>

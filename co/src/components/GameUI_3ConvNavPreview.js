@@ -7,17 +7,25 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
     //getUIConvNav
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
-    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
-
+    const allPieceData = initialAllPieceData;
 
     const [autoOn, setAutoOn] = useState(false);
 
 
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
         //TODO one-time:
-        //TODO getAllPieceContent, getScreenSize
-    
+        //TODO getScreenSize
+        if (firstTimeEnter === true) {
+
+
+
+            setFirstTimeEnter(false);    
+          }
+
+
+
         let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
           setCurrentPieceNum(currPieceNumTemp);
@@ -28,7 +36,9 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
 
 
 
-return (<div>
+return (<div style={{
+                "position": "absolute",
+            }}>
 
 
 
