@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
-export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece}) {
+export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece, triggerAutoMode}) {
     const typingSpeedBase = 100;
 
     const [typingSpeedValue, setTypingSpeedValue] = useState(40); //TODO1 change in future
@@ -148,7 +148,10 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         
                     }}
                     onClick={()=>{
-                        //switch auto-status 
+                        //switch auto-status
+                        if (autoOn === false) { //current status(f), next status(t)
+                            triggerAutoMode();
+                        }
                         setAutoOn(!autoOn);
                     }}
                 > 
@@ -172,7 +175,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 >
                     {!txtFrameUISettings["buttonLogFontItalic"] && <label>Log</label>}
                     {txtFrameUISettings["buttonLogFontItalic"] && <em>Log</em>}
-                                    
+
                 </div>
             </div>
 

@@ -177,11 +177,6 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     <div className={modalStyleName}>
 
     <div className="modalArea3">
-        <p className="plans">
-            TODO: table-item operation: delete: consider revert options
-
-
-        </p>
 
     <div className="modalContent">
         <button className="buttonRight90 cursor_pointer" onClick={handleGdmCancel}>X</button>

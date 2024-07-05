@@ -225,6 +225,11 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       //make piece to be the next one
       triggerToDirectNext();
     }
+
+    function triggerAutoMode() {
+      console.log("triggerAutoMode() in game-preview-window");
+      //TODO1
+    }
  
     return (
 
@@ -308,6 +313,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 triggerNextPiece={triggerNextPiece}
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
+                triggerAutoMode={triggerAutoMode}
               />}
 
               <GameUI_2ButtonsPreview 

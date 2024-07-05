@@ -672,6 +672,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
 
+<div className="parallelFrame"> 
           <div style={{"height": "350px"}} className="orangeArea">List of nodes:<br></br>
             <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
@@ -860,7 +861,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 </div>}
 
-
+</div>
         {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
 
           {/* linking-drawing */}

@@ -48,6 +48,7 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 isInGameView={false}
                 getIsDirectNextPiece={notUsing}
                 triggerNextPiece={notUsing}
+                triggerAutoMode={notUsing}
             />
             
         </div>
