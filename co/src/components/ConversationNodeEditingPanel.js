@@ -150,8 +150,8 @@ export default function ConversationNodeEditingPanel() {
         "buttonAutoPicName1": "",
         "buttonAutoFontName": "serif",
         "buttonAutoFontItalic": false,
-        "buttonAutoDisplayText0": "Auto",
-        "buttonAutoDisplayText1": "Auto",
+        "buttonAutoDisplayText0": "Auto-off",
+        "buttonAutoDisplayText1": "Auto-on",
         "buttonLogDisplayText0": "Log",
 
     

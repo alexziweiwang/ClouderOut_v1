@@ -557,7 +557,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             setAuto0DisplayText(event.target.value);
                         }}
                     ></input>
-                    <button onClicked={()=>{
+                    <button onClick={()=>{
                         setConvNav({...convNav,  "buttonAutoDisplayText0": auto0DisplayText});     
                     }}>Update</button>
                     <br></br>
@@ -602,8 +602,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         </select><button onClick={() => {openRm();}}>Manage Resource</button>
                     <br></br>
                     <label>Display Text:</label>
-                    <input></input>
-                    <button>Update</button>
+                    <input value={auto1DisplayText}
+                        onChange={(event)=>{
+                            setAuto1DisplayText(event.target.value);
+                        }}
+                    ></input>
+                    <button onClick={()=>{
+                        setConvNav({...convNav,  "buttonAutoDisplayText1": auto1DisplayText});     
+                    }}>Update</button>
                     <br></br>
             </div>
 

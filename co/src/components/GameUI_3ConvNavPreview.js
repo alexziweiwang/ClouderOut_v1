@@ -110,6 +110,8 @@ return (<div style={{
                     {uiConvNav["buttonLogFontItalic"] && <em>Log</em>}
 
                 </div>}
+
+                {uiConvNav["buttonAutoDisplayText0"]}, {uiConvNav["buttonAutoDisplayText1"]}
             </div>
 
 
