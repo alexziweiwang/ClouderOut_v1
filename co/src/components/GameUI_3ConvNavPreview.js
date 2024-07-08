@@ -78,7 +78,15 @@ return (<div style={{
                         setAutoOn(!autoOn);
                     }}
                 > 
-                {!uiConvNav["buttonAutoFontItalic"] && <label>Auto</label>}
+                {!uiConvNav["buttonAutoFontItalic"] && 
+                    <>{autoOn === false && <label>
+                        {uiConvNav["buttonAutoDisplayText0"]}
+                    </label>}
+                    {autoOn === true && <label>
+                        {uiConvNav["buttonAutoDisplayText1"]}
+                    </label>}
+
+                    </>}
                 {uiConvNav["buttonAutoFontItalic"] && <em>Auto</em>}
 
 

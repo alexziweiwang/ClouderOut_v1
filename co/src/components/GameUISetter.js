@@ -46,6 +46,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [displayDefaultButtonPreview, setDisplayDefaultButtonPreview] = useState(true);
 
     const [convNav, setConvNav] = useState(iniConvNavObj);
+    const [auto0DisplayText, setAuto0DisplayText] = useState("Auto");
+    const [auto1DisplayText, setAuto1DisplayText] = useState("Auto");
+    const [logDisplayText, setLogDisplayText] = useState("Log");
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
@@ -549,8 +552,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         </select><button onClick={() => {openRm();}}>Manage Resource</button>
                     <br></br>
                     <label>Display Text:</label>
-                    <input></input>
-                    <button>Update</button>
+                    <input value={auto0DisplayText}
+                        onChange={(event)=>{
+                            setAuto0DisplayText(event.target.value);
+                        }}
+                    ></input>
+                    <button onClicked={()=>{
+                        setConvNav({...convNav,  "buttonAutoDisplayText0": auto0DisplayText});     
+                    }}>Update</button>
                     <br></br>
             </div>
 
