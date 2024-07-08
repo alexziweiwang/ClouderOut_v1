@@ -11,6 +11,8 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
 
     const [autoOn, setAutoOn] = useState(false);
 
+    const [screenWidth, setScreenWidth] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(600);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -30,6 +32,16 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
           setCurrentPieceNum(currPieceNumTemp);
         }
+
+        let uiConvNavTemp = getUIConvNav();
+        setUiConvNav(uiConvNavTemp);
+
+        let screenSizePair = getScreenSize();
+        if (screenSizePair[0] !== screenWidth || screenSizePair[1] !== screenHeight) {
+            setScreenWidth(screenSizePair[0]);
+            setScreenHeight(screenSizePair[1]);
+        }
+        
 
     });
 

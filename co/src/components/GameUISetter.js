@@ -512,13 +512,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <div className="indentOne">
             <label>Unclicked:</label>
             <div className="indentOne">
-                    <input type="radio" value={convNav["buttonAutoIsTextFont0"]}
-                        checked={convNav["buttonAutoIsTextFont0"]} 
+                    <input type="radio" value={convNav["buttonAutoIsTextFont"]}
+                        checked={convNav["buttonAutoIsTextFont"]} 
                         onChange={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont0": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": true});
                         }}></input><label
                         onClick={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont0": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": true});
                         }}
                         >Font Color: </label>
                     <br></br><input type="color" value={convNav["buttonAutoShade0"]} onChange={(event)=>{
@@ -527,13 +527,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <label> {convNav["buttonAutoShade0"]}</label>
 
                     <br></br>
-                    <input type="radio" value={convNav["buttonAutoIsTextFont0"]} checked={!convNav["buttonAutoIsTextFont0"]}
+                    <input type="radio" value={convNav["buttonAutoIsTextFont"]} checked={!convNav["buttonAutoIsTextFont"]}
                         onChange={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont0": false});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": false});
                         }}
                     ></input><label
                         onClick={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont0": false});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": false});
                         }}
                     >Base Picture: </label>
                     <select value={convNav["buttonAutoPicName0"]} onChange={(event)=>{
@@ -556,13 +556,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
             <label>Pressed:</label>
             <div className="indentOne">
-                    <input type="radio" value={convNav["buttonAutoIsTextFont1"]}
-                        checked={convNav["buttonAutoIsTextFont1"]} 
+                    <input type="radio" value={convNav["buttonAutoIsTextFont"]}
+                        checked={convNav["buttonAutoIsTextFont"]} 
                         onChange={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont1": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": true});
                         }}></input><label
                         onClick={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont1": true});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": true});
                         }}
                         >Font Color: </label>
                     <br></br><input type="color" value={convNav["buttonAutoShade1"]} onChange={(event)=>{
@@ -571,13 +571,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <label> {convNav["buttonAutoShade1"]}</label>
 
                     <br></br>
-                    <input type="radio" value={convNav["buttonAutoIsTextFont1"]} checked={!convNav["buttonAutoIsTextFont1"]}
+                    <input type="radio" value={convNav["buttonAutoIsTextFont"]} checked={!convNav["buttonAutoIsTextFont"]}
                         onChange={()=>{
-                            setConvNav({...convNav,  "buttonAutoIsTextFont1": false});
+                            setConvNav({...convNav,  "buttonAutoIsTextFont": false});
                         }}
                     ></input><label
                         onClick={()=>{
-                            setConvNav({...txtFrameObj,  "buttonAutoIsTextFont1": false});
+                            setConvNav({...txtFrameObj,  "buttonAutoIsTextFont": false});
                         }}
                     >Base Picture: </label>
                     <select value={convNav["buttonAutoPicName1"]} onChange={(event)=>{
