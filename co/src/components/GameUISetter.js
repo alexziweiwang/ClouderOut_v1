@@ -673,9 +673,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     })}
                 </select><button onClick={() => {openRm();}}>Manage Resource</button>
             <br></br>
-            <label>Display Text:</label>
-            <input></input>
-            <button>Update</button>
+            <input value={logDisplayText}
+                        onChange={(event)=>{
+                            setLogDisplayText(event.target.value);
+                        }}
+                    ></input>
+                    <button onClick={()=>{
+                        setConvNav({...convNav,  "buttonLogDisplayText": logDisplayText});     
+                    }}>Update</button>
             <br></br>
             <label>Font:</label>
             <select 

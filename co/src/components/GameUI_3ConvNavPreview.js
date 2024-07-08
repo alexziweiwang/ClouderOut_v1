@@ -87,7 +87,12 @@ return (<div style={{
                     </label>}
 
                     </>}
-                {uiConvNav["buttonAutoFontItalic"] && <em>Auto</em>}
+                {uiConvNav["buttonAutoFontItalic"] && <>
+                
+                {autoOn === false && <em>{uiConvNav["buttonAutoDisplayText0"]}</em>}
+                {autoOn === true && <em>{uiConvNav["buttonAutoDisplayText1"]}</em>}
+
+                </>}
 
 
                 </div>
@@ -106,12 +111,14 @@ return (<div style={{
                         //trigger log-screen
                     }}
                 >
-                    {!uiConvNav["buttonLogFontItalic"] && <label>Log</label>}
-                    {uiConvNav["buttonLogFontItalic"] && <em>Log</em>}
+                    {!uiConvNav["buttonLogFontItalic"] && <label>
+                            {uiConvNav["buttonLogDisplayText"]}
+                        </label>}
+                   
+                   {uiConvNav["buttonLogFontItalic"] && <em>{uiConvNav["buttonLogDisplayText"]}</em>}
 
                 </div>}
 
-                {uiConvNav["buttonAutoDisplayText0"]}, {uiConvNav["buttonAutoDisplayText1"]}
             </div>
 
 

@@ -152,7 +152,7 @@ export default function ConversationNodeEditingPanel() {
         "buttonAutoFontItalic": false,
         "buttonAutoDisplayText0": "Auto-off",
         "buttonAutoDisplayText1": "Auto-on",
-        "buttonLogDisplayText0": "Log",
+        "buttonLogDisplayText": "Log",
 
     
         "buttonLogIsTextFont": true,
