@@ -21,7 +21,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         updateBackButtonSettings(igMenuBtnObj);
 
 
-        updateConvNavSettings(); //TODO test
+        updateConvNavSettings(convNav);
 
     });
 

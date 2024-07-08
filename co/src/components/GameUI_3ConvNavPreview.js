@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getScreenSize, triggerNextPiece, triggerAutoMode, getUIConvNav, isInGameView}) {
 
 
-    const [uiConvNav, setUiConvNav] = useState({});
-    //getUIConvNav
+    const [uiConvNav, setUiConvNav] = useState(-1);
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const allPieceData = initialAllPieceData;
@@ -34,7 +33,11 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
         }
 
         let uiConvNavTemp = getUIConvNav();
-        setUiConvNav(uiConvNavTemp);
+        if (uiConvNavTemp !== undefined) {
+            setUiConvNav(uiConvNavTemp);
+            console.log("conv-nav now is : " , uiConvNavTemp); //TODO test
+        }
+      
 
         let screenSizePair = getScreenSize();
         if (screenSizePair[0] !== screenWidth || screenSizePair[1] !== screenHeight) {
@@ -55,7 +58,7 @@ return (<div style={{
 
 
 <div className="parallelFrame">
-                <div
+                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "margin-right": "50px",
                         "color": uiConvNav["buttonAutoIsTextFont"] ? 
@@ -80,8 +83,10 @@ return (<div style={{
 
 
                 </div>
+                }
 
-                <div
+
+                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "margin-right": "50px",
                         "color": uiConvNav["buttonLogIsTextFont"] ? uiConvNav["buttonLogShade0"] : "",
@@ -96,7 +101,7 @@ return (<div style={{
                     {!uiConvNav["buttonLogFontItalic"] && <label>Log</label>}
                     {uiConvNav["buttonLogFontItalic"] && <em>Log</em>}
 
-                </div>
+                </div>}
             </div>
 
 

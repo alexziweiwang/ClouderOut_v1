@@ -313,6 +313,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function passInUIConvNav() {
+        console.log("passing in UIConvNav in Conv-Editing-Panel" , uiConvNav); //TODO test
         return uiConvNav;
     }
 
