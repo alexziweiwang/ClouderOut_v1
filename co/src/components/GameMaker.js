@@ -221,12 +221,17 @@ export default function GameMaker() {
 
   function handleResourceManagerCancel() {
     setDisplayRmModal(false);
+    
+    //TODO3 fetch laterst data from cloud?
+
   }
 
   function handleResourceManagerSaveChanges() {
     console.log("modal save changes!");
     //TODO update to cloud db
     setDisplayRmModal(false);
+
+    //TODO3 fetch laterst data from cloud?
   }
 
   function updateLinkingNodeFunc(position, nodename, chapterkey) {

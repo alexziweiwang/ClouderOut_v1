@@ -549,6 +549,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   function handleGameDataManagerCancel() {
     setDisplayGameDataWindow(!displayGameDataWindow);
+    //TODO3 fetch laterst data from cloud?
   }
 
   async function fetchGameDataFromCloud() {

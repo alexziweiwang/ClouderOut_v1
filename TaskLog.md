@@ -280,3 +280,5 @@
 - 2024-Jul-01: Consider and design piece-content-typing "first-tap" and "second-tap" mechanism on conversational-game-node
 
 - 2024-Jul-02: Design and setup gradients for text-content-display speeds
+
+- 2024-Jul-08: Consider streategy and add implementation plan for rm & gdm updating after closing modal-window

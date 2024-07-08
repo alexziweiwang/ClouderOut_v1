@@ -224,6 +224,9 @@ export default function ConversationNodeEditingPanel() {
 
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
+
+            //TODO3 fetch laterst data from cloud?
+
     }
     
     function handleResourceManagerSaveChanges() {
@@ -377,6 +380,7 @@ export default function ConversationNodeEditingPanel() {
 
     function handleGameDataManagerCancel() {
         setDisplayGameDataWindow(!displayGameDataWindow);
+        //TODO3 fetch laterst data from cloud?
     }
 
 
