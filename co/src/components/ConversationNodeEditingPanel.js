@@ -173,6 +173,9 @@ export default function ConversationNodeEditingPanel() {
     const [gameData, setGameData] = useState({});
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
+    const [rmUpdateSignal, setRmUpdatedSignal] = useState(false);
+    const [gdmUpdateSignal, setGdmUpdateSignal] = useState(false);
+
     useEffect(() => {
         if (firstTimeEnter === true) {
             getGameDataFromCloud();
@@ -225,7 +228,7 @@ export default function ConversationNodeEditingPanel() {
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
 
-            //TODO3 fetch laterst data from cloud?
+        //TODO3 fetch laterst data from cloud?
 
     }
     
@@ -442,7 +445,23 @@ export default function ConversationNodeEditingPanel() {
         setFirstTimeEnter(true);
     }
 
+    function receiveRmUpdateSignalTrueFromCallee() {
+        setRmUpdatedSignal(true);
+    }
 
+    function receiveRmUpdateSignalFalseFromCallee() {
+        setRmUpdatedSignal(false);
+    }
+
+    function receiveGdmUpdateSignalTrueFromCallee() {
+        setGdmUpdateSignal(true);
+    }
+
+    function receiveGdmUpdateSignalFalseFromCallee() {
+        setGdmUpdateSignal(false);
+    }
+
+    
     return (
 
         <div>

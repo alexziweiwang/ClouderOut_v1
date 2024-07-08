@@ -187,7 +187,9 @@ export default function GameMaker() {
 
 //TODO ------------------------------------------------------
  
-  
+  const [rmUpdateSignal, setRmUpdatedSignal] = useState(false);
+  const [gdmUpdateSignal, setGdmUpdateSignal] = useState(false);
+
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -272,6 +274,22 @@ export default function GameMaker() {
   function triggerRefresh() {
     setFirstTimeEnter(true);
   }
+
+  function receiveRmUpdateSignalTrueFromCallee() {
+    setRmUpdatedSignal(true);
+}
+
+function receiveRmUpdateSignalFalseFromCallee() {
+    setRmUpdatedSignal(false);
+}
+
+function receiveGdmUpdateSignalTrueFromCallee() {
+    setGdmUpdateSignal(true);
+}
+
+function receiveGdmUpdateSignalFalseFromCallee() {
+    setGdmUpdateSignal(false);
+}
 
   return (
   <div>

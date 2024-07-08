@@ -119,6 +119,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const node_width = 380, node_height = 120; //TODO remove later
    const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700"); //TODO remove later
 
+   const [rmUpdateSignal, setRmUpdatedSignal] = useState(false);
+   const [gdmUpdateSignal, setGdmUpdateSignal] = useState(false);
+
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
@@ -663,6 +666,24 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     }
     return num;
   }
+
+  function receiveRmUpdateSignalTrueFromCallee() {
+    setRmUpdatedSignal(true);
+  }
+
+  function receiveRmUpdateSignalFalseFromCallee() {
+      setRmUpdatedSignal(false);
+  }
+
+  function receiveGdmUpdateSignalTrueFromCallee() {
+      setGdmUpdateSignal(true);
+  }
+
+  function receiveGdmUpdateSignalFalseFromCallee() {
+      setGdmUpdateSignal(false);
+  }
+
+
 
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>
