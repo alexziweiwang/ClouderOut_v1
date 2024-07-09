@@ -48,7 +48,8 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
     });
 
 
-
+    //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
+    const [visualList, setVisualList] = useState([]); 
 
 return (<div style={{
                 "position": "absolute",
@@ -67,6 +68,8 @@ return (<div style={{
                             : "",
                         "background-image": !uiConvNav["buttonAutoIsTextFont"] ? "" : "",  
                         "font-family": `${uiConvNav["buttonAutoFontName"]}`,
+
+                        "userSelect": "none",
                         
                     }}
                     onClick={()=>{
@@ -104,7 +107,10 @@ return (<div style={{
                         "color": uiConvNav["buttonLogIsTextFont"] ? uiConvNav["buttonLogShade0"] : "",
                         "background-image": !uiConvNav["buttonLogIsTextFont"] ? "" : "",  
                         "font-family": `${uiConvNav["buttonLogFontName"]}`,
-                        "font-style:": "italic"
+                        "font-style:": "italic",
+
+                        "userSelect": "none",
+
                     }}
                     onClick={()=>{
                         //trigger log-screen

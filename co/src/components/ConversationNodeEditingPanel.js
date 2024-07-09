@@ -171,10 +171,20 @@ export default function ConversationNodeEditingPanel() {
 
 
     const [gameData, setGameData] = useState({});
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
-    const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
+
+    const [audioList, setAudioList] = useState([]); //TODO for sound effects -- future feature
+    const [visualList, setVisualList] = useState([]); 
+
+
+
+
+
+
+
 
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -387,8 +397,6 @@ export default function ConversationNodeEditingPanel() {
 
     function handleGameDataManagerCancel() {
         setDisplayGameDataWindow(!displayGameDataWindow);
-        //TODO3 fetch laterst data from cloud?
-        setGdmUpdatedSignal(true);
     }
 
 

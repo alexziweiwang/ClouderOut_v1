@@ -19,6 +19,10 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
     const [autoOn, setAutoOn] = useState(false);
 
+//TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
+//TODO remove "picUrl" for each resource
+const [visualList, setVisualList] = useState([]); 
+
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
         if (allPieceContentTemp !== allPieceData) {

@@ -119,10 +119,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const node_width = 380, node_height = 120; //TODO remove later
    const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700"); //TODO remove later
 
-   const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
-   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
-
-
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
       if (firstTimeEnter === true) {
@@ -552,9 +548,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   function handleGameDataManagerCancel() {
     setDisplayGameDataWindow(!displayGameDataWindow);
-    //TODO3 fetch laterst data from cloud?
-    setGdmUpdatedSignal(true);
-
   }
 
   async function fetchGameDataFromCloud() {
@@ -667,11 +660,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
       }
     }
     return num;
-  }
-
-  function passInrmUpdatedSignal() {
-    let val = rmUpdatedSignal;
-    return val;
   }
 
     return (      

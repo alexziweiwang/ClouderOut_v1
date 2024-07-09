@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-
 export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerNextPiece}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
@@ -16,6 +15,11 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
         : (allPieceData[currentPieceNum]["stnd_btn_arr"] !== undefined ? allPieceData[currentPieceNum]["stnd_btn_arr"] : []);
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
+
+//TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
+//TODO remove "picUrl" for each resource
+const [audioList, setAudioList] = useState([]); //TODO for sound effects -- future feature
+const [visualList, setVisualList] = useState([]); 
 
     useEffect(() => {
 
