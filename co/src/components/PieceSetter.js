@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdateSignal, fetchGdmUpdatedSignal, resetRmUpdatedSignal, resetGdmUpdatedSignal
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList
 }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -16,7 +16,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     let name = "/gamenodeconvpiecedatasec";
 
     const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
-
+    const [gameDataListLocal, setGameDatListLocal] = useState(gameDataList);
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -134,13 +134,20 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         }
 
 
-        let isUdpateResource = fetchRmUpdateSignal();
+        let isUdpateResource = fetchRmUpdatedSignal();
         if (isUdpateResource === true) {
+            console.log("isUdpateResource???");
             fetchProjResourceLists();
-            resetRmUpdatedSignal();
+            respondUpdatedRm();
         }
 
-        //TDOO1 current: gameDataList, future: fetch updated game-data inside this component?
+    //     let currGameData = fetchNewGameDataList();
+    //     if (currGameData !== gameDataListLocal) {
+    //         setGameDatListLocal(currGameData);
+    //     }
+   
+
+        //TODO2 current: gameDataList, future: fetch updated game-data inside this component?
     });
 
     function changeLoopingSetting() {
@@ -871,7 +878,7 @@ console.log(event.target.value); //TODO test
                                     if (event.target.value === "") {
                                         return;
                                     }
-                                    setStndBtnConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
+                                    setStndBtnConseqGDataTypeSelected(gameDataListLocal[event.target.value]["data_type"]);
                               
                                 // } else {
                                 
@@ -880,9 +887,9 @@ console.log(event.target.value); //TODO test
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
                         <option value="" key=""> -- Select Game Data Item --</option>
-                        {Object.keys(gameDataList).map((currKey) => {
+                        {Object.keys(gameDataListLocal).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                            let keyStr = "gameData" + gameDataList[currKey]["name"];
+                            let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
                             return (
                                 
                                 <option value={currKey} key={keyStr}>{currKey}</option>
@@ -1194,7 +1201,7 @@ console.log(event.target.value); //TODO test
                                     if (event.target.value === "") {
                                         return;
                                     }
-                                    setCstmClkbConseqGDataTypeSelected(gameDataList[event.target.value]["data_type"]);
+                                    setCstmClkbConseqGDataTypeSelected(gameDataListLocal[event.target.value]["data_type"]);
                               
                                 // } else {
                                 
@@ -1203,9 +1210,9 @@ console.log(event.target.value); //TODO test
                             }} 
                             value={cstmClkbConseqGDataItemSelected}>
                         <option value="" key=""> -- Select Game Data Item --</option>
-                        {Object.keys(gameDataList).map((currKey) => {
+                        {Object.keys(gameDataListLocal).map((currKey) => {
                             // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
-                            let keyStr = "gameData" + gameDataList[currKey]["name"];
+                            let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
                             return (
                                 
                                 <option value={currKey} key={keyStr}>{currKey}</option>

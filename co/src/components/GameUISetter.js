@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdateSignal, fetchGdmUpdatedSignal, resetRmUpdatedSignal, resetGdmUpdatedSignal
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
 }) {
     const screenWidth = 800;
     const screenHeight = 600;
@@ -23,7 +23,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         
         updateConvNavSettings(convNav);
 
-        let isUdpateResource = fetchRmUpdateSignal();
+        let isUdpateResource = fetchRmUpdatedSignal();
         if (isUdpateResource === true) {
             fetchProjResourceLists();
             resetRmUpdatedSignal();

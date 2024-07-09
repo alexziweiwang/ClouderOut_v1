@@ -453,22 +453,14 @@ export default function ConversationNodeEditingPanel() {
     }
 
 
-    function resetGdmUpdatedSignal() {
-        setGdmUpdatedSignal(false);
-    }
 
-
-
-    function passInrmUpdatedSignal() {
+    function passInRmUpdatedSignal() {
         let val = rmUpdatedSignal;
-        setRmUpdatedSignal(!val);
         return val;
     }
 
-    function passInGdmUpdatedSignal() {
-        let val = gdmUpdatedSignal;
-        setGdmUpdatedSignal(!val);
-        return val;
+    function passInNewGameDataList() {
+        return gameData;
     }
 
     return (
@@ -528,10 +520,9 @@ export default function ConversationNodeEditingPanel() {
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}
-                            fetchRmUpdatedSignal={passInrmUpdatedSignal}
-                            fetchGdmUpdatedSignal={passInGdmUpdatedSignal}
+                            fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
-                            respondUpdatedGdm={resetGdmUpdatedSignal}
+                            fetchNewGameDataList={passInNewGameDataList}
                         />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
@@ -545,10 +536,8 @@ export default function ConversationNodeEditingPanel() {
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
                             updateConvNavSettings={updateConvNavSettings}
-                            fetchRmUpdateSignal={passInrmUpdatedSignal}
-                            fetchGdmUpdatedSignal={passInGdmUpdatedSignal}
+                            fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
-                            respondUpdatedGdm={resetGdmUpdatedSignal}
                     />}
                 </div>
             }
@@ -578,10 +567,8 @@ export default function ConversationNodeEditingPanel() {
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
                             updateConvNavSettings={updateConvNavSettings}
-                            fetchRmUpdateSignal={passInrmUpdatedSignal}
-                            fetchGdmUpdatedSignal={passInGdmUpdatedSignal}
+                            fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
-                            respondUpdatedGdm={resetGdmUpdatedSignal}
                         />}
                 
                 </div>
