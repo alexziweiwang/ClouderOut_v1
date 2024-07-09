@@ -35,7 +35,6 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
         let uiConvNavTemp = getUIConvNav();
         if (uiConvNavTemp !== undefined) {
             setUiConvNav(uiConvNavTemp);
-            console.log("conv-nav now is : " , uiConvNavTemp); //TODO test
         }
       
 

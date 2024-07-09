@@ -18,7 +18,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     useEffect(() => {
         if (firstTimeEnter === true) {
             const allPiece = getAllPieceData();
-            console.log("piece manager: allpiece now is = ", allPiece);//TODO test
+
             setPieceDataLocal(allPiece);
             setFirstTimeEnter(false);
         }

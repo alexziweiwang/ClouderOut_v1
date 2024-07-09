@@ -182,6 +182,7 @@ export default function ConversationNodeEditingPanel() {
             
             setFirstTimeEnter(false);
         }
+        
         if (projectName === "default-no-state projectName") {
             alert("No project selected. Returning to project selection page...");
             goToProjectManagingPanel();
@@ -202,9 +203,12 @@ export default function ConversationNodeEditingPanel() {
 
         // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
         // console.log(state); //TODO remove later
-        console.log("Conv-editing-:$$$$$$$$$$$ game data from cloud = ");
-        console.log(gDataMap);
+
         
+        // console.log("Conv-editing-:$$$$$$$$$$$ game data from cloud = ");
+        // console.log(gDataMap);
+        
+
         //TODO transform to a list  
 
         setGameData(gDataMap);
@@ -324,7 +328,6 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function passInUIConvNav() {
-        console.log("passing in UIConvNav in Conv-Editing-Panel" , uiConvNav); //TODO test
         return uiConvNav;
     }
 
@@ -452,8 +455,6 @@ export default function ConversationNodeEditingPanel() {
         setRmUpdatedSignal(false);
     }
 
-
-
     function passInRmUpdatedSignal() {
         let val = rmUpdatedSignal;
         return val;
@@ -467,7 +468,7 @@ export default function ConversationNodeEditingPanel() {
 
         <div>
             <div className="returning_buttons">
-                <button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
+                <button className="button" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
             </div>
 

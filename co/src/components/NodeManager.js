@@ -669,32 +669,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     return num;
   }
 
-  function receivermUpdatedSignalTrueFromCallee() {
-    setRmUpdatedSignal(true);
-  }
-
-  function receivermUpdatedSignalFalseFromCallee() {
-      setRmUpdatedSignal(false);
-  }
-
-  function receivegdmUpdatedSignalTrueFromCallee() {
-      setGdmUpdatedSignal(true);
-  }
-
-  function receivegdmUpdatedSignalFalseFromCallee() {
-      setGdmUpdatedSignal(false);
-  }
-
   function passInrmUpdatedSignal() {
     let val = rmUpdatedSignal;
-    setRmUpdatedSignal(!val);
     return val;
-  }
-
-  function passInGdmUpdatedSignal() {
-      let val = gdmUpdatedSignal;
-      setGdmUpdatedSignal(!val);
-      return val;
   }
 
     return (      

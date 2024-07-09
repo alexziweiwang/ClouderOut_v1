@@ -233,10 +233,6 @@ export default function GameMaker() {
     console.log("modal save changes!");
     //TODO update to cloud db
     setDisplayRmModal(false);
-
-    //TODO3 fetch laterst data from cloud?
-    setGdmUpdatedSignal(true);
-
   }
 
   function updateLinkingNodeFunc(position, nodename, chapterkey) {
@@ -278,32 +274,13 @@ export default function GameMaker() {
     setFirstTimeEnter(true);
   }
 
-  function receivermUpdatedSignalTrueFromCallee() {
-    setRmUpdatedSignal(true);
+  function resetRmUpdatedSignal() {
+    setRmUpdatedSignal(false);
   }
 
-  function receivermUpdatedSignalFalseFromCallee() {
-      setRmUpdatedSignal(false);
-  }
-
-  function receivegdmUpdatedSignalTrueFromCallee() {
-      setGdmUpdatedSignal(true);
-  }
-
-  function receivegdmUpdatedSignalFalseFromCallee() {
-      setGdmUpdatedSignal(false);
-  }
-
-  function passInrmUpdatedSignal() {
-    let val = rmUpdatedSignal;
-    setRmUpdatedSignal(!val);
-    return val;
-  }
-
-  function passInGdmUpdatedSignal() {
-    let val = gdmUpdatedSignal;
-    setGdmUpdatedSignal(!val);
-    return val;
+  function passInRmUpdatedSignal() {
+      let val = rmUpdatedSignal;
+      return val;
   }
 
   return (
@@ -343,7 +320,15 @@ export default function GameMaker() {
         <div className="parallelFrame sectionArea"> 
           
      
-          <NavigationSetter initialNavObj={currentProjectNav} updateNavObj={updateCurrProjectNavObj} openRm={handleResourceManagerOpen} updateCurrentPageName={updateCurrPageName} fetchPageName={passInCurrSelectedPage}/>
+          <NavigationSetter 
+            initialNavObj={currentProjectNav} 
+            updateNavObj={updateCurrProjectNavObj} 
+            openRm={handleResourceManagerOpen} 
+            updateCurrentPageName={updateCurrPageName} 
+            fetchPageName={passInCurrSelectedPage}
+          />
+          //TODO2 add rm-update-triggering functions
+           
           
           <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
 

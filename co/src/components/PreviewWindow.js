@@ -35,8 +35,9 @@ export default function PreviewWindow({initialAllPieceData, getAllPieceContent, 
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
+    
     async function fetchProjResourceLists() {
-      console.log("piece-preview: fetchProjResourceLists()"); //TODO test
+
       /* fetch from cloud db */
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
       // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
