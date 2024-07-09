@@ -173,8 +173,8 @@ export default function ConversationNodeEditingPanel() {
     const [gameData, setGameData] = useState({});
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
-    const [rmUpdateSignal, setRmUpdatedSignal] = useState(false);
-    const [gdmUpdateSignal, setGdmUpdateSignal] = useState(false);
+    const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
+    const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
 
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -229,8 +229,8 @@ export default function ConversationNodeEditingPanel() {
         setDisplayRmModal(false);
 
         //TODO3 fetch laterst data from cloud?
-        setRmUpdateSignal(true);
-
+        setRmUpdatedSignal(true);
+        
     }
     
     function handleResourceManagerSaveChanges() {
@@ -385,7 +385,7 @@ export default function ConversationNodeEditingPanel() {
     function handleGameDataManagerCancel() {
         setDisplayGameDataWindow(!displayGameDataWindow);
         //TODO3 fetch laterst data from cloud?
-        setGdmUpdateSignal(true);
+        setGdmUpdatedSignal(true);
     }
 
 
@@ -447,33 +447,27 @@ export default function ConversationNodeEditingPanel() {
         setFirstTimeEnter(true);
     }
 
-    function receiveRmUpdateSignalTrueFromCallee() {
-        setRmUpdatedSignal(true);
-    }
 
-    function receiveRmUpdateSignalFalseFromCallee() {
+    function resetRmUpdatedSignal() {
         setRmUpdatedSignal(false);
     }
 
-    function receiveGdmUpdateSignalTrueFromCallee() {
-        setGdmUpdateSignal(true);
-    }
 
-    function receiveGdmUpdateSignalFalseFromCallee() {
-        setGdmUpdateSignal(false);
+    function resetGdmUpdatedSignal() {
+        setGdmUpdatedSignal(false);
     }
 
 
 
-    function passInRmUpdateSignal() {
+    function passInrmUpdatedSignal() {
         let val = rmUpdatedSignal;
         setRmUpdatedSignal(!val);
         return val;
     }
 
-    function passInGdmUpdateSignal() {
+    function passInGdmUpdatedSignal() {
         let val = gdmUpdatedSignal;
-        setGdmUpdateSignal(!val);
+        setGdmUpdatedSignal(!val);
         return val;
     }
 
@@ -534,6 +528,10 @@ export default function ConversationNodeEditingPanel() {
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}
+                            fetchRmUpdatedSignal={passInrmUpdatedSignal}
+                            fetchGdmUpdatedSignal={passInGdmUpdatedSignal}
+                            respondUpdatedRm={resetRmUpdatedSignal}
+                            respondUpdatedGdm={resetGdmUpdatedSignal}
                         />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
@@ -547,6 +545,10 @@ export default function ConversationNodeEditingPanel() {
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
                             updateConvNavSettings={updateConvNavSettings}
+                            fetchRmUpdateSignal={passInrmUpdatedSignal}
+                            fetchGdmUpdatedSignal={passInGdmUpdatedSignal}
+                            respondUpdatedRm={resetRmUpdatedSignal}
+                            respondUpdatedGdm={resetGdmUpdatedSignal}
                     />}
                 </div>
             }
@@ -576,6 +578,10 @@ export default function ConversationNodeEditingPanel() {
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
                             updateConvNavSettings={updateConvNavSettings}
+                            fetchRmUpdateSignal={passInrmUpdatedSignal}
+                            fetchGdmUpdatedSignal={passInGdmUpdatedSignal}
+                            respondUpdatedRm={resetRmUpdatedSignal}
+                            respondUpdatedGdm={resetGdmUpdatedSignal}
                         />}
                 
                 </div>

@@ -119,8 +119,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const node_width = 380, node_height = 120; //TODO remove later
    const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700"); //TODO remove later
 
-   const [rmUpdateSignal, setRmUpdatedSignal] = useState(false);
-   const [gdmUpdateSignal, setGdmUpdateSignal] = useState(false);
+   const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
+   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
 
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -553,7 +553,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   function handleGameDataManagerCancel() {
     setDisplayGameDataWindow(!displayGameDataWindow);
     //TODO3 fetch laterst data from cloud?
-    setGdmUpdateSignal(true);
+    setGdmUpdatedSignal(true);
 
   }
 
@@ -669,31 +669,31 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     return num;
   }
 
-  function receiveRmUpdateSignalTrueFromCallee() {
+  function receivermUpdatedSignalTrueFromCallee() {
     setRmUpdatedSignal(true);
   }
 
-  function receiveRmUpdateSignalFalseFromCallee() {
+  function receivermUpdatedSignalFalseFromCallee() {
       setRmUpdatedSignal(false);
   }
 
-  function receiveGdmUpdateSignalTrueFromCallee() {
-      setGdmUpdateSignal(true);
+  function receivegdmUpdatedSignalTrueFromCallee() {
+      setGdmUpdatedSignal(true);
   }
 
-  function receiveGdmUpdateSignalFalseFromCallee() {
-      setGdmUpdateSignal(false);
+  function receivegdmUpdatedSignalFalseFromCallee() {
+      setGdmUpdatedSignal(false);
   }
 
-  function passInRmUpdateSignal() {
+  function passInrmUpdatedSignal() {
     let val = rmUpdatedSignal;
     setRmUpdatedSignal(!val);
     return val;
   }
 
-  function passInGdmUpdateSignal() {
+  function passInGdmUpdatedSignal() {
       let val = gdmUpdatedSignal;
-      setGdmUpdateSignal(!val);
+      setGdmUpdatedSignal(!val);
       return val;
   }
 

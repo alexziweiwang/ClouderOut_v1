@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings}) {
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdateSignal, fetchGdmUpdatedSignal, resetRmUpdatedSignal, resetGdmUpdatedSignal
+}) {
     const screenWidth = 800;
     const screenHeight = 600;
 
@@ -19,21 +20,30 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
   
         updateTextFrameUISettings(txtFrameObj);
         updateBackButtonSettings(igMenuBtnObj);
-
-
+        
         updateConvNavSettings(convNav);
 
+        let isUdpateResource = fetchRmUpdateSignal();
+        if (isUdpateResource === true) {
+            fetchProjResourceLists();
+            resetRmUpdatedSignal();
+        }
+     
     });
 
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
     const [visualMap, setVisualMap] = useState([]); 
+    const [audioMap, setAudioMap] = useState([]);
+
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+        
         setVisualMap(obj.visual);
+        setAudioMap(obj.audio);
     }
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");

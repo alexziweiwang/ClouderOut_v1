@@ -6,7 +6,8 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum}) {
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdateSignal, fetchGdmUpdatedSignal, resetRmUpdatedSignal, resetGdmUpdatedSignal
+}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -130,8 +131,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             let receivedPieceNum = getCurrentPieceNum();
             setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
             setLookingPieceNumber(receivedPieceNum+1);
-         
-            
+        }
+
+
+        let isUdpateResource = fetchRmUpdateSignal();
+        if (isUdpateResource === true) {
+            fetchProjResourceLists();
+            resetRmUpdatedSignal();
         }
 
         //TDOO1 current: gameDataList, future: fetch updated game-data inside this component?
