@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import PreviewWindow from './PreviewWindow';
 import PieceManager from './PieceManager';
 import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
@@ -12,6 +13,10 @@ import GameDataManager from './GameDataManager';
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
+ 
+    const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
+
 
     const navigate = useNavigate();
     const {state} = useLocation();
@@ -24,7 +29,25 @@ export default function ConversationNodeEditingPanel() {
         projectName = state.selected_project_name;
     }
     // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
-    
+ 
+    const [audioList, setAudioList] = useState([]); //TODO for sound effect -- future feature
+    const [visualList, setVisualList] = useState([]); 
+  
+    async function fetchProjResourceLists() {
+
+                                                        console.log("conv-editing panel: fetchProjResourceLists()"); //TODO test
+      /* fetch from cloud db */
+
+      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+                                                       
+                                                        console.log("conv-editing panel: obj from cloud (resource list):"); //TODO test
+                                                        console.log(obj); //TODO test
+
+      setAudioList(obj.audio);
+      setVisualList(obj.visual);
+    }
+
+
     const [isActionOnSetter, setIsActionOnSetter] = useState(true);
 
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
@@ -176,20 +199,12 @@ export default function ConversationNodeEditingPanel() {
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
-    const [audioList, setAudioList] = useState([]); //TODO for sound effects -- future feature
-    const [visualList, setVisualList] = useState([]); 
-
-
-
-
-
-
-
 
     useEffect(() => {
         if (firstTimeEnter === true) {
             getGameDataFromCloud();
-            
+            fetchProjResourceLists();
+
             setFirstTimeEnter(false);
         }
         
@@ -197,7 +212,8 @@ export default function ConversationNodeEditingPanel() {
             alert("No project selected. Returning to project selection page...");
             goToProjectManagingPanel();
           }
-        });
+    
+    });
       
     function goToProjectManagingPanel() {
         navigate('/projectmanagingpanel', { replace: true });
@@ -320,10 +336,7 @@ export default function ConversationNodeEditingPanel() {
         return gameUIBackButton;
     }
 
-    function tempTrigerRmUpdate() {
-        console.log("tempTrigerRmUpdate");
-        console.log("TODO: resource-managing update");
-    }
+
 
     function passInCurrentPieceObj() {
         return pieceDataStructure[previewingIndex];
@@ -471,6 +484,17 @@ export default function ConversationNodeEditingPanel() {
     function passInNewGameDataList() {
         return gameData;
     }
+
+    function passInAudioList() {
+        return audioList;  //for previewing
+    }
+
+    function passInVisualList() {
+        return visualList; //for previewing
+    }
+
+
+    
 
     return (
 
@@ -621,7 +645,6 @@ export default function ConversationNodeEditingPanel() {
                     isDisplay = {isDisplayRmBool} 
                     handleRmCancel={handleResourceManagerCancel} 
                     handleRmSaveChanges={handleResourceManagerSaveChanges} 
-                    triggerRmUpdate={tempTrigerRmUpdate}
                     refresh={triggerRefresh}
                     />}
             </>}
