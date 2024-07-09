@@ -553,6 +553,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   function handleGameDataManagerCancel() {
     setDisplayGameDataWindow(!displayGameDataWindow);
     //TODO3 fetch laterst data from cloud?
+    setGdmUpdateSignal(true);
+
   }
 
   async function fetchGameDataFromCloud() {
@@ -683,7 +685,17 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
       setGdmUpdateSignal(false);
   }
 
+  function passInRmUpdateSignal() {
+    let val = rmUpdatedSignal;
+    setRmUpdatedSignal(!val);
+    return val;
+  }
 
+  function passInGdmUpdateSignal() {
+      let val = gdmUpdatedSignal;
+      setGdmUpdateSignal(!val);
+      return val;
+  }
 
     return (      
         <div style={{"overflow": "scroll", "width": "1000px"}}>

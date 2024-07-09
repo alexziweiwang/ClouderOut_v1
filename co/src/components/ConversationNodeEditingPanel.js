@@ -229,6 +229,7 @@ export default function ConversationNodeEditingPanel() {
         setDisplayRmModal(false);
 
         //TODO3 fetch laterst data from cloud?
+        setRmUpdateSignal(true);
 
     }
     
@@ -384,6 +385,7 @@ export default function ConversationNodeEditingPanel() {
     function handleGameDataManagerCancel() {
         setDisplayGameDataWindow(!displayGameDataWindow);
         //TODO3 fetch laterst data from cloud?
+        setGdmUpdateSignal(true);
     }
 
 
@@ -461,7 +463,20 @@ export default function ConversationNodeEditingPanel() {
         setGdmUpdateSignal(false);
     }
 
-    
+
+
+    function passInRmUpdateSignal() {
+        let val = rmUpdatedSignal;
+        setRmUpdatedSignal(!val);
+        return val;
+    }
+
+    function passInGdmUpdateSignal() {
+        let val = gdmUpdatedSignal;
+        setGdmUpdateSignal(!val);
+        return val;
+    }
+
     return (
 
         <div>

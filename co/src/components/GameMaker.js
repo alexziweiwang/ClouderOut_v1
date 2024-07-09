@@ -225,6 +225,7 @@ export default function GameMaker() {
     setDisplayRmModal(false);
     
     //TODO3 fetch laterst data from cloud?
+    setRmUpdateSignal(true);
 
   }
 
@@ -234,6 +235,8 @@ export default function GameMaker() {
     setDisplayRmModal(false);
 
     //TODO3 fetch laterst data from cloud?
+    setGdmUpdateSignal(true);
+
   }
 
   function updateLinkingNodeFunc(position, nodename, chapterkey) {
@@ -277,19 +280,31 @@ export default function GameMaker() {
 
   function receiveRmUpdateSignalTrueFromCallee() {
     setRmUpdatedSignal(true);
-}
+  }
 
-function receiveRmUpdateSignalFalseFromCallee() {
-    setRmUpdatedSignal(false);
-}
+  function receiveRmUpdateSignalFalseFromCallee() {
+      setRmUpdatedSignal(false);
+  }
 
-function receiveGdmUpdateSignalTrueFromCallee() {
-    setGdmUpdateSignal(true);
-}
+  function receiveGdmUpdateSignalTrueFromCallee() {
+      setGdmUpdateSignal(true);
+  }
 
-function receiveGdmUpdateSignalFalseFromCallee() {
-    setGdmUpdateSignal(false);
-}
+  function receiveGdmUpdateSignalFalseFromCallee() {
+      setGdmUpdateSignal(false);
+  }
+
+  function passInRmUpdateSignal() {
+    let val = rmUpdatedSignal;
+    setRmUpdatedSignal(!val);
+    return val;
+  }
+
+  function passInGdmUpdateSignal() {
+    let val = gdmUpdatedSignal;
+    setGdmUpdateSignal(!val);
+    return val;
+  }
 
   return (
   <div>
