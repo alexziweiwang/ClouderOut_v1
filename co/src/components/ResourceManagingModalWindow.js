@@ -407,7 +407,7 @@ export default function ResourceManagingModalWindow ({handleRmCancel, handleRmSa
                 <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(false);}}></input>  <label onClick={()=>{setIsSourceByUpload(false);}}>From Google Drive</label>
                 {!isSourceByUpload && <div className="uploadArea" style={{"color": "#000000"}}>
                 Enter a public sharing link from Google Drive...
-                <br></br><label style={{"font-style": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
+                <br></br><label style={{"fontStyle": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
                 <br></br>
                     <input value={googleDriveFileSharedLink} onChange={(event)=>{setGoogleDriveFileSharedLink(event.target.value);}}></input>
                     <button onClick={()=>{

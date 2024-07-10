@@ -261,11 +261,11 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
 
               {<div style={{
-                "background-color": "#000000",
-                "background-image": (currentPieceNum >= 0 && bgpSource !== "") ? 
+                "backgroundColor": "#000000",
+                "backgroundImage": (currentPieceNum >= 0 && bgpSource !== "") ? 
                   `url(${bgpSource})` 
                     : "",
-                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
                 
                   onClick={()=>{
@@ -363,7 +363,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
             {(bgmSource !== undefined) && 
                       // <audio src={bgmSource} controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO actual game-playing
 
-                <audio src={bgmSource} autoplay="autoplay" controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO previewing/testing
+                <audio src={bgmSource} autoPlay="autoPlay" controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO previewing/testing
 
             }
 

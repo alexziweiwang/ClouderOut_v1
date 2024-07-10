@@ -82,26 +82,26 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
             return (
             <div id={currId} key={index} style={{   
                     "background": defualtBtnUISettings["bgColor"],
-                    "background-image": defualtBtnUISettings["isShape"] === true ? "" 
+                    "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
                         : `url('')`, //TODO improve later
-                    "background-size": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
+                    "backgroundSize": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
                     "height": `${defualtBtnUISettings["height"]}px`,
-                    "border-radius": `${defualtBtnUISettings["cornerRadius"]}px`,
+                    "borderRadius": `${defualtBtnUISettings["cornerRadius"]}px`,
                     "color": defualtBtnUISettings["textColor"],
                     "opacity": defualtBtnUISettings["transparency"],
                     "border": `${defualtBtnUISettings["border"]}`,
                     "margin-bottom": `${defualtBtnUISettings["margin"]}px`,
                     "padding-left": `10px`,
-                    "justify-content": defualtBtnUISettings["justifyContent"],
+                    "justifyContent": defualtBtnUISettings["justifyContent"],
                     "align-items": defualtBtnUISettings["alignItems"],
-                    "font-size": `${defualtBtnUISettings["textSize"]}px`,
-                    "font-family": `${defualtBtnUISettings["fontName"]}`,
+                    "fontSize": `${defualtBtnUISettings["textSize"]}px`,
+                    "fontFamily": `${defualtBtnUISettings["fontName"]}`,
                     
                     "display": "flex",
                     "cursor": "pointer",
-                    "user-select": "none",
+                    "userSelect": "none",
                     "transition": "all 0.2s ease-out",
                     "overflow": "scroll"
                 }}
@@ -140,40 +140,40 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
                 "width": `${backButtonUISettings["width"]}px`,
                 "height": `${backButtonUISettings["height"]}px`,
                 "color": backButtonUISettings["textColor"],
-                "border-radius": `${backButtonUISettings["cornerRadius"]}px`,
+                "borderRadius": `${backButtonUISettings["cornerRadius"]}px`,
                 "opacity": backButtonUISettings["transparency"],
-                "font-size": `${backButtonUISettings["textSize"]}px`,
+                "fontSize": `${backButtonUISettings["textSize"]}px`,
 
                 "position": "absolute",
                 "left": `${backButtonUISettings["posX"]}px`,
                 "top": `${backButtonUISettings["posY"]}px`,
-                "justify-content": "center",
+                "justifyContent": "center",
                 "align-items": "center",                        
                 "display": "flex",
                 "border": `${backButtonUISettings["borderSize"]}px solid ${backButtonUISettings["borderColor"]}`,
                 "cursor": "pointer",
-                "user-select": "none",
+                "userSelect": "none",
                 "transition": "all 0.2s ease-out"
             } : {
-                "background-image": `url('')`, //TODO improve later
-                "background-size": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
+                "backgroundImage": `url('')`, //TODO improve later
+                "backgroundSize": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
                 
                 "width": `${backButtonUISettings["width"]}px`,
                 "height": `${backButtonUISettings["height"]}px`,
                 "color": backButtonUISettings["textColor"],
-                "border-radius": `${backButtonUISettings["cornerRadius"]}px`,
+                "borderRadius": `${backButtonUISettings["cornerRadius"]}px`,
                 "opacity": backButtonUISettings["transparency"],
-                "font-size": `${backButtonUISettings["textSize"]}px`,
+                "fontSize": `${backButtonUISettings["textSize"]}px`,
 
                 "position": "absolute",
                 "left": `${backButtonUISettings["posX"]}px`,
                 "top": `${backButtonUISettings["posY"]}px`,
-                "justify-content": "center",
+                "justifyContent": "center",
                 "align-items": "center",
                 "display": "flex",
                 "border": `${backButtonUISettings["borderSize"]}px solid ${backButtonUISettings["borderColor"]}`,
                 "cursor": "pointer",
-                "user-select": "none",
+                "userSelect": "none",
                 "transition": "all 0.2s ease-out"
             }}
 

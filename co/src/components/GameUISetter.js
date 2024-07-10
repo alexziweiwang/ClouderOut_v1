@@ -299,40 +299,40 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
                         "width": `${defaultButtonObj["widthMin"]}px`,
                         "height": `${defaultButtonObj["height"]}px`,
-                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                        "borderRadius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
                         "opacity": defaultButtonObj["transparency"],
                         "border": `${defaultButtonObj["border"]}`,
                         "margin-bottom": `${defaultButtonObj["margin"]}px`,
                         "padding-left": `10px`,
-                        "justify-content": defaultButtonObj["justifyContent"],
+                        "justifyContent": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
-                        "font-size": `${defaultButtonObj["textSize"]}px`,
+                        "fontSize": `${defaultButtonObj["textSize"]}px`,
 
                         "display": "flex",
                         "cursor": "pointer",
-                        "user-select": "none",
+                        "userSelect": "none",
                         "transition": "all 0.2s ease-out",
                         "overflow": "scroll"
                     } : {
-                        "background-image": `url('${visualMap[defaultButtonObj["picVar"]]}')`, //TODO2 improve later
-                        "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
+                        "backgroundImage": `url('${visualMap[defaultButtonObj["picVar"]]}')`, //TODO2 improve later
+                        "backgroundSize": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
                         
                         "width": `${defaultButtonObj["widthMin"]}px`,
                         "height": `${defaultButtonObj["height"]}px`,
-                        "border-radius": `${defaultButtonObj["cornerRadius"]}px`,
+                        "borderRadius": `${defaultButtonObj["cornerRadius"]}px`,
                         "color": defaultButtonObj["textColor"],
                         "opacity": defaultButtonObj["transparency"],
                         "border": `${defaultButtonObj["border"]}`,
                         "margin-bottom": `${defaultButtonObj["margin"]}px`,
                         "padding-left": `10px`,
-                        "justify-content": defaultButtonObj["justifyContent"],
+                        "justifyContent": defaultButtonObj["justifyContent"],
                         "align-items": defaultButtonObj["alignItems"],
-                        "font-size": `${defaultButtonObj["textSize"]}px`,
+                        "fontSize": `${defaultButtonObj["textSize"]}px`,
 
                         "display": "flex",
                         "cursor": "pointer",
-                        "user-select": "none",
+                        "userSelect": "none",
                         "transition": "all 0.2s ease-out",
                         "overflow": "scroll"
                     }      

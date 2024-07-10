@@ -150,8 +150,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
-                "background-image": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
-                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "backgroundImage": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
                 "marginLeft": `20px`,
                 "position": "relative", 
@@ -201,12 +201,12 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
     
-                                    "justify-content": "center",
+                                    "justifyContent": "center",
                                     "align-items": "center",
                                     "display": "flex",
                                 } : {            
-                                    "background-image": `url('${visualMap[navObj[mainPagePictureVariableNames[1]]]}')`,
-                                    "background-size": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
+                                    "backgroundImage": `url('${visualMap[navObj[mainPagePictureVariableNames[1]]]}')`,
+                                    "backgroundSize": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
                                     
                                     "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
                                     "marginRight": `${navObj["mainPage-listItemGap"]}px`,
@@ -215,7 +215,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
     
-                                    "justify-content": "center",
+                                    "justifyContent": "center",
                                     "align-items": "center",
                                     "display": "flex",
                                 
@@ -345,13 +345,13 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "color": `${currItemFontColor}`,
                                 "fontSize": `${currItemFontSize}px`,
 
-                                "justify-content": "center",
+                                "justifyContent": "center",
                                 "align-items": "center",
                                 "display": "flex",
                             } :
                             {
-                                "background-image": `url('${visualMap[navObj[mainPagePictureVariableNames[index+2]]]}')`,
-                                "background-size": `${currItemWidth}px ${currItemHeight}px`,
+                                "backgroundImage": `url('${visualMap[navObj[mainPagePictureVariableNames[index+2]]]}')`,
+                                "backgroundSize": `${currItemWidth}px ${currItemHeight}px`,
                                 
                                 "position": "absolute",
                                 "marginBottom": `${navObj["mainPage-listItemGap"]}px`,
@@ -365,7 +365,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                                 "transition": "all 0.2s ease-out",
 
-                                "justify-content": "center",
+                                "justifyContent": "center",
                                 "align-items": "center",
                                 "display": "flex",
                             }
@@ -408,9 +408,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-                "background-image": navObj["saveloadPage-isBackgroundShape"] === false 
+                "backgroundImage": navObj["saveloadPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["saveloadPage-bgPicName"]]}')` : "",
-                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
 
                 "position": "relative", 
@@ -428,16 +428,16 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "top": "0px",
                     "left": "0px",
                     "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
-                    "background-image": navObj["backButton-isShape"] === false ?
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
                         `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "font-size": `${navObj["backButton-fontSize"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
 
                     "transition": "all 0.2s ease-out",
 
-                    "justify-content": "center",
+                    "justifyContent": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
@@ -475,7 +475,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             key={keyStr}
                             style={{
                             "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
-                            "background-image": navObj["saveloadPage-isSlotShape"] === false ?
+                            "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
                                 `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
                             "width": `${navObj["saveloadPage-slotWidth"]}px`,
                             "height": `${navObj["saveloadPage-slotHeight"]}px`,
@@ -582,9 +582,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor":  navObj["storyPage-isBackgroundShape"] === true ? `${navObj["storyPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-                "background-image": navObj["storyPage-isBackgroundShape"] === false 
+                "backgroundImage": navObj["storyPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["storyPage-bgPicName"]]}')` : "",
-                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
                 "position": "relative", 
                 "overflow": "scroll",
@@ -603,11 +603,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "font-size": `${navObj["backButton-fontSize"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
 
                     "transition": "all 0.2s ease-out",
 
-                    "justify-content": "center",
+                    "justifyContent": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
@@ -644,7 +644,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                             return (<div key={keyStr} id={keyStr}
                                 style={{
                                     "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
-                                    "background-image": navObj["storyPage-isListItemShape"] === false 
+                                    "backgroundImage": navObj["storyPage-isListItemShape"] === false 
                                     ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
                                     
                                     "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
@@ -658,7 +658,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                                     "transition": "all 0.2s ease-out",
 
-                                    "justify-content": "center",
+                                    "justifyContent": "center",
                                     "align-items": "center",
                                     "display": "flex",
                                 }}
@@ -700,9 +700,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor":  navObj["settingPage-isBackgroundShape"] === true ? `${navObj["settingPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-                "background-image": navObj["settingPage-isBackgroundShape"] === false 
+                "backgroundImage": navObj["settingPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["settingPage-bgPicName"]]}')` : "",
-                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
 
                 "position": "relative", 
@@ -723,11 +723,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "font-size": `${navObj["backButton-fontSize"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
 
                     "transition": "all 0.2s ease-out",
 
-                    "justify-content": "center",
+                    "justifyContent": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
@@ -789,8 +789,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                         key={optionName}
                                         id={keyStr3}
                                         style={{
-                                            "background-color":  navObj["settingPage-isListItemShape"] === true ? `${navObj["settingPage-listItemShadeName"]}` : "rgb(200, 122, 135)", 
-                                            "background-image": navObj["settingPage-isListItemShape"] === false 
+                                            "backgroundColor":  navObj["settingPage-isListItemShape"] === true ? `${navObj["settingPage-listItemShadeName"]}` : "rgb(200, 122, 135)", 
+                                            "backgroundImage": navObj["settingPage-isListItemShape"] === false 
                                                 ? `url('${visualMap[navObj["settingPage-listItemPicName"]]}')` : "",
 
 
@@ -806,7 +806,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                             "transition": "all 0.2s ease-out",
 
                                             "padding": "7px",
-                                            "user-select": "none"
+                                            "userSelect": "none"
                                         }}
                                         onMouseDown={
                                             ()=>{
@@ -857,11 +857,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "font-size": `${navObj["backButton-fontSize"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
 
                     "transition": "all 0.2s ease-out",
 
-                    "justify-content": "center",
+                    "justifyContent": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
@@ -898,9 +898,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor":  navObj["gsdPage-isBgShape"] === true ? `${navObj["gsdPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-                "background-image": navObj["gsdPage-isBgShape"] === false 
+                "backgroundImage": navObj["gsdPage-isBgShape"] === false 
                     ? `url('${visualMap[navObj["gsdPage-bgPicName"]]}')` : "",
-                "background-size": `${screenWidth}px ${screenHeight}px`,
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
 
                 "position": "relative", 
@@ -919,11 +919,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "font-size": `${navObj["backButton-fontSize"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
 
                     "transition": "all 0.2s ease-out",
 
-                    "justify-content": "center",
+                    "justifyContent": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}
@@ -973,11 +973,11 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
-                    "font-size": `${navObj["backButton-fontSize"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
 
                     "transition": "all 0.2s ease-out",
 
-                    "justify-content": "center",
+                    "justifyContent": "center",
                     "align-items": "center",
                     "display": "flex",
                 }}

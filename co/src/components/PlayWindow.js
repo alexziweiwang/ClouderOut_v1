@@ -121,8 +121,8 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
             <div className="previewArea" style={{"position": "relative", "height": `${screenHeight}px`,"width": `${screenWidth}px`}}>
             
               <div style={{
-                "background-image": `url(${bgpSource})`,
-                "background-size": `800px 600px`,
+                "backgroundImage": `url(${bgpSource})`,
+                "backgroundSize": `800px 600px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": "600px", "width": "800px"}}>
                   
                   <div> data:

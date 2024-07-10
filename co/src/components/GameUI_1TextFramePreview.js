@@ -76,13 +76,13 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 "top": `${txtFrameUISettings["positionY"]}px`,
                 "left": `${txtFrameUISettings["positionX"]}px`,  
                 "color": txtFrameUISettings["textColor"],
-                "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
+                "borderRadius": `${txtFrameUISettings["cornerRadius"]}px`,
                 "opacity": txtFrameUISettings["transparency"],
-                "font-size": `${txtFrameUISettings["textSize"]}px`,    
-                "user-select": "none",
+                "fontSize": `${txtFrameUISettings["textSize"]}px`,    
+                "userSelect": "none",
             } : {
-                "background-image": bgpUrl === "" ? "" : `url('${bgpUrl}')`,       //TODO improve later
-                "background-size": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
+                "backgroundImage": bgpUrl === "" ? "" : `url('${bgpUrl}')`,       //TODO improve later
+                "backgroundSize": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
                 
                 "width": `${txtFrameUISettings["width"]}px`,
                 "height": `${txtFrameUISettings["height"]}px`,
@@ -90,10 +90,10 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 "top": `${txtFrameUISettings["positionY"]}px`,
                 "left": `${txtFrameUISettings["positionX"]}px`,
                 "color": txtFrameUISettings["textColor"],
-                "border-radius": `${txtFrameUISettings["cornerRadius"]}px`,
+                "borderRadius": `${txtFrameUISettings["cornerRadius"]}px`,
                 "opacity": txtFrameUISettings["transparency"],
-                "font-size": `${txtFrameUISettings["textSize"]}px`, 
-                "user-select": "none", 
+                "fontSize": `${txtFrameUISettings["textSize"]}px`, 
+                "userSelect": "none", 
             }}
         >
         
@@ -104,7 +104,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
             "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
             "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
             "border": isInGameView === true ? "none" : "2px solid #e99a2b",
-            "border-radius": "0px"
+            "borderRadius": "0px"
         }}>
 
             {currentPieceNum >= 0 && 
@@ -122,8 +122,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
                     "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
-                    "justify-content": "left",
-                    "font-family": `${txtFrameUISettings["fontName"]}`,
+                    "justifyContent": "left",
+                    "fontFamily": `${txtFrameUISettings["fontName"]}`,
                 }}
                 onClick={()=>{
                     //TODO1 add "firstTap" for all-content showing on one piece
@@ -159,14 +159,14 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
             {/* <div className="parallelFrame">
                 <div
                     style={{
-                        "margin-right": "50px",
+                        "marginRight": "50px",
                         "color": txtFrameUISettings["buttonAutoIsTextFont"] ? 
                             (autoOn ? 
                                 txtFrameUISettings["buttonAutoShade1"] 
                                 :  txtFrameUISettings["buttonAutoShade0"]) 
                             : "",
-                        "background-image": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
-                        "font-family": `${txtFrameUISettings["buttonAutoFontName"]}`,
+                        "backgroundImage": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
+                        "fontFamily": `${txtFrameUISettings["buttonAutoFontName"]}`,
                         
                     }}
                     onClick={()=>{
@@ -185,11 +185,11 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
                 <div
                     style={{
-                        "margin-right": "50px",
+                        "marginRight": "50px",
                         "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade0"] : "",
-                        "background-image": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
-                        "font-family": `${txtFrameUISettings["buttonLogFontName"]}`,
-                        "font-style:": "italic"
+                        "backgroundImage": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
+                        "fontFamily": `${txtFrameUISettings["buttonLogFontName"]}`,
+                        "fontStyle:": "italic"
                     }}
                     onClick={()=>{
                         //trigger log-screen
