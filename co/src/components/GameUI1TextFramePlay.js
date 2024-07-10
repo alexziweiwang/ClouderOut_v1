@@ -29,7 +29,7 @@ export default function GameUI1TextFramePlay({initialAllPieceData, getAllPieceCo
 
 //settled
     const allPieceData = initialAllPieceData;
-    const bgpUrl = txtFrameUISettings["picUrl"];
+    const bgpUrl = ""; //TODO2 improve with visualMap
     const [txtFrameUISettings, setTxtFrameUISettings] = useState({}); //TODO change later
 
 

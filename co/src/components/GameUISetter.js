@@ -26,7 +26,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         let isUdpateResource = fetchRmUpdatedSignal();
         if (isUdpateResource === true) {
             fetchProjResourceLists();
-            resetRmUpdatedSignal();
+            respondUpdatedRm();
         }
      
     });
@@ -200,7 +200,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
               }}>Base Picture </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                            setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]}); 
+                            setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
                 
                 }}>                    
                     <option key="idvDefault" value="">-- Select Resource --</option>
@@ -315,7 +315,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         "transition": "all 0.2s ease-out",
                         "overflow": "scroll"
                     } : {
-                        "background-image": `url('${defaultButtonObj["picUrl"]}')`, //TODO improve later
+                        "background-image": `url('${visualMap[defaultButtonObj["picVar"]]}')`, //TODO2 improve later
                         "background-size": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
                         
                         "width": `${defaultButtonObj["widthMin"]}px`,
@@ -394,9 +394,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
         {!txtFrameObj["isShape"] && <><select value={txtFrameObj["picVar"]} onChange={(event)=>{
             if (event.target.value === "") {
-                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value, "picUrl": ""});    
+                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value});    
             } else {
-                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value, "picUrl": visualMap[event.target.value]["url"]});    
+                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value});    
             }
             }}>
                 <option key="tfvDefault" value="">-- Select Resource --</option>

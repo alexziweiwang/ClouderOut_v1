@@ -83,7 +83,7 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
             <div id={currId} key={index} style={{   
                     "background": defualtBtnUISettings["bgColor"],
                     "background-image": defualtBtnUISettings["isShape"] === true ? "" 
-                        : `url('${defualtBtnUISettings["picUrl"]}')`, //TODO improve later
+                        : `url('')`, //TODO improve later
                     "background-size": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
@@ -155,7 +155,7 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
                 "user-select": "none",
                 "transition": "all 0.2s ease-out"
             } : {
-                "background-image": `url('${backButtonUISettings["picUrl"]}')`, //TODO improve later
+                "background-image": `url('')`, //TODO improve later
                 "background-size": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
                 
                 "width": `${backButtonUISettings["width"]}px`,

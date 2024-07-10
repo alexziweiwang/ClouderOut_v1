@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerNextPiece}) {
+export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
+    getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, 
+    getScreenSize, triggerNextPiece, passInAudioMap, passInVisualMap
+}) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
@@ -18,8 +21,8 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
 
 //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
 //TODO remove "picUrl" for each resource
-const [audioList, setAudioList] = useState([]); //TODO for sound effects -- future feature
-const [visualList, setVisualList] = useState([]); 
+const [audioMap, setAudioMap] = useState([]); //TODO for sound effects -- future feature
+const [visualMap, setVisualMap] = useState([]); 
 
     useEffect(() => {
 
@@ -33,6 +36,14 @@ const [visualList, setVisualList] = useState([]);
           setCurrentPieceNum(currPieceNumTemp);
 
         }
+
+        let visualMapTemp = passInVisualMap();
+        setVisualMap(visualMapTemp);
+
+        let audioMapTemp = passInAudioMap();
+        setAudioMap(audioMapTemp);
+
+
   
         let isDisplayDefaultVal = getIsDisplayDefaultButton();
         setIsDisplayDefualtBtnUISettings(isDisplayDefaultVal);
@@ -63,7 +74,7 @@ const [visualList, setVisualList] = useState([]);
             <div id={currId} key={index} style={{   
                     "background": defualtBtnUISettings["bgColor"],
                     "background-image": defualtBtnUISettings["isShape"] === true ? "" 
-                        : `url('${defualtBtnUISettings["picUrl"]}')`, //TODO improve later
+                        : `url('')`, //TODO2 improve with visualMap
                     "background-size": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
@@ -135,7 +146,7 @@ const [visualList, setVisualList] = useState([]);
                 "user-select": "none",
                 "transition": "all 0.2s ease-out"
             } : {
-                "background-image": `url('${backButtonUISettings["picUrl"]}')`, //TODO improve later
+                "background-image": `url('')`, //TODO improve later
                 "background-size": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
                 
                 "width": `${backButtonUISettings["width"]}px`,

@@ -5,9 +5,12 @@ import PieceSetter from './PieceSetter';
 import ResourceManagingModalWindow from './ResourceManagingModalWindow';
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import PreviewWindow from './PreviewWindow';
+
+import PreviewWindow_gameContent from './PreviewWindow_gameContent';
+import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
+
+
 import PieceManager from './PieceManager';
-import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
 import GameUISetter from './GameUISetter';
 import GameDataManager from './GameDataManager';
 
@@ -336,12 +339,6 @@ export default function ConversationNodeEditingPanel() {
         return gameUIBackButton;
     }
 
-
-
-    function passInCurrentPieceObj() {
-        return pieceDataStructure[previewingIndex];
-    }
-
     function passInAllPieceDataContent() {
         return pieceDataStructure;
     }
@@ -609,7 +606,7 @@ export default function ConversationNodeEditingPanel() {
 
                       
             {isDisplayGameContentPreview === true && 
-                <PreviewWindow 
+                <PreviewWindow_gameContent
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}
@@ -624,7 +621,7 @@ export default function ConversationNodeEditingPanel() {
                     getUIConvNav={passInUIConvNav}
                 />}
             {isDisplayGameContentPreview === false && 
-                <GameUIOuterPreviewWindow 
+                <PreviewWindow_uiSetup
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}
@@ -635,6 +632,8 @@ export default function ConversationNodeEditingPanel() {
                     getBackButtonUISettings={passInBackButtonUISettings}
                     getScreenSize={passInScreenSize}
                     getUIConvNav={passInUIConvNav}
+                    passInAudioList={passInAudioList}
+                    passInVisualList={passInVisualList}
                 />
             }
 

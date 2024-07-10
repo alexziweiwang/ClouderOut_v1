@@ -4,20 +4,72 @@ import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 
-export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, getUIConvNav}) {
+export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
+    getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
+    getBackButtonUISettings, getScreenSize, getUIConvNav, 
+    passInAudioList, passInVisualList
+}) {
+
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+  
+
+    const [audioList, setAudioList] = useState([]);
+    const [visualList, setVisualList] = useState([]); 
+    
+    const [audioMap, setAudioMap] = useState({}); //TODO ffuture feature
+    const [visualMap, setVisualMap] = useState({}); 
+  
+    const [audioMapSize, setAudioMapSize] = useState(0);
+    const [visualMapSize, setVisualMapSize] = useState(0);
+
 
     useEffect(() => {
     
         let screenSizePair = getScreenSize();
         setScreenWidth(screenSizePair[0]);
         setScreenHeight(screenSizePair[1]);
-    });
 
+
+        let visualListTemp = passInVisualList();
+        setVisualList(visualListTemp);
+
+        let audioListTemp = passInAudioList();
+        setAudioList(audioListTemp);
+
+
+        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+            let i = 0;
+            let tempAudioMap = {};
+            setAudioMapSize(audioList.length);
+            for (;i < audioList.length; i++) {
+                let item = audioList[i];
+                tempAudioMap[item["var"]] = item["url"];
+            }
+            setAudioMap(tempAudioMap);
+
+            i = 0;
+            let tempVisualMap = {};
+            setVisualMapSize(visualList.length);
+            for (;i < visualList.length; i++) {
+                let item = visualList[i];
+                tempVisualMap[item["var"]] = item["url"];
+            }
+            setVisualMap(tempVisualMap);
+      }
+
+    });
 
     function notUsing() {
         return "";
+    }
+
+    function passInVisualMap() {
+        return visualMap;
+    }
+
+    function passInAudioMap() {
+        return audioMap;
     }
 
     return(
@@ -37,6 +89,8 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 getBackButtonUISettings={getBackButtonUISettings}
                 getScreenSize={getScreenSize}     
                 triggerNextPiece={notUsing}
+                passInAudioMap={passInAudioMap}
+                passInVisualMap={passInVisualMap}
             />
               
             <GameUI_1TextFramePreview
@@ -50,6 +104,7 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                 getIsDirectNextPiece={notUsing}
                 triggerNextPiece={notUsing}
                 triggerAutoMode={notUsing}
+                passInVisualMap={passInVisualMap}
             />
 
 
@@ -63,7 +118,7 @@ export default function GameUIOuterPreviewWindow({dataObj, initialAllPieceData, 
                   getUIConvNav={getUIConvNav}
                   triggerAutoMode={notUsing}
                   isInGameView={false}
-
+                  passInVisualMap={passInVisualMap}
               />
             
         </div>

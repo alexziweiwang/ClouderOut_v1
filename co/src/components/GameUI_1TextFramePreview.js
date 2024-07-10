@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
-export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, triggerNextPiece, triggerAutoMode}) {
+export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, 
+    getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, 
+    triggerNextPiece, triggerAutoMode,
+    passInVisualMap
+}) {
     const typingSpeedBase = 100;
 
     const [typingSpeedValue, setTypingSpeedValue] = useState(40); //TODO1 change in future
@@ -15,13 +19,12 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
     const [isDirectNext, setIsDirectNext] = useState(true);
 
-    const [bgpUrl, setBgpUrl] = useState(txtFrameUISettings["picUrl"]);
+    const [bgpUrl, setBgpUrl] = useState(""); //TODO
 
     const [autoOn, setAutoOn] = useState(false);
 
 //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
-//TODO remove "picUrl" for each resource
-    const [visualList, setVisualList] = useState([]); 
+    const [visualMap, setVisualMap] = useState([]); 
 
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
@@ -38,8 +41,19 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
         let txtFrameUISettingsTemp = getTextFrameUISettings();
         if (txtFrameUISettingsTemp !== txtFrameUISettings) {
             setTxtFrameUISettings(txtFrameUISettingsTemp);
-            setBgpUrl(txtFrameUISettingsTemp["picUrl"]);  
+
+            let urlTemp = visualMap[txtFrameUISettingsTemp["picVar"]];
+            if (urlTemp === undefined) {
+                setBgpUrl("");   //TODO2 improve with visualMap
+            } else {
+                setBgpUrl(urlTemp); //TODO2 check
+            }
         }
+
+        let visualMapTemp = passInVisualMap();
+        setVisualMap(visualMapTemp);
+
+
         let speedLevel = txtFrameUISettingsTemp["textDisplaySpeed"];   
         let speedValue = typingSpeedBase - ((speedLevel-1) * 30);    
         setTypingSpeedValue(speedValue);

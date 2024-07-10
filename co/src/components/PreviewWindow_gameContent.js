@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from './webpage.css';
-import GameUIOuterPreviewWindow from './GameUIOuterPreviewWindow';
+
 import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
+export default function PreviewWindow_gameContent({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
@@ -48,6 +48,7 @@ export default function PreviewWindow({initialAllPieceData, getAllPieceContent, 
 
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
+  
     const [audioMapSize, setAudioMapSize] = useState(0);
     const [visualMapSize, setVisualMapSize] = useState(0);
 
@@ -111,7 +112,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
-            
       }
 
 
@@ -233,6 +233,14 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       //TODO1
     }
  
+    function passInVisualMap() {
+      return visualMap;
+    }
+
+    function passInAudioMap() {
+      return audioMap;
+    }
+
     return (
 
     
@@ -316,6 +324,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
                 triggerAutoMode={triggerAutoMode}
+                passInVisualMap={passInVisualMap}
+
               />}
 
               <GameUI_2ButtonsPreview 
@@ -328,6 +338,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
                   getScreenSize={getScreenSize}
+                  passInAudioMap={passInAudioMap}
+                  passInVisualMap={passInVisualMap}
               /> 
 
               <GameUI_3ConvNavPreview
@@ -340,6 +352,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   getUIConvNav={getUIConvNav}
                   triggerAutoMode={triggerAutoMode}
                   isInGameView={true}
+                  passInVisualMap={passInVisualMap}
               />
 
             </div>

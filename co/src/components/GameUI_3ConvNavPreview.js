@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getScreenSize, triggerNextPiece, triggerAutoMode, getUIConvNav, isInGameView}) {
+export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
+    getCurrentPieceNum, getScreenSize, triggerNextPiece, 
+    triggerAutoMode, getUIConvNav, isInGameView,
+    passInAudioList, passInVisualMap
+}) {
 
 
     const [uiConvNav, setUiConvNav] = useState(-1);
@@ -12,6 +16,10 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
 
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+
+    //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
+    const [visualMap, setVisualMap] = useState([]); 
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -43,13 +51,14 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
             setScreenWidth(screenSizePair[0]);
             setScreenHeight(screenSizePair[1]);
         }
+
+        let visualMapTemp = passInVisualMap();
+        setVisualMap(visualMapTemp);
+
+
         
 
     });
-
-
-    //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
-    const [visualList, setVisualList] = useState([]); 
 
 return (<div style={{
                 "position": "absolute",
