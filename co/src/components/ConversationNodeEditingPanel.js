@@ -189,6 +189,11 @@ export default function ConversationNodeEditingPanel() {
         "buttonLogFontName": "serif",
         "buttonLogFontItalic": false,
 
+        "groupX": 0,
+        "groupY": 0,
+        "groupWidth": 60,
+        "groupHeight": 10
+
     });
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");

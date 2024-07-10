@@ -727,8 +727,21 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option key="textDisplaySpeed5" value="5">5</option>
             </select>
         </div>
-     
 
+        <br></br><br></br>
+        <label>Group Positions:</label>
+        <br></br><label>X:</label>
+        <input type="range" max="800" min="0" step="1"></input>
+        <input type="number" max="800" min="0" step="1"></input>
+        <br></br><label>Y:</label>
+        <input type="range" max="600" min="0" step="1"></input>
+        <input type="number" max="600" min="0" step="1"></input>
+        <br></br><label>Width:</label>
+        <input type="range" max="200" min="40" step="2"></input>
+        <input type="number" max="200" min="40" step="2"></input>
+        <br></br><label>Height:</label>
+        <input type="range" max="30" min="10" step="1"></input>
+        <input type="number" max="30" min="10" step="1"></input>
     </div>
   
    

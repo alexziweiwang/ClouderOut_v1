@@ -327,7 +327,6 @@ export default function GameMaker() {
             updateCurrentPageName={updateCurrPageName} 
             fetchPageName={passInCurrSelectedPage}
           />
-          //TODO2 add rm-update-triggering functions
            
           
           <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>

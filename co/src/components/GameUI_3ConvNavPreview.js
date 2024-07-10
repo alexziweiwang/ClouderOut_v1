@@ -66,7 +66,11 @@ return (<div style={{
 
 
 
-<div className="parallelFrame">
+<div className="parallelFrame"
+    style={{
+        
+    }}
+>
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "marginRight": "50px",
@@ -77,6 +81,7 @@ return (<div style={{
                             : "",
                         "backgroundImage": !uiConvNav["buttonAutoIsTextFont"] ? "" : "",  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
+                        "width": "30px",
 
                         "userSelect": "none",
                         
@@ -117,6 +122,8 @@ return (<div style={{
                         "backgroundImage": !uiConvNav["buttonLogIsTextFont"] ? "" : "",  
                         "fontFamily": `${uiConvNav["buttonLogFontName"]}`,
                         "fontStyle:": "italic",
+
+                        "width": "30px",
 
                         "userSelect": "none",
 
