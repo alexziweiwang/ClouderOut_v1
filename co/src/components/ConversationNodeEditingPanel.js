@@ -141,7 +141,7 @@ export default function ConversationNodeEditingPanel() {
     "buttonLogShade0": "#bf8da5",
     "buttonLogPicName0":  "",
     "buttonLogShade1": "#4a54a1",
-    "buttonLogPicName1": "",
+    "buttonLogPicName": "",
     "buttonLogFontName": "serif",
     "buttonLogFontItalic": false,
 
@@ -185,7 +185,7 @@ export default function ConversationNodeEditingPanel() {
         "buttonLogShade0": "#bf8da5",
         "buttonLogPicName0":  "",
         "buttonLogShade1": "#4a54a1",
-        "buttonLogPicName1": "",
+        "buttonLogPicName": "",
         "buttonLogFontName": "serif",
         "buttonLogFontItalic": false,
 

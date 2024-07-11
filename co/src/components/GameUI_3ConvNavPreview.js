@@ -65,21 +65,23 @@ return (<div style={{
             }}>
 
 
-
 <div className="parallelFrame"
     style={{
-        
+        "top": `${uiConvNav["groupY"]}px`,
+        "left": `${uiConvNav["groupX"]}px`,
+        "width": `${uiConvNav["groupWidth"]}px`,
+        "height": `${uiConvNav["groupHeight"]}px`,
+        "position": "absolute",
     }}
 >
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "marginRight": "50px",
-                        "color": uiConvNav["buttonAutoIsTextFont"] ? 
-                            (autoOn ? 
+                        "color": autoOn ? 
                                 uiConvNav["buttonAutoShade1"] 
-                                :  uiConvNav["buttonAutoShade0"]) 
-                            : "",
-                        "backgroundImage": !uiConvNav["buttonAutoIsTextFont"] ? "" : "",  
+                                :  uiConvNav["buttonAutoShade0"],
+                        "backgroundImage": uiConvNav["buttonAutoIsTextFont"] ? "" : 
+                            (autoOn === true ? `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')` : `url('${visualMap[uiConvNav["buttonAutoPicName0"]]}')`),  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": "30px",
 
@@ -118,8 +120,11 @@ return (<div style={{
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "marginRight": "50px",
-                        "color": uiConvNav["buttonLogIsTextFont"] ? uiConvNav["buttonLogShade0"] : "",
-                        "backgroundImage": !uiConvNav["buttonLogIsTextFont"] ? "" : "",  
+                        "color": uiConvNav["buttonLogShade0"],
+                        "backgroundImage": 
+                            uiConvNav["buttonLogIsTextFont"] ? "" :
+                                `url('${visualMap[uiConvNav["buttonLogPicName"]]}')`,
+
                         "fontFamily": `${uiConvNav["buttonLogFontName"]}`,
                         "fontStyle:": "italic",
 
