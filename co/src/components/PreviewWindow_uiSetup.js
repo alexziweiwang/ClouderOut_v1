@@ -105,6 +105,8 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                 triggerNextPiece={notUsing}
                 triggerAutoMode={notUsing}
                 passInVisualMap={passInVisualMap}
+                getUIConvNav={getUIConvNav}
+
             />
 
 

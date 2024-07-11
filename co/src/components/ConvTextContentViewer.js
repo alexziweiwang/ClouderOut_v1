@@ -62,6 +62,8 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
         // console.log("expected wordContent? ", wordContent);
         // console.log("displayedContentTemp? [", displayedContentTemp , "]");
         // console.log("continue refreshing?", continueRefreshing === true);
+        // console.log();
+
 
         if (continueRefreshing === true || wordContent !== fullContent) {
             

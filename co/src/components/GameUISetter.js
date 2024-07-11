@@ -201,7 +201,6 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[event.target.value]["var"]}); 
-                
                 }}>                    
                     <option key="idvDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {
@@ -388,11 +387,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={txtFrameObj["isShape"]} onChange={()=>{
             setTxtFrameObj({...txtFrameObj, "isShape": true});    
         }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>Rectangle: </label>
+    
         {txtFrameObj["isShape"] && <><input type="color" value={txtFrameObj["bgColor"]} onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "bgColor": event.target.value});    
             }}></input><label>{txtFrameObj["bgColor"]}</label></>}
-    <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
-        {!txtFrameObj["isShape"] && <><select value={txtFrameObj["picVar"]} onChange={(event)=>{
+    <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label 
+    onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
+        {!txtFrameObj["isShape"] && <>
+        
+        <select value={txtFrameObj["picVar"]} onChange={(event)=>{
             if (event.target.value === "") {
                 setTxtFrameObj({...txtFrameObj, "picVar": visualMap[event.target.value]["var"]});    
             } else {
@@ -617,10 +620,10 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <label>Log Page Button:</label>
         <div className="indentOne">
             <label>Font Color: </label>
-            <br></br><input type="color" value={convNav["buttonLogShade"]} onChange={(event)=>{
+            {/* <br></br><input type="color" value={convNav["buttonLogShade"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonLogShade": event.target.value});
             }}></input>
-            <label> {convNav["buttonLogShade"]}</label>
+            <label> {convNav["buttonLogShade"]}</label> */} //TODO1 debugging
 
             <br></br>
             <label>Base Picture: </label>
@@ -666,12 +669,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             ></input><em>Italic</em>
 
         </div>
+      
+      
         <br></br><br></br>
         <label>Default display Speed:</label>
         <div className="indentOne">
             <select value={convNav["textDisplaySpeed"]} 
             onChange={(event)=>{                
-                setConvNav({...convNav, "textDisplaySpeed": event.target.value});    
+                setConvNav({...convNav, "textDisplaySpeed": event.target.value});   
             }}>
                 <option key="textDisplaySpeed1" value="1">1</option>
                 <option key="textDisplaySpeed2" value="2">2</option>
@@ -683,6 +688,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
         <br></br><br></br>
         <label>Group Positions:</label>
+   
         <div className="indentOne">
                 <label>X:</label>
                 <input type="range" max="800" min="0" step="1" value={convNav["groupX"]}
@@ -732,6 +738,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}          
                 ></input>
         </div>
+   
+   
     </div>
   
    

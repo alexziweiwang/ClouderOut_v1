@@ -71,7 +71,7 @@ return (<div style={{
         "position": "absolute",
     }}
 >
-                {(uiConvNav !== -1 && uiConvNav !== undefined && autoOn === false) && <div
+                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade0"],
@@ -80,10 +80,9 @@ return (<div style={{
                         "width": `${uiConvNav["groupWidth"] / 2}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
 
-
                         "userSelect": "none",
 
-                        "display": autoOn === true ? "none" : "",
+                        "display": autoOn === true ? "none" : "content",
                         
                     }}
                     onClick={()=>{
@@ -110,7 +109,7 @@ return (<div style={{
                 }
 
 
-                {(uiConvNav !== -1 && uiConvNav !== undefined && autoOn === true) && <div
+                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade1"],   
@@ -121,7 +120,8 @@ return (<div style={{
 
 
                         "userSelect": "none",
-                        
+                        "display": autoOn === false ? "none" : "content",
+
                     }}
                     onClick={()=>{
                         //switch auto-status

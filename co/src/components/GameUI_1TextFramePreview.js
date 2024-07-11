@@ -3,7 +3,7 @@ import ConvTextContentViewer from './ConvTextContentViewer';
 
 export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, 
-    triggerNextPiece, triggerAutoMode,
+    triggerNextPiece, triggerAutoMode, getUIConvNav,
     passInVisualMap
 }) {
     const typingSpeedBase = 100;
@@ -54,7 +54,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
         setVisualMap(visualMapTemp);
 
 
-        let speedLevel = txtFrameUISettingsTemp["textDisplaySpeed"];   
+        let convNavTemp = getUIConvNav();
+        let speedLevel = convNavTemp["textDisplaySpeed"]; //TODO fetch from caller  
         let speedValue = typingSpeedBase - ((speedLevel-1) * 30);    
         setTypingSpeedValue(speedValue);
 

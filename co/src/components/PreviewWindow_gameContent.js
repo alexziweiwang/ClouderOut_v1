@@ -325,6 +325,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 isInGameView={true}
                 triggerAutoMode={triggerAutoMode}
                 passInVisualMap={passInVisualMap}
+                getUIConvNav={getUIConvNav}
 
               />}
 

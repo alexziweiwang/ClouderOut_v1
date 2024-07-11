@@ -88,7 +88,6 @@ export default function ConversationNodeEditingPanel() {
         "isShape": true,
         "bgColor": "#a8d1d6",
         "picVar": "",
-        "picUrl": "",
         "textColor": "#000000",
         "margin": 5,
         "justifyContent": "start",
@@ -115,7 +114,6 @@ export default function ConversationNodeEditingPanel() {
     "isShape": true,
     "bgColor": "#a8d1d6",
     "picVar": "",
-    "picUrl": "",
     "fontName": "serif",
     "textSize": 30,
     "textColor": "#000000",
@@ -127,7 +125,6 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-y": 10,
     "TextContentArea-w": 580,
     "TextContentArea-h": 180,
-    "textDisplaySpeed": 3,
 
     "buttonAutoIsTextFont": true,
     "buttonAutoShade0": "#bf8da5",
@@ -138,9 +135,9 @@ export default function ConversationNodeEditingPanel() {
     "buttonAutoFontItalic": false,
 
     "buttonLogIsTextFont": true,
-    "buttonLogShade0": "#bf8da5",
-    "buttonLogPicName0":  "",
-    "buttonLogShade1": "#4a54a1",
+    "buttonLogShade": "#bf8da5",
+    "buttonLogPicName":  "",
+    "buttonLogShade": "#4a54a1",
     "buttonLogPicName": "",
     "buttonLogFontName": "serif",
     "buttonLogFontItalic": false,
@@ -155,7 +152,6 @@ export default function ConversationNodeEditingPanel() {
     "isShape": false,
     "bgColor": "#a8d1d6",
     "picVar": "",
-    "picUrl": "",
     "textColor": "blue",
     "buttonText": "←",
     "textSize": 15,
@@ -188,6 +184,8 @@ export default function ConversationNodeEditingPanel() {
         "buttonLogPicName": "",
         "buttonLogFontName": "serif",
         "buttonLogFontItalic": false,
+
+        "textDisplaySpeed": 3,
 
         "groupX": 0,
         "groupY": 0,
