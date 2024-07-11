@@ -200,7 +200,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
               }}>Base Picture </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                            setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
+                            setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[event.target.value]["var"]}); 
                 
                 }}>                    
                     <option key="idvDefault" value="">-- Select Resource --</option>
@@ -394,9 +394,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
         {!txtFrameObj["isShape"] && <><select value={txtFrameObj["picVar"]} onChange={(event)=>{
             if (event.target.value === "") {
-                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value});    
+                setTxtFrameObj({...txtFrameObj, "picVar": visualMap[event.target.value]["var"]});    
             } else {
-                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value});    
+                setTxtFrameObj({...txtFrameObj, "picVar": visualMap[event.target.value]["var"]});    
             }
             }}>
                 <option key="tfvDefault" value="">-- Select Resource --</option>
@@ -534,7 +534,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <br></br>
                 <label>Base Picture: </label>
                     <select value={convNav["buttonAutoPicName0"]} onChange={(event)=>{
-                        setConvNav({...convNav,  "buttonAutoPicName0": event.target.value});     
+                        setConvNav({...convNav,  "buttonAutoPicName0": visualMap[event.target.value]["var"]});     
+                    
                     }}>                    
                             <option key="autoDefault0" value="">-- Select Resource --</option>
                             {Object.keys(visualMap).map((currKey) => {
@@ -568,7 +569,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <br></br>
                     <label>Base Picture: </label>
                     <select value={convNav["buttonAutoPicName1"]} onChange={(event)=>{
-                        setConvNav({...convNav,  "buttonAutoPicName1": event.target.value});     
+                        setConvNav({...convNav,  "buttonAutoPicName1": visualMap[event.target.value]["var"]});     
                     }}>                    
                             <option key="autoDefault1" value="">-- Select Resource --</option>
                             {Object.keys(visualMap).map((currKey) => {
@@ -624,7 +625,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <br></br>
             <label>Base Picture: </label>
             <select value={convNav["buttonLogPicName"]} onChange={(event)=>{
-                setConvNav({...convNav, "buttonLogPicName": event.target.value});     
+                setConvNav({...convNav, "buttonLogPicName": visualMap[event.target.value]["var"]});     
             }}>                    
                     <option key="logDefault" value="">-- Select Resource --</option>
                     {Object.keys(visualMap).map((currKey) => {

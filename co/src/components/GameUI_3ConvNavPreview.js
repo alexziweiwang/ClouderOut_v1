@@ -55,15 +55,6 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
         let visualMapTemp = passInVisualMap();
         setVisualMap(visualMapTemp);
 
-        console.log("ui3: visualMap:" , visualMap);
-        if (uiConvNav !== -1) {
-            console.log("buttonAutoPicName0 = ", uiConvNav["buttonAutoPicName0"]);
-            console.log("buttonAutoPicName1 = ", uiConvNav["buttonAutoPicName1"]);
-            console.log("buttonLogPicName = ", uiConvNav["buttonLogPicName"]);
-
-        }
-        console.log("conv-nav:", uiConvNav);
-
     });
 
 return (<div style={{
