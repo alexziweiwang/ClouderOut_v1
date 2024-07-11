@@ -731,17 +731,52 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <br></br><br></br>
         <label>Group Positions:</label>
         <br></br><label>X:</label>
-        <input type="range" max="800" min="0" step="1"></input>
-        <input type="number" max="800" min="0" step="1"></input>
+        <input type="range" max="800" min="0" step="1" value={convNav["groupX"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupX": event.target.value});    
+            }}
+        ></input>
+        <input type="number" max="800" min="0" step="1" value={convNav["groupX"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupX": event.target.value});    
+            }}
+        ></input>
+
         <br></br><label>Y:</label>
-        <input type="range" max="600" min="0" step="1"></input>
-        <input type="number" max="600" min="0" step="1"></input>
+        <input type="range" max="600" min="0" step="1" value={convNav["groupY"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupY": event.target.value});    
+            }}
+        ></input>
+        <input type="number" max="600" min="0" step="1" value={convNav["groupY"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupY": event.target.value});    
+            }}        
+        ></input>
+
         <br></br><label>Width:</label>
-        <input type="range" max="200" min="40" step="2"></input>
-        <input type="number" max="200" min="40" step="2"></input>
+        <input type="range" max="200" min="40" step="2" value={convNav["groupWidth"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupWidth": event.target.value});    
+            }}      
+        ></input>
+        <input type="number" max="200" min="40" step="2" value={convNav["groupWidth"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupWidth": event.target.value});    
+            }}       
+        ></input>
+
         <br></br><label>Height:</label>
-        <input type="range" max="30" min="10" step="1"></input>
-        <input type="number" max="30" min="10" step="1"></input>
+        <input type="range" max="30" min="10" step="1" value={convNav["groupHeight"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupHeight": event.target.value});    
+            }}    
+        ></input>
+        <input type="number" max="30" min="10" step="1" value={convNav["groupHeight"]}
+            onChange={(event)=>{
+                setConvNav({...convNav, "groupHeight": event.target.value});    
+            }}          
+        ></input>
     </div>
   
    
