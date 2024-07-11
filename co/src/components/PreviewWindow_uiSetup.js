@@ -38,24 +38,25 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
         setAudioList(audioListTemp);
 
 
-        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+        if (audioMapSize < audioListTemp.length || visualMapSize < visualListTemp.length) {
             let i = 0;
             let tempAudioMap = {};
-            setAudioMapSize(audioList.length);
-            for (;i < audioList.length; i++) {
-                let item = audioList[i];
+            setAudioMapSize(audioListTemp.length);
+            for (;i < audioListTemp.length; i++) {
+                let item = audioListTemp[i];
                 tempAudioMap[item["var"]] = item["url"];
             }
             setAudioMap(tempAudioMap);
 
             i = 0;
             let tempVisualMap = {};
-            setVisualMapSize(visualList.length);
-            for (;i < visualList.length; i++) {
-                let item = visualList[i];
+            setVisualMapSize(visualListTemp.length);
+            for (;i < visualListTemp.length; i++) {
+                let item = visualListTemp[i];
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
+            console.log("preview-uiSetup: tempVisualMap = ", tempVisualMap); //TODO testing
       }
 
     });

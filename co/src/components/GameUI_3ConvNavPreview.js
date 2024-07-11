@@ -55,8 +55,14 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
         let visualMapTemp = passInVisualMap();
         setVisualMap(visualMapTemp);
 
+        console.log("ui3: visualMap:" , visualMap);
+        if (uiConvNav !== -1) {
+            console.log("buttonAutoPicName0 = ", uiConvNav["buttonAutoPicName0"]);
+            console.log("buttonAutoPicName1 = ", uiConvNav["buttonAutoPicName1"]);
+            console.log("buttonLogPicName = ", uiConvNav["buttonLogPicName"]);
 
-        
+        }
+        console.log("conv-nav:", uiConvNav);
 
     });
 
@@ -80,7 +86,7 @@ return (<div style={{
                         "color": autoOn ? 
                                 uiConvNav["buttonAutoShade1"] 
                                 :  uiConvNav["buttonAutoShade0"],
-                        "backgroundImage": uiConvNav["buttonAutoIsTextFont"] ? "" : 
+                        "backgroundImage": 
                             (autoOn === true ? `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')` : `url('${visualMap[uiConvNav["buttonAutoPicName0"]]}')`),  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": "30px",
@@ -97,33 +103,34 @@ return (<div style={{
                     }}
                 > 
                 {!uiConvNav["buttonAutoFontItalic"] && 
-                    <>{autoOn === false && <label>
+                <>
+                    {autoOn === false && <label>
                         {uiConvNav["buttonAutoDisplayText0"]}
                     </label>}
                     {autoOn === true && <label>
                         {uiConvNav["buttonAutoDisplayText1"]}
                     </label>}
 
-                    </>}
-                {uiConvNav["buttonAutoFontItalic"] && <>
-                
-                {autoOn === false && <em>{uiConvNav["buttonAutoDisplayText0"]}</em>}
-                {autoOn === true && <em>{uiConvNav["buttonAutoDisplayText1"]}</em>}
-
                 </>}
 
+                {uiConvNav["buttonAutoFontItalic"] && 
+                <>
+                    {autoOn === false && <em>{uiConvNav["buttonAutoDisplayText0"]}</em>}
+                    {autoOn === true && <em>{uiConvNav["buttonAutoDisplayText1"]}</em>}
+                </>}
 
                 </div>
                 }
 
 
+
+
+
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     style={{
                         "marginRight": "50px",
-                        "color": uiConvNav["buttonLogShade0"],
-                        "backgroundImage": 
-                            uiConvNav["buttonLogIsTextFont"] ? "" :
-                                `url('${visualMap[uiConvNav["buttonLogPicName"]]}')`,
+                        "color": uiConvNav["buttonLogShade"],
+                        "backgroundImage": `url('${visualMap[uiConvNav["buttonLogPicName"]]}')`,
 
                         "fontFamily": `${uiConvNav["buttonLogFontName"]}`,
                         "fontStyle:": "italic",
