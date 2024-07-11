@@ -71,47 +71,82 @@ return (<div style={{
         "position": "absolute",
     }}
 >
-                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
+                {(uiConvNav !== -1 && uiConvNav !== undefined && autoOn === false) && <div
                     style={{
                         "marginRight": "50px",
-                        "color": autoOn ? 
-                                uiConvNav["buttonAutoShade1"] 
-                                :  uiConvNav["buttonAutoShade0"],
-                        "backgroundImage": 
-                            (autoOn === true ? `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')` : `url('${visualMap[uiConvNav["buttonAutoPicName0"]]}')`),  
+                        "color": uiConvNav["buttonAutoShade0"],
+                        "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')`,  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
-                        "width": "30px",
+                        "width": `${uiConvNav["groupWidth"] / 2}px`,
+                        "height": `${uiConvNav["groupHeight"]}px`,
+
+
+                        "userSelect": "none",
+
+                        "display": autoOn === true ? "none" : "",
+                        
+                    }}
+                    onClick={()=>{
+                        //switch auto-status
+            
+                        triggerAutoMode();
+                        
+                        setAutoOn(!autoOn);
+                    }}
+                > 
+                {!uiConvNav["buttonAutoFontItalic"] && 
+         
+                    <label>
+                        {uiConvNav["buttonAutoDisplayText0"]}
+                    </label>
+                }
+
+                {uiConvNav["buttonAutoFontItalic"] && 
+               
+                    <em>{uiConvNav["buttonAutoDisplayText0"]}</em>
+                }
+
+                </div>
+                }
+
+
+                {(uiConvNav !== -1 && uiConvNav !== undefined && autoOn === true) && <div
+                    style={{
+                        "marginRight": "50px",
+                        "color": uiConvNav["buttonAutoShade1"],   
+                        "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')`,  
+                        "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
+                        "width": `${uiConvNav["groupWidth"] / 2}px`,
+                        "height": `${uiConvNav["groupHeight"]}px`,
+
 
                         "userSelect": "none",
                         
                     }}
                     onClick={()=>{
                         //switch auto-status
-                        if (autoOn === false) { //current status(f), next status(t)
-                            triggerAutoMode();
-                        }
+                        //TODO stop auto-mode
                         setAutoOn(!autoOn);
                     }}
                 > 
                 {!uiConvNav["buttonAutoFontItalic"] && 
-                <>
-                    {autoOn === false && <label>
-                        {uiConvNav["buttonAutoDisplayText0"]}
-                    </label>}
-                    {autoOn === true && <label>
+                    <label>
                         {uiConvNav["buttonAutoDisplayText1"]}
                     </label>}
 
-                </>}
-
                 {uiConvNav["buttonAutoFontItalic"] && 
                 <>
-                    {autoOn === false && <em>{uiConvNav["buttonAutoDisplayText0"]}</em>}
                     {autoOn === true && <em>{uiConvNav["buttonAutoDisplayText1"]}</em>}
                 </>}
 
                 </div>
                 }
+
+
+
+
+
+
 
 
 
@@ -127,6 +162,7 @@ return (<div style={{
                         "fontStyle:": "italic",
 
                         "width": "30px",
+                        "height": `${uiConvNav["groupHeight"]}px`,
 
                         "userSelect": "none",
 

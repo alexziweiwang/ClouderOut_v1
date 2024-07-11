@@ -74,7 +74,7 @@ const [visualMap, setVisualMap] = useState([]);
             <div id={currId} key={index} style={{   
                     "background": defualtBtnUISettings["bgColor"],
                     "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
-                        : `url('')`, //TODO2 improve with visualMap
+                        : `url('${visualMap[defualtBtnUISettings["picVar"]]}')`,
                     "backgroundSize": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
