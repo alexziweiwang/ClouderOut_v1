@@ -19,6 +19,8 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
 
     const [backButtonUISettings, setBackButtonUISettings] = useState({});
 
+    const [buttonPicUrl, setButtonPicurl] = useState("");
+
 //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
 //TODO remove "picUrl" for each resource
 const [audioMap, setAudioMap] = useState([]); //TODO for sound effects -- future feature
@@ -45,10 +47,16 @@ const [visualMap, setVisualMap] = useState([]);
 
 
   
-        let isDisplayDefaultVal = getIsDisplayDefaultButton();
-        setIsDisplayDefualtBtnUISettings(isDisplayDefaultVal);
-        let defaultBtnUISettings = getDefaultButtonUISettings();
-        setDefualtBtnUISettings(defaultBtnUISettings);
+        let isDisplayDefaultValTemp = getIsDisplayDefaultButton();
+        setIsDisplayDefualtBtnUISettings(isDisplayDefaultValTemp);
+       
+       
+        let defaultBtnUISettingsTemp = getDefaultButtonUISettings();
+        if (defaultBtnUISettingsTemp !== defualtBtnUISettings) {
+            setDefualtBtnUISettings(defaultBtnUISettingsTemp);
+            setButtonPicurl(visualMapTemp[defaultBtnUISettingsTemp["picVar"]]);
+        }
+
         let backBtnUISettings = getBackButtonUISettings();
         setBackButtonUISettings(backBtnUISettings);
 
@@ -74,7 +82,7 @@ const [visualMap, setVisualMap] = useState([]);
             <div id={currId} key={index} style={{   
                     "background": defualtBtnUISettings["bgColor"],
                     "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
-                        : `url('${visualMap[defualtBtnUISettings["picVar"]]}')`,
+                        : `url('${buttonPicUrl}')`,
                     "backgroundSize": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
                     
                     "width": `${defualtBtnUISettings["widthMin"]}px`,
@@ -121,6 +129,13 @@ const [visualMap, setVisualMap] = useState([]);
         }
 
         </div>
+
+
+
+
+
+
+
 
 
         {/* //TODO refactor: move back-button to nav-UI system */}
