@@ -20,6 +20,9 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
     //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
     const [visualMap, setVisualMap] = useState([]); 
 
+    const [auto0ButtonPicUrl, setAuto0ButtonPicUrl] = useState("");
+    const [auto1ButtonPicUrl, setAuto1ButtonPicUrl] = useState("");
+    const [logButtonPicUrl, setLogButtonPicUrl] = useState("");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -42,7 +45,13 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
 
         let uiConvNavTemp = getUIConvNav();
         if (uiConvNavTemp !== undefined) {
-            setUiConvNav(uiConvNavTemp);
+            if (uiConvNavTemp !== uiConvNav) {
+                setUiConvNav(uiConvNavTemp);
+                setAuto0ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName0"]]);
+                setAuto1ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName1"]]);
+                setLogButtonPicUrl(visualMap[uiConvNavTemp["buttonLogPicName"]])
+            }
+
         }
       
 
@@ -75,7 +84,7 @@ return (<div style={{
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade0"],
-                        "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName0"]]}')`,  
+                        "backgroundImage": `url('${auto0ButtonPicUrl}')`,  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
@@ -119,7 +128,7 @@ return (<div style={{
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade1"],   
-                        "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')`,  
+                        "backgroundImage": `url('${auto1ButtonPicUrl}')`,  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
@@ -164,7 +173,7 @@ return (<div style={{
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonLogShade"],
-                        "backgroundImage": `url('${visualMap[uiConvNav["buttonLogPicName"]]}')`,
+                        "backgroundImage": `url('${logButtonPicUrl}')`,
 
                         "fontFamily": `${uiConvNav["buttonLogFontName"]}`,
                         "fontStyle:": "italic",
