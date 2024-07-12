@@ -75,14 +75,14 @@ return (<div style={{
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade0"],
-                        "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')`,  
+                        "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName0"]]}')`,  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": `${uiConvNav["groupWidth"] / 2}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
 
                         "userSelect": "none",
 
-                        "display": autoOn === true ? "none" : "content",
+                        "display": autoOn === true ? "none" : "initial",
                         
                     }}
                     onClick={()=>{
@@ -90,7 +90,7 @@ return (<div style={{
             
                         triggerAutoMode();
                         
-                        setAutoOn(!autoOn);
+                        setAutoOn(true);
                     }}
                 > 
                 {!uiConvNav["buttonAutoFontItalic"] && 
@@ -120,13 +120,13 @@ return (<div style={{
 
 
                         "userSelect": "none",
-                        "display": autoOn === false ? "none" : "content",
+                        "display": autoOn === true ? "initial" : "none",
 
                     }}
                     onClick={()=>{
                         //switch auto-status
                         //TODO stop auto-mode
-                        setAutoOn(!autoOn);
+                        setAutoOn(false);
                     }}
                 > 
                 {!uiConvNav["buttonAutoFontItalic"] && 
@@ -135,13 +135,12 @@ return (<div style={{
                     </label>}
 
                 {uiConvNav["buttonAutoFontItalic"] && 
-                <>
-                    {autoOn === true && <em>{uiConvNav["buttonAutoDisplayText1"]}</em>}
-                </>}
+         
+                    <em>{uiConvNav["buttonAutoDisplayText1"]}</em>
+                }
 
                 </div>
                 }
-
 
 
 
@@ -178,6 +177,7 @@ return (<div style={{
                    {uiConvNav["buttonLogFontItalic"] && <em>{uiConvNav["buttonLogDisplayText"]}</em>}
 
                 </div>}
+
 
             </div>
 
