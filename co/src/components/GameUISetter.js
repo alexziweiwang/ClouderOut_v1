@@ -728,12 +728,12 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 ></input>
 
                 <br></br><label>Height:</label>
-                <input type="range" max="30" min="10" step="1" value={convNav["groupHeight"]}
+                <input type="range" max="200" min="10" step="1" value={convNav["groupHeight"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupHeight": event.target.value});    
                     }}    
                 ></input>
-                <input type="number" max="30" min="10" step="1" value={convNav["groupHeight"]}
+                <input type="number" max="200" min="10" step="1" value={convNav["groupHeight"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupHeight": event.target.value});    
                     }}          

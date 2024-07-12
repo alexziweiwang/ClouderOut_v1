@@ -66,7 +66,7 @@ return (<div style={{
     style={{
         "top": `${uiConvNav["groupY"]}px`,
         "left": `${uiConvNav["groupX"]}px`,
-        "width": `${uiConvNav["groupWidth"]}px`,
+        "width": `${uiConvNav["groupWidth"] * 2 + 5}px`,
         "height": `${uiConvNav["groupHeight"]}px`,
         "position": "absolute",
     }}
@@ -77,13 +77,14 @@ return (<div style={{
                         "color": uiConvNav["buttonAutoShade0"],
                         "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName0"]]}')`,  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
-                        "width": `${uiConvNav["groupWidth"] / 2}px`,
+                        "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
 
                         "userSelect": "none",
 
-                        "display": autoOn === true ? "none" : "initial",
-                        
+                        "display": autoOn === true ? "none" : "flex",
+                        "justifyContent": "center",
+                        "alignItems": "center",
                     }}
                     onClick={()=>{
                         //switch auto-status
@@ -93,18 +94,21 @@ return (<div style={{
                         setAutoOn(true);
                     }}
                 > 
-                {!uiConvNav["buttonAutoFontItalic"] && 
-         
-                    <label>
-                        {uiConvNav["buttonAutoDisplayText0"]}
-                    </label>
-                }
+                  
+                            {!uiConvNav["buttonAutoFontItalic"] && 
+            
+                            <label>
+                                {uiConvNav["buttonAutoDisplayText0"]}
+                            </label>
+                            }
 
-                {uiConvNav["buttonAutoFontItalic"] && 
-               
-                    <em>{uiConvNav["buttonAutoDisplayText0"]}</em>
-                }
+                            {uiConvNav["buttonAutoFontItalic"] && 
+                        
+                                <em>{uiConvNav["buttonAutoDisplayText0"]}</em>
+                            }
 
+                   
+            
                 </div>
                 }
 
@@ -115,13 +119,14 @@ return (<div style={{
                         "color": uiConvNav["buttonAutoShade1"],   
                         "backgroundImage": `url('${visualMap[uiConvNav["buttonAutoPicName1"]]}')`,  
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
-                        "width": `${uiConvNav["groupWidth"] / 2}px`,
+                        "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
 
 
                         "userSelect": "none",
-                        "display": autoOn === true ? "initial" : "none",
-
+                        "display": autoOn === true ? "flex" : "none",
+                        "justifyContent": "center",
+                        "alignItems": "center",
                     }}
                     onClick={()=>{
                         //switch auto-status
@@ -129,16 +134,17 @@ return (<div style={{
                         setAutoOn(false);
                     }}
                 > 
-                {!uiConvNav["buttonAutoFontItalic"] && 
-                    <label>
-                        {uiConvNav["buttonAutoDisplayText1"]}
-                    </label>}
+                   
+                            {!uiConvNav["buttonAutoFontItalic"] && 
+                                <label>
+                                    {uiConvNav["buttonAutoDisplayText1"]}
+                                </label>}
 
-                {uiConvNav["buttonAutoFontItalic"] && 
-         
-                    <em>{uiConvNav["buttonAutoDisplayText1"]}</em>
-                }
-
+                            {uiConvNav["buttonAutoFontItalic"] && 
+                    
+                                <em>{uiConvNav["buttonAutoDisplayText1"]}</em>
+                            }
+                   
                 </div>
                 }
 
@@ -160,22 +166,25 @@ return (<div style={{
                         "fontFamily": `${uiConvNav["buttonLogFontName"]}`,
                         "fontStyle:": "italic",
 
-                        "width": "30px",
+                        "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
 
                         "userSelect": "none",
-
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "alignItems": "center",
                     }}
                     onClick={()=>{
                         //trigger log-screen
                     }}
                 >
-                    {!uiConvNav["buttonLogFontItalic"] && <label>
-                            {uiConvNav["buttonLogDisplayText"]}
-                        </label>}
                    
-                   {uiConvNav["buttonLogFontItalic"] && <em>{uiConvNav["buttonLogDisplayText"]}</em>}
-
+                        {!uiConvNav["buttonLogFontItalic"] && <label>
+                                {uiConvNav["buttonLogDisplayText"]}
+                            </label>}
+                    
+                        {uiConvNav["buttonLogFontItalic"] && <em>{uiConvNav["buttonLogDisplayText"]}</em>}
+                 
                 </div>}
 
 
