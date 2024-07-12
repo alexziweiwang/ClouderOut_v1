@@ -177,7 +177,7 @@ export default function GameMaker() {
 
     "backButton-width": 50,
     "backButton-height": 50,
-    "backButton-isShape": 50,
+    "backButton-isShape": false,
     "backButton-shapeColor": "#c0cfe2",
     "backButton-picName": "",
     "backButton-displayText": "←",

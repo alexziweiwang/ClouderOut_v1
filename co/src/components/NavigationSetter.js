@@ -239,6 +239,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           <option value="Player Profile Page" key="Player Profile Page">Player Profile Page</option>
           <option value="Game Status Data Page" key="Game Status Data Page">Game Status Data Page</option>
           <option value="Shop Page" key="Shop Page">Shop Page</option>
+          <option value="During Game" key="During Game">*During Game-play*</option>
       </select>
 
       <br></br><br></br><br></br>
@@ -342,7 +343,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
                           updateNavObj(tempObj);       
 
                           setCurrentProjectNav({...currentProjectNav, "backButton-picName": event.target.value});  
-
+ 
                         }}>
                           <option key="backButtonDefault" value="">-- Select Resource --</option>
                           {visualList.map((item, index) => {
@@ -1217,8 +1218,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
          <br></br>
          <label>Main Page Items: </label>
          <br></br>
-         <br></br><input type="checkbox" value={currentProjectNav["mainPage-story"]}
+         <br></br><input type="checkbox"
            checked={true}
+           readOnly
            onClick={()=>{alert("Story-option must be kept.");}}
          ></input>
          <label>Story</label>
@@ -3279,7 +3281,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     <br></br>
 
     <br></br>
-    TODO: back-button settings
+
     <button>Save Changes</button>
 
 

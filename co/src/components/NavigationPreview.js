@@ -202,7 +202,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
     
                                     "justifyContent": "center",
-                                    "align-items": "center",
+                                    "alignItems": "center",
                                     "display": "flex",
                                 } : {            
                                     "backgroundImage": `url('${visualMap[navObj[mainPagePictureVariableNames[1]]]}')`,
@@ -216,7 +216,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
     
                                     "justifyContent": "center",
-                                    "align-items": "center",
+                                    "alignItems": "center",
                                     "display": "flex",
                                 
                                     "transition": "all 0.2s ease-out",
@@ -346,7 +346,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "fontSize": `${currItemFontSize}px`,
 
                                 "justifyContent": "center",
-                                "align-items": "center",
+                                "alignItems": "center",
                                 "display": "flex",
                             } :
                             {
@@ -366,7 +366,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                 "transition": "all 0.2s ease-out",
 
                                 "justifyContent": "center",
-                                "align-items": "center",
+                                "alignItems": "center",
                                 "display": "flex",
                             }
                             }
@@ -438,7 +438,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "transition": "all 0.2s ease-out",
 
                     "justifyContent": "center",
-                    "align-items": "center",
+                    "alignItems": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
@@ -457,6 +457,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                 }
                 >
                     <label>{navObj["backButton-displayText"]}</label>
+                    ...{visualMap[navObj["backButton-picName"]]}...
                 </div>
 
 
@@ -599,7 +600,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "position": "absolute",
                     "top": "0px",
                     "left": "0px",
-                    "backgroundColor": "pink",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
@@ -608,7 +611,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "transition": "all 0.2s ease-out",
 
                     "justifyContent": "center",
-                    "align-items": "center",
+                    "alignItems": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
@@ -659,14 +662,14 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                                     "transition": "all 0.2s ease-out",
 
                                     "justifyContent": "center",
-                                    "align-items": "center",
+                                    "alignItems": "center",
                                     "display": "flex",
                                 }}
                                 onMouseDown={
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "brightness(120%)";
                                         console.log("story-page-title clicked: ", item);
-
+                                        updateCurrentPageName("During Game");
                                     }
                                 }
                                 onMouseUp={
@@ -719,7 +722,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "position": "absolute",
                     "top": "0px",
                     "left": "0px",
-                    "backgroundColor": "pink",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
@@ -728,7 +733,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "transition": "all 0.2s ease-out",
 
                     "justifyContent": "center",
-                    "align-items": "center",
+                    "alignItems": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
@@ -853,7 +858,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "position": "absolute",
                     "top": "0px",
                     "left": "0px",
-                    "backgroundColor": "pink",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
@@ -862,7 +869,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "transition": "all 0.2s ease-out",
 
                     "justifyContent": "center",
-                    "align-items": "center",
+                    "alignItems": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
@@ -915,7 +922,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "position": "absolute",
                     "top": "0px",
                     "left": "0px",
-                    "backgroundColor": "pink",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
@@ -924,7 +933,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "transition": "all 0.2s ease-out",
 
                     "justifyContent": "center",
-                    "align-items": "center",
+                    "alignItems": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
@@ -969,7 +978,9 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "position": "absolute",
                     "top": "0px",
                     "left": "0px",
-                    "backgroundColor": "pink",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
                     "width": `${navObj["backButton-width"]}px`,
                     "height": `${navObj["backButton-height"]}px`,
@@ -978,7 +989,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     "transition": "all 0.2s ease-out",
 
                     "justifyContent": "center",
-                    "align-items": "center",
+                    "alignItems": "center",
                     "display": "flex",
                 }}
                 onMouseDown={
@@ -1001,6 +1012,66 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
             <br></br>        
             {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+
+
+
+
+
+
+            </div>
+        </div>
+        </>}
+
+
+
+        {page === "During Game" && <>
+                During gameplay
+                <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        >
+        <div style={{"position": "relative",                 
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,}}>
+
+                {/* //TODO1 */}
+                <div 
+                id="duringGame-backButton"
+                style={{
+                    "position": "absolute",
+                    "top": "0px",
+                    "left": "0px",
+                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                    "backgroundImage": navObj["backButton-isShape"] === false ?
+                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
+
+                    "width": `${navObj["backButton-width"]}px`,
+                    "height": `${navObj["backButton-height"]}px`,
+                    "fontSize": `${navObj["backButton-fontSize"]}px`,
+
+                    "transition": "all 0.2s ease-out",
+
+                    "justifyContent": "center",
+                    "alignItems": "center",
+                    "display": "flex",
+                }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("duringGame-backButton").style.filter = "brightness(120%)";
+                        console.log("duringGame-backButton");
+ 
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("duringGame-backButton").style.filter = "brightness(100%)";
+                        updateCurrentPageName("Story Page");
+                    }
+                }
+                >
+                    <label>{navObj["backButton-displayText"]}</label>
+                </div>  
+
+
+            <br></br>        
 
 
 
