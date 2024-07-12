@@ -620,11 +620,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <label>Log Page Button:</label>
         <div className="indentOne">
             <label>Font Color: </label>
-            {/* <br></br><input type="color" value={convNav["buttonLogShade"]} onChange={(event)=>{
+            <br></br><input type="color" value={convNav["buttonLogShade"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonLogShade": event.target.value});
             }}></input>
-            <label> {convNav["buttonLogShade"]}</label> */} //TODO1 debugging
-
+            <label> {convNav["buttonLogShade"]}</label> 
+    
             <br></br>
             <label>Base Picture: </label>
             
@@ -738,8 +738,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvNav({...convNav, "groupHeight": event.target.value});    
                     }}          
                 ></input>
+              
         </div>
-   
+
+        <br></br>
+        <label>Corner Radius:</label>
+        <input type="range" value={convNav["cornerRadius"]} min="0" max="200" step="1" 
+        onChange={(event)=>{setConvNav({...convNav,  "cornerRadius": event.target.value});}}></input>
+        <label> {convNav["cornerRadius"]}</label>
+
    
     </div>
   

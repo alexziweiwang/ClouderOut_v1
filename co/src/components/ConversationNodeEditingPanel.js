@@ -190,7 +190,9 @@ export default function ConversationNodeEditingPanel() {
         "groupX": 0,
         "groupY": 0,
         "groupWidth": 60,
-        "groupHeight": 10
+        "groupHeight": 10,
+
+        "cornerRadius": 0,
 
     });
 

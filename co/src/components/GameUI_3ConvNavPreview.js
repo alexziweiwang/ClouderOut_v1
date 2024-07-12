@@ -79,12 +79,14 @@ return (<div style={{
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
+                        "borderRadius": `${uiConvNav["cornerRadius"]}px`,
 
                         "userSelect": "none",
 
                         "display": autoOn === true ? "none" : "flex",
                         "justifyContent": "center",
                         "alignItems": "center",
+
                     }}
                     onClick={()=>{
                         //switch auto-status
@@ -121,6 +123,7 @@ return (<div style={{
                         "fontFamily": `${uiConvNav["buttonAutoFontName"]}`,
                         "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
+                        "borderRadius": `${uiConvNav["cornerRadius"]}px`,
 
 
                         "userSelect": "none",
@@ -168,6 +171,7 @@ return (<div style={{
 
                         "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
+                        "borderRadius": `${uiConvNav["cornerRadius"]}px`,
 
                         "userSelect": "none",
                         "display": "flex",
