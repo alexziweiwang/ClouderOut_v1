@@ -178,9 +178,9 @@ export default function ConversationNodeEditingPanel() {
 
     
         "buttonLogIsTextFont": true,
-        "buttonLogShade0": "#bf8da5",
-        "buttonLogPicName0":  "",
-        "buttonLogShade1": "#4a54a1",
+        "buttonLogShade": "#bf8da5",
+        "buttonLogPicName":  "",
+        "buttonLogShade": "#4a54a1",
         "buttonLogPicName": "",
         "buttonLogFontName": "serif",
         "buttonLogFontItalic": false,

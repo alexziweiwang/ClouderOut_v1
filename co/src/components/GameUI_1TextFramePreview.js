@@ -187,7 +187,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 <div
                     style={{
                         "marginRight": "50px",
-                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade0"] : "",
+                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade"] : "",
                         "backgroundImage": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
                         "fontFamily": `${txtFrameUISettings["buttonLogFontName"]}`,
                         "fontStyle:": "italic"
