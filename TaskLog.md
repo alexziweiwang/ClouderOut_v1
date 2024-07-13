@@ -282,3 +282,7 @@
 - 2024-Jul-02: Design and setup gradients for text-content-display speeds
 
 - 2024-Jul-08: Consider streategy and add implementation plan for rm & gdm updating after closing modal-window
+
+- 2024-Jul-12: Consider immediate-playview structure and strategy
+
+
