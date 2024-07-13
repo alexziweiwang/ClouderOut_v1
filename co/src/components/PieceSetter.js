@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openModal_GameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList
 }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -896,7 +896,7 @@ console.log(event.target.value); //TODO test
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openModal_GameDataManager()}}> + </button>}
 
 
                     <br></br><br></br>
@@ -1219,7 +1219,7 @@ console.log(event.target.value); //TODO test
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openModal_GameDataManager()}}> + </button>}
 
                     <br></br><br></br>
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
-import GameDataManager from './GameDataManager';
+import Modal_GameDataManager from './Modal_GameDataManager';
 
 export default function NodeManager({projectName, currUser, chapterKey}) {
 
@@ -546,7 +546,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     setNeedCloudGameData(true);
   }
 
-  function handleGameDataManagerCancel() {
+  function handleModal_GameDataManagerCancel() {
     setDisplayGameDataWindow(!displayGameDataWindow);
   }
 
@@ -2071,9 +2071,9 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
      
      
-        {displayGameDataWindow && <GameDataManager 
+        {displayGameDataWindow && <Modal_GameDataManager 
           isDisplay={displayGameDataWindow} 
-          handleGdmCancel={handleGameDataManagerCancel} 
+          handleGdmCancel={handleModal_GameDataManagerCancel} 
           gameData={gameDataLocal} 
           resetNeedCloudData={markNextNeedCloudGameData} 
           fetchFromCloud={fetchGameDataFromCloud} 

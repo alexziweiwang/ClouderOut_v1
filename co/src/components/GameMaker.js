@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
-import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
 import styles from './webpage.css';
@@ -336,7 +336,7 @@ export default function GameMaker() {
 
     
     {isDisplayRmBool && 
-      <ResourceManagingModalWindow 
+      <Modal_ResourceManagingWindow 
         isDisplay = {isDisplayRmBool} 
         handleRmCancel={handleResourceManagerCancel} 
         handleRmSaveChanges={handleResourceManagerSaveChanges}

@@ -2,17 +2,18 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
-import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 import PreviewWindow_gameContent from './PreviewWindow_gameContent';
 import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
-
+import Modal_QuickGameView from './Modal_QuickGameView';
 
 import PieceManager from './PieceManager';
 import GameUISetter from './GameUISetter';
-import GameDataManager from './GameDataManager';
+import Modal_GameDataManager from './Modal_GameDataManager';
+//TODO fetch navigation(all game type) data from cloud?
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
@@ -57,7 +58,7 @@ export default function ConversationNodeEditingPanel() {
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
-
+    const [isDisplayQview, setIsDisplayQview] = useState(false);
 
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
@@ -258,7 +259,7 @@ export default function ConversationNodeEditingPanel() {
         setDisplayRmModal(true);
     }
 
-    function handleGameDataManagerOpen() {
+    function handleModal_GameDataManagerOpen() {
         setDisplayGameDataWindow(true);
     }
 
@@ -410,7 +411,7 @@ export default function ConversationNodeEditingPanel() {
         return pair;
     }
 
-    function handleGameDataManagerCancel() {
+    function handleModal_GameDataManagerCancel() {
         setDisplayGameDataWindow(!displayGameDataWindow);
     }
 
@@ -495,7 +496,9 @@ export default function ConversationNodeEditingPanel() {
         return visualList; //for previewing
     }
 
-
+    function handleqvCancel() {
+        setIsDisplayQview(false);
+    }
     
 
     return (
@@ -511,12 +514,13 @@ export default function ConversationNodeEditingPanel() {
                 <div className="topParalBarLeftPart">
                     <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
                     <button onClick={()=>{setDisplayGameDataWindow(true);}}>Game Data Manager</button>
+                    <button onClick={()=>{setIsDisplayQview(true);}}>Quick Game Preview</button>
                 </div>
                 <div className="topParalBarRightPart">
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
-                        Game Content</button>
+                        Game Content Setup</button>
                     <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
-                        Game UI</button>
+                        Game UI Setup</button>
 
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
@@ -551,7 +555,7 @@ export default function ConversationNodeEditingPanel() {
                             backToList={returnToList} 
                             gameDataList={gameData} 
                             openRm={handleResourceManagerOpen}
-                            openGameDataManager={handleGameDataManagerOpen}
+                            openModal_GameDataManager={handleModal_GameDataManagerOpen}
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}
@@ -645,7 +649,7 @@ export default function ConversationNodeEditingPanel() {
  
             </div>
             {isDisplayRmBool && 
-                <ResourceManagingModalWindow 
+                <Modal_ResourceManagingWindow 
                     isDisplay = {isDisplayRmBool} 
                     handleRmCancel={handleResourceManagerCancel} 
                     handleRmSaveChanges={handleResourceManagerSaveChanges} 
@@ -653,13 +657,23 @@ export default function ConversationNodeEditingPanel() {
                     />}
             </>}
 
-            {displayGameDataWindow && <GameDataManager 
+            {displayGameDataWindow && <Modal_GameDataManager 
                 isDisplay={displayGameDataWindow} 
-                handleGdmCancel={handleGameDataManagerCancel} 
+                handleGdmCancel={handleModal_GameDataManagerCancel} 
                 gameData={gameData} 
                 resetNeedCloudData={markNextNeedCloudGameData} 
                 fetchFromCloud={fetchGameDataFromCloud} 
                 updateGameDataToCloud={updateGDataToCloud}
+            />}
+
+
+            {isDisplayQview && <Modal_QuickGameView
+                isDisplay={isDisplayQview}
+                handleQViewCancel={handleqvCancel}
+                allPieceData={pieceDataStructure}
+                uiData1_textframe={gameUITextFrame} 
+                uiData2_buttonOption={gameUIDefaultButton} 
+                uiData3_ConvNavigation={uiConvNav} 
             />}
 
 

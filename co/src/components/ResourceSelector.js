@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getRmFileListVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
-import ResourceManagingModalWindow from './ResourceManagingModalWindow';
+import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 
 export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVisualSaveChanges, handleRsAudioSaveChanges, visualListContent, audioListContent}) {
     //TODO receive function for updating resource-pairs in piece-setter/conversation-node-editing page
@@ -204,7 +204,7 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
                 <div className="rsrcListArea">
 
                 {isRmOpen && 
-                <ResourceManagingModalWindow 
+                <Modal_ResourceManagingWindow 
                     isDisplay = {isRmOpen} 
                     handleRmCancel={handleResourceManagerCancel} 
                     handleRmSaveChanges={handleResourceManagerSaveChanges}

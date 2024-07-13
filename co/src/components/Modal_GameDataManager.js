@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
+export default function Modal_GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
     let modalStyleName = "modalBackboard";
 
     if (isDisplay === true) {
@@ -179,7 +179,7 @@ export default function GameDataManager({isDisplay, handleGdmCancel, gameData, r
     <div className="modalArea3">
 
     <div className="modalContent">
-        <button className="buttonRight90 cursor_pointer" onClick={handleGdmCancel}>X</button>
+        <button className="buttonRight90 cursor_pointer" onClick={()=>{handleGdmCancel()}}>Close</button>
 
         <div className="gameDataDisplayArea">
             <div className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}>
