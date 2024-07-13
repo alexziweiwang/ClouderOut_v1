@@ -2,17 +2,19 @@ import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
-export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc}) {
+export default function GameUI_Play_1TextFrame({allPieceContent, getcurrPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc}) {
 //TODO: playView setup:
 
                                             //TODO1: auto-mode signal...
 
 
+console.log("allpiece = ", allPieceContent); //TODO 
+console.log("ui1 txtf = ", txtFrameUISettings);
 //settled data:
-// allPieceData, txtFrameUISettings
+// allPieceContent, txtFrameUISettings
 
 //dynamic data:
-//currentPieceNum, isDirectNextPiece??
+//currPieceNum, isDirectNextPiece??
  
  //function to caller:
  //triggerNextPieceFunc, triggerAutoModeFunc
@@ -22,13 +24,14 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
 
 
 //TODO dynamic
-    const [currentPieceNum, setCurrentPieceNum] = useState(0);
+    const [currPieceNum, setcurrPieceNum] = useState(0);
     const [isDirectNext, setIsDirectNext] = useState(true);
     const [autoOn, setAutoOn] = useState(false);
 
+    const [bgpUrl, setBgpUrl] = useState(""); //TODO
+
 
 //settled
-    const allPieceData = initialAllPieceData;
 
     const typingSpeedValue = typingSpeedBase - ((txtFrameUISettings["textDisplaySpeed"]-1) * 30);
 
@@ -41,13 +44,15 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
         }
         
 
-        let currPieceNumTemp = getCurrentPieceNum();
-        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
-          setCurrentPieceNum(currPieceNumTemp);
+        let currPieceNumTemp = getcurrPieceNum();
+        if (currPieceNumTemp !== currPieceNum) { //only update when different pieceNum chosen
+          setcurrPieceNum(currPieceNumTemp);
         }
 
         let tempDirectNext = getIsDirectNextPiece();
         setIsDirectNext(tempDirectNext);
+
+        console.log("currPieceNumTemp[currPieceNum].content=", currPieceNumTemp[currPieceNum].content);
 
     });
 
@@ -105,12 +110,12 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
         }}>
 
 
-{currentPieceNum >= 0 && 
+{currPieceNum >= 0 && 
             <div>
             
-                {allPieceData[currentPieceNum].speaker_name !== "" && 
+                {allPieceContent[currPieceNum].speaker_name !== "" && 
                     <div>
-                        {allPieceData[currentPieceNum].speaker_name}<br></br>
+                        {allPieceContent[currPieceNum].speaker_name}<br></br>
                     </div>}
                 
                 <div 
@@ -126,26 +131,24 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                 onClick={()=>{
                     //TODO1 add "firstTap" for all-content showing on one piece
                     if (isDirectNext === true) {
-                        triggerNextPiece();
+                        triggerNextPieceFunc();
                     }
                 }}
                 
                 >
            
 
-                        {!isEditing && 
+                        
                         <ConvTextContentViewer 
-                            initialAllPieceData={allPieceData}
-                            initialPieceNum={currentPieceNum}
-                            getCurrentPieceNum={getCurrentPieceNum}
+                            initialallPieceContent={allPieceContent}
+                            initialPieceNum={currPieceNum}
+                            getcurrPieceNum={getcurrPieceNum}
                             getAllPieceContent={getAllPieceContent}
                             displaySpeed={typingSpeedValue}
                             getDisplaySpeed={passInSpeed}
-                        />}
+                        />
 
-                        {isEditing && <>
-                            {allPieceData[currentPieceNum].content}
-                        </>}
+                   
 
 
                 </div>

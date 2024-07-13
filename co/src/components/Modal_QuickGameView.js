@@ -192,12 +192,12 @@ console.log("all-piece-content = ", allPieceContent); //TODO testing
                                         </div>
 
                                 </div>}
-                                {(currentPieceNum >= 0 && allPieceContent[currentPieceNum].displayTextFrame === true) && 
+                                {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) && 
                           
                                     <GameUI_Play_1TextFrame
                                         allPieceContent={allPieceContent}
                                         getCurrentPieceNum={passInCurrentPieceNum}
-                                        textFrameUISettings={uiData1_textframe}
+                                        txtFrameUISettings={uiData1_textframe}
                                         getIsDirectNextPiece={passInDirectNextPieceBool}
                                         triggerNextPieceFunc={triggerNextPiece} 
                                     />
