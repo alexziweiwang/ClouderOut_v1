@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import ConvTextContentViewer from './ConvTextContentViewer';
+import ConvTextContent_preview from './ConvTextContent_preview';
 
 export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, 
@@ -137,7 +137,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
            
 
                         {!isEditing && 
-                        <ConvTextContentViewer 
+                        <ConvTextContent_preview 
                             initialAllPieceData={initialAllPieceData}
                             initialPieceNum={currentPieceNum}
                             getCurrentPieceNum={getCurrentPieceNum}

@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
-import ConvTextContentViewer from './ConvTextContentViewer';
+import ConvTextContent_quickGameView from './ConvTextContent_quickGameView';
 
-export default function GameUI_Play_1TextFrame({allPieceContent, getcurrPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc}) {
+export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc}) {
 //TODO: playView setup:
 
                                             //TODO1: auto-mode signal...
@@ -44,7 +44,7 @@ console.log("ui1 txtf = ", txtFrameUISettings);
         }
         
 
-        let currPieceNumTemp = getcurrPieceNum();
+        let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currPieceNum) { //only update when different pieceNum chosen
           setcurrPieceNum(currPieceNumTemp);
         }
@@ -139,15 +139,13 @@ console.log("ui1 txtf = ", txtFrameUISettings);
            
 
                         
-                        <ConvTextContentViewer 
-                            initialallPieceContent={allPieceContent}
+                        {/* <ConvTextContent_quickGameView
+                            allPieceContent={allPieceContent}
                             initialPieceNum={currPieceNum}
-                            getcurrPieceNum={getcurrPieceNum}
-                            getAllPieceContent={getAllPieceContent}
                             displaySpeed={typingSpeedValue}
-                            getDisplaySpeed={passInSpeed}
-                        />
-
+                            getCurrentPieceNum={getCurrentPieceNum}
+                        /> */}
+                    ???{allPieceContent[currPieceNum]}
                    
 
 

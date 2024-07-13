@@ -1,30 +1,20 @@
 import { useState, useEffect } from 'react';
 
 
-export default function ConvTextContentViewer({initialAllPieceData, initialPieceNum, getCurrentPieceNum, getAllPieceContent, getDisplaySpeed, displaySpeed}) {
+export default function ConvTextContent_quickGameView({allPieceContent, initialPieceNum, displaySpeed, getCurrentPieceNum}) {
   
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
-    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
     const [displayedContent, setDisplayedContent] = useState("");
     const [displayLength, setDisplayLength] = useState(0);
     const [continueRefreshing, setContinueRefreshing] = useState(true);
 
-    const [fullContent, setFullContent] = useState(initialAllPieceData[initialPieceNum]);
+    const [fullContent, setFullContent] = useState(allPieceContent[initialPieceNum]);
 
-    const [currentSpeed, setCurrentSpeed] = useState(displaySpeed);
 
     useEffect(() => {
         let displayedContentTemp = displayedContent;
-        let allPieceContentTemp = getAllPieceContent();
-        if (allPieceContentTemp !== allPieceData) {
-          setAllPieceData(allPieceContentTemp);
 
-          setDisplayedContent("");
-          setDisplayLength(0);
-          displayedContentTemp = "";
-        }
-        
         let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
           setCurrentPieceNum(currPieceNumTemp);
@@ -35,20 +25,8 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
           displayedContentTemp = "";
         }
 
-        let speedTemp = getDisplaySpeed();
-        if (speedTemp !== currentSpeed) {
-            setCurrentSpeed(speedTemp);
-         
-            setDisplayedContent("");
-            setDisplayLength(0);
-            displayedContentTemp = "";
-            setContinueRefreshing(true);
-        }
 
-
-        //in this round, use allPieceContentTemp and currPieceNumTemp
-
-        let wordContent = allPieceContentTemp[currPieceNumTemp]["content"];
+        let wordContent = allPieceContent[currPieceNumTemp]["content"];
 
         if (wordContent !== fullContent) {
             setFullContent(wordContent);
@@ -74,7 +52,7 @@ export default function ConvTextContentViewer({initialAllPieceData, initialPiece
                             setDisplayedContent(wordContent.substring(0, displayLength));
                             setDisplayLength(displayLength+1);
                         }, 
-                        speedTemp);
+                        displaySpeed);
                     return () => clearTimeout(timeout);
 
                 } else {     
