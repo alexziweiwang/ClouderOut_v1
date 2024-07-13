@@ -670,10 +670,14 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayQview && <Modal_QuickGameView
                 isDisplay={isDisplayQview}
                 handleQViewCancel={handleqvCancel}
-                allPieceData={pieceDataStructure}
+                allPieceContent={pieceDataStructure}
                 uiData1_textframe={gameUITextFrame} 
                 uiData2_buttonOption={gameUIDefaultButton} 
                 uiData3_ConvNavigation={uiConvNav} 
+                screenWidth={screenWidth}
+                screenHeight={screenHeight}
+                visualList={visualList}
+                audioList={audioList}
             />}
 
 
