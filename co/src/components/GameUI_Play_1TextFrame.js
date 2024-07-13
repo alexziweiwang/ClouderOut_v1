@@ -2,23 +2,23 @@ import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
 import ConvTextContentViewer from './ConvTextContentViewer';
 
-export default function GameUI1TextFramePlay({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDirectNextPiece, triggerNextPiece, triggerAutoMode}) {
+export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc}) {
 //TODO: playView setup:
 
+                                            //TODO1: auto-mode signal...
+
+
 //settled data:
-// allPieceData, TextFrameUISettings
+// allPieceData, txtFrameUISettings
 
 //dynamic data:
 //currentPieceNum, isDirectNextPiece??
  
  //function to caller:
- //triggerNextPiece, triggerAutoMode
- 
+ //triggerNextPieceFunc, triggerAutoModeFunc
  
  
     const typingSpeedBase = 100;
-
-    const [typingSpeedValue, setTypingSpeedValue] = useState(40); //TODO1 change in future
 
 
 //TODO dynamic
@@ -29,25 +29,14 @@ export default function GameUI1TextFramePlay({initialAllPieceData, getAllPieceCo
 
 //settled
     const allPieceData = initialAllPieceData;
-    const bgpUrl = ""; //TODO2 improve with visualMap
-    const [txtFrameUISettings, setTxtFrameUISettings] = useState({}); //TODO change later
 
-
-
+    const typingSpeedValue = typingSpeedBase - ((txtFrameUISettings["textDisplaySpeed"]-1) * 30);
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
-            let txtFrameUISettingsTemp = getTextFrameUISettings();
-            if (txtFrameUISettingsTemp !== txtFrameUISettings) {
-                setTxtFrameUISettings(txtFrameUISettingsTemp);
-            }
-
-            let speedLevel = txtFrameUISettingsTemp["textDisplaySpeed"];   
-            let speedValue = typingSpeedBase - ((speedLevel-1) * 30);    
-            setTypingSpeedValue(speedValue);
-
+    
             setFirstTimeEnter(false);
         }
         
@@ -61,6 +50,14 @@ export default function GameUI1TextFramePlay({initialAllPieceData, getAllPieceCo
         setIsDirectNext(tempDirectNext);
 
     });
+
+    function passInSpeed() {
+        return typingSpeedValue;
+    }
+
+    function getAllPieceContent() {
+        return allPieceContent;
+    }
 
     function passInSpeed() {
         return typingSpeedValue;
@@ -107,7 +104,8 @@ export default function GameUI1TextFramePlay({initialAllPieceData, getAllPieceCo
             "borderRadius": "0px"
         }}>
 
-            {currentPieceNum >= 0 && 
+
+{currentPieceNum >= 0 && 
             <div>
             
                 {allPieceData[currentPieceNum].speaker_name !== "" && 
@@ -135,68 +133,25 @@ export default function GameUI1TextFramePlay({initialAllPieceData, getAllPieceCo
                 >
            
 
-                        
+                        {!isEditing && 
                         <ConvTextContentViewer 
-                            initialAllPieceData={initialAllPieceData}
+                            initialAllPieceData={allPieceData}
                             initialPieceNum={currentPieceNum}
                             getCurrentPieceNum={getCurrentPieceNum}
                             getAllPieceContent={getAllPieceContent}
                             displaySpeed={typingSpeedValue}
                             getDisplaySpeed={passInSpeed}
-                        />
+                        />}
 
+                        {isEditing && <>
+                            {allPieceData[currentPieceNum].content}
+                        </>}
 
 
                 </div>
 
             </div>}
 
-
-
-            <div className="parallelFrame">
-                <div
-                    style={{
-                        "marginRight": "50px",
-                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? 
-                            (autoOn ? 
-                                txtFrameUISettings["buttonAutoShade1"] 
-                                :  txtFrameUISettings["buttonAutoShade0"]) 
-                            : "",
-                        "backgroundImage": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
-                        "fontFamily": `${txtFrameUISettings["buttonAutoFontName"]}`,
-                        
-                    }}
-                    onClick={()=>{
-                        //switch auto-status
-                        if (autoOn === false) { //current status(f), next status(t)
-                            triggerAutoMode();
-                        }
-                        setAutoOn(!autoOn);
-                    }}
-                > 
-                {!txtFrameUISettings["buttonAutoFontItalic"] && <label>Auto</label>}
-                {txtFrameUISettings["buttonAutoFontItalic"] && <em>Auto</em>}
-
-
-                </div>
-
-                <div
-                    style={{
-                        "marginRight": "50px",
-                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade"] : "",
-                        "backgroundImage": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
-                        "fontFamily": `${txtFrameUISettings["buttonLogFontName"]}`,
-                        "fontStyle:": "italic"
-                    }}
-                    onClick={()=>{
-                        //trigger log-screen
-                    }}
-                >
-                    {!txtFrameUISettings["buttonLogFontItalic"] && <label>Log</label>}
-                    {txtFrameUISettings["buttonLogFontItalic"] && <em>Log</em>}
-
-                </div>
-            </div>
 
 
         </div>

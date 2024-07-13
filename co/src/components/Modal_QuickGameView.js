@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
 
 export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList}) {
 //TODO: receive nav-data (for all game type ) ; do later
@@ -122,11 +122,22 @@ console.log("all-piece-content = ", allPieceContent); //TODO testing
     function triggerNextPiece() {
         if (allPieceContent[currPieceNum+1] !== undefined) {
             setCurrPieceNum(currPieceNum+1);
+        } else {
+            alert("Content Finished.");
         }
     }
 
+    function passInCurrentPieceNum() {
+        return currPieceNum;
+    }
 
+    function passInDirectNextPieceBool() {
+        return directNextPieceBool;
+    }
 
+    function triggerAutoMode() {
+        console.log("TODO: trigger auto mode");
+    }
 
 
     return ( <div className={modalStyleName}>
@@ -181,7 +192,22 @@ console.log("all-piece-content = ", allPieceContent); //TODO testing
                                         </div>
 
                                 </div>}
-          
+                                {(currentPieceNum >= 0 && allPieceContent[currentPieceNum].displayTextFrame === true) && 
+                          
+                                    <GameUI_Play_1TextFrame
+                                        allPieceContent={allPieceContent}
+                                        getCurrentPieceNum={passInCurrentPieceNum}
+                                        textFrameUISettings={uiData1_textframe}
+                                        getIsDirectNextPiece={passInDirectNextPieceBool}
+                                        triggerNextPieceFunc={triggerNextPiece} 
+                                    />
+                                    
+                                    }                
+
+
+
+
+
 
                         Preview Area ...
                     </div>
