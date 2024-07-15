@@ -9,8 +9,8 @@ export default function ConvTextContent_quickGameView({allPieceContent, initialP
     const [displayLength, setDisplayLength] = useState(0);
     const [continueRefreshing, setContinueRefreshing] = useState(true);
 
-    const [fullContent, setFullContent] = useState(allPieceContent[initialPieceNum]);
-
+    const [fullContent, setFullContent] = useState(allPieceContent[initialPieceNum]["content"]);
+   
 
     useEffect(() => {
         let displayedContentTemp = displayedContent;
@@ -35,13 +35,6 @@ export default function ConvTextContent_quickGameView({allPieceContent, initialP
             setDisplayLength(0);
             displayedContentTemp = "";
         }
-
-        //TODO testing
-        // console.log("expected wordContent? ", wordContent);
-        // console.log("displayedContentTemp? [", displayedContentTemp , "]");
-        // console.log("continue refreshing?", continueRefreshing === true);
-        // console.log();
-
 
         if (continueRefreshing === true || wordContent !== fullContent) {
             

@@ -2,14 +2,11 @@ import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
 import ConvTextContent_quickGameView from './ConvTextContent_quickGameView';
 
-export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc}) {
+export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc, speedLevel}) {
 //TODO: playView setup:
 
                                             //TODO1: auto-mode signal...
 
-
-console.log("allpiece = ", allPieceContent); //TODO 
-console.log("ui1 txtf = ", txtFrameUISettings);
 //settled data:
 // allPieceContent, txtFrameUISettings
 
@@ -33,7 +30,7 @@ console.log("ui1 txtf = ", txtFrameUISettings);
 
 //settled
 
-    const typingSpeedValue = typingSpeedBase - ((txtFrameUISettings["textDisplaySpeed"]-1) * 30);
+    const typingSpeedValue = typingSpeedBase - ((speedLevel-1) * 30);
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -52,21 +49,7 @@ console.log("ui1 txtf = ", txtFrameUISettings);
         let tempDirectNext = getIsDirectNextPiece();
         setIsDirectNext(tempDirectNext);
 
-        console.log("currPieceNumTemp[currPieceNum].content=", currPieceNumTemp[currPieceNum].content);
-
     });
-
-    function passInSpeed() {
-        return typingSpeedValue;
-    }
-
-    function getAllPieceContent() {
-        return allPieceContent;
-    }
-
-    function passInSpeed() {
-        return typingSpeedValue;
-    }
 
     return (<div 
         style={txtFrameUISettings["isShape"] === true ? {
@@ -128,6 +111,7 @@ console.log("ui1 txtf = ", txtFrameUISettings);
                     "justifyContent": "left",
                     "fontFamily": `${txtFrameUISettings["fontName"]}`,
                 }}
+
                 onClick={()=>{
                     //TODO1 add "firstTap" for all-content showing on one piece
                     if (isDirectNext === true) {
@@ -139,15 +123,13 @@ console.log("ui1 txtf = ", txtFrameUISettings);
            
 
                         
-                        {/* <ConvTextContent_quickGameView
+                        <ConvTextContent_quickGameView
                             allPieceContent={allPieceContent}
                             initialPieceNum={currPieceNum}
                             displaySpeed={typingSpeedValue}
                             getCurrentPieceNum={getCurrentPieceNum}
-                        /> */}
-                    ???{allPieceContent[currPieceNum]}
-                   
-
+                        /> 
+                 
 
                 </div>
 

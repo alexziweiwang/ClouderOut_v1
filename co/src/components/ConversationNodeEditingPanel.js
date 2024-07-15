@@ -177,7 +177,6 @@ export default function ConversationNodeEditingPanel() {
         "buttonAutoDisplayText1": "Auto-on",
         "buttonLogDisplayText": "Log",
 
-    
         "buttonLogIsTextFont": true,
         "buttonLogShade": "#bf8da5",
         "buttonLogPicName":  "",

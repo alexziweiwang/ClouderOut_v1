@@ -32,9 +32,6 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
       if (firstTimeEnter === true) {
         setFirstTimeEnter(false);
 
-console.log("game-q-view first entry"); //TODO temp
-console.log("all-piece-content = ", allPieceContent); //TODO testing
-
       }
 
 
@@ -200,6 +197,7 @@ console.log("all-piece-content = ", allPieceContent); //TODO testing
                                         txtFrameUISettings={uiData1_textframe}
                                         getIsDirectNextPiece={passInDirectNextPieceBool}
                                         triggerNextPieceFunc={triggerNextPiece} 
+                                        speedLevel={uiData3_ConvNavigation["textDisplaySpeed"]}
                                     />
                                     
                                     }                
