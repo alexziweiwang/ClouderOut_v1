@@ -1,29 +1,24 @@
 import { useState, useEffect } from 'react';
 
-export default function GameUI_Play_2Buttons({isSettingUpUI, initialallPieceContent, getAllPieceContent, 
-    getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, 
-    getScreenSize, 
-    
+export default function GameUI_Play_2Buttons({
     
 
     triggerNextPiece, passInAudioMap, passInVisualMap, //TODO for quick-view-gameplay parameters
     allPieceContent, getCurrentPieceNum, 
-    defaultButtonUISettings, screenWidth, screenHeight
+    defualtBtnUISettings, screenWidth, screenHeight
 
 }) {
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
 
 
-    const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
+    // const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState(true); //TODO test later
 
-    const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
-
-    const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] 
-        : (allPieceContent[currentPieceNum]["stnd_btn_arr"] !== undefined ? allPieceContent[currentPieceNum]["stnd_btn_arr"] : []);
+    const stndButtonTextArr = allPieceContent[currentPieceNum]["stnd_btn_arr"] !== undefined ? 
+        allPieceContent[currentPieceNum]["stnd_btn_arr"] : [];
 
 
-    const [buttonPicUrl, setButtonPicurl] = useState("");
+    const [buttonPicUrl, setButtonPicUrl] = useState("");
 
 
     const [audioMap, setAudioMap] = useState([]); //TODO for sound effects -- future feature
@@ -31,14 +26,7 @@ export default function GameUI_Play_2Buttons({isSettingUpUI, initialallPieceCont
 
     useEffect(() => {
 
-    
-        
-        let currPieceNumTemp = getCurrentPieceNum();
-        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
-          setCurrentPieceNum(currPieceNumTemp);
-
-        }
-
+            
         let visualMapTemp = passInVisualMap();
         setVisualMap(visualMapTemp);
 
@@ -46,21 +34,13 @@ export default function GameUI_Play_2Buttons({isSettingUpUI, initialallPieceCont
         setAudioMap(audioMapTemp);
 
 
-  
-        let isDisplayDefaultValTemp = getIsDisplayDefaultButton();
-        setIsDisplayDefualtBtnUISettings(isDisplayDefaultValTemp);
-       
-       
-        let defaultBtnUISettingsTemp = getDefaultButtonUISettings();
-        if (defaultBtnUISettingsTemp !== defualtBtnUISettings) {
-            setDefualtBtnUISettings(defaultBtnUISettingsTemp);
-            setButtonPicurl(visualMapTemp[defaultBtnUISettingsTemp["picVar"]]);
+        let currPieceNumTemp = getCurrentPieceNum();
+        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+          setCurrentPieceNum(currPieceNumTemp);
         }
 
-        let backBtnUISettings = getBackButtonUISettings();
-        setBackButtonUISettings(backBtnUISettings);
-
- 
+        setButtonPicUrl(visualMapTemp[defaultBtnUISettingsTemp["picVar"]]);
+   
     });
 
     return (
@@ -69,8 +49,8 @@ export default function GameUI_Play_2Buttons({isSettingUpUI, initialallPieceCont
         <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
         "top": `${defualtBtnUISettings["groupY"]}px`,                       
         "position": "absolute"}}>
-        {isDisplayDefualtBtnUISettings && 
-
+        {/* {isDisplayDefualtBtnUISettings &&  */} //TODO test later
+{
         <div>
         {stndButtonTextArr.map((item, index)=>{
 
