@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
 import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
-
+import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 
 export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList}) {
 //TODO: receive nav-data (for all game type ) ; do later
@@ -167,6 +167,10 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
         return immediateFinishSignal;
     }
 
+    function triggerAutoMode() {
+        console.log("auto-mode on"); //TODO later
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
@@ -228,7 +232,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                         getCurrentPieceNum={passInCurrentPieceNum}
                                         txtFrameUISettings={uiData1_textframe}
                                         getIsDirectNextPiece={passInDirectNextPieceBool}
-                                        triggerToDirectNextPieceFunc={triggerToDirectNextPiece} 
+                                        triggerNextPieceFunc={triggerToDirectNextPiece} 
                                         speedLevel={uiData3_ConvNavigation["textDisplaySpeed"]}
                                         notifyFinished={notifyFinished}
                                         notifyNotYet={notifyNotYet}
@@ -237,7 +241,8 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                     
                                 }                
                                 
-                                {currPieceNum >= 0 && <GameUI_Play_2Buttons
+                                {currPieceNum >= 0 && 
+                                    <GameUI_Play_2Buttons
                                         triggerNextPiece={triggerToDirectNextPiece}
                                         getAudioMap={passInAudioMap}
                                         getVisualMap={passInVisualMap}
@@ -247,7 +252,21 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                         screenWidth={screenWidth}
                                         screenHeight={screenHeight}
                                 
-                                />}
+                                    />
+                                }
+
+                                {currPieceNum >= 0 &&
+                                    <GameUI_Play_3ConvNav
+                                        getCurrentPieceNum={passInCurrentPieceNum}  
+                                        triggerAutoMode={triggerAutoMode}
+                                        screenWidth={screenWidth}
+                                        screenHeight={screenHeight}
+                                        uiConvNav={uiData3_ConvNavigation}
+                                        visualMap={visualMap}
+                                        audioMap={audioMap}                                    
+                                    />
+                                
+                                }
 
 
                                 {/* //TODO add standardButtonGroup component
