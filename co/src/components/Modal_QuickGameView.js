@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
+import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
+
 
 export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList}) {
 //TODO: receive nav-data (for all game type ) ; do later
@@ -136,6 +138,13 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
         console.log("TODO: trigger auto mode");
     }
 
+    function passInVisualMap() {
+        return visualMap;
+    }
+
+    function passInAudioMap() {
+        return audioMap;
+    }
 
     return ( <div className={modalStyleName}>
         <div className="modalArea">
@@ -201,7 +210,18 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                     />
                                     
                                 }                
-
+                                
+                                {currPieceNum >= 0 && <GameUI_Play_2Buttons
+                                        triggerNextPiece={triggerToDirectNextPiece}
+                                        getAudioMap={passInAudioMap}
+                                        getVisualMap={passInVisualMap}
+                                        allPieceContent={allPieceContent} 
+                                        getCurrentPieceNum={passInCurrentPieceNum} 
+                                        defualtBtnUISettings={uiData2_buttonOption} 
+                                        screenWidth={screenWidth}
+                                        screenHeight={screenHeight}
+                                
+                                />}
 
 
                                 {/* //TODO add standardButtonGroup component
