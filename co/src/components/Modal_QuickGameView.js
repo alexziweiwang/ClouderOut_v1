@@ -17,6 +17,8 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
 
     const [currPieceNum, setCurrPieceNum] = useState(0);
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
+    const [textStillTyping, setTextStillTyping] = useState(true);
+    const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
 
     const [audioMap, setAudioMap] = useState({});
     const [visualMap, setVisualMap] = useState({}); 
@@ -119,11 +121,15 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
 
 
     function triggerToDirectNextPiece() {
-        if (allPieceContent[currPieceNum+1] !== undefined) {
-            setCurrPieceNum(currPieceNum+1);
-        } else {
-            alert("Content Finished.");
-        }
+         
+            if (textStillTyping === true) {
+                //TODO notify to finished immediately
+                setImmediateFinishSignal(true);
+            } else if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] !== undefined) { //when textStillTyping is false
+                setCurrPieceNum(currPieceNum+1);
+                setImmediateFinishSignal(false);
+            } 
+        
     }
 
     function passInCurrentPieceNum() {
@@ -146,11 +152,28 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
         return audioMap;
     }
 
+    function resetViewingPiece() {
+        setCurrPieceNum(0); //TODO reset to given first-piece later
+    }
+
+    function notifyFinished() {
+        setTextStillTyping(false);
+    } 
+    function notifyNotYet() {
+        setTextStillTyping(true);
+    }
+
+    function passInImmedaiteFinishSignal() {
+        return immediateFinishSignal;
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
             <div>
             <button onClick={()=>{handleQViewCancel();}}> Close </button>
+            <button onClick={()=>{resetViewingPiece();}}> Reset </button>
+
                 <div className="parallelFrame">
 
                
@@ -207,6 +230,9 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                         getIsDirectNextPiece={passInDirectNextPieceBool}
                                         triggerToDirectNextPieceFunc={triggerToDirectNextPiece} 
                                         speedLevel={uiData3_ConvNavigation["textDisplaySpeed"]}
+                                        notifyFinished={notifyFinished}
+                                        notifyNotYet={notifyNotYet}
+                                        getInImmedaiteFinishSignal={passInImmedaiteFinishSignal}
                                     />
                                     
                                 }                

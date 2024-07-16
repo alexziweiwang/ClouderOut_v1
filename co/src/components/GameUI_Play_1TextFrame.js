@@ -2,7 +2,10 @@ import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
 import ConvTextContent_quickGameView from './ConvTextContent_quickGameView';
 
-export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc, speedLevel}) {
+export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, 
+    txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc, speedLevel,
+    notifyFinished, notifyNotYet, getInImmedaiteFinishSignal
+}) {
 //TODO: playView setup:
 
                                             //TODO1: auto-mode signal...
@@ -128,6 +131,9 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                             initialPieceNum={currPieceNum}
                             displaySpeed={typingSpeedValue}
                             getCurrentPieceNum={getCurrentPieceNum}
+                            notifyFinished={notifyFinished}
+                            notifyNotYet={notifyNotYet}
+                            getInImmedaiteFinishSignal={getInImmedaiteFinishSignal}
                         /> 
                  
 

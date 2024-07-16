@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
 
-export default function ConvTextContent_quickGameView({allPieceContent, initialPieceNum, displaySpeed, getCurrentPieceNum}) {
+export default function ConvTextContent_quickGameView({allPieceContent, initialPieceNum, displaySpeed, 
+    getCurrentPieceNum, notifyFinished, notifyNotYet, getInImmedaiteFinishSignal
+
+}) {
   
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
 
@@ -10,10 +13,13 @@ export default function ConvTextContent_quickGameView({allPieceContent, initialP
     const [continueRefreshing, setContinueRefreshing] = useState(true);
 
     const [fullContent, setFullContent] = useState(allPieceContent[initialPieceNum]["content"]);
-   
+    const [receivedImmediateFinishSignal, setReceivedImmediateFinishSignal] = useState(false);
 
     useEffect(() => {
         let displayedContentTemp = displayedContent;
+
+        let immFinSignal = getInImmedaiteFinishSignal();
+        setReceivedImmediateFinishSignal(immFinSignal);
 
         let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
@@ -39,16 +45,24 @@ export default function ConvTextContent_quickGameView({allPieceContent, initialP
         if (continueRefreshing === true || wordContent !== fullContent) {
             
                 if (displayedContentTemp.length < wordContent.length) {
-                
-                    const timeout = setTimeout(
+                    //TODO notify not finished
+                    notifyNotYet();
+
+                    if (immFinSignal === true) {
+                        setDisplayedContent(wordContent);
+                    } else {
+                         const timeout = setTimeout(
                         () => {
                             setDisplayedContent(wordContent.substring(0, displayLength));
                             setDisplayLength(displayLength+1);
                         }, 
                         displaySpeed);
-                    return () => clearTimeout(timeout);
+                        return () => clearTimeout(timeout); 
+                    }
 
                 } else {     
+                    //TODO notify finished
+                    notifyFinished();
                     setContinueRefreshing(false);
                 }
 
