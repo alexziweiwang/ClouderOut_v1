@@ -75,7 +75,7 @@ return (<div style={{
     style={{
         "top": `${uiConvNav["groupY"]}px`,
         "left": `${uiConvNav["groupX"]}px`,
-        "width": `${uiConvNav["groupWidth"] * 2 + 5}px`,
+        "width": `${uiConvNav["groupWidth"] * 2 + 20}px`,
         "height": `${uiConvNav["groupHeight"]}px`,
         "position": "absolute",
     }}

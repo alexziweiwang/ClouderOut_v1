@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 
 
 export default function ConvTextContent_quickGameView({allPieceContent, initialPieceNum, displaySpeed, 
-    getCurrentPieceNum, notifyFinished, notifyNotYet, getInImmedaiteFinishSignal
+    getCurrentPieceNum, notifyFinished, notifyNotYet, getInImmedaiteFinishSignal, getAutoModeStatus,
+    triggerNextPiece
 
 }) {
   
@@ -42,6 +43,8 @@ export default function ConvTextContent_quickGameView({allPieceContent, initialP
             displayedContentTemp = "";
         }
 
+        let autoStatus = getAutoModeStatus();
+
         if (continueRefreshing === true || wordContent !== fullContent) {
             
                 if (displayedContentTemp.length < wordContent.length) {
@@ -62,8 +65,14 @@ export default function ConvTextContent_quickGameView({allPieceContent, initialP
 
                 } else {     
                     //TODO notify finished
+                    if (autoStatus === true) {
+                        triggerNextPiece();
+                    }
+               
                     notifyFinished();
                     setContinueRefreshing(false);
+                    
+               
                 }
 
             }

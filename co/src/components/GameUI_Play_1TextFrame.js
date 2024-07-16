@@ -4,11 +4,10 @@ import ConvTextContent_quickGameView from './ConvTextContent_quickGameView';
 
 export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, 
     txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc, speedLevel,
-    notifyFinished, notifyNotYet, getInImmedaiteFinishSignal
+    notifyFinished, notifyNotYet, getInImmedaiteFinishSignal,
+    visualMap, getAutoModeStatus
 }) {
 //TODO: playView setup:
-
-                                            //TODO1: auto-mode signal...
 
 //settled data:
 // allPieceContent, txtFrameUISettings
@@ -22,16 +21,11 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
  
     const typingSpeedBase = 100;
 
-
-//TODO dynamic
     const [currPieceNum, setcurrPieceNum] = useState(0);
     const [isDirectNext, setIsDirectNext] = useState(true);
-    const [autoOn, setAutoOn] = useState(false);
 
-    const [bgpUrl, setBgpUrl] = useState(""); //TODO
+    const bgpUrl = visualMap[txtFrameUISettings["picVar"]]
 
-
-//settled
 
     const typingSpeedValue = typingSpeedBase - ((speedLevel-1) * 30);
 
@@ -96,7 +90,7 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
         }}>
 
 
-{currPieceNum >= 0 && 
+    {currPieceNum >= 0 && 
             <div>
             
                 {allPieceContent[currPieceNum].speaker_name !== "" && 
@@ -134,6 +128,8 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                             notifyFinished={notifyFinished}
                             notifyNotYet={notifyNotYet}
                             getInImmedaiteFinishSignal={getInImmedaiteFinishSignal}
+                            getAutoModeStatus={getAutoModeStatus}
+                            triggerNextPiece={triggerNextPieceFunc}
                         /> 
                  
 

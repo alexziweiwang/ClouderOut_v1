@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-export default function GameUI_Play_2Buttons({triggerNextPiece, getAudioMap, getVisualMap, 
+export default function GameUI_Play_2Buttons({triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
-    defualtBtnUISettings, screenWidth, screenHeight}) {
+    defualtBtnUISettings}) {
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
 
@@ -10,16 +10,8 @@ export default function GameUI_Play_2Buttons({triggerNextPiece, getAudioMap, get
 
     const [buttonPicUrl, setButtonPicUrl] = useState("");
 
-    const [audioMap, setAudioMap] = useState([]); //TODO for sound effects -- future feature
-    const [visualMap, setVisualMap] = useState([]); 
 
     useEffect(() => {
-
-        let visualMapTemp = getVisualMap();
-        setVisualMap(visualMapTemp);
-
-        let audioMapTemp = getAudioMap();
-        setAudioMap(audioMapTemp);
 
 
         let currPieceNumTemp = getCurrentPieceNum();
@@ -30,12 +22,12 @@ export default function GameUI_Play_2Buttons({triggerNextPiece, getAudioMap, get
         
         }
 
-        setButtonPicUrl(visualMapTemp[defualtBtnUISettings["picVar"]]);
+        setButtonPicUrl(visualMap[defualtBtnUISettings["picVar"]]);
    
     });
 
     return (
-        <div style={{"width": screenWidth, "position": "absolute", "top": "0px", "left": "0px"}}>
+        <div style={{"position": "absolute", "top": "0px", "left": "0px"}}>
 
         <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
         "top": `${defualtBtnUISettings["groupY"]}px`,                       

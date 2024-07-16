@@ -59,7 +59,7 @@ return (<div style={{
     style={{
         "top": `${uiConvNav["groupY"]}px`,
         "left": `${uiConvNav["groupX"]}px`,
-        "width": `${uiConvNav["groupWidth"] * 2 + 5}px`,
+        "width": `${uiConvNav["groupWidth"] * 2 + 20}px`,
         "height": `${uiConvNav["groupHeight"]}px`,
         "position": "absolute",
     }}
@@ -84,7 +84,7 @@ return (<div style={{
                     onClick={()=>{
                         //TODO switch auto-status
             
-                        triggerAutoMode();
+                        triggerAutoMode(true);
                         setAutoOn(true);
                     }}
                 > 
@@ -126,6 +126,7 @@ return (<div style={{
                     onClick={()=>{
                         //switch auto-status
                         //TODO stop auto-mode
+                        triggerAutoMode(false);
                         setAutoOn(false);
                     }}
                 > 

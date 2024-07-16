@@ -19,6 +19,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
     const [textStillTyping, setTextStillTyping] = useState(true);
     const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
+    const [autoMode, setAutoMode] = useState(false);
 
     const [audioMap, setAudioMap] = useState({});
     const [visualMap, setVisualMap] = useState({}); 
@@ -121,11 +122,22 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
 
 
     function triggerToDirectNextPiece() {
-         
+ 
+
             if (textStillTyping === true) {
                 //TODO notify to finished immediately
-                setImmediateFinishSignal(true);
-            } else if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] !== undefined) { //when textStillTyping is false
+                if (autoMode === false) {
+                    setImmediateFinishSignal(true);
+                } else { // in auto-mode
+                    if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] 
+                        !== undefined) { //also when textStillTyping is false        
+                        setCurrPieceNum(currPieceNum+1);
+                        setImmediateFinishSignal(false);
+                    } 
+                }
+            } else if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] 
+                    !== undefined) { //also when textStillTyping is false
+    
                 setCurrPieceNum(currPieceNum+1);
                 setImmediateFinishSignal(false);
             } 
@@ -144,14 +156,6 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
         console.log("TODO: trigger auto mode");
     }
 
-    function passInVisualMap() {
-        return visualMap;
-    }
-
-    function passInAudioMap() {
-        return audioMap;
-    }
-
     function resetViewingPiece() {
         setCurrPieceNum(0); //TODO reset to given first-piece later
     }
@@ -159,6 +163,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
     function notifyFinished() {
         setTextStillTyping(false);
     } 
+
     function notifyNotYet() {
         setTextStillTyping(true);
     }
@@ -167,8 +172,12 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
         return immediateFinishSignal;
     }
 
-    function triggerAutoMode() {
-        console.log("auto-mode on"); //TODO later
+    function triggerAutoMode(val) {
+        setAutoMode(val);
+    }
+
+    function passInAutoModeStatus() {
+        return autoMode;
     }
 
     return ( <div className={modalStyleName}>
@@ -197,8 +206,8 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                     
                                     onClick={()=>{
                                         if (directNextPieceBool === true) {
-                                        //TODO1 add "firstTap" for all-content showing on one piece
-                                        triggerToDirectNextPiece();
+                                            //TODO1 add "firstTap" for all-content showing on one piece
+                                            triggerToDirectNextPiece();
                                         }
                                     }}
                                     >
@@ -237,6 +246,8 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                         notifyFinished={notifyFinished}
                                         notifyNotYet={notifyNotYet}
                                         getInImmedaiteFinishSignal={passInImmedaiteFinishSignal}
+                                        visualMap={visualMap}
+                                        getAutoModeStatus={passInAutoModeStatus}
                                     />
                                     
                                 }                
@@ -244,13 +255,11 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                 {currPieceNum >= 0 && 
                                     <GameUI_Play_2Buttons
                                         triggerNextPiece={triggerToDirectNextPiece}
-                                        getAudioMap={passInAudioMap}
-                                        getVisualMap={passInVisualMap}
+                                        audioMap={audioMap}
+                                        visualMap={visualMap}
                                         allPieceContent={allPieceContent} 
                                         getCurrentPieceNum={passInCurrentPieceNum} 
                                         defualtBtnUISettings={uiData2_buttonOption} 
-                                        screenWidth={screenWidth}
-                                        screenHeight={screenHeight}
                                 
                                     />
                                 }
@@ -258,9 +267,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                 {currPieceNum >= 0 &&
                                     <GameUI_Play_3ConvNav
                                         getCurrentPieceNum={passInCurrentPieceNum}  
-                                        triggerAutoMode={triggerAutoMode}
-                                        screenWidth={screenWidth}
-                                        screenHeight={screenHeight}
+                                        triggerAutoMode={triggerAutoMode}                           
                                         uiConvNav={uiData3_ConvNavigation}
                                         visualMap={visualMap}
                                         audioMap={audioMap}                                    
