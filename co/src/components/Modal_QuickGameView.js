@@ -116,7 +116,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
       }    
 
 
-    function triggerNextPiece() {
+    function triggerToDirectNextPiece() {
         if (allPieceContent[currPieceNum+1] !== undefined) {
             setCurrPieceNum(currPieceNum+1);
         } else {
@@ -162,7 +162,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                     onClick={()=>{
                                         if (directNextPieceBool === true) {
                                         //TODO1 add "firstTap" for all-content showing on one piece
-                                        triggerNextPiece();
+                                        triggerToDirectNextPiece();
                                         }
                                     }}
                                     >
@@ -196,15 +196,16 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                         getCurrentPieceNum={passInCurrentPieceNum}
                                         txtFrameUISettings={uiData1_textframe}
                                         getIsDirectNextPiece={passInDirectNextPieceBool}
-                                        triggerNextPieceFunc={triggerNextPiece} 
+                                        triggerToDirectNextPieceFunc={triggerToDirectNextPiece} 
                                         speedLevel={uiData3_ConvNavigation["textDisplaySpeed"]}
                                     />
                                     
-                                    }                
+                                }                
 
 
 
-
+                                {/* //TODO add standardButtonGroup component
+                                //TODO add ConNav component */}
 
 
                         Preview Area ...
