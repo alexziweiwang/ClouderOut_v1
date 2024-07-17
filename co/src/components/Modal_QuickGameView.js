@@ -6,8 +6,6 @@ import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList, gameData}) {
 //TODO: receive nav-data (for all game type ) ; do later
 
-console.log("quick view game-data = ", gameData); //TODO testing
-
     let modalStyleName = "modalBackboard";
 
     if (isDisplay === true) {
@@ -191,6 +189,12 @@ console.log("quick view game-data = ", gameData); //TODO testing
         return autoMode;
     }
 
+    function updateGameData(name, value) {
+        let gmdtObj = gameDataCurr;
+        gameDataCurr.current_value = value;
+        setGameDataCurr(gmdtObj);
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
@@ -249,6 +253,7 @@ console.log("quick view game-data = ", gameData); //TODO testing
                 
                                 {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) &&                          
                                     <GameUI_Play_1TextFrame
+                                        initialPieceNum={initialPieceNum}
                                         allPieceContent={allPieceContent}
                                         getCurrentPieceNum={passInCurrentPieceNum}
                                         txtFrameUISettings={uiData1_textframe}
@@ -266,18 +271,21 @@ console.log("quick view game-data = ", gameData); //TODO testing
                                 
                                 {currPieceNum >= 0 && 
                                     <GameUI_Play_2Buttons
+                                        initialPieceNum={initialPieceNum}
                                         triggerNextPiece={triggerToDirectNextPiece}
                                         audioMap={audioMap}
                                         visualMap={visualMap}
                                         allPieceContent={allPieceContent} 
                                         getCurrentPieceNum={passInCurrentPieceNum} 
                                         defualtBtnUISettings={uiData2_buttonOption} 
+                                        updateGameData={updateGameData}
                                 
                                     />
                                 }
 
                                 {currPieceNum >= 0 &&
                                     <GameUI_Play_3ConvNav
+                                        initialPieceNum={initialPieceNum}
                                         getCurrentPieceNum={passInCurrentPieceNum}  
                                         triggerAutoMode={triggerAutoMode}                           
                                         uiConvNav={uiData3_ConvNavigation}

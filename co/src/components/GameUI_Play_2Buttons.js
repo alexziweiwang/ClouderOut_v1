@@ -1,26 +1,32 @@
 import { useState, useEffect } from 'react';
 
-export default function GameUI_Play_2Buttons({triggerNextPiece, visualMap, 
+export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
-    defualtBtnUISettings}) {
+    defualtBtnUISettings,
+    updateGameData
+    }) {
 
-    const [currentPieceNum, setCurrentPieceNum] = useState(0);
+    const [currentPieceNum, setCurrentPieceNum] = useState(initialPieceNum);
 
-    const [stndButtonTextArr, setStndButtonTextArr] = useState([]);
+    const [stndButtonTextArr, setStndButtonTextArr] = useState(allPieceContent[initialPieceNum]["stnd_btn_arr"] 
+    !== undefined ? 
+        allPieceContent[initialPieceNum]["stnd_btn_arr"] 
+        : []);
 
     const [buttonPicUrl, setButtonPicUrl] = useState("");
 
 
     useEffect(() => {
+        console.log("allPiece= ", allPieceContent); //TODO testing
 
 
         let currPieceNumTemp = getCurrentPieceNum();
-        if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
-          setCurrentPieceNum(currPieceNumTemp);
-          setStndButtonTextArr(allPieceContent[currPieceNumTemp]["stnd_btn_arr"] !== undefined ? 
-            allPieceContent[currPieceNumTemp]["stnd_btn_arr"] : []);
-        
-        }
+        setCurrentPieceNum(currPieceNumTemp);
+        setStndButtonTextArr(allPieceContent[currPieceNumTemp]["stnd_btn_arr"] 
+            !== undefined ? 
+                allPieceContent[currPieceNumTemp]["stnd_btn_arr"] 
+                : []);
+    
 
         setButtonPicUrl(visualMap[defualtBtnUISettings["picVar"]]);
    
@@ -38,7 +44,7 @@ export default function GameUI_Play_2Buttons({triggerNextPiece, visualMap,
 
                     let currId = "defaultButtonDivPreviewWindow" + index;
                     return (
-                    <div id={currId} key={index} style={{   
+                    <div id={currId} key={currId} style={{   
                             "background": defualtBtnUISettings["bgColor"],
                             "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
                                 : `url('${buttonPicUrl}')`,
@@ -73,8 +79,10 @@ export default function GameUI_Play_2Buttons({triggerNextPiece, visualMap,
                             document.getElementById(currId).style.filter = "brightness(100%)";
 
                             //TODO1 important: update game-data!!
+                            //TODO from allPieceContent[currentPieceNum]["stnd_btn_arr"], by button "name"
+                            //TODO      go to "conseq" array, each element is a statement. example: 't7bool', 'becomes', 'false'
 
-                        //TODO1 add "firstTap" for all-content showing on one piece
+                            // updateGameData(name, value);
 
                             triggerNextPiece();
                         }
