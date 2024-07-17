@@ -294,8 +294,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
                     {charaPicArr2 !== undefined && charaPicArr2.map((item, index) => {
                       let altStr = index+"already added character picture";
+                      let keyStr = "charPic-" + index;
                       return (
-                        <>
+                        <div key={keyStr}>
                           {(visualMap[item[0]] !== undefined && visualMap[item[0]] !== "") && 
                           <img style={{
                               "position": "absolute", 
@@ -304,8 +305,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                               }}
                             src={visualMap[item[0]]}
                             alt={altStr}
+            
                           />}
-                        </>
+                        </div>
                       );
                     })}
                   </div>

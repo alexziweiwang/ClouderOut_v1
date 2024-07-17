@@ -338,7 +338,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
         updateToCaller(tempObj);
         setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempCharPicDataTable});
-
     }
 
     function onChangeCharPicDataPosX(event) {
@@ -504,7 +503,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setCurrentPieceDetail({...currentPieceDetail,  "clkb_previewing": tempClkbPreviewing});
     }
   
+    function removeRowInStndButtonTable(index) {
+        let tempStndButtonTb = stndButtonDataTable.filter((item) =>(item !== stndButtonDataTable[index]));
+        setStndButtonDataTable(tempStndButtonTb);
+        let tempObj = currentPieceDetail;
+        tempObj["stnd_btn_arr"] = tempStndButtonTb;
 
+        updateToCaller(tempObj);
+        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tempStndButtonTb});
+    }
 
 
 
@@ -650,9 +657,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             </thead>
             <tbody>
                 {charPicDataTable.map((item, index) => {
-                    
+                    let keyStr = "charPicDataTable-" + index;
                     return (
-                        <tr key={index}>
+                        <tr key={keyStr}>
                             {charPicDataTable.length > 0 && <td>{item[0]}</td>}
                             <td>{item[1]}</td>
                             <td>{item[2]}</td>
@@ -781,9 +788,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             </thead>
                             
                             <tbody>
-                                {stndButtonDataTable.map((item, index) => {         
+                                {stndButtonDataTable.map((item, index) => {  
+                                    let keyStr = "stndButtonTable-" + index;       
                                     return (
-                                        <tr>
+                                        <tr key={keyStr}>
                                             <td>{index}</td>
                                             <td>{item["buttonText"]}</td>
                                             <td><p>{item.conseq.map((elem, i) => {
@@ -798,7 +806,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                                 <GiTrashCan 
                                                     className="cursor_pointer iconButtonSmall" 
                                                     onClick={()=>{
-                                                        //TODO remove item of current index from stndButtonDataTable
+                                                        //TODO1 remove item of current index from stndButtonDataTable
+                                                        
                                                     }} />
                                             </td>
                                         </tr>
@@ -841,19 +850,22 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 </thead>
                                 <tbody>
                                     {stndButtonConsequenceArray.map((item, index) => {  
-                                        console.log("1standard button group: item = ", item);       
+                                        console.log("1standard button group: item = ", item);  
+                                        let keyStr = "stndButton-" + index+ "-conseq-";  
                                     return (
-                                        <tr className="clickableListItem3">
+                                        <tr className="clickableListItem3" key={keyStr}>
                                             <td>{item[0]}</td>
                                             <td>{item[1]}</td>
                                             <td>{item[2]}</td>
-                                            <GiTrashCan className="cursor_pointer iconButtonSmall" 
-                                            onClick={()=>{
-                                                //TODO remove item of current index from stndButtonConsequenceArray
-                                            }}  
-                                            />
+                                            <td>
+                                                <GiTrashCan className="cursor_pointer iconButtonSmall" 
+                                                    onClick={()=>{
+                                                        //TODO1 remove item of current index from stndButtonConsequenceArray
+                                                        
+                                                    }}  
+                                                />
+                                            </td>
                                         </tr>
-  
                                 );
                         })}
                                 </tbody>
@@ -886,7 +898,7 @@ console.log(event.target.value); //TODO test
                                 // }
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
-                        <option value="" key=""> -- Select Game Data Item --</option>
+                        <option value="" key="defaultGameDataItem"> -- Select Game Data Item --</option>
                         {Object.keys(gameDataListLocal).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
@@ -953,7 +965,7 @@ console.log(event.target.value); //TODO test
                     <br></br>
                     <label>Operation: </label>
                     <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
-                        <option value="" key=""> -- Select Operation -- </option>
+                        <option value="" key="defaultOperation"> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
