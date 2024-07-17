@@ -162,8 +162,7 @@ export default function Modal_GameDataManager({isDisplay, handleGdmCancel, gameD
                 const newObj = {
                     "name": usingGameData[k]["name"],
                     "data_type": usingGameData[k]["data_type"],
-                    "default_value": updatedVal
-                }
+                    "default_value": updatedVal                }
                 newGameData[k] = newObj;
             }
             return newGameData;

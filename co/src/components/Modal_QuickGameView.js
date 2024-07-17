@@ -3,9 +3,10 @@ import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
 import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
 import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 
-export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList}) {
+export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList, gameData}) {
 //TODO: receive nav-data (for all game type ) ; do later
 
+console.log("quick view game-data = ", gameData); //TODO testing
 
     let modalStyleName = "modalBackboard";
 
@@ -31,12 +32,22 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
 
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
+    const [gameDataCurr, setGameDataCurr] = useState(gameData);
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
  
       if (firstTimeEnter === true) {
-        setFirstTimeEnter(false);
 
+        let gameDataTemp = gameData;
+        {Object.keys(gameDataTemp).map((currKey) => {
+            gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
+            //current_value, data_type("boolean"/"string"/"number"), default_value, name
+        })}
+        setGameDataCurr(gameDataTemp);
+
+
+        setFirstTimeEnter(false);
       }
 
 
@@ -284,9 +295,29 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                         Preview Area ...
                     </div>
 
-                    <div className="previewArea" style={{"width": "350px", "height": `${screenHeight}px`}}>
+                    <div className="previewArea" style={{"width": "350px", "height": `${screenHeight}px`, "overflow": "scroll"}}>
                         Game Data Area...
                         {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
+                        
+                        <table>
+                            <thead>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </thead>  
+                            <tbody> 
+                        {Object.keys(gameDataCurr).map((currKey) => {
+                            let keyName = "gmdt" + currKey;
+                            let val = gameDataCurr[currKey]["data_type"] === "boolean" ? (gameDataCurr[currKey]["current_value"] === true ? "true" : "false") : gameData[currKey]["current_value"];
+                            return (
+                                <tr value={currKey} key={keyName}>
+                                    <td>{gameDataCurr[currKey]["name"]}</td>
+                                    <td>{val}</td>               
+                                </tr>
+                            
+                            );
+                        })}
+                            </tbody>  
+                        </table>
                     </div>
                 </div>
 

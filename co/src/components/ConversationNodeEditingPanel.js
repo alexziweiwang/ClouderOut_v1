@@ -678,6 +678,7 @@ export default function ConversationNodeEditingPanel() {
                 screenHeight={screenHeight}
                 visualList={visualList}
                 audioList={audioList}
+                gameData={gameData}
             />}
 
 
