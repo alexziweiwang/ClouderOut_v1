@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
 
 
-export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openModal_GameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList
+export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData, updatePieceData, getAllPieceData, backToList, gameDataList, openRm, openGameDataManager, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum, fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList
 }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -896,7 +896,7 @@ console.log(event.target.value); //TODO test
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openModal_GameDataManager()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
 
 
                     <br></br><br></br>
@@ -938,10 +938,7 @@ console.log(event.target.value); //TODO test
                                         <option value="" key="becomeBoolDefault">-- True or False --</option>
                                         <option value="true" key="becomeTrue">True</option>
                                         <option value="false" key="becomeFalse">False</option>
-                                </select>}
-
-                                <br></br><p className="plans"> 1 TODO: consider validation or typed option for game data types </p>
-                            
+                                </select>}                            
                         </>}
                     </div>
 
@@ -955,7 +952,6 @@ console.log(event.target.value); //TODO test
                     <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
-                    <label>TODO</label>
                     <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
                         <option value="" key=""> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
@@ -1023,8 +1019,8 @@ console.log(event.target.value); //TODO test
                         tempObj["stnd_btn_arr"] = tableTemp;
                         updateToCaller(tempObj);
 
-                        console.log("current standard-button group: "); //TODO test
-                        console.log(tableTemp); //TODO test
+                        // console.log("current standard-button group: "); //TODO test
+                        // console.log(tableTemp); //TODO test
 
                         setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tableTemp});
                         
@@ -1219,7 +1215,7 @@ console.log(event.target.value); //TODO test
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openModal_GameDataManager()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
 
                     <br></br><br></br>
 

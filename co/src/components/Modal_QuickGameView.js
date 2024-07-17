@@ -167,6 +167,8 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
 
     function resetViewingPiece() {
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+        setGameDataCurr(gameData);
+
     }
 
     function notifyFinished() {
@@ -191,7 +193,12 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
 
     function updateGameData(name, value) {
         let gmdtObj = gameDataCurr;
-        gameDataCurr.current_value = value;
+console.log("!!!!! before changing the game data: ", gmdtObj); //TODO testing
+
+        gmdtObj[name].current_value = value;
+
+console.log("!!!!! now game data: ", gmdtObj); //TODO testing
+
         setGameDataCurr(gmdtObj);
     }
 
@@ -278,8 +285,8 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                                         allPieceContent={allPieceContent} 
                                         getCurrentPieceNum={passInCurrentPieceNum} 
                                         defualtBtnUISettings={uiData2_buttonOption} 
-                                        updateGameData={updateGameData}
-                                
+                                        updateGameDataFunc={updateGameData}
+                                        gameData={gameDataCurr}
                                     />
                                 }
 
@@ -315,7 +322,11 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                             <tbody> 
                         {Object.keys(gameDataCurr).map((currKey) => {
                             let keyName = "gmdt" + currKey;
-                            let val = gameDataCurr[currKey]["data_type"] === "boolean" ? (gameDataCurr[currKey]["current_value"] === true ? "true" : "false") : gameData[currKey]["current_value"];
+                            let val = gameDataCurr[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataCurr[currKey]["current_value"] === true || gameDataCurr[currKey]["current_value"] === "true") ? 
+                                        "true" : "false") 
+                                : gameData[currKey]["current_value"];
+
                             return (
                                 <tr value={currKey} key={keyName}>
                                     <td>{gameDataCurr[currKey]["name"]}</td>
