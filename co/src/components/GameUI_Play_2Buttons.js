@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defualtBtnUISettings,
-    updateGameDataFunc, gameData
+    gameData, changeGameDataByStatement
     }) {
 
     const [currentPieceNum, setCurrentPieceNum] = useState(initialPieceNum);
@@ -18,7 +18,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
 
     useEffect(() => {
         
-console.log("allPiece= ", allPieceContent); //TODO testing
+// console.log("allPiece= ", allPieceContent); //TODO testing
 
 
         let currPieceNumTemp = getCurrentPieceNum();
@@ -105,30 +105,7 @@ console.log("allPiece= ", allPieceContent); //TODO testing
                                 let newVal = conseqArray[i][2];
                                 let type = gameData[name]["data_type"];
 
-                                if (type === "boolean" || type === "string") {
-                                    // type - boolean 
-                                        // action is "becomes"
-                                    let boolVal = (newVal === "true" || newVal === true) ? true : false;
-                                    updateGameDataFunc(name, boolVal);
-                                } else if (type === "string") {
-                                    // type - string
-                                        // action is "becomes"
-                                    updateGameDataFunc(name, newVal);
-                                } else if (type === "number") {
-                                    // type - number
-                                    let currVal = gameData[name]["current_value"];
-                                    let result = 0;
-                                    if (action === "plus") {
-                                        result = currVal - (-1 * newVal); //important, not directly adding
-                                        updateGameDataFunc(name, result);
-                                    } else if (action === "minus") {   
-                                        result = currVal - newVal;
-                                        updateGameDataFunc(name, result);
-                                    } else if (action === "becomes") {
-                                        updateGameDataFunc(name, newVal);
-                                    }
-                                  
-                                }
+                                changeGameDataByStatement(name, action, newVal, type);
                             }
 
                             triggerNextPiece();

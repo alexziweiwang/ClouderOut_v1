@@ -14,6 +14,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         modalStyleName = "displayNone modalBackboard";
     }
 
+
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
     const [textStillTyping, setTextStillTyping] = useState(true);
@@ -31,6 +32,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
     const [gameDataCurr, setGameDataCurr] = useState(gameData);
+    const [originalGmdt, setOriginalGmdt] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
@@ -38,13 +40,16 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
       if (firstTimeEnter === true) {
 
         let gameDataTemp = gameData;
+        let defaultMap = {}; //for the record of entering-game-data
         {Object.keys(gameDataTemp).map((currKey) => {
             gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
             //current_value, data_type("boolean"/"string"/"number"), default_value, name
+            defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
         })}
         setGameDataCurr(gameDataTemp);
+        setOriginalGmdt(defaultMap);
 
-
+ 
         setFirstTimeEnter(false);
       }
 
@@ -134,7 +139,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
  
 
             if (textStillTyping === true) {
-                //TODO notify to finished immediately
+                // notify to finished immediately
                 if (autoMode === false) {
                     setImmediateFinishSignal(true);
                 } else { // in auto-mode
@@ -161,14 +166,21 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         return directNextPieceBool;
     }
 
-    function triggerAutoMode() {
-        console.log("TODO: trigger auto mode");
-    }
-
     function resetViewingPiece() {
-        setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        setGameDataCurr(gameData);
+        let gameDataTemp = gameDataCurr;
 
+        {Object.keys(originalGmdt).map((currKey) => {
+            gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
+        })}
+        setGameDataCurr(gameDataTemp);
+
+        console.log("now gameDataTemp = ", gameDataTemp);
+        console.log("now gameDataCurr = ", gameDataCurr);
+
+        console.log("now gameDataCurr[val5] = ", gameDataCurr["val5"]);
+        console.log("gameData[val5] = ", gameData["val5"]);
+
+        setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
     }
 
     function notifyFinished() {
@@ -191,15 +203,38 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         return autoMode;
     }
 
-    function updateGameData(name, value) {
+    function changeGameData(name, value) {
         let gmdtObj = gameDataCurr;
-console.log("!!!!! before changing the game data: ", gmdtObj); //TODO testing
-
         gmdtObj[name].current_value = value;
-
-console.log("!!!!! now game data: ", gmdtObj); //TODO testing
-
         setGameDataCurr(gmdtObj);
+    }
+
+    function changeGameDataByStatement(name, action, newVal, type) {
+        if (type === "boolean" || type === "string") {
+            // type - boolean 
+                // action is "becomes"
+            let boolVal = (newVal === "true" || newVal === true) ? true : false;
+            changeGameData(name, boolVal);
+        } else if (type === "string") {
+            // type - string
+                // action is "becomes"
+            changeGameData(name, newVal);
+        } else if (type === "number") {
+            // type - number
+            let currVal = gameDataCurr[name]["current_value"];
+
+            let result = 0;
+            if (action === "plus") {
+                result = currVal - (-1 * newVal); //important, not directly adding
+                changeGameData(name, result);
+            } else if (action === "minus") {   
+                result = currVal - newVal;
+                changeGameData(name, result);
+            } else if (action === "becomes") {
+                changeGameData(name, newVal);
+            }
+          
+        }
     }
 
     return ( <div className={modalStyleName}>
@@ -285,7 +320,7 @@ console.log("!!!!! now game data: ", gmdtObj); //TODO testing
                                         allPieceContent={allPieceContent} 
                                         getCurrentPieceNum={passInCurrentPieceNum} 
                                         defualtBtnUISettings={uiData2_buttonOption} 
-                                        updateGameDataFunc={updateGameData}
+                                        changeGameDataByStatement={changeGameDataByStatement}                                    
                                         gameData={gameDataCurr}
                                     />
                                 }
@@ -297,7 +332,7 @@ console.log("!!!!! now game data: ", gmdtObj); //TODO testing
                                         triggerAutoMode={triggerAutoMode}                           
                                         uiConvNav={uiData3_ConvNavigation}
                                         visualMap={visualMap}
-                                        audioMap={audioMap}                                    
+                                        audioMap={audioMap}
                                     />
                                 
                                 }
@@ -316,8 +351,10 @@ console.log("!!!!! now game data: ", gmdtObj); //TODO testing
                         
                         <table>
                             <thead>
-                                <th>Name</th>
-                                <th>Value</th>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                </tr>
                             </thead>  
                             <tbody> 
                         {Object.keys(gameDataCurr).map((currKey) => {
