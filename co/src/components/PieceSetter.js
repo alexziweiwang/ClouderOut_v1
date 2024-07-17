@@ -513,9 +513,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tempStndButtonTb});
     }
 
-
-
-
+    function removeFromStndButtonConseqList(index) {
+        let tempConseq =stndButtonConsequenceArray.filter((item) =>(item !== stndButtonConsequenceArray[index]));
+        setStndButtonConsequenceArray(tempConseq);
+    }
 
 
   return (
@@ -807,7 +808,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                                     className="cursor_pointer iconButtonSmall" 
                                                     onClick={()=>{
                                                         //TODO1 remove item of current index from stndButtonDataTable
-                                                        
+                                                        removeRowInStndButtonTable(index);
                                                     }} />
                                             </td>
                                         </tr>
@@ -860,8 +861,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                             <td>
                                                 <GiTrashCan className="cursor_pointer iconButtonSmall" 
                                                     onClick={()=>{
-                                                        //TODO1 remove item of current index from stndButtonConsequenceArray
-                                                        
+                                                        removeFromStndButtonConseqList(index);
                                                     }}  
                                                 />
                                             </td>
@@ -891,11 +891,6 @@ console.log(event.target.value); //TODO test
                                         return;
                                     }
                                     setStndBtnConseqGDataTypeSelected(gameDataListLocal[event.target.value]["data_type"]);
-                              
-                                // } else {
-                                
-                                //     setStndBtnConseqGDataTypeSelected("nodePointer");
-                                // }
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
                         <option value="" key="defaultGameDataItem"> -- Select Game Data Item --</option>
@@ -915,13 +910,6 @@ console.log(event.target.value); //TODO test
 
                     <div>
 
-                    {/* {stndBtnConseqGDataTypeSelected === "nodePointer" &&
-                    <div>
-                        TODO: target node list
-                        TODO: impl plan -- from node INSIDE a this chapter; fetch node-list from convo-node-editor, from game-maker, from node manager
-                        TODO: NodeManager components has parameter function that takes its current node list, and Game-Maker cathes that returned value, then pass this list into Convo-Editor to PieceSetter
-                    </div>
-                    } */}
                     
                     {stndBtnConseqGDataTypeSelected === "number" && 
                         <input type="radio" value={stndBtnConseqIsAssignValue} checked={stndBtnConseqIsAssignValue} onChange={()=>{setStndBtnConseqIsAssignValue(true);}}></input>} 
@@ -977,6 +965,9 @@ console.log(event.target.value); //TODO test
 
                     <button onClick={()=>{
                         setIsStndBtnAddNewConsq(false);
+                        setStndBtnConseqGDataItemSelected("");
+                        setStndBtnConseqGDataTypeSelected("");
+                    
                     }}>Cancel</button>                    
                     <button className="buttonRight"
                         onClick={()=>{
