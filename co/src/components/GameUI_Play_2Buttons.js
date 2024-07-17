@@ -18,7 +18,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
 
     useEffect(() => {
         
-// console.log("allPiece= ", allPieceContent); //TODO testing
+console.log("allPiece= ", allPieceContent); //TODO testing
 
 
         let currPieceNumTemp = getCurrentPieceNum();
@@ -78,6 +78,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                     onMouseUp={
                         ()=>{
                             document.getElementById(currId).style.filter = "brightness(100%)";
+        
                             if (gameData === undefined) {
                                 return;
                             }
@@ -87,22 +88,13 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                             let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
                             
                             if (conseqArray === undefined) {
-
-console.log("Error! conseq undefined..."); //TODO testing
-
                                 return;
                             }
                             let len = conseqArray.length;
 
-//console.log("Game Data = ", gameData); //TODO testing
-console.log("conseqArray = ", conseqArray); //TODO testing
-
-console.log("len = ", len); //TODO testing
                     
                             let i = 0;
                             for (; i < len; i++) {
-                             
-
                                 let name = conseqArray[i][0];
                                 
                                 if (gameData[name] === undefined) {
@@ -113,29 +105,31 @@ console.log("len = ", len); //TODO testing
                                 let newVal = conseqArray[i][2];
                                 let type = gameData[name]["data_type"];
 
-                                if (type === "boolean" || type === "string") {// type - boolean 
-                                    // action is "becomes"
+                                if (type === "boolean" || type === "string") {
+                                    // type - boolean 
+                                        // action is "becomes"
                                     let boolVal = (newVal === "true" || newVal === true) ? true : false;
                                     updateGameDataFunc(name, boolVal);
                                 } else if (type === "string") {
-
-                                
-                                // type - string
-                                    // becomes
+                                    // type - string
+                                        // action is "becomes"
                                     updateGameDataFunc(name, newVal);
-
                                 } else if (type === "number") {
-
-                                    //TODO
-                                // type - number
-                                    // becomes
-                                    // plus / minus
+                                    // type - number
+                                    let currVal = gameData[name]["current_value"];
+                                    let result = 0;
+                                    if (action === "plus") {
+                                        result = currVal - (-1 * newVal); //important, not directly adding
+                                        updateGameDataFunc(name, result);
+                                    } else if (action === "minus") {   
+                                        result = currVal - newVal;
+                                        updateGameDataFunc(name, result);
+                                    } else if (action === "becomes") {
+                                        updateGameDataFunc(name, newVal);
+                                    }
+                                  
                                 }
                             }
-                            //TODO from allPieceContent[currentPieceNum]["stnd_btn_arr"], by button "name"
-                            //TODO      go to "conseq" array, each element is a statement. example: 't7bool', 'becomes', 'false'
-//TODO2
-                            // updateGameData(name, value);
 
                             triggerNextPiece();
                         }

@@ -325,7 +325,7 @@ console.log("!!!!! now game data: ", gmdtObj); //TODO testing
                             let val = gameDataCurr[currKey]["data_type"] === "boolean" ? 
                                     ((gameDataCurr[currKey]["current_value"] === true || gameDataCurr[currKey]["current_value"] === "true") ? 
                                         "true" : "false") 
-                                : gameData[currKey]["current_value"];
+                                : gameDataCurr[currKey]["current_value"];
 
                             return (
                                 <tr value={currKey} key={keyName}>
