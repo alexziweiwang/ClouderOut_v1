@@ -3,7 +3,7 @@ import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
 import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
 import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 
-export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList}) {
+export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList}) {
 //TODO: receive nav-data (for all game type ) ; do later
 
 
@@ -15,7 +15,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
         modalStyleName = "displayNone modalBackboard";
     }
 
-    const [currPieceNum, setCurrPieceNum] = useState(0);
+    const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
     const [textStillTyping, setTextStillTyping] = useState(true);
     const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
@@ -157,7 +157,7 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
     }
 
     function resetViewingPiece() {
-        setCurrPieceNum(0); //TODO reset to given first-piece later
+        setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
     }
 
     function notifyFinished() {
@@ -187,13 +187,14 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
             <button onClick={()=>{handleQViewCancel();}}> Close </button>
             <button onClick={()=>{resetViewingPiece();}}> Reset </button>
 
-                <div className="parallelFrame">
+                <div className="parallelFrame" style={{"overflow": "scroll"}}>
 
                
                     <div className="previewArea"   
                         style={{"position": "relative", 
                             "height": `${screenHeight}px`, 
-                            "width": `${screenWidth}px`
+                            "width": `${screenWidth}px`,
+                            "top": "0px"
                         }}
                     >
                                 {<div style={{
@@ -234,8 +235,8 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                                         </div>
 
                                 </div>}
-                                {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) && 
-                          
+                
+                                {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) &&                          
                                     <GameUI_Play_1TextFrame
                                         allPieceContent={allPieceContent}
                                         getCurrentPieceNum={passInCurrentPieceNum}
@@ -283,8 +284,9 @@ export default function Modal_QuickGameView ({handleQViewCancel, isDisplay, scre
                         Preview Area ...
                     </div>
 
-                    <div>
+                    <div className="previewArea" style={{"width": "350px", "height": `${screenHeight}px`}}>
                         Game Data Area...
+                        {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
                     </div>
                 </div>
 

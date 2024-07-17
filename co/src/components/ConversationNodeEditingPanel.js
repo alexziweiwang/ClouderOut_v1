@@ -667,6 +667,7 @@ export default function ConversationNodeEditingPanel() {
 
 
             {isDisplayQview && <Modal_QuickGameView
+                initialPieceNum={previewingIndex}
                 isDisplay={isDisplayQview}
                 handleQViewCancel={handleqvCancel}
                 allPieceContent={pieceDataStructure}
