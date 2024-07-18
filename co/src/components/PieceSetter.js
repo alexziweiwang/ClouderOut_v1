@@ -851,7 +851,6 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 </thead>
                                 <tbody>
                                     {stndButtonConsequenceArray.map((item, index) => {  
-                                        console.log("1standard button group: item = ", item);  
                                         let keyStr = "stndButton-" + index+ "-conseq-";  
                                     return (
                                         <tr className="clickableListItem3" key={keyStr}>
@@ -879,13 +878,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                     <label>Target of change: </label>
 
-                    <br></br><label>1TEST: game-data-item-type: {stndBtnConseqGDataTypeSelected}:::</label><br></br>
+                    <br></br><label>Game-data Item Type: {stndBtnConseqGDataTypeSelected}</label><br></br>
 
                     <select onChange={(event)=>{
                                 setStndBtnConseqGDataItemSelected(event.target.value);
-console.log("selected game data (consq) = "); //TODO test
-console.log(event.target.value); //TODO test
-                                // if (event.target.value !== "nextNodePointer") {
                             
                                     if (event.target.value === "") {
                                         return;
@@ -1168,7 +1164,7 @@ console.log(event.target.value); //TODO test
                                 <tbody>
 
                                     {cstmClkbConsequenceArray.map((item, index) => {  
-                                        console.log("1standard button group: item = ", item);       
+                                    //    console.log("2clickable: item = ", item);       
                                     return (
                                         <tr className="clickableListItem3">
                                             <td>{item["target"]}</td>
@@ -1189,7 +1185,7 @@ console.log(event.target.value); //TODO test
 
                     <label>Target of change: </label>
 
-                    <br></br><label>2TEST: game-data-item-type: {cstmClkbConseqGDataTypeSelected}:::</label><br></br>
+                    <br></br><label>Game-data Item Type: {cstmClkbConseqGDataTypeSelected}</label><br></br>
 
                     <select onChange={(event)=>{
                                 setCstmClkbConseqGDataItemSelected(event.target.value);
