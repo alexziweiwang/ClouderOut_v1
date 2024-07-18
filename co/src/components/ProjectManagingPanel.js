@@ -15,12 +15,17 @@ export default function ProjectManagerPanel() {
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
     const [isDisplayAsk, setDisplayAsk] = useState(false);
 
+    const languageCode = 0;
+    const goToGameMakerButtonText = ["Go To GameMaker!"];
+    const revertProjectButtonText = ["Revert this project"];
+    const trashAreaLabel = ["Trash Area of Project(s):"];
+    const trashedProjectSelectListDefaultText = ["Project Name"];
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
         loadProjectListFromCloud();
-        
+
         setFirstTimeEnter(false);
       }
     }, [firstTimeEnter]);
@@ -65,12 +70,10 @@ export default function ProjectManagerPanel() {
     }
 
     function handleDeleteProject() {
-      //TODO add warning
-      //setDisplayAsk(!isDisplayAsk);
-      // if yes: deleteProject();
-      // if cancel: close window
-
-           
+      let response = window.confirm("Are you sure to delete this project? (it can be revert from trash-area)?");
+        if (response === true) {
+          deleteProject();
+        }  
     }
 
     async function deleteProject() {
@@ -109,7 +112,7 @@ export default function ProjectManagerPanel() {
               <br></br>
 
               {(selected_project_name === item) && 
-              <button className="buttonLeftBottom" onClick={handleDeleteProject}>
+              <button className="buttonLeftBottom" onClick={()=>{handleDeleteProject();}}>
                 <GiTrashCan/>
               </button>}
 
@@ -124,17 +127,17 @@ export default function ProjectManagerPanel() {
         </div>
 
         <br></br>
-        <button className="button" onClick={goToGameMaker}> Go To GameMaker! </button>
+        <button className="button" onClick={()=>{goToGameMaker();}}> {goToGameMakerButtonText[languageCode]} </button>
    
         <br></br><br></br><br></br>
 
         <div className="trashedProjectArea">
-        <label>Trashed Project(s):</label>
+        <label>{trashAreaLabel[languageCode]}</label>
         <br></br>
 
         {trashedProjList && 
           <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
-            <option value="" key=""> -- Project Name --</option>
+            <option value="" key="">-- {trashedProjectSelectListDefaultText[languageCode]} --</option>
             {
               trashedProjList.map((item, index) => {
                 return (
@@ -145,7 +148,8 @@ export default function ProjectManagerPanel() {
           </select>
         }
 
-        <button onClick={revertTrashedProject}>Revert this project</button>
+        <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
+        
         </div>
    
     </>
