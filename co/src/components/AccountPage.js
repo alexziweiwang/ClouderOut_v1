@@ -20,17 +20,25 @@ export default function AccountPage({}) {
     <Sidebar compName = {name}/>
 
     <div className="dashboard_content">
-
-      <p className="plans"> This is Account Page!  </p>
-      <p className="plans"> Feature list: 
-        <br></br> login username
-        <br></br> password resetting
-        <br></br> linked email
-        <br></br> linked phone number
-        <br></br> tool store related (credits, etc.)
-        <br></br> account operations (deactivate, etc.)
-      </p>
-      
+        <div style={{"textAlign": "left", "padding": "10px"}}>
+     
+          <label>Username: </label>
+          <label>(username)</label>
+          <br></br>
+          <label>Nickname: </label>
+          <label>(nickname)</label><button>Update</button>
+          <br></br>
+          <label>Email linked: </label>
+          <label>(email)</label><button>Update</button>
+          <br></br>
+          <label>Phone Number: </label>
+          <label>(phone number)</label><button>Update</button>
+          <br></br>
+          <label>ClouderCredits: </label>
+          <label>(credits)</label><button>Top up</button>
+          <br></br><br></br><br></br><br></br>
+          <button>Deactivate Account</button>
+        </div>
     </div>
  
   </div>
