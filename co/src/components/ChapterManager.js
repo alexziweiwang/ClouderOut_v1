@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 
 export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode, getCurrentChapterNodeList}) {
 //TODO get list of all nodes key for each chapter (when needed?)
+  const languageCode = 0;
+
 
   const [isCollapse, setIsCollapse] = useState(false);
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
@@ -14,6 +16,15 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [deletedLocalList, setDeletedLocalList] = useState([]);
 
   const [currChapterNodeList, setCurrChapterNodeList] = useState([]);
+
+
+  const saveText = ["Save"];
+  const cancelText = ["Cancel"];
+  const deleteText = ["Delete"];
+  const addText = ["Add"];
+  const collapseText = ["Collapse"];
+  const revertText = ["Revert"];
+  //TODO other text on UI - localization
 
   useEffect(() => {
     let fetchedNodeList = getCurrentChapterNodeList(selectedChptKey);
@@ -36,7 +47,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
 
     //1. not allowing empty chapter key or chapter title
     if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
-      console.log("warning: can not have empty chapter key or empty chapter title");
+      alert("Can not have empty chapter key or empty chapter title");
       return;
     }
 
@@ -45,7 +56,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     for (; i < chapterData.length; i++) {
       let tempKey = chapterData[i][0];
       if (newChapterKeyInput === tempKey) {
-        console.log("warning: can not use duplicate chapter key");
+        alert("Can not use duplicate chapter key.");
         return;
       }
     }
@@ -134,12 +145,12 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
               <label>*Change Chapter Name*</label><br></br>
               <label>Chapter Name:</label>
               <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);console.log("changing title: ");console.log(event.target.value);}}></input>
-              <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>Save</button>
-              <button onClick={()=>{setEditingChapterTitle("");}}>Cancel</button>
+              <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
+              <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
               <br></br>
               
               <label>*Delete Chapter</label><br></br>
-              <button onClick={()=>{hideChapter(index);}}>Delete</button><br></br>
+              <button onClick={()=>{hideChapter(index);}}>{deleteText[languageCode]}</button><br></br>
 
             </>
           
@@ -163,21 +174,21 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           <label>New Chapter Keyname (editable later): </label><br></br>
           <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
           <br></br>
-          <button onClick={()=>{addNewChapterLine();}}>Add</button>
+          <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
         </ul>}
           
         
 
     </ol>
 
-    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>Collapse</button>
+    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>{collapseText[languageCode]}</button>
 
     </div>
 
         <div>
               Chapter Revert area<br></br>
               {deletedLocalList.map((item, index) => {
-                return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>Revert</button ></label>);
+                return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>{revertText[languageCode]}</button ></label>);
               })}
         </div>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>

@@ -9,7 +9,13 @@ import NavigationPreview from './NavigationPreview';
 import styles from './webpage.css';
 
 export default function GameMaker() {
+  const languageCode = 0;
+  const backToProjMangButtonText = ["Project Management"];
+  const resourceManagerButtonText = ["Resource Manager"];
+  const contentChaptersTabText = ["Content Chapters"];
+  const menuNavigationsTabText = ["Menu & Navigations"];
 
+  
 /* // TODO game-maker task list
 2. logic organizer for game-node-relationship
 3. preview and test for node play-flow (progress: 35%)
@@ -287,13 +293,13 @@ export default function GameMaker() {
   <div>
     
     <div className="returning_buttons">
-      <button className="button" onClick={()=>{goToProjectManagingPanel();}}> ← Project Management </button>
+      <button className="button" onClick={()=>{goToProjectManagingPanel();}}> ← {backToProjMangButtonText[languageCode]} </button>
       <p>Project Name: {projectName}</p>
-      <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> Resource Manager </button>
+      <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
     </div>
     <div>
-      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>Content Chapters</button>
-      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>Menu & Navigations</button>
+      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText[languageCode]}</button>
+      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText[languageCode]}</button>
     </div>
     
     {showChapterMaker && <div className="parallelFrame sectionArea">
