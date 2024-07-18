@@ -5,6 +5,15 @@ export default function Sidebar({compName, username}) {
     console.log("sidebar, compName:", compName);
     const navigate = useNavigate();
 
+    const languageCode = 0;
+    const myProjectsButtonText = ["My Projects"];
+    const profileButtonText = ["Profile"];
+    const accountButtonText = ["Account"];
+    const logOutButtonText = ["Log Out"];
+    const dashBoardButtonText = ["Dashboard"];
+    const newProjectButtonText = ["New Project"];
+    const cancelButtonText = ["Cancel"];
+
     function goToProjectManagingPanel() {
         navigate('/projectmanagingpanel', { replace: true, state: { username } });
     }
@@ -31,16 +40,16 @@ export default function Sidebar({compName, username}) {
     {(compName === "/dashboard") && 
     <div className="sidebar1" > Welcome, {username}!
         <div> 
-            <button className="sidebar_options" onClick={goToProjectManagingPanel}>My Projects</button>
-            <button className="sidebar_options" onClick={goToProfilePage}>Profile</button>
-            <button className="sidebar_options" onClick={goToAccountPage}>Account</button>
+            <button className="sidebar_options" onClick={goToProjectManagingPanel}>{myProjectsButtonText[languageCode]}</button>
+            <button className="sidebar_options" onClick={goToProfilePage}>{profileButtonText[languageCode]}</button>
+            <button className="sidebar_options" onClick={goToAccountPage}>{accountButtonText[languageCode]}</button>
         </div>
         
         <br></br>
         <br></br>
         <br></br>
 
-        <button className="sidebar_options" onClick={() => {console.log("log out pressed")}}>Log Out</button>
+        <button className="sidebar_options" onClick={() => {console.log("log out pressed")}}>{logOutButtonText[languageCode]}</button>
 
         </div>
     }
@@ -49,7 +58,7 @@ export default function Sidebar({compName, username}) {
     <div className="sidebar1" >
         <div> 
             
-            <button className="sidebar_options" onClick={backToDashboard}>← Dashboard</button>
+            <button className="sidebar_options" onClick={backToDashboard}>← {dashBoardButtonText[languageCode]}</button>
         </div>
         
 
@@ -59,11 +68,11 @@ export default function Sidebar({compName, username}) {
     {(compName === "/projectmanagingpanel") && 
     <div className="sidebar2" >
         <div> 
-            <button className="sidebar_options" onClick={backToDashboard}> ← Dashboard</button>
+            <button className="sidebar_options" onClick={backToDashboard}>← {dashBoardButtonText[languageCode]}</button>
         </div>
         <div>
             <br></br> <br></br> <br></br>
-        <button className="sidebar_options" onClick={projectManageNew}> New Project</button>
+        <button className="sidebar_options" onClick={projectManageNew}>{newProjectButtonText[languageCode]}</button>
 
         </div>
 
@@ -73,7 +82,7 @@ export default function Sidebar({compName, username}) {
     {(compName === "/projectmanagenew") && 
     <div className="sidebar2" >
         <div> 
-        <button className="sidebar_options" onClick={goToProjectManagingPanel}>Cancel</button>
+        <button className="sidebar_options" onClick={goToProjectManagingPanel}>{cancelButtonText[languageCode]}</button>
         </div>
 
         </div>

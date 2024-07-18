@@ -11,14 +11,16 @@ export default function ProjectManagerPanel() {
     const navigate = useNavigate();
     const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); 
-    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     const [trashedProjList, setTrashedProjList] = useState(false);
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
     const [isDisplayAsk, setDisplayAsk] = useState(false);
 
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
         loadProjectListFromCloud();
+        
         setFirstTimeEnter(false);
       }
     }, [firstTimeEnter]);
