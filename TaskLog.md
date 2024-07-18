@@ -286,3 +286,11 @@
 - 2024-Jul-12: Consider immediate-playview structure and strategy
 
 - 2024-Jul-17: Research on designing UI and UX for current-version product
+- 2024-Jul-17: Consider and design content-text-log strategy for conversational-game-navigation layer
+
+
+
+
+
+
+
