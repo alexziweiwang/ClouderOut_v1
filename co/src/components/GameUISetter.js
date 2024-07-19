@@ -7,6 +7,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const screenWidth = 800;
     const screenHeight = 600;
 
+    let languageCode = 0;
+    let manageResourceText = ["Manage Resource"];
+    let updateText = ["Update"];
+    let saveText = ["Save"];
+
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -210,7 +215,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
-                </select><button onClick={() => {openRm();}}>Manage Resource</button>
+                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
          
                 </>}
         <br></br><label>Gap between buttons: </label>
@@ -412,7 +417,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             );
                     })}
             </select>
-        <button onClick={() => {openRm()}}>Manage Resource</button></>}
+        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button></>}
 
     <br></br><label>Font: </label>
 
@@ -547,7 +552,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                         <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
                                     );
                             })}
-                        </select><button onClick={() => {openRm();}}>Manage Resource</button>
+                        </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
                     <br></br>
                     <label>Display Text:</label>
                     <input value={auto0DisplayText}
@@ -557,7 +562,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
                     <button onClick={()=>{
                         setConvNav({...convNav,  "buttonAutoDisplayText0": auto0DisplayText});     
-                    }}>Update</button>
+                    }}>{updateText[languageCode]}</button>
                     <br></br>
             </div>
 
@@ -581,7 +586,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                         <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
                                     );
                             })}
-                        </select><button onClick={() => {openRm();}}>Manage Resource</button>
+                        </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
                     <br></br>
                     <label>Display Text:</label>
                     <input value={auto1DisplayText}
@@ -591,7 +596,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
                     <button onClick={()=>{
                         setConvNav({...convNav,  "buttonAutoDisplayText1": auto1DisplayText});     
-                    }}>Update</button>
+                    }}>{updateText[languageCode]}</button>
                     <br></br>
             </div>
 
@@ -638,7 +643,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
-                </select><button onClick={() => {openRm();}}>Manage Resource</button>
+                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
             <br></br>
             <input value={logDisplayText}
                         onChange={(event)=>{
@@ -647,7 +652,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
                     <button onClick={()=>{
                         setConvNav({...convNav,  "buttonLogDisplayText": logDisplayText});     
-                    }}>Update</button>
+                    }}>{updateText[languageCode]}</button>
             <br></br>
             <label>Font:</label>
             <select 
@@ -752,7 +757,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
   
    
 
-    <br></br><button>Save</button>
+    <br></br><button>{saveText[languageCode]}</button>
 </div>
 
 );
