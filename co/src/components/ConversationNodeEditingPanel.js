@@ -66,9 +66,16 @@ export default function ConversationNodeEditingPanel() {
     const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
+
+    const languageCode = 0;
     const returnGameMakerButtonText = [" ← Game Maker"];
     const showResourceManagerButtonText = ["Resource Manager"]; 
-    const buttonLanguageIndex = 0;
+    const gameDataManagerText = ["Game Data Manager"];
+    const quickGameViewText = ["Quick Game Preview"];
+    const gameContentSetupText = ["Game Content Setup"];
+    const gameUIsetupText = ["Game UI Setup"];
+    const updateText = ["Update"];
+
 
     const [pieceDataStructure, setPieceDatastructure] = useState([
             {"num": 1, "content": "a1 234567 ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "", "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr", "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
@@ -504,22 +511,22 @@ export default function ConversationNodeEditingPanel() {
 
         <div>
             <div className="returning_buttons">
-                <button className="button" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[buttonLanguageIndex]} </button>
+                <button className="button" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
             </div>
 
             {state!= undefined  &&<>
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
-                    <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[buttonLanguageIndex]} </button>
-                    <button onClick={()=>{setDisplayGameDataWindow(true);}}>Game Data Manager</button>
-                    <button onClick={()=>{setIsDisplayQview(true);}}>Quick Game Preview</button>
+                    <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
+                    <button onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
+                    <button onClick={()=>{setIsDisplayQview(true);}}>{quickGameViewText[languageCode]}</button>
                 </div>
                 <div className="topParalBarRightPart">
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
-                        Game Content Setup</button>
+                        {gameContentSetupText[languageCode]}</button>
                     <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
-                        Game UI Setup</button>
+                        {gameUIsetupText[languageCode]}</button>
 
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
@@ -530,7 +537,7 @@ export default function ConversationNodeEditingPanel() {
                             <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
 
                         </select>
-                        <button onClick={()=>{updateGameSizeSetting();}}>Update</button>
+                        <button onClick={()=>{updateGameSizeSetting();}}>{updateText[languageCode]}</button>
                     </>
 
 
