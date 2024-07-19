@@ -513,13 +513,17 @@ export default function ConversationNodeEditingPanel() {
             <div className="returning_buttons">
                 <button className="button" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
+                <div className="buttonRight30 parallelFrame">
+                    <button onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
+                    <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
+                </div>
+
             </div>
 
             {state!= undefined  &&<>
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
-                    <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
-                    <button onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
+
                     <button onClick={()=>{setIsDisplayQview(true);}}>{quickGameViewText[languageCode]}</button>
                 </div>
                 <div className="topParalBarRightPart">

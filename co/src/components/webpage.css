@@ -149,6 +149,10 @@ div {
     width: 80%;
 }
 
+.buttonRight30 {
+    margin-left: 30%;
+}
+
 .buttonRight50 {
     margin-left: 50%;
 }
@@ -286,7 +290,6 @@ div {
 .parallelFrame {
     display: flex;
     height: 100%;
-   
 }
 
 .previewWindow {

@@ -20,6 +20,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const bgpSettingText = ["Background Picture Setting"];
     const manageResourceText = ["Manage Resource"];
     const charPicSettingText = ["Character Picture Setting"];
+    const addAnewCharPicText = ["Add a New Character Picture"];
+    const confirmAddText = ["Confirm Add"];
+    const clkbSettingText = ["Clickable(customizable button) Setting"];
+    const addAnewButtonText = ["Add a New Button"];
+    const collaposeAddingNewButtonText = ["Collapse Adding New Button"];
+
+
 
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
 
@@ -695,7 +702,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 if (anotherCharpic === true) { // going to be false (closed)
                     resetAddingCharPicRow();
                 }
-                changeAddAnotherCharPicOption();}}>Add a New Character Picture
+                changeAddAnotherCharPicOption();}}>{addAnewCharPicText[languageCode]}
             </button>}
     </div>}
 
@@ -713,7 +720,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         })}
     </select >
 
-    <button onClick={() => {openRm()}}>Manage Resource</button>
+    <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
@@ -766,7 +773,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     
 
     }}>
-        Confirm Add
+        {confirmAddText[languageCode]}
     </button>        {/* //TODO later */}
     
     </>}
@@ -777,13 +784,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
 
-            {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> + Clickable(customizable button) Setting </button>}
-            {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> - Clickable(customizable button) Setting </button>}
+            {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> + {clkbSettingText[languageCode]} </button>}
+            {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> - {clkbSettingText[languageCode]} </button>}
 
             {clickableAdd && 
                 <div className="optionAreaSelected2">
            
-                <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> reset </button>
+                <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> {resetText[languageCode]} </button>
 
                     <div><label>Standard Button/Option Group</label>
                         <div className="indentOne">
@@ -832,11 +839,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         {!displayStndButtonAdd && <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
                         }}>
-                            Add a New Button
+                            {addAnewButtonText[languageCode]}
                         </button>}
                         {displayStndButtonAdd && <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
-                        }}>-- Collapse Adding New Button --
+                        }}>-- {collaposeAddingNewButtonText[languageCode]} --
                         </button>}
                        
 
