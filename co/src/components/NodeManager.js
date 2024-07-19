@@ -20,7 +20,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   let deleteText = ["Delete"];
   let revertText = ["Revert"];
   let saveToMyProjectText = ["Save To My Project"];
-  
+
 
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
@@ -1184,13 +1184,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   setClickedNodeKey("");
                   setAddNewNodeAreaDisplay(false);
                   }}>
-                  Create
+                  {createText[languageCode]}
               </button>
               <button
                 onClick={()=>{
                   setAddNewNodeAreaDisplay(false);
                   setClickedNode2(-1);}}
-              >Cancel</button>
+              >{cancelText[languageCode]}</button>
               </div>
             </div>}
 
@@ -1209,7 +1209,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <button 
           className="setting_item"
           onClick={()=>{enterNodeEditor2();}}>
-            Enter Editor
+            {enterEditorText[languageCode]}
         </button>
     
       
@@ -1237,7 +1237,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <div>
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-          <button onClick={()=>{updateNodeToNewName2();}}>Update</button>
+          <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
         </div>   
 
 
@@ -1291,7 +1291,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 setSelectedNextNode("-");
                 updateRenderCounter();
               }
-          }}>Confirm</button>
+          }}>{confirmText[languageCode]}</button>
           <br></br><button
             onClick={()=>{
               let tempMap2 = nodeRelationshipMap;
@@ -1299,7 +1299,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               setNodeRelationshipMap(tempMap2);
               updateRenderCounter();
             }}
-          >Detach Linking</button>
+          >{detachLinkingText[languageCode]}</button>
         </>}
 
 
@@ -1367,7 +1367,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                         updateTableCondt();
                         setLscElseSelected("");
                       }}
-                    >Update</button>
+                    >{updateText[languageCode]}</button>
 
                   </td>
                 </tr>
@@ -1376,7 +1376,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
             <button onClick={()=>{
               setDisplayAddNewTargetCondt(!displayAddNewTargetCondt);
-            }}>Add a New Condition & Target</button>
+            }}>{addNewConditionTargetText[languageCode]}</button>
             {displayAddNewTargetCondt && <div>
 
               <div className="areaFrame">
@@ -1554,7 +1554,7 @@ console.log("statement: ", stmtStr); // TODO test
 console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                 
                 setDisplayAddNewTargetCondt(false);
-              }}>Add Condition</button>
+              }}>{addConditionText[languageCode]}</button>
 
                     </div>
 
@@ -1956,7 +1956,7 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
             // foramt: const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
 
 
-        }}> Add As Next-Node</button>
+        }}> {addAsNextNodeText[languageCode]}</button>
 
 
         </div>
@@ -2010,7 +2010,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
 
             setClickedNode(""); /* reset clicked node's name */
           }}>
-            Delete [{clickedNode}]
+            {deleteText[languageCode]} [{clickedNode}]
         </button>
         
     </div>
@@ -2046,7 +2046,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         })}
         </select>
     
-        <button onClick={revertSelectedNode}> Revert </button>
+        <button onClick={revertSelectedNode}> {revertText[languageCode]} </button>
         </div>
         }
 
@@ -2076,7 +2076,7 @@ console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
         <button 
           className="setting_item"
           onClick={() => console.log("saving settings of nodes...")}>
-            Save To My Project
+            {saveToMyProjectText[languageCode]}
         </button>
     
         </div>
