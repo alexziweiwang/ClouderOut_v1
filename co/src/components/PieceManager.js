@@ -6,6 +6,20 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     const screenWidth = 800;
     const screenHeight =450;
     let name = "/piecemanager";
+
+    let languageCode = 0;
+    let saveToCloudText = ["Save to Cloud"];
+    let manageModeText = ["Manage Mode"];
+    let viewModeText = ["View Mode"];
+    let editText = ["Edit"];
+    let moveUpText = ["Move Up"];
+    let moveDownText = ["Move Down"];
+    let duplicateText = ["Duplicate"];
+    let insertText = ["Insert"];
+    let deleteText = ["Delete"];
+    let addNewRowText = ["Add New Row"];
+
+
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
@@ -142,14 +156,14 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                 setIsClickedOnSetters(true);
             }}
         >
-            <button onClick={updateLocalDataToCloud}>Save to Cloud</button>
+            <button onClick={updateLocalDataToCloud}>{saveToCloudText[languageCode]}</button>
             <br></br><br></br><br></br>
             {isManage === false && <button onClick={()=>{setIsManage(!isManage);}}>
-                    Manage Mode
+                    {manageModeText[languageCode]}
             </button>} 
 
             {isManage === true && <button onClick={()=>{setIsManage(!isManage);}}>
-                    View Mode
+                    {viewModeText[languageCode]}
             </button>}             
             <table>
         <thead>
@@ -179,19 +193,18 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
-                            assignPieceNum(item["num"]);}}>Edit</button>
+                            assignPieceNum(item["num"]);}}>{editText[languageCode]}</button>
                     </td>
                     <td>{item["num"]}</td>
                     <td>{item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}{ item["content"]}</td>
                     {isManage === true &&  <td>
                     <div>
-                        <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>Move Up</button>
+                        <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>{moveUpText[languageCode]}</button>
                         <br></br>
-                        <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>Move Down</button>
+                        <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>{moveDownText[languageCode]}</button>
                         <br></br>
-                        <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>Duplicate</button>
-                        {/* <button onClick={()=>{assignPreviewIndex(index);updatePieceData(pieceDataLocal);}}>Preview</button> //TODO reconsider whether pieceData-updating needed*/}                    
-                        <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>Insert</button> 
+                        <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>{duplicateText[languageCode]}</button>
+                        <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>{insertText[languageCode]}</button> 
                     </div>
                     
                     </td>}
@@ -204,8 +217,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                                 updatePieceData(pieceDataLocal);
                             }       
                         }}
-                        
-                        >Delete</button>
+                        >{deleteText[languageCode]}</button>
                     </td>}
                 </tr>
                 );
@@ -213,7 +225,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
         </tbody>
     </table>
-    <button onClick={createNewListItem}>Add New Row</button>
+    <button onClick={createNewListItem}>{addNewRowText[languageCode]}</button>
     
         </div>
     );

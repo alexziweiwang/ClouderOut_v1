@@ -237,12 +237,16 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         }
     }
 
+    let languageCode = 0;
+    let closeText = ["Close"];
+    let resetText = ["Reset"];
+
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
             <div>
-            <button onClick={()=>{handleQViewCancel();}}> Close </button>
-            <button onClick={()=>{resetViewingPiece();}}> Reset </button>
+            <button onClick={()=>{handleQViewCancel();}}> {closeText[languageCode]} </button>
+            <button onClick={()=>{resetViewingPiece();}}> {resetText[languageCode]} </button>
 
                 <div className="parallelFrame" style={{"overflow": "scroll"}}>
 
