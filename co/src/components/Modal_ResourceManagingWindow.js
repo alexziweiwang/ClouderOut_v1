@@ -18,6 +18,19 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
+    let languageCode = 0;
+    let closeText = ["Close"];
+    let visualResourceText = ["Visual Resource"];
+    let audioResourceText = ["Audio Resource"];
+    let loadResourceListText = ["Load Resource List"];
+    let cancelText = ["Cancel"];
+    let confirmText = ["Confirm"];
+    let submitText = ["Submit"];
+    let previewText = ["Preview"];
+    let addText = ["Add"];
+    let saveToCloud = ["Save to Cloud"];
+
+
     if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
     } else {
@@ -344,7 +357,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                     handleRmCancel(); 
                     refresh();
                 }
-            }}> Close </button>
+            }}> {closeText[languageCode]} </button>
 
                 <div className="parallelFrame">
                     <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{
@@ -353,16 +366,16 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                                 setClickedFileUrl("");
                                 setClickedFileName("");
                                 setClickedFileType("");
-                    }}>Tab Visual</button>
+                    }}>{visualResourceText[languageCode]}</button>
                     <button className={!isTabVisual ? "buttonClicked tabBarASelected" : "buttonUnclicked tabBar2"} onClick={()=>{
                                 setIsTabVisual(false); 
                                 setUploadConfirm(false); 
                                 setClickedFileUrl("");
                                 setClickedFileName("");
                                 setClickedFileType("");
-                    }}>Tab Audio</button>
+                    }}>{audioResourceText[languageCode]}</button>
 
-                    <button className="buttonRight" onClick={()=>{updateVarPairToCloud();}}>Save To Cloud</button>
+                    <button className="buttonRight" onClick={()=>{updateVarPairToCloud();}}>{saveToCloud[languageCode]}</button>
                 </div>
 
                 {isTabVisual && 
@@ -370,7 +383,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 <div className="modalContent parallelFrame">
          
                 <div className="areaNote1"> visual area
-                <button onClick={fetchRmFileList}> Load Resource List </button>
+                <button onClick={fetchRmFileList}> {loadResourceListText[languageCode]} </button>
                 
                 <br></br>
                 <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value); changeVisFilter(event.target.value);}}>
@@ -399,9 +412,9 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                         onChange={(event)=>{setFileSelected(event.target.files[0]);}}
                     />}
                     {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
-                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
-                    {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
-                    {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
+                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText[languageCode]}</button>}
+                    {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> {confirmText[languageCode]} </button>}
+                    {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> {submitText[languageCode]} </button>}
                 </div>}
                 
                 <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(false);}}></input>  <label onClick={()=>{setIsSourceByUpload(false);}}>From Google Drive</label>
@@ -429,13 +442,13 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                         setClickedFileName("");
                         setClickedFileType("");
                         setClickedFileUrl("");
-                    }}>Preview</button>
+                    }}>{previewText[languageCode]}</button>
 
                     <br></br><button onClick={()=>{
                         updateGoogleDriveFileRecords("visual", googleDriveFileId);
                         setGoogleDriveFileId("");
                         setGoogleDriveFileSharedLink("");
-                    }}>Add</button>
+                    }}>{addText[languageCode]}</button>
                 </div>}
                 </div>
 
@@ -462,7 +475,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 <div className="modalContent parallelFrame">
             
                 <div className="areaNote2"> audio area
-                <button onClick={fetchRmFileList}> Load Resource List </button>
+                <button onClick={fetchRmFileList}> {loadResourceListText[languageCode]} </button>
                
                 <br></br>
                 <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value); changeAuFilter(event.target.value);}}>
@@ -489,9 +502,9 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                         onChange={(event)=>{setFileSelected(event.target.files[0]);}}
                         /> }
                     {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
-                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>Cancel</button>}
-                    {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}> Confirm </button>}
-                    {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> Submit </button>}
+                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText[languageCode]}</button>}
+                    {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}>{confirmText[languageCode]}</button>}
+                    {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText[languageCode]}</button>}
                 </div>
 
                 </div>
