@@ -25,8 +25,11 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const clkbSettingText = ["Clickable(customizable button) Setting"];
     const addAnewButtonText = ["Add a New Button"];
     const collaposeAddingNewButtonText = ["Collapse Adding New Button"];
-
-
+    const addAnewConsequenceText = ["Add a New Consequence"];
+    const cancelText = ["Cancel"];
+    const addText = ["Add"];
+    const bgmSettingText = ["Background Music Setting"];
+    const saveText = ["Save"];
 
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
 
@@ -889,7 +892,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             </table>
                             {!isStndBtnAddNewConsq && <button className="indentOne" onClick={()=>{
                                 setIsStndBtnAddNewConsq(!isStndBtnAddNewConsq);
-                                }}>Add a New Consequence</button>}
+                                }}>{addAnewConsequenceText[languageCode]}</button>}
                             {isStndBtnAddNewConsq && 
                     <div className="orangeArea indentOne">
 
@@ -981,7 +984,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         setStndBtnConseqGDataItemSelected("");
                         setStndBtnConseqGDataTypeSelected("");
                     
-                    }}>Cancel</button>                    
+                    }}>{cancelText[languageCode]}</button> 
+
                     <button className="buttonRight"
                         onClick={()=>{
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
@@ -1012,7 +1016,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         setIsStndBtnAddNewConsq(false);
 
 
-                    }}>Add</button>
+                    }}>{addText[languageCode]}</button>
 
                     </div>}
                     </div>
@@ -1048,7 +1052,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         setStndBtnConseqGDataTypeSelected("");
                         setStndBtnConseqBecomeAmount("");
                     }}
-                    >Confirm Add</button>
+                    >{confirmAddText[languageCode]}</button>
                         
                         </div>}
 
@@ -1371,15 +1375,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 }
             {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + Background Music Setting </button>}
-            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - Background Music Setting </button>}
+            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + {bgmSettingText[languageCode]} </button>}
+            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - {bgmSettingText[languageCode]} </button>}
 
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{
                         setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});
                         setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});
-                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> reset </button>
+                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> {resetText[languageCode]} </button>
                     <br></br>
                     <label>Operation: </label>
                     <select value={currentPieceDetail["bgm_action"]}
@@ -1419,7 +1423,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                             })}
                         </select>
-                        <button onClick={() => {openRm()}}>Manage Resource</button>
+                        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>
                             
                         {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
@@ -1464,7 +1468,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
          */}
 
-        <button >Save</button>
+        <button>{saveText[languageCode]}</button>
 
         <br></br>
         <br></br>
@@ -1474,8 +1478,8 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
         <br></br>
         <br></br>
         <div className="buttonRight">
-            <button onClick={()=>{collapseAllOptions()}}> Collapse All </button>
-            <button onClick={()=>{expandAllOptions()}}> Expand All </button>
+            <button onClick={()=>{collapseAllOptions()}}> {collapseAllText[languageCode]} </button>
+            <button onClick={()=>{expandAllOptions()}}> {expandAllText[languageCode]} </button>
         </div>
   </div>
 
