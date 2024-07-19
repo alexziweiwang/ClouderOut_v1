@@ -9,17 +9,18 @@ import { GiTrashCan } from "react-icons/gi";
 export default function ProjectManagerPanel() {
     const username = "user002"; //TODO test
     const navigate = useNavigate();
-    const [selected_project_name, setProjectName] = useState("");
-    const [projList, setProjList] = useState(false); 
-    const [trashedProjList, setTrashedProjList] = useState(false);
-    const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
-    const [isDisplayAsk, setDisplayAsk] = useState(false);
 
     const languageCode = 0;
     const goToGameMakerButtonText = ["Go To GameMaker!"];
     const revertProjectButtonText = ["Revert this project"];
     const trashAreaLabel = ["Trash Area of Project(s):"];
     const trashedProjectSelectListDefaultText = ["Project Name"];
+
+    const [selected_project_name, setProjectName] = useState("");
+    const [projList, setProjList] = useState(false); 
+    const [trashedProjList, setTrashedProjList] = useState(false);
+    const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
+    const [isDisplayAsk, setDisplayAsk] = useState(false);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {

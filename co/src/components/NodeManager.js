@@ -7,6 +7,20 @@ import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../vie
 import Modal_GameDataManager from './Modal_GameDataManager';
 
 export default function NodeManager({projectName, currUser, chapterKey}) {
+  let languageCode = 0;
+  let createText = ["Create"];
+  let cancelText = ["Cancel"];
+  let enterEditorText = ["Enter Editor"];
+  let updateText = ["Update"];
+  let confirmText = ["Confirm"];
+  let detachLinkingText = ["Detach Linking"];
+  let addNewConditionTargetText = ["Add a New Condition & Target"];
+  let addConditionText = ["Add Condition"];
+  let addAsNextNodeText = ["Add As Next-Node"];
+  let deleteText = ["Delete"];
+  let revertText = ["Revert"];
+  let saveToMyProjectText = ["Save To My Project"];
+  
 
 //TODO important note: node data is operated in this component (and level).
 //TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
@@ -792,7 +806,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
               }
-            }}>Left</button>
+            }}>←</button>
           </div>
           <div>
             <div className="centered"><button
@@ -813,7 +827,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
               }
-            }}>Up</button></div>
+            }}>↑</button></div>
             <div><button
                 onClick={()=>{
                 let node = nodeRelationshipMap[clickedNodeKey];
@@ -833,7 +847,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   let crd = targetR * 10000 + targetC;
                   setClickedNode2(crd);
                 }
-            }}>Down</button></div>
+            }}>↓</button></div>
           </div>
           <div style={{"alignItems": "end"}}>
             <button
@@ -855,13 +869,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
               }
-            }}>Right</button>            
+            }}>→</button>            
           </div>
 
 </div>}
 
 </div>
-        {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TODO: visualization of node-grids grv 
+        {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TEST: visualization of node-grids grv marker
 
           {/* linking-drawing */}
           {gridBlocks.map((row, ir) => {

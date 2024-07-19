@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react';
 export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode, getCurrentChapterNodeList}) {
 //TODO get list of all nodes key for each chapter (when needed?)
   const languageCode = 0;
-
+  const saveText = ["Save"];
+  const cancelText = ["Cancel"];
+  const deleteText = ["Delete"];
+  const addText = ["Add"];
+  const collapseText = ["Collapse"];
+  const revertText = ["Revert"];
+  //TODO other text on UI - localization
 
   const [isCollapse, setIsCollapse] = useState(false);
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
@@ -16,15 +22,6 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const [deletedLocalList, setDeletedLocalList] = useState([]);
 
   const [currChapterNodeList, setCurrChapterNodeList] = useState([]);
-
-
-  const saveText = ["Save"];
-  const cancelText = ["Cancel"];
-  const deleteText = ["Delete"];
-  const addText = ["Add"];
-  const collapseText = ["Collapse"];
-  const revertText = ["Revert"];
-  //TODO other text on UI - localization
 
   useEffect(() => {
     let fetchedNodeList = getCurrentChapterNodeList(selectedChptKey);
