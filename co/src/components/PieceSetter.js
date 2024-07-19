@@ -11,6 +11,16 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
+    const languageCode = 0;
+    const listText = ["List"];
+    const collapseAllText = ["Collapse All"];
+    const expandAllText = ["Expand All"];
+    const speakerNameSettingText = ["Speaker Name Setting"];
+    const resetText = ["Reset"];
+    const bgpSettingText = ["Background Picture Setting"];
+    const manageResourceText = ["Manage Resource"];
+    const charPicSettingText = ["Character Picture Setting"];
+
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
 
     let name = "/gamenodeconvpiecedatasec";
@@ -526,15 +536,15 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
     }}>
 
     <div className="pieceSetterArea userChoice">
-        <button onClick={()=>{backToList();}}>← List</button><br></br>
+        <button onClick={()=>{backToList();}}>← {listText[languageCode]}</button><br></br>
         <br></br>
         <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
         <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 
 
         <div className="buttonRight">
-            <button onClick={collapseAllOptions}> Collapse All </button>
-            <button onClick={expandAllOptions}> Expand All </button>
+            <button onClick={collapseAllOptions}> {collapseAllText[languageCode]} </button>
+            <button onClick={expandAllOptions}> {expandAllText[languageCode]} </button>
         </div>
         <br></br>
         <br></br>
@@ -573,12 +583,12 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             <br></br>
             <br></br>
-            {!speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + Speaker Name for Text Setting </button>}
-            {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> - Speaker Name for Text Setting </button>}
+            {!speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + {speakerNameSettingText[languageCode]} </button>}
+            {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> - {speakerNameSettingText[languageCode]} </button>}
 
             {speakerNameAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{handleSpeakerNameReset()}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{handleSpeakerNameReset()}}> {resetText[languageCode]} </button>
                     <br></br>
                     <label>Speaker Name:  </label>
 
@@ -588,14 +598,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             {!speakerNameAdd && <div className="textRight">------------(Collapsed)---------------</div>}
             
             {!bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}> + Background Picture Setting {bgpicAdd}</button>}
+            && <button className="collapseToggle" onClick={toggleBgPicOption}> + {bgpSettingText[languageCode]}</button>}
             {bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}> - Background Picture Setting {bgpicAdd}</button>}
+            && <button className="collapseToggle" onClick={toggleBgPicOption}> - {bgpSettingText[languageCode]}</button>}
             
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
 
-                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> {resetText[languageCode]} </button>
                     <br></br>
                     <label>Operation: </label>
                     <select 
@@ -620,17 +630,17 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             })}
 
                         </select>
-                        <button onClick={() => {openRm()}}>Manage Resource</button>   
+                        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>   
                     </div>}
                 </div>}
             {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> + Character Picture Setting </button>}
-            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> - Character Picture Setting </button>}
+            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> + {charPicSettingText[languageCode]} </button>}
+            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> - {charPicSettingText[languageCode]} </button>}
 
             {charPicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> {resetText[languageCode]} </button>
                     <br></br>
                     <label>Operation:</label>
                     <select 
