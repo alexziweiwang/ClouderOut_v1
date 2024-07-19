@@ -10,6 +10,10 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
   const addText = ["Add"];
   const collapseText = ["Collapse"];
   const revertText = ["Revert"];
+  const chapterRevertAreaText = ["Chapter Revert area"];
+  const chapterManagementText = ["Chapter Management"];
+
+  
   //TODO other text on UI - localization
 
   const [isCollapse, setIsCollapse] = useState(false);
@@ -183,7 +187,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     </div>
 
         <div>
-              Chapter Revert area<br></br>
+              {chapterRevertAreaText[languageCode]}<br></br>
               {deletedLocalList.map((item, index) => {
                 return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>{revertText[languageCode]}</button ></label>);
               })}
@@ -198,7 +202,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         }
 
 
-        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>Chapter Management</button>}
+        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>{chapterManagementText[languageCode]}</button>}
       </>
     );
 }

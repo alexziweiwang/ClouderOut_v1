@@ -20,6 +20,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   let deleteText = ["Delete"];
   let revertText = ["Revert"];
   let saveToMyProjectText = ["Save To My Project"];
+  let nodeManageMentText = ["Node Management"];
+  let listOfNodesText = ["List of nodes"];
+  let nodeInfoText = ["Node Info"];
+  let nodeSettingsText = ["Node Settings"];
+  let targetNodesText = ["Target Nodes"];
+  let nextNodeText = ["Next Node"];
 
 
 //TODO important note: node data is operated in this component (and level).
@@ -681,12 +687,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {chapterKey!== "" && <div className="setting_area"> 
         <label>Chapter Key: {chapterKey}</label><br></br>
-        <label>Node Management</label>
+        <label>{nodeManageMentText[languageCode]}</label>
 
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
 
 <div className="parallelFrame"> 
-          <div style={{"height": "350px"}} className="orangeArea">List of nodes:<br></br>
+          <div style={{"height": "350px"}} className="orangeArea">{listOfNodesText[languageCode]}:<br></br>
             <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                
@@ -1218,7 +1224,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 
         {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
 
-              <p className="sectionHeader">*** Node Info ***</p>
+              <p className="sectionHeader">*** {nodeInfoText[languageCode]} ***</p>
             <div>
               <label>Node Name: </label>
               <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
@@ -1233,7 +1239,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </>}
             </div>
 
-            <p className="sectionHeader">*** Node Settings ***</p>
+            <p className="sectionHeader">*** {nodeSettingsText[languageCode]} ***</p>
         <div>
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
@@ -1261,7 +1267,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </>} */}
 
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
-          <p className="sectionHeader">*** Next Node ***</p>
+          <p className="sectionHeader">*** {nextNodeText[languageCode]} ***</p>
           {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
             && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
               Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
@@ -1305,7 +1311,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
         {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
-          <p className="sectionHeader">*** Target Nodes ***</p>
+          <p className="sectionHeader">*** {targetNodesText[languageCode]} ***</p>
             Path-deciding
             <br></br>
             <table>
