@@ -22,7 +22,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     }
 
     const [navObj, setNavObj] = useState(initialNavObj);
-    const [page, setPage] = useState("");
+    const [page, setPage] = useState("Main Page");
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
     const mainPagePictureVariableNames = [

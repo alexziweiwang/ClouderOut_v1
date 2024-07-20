@@ -15,7 +15,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
   const screenWidth = 800; //TODO temp  
   const screenHeight = 600; //TODO temp
   
-  const [currentSettingPage, setCurrentSettingPage] = useState("");
+  const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
       "screenSize": initialNavObj["screenSize"],

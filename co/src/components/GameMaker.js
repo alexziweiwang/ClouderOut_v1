@@ -10,7 +10,6 @@ import styles from './webpage.css';
 
 export default function GameMaker() {
   const languageCode = 0;
-  const backToProjMangButtonText = ["Project Management"];
   const resourceManagerButtonText = ["Resource Manager"];
   const contentChaptersTabText = ["Content Chapters"];
   const menuNavigationsTabText = ["Menu & Navigations"];
@@ -50,7 +49,7 @@ export default function GameMaker() {
 
   const [showChapterMaker, setShowChapterMaker] = useState(true);
 
-  const [currPageName, setCurrPageName] = useState("");
+  const [currPageName, setCurrPageName] = useState("Main Page");
 
 //TODO ------------------------------------------------------
 
@@ -293,7 +292,7 @@ export default function GameMaker() {
   <div>
     
     <div className="returning_buttons">
-      <button className="button" onClick={()=>{goToProjectManagingPanel();}}> ← {backToProjMangButtonText[languageCode]} </button>
+      <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
       <p>Project Name: {projectName}</p>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
     </div>

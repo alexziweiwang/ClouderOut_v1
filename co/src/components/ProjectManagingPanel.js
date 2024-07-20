@@ -90,7 +90,7 @@ export default function ProjectManagerPanel() {
     <>    
       <Sidebar compName = {name}/>
 
-    <>
+    <div className="backboardForAll">
 
         <br></br>
         
@@ -153,7 +153,7 @@ export default function ProjectManagerPanel() {
         
         </div>
    
-    </>
+    </div>
     
 
   </>
