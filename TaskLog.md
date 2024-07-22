@@ -290,3 +290,5 @@
 
 - 2024-Jul-19: Design Color-and-Style Plan of product UI
 - 2024-Jul-19: Research on optimized layout and attention design for users
+
+- 2024-Jul-22: Research on Dashboard UI related
