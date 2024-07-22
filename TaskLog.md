@@ -292,3 +292,5 @@
 - 2024-Jul-19: Research on optimized layout and attention design for users
 
 - 2024-Jul-22: Research on Dashboard UI related
+- 2024-Jul-22: Research and consider sidebar UX
+
