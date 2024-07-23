@@ -92,44 +92,46 @@ export default function ProjectManagerPanel() {
 
     <div className="backboardForAll">
 
-        <br></br>
-        
+  
         <div className="projSelectionArea">
         {projList && 
-        <div>
+        <div className="parallelFrame"  style={{"marginTop": "100px", "justifyContent": "center", "alignItems": "center", "display": "flex"}}>
+          
+          
+          <div className="projectGrid">
+            {projList.map((item, index) => {
+              return (
+                <div className= {(selected_project_name === item) ? "projectGridItemSelected" : "projectGridItem"}
+                    key={projList[index]} 
+                    value={item} 
+                    onClick={()=>{handleProjectGridClicked(item);}}>
+                          {item}
+                          <br></br>
+                          <br></br>
+                          <br></br>
+
+                          {(selected_project_name === item) && 
+                          <button className="buttonLeftBottom" onClick={()=>{handleDeleteProject();}}>
+                            <GiTrashCan/>
+                          </button>}
+
+                </div>
+              );
+            })} 
+    
+          </div>
 
 
-        <br></br>
-        <div className="projectGrid">
-          {projList.map((item, index) => {
-            return (
-              <div className= {(selected_project_name === item) ? "projectGridItemSelected" : "projectGridItem"}
-                  key={projList[index]} 
-                  value={item} 
-                  onClick={()=>{handleProjectGridClicked(item);}}>
-              {item}
-              <br></br>
-              <br></br>
-              <br></br>
 
-              {(selected_project_name === item) && 
-              <button className="buttonLeftBottom" onClick={()=>{handleDeleteProject();}}>
-                <GiTrashCan/>
-              </button>}
 
-              </div>
-            );
-          })} 
-   
-        </div>
-
+          <div>
+              <button className="button" onClick={()=>{goToGameMaker();}}> {goToGameMakerButtonText[languageCode]} </button>
+          </div>
         </div>
         }
         </div>
 
-        <br></br>
-        <button className="button" onClick={()=>{goToGameMaker();}}> {goToGameMakerButtonText[languageCode]} </button>
-   
+  
         <br></br><br></br><br></br>
 
         <div className="trashedProjectArea">

@@ -985,12 +985,13 @@ button:hover {
     background-color: white;
     color: #41435b;
     margin: 2px;
-    width: 200px;
+    width: 500px;
     border-radius: 0px;
     user-select: none;
     padding: 2px;
     margin: 10px;
     border-radius: 7px;
+    height: 100px;
 }
 
 .projectGridItem:hover {
@@ -998,12 +999,13 @@ button:hover {
     background-color: #d9dae4;
     color: white;
     margin: 2px;
-    width: 200px;
+    width: 500px;
     border-radius: 0px;
     cursor: pointer;
     padding: 2px;
     margin: 10px;
     border-radius: 7px;
+    height: 100px;
 }
 
 .projectGridItemSelected {
@@ -1011,13 +1013,14 @@ button:hover {
     background-color: #41435b;
     color: white;
     margin: 2px;
-    width: 200px;
+    width: 500px;
     border-radius: 0px;
     user-select: none;
     padding: 2px;
     margin: 10px;
     border-radius: 7px;
     cursor: pointer;
+    height: 100px;
 }
 
 .projectGrid {
@@ -1025,11 +1028,10 @@ button:hover {
     margin-left: 10%;
     background-color: rgb(122, 124, 122);
     width: 1000px;
-    display: flex;
-    flex-direction: row;
     overflow: scroll;
     flex-shrink: initial;
-    height: 120px;
+    height: 170px;
+    width: 520px;
 }
 
 .trashedProjectArea {

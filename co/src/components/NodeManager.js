@@ -693,6 +693,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 <div className="parallelFrame"> 
           <div style={{"height": "350px"}} className="orangeArea">{listOfNodesText[languageCode]}:<br></br>
+          
             <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                
