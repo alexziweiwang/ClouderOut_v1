@@ -12,6 +12,8 @@ export default function Sidebar({compName, username}) {
     const dashBoardButtonText = ["Dashboard"];
     const newProjectButtonText = ["New Project"];
     const cancelButtonText = ["Cancel"];
+    const projectManagerText = ["Project Manager"];
+    
 
     function goToProjectManagingPanel() {
         navigate('/projectmanagingpanel', { replace: true, state: { username } });
@@ -46,6 +48,9 @@ export default function Sidebar({compName, username}) {
         <br></br>
         <br></br>
         <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
 
         <button className="sidebar_options" onClick={() => {console.log("log out pressed")}}>{logOutButtonText[languageCode]}</button>
 
@@ -56,7 +61,7 @@ export default function Sidebar({compName, username}) {
     <div className="sidebar1" >
         <div> 
             
-            <button className="sidebar_options" onClick={backToDashboard}>← {dashBoardButtonText[languageCode]}</button>
+            <button className="sidebar_options" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
         </div>
         
 
@@ -66,11 +71,11 @@ export default function Sidebar({compName, username}) {
     {(compName === "/projectmanagingpanel") && 
     <div className="sidebar2" >
         <div> 
-            <button className="sidebar_options" onClick={backToDashboard}>← {dashBoardButtonText[languageCode]}</button>
+            <button className="sidebar_options" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
         </div>
         <div>
             <br></br> <br></br> <br></br>
-        <button className="sidebar_options" onClick={projectManageNew}>{newProjectButtonText[languageCode]}</button>
+        <button className="sidebar_options" onClick={()=>{projectManageNew()}}>{newProjectButtonText[languageCode]}</button>
 
         </div>
 
@@ -80,7 +85,19 @@ export default function Sidebar({compName, username}) {
     {(compName === "/projectmanagenew") && 
     <div className="sidebar2" >
         <div> 
-        <button className="sidebar_options" onClick={goToProjectManagingPanel}>{cancelButtonText[languageCode]}</button>
+            <button className="sidebar_options" onClick={()=>{
+                goToProjectManagingPanel();
+            }}>← {projectManagerText[languageCode]}</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <button className="sidebar_options" onClick={()=>{
+                backToDashboard();
+            }}>←← {dashBoardButtonText[languageCode]}</button>
         </div>
 
         </div>
