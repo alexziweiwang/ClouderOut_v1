@@ -50,6 +50,26 @@ div {
     margin-left: 100px;
 }
 
+.dashboard_grid {
+    background-color: #c0d6e3;
+    margin-right: 20px;
+    height: 500px;
+    width: 300px;
+    color: rgb(245, 241, 235);
+    user-select: none;
+    cursor: pointer;
+}
+
+.dashboard_grid:hover {
+    background-color: #dae0e3;
+    margin-right: 20px;
+    height: 500px;
+    width: 300px;
+    color:rgb(2, 2, 2);
+    user-select: none;
+    cursor: pointer;
+}
+
 .setting_area {
     color:rgb(7, 7, 7);
     text-align: left;
