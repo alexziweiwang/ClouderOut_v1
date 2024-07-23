@@ -6,7 +6,6 @@ export default function Sidebar({compName, username}) {
     const navigate = useNavigate();
 
     const languageCode = 0;
-    const myProjectsButtonText = ["My Projects"];
     const profileButtonText = ["Profile"];
     const accountButtonText = ["Account"];
     const logOutButtonText = ["Log Out"];
@@ -40,7 +39,6 @@ export default function Sidebar({compName, username}) {
     {(compName === "/dashboard") && 
     <div className="sidebar1" > Welcome, {username}!
         <div> 
-            {/* <button className="sidebar_options" onClick={()=>{goToProjectManagingPanel()}}>{myProjectsButtonText[languageCode]}</button> */}
             <button className="sidebar_options" onClick={()=>{goToProfilePage()}}>{profileButtonText[languageCode]}</button>
             <button className="sidebar_options" onClick={()=>{goToAccountPage()}}>{accountButtonText[languageCode]}</button>
         </div>

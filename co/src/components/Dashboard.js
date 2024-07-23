@@ -10,11 +10,18 @@ export default function Dashboard() {
     const uname = "user002";
     const navigate = useNavigate();
 
+    const languageCode = 0;
+    const myProjectsButtonText = ["My Projects"];
+    const newProjectButtonText = ["New Project"];
+
+
     function goToProjectManagingPanel() {
       navigate('/projectmanagingpanel', { replace: true, state: { uname } });
     }
 
-
+    function projectManageNew() {
+      navigate('/projectmanagenew', { replace: true, state: { uname } });
+    }
     return (
   <div className="page">
     <Sidebar compName={name} username={uname}/>
@@ -29,12 +36,16 @@ export default function Dashboard() {
       </p>
       
       <div className="parallelFrame">
-        <div className="dashboard_grid" style={{"marginRight": "20px"}}>
-          Create a New Project
+        <div className="dashboard_grid" style={{"marginRight": "20px"}}
+          onClick={()=>{projectManageNew()}}
+        >
+          {newProjectButtonText[languageCode]}
         </div>
 
-        <div className="dashboard_grid" style={{"marginRight": "20px"}}>
-          My Projects
+        <div className="dashboard_grid" style={{"marginRight": "20px"}}
+          onClick={()=>{goToProjectManagingPanel()}}
+        >
+          {myProjectsButtonText[languageCode]}
         </div>
 
         <div className="dashboard_grid" style={{"marginRight": "20px"}}>
