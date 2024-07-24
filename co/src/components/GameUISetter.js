@@ -754,6 +754,47 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
    
     </div>
+
+
+
+
+    <div>
+        Log Page Settings:
+
+        <div className="indentOne">
+            <label>Close Button Settings</label>
+            <br></br>
+            <label>Button Shape/Pic</label>
+            <br></br>
+            <label>Button Text / Sign</label>
+
+            <br></br>
+            <label>Background Visual Settings</label>
+            <br></br>
+                    <label>Shape/Pic</label>
+            <br></br>            
+            <br></br>
+            
+            <label>Content Text Settings</label>
+            <br>Content Text Shade</br>
+            <br>Content Text Size</br>
+            <br>Content Text Font</br>
+            <br>Position X</br>
+            <br>Position Y</br>
+
+
+            <label>Speaker Text Settings</label>
+            <br>Speaker Text Shade</br>
+            <br>Speaker Text Size</br>
+            <br>Speaker Text Font</br>
+            <br>Position X</br>
+            <br>Position Y</br>
+
+            <label>Group Position X</label>
+            <label>Group Position Y</label>
+
+        </div>
+    </div>
   
    
 
