@@ -15,12 +15,14 @@ export default function ProjectManagerPanel() {
     const revertProjectButtonText = ["Revert this project"];
     const trashAreaLabel = ["Trash Area of Project(s):"];
     const trashedProjectSelectListDefaultText = ["Project Name"];
+    const manageDeletedProjectText = ["Manage Deleted Project"];
 
     const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); 
     const [trashedProjList, setTrashedProjList] = useState(false);
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
     const [isDisplayAsk, setDisplayAsk] = useState(false);
+    const [showTrashArea, setShowTrashArea] = useState(false);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -133,27 +135,32 @@ export default function ProjectManagerPanel() {
 
   
         <br></br><br></br><br></br>
-
-        <div className="trashedProjectArea">
-        <label>{trashAreaLabel[languageCode]}</label>
-        <br></br>
-
-        {trashedProjList && 
-          <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
-            <option value="" key="">-- {trashedProjectSelectListDefaultText[languageCode]} --</option>
-            {
-              trashedProjList.map((item, index) => {
-                return (
-                  <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>
-                );
-              })
-            }
-          </select>
-        }
-
-        <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
         
-        </div>
+        <button onClick={()=>{
+          setShowTrashArea(!showTrashArea);
+        }}>{manageDeletedProjectText[languageCode]}</button>
+        
+        {showTrashArea === true && 
+        <div className="trashedProjectArea">
+            <label>{trashAreaLabel[languageCode]}</label>
+            <br></br>
+
+            {trashedProjList && 
+              <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
+                <option value="" key="">-- {trashedProjectSelectListDefaultText[languageCode]} --</option>
+                {
+                  trashedProjList.map((item, index) => {
+                    return (
+                      <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>
+                    );
+                  })
+                }
+              </select>
+            }
+
+            <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
+            
+        </div>}
    
     </div>
     

@@ -580,6 +580,7 @@ th,td {
 
 .backboardForAll {
     background-color: #d3d7e0;
+    height: 100%;
 }
 
 .newProjectInfoElement {
@@ -1039,8 +1040,10 @@ button:hover {
     color: white;
     padding: 10px;
     border-radius: 0px;
-    margin-top: 15%;
+    overflow: scroll;
 }
+
+
 
 .newProjForm {
     padding-left: 20%;
