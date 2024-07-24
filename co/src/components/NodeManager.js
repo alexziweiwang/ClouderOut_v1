@@ -316,7 +316,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     }
   }
 
-  function addNewNode() { //TODO *** refactor: for new data-structure and depth plan
+  function addNewNode() { //TODO  refactor: for new data-structure and depth plan
     
     const nodeDataTemp = nodeData;
 
@@ -401,7 +401,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     setToRevert("");
   }
 
-  function deleteLinkBetweenNodes(destNodeName) { //TODO *** refactor: for new data-structure and depth plan
+  function deleteLinkBetweenNodes(destNodeName) { //TODO  refactor: for new data-structure and depth plan
     setToNodeName(destNodeName);
     const sourceNodeName = clickedNode;
 
@@ -1225,7 +1225,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 
         {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
 
-              <p className="sectionHeader">*** {nodeInfoText[languageCode]} ***</p>
+              <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
             <div>
               <label>Node Name: </label>
               <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
@@ -1240,7 +1240,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </>}
             </div>
 
-            <p className="sectionHeader">*** {nodeSettingsText[languageCode]} ***</p>
+            <p className="sectionHeader"> {nodeSettingsText[languageCode]} </p>
         <div>
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
@@ -1250,7 +1250,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   
         {/* {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
-          <p className="sectionHeader">*** Next Nodes ***</p>
+          <p className="sectionHeader"> Next Nodes </p>
           <div>
                 <table>
                     <thead>
@@ -1268,7 +1268,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </>} */}
 
         {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
-          <p className="sectionHeader">*** {nextNodeText[languageCode]} ***</p>
+          <p className="sectionHeader"> {nextNodeText[languageCode]} </p>
           {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
             && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
               Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
@@ -1312,7 +1312,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
         {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
-          <p className="sectionHeader">*** {targetNodesText[languageCode]} ***</p>
+          <p className="sectionHeader"> {targetNodesText[languageCode]} </p>
             Path-deciding
             <br></br>
             <table>
@@ -1597,7 +1597,7 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
         <div>    
         
         <div>
-        {/* <p className="sectionHeader">*** Node Info ***</p>
+        {/* <p className="sectionHeader"> Node Info </p>
         <div>
           <label>Node Name: </label>
           <label>{clickedNode}</label>
@@ -1609,14 +1609,14 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
           <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].screenSize}</label>
         </div> */}
 
-        {/* <p className="sectionHeader">*** Node Settings ***</p>
+        {/* <p className="sectionHeader"> Node Settings </p>
         <div>
           <label>Rename Node: </label>
           <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
           <button onClick={updateNodeToNewName}>Update</button>
         </div> */}
 
-        {/* <p className="sectionHeader">*** Next Node(s) ***</p> */}
+        {/* <p className="sectionHeader"> Next Node(s) </p> */}
         {/* <div>
         <table>
             <thead>
@@ -1993,7 +1993,7 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
 
 
 
-        <p className="sectionHeader">*** Node Operation ***</p>
+        <p className="sectionHeader"> Node Operation </p>
 
 
         <button 

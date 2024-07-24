@@ -113,9 +113,11 @@ export default function ProjectManagerPanel() {
                           <br></br>
 
                           {(selected_project_name === item) && 
-                          <button className="buttonLeftBottom" onClick={()=>{handleDeleteProject();}}>
+                          <div style={{"display": "flex", "justifyContent": "start", "alignContent": "end"}}>
+                          <button className="elemPosLeftBottom" onClick={()=>{handleDeleteProject();}}>
                             <GiTrashCan/>
-                          </button>}
+                          </button>
+                          </div>}
 
                 </div>
               );
