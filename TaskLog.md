@@ -294,3 +294,5 @@
 - 2024-Jul-22: Research on Dashboard UI related
 - 2024-Jul-22: Research and consider sidebar UX
 - 2024-Jul-22: Redesign and consider UI for project-manager-page
+
+- 2024-Jul-23: Consider different page-size UI design
