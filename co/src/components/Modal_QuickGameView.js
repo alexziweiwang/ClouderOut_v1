@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
 import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
 import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
+import Modal_ConvLog from './Modal_ConvLog';
+
 
 export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList, gameData}) {
 //TODO: receive nav-data (for all game type ) ; do later
@@ -14,6 +16,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         modalStyleName = "displayNone modalBackboard";
     }
 
+    const logPageUISettings = {}; //TODO temp
 
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
@@ -383,6 +386,13 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
 
                 </div>
                 </div>
+
+                <Modal_ConvLog
+                    allPieceContent={allPieceContent} 
+                    initialPieceNum={initialPieceNum} 
+                    getCurrPieceNum={passInCurrentPieceNum} 
+                    logPageUISettings={logPageUISettings}
+                />
 
     </div>);
 }
