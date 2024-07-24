@@ -1,7 +1,7 @@
-export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings}) {
+export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, triggerLogPageClose}) {
 
     return (<div>
 Converasation Log...
-<button>CLose</button>
+<button onClick={()=>{triggerLogPageClose()}}>Close</button>
     </div>)
 }

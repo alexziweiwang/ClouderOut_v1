@@ -37,6 +37,8 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
     const [gameDataCurr, setGameDataCurr] = useState(gameData);
     const [originalGmdt, setOriginalGmdt] = useState({});
 
+    const [showConvLog, setShowConvLog] = useState(false);
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
  
@@ -240,6 +242,14 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         }
     }
 
+    function closeConvLog() {
+        setShowConvLog(false);
+    }
+
+    function openConvLog() {
+        setShowConvLog(true);
+    }
+
     let languageCode = 0;
     let closeText = ["Close"];
     let resetText = ["Reset"];
@@ -336,7 +346,8 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                                     <GameUI_Play_3ConvNav
                                         initialPieceNum={initialPieceNum}
                                         getCurrentPieceNum={passInCurrentPieceNum}  
-                                        triggerAutoMode={triggerAutoMode}                           
+                                        triggerAutoMode={triggerAutoMode}    
+                                        triggerLogPageOpen={openConvLog}                       
                                         uiConvNav={uiData3_ConvNavigation}
                                         visualMap={visualMap}
                                         audioMap={audioMap}
@@ -387,12 +398,13 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                 </div>
                 </div>
 
-                <Modal_ConvLog
+                {showConvLog && <Modal_ConvLog
                     allPieceContent={allPieceContent} 
                     initialPieceNum={initialPieceNum} 
                     getCurrPieceNum={passInCurrentPieceNum} 
                     logPageUISettings={logPageUISettings}
-                />
+                    triggerLogPageClose={closeConvLog}
+                />}
 
     </div>);
 }

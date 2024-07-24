@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function GameUI_Play_3ConvNav({
-    getCurrentPieceNum, triggerAutoMode,
+    getCurrentPieceNum, triggerAutoMode, triggerLogPageOpen,
     screenWidth, screenHeight, uiConvNav, visualMap, audioMap
 }) {
 
@@ -172,7 +172,8 @@ return (<div style={{
                         "alignItems": "center",
                     }}
                     onClick={()=>{
-                        //TODO trigger log-screen
+                        //trigger log-screen
+                        triggerLogPageOpen();
                     }}
                 >
                    
