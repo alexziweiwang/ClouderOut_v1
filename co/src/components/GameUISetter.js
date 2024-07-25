@@ -859,8 +859,12 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}
                 ></input>
                 <br></br>Content Text Size
-                <input type="range"></input>
-                <input type="number"></input>
+                <input type="range" value={convLogObj["contentTextSize"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "contentTextSize": event.target.value});
+                }}></input>
+                <input type="number" value={convLogObj["contentTextSize"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "contentTextSize": event.target.value});
+                }}></input>
 
                 <br></br>Content Text Font
                 <select></select>
@@ -882,8 +886,12 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 ></input>
 
                 <br></br>Speaker Text Size
-                <input type="range"></input>
-                <input type="number"></input><br></br>
+                <input type="range" value={convLogObj["speakerTextSize"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "speakerTextSize": event.target.value});
+                }}></input>
+                <input type="number" value={convLogObj["speakerTextSize"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "speakerTextSize": event.target.value});
+                }}></input><br></br>
                 
                 <br></br>Speaker Text Font
                 <select></select><br></br>
