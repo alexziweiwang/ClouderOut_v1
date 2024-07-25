@@ -822,16 +822,31 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }}></input><br></br>
 
             <label>Group Position Y</label>
-                <input type="range"></input>
-                <input type="number"></input><br></br>
+            <input type="range" value={convLogObj["groupPosY"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupPosY": event.target.value});
+
+                }}></input>
+                <input type="number" value={convLogObj["groupPosY"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupPosY": event.target.value});
+                }}></input><br></br>
 
             <label>Group Position Width</label>
-                <input type="range"></input>
-                <input type="number"></input><br></br>
+            <input type="range" value={convLogObj["groupWidth"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupWidth": event.target.value});
+
+                }}></input>
+                <input type="number" value={convLogObj["groupWidth"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupWidth": event.target.value});
+                }}></input><br></br>
 
             <label>Group Position Height</label>
-                <input type="range"></input>
-                <input type="number"></input><br></br>
+            <input type="range" value={convLogObj["groupHeight"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupHeight": event.target.value});
+
+                }}></input>
+                <input type="number" value={convLogObj["groupHeight"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupHeight": event.target.value});
+                }}></input><br></br>
 
          
             
