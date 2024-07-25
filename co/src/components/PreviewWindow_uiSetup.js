@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
+import Modal_ConvLog from './Modal_ConvLog';
+
 
 export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
@@ -27,7 +29,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     const [visualMapSize, setVisualMapSize] = useState(0);
 
     const placeHolder = -1;
-
+    const enteredGetInLogPageUISettings = getInLogPageUISettings();
 
     useEffect(() => {
     
@@ -75,6 +77,10 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
     function passInAudioMap() {
         return audioMap;
+    }
+
+    function notUsing() {
+        return;
     }
 
     return(
@@ -138,6 +144,18 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
             <div className="previewArea2" style={{"height": `${screenHeight}px`,"width": `${screenWidth}px`}}>
                 log screen
                 <div>
+
+
+                <Modal_ConvLog
+                    allPieceContent={initialAllPieceData} 
+                    initialPieceNum={initialPieceNum} 
+                    getCurrPieceNum={getCurrentPieceNum} 
+                    logPageUISettings={enteredGetInLogPageUISettings}
+                    getInLogPageUISettings={getInLogPageUISettings}
+                    triggerLogPageClose={notUsing}
+                    getAllPieceContent={getAllPieceContent}
+                    isQuickView={false}
+                />
 
                 </div>
             </div>

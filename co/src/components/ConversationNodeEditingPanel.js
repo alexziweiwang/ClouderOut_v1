@@ -340,6 +340,10 @@ export default function ConversationNodeEditingPanel() {
         setUIConvNav(data);
     }
 
+    function updateConvLogUISettings(data) {
+        setLogPageUISettings(data);
+    }
+
     function passInDefaultButtonUISettings() {
         return gameUIDefaultButton;
     }
@@ -594,6 +598,7 @@ export default function ConversationNodeEditingPanel() {
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
                             updateConvNavSettings={updateConvNavSettings}
+                            updateConvLogUISettings={updateConvLogUISettings}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
                     />}
@@ -625,6 +630,7 @@ export default function ConversationNodeEditingPanel() {
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
                             updateBackButtonSettings={updateBackButtonUISettings}
                             updateConvNavSettings={updateConvNavSettings}
+                            updateConvLogUISettings={updateConvLogUISettings}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
                         />}

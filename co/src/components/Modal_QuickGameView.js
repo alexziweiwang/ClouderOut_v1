@@ -250,6 +250,10 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         setShowConvLog(true);
     }
 
+    function notUsing() {
+        return;
+    }
+
     let languageCode = 0;
     let closeText = ["Close"];
     let resetText = ["Reset"];
@@ -404,6 +408,9 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                     getCurrPieceNum={passInCurrentPieceNum} 
                     logPageUISettings={logPageUISettings}
                     triggerLogPageClose={closeConvLog}
+                    getInLogPageUISettings={notUsing}
+                    getAllPieceContent={notUsing}
+                    isQuickView={true}
                 />}
 
     </div>);

@@ -1,4 +1,5 @@
-export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, triggerLogPageClose}) {
+export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
+    triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings}) {
 
 
     const allPiece = (allPieceContent !== -1) ? allPieceContent : {};

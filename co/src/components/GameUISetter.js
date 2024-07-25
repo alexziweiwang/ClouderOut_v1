@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, updateConvLogUISettings, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
 }) {
     const screenWidth = 800;
     const screenHeight = 600;
@@ -787,24 +787,43 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 </div>
             </div>
                     
-            <br></br>            
+            <br></br>   
+
+            <label>Group Position X</label>
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
+            <label>Group Position Y</label>
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
+            <label>Group Position Width</label>
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
+            <label>Group Position Height</label>
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
+         
             
             <label>Content Text Settings</label>
-            <br></br>Content Text Shade
-            <input type="color"></input>
-            <br></br>Content Text Size
-            <input type="range"></input>
-            <input type="number"></input>
+            <div className="indentOne">
+                <br></br>Content Text Shade
+                <input type="color"></input>
+                <br></br>Content Text Size
+                <input type="range"></input>
+                <input type="number"></input>
 
-            <br></br>Content Text Font
-            <select></select>
-            <br></br>Position X
-            <input type="range"></input>
-            <input type="number"></input>
-            <br></br>Position Y
-            <input type="range"></input>
-            <input type="number"></input>
-
+                <br></br>Content Text Font
+                <select></select>
+                <br></br>Position X
+                <input type="range"></input>
+                <input type="number"></input>
+                <br></br>Position Y
+                <input type="range"></input>
+                <input type="number"></input>
+            </div>
 
             <label>Speaker Text Settings</label>
             <div className="indentOne"></div>
@@ -826,13 +845,6 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <input type="range"></input>
                 <input type="number"></input><br></br>
 
-            <label>Group Position X</label>
-                <input type="range"></input>
-                <input type="number"></input><br></br>
-
-            <label>Group Position Y</label>
-                <input type="range"></input>
-                <input type="number"></input><br></br>
 
 
         </div>
