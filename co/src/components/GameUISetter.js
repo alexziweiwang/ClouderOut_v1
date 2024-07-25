@@ -866,8 +866,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     setConvLogObj({...convLogObj, "contentTextSize": event.target.value});
                 }}></input>
 
-                <br></br>Content Text Font
-                <select></select>
+                <br></br>
+                <label>Content Text Font: </label>
+                <select value={convLogObj["contentTextFont"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj,  "contentTextFont": event.target.value})
+                    }}>
+                        <option value="sans-serif" key="contentTextFont_sans-serif">sans-serif</option>
+                        <option value="serif" key="contentTextFont_serif">serif</option>
+                        <option value="cursive" key="contentTextFont_cursive">cursive</option>         
+                </select>  
                 <br></br>Position X
                 <input type="range" value={convLogObj["contentPosX"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentPosX": event.target.value});
@@ -901,8 +908,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     setConvLogObj({...convLogObj, "speakerTextSize": event.target.value});
                 }}></input><br></br>
                 
-                <br></br>Speaker Text Font
-                <select></select><br></br>
+                <br></br><label>Speaker Text Font: </label>
+                <select value={convLogObj["speakerTextFont"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj,  "speakerTextFont": event.target.value})
+                    }}>
+                        <option value="sans-serif" key="speakerTextFont_sans-serif">sans-serif</option>
+                        <option value="serif" key="speakerTextFont_serif">serif</option>
+                        <option value="cursive" key="speakerTextFont_cursive">cursive</option>         
+                </select>   
+                <br></br>
             
                 <br></br>Position X
                 <input type="range" value={convLogObj["speakerPosX"]} onChange={(event)=>{
