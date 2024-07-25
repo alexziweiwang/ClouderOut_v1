@@ -757,17 +757,22 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
 
 
-
+    <br></br><br></br>
     <div>
         Log Page Settings:
 
         <div className="indentOne">
             <label>Close Button Settings</label>
             <div className="indentOne">
-                <label>Button Shape/Pic</label>
+            <input type="radio"></input><label>Rectangle & Color Filled</label>
+                <input type="color"></input>
                 <br></br>
-                <label>Button Text / Sign</label>
+                <input type="radio"></input><label>Base Picture</label>
+                <div className="indentOne">
+                    <select>
 
+                    </select>
+                </div>
             </div>
            
             <br></br>
@@ -778,6 +783,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <div className="indentOne">
                 
                 <input type="radio"></input><label>Rectangle & Color Filled</label>
+                <input type="color"></input>
                 <br></br>
                 <input type="radio"></input><label>Base Picture</label>
                 <div className="indentOne">
