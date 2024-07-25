@@ -203,6 +203,11 @@ export default function ConversationNodeEditingPanel() {
 
     });
 
+    const [logPageUISettings, setLogPageUISettings] = useState({
+
+
+    });
+
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
@@ -361,6 +366,10 @@ export default function ConversationNodeEditingPanel() {
 
     function passInUIConvNav() {
         return uiConvNav;
+    }
+
+    function passInLogPageUISettings() {
+        return logPageUISettings;
     }
 
     function changeselectedGameScreenSizeSetting(event) {
@@ -649,6 +658,7 @@ export default function ConversationNodeEditingPanel() {
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
+                    getInLogPageUISettings={passInLogPageUISettings}
                     getScreenSize={passInScreenSize}
                     getUIConvNav={passInUIConvNav}
                     passInAudioList={passInAudioList}

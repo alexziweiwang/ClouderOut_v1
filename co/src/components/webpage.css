@@ -1240,6 +1240,7 @@ button:hover {
 .resourcePreviewWindow {
     height: 620px;
     width: 800px;
+    overflow: scroll;
 }
 
 .resourceVarPairWindow {
