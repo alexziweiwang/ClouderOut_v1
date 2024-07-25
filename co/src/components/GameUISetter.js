@@ -905,12 +905,19 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <select></select><br></br>
             
                 <br></br>Position X
-                <input type="range"></input>
-                <input type="number"></input><br></br>
-
+                <input type="range" value={convLogObj["speakerPosX"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "speakerPosX": event.target.value});
+                }}></input>
+                <input type="number" value={convLogObj["speakerPosX"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "speakerPosX": event.target.value});
+                }}></input>
                 <br></br>Position Y
-                <input type="range"></input>
-                <input type="number"></input><br></br>
+                <input type="range" value={convLogObj["speakerPosY"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "speakerPosY": event.target.value});
+                }}></input>
+                <input type="number" value={convLogObj["speakerPosY"]} onChange={(event)=>{
+                    setConvLogObj({...convLogObj, "speakerPosY": event.target.value});
+                }}></input>
 
             </div>
 
