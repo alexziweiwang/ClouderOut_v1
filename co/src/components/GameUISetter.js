@@ -772,7 +772,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     setConvLogObj({...convLogObj, "closeButtonIsShape": true});
                 }}
             ></input><label>Rectangle & Color Filled</label>
-                <input type="color"></input>
+                <input type="color" value={convLogObj["closeButtonShade"]}
+                    onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "closeButtonShade": event.target.value});
+                    }}
+                ></input>
                 <br></br>
                 <input type="radio" value={convLogObj["closeButtonIsShape"]} checked={!convLogObj["closeButtonIsShape"]}
                     onChange={()=>{
@@ -794,7 +798,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <div className="indentOne">
                 
                 <input type="radio"></input><label>Rectangle & Color Filled</label>
-                <input type="color"></input>
+                <input type="color" value={convLogObj["bgpShade"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "bgpShade": false});
+                }}></input>
                 <br></br>
                 <input type="radio"></input><label>Base Picture</label>
                 <div className="indentOne">
@@ -807,8 +813,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <br></br>   
 
             <label>Group Position X</label>
-                <input type="range"></input>
-                <input type="number"></input><br></br>
+                <input type="range" value={convLogObj["groupPosX"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupPosX": event.target.value});
+
+                }}></input>
+                <input type="number" value={convLogObj["groupPosX"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupPosX": event.target.value});
+                }}></input><br></br>
 
             <label>Group Position Y</label>
                 <input type="range"></input>
