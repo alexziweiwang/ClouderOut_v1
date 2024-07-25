@@ -783,11 +783,22 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvLogObj({...convLogObj, "closeButtonIsShape": false});
                     }}
                 ></input><label>Base Picture</label>
-                <div className="indentOne">
-                    <select>
-
-                    </select>
-                </div>
+                    <div className="indentOne">
+                        <select value={convLogObj["closeButtonPicName"]} onChange={(event)=>{
+                                    setConvLogObj({...convLogObj,  "closeButtonPicName": visualMap[event.target.value]["var"]}); 
+                        }}>                    
+                            <option key="convLogCloseBtnPic-default" value="">-- Select Resource --</option>
+                            {Object.keys(visualMap).map((currKey) => {
+                                    let keyName = "convLogCloseBtnPic-" + currKey;
+                                    /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                                    return (
+                                        <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                    );
+                            })}
+                        </select>
+                        <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                
+                    </div>
             </div>
            
             <br></br>
@@ -804,10 +815,21 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <br></br>
                 <input type="radio"></input><label>Base Picture</label>
                 <div className="indentOne">
-                    <select>
-
-                    </select>
-                </div>
+                        <select value={convLogObj["bgpPicName"]} onChange={(event)=>{
+                                    setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 
+                        }}>                    
+                            <option key="convLogBgp-default" value="">-- Select Resource --</option>
+                            {Object.keys(visualMap).map((currKey) => {
+                                    let keyName = "convLogBgp-" + currKey;
+                                    /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                                    return (
+                                        <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                    );
+                            })}
+                        </select>
+                        <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                
+                    </div>
             </div>
                     
             <br></br>   
