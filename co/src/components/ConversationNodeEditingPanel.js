@@ -216,6 +216,19 @@ export default function ConversationNodeEditingPanel() {
         "groupPosY": 200,
         "groupWidth": 100,
         "groupHeight": 200,       
+
+        "contentTextShade": "",
+        "contentTextSize": 20,
+        "contentTextFont": "",
+        "contentPosX": 10,
+        "contentPosY": 10,
+
+        "speakerTextShade": "",
+        "speakerTextSize": 20,
+        "speakerTextFont": "",
+        "speakerPosX": 10,
+        "speakerPosY": 10,
+
     });
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
