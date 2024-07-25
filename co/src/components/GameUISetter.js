@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, updateConvLogUISettings, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
+export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, updateConvLogUISettings, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
 }) {
     const screenWidth = 800;
     const screenHeight = 600;
@@ -27,6 +27,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         updateBackButtonSettings(igMenuBtnObj);
         
         updateConvNavSettings(convNav);
+        updateConvLogUISettings(convLogObj);
 
         let isUdpateResource = fetchRmUpdatedSignal();
         if (isUdpateResource === true) {
@@ -80,6 +81,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
     const [igMenuBtnObj, setIgMenuBtnObj] = useState(iniMenuButtonObj);
 
+    const [convLogObj, setConvLogObj] = useState(iniCovLogObj);
+
     const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
     const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
     const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
@@ -104,27 +107,27 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [inGameDataBtn, setInGameDataBtn] = useState(true);
     const [dealBtn, setDealBtn] = useState(true);
 
-    const [igsidebarMenuObj, setIgsidebarMenuObj] = useState({
-        "width": igsidebarMenuW,
-        "height": igsidebarMenuH,
-        "positionX": igsidebarMenuPosX,
-        "positionY": igsidebarMenuPosY,
-        "cornerRadius": igsidebarMenuCnrRadius,
-        "transparency": igsidebarMenuTransparency,
-        "isShape": igsidebarMenuIsShape,
-        "bgColor": igsidebarMenuColor,
-        "picVar": igsidebarMenuPicVar,
-        "isSingleButton": igsidebarMenuIsSingleBtn,
-        "listItemPadding": igsidebarMenuListPadding,
-        "listDirection": igsidebarMenuIsListDirection,
-        "autoOption": autoBtn,
-        "saveGameOption": saveBtn,
-        "loadGameOption": loadBtn,
-        "settingsOption": settingsBtn,
-        "returnToTitleOption": returnTitlePageBtn,
-        "inGameDataOption": inGameDataBtn,
-        "dealOption": dealBtn
-    });
+    // const [igsidebarMenuObj, setIgsidebarMenuObj] = useState({
+    //     "width": igsidebarMenuW,
+    //     "height": igsidebarMenuH,
+    //     "positionX": igsidebarMenuPosX,
+    //     "positionY": igsidebarMenuPosY,
+    //     "cornerRadius": igsidebarMenuCnrRadius,
+    //     "transparency": igsidebarMenuTransparency,
+    //     "isShape": igsidebarMenuIsShape,
+    //     "bgColor": igsidebarMenuColor,
+    //     "picVar": igsidebarMenuPicVar,
+    //     "isSingleButton": igsidebarMenuIsSingleBtn,
+    //     "listItemPadding": igsidebarMenuListPadding,
+    //     "listDirection": igsidebarMenuIsListDirection,
+    //     "autoOption": autoBtn,
+    //     "saveGameOption": saveBtn,
+    //     "loadGameOption": loadBtn,
+    //     "settingsOption": settingsBtn,
+    //     "returnToTitleOption": returnTitlePageBtn,
+    //     "inGameDataOption": inGameDataBtn,
+    //     "dealOption": dealBtn
+    // }); //TODO remove later
 
     return (
  
@@ -832,7 +835,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             </div>
 
             <label>Speaker Text Settings</label>
-            <div className="indentOne"></div>
+            <div className="indentOne">
                 Speaker Text Shade
                 <input type="color"></input><br></br>
 
@@ -851,7 +854,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <input type="range"></input>
                 <input type="number"></input><br></br>
 
-
+            </div>
 
         </div>
     </div>

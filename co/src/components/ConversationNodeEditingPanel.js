@@ -204,8 +204,18 @@ export default function ConversationNodeEditingPanel() {
     });
 
     const [logPageUISettings, setLogPageUISettings] = useState({
+        "closeButtonIsShape": false,
+        "closeButtonShade": "",
+        "closeButtonPicName": "",
 
+        "bgpIsShape": false,
+        "bgpShade": "",
+        "bgpPicName": "",
 
+        "groupPosX": 100,
+        "groupPosY": 200,
+        "groupWidth": 100,
+        "groupHeight": 200,       
     });
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
@@ -592,6 +602,7 @@ export default function ConversationNodeEditingPanel() {
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}
                             iniConvNavObj={uiConvNav}
+                            iniCovLogObj={logPageUISettings}
                             openRm={handleResourceManagerOpen} 
                             updateTextFrameUISettings={updateTextFrameUISettings} 
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
@@ -624,6 +635,7 @@ export default function ConversationNodeEditingPanel() {
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}
                             iniConvNavObj={uiConvNav}
+                            iniCovLogObj={logPageUISettings}
                             openRm={handleResourceManagerOpen} 
                             updateTextFrameUISettings={updateTextFrameUISettings} 
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
