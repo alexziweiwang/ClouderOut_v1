@@ -763,35 +763,77 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
         <div className="indentOne">
             <label>Close Button Settings</label>
+            <div className="indentOne">
+                <label>Button Shape/Pic</label>
+                <br></br>
+                <label>Button Text / Sign</label>
+
+            </div>
+           
             <br></br>
-            <label>Button Shape/Pic</label>
-            <br></br>
-            <label>Button Text / Sign</label>
+        
 
             <br></br>
             <label>Background Visual Settings</label>
-            <br></br>
-                    <label>Shape/Pic</label>
+            <div className="indentOne">
+                
+                <input type="radio"></input><label>Rectangle & Color Filled</label>
+                <br></br>
+                <input type="radio"></input><label>Base Picture</label>
+                <div className="indentOne">
+                    <select>
+
+                    </select>
+                </div>
+            </div>
+                    
             <br></br>            
-            <br></br>
             
             <label>Content Text Settings</label>
-            <br>Content Text Shade</br>
-            <br>Content Text Size</br>
-            <br>Content Text Font</br>
-            <br>Position X</br>
-            <br>Position Y</br>
+            <br></br>Content Text Shade
+            <input type="color"></input>
+            <br></br>Content Text Size
+            <input type="range"></input>
+            <input type="number"></input>
+
+            <br></br>Content Text Font
+            <select></select>
+            <br></br>Position X
+            <input type="range"></input>
+            <input type="number"></input>
+            <br></br>Position Y
+            <input type="range"></input>
+            <input type="number"></input>
 
 
             <label>Speaker Text Settings</label>
-            <br>Speaker Text Shade</br>
-            <br>Speaker Text Size</br>
-            <br>Speaker Text Font</br>
-            <br>Position X</br>
-            <br>Position Y</br>
+            <div className="indentOne"></div>
+                Speaker Text Shade
+                <input type="color"></input><br></br>
+
+                <br></br>Speaker Text Size
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+                
+                <br></br>Speaker Text Font
+                <select></select><br></br>
+            
+                <br></br>Position X
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
+                <br></br>Position Y
+                <input type="range"></input>
+                <input type="number"></input><br></br>
 
             <label>Group Position X</label>
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
             <label>Group Position Y</label>
+                <input type="range"></input>
+                <input type="number"></input><br></br>
+
 
         </div>
     </div>
