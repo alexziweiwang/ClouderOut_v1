@@ -853,7 +853,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <label>Content Text Settings</label>
             <div className="indentOne">
                 <br></br>Content Text Shade
-                <input type="color"></input>
+                <input type="color" value={convLogObj["contentTextShade"]}
+                    onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "contentTextShade": event.target.value});
+                    }}
+                ></input>
                 <br></br>Content Text Size
                 <input type="range"></input>
                 <input type="number"></input>
@@ -871,7 +875,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <label>Speaker Text Settings</label>
             <div className="indentOne">
                 Speaker Text Shade
-                <input type="color"></input><br></br>
+                <input type="color" value={convLogObj["speakerTextShade"]}
+                    onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "speakerTextShade": event.target.value});
+                    }}
+                ></input>
 
                 <br></br>Speaker Text Size
                 <input type="range"></input>
