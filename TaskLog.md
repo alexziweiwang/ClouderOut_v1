@@ -297,3 +297,5 @@
 
 - 2024-Jul-23: Consider different page-size UI design
 - 2024-Jul-23: Research on Styles for UI elements, for editing pages
+
+- 2024-Jul-26: Consider logic-splitter runtime strategy
