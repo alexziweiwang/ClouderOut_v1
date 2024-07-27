@@ -11,10 +11,14 @@ condArr= [
 ];
 
     // elem[2] shows "isVar2GivenValue"
+    
 ---------------------------------------------------
-let targetNode = node3; // default with "else"'s given target-node
 let len = condArr.length;
+
+let targetNode = condArr[len-1][1]; // default with "else"'s given target-node
+
 let i = 0;
+
 let stopBool = false;
 
 
@@ -31,34 +35,46 @@ while (i < len-1 && stopBool === false) {
     let var2_value = ""; //TODO later
 
     switch (action){
-    
-        case "==":
-            //TODO
-            break;
-        case "!=":
-            //TODO
-            break;
-        case ">":
-            //TODO
-            break;
-        case ">=": 
-            //TODO
-            break;
-        case "<": 
-            //TODO
-            //example: for case of ["hp", "<", true, 50]
-            if (var1_value < var2_value) {
-                // set target-node to this node
-                targetNode = currTarget;
-                stopBool = true;
-            }
+        
+            case "==":
+                if (var1_value == var2_value) {
+                    targetNode = currTarget;
+                    stopBool = true;
+                }
+                break;
+            case "!=":
+                if (var1_value != var2_value) {
+                    targetNode = currTarget;
+                    stopBool = true;
+                }
+                break;
+            case ">":
+                if (var1_value > var2_value) {
+                    targetNode = currTarget;
+                    stopBool = true;
+                }
+                break;
+            case ">=": 
+                if (var1_value >== var2_value) {
+                    targetNode = currTarget;
+                    stopBool = true;
+                }
+                break;
+            case "<": 
+                if (var1_value < var2_value) {
+                    targetNode = currTarget;
+                    stopBool = true;
+                }
 
-            break;
-        case "<=": 
-            //TODO
-            break;
-        default:
-            //TODO
+                break;
+            case "<=": 
+                if (var1_value <== var2_value) {
+                    targetNode = currTarget;
+                    stopBool = true;
+                }
+                break;
+            default:
+                continue; //not a standard "action", so ignore this
     }
 
 
