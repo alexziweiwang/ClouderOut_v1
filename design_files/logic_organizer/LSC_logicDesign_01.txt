@@ -1,0 +1,66 @@
+example:
+
+1) {hp} < 50   ==> node1
+2) {hp} <= 90  ==> node2
+3) else ==> node3
+
+condArr= [
+        ["hp", "<", true, 50, "node1"],
+        ["hp", "<=", true, 90, "node2"],
+        ["else", node3]
+];
+
+    // elem[2] shows "isVar2GivenValue"
+---------------------------------------------------
+let targetNode = node3; // default with "else"'s given target-node
+let len = condArr.length;
+let i = 0;
+let stopBool = false;
+
+
+while (i < len-1 && stopBool === false) {
+    let item = condArr[i];
+    let var1 = item[0];
+    let action = item[1];
+    let isVar2GivenValue = item[2];
+    let var2 = item[3]; //TODO later: fetch game-data-value if is variable
+   
+    let currTarget = item[4];
+    
+    let var1_value = ""; //TODO fetch from game-data current value
+    let var2_value = ""; //TODO later
+
+    switch (action){
+    
+        case "==":
+            //TODO
+            break;
+        case "!=":
+            //TODO
+            break;
+        case ">":
+            //TODO
+            break;
+        case ">=": 
+            //TODO
+            break;
+        case "<": 
+            //TODO
+            //example: for case of ["hp", "<", true, 50]
+            if (var1_value < var2_value) {
+                // set target-node to this node
+                targetNode = currTarget;
+                stopBool = true;
+            }
+
+            break;
+        case "<=": 
+            //TODO
+            break;
+        default:
+            //TODO
+    }
+
+
+    i++;
+}
