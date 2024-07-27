@@ -299,3 +299,6 @@
 - 2024-Jul-23: Research on Styles for UI elements, for editing pages
 
 - 2024-Jul-26: Consider logic-splitter runtime strategy
+- 2024-Jul-26: Consider logic-splitter conditional switching strategy
+
+
