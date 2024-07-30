@@ -65,6 +65,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [auto0DisplayText, setAuto0DisplayText] = useState("Auto");
     const [auto1DisplayText, setAuto1DisplayText] = useState("Auto");
     const [logDisplayText, setLogDisplayText] = useState("Log");
+    const [logCloseDisplayText, setLogCloseDisplayText] = useState("Close");
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
@@ -849,8 +850,22 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
                 <br></br>
                 <label>Button Text: </label>
-                <input></input>
-                <button>Update</button>
+                <input value={logCloseDisplayText}
+                    onChange={(event)=>{
+                        setLogCloseDisplayText(event.target.value);
+                    }}
+                ></input>
+                <button 
+                    onClick={()=>{
+                        setConvLogObj({...convLogObj, "closeButtonText": logCloseDisplayText});
+                    }}>Update</button>
+                <br></br>
+                <label>Text Color: </label>
+                <input type="color" value={convLogObj["closeButtonTextColor"]}
+                    onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "closeButtonTextColor": event.target.value});
+                    }}
+                ></input>
 
             </div>
            

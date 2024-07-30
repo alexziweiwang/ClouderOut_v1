@@ -46,20 +46,36 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                 >
   
                   <div 
+                    id="modal-log-close"
                     style={{
                       "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
                       "backgroundImage": "",
                       "userSelect": "none",
                       "top": `${logUIObj["closeButtonPositionY"]}px`,
                       "left": `${logUIObj["closeButtonPositionX"]}px`,
+                      "color": `${logUIObj["closeButtonTextColor"]}`,
                       "position": "absolute",
+
+                      
 
 
                     }}
+
+                    onMouseDown={
+                      ()=>{
+                          document.getElementById("modal-log-close").style.filter = "brightness(150%)";
+                      }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("modal-log-close").style.filter = "brightness(100%)";
+                        }
+                    }
+
                     onClick={()=>{triggerLogPageClose()}}
-                    
+                      
                   >
-                    {logUIObj["closeButtonButtonText"]}
+                    {logUIObj["closeButtonText"]}
                   </div>
                   
                   

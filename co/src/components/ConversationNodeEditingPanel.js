@@ -214,7 +214,8 @@ export default function ConversationNodeEditingPanel() {
         "closeButtonCornerRadius": 20, 
         "closeButtonBorderSize": 1,
         "closeButtonBorderColor": "grey",  
-        "closeButtonButtonText": "Close",
+        "closeButtonText": "Close",
+        "closeButtonTextColor": "#000000",
 
         "bgpIsShape": false,
         "bgpShade": "",
