@@ -65,6 +65,7 @@ return (<div style={{
     }}
 >
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
+                    id="play-UI-3-autoOn"
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade0"],
@@ -87,6 +88,18 @@ return (<div style={{
                         triggerAutoMode(true);
                         setAutoOn(true);
                     }}
+
+
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("play-UI-3-autoOn").style.filter = "brightness(150%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("play-UI-3-autoOn").style.filter = "brightness(100%)";
+                        }
+                    }
                 > 
                   
                             {!uiConvNav["buttonAutoFontItalic"] && 
@@ -108,6 +121,7 @@ return (<div style={{
 
 
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
+                    id="play-UI-3-autoOff"
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonAutoShade1"],   
@@ -129,6 +143,17 @@ return (<div style={{
                         triggerAutoMode(false);
                         setAutoOn(false);
                     }}
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("play-UI-3-autoOff").style.filter = "brightness(150%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("play-UI-3-autoOff").style.filter = "brightness(100%)";
+                        }
+                    }
+
                 > 
                    
                             {!uiConvNav["buttonAutoFontItalic"] && 
@@ -146,14 +171,8 @@ return (<div style={{
 
 
 
-
-
-
-
-
-
-
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
+                    id="play-UI-3-log"
                     style={{
                         "marginRight": "50px",
                         "color": uiConvNav["buttonLogShade"],
@@ -175,6 +194,17 @@ return (<div style={{
                         //trigger log-screen
                         triggerLogPageOpen();
                     }}
+
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("play-UI-3-log").style.filter = "brightness(150%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("play-UI-3-log").style.filter = "brightness(100%)";
+                        }
+                    }
                 >
                    
                         {!uiConvNav["buttonLogFontItalic"] && <label>

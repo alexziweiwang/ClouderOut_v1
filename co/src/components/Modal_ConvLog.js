@@ -45,10 +45,11 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                 
                 >
   
-                  <button 
+                  <div 
                     style={{
                       "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
                       "backgroundImage": "",
+                      "userSelect": "none"
 
 
 
@@ -57,7 +58,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                     
                   >
                     Close
-                  </button>
+                  </div>
                   
                   
                   Converasation Log...        
