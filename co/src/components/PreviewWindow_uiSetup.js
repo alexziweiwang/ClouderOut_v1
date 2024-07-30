@@ -31,6 +31,8 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     const placeHolder = -1;
     const enteredGetInLogPageUISettings = getInLogPageUISettings();
 
+    const [isShowLogScreen, setisShowLogScreen] = useState(false);
+
     useEffect(() => {
     
         let screenSizePair = getScreenSize();
@@ -81,6 +83,10 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
     function notUsing() {
         return;
+    }
+
+    function passInIsDisplayConvLog() {
+        return isShowLogScreen;
     }
 
     return(
@@ -138,14 +144,9 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
             </div>
             <br></br>
+            <br></br><br></br>
 
-
-
-            <div className="previewArea2" style={{"height": `${screenHeight}px`,"width": `${screenWidth}px`}}>
-                log screen
-                <div>
-
-
+            {isShowLogScreen && <div className="previewArea2" style={{"height": `${screenHeight}px`,"width": `${screenWidth}px`}}>
                 <Modal_ConvLog
                     allPieceContent={initialAllPieceData} 
                     initialPieceNum={initialPieceNum} 
@@ -155,10 +156,11 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                     triggerLogPageClose={notUsing}
                     getAllPieceContent={getAllPieceContent}
                     isQuickView={false}
+                    getIsDisplay={passInIsDisplayConvLog}
                 />
 
-                </div>
-            </div>
+          
+            </div>}
 
             <br></br>
             <br></br>

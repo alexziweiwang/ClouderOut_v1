@@ -2,9 +2,14 @@ import { useState, useEffect } from 'react';
 
 
 export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
-    triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings}) {
+    triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings, getIsDisplay}) {
 
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
+
+        const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
+        const [logUIObj, setLogUIObj] = useState(logPageUISettings);
+
+        const [display, setDisplay] = useState(false);
    
         useEffect(() => {
      
@@ -15,17 +20,36 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
      
             setFirstTimeEnter(false);
           }
-    
-    
+          
+          if (isQuickView === false) { // for ui-setting immediate-preview
+            let uiObjTemp = getInLogPageUISettings();
+            setLogUIObj(uiObjTemp);
+
+            let allPieceTemp = getAllPieceContent();
+            setAllPieceContentObj(allPieceTemp);
+          }
+
+          let displayTemp = getIsDisplay();
+          setDisplay(displayTemp);
+
     
     
     
         });
 
     return (<div>
+                {display && <div>
+                  Converasation Log...
+                  <button onClick={()=>{triggerLogPageClose()}}>Close</button>
+          
+          {/* //TODO  allPieceContentObj       
+          //TODO  logUIObj */}
 
-        Converasation Log...
-        <button onClick={()=>{triggerLogPageClose()}}>Close</button>
+
+
+                </div>}
+
+
 
     </div>)
 }
