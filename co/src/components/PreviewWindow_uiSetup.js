@@ -99,89 +99,92 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     }    
 
     return(
-    <div className="previewWindow" style={{"position": "relative"}}>
+    <div className="previewWindow">
 
             
             <div className="previewArea2"
                 style={{
                     "height": `${screenHeight}px`,
                     "width": `${screenWidth}px`,
-                    "position": "absolute",
                 }}
             >
-
-                <GameUI_2ButtonsPreview 
-                    isSettingUpUI={true}
-                    initialAllPieceData={initialAllPieceData}
-                    getAllPieceContent={getAllPieceContent}
-                    getCurrentPieceNum={getCurrentPieceNum}
-                    getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
-                    getDefaultButtonUISettings={getDefaultButtonUISettings} 
-                    getBackButtonUISettings={getBackButtonUISettings}
-                    getScreenSize={getScreenSize}     
-                    triggerNextPiece={notUsing}
-                    passInAudioMap={passInAudioMap}
-                    passInVisualMap={passInVisualMap}
-                />
               
-                <GameUI_1TextFramePreview
-                    isEditing={false}
-                    dataObj={dataObj} 
-                    initialAllPieceData={initialAllPieceData}
-                    getAllPieceContent={getAllPieceContent}
-                    getCurrentPieceNum={getCurrentPieceNum}
-                    getTextFrameUISettings={getTextFrameUISettings}
-                    isInGameView={false}
-                    getIsDirectNextPiece={notUsing}
-                    triggerNextPiece={notUsing}
-                    triggerAutoMode={notUsing}
-                    passInVisualMap={passInVisualMap}
-                    getUIConvNav={getUIConvNav}
+                {<div 
+                    style={{
+                        "display": !isShowLogScreen ? "flex" : "none"
+                    }}>
+                        
+                        <GameUI_2ButtonsPreview 
+                            isSettingUpUI={true}
+                            initialAllPieceData={initialAllPieceData}
+                            getAllPieceContent={getAllPieceContent}
+                            getCurrentPieceNum={getCurrentPieceNum}
+                            getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
+                            getDefaultButtonUISettings={getDefaultButtonUISettings} 
+                            getBackButtonUISettings={getBackButtonUISettings}
+                            getScreenSize={getScreenSize}     
+                            triggerNextPiece={notUsing}
+                            passInAudioMap={passInAudioMap}
+                            passInVisualMap={passInVisualMap}
+                        />
+                    
+                        <GameUI_1TextFramePreview
+                            isEditing={false}
+                            dataObj={dataObj} 
+                            initialAllPieceData={initialAllPieceData}
+                            getAllPieceContent={getAllPieceContent}
+                            getCurrentPieceNum={getCurrentPieceNum}
+                            getTextFrameUISettings={getTextFrameUISettings}
+                            isInGameView={false}
+                            getIsDirectNextPiece={notUsing}
+                            triggerNextPiece={notUsing}
+                            triggerAutoMode={notUsing}
+                            passInVisualMap={passInVisualMap}
+                            getUIConvNav={getUIConvNav}
 
-                />
+                        />
 
 
-                <GameUI_3ConvNavPreview
-                    isSettingUpUI={false}
-                    initialAllPieceData={initialAllPieceData}
-                    getAllPieceContent={getAllPieceContent}
-                    getCurrentPieceNum={getCurrentPieceNum}
-                    triggerNextPiece={notUsing}
-                    getScreenSize={getScreenSize}
-                    getUIConvNav={getUIConvNav}
-                    triggerAutoMode={notUsing}
-                    isInGameView={false}
-                    passInVisualMap={passInVisualMap}
-                    triggerLogOpen={triggerLogOpen}
-                />
+                        <GameUI_3ConvNavPreview
+                            isSettingUpUI={false}
+                            initialAllPieceData={initialAllPieceData}
+                            getAllPieceContent={getAllPieceContent}
+                            getCurrentPieceNum={getCurrentPieceNum}
+                            triggerNextPiece={notUsing}
+                            getScreenSize={getScreenSize}
+                            getUIConvNav={getUIConvNav}
+                            triggerAutoMode={notUsing}
+                            isInGameView={false}
+                            passInVisualMap={passInVisualMap}
+                            triggerLogOpen={triggerLogOpen}
+                        />
+                </div>}
 
+
+                {isShowLogScreen && 
+                        <Modal_ConvLog
+                            allPieceContent={initialAllPieceData} 
+                            initialPieceNum={initialPieceNum} 
+                            getCurrPieceNum={getCurrentPieceNum} 
+                            logPageUISettings={enteredGetInLogPageUISettings}
+                            getInLogPageUISettings={getInLogPageUISettings}
+                            triggerLogPageClose={triggerLogClose}
+                            getAllPieceContent={getAllPieceContent}
+                            isQuickView={false}
+
+                            style={{
+                                "height": `${screenHeight}px`,
+                                "width": `${screenWidth}px`,
+                            }}
+                        
+                        />
+
+}
 
 
             </div>
 
-            <div 
-                
-                style={{
-                    "height": `${screenHeight}px`,
-                    "width": `${screenWidth}px`,
-                    "display": isShowLogScreen ? "flex" : "none",
-                    "position": "absolute",
 
-                }}>
-                <Modal_ConvLog
-                    allPieceContent={initialAllPieceData} 
-                    initialPieceNum={initialPieceNum} 
-                    getCurrPieceNum={getCurrentPieceNum} 
-                    logPageUISettings={enteredGetInLogPageUISettings}
-                    getInLogPageUISettings={getInLogPageUISettings}
-                    triggerLogPageClose={triggerLogClose}
-                    getAllPieceContent={getAllPieceContent}
-                    isQuickView={false}
-                
-                />
-
-          
-            </div>
 
             <br></br>
             <br></br>

@@ -30,17 +30,40 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
         });
 
-    return (<div>
-                <div>
-                  Converasation Log...
-                  <button onClick={()=>{triggerLogPageClose()}}>Close</button>
-          
+        //TODO2: close-button-pic:  `url('${visualMap[logUIObj["closeButtonPicName"]]}')`
+        //TODO2: close button text: setup by user
+
+
+    return (
+      <div
+                  style={{
+                    "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
+
+                  }}
+                
+                >
+  
+                  <button 
+                    style={{
+                      "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
+                      "backgroundImage": "",
+
+
+
+                    }}
+                    onClick={()=>{triggerLogPageClose()}}
+                    
+                  >
+                    Close
+                  </button>
+                  
+                  
+                  Converasation Log...        
           {/* //TODO  allPieceContentObj       
           //TODO  logUIObj */}
 
 
 
-                </div>
 
 
 

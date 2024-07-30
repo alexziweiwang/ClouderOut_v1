@@ -808,12 +808,25 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <label>Background Visual Settings</label>
             <div className="indentOne">
                 
-                <input type="radio"></input><label>Rectangle & Color Filled</label>
+                <input type="radio" 
+                    value={convLogObj["bgpIsShape"]}
+                    checked={convLogObj["bgpIsShape"]}
+                    onChange={()=>{
+                        setConvLogObj({...convLogObj, "bgpIsShape": true});
+                    }}
+
+                ></input><label>Rectangle & Color Filled</label>
                 <input type="color" value={convLogObj["bgpShade"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "bgpShade": false});
+                        setConvLogObj({...convLogObj, "bgpShade": event.target.value});
                 }}></input>
                 <br></br>
-                <input type="radio"></input><label>Base Picture</label>
+                <input type="radio"
+                    value={convLogObj["bgpIsShape"]}
+                    checked={!convLogObj["bgpIsShape"]}
+                    onChange={()=>{
+                        setConvLogObj({...convLogObj, "bgpIsShape": false});
+                    }}
+                ></input><label>Base Picture</label>
                 <div className="indentOne">
                         <select value={convLogObj["bgpPicName"]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 
