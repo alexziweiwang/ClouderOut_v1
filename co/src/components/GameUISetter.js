@@ -799,6 +799,39 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
                 
                     </div>
+
+                <label> Position X:</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                <br></br>
+                <label> Position Y:</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                <br></br>
+                <label> Width:</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                <br></br>
+                <label> Height:</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                <br></br>
+                <label> Corner Radius:</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                <br></br>
+                <label> Border Size:</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
+                <br></br>
+                <label> Border Color:</label>
+                    <input type="color"></input>
+
+                <br></br>
+                <label>Button Text: </label>
+                <input></input>
+                <button>Update</button>
+
             </div>
            
             <br></br>
@@ -815,7 +848,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvLogObj({...convLogObj, "bgpIsShape": true});
                     }}
 
-                ></input><label>Rectangle & Color Filled</label>
+                ></input><label
+                    onClick={()=>{
+                        setConvLogObj({...convLogObj, "bgpIsShape": true});
+                    }}
+                >Rectangle & Color Filled</label>
                 <input type="color" value={convLogObj["bgpShade"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj, "bgpShade": event.target.value});
                 }}></input>
@@ -826,7 +863,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onChange={()=>{
                         setConvLogObj({...convLogObj, "bgpIsShape": false});
                     }}
-                ></input><label>Base Picture</label>
+                ></input><label
+                    onClick={()=>{
+                        setConvLogObj({...convLogObj, "bgpIsShape": false});
+                    }}
+                >Base Picture</label>
                 <div className="indentOne">
                         <select value={convLogObj["bgpPicName"]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 

@@ -171,12 +171,6 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                             triggerLogPageClose={triggerLogClose}
                             getAllPieceContent={getAllPieceContent}
                             isQuickView={false}
-
-                            style={{
-                                "height": `${screenHeight}px`,
-                                "width": `${screenWidth}px`,
-                            }}
-                        
                         />
 
 }

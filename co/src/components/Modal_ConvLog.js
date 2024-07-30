@@ -38,6 +38,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
       <div
                   style={{
                     "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
+                    "height": "100%",
+                    "width": "100%"
 
                   }}
                 
