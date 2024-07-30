@@ -801,12 +801,32 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     </div>
 
                 <label> Position X:</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                    <input type="range" value={convLogObj["closeButtonPositionX"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonPositionX": event.target.value});
+                        }}
+                        max={screenWidth} min="1" step="1"
+                    ></input>
+                    <input type="number" value={convLogObj["closeButtonPositionX"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonPositionX": event.target.value});
+                        }}
+                        max={screenWidth} min="1" step="1"
+                        ></input>
                 <br></br>
                 <label> Position Y:</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                <input type="range" value={convLogObj["closeButtonPositionY"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonPositionY": event.target.value});
+                        }}
+                        max={screenHeight} min="1" step="1"
+                    ></input>
+                    <input type="number" value={convLogObj["closeButtonPositionY"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonPositionY": event.target.value});
+                        }}
+                        max={screenHeight} min="1" step="1"
+                        ></input>
                 <br></br>
                 <label> Width:</label>
                     <input type="range"></input>

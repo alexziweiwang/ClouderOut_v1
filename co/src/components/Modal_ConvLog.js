@@ -49,15 +49,17 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                     style={{
                       "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
                       "backgroundImage": "",
-                      "userSelect": "none"
-
+                      "userSelect": "none",
+                      "top": `${logUIObj["closeButtonPositionY"]}px`,
+                      "left": `${logUIObj["closeButtonPositionX"]}px`,
+                      "position": "absolute",
 
 
                     }}
                     onClick={()=>{triggerLogPageClose()}}
                     
                   >
-                    Close
+                    {logUIObj["closeButtonButtonText"]}
                   </div>
                   
                   
