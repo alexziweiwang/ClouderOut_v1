@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getScreenSize, triggerNextPiece, 
     triggerAutoMode, getUIConvNav, isInGameView,
-    passInAudioList, passInVisualMap
+    passInAudioList, passInVisualMap,
+    triggerLogOpen
 }) {
 
 
@@ -189,6 +190,7 @@ return (<div style={{
                     }}
                     onClick={()=>{
                         //trigger log-screen
+                        triggerLogOpen();
                     }}
                 >
                    

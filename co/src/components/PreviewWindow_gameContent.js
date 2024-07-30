@@ -241,10 +241,21 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       return audioMap;
     }
 
-    return (
+    function openLogScreen() {
+      //TODO2 
+      console.log("open log in preview-game-content"); 
 
+
+
+    }
+
+
+//TODO2 log-screen
+
+
+
+    return (
     
-        
         <div className="previewWindow"  
           onClick={()=>{
             setIsClickedOnSetters(false);
@@ -356,6 +367,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   triggerAutoMode={triggerAutoMode}
                   isInGameView={true}
                   passInVisualMap={passInVisualMap}
+                  triggerLogOpen={openLogScreen}
               />
 
             </div>

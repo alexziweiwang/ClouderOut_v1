@@ -9,7 +9,6 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
 
-        const [display, setDisplay] = useState(false);
    
         useEffect(() => {
      
@@ -29,16 +28,10 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             setAllPieceContentObj(allPieceTemp);
           }
 
-          let displayTemp = getIsDisplay();
-          setDisplay(displayTemp);
-
-    
-    
-    
         });
 
     return (<div>
-                {display && <div>
+                <div>
                   Converasation Log...
                   <button onClick={()=>{triggerLogPageClose()}}>Close</button>
           
@@ -47,7 +40,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
 
 
-                </div>}
+                </div>
 
 
 

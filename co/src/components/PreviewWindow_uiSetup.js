@@ -89,11 +89,25 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
         return isShowLogScreen;
     }
 
-    return(
-    <div className="previewWindow">
+    function triggerLogOpen() {
+        setisShowLogScreen(true);
+    }
 
+
+    function triggerLogClose() {
+        setisShowLogScreen(false);
+    }    
+
+    return(
+    <div className="previewWindow" style={{"position": "relative"}}>
+
+            
             <div className="previewArea2"
-                style={{"height": `${screenHeight}px`,"width": `${screenWidth}px`}}
+                style={{
+                    "height": `${screenHeight}px`,
+                    "width": `${screenWidth}px`,
+                    "position": "absolute",
+                }}
             >
 
                 <GameUI_2ButtonsPreview 
@@ -138,29 +152,36 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                     triggerAutoMode={notUsing}
                     isInGameView={false}
                     passInVisualMap={passInVisualMap}
+                    triggerLogOpen={triggerLogOpen}
                 />
 
 
 
             </div>
-            <br></br>
-            <br></br><br></br>
 
-            {isShowLogScreen && <div className="previewArea2" style={{"height": `${screenHeight}px`,"width": `${screenWidth}px`}}>
+            <div 
+                
+                style={{
+                    "height": `${screenHeight}px`,
+                    "width": `${screenWidth}px`,
+                    "display": isShowLogScreen ? "flex" : "none",
+                    "position": "absolute",
+
+                }}>
                 <Modal_ConvLog
                     allPieceContent={initialAllPieceData} 
                     initialPieceNum={initialPieceNum} 
                     getCurrPieceNum={getCurrentPieceNum} 
                     logPageUISettings={enteredGetInLogPageUISettings}
                     getInLogPageUISettings={getInLogPageUISettings}
-                    triggerLogPageClose={notUsing}
+                    triggerLogPageClose={triggerLogClose}
                     getAllPieceContent={getAllPieceContent}
                     isQuickView={false}
-                    getIsDisplay={passInIsDisplayConvLog}
+                
                 />
 
           
-            </div>}
+            </div>
 
             <br></br>
             <br></br>
