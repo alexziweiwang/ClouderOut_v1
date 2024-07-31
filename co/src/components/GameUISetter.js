@@ -875,18 +875,23 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <input type="range" min="0" max="3" step="1"
                         value={convLogObj["closeButtonBorderSize"]}
                         onChange={(event)=>{
-                                setConvLogObj({...convLogObj, "closeButtonBorderSize": event.target.value});
+                            setConvLogObj({...convLogObj, "closeButtonBorderSize": event.target.value});
                         }}                   
                     ></input>
                     <input type="number" min="0" max="3" step="1"
                         value={convLogObj["closeButtonBorderSize"]}
                         onChange={(event)=>{
-                                setConvLogObj({...convLogObj, "closeButtonBorderSize": event.target.value});
+                            setConvLogObj({...convLogObj, "closeButtonBorderSize": event.target.value});
                         }}                   
                     ></input>
                 <br></br>
                 <label> Border Color:</label>
-                    <input type="color"></input>
+                    <input type="color" value={convLogObj["closeButtonBorderColor"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonBorderColor": event.target.value});
+                        }}
+                    
+                    ></input>
 
                 <br></br>
                 <label>Button Text: </label>
