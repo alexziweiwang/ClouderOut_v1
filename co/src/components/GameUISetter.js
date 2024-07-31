@@ -177,7 +177,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
                     }}></input><label> {idvButtonBorderColor}</label>
-                    <br></br><label>Border Size: </label>
+        <br></br><label>Border Size: </label>
                     <input type="range" value={idvButtonBorderSize} min="0" max="3" step="1" onChange={(event)=>{
                         setIdvButtonBorderSize(event.target.value);
                         let temp = event.target.value + "px solid " + idvButtonBorderColor;
@@ -858,12 +858,32 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         ></input>
                 <br></br>
                 <label> Corner Radius:</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                <input type="range" value={convLogObj["closeButtonCornerRadius"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonCornerRadius": event.target.value});
+                        }}
+                        max={50} min="0" step="1"
+                    ></input>
+                    <input type="number" value={convLogObj["closeButtonCornerRadius"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonCornerRadius": event.target.value});
+                        }}
+                        max={50} min="0" step="1"
+                        ></input>
                 <br></br>
                 <label> Border Size:</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                    <input type="range" min="0" max="3" step="1"
+                        value={convLogObj["closeButtonBorderSize"]}
+                        onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "closeButtonBorderSize": event.target.value});
+                        }}                   
+                    ></input>
+                    <input type="number" min="0" max="3" step="1"
+                        value={convLogObj["closeButtonBorderSize"]}
+                        onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "closeButtonBorderSize": event.target.value});
+                        }}                   
+                    ></input>
                 <br></br>
                 <label> Border Color:</label>
                     <input type="color"></input>
