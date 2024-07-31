@@ -10,6 +10,10 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
         const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
+
+        const [pieceArr, setPieceArr] = useState(isQuickView === false ? 
+            [["speaker1", "sample_content_1"],["speaker2", "sample_content_2"],["speaker3", "sample_content_3"]] 
+            : []);
         
    
         useEffect(() => {
@@ -21,13 +25,44 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
      
             setFirstTimeEnter(false);
           }
-          
+          let uiObjTemp = "";
+          let allPieceTemp = "";
           if (isQuickView === false) { // for ui-setting immediate-preview
-            let uiObjTemp = getInLogPageUISettings();
+            uiObjTemp = getInLogPageUISettings();
             setLogUIObj(uiObjTemp);
 
-            let allPieceTemp = getAllPieceContent();
+            allPieceTemp = getAllPieceContent();
             setAllPieceContentObj(allPieceTemp);
+          }
+
+          let start = initialPieceNum;
+          let end = getCurrPieceNum();
+          
+          let i = start;
+          let pieceArrTemp = [];
+          for (; i < end; i++) {
+            let speakerInfo = "";
+            let contentInfo = "";
+            
+            if (isQuickView === false) { 
+              //use allPieceTemp
+              speakerInfo = allPieceTemp[i]["speaker_name"];
+              contentInfo = allPieceTemp[i]["content"];
+
+            } else {
+              //use allPieceContent
+              speakerInfo = allPieceContent[i]["speaker_name"];
+              contentInfo = allPieceContent[i]["content"];
+            }
+            let pair = [];
+            pair.push(speakerInfo);
+            pair.push(contentInfo);
+
+            pieceArrTemp.push(pair);
+          }
+
+          if (isQuickView === true) { 
+            setPieceArr(pieceArrTemp);
           }
 
         });
@@ -96,7 +131,16 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
 
 
+          <div>
+            {pieceArr.map((item, index) => {
+                  return(
+                      <div>
+                        {item[0]}: {item[1]}
+                      </div>);
+              }
+              )}
 
+          </div>
 
 
     </div>)
