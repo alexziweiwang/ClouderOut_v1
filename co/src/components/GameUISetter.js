@@ -830,12 +830,32 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         ></input>
                 <br></br>
                 <label> Width:</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                <input type="range" value={convLogObj["closeButtonWidth"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonWidth": event.target.value});
+                        }}
+                        max={screenWidth/5} min="1" step="1"
+                    ></input>
+                    <input type="number" value={convLogObj["closeButtonWidth"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonWidth": event.target.value});
+                        }}
+                        max={screenWidth/5} min="1" step="1"
+                        ></input>
                 <br></br>
                 <label> Height:</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                <input type="range" value={convLogObj["closeButtonHeight"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonHeight": event.target.value});
+                        }}
+                        max={screenHeight/5} min="1" step="1"
+                    ></input>
+                    <input type="number" value={convLogObj["closeButtonHeight"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "closeButtonHeight": event.target.value});
+                        }}
+                        max={screenHeight/5} min="1" step="1"
+                        ></input>
                 <br></br>
                 <label> Corner Radius:</label>
                     <input type="range"></input>
