@@ -793,7 +793,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}
                 >Base Picture</label>
                     <div className="indentOne">
-                        <select value={convLogObj["closeButtonPicName"]} onChange={(event)=>{
+                        <select value={visualMap[convLogObj["closeButtonPicName"]]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "closeButtonPicName": visualMap[event.target.value]["var"]}); 
                         }}>                    
                             <option key="convLogCloseBtnPic-default" value="">-- Select Resource --</option>
@@ -957,7 +957,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}
                 >Base Picture</label>
                 <div className="indentOne">
-                        <select value={convLogObj["bgpPicName"]} onChange={(event)=>{
+                        <select value={visualMap[convLogObj["bgpPicName"]]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 
                         }}>                    
                             <option key="convLogBgp-default" value="">-- Select Resource --</option>

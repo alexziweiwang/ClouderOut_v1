@@ -40,6 +40,9 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
       <div
                   style={{
                     "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
+                    "backgroundImage": logUIObj["bgpIsShape"] === false ? `url('${visualMap[logUIObj["bgpPicName"]]}')` : "",
+
+                    
                     "height": "100%",
                     "width": "100%"
 
