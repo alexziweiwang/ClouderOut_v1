@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 
 
 export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
-    triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings, getIsDisplay}) {
+    triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings, getIsDisplay,
+    visualMap
+  }) {
 
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
 
         const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
-
+        
    
         useEffect(() => {
      
@@ -49,7 +51,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                     id="modal-log-close"
                     style={{
                       "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
-                      "backgroundImage": "",
+                      "backgroundImage": logUIObj["closeButtonIsShape"] === false ? `url('${visualMap[logUIObj["closeButtonPicName"]]}')` : "",
                       "userSelect": "none",
                       "top": `${logUIObj["closeButtonPositionY"]}px`,
                       "left": `${logUIObj["closeButtonPositionX"]}px`,

@@ -415,6 +415,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                     getInLogPageUISettings={notUsing}
                     getAllPieceContent={notUsing}
                     isQuickView={true}
+                    visualMap={visualMap}
                 />}
 
     </div>);
