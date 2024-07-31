@@ -772,7 +772,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onChange={()=>{
                     setConvLogObj({...convLogObj, "closeButtonIsShape": true});
                 }}
-            ></input><label>Rectangle & Color Filled</label>
+            ></input><label
+                onClick={()=>{
+                    setConvLogObj({...convLogObj, "closeButtonIsShape": true});
+                }}
+            >Rectangle & Color Filled</label>
                 <input type="color" value={convLogObj["closeButtonShade"]}
                     onChange={(event)=>{
                         setConvLogObj({...convLogObj, "closeButtonShade": event.target.value});
@@ -783,7 +787,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onChange={()=>{
                         setConvLogObj({...convLogObj, "closeButtonIsShape": false});
                     }}
-                ></input><label>Base Picture</label>
+                ></input><label
+                    onClick={()=>{
+                        setConvLogObj({...convLogObj, "closeButtonIsShape": false});
+                    }}
+                >Base Picture</label>
                     <div className="indentOne">
                         <select value={convLogObj["closeButtonPicName"]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "closeButtonPicName": visualMap[event.target.value]["var"]}); 

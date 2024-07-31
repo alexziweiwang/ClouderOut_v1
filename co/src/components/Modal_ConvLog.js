@@ -58,7 +58,10 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                       "width": `${logUIObj["closeButtonWidth"]}px`,
                       "height": `${logUIObj["closeButtonHeight"]}px`,
                       "border": `${logUIObj["closeButtonBorderSize"]}px solid ${logUIObj["closeButtonBorderColor"]}`,
-
+                      "display": "flex",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "borderRadius": `${logUIObj["closeButtonCornerRadius"]}px`,
                       
 
 
