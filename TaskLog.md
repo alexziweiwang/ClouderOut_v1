@@ -301,3 +301,5 @@
 - 2024-Jul-26: Consider logic-splitter runtime strategy
 - 2024-Jul-26: Consider logic-splitter conditional switching strategy
 - 2024-Jul-26: Design progress-tracking parts under current system overall
+
+- 2024-Jul-31: Consider log-page unit and layout options
