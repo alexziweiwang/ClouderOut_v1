@@ -5,7 +5,11 @@ import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 import Modal_ConvLog from './Modal_ConvLog';
 
 
-export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, visualList, audioList, gameData}) {
+export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, 
+    isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
+    uiData2_buttonOption, uiData3_ConvNavigation, 
+    uiData4_logPageSettings,
+    visualList, audioList, gameData}) {
 //TODO: receive nav-data (for all game type ) ; do later
 
     let modalStyleName = "modalBackboard";
@@ -15,8 +19,6 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
     } else {
         modalStyleName = "displayNone modalBackboard";
     }
-
-    const logPageUISettings = {}; //TODO temp
 
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
@@ -373,9 +375,9 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                         allPieceContent={allPieceContent} 
                         initialPieceNum={initialPieceNum} 
                         getCurrPieceNum={passInCurrentPieceNum} 
-                        logPageUISettings={logPageUISettings}
+                        logPageUISettings={uiData4_logPageSettings}
                         triggerLogPageClose={closeConvLog}
-                        getInLogPageUISettings={notUsing}
+                        getLogPageUISettings={notUsing}
                         getAllPieceContent={notUsing}
                         isQuickView={true}
                         isSettingUI={false}

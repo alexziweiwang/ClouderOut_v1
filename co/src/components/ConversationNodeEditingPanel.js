@@ -684,7 +684,7 @@ export default function ConversationNodeEditingPanel() {
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
-                    getInLogPageUISettings={passInLogPageUISettings}
+                    getLogPageUISettings={passInLogPageUISettings}
                     getScreenSize={passInScreenSize}
                     triggerToDirectNext={triggerToDirectNextFunc}
                     setIsClickedOnSetters={setIsActionOnSetter}
@@ -700,7 +700,7 @@ export default function ConversationNodeEditingPanel() {
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
-                    getInLogPageUISettings={passInLogPageUISettings}
+                    getLogPageUISettings={passInLogPageUISettings}
                     getScreenSize={passInScreenSize}
                     getUIConvNav={passInUIConvNav}
                     passInAudioList={passInAudioList}
@@ -737,6 +737,7 @@ export default function ConversationNodeEditingPanel() {
                 uiData1_textframe={gameUITextFrame} 
                 uiData2_buttonOption={gameUIDefaultButton} 
                 uiData3_ConvNavigation={uiConvNav} 
+                uiData4_logPageSettings={logPageUISettings}
                 screenWidth={screenWidth}
                 screenHeight={screenHeight}
                 visualList={visualList}

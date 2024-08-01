@@ -8,7 +8,7 @@ import Modal_ConvLog from './Modal_ConvLog';
 
 export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
-    getInLogPageUISettings,
+    getLogPageUISettings,
     getBackButtonUISettings, getScreenSize, getUIConvNav, 
     passInAudioList, passInVisualList
 }) {
@@ -29,7 +29,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     const [visualMapSize, setVisualMapSize] = useState(0);
 
     const placeHolder = -1;
-    const enteredGetInLogPageUISettings = getInLogPageUISettings();
+    const enteredgetLogPageUISettings = getLogPageUISettings();
 
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
 
@@ -166,8 +166,8 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                             allPieceContent={initialAllPieceData} 
                             initialPieceNum={initialPieceNum} 
                             getCurrPieceNum={getCurrentPieceNum} 
-                            logPageUISettings={enteredGetInLogPageUISettings}
-                            getInLogPageUISettings={getInLogPageUISettings}
+                            logPageUISettings={enteredgetLogPageUISettings}
+                            getLogPageUISettings={getLogPageUISettings}
                             triggerLogPageClose={triggerLogClose}
                             getAllPieceContent={getAllPieceContent}
                             isQuickView={false}

@@ -13,7 +13,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     getCurrentPieceNum, 
     getTextFrameUISettings, getIsDisplayDefaultButton, 
     getDefaultButtonUISettings, getBackButtonUISettings, 
-    getInLogPageUISettings,
+    getLogPageUISettings,
     getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -23,7 +23,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
 
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
-    const enteredGetInLogPageUISettings = getInLogPageUISettings();
+    const enteredgetLogPageUISettings = getLogPageUISettings();
 
 
     // console.log("re-rendering @preview window"); //TODO test temp
@@ -390,8 +390,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                             allPieceContent={initialAllPieceData} 
                             initialPieceNum={currentPieceNum} 
                             getCurrPieceNum={getCurrentPieceNum} 
-                            logPageUISettings={enteredGetInLogPageUISettings}
-                            getInLogPageUISettings={getInLogPageUISettings}
+                            logPageUISettings={enteredgetLogPageUISettings}
+                            getLogPageUISettings={getLogPageUISettings}
                             triggerLogPageClose={triggerLogClose}
                             getAllPieceContent={getAllPieceContent}
                             isQuickView={false}

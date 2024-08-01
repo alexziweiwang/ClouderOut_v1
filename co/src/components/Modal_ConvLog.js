@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 
 
 export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
-    triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings, getIsDisplay,
+    triggerLogPageClose, getAllPieceContent, isQuickView, getLogPageUISettings, getIsDisplay,
     visualMap, isSettingUI
   }) {
 
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
 
         const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
+       
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
 
         const [pieceArr, setPieceArr] = useState(isSettingUI === true ? 
@@ -28,7 +29,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
           if (firstTimeEnter === true) {
     
         // if isQuickView === true, then use "allPieceContent"  and "logPageUISettings" directly;
-        // else : use getAllPieceContent & getInLogPageUISettings for each render
+        // else : use getAllPieceContent & getLogPageUISettings for each render
      
             setFirstTimeEnter(false);
           }
@@ -37,7 +38,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
           let uiObjTemp = "";
           let allPieceTemp = "";
           if (isQuickView === false) { // for ui-setting immediate-preview
-            uiObjTemp = getInLogPageUISettings();
+            uiObjTemp = getLogPageUISettings();
             setLogUIObj(uiObjTemp);
 
             allPieceTemp = getAllPieceContent();
@@ -88,7 +89,6 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                     
                     "height": "100%",
                     "width": "100%",
-  
 
                   }}
                 
