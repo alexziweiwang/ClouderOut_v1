@@ -1026,8 +1026,19 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     max={screenHeight} min="1" step="1"
                 ></input><br></br>
 
-         
-            
+            <label>Group Item Gap</label>
+            <input type="range" value={convLogObj["groupItemGap"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
+
+                }}
+                    max={50} min="1" step="1"
+                ></input>
+                <input type="number" value={convLogObj["groupItemGap"]} onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
+                }}
+                    max={50} min="1" step="1"
+                ></input><br></br>            
+            <br></br>  <br></br>  
             <label>Content Text Settings</label>
             <div className="indentOne">
                 <br></br>Content Text Shade
