@@ -224,7 +224,7 @@ export default function ConversationNodeEditingPanel() {
         "groupPosX": 50,
         "groupPosY": 50,
         "groupWidth": 699,
-        "groupHeight": 70,    
+
         "groupItemGap": 10,   
 
         "contentTextShade": "",

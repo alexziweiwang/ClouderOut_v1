@@ -14,7 +14,11 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         const [pieceArr, setPieceArr] = useState(isQuickView === false ? 
             [["speaker1", "sample_content_1-sample_content_1-sample_content_1"],
             ["speaker2", "sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2"],
-            ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"]] 
+            ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"],
+            ["", "..."],
+            ["speaker5", "12345"],
+              ]
+            
             : []);
         
    
@@ -75,14 +79,14 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
     return (
       <div
-                  style={{
+          style={{
                     "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
                     "backgroundImage": logUIObj["bgpIsShape"] === false ? `url('${visualMap[logUIObj["bgpPicName"]]}')` : "",
 
                     
                     "height": "100%",
-                    "width": "100%"
-
+                    "width": "100%",
+                    "overflow": "scroll",
                   }}
                 
                 >
@@ -137,6 +141,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
               "left": `${logUIObj["groupPosX"]}px`,
               "top": `${logUIObj["groupPosY"]}px`,
               "position": "absolute",
+              "overflow": "scroll",
+
             }}
           >
             {pieceArr.map((item, index) => {
@@ -150,14 +156,20 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                         }}
                       >
                         
-                        <div style={{"display": "flex",
+                        {item[0] !== "" && <div style={{"display": "flex",
                           "justifyContent": "left",}}>
                           {item[0]} 
-                        </div>
+                        </div>}
       
                         <div className="wrappingFrame"
-                          style={{"display": "flex",
-                          "justifyContent": "left",}}
+                          style=
+                          {{"display": "flex",
+                            "justifyContent": "left",
+                            "color": `${logUIObj["contentTextShade"]}`,
+                            "fontFamily": `${logUIObj["contentTextFont"]}`,
+                            "marginLeft": `${logUIObj["contentPosX"]}px`,
+                            "marginTop": `${logUIObj["contentPosY"]}px`,
+                          }}
                         >   
                           {item[1]}
                         </div>

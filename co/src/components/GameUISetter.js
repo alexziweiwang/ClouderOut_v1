@@ -1013,18 +1013,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     max={screenWidth} min="1" step="1"
                 ></input><br></br>
 
-            <label>Group Position Height</label>
-            <input type="range" value={convLogObj["groupHeight"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupHeight": event.target.value});
-
-                }}
-                    max={screenHeight} min="1" step="1"
-                ></input>
-                <input type="number" value={convLogObj["groupHeight"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupHeight": event.target.value});
-                }}
-                    max={screenHeight} min="1" step="1"
-                ></input><br></br>
+        
 
             <label>Group Item Gap</label>
             <input type="range" value={convLogObj["groupItemGap"]} onChange={(event)=>{
@@ -1041,13 +1030,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <br></br>  <br></br>  
             <label>Content Text Settings</label>
             <div className="indentOne">
-                <br></br>Content Text Shade
-                <input type="color" value={convLogObj["contentTextShade"]}
+                <br></br>Content Text Shade:
+                 <input type="color" value={convLogObj["contentTextShade"]}
                     onChange={(event)=>{
                         setConvLogObj({...convLogObj, "contentTextShade": event.target.value});
                     }}
                 ></input>
-                <br></br>Content Text Size
+                <br></br>Content Text Size: 
                 <input type="range" value={convLogObj["contentTextSize"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentTextSize": event.target.value});
                 }}></input>
@@ -1067,10 +1056,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <br></br>Position X
                 <input type="range" value={convLogObj["contentPosX"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentPosX": event.target.value});
-                }}></input>
+                }}
+                    max="200" min="0" step="1"
+                ></input>
                 <input type="number" value={convLogObj["contentPosX"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentPosX": event.target.value});
-                }}></input>
+                }}
+                    max="200" min="0" step="1"
+                ></input>
                 <br></br>Position Y
                 <input type="range" value={convLogObj["contentPosY"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentPosY": event.target.value});
