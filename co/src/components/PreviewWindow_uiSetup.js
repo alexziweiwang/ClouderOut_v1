@@ -171,6 +171,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                             triggerLogPageClose={triggerLogClose}
                             getAllPieceContent={getAllPieceContent}
                             isQuickView={false}
+                            isSettingUI={true}
                             visualMap={visualMap}
                         />
 

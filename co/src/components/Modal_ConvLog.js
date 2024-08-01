@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
     triggerLogPageClose, getAllPieceContent, isQuickView, getInLogPageUISettings, getIsDisplay,
-    visualMap
+    visualMap, isSettingUI
   }) {
 
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
@@ -11,7 +11,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
 
-        const [pieceArr, setPieceArr] = useState(isQuickView === false ? 
+        const [pieceArr, setPieceArr] = useState(isSettingUI === true ? 
             [["speaker1", "sample_content_1-sample_content_1-sample_content_1"],
             ["speaker2", "sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2"],
             ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"],
@@ -67,14 +67,11 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             pieceArrTemp.push(pair);
           }
 
-          if (isQuickView === true) { 
+          if (isSettingUI === false) { 
             setPieceArr(pieceArrTemp);
           }
 
         });
-
-        //TODO2: close-button-pic:  `url('${visualMap[logUIObj["closeButtonPicName"]]}')`
-        //TODO2: close button text: setup by user
 
 
     return (

@@ -317,7 +317,11 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                                         </div>
 
                                 </div>}
-                
+
+<div style={{
+    "display": !showConvLog ? "flex" : "none"
+}}>
+
                                 {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) &&                          
                                     <GameUI_Play_1TextFrame
                                         initialPieceNum={initialPieceNum}
@@ -362,6 +366,21 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                                     />
                                 
                                 }
+</div>
+
+
+                    {showConvLog && <Modal_ConvLog
+                        allPieceContent={allPieceContent} 
+                        initialPieceNum={initialPieceNum} 
+                        getCurrPieceNum={passInCurrentPieceNum} 
+                        logPageUISettings={logPageUISettings}
+                        triggerLogPageClose={closeConvLog}
+                        getInLogPageUISettings={notUsing}
+                        getAllPieceContent={notUsing}
+                        isQuickView={true}
+                        isSettingUI={false}
+                        visualMap={visualMap}
+                    />}
 
 
                                 {/* //TODO add standardButtonGroup component
@@ -401,22 +420,20 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                             </tbody>  
                         </table>
                     </div>
+
+                    
                 </div>
 
+                
+
                 </div>
+           
+           
+           
+           
                 </div>
 
-                {showConvLog && <Modal_ConvLog
-                    allPieceContent={allPieceContent} 
-                    initialPieceNum={initialPieceNum} 
-                    getCurrPieceNum={passInCurrentPieceNum} 
-                    logPageUISettings={logPageUISettings}
-                    triggerLogPageClose={closeConvLog}
-                    getInLogPageUISettings={notUsing}
-                    getAllPieceContent={notUsing}
-                    isQuickView={true}
-                    visualMap={visualMap}
-                />}
+           
 
     </div>);
 }

@@ -251,15 +251,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       return audioMap;
     }
 
-    function openLogScreen() {
-      //TODO2 
-      console.log("open log in preview-game-content"); 
-
-
-
-    }
-
-
 
 
     function triggerLogOpen() {
@@ -286,7 +277,9 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
               }}>
 
 
-
+<div style={{
+  "display": !isShowLogScreen ? "flex" : "none"
+}}>
 
               {<div style={{
                 "backgroundColor": "#000000",
@@ -384,10 +377,10 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   triggerAutoMode={triggerAutoMode}
                   isInGameView={true}
                   passInVisualMap={passInVisualMap}
-                  triggerLogOpen={openLogScreen}
+                  triggerLogOpen={triggerLogOpen}
               />
 
-
+</div>
 
 
 
@@ -402,6 +395,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                             triggerLogPageClose={triggerLogClose}
                             getAllPieceContent={getAllPieceContent}
                             isQuickView={false}
+                            isSettingUI={false}
                             visualMap={visualMap}
                 />}
 
