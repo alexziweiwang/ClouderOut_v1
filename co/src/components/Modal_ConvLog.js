@@ -157,7 +157,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                         key={keyStr}
                         style={{
                           "width": `${logUIObj["groupWidth"]}px`, 
-                          "backgroundColor": "green",
+                          "backgroundColor": "grey",
                           "marginBottom": `${logUIObj["groupItemGap"]}px`,
                           
                         }}
@@ -168,7 +168,9 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                           "justifyContent": "left",
                           "color": `${logUIObj["speakerTextShade"]}`,
                           "fontFamily": `${logUIObj["speakerTextFont"]}`,
-
+                          "fontSize": `${logUIObj["speakerTextSize"]}px`,
+                          "marginLeft": `${logUIObj["speakerPosX"]}px`,
+                          "paddingTop": `${logUIObj["speakerPosY"]}px`,
 
                           
                           }}>
@@ -182,7 +184,10 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                             "color": `${logUIObj["contentTextShade"]}`,
                             "fontFamily": `${logUIObj["contentTextFont"]}`,
                             "marginLeft": `${logUIObj["contentPosX"]}px`,
-                            "marginTop": `${logUIObj["contentPosY"]}px`,
+                            "paddingTop": `${logUIObj["contentPosY"]}px`,
+                            "fontSize": `${logUIObj["contentTextSize"]}px`,
+                            "paddingBottom": "20px",
+
                           }}
                         >   
                           {item[1]}
