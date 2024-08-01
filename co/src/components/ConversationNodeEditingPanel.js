@@ -684,6 +684,7 @@ export default function ConversationNodeEditingPanel() {
                     getDefaultButtonUISettings={passInDefaultButtonUISettings} 
                     getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
                     getBackButtonUISettings={passInBackButtonUISettings}
+                    getInLogPageUISettings={passInLogPageUISettings}
                     getScreenSize={passInScreenSize}
                     triggerToDirectNext={triggerToDirectNextFunc}
                     setIsClickedOnSetters={setIsActionOnSetter}

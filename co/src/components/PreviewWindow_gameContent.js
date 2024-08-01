@@ -6,15 +6,25 @@ import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import Modal_ConvLog from './Modal_ConvLog';
 
 
-export default function PreviewWindow_gameContent({initialAllPieceData, getAllPieceContent, getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
+export default function PreviewWindow_gameContent({initialAllPieceData, getAllPieceContent, 
+    getCurrentPieceNum, 
+    getTextFrameUISettings, getIsDisplayDefaultButton, 
+    getDefaultButtonUISettings, getBackButtonUISettings, 
+    getInLogPageUISettings,
+    getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
+
+    const [isShowLogScreen, setisShowLogScreen] = useState(false);
+    const enteredGetInLogPageUISettings = getInLogPageUISettings();
+
 
     // console.log("re-rendering @preview window"); //TODO test temp
 
@@ -250,9 +260,16 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     }
 
 
-//TODO2 log-screen
 
 
+    function triggerLogOpen() {
+      setisShowLogScreen(true);
+    }
+
+
+    function triggerLogClose() {
+      setisShowLogScreen(false);
+    }  
 
     return (
     
@@ -369,6 +386,26 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   passInVisualMap={passInVisualMap}
                   triggerLogOpen={openLogScreen}
               />
+
+
+
+
+
+
+                {isShowLogScreen && 
+                        <Modal_ConvLog
+                            allPieceContent={initialAllPieceData} 
+                            initialPieceNum={currentPieceNum} 
+                            getCurrPieceNum={getCurrentPieceNum} 
+                            logPageUISettings={enteredGetInLogPageUISettings}
+                            getInLogPageUISettings={getInLogPageUISettings}
+                            triggerLogPageClose={triggerLogClose}
+                            getAllPieceContent={getAllPieceContent}
+                            isQuickView={false}
+                            visualMap={visualMap}
+                />}
+
+
 
             </div>
             1currentPieceNum={currentPieceNum} (TESTing)
