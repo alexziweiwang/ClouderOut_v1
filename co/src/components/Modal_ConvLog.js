@@ -86,7 +86,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                     
                     "height": "100%",
                     "width": "100%",
-                    "overflow": "scroll",
+  
+
                   }}
                 
                 >
@@ -141,6 +142,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
               "left": `${logUIObj["groupPosX"]}px`,
               "top": `${logUIObj["groupPosY"]}px`,
               "position": "absolute",
+              "height": "90%",
+              "width": "100%",  
               "overflow": "scroll",
 
             }}
@@ -156,8 +159,15 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                         }}
                       >
                         
-                        {item[0] !== "" && <div style={{"display": "flex",
-                          "justifyContent": "left",}}>
+                        {item[0] !== "" && <div style={{
+                          "display": "flex",
+                          "justifyContent": "left",
+                          "color": `${logUIObj["speakerTextShade"]}`,
+                          "fontFamily": `${logUIObj["speakerTextFont"]}`,
+
+
+                          
+                          }}>
                           {item[0]} 
                         </div>}
       
