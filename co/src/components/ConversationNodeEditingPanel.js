@@ -223,8 +223,8 @@ export default function ConversationNodeEditingPanel() {
 
         "groupPosX": 100,
         "groupPosY": 200,
-        "groupWidth": 100,
-        "groupHeight": 200,       
+        "groupWidth": 120,
+        "groupHeight": 20,       
 
         "contentTextShade": "",
         "contentTextSize": 20,

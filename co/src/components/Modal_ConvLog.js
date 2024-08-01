@@ -125,16 +125,27 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                   </div>
                   
                   
-                  Converasation Log...        
           {/* //TODO  allPieceContentObj       
           //TODO  logUIObj */}
 
 
 
-          <div>
+          <div
+            style={{
+              "left": `${logUIObj["groupPosX"]}px`,
+              "top": `${logUIObj["groupPosY"]}px`,
+              "position": "absolute",
+            }}
+          >
             {pieceArr.map((item, index) => {
                   return(
-                      <div>
+                      <div
+                        style={{
+                          "width": `${logUIObj["groupWidth"]}px`, 
+                          "height": `${logUIObj["groupHeight"]}px`, 
+                          "backgroundColor": "green",
+                        }}
+                      >
                         {item[0]}: {item[1]}
                       </div>);
               }
