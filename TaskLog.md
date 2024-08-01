@@ -303,3 +303,11 @@
 - 2024-Jul-26: Design progress-tracking parts under current system overall
 
 - 2024-Jul-31: Consider log-page unit and layout options
+- 2024-Jul-31: Consider conv-log voiceline strategy
+
+
+
+
+
+
+
