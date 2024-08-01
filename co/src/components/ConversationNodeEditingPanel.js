@@ -221,10 +221,10 @@ export default function ConversationNodeEditingPanel() {
         "bgpShade": "",
         "bgpPicName": "",
 
-        "groupPosX": 100,
-        "groupPosY": 200,
-        "groupWidth": 120,
-        "groupHeight": 20,    
+        "groupPosX": 50,
+        "groupPosY": 50,
+        "groupWidth": 699,
+        "groupHeight": 70,    
         "groupItemGap": 10,   
 
         "contentTextShade": "",

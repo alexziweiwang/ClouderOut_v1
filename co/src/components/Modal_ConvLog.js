@@ -12,9 +12,9 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
 
         const [pieceArr, setPieceArr] = useState(isQuickView === false ? 
-            [["speaker1", "sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1-sample_content_1"],
+            [["speaker1", "sample_content_1-sample_content_1-sample_content_1"],
             ["speaker2", "sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2"],
-            ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"]] 
+            ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"]] 
             : []);
         
    
@@ -144,17 +144,24 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                       <div
                         style={{
                           "width": `${logUIObj["groupWidth"]}px`, 
-                          "height": `${logUIObj["groupHeight"]}px`, 
                           "backgroundColor": "green",
                           "marginBottom": `${logUIObj["groupItemGap"]}px`,
-                          "display": "flex",
-                          "justifyContent": "left",
-                          "alignItems": "start",
+                          
                         }}
                       >
-                        {item[0]} 
-                        <br></br>
-                        {item[1]}
+                        
+                        <div style={{"display": "flex",
+                          "justifyContent": "left",}}>
+                          {item[0]} 
+                        </div>
+      
+                        <div className="wrappingFrame"
+                          style={{"display": "flex",
+                          "justifyContent": "left",}}
+                        >   
+                          {item[1]}
+                        </div>
+                        
                       </div>);
               }
               )}
