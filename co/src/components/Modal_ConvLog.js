@@ -21,6 +21,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             
             : []);
         
+        
    
         useEffect(() => {
      
@@ -31,6 +32,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
      
             setFirstTimeEnter(false);
           }
+
+
           let uiObjTemp = "";
           let allPieceTemp = "";
           if (isQuickView === false) { // for ui-setting immediate-preview
@@ -38,10 +41,10 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             setLogUIObj(uiObjTemp);
 
             allPieceTemp = getAllPieceContent();
-            setAllPieceContentObj(allPieceTemp);
+           
           }
 
-          let start = initialPieceNum;
+          let start = 0;
           let end = getCurrPieceNum();
           
           let i = start;
@@ -64,10 +67,12 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             pair.push(speakerInfo);
             pair.push(contentInfo);
 
+
+            
             pieceArrTemp.push(pair);
           }
 
-          if (isSettingUI === false) { 
+          if (isSettingUI === false && pieceArr.length !== pieceArrTemp.length) { 
             setPieceArr(pieceArrTemp);
           }
 
@@ -146,8 +151,10 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             }}
           >
             {pieceArr.map((item, index) => {
+                  let keyStr = "pieceArr-log-" + index;
                   return(
                       <div
+                        key={keyStr}
                         style={{
                           "width": `${logUIObj["groupWidth"]}px`, 
                           "backgroundColor": "green",
