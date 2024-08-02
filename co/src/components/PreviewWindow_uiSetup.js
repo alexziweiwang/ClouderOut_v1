@@ -174,6 +174,8 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                             isSettingUI={true}
                             visualMap={visualMap}
                             getVisualMap={passInVisualMap}
+                            screenWidth={screenWidth}
+                            screenHeight={screenHeight}
                         />
 
 }

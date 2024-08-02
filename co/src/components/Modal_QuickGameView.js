@@ -387,6 +387,8 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                         isSettingUI={false}
                         visualMap={visualMap}
                         getVisualMap={passInVisualMap}
+                        screenWidth={screenWidth}
+                        screenHeight={screenHeight}
                      
                     />}
 

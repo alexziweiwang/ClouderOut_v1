@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
     triggerLogPageClose, getAllPieceContent, isQuickView, getLogPageUISettings, getIsDisplay,
-    visualMap, getVisualMap, 
+    visualMap, getVisualMap, screenWidth, screenHeight,
     isSettingUI
   }) {
 
@@ -22,7 +22,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             : []);
         
       
-        const [visualMapLocal, setVisualMapLocal] = useState(!isQuickView ? visualMap : {});
+        const [visualMapLocal, setVisualMapLocal] = useState(visualMap);
    
         useEffect(() => {
      
@@ -45,22 +45,6 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
            
           } else {
             let visualMapTemp = getVisualMap();
-
-
-
-            console.log("visualMapLocal", visualMapLocal);
-
-
-            console.log("quick-view, visual map = ", visualMapTemp); //TODO test
-            console.log("logUIObj[bgpPicName] = ", logUIObj["bgpPicName"]);
-            console.log("logUIObj[bgpPicName] url = ", visualMapTemp[logUIObj["bgpPicName"]]);
-            console.log("logUIObj[bgpPicName] url-local = ", visualMapLocal[logUIObj["bgpPicName"]]);
-
-            console.log("logUIObj[bgpIsShape]? ", logUIObj["bgpIsShape"]);
-            console.log("logUIObj[closeButtonPicName]", logUIObj["closeButtonPicName"]);
-            console.log("logUIObj[closeButtonPicName] url", visualMapTemp[logUIObj["closeButtonPicName"]]);
-
-
 
             setVisualMapLocal(visualMapTemp);
           }
@@ -100,24 +84,24 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         });
 
 
-
-//TODO1: add width & height settings (from caller) for robustness
       
     const closeButtonId = "modal-log-close" + (isQuickView === true ? "-quick-view" : "-setter") + (isSettingUI === true ? "-uiSetter" : "-gameContentSetter");
 
     return (
-      <div
-          style={{
-                    "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
-                    "backgroundImage": logUIObj["bgpIsShape"] === false 
-                      ? `url('${visualMapLocal[logUIObj["bgpPicName"]]}')` : "",
-                    
-                    "height": "100%",
-                    "width": "100%",
 
-                  }}
-                
-                >
+              
+    <div
+            style={{
+                      "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
+                      "backgroundImage": logUIObj["bgpIsShape"] === false 
+                        ? `url('${visualMapLocal[logUIObj["bgpPicName"]]}')` : "",
+                      "height": `${screenHeight}px`,
+                      "width": `${screenWidth}px`,
+                      "position": "relative",
+                      "userSelect": "none"
+                    }}
+                  
+                  >
   
                   <div 
                     id={closeButtonId}
@@ -225,5 +209,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
           </div>
 
 
+ 
+    
     </div>)
 }

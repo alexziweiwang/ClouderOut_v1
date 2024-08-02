@@ -20,6 +20,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
   
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+   
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
 
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
@@ -398,6 +399,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                             isSettingUI={false}
                             visualMap={visualMap}
                             getVisualMap={passInVisualMap}
+                            screenWidth={screenWidth}
+                            screenHeight={screenHeight}
                 />}
 
 
