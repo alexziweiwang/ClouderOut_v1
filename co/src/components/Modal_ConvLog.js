@@ -9,8 +9,6 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
 
-        const [allPieceContentObj, setAllPieceContentObj] = useState(allPieceContent);
-       
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
 
         const [pieceArr, setPieceArr] = useState(isSettingUI === true ? 
@@ -56,8 +54,11 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             console.log("quick-view, visual map = ", visualMapTemp); //TODO test
             console.log("logUIObj[bgpPicName] = ", logUIObj["bgpPicName"]);
             console.log("logUIObj[bgpPicName] url = ", visualMapTemp[logUIObj["bgpPicName"]]);
+            console.log("logUIObj[bgpPicName] url-local = ", visualMapLocal[logUIObj["bgpPicName"]]);
+
             console.log("logUIObj[bgpIsShape]? ", logUIObj["bgpIsShape"]);
             console.log("logUIObj[closeButtonPicName]", logUIObj["closeButtonPicName"]);
+            console.log("logUIObj[closeButtonPicName] url", visualMapTemp[logUIObj["closeButtonPicName"]]);
 
 
 
@@ -101,7 +102,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
 
 //TODO1: add width & height settings (from caller) for robustness
-
+      
+    const closeButtonId = "modal-log-close" + (isQuickView === true ? "-quick-view" : "-setter") + (isSettingUI === true ? "-uiSetter" : "-gameContentSetter");
 
     return (
       <div
@@ -118,7 +120,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                 >
   
                   <div 
-                    id="modal-log-close"
+                    id={closeButtonId}
                     style={{
                       "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
                       "backgroundImage": logUIObj["closeButtonIsShape"] === false ? `url('${visualMapLocal[logUIObj["closeButtonPicName"]]}')` : "",
@@ -141,12 +143,12 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
                     onMouseDown={
                       ()=>{
-                          document.getElementById("modal-log-close").style.filter = "brightness(150%)";
+                          document.getElementById(closeButtonId).style.filter = "brightness(150%)";
                       }
                     }
                     onMouseUp={
                         ()=>{
-                            document.getElementById("modal-log-close").style.filter = "brightness(100%)";
+                            document.getElementById(closeButtonId).style.filter = "brightness(100%)";
                         }
                     }
 
