@@ -305,6 +305,12 @@
 - 2024-Jul-31: Consider log-page unit and layout options
 - 2024-Jul-31: Consider conv-log voiceline strategy
 
+- 2024-Aug-01: Consider conv-log icon strategy
+
+
+
+
+
 
 
 
