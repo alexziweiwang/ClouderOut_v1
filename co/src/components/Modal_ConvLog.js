@@ -12,11 +12,12 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         const [logUIObj, setLogUIObj] = useState(logPageUISettings);
 
         const [pieceArr, setPieceArr] = useState(isSettingUI === true ? 
-            [["speaker1", "sample_content_1-sample_content_1-sample_content_1"],
-            ["speaker2", "sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2"],
+            [
+            ["speaker5", "12345"], 
+            ["", "..."], 
             ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"],
-            ["", "..."],
-            ["speaker5", "12345"],
+            ["speaker2", "sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2"],
+            ["speaker1", "sample_content_1-sample_content_1-sample_content_1"],
               ]
             
             : []);
@@ -52,9 +53,9 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
           let start = 0;
           let end = getCurrPieceNum();
           
-          let i = start;
+          let i = end;
           let pieceArrTemp = [];
-          for (; i < end; i++) {
+          for (; i >= start; i--) {
             let speakerInfo = "";
             let contentInfo = "";
             
@@ -156,6 +157,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
               "height": "90%",
               "width": "100%",  
               "overflow": "scroll",
+              "display": "flex",
+              "flexDirection": "column-reverse",
 
             }}
           >
