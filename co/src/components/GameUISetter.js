@@ -975,58 +975,75 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             </div>
                     
             <br></br>   
+            <label>Group Unit Settings:</label>
+                <div className="indentOne">
+                    <label>Group Unit Background</label>
+                    <div className="indentOne">
+                            <input type="radio"></input><label>Rectangle & Color Filled</label>
+                                <input type="color"></input>
+                            <br></br>
+                            <input type="radio"></input><label>Base Picture</label>
+                            <select></select>
+                            <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                    </div>  
 
-            <label>Group Position X</label>
-                <input type="range" value={convLogObj["groupPosX"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupPosX": event.target.value});
 
-                }}
-                    max={screenWidth} min="1" step="1"
-                ></input>
-                <input type="number" value={convLogObj["groupPosX"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupPosX": event.target.value});
-                }}
-                    max={screenWidth} min="1" step="1"
-                ></input><br></br>
+                    <label>Group Position X</label>
+                        <input type="range" value={convLogObj["groupPosX"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupPosX": event.target.value});
 
-            <label>Group Position Y</label>
-            <input type="range" value={convLogObj["groupPosY"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupPosY": event.target.value});
-                }}
-                    max={screenHeight} min="1" step="1"
-                ></input>
-                <input type="number" value={convLogObj["groupPosY"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupPosY": event.target.value});
-                }}
-                    max={screenHeight} min="1" step="1"
-                ></input><br></br>
+                        }}
+                            max={screenWidth} min="1" step="1"
+                        ></input>
+                        <input type="number" value={convLogObj["groupPosX"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupPosX": event.target.value});
+                        }}
+                            max={screenWidth} min="1" step="1"
+                        ></input><br></br>
 
-            <label>Group Position Width</label>
-            <input type="range" value={convLogObj["groupWidth"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupWidth": event.target.value});    
-                }}
-                    max={screenWidth} min="1" step="1"
-                ></input>
-                <input type="number" value={convLogObj["groupWidth"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupWidth": event.target.value});
-                }}
-                    max={screenWidth} min="1" step="1"
-                ></input><br></br>
+                    <label>Group Position Y</label>
+                    <input type="range" value={convLogObj["groupPosY"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupPosY": event.target.value});
+                        }}
+                            max={screenHeight} min="1" step="1"
+                        ></input>
+                        <input type="number" value={convLogObj["groupPosY"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupPosY": event.target.value});
+                        }}
+                            max={screenHeight} min="1" step="1"
+                        ></input><br></br>
 
-        
+                    <label>Group Position Width</label>
+                    <input type="range" value={convLogObj["groupWidth"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupWidth": event.target.value});    
+                        }}
+                            max={screenWidth} min="1" step="1"
+                        ></input>
+                        <input type="number" value={convLogObj["groupWidth"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupWidth": event.target.value});
+                        }}
+                            max={screenWidth} min="1" step="1"
+                        ></input><br></br>
 
-            <label>Group Item Gap</label>
-            <input type="range" value={convLogObj["groupItemGap"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
+                
 
-                }}
-                    max={50} min="1" step="1"
-                ></input>
-                <input type="number" value={convLogObj["groupItemGap"]} onChange={(event)=>{
-                        setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
-                }}
-                    max={50} min="1" step="1"
-                ></input><br></br>            
+                    <label>Group Item Gap</label>
+                    <input type="range" value={convLogObj["groupItemGap"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
+
+                        }}
+                            max={50} min="1" step="1"
+                        ></input>
+                        <input type="number" value={convLogObj["groupItemGap"]} onChange={(event)=>{
+                                setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
+                        }}
+                            max={50} min="1" step="1"
+                        ></input><br></br>        
+
+
+            </div>
+
+              
             <br></br>  <br></br>  
             <label>Content Text Settings</label>
             <div className="indentOne">
