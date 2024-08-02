@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 
 export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
     triggerLogPageClose, getAllPieceContent, isQuickView, getLogPageUISettings, getIsDisplay,
-    visualMap, isSettingUI
+    visualMap, getVisualMap, 
+    isSettingUI
   }) {
 
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
@@ -22,7 +23,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             
             : []);
         
-        
+        const visualMapTemp = getVisualMap();
+        const visualMapLocal = isQuickView ? visualMap : visualMapTemp;
    
         useEffect(() => {
      
@@ -84,7 +86,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
       <div
           style={{
                     "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
-                    "backgroundImage": logUIObj["bgpIsShape"] === false ? `url('${visualMap[logUIObj["bgpPicName"]]}')` : "",
+                    "backgroundImage": logUIObj["bgpIsShape"] === false ? `url('${visualMapLocal[logUIObj["bgpPicName"]]}')` : "",
 
                     
                     "height": "100%",
@@ -98,7 +100,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                     id="modal-log-close"
                     style={{
                       "backgroundColor": logUIObj["closeButtonIsShape"] === true ? logUIObj["closeButtonShade"] : "",
-                      "backgroundImage": logUIObj["closeButtonIsShape"] === false ? `url('${visualMap[logUIObj["closeButtonPicName"]]}')` : "",
+                      "backgroundImage": logUIObj["closeButtonIsShape"] === false ? `url('${visualMapLocal[logUIObj["closeButtonPicName"]]}')` : "",
                       "userSelect": "none",
                       "top": `${logUIObj["closeButtonPositionY"]}px`,
                       "left": `${logUIObj["closeButtonPositionX"]}px`,

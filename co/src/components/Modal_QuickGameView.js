@@ -256,6 +256,10 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         return;
     }
 
+    function passInVisualMap() {
+        return visualMap;
+    }
+
     function passInIsDisplayConvLog() {
         return showConvLog;
     }
@@ -382,6 +386,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                         isQuickView={true}
                         isSettingUI={false}
                         visualMap={visualMap}
+                        getVisualMap={passInVisualMap}
                     />}
 
 

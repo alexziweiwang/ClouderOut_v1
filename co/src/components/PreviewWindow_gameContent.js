@@ -397,6 +397,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                             isQuickView={false}
                             isSettingUI={false}
                             visualMap={visualMap}
+                            getVisualMap={passInVisualMap}
                 />}
 
 

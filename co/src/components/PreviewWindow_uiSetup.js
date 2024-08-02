@@ -173,6 +173,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                             isQuickView={false}
                             isSettingUI={true}
                             visualMap={visualMap}
+                            getVisualMap={passInVisualMap}
                         />
 
 }
