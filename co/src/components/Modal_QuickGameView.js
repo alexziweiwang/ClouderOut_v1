@@ -294,7 +294,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                                     "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
                                     
                                     onClick={()=>{
-                                        if (directNextPieceBool === true) {
+                                        if (directNextPieceBool === true && showConvLog === false) {
                                             //TODO1 add "firstTap" for all-content showing on one piece
                                             triggerToDirectNextPiece();
                                         }
@@ -387,6 +387,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                         isSettingUI={false}
                         visualMap={visualMap}
                         getVisualMap={passInVisualMap}
+                     
                     />}
 
 

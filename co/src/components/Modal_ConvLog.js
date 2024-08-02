@@ -23,8 +23,8 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             
             : []);
         
-        const visualMapTemp = getVisualMap();
-        const visualMapLocal = isQuickView ? visualMap : visualMapTemp;
+      
+        const [visualMapLocal, setVisualMapLocal] = useState(!isQuickView ? visualMap : {});
    
         useEffect(() => {
      
@@ -45,6 +45,23 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
 
             allPieceTemp = getAllPieceContent();
            
+          } else {
+            let visualMapTemp = getVisualMap();
+
+
+
+            console.log("visualMapLocal", visualMapLocal);
+
+
+            console.log("quick-view, visual map = ", visualMapTemp); //TODO test
+            console.log("logUIObj[bgpPicName] = ", logUIObj["bgpPicName"]);
+            console.log("logUIObj[bgpPicName] url = ", visualMapTemp[logUIObj["bgpPicName"]]);
+            console.log("logUIObj[bgpIsShape]? ", logUIObj["bgpIsShape"]);
+            console.log("logUIObj[closeButtonPicName]", logUIObj["closeButtonPicName"]);
+
+
+
+            setVisualMapLocal(visualMapTemp);
           }
 
           let start = 0;
@@ -82,12 +99,16 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
         });
 
 
+
+//TODO1: add width & height settings (from caller) for robustness
+
+
     return (
       <div
           style={{
                     "backgroundColor": logUIObj["bgpIsShape"] === true ? logUIObj["bgpShade"] : "",
-                    "backgroundImage": logUIObj["bgpIsShape"] === false ? `url('${visualMapLocal[logUIObj["bgpPicName"]]}')` : "",
-
+                    "backgroundImage": logUIObj["bgpIsShape"] === false 
+                      ? `url('${visualMapLocal[logUIObj["bgpPicName"]]}')` : "",
                     
                     "height": "100%",
                     "width": "100%",
