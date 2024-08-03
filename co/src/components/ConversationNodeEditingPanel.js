@@ -225,7 +225,11 @@ export default function ConversationNodeEditingPanel() {
         "groupPosY": 50,
         "groupWidth": 699,
 
-        "groupItemGap": 10,   
+        "groupItemGap": 10, 
+        
+        "groupBgIsShape": false,
+        "groupBgShade": "",
+        "groupBgpName": "",  
 
         "contentTextShade": "",
         "contentTextSize": 20,

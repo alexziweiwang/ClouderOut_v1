@@ -979,15 +979,34 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <div className="indentOne">
                     <label>Group Unit Background</label>
                     <div className="indentOne">
-                            <input type="radio"></input><label>Rectangle & Color Filled</label>
-                                <input type="color"></input>
+                            <input type="radio" value={convLogObj["groupBgIsShape"]}
+                                onChange={()=>{
+                                    setConvLogObj({...convLogObj, "groupBgIsShape": true});
+                                }}
+                            ></input>  
+                            <label onClick={()=>{
+                                    setConvLogObj({...convLogObj, "groupBgIsShape": true});
+                            }}>
+                            Rectangle & Color Filled</label>
+                            
+                            <input type="color" value={convLogObj["groupBgShade"]}
+                                onChange={(event)=>{
+                                    setConvLogObj({...convLogObj, "groupBgShade": event.target.value});
+
+                                }}
+                            ></input>
+
+                            
                             <br></br>
                             <input type="radio"></input><label>Base Picture</label>
                             <select></select>
                             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
                     </div>  
+                    <label>Corner Radius</label>
+                    <input type="range"></input>
+                    <input type="number"></input>
 
-
+                    <br></br>
                     <label>Group Position X</label>
                         <input type="range" value={convLogObj["groupPosX"]} onChange={(event)=>{
                                 setConvLogObj({...convLogObj, "groupPosX": event.target.value});
