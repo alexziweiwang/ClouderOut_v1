@@ -979,7 +979,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <div className="indentOne">
                     <label>Group Unit Background</label>
                     <div className="indentOne">
-                            <input type="radio" value={convLogObj["groupBgIsShape"]}
+                            <input type="radio" 
+                                value={convLogObj["groupBgIsShape"]} checked={convLogObj["groupBgIsShape"]}
                                 onChange={()=>{
                                     setConvLogObj({...convLogObj, "groupBgIsShape": true});
                                 }}
@@ -996,10 +997,33 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 }}
                             ></input>
 
-                            
+
                             <br></br>
-                            <input type="radio"></input><label>Base Picture</label>
-                            <select></select>
+                            <input type="radio"
+                                value={convLogObj["groupBgIsShape"]} checked={!convLogObj["groupBgIsShape"]}
+                                onChange={()=>{
+                                    setConvLogObj({...convLogObj, "groupBgIsShape": false});
+                                }}
+                            ></input><label
+                                onClick={()=>{
+                                    setConvLogObj({...convLogObj, "groupBgIsShape": false});
+                                }}
+                            >Base Picture</label>
+                            <select value={visualMap[convLogObj["groupBgpName"]]}
+                                onChange={(event)=>{
+                                    setConvLogObj({...convLogObj,  "groupBgpName": visualMap[event.target.value]["var"]}); 
+                                }}
+                            >
+                                <option key="convLogGroupUnitBgp-default" value="">-- Select Resource --</option>
+                                {Object.keys(visualMap).map((currKey) => {
+                                        let keyName = "convLogGroupUnitBgp-" + currKey;
+                                        /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
+                                        return (
+                                            <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                        );
+                                })}
+
+                            </select>
                             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
                     </div>  
                     <label>Corner Radius</label>
