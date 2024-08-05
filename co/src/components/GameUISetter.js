@@ -1027,8 +1027,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
                     </div>  
                     <label>Corner Radius</label>
-                    <input type="range"></input>
-                    <input type="number"></input>
+                    <input type="range" value={convLogObj["groupUnitCornerRadius"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "groupUnitCornerRadius": event.target.value});
+                        }}
+                    ></input>
+                    <input type="number" value={convLogObj["groupUnitCornerRadius"]}
+                        onChange={(event)=>{
+                            setConvLogObj({...convLogObj, "groupUnitCornerRadius": event.target.value});
+                        }}></input>
 
                     <br></br>
                     <label>Group Position X</label>

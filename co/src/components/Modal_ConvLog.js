@@ -169,9 +169,11 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                         key={keyStr}
                         style={{
                           "width": `${logUIObj["groupWidth"]}px`, 
-                          "backgroundColor": "grey",
+                          "backgroundColor": logUIObj["groupBgIsShape"] === true ? logUIObj["groupBgShade"] : "grey",
+                          "backgroundImage": logUIObj["groupBgIsShape"] === false ? `url('${visualMapLocal[logUIObj["groupBgpName"]]})` : "",
                           "marginBottom": `${logUIObj["groupItemGap"]}px`,
-                          
+                          "borderRadius": `${logUIObj["groupUnitCornerRadius"]}px`,
+
                         }}
                       >
                         
