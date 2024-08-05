@@ -249,6 +249,24 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           <option value="During Game" key="During Game">*During Game-play*</option>
       </select>
 
+
+      <br></br><br></br><br></br>
+      <div className="indentOne">
+        <label>Font for all UI in navigation system:</label>
+        <select value={currentProjectNav["fontFamilyForAll"]}
+          onChange={(event)=>{
+              let tempObj = currentProjectNav;
+              tempObj["fontFamilyForAll"] = event.target.value;
+              updateNavObj(tempObj);       
+                        
+              setCurrentProjectNav({...currentProjectNav, "fontFamilyForAll": event.target.value});  
+          }}
+        >
+            <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
+            <option value="serif" key="navUI_serif">serif</option>
+            <option value="cursive" key="navUI_cursive">cursive</option>    
+        </select>
+      </div>
       <br></br><br></br><br></br>
       {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
      

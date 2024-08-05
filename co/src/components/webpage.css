@@ -1411,4 +1411,5 @@ button:hover {
     text-wrap: balance;
     text-align: left;
     white-space: pre-wrap;
+    overflow: scroll;
 }
