@@ -167,6 +167,7 @@ export default function ConversationNodeEditingPanel() {
     "borderSize": 2,
     "posX": 0,
     "posY": 0,
+    "fontName": "sarif",
 
     "picPair": "" //TODO impl
     
@@ -216,6 +217,7 @@ export default function ConversationNodeEditingPanel() {
         "closeButtonBorderColor": "grey",  
         "closeButtonText": "Close",
         "closeButtonTextColor": "#000000",
+        "closeButtonFontName": "serif",
 
         "bgpIsShape": false,
         "bgpShade": "",

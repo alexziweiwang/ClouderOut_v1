@@ -919,6 +919,17 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvLogObj({...convLogObj, "closeButtonTextColor": event.target.value});
                     }}
                 ></input>
+                <br></br>
+                <label>Button Font: </label>
+                <select value={convLogObj["closeButtonFontName"]}
+                    onChange={(event)=>{
+                        setConvLogObj({...convLogObj, "closeButtonFontName": event.target.value});
+                    }}
+                >
+                    <option value="sans-serif" key="closeBtn_sans-serif">sans-serif</option>
+                    <option value="serif" key="closeBtn_serif">serif</option>
+                    <option value="cursive" key="closeBtn_cursive">cursive</option>  
+                </select>
 
             </div>
            

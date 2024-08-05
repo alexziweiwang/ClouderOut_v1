@@ -121,7 +121,7 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
                       "justifyContent": "center",
                       "alignItems": "center",
                       "borderRadius": `${logUIObj["closeButtonCornerRadius"]}px`,
-                      
+                      "fontFamily": `${logUIObj["closeButtonFontName"]}`,
 
 
                     }}
