@@ -125,18 +125,15 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                     "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                     "justifyContent": "left",
                     "fontFamily": `${txtFrameUISettings["fontName"]}`,
-                }}
-                onClick={()=>{
-                    //TODO1 add "firstTap" for all-content showing on one piece
-                    if (isDirectNext === true) {
-                        triggerNextPiece();
-                    }
-                }}
-                
+                }}             
                 >
            
 
                         {!isEditing && 
+                        <div style={{
+                            "fontFamily": `${txtFrameUISettings["fontName"]}`
+                        }}>
+                        <label>(Testing for speed only): </label>
                         <ConvTextContent_preview 
                             initialAllPieceData={initialAllPieceData}
                             initialPieceNum={currentPieceNum}
@@ -144,11 +141,16 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                             getAllPieceContent={getAllPieceContent}
                             displaySpeed={typingSpeedValue}
                             getDisplaySpeed={passInSpeed}
-                        />}
+                        />
+                        </div>}
 
-                        {isEditing && <>
+                        {isEditing && <div
+                            style={{
+                                "fontFamily": `${txtFrameUISettings["fontName"]}`
+                            }}
+                         >
                             {allPieceData[currentPieceNum].content}
-                        </>}
+                        </div>}
 
 
                 </div>
@@ -157,51 +159,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
 
 
-            {/* <div className="parallelFrame">
-                <div
-                    style={{
-                        "marginRight": "50px",
-                        "color": txtFrameUISettings["buttonAutoIsTextFont"] ? 
-                            (autoOn ? 
-                                txtFrameUISettings["buttonAutoShade1"] 
-                                :  txtFrameUISettings["buttonAutoShade0"]) 
-                            : "",
-                        "backgroundImage": !txtFrameUISettings["buttonAutoIsTextFont"] ? "" : "",  
-                        "fontFamily": `${txtFrameUISettings["buttonAutoFontName"]}`,
-                        
-                    }}
-                    onClick={()=>{
-                        //switch auto-status
-                        if (autoOn === false) { //current status(f), next status(t)
-                            triggerAutoMode();
-                        }
-                        setAutoOn(!autoOn);
-                    }}
-                > 
-                {!txtFrameUISettings["buttonAutoFontItalic"] && <label>Auto</label>}
-                {txtFrameUISettings["buttonAutoFontItalic"] && <em>Auto</em>}
-
-
-                </div>
-
-                <div
-                    style={{
-                        "marginRight": "50px",
-                        "color": txtFrameUISettings["buttonLogIsTextFont"] ? txtFrameUISettings["buttonLogShade"] : "",
-                        "backgroundImage": !txtFrameUISettings["buttonLogIsTextFont"] ? "" : "",  
-                        "fontFamily": `${txtFrameUISettings["buttonLogFontName"]}`,
-                        "fontStyle:": "italic"
-                    }}
-                    onClick={()=>{
-                        //trigger log-screen
-                    }}
-                >
-                    {!txtFrameUISettings["buttonLogFontItalic"] && <label>Log</label>}
-                    {txtFrameUISettings["buttonLogFontItalic"] && <em>Log</em>}
-
-                </div>
-            </div> */}
-
+           
 
         </div>
     

@@ -15,9 +15,9 @@ export default function Modal_ConvLog({allPieceContent, initialPieceNum, getCurr
             [
             ["speaker5", "12345"], 
             ["", "..."], 
-            ["speaker3", "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3"],
-            ["speaker2", "sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2-sample_content_2"],
-            ["speaker1", "sample_content_1-sample_content_1-sample_content_1"],
+            ["speaker3", "gameUI-sample_content_3"],
+            ["speaker2", "gameUI-sample_content_2"],
+            ["speaker1", "gameUI-sample_content_1"],
               ]
             
             : []);

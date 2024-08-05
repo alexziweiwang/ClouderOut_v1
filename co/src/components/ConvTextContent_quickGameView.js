@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
 
-export default function ConvTextContent_quickGameView({allPieceContent, initialPieceNum, displaySpeed, 
-    getCurrentPieceNum, notifyFinished, notifyNotYet, getInImmedaiteFinishSignal, getAutoModeStatus,
+export default function ConvTextContent_quickGameView({
+    allPieceContent, initialPieceNum, displaySpeed, 
+    getCurrentPieceNum, notifyFinished, notifyNotYet, 
+    getInImmedaiteFinishSignal, getAutoModeStatus,
     triggerNextPiece
 
 }) {

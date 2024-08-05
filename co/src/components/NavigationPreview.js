@@ -140,7 +140,10 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     });
     
 
-    return (<div className="previewWindow">
+    return (<div className="previewWindow" 
+        style={{
+            "fontFamily": `${navObj["fontFamilyForAll"]}`,
+    }}>
 
         <br></br>
      

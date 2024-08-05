@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
 
-export default function ConvTextContent_preview({initialAllPieceData, initialPieceNum, getCurrentPieceNum, getAllPieceContent, getDisplaySpeed, displaySpeed}) {
+export default function ConvTextContent_preview({
+    initialAllPieceData, initialPieceNum, 
+    getCurrentPieceNum, getAllPieceContent, 
+    getDisplaySpeed, displaySpeed}) {
   
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
