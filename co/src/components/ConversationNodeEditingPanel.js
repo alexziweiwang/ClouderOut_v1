@@ -107,7 +107,7 @@ export default function ConversationNodeEditingPanel() {
         "horizontalMid": false,
         "verticalMid": false,
 
-        "fontName": "",
+        "fontName": "serif",
         "isFontItalic": false,
 
         "picPair": "" //TODO impl
@@ -134,21 +134,21 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-w": 580,
     "TextContentArea-h": 180,
 
-    "buttonAutoIsTextFont": true,
-    "buttonAutoShade0": "#bf8da5",
-    "buttonAutoPicName0": "",
-    "buttonAutoShade1": "#4a54a1",
-    "buttonAutoPicName1": "",
-    "buttonAutoFontName": "serif",
-    "buttonAutoFontItalic": false,
+    // "buttonAutoIsTextFont": true,
+    // "buttonAutoShade0": "#bf8da5",
+    // "buttonAutoPicName0": "",
+    // "buttonAutoShade1": "#4a54a1",
+    // "buttonAutoPicName1": "",
+    // "buttonAutoFontName": "serif",
+    // "buttonAutoFontItalic": false,
 
-    "buttonLogIsTextFont": true,
-    "buttonLogShade": "#bf8da5",
-    "buttonLogPicName":  "",
-    "buttonLogShade": "#4a54a1",
-    "buttonLogPicName": "",
-    "buttonLogFontName": "serif",
-    "buttonLogFontItalic": false,
+    // "buttonLogIsTextFont": true,
+    // "buttonLogShade": "#bf8da5",
+    // "buttonLogPicName":  "",
+    // "buttonLogShade": "#4a54a1",
+    // "buttonLogPicName": "",
+    // "buttonLogFontName": "serif",
+    // "buttonLogFontItalic": false,
 
     "picPair": "" //TODO impl
 
@@ -167,7 +167,7 @@ export default function ConversationNodeEditingPanel() {
     "borderSize": 2,
     "posX": 0,
     "posY": 0,
-    "fontName": "sarif",
+    "fontName": "serif",
 
     "picPair": "" //TODO impl
     

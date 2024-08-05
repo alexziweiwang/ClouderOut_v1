@@ -232,7 +232,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
      </select>
      <br></br><br></br><br></br>
 
-     <label>Select a Page to setup:</label><br></br>
+     <label>Select a Page to setup:</label>
       <select value={currentSettingPage}
         onChange={(event)=>{
           setCurrentSettingPage(event.target.value);
@@ -248,10 +248,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
           <option value="Shop Page" key="Shop Page">Shop Page</option>
           <option value="During Game" key="During Game">*During Game-play*</option>
       </select>
-
-
-      <br></br><br></br><br></br>
-      <div className="indentOne">
+      <br></br><br></br>
+      <div>
         <label>Font for all UI in navigation system:</label>
         <select value={currentProjectNav["fontFamilyForAll"]}
           onChange={(event)=>{
