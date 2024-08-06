@@ -309,7 +309,7 @@
 
 - 2024-Aug-05: Consider all Setter's UX for users
 - 2024-Aug-05: Consider and design on-cloud testing data for inter-node quick-view
-
+- 2024-Aug-05: Consider game-maker level data flow in component
 
 
 
