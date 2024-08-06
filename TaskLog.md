@@ -308,6 +308,7 @@
 - 2024-Aug-01: Consider conv-log icon strategy
 
 - 2024-Aug-05: Consider all Setter's UX for users
+- 2024-Aug-05: Consider and design on-cloud testing data for inter-node quick-view
 
 
 
