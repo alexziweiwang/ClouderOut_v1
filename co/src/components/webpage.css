@@ -1015,7 +1015,8 @@ button:hover {
 .projectGridItem {
     background-color: white;
     color: #41435b;
-    margin: 2px;
+    border: #41435b solid 1px;
+
     width: 500px;
     border-radius: 0px;
     user-select: none;
@@ -1027,6 +1028,8 @@ button:hover {
 
 .projectGridItem:hover {
     border-color: rgb(37, 46, 68);
+    border: #FFFFFF solid 1px;
+
     background-color: #d9dae4;
     color: white;
     margin: 2px;
@@ -1040,8 +1043,9 @@ button:hover {
 }
 
 .projectGridItemSelected {
-    border-color: rgb(37, 46, 68);
-    background-color: #41435b;
+    border-color: #FFFFFF;
+    /* background-color: #41435b; */
+    border: #FFFFFF solid 1px;
     color: white;
     margin: 2px;
     width: 500px;
@@ -1056,8 +1060,7 @@ button:hover {
 
 .projectGrid {
     margin-top: 5px;
-    margin-left: 10%;
-    background-color: rgb(122, 124, 122);
+    background-color: #293241;
     width: 1000px;
     overflow: scroll;
     flex-shrink: initial;

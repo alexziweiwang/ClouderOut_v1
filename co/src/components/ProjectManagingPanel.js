@@ -93,11 +93,19 @@ export default function ProjectManagerPanel() {
       <Sidebar compName = {name}/>
 
     <div className="backboardForAll">
-
   
         <div className="projSelectionArea">
+          
+        <label>Select a Project ...</label>
+
         {projList && 
-        <div className="parallelFrame"  style={{"marginTop": "100px", "justifyContent": "center", "alignItems": "center", "display": "flex"}}>
+        <div className="parallelFrame"  
+          style={{
+              "marginTop": "20px", 
+              "justifyContent": "center", 
+              "alignItems": "center", 
+              "display": "flex"
+          }}>
           
           
           <div className="projectGrid">
@@ -128,9 +136,15 @@ export default function ProjectManagerPanel() {
 
 
 
-          <div>
-              <button className="button" onClick={()=>{goToGameMaker();}}> {goToGameMakerButtonText[languageCode]} </button>
-          </div>
+          {<div style={{"width": "500px"}}>
+              <button 
+                className="button" 
+                style={{"display": selected_project_name === "" ? "none" : "flex"}}
+                onClick={()=>{goToGameMaker();}}> 
+                {goToGameMakerButtonText[languageCode]} 
+              </button>
+          </div>}
+
         </div>
         }
         </div>
