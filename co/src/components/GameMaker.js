@@ -291,6 +291,8 @@ export default function GameMaker() {
       return val;
   }
 
+  const [developOnCloudData, setDevelopOnCloudData] = useState(false);
+
   return (
   <div>
     
@@ -299,6 +301,20 @@ export default function GameMaker() {
       <p>Project Name: {projectName}</p>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
     </div>
+
+
+    {/*//TODO TESTING */}
+                    <div>
+                      <input type="checkbox" value={developOnCloudData} checked={developOnCloudData}
+                        onChange={()=>{
+                          setDevelopOnCloudData(!developOnCloudData);
+                        }}
+                      ></input><label>TEST toggle: Use Cloud Data</label>
+                      <label>Status: {developOnCloudData === true ? "true" : "false"}</label>
+                    </div>
+    {/*//TODO TESTING */}
+
+
     <div>
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText[languageCode]}</button>
       <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText[languageCode]}</button>
