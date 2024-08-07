@@ -41,8 +41,8 @@ export default function Sidebar({compName, username}) {
     {(compName === "/dashboard") && 
     <div className="sidebar1" > Welcome, {username}!
         <div> 
-            <button className="sidebar_options" onClick={()=>{goToProfilePage()}}>{profileButtonText[languageCode]}</button>
-            <button className="sidebar_options" onClick={()=>{goToAccountPage()}}>{accountButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options1" onClick={()=>{goToProfilePage()}}>{profileButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options1" onClick={()=>{goToAccountPage()}}>{accountButtonText[languageCode]}</button>
         </div>
         
         <br></br>
@@ -52,7 +52,7 @@ export default function Sidebar({compName, username}) {
         <br></br>
         <br></br>
 
-        <button className="sidebar_options" onClick={() => {console.log("log out pressed")}}>{logOutButtonText[languageCode]}</button>
+        <button className="sidebar_options sidebar_options1" onClick={() => {console.log("log out pressed")}}>{logOutButtonText[languageCode]}</button>
 
         </div>
     }
@@ -61,7 +61,7 @@ export default function Sidebar({compName, username}) {
     <div className="sidebar1" >
         <div> 
             
-            <button className="sidebar_options" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
         </div>
         
 
@@ -71,11 +71,11 @@ export default function Sidebar({compName, username}) {
     {(compName === "/projectmanagingpanel") && 
     <div className="sidebar2" >
         <div> 
-            <button className="sidebar_options" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
         </div>
         <div>
             <br></br> <br></br> <br></br>
-        <button className="sidebar_options" onClick={()=>{projectManageNew()}}>{newProjectButtonText[languageCode]}</button>
+        <button className="sidebar_options sidebar_options2" onClick={()=>{projectManageNew()}}>{newProjectButtonText[languageCode]}</button>
 
         </div>
 
@@ -85,7 +85,7 @@ export default function Sidebar({compName, username}) {
     {(compName === "/projectmanagenew") && 
     <div className="sidebar2" >
         <div> 
-            <button className="sidebar_options" onClick={()=>{
+            <button className="sidebar_options sidebar_options2" onClick={()=>{
                 goToProjectManagingPanel();
             }}>← {projectManagerText[languageCode]}</button>
             <br></br>
@@ -95,7 +95,7 @@ export default function Sidebar({compName, username}) {
             <br></br>
             <br></br>
 
-            <button className="sidebar_options" onClick={()=>{
+            <button className="sidebar_options sidebar_options2" onClick={()=>{
                 backToDashboard();
             }}>←← {dashBoardButtonText[languageCode]}</button>
         </div>

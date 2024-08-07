@@ -99,10 +99,11 @@ export default function ProjectManagerPanel() {
         <div 
           onClick={()=>{  
             setCurrentProjectAction("createProject");
-   
           }}
         >
-          <label>Create a Project ...</label>
+      <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
+          <label>Create a New Project ...</label>
+        </div>
           <div 
             style={{
               "display": currentProjectAction === "createProject" ? "flex" : "none",
@@ -120,19 +121,18 @@ export default function ProjectManagerPanel() {
           onClick={()=>{
               setCurrentProjectAction("selectProject");
           }}
-
+          
         >
         <div>
-          
-        <label>Select a Project ...</label>
-
+        <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
+          <label>Select an Ongoing Project ...</label>
+        </div>
         {projList && 
         <div className="parallelFrame"  
           style={{
               "marginTop": "20px", 
               "justifyContent": "center", 
               "alignItems": "center", 
-              "display": "flex",
               "display": currentProjectAction === "selectProject" ? "flex" : "none",
               "transition": "all 0.2s ease-out"
           }}>
@@ -182,16 +182,17 @@ export default function ProjectManagerPanel() {
         </div>
 
 
-        <div onClick={()=>{
-          setCurrentProjectAction("revertProject");
-        }}>
-              <label>Revert a Project ...</label>
-              <br></br><button onClick={()=>{
-                setShowTrashArea(!showTrashArea);
-              }}>{manageDeletedProjectText[languageCode]}</button>
-              
-              {showTrashArea === true && 
-              <div className="trashedProjectArea" style={{"transition": "all 0.2 ease-out"}}>
+        <div 
+          onClick={()=>{
+            setCurrentProjectAction("revertProject");
+          }}
+          style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}
+
+        >
+              <label>Revert a Deleted Project ...</label>
+              <br></br>
+        
+              <div className="trashedProjectArea" style={{"transition": "all 0.2 ease-out", "display": currentProjectAction === "revertProject" ? "flex" : "none",}}>
                   <label>{trashAreaLabel[languageCode]}</label>
                   <br></br>
 
@@ -210,7 +211,7 @@ export default function ProjectManagerPanel() {
 
                   <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
                   
-        </div>}
+              </div>
         </div>
     </div>
     
