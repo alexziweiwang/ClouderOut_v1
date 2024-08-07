@@ -202,7 +202,9 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         }
 
 
-        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>{chapterManagementText[languageCode]}</button>}
+        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>
+          {chapterManagementText[languageCode]}
+          </button>}
       </>
     );
 }

@@ -1258,10 +1258,10 @@ button:hover {
 .chapterManagerSwitch {
     background-color: rgb(194, 203, 223);
     transform: rotate(-90deg);
-    height: 30px;
+    height: 50px;
     border: none;
     border-radius: 0px;
-    margin-left: -60px;
+    margin-left: -55px;
     margin-top: 100px;
 }
 
@@ -1269,10 +1269,10 @@ button:hover {
     background-color: rgb(124, 133, 155);
     color: white;
     transform: rotate(-90deg);
-    height: 30px;
+    height: 50px;
     border: none;
     border-radius: 0px;
-    margin-left: -60px;
+    margin-left: -55px;
     margin-top: 100px;
 }
 

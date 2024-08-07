@@ -1057,26 +1057,383 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>
 
      
-        {(clickedNode2 !== -1 
+
+                
+        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
+
+
+<div style={{"display": "flex"}}>
+    <div style={{"width": "900px"}}> 
+    {/* node-info-area */}
+
+                    <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
+                  <div>
+                    
+                    <label>Node Name: </label>
+                    <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
+                    <br></br>
+                    <label>Node Type: </label>
+                    <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
+                    <br></br>
+                  
+                  {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
+                    <label>Screen Size: </label>
+                    <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
+                  </>}
+                  </div>
+
+                  <p className="sectionHeader"> {nodeSettingsText[languageCode]} </p>
+              <div>
+                <label>Rename Node: </label>
+                <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
+                <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
+              </div>   
+
+
+        
+              {/* {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
+                <p className="sectionHeader"> Next Nodes </p>
+                <div>
+                      <table>
+                          <thead>
+                              <tr key="head">
+                                  <th>Next Node(s)</th>
+                                  <th>Condition</th>
+                                  <th>[Operation]</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            TODO
+                          </tbody>
+                      </table>
+                </div>
+              </>} */} //TODO3
+
+              {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
+                <p className="sectionHeader"> {nextNodeText[languageCode]} </p>
+                {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
+                  && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
+                    Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
+                  </>}
+              
+                <label>Update: </label>
+                <select onChange={(event)=>{
+                    setSelectedNextNode(event.target.value);
+                }}
+                  value={selectedNextNode}
+                >
+                  <option key="defaultNextNodeEmpty" value="-">-- Select the next-node --</option>
+                  {Object.keys(nodeRelationshipMap).map((currKey) => {
+                    
+                            let item = nodeRelationshipMap[currKey];
+                            let opKey = "opnextnode-" + currKey;
+                            return (
+                              <option key={opKey} value={currKey}>{item["nodeName"]}</option>
+                            );
+                        })}
+                </select>
+                <button onClick={()=>{
+                    if (selectedNextNode !== "-") {
+                      let tempMap = nodeRelationshipMap;
+                      tempMap[clickedNodeKey].nextNode = selectedNextNode;
+                      setNodeRelationshipMap(tempMap);
+                      setSelectedNextNode("-");
+                      updateRenderCounter();
+                    }
+                }}>{confirmText[languageCode]}</button>
+                <br></br><button
+                  onClick={()=>{
+                    let tempMap2 = nodeRelationshipMap;
+                    tempMap2[clickedNodeKey].nextNode = "-";
+                    setNodeRelationshipMap(tempMap2);
+                    updateRenderCounter();
+                  }}
+                >{detachLinkingText[languageCode]}</button>
+              </>}
+
+
+              {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
+                <p className="sectionHeader"> {targetNodesText[languageCode]} </p>
+                  Path-deciding
+                  <br></br>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th style={{"minWidth": "450px"}}>Condition</th>
+                        <th>Target Node</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      
+                      
+                      {nodeRelationshipMap[clickedNodeKey].spltLogicPairs
+                      .map((item, index) => {       
+                          if (item[0] === "else") {
+                            return;
+                          }
+                          let keyStr = "tableLogicSplitter" + item[1];
+                          return (
+                          <tr key={keyStr}>
+                              <td>{item[2]}</td>
+                              <td>{item[1]}</td>
+                              <td>
+                                <GiTrashCan onClick={()=>{
+                                    deleteFromCondtTable(index);
+                                  }}  
+                                    className="iconButtonSmall"/>
+                              </td>
+                          
+                          </tr>
+                          );
+                        
+                      })}
+                      <tr>
+                        <td>(All other cases / "Else")</td>
+                        <td>
+                          {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
+                            && 
+                            <label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}</label>}
+                      
+                        </td>
+                        <td>
+                            <select 
+                                value={lscElseSelected} 
+                                onChange={(event)=>{
+                                  setLscElseSelected(event.target.value);
+                                }}>
+                                <option key="lscElse" value="-">-- Select --</option>
+                                {Object.keys(nodeRelationshipMap).map((currKey) => {                  
+                                    let item = nodeRelationshipMap[currKey];
+                                    let lscElseKey = "lscSettingElse" + currKey;
+                                    return (
+                                <option key={lscElseKey}>{item["nodeName"]}</option>);
+                                })}          
+                            </select>
+                          <button 
+                            onClick={()=>{
+                              updateTableCondt();
+                              setLscElseSelected("");
+                            }}
+                          >{updateText[languageCode]}</button>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <button onClick={()=>{
+                    setDisplayAddNewTargetCondt(!displayAddNewTargetCondt);
+                  }}>{addNewConditionTargetText[languageCode]}</button>
+                  {displayAddNewTargetCondt && <div>
+
+                    <div className="areaFrame">
+                      <label>If</label><br></br>
+                      
+                      <div>
+                          <label> Variable 1: </label>
+                          
+                          <select 
+                                onChange={(event)=>{
+                                  setLsGdataVar1(event.target.value);
+                                  setCondtVar1Type(gameDataLocal[event.target.value]["data_type"]);
+                                  console.log("var1 selected type = ", gameDataLocal[event.target.value]["data_type"]);
+                                }} 
+                                value={logicSplitter_gameDataVar1}>
+                              
+                              <option value="" key="">--Game Data--</option>
+                              {Object.keys(gameDataLocal).map((currKey) => {
+                                  return (
+                                  <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
+                                  );
+                              })}
+                          </select>
+                          {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                      </div>
+
+                      <div>
+                          <label>Comparison: </label>
+                          
+                          {(condtVar1Type === "number") && 
+                            <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
+                                <option key="" value="-"> -- Operator -- </option>
+                                <option key="larger" value="larger"> larger than </option>
+                                <option key="smaller" value="smaller"> smaller than </option>
+                                <option key="equal" value="equal"> equals to </option>
+                                <option key="largerequal" value="largerequal"> larger than or equals to </option>
+                                <option key="smallerequal" value="smallerequal"> smaller than or equals to </option>
+                            </select>}
+                      </div>
+                    <div> 
+                        {(condtVar1Type === "number") && <div>
+                          <label> Variable 2: </label>
+                          <br></br>
+
+                          <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
+                          
+                          <select onChange={(event)=>{
+                              let selectedV2 = event.target.value;
+
+                              let selectedV2Type = gameDataLocal[selectedV2]["data_type"];
+
+                              if (selectedV2Type !== "number") {
+                                alert("Please select a number type data item.");
+                              } else {
+                                setLsGdataVar2(selectedV2);
+                              }
+                              
+                            }} value={logicSplitter_gameDataVar2}>
+                                  <option value="" key="">--Game Data--</option>
+                                  
+                            {Object.keys(gameDataLocal).map((key) => {
+                              return (
+                                    <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
+                                );
+                              })}
+                          </select>
+                        {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+
+                        <br></br>
+                        <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
+                            <input type="number" min="-100000000" max="100000000" step="1" value={logicSplitter_gameDataVar2} onChange={(event)=>{setLsGdataVar2(event.target.value);}}></input>    
+                        </div>}
+
+                        {(condtVar1Type === "string") && <div>          
+                          <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
+                          <label> Is </label>
+                          <input value={logicSplitter_gameDataVar2} onChange={(event)=>{
+                            setLsGdataVar2(event.target.value);
+                          }}></input>
+                        <br></br>                         
+                        <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
+                          <label> Is Not </label>
+                          <input value={logicSplitter_gameDataVar2} onChange={(event)=>{
+                            setLsGdataVar2(event.target.value);
+                          }}></input>       
+                        
+                        </div>}
+
+                        {(condtVar1Type === "boolean") && <div>
+                  
+                        <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
+                          <label> Is True</label>
+                        <br></br>                   
+                        <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);console.log("going to set: Var1-boolean-false");}} checked={!var1BoolTrue}></input>
+                          <label> Is False</label>  
+                        </div>}
+
+                </div>
+
+                <br></br>
+                    Target Node:
+                    <select value={lscCurrSelected}
+                      onChange={(event)=>{
+                        setLscCurrSelected(event.target.value);
+                      }}>
+                      <option key="lscCurrDefault">-- Select --</option>
+                              {Object.keys(nodeRelationshipMap).map((currKey) => {                  
+                                  let item = nodeRelationshipMap[currKey];
+                                  let lscCurrKey = "lscSettingCurr" + currKey;
+                                  return (<option key={lscCurrKey}>{item["nodeName"]}</option>);
+                      })} 
+                    </select>
+
+
+                    <br></br><br></br>
+                    <button onClick={()=>{
+                        if (lscCurrSelected === undefined || lscCurrSelected === "") {
+                          alert("Please choose a target node.");
+                          return;
+                        }
+
+                      let stmtStr = "type[" + condtVar1Type + "]^" + logicSplitter_gameDataVar1 + "^";
+                      let displayStr = "[" + logicSplitter_gameDataVar1 + "](type: " + condtVar1Type + ") \n ";
+                      if (condtVar1Type === "number") {
+                        if (var2NumCompare === "") {
+                          alert("Please select the comparison");
+                          return;
+                        }
+                        if (logicSplitterVar2IsGData === true) {
+                          stmtStr = stmtStr + var2NumCompare + "(gameData)^" + logicSplitter_gameDataVar2;
+                          displayStr = displayStr + var2NumCompare + " - \n" + "[" + logicSplitter_gameDataVar2 + "]";
+                        } else {
+                          stmtStr = stmtStr + var2NumCompare + "(pureValue)^" + logicSplitter_gameDataVar2;
+                          displayStr = displayStr + var2NumCompare + "- \n(value) " + logicSplitter_gameDataVar2;
+
+                        }
+                      } else if (condtVar1Type === "boolean") {
+                        if (var1BoolTrue === true) {
+                          stmtStr = stmtStr + "isTrue";
+                          displayStr = displayStr + "- \nis true";
+                        } else {
+                          stmtStr = stmtStr + "isFalse";
+                          displayStr = displayStr + "- \nis false";
+                        }
+                      } else if (condtVar1Type === "string"){
+                        if (var1StringEq === true) {
+                          stmtStr = stmtStr + "equalsTo^" + logicSplitter_gameDataVar2;
+                          displayStr = displayStr + "- \nequals to " + logicSplitter_gameDataVar2;
+                        } else {
+                          stmtStr = stmtStr + "notEqualTo^" + logicSplitter_gameDataVar2;
+                          displayStr = displayStr + "- \nnot equals to " + logicSplitter_gameDataVar2;
+
+                        }
+                      }
+
+                      setLsGdataVar1("");
+                      setLsGdataVar2("");
+                      setVar2NumCompare("");
+                      setCondtVar1Type("");
+                      setVar1StringEq(true);
+                      setVar1BoolTrue(true);
+                      setLsV2IsGData(true);
+                      setLscCurrSelected("");
+      console.log("statement: ", stmtStr); // TODO test
+                    
+                      let currStmtArr = [stmtStr, lscCurrSelected, displayStr];
+
+                      let tempLogicPairs = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
+                      tempLogicPairs.push(currStmtArr);
+
+                      let tempNodeRelMap = nodeRelationshipMap;
+                      tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs;
+                      setNodeRelationshipMap(tempNodeRelMap);
+
+      console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
+                      
+                      setDisplayAddNewTargetCondt(false);
+                    }}>{addConditionText[languageCode]}</button>
+
+                          </div>
+
+                  </div>}
+
+              </>}
+
+    {/* node-info-area ends */}
+    </div> 
+
+    <div style={{"marginLeft": "15%"}}>
+      direction area
+
+{(clickedNode2 !== -1 
           && nodeRelationshipMap[clickedNodeKey] !== undefined
           && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
           && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*"
           && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*") && 
-        <div>
-        <button 
-          className="setting_item"
-          onClick={()=>{enterNodeEditor2();}}>
-            {enterEditorText[languageCode]}
-        </button>
-    
-      
-        </div>
-        }
-                
-        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
+ <div>
+            <button 
+              className="setting_item"
+              onClick={()=>{enterNodeEditor2();}}>
+                {enterEditorText[languageCode]}
+            </button>
+        
+        
+  </div>}
 
-        <div>
-        {clickedNode2 !== -1 && <div className="parallelFrame">
+
+<div>
+{clickedNode2 !== -1 && <div className="parallelFrame">
           <div>
             <button
               onClick={()=>{
@@ -1167,355 +1524,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>
 
 
-
-
-
-              <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
-            <div>
-              
-              <label>Node Name: </label>
-              <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
-              <br></br>
-              <label>Node Type: </label>
-              <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
-              <br></br>
-            
-            {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
-              <label>Screen Size: </label>
-              <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
-            </>}
-            </div>
-
-            <p className="sectionHeader"> {nodeSettingsText[languageCode]} </p>
-        <div>
-          <label>Rename Node: </label>
-          <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-          <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
-        </div>   
-
-
-  
-        {/* {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
-          <p className="sectionHeader"> Next Nodes </p>
-          <div>
-                <table>
-                    <thead>
-                        <tr key="head">
-                            <th>Next Node(s)</th>
-                            <th>Condition</th>
-                            <th>[Operation]</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      TODO
-                    </tbody>
-                </table>
-          </div>
-        </>} */}
-
-        {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
-          <p className="sectionHeader"> {nextNodeText[languageCode]} </p>
-          {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
-            && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
-              Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
-            </>}
-         
-          <label>Update: </label>
-          <select onChange={(event)=>{
-              setSelectedNextNode(event.target.value);
-          }}
-            value={selectedNextNode}
-          >
-            <option key="defaultNextNodeEmpty" value="-">-- Select the next-node --</option>
-            {Object.keys(nodeRelationshipMap).map((currKey) => {
-              
-                      let item = nodeRelationshipMap[currKey];
-                      let opKey = "opnextnode-" + currKey;
-                      return (
-                        <option key={opKey} value={currKey}>{item["nodeName"]}</option>
-                      );
-                  })}
-          </select>
-          <button onClick={()=>{
-              if (selectedNextNode !== "-") {
-                let tempMap = nodeRelationshipMap;
-                tempMap[clickedNodeKey].nextNode = selectedNextNode;
-                setNodeRelationshipMap(tempMap);
-                setSelectedNextNode("-");
-                updateRenderCounter();
-              }
-          }}>{confirmText[languageCode]}</button>
-          <br></br><button
-            onClick={()=>{
-              let tempMap2 = nodeRelationshipMap;
-              tempMap2[clickedNodeKey].nextNode = "-";
-              setNodeRelationshipMap(tempMap2);
-              updateRenderCounter();
-            }}
-          >{detachLinkingText[languageCode]}</button>
-        </>}
-
-
-
-        {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
-          <p className="sectionHeader"> {targetNodesText[languageCode]} </p>
-            Path-deciding
-            <br></br>
-            <table>
-              <thead>
-                <tr>
-                  <th style={{"minWidth": "450px"}}>Condition</th>
-                  <th>Target Node</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                
-                
-                {nodeRelationshipMap[clickedNodeKey].spltLogicPairs
-                .map((item, index) => {       
-                    if (item[0] === "else") {
-                      return;
-                    }
-                    let keyStr = "tableLogicSplitter" + item[1];
-                    return (
-                    <tr key={keyStr}>
-                        <td>{item[2]}</td>
-                        <td>{item[1]}</td>
-                        <td>
-                          <GiTrashCan onClick={()=>{
-                              deleteFromCondtTable(index);
-                            }}  
-                              className="iconButtonSmall"/>
-                        </td>
-                    
-                    </tr>
-                    );
-                  
-                })}
-                <tr>
-                  <td>(All other cases / "Else")</td>
-                  <td>
-                    {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
-                      && 
-                      <label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}</label>}
-                
-                  </td>
-                  <td>
-                      <select 
-                          value={lscElseSelected} 
-                          onChange={(event)=>{
-                            setLscElseSelected(event.target.value);
-                          }}>
-                          <option key="lscElse" value="-">-- Select --</option>
-                          {Object.keys(nodeRelationshipMap).map((currKey) => {                  
-                              let item = nodeRelationshipMap[currKey];
-                              let lscElseKey = "lscSettingElse" + currKey;
-                              return (
-                          <option key={lscElseKey}>{item["nodeName"]}</option>);
-                          })}          
-                      </select>
-                    <button 
-                      onClick={()=>{
-                        updateTableCondt();
-                        setLscElseSelected("");
-                      }}
-                    >{updateText[languageCode]}</button>
-
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <button onClick={()=>{
-              setDisplayAddNewTargetCondt(!displayAddNewTargetCondt);
-            }}>{addNewConditionTargetText[languageCode]}</button>
-            {displayAddNewTargetCondt && <div>
-
-              <div className="areaFrame">
-                <label>If</label><br></br>
-                
-                <div>
-                    <label> Variable 1: </label>
-                    
-                    <select 
-                          onChange={(event)=>{
-                            setLsGdataVar1(event.target.value);
-                            setCondtVar1Type(gameDataLocal[event.target.value]["data_type"]);
-                            console.log("var1 selected type = ", gameDataLocal[event.target.value]["data_type"]);
-                          }} 
-                          value={logicSplitter_gameDataVar1}>
-                        
-                        <option value="" key="">--Game Data--</option>
-                        {Object.keys(gameDataLocal).map((currKey) => {
-                            return (
-                            <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
-                            );
-                        })}
-                    </select>
-                    {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
-                </div>
-
-                <div>
-                    <label>Comparison: </label>
-                    
-                    {(condtVar1Type === "number") && 
-                      <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
-                          <option key="" value="-"> -- Operator -- </option>
-                          <option key="larger" value="larger"> larger than </option>
-                          <option key="smaller" value="smaller"> smaller than </option>
-                          <option key="equal" value="equal"> equals to </option>
-                          <option key="largerequal" value="largerequal"> larger than or equals to </option>
-                          <option key="smallerequal" value="smallerequal"> smaller than or equals to </option>
-                      </select>}
-                </div>
-              <div> 
-                  {(condtVar1Type === "number") && <div>
-                    <label> Variable 2: </label>
-                    <br></br>
-
-                    <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
-                    
-                    <select onChange={(event)=>{
-                        let selectedV2 = event.target.value;
-
-                        let selectedV2Type = gameDataLocal[selectedV2]["data_type"];
-
-                        if (selectedV2Type !== "number") {
-                          alert("Please select a number type data item.");
-                        } else {
-                          setLsGdataVar2(selectedV2);
-                        }
-                        
-                      }} value={logicSplitter_gameDataVar2}>
-                            <option value="" key="">--Game Data--</option>
-                            
-                      {Object.keys(gameDataLocal).map((key) => {
-                        return (
-                              <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
-                          );
-                        })}
-                    </select>
-                  {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
-
-                  <br></br>
-                  <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
-                      <input type="number" min="-100000000" max="100000000" step="1" value={logicSplitter_gameDataVar2} onChange={(event)=>{setLsGdataVar2(event.target.value);}}></input>    
-                  </div>}
-
-                  {(condtVar1Type === "string") && <div>          
-                    <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
-                    <label> Is </label>
-                    <input value={logicSplitter_gameDataVar2} onChange={(event)=>{
-                      setLsGdataVar2(event.target.value);
-                    }}></input>
-                  <br></br>                         
-                  <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
-                    <label> Is Not </label>
-                    <input value={logicSplitter_gameDataVar2} onChange={(event)=>{
-                      setLsGdataVar2(event.target.value);
-                    }}></input>       
-                  
-                  </div>}
-
-                  {(condtVar1Type === "boolean") && <div>
-            
-                  <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
-                    <label> Is True</label>
-                  <br></br>                   
-                  <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);console.log("going to set: Var1-boolean-false");}} checked={!var1BoolTrue}></input>
-                    <label> Is False</label>  
-                  </div>}
-
-          </div>
-
-          <br></br>
-              Target Node:
-              <select value={lscCurrSelected}
-                onChange={(event)=>{
-                  setLscCurrSelected(event.target.value);
-                }}>
-                <option key="lscCurrDefault">-- Select --</option>
-                        {Object.keys(nodeRelationshipMap).map((currKey) => {                  
-                            let item = nodeRelationshipMap[currKey];
-                            let lscCurrKey = "lscSettingCurr" + currKey;
-                            return (<option key={lscCurrKey}>{item["nodeName"]}</option>);
-                })} 
-              </select>
-
-
-              <br></br><br></br>
-              <button onClick={()=>{
-                  if (lscCurrSelected === undefined || lscCurrSelected === "") {
-                    alert("Please choose a target node.");
-                    return;
-                  }
-
-                let stmtStr = "type[" + condtVar1Type + "]^" + logicSplitter_gameDataVar1 + "^";
-                let displayStr = "[" + logicSplitter_gameDataVar1 + "](type: " + condtVar1Type + ") \n ";
-                if (condtVar1Type === "number") {
-                  if (var2NumCompare === "") {
-                    alert("Please select the comparison");
-                    return;
-                  }
-                  if (logicSplitterVar2IsGData === true) {
-                    stmtStr = stmtStr + var2NumCompare + "(gameData)^" + logicSplitter_gameDataVar2;
-                    displayStr = displayStr + var2NumCompare + " - \n" + "[" + logicSplitter_gameDataVar2 + "]";
-                  } else {
-                    stmtStr = stmtStr + var2NumCompare + "(pureValue)^" + logicSplitter_gameDataVar2;
-                    displayStr = displayStr + var2NumCompare + "- \n(value) " + logicSplitter_gameDataVar2;
-
-                  }
-                } else if (condtVar1Type === "boolean") {
-                  if (var1BoolTrue === true) {
-                    stmtStr = stmtStr + "isTrue";
-                    displayStr = displayStr + "- \nis true";
-                  } else {
-                    stmtStr = stmtStr + "isFalse";
-                    displayStr = displayStr + "- \nis false";
-                  }
-                } else if (condtVar1Type === "string"){
-                  if (var1StringEq === true) {
-                    stmtStr = stmtStr + "equalsTo^" + logicSplitter_gameDataVar2;
-                    displayStr = displayStr + "- \nequals to " + logicSplitter_gameDataVar2;
-                  } else {
-                    stmtStr = stmtStr + "notEqualTo^" + logicSplitter_gameDataVar2;
-                    displayStr = displayStr + "- \nnot equals to " + logicSplitter_gameDataVar2;
-
-                  }
-                }
-
-                setLsGdataVar1("");
-                setLsGdataVar2("");
-                setVar2NumCompare("");
-                setCondtVar1Type("");
-                setVar1StringEq(true);
-                setVar1BoolTrue(true);
-                setLsV2IsGData(true);
-                setLscCurrSelected("");
-console.log("statement: ", stmtStr); // TODO test
-              
-                let currStmtArr = [stmtStr, lscCurrSelected, displayStr];
-
-                let tempLogicPairs = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
-                tempLogicPairs.push(currStmtArr);
-
-                let tempNodeRelMap = nodeRelationshipMap;
-                tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs;
-                setNodeRelationshipMap(tempNodeRelMap);
-
-console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
-                
-                setDisplayAddNewTargetCondt(false);
-              }}>{addConditionText[languageCode]}</button>
-
-                    </div>
-
-            </div>}
-
-        </>}
-
+    </div>
+</div>
           </div>}
+
+
+
+
+
+
+
 
           <p className="plans">TODO: 
               <br></br>user can also add column or row for new grids 
@@ -1543,74 +1561,14 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
         <div>    
         
         <div>
-        {/* <p className="sectionHeader"> Node Info </p>
-        <div>
-          <label>Node Name: </label>
-          <label>{clickedNode}</label>
-          <br></br>
-          <label>Node Type: </label>
-          <label>{nodeData.filter((e => (e.display === true && e.nodeName === clickedNode)))[0].nodeType}</label>
-          <br></br>
-          <label>Screen Size: </label>
-          <label>{nodeData.filter(e => e.nodeName === clickedNode)[0].screenSize}</label>
-        </div> */}
 
-        {/* <p className="sectionHeader"> Node Settings </p>
-        <div>
-          <label>Rename Node: </label>
-          <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-          <button onClick={updateNodeToNewName}>Update</button>
-        </div> */}
-
-        {/* <p className="sectionHeader"> Next Node(s) </p> */}
-        {/* <div>
-        <table>
-            <thead>
-                <tr key="head">
-                    <th>Next Node(s)</th>
-                    <th>Condition</th>
-                    <th>[Operation]</th>
-                </tr>
-            </thead>
- 
-            <tbody>
-            {nextNodeList.map((item, index) => {
-                const nextNodeName = nodeData[item].nodeName;
-                    
-                return (<tr key={nextNodeList[index]}>
-                        <td>{nextNodeName}</td>
-                        <td>{nextCondtList[index]}</td>
-                    <td>
-                        <button onClick={()=>{
-                            const tempPreToNode = toNodeName;
-                            deleteLinkBetweenNodes(nextNodeName);
-                            setToNodeName(tempPreToNode);
-                        }}>Remove Connection</button>
-                    </td>
-                </tr>);
-            })}
-
-            </tbody>
-        </table>
-        </div>
-         */}
-        {/* {(nextCondtList.includes("Default: Always Reachable")) && 
-            <div className="hint"> 
-            ! There can be only one "always reachable" next-node. <br></br> Clear next-node table to add more nodes
-            </div>}
-        
-        {(!nextCondtList.includes("Default: Always Reachable")) && <>
-        <br></br>
-        <label>Add a Next-Node: </label>
-        <br></br>
-        </>} */}
 
         {(!nextCondtList.includes("Default: Always Reachable")) && <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
         <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
         {!isLinkNewNode && <>
         <br></br>
         <div>
-        <label>Node Name: </label>
+        <label>??? Node Name: </label>
         <select onChange={(event)=>{setToNodeName(event.target.value);console.log("Next-Node selected:", event.target.value);}} value={toNodeName}>
             <option value="" key="-"> -- Select Node Name --</option>
             {nodeData
@@ -1627,187 +1585,24 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
     </>}        </div>}
         </div>
     
+
+    
         {(!nextCondtList.includes("Default: Always Reachable")) && <div>
-        {/* <div className={!isLinkNewNode ? "optionArea" : "optionAreaSelected"} onClick={changeNextToNewNode}>
-        <input type="radio" name="brand_new_node" value={isLinkNewNode} checked={isLinkNewNode} onChange={changeNextToNewNode}/>
-        A New Node */}
-        {/* {isLinkNewNode && <> */}
-        {/* <br></br>
-        <label>Node Name: </label>
-        <input 
-          className="setting_item"
-          type="text" 
-          value={createNewNodeName} 
-          onChange={e => {setCreateNewNodeName(e.target.value);}}  
-        /> */}
-        {/* <br></br>
-        <label>Node Type:</label> */}
-        {/* <select className="setting_item" onChange={addNewNodeGameType} value={createNewNodeGameType}>
-          <option value="" key=""> -- Select Node's Game Type -- </option>
-          <option value="Card Game" key="Card Game">Card Game</option>
-          <option value="Board Game" key="Board Game">Board Game</option>
-          <option value="Tower Defense" key="Tower Defense">Tower Defense</option>
-          <option value="Conversation" key="Conversation">Conversation</option>
-        </select> */}
-        {/* <br></br>
-        <label>Screen Size:</label>
-        <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-              <option value="" key=""> ----- Select Size and Direction ----- </option>
-              <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-              <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-              <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-              <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
-            </select> */}
-        
-        {/* </>} */}
-        {/* </div>
-        <br></br> */}
-  
+    
+    
         <div className="areaBlue">
             {/* <br></br>
          */}
         <div>
-            {/* <label>Select a Condition to Reach this Node:</label>
-            <br></br>
-            
-            {nextNodeList.length === 0 && <div className={!isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(true)}}>
-                <input type="radio" name="isCondtDefault" value={isNextCondtDefault} checked={isNextCondtDefault} onChange={()=>{setNextCondtIsDefault(true);}}/>Default: Always Reachable
-            </div>}
-
-            {nextNodeList.length > 0 && <div className="optionArea">
-              <div>
-              ! If you want to set this node as "Default: Always Reachable", <br></br>delete connection(s) to other conditionally-reachable node(s).
-              </div>
-            </div>} */}
-
+  
             <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
-                {/* <div onClick={()=>{                        
-                    if (needCloudGameData === true) {
-                      fetchGameDataFromCloud();
-                    }
-                    setNeedCloudGameData(false);
-                  }}
-                  >
-                  <input 
-                    type="radio" 
-                    name="isCondtCustom" 
-                    value={isNextCondtDefault} 
-                    checked={!isNextCondtDefault} 
-                    onChange={()=>{
-                        setNextCondtIsDefault(false);
-                    }
-                }/>Customized Condition             
-
-                </div> */}
-
-
-                {!isNextCondtDefault && <div>
-                  {/* <p className="plans">TODO: add "else" option here (for with at least 1 existing next-nodes)
-                    <br></br> Current Design: convey "else" into parser, and game-flow decided automatically there
-                    <br></br> Logic sequence is the adding sequence (by author)
-                  </p>
-
-
-
-                  <label>Destination Node: {toNodeName}</label><br></br>
-                  <label>Conditions: {nextNodeList.includes(toNodeName) ? nextCondtList[nextCondtList.length-1] : "(Not Added)"}</label>
-
-                <br></br> */}
-                {/* <button onClick={fetchGameDataFromCloud}>Load Game Data </button> */}
-        
+                {!isNextCondtDefault && <div> 
                 <div className="areaFrame">
-                {/* <label> Variable 1: </label>
-
-          <select 
-                onChange={(event)=>{
-                  setLsGdataVar1(event.target.value);
-                  setCondtVar1Type(gameDataLocal[event.target.value]["data_type"]);
-                  console.log("var1 selected type = ", gameDataLocal[event.target.value]["data_type"]);
-                }} 
-                value={logicSplitter_gameDataVar1}>
-              
-              <option value="" key="">--Game Data--</option>
-              {Object.keys(gameDataLocal).map((currKey) => {
-                  return (
-                  <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
-                  );
-              })}
-          </select> */}
-                {/* {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
-    
-                <label>Comparison: </label>
-           */}
-{/*           
-{(condtVar1Type === "number") && <select onChange={(event)=>{setVar2NumCompare(event.target.value);}}>
-              <option key="" value="-"> -- Operator -- </option>
-              <option key="larger" value="larger"> larger than </option>
-              <option key="smaller" value="smaller"> smaller than </option>
-              <option key="equal" value="equal"> equals to </option>
-              <option key="largerequal" value="largerequal"> larger than or equals to </option>
-              <option key="smallerequal" value="smallerequal"> smaller than or equals to </option>
-          </select>}
-          */}
           <div>
-{(condtVar1Type === "number") && <div>
-                {/* <label> Variable 2: </label>
-                <br></br> */}
-
-                {/* <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item:  */}
-
-{/*                 
-                <select onChange={(event)=>{setLsGdataVar2(event.target.value);}} value={logicSplitter_gameDataVar2}>
-                        <option value="" key="">--Game Data--</option>
-
-                  {Object.keys(gameDataLocal).map((key) => {
-                    return (
-                          <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
-                      );
-                    })}
-                </select> */}
-              {/* {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
-
-              <br></br>
-              <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
-                  <input type="number" min="-100000000" max="100000000" step="1" value={logicSplitter_gameDataVar2} onChange={(event)=>{setLsGdataVar2(event.target.value);}}></input>    
-           */}
-          </div>}
-
-          {(condtVar1Type === "string") && <div>          
-            {/* <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(true);}} checked={var1StringEq}></input>
-            <label> Is </label>
-            <input></input>
-          <br></br>                         
-          <input type="radio" value={var1StringEq} onChange={()=>{setVar1StringEq(false);}} checked={!var1StringEq}></input>
-            <label> Is Not </label>
-            <input></input>          
-           */}
-          </div>}
-
-          {(condtVar1Type === "boolean") && <div>
-            
-          {/* <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(true);console.log("going to set: Var1-boolean-true");}} checked={var1BoolTrue}></input>
-            <label> Is True</label>
-          <br></br>                   
-          <input type="radio" value={var1BoolTrue} onChange={()=>{setVar1BoolTrue(false);console.log("going to set: Var1-boolean-false");}} checked={!var1BoolTrue}></input>
-            <label> Is False</label>
-           */}
-          </div>}
           </div>
-{/* 
-              <br></br>
-              <button onClick={()=>{console.log("logicSplitter_gameDataVar2: ", logicSplitter_gameDataVar2);}}>Add Condition</button> */}
-
                     </div>
-            
-            
-              <br></br>
-
         </div>}
-
-                
-
         </div>
-
         <button onClick={()=>{
             setCurrNodeSplitterNum(currNodeSplittedNum + 1);
 
@@ -1920,20 +1715,7 @@ console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
         }
         
         
-        <div>
-
-        <br></br>       
-        <p className="plans">
-            New Design Idea: *Each* node contains 1 logic splitter by default
-            <br></br>Next node condition is "true"(always) by default
-            <br></br>user can add 0 to many next-nodes with conditions(always by default)
-            <br></br>each node maintains a [list] of (next-node) and a [list] of (condition) (1-to-1 mapping by index)
-            <br></br>Limitation: cannot have multiple "always-true" path
-
-        </p>
-
       
-        </div>
 
 
 
