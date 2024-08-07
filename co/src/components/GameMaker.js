@@ -44,7 +44,13 @@ export default function GameMaker() {
   const name = "/gamemaker";
 
   const [currChapterKey, setCurrChapterKey] = useState("");
-  const [chapterList, setChapterList] = useState([["key1", "testChapter1", "display", "plot1", "end node"], ["key2", "testChapter2", "display", "", ""]]); //TODO fetch from cloud db
+  const [chapterList, setChapterList] = useState(
+    [
+      ["key1", "testChapter1", "display", "plot1", "end node"], 
+      ["key2", "testChapter2", "display", "", ""]
+    ]); //TODO fetch from cloud db when entering game-maker
+
+
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
 
   const [showChapterMaker, setShowChapterMaker] = useState(true);
@@ -282,13 +288,17 @@ export default function GameMaker() {
     setFirstTimeEnter(true);
   }
 
-  function resetRmUpdatedSignal() {
-    setRmUpdatedSignal(false);
-  }
+  // function resetRmUpdatedSignal() {
+  //   setRmUpdatedSignal(false);
+  // } //TODO remove unsued later
 
-  function passInRmUpdatedSignal() {
-      let val = rmUpdatedSignal;
-      return val;
+  // function passInRmUpdatedSignal() {
+  //     let val = rmUpdatedSignal;
+  //     return val;
+  // } //TODO remove unsued later
+
+  function passInChapterData() {
+    return chapterList;
   }
 
   const [developOnCloudData, setDevelopOnCloudData] = useState(false);
@@ -327,9 +337,10 @@ export default function GameMaker() {
           chapterData={chapterList} 
           updateChapterData={setChapterList} 
           chosenChapter={currChapterKey} 
-          updateChosenChapter={setCurrChapterKey} 
+          passInChosenChapter={setCurrChapterKey} 
           updateLinkingNode={updateLinkingNodeFunc}
           getCurrentChapterNodeList={fetchCurrChapterNodeList}
+          getChapterDataInfo={passInChapterData}
         />}
 
         <NodeManager 

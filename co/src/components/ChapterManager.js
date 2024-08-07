@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-export default function ChapterManager({chapterData, updateChapterData, chosenChapter, updateChosenChapter, updateLinkingNode, getCurrentChapterNodeList}) {
-//TODO get list of all nodes key for each chapter (when needed?)
+export default function ChapterManager({
+  chapterData, updateChapterData, 
+  getChapterDataInfo,
+  passInChosenChapter, updateLinkingNode, 
+  getCurrentChapterNodeList}) {
+
+//TODO3: game-maker level: all chapter's data (each chapter's node list)
+//TODO3: add getChapterData (from caller) : "getChapterDataInfo()"
+
   const languageCode = 0;
   const saveText = ["Save"];
   const cancelText = ["Cancel"];
@@ -41,7 +48,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
     tempChapterData[index][1] = newTitle;
     updateChapterData(tempChapterData);
     setEditingChapterTitle("");
-    updateChosenChapter(newTitle);
+    passInChosenChapter(newTitle);
   }
 
   function addNewChapterLine() {
@@ -86,7 +93,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
       setSelectedChpt(-1);
     } else {
       setSelectedChpt(item[0]);
-      updateChosenChapter(item[0]); // sends chapter-key info
+      passInChosenChapter(item[0]); // sends chapter-key info
     }
   }
 
@@ -160,15 +167,21 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
         </div>
         );
         })}
-        <ul className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} onClick={()=>{
-          setIsAddNewChapter(!isAddNewChpater);
-          setSelectedChpt(-1);
-          updateChosenChapter("");
-          console.log("chapterData: ", chapterData); //TODO testing
-        }}>
+
+        <br></br><br></br>
+        <ul 
+          className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} 
+          style={{"textDecoration": "underline"}}
+          onClick={()=>{
+            setIsAddNewChapter(!isAddNewChpater);
+            setSelectedChpt(-1);
+            passInChosenChapter("");
+            console.log("chapterData: ", chapterData); //TODO testing
+          }}>
           + New Chapter
         </ul>
-        {isAddNewChpater === true && <ul>
+        {isAddNewChpater === true && 
+        <div>
           <label>New Chapter Keyname (unchangable): </label><br></br>
           <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
           <br></br>
@@ -176,7 +189,7 @@ export default function ChapterManager({chapterData, updateChapterData, chosenCh
           <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
           <br></br>
           <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
-        </ul>}
+        </div>}
           
         
 
