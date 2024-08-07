@@ -692,9 +692,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
 
 <div style={{"display": "flex"}}> 
-          <div style={{"height": "350px", "marginRight": "20px"}} className="orangeArea">{listOfNodesText[languageCode]}:<br></br>
+          <div style={{
+            "height": "350px", 
+            "marginRight": "20px",
           
-            <ul style={{"width": "300px"}}>
+          }}>
+
+                {listOfNodesText[languageCode]}:<br></br>
+          
+            <ul style={{"width": "320px", "marginLeft": "-25px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                
                       let item = nodeRelationshipMap[currKey];
@@ -727,7 +733,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </ul>
           </div>  
 
-          {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TEST: visualization of node-grids grv marker
+          {<div style={{
+            "overflow": "scroll", 
+            "width": "1250px", 
+            "position": "relative"}}>
+                                  TEST: visualization of node-grids grv marker
 
 {/* link-drawing */}
 {gridBlocks.map((row, ir) => {

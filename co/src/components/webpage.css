@@ -577,7 +577,7 @@ li {
 }
 
 .sectionHeader {
-    background-color: #293241;
+    background-color: #3D5A80;
     height: 30px;
     width: 100%;
     color: rgb(233, 233, 233);
@@ -1238,19 +1238,22 @@ button:hover {
     border: none;
     border-radius: 0px;
     margin-left: 82%;
-    margin-top: 90%;
-    transform: rotate(-90deg);
+    margin-top: 20%;
+    transform: rotate(90deg);
     font-size: 20px;
 }
 
 .shrinkTab:hover {
     background-color: rgb(185, 191, 213);
+    color: #000000;
     border: none;
     border-radius: 0px;
     margin-left: 82%;
-    margin-top: 90%;
-    transform: rotate(-90deg);
+    margin-top: 20%;
+    transform: rotate(90deg);
     font-size: 20px;
+    border-bottom-right-radius: 20px;
+
 }
 
 .visArea {
@@ -1262,7 +1265,7 @@ button:hover {
 
 .chapterManagerSwitch {
     background-color: rgb(194, 203, 223);
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
     height: 50px;
     border: none;
     border-radius: 0px;
@@ -1273,7 +1276,7 @@ button:hover {
 .chapterManagerSwitch:hover {
     background-color: rgb(124, 133, 155);
     color: white;
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
     height: 50px;
     border: none;
     border-radius: 0px;
