@@ -630,6 +630,18 @@ th,td {
     border-radius: 0px;
 }
 
+.projManageSection {
+    cursor: pointer;
+    user-select: none;
+}
+
+.projManageSection:hover {
+    cursor: pointer;
+    user-select: none;
+    color: #EE6C4D;
+    font-weight: bold;
+}
+
 .tableItem {
     background-color: rgb(235, 232, 227);
     cursor: pointer;
@@ -1073,8 +1085,6 @@ button:hover {
 }
 
 .trashedProjectArea {
-    background-color: #727d8f;
-    color: white;
     padding: 10px;
     border-radius: 0px;
     overflow: scroll;

@@ -24,7 +24,7 @@ export default function ProjectManagerPanel() {
     const [isDisplayAsk, setDisplayAsk] = useState(false);
     const [showTrashArea, setShowTrashArea] = useState(false);
 
-    const [currentProjectAction, setCurrentProjectAction] = useState(""); //"createProject", "selectProject", "revertProject"
+    const [currentProjectAction, setCurrentProjectAction] = useState("selectProject"); //"createProject", "selectProject", "revertProject"
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -97,35 +97,36 @@ export default function ProjectManagerPanel() {
     <div className="backboardForAll">
   
         <div 
+          className="projManageSection"
           onClick={()=>{  
             setCurrentProjectAction("createProject");
           }}
         >
-      <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
-          <label>Create a New Project ...</label>
-        </div>
-          <div 
-            style={{
-              "display": currentProjectAction === "createProject" ? "flex" : "none",
-              "backgroundColor": "green",
-              "transition": "all 0.2s ease-out"
-            }}
-          
-          >
-            ...
-          </div>
+            <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
+                <label className="cursor_pointer">Create a New Project ...</label>
+            </div>
+
+            <div 
+              style={{
+                "display": currentProjectAction === "createProject" ? "flex" : "none",
+                "transition": "all 0.2s ease-out"
+              }}
+            
+            >
+              ...
+            </div>
 
         </div>
 
-        <div className="projSelectionArea" 
+        <div className="projSelectionArea projManageSection" 
           onClick={()=>{
               setCurrentProjectAction("selectProject");
           }}
-          
+ 
         >
         <div>
         <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
-          <label>Select an Ongoing Project ...</label>
+          <label className="cursor_pointer">Select an Ongoing Project ...</label>
         </div>
         {projList && 
         <div className="parallelFrame"  
@@ -145,16 +146,16 @@ export default function ProjectManagerPanel() {
                     key={projList[index]} 
                     value={item} 
                     onClick={()=>{handleProjectGridClicked(item);}}>
-                          {item}
+                          <label style={{"font-weight": "normal"}}>{item}</label>
                           <br></br>
                           <br></br>
                           <br></br>
 
                           {(selected_project_name === item) && 
                           <div style={{"display": "flex", "justifyContent": "start", "alignContent": "end"}}>
-                          <button className="elemPosLeftBottom" onClick={()=>{handleDeleteProject();}}>
-                            <GiTrashCan/>
-                          </button>
+                            <button className="elemPosLeftBottom" onClick={()=>{handleDeleteProject();}}>
+                              <GiTrashCan/>
+                            </button>
                           </div>}
 
                 </div>
@@ -183,18 +184,26 @@ export default function ProjectManagerPanel() {
 
 
         <div 
+          className="projManageSection"
           onClick={()=>{
             setCurrentProjectAction("revertProject");
           }}
-          style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}
-
         >
-              <label>Revert a Deleted Project ...</label>
-              <br></br>
-        
-              <div className="trashedProjectArea" style={{"transition": "all 0.2 ease-out", "display": currentProjectAction === "revertProject" ? "flex" : "none",}}>
-                  <label>{trashAreaLabel[languageCode]}</label>
-                  <br></br>
+              <label 
+                className="cursor_pointer"
+                style={{"justifyContent": "start", "display": "flex", "padding": "10px"}}
+              >Revert a Deleted Project ...</label>
+     
+              <div className="trashedProjectArea" 
+              
+              
+                style={{
+                    "transition": "all 0.2 ease-out", 
+                    "display": currentProjectAction === "revertProject" ? "flex" : "none",
+                    "justifyContent": "start", 
+                }}>
+
+                
 
                   {trashedProjList && 
                     <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
