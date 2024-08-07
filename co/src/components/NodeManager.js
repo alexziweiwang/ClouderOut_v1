@@ -683,7 +683,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   }
 
     return (      
-        <div style={{"overflow": "scroll", "width": "1000px"}}>
+        <div style={{"overflow": "scroll", "width": "100%"}}>
 
         {chapterKey!== "" && <div className="setting_area"> 
         <label>Chapter Key: {chapterKey}</label><br></br>
@@ -691,8 +691,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
 
-<div className="parallelFrame"> 
-          <div style={{"height": "350px"}} className="orangeArea">{listOfNodesText[languageCode]}:<br></br>
+<div style={{"display": "flex"}}> 
+          <div style={{"height": "350px", "marginRight": "20px"}} className="orangeArea">{listOfNodesText[languageCode]}:<br></br>
           
             <ul style={{"width": "300px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
@@ -706,13 +706,17 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
                           style={{"marginBottom": "3px"}}
                           onClick={()=>{
-                            //highlight the clicked node in diagram
-                            
                             
                             if (clickedNode2 === crdCal) {
                               setClickedNode2(-1); //cancel if already clicked on this node
                             } else {
                               setClickedNode2(crdCal);
+
+                              // crdCal = ir * 10000 + ic;
+                              let ic = crdCal % 10000;
+                              let ir = (crdCal-ic) / 10000;
+                              let content = gridBlocks[ir][ic]; 
+                              setClickedNodeKey(content);
                             } 
                           }}
                         >
@@ -723,78 +727,356 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             </ul>
           </div>  
 
-     
-     
-        {/* <div className="visArea visPanel" style={{"overflow": "scroll"}}>
+          {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TEST: visualization of node-grids grv marker
 
-          <svg
-            height="100%"
-            width="100%"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="nodes_viewer"
-            viewBox={viewBoxStr}
-          >
+{/* link-drawing */}
+{gridBlocks.map((row, ir) => {
+    let rowKeyStr = "linking" + ir;
     
-          {Object.keys(nodeData).map((nodeIndex, index) => {
-            // const { node_width, node_height } = nodeData[nodeIndex];
-            const x_val = nodeData[index].depth * node_gap + x_base;
-            //TODO calculate in-group-position by same-depth
-            const y_val = y_base + (node_height+y_dist) * nodeData[index].inGroupPosition;
+    return (<div key={rowKeyStr} style={{"position": "absolute"}}>
+          {row.map((col,ic) => {
+            let currNodeKey = gridBlocks[ir][ic];
 
-            return (
+
+            if (currNodeKey !== "" 
+              && nodeRelationshipMap[currNodeKey] !== undefined 
+              && nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter") {
+            // case1: not logic-splitter
+              let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
+              let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+              let sourceRightLineHEnd = sourceRightLineHStart + 10;
+              let extraHorizontalStart  = 0;
+
+              let destLeftLineVStart = 0;
+              let destLeftLineHStart = 0;
               
-              <g key={nodeIndex}>
-                {nodeData[nodeIndex].nextNodes.map((nextNodeIndex, nextIndex) => {
-                  
-                  const next_x_val = nodeData[nextNodeIndex].depth * 480 + x_base;
-                  //TODO calculate in-group-position by same-depth
-                  const next_y_val = y_base + (node_height+y_dist) * nodeData[nextNodeIndex].inGroupPosition;
+              let betweenNodeVerticalUnit = nodeHeight + 10;
+              let betweenNodesVerticalLink = 0;
+
+              let betweenNodeHorizontalUnit = nodeWidth + 22;
+              let betweenNodesHorizontalLink = 0;
+
+              let unitDiffVert = 0;
+              let unitDiffHori = 0;
+
+              let nextNodeKey = "";
+
+              let hasNextNode = false;
+              let srcNodeHigher = true; 
+              let srcNodeAtLeft= true; 
+
+              if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
+                //such a node exists
+                if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
+                && nodeRelationshipMap[currNodeKey].nextNode !== "" 
+                && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
+                  // not logic-splitter & has next-node
+                  hasNextNode = true;
+                  nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
+
+                  let nextR = nodeRelationshipMap[nextNodeKey].row;
+                  let nextC = nodeRelationshipMap[nextNodeKey].col;
+
+                  destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
+                  destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
+                  extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
+
+                  unitDiffVert = nextR - ir;
+                  if (unitDiffVert > 0) {
+                    srcNodeHigher = false;
+                  } else if (unitDiffVert < 0) {
+                    unitDiffVert = unitDiffVert * -1;
+                  }
+                  betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
+
+                  unitDiffHori = nextC - ic;
+                  if (unitDiffHori <= 0) { //source-node at right, dest-node at left
+                    betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
+                    srcNodeAtLeft = false;
+                  } else {
+                    betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
+                  }
+                }
+              }
+              let keyStr = "linking" + +ic+ "=" + currNodeKey;
+
+// TODO1 links between nodes
+              return (
+                <div key={keyStr}>
+                {currNodeKey !== "" && <div>
+
+                      {hasNextNode && <div 
+                        style={{
+                          "position": "absolute",
+                          "top": `${sourceRightLineVStart}px`, 
+                          "left": `${sourceRightLineHStart}px`, 
+                          "height": `1px`, 
+                          "width": `10px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}
+                        >       
+                      </div>}
                    
-                  let point_string = 
-                    (next_x_val-15) + "," + (y_val + node_height / 2 - 10) + " " + 
-                    (next_x_val-15) + "," + (y_val + node_height / 2 + 10) + " " + 
-                    next_x_val + "," + (next_y_val + node_height / 2);
-                    
-                  return (
-                    <line
-                      key={`line_${nodeIndex}_${nextIndex}`}
-                      x1={x_val + node_width}
-                      y1={y_val + node_height / 2}
-                      x2={next_x_val}
-                      y2={next_y_val + node_height / 2}
-                      stroke="green"
-                      strokeWidth="2"
-                      className="game_node_vis"
-                    />
-    
-                  );
-                })}
-                {(nodeData[nodeIndex].display === true) && 
-                <rect
-                  key={nodeData[nodeIndex].nodeName}
-                  className="game_node_vis"
-                  x={x_val}
-                  y={y_val}
-                  width={node_width}
-                  height={node_height}
-                  fill="#d1e8e2"
-                  stroke="#b2b2b2"
-                  onClick={() => {handleNodeClick(nodeData[nodeIndex].nodeName);}}
-                />}
+                      {hasNextNode && <div 
+                        style={{
+                          "position": "absolute",
+                          "top": `${destLeftLineVStart}px`, 
+                          "left": `${destLeftLineHStart}px`, 
+                          "height": `1px`, 
+                          "width": `10px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}
+                        >       
+                      </div>}
 
-                {(nodeData[nodeIndex].display === true ) && 
-                <text x={x_val + 5} y={y_val + 20} fill="#323232" key={`text_${nodeIndex}`}>
-                  {nodeData[nodeIndex].nodeName}
-                </text>}
-              </g>
-            );
-          })}    
-          </svg>
-    
-        </div> */}
+                      {hasNextNode && <div 
+                        style={{
+                          "position": "absolute",
+                          "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                          "left": `${sourceRightLineHStart+10}px`, 
+                          "height": `${betweenNodesVerticalLink}px`, 
+                          "width": `1px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}
+                        >     
+                      </div>}
 
-{clickedNode2 !== -1 && <div className="parallelFrame">
+                      {(hasNextNode && unitDiffHori > 0) && <div 
+                        style={{
+                          "position": "absolute",
+                          "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                          "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
+                          "height": `1px`, 
+                          "width": `${betweenNodesHorizontalLink}px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}
+                        >
+                      </div>}
+
+                      {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                        style={{
+                          "position": "absolute",
+                          "top": `${destLeftLineVStart}px`, 
+                          "left": `${destLeftLineHStart}px`, 
+                          "height": `1px`, 
+                          "width": `${betweenNodesHorizontalLink}px`, 
+                          "backgroundColor": "blue",
+                          "borderRadius": `0px`}}                              
+                        >
+                        </div>}
+                        {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                        style={{
+                          "position": "absolute",
+                          "top": `${destLeftLineVStart-10}px`, 
+                          "left": `${destLeftLineHStart}px`, 
+                          "height": `10px`, 
+                          "width": `1px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}                              
+                        >
+                        </div>}                                
+                        {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                        style={{
+                          "position": "absolute",
+                          "top": `${destLeftLineVStart-10}px`, 
+                          "left": `${destLeftLineHStart}px`, 
+                          "height": `1px`, 
+                          "width": `10px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}                              
+                        >
+                        </div>}
+
+                        {(hasNextNode === true && unitDiffVert === 0  && srcNodeAtLeft === false)
+                        && <div
+                        style={{
+                          "position": "absolute",
+                          "top": `${sourceRightLineVStart}px`, 
+                          "left": `${sourceRightLineHStart+10}px`, 
+                          "height": `10px`, 
+                          "width": `1px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}                                     
+                        ></div>}
+                       {(hasNextNode === true && unitDiffVert === 0 && srcNodeAtLeft === false)
+                       && <div
+                        style={{
+                          "position": "absolute",
+                          "top": `${sourceRightLineVStart+10}px`, 
+                          "left": `${sourceRightLineHStart}px`, 
+                          "height": `1px`, 
+                          "width": `10px`, 
+                          "backgroundColor": "#000000",
+                          "borderRadius": `0px`}}                                  
+                        ></div>}
+
+
+                </div>}
+                </div>);
+
+            } else if (currNodeKey !== "" 
+              && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter"){
+            //case2: is logic-splitter
+              let lscNodeList = nodeRelationshipMap[currNodeKey].spltLogicPairs;
+
+
+//TODO working area
+
+            }
+
+
+          })}
+            </div>);
+    })
+
+}
+
+<div>
+{gridBlocks.map((row, ir) => {
+   let rowKeyStr = "grid" + ir;
+    return (<div key={rowKeyStr} className="parallelFrame gridRow">
+          {row.map((col,ic) => {
+            let content = gridBlocks[ir][ic];
+  
+            let crd = ir * 10000 + ic;
+            let keyStr = "grid" + +ic+ "=" + content;
+            return (
+              <div key={keyStr} className="parallelFrame gridNodeGroup">
+                <div 
+                      style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
+                      className={
+                        crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
+                        
+                      onClick={()=>{       
+                 
+                        if (crd === clickedNode2) { //cancel if already clicked
+                          setClickedNode2(-1);
+                        } else {//setup clicked node
+                          setClickedNode2(crd);
+                        }       
+                  
+                        if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
+                          setAddNewNodeAreaDisplay(true);
+                        }
+
+                        if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
+                          setAddNewNodeAreaDisplay(false);
+                        }
+
+                        if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
+                          setAddNewNodeAreaDisplay(false);
+                        }
+
+                        setClickedNodeKey(content);
+                  
+                    }}
+                      >
+                        {content !== "" && 
+                          <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
+                        {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+                        {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
+                      
+                </div>
+
+                <div></div>
+       
+              </div>)
+          })}
+    
+
+
+            </div>);
+    })
+
+}
+</div>
+
+
+</div>}
+
+     
+  
+
+</div>
+   
+          {addNewNodeAreaDisplay && <div className="section">
+                
+                <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
+                  Adding A New Node</label></div>
+                {/* {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
+                  + Add A New Node</label></div>} */}
+
+                <div>
+              <label>Node Name: </label>
+              <input 
+                className="setting_item"
+                type="text" value={createNewNodeName} 
+                onChange={e => {setCreateNewNodeName(e.target.value)}}  
+              />
+              <br></br>
+              <label>Node Game Type: </label>
+              <select className="setting_item" onChange={(event)=>{addNewNodeGameType(event);}} value={createNewNodeGameType}>
+                <option value="" key=""> -- Select Node's Game Type -- </option>
+                {/* <option value="Card Game" key="Card Game">Card Game</option>
+                <option value="Board Game" key="Board Game">Board Game</option>
+                <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
+                <option value="LogicSplitter" key="LogicSplitter">*Logic Splitter</option>
+                <option value="Conversation" key="Conversation">Conversation</option>
+              </select>
+              <br></br>
+              {createNewNodeGameType !== "LogicSplitter" && <><label>Screen Size: </label>
+              <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+                    <option value="" key=""> ----- Select Size and Direction ----- </option>
+                    {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
+                    <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option> */}
+                    {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
+                    <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                  </select>
+              <br></br></>}
+              <button 
+                className="setting_item buttonRight"
+                onClick={()=>{
+                  addNewNode();
+                  addNewNode2();
+                  setClickedNodeKey("");
+                  setAddNewNodeAreaDisplay(false);
+                  }}>
+                  {createText[languageCode]}
+              </button>
+              <button
+                onClick={()=>{
+                  setAddNewNodeAreaDisplay(false);
+                  setClickedNode2(-1);}}
+              >{cancelText[languageCode]}</button>
+              </div>
+            </div>}
+
+        <div>
+
+
+        </div>
+
+     
+        {(clickedNode2 !== -1 
+          && nodeRelationshipMap[clickedNodeKey] !== undefined
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*"
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*") && 
+        <div>
+        <button 
+          className="setting_item"
+          onClick={()=>{enterNodeEditor2();}}>
+            {enterEditorText[languageCode]}
+        </button>
+    
+      
+        </div>
+        }
+                
+        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
+
+        <div>
+        {clickedNode2 !== -1 && <div className="parallelFrame">
           <div>
             <button
               onClick={()=>{
@@ -881,352 +1163,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 </div>}
 
-</div>
-        {<div style={{"overflow": "scroll", "width": "1250px", "position": "relative"}}>TEST: visualization of node-grids grv marker
-
-          {/* linking-drawing */}
-          {gridBlocks.map((row, ir) => {
-              let rowKeyStr = "linking" + ir;
-              
-              return (<div key={rowKeyStr} style={{"position": "absolute"}}>
-                    {row.map((col,ic) => {
-                      let currNodeKey = gridBlocks[ir][ic];
-
-
-                      if (currNodeKey !== "" 
-                        && nodeRelationshipMap[currNodeKey] !== undefined 
-                        && nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter") {
-                      // case1: not logic-splitter
-                        let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-                        let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
-                        let sourceRightLineHEnd = sourceRightLineHStart + 10;
-                        let extraHorizontalStart  = 0;
-  
-                        let destLeftLineVStart = 0;
-                        let destLeftLineHStart = 0;
-                        
-                        let betweenNodeVerticalUnit = nodeHeight + 10;
-                        let betweenNodesVerticalLink = 0;
-  
-                        let betweenNodeHorizontalUnit = nodeWidth + 22;
-                        let betweenNodesHorizontalLink = 0;
-  
-                        let unitDiffVert = 0;
-                        let unitDiffHori = 0;
-  
-                        let nextNodeKey = "";
-  
-                        let hasNextNode = false;
-                        let srcNodeHigher = true; 
-                        let srcNodeAtLeft= true; 
-  
-                        if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
-                          //such a node exists
-                          if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
-                          && nodeRelationshipMap[currNodeKey].nextNode !== "" 
-                          && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
-                            // not logic-splitter & has next-node
-                            hasNextNode = true;
-                            nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
-  
-                            let nextR = nodeRelationshipMap[nextNodeKey].row;
-                            let nextC = nodeRelationshipMap[nextNodeKey].col;
-  
-                            destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
-                            destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
-                            extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
-  
-                            unitDiffVert = nextR - ir;
-                            if (unitDiffVert > 0) {
-                              srcNodeHigher = false;
-                            } else if (unitDiffVert < 0) {
-                              unitDiffVert = unitDiffVert * -1;
-                            }
-                            betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
-  
-                            unitDiffHori = nextC - ic;
-                            if (unitDiffHori <= 0) { //source-node at right, dest-node at left
-                              betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
-                              srcNodeAtLeft = false;
-                            } else {
-                              betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
-                            }
-                          }
-                        }
-                        let keyStr = "linking" + +ic+ "=" + currNodeKey;
-   
-
-                        return (
-                          <div key={keyStr}>
-                          {currNodeKey !== "" && <div>
-  
-                                {hasNextNode && <div 
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${sourceRightLineVStart}px`, 
-                                    "left": `${sourceRightLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `10px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}
-                                  >       
-                                </div>}
-                             
-                                {hasNextNode && <div 
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${destLeftLineVStart}px`, 
-                                    "left": `${destLeftLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `10px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}
-                                  >       
-                                </div>}
-  
-                                {hasNextNode && <div 
-                                  style={{
-                                    "position": "absolute",
-                                    "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                    "left": `${sourceRightLineHStart+10}px`, 
-                                    "height": `${betweenNodesVerticalLink}px`, 
-                                    "width": `1px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}
-                                  >     
-                                </div>}
-  
-                                {(hasNextNode && unitDiffHori > 0) && <div 
-                                  style={{
-                                    "position": "absolute",
-                                    "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                    "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
-                                    "height": `1px`, 
-                                    "width": `${betweenNodesHorizontalLink}px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}
-                                  >
-                                </div>}
-  
-                                {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${destLeftLineVStart}px`, 
-                                    "left": `${destLeftLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `${betweenNodesHorizontalLink}px`, 
-                                    "backgroundColor": "blue",
-                                    "borderRadius": `0px`}}                              
-                                  >
-                                  </div>}
-                                  {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${destLeftLineVStart-10}px`, 
-                                    "left": `${destLeftLineHStart}px`, 
-                                    "height": `10px`, 
-                                    "width": `1px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}                              
-                                  >
-                                  </div>}                                
-                                  {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${destLeftLineVStart-10}px`, 
-                                    "left": `${destLeftLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `10px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}                              
-                                  >
-                                  </div>}
-  
-                                  {(hasNextNode === true && unitDiffVert === 0  && srcNodeAtLeft === false)
-                                  && <div
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${sourceRightLineVStart}px`, 
-                                    "left": `${sourceRightLineHStart+10}px`, 
-                                    "height": `10px`, 
-                                    "width": `1px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}                                     
-                                  ></div>}
-                                 {(hasNextNode === true && unitDiffVert === 0 && srcNodeAtLeft === false)
-                                 && <div
-                                  style={{
-                                    "position": "absolute",
-                                    "top": `${sourceRightLineVStart+10}px`, 
-                                    "left": `${sourceRightLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `10px`, 
-                                    "backgroundColor": "#000000",
-                                    "borderRadius": `0px`}}                                  
-                                  ></div>}
-  
-  
-                          </div>}
-                          </div>);
-
-                      } else if (currNodeKey !== "" 
-                        && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter"){
-                      //case2: is logic-splitter
-                        let lscNodeList = nodeRelationshipMap[currNodeKey].spltLogicPairs;
-
-
-//TODO working area
-
-                      }
-
-       
-                    })}
-                      </div>);
-              })
-
-          }
-
-        <div>
-          {gridBlocks.map((row, ir) => {
-             let rowKeyStr = "grid" + ir;
-              return (<div key={rowKeyStr} className="parallelFrame gridRow">
-                    {row.map((col,ic) => {
-                      let content = gridBlocks[ir][ic];
-              
-                      let crd = ir * 10000 + ic;
-                      let keyStr = "grid" + +ic+ "=" + content;
-                      return (
-                        <div key={keyStr} className="parallelFrame gridNodeGroup">
-                          <div 
-                                style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
-                                className={
-                                  crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
-                                  
-                                onClick={()=>{       
-                           
-                                  if (crd === clickedNode2) { //cancel if already clicked
-                                    setClickedNode2(-1);
-                                  } else {//setup clicked node
-                                    setClickedNode2(crd);
-                                  }       
-                            
-                                  if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
-                                    setAddNewNodeAreaDisplay(true);
-                                  }
-
-                                  if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
-                                    setAddNewNodeAreaDisplay(false);
-                                  }
-
-                                  if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
-                                    setAddNewNodeAreaDisplay(false);
-                                  }
-
-                                  setClickedNodeKey(content);
-                            
-                              }}
-                                >
-                                  {content !== "" && 
-                                    <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
-                                  {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
-                                  {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
-                                
-                          </div>
-
-                          <div></div>
-                 
-                        </div>)
-                    })}
-              
-
-
-                      </div>);
-              })
-
-          }
-        </div>
-
- 
-        </div>}
-
-          {addNewNodeAreaDisplay && <div className="section">
-                
-                <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
-                  Adding A New Node</label></div>
-                {/* {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
-                  + Add A New Node</label></div>} */}
-
-                <div>
-              <label>Node Name: </label>
-              <input 
-                className="setting_item"
-                type="text" value={createNewNodeName} 
-                onChange={e => {setCreateNewNodeName(e.target.value)}}  
-              />
-              <br></br>
-              <label>Node Game Type: </label>
-              <select className="setting_item" onChange={(event)=>{addNewNodeGameType(event);}} value={createNewNodeGameType}>
-                <option value="" key=""> -- Select Node's Game Type -- </option>
-                {/* <option value="Card Game" key="Card Game">Card Game</option>
-                <option value="Board Game" key="Board Game">Board Game</option>
-                <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
-                <option value="LogicSplitter" key="LogicSplitter">*Logic Splitter</option>
-                <option value="Conversation" key="Conversation">Conversation</option>
-              </select>
-              <br></br>
-              {createNewNodeGameType !== "LogicSplitter" && <><label>Screen Size: </label>
-              <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-                    <option value="" key=""> ----- Select Size and Direction ----- </option>
-                    {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                    <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option> */}
-                    {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
-                    <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                  </select>
-              <br></br></>}
-              <button 
-                className="setting_item buttonRight"
-                onClick={()=>{
-                  addNewNode();
-                  addNewNode2();
-                  setClickedNodeKey("");
-                  setAddNewNodeAreaDisplay(false);
-                  }}>
-                  {createText[languageCode]}
-              </button>
-              <button
-                onClick={()=>{
-                  setAddNewNodeAreaDisplay(false);
-                  setClickedNode2(-1);}}
-              >{cancelText[languageCode]}</button>
-              </div>
-            </div>}
-
-        <div>
-
 
         </div>
 
-     
-        {(clickedNode2 !== -1 
-          && nodeRelationshipMap[clickedNodeKey] !== undefined
-          && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
-          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*"
-          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*") && 
-        <div>
-        <button 
-          className="setting_item"
-          onClick={()=>{enterNodeEditor2();}}>
-            {enterEditorText[languageCode]}
-        </button>
-    
-      
-        </div>
-        }
-                
-        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
+
+
+
 
               <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
             <div>
+              
               <label>Node Name: </label>
               <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
               <br></br>
