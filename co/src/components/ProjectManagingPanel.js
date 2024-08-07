@@ -24,6 +24,8 @@ export default function ProjectManagerPanel() {
     const [isDisplayAsk, setDisplayAsk] = useState(false);
     const [showTrashArea, setShowTrashArea] = useState(false);
 
+    const [currentProjectAction, setCurrentProjectAction] = useState(""); //"createProject", "selectProject", "revertProject"
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -94,7 +96,33 @@ export default function ProjectManagerPanel() {
 
     <div className="backboardForAll">
   
-        <div className="projSelectionArea">
+        <div 
+          onClick={()=>{  
+            setCurrentProjectAction("createProject");
+   
+          }}
+        >
+          <label>Create a Project ...</label>
+          <div 
+            style={{
+              "display": currentProjectAction === "createProject" ? "flex" : "none",
+              "backgroundColor": "green",
+              "transition": "all 0.2s ease-out"
+            }}
+          
+          >
+            ...
+          </div>
+
+        </div>
+
+        <div className="projSelectionArea" 
+          onClick={()=>{
+              setCurrentProjectAction("selectProject");
+          }}
+
+        >
+        <div>
           
         <label>Select a Project ...</label>
 
@@ -104,7 +132,9 @@ export default function ProjectManagerPanel() {
               "marginTop": "20px", 
               "justifyContent": "center", 
               "alignItems": "center", 
-              "display": "flex"
+              "display": "flex",
+              "display": currentProjectAction === "selectProject" ? "flex" : "none",
+              "transition": "all 0.2s ease-out"
           }}>
           
           
@@ -146,38 +176,42 @@ export default function ProjectManagerPanel() {
           </div>}
 
         </div>
-        }
+        }</div>
+        
+        
         </div>
 
-  
-        <br></br><br></br><br></br>
-        
-        <button onClick={()=>{
-          setShowTrashArea(!showTrashArea);
-        }}>{manageDeletedProjectText[languageCode]}</button>
-        
-        {showTrashArea === true && 
-        <div className="trashedProjectArea">
-            <label>{trashAreaLabel[languageCode]}</label>
-            <br></br>
 
-            {trashedProjList && 
-              <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
-                <option value="" key="">-- {trashedProjectSelectListDefaultText[languageCode]} --</option>
-                {
-                  trashedProjList.map((item, index) => {
-                    return (
-                      <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>
-                    );
-                  })
-                }
-              </select>
-            }
+        <div onClick={()=>{
+          setCurrentProjectAction("revertProject");
+        }}>
+              <label>Revert a Project ...</label>
+              <br></br><button onClick={()=>{
+                setShowTrashArea(!showTrashArea);
+              }}>{manageDeletedProjectText[languageCode]}</button>
+              
+              {showTrashArea === true && 
+              <div className="trashedProjectArea" style={{"transition": "all 0.2 ease-out"}}>
+                  <label>{trashAreaLabel[languageCode]}</label>
+                  <br></br>
 
-            <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
-            
+                  {trashedProjList && 
+                    <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
+                      <option value="" key="">-- {trashedProjectSelectListDefaultText[languageCode]} --</option>
+                      {
+                        trashedProjList.map((item, index) => {
+                          return (
+                            <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>
+                          );
+                        })
+                      }
+                    </select>
+                  }
+
+                  <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
+                  
         </div>}
-   
+        </div>
     </div>
     
 
