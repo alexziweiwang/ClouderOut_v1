@@ -188,7 +188,6 @@ export default function GameMaker() {
     "gsdPage-bgShadeName": "rgb(222, 222, 235)",
     "gsdPage-bgPicName": "",
 
-
     "backButton-width": 50,
     "backButton-height": 50,
     "backButton-isShape": false,
@@ -263,12 +262,9 @@ export default function GameMaker() {
 
   function updateCurrProjectNavObj(obj) {
     setCurrentProjectNav(obj);
-    console.log("updated, now nav-obj is...", obj);
   }
 
   function passInNavObj() {
-    console.log("!! passing in nav-obj...", currentProjectNav);
-
     return currentProjectNav;
   }
 
@@ -290,12 +286,12 @@ export default function GameMaker() {
 
   // function resetRmUpdatedSignal() {
   //   setRmUpdatedSignal(false);
-  // } //TODO remove unsued later
+  // } //TODO remove unused later
 
   // function passInRmUpdatedSignal() {
   //     let val = rmUpdatedSignal;
   //     return val;
-  // } //TODO remove unsued later
+  // } //TODO remove unused later
 
   function passInChapterData() {
     return chapterList;

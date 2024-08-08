@@ -1153,10 +1153,17 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                 }}>{confirmText[languageCode]}</button>
                 <br></br><button
                   onClick={()=>{
+
                     let tempMap2 = nodeRelationshipMap;
-                    tempMap2[clickedNodeKey].nextNode = "-";
-                    setNodeRelationshipMap(tempMap2);
-                    updateRenderCounter();
+
+                    let confirmStr = "Are you sure to detach the linking between " + tempMap2[clickedNodeKey].nodeName + " and " + tempMap2[clickedNodeKey].nextNode + " ?";
+                    let resp = window.confirm(confirmStr);
+                    if (resp) {
+                      tempMap2[clickedNodeKey].nextNode = "-";
+                      setNodeRelationshipMap(tempMap2);
+                      updateRenderCounter();
+                    }
+                    
                   }}
                 >{detachLinkingText[languageCode]}</button>
               </>}
