@@ -1113,7 +1113,6 @@ button:hover {
 }
 
 .listBar {
-    width: 25%;
     background-color: rgb(228, 231, 237);
     border-radius: 0px;
     overflow: scroll;
@@ -1237,10 +1236,15 @@ button:hover {
     color: white;
     border: none;
     border-radius: 0px;
-    margin-left: 82%;
-    margin-top: 20%;
-    transform: rotate(90deg);
+    height: 50px;
+    margin-top: 20px;
+
+    margin-left: -20px;
+ 
+    transform: rotate(-90deg);
     font-size: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .shrinkTab:hover {
@@ -1248,11 +1252,15 @@ button:hover {
     color: #000000;
     border: none;
     border-radius: 0px;
-    margin-left: 82%;
-    margin-top: 20%;
-    transform: rotate(90deg);
+    height: 50px;
+    margin-top: 20px;
+
+    margin-left: -20px;
+
+    transform: rotate(-90deg);
     font-size: 20px;
     border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 
 }
 
@@ -1265,23 +1273,27 @@ button:hover {
 
 .chapterManagerSwitch {
     background-color: rgb(194, 203, 223);
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
     height: 50px;
     border: none;
     border-radius: 0px;
-    margin-left: -55px;
+    margin-left: -57px;
     margin-top: 100px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .chapterManagerSwitch:hover {
     background-color: rgb(124, 133, 155);
     color: white;
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
     height: 50px;
     border: none;
     border-radius: 0px;
-    margin-left: -55px;
+    margin-left: -57px;
     margin-top: 100px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .purpleArea {

@@ -1430,7 +1430,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     {/* node-info-area ends */}
     </div> 
 
-    <div style={{"marginLeft": "15%"}}>
+    <div style={{"marginLeft": "20px"}}>
       direction area
 
 {(clickedNode2 !== -1 

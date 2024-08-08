@@ -127,90 +127,97 @@ export default function ChapterManager({
     return (
       <>
         {isCollapse === false && 
-        <div className="listBar">
-        
-        <div className="chapterManagingArea"> 
-          <label>Chapter Management</label>
-  
-    <ol>
+        <div className="parallelFrame">
+          <div className="listBar" style={{"width": "55%", "overflow": "hidden"}}>
+              <div className="chapterManagingArea"> 
+                        <label>Chapter Management: </label>
+                
 
-      {chapterData.map((item, index) => {
-        let hide = "display";
-        if (chapterData[index][2] === "delete") {
-          hide = "hide";
-        }
-        let divKey = "div"+index;
-        return (
-        <div key={divKey}>
-        {hide === "display" && <>
-          <li key={index}
-              className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
-              onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
-            {item[0]}:{item[1]}
-          </li>
-          {selectedChptKey === item[0] && 
-            <>
-              <label>*Change Chapter Name*</label><br></br>
-              <label>Chapter Name:</label>
-              <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);console.log("changing title: ");console.log(event.target.value);}}></input>
-              <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
-              <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
-              <br></br>
+                  <ul>
+
+                    {chapterData.map((item, index) => {
+                      let hide = "display";
+                      if (chapterData[index][2] === "delete") {
+                        hide = "hide";
+                      }
+                      let divKey = "div"+index;
+                      return (
+                      <div key={divKey}>
+                      {hide === "display" && <>
+                        <li key={index}
+                            className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
+                            onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
+                          {item[0]}: {item[1]}
+                        </li>
+                        {selectedChptKey === item[0] && 
+                          <>
+                            <label>*Change Chapter Name*</label><br></br>
+                            <label>Chapter Name:</label>
+                            <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);console.log("changing title: ");console.log(event.target.value);}}></input>
+                            <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
+                            <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
+                            <br></br>
+                            
+                            <label>*Delete Chapter</label><br></br>
+                            <button onClick={()=>{hideChapter(index);}}>{deleteText[languageCode]}</button><br></br>
+
+                          </>
+                        
+                        }
+                        </>}
+                      </div>
+                      );
+                      })}
+
+                      <br></br><br></br>
+                      <ul 
+                        className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} 
+                        style={{"textDecoration": "underline"}}
+                        onClick={()=>{
+                          setIsAddNewChapter(!isAddNewChpater);
+                          setSelectedChpt(-1);
+                          passInChosenChapter("");
+                          console.log("chapterData: ", chapterData); //TODO testing
+                        }}>
+                        + New Chapter
+                      </ul>
+                      {isAddNewChpater === true && 
+                      <div>
+                        <label>New Chapter Keyname (unchangable): </label><br></br>
+                        <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
+                        <br></br>
+                        <label>New Chapter Keyname (editable later): </label><br></br>
+                        <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
+                        <br></br>
+                        <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
+                      </div>}
+                        
+                      
+
+                  </ul>
+
               
-              <label>*Delete Chapter</label><br></br>
-              <button onClick={()=>{hideChapter(index);}}>{deleteText[languageCode]}</button><br></br>
+                  </div>
 
-            </>
-          
-          }
-          </>}
-        </div>
-        );
-        })}
+                      <div>
+                            {chapterRevertAreaText[languageCode]}<br></br>
+                            {deletedLocalList.map((item, index) => {
+                              return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>{revertText[languageCode]}</button ></label>);
+                            })}
+                      </div>
+                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                      <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
+                        <br></br>TODO feature: insert chapter between existing chapters 
+                        <br></br>TODO feature: rearrange chapter sequence
+                      </p>
 
-        <br></br><br></br>
-        <ul 
-          className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} 
-          style={{"textDecoration": "underline"}}
-          onClick={()=>{
-            setIsAddNewChapter(!isAddNewChpater);
-            setSelectedChpt(-1);
-            passInChosenChapter("");
-            console.log("chapterData: ", chapterData); //TODO testing
-          }}>
-          + New Chapter
-        </ul>
-        {isAddNewChpater === true && 
-        <div>
-          <label>New Chapter Keyname (unchangable): </label><br></br>
-          <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
-          <br></br>
-          <label>New Chapter Keyname (editable later): </label><br></br>
-          <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
-          <br></br>
-          <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
-        </div>}
-          
-        
 
-    </ol>
 
-    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>{collapseText[languageCode]}</button>
+                </div>
 
-    </div>
-
-        <div>
-              {chapterRevertAreaText[languageCode]}<br></br>
-              {deletedLocalList.map((item, index) => {
-                return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>{revertText[languageCode]}</button ></label>);
-              })}
-        </div>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
-          <br></br>TODO feature: insert chapter between existing chapters 
-          <br></br>TODO feature: rearrange chapter sequence
-        </p>
-
+                  <div>
+                    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>{collapseText[languageCode]}</button>
+                  </div>     
         </div>
         }
 
@@ -218,6 +225,9 @@ export default function ChapterManager({
         {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>
           {chapterManagementText[languageCode]}
           </button>}
+
+
+
       </>
     );
 }
