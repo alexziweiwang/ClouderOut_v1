@@ -687,6 +687,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
         {chapterKey!== "" && <div className="setting_area"> 
         <label>Chapter Key: {chapterKey}</label><br></br>
+        <br></br><button>Test this chapter</button><br></br>
         <label>{nodeManageMentText[languageCode]}</label>
 
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>

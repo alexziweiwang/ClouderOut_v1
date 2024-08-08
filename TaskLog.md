@@ -311,7 +311,7 @@
 - 2024-Aug-05: Consider and design on-cloud testing data for inter-node quick-view
 - 2024-Aug-05: Consider game-maker level data flow in component
 
-
+- 2024-Aug-07: Consider different level of testing for the game-contents, and design implementation plans for each use case
 
 
 
