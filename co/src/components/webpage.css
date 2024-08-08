@@ -749,6 +749,7 @@ td {
 .sectionArea {
     background-color: #c4c3c7;
     margin-top: -3px;
+    border-radius: 0px;
 }
 
 .tabBar1 {

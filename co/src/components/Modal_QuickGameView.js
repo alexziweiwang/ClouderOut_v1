@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
-import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
-import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
-import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
-import Modal_ConvLog from './Modal_ConvLog';
-
+import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
     visualList, audioList, gameData}) {
-//TODO: receive nav-data (for all game type ) ; do later
 
     let modalStyleName = "modalBackboard";
 
@@ -21,6 +16,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
     }
 
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
+    
     const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
     const [textStillTyping, setTextStillTyping] = useState(true);
     const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
@@ -59,11 +55,6 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
  
         setFirstTimeEnter(false);
       }
-
-
-
-//TODO update of "currPieceNum" : by user clicking and/or operations ... (auto, etc.)
-
 
         if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
             allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
@@ -141,7 +132,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         } 
       }    
 
-
+/*
     function triggerToDirectNextPiece() {
  
 
@@ -172,6 +163,9 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
     function passInDirectNextPieceBool() {
         return directNextPieceBool;
     }
+*/ //TODO: remove unusued later
+
+
 
     function resetViewingPiece() {
         let gameDataTemp = gameDataCurr;
@@ -190,83 +184,92 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
     }
 
-    function notifyFinished() {
-        setTextStillTyping(false);
-    } 
+    // function notifyFinished() {
+    //     setTextStillTyping(false);
+    // } 
 
-    function notifyNotYet() {
-        setTextStillTyping(true);
-    }
+    // function notifyNotYet() {
+    //     setTextStillTyping(true);
+    // }
 
-    function passInImmedaiteFinishSignal() {
-        return immediateFinishSignal;
-    }
+    // function passInImmedaiteFinishSignal() {
+    //     return immediateFinishSignal;
+    // }
 
-    function triggerAutoMode(val) {
-        setAutoMode(val);
-    }
+    // function triggerAutoMode(val) {
+    //     setAutoMode(val);
+    // }
 
-    function passInAutoModeStatus() {
-        return autoMode;
-    }
+    // function passInAutoModeStatus() {
+    //     return autoMode;
+    // } //TODO: remove unusued later
 
-    function changeGameData(name, value) {
-        let gmdtObj = gameDataCurr;
-        gmdtObj[name].current_value = value;
-        setGameDataCurr(gmdtObj);
-    }
+    // function changeGameData(name, value) {
+    //     let gmdtObj = gameDataCurr;
+    //     gmdtObj[name].current_value = value;
+    //     setGameDataCurr(gmdtObj);
+    // }  //TODO: remove unusued later
 
-    function changeGameDataByStatement(name, action, newVal, type) {
-        if (type === "boolean" || type === "string") {
-            // type - boolean 
-                // action is "becomes"
-            let boolVal = (newVal === "true" || newVal === true) ? true : false;
-            changeGameData(name, boolVal);
-        } else if (type === "string") {
-            // type - string
-                // action is "becomes"
-            changeGameData(name, newVal);
-        } else if (type === "number") {
-            // type - number
-            let currVal = gameDataCurr[name]["current_value"];
+    // function changeGameDataByStatement(name, action, newVal, type) {
+    //     if (type === "boolean" || type === "string") {
+    //         // type - boolean 
+    //             // action is "becomes"
+    //         let boolVal = (newVal === "true" || newVal === true) ? true : false;
+    //         changeGameData(name, boolVal);
+    //     } else if (type === "string") {
+    //         // type - string
+    //             // action is "becomes"
+    //         changeGameData(name, newVal);
+    //     } else if (type === "number") {
+    //         // type - number
+    //         let currVal = gameDataCurr[name]["current_value"];
 
-            let result = 0;
-            if (action === "plus") {
-                result = currVal - (-1 * newVal); //important, not directly adding
-                changeGameData(name, result);
-            } else if (action === "minus") {   
-                result = currVal - newVal;
-                changeGameData(name, result);
-            } else if (action === "becomes") {
-                changeGameData(name, newVal);
-            }
+    //         let result = 0;
+    //         if (action === "plus") {
+    //             result = currVal - (-1 * newVal); //important, not directly adding
+    //             changeGameData(name, result);
+    //         } else if (action === "minus") {   
+    //             result = currVal - newVal;
+    //             changeGameData(name, result);
+    //         } else if (action === "becomes") {
+    //             changeGameData(name, newVal);
+    //         }
           
-        }
-    }
+    //     }
+    // }
 
-    function closeConvLog() {
-        setShowConvLog(false);
-    }
+    // function closeConvLog() {
+    //     setShowConvLog(false);
+    // }
 
-    function openConvLog() {
-        setShowConvLog(true);
-    }
+    // function openConvLog() {
+    //     setShowConvLog(true);
+    // }
 
-    function notUsing() {
-        return;
-    }
+    // function notUsing() {
+    //     return;
+    // }
 
-    function passInVisualMap() {
-        return visualMap;
-    }
+    // function passInVisualMap() {
+    //     return visualMap;
+    // }
 
-    function passInIsDisplayConvLog() {
-        return showConvLog;
-    }
+    // function passInIsDisplayConvLog() {
+    //     return showConvLog;
+    // }       //TODO: remove unusued later
+
+
+
+
+
+
+
 
     let languageCode = 0;
     let closeText = ["Close"];
     let resetText = ["Reset"];
+
+
 
     return ( <div className={modalStyleName}>
         <div className="modalArea">
@@ -277,8 +280,23 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
 
                 <div className="parallelFrame" style={{"overflow": "scroll"}}>
 
-               
-                    <div className="previewArea"   
+                <GameScreen_QuickView_ConvNode
+                    initialPieceNum={initialPieceNum}
+                    isDisplay={isDisplay} 
+                    screenWidth={screenWidth}
+                    screenHeight={screenHeight}
+                    allPieceContent={allPieceContent}
+                    uiData1_textframe={uiData1_textframe}
+                    uiData2_buttonOption={uiData2_buttonOption}
+                    uiData3_ConvNavigation={uiData3_ConvNavigation} 
+                    uiData4_logPageSettings={uiData4_logPageSettings}
+                    visualList={visualList} 
+                    audioList={audioList}
+                    gameData={gameData}
+                />
+
+          
+                    {/* <div className="previewArea"   
                         style={{"position": "relative", 
                             "height": `${screenHeight}px`, 
                             "width": `${screenWidth}px`,
@@ -393,12 +411,30 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
                     />}
 
 
-                                {/* //TODO add standardButtonGroup component
-                                //TODO add ConNav component */}
+                              //TODO add standardButtonGroup component
+                                //TODO add ConNav component 
 
 
                         Preview Area ...
-                    </div>
+                    </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <div className="previewArea" style={{"width": "350px", "height": `${screenHeight}px`, "overflow": "scroll"}}>
                         Game Data Area...
