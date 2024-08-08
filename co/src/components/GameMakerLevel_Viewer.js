@@ -8,10 +8,18 @@ export default function GameMakerLevel_Viewer() {
 
 //TODO settled data
 //resource maps (visual & audio) [settled once started]
-//node-inside-content: conv-node, or card-game, or board-game, etc.
+//node-inside-content: 
+            // conv-node: <GameScreen_QuickView_ConvNode/>
+            // card-game, or board-game, etc.
+               
+//TODO styles for game-play
+//screen settings, etc.
 
 
     return(<>
+    
+
+
     
     </>);
 }

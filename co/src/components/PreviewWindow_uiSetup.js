@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
-import Modal_ConvLog from './Modal_ConvLog';
+import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 
 export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
@@ -162,7 +162,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
 
                 {isShowLogScreen && 
-                        <Modal_ConvLog
+                        <Modal_ConvNode_Log
                             allPieceContent={initialAllPieceData} 
                             initialPieceNum={initialPieceNum} 
                             getCurrPieceNum={getCurrentPieceNum} 

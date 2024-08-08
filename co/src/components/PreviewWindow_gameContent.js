@@ -6,7 +6,7 @@ import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import Modal_ConvLog from './Modal_ConvLog';
+import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 
 export default function PreviewWindow_gameContent({initialAllPieceData, getAllPieceContent, 
@@ -387,7 +387,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
 
                 {isShowLogScreen && 
-                        <Modal_ConvLog
+                        <Modal_ConvNode_Log
                             allPieceContent={initialAllPieceData} 
                             initialPieceNum={currentPieceNum} 
                             getCurrPieceNum={getCurrentPieceNum} 

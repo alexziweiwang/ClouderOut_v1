@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
-export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel, 
+export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
@@ -393,7 +393,7 @@ export default function Modal_QuickGameView ({initialPieceNum, handleQViewCancel
 </div>
 
 
-                    {showConvLog && <Modal_ConvLog
+                    {showConvLog && <Modal_ConvNode_Log
                         allPieceContent={allPieceContent} 
                         initialPieceNum={initialPieceNum} 
                         getCurrPieceNum={passInCurrentPieceNum} 

@@ -8,7 +8,7 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 
 import PreviewWindow_gameContent from './PreviewWindow_gameContent';
 import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
-import Modal_QuickGameView from './Modal_QuickGameView';
+import QuickView_AllPanels_ConvNode from './QuickView_AllPanels_ConvNode';
 
 import PieceManager from './PieceManager';
 import GameUISetter from './GameUISetter';
@@ -737,7 +737,7 @@ export default function ConversationNodeEditingPanel() {
             />}
 
 
-            {isDisplayQview && <Modal_QuickGameView
+            {isDisplayQview && <QuickView_AllPanels_ConvNode
                 initialPieceNum={previewingIndex}
                 isDisplay={isDisplayQview}
                 handleQViewCancel={handleqvCancel}

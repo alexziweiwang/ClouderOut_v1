@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import GameUI_Play_1TextFrame from './GameUI_Play_1TextFrame';
 import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
 import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
-import Modal_ConvLog from './Modal_ConvLog';
+import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 
 export default function GameScreen_QuickView_ConvNode ({initialPieceNum,  
@@ -59,10 +59,6 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum,
      
             setFirstTimeEnter(false);
           }
-    
-    
-    
-    //TODO update of "currPieceNum" : by user clicking and/or operations ... (auto, etc.)
     
     
             if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
@@ -173,22 +169,22 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum,
             return directNextPieceBool;
         }
     
-        function resetViewingPiece() {
-            let gameDataTemp = gameDataCurr;
+        // function resetViewingPiece() {
+        //     let gameDataTemp = gameDataCurr;
     
-            {Object.keys(originalGmdt).map((currKey) => {
-                gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
-            })}
-            setGameDataCurr(gameDataTemp);
+        //     {Object.keys(originalGmdt).map((currKey) => {
+        //         gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
+        //     })}
+        //     setGameDataCurr(gameDataTemp);
     
-            console.log("now gameDataTemp = ", gameDataTemp);
-            console.log("now gameDataCurr = ", gameDataCurr);
+        //     console.log("now gameDataTemp = ", gameDataTemp);
+        //     console.log("now gameDataCurr = ", gameDataCurr);
     
-            console.log("now gameDataCurr[val5] = ", gameDataCurr["val5"]);
-            console.log("gameData[val5] = ", gameData["val5"]);
+        //     console.log("now gameDataCurr[val5] = ", gameDataCurr["val5"]);
+        //     console.log("gameData[val5] = ", gameData["val5"]);
     
-            setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        }
+        //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+        // }      //TODO: remove unusued later
     
         function notifyFinished() {
             setTextStillTyping(false);
@@ -260,9 +256,9 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum,
             return visualMap;
         }
     
-        function passInIsDisplayConvLog() {
-            return showConvLog;
-        }
+        // function passInIsDisplayConvLog() {
+        //     return showConvLog;
+        // }     //TODO: remove unusued later
 
     return (         
         <div className="previewArea"   
@@ -363,7 +359,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum,
 
 
 
-            {showConvLog && <Modal_ConvLog
+            {showConvLog && <Modal_ConvNode_Log
                 allPieceContent={allPieceContent} 
                 initialPieceNum={initialPieceNum} 
                 getCurrPieceNum={passInCurrentPieceNum} 
