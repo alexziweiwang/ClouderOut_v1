@@ -1481,3 +1481,7 @@ button:hover {
     white-space: pre-wrap;
     overflow: scroll;
 }
+
+.navigationButton {
+    cursor: pointer;
+}

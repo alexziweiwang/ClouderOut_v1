@@ -192,6 +192,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         let keyStr1 = item + "_groupedItems";
                         return (
                             <div 
+                                className="navigationButton"
                                 id={keyStr1}
                                 key={keyStr1}
                                 style = {navObj["mainPage-isListItemShape"] === true ? 
@@ -332,6 +333,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     return (
                   
                         <div
+                            className="navigationButton"
                             id={keyStr2}
                             key={keyStr2}
                             style={
@@ -425,6 +427,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
              {/* //TODO1 */}
              <div 
+                className="navigationButton"
                 id="slPage-backButton"
                 style={{
                     "position": "absolute",
@@ -475,6 +478,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                     {slSlotFrame.map((item, index) => {
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index;
                         return (<div 
+                            className="navigationButton"
                             id={keyStr}
                             key={keyStr}
                             style={{
@@ -598,6 +602,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
              {/* //TODO1 */}
              <div 
+                className="navigationButton"
                 id="storyPage-backButton"
                 style={{
                     "position": "absolute",
@@ -648,6 +653,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
                         {storyPageChapterTitles.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index;
                             return (<div key={keyStr} id={keyStr}
+                                className="navigationButton"
                                 style={{
                                     "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
                                     "backgroundImage": navObj["storyPage-isListItemShape"] === false 
@@ -720,6 +726,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
              {/* //TODO1 */}
              <div 
+                className="navigationButton"
                 id="settingsPage-backButton"
                 style={{
                     "position": "absolute",
@@ -794,6 +801,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                                     return (
                                     <div
+                                        className="navigationButton"
                                         key={optionName}
                                         id={keyStr3}
                                         style={{
@@ -856,25 +864,26 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                 {/* //TODO1 */}
                 <div 
-                id="playerProfilePage-backButton"
-                style={{
-                    "position": "absolute",
-                    "top": "0px",
-                    "left": "0px",
-                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
-                    "backgroundImage": navObj["backButton-isShape"] === false ?
-                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
+                    className="navigationButton"
+                    id="playerProfilePage-backButton"
+                    style={{
+                        "position": "absolute",
+                        "top": "0px",
+                        "left": "0px",
+                        "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                        "backgroundImage": navObj["backButton-isShape"] === false ?
+                            `url('${visualMap[navObj["backButton-picName"]]}')` : "",
 
-                    "width": `${navObj["backButton-width"]}px`,
-                    "height": `${navObj["backButton-height"]}px`,
-                    "fontSize": `${navObj["backButton-fontSize"]}px`,
+                        "width": `${navObj["backButton-width"]}px`,
+                        "height": `${navObj["backButton-height"]}px`,
+                        "fontSize": `${navObj["backButton-fontSize"]}px`,
 
-                    "transition": "all 0.2s ease-out",
+                        "transition": "all 0.2s ease-out",
 
-                    "justifyContent": "center",
-                    "alignItems": "center",
-                    "display": "flex",
-                }}
+                        "justifyContent": "center",
+                        "alignItems": "center",
+                        "display": "flex",
+                    }}
                 onMouseDown={
                     ()=>{
                         document.getElementById("playerProfilePage-backButton").style.filter = "brightness(120%)";
@@ -920,6 +929,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             >
                   {/* //TODO1 */}
                   <div 
+                className="navigationButton" 
                 id="gsdPage-backButton"
                 style={{
                     "position": "absolute",
@@ -976,6 +986,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                 {/* //TODO1 */}
                 <div 
+                className="navigationButton"
                 id="playerProfilePage-backButton"
                 style={{
                     "position": "absolute",
@@ -1037,6 +1048,7 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
 
                 {/* //TODO1 */}
                 <div 
+                className="navigationButton"
                 id="duringGame-backButton"
                 style={{
                     "position": "absolute",

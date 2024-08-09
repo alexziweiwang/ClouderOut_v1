@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay}) {
+export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, navigationObj}) {
 
 //TODO (with "changing" during in-game actions)
 //game-data tracker
@@ -30,11 +30,19 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay}) {
 return(<>
 
 <div className={modalStyleName}>
-    <div className="modalArea">
+    <div className="modalArea" style={{"position": "relative"}}>
 
         <button onClick={()=>{makeNotDisplay();}}>Close</button>
     ~GameMakerLevel_Viewer~
-    
+
+        <div style={{"position": "absolute"}}>placeholder: game node (content+UI)</div>
+
+        <div className="plans" style={{"position": "absolute"}}>
+            placeholder: navigation/UI system
+            <br></br>with "navigationObj"
+
+        </div>
+
     </div>
 
 

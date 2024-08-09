@@ -4,7 +4,7 @@ import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
 import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
-
+// includes conversational-node content+UI
 export default function GameScreen_QuickView_ConvNode ({initialPieceNum,  
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
