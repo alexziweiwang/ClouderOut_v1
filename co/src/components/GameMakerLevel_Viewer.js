@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 
-export default function GameMakerLevel_Viewer() {
+export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay}) {
 
 //TODO (with "changing" during in-game actions)
 //game-data tracker
@@ -14,12 +15,35 @@ export default function GameMakerLevel_Viewer() {
                
 //TODO styles for game-play
 //screen settings, etc.
+    let modalStyleName = "modalBackboard";
+
+    if (isDisplay === true) {
+        modalStyleName = "displayBlock modalBackboard";
+    } else {
+        modalStyleName = "displayNone modalBackboard";
+    }
 
 
-    return(<>
+
+
+
+return(<>
+
+<div className={modalStyleName}>
+    <div className="modalArea">
+
+        <button onClick={()=>{makeNotDisplay();}}>Close</button>
+    ~GameMakerLevel_Viewer~
     
+    </div>
 
+
+
+
+
+</div>
 
     
-    </>);
+</>);
+
 }

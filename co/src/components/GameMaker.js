@@ -6,7 +6,7 @@ import NodeManager from './NodeManager';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
-import styles from './webpage.css';
+import GameMakerLevel_Viewer from './GameMakerLevel_Viewer';
 
 export default function GameMaker() {
   const languageCode = 0;
@@ -14,6 +14,8 @@ export default function GameMaker() {
   const contentChaptersTabText = ["Content Chapters"];
   const menuNavigationsTabText = ["Menu & Navigations"];
 
+
+  const [isDisplayEntireGameViewer, setDisplayEntierGameViewer] = useState(false);
   
 /* // TODO game-maker task list
 2. logic organizer for game-node-relationship
@@ -299,13 +301,21 @@ export default function GameMaker() {
 
   const [developOnCloudData, setDevelopOnCloudData] = useState(false);
 
+  function closeEntireGameViewer() {
+    setDisplayEntierGameViewer(false);
+  }
+
   return (
   <div>
     
     <div className="returning_buttons">
       <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
       <p>Project Name: {projectName}</p>
-      <button>Test Game-play</button>
+      <button
+        onClick={()=>{
+          setDisplayEntierGameViewer(true);
+        }}
+      >Test Game-play</button>
       <button className="buttonRight50" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
     </div>
 
@@ -373,6 +383,11 @@ export default function GameMaker() {
         handleRmCancel={handleResourceManagerCancel} 
         handleRmSaveChanges={handleResourceManagerSaveChanges}
         refresh={triggerRefresh}
+      />}
+
+      {isDisplayEntireGameViewer && <GameMakerLevel_Viewer
+        isDisplay={isDisplayEntireGameViewer}
+        makeNotDisplay={closeEntireGameViewer}
       />}
     
   </div>
