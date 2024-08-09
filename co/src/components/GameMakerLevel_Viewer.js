@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import NavigationPreview from './NavigationPreview';
+
 
 export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, navigationObj}) {
 
@@ -28,12 +30,15 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
     const [gameDataTracker, setGameDataTracker] = useState(); //TODO add default from user's setting; pass-in to callee components (game nodes)
 
     const [currChapterKey, setCurrChapterKey] = useState("");
-    
+
     const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
 
+    const chapterList = {}; //TODO fetch from cloud-db
 
-    function getNavStatus(word) {
-        setNavStatus(word);
+
+    function getNavStatus(pageName) {
+        console.log("current nav-page-name: ", pageName);
+        setNavStatus(pageName);
     }
 
     function updateGameData(data) { // model's functionality
@@ -42,6 +47,14 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 
     function passInGameData() {
         return gameDataTracker;
+    }
+
+    function passInNavObj() {
+        return navigationObj;
+    }
+
+    function notUsing() {
+        console.log("placeholder: notUsing()");
     }
 
 return(<>
@@ -58,7 +71,22 @@ return(<>
             <br></br>TODO: according to currNodeType, display the component
         </div>}
 
+
+
+
+
+
+
+
         <div className="plans" style={{"position": "absolute"}}>
+            <NavigationPreview 
+                initialNavObj={navigationObj} 
+                fetchNavObj={passInNavObj} 
+                chapterData={chapterList} 
+                fetchPageName={notUsing} 
+                updateCurrentPageName={getNavStatus}
+            />
+
             placeholder: navigation/UI system
             <br></br>with "navigationObj"
             <br></br>TODO: send in getNavStatus() for current nav-page

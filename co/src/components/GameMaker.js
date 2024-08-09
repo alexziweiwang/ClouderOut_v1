@@ -388,6 +388,7 @@ export default function GameMaker() {
       {isDisplayEntireGameViewer && <GameMakerLevel_Viewer
         isDisplay={isDisplayEntireGameViewer}
         makeNotDisplay={closeEntireGameViewer}
+        navigationObj={currentProjectNav}
       />}
     
   </div>

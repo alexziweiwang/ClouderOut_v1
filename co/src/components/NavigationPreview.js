@@ -2,7 +2,14 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPageName, chapterData, updateCurrentPageName}) {
+export default function NavigationPreview ({
+    initialNavObj, 
+    fetchNavObj, 
+    fetchPageName, 
+    chapterData, 
+    updateCurrentPageName
+
+}) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -77,7 +84,6 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
             }
             setStoryPageChapterTitles(initialChapterTitle);
 
-
             setFirstTimeEnter(false);
         }
 
@@ -140,7 +146,8 @@ export default function NavigationPreview({initialNavObj, fetchNavObj, fetchPage
     });
     
 
-    return (<div className="previewWindow" 
+    return (
+    <div className="previewWindow" 
         style={{
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
     }}>
