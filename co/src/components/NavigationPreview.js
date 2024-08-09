@@ -126,7 +126,10 @@ export default function NavigationPreview ({
 
 
         let tempPage= fetchPageName();
-        setPage(tempPage);
+        if (tempPage !== undefined && tempPage !== "") {
+            setPage(tempPage);
+        }
+        
 
 
         if (navObj["screenSize"] === "h450_800") {

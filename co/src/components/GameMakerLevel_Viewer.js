@@ -33,13 +33,10 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 
     const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
 
-    const chapterList = {}; //TODO fetch from cloud-db
-
-
-    function getNavStatus(pageName) {
-        console.log("current nav-page-name: ", pageName);
-        setNavStatus(pageName);
-    }
+    const chapterList = [
+          ["key1", "testChapter1", "display", "plot1", "end node"], 
+          ["key2", "testChapter2", "display", "", ""]
+        ]; //TODO fetch from cloud-db
 
     function updateGameData(data) { // model's functionality
         setGameDataTracker(data);
@@ -54,8 +51,17 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
     }
 
     function notUsing() {
-        console.log("placeholder: notUsing()");
+        return "";
     }
+
+    function passInNavPageName() {
+        return navStatus;
+    }
+
+    function updateNavPageName(pageName) {
+        setNavStatus(pageName);
+    }
+
 
 return(<>
 
@@ -63,10 +69,9 @@ return(<>
     <div className="modalArea" style={{"position": "relative"}}>
 
         <button onClick={()=>{makeNotDisplay();}}>Close</button>
-    ~GameMakerLevel_Viewer~
 
         {navStatus === "During Game" && <div style={{"position": "absolute"}}>
-            placeholder: game node (content+UI)
+            !!! placeholder: game node (content+UI)
             
             <br></br>TODO: according to currNodeType, display the component
         </div>}
@@ -78,19 +83,14 @@ return(<>
 
 
 
-        <div className="plans" style={{"position": "absolute"}}>
+        <div style={{"position": "absolute"}}>
             <NavigationPreview 
                 initialNavObj={navigationObj} 
                 fetchNavObj={passInNavObj} 
                 chapterData={chapterList} 
-                fetchPageName={notUsing} 
-                updateCurrentPageName={getNavStatus}
+                fetchPageName={passInNavPageName} 
+                updateCurrentPageName={updateNavPageName}
             />
-
-            placeholder: navigation/UI system
-            <br></br>with "navigationObj"
-            <br></br>TODO: send in getNavStatus() for current nav-page
-
         </div>
 
     </div>
