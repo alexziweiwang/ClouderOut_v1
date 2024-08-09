@@ -249,7 +249,7 @@ export default function NavigationPreview ({
                                 }
                             }
                             >
-                                 <label>{optionName}</label>
+                                 {optionName}
                             </div>
                         );
                     
@@ -398,7 +398,7 @@ export default function NavigationPreview ({
                                 }
                             }
                         >
-                            <label>{optionName}</label>
+                            {optionName}
                         </div>
 
                     );
@@ -470,8 +470,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
-                    ...{visualMap[navObj["backButton-picName"]]}...
+                    {navObj["backButton-displayText"]}
                 </div>
 
 
@@ -524,7 +523,14 @@ export default function NavigationPreview ({
 
 
             <div style={{"display": "flex", "top": "357px", "left": "495px", "position": "absolute"}}>
-                <div id="slSlotPageLeftControler" style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
+                <div 
+                    id="slSlotPageLeftControler" 
+                    style={{
+                        "width": "150px", 
+                        "height":"150px", 
+                        "fontSize": "70px", 
+                        "color": "#272626"
+                    }}
                     onClick={()=>{
                         console.log("prev sl page");//TODO2
                         if (slCurrentSlotPage - 1 > 0) {
@@ -544,15 +550,20 @@ export default function NavigationPreview ({
                         }
                     }
                 >
-                    <label>◂</label>
+                    ◂
                 </div>
 
                 <div>
-                        <label>{slCurrentSlotPage}/{navObj["saveloadPage-slotPageCount"]}</label>
+                        {slCurrentSlotPage}/{navObj["saveloadPage-slotPageCount"]}
                 </div>
 
                 <div id="slSlotPageRightControler"
-                    style={{"width": "150px", "height":"150px", "fontSize": "70px", "color": "#272626"}}
+                    style={{
+                        "width": "150px", 
+                        "height":"150px", 
+                        "fontSize": "70px", 
+                        "color": "#272626"
+                    }}
                     onClick={()=>{
                         console.log("next sl page");//TODO2
                         let pageLimit = navObj["saveloadPage-slotPageCount"];
@@ -573,7 +584,7 @@ export default function NavigationPreview ({
                         }
                     }
                 >
-                    <label>▸</label>
+                    ▸
                 </div>
             </div>
 
@@ -645,7 +656,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
+                    {navObj["backButton-displayText"]}
                 </div>
 
 
@@ -697,7 +708,7 @@ export default function NavigationPreview ({
                                 }
                             >
                                 
-                                <label>{item}</label>
+                                {item}
                             </div>);
                         })}
 
@@ -771,7 +782,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
+                    {navObj["backButton-displayText"]}
                 </div>            
             
             <div style={{
@@ -849,7 +860,7 @@ export default function NavigationPreview ({
                                         }
                                     >
 
-                                        <label>{title}</label>
+                                        {title}
                                         </div>);
 
                             }
@@ -912,7 +923,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
+                    {navObj["backButton-displayText"]}
                 </div>   
 
             <br></br>        
@@ -979,7 +990,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
+                    {navObj["backButton-displayText"]}
                 </div>   
 
 
@@ -1039,7 +1050,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
+                    {navObj["backButton-displayText"]}
                 </div>  
 
 
@@ -1099,7 +1110,7 @@ export default function NavigationPreview ({
                     }
                 }
                 >
-                    <label>{navObj["backButton-displayText"]}</label>
+                    {navObj["backButton-displayText"]}
                 </div>  
 
 

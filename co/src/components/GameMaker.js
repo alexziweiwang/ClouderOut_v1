@@ -385,12 +385,14 @@ export default function GameMaker() {
         refresh={triggerRefresh}
       />}
 
-      {isDisplayEntireGameViewer && <GameMakerLevel_Viewer
+    {isDisplayEntireGameViewer && 
+      <GameMakerLevel_Viewer
         isDisplay={isDisplayEntireGameViewer}
         makeNotDisplay={closeEntireGameViewer}
         navigationObj={currentProjectNav}
       />}
-    
+
+ 
   </div>
 
   

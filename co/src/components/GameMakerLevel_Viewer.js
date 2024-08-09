@@ -75,6 +75,9 @@ return(<>
       
         <div style={{"position": "relative"}}>
       
+
+
+{/* game-screen layer */}
                 {navStatus === "During Game" && 
                     <div style={{
                         "position": "absolute", 
@@ -94,6 +97,9 @@ return(<>
 
 
 
+
+
+{/* navigation layer */}
                 <div style={{
                     "position": "absolute", 
                     "top": "0px", 

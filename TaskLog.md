@@ -313,6 +313,8 @@
 
 - 2024-Aug-07: Consider different level of testing for the game-contents, and design implementation plans for each use case
 
+- 2024-Aug-08: Consider and design display and window aspects of gameplay-viewing
+
 
 
 
