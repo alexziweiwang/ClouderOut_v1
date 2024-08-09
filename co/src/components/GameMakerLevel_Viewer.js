@@ -3,6 +3,8 @@ import NavigationPreview from './NavigationPreview';
 
 
 export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, navigationObj}) {
+    const [screenWidth, setScreenWidth] = useState(800); //TODO
+    const [screenHeight, setScreenHeight] = useState(450); //TODO
 
 //TODO (with "changing" during in-game actions)
 //game-data tracker
@@ -17,7 +19,7 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
                
 //TODO styles for game-play
 //screen settings, etc.
-    let modalStyleName = "modalBackboard";
+    let modalStyleName = "";
 
     if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
@@ -66,31 +68,47 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 return(<>
 
 <div className={modalStyleName}>
-    <div className="modalArea" style={{"position": "relative"}}>
+    <div>
 
-        <button onClick={()=>{makeNotDisplay();}}>Close</button>
+        <button onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
 
-        {navStatus === "During Game" && <div style={{"position": "absolute"}}>
-            !!! placeholder: game node (content+UI)
-            
-            <br></br>TODO: according to currNodeType, display the component
-        </div>}
+      
+        <div style={{"position": "relative"}}>
+      
+                {navStatus === "During Game" && 
+                    <div style={{
+                        "position": "absolute", 
+                        "backgroundColor": "orange", 
+                        "top": "0px", 
+                        "left": "0px",
+                        "width": `${screenWidth}px`, 
+                        "height": `${screenHeight}px`,
+                
+                    }}>
+                        !!! placeholder: game node (content+UI)
+                        <br></br>2
+                        <br></br>3
+                        <br></br>TODO: according to currNodeType, display the component
+                    </div>
+                }
 
 
 
-
-
-
-
-
-        <div style={{"position": "absolute"}}>
-            <NavigationPreview 
-                initialNavObj={navigationObj} 
-                fetchNavObj={passInNavObj} 
-                chapterData={chapterList} 
-                fetchPageName={passInNavPageName} 
-                updateCurrentPageName={updateNavPageName}
-            />
+                <div style={{
+                    "position": "absolute", 
+                    "top": "0px", 
+                    "left": "0px",
+                    "width": `${screenWidth}px`, 
+                    "height": `${screenHeight}px`,
+                }}>
+                    <NavigationPreview 
+                        initialNavObj={navigationObj} 
+                        fetchNavObj={passInNavObj} 
+                        chapterData={chapterList} 
+                        fetchPageName={passInNavPageName} 
+                        updateCurrentPageName={updateNavPageName}
+                    />
+                </div>
         </div>
 
     </div>

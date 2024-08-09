@@ -150,15 +150,14 @@ export default function NavigationPreview ({
     
 
     return (
-    <div className="previewWindow" 
+    <div
         style={{
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
     }}>
 
-        <br></br>
      
         {page === "Main Page" && 
-        <> main page
+
         <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -166,7 +165,7 @@ export default function NavigationPreview ({
                 "backgroundImage": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
-                "marginLeft": `20px`,
+             
                 "position": "relative", 
             
                 }}
@@ -409,13 +408,12 @@ export default function NavigationPreview ({
             </div>}      
         </div>
         
-        </>}
+        }
   
 
 
         {(navObj["isWithSL"] && 
-        page === "Game Progress Strategy") && <>
-            game progress / saveload page
+        page === "Game Progress Strategy") && 
         <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`, "position": "relative"}}
         >
                             
@@ -583,15 +581,16 @@ export default function NavigationPreview ({
             </div>
            
             </div>
-        <br></br>
-        
-        </>
+     
         
         }
 
-        {page === "Story Page" && <>
-        story page
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        {page === "Story Page" && 
+        <div style={{
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "backgroundColor": "rgb(222, 222, 235)"
+        }}
         >
 
 
@@ -710,13 +709,15 @@ export default function NavigationPreview ({
             </div>
             
         </div>
-        
-        </>}
+        }
 
         {page === "Settings Page" && 
-        <>
-            setting page
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+    
+        <div style={{
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "backgroundColor": "rgb(222, 222, 235)"
+        }}
         >
               <div style={{
                 "width": `${screenWidth}px`, 
@@ -861,12 +862,15 @@ export default function NavigationPreview ({
             </div>
 
         </div>
-        </>}
+        }
 
         {page === "Player Profile Page" && 
-        <>
-            player profile
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+  
+        <div style={{
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "backgroundColor": "rgb(222, 222, 235)"
+        }}
         >
             <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
@@ -916,12 +920,14 @@ export default function NavigationPreview ({
 
             </div>            
         </div>
-        </>}
+        }
 
         {page === "Game Status Data Page" && 
-        <>
-            game status data page
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+        <div style={{
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "backgroundColor": "rgb(222, 222, 235)"
+        }}
         >
             <div style={{
                 "width": `${screenWidth}px`, 
@@ -982,13 +988,16 @@ export default function NavigationPreview ({
 
             
         </div>
-        </>
+     
         }
   
         {page === "Shop Page" && 
-        <>
-            shop page
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
+    
+        <div style={{
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "backgroundColor": "rgb(222, 222, 235)"
+        }}
         >
         <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
@@ -1044,14 +1053,12 @@ export default function NavigationPreview ({
 
             </div>
         </div>
-        </>}
+        }
 
 
 
-        {page === "During Game" && <>
-                During gameplay
-                <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`}}
-        >
+        {page === "During Game" && 
+            
         <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,}}>
@@ -1104,10 +1111,9 @@ export default function NavigationPreview ({
 
 
             </div>
-        </div>
-        </>}
-
-        <br></br>              
+     
+        }
+         
 
     </div>);
 }

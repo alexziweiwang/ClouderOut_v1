@@ -370,9 +370,9 @@ export default function GameMaker() {
             fetchPageName={passInCurrSelectedPage}
           />
            
-          
-          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
-
+          <div style={{"marginLeft": "20px"}}>
+            <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
+          </div>
     </div>}
    
 
