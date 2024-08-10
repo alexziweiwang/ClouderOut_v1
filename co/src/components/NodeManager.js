@@ -40,7 +40,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    "chapterStart-key": {nodeName: "chapterStart-title", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
+    "chapterStart-key": {nodeName: "chapterStart-title", row: 2, col: 0, prevNodes:[], nextNode:"node1-key", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
     "node1-key": {nodeName: "node1-title", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "node2-key": {nodeName: "node2-title", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
     "lsc1-key": {nodeName: "lsc001-title", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", "", "else"],], display: true, nodeType:"LogicSplitter"}
@@ -483,18 +483,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   TEST: visualization of node-grids grv marker
 
 {/* link-drawing */}
-{/* {gridBlocks.map((row, ir) => {
+
+//TODO1 first part
+ {gridBlocks.map((rowItem, ir) => {
     let rowKeyStr = "linking" + ir;
+    console.log("first part row = ", rowItem ); //TODO testing
     
     return (<div key={rowKeyStr} style={{"position": "absolute"}}>
-          {row.map((col,ic) => {
-            let currNodeKey = gridBlocks[ir][ic];
-
+         {rowItem.map((col,ic) => {
+             let currNodeKey = gridBlocks[ir][ic];
+            
 
             if (currNodeKey !== "" 
               && nodeRelationshipMap[currNodeKey] !== undefined 
               && nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter") {
-            // case1: not logic-splitter
+      
+      
+                // case1: not logic-splitter
               let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
               let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
               let sourceRightLineHEnd = sourceRightLineHStart + 10;
@@ -517,7 +522,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               let hasNextNode = false;
               let srcNodeHigher = true; 
               let srcNodeAtLeft= true; 
-
+ 
               if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                 //such a node exists
                 if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
@@ -527,6 +532,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   hasNextNode = true;
                   nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
 
+
+if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
+  console.log("invalid nodeRelationshipMap[nextNodeKey]: ", nodeRelationshipMap[nextNodeKey]);
+  console.log("from node...", currNodeKey);
+  console.log("to node...", nextNodeKey);
+
+  return;
+}
                   let nextR = nodeRelationshipMap[nextNodeKey].row;
                   let nextC = nodeRelationshipMap[nextNodeKey].col;
 
@@ -554,7 +567,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               let keyStr = "linking" + +ic+ "=" + currNodeKey;
 
 // TODO1 links between nodes
-              return (
+             return (
                 <div key={keyStr}>
                 {currNodeKey !== "" && <div>
 
@@ -678,17 +691,21 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             }
 
 
-          })}
+          })} 
             </div>);
     })
 
 }
 
-<div>
-{gridBlocks.map((row, ir) => {
+
+
+
+//TODO1 second part
+ <div>
+{gridBlocks.map((rowItem, ir) => {
    let rowKeyStr = "grid" + ir;
     return (<div key={rowKeyStr} className="parallelFrame gridRow">
-          {row.map((col,ic) => {
+          {rowItem.map((col,ic) => {
             let content = gridBlocks[ir][ic];
   
             let crd = ir * 10000 + ic;
@@ -743,7 +760,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 }
 </div>
- */}
+
 
 </div>}
 
