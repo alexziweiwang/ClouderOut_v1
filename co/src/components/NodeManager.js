@@ -36,14 +36,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 
   //TODO node data from cloud: fetch by username + project_name + chapter_key  
-  const chStartName = "chapterStart";
+  const chStartName = "chapterStart-key";
   const chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    "chapterStart": {nodeName: "chapterStart", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
-    "node1": {nodeName: "node1", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "node2": {nodeName: "node2", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "lsc1": {nodeName: "lsc001", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", "", "else"],], display: true, nodeType:"LogicSplitter"}
+    "chapterStart-key": {nodeName: "chapterStart-title", row: 2, col: 0, prevNodes:[], nextNode:"node1", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
+    "node1-key": {nodeName: "node1-title", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "node2-key": {nodeName: "node2-title", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
+    "lsc1-key": {nodeName: "lsc001-title", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", "", "else"],], display: true, nodeType:"LogicSplitter"}
   }); //TODO new data-design
   const [renderCounter, setRenderCounter] = useState(0);
   // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
@@ -56,9 +56,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["chapterStart","node1","","","","","","","",""], 
+    ["chapterStart-key","node1-key","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["lsc1","","","node2","","","","","",""]
+    ["lsc1-key","","","node2-key","","","","","",""]
   ]); //stores node-keys
 
   //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
@@ -159,23 +159,23 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   }
 
 
-  function enterNodeEditor() {
-    // let currNode = nodeData.find(node => node.nodeName === clickedNode);
-    let currNode = "";
-    if (currNode === "") {
-      return;
-    }
-    let currNodeType = currNode.nodeType;
-    let userName = currUser;
+  // function enterNodeEditor() {
+  //   // let currNode = nodeData.find(node => node.nodeName === clickedNode);
+  //   let currNode = "";
+  //   if (currNode === "") {
+  //     return;
+  //   }
+  //   let currNodeType = currNode.nodeType;
+  //   let userName = currUser;
 
     
-    if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName, userName } });
-    } else if (currNodeType === "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { clickedNode, projectName, userName } });
-    }
-        //TODO later add conditions for board game and tower defense
-  }
+  //   if (currNodeType === "Card Game") {
+  //     navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName, userName } });
+  //   } else if (currNodeType === "Conversation") {
+  //     navigate('/conversationnode', { replace: true, state: { clickedNode, projectName, userName } });
+  //   }
+  //       //TODO later add conditions for board game and tower defense
+  // }
 
   function enterNodeEditor2() {
     let currNodeType = nodeRelationshipMap[clickedNodeKey].nodeType;
@@ -483,7 +483,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                   TEST: visualization of node-grids grv marker
 
 {/* link-drawing */}
-{gridBlocks.map((row, ir) => {
+{/* {gridBlocks.map((row, ir) => {
     let rowKeyStr = "linking" + ir;
     
     return (<div key={rowKeyStr} style={{"position": "absolute"}}>
@@ -743,7 +743,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
 }
 </div>
-
+ */}
 
 </div>}
 
@@ -989,7 +989,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                                     let item = nodeRelationshipMap[currKey];
                                     let lscElseKey = "lscSettingElse" + currKey;
                                     return (
-                                <option key={lscElseKey}>{item["nodeName"]}</option>);
+                                <option 
+                                  key={lscElseKey}
+                                  value={currKey}
+                                  >{currKey}: {item["nodeName"]}</option>);
                                 })}          
                             </select>
                           <button 
@@ -1112,11 +1115,15 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                       onChange={(event)=>{
                         setLscCurrSelected(event.target.value);
                       }}>
-                      <option key="lscCurrDefault">-- Select --</option>
+                      <option key="lscCurrDefault" value="">-- Select --</option>
                               {Object.keys(nodeRelationshipMap).map((currKey) => {                  
                                   let item = nodeRelationshipMap[currKey];
                                   let lscCurrKey = "lscSettingCurr" + currKey;
-                                  return (<option key={lscCurrKey}>{item["nodeName"]}</option>);
+                                  return (<option 
+                                    key={lscCurrKey}
+                                    value={currKey}
+                                    >{currKey}: {item["nodeName"]}
+                                    </option>);
                       })} 
                     </select>
 
@@ -1334,7 +1341,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
           </p>
 
 
-          {(clickedNode !== "") && 
+          {/* {(clickedNode !== "") && 
         <div>
         <button 
           className="setting_item"
@@ -1344,7 +1351,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     
       
         </div>
-        }
+        } */} //TODO remove later
     
    
       
@@ -1417,8 +1424,8 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 nodeRelationshipMap[clickedNodeKey].spltLogicPairs
 
 
-  0: (3) ['else', '', 'else']
-  1: (3) ['type[boolean]^true1^isFalse', 'node2', '[true1](type: boolean) \n - \nis false']
-  2: (3) ['type[number]^number7^smaller(pureValue)^2', 'a', '[number7](type: number) \n smaller- \n(value) 2']
+  0:  ['else', '', 'else']
+  1:  ['type[boolean]^true1^isFalse', 'node2', '[true1](type: boolean) \n - \nis false']
+  2:  ['type[number]^number7^smaller(pureValue)^2', 'a', '[number7](type: number) \n smaller- \n(value) 2']
 
 */
