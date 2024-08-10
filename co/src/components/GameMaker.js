@@ -46,10 +46,12 @@ export default function GameMaker() {
   const name = "/gamemaker";
 
   const [currChapterKey, setCurrChapterKey] = useState("");
+
+
   const [chapterList, setChapterList] = useState(
     [
-      ["key1", "testChapter1", "display", "plot1", "end node"], 
-      ["key2", "testChapter2", "display", "", ""]
+      ["key1", "testChapter1", "display"], 
+      ["key2", "testChapter2", "display"]
     ]); //TODO fetch from cloud db when entering game-maker
 
 

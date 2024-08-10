@@ -35,19 +35,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   let nodeHeight = 52;
 
 
-// TODO testing, temp ----------------------------------------
-
-  const [test_new_node_depth, set_test_new_node_depth] = useState(5);
-
-  // TODO testing, temp ----------------------------------------
-  const [nodeData, setNodeData] = useState([
-    { nodeName: "plot1", depth: 1, inGroupPosition:0, nextNodes:[1], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "plot2", depth: 2, inGroupPosition:0, nextNodes:[2, 3], spltCondt: ["c1", "c2"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option x", depth: 3, inGroupPosition:0, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-    { nodeName: "option y", depth: 3, inGroupPosition:1, nextNodes:[4], spltCondt: ["Default: Always Reachable"], display: true, nodeType:"Card Game", screenSize: "h450_800"},
-    { nodeName: "end node", depth: 4, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType:"Conversation", screenSize: "h450_800"},
-  ]); //TODO testing data
-
   //TODO node data from cloud: fetch by username + project_name + chapter_key  
   const chStartName = "chapterStart";
   const chEndName = "chapterEnd-"+chapterKey;
@@ -125,20 +112,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
-   const [nextNodeList, setNextNodeList] = useState([]);
-   const [nextCondtList, setNextCondtList] = useState([]);
-
    const [tempNewName, setTempNewName] = useState("");
  
    const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
 
-   const [isNextCondtDefault, setNextCondtIsDefault] = useState(true); //TODO remove later
 
-
-   const x_base = 1, y_base = 1, y_dist=100, node_gap=480; //TODO remove later
-   const node_width = 380, node_height = 120; //TODO remove later
-   const [viewBoxStr, setViewBoxStr] = useState("10 -10 3200 700"); //TODO remove later
-
+  
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
       if (firstTimeEnter === true) {
@@ -160,14 +139,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
    
   }
 
-  function updateNodeDataActions(data) {
-       setNodeData(data);
-       //TODO calculate needed scale
-       console.log("new node data:");
-       console.log(data); //TODO test
+  // function updateNodeDataActions(data) {
+  //      setNodeData(data);
+  //      //TODO calculate needed scale
+  //      console.log("new node data:");
+  //      console.log(data); //TODO test
 
-       //TODO later: update to cloud db
-  }
+  //      //TODO later: update to cloud db
+  // }
 
   async function updateNodeRelationship() {
     //TODO update current node-data to cloud db
@@ -179,37 +158,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   }
 
- 
-  function handleNodeClick(name) {
-    console.log("clicked node = " + name); //TODO
-    if (name === "" || name !== clickedNode) {
-      setClickedNode(name);
-    } else { //clicked on the same node
-      setClickedNode("");
-    }
-
-    let tempNextList = nodeData
-      .filter(item => (item.display === true && name === item.nodeName));
-
-    tempNextList = tempNextList[0].nextNodes;
-
-    let tempNextCondtList = nodeData
-      .filter(item => (item.display === true && name === item.nodeName));
-
-    tempNextCondtList = tempNextCondtList[0].spltCondt;
-
-    console.log("nodeData: ", nodeData);
-    console.log("handle node clicked..."); //TODO test
-    console.log("tempNextList: ", tempNextList); //TODO test
-    console.log("tempNextCondtList", tempNextCondtList); //TODO test
-
-    setNextNodeList(tempNextList);
-    setNextCondtList(tempNextCondtList);
-
-  }
 
   function enterNodeEditor() {
-    let currNode = nodeData.find(node => node.nodeName === clickedNode);
+    // let currNode = nodeData.find(node => node.nodeName === clickedNode);
+    let currNode = "";
+    if (currNode === "") {
+      return;
+    }
     let currNodeType = currNode.nodeType;
     let userName = currUser;
 
@@ -253,7 +208,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     }
 
     if (createNewNodeName.length > 0) {
-      const found = nodeData.some((item) => item.nodeName === createNewNodeName);
+  //    const found = nodeData.some((item) => item.nodeName === createNewNodeName); //TODO remove later
       if (tempNodeMap[createNewNodeName] !== undefined || tempNodeMap[createNewNodeName] !== "") {
         console.log("2create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
 
@@ -316,204 +271,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     }
   }
 
-  function addNewNode() { //TODO  refactor: for new data-structure and depth plan
-    
-    const nodeDataTemp = nodeData;
-
-    if (createNewNodeGameType === "") {
-      console.log("Game type is required.") //TODO
-      return;
-    }
-  
-    if (createNewNodeName.length > 0) {
-      //TODO later: check if node name duplicate in local node-data (fetched from cloud earlier)
-      
-      //TODO search in temp "nodeData"
-      const found = nodeData.some((item) => item.nodeName === createNewNodeName);
-      if (found) {
-        console.log("Invalid node name: duplicate")
-      } else {
-        console.log("create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
-        
-        //TODO calculate in-grou-position by filtering the same depth
-// format:
-//    { nodeName: "plot1", 
-// depth: 1, 
-// inGroupPosition:0, 
-// nextNodes:[1], 
-// spltCondt: ["Default: Always Reachable"], 
-// display: true, 
-// nodeType:"Conversation", 
-// screenSize: "h450_800"},
-
-        const newDataItem = { 
-          nodeName: `${createNewNodeName}`, 
-          depth: test_new_node_depth,
-          inGroupPosition:0,
-          nextNodes:[], 
-          spltCondt:[], 
-          display: true, 
-          nodeType:`${createNewNodeGameType}`,
-          screenSize: createdNewNodeScreenSize
-        }; //TODO temp
-
-        nodeDataTemp.push(newDataItem); //TODO temp
-        
-        updateNodeDataActions(nodeDataTemp);
-        
-        // reset the creation layout
-        set_test_new_node_depth(test_new_node_depth+1); //TODO test
-        setCreateNewNodeName("");
-        setCreateNewNodeGameType("");
-
-        if (nodeData.length > 5) { //TODO testing: update svg's size
-          setViewBoxStr("10 -10 5200 700"); //TODO later calculate for precise size (current: 3200 to 5200)
-          //TODO better scalling in viewing
-          //TODO for different depth of the nodes, increase height of svg as well
-        }
-      }
-
-    } else {
-      console.log("Invalid node name: empty"); //TODO temp
-    }
-  }
 
   function addNewNodeGameType(event) {
     setCreateNewNodeGameType(event.target.value); //TODO later update to cloud db
     console.log("changed selection of new game type : " + event.target.value);
   }
 
-  function addRevertingNode(event) {
-    setToRevert(event.target.value); //TODO later update to cloud db
-  }
-
-  function revertSelectedNode() {
-    let i = 0;
-    const nodeDataTemp = nodeData;
-    for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName === nodeToRevert) {
-        nodeDataTemp[i].display = true;
-      }
-    }
-
-    updateNodeDataActions(nodeDataTemp);
- 
-    setToRevert("");
-  }
-
-  function deleteLinkBetweenNodes(destNodeName) { //TODO  refactor: for new data-structure and depth plan
-    setToNodeName(destNodeName);
-    const sourceNodeName = clickedNode;
-
-    const nodeDataTemp = nodeData;
-    let fromNodeIndex = -1, toNodeIndex = -1;
-    let i = 0;
-
-    if (sourceNodeName === "" && destNodeName === "") {
-      console.log("Sourec Node and Destination Node are required."); //TODO test
-      return;
-    }
-
-    if (sourceNodeName === "") {
-      console.log("Source Node is required."); //TODO test 
-      return;
-    }
-
-    if (destNodeName === "") {
-      console.log("Destination Node is required."); //TODO test 
-      return;
-    }
-    for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName === sourceNodeName) {
-        fromNodeIndex = i;
-      }
-      if (nodeDataTemp[i].nodeName === destNodeName) {
-        toNodeIndex = i;
-      }
-    }
-    if (fromNodeIndex !== -1 && toNodeIndex !== -1) {
-      if (!nodeDataTemp[fromNodeIndex].nextNodes.includes(toNodeIndex)) {
-        console.log("Warning: the two nodes are not linked ..."); //TODO test
-      } else {
-
-        let j =0;
-        let newArr = [];
-        for (; j < nodeDataTemp[fromNodeIndex].nextNodes.length; j++) {
-          if (nodeDataTemp[fromNodeIndex].nextNodes[j] !== toNodeIndex) {
-            newArr.push(nodeDataTemp[fromNodeIndex].nextNodes[j]);
-          }
-        }
-        nodeDataTemp[fromNodeIndex].nextNodes = newArr;
-        
-        console.log("Removed link from " + nodeData[fromNodeIndex].nodeName + " to " + nodeData[toNodeIndex].nodeName + "......"); //TODO test 
-        console.log("nodeData[fromNodeIndex]", nodeData[fromNodeIndex]); //TODO
-        console.log("nextList: ", nextNodeList); //TODO test
-        console.log("nextCondtList", nextCondtList); //TODO test
-
-
-        let tempCondtList = nextCondtList;
-        let p = 0;
-        for (; p < nextNodeList.length; p++) {
-            if (nextNodeList[p] === toNodeIndex) {
-                tempCondtList[p] = "(deleted)";
-            }
-        }
-        tempCondtList = tempCondtList.filter(e => e !== "(deleted)");
-        console.log("new condt list: ");
-        console.log(tempCondtList);
-        setNextCondtList(tempCondtList); 
-        nodeDataTemp[fromNodeIndex].nextCondtList = tempCondtList;
-
-        updateNodeDataActions(nodeDataTemp);
-
-        setNextNodeList(newArr);
-      }
-    } 
-  }
-
-  function handleDeleteNodeWithParam(nodeToDelete){
-    let i = 0;
-    const nodeDataTemp = nodeData;
-    let deletedNodeIndex = 0;
-    for (; i < nodeDataTemp.length; i++) {
-      if (nodeDataTemp[i].nodeName === nodeToDelete) {
-        nodeDataTemp[i].display = false; // "undisplay" this deleted node
-        deletedNodeIndex = i;
-      }
-    }
-
-    i = 0;
-    for (; i < nodeDataTemp.length; i++) {
-      //if nextNodes contains "deletedNodeIndex", remove the link to the deleted-node
-      if (nodeDataTemp[i].nextNodes.includes(deletedNodeIndex)) {
-        let j = 0;
-        let newArr = [];
-        for (; j < nodeDataTemp[i].nextNodes.length; j++) {
-          if (nodeDataTemp[i].nextNodes[j] !== deletedNodeIndex) {
-            newArr.push(nodeDataTemp[i].nextNodes[j]);
-          }
-        }
-        nodeDataTemp[i].nextNodes = newArr;
-      }
-
-      //also remove all nodes in "deletedNodeIndex"'s node
-      if (i === deletedNodeIndex) {
-        nodeDataTemp[deletedNodeIndex].nextNodes = [];
-      }
-
-    }
-    updateNodeDataActions(nodeDataTemp);
-
-    setDeletingNodeName("");
-  }
-
-  function changeNextToExistingNode() {
-    setIsLinkNewNode(false);
-  }
-
-  function changeNextToNewNode() {
-    setIsLinkNewNode(true);
-  }
 
   function changeLsVar2ToGameData() {
     setLsV2IsGData(true);
@@ -589,23 +352,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         setGameDataLocal(gdataTestResult);
   }
 
-  function updateNodeToNewName() {
-    /* tempNewName becomes clickNode's nodeName */
-    let clickedIndex = 0;
-    let tempNodeData = nodeData;
-
-    for (; clickedIndex < nodeData.length; clickedIndex++) {
-      if (tempNodeData[clickedIndex].nodeName === clickedNode) {
-        tempNodeData[clickedIndex].nodeName = tempNewName;
-      }
-    }
-    updateNodeDataActions(tempNodeData);
-
-    setClickedNode(tempNewName);
-    setTempNewName("");
-
-  } 
-
   function updateNodeToNewName2() {
     let tempNodeData = nodeRelationshipMap;
 
@@ -616,11 +362,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
   } 
 
-  function updateCurrNodeNextNodeAlways(nextNodeName) {
-    let tempMap = nodeRelationshipMap;
-    tempMap[clickedNodeKey].nextNode = nextNodeName;
-    setNodeRelationshipMap(tempMap);
-  }
+
 
   function updateRenderCounter() {
     setRenderCounter((renderCounter+1) % 100);
@@ -1047,7 +789,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
               <button 
                 className="setting_item buttonRight"
                 onClick={()=>{
-                  addNewNode();
+                                                       //    addNewNode(); //TODO remove later
                   addNewNode2();
                   setClickedNodeKey("");
                   setAddNewNodeAreaDisplay(false);
@@ -1574,234 +1316,14 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
         </div>
         }
     
-          <br></br>    
-      {  (clickedNode !== "") && 
-        <div>    
-        
-        <div>
-
-
-        {(!nextCondtList.includes("Default: Always Reachable")) && <div className={!isLinkNewNode ? "optionAreaSelected" : "optionArea"} onClick={changeNextToExistingNode}>
-        <input type="radio" name="node" value={isLinkNewNode} onChange={changeNextToExistingNode} checked={!isLinkNewNode}/>An existing Node
-        {!isLinkNewNode && <>
-        <br></br>
-        <div>
-        <label>??? Node Name: </label>
-        <select onChange={(event)=>{setToNodeName(event.target.value);console.log("Next-Node selected:", event.target.value);}} value={toNodeName}>
-            <option value="" key="-"> -- Select Node Name --</option>
-            {nodeData
-                .map((item, index) => {
-
-                    if (!nextNodeList.includes(index)) {
-                        /* A node can link to itself or its parent(s) node, as it could be a potential design by the game-author */
-                        let keyStr = "prevNextNodeOp" + item.nodeName;
-                        return (<option value={keyStr} key={item.nodeName}>{item.nodeName}</option>);
-                    }
-                })}
-        </select>
-        </div>
-    </>}        </div>}
-        </div>
-    
-
-    
-        {(!nextCondtList.includes("Default: Always Reachable")) && <div>
-    
-    
-        <div className="areaBlue">
-            {/* <br></br>
-         */}
-        <div>
-  
-            <div className={isNextCondtDefault ? "optionArea" : "optionAreaSelected"} onClick={()=>{setNextCondtIsDefault(false);}}>
-                {!isNextCondtDefault && <div> 
-                <div className="areaFrame">
-          <div>
-          </div>
-                    </div>
-        </div>}
-        </div>
-        <button onClick={()=>{
-            setCurrNodeSplitterNum(currNodeSplittedNum + 1);
-
-            if (addedGameScreenSize !== "") {
-              setCreatedNewNodeScreenSize(addedGameScreenSize);
-            }
-    
-            let conditionContent = "Default: Always Reachable"; //default condition
-            if (isNextCondtDefault == false) {
-              /* Version1: single condition-string for path-splitting */
-              /* condition-content: Variable 1 + comparison + Variable2 */
-
-              // TODO: fetch var1, comp, var2
-
-              if (condtVar1Type === "number") {
-                //TODO comparing content is: car2NumCompare
-                if (logicSplitterVar2IsGData) {
-                  //TODO add string-wording for this case
-                  // TODO fetch value of logicSplitter_gameDataVar2
-  
-                } else { //compared with value
-                  //TODO add string-wording for this case
-  
-                }
-              } else if (condtVar1Type === "string") {
-                if (var1StringEq) {
-                  //TODO add string-wording for this case
-                  //TODO fetch the compared string-sample
-  
-                } else {
-                  //TODO add string-wording for this case
-  
-                }
-              } else if (condtVar1Type === "boolean") {
-                if (var1BoolTrue) {
-                  //TODO add string-wording for this case
-  
-                } else {
-                  //TODO add string-wording for this case
-  
-                }
-              }
-            }
-            
-            /* Setup of next-node name */
-            let nextNodeNameSetup = "";
-
-            if (isLinkNewNode) {
-            /*  If next-node is a new node, use the name of new-node */
-              nextNodeNameSetup = createNewNodeName;
-              //TODO create a new node first, with default info, etc.
-              addNewNode(); //TODO improve for new ver. designs
-
-            } else {
-            /* If next-node is an existing node, use the name of selected item from select-list */
-              nextNodeNameSetup = toNodeName;
-            }
-            console.log("next-node name: ", nextNodeNameSetup); //TODO test
-
-            //TODO both case (new or existing node): add link and update curr-node's next-node info
-                //TODO using name "nextNodeNameSetup", "conditionContent"
-
-            /*Update the nextNodeList and condition-list for this clicked-node's data */
-            
-            let currNodeNextList = nodeData.filter(e => e.nodeName === clickedNode)[0];
-            currNodeNextList = currNodeNextList.nextNodes;
-            let nextIndex = 0;
-            let j = 0;
-            for (; j < nodeData.length; j++) {
-              if (nodeData[j].nodeName === nextNodeNameSetup) {
-                nextIndex = j;
-              }
-            }
-            currNodeNextList.push(nextIndex); 
-            let currNodeCondtList = nodeData.filter(e => e.nodeName === clickedNode)[0];
-            currNodeCondtList = currNodeCondtList.spltCondt;
-            currNodeCondtList.push(conditionContent);
-
-            let nodeDataTemp = nodeData;
-            let index = 0;
-            for (; index < nodeDataTemp.length; index++) {
-              if (nodeDataTemp[index].nodeName === clickedNode) {
-                break;
-              }
-            }
-            nodeDataTemp[index].nextNodes = currNodeNextList;
-            nodeDataTemp[index].spltCondt = currNodeCondtList;
-
-
-            updateNodeDataActions(nodeDataTemp);
-
-            //TODO update both "nodeData[clickedNode].nextNodes" and "nodeData[clickedNode].spltCondt"
-            //TODO add link between nodes 
-
-            console.log("nodeDataTemp:: ");
-            console.log(nodeDataTemp);
-
-
-            // foramt: const obj = { nodeName: nextNodeNameSetup, depth: 1, inGroupPosition:0, nextNodes:[], spltCondt: [], display: true, nodeType: createNewNodeGameType};
-
-
-        }}> {addAsNextNodeText[languageCode]}</button>
-
-
-        </div>
-      
-       </div>
-           
-        </div>
-        }
-        
-        
-      
-
-
-
-
-
-        <p className="sectionHeader"> Node Operation </p>
-
-
-        <button 
-          className="setting_item"
-          onClick={()=>{
-console.log("Deleting this node...", clickedNode);  //TODO testing
-            handleDeleteNodeWithParam(clickedNode);
-
-            /* rename this node to timeStamp+original_name */
-            const timeStamp = moment().format("YYYYMM_DD_hhmmss");
-console.log("delete timestamp(YYYYMM_DD_hhmmss): ", timeStamp); //TODO testing
-            let i = 0;
-            let tempNodeData = nodeData;
-            for (; i < tempNodeData.length; i++) {
-              if (tempNodeData[i].nodeName === clickedNode) {
-                tempNodeData[i]["nodeName"] = timeStamp + "=" +clickedNode;
-              }
-            }
-
-            updateNodeDataActions(tempNodeData);
-
-            setClickedNode(""); /* reset clicked node's name */
-          }}>
-            {deleteText[languageCode]} [{clickedNode}]
-        </button>
-        
-    </div>
-      }
-
+   
       
 
       <br></br><br></br><br></br><br></br><br></br>
       <p className="plans"> revert options : later change into collapsable section with simple icon</p>
         <div className="trashNodeArea">
-          {!displayRevertArea && 
-            <GiTrashCan onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}  className="iconButton"/>
-          }
+       
     
-          {displayRevertArea && 
-            <GiTrashCan onClick={()=>{setDisplayRevertArea(!displayRevertArea)}}  className="iconButtonOn"/>
-          }
-    
-          {displayRevertArea &&
-          <div>
-          <br></br>
-          <label> Select from deleted nodes: </label>
-          <br></br>
-          <select value={nodeToRevert} onChange={addRevertingNode}>
-            <option value="" key=""> -- Deleted Nodes -- </option> 
-            {nodeData.map((item, index) => {
-              if (nodeData[index].display === true) {
-                return "true";
-              } 
-          return (
-            <option value={nodeData[index].nodeName} key={nodeData[index].nodeName}>{nodeData[index].nodeName}</option>
-          );
-        })}
-        </select>
-    
-        <button onClick={revertSelectedNode}> {revertText[languageCode]} </button>
-        </div>
-        }
 
 
 <p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.
