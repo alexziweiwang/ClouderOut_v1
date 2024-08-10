@@ -15,6 +15,7 @@ export default function GameMaker() {
   const menuNavigationsTabText = ["Menu & Navigations"];
 
 
+
   const [isDisplayEntireGameViewer, setDisplayEntierGameViewer] = useState(false);
   
 /* // TODO game-maker task list
@@ -62,6 +63,49 @@ export default function GameMaker() {
   const [currPageName, setCurrPageName] = useState("Main Page");
 
 //TODO ------------------------------------------------------
+
+  const [currentChapterNodes, setCurrentChapterNodes] = useState(
+    {
+      "chapterStart-key": {
+          nodeName: "chapterStart-title", 
+          row: 2, 
+          col: 0, 
+          nextNode:"node1-key", 
+          display: true, 
+          nodeType:"*chapterStart*", 
+          screenSize:"h600_800"
+      },
+      "node1-key": {
+          nodeName: "node1-title", 
+          row: 2, 
+          col: 1, 
+          nextNode:"", 
+          display: true, 
+          nodeType:"Conversation", 
+          screenSize:"h600_800"
+      },
+      "node2-key": {
+          nodeName: "node2-title", 
+          row: 4, 
+          col: 3, 
+          nextNode:"", 
+          display: true, 
+          nodeType:"Conversation", 
+          screenSize:"h600_800"
+      },
+      "lsc1-key": {
+          nodeName: "lsc001-title", 
+          row: 4, 
+          col: 0, 
+          spltLogicPairs: [["else", "", "else"],], 
+          display: true, 
+          nodeType:"LogicSplitter"
+      }
+    }
+  )
+
+
+
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "h450_800",
@@ -307,6 +351,14 @@ export default function GameMaker() {
     setDisplayEntierGameViewer(false);
   }
 
+  function passInCurrentChapterData() {
+    return currentChapterNodes;
+  }
+
+  function passInCurrentChapterKey() {
+    return currChapterKey;
+  }
+
   return (
   <div>
     
@@ -356,6 +408,8 @@ export default function GameMaker() {
           currUser={username} 
           projectName={projectName} 
           chapterKey={currChapterKey}
+          getNodeMapOfChapter={passInCurrentChapterData}
+          getCurrChapterKey={passInCurrentChapterKey}
         />
     </div>}
 

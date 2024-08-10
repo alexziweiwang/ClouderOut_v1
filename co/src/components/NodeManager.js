@@ -6,7 +6,7 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import Modal_GameDataManager from './Modal_GameDataManager';
 
-export default function NodeManager({projectName, currUser, chapterKey}) {
+export default function NodeManager({projectName, currUser, chapterKey, getNodeMapOfChapter, getCurrChapterKey}) {
   let languageCode = 0;
   let createText = ["Create"];
   let cancelText = ["Cancel"];
@@ -39,20 +39,48 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   const chStartName = "chapterStart-key";
   const chEndName = "chapterEnd-"+chapterKey;
 
-  const [nodeRelationshipMap, setNodeRelationshipMap] = useState({
-    "chapterStart-key": {nodeName: "chapterStart-title", row: 2, col: 0, prevNodes:[], nextNode:"node1-key", display: true, nodeType:"*chapterStart*", screenSize:"h600_800"},
-    "node1-key": {nodeName: "node1-title", row: 2, col: 1, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "node2-key": {nodeName: "node2-title", row: 4, col: 3, prevNodes:[], nextNode:"", display: true, nodeType:"Conversation", screenSize:"h600_800"},
-    "lsc1-key": {nodeName: "lsc001-title", row: 4, col: 0, prevNode:[], spltLogicPairs: [["else", "", "else"],], display: true, nodeType:"LogicSplitter"}
-  }); //TODO new data-design
-  const [renderCounter, setRenderCounter] = useState(0);
-  // "plot1": {nodeName: "plot1", row: 3, col: 2, prevNodes: [chStartName], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // "plot2": {nodeName: "plot2",row: 3, col:3, prevNodes: ["plot1"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // "option x": {nodeName: "option x", row: 1, prevNodes: ["plot2"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // "option y": {nodeName: "option y", row: 4, prevNodes: ["plot2"], nextNode: "", display: true, nodeType:"Card Game", screenSize: "h600_800"},
-  // "end node": {nodeName: "end node", row: 3, col:5, prevNodes: ["option x", "option y"], nextNode: "", display: true, nodeType:"Conversation", screenSize: "h600_800"},
-  // chEndName: {nodeName: chEndName, prevNodes: ["end node"], nextNode: "", display:true, nodeType:"", screenSize:""}
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState( 
+  //   {
+  //   "chapterStart-key": {
+  //       nodeName: "chapterStart-title", 
+  //       row: 2, 
+  //       col: 0, 
+  //       nextNode:"node1-key", 
+  //       display: true, 
+  //       nodeType:"*chapterStart*", 
+  //       screenSize:"h600_800"
+  //   },
+  //   "node1-key": {
+  //       nodeName: "node1-title", 
+  //       row: 2, 
+  //       col: 1, 
+  //       nextNode:"", 
+  //       display: true, 
+  //       nodeType:"Conversation", 
+  //       screenSize:"h600_800"
+  //   },
+  //   "node2-key": {
+  //       nodeName: "node2-title", 
+  //       row: 4, 
+  //       col: 3, 
+  //       nextNode:"", 
+  //       display: true, 
+  //       nodeType:"Conversation", 
+  //       screenSize:"h600_800"
+  //   },
+  //   "lsc1-key": {
+  //       nodeName: "lsc001-title", 
+  //       row: 4, 
+  //       col: 0, 
+  //       spltLogicPairs: [["else", "", "else"],], 
+  //       display: true, 
+  //       nodeType:"LogicSplitter"
+  //   }
+  // }
+  ); //TODO new data-design
 
+  const [renderCounter, setRenderCounter] = useState(0);
+ 
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
     ["","","","","","","","","",""],
@@ -61,16 +89,9 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
     ["lsc1-key","","","node2-key","","","","","",""]
   ]); //stores node-keys
 
-  //TODO note: for author/users, "nodeName(title)" is changable; the node-key should not be changed. on node-vis, it displays node-name
-  //TODO depth of this node is (prev-node's depth + 1); if multiple prev-nodes? choose max prev-depth
-  //TODO: node-visualization point: keep the max-length of "nextPairs", as the total height reference for svg drawing
-  //TODO: calculation strategy for placing odd and even number of nodes in the same depth-level
 
   //TODO functionality design:
-  //TODO always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
-  //TODO: use a "next-node-pointer" for each node: usually it is the next-one node, but if with multiple nodes,
-  //TODO -- devide the next-node-pointer after entire node finished, then review all game-data, according to next-node-condition-pairs, change "next-node-pointer" value then go to "next-node-pointer"
-  //TODO for some button that do direct-jump, change "next-node-pointer" as button-action, then next node points to the jump-target
+  //TODO1 always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
 
 
    /* variable area */
@@ -132,6 +153,26 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
           setFirstTimeEnter(false);
       }
+
+
+      //TODO fetch this chapter's all node data
+          let chapterKeyTemp = getCurrChapterKey();
+          if (chapterKeyTemp !== chapterKey) {
+            let tempMap = getNodeMapOfChapter();
+          
+            let gridTemp = [];
+            //TODO draw gridBlocks of this chapter
+          
+            //TODO considerations of col & row, etc.   
+          
+            setNodeRelationshipMap(tempMap);
+          
+          
+          }
+          
+
+    
+
     });
 
   async function getChapterDataFromCloud(chapter) {
@@ -212,11 +253,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
       if (tempNodeMap[createNewNodeName] !== undefined || tempNodeMap[createNewNodeName] !== "") {
         console.log("2create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
 
-// example:
-// "plot1": {nodeName: "plot1", 
-// row: 3, col: 2, 
-// prevNodes: [chStartName], nextPairs:[["plot2", "Default: Always Reachable"]], 
-// display: true, nodeType:"Conversation", screenSize: "h600_800"},
         //clickedNode2: ir * 10000 + ic;
         let clickedCol = clickedNode2 % 10000;
         let clickedRow = (clickedNode2 - clickedCol) / 10000;
@@ -230,7 +266,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             screenSize: createdNewNodeScreenSize,
             row: clickedRow,
             col: clickedCol,
-            prevNodes: [],
             spltLogicPairs: [["else", "", "else"],],
             display: true,     
           }; //TODO temp
@@ -241,7 +276,6 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
             screenSize: createdNewNodeScreenSize,
             row: clickedRow,
             col: clickedCol,
-            prevNodes: [],
             nextNode: "",
             display: true,     
           }; //TODO temp
@@ -566,7 +600,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               }
               let keyStr = "linking" + +ic+ "=" + currNodeKey;
 
-// TODO1 links between nodes
+
+{/* links between nodes */}
              return (
                 <div key={keyStr}>
                 {currNodeKey !== "" && <div>
@@ -682,7 +717,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
             } else if (currNodeKey !== "" 
               && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter"){
-            //case2: is logic-splitter
+           
+           
+           
+              //case2: is logic-splitter
               let lscNodeList = nodeRelationshipMap[currNodeKey].spltLogicPairs;
 
 
