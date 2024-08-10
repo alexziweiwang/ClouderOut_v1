@@ -818,73 +818,72 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 <div style={{"display": "flex"}}>
     <div style={{"width": "900px"}}> 
     {/* node-info-area */}
-
-                    <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
-                  <div>
-                    
-                    <label>Node Name: </label>
-                    <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
-                    <br></br>
-                    <label>Node Type: </label>
-                    <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
-                    <br></br>
+        
                   
-                  {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
-                    <label>Screen Size: </label>
-                    <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
-                  </>}
-                  </div>
+<div style={{"display": "flex"}}> 
 
-                  <p className="sectionHeader"> {nodeOperationsText[languageCode]} </p>
-              <div>
+              <div style={{"flex": "1"}}>
+                
+                              <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
 
-                <label>Rename Node: </label>
-                <div className="indentOne">
-                  <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-                  <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
-                </div>
+                                  <label>Node Unique-ID-Name: </label>
+                                    <div className="indentOne">
+                                      {clickedNodeKey}
+                                  </div>
 
-                <label>Delete Node: </label>
-                <div className="indentOne">
-                    <button onClick={()=>{
-                      let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
-                      let response = window.confirm(askStr);
+                                  <label>Node Title: </label>
+                                  <div className="indentOne">                      
+                                    <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
+                                  </div>
 
-                      
-                      if (response) {
-                        //TODO delete this node
-                      }
-                    }}>Delete</button>
-                </div>
+                                  <label>Node Type: </label>
+                                  <div className="indentOne">
+                                    <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
+                                  </div>
+                                
+                                {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" &&
+                                <>
+                                  <label>Screen Size: </label>
+                                  <div className="indentOne">
+                                    <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
+                                  </div>
+                                </>}
+                         
+
+                          <p className="sectionHeader"> {nodeOperationsText[languageCode]} </p>
+                  
+
+                      <div>
+                          <label>Rename Node: </label>
+                          <div className="indentOne">
+                            <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
+                            <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
+                          </div>
+
+                          <label>Delete Node: </label>
+                          <div className="indentOne">
+                              <button onClick={()=>{
+                                let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
+                                let response = window.confirm(askStr);
+
+                                
+                                if (response) {
+                                  //TODO delete this node
+                                }
+                              }}>Delete</button>
+                          </div>
+                      </div>
                
               </div>   
 
 
 
 
-
 {/* Next-Node setting section */}
-//TODO lsc next-nodes    
-              {/* {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
-                <p className="sectionHeader"> Next Nodes </p>
-                <div>
-                      <table>
-                          <thead>
-                              <tr key="head">
-                                  <th>Next Node(s)</th>
-                                  <th>Condition</th>
-                                  <th>[Operation]</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            TODO
-                          </tbody>
-                      </table>
-                </div>
-              </>} */} 
+    <div style={{"flex": "1", "marginLeft": "20px"}}>
 
 
-              {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
+              {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <div>
                 <p className="sectionHeader"> 
                 {nextNodeText[languageCode]} </p>
                 {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
@@ -932,10 +931,10 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                     
                   }}
                 >{detachLinkingText[languageCode]}</button>
-              </>}
+              </div>}
 
 
-              {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
+              {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <div>
                 <p className="sectionHeader"> {targetNodesText[languageCode]} </p>
                   Path-deciding
                   <br></br>
@@ -1189,13 +1188,16 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
                           </div>
 
+
+
+
                   </div>}
 
-              </>}
+              </div>}
 
+    </div>
 
-
-
+</div>
 
 
     {/* node-info-area ends */}

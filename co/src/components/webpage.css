@@ -579,8 +579,9 @@ li {
 .sectionHeader {
     background-color: #606f82;
     height: 30px;
-    width: 100%;
+    width: 300px;
     color: rgb(233, 233, 233);
+    left: 5px;
 }
 
 .sectionHeader2 {

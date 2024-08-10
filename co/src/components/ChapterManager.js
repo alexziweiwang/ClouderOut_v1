@@ -183,10 +183,10 @@ export default function ChapterManager({
                       </ul>
                       {isAddNewChpater === true && 
                       <div>
-                        <label>New Chapter Keyname (unchangable): </label><br></br>
+                        <label>New Chapter Unique-ID-Name (unchangable): </label><br></br>
                         <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
                         <br></br>
-                        <label>New Chapter Keyname (editable later): </label><br></br>
+                        <label>New Chapter Title (editable later): </label><br></br>
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
                         <br></br>
                         <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
