@@ -824,7 +824,7 @@ export default function NavigationPreview ({
                                     return (
                                     <div
                                         className="navigationButton"
-                                        key={optionName}
+                                        key={keyStr3}
                                         id={keyStr3}
                                         style={{
                                             "backgroundColor":  navObj["settingPage-isListItemShape"] === true ? `${navObj["settingPage-listItemShadeName"]}` : "rgb(200, 122, 135)", 

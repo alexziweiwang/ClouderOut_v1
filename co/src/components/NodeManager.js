@@ -23,7 +23,7 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
   let nodeManageMentText = ["Node Management"];
   let listOfNodesText = ["List of nodes"];
   let nodeInfoText = ["Node Info"];
-  let nodeSettingsText = ["Node Settings"];
+  let nodeOperationsText = ["Node Operations"];
   let targetNodesText = ["Target Nodes"];
   let nextNodeText = ["Next Node"];
 
@@ -835,15 +835,36 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                   </>}
                   </div>
 
-                  <p className="sectionHeader"> {nodeSettingsText[languageCode]} </p>
+                  <p className="sectionHeader"> {nodeOperationsText[languageCode]} </p>
               <div>
+
                 <label>Rename Node: </label>
-                <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-                <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
+                <div className="indentOne">
+                  <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
+                  <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
+                </div>
+
+                <label>Delete Node: </label>
+                <div className="indentOne">
+                    <button onClick={()=>{
+                      let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
+                      let response = window.confirm(askStr);
+
+                      
+                      if (response) {
+                        //TODO delete this node
+                      }
+                    }}>Delete</button>
+                </div>
+               
               </div>   
 
 
-        
+
+
+
+{/* Next-Node setting section */}
+//TODO lsc next-nodes    
               {/* {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <>
                 <p className="sectionHeader"> Next Nodes </p>
                 <div>
@@ -860,10 +881,12 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
                           </tbody>
                       </table>
                 </div>
-              </>} */} //TODO3
+              </>} */} 
+
 
               {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <>
-                <p className="sectionHeader"> {nextNodeText[languageCode]} </p>
+                <p className="sectionHeader"> 
+                {nextNodeText[languageCode]} </p>
                 {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
                   && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
                     Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
@@ -1387,3 +1410,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 //TODO for one LSC, nodeRelationshipMap[clickedNodeKey].spltLogicPairs stores needed data for links and path-decising instructions.
 //TODO for functionality of LSC, consider tracking component
 //TODO consider data structure parsing for node-tracking when viewing/gameplaying
+
+/* example
+nodeRelationshipMap[clickedNodeKey].spltLogicPairs
+
+
+  0: (3) ['else', '', 'else']
+  1: (3) ['type[boolean]^true1^isFalse', 'node2', '[true1](type: boolean) \n - \nis false']
+  2: (3) ['type[number]^number7^smaller(pureValue)^2', 'a', '[number7](type: number) \n smaller- \n(value) 2']
+
+*/
