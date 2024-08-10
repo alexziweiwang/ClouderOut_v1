@@ -1170,6 +1170,11 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
 
               </>}
 
+
+
+
+
+
     {/* node-info-area ends */}
     </div> 
 
@@ -1372,3 +1377,13 @@ export default function NodeManager({projectName, currUser, chapterKey}) {
       </div>
     );
 }
+
+
+
+
+
+
+
+//TODO for one LSC, nodeRelationshipMap[clickedNodeKey].spltLogicPairs stores needed data for links and path-decising instructions.
+//TODO for functionality of LSC, consider tracking component
+//TODO consider data structure parsing for node-tracking when viewing/gameplaying
