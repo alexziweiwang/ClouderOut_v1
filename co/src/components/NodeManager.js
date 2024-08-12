@@ -39,45 +39,7 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
   const chStartName = "chapterStart-key";
   const chEndName = "chapterEnd-"+chapterKey;
 
-  const [nodeRelationshipMap, setNodeRelationshipMap] = useState( 
-  //   {
-  //   "chapterStart-key": {
-  //       nodeName: "chapterStart-title", 
-  //       row: 2, 
-  //       col: 0, 
-  //       nextNode:"node1-key", 
-  //       display: true, 
-  //       nodeType:"*chapterStart*", 
-  //       screenSize:"h600_800"
-  //   },
-  //   "node1-key": {
-  //       nodeName: "node1-title", 
-  //       row: 2, 
-  //       col: 1, 
-  //       nextNode:"", 
-  //       display: true, 
-  //       nodeType:"Conversation", 
-  //       screenSize:"h600_800"
-  //   },
-  //   "node2-key": {
-  //       nodeName: "node2-title", 
-  //       row: 4, 
-  //       col: 3, 
-  //       nextNode:"", 
-  //       display: true, 
-  //       nodeType:"Conversation", 
-  //       screenSize:"h600_800"
-  //   },
-  //   "lsc1-key": {
-  //       nodeName: "lsc001-title", 
-  //       row: 4, 
-  //       col: 0, 
-  //       spltLogicPairs: [["else", "", "else"],], 
-  //       display: true, 
-  //       nodeType:"LogicSplitter"
-  //   }
-  // }
-  ); //TODO new data-design
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState({}); //TODO new data-design
 
   const [renderCounter, setRenderCounter] = useState(0);
  
@@ -111,7 +73,6 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNewNode, setIsLinkNewNode] = useState(false);
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
-   const [toNodeName, setToNodeName] = useState("");
 
    const [nodeToRevert, setToRevert] = useState("");
    const [gameDataLocal, setGameDataLocal] = useState({});
@@ -199,26 +160,11 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
 
   }
 
-
-  // function enterNodeEditor() {
-  //   // let currNode = nodeData.find(node => node.nodeName === clickedNode);
-  //   let currNode = "";
-  //   if (currNode === "") {
-  //     return;
-  //   }
-  //   let currNodeType = currNode.nodeType;
-  //   let userName = currUser;
-
-    
-  //   if (currNodeType === "Card Game") {
-  //     navigate('/cardgamenode', { replace: true, state: { clickedNode, projectName, userName } });
-  //   } else if (currNodeType === "Conversation") {
-  //     navigate('/conversationnode', { replace: true, state: { clickedNode, projectName, userName } });
-  //   }
-  //       //TODO later add conditions for board game and tower defense
-  // }
-
   function enterNodeEditor2() {
+    if (nodeRelationshipMap[clickedNodeKey] === undefined) {
+      return;
+    }
+
     let currNodeType = nodeRelationshipMap[clickedNodeKey].nodeType;
     let userName = currUser;
     console.log("enter editor2:", clickedNodeKey, projectName, userName);
@@ -249,7 +195,7 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
     }
 
     if (createNewNodeName.length > 0) {
-  //    const found = nodeData.some((item) => item.nodeName === createNewNodeName); //TODO remove later
+
       if (tempNodeMap[createNewNodeName] !== undefined || tempNodeMap[createNewNodeName] !== "") {
         console.log("2create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
 
@@ -389,6 +335,10 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
   function updateNodeToNewName2() {
     let tempNodeData = nodeRelationshipMap;
 
+    if (tempNodeData[clickedNodeKey] === undefined) {
+      return;
+    }
+
     tempNodeData[clickedNodeKey].nodeName = tempNewName;
     setNodeRelationshipMap(tempNodeData);
   
@@ -479,7 +429,7 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
           
             <ul style={{"width": "320px", "marginLeft": "-25px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
-               
+
                       let item = nodeRelationshipMap[currKey];
                       let liKey = "li" + currKey;
                       let crdCal = highlightGridByKey(currKey);
@@ -716,6 +666,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                 </div>);
 
             } else if (currNodeKey !== "" 
+              && nodeRelationshipMap[currNodeKey] !== undefined
               && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter"){
            
            
@@ -896,8 +847,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                     <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
                                   </div>
                                 
-                                {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" &&
-                                <>
+                                {nodeRelationshipMap[clickedNodeKey] !== undefined 
+                                && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" 
+                                && <>
                                   <label>Screen Size: </label>
                                   <div className="indentOne">
                                     <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
@@ -938,7 +890,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
     <div style={{"flex": "1", "marginLeft": "20px"}}>
 
 
-              {nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <div>
+              {nodeRelationshipMap[clickedNodeKey] !== undefined
+              && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <div>
                 <p className="sectionHeader"> 
                 {nextNodeText[languageCode]} </p>
                 {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
@@ -956,6 +909,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     
                             let item = nodeRelationshipMap[currKey];
+                            if (item === undefined) {
+                              return;
+                            }
+                            
                             let opKey = "opnextnode-" + currKey;
                             return (
                               <option key={opKey} value={currKey}>{item["nodeName"]}</option>
@@ -989,7 +946,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               </div>}
 
 
-              {nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <div>
+              {nodeRelationshipMap[clickedNodeKey] !== undefined
+              && nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <div>
                 <p className="sectionHeader"> {targetNodesText[languageCode]} </p>
                   Path-deciding
                   <br></br>
@@ -1042,6 +1000,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                 <option key="lscElse" value="-">-- Select --</option>
                                 {Object.keys(nodeRelationshipMap).map((currKey) => {                  
                                     let item = nodeRelationshipMap[currKey];
+                                    if (item === undefined) {
+                                      return;
+                                    }
                                     let lscElseKey = "lscSettingElse" + currKey;
                                     return (
                                 <option 
@@ -1083,6 +1044,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                               
                               <option value="" key="">--Game Data--</option>
                               {Object.keys(gameDataLocal).map((currKey) => {
+
                                   return (
                                   <option value={currKey} key={gameDataLocal[currKey]["name"]}>{currKey}</option>
                                   );
@@ -1173,6 +1135,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                       <option key="lscCurrDefault" value="">-- Select --</option>
                               {Object.keys(nodeRelationshipMap).map((currKey) => {                  
                                   let item = nodeRelationshipMap[currKey];
+                                  if (item === undefined) {
+                                    return;
+                                  }
                                   let lscCurrKey = "lscSettingCurr" + currKey;
                                   return (<option 
                                     key={lscCurrKey}

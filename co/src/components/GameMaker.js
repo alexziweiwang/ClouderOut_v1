@@ -64,7 +64,7 @@ export default function GameMaker() {
 
 //TODO ------------------------------------------------------
 
-  const [currentChapterNodes, setCurrentChapterNodes] = useState(
+  const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState(
     {
       "chapterStart-key": {
           nodeName: "chapterStart-title", 
@@ -351,8 +351,8 @@ export default function GameMaker() {
     setDisplayEntierGameViewer(false);
   }
 
-  function passInCurrentChapterData() {
-    return currentChapterNodes;
+  function passInCurrentChapterNodeMap() {
+    return currentChapterNodeMap;
   }
 
   function passInCurrentChapterKey() {
@@ -408,7 +408,7 @@ export default function GameMaker() {
           currUser={username} 
           projectName={projectName} 
           chapterKey={currChapterKey}
-          getNodeMapOfChapter={passInCurrentChapterData}
+          getNodeMapOfChapter={passInCurrentChapterNodeMap}
           getCurrChapterKey={passInCurrentChapterKey}
         />
     </div>}
