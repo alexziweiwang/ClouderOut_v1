@@ -315,7 +315,7 @@
 
 - 2024-Aug-08: Consider and design display and window aspects of gameplay-viewing
 
-
+- 2024-Aug-12: Design sample Game Nav UI for default & test
 
 
 
