@@ -63,82 +63,19 @@ export default function GameMaker() {
   const [currPageName, setCurrPageName] = useState("Main Page");
 
 //TODO ------------------------------------------------------
-
-  const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({
-    key1: {"chapterStart1-key": {
-                nodeName: "chapterStart1-title", 
-                row: 2, 
-                col: 0, 
-                nextNode:"chapterStart1-key", 
-                display: true, 
-                nodeType:"*chapterStart*", 
-                screenSize:"h600_800"
-            },
-            "A1-key": {
-                nodeName: "a1-title", 
-                row: 2, 
-                col: 1, 
-                nextNode:"", 
-                display: true, 
-                nodeType:"Conversation", 
-                screenSize:"h600_800"
-            },
-            "B1-key": {
-                nodeName: "b1-title", 
-                row: 4, 
-                col: 3, 
-                nextNode:"", 
-                display: true, 
-                nodeType:"Conversation", 
-                screenSize:"h600_800"
-            },
-            "C1-key": {
-                nodeName: "c1-title", 
-                row: 4, 
-                col: 0, 
-                spltLogicPairs: [["else", "", "else"],], 
-                display: true, 
-                nodeType:"LogicSplitter"
-            },
-            "D1-key": {
-                nodeName: "d1-title", 
-                row: 2, 
-                col: 4, 
-                nextNode:"", 
-                display: true, 
-                nodeType:"Conversation", 
-                screenSize:"h600_800"
-            },
-            "E1-key": {
-                nodeName: "e1-title", 
-                row: 4, 
-                col: 6, 
-                nextNode:"", 
-                display: true, 
-                nodeType:"Conversation", 
-                screenSize:"h600_800"
-            },
-            "chapterEnd1-key": {
-                nodeName: "chapterEnd1-title", 
-                row: 2, 
-                col: 5, 
-                nextNode:"e1-key", 
-                display: true, 
-                nodeType:"*chapterEnd*", 
-                screenSize:"h600_800"
-            },
-    },
-    key2: {"chapterStart2-key": {
-              nodeName: "chapterStart2-title", 
+  
+const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
+  key1: {"chapterStart1-key": {
+              nodeName: "chapterStart1-title", 
               row: 2, 
               col: 0, 
-              nextNode:"chapterStart2-key", 
+              nextNode:"chapterStart1-key", 
               display: true, 
               nodeType:"*chapterStart*", 
               screenSize:"h600_800"
           },
-          "A2-key": {
-              nodeName: "a2-title", 
+          "A1-key": {
+              nodeName: "a1-title", 
               row: 2, 
               col: 1, 
               nextNode:"", 
@@ -146,8 +83,8 @@ export default function GameMaker() {
               nodeType:"Conversation", 
               screenSize:"h600_800"
           },
-          "B2-key": {
-              nodeName: "b2-title", 
+          "B1-key": {
+              nodeName: "b1-title", 
               row: 4, 
               col: 3, 
               nextNode:"", 
@@ -155,52 +92,111 @@ export default function GameMaker() {
               nodeType:"Conversation", 
               screenSize:"h600_800"
           },
-          "C2-key": {
-              nodeName: "c2-title", 
+          "C1-key": {
+              nodeName: "c1-title", 
               row: 4, 
               col: 0, 
               spltLogicPairs: [["else", "", "else"],], 
               display: true, 
               nodeType:"LogicSplitter"
           },
-          "D2-key": {
-            nodeName: "d2-title", 
+          "D1-key": {
+              nodeName: "d1-title", 
+              row: 2, 
+              col: 4, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"h600_800"
+          },
+          "E1-key": {
+              nodeName: "e1-title", 
+              row: 4, 
+              col: 6, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"h600_800"
+          },
+          "chapterEnd1-key": {
+              nodeName: "chapterEnd1-title", 
+              row: 2, 
+              col: 5, 
+              nextNode:"e1-key", 
+              display: true, 
+              nodeType:"*chapterEnd*", 
+              screenSize:"h600_800"
+          },
+  },
+  key2: {"chapterStart2-key": {
+            nodeName: "chapterStart2-title", 
             row: 2, 
-            col: 4, 
+            col: 0, 
+            nextNode:"chapterStart2-key", 
+            display: true, 
+            nodeType:"*chapterStart*", 
+            screenSize:"h600_800"
+        },
+        "A2-key": {
+            nodeName: "a2-title", 
+            row: 2, 
+            col: 1, 
             nextNode:"", 
             display: true, 
             nodeType:"Conversation", 
             screenSize:"h600_800"
-          },
-          "E2-key": {
-            nodeName: "e2-title", 
+        },
+        "B2-key": {
+            nodeName: "b2-title", 
             row: 4, 
-            col: 6, 
+            col: 3, 
             nextNode:"", 
             display: true, 
             nodeType:"Conversation", 
             screenSize:"h600_800"
-          },
-          "chapterEnd2-key": {
-            nodeName: "chapterEnd2-title", 
-            row: 2, 
-            col: 5, 
-            nextNode:"e2-key", 
+        },
+        "C2-key": {
+            nodeName: "c2-title", 
+            row: 4, 
+            col: 0, 
+            spltLogicPairs: [["else", "", "else"],], 
             display: true, 
-            nodeType:"*chapterEnd*", 
-            screenSize:"h600_800"
-          },
+            nodeType:"LogicSplitter"
+        },
+        "D2-key": {
+          nodeName: "d2-title", 
+          row: 2, 
+          col: 4, 
+          nextNode:"", 
+          display: true, 
+          nodeType:"Conversation", 
+          screenSize:"h600_800"
+        },
+        "E2-key": {
+          nodeName: "e2-title", 
+          row: 4, 
+          col: 6, 
+          nextNode:"", 
+          display: true, 
+          nodeType:"Conversation", 
+          screenSize:"h600_800"
+        },
+        "chapterEnd2-key": {
+          nodeName: "chapterEnd2-title", 
+          row: 2, 
+          col: 5, 
+          nextNode:"e2-key", 
+          display: true, 
+          nodeType:"*chapterEnd*", 
+          screenSize:"h600_800"
+        },
 },
 
-  })
+})
 
-  const [gridBlocks, setGridBlocks] = useState([
-    ["","","","","","","","","",""], 
-    ["","","","","","","","","",""],
-    ["chapterStart1-key","A1-key","","","D1-key","chapterEnd2-key","","","",""], 
-    ["","","","","","","","","",""],
-    ["C1-key","","","B1-key","","","E1-key","","",""]
-  ]); //stores node-keys
+  const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({});
+
+  const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys
 
   const [gridBlocksAll, setGridBlocksAll] = useState({
       key1: [
@@ -219,7 +215,7 @@ export default function GameMaker() {
           ["C2-key","","","B2-key","","","E2-key","","",""]
       ],
     
-  })
+  }); //stores node-keys
 
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
@@ -383,6 +379,13 @@ export default function GameMaker() {
       alert("No project selected. Returning to project selection page...");
       goToProjectManagingPanel();
     }
+
+    if (currChapterKey !== undefined && currChapterKey !== "") {
+      setcurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
+      setGridBlocks(gridBlocksAll[currChapterKey]);
+    }
+
+
   });
 
   function goToProjectManagingPanel() {
@@ -467,7 +470,10 @@ export default function GameMaker() {
   }
 
   function passInCurrentChapterNodeMap() {
-    return currentChapterNodeMap;
+    let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {}
+    console.log("passing in1 ..."); //TODO test
+    console.log(nodeMap);
+    return nodeMap;
   }
 
   function passInCurrentChapterKey() {
@@ -475,7 +481,10 @@ export default function GameMaker() {
   }
 
   function passInCurrentGridBlocks() {
-    return gridBlocks;
+    let grid = currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []
+    console.log("passing in2 ..."); //TODO test
+    console.log(grid);
+    return grid;
   }
 
   return (
@@ -530,10 +539,11 @@ export default function GameMaker() {
           getNodeMapOfChapter={passInCurrentChapterNodeMap}
           getCurrChapterKey={passInCurrentChapterKey}
           getGridBlocks={passInCurrentGridBlocks}
-          initialNodeMap={currentChapterNodeMap}
-          initialGridBlock={gridBlocks}
+          initialNodeMap={currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {}}
+          initialGridBlock={currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []}
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
+
     </div>}
 
     {!showChapterMaker && 

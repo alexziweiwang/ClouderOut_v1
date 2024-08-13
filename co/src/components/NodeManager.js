@@ -10,12 +10,10 @@ export default function NodeManager({projectName, currUser,
   chapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock}) {
- 
- 
-  
- 
- 
- 
+    console.log("Node Manager ?? "); //TODO testing
+    console.log(initialNodeMap); //TODO testing
+    console.log(initialGridBlock); //TODO testing
+             
   let languageCode = 0;
   let createText = ["Create"];
   let cancelText = ["Cancel"];
@@ -48,11 +46,11 @@ export default function NodeManager({projectName, currUser,
   const chStartName = "chapterStart-key";
   const chEndName = "chapterEnd-"+chapterKey;
 
-  const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap); //TODO new data-design
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap);
+  const [gridBlocks, setGridBlocks] = useState(initialGridBlock); //stores node-keys
 
   const [renderCounter, setRenderCounter] = useState(0);
  
-  const [gridBlocks, setGridBlocks] = useState(initialGridBlock); //stores node-keys
 
 
   //TODO functionality design:
@@ -106,7 +104,6 @@ export default function NodeManager({projectName, currUser,
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
       if (firstTimeEnter === true) {
-          let chapter = "chapter0"; //TODO test, later: fetch from user-input
           // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
           //updateNodeDataActions(chapterData);
                   //    setNodeData(chapterData);
@@ -114,9 +111,19 @@ export default function NodeManager({projectName, currUser,
           // console.log(nodeData);
           fetchGameDataFromCloud();
           console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
+          setNodeRelationshipMap(initialNodeMap);
+          setGridBlocks(initialGridBlock);
+
 
           setFirstTimeEnter(false);
       }
+      console.log("Node Manager ........."); //TODO testing
+      console.log(initialNodeMap); //TODO testing
+      console.log(initialGridBlock); //TODO testing
+      console.log("local ds:");
+      console.log(nodeRelationshipMap);
+      console.log(gridBlocks);
+
 
 
       //TODO fetch this chapter's all node data
@@ -128,6 +135,9 @@ export default function NodeManager({projectName, currUser,
             //TODO draw gridBlocks of this chapter
           
             //TODO considerations of col & row, etc.   
+            console.log("::: getters...........");
+            console.log(tempMap); //TODO testing
+            console.log(gridTemp); //TODO testing
           
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
