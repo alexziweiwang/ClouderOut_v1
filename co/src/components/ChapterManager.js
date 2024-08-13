@@ -72,7 +72,7 @@ export default function ChapterManager({
     let tempChapterData = chapterData;
     let line = [newChapterKeyInput, newChapterTitleInput, "display", "", ""];
     tempChapterData.push(line);
-    updateChapterData(tempChapterData);
+    updateChapterData(tempChapterData, newChapterKeyInput);
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
   }

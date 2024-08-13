@@ -487,6 +487,53 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return grid;
   }
 
+  function addNewChapter(chapterData, newKey) {
+    setChapterList(chapterData);
+    
+    //update all-node-map
+    let nodeMapTemp = chapterNodeMapAll;
+    let chapterStartKeyStr = "chapterStart-key-" + newKey;
+    let chapterStartTitleStr = "chapterStart-title-" + newKey;
+
+    let chapterEndKeyStr = "chapterEnd-key-" + newKey;
+    let chapterEndTitleStr = "chapterEnd-title-" + newKey;
+
+    let obj = {};
+    obj[chapterStartKeyStr] = {
+      nodeName: chapterStartTitleStr, 
+      row: 2, 
+      col: 0, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"*chapterStart*", 
+      screenSize:"h600_800"
+    };
+    obj[chapterEndKeyStr] = {
+      nodeName: chapterEndTitleStr, 
+      row: 2, 
+      col: 5, 
+      nextNode: "", 
+      display: true, 
+      nodeType:"*chapterEnd*", 
+      screenSize:"h600_800"
+    };
+    nodeMapTemp[newKey] = obj;
+
+    setChapterNodeMapAll(nodeMapTemp);
+
+    //add all-grid-block
+    let gridAllTemp = gridBlocksAll;
+    gridAllTemp[newKey] = [
+      ["","","","","","","","","",""], 
+      ["","","","","","","","","",""],
+      [chapterStartKeyStr,"","","","", chapterEndKeyStr,"","","",""], 
+      ["","","","","","","","","",""],
+      ["","","","","","","","","",""]
+    ];
+    setGridBlocksAll(gridAllTemp);
+
+  }
+
   return (
   <div>
     
@@ -524,7 +571,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         {!isDisplayRmBool && 
         <ChapterManager 
           chapterData={chapterList} 
-          updateChapterData={setChapterList} 
+          updateChapterData={addNewChapter} 
           chosenChapter={currChapterKey} 
           passInChosenChapter={setCurrChapterKey} 
           updateLinkingNode={updateLinkingNodeFunc}
