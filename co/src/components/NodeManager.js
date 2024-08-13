@@ -6,7 +6,16 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import Modal_GameDataManager from './Modal_GameDataManager';
 
-export default function NodeManager({projectName, currUser, chapterKey, getNodeMapOfChapter, getCurrChapterKey}) {
+export default function NodeManager({projectName, currUser, 
+  chapterKey, getNodeMapOfChapter, 
+  getCurrChapterKey, getGridBlocks,
+  initialNodeMap, initialGridBlock}) {
+ 
+ 
+  
+ 
+ 
+ 
   let languageCode = 0;
   let createText = ["Create"];
   let cancelText = ["Cancel"];
@@ -39,17 +48,11 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
   const chStartName = "chapterStart-key";
   const chEndName = "chapterEnd-"+chapterKey;
 
-  const [nodeRelationshipMap, setNodeRelationshipMap] = useState({}); //TODO new data-design
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap); //TODO new data-design
 
   const [renderCounter, setRenderCounter] = useState(0);
  
-  const [gridBlocks, setGridBlocks] = useState([
-    ["","","","","","","","","",""], 
-    ["","","","","","","","","",""],
-    ["chapterStart-key","node1-key","","","","","","","",""], 
-    ["","","","","","","","","",""],
-    ["lsc1-key","","","node2-key","","","","","",""]
-  ]); //stores node-keys
+  const [gridBlocks, setGridBlocks] = useState(initialGridBlock); //stores node-keys
 
 
   //TODO functionality design:
@@ -121,19 +124,15 @@ export default function NodeManager({projectName, currUser, chapterKey, getNodeM
           if (chapterKeyTemp !== chapterKey) {
             let tempMap = getNodeMapOfChapter();
           
-            let gridTemp = [];
+            let gridTemp = getGridBlocks();
             //TODO draw gridBlocks of this chapter
           
             //TODO considerations of col & row, etc.   
           
             setNodeRelationshipMap(tempMap);
-          
+            setGridBlocks(gridTemp);
           
           }
-          
-
-    
-
     });
 
   async function getChapterDataFromCloud(chapter) {
@@ -730,7 +729,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   
                     }}
                       >
-                        {content !== "" && 
+                        {content !== "" && nodeRelationshipMap[content] !== undefined
+                        && 
                           <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
                         {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
                         {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
@@ -932,8 +932,15 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   onClick={()=>{
 
                     let tempMap2 = nodeRelationshipMap;
+                    if (tempMap2[clickedNodeKey] === undefined) {
+                      return;
+                    }
 
-                    let confirmStr = "Are you sure to detach the linking between " + tempMap2[clickedNodeKey].nodeName + " and " + tempMap2[clickedNodeKey].nextNode + " ?";
+                    let confirmStr = 
+                      "Are you sure to detach the linking between " 
+                      + tempMap2[clickedNodeKey].nodeName + " and " 
+                      + tempMap2[clickedNodeKey].nextNode + " ?";
+
                     let resp = window.confirm(confirmStr);
                     if (resp) {
                       tempMap2[clickedNodeKey].nextNode = "-";

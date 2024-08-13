@@ -104,6 +104,14 @@ export default function GameMaker() {
     }
   )
 
+  const [gridBlocks, setGridBlocks] = useState([
+    ["","","","","","","","","",""], 
+    ["","","","","","","","","",""],
+    ["chapterStart-key","node1-key","","","","","","","",""], 
+    ["","","","","","","","","",""],
+    ["lsc1-key","","","node2-key","","","","","",""]
+  ]); //stores node-keys
+
 
 
 
@@ -359,6 +367,10 @@ export default function GameMaker() {
     return currChapterKey;
   }
 
+  function passInCurrentGridBlocks() {
+    return gridBlocks;
+  }
+
   return (
   <div>
     
@@ -410,7 +422,11 @@ export default function GameMaker() {
           chapterKey={currChapterKey}
           getNodeMapOfChapter={passInCurrentChapterNodeMap}
           getCurrChapterKey={passInCurrentChapterKey}
+          getGridBlocks={passInCurrentGridBlocks}
+          initialNodeMap={currentChapterNodeMap}
+          initialGridBlock={gridBlocks}
         />
+        {/* Note: later - select according data structure (as initial ds) for this chapter */}
     </div>}
 
     {!showChapterMaker && 
