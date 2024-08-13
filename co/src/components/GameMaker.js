@@ -64,55 +64,162 @@ export default function GameMaker() {
 
 //TODO ------------------------------------------------------
 
-  const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState(
-    {
-      "chapterStart-key": {
-          nodeName: "chapterStart-title", 
-          row: 2, 
-          col: 0, 
-          nextNode:"node1-key", 
-          display: true, 
-          nodeType:"*chapterStart*", 
-          screenSize:"h600_800"
-      },
-      "node1-key": {
-          nodeName: "node1-title", 
-          row: 2, 
-          col: 1, 
-          nextNode:"", 
-          display: true, 
-          nodeType:"Conversation", 
-          screenSize:"h600_800"
-      },
-      "node2-key": {
-          nodeName: "node2-title", 
-          row: 4, 
-          col: 3, 
-          nextNode:"", 
-          display: true, 
-          nodeType:"Conversation", 
-          screenSize:"h600_800"
-      },
-      "lsc1-key": {
-          nodeName: "lsc001-title", 
-          row: 4, 
-          col: 0, 
-          spltLogicPairs: [["else", "", "else"],], 
-          display: true, 
-          nodeType:"LogicSplitter"
-      }
-    }
-  )
+  const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({
+    key1: {"chapterStart1-key": {
+                nodeName: "chapterStart1-title", 
+                row: 2, 
+                col: 0, 
+                nextNode:"chapterStart1-key", 
+                display: true, 
+                nodeType:"*chapterStart*", 
+                screenSize:"h600_800"
+            },
+            "A1-key": {
+                nodeName: "a1-title", 
+                row: 2, 
+                col: 1, 
+                nextNode:"", 
+                display: true, 
+                nodeType:"Conversation", 
+                screenSize:"h600_800"
+            },
+            "B1-key": {
+                nodeName: "b1-title", 
+                row: 4, 
+                col: 3, 
+                nextNode:"", 
+                display: true, 
+                nodeType:"Conversation", 
+                screenSize:"h600_800"
+            },
+            "C1-key": {
+                nodeName: "c1-title", 
+                row: 4, 
+                col: 0, 
+                spltLogicPairs: [["else", "", "else"],], 
+                display: true, 
+                nodeType:"LogicSplitter"
+            },
+            "D1-key": {
+                nodeName: "d1-title", 
+                row: 2, 
+                col: 4, 
+                nextNode:"", 
+                display: true, 
+                nodeType:"Conversation", 
+                screenSize:"h600_800"
+            },
+            "E1-key": {
+                nodeName: "e1-title", 
+                row: 4, 
+                col: 6, 
+                nextNode:"", 
+                display: true, 
+                nodeType:"Conversation", 
+                screenSize:"h600_800"
+            },
+            "chapterEnd1-key": {
+                nodeName: "chapterEnd1-title", 
+                row: 2, 
+                col: 5, 
+                nextNode:"e1-key", 
+                display: true, 
+                nodeType:"*chapterEnd*", 
+                screenSize:"h600_800"
+            },
+    },
+    key2: {"chapterStart2-key": {
+              nodeName: "chapterStart2-title", 
+              row: 2, 
+              col: 0, 
+              nextNode:"chapterStart2-key", 
+              display: true, 
+              nodeType:"*chapterStart*", 
+              screenSize:"h600_800"
+          },
+          "A2-key": {
+              nodeName: "a2-title", 
+              row: 2, 
+              col: 1, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"h600_800"
+          },
+          "B2-key": {
+              nodeName: "b2-title", 
+              row: 4, 
+              col: 3, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"h600_800"
+          },
+          "C2-key": {
+              nodeName: "c2-title", 
+              row: 4, 
+              col: 0, 
+              spltLogicPairs: [["else", "", "else"],], 
+              display: true, 
+              nodeType:"LogicSplitter"
+          },
+          "D2-key": {
+            nodeName: "d2-title", 
+            row: 2, 
+            col: 4, 
+            nextNode:"", 
+            display: true, 
+            nodeType:"Conversation", 
+            screenSize:"h600_800"
+          },
+          "E2-key": {
+            nodeName: "e2-title", 
+            row: 4, 
+            col: 6, 
+            nextNode:"", 
+            display: true, 
+            nodeType:"Conversation", 
+            screenSize:"h600_800"
+          },
+          "chapterEnd2-key": {
+            nodeName: "chapterEnd2-title", 
+            row: 2, 
+            col: 5, 
+            nextNode:"e2-key", 
+            display: true, 
+            nodeType:"*chapterEnd*", 
+            screenSize:"h600_800"
+          },
+},
+
+  })
 
   const [gridBlocks, setGridBlocks] = useState([
     ["","","","","","","","","",""], 
     ["","","","","","","","","",""],
-    ["chapterStart-key","node1-key","","","","","","","",""], 
+    ["chapterStart1-key","A1-key","","","D1-key","chapterEnd2-key","","","",""], 
     ["","","","","","","","","",""],
-    ["lsc1-key","","","node2-key","","","","","",""]
+    ["C1-key","","","B1-key","","","E1-key","","",""]
   ]); //stores node-keys
 
-
+  const [gridBlocksAll, setGridBlocksAll] = useState({
+      key1: [
+        ["","","","","","","","","",""], 
+        ["","","","","","","","","",""],
+        ["chapterStart1-key","A1-key","","","D1-key","chapterEnd1-key","","","",""], 
+        ["","","","","","","","","",""],
+        ["C1-key","","","B1-key","","","E1-key","","",""]
+      ]
+    ,
+      key2: [
+          ["","","","","","","","","",""], 
+          ["","","","","","","","","",""],
+          ["chapterStart2-key","A2-key","","","D2-key","chapterEnd2-key","","","",""], 
+          ["","","","","","","","","",""],
+          ["C2-key","","","B2-key","","","E2-key","","",""]
+      ],
+    
+  })
 
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
