@@ -7,13 +7,15 @@ import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../vie
 import Modal_GameDataManager from './Modal_GameDataManager';
 
 export default function NodeManager({projectName, currUser, 
-  chapterKey, getNodeMapOfChapter, 
+  initialChapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock}) {
     console.log("Node Manager ?? "); //TODO testing
     console.log(initialNodeMap); //TODO testing
     console.log(initialGridBlock); //TODO testing
-             
+  
+  const [chapterKey, setChapterKey] = useState(initialChapterKey);
+
   let languageCode = 0;
   let createText = ["Create"];
   let cancelText = ["Cancel"];
@@ -141,7 +143,7 @@ export default function NodeManager({projectName, currUser,
           
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
-          
+            setChapterKey(chapterKeyTemp);
           }
     });
 

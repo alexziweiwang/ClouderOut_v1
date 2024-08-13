@@ -1118,6 +1118,7 @@ button:hover {
     background-color: rgb(228, 231, 237);
     border-radius: 0px;
     overflow: scroll;
+    width: 270px;
 }
 
 .chapterListItem {

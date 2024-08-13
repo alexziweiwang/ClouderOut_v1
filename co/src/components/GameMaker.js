@@ -65,17 +65,17 @@ export default function GameMaker() {
 //TODO ------------------------------------------------------
   
 const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
-  key1: {"chapterStart1-key": {
+  "key1": {"chapterStart1-key": {
               nodeName: "chapterStart1-title", 
               row: 2, 
               col: 0, 
-              nextNode:"chapterStart1-key", 
+              nextNode:"A1-key", 
               display: true, 
               nodeType:"*chapterStart*", 
               screenSize:"h600_800"
           },
           "A1-key": {
-              nodeName: "a1-title", 
+              nodeName: "A1-title", 
               row: 2, 
               col: 1, 
               nextNode:"", 
@@ -84,7 +84,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               screenSize:"h600_800"
           },
           "B1-key": {
-              nodeName: "b1-title", 
+              nodeName: "B1-title", 
               row: 4, 
               col: 3, 
               nextNode:"", 
@@ -93,7 +93,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               screenSize:"h600_800"
           },
           "C1-key": {
-              nodeName: "c1-title", 
+              nodeName: "C1-title", 
               row: 4, 
               col: 0, 
               spltLogicPairs: [["else", "", "else"],], 
@@ -101,7 +101,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nodeType:"LogicSplitter"
           },
           "D1-key": {
-              nodeName: "d1-title", 
+              nodeName: "D1-title", 
               row: 2, 
               col: 4, 
               nextNode:"", 
@@ -110,10 +110,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               screenSize:"h600_800"
           },
           "E1-key": {
-              nodeName: "e1-title", 
+              nodeName: "E1-title", 
               row: 4, 
               col: 6, 
-              nextNode:"", 
+              nextNode: "chapterEnd1-key", 
               display: true, 
               nodeType:"Conversation", 
               screenSize:"h600_800"
@@ -122,23 +122,23 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nodeName: "chapterEnd1-title", 
               row: 2, 
               col: 5, 
-              nextNode:"e1-key", 
+              nextNode: "", 
               display: true, 
               nodeType:"*chapterEnd*", 
               screenSize:"h600_800"
           },
   },
-  key2: {"chapterStart2-key": {
+  "key2": {"chapterStart2-key": {
             nodeName: "chapterStart2-title", 
             row: 2, 
             col: 0, 
-            nextNode:"chapterStart2-key", 
+            nextNode:"A2-key", 
             display: true, 
             nodeType:"*chapterStart*", 
             screenSize:"h600_800"
         },
         "A2-key": {
-            nodeName: "a2-title", 
+            nodeName: "A2-title", 
             row: 2, 
             col: 1, 
             nextNode:"", 
@@ -147,7 +147,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             screenSize:"h600_800"
         },
         "B2-key": {
-            nodeName: "b2-title", 
+            nodeName: "B2-title", 
             row: 4, 
             col: 3, 
             nextNode:"", 
@@ -156,7 +156,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             screenSize:"h600_800"
         },
         "C2-key": {
-            nodeName: "c2-title", 
+            nodeName: "C2-title", 
             row: 4, 
             col: 0, 
             spltLogicPairs: [["else", "", "else"],], 
@@ -164,19 +164,19 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nodeType:"LogicSplitter"
         },
         "D2-key": {
-          nodeName: "d2-title", 
+          nodeName: "D2-title", 
           row: 2, 
           col: 4, 
-          nextNode:"", 
+          nextNode: "", 
           display: true, 
           nodeType:"Conversation", 
           screenSize:"h600_800"
         },
         "E2-key": {
-          nodeName: "e2-title", 
+          nodeName: "E2-title", 
           row: 4, 
           col: 6, 
-          nextNode:"", 
+          nextNode: "chapterEnd2-key", 
           display: true, 
           nodeType:"Conversation", 
           screenSize:"h600_800"
@@ -185,7 +185,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nodeName: "chapterEnd2-title", 
           row: 2, 
           col: 5, 
-          nextNode:"e2-key", 
+          nextNode:"", 
           display: true, 
           nodeType:"*chapterEnd*", 
           screenSize:"h600_800"
@@ -535,7 +535,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         <NodeManager 
           currUser={username} 
           projectName={projectName} 
-          chapterKey={currChapterKey}
+          initialChapterKey={currChapterKey}
           getNodeMapOfChapter={passInCurrentChapterNodeMap}
           getCurrChapterKey={passInCurrentChapterKey}
           getGridBlocks={passInCurrentGridBlocks}

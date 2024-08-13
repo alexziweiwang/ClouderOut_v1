@@ -128,7 +128,7 @@ export default function ChapterManager({
       <>
         {isCollapse === false && 
         <div className="parallelFrame">
-          <div className="listBar" style={{"width": "55%", "overflow": "hidden"}}>
+          <div className="listBar" style={{"overflow": "hidden"}}>
               <div className="chapterManagingArea"> 
                         <label>Chapter Management: </label>
                 
