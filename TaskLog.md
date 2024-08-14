@@ -317,6 +317,6 @@
 
 - 2024-Aug-12: Design sample Game Nav UI for default & test
 
-
+- 2024-Aug-13: Design strategies for chapter previewing
 
 
