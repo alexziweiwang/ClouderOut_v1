@@ -68,7 +68,7 @@ export default function ConversationNodeEditingPanel() {
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
 
     const languageCode = 0;
-    const returnGameMakerButtonText = [" ← Game Maker"];
+    const returnGameMakerButtonText = [" ← "];
     const showResourceManagerButtonText = ["Resource Manager"]; 
     const gameDataManagerText = ["Game Data Manager"];
     const quickGameViewText = ["Quick Game Preview"];
@@ -565,11 +565,11 @@ export default function ConversationNodeEditingPanel() {
 
         <div>
             <div className="returning_buttons">
-                <button className="button" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
+                <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
                 <div className="buttonRight30 parallelFrame">
-                    <button onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
-                    <button onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
+                    <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
+                    <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
                 </div>
 
             </div>

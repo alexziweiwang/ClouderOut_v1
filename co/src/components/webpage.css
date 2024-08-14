@@ -51,6 +51,36 @@ div {
     margin-top: -1px;   
 }
 
+.rmTab {
+    background-color: #293241;
+    color: #FFFFFF;
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    
+    margin-right: 16px;
+    border-radius: 0px;
+    border: #FFFFFF solid 1px;
+    margin-top: -1px;
+}
+
+.rmTab:hover {
+    background-color: #dacecb;
+    color: #FFFFFF;
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    
+    margin-right: 16px;
+    border-radius: 0px;
+    border: #FFFFFF solid 1px;
+    margin-top: -1px;
+}
+
 .button:hover {
     background-color: #accddf;
     color: rgb(126, 123, 123);
