@@ -40,6 +40,36 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
           ["key2", "testChapter2", "display", "", ""]
         ]; //TODO fetch from cloud-db
 
+
+
+
+
+
+
+
+
+
+        useEffect(() => {
+
+            if (navigationObj["screenSize"] === "h450_800") {
+                setScreenWidth(800);
+                setScreenHeight(450);
+            } else if (navigationObj["screenSize"] === "v800_450") {
+                setScreenWidth(450);
+                setScreenHeight(800);
+            } else if (navigationObj["screenSize"] === "h600_800") {
+                setScreenWidth(800);
+                setScreenHeight(600);
+            } else if (navigationObj["screenSize"] === "v800_600") {
+                setScreenWidth(600);
+                setScreenHeight(800);
+            }
+        });
+
+
+
+
+
     function updateGameData(data) { // model's functionality
         setGameDataTracker(data);
     }
@@ -67,13 +97,13 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 
 return(<>
 
-<div className={modalStyleName}>
+<div className={modalStyleName} style={{"overflow": "scroll"}}>
     <div>
 
         <button onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
 
       
-        <div style={{"position": "relative"}}>
+        <div style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "300px" : "450px"}}>
       
 
 
