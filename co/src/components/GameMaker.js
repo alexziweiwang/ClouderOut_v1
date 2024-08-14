@@ -55,7 +55,7 @@ export default function GameMaker() {
   const [chapterList, setChapterList] = useState(
     [
       ["key1", "testChapter1", "display"], 
-      ["key2", "testChapter2", "display"]
+      ["key2", "testChapter2", "display"],
     ]); //TODO fetch from cloud db when entering game-maker
 
 
@@ -549,6 +549,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return screenHeight;
   }
 
+  function passInChapterList() {
+    return chapterList;
+  }
+
   return (
   <div>
     
@@ -624,9 +628,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           />
           
           
-         
+          <div style={{"marginTop": "15px"}}>
           <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
-          
+          </div>
     </div>}
    
 
@@ -644,6 +648,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         isDisplay={isDisplayEntireGameViewer}
         makeNotDisplay={closeEntireGameViewer}
         navigationObj={currentProjectNav}
+        initialChapterList={chapterList}
+        getChapterList={passInChapterList}
       />}
 
  

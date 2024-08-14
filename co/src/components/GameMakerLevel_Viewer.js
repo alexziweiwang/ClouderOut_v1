@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
 
 
-export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, navigationObj}) {
+export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, navigationObj,
+    initialChapterList, getChapterList
+}) {
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
 
@@ -35,21 +37,10 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 
     const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
 
-    const chapterList = [
-          ["key1", "testChapter1", "display", "plot1", "end node"], 
-          ["key2", "testChapter2", "display", "", ""]
-        ]; //TODO fetch from cloud-db
+    const [chapterList, setChapterList] = useState(initialChapterList); 
 
 
-
-
-
-
-
-
-
-
-        useEffect(() => {
+     useEffect(() => {
 
             if (navigationObj["screenSize"] === "h450_800") {
                 setScreenWidth(800);
@@ -64,6 +55,9 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
                 setScreenWidth(600);
                 setScreenHeight(800);
             }
+
+            let chapterListTemp = getChapterList();
+            setChapterList(chapterListTemp);
         });
 
 
