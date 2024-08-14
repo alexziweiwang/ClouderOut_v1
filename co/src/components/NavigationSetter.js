@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-export default function NavigationSetter({initialNavObj, updateNavObj, openRm, updateCurrentPageName, fetchPageName}) {
+export default function NavigationSetter({initialNavObj, 
+  updateNavObj, openRm, 
+  updateCurrentPageName, fetchPageName,
+  initialScreenHeight, getScreenheight
+}) {
   const username = "user002"; //TODO testing
   const projName = "project001"; //TODO testing
 
@@ -10,11 +14,10 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
   let updateText = ["Update"];
   let manageResourceText = ["Manage Resource"];
 
+  const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
-  
   const screenWidth = 800; //TODO temp  
-  const screenHeight = 600; //TODO temp
-  
+
   const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
@@ -181,6 +184,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
       let tempPage= fetchPageName();
       setCurrentSettingPage(tempPage);
 
+      let heightTemp = getScreenheight();
+      setScreenHeight(heightTemp);
     });
 
 
@@ -208,10 +213,8 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     }
     
    return (
-   <div>
-
-   <br></br>
-   <div className="guiSettings">
+  
+   <div className="guiSettings" style={{"maxHeight": `${screenHeight-19}px`}}>
       
    <button>{saveChangesText[languageCode]}</button>
 
@@ -219,6 +222,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
      <br></br><br></br>
      <label>Screen Size for all navigation pages:</label>
      <select
+     value={currentProjectNav["screenSize"]}
      onChange={(event)=>{
       let tempObj = currentProjectNav;
       tempObj["screenSize"] = event.target.value;
@@ -3313,9 +3317,7 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
 
  </div>
- 
- 
- </div>);
+);
 
 
 }

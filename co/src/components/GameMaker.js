@@ -9,6 +9,9 @@ import NavigationPreview from './NavigationPreview';
 import GameMakerLevel_Viewer from './GameMakerLevel_Viewer';
 
 export default function GameMaker() {
+  const [screenHeight, setScreenHeight] = useState(600);
+
+
   const languageCode = 0;
   const resourceManagerButtonText = ["Resource Manager"];
   const contentChaptersTabText = ["Content Chapters"];
@@ -385,6 +388,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       setGridBlocks(gridBlocksAll[currChapterKey]);
     }
 
+    if (currentProjectNav["screenSize"] === "h450_800") {
+      setScreenHeight(450);
+    } else if (currentProjectNav["screenSize"] === "v800_450" || currentProjectNav["screenSize"] === "v800_600") {
+      setScreenHeight(800);
+    } else if (currentProjectNav["screenSize"] === "h600_800") {
+      setScreenHeight(600);
+    }
+
 
   });
 
@@ -534,6 +545,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   }
 
+  function passInScreenHeight() {
+    return screenHeight;
+  }
+
   return (
   <div>
     
@@ -604,11 +619,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             openRm={handleResourceManagerOpen} 
             updateCurrentPageName={updateCurrPageName} 
             fetchPageName={passInCurrSelectedPage}
+            initialScreenHeight={screenHeight}
+            getScreenheight={passInScreenHeight}
           />
-           
-          <div style={{"marginLeft": "20px"}}>
-            <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
-          </div>
+          
+          
+         
+          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
+          
     </div>}
    
 

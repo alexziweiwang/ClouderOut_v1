@@ -333,9 +333,9 @@ div {
 .guiSettings {
     margin-left: 5px;
     width: 450px;
-    height: 620px;
     text-align: left;
-    padding: 15px;
+    margin: 15px;
+    padding: 10px;
     background-color: rgb(230, 221, 205);
     overflow: scroll;
 }
