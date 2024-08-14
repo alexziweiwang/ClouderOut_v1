@@ -423,8 +423,8 @@ export default function NodeManager({projectName, currUser,
         <div style={{"overflow": "scroll", "width": "100%"}}>
 
         {chapterKey!== "" && <div className="setting_area"> 
-        <label>Chapter Key: {chapterKey}</label><br></br>
-        <br></br><button>Test this chapter</button><br></br>
+        <label>Chapter Key: {chapterKey}</label>
+        <button>Test this chapter</button>
         <label>{nodeManageMentText[languageCode]}</label>
 
         <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
@@ -479,7 +479,7 @@ export default function NodeManager({projectName, currUser,
 
 {/* link-drawing */}
 
-//TODO1 first part
+                                                                                      {/* //TODO1 first part */}
  {gridBlocks.map((rowItem, ir) => {
     let rowKeyStr = "linking" + ir;
     console.log("first part row = ", rowItem ); //TODO testing
@@ -700,7 +700,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
 
 
-//TODO1 second part
+                                                                                  {/* //TODO1 second part */}
  <div>
 {gridBlocks.map((rowItem, ir) => {
    let rowKeyStr = "grid" + ir;
@@ -778,7 +778,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   + Add A New Node</label></div>} */}
 
                 <div>
-              <label>Node Name: </label>
+              <label>Node Unique-ID-Name and Title: </label>
               <input 
                 className="setting_item"
                 type="text" value={createNewNodeName} 
@@ -873,12 +873,12 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   
 
                       <div>
-                          <label>Rename Node: </label>
+                          <label>Change Node Title: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-                            <button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
+                            <br></br><button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
                           </div>
-
+                          <br></br>
                           <label>Delete Node: </label>
                           <div className="indentOne">
                               <button onClick={()=>{
