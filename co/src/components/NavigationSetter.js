@@ -208,8 +208,11 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
     }
     
    return (
-   
+   <div>
+
+   <br></br>
    <div className="guiSettings">
+      
    <button>{saveChangesText[languageCode]}</button>
 
 
@@ -3309,6 +3312,9 @@ export default function NavigationSetter({initialNavObj, updateNavObj, openRm, u
 
 
 
+ </div>
+ 
+ 
  </div>);
 
 
