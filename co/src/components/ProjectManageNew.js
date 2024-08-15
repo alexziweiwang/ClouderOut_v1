@@ -10,9 +10,9 @@ export default function ProjectManageNew() {
     const name = "/projectmanagenew";
     const username = "user002"; //TODO test
 
-    const [addedNewProjName, setNewProjName] = useState(""); //TODO testing
+    const [addedNewProjName, setAddedNewProjName] = useState(""); //TODO testing
     const [projDedscription, setProjDescription] = useState("");
-    const [addedAuthorInfo, setAuthorInfo] = useState("");
+    const [addedAuthorInfo, setAddedAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
     const [projList, setProjList] = useState(false); 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -32,29 +32,19 @@ export default function ProjectManageNew() {
     function changeProjNameInput(event) {
       const str = event.target.value;
 
-      setNewProjName(str);
+      setAddedNewProjName(str);
     }
     
-    function createNewProjectEdit() {
-        console.log("adding a new project: " + addedNewProjName);
+    function createNewProjectLocal() {
         if (addedNewProjName === "") {
+          alert("Project Name can not be empty!");
           return;
         }
         createNewProjectToCloud();
-        const selected_project_name = addedNewProjName;
-    //    navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
-
+  
     }
 
-        
-    function createNewProjectReturn() {
-      console.log("adding a new project: " + addedNewProjName);
-      if (addedNewProjName === "") {
-        return;
-      }
-      createNewProjectToCloud();
-      //navigate('/projectmanagingpanel', { replace: true });
-    }
+ 
 
     /* Create and setup the default set for a new project */
     function createNewProjectToCloud() {
@@ -72,16 +62,13 @@ export default function ProjectManageNew() {
       const result = projList.filter((name) => name === addedNewProjName);
       if (result.length > 0) {
         console.log("warning: duplicate name");
+        alert("Project Name already taken ...");
         //if already contains this name
         //don't navigate
         return;
       }
       
-      // if (addedAuthorInfo.length === 0) {
-      //   console.log("warning: author info can't be empty");
-      //   //don't navigate
-      //   return;
-      // }
+ 
       //TODO: author name default: current username, then allow adding others
       
 
@@ -97,6 +84,25 @@ export default function ProjectManageNew() {
       //TODO add collection "chapters"
       console.log("Created project info: ");
       console.log(obj);
+
+      let alertStr = "Project" + addedNewProjName + "Created!";
+      alert(alertStr);
+
+
+      let response = window.confirm("Navigating to Project Editor ...");
+      if (response) {
+        const selected_project_name = addedNewProjName;
+        navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
+      } else {
+        //TODO reset all the inputs in the new-project form
+        
+        setAddedNewProjName("");   
+        setProjDescription(""); 
+         //addedAuthorInfo
+        setAddedAuthorInfo("");
+
+
+      }
       
       // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
 
@@ -109,7 +115,7 @@ export default function ProjectManageNew() {
 
     function changeAuthorInfo(event) {
       const str = event.target.value;
-      setAuthorInfo(event.target.value);
+      setAddedAuthorInfo(event.target.value);
     }
 
     function changeGameScreenSize(event) {
@@ -143,44 +149,37 @@ export default function ProjectManageNew() {
    
  
         <div style={{"fontWeight": "normal"}}>
+          {/* //TODO later: use table, etc. */}
         <label>Create a new project: </label>
             <br></br>
           <div className="parallelFrame newProjForm">
  
            <div className="newProjLineName">
             <label className="newProjectInfoElement">Project Name: </label>
-            <br></br>
+            <br></br><br></br>
             <label className="newProjectInfoElement"></label>Project Description: 
-            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br><br></br>
             <label className="newProjectInfoElement">Author Info: </label>
           </div>
           <div className="newProjLineContent">
             <input className="newProjectInfoElement" type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
-            <br></br>
+            <br></br><br></br>
             <textarea className="newProjectInfoElement" rows={5} cols={36} value={projDedscription} onChange={changeProjDescription}></textarea>
-            <br></br>
+            <br></br><br></br><br></br>
             <textarea className="newProjectInfoElement" rows={2} cols={20} value={addedAuthorInfo} onChange={changeAuthorInfo}></textarea>
-
           </div>
         </div>
 
         </div>
 
         <br></br>
-        <div className="parallelFrame">
+       
         <button 
-          onClick={()=>{createNewProjectReturn()}}>
-        Create & Close
+          onClick={()=>{createNewProjectLocal()}}>
+        Create Project
         </button>
 
-        <button 
-          className="buttonRight"
-          onClick={()=>{createNewProjectEdit()}}>
-        Create & Start Editing!
-        </button>
-
-        </div>
-
+   
 
         <br></br>
         <br></br>
