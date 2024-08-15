@@ -75,7 +75,7 @@ export default function Sidebar({compName, username}) {
         </div>
         <div>
             <br></br> <br></br> <br></br>
-        <button className="sidebar_options sidebar_options2" onClick={()=>{projectManageNew()}}>{newProjectButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{projectManageNew()}}>{newProjectButtonText[languageCode]}</button>
 
         </div>
 

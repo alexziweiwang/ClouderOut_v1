@@ -28,7 +28,10 @@ export default function Dashboard() {
 
     
     <div className="dashboard_content">
+     <div>
 
+       
+     </div>
       <p className="plans"> This is ... *Dashboard Component* for {uname}</p>
 
       <p className="plans">TODO: responsibility of this page: 

@@ -559,11 +559,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     <div className="returning_buttons">
       <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
       <p>Project Name: {projectName}</p>
+     
+     
       <button
         onClick={()=>{
           setDisplayEntierGameViewer(true);
         }}
+        className="button"
       >Test Game-play</button>
+
+
       <button className="buttonRight50 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
     </div>
 

@@ -91,13 +91,13 @@ export default function ProjectManagerPanel() {
     
     let name = "/projectmanagingpanel";
     return (
-    <>    
+    <div style={{"display": "flex"}}>    
       <Sidebar compName = {name}/>
 
-    <div className="backboardForAll">
+      <div className="backboardForAll">
   
         <div 
-          className="projManageSection"
+          className="projSelectionArea projManageSection"
           onClick={()=>{  
             setCurrentProjectAction("createProject");
           }}
@@ -128,6 +128,8 @@ export default function ProjectManagerPanel() {
         <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
           <label className="cursor_pointer">Select an Ongoing Project ...</label>
         </div>
+
+
         {projList && 
         <div className="parallelFrame"  
           style={{
@@ -135,7 +137,8 @@ export default function ProjectManagerPanel() {
               "justifyContent": "center", 
               "alignItems": "center", 
               "display": currentProjectAction === "selectProject" ? "flex" : "none",
-              "transition": "all 0.2s ease-out"
+              "transition": "all 0.2s ease-out",
+              "marginLeft": "25px",
           }}>
           
           
@@ -184,7 +187,7 @@ export default function ProjectManagerPanel() {
 
 
         <div 
-          className="projManageSection"
+          className="projSelectionArea projManageSection"
           onClick={()=>{
             setCurrentProjectAction("revertProject");
           }}
@@ -225,6 +228,6 @@ export default function ProjectManagerPanel() {
     </div>
     
 
-  </>
+  </div>
     );
 }

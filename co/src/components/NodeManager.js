@@ -423,11 +423,17 @@ export default function NodeManager({projectName, currUser,
         <div style={{"overflow": "scroll", "width": "100%"}}>
 
         {chapterKey!== "" && <div className="setting_area"> 
-        <label>Chapter Key: {chapterKey}</label>
-        <button>Test this chapter</button>
-        <label>{nodeManageMentText[languageCode]}</label>
+      
 
-        <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
+        {/* //TODO testing panel area */}
+        <div style={{"backgroundColor": "orange"}}>
+            <label>Chapter Key: {chapterKey}</label>
+            <button>Test this chapter</button>
+            <label>{nodeManageMentText[languageCode]}</label>
+
+            <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
+        </div>
+
 
 <div style={{"display": "flex"}}> 
           <div style={{

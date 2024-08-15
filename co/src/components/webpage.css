@@ -139,30 +139,30 @@ div {
 }
 
 .page {
-    justify-content: flex-start;
-    min-height: 100vh; 
+    min-height: 800px;
+    margin: 0px;
+    display: flex;
 }
 
 .dashboard_content {
-    background-color: rgb(247, 246, 244);
-    width: 90%;
-    height: 100vh; 
-    float: right;
+    height: 800px; 
+ 
+    border-radius: 0px;
 }
 
 .sidebar1 {
     background-color: #293241;
     width: 150px;
-    height: 100vh; 
-    float: left;
+    height: 800px;
+
     border-radius: 0px;
 }
 
 .sidebar2 {
     background-color: #293241;
     width: 150px;
-    height: 100vh; 
-    float: left;
+    height: 800px;
+  
     border-radius: 0px;
 }
 
@@ -643,6 +643,8 @@ th,td {
 .backboardForAll {
     background-color: #d3d7e0;
     height: 100%;
+    border-radius: 0px;
+    width: 80%;
 }
 
 .newProjectInfoElement {
@@ -654,13 +656,15 @@ th,td {
     overflow: scroll;
     border:rgb(7, 7, 7);
     background-color: rgb(247, 246, 244);
-
+    width: 1420px;
     border-radius: 0px;
 }
 
 .projManageSection {
     cursor: pointer;
     user-select: none;
+    border-radius: 0px;
+
 }
 
 .projManageSection:hover {
@@ -668,6 +672,8 @@ th,td {
     user-select: none;
     color: #EE6C4D;
     font-weight: bold;
+    border-radius: 0px;
+
 }
 
 .tableItem {
