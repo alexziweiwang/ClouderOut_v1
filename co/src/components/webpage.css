@@ -644,7 +644,8 @@ th,td {
     background-color: #d3d7e0;
     height: 100%;
     border-radius: 0px;
-    width: 80%;
+    width: 90%;
+
 }
 
 .newProjectInfoElement {
@@ -680,7 +681,8 @@ th,td {
     cursor: pointer;
     user-select: none;
     border-radius: 0px;
-    background-color: #828282;
+    background-color: #cfcfd0;
+    font-weight: bold;
 
 }
 
@@ -690,7 +692,7 @@ th,td {
     color: #020202;
     font-weight: bold;
     border-radius: 0px;
-    background-color: #828282;
+    background-color: #cfcfd0;
 
 }
 
@@ -1099,7 +1101,7 @@ button:hover {
     color: #41435b;
     border: #41435b solid 1px;
 
-    width: 500px;
+  
     border-radius: 0px;
     user-select: none;
     padding: 2px;
@@ -1115,7 +1117,6 @@ button:hover {
     background-color: #d9dae4;
     color: white;
     margin: 2px;
-    width: 500px;
     border-radius: 0px;
     cursor: pointer;
     padding: 2px;
@@ -1130,7 +1131,6 @@ button:hover {
     border: #FFFFFF solid 1px;
     color: white;
     margin: 2px;
-    width: 500px;
     border-radius: 0px;
     user-select: none;
     padding: 2px;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
-
+import ProjectManageNew from './ProjectManageNew';
 
 export default function ProjectManagerPanel() {
     const username = "user002"; //TODO test
@@ -113,7 +113,7 @@ export default function ProjectManagerPanel() {
               }}
             
             >
-              ...
+              <ProjectManageNew/>
             </div>
 
         </div>
@@ -139,6 +139,8 @@ export default function ProjectManagerPanel() {
               "display": currentProjectAction === "selectProject" ? "flex" : "none",
               "transition": "all 0.2s ease-out",
               "marginLeft": "25px",
+              "paddingRight": "25px",
+
           }}>
           
           

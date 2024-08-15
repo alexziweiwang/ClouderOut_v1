@@ -42,7 +42,7 @@ export default function ProjectManageNew() {
         }
         createNewProjectToCloud();
         const selected_project_name = addedNewProjName;
-        navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
+    //    navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
 
     }
 
@@ -53,7 +53,7 @@ export default function ProjectManageNew() {
         return;
       }
       createNewProjectToCloud();
-      navigate('/projectmanagingpanel', { replace: true });
+      //navigate('/projectmanagingpanel', { replace: true });
     }
 
     /* Create and setup the default set for a new project */
@@ -139,13 +139,10 @@ export default function ProjectManageNew() {
 
 
     return (
-    <>    
-    <Sidebar compName = {name}/>
-
-    <>
-
-        <br></br>
-        <div>
+    <div>    
+   
+ 
+        <div style={{"fontWeight": "normal"}}>
         <label>Create a new project: </label>
             <br></br>
           <div className="parallelFrame newProjForm">
@@ -172,13 +169,13 @@ export default function ProjectManageNew() {
         <br></br>
         <div className="parallelFrame">
         <button 
-          onClick={createNewProjectReturn}>
+          onClick={()=>{createNewProjectReturn()}}>
         Create & Close
         </button>
 
         <button 
           className="buttonRight"
-          onClick={createNewProjectEdit}>
+          onClick={()=>{createNewProjectEdit()}}>
         Create & Start Editing!
         </button>
 
@@ -200,9 +197,7 @@ export default function ProjectManageNew() {
           <br></br> TODO: design and construct new-set for each new project: layers, etc.
         </p>
 
-    </>
-    
 
-  </>
+  </div>
     );
 }
