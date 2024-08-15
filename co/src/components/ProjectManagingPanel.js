@@ -97,8 +97,8 @@ export default function ProjectManagerPanel() {
       <div className="backboardForAll">
   
         <div 
-          className="projSelectionArea projManageSection"
-          onClick={()=>{  
+        className={currentProjectAction === "createProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
+        onClick={()=>{  
             setCurrentProjectAction("createProject");
           }}
         >
@@ -118,7 +118,7 @@ export default function ProjectManagerPanel() {
 
         </div>
 
-        <div className="projSelectionArea projManageSection" 
+        <div className={currentProjectAction === "selectProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
           onClick={()=>{
               setCurrentProjectAction("selectProject");
           }}
@@ -187,8 +187,8 @@ export default function ProjectManagerPanel() {
 
 
         <div 
-          className="projSelectionArea projManageSection"
-          onClick={()=>{
+        className={currentProjectAction === "revertProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
+        onClick={()=>{
             setCurrentProjectAction("revertProject");
           }}
         >

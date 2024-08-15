@@ -676,6 +676,24 @@ th,td {
 
 }
 
+.projManageSectionSelected {
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0px;
+    background-color: #828282;
+
+}
+
+.projManageSectionSelected:hover {
+    cursor: pointer;
+    user-select: none;
+    color: #020202;
+    font-weight: bold;
+    border-radius: 0px;
+    background-color: #828282;
+
+}
+
 .tableItem {
     background-color: rgb(235, 232, 227);
     cursor: pointer;
