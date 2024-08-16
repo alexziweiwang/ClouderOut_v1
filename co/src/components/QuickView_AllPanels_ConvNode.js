@@ -36,6 +36,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     const [originalGmdt, setOriginalGmdt] = useState({});
 
     const [showConvLog, setShowConvLog] = useState(false);
+    
+    const [resetSignal, setResetSignal] = useState(false);
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
@@ -180,8 +183,11 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
         console.log("now gameDataCurr[val5] = ", gameDataCurr["val5"]);
         console.log("gameData[val5] = ", gameData["val5"]);
+        console.log(".......");
+        console.log("initialPieceNum = ", initialPieceNum);
 
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+        setResetSignal(true);
     }
 
     // function notifyFinished() {
@@ -270,6 +276,16 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     let resetText = ["Reset"];
 
 
+    function passInCurrPieceNum() {
+        return currPieceNum;
+    }
+
+    function passInResetSignal() {
+        let currSignal = resetSignal;
+        setResetSignal(false);
+        return currSignal;
+    }
+
 
     return ( <div className={modalStyleName}>
         <div className="modalArea">
@@ -293,6 +309,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     visualList={visualList} 
                     audioList={audioList}
                     gameData={gameData}
+                    getCurrPieceNum={passInCurrPieceNum}
+                    getResetSignal={passInResetSignal}
                 />
 
           

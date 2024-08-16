@@ -71,7 +71,7 @@ export default function ConversationNodeEditingPanel() {
     const returnGameMakerButtonText = [" ← "];
     const showResourceManagerButtonText = ["Resource Manager"]; 
     const gameDataManagerText = ["Game Data Manager"];
-    const quickGameViewText = ["Quick Game Preview"];
+    const quickGameViewText = ["Quick View"];
     const gameContentSetupText = ["Game Content Setup"];
     const gameUIsetupText = ["Game UI Setup"];
     const updateText = ["Update"];
@@ -567,6 +567,10 @@ export default function ConversationNodeEditingPanel() {
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
+                <button className="button"
+                    onClick={()=>{setIsDisplayQview(true);}}>
+                        {quickGameViewText[languageCode]}
+                </button>
                 <div className="buttonRight30 parallelFrame">
                     <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
                     <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
@@ -578,7 +582,7 @@ export default function ConversationNodeEditingPanel() {
             <div className="parallelFrame">
                 <div className="topParalBarLeftPart">
 
-                    <button onClick={()=>{setIsDisplayQview(true);}}>{quickGameViewText[languageCode]}</button>
+              
                 </div>
                 <div className="topParalBarRightPart">
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>

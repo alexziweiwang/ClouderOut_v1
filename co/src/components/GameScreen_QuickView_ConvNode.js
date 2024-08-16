@@ -5,11 +5,13 @@ import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 // includes conversational-node content+UI
-export default function GameScreen_QuickView_ConvNode ({initialPieceNum,  
+export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurrPieceNum, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, gameData}) {
+    visualList, audioList, gameData,
+    getResetSignal,
+}) {
 
 
         let modalStyleName = "modalBackboard"; 
@@ -93,6 +95,14 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum,
                 }
                 setVisualMap(tempVisualMap);
             }
+
+            let resetSignal = getResetSignal();
+            if (resetSignal === true) {
+                let pieceNumTemp = getCurrPieceNum();
+                setCurrPieceNum(pieceNumTemp);
+            }
+
+      
     
         });
     
