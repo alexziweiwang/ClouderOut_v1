@@ -322,3 +322,5 @@
 - 2024-Aug-14: Design strategies for node-deletion under new data structure and mapping
 - 2024-Aug-14: Design implementation plan for node-map extending and data structure updating
 - 2024-Aug-14: Redesign better navigation-UI-setter UX
+
+- 2024-Aug-15: Redesign modal components' UI UX for new visual plan
