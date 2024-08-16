@@ -349,7 +349,9 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
         <div className="modalArea">
 
             <div>
-            <button onClick={()=>{
+            <button 
+                className="modalClose"
+                onClick={()=>{
                 if (varPairToCloud !== "default") {
                     console.log("!!! please save to cloud first");
                     alert("Please save to cloud first.");
@@ -375,7 +377,10 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                                 setClickedFileType("");
                     }}>{audioResourceText[languageCode]}</button>
 
-                    <button className="buttonRight" onClick={()=>{updateVarPairToCloud();}}>{saveToCloud[languageCode]}</button>
+                    <button className="buttonRight saveToCloud" 
+                        onClick={()=>{updateVarPairToCloud();}}>
+                            {saveToCloud[languageCode]}
+                    </button>
                 </div>
 
                 {isTabVisual && 

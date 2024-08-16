@@ -178,7 +178,9 @@ export default function Modal_GameDataManager({isDisplay, handleGdmCancel, gameD
     <div className="modalArea3">
 
     <div className="modalContent">
-        <button className="buttonRight90 cursor_pointer" onClick={()=>{handleGdmCancel()}}>Close</button>
+        <button className="buttonRight90 cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
+            Close
+        </button>
 
         <div className="gameDataDisplayArea">
             <div className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}>
