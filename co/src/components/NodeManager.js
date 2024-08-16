@@ -19,7 +19,9 @@ export default function NodeManager({projectName, currUser,
   
   const [chapterKey, setChapterKey] = useState(initialChapterKey);
 
-  const [newGridActionCreate, setNewGridActionCreate] = useState(true);;
+  const [newGridActionCreate, setNewGridActionCreate] = useState(true);
+
+  const [toRevertNodeKey, setToRevertNodeKey] = useState("");
 
   let languageCode = 0;
   let createText = ["Create"];
@@ -898,11 +900,14 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               setNewGridActionCreate(false);
             }}>Revert a deleted Node</label>
           {!newGridActionCreate && <div className="section">
-                  <select>
+                  <select value={toRevertNodeKey} onChange={(event)=>{
+                    setToRevertNodeKey(event.target.value);
+                  }}>
                     <option>-- Select a deleted node --</option>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     if (nodeRelationshipMap[currKey].display === false) {
-                      return (<option value={currKey}>
+                      let keyStr = "revertOption" + currKey
+                      return (<option value={currKey} key={keyStr}>
                         {nodeRelationshipMap[currKey].nodeName}
                       </option>)
                     }
@@ -913,12 +918,30 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                     let askStr = "Are you sure to revert node" + "" + "?";
                     let response = window.confirm(askStr);
                     if (response) {
-                      //TODO revert the node here!!
-                      //TODO update gridBlocks on this grid
-                      //TODO update node-map for this node's row and col info, and display info
+                      // update gridBlocks on this grid
+                      // update node-map for this node's row and col info, and display info
+                      let crd = clickedNode2;
+                      let ic = crd % 10000;
+                      let ir = (crd-ic) / 10000;
+                      
+                      let nodeMapTemp = nodeRelationshipMap;
+                      nodeMapTemp[toRevertNodeKey].row = ir;
+                      nodeMapTemp[toRevertNodeKey].col= ic;
+                      nodeMapTemp[toRevertNodeKey].display = true;
+
+                      let gridBlocksTemp = gridBlocks;
+                      gridBlocksTemp[ir][ic] = toRevertNodeKey;
+
+                      setNodeRelationshipMap(nodeMapTemp);
+                      setGridBlocks(gridBlocksTemp);
+
+                      updateNodeMapOfChapter(nodeMapTemp);
+                      updateGridBlockOfChapter(gridBlocksTemp);
+
+                      setClickedNode2(-1);
 
                     }
-                  }}>Revert</button>
+                  }}>{revertText[languageCode]}</button>
           </div>
           }
           </>
