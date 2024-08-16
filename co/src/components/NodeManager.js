@@ -832,14 +832,11 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
 </div>
    
-          {addNewNodeAreaDisplay && <div className="section">
-                
-                <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
-                  Adding A New Node</label></div>
-                {/* {!addNewNodeAreaDisplay && <div className="cursor_pointer" onClick={()=>{setAddNewNodeAreaDisplay(!addNewNodeAreaDisplay);}}><label className="cursor_pointer">
-                  + Add A New Node</label></div>} */}
-
-                <div>
+          {addNewNodeAreaDisplay && 
+          <>
+          <input type="radio"></input><label className="cursor_pointer">Adding A New Node</label>
+          <div className="section">
+               
               <label>Node Unique-ID-Name and Title: </label>
               <input 
                 className="setting_item"
@@ -881,8 +878,43 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   setAddNewNodeAreaDisplay(false);
                   setClickedNode2(-1);}}
               >{cancelText[languageCode]}</button>
-              </div>
-            </div>}
+            
+            </div>
+            
+            
+            
+          <input type="radio"></input><label className="cursor_pointer">Revert a deleted Node</label>
+          <div className="section">
+                  <select>
+                    <option>-- Select a deleted node --</option>
+                  {Object.keys(nodeRelationshipMap).map((currKey) => {
+                    if (nodeRelationshipMap[currKey].display === false) {
+                      return (<option value={currKey}>
+                        {nodeRelationshipMap[currKey].nodeName}
+                      </option>)
+                    }
+                  })}
+                  </select>
+                  
+                  <button onClick={()=>{
+                    let askStr = "Are you sure to revert node" + "" + "?";
+                    let response = window.confirm(askStr);
+                    if (response) {
+                      //TODO revert the node here!!
+                      //TODO update gridBlocks on this grid
+                      //TODO update node-map for this node's row and col info, and display info
+                      
+                    }
+                  }}>Revert</button>
+          </div>
+            
+          </>
+            }
+
+
+
+
+
 
         <div>
 
