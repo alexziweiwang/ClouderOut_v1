@@ -19,6 +19,8 @@ export default function NodeManager({projectName, currUser,
   
   const [chapterKey, setChapterKey] = useState(initialChapterKey);
 
+  const [newGridActionCreate, setNewGridActionCreate] = useState(true);;
+
   let languageCode = 0;
   let createText = ["Create"];
   let cancelText = ["Cancel"];
@@ -834,8 +836,14 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
    
           {addNewNodeAreaDisplay && 
           <>
-          <input type="radio"></input><label className="cursor_pointer">Adding A New Node</label>
-          <div className="section">
+          <input type="radio" value={newGridActionCreate} checked={newGridActionCreate}
+            onChange={()=>{
+              setNewGridActionCreate(true);
+            }}
+          ></input><label className="cursor_pointer" onClick={()=>{
+            setNewGridActionCreate(true);
+          }}>Add A New Node</label>
+          {newGridActionCreate && <div className="section">
                
               <label>Node Unique-ID-Name and Title: </label>
               <input 
@@ -880,11 +888,16 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               >{cancelText[languageCode]}</button>
             
             </div>
+          } 
             
-            
-            
-          <input type="radio"></input><label className="cursor_pointer">Revert a deleted Node</label>
-          <div className="section">
+          <br></br>
+          <input type="radio" value={newGridActionCreate} checked={!newGridActionCreate}
+            onChange={()=>{
+              setNewGridActionCreate(false);
+            }}></input><label className="cursor_pointer" onClick={()=>{
+              setNewGridActionCreate(false);
+            }}>Revert a deleted Node</label>
+          {!newGridActionCreate && <div className="section">
                   <select>
                     <option>-- Select a deleted node --</option>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
@@ -903,11 +916,11 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                       //TODO revert the node here!!
                       //TODO update gridBlocks on this grid
                       //TODO update node-map for this node's row and col info, and display info
-                      
+
                     }
                   }}>Revert</button>
           </div>
-            
+          }
           </>
             }
 
