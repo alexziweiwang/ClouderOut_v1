@@ -396,7 +396,7 @@ export default function NodeManager({projectName, currUser,
        
       } else {
         let nextNodeName = tempNodeMap[nodeKey].nextNode;
-        if (nextNodeName !== "" && nextNodeName === tempNodeMap[clickedNodeKey].nodeName) {
+        if (nextNodeName !== "" && nextNodeName === clickedNodeKey) {
           tempNodeMap[nodeKey].nextNode = "";
         }
         
@@ -947,8 +947,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                 let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
                                 let response = window.confirm(askStr);
                                 if (response) {
-                                  
                                   deleteNode2();
+                                  setClickedNodeKey("");
+                                  setClickedNode2(-1);
                                 }
                               }}>Delete</button>
                           </div>
