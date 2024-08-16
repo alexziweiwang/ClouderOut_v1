@@ -9,7 +9,10 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 export default function NodeManager({projectName, currUser, 
   initialChapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
-  initialNodeMap, initialGridBlock}) {
+  initialNodeMap, initialGridBlock,
+  updateNodeMapOfChapter, updateGridBlockOfChapter,
+}) {
+
     console.log("Node Manager ?? "); //TODO testing
     console.log(initialNodeMap); //TODO testing
     console.log(initialGridBlock); //TODO testing
@@ -53,8 +56,6 @@ export default function NodeManager({projectName, currUser,
 
   const [renderCounter, setRenderCounter] = useState(0);
  
-
-
   //TODO functionality design:
   //TODO1 always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
 
@@ -356,6 +357,36 @@ export default function NodeManager({projectName, currUser,
     setTempNewName("");
 
   } 
+
+  function deleteNode2() {
+    let tempNodeMap = nodeRelationshipMap;
+    let tempGridBlocks = gridBlocks;
+
+    if (tempNodeMap[clickedNodeKey] === undefined) {
+      return;
+    }
+
+    // now the node is tempNodeMap[clickedNodeKey]
+
+    
+    // mark this node to "not display"
+    tempNodeMap[clickedNodeKey].display = false;
+
+    // delete in grid-blocks
+    let r =  tempNodeMap[clickedNodeKey].row;
+    let c =  tempNodeMap[clickedNodeKey].col;
+    tempGridBlocks[r][c] = "";
+
+
+    //TODO delete the parent-node's next-node
+
+    setNodeRelationshipMap(tempNodeMap);
+    setGridBlocks(tempGridBlocks);
+
+    //update both data structures to outer layer
+    updateNodeMapOfChapter(tempNodeMap);
+    updateGridBlockOfChapter(tempGridBlocks);
+  }
 
 
 
@@ -894,6 +925,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                 
                                 if (response) {
                                   //TODO delete this node
+
+                                  
                                 }
                               }}>Delete</button>
                           </div>

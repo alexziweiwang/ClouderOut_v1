@@ -1097,11 +1097,10 @@ button:hover {
 }
 
 .projectGridItem {
-    background-color: white;
+    background-color: #98C1D9;
     color: #41435b;
     border: #41435b solid 1px;
 
-  
     border-radius: 0px;
     user-select: none;
     padding: 2px;
@@ -1127,7 +1126,8 @@ button:hover {
 
 .projectGridItemSelected {
     border-color: #FFFFFF;
-    /* background-color: #41435b; */
+    background-color: #293241;
+
     border: #FFFFFF solid 1px;
     color: white;
     margin: 2px;
@@ -1142,7 +1142,7 @@ button:hover {
 
 .projectGrid {
     margin-top: 5px;
-    background-color: #293241;
+    background-color: #98C1D9;
     width: 1000px;
     overflow: scroll;
     flex-shrink: initial;
