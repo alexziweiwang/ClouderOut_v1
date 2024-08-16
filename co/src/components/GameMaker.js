@@ -66,7 +66,7 @@ export default function GameMaker() {
   const [currPageName, setCurrPageName] = useState("Main Page");
 
 //TODO ------------------------------------------------------
-  
+ 
 const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   "key1": {"chapterStart1-key": {
               nodeName: "chapterStart1-title", 
@@ -200,7 +200,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({});
 
   const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys
-
+ 
   const [gridBlocksAll, setGridBlocksAll] = useState({
       key1: [
         ["","","","","","","","","",""], 
@@ -553,6 +553,21 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return chapterList;
   }
 
+  function updateNodeMapOfChapter(mapObj) {
+    let nodeMapAllTemp = chapterNodeMapAll;
+    nodeMapAllTemp[currChapterKey] = mapObj;
+    setChapterNodeMapAll(nodeMapAllTemp);
+  }
+  
+  function updateGridBlockOfChapter(gridArr) {
+    let gridBlocksAllTemp = gridBlocksAll;
+    gridBlocksAllTemp[currChapterKey] = gridArr;
+
+    setGridBlocksAll(gridBlocksAllTemp);
+  }
+
+
+
   return (
   <div>
     
@@ -612,6 +627,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getGridBlocks={passInCurrentGridBlocks}
           initialNodeMap={currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {}}
           initialGridBlock={currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []}
+          updateNodeMapOfChapter={updateNodeMapOfChapter}
+          updateGridBlockOfChapter={updateGridBlockOfChapter}
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 

@@ -361,13 +361,12 @@ export default function NodeManager({projectName, currUser,
   function deleteNode2() {
     let tempNodeMap = nodeRelationshipMap;
     let tempGridBlocks = gridBlocks;
+    // now the node is tempNodeMap[clickedNodeKey]
+
 
     if (tempNodeMap[clickedNodeKey] === undefined) {
       return;
     }
-
-    // now the node is tempNodeMap[clickedNodeKey]
-
     
     // mark this node to "not display"
     tempNodeMap[clickedNodeKey].display = false;
@@ -378,7 +377,33 @@ export default function NodeManager({projectName, currUser,
     tempGridBlocks[r][c] = "";
 
 
-    //TODO delete the parent-node's next-node
+    // delete the parent-node's next-node
+    Object.keys(tempNodeMap).map((nodeKey) => {
+      if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
+        //traverse spltLogicPairs
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;
+        let i = 0;
+        let len = arr.length;
+        let updatedArr = [];
+        for(; i < len; i++) {
+          let item = arr[i];
+          if (item[1] !== clickedNodeKey) {
+            //add to new array if not this to-be-deleted node
+            updatedArr.push(item);
+          }
+        }
+        tempNodeMap[nodeKey].spltLogicPairs = updatedArr;
+       
+      } else {
+        let nextNodeName = tempNodeMap[nodeKey].nextNode;
+        if (nextNodeName !== "" && nextNodeName === tempNodeMap[clickedNodeKey].nodeName) {
+          tempNodeMap[nodeKey].nextNode = "";
+        }
+        
+      }
+    
+    });
+
 
     setNodeRelationshipMap(tempNodeMap);
     setGridBlocks(tempGridBlocks);
@@ -921,12 +946,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                               <button onClick={()=>{
                                 let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
                                 let response = window.confirm(askStr);
-
-                                
                                 if (response) {
-                                  //TODO delete this node
-
                                   
+                                  deleteNode2();
                                 }
                               }}>Delete</button>
                           </div>
