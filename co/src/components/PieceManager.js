@@ -165,12 +165,12 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             {isManage === true && <button onClick={()=>{setIsManage(!isManage);}}>
                     {viewModeText[languageCode]}
             </button>}             
-            <table>
+            <table className="pieceTable">
         <thead>
             <tr>
             <th>Editor</th>
             <th>Number</th>
-            <th>Content</th>
+            <th className="contentGrid">Content</th>
             {isManage === true && 
             <th>Operations</th>}
             </tr>
@@ -196,7 +196,10 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                             assignPieceNum(item["num"]);}}>{editText[languageCode]}</button>
                     </td>
                     <td>{item["num"]}</td>
-                    <td>{item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}{ item["content"]}</td>
+                    <td className="contentGrid">{item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
+                    {item["content"]}
+                    
+                    </td>
                     {isManage === true &&  <td>
                     <div>
                         <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>{moveUpText[languageCode]}</button>

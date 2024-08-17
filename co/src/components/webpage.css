@@ -8,6 +8,24 @@ div {
     border-radius: 9px;
 }
 
+table {
+    table-layout: fixed;
+}
+
+td {
+    word-wrap: break-word;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.contentGrid {
+    width: 300px;
+}
+
+.pieceTable {
+    width: 530px;
+}
+
 .button {
     background-color: #f29079;
     color: white;
@@ -386,7 +404,7 @@ div {
 
 .userChoice {
     background-color: rgb(235, 231, 224);
-    width: 450px;
+    width: 550px;
     margin-left: 5px;
     justify-content: flex-start;
     text-align: left;
@@ -398,18 +416,17 @@ div {
 }
 
 .guiSettings {
-    margin-left: 5px;
-    width: 450px;
+    width: 550px;
     text-align: left;
-    margin: 15px;
-    padding: 10px;
+    padding: 15px;
+    margin-left: 5px;
     background-color: rgb(230, 221, 205);
     overflow: scroll;
 }
 
 .pieceManager {
     background-color: rgb(234, 232, 240);
-    width: 450px;
+    width: 550px;
     margin-left: 5px;
     justify-content: flex-start;
     text-align: left;
@@ -465,7 +482,7 @@ div {
 
 .pieceSetterArea {
     background-color: rgb(186, 208, 205);
-    width: 450px;
+    width: 550px;
     overflow: scroll;
 }
 
