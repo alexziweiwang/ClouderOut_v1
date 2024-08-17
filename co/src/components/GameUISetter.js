@@ -94,14 +94,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
  
     <div className="guiSettings">
 
-    <div style={{
-        "backgroundColor": "#3D5A80", 
-        "borderRadius": "5px",
-        "color": "#FFFFFF",
-        "padding": "5px",
-        "cursor": "pointer",
-        "userSelect": "none",
-    }}
+    <div className="gameUISetterSectionTitle"
         onClick={()=>{
             setOpenDefaultButtonSection(!openDefaultButtonSection);
         }}
@@ -344,9 +337,18 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
 
 
-    <br></br><br></br><br></br>
-    2. Text Frame
-    <br></br>Width: <input type="range" value={txtFrameObj["width"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
+    <br></br>
+    <div className="gameUISetterSectionTitle"
+        onClick={()=>{
+            setOpenTextFrameSection(!openTextFrameSection);
+        }}
+    >
+        {!openTextFrameSection && <label style={{"cursor": "pointer"}}>Text Frame - Click to Expand</label>}
+        {openTextFrameSection &&<label style={{"cursor": "pointer"}}>Text Frame - Click Collapse</label>}
+    </div>
+
+{openTextFrameSection && <div>
+    Width: <input type="range" value={txtFrameObj["width"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             let posX = (screenWidth - txtFrameObj["width"]) / 2 - 1;
           
             setTxtFrameObj({...txtFrameObj, "positionX": posX, "width": event.target.value});
@@ -508,8 +510,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         </div>}
     </div>
 
+</div>}
+
     <br></br>
-    <br></br><br></br>
 
     3.Text Viewing Options:<br></br>
     <div className="indentOne">

@@ -154,6 +154,15 @@ td {
     margin-left: 100px;
 }
 
+.gameUISetterSectionTitle {
+    background-color: #3D5A80;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 5px;
+    cursor: pointer;
+    userSelect: none;
+}
+
 .dashboard_grid {
     background-color: #c0d6e3;
     margin-right: 20px;
