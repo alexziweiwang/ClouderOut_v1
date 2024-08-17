@@ -99,8 +99,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setOpenDefaultButtonSection(!openDefaultButtonSection);
         }}
     >
-        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) - Click to Expand</label>}
-        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) - Click Collapse</label>}
+        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) +</label>}
+        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) -</label>}
 
     </div>
 {openDefaultButtonSection && <div>
@@ -343,8 +343,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setOpenTextFrameSection(!openTextFrameSection);
         }}
     >
-        {!openTextFrameSection && <label style={{"cursor": "pointer"}}>Text Frame - Click to Expand</label>}
-        {openTextFrameSection &&<label style={{"cursor": "pointer"}}>Text Frame - Click Collapse</label>}
+        {!openTextFrameSection && <label style={{"cursor": "pointer"}}>Text Frame +</label>}
+        {openTextFrameSection &&<label style={{"cursor": "pointer"}}>Text Frame -</label>}
     </div>
 
 {openTextFrameSection && <div>
@@ -513,8 +513,15 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 </div>}
 
     <br></br>
-
-    3.Text Viewing Options:<br></br>
+    <div className="gameUISetterSectionTitle"
+        onClick={()=>{
+            setOpenAutoLogSection(!openAutoLogSection);
+        }}
+    >
+        {!openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) +</label>}
+        {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options -</label>}
+    </div>
+{openAutoLogSection && <div>
     <div className="indentOne">
         <label>Auto Toggle:</label>
         <div className="indentOne">
@@ -741,7 +748,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
    
     </div>
-
+</div>}
 
 
     <br></br><br></br>
