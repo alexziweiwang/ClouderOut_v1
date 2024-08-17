@@ -78,57 +78,17 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [txtFrameObj, setTxtFrameObj] = useState(iniTxtFrameObj);
 
 
-    const [isMenuStoryCore, setIsMenuStoryCore] = useState(false);
 
     const [igMenuBtnObj, setIgMenuBtnObj] = useState(iniMenuButtonObj);
 
     const [convLogObj, setConvLogObj] = useState(iniCovLogObj);
 
-    const [igsidebarMenuPosX, setIgsidebarMenuPosX] = useState(100);
-    const [igsidebarMenuPosY, setIgsidebarMenuPosY] = useState(100);
-    const [igsidebarMenuW, setIgsidebarMenuW] = useState(100);
-    const [igsidebarMenuH, setIgsidebarMenuH] = useState(100);
-    const [igsidebarMenuCnrRadius, setIgsidebarMenuCnrRadius] = useState(100);
-    const [igsidebarMenuIsShape, setIgsidebarMenuIsShape] = useState(true);
-    const [igsidebarMenuPicVar, setIgsidebarMenuPicVar] = useState("");
-    const [igsidebarMenuTextColor, setIgsidebarMenuTextColor] = useState("#000000");
+    const [openDefaultButtonSection, setOpenDefaultButtonSection] = useState(false);
+    const [openTextFrameSection, setOpenTextFrameSection] = useState(false);
+    const [openAutoLogSection, setOpenAutoLogSection] = useState(false);
+    const [openLogPageSection, setOpenLogPageSection] = useState(false);
 
-    const [igsidebarMenuIsSingleBtn, setIgsidebarMenuIsSingleBtn] = useState(true);
-    const [igsidebarMenuListPadding, setIgsidebarMenuListPadding] = useState(1);
-    const [igsidebarMenuIsListDirection, setIgsidebarMenuIsListDirection] = useState(1);
 
-    const [igsidebarMenuTransparency, setIgsidebarMenuTransparency] = useState(90);
-    const [igsidebarMenuColor, setIgsidebarMenuColor] = useState("#a8d1d6");
-
-    const [autoBtn, setAutoBtn] = useState(true);
-    const [saveBtn, setSaveBtn] = useState(true);
-    const [loadBtn, setLoadBtn] = useState(true);
-    const [settingsBtn, setSettingsBtn] = useState(true);
-    const [returnTitlePageBtn, setReturnTitlePageBtn] = useState(true);
-    const [inGameDataBtn, setInGameDataBtn] = useState(true);
-    const [dealBtn, setDealBtn] = useState(true);
-
-    // const [igsidebarMenuObj, setIgsidebarMenuObj] = useState({
-    //     "width": igsidebarMenuW,
-    //     "height": igsidebarMenuH,
-    //     "positionX": igsidebarMenuPosX,
-    //     "positionY": igsidebarMenuPosY,
-    //     "cornerRadius": igsidebarMenuCnrRadius,
-    //     "transparency": igsidebarMenuTransparency,
-    //     "isShape": igsidebarMenuIsShape,
-    //     "bgColor": igsidebarMenuColor,
-    //     "picVar": igsidebarMenuPicVar,
-    //     "isSingleButton": igsidebarMenuIsSingleBtn,
-    //     "listItemPadding": igsidebarMenuListPadding,
-    //     "listDirection": igsidebarMenuIsListDirection,
-    //     "autoOption": autoBtn,
-    //     "saveGameOption": saveBtn,
-    //     "loadGameOption": loadBtn,
-    //     "settingsOption": settingsBtn,
-    //     "returnToTitleOption": returnTitlePageBtn,
-    //     "inGameDataOption": inGameDataBtn,
-    //     "dealOption": dealBtn
-    // }); //TODO remove later
 
     return (
  
