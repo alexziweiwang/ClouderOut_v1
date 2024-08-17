@@ -94,9 +94,24 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
  
     <div className="guiSettings">
 
-    1. Defualt Button (group)
+    <div style={{
+        "backgroundColor": "#3D5A80", 
+        "borderRadius": "5px",
+        "color": "#FFFFFF",
+        "padding": "5px",
+        "cursor": "pointer",
+        "userSelect": "none",
+    }}
+        onClick={()=>{
+            setOpenDefaultButtonSection(!openDefaultButtonSection);
+        }}
+    >
+        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) - Click to Expand</label>}
+        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) - Click Collapse</label>}
 
-        <div className="indentOne">
+    </div>
+{openDefaultButtonSection && <div>
+    <div className="indentOne">
         <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
         }}></input><input value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
@@ -190,6 +205,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         ></input>{defaultButtonObj["margin"]}
     
     </div>
+        
+
 
     <br></br><br></br>
     <input type="checkbox" 
@@ -323,6 +340,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             )}
        
     </div>}
+</div>}
+
+
 
     <br></br><br></br><br></br>
     2. Text Frame
