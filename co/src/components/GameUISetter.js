@@ -750,12 +750,16 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     </div>
 </div>}
 
-
-    <br></br><br></br>
+    <br></br>
     <div>
-        Log Page Settings:
-
-        <div className="indentOne">
+        <div className="gameUISetterSectionTitle" 
+            onClick={()=>{
+            setOpenLogPageSection(!openLogPageSection);
+        }}>
+            {!openLogPageSection && <label>Log Page Settings +</label>}
+            {openLogPageSection && <label>Log Page Settings -</label>}
+        </div>
+    {openLogPageSection && <div className="indentOne">
             <label>Close Button Settings</label>
             <div className="indentOne">
             <input type="radio" value={convLogObj["closeButtonIsShape"]} checked={convLogObj["closeButtonIsShape"]}
@@ -1186,6 +1190,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             </div>
 
         </div>
+    }
     </div>
   
    
