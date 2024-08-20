@@ -348,7 +348,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
       <div className={modalStyleName}>
         <div className="modalArea">
 
-            <div>
+            <div style={{"overflow": "scroll"}}>
             <button 
                 className="modalClose"
                 onClick={()=>{
@@ -387,8 +387,10 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 <div className="rmTypeAreaV"> 
                 <div className="modalContent parallelFrame">
          
-                <div className="areaNote1"> visual area
-                <button onClick={fetchRmFileList}> {loadResourceListText[languageCode]} </button>
+                <div className="areaNote1">
+                <button className="loadResourceBtn" onClick={fetchRmFileList}> 
+                    {loadResourceListText[languageCode]}
+                </button>
                 
                 <br></br>
                 <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value); changeVisFilter(event.target.value);}}>
@@ -479,8 +481,10 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 <div className="rmTypeAreaA"> 
                 <div className="modalContent parallelFrame">
             
-                <div className="areaNote2"> audio area
-                <button onClick={fetchRmFileList}> {loadResourceListText[languageCode]} </button>
+                <div className="areaNote2">
+                <button className="loadResourceBtn" onClick={fetchRmFileList}> 
+                    {loadResourceListText[languageCode]}
+                </button>
                
                 <br></br>
                 <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value); changeAuFilter(event.target.value);}}>
