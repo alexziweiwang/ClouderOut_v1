@@ -17,7 +17,6 @@ export default function ChapterManager({
   const addText = ["Add"];
   const collapseText = ["Collapse"];
   const revertText = ["Revert"];
-  const chapterRevertAreaText = ["Chapter Revert area"];
   const chapterManagementText = ["Chapter Management"];
 
   
@@ -31,6 +30,7 @@ export default function ChapterManager({
   const [selectedChptKey, setSelectedChpt] = useState(-1);
   const [isAddNewChpater, setIsAddNewChapter] = useState(false);
   const [deletedLocalList, setDeletedLocalList] = useState([]);
+  const [isRevertingChapter, setIsRevertingChapter] = useState(false);
 
   const [currChapterNodeList, setCurrChapterNodeList] = useState([]);
 
@@ -78,14 +78,19 @@ export default function ChapterManager({
   }
 
   function hideChapter(index) {
-    let deleteListTemp = deletedLocalList;
-    deleteListTemp.push(chapterData[index]);
-    setDeletedLocalList(deleteListTemp);
+    let askStr = "Are you sure to delete the chapter " + chapterData[index][1] + "?";
+    let response = window.confirm(askStr);
+    if (response) {
+      let deleteListTemp = deletedLocalList;
+      deleteListTemp.push(chapterData[index]);
+      setDeletedLocalList(deleteListTemp);
+  
+      let tempChapterData = chapterData;
+      tempChapterData[index][2] = "delete";
+      updateChapterData(tempChapterData);
+      setSelectedChpt(-1);
+    }
 
-    let tempChapterData = chapterData;
-    tempChapterData[index][2] = "delete";
-    updateChapterData(tempChapterData);
-    setSelectedChpt(-1);
   }
   
   function handleSelectChapterKey(item) {
@@ -106,7 +111,9 @@ export default function ChapterManager({
         setSelectedChpt(i);
       }
     }
+
     updateChapterData(tempChapterData);
+    setIsRevertingChapter(false);
 
   }
 
@@ -159,7 +166,11 @@ export default function ChapterManager({
                             <br></br>
                             
                             <label>*Delete Chapter</label><br></br>
-                            <button onClick={()=>{hideChapter(index);}}>{deleteText[languageCode]}</button><br></br>
+                            <button onClick={()=>{hideChapter(index);}}>
+                              {deleteText[languageCode]}
+                            </button>
+                              
+                            <br></br>
 
                           </>
                         
@@ -170,17 +181,17 @@ export default function ChapterManager({
                       })}
 
                       <br></br><br></br>
-                      <ul 
+                      <li 
                         className={isAddNewChpater === true ?"chapterListItemSelected" : "chapterListItem"} 
                         style={{"textDecoration": "underline"}}
                         onClick={()=>{
                           setIsAddNewChapter(!isAddNewChpater);
                           setSelectedChpt(-1);
                           passInChosenChapter("");
-                          console.log("chapterData: ", chapterData); //TODO testing
+console.log("chapterData: ", chapterData); //TODO testing
                         }}>
                         + New Chapter
-                      </ul>
+                      </li>
                       {isAddNewChpater === true && 
                       <div>
                         <label>New Chapter Unique-ID-Name (unchangable): </label><br></br>
@@ -192,26 +203,37 @@ export default function ChapterManager({
                         <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
                       </div>}
                         
-                      
+                      <br></br><br></br>
+                      <li 
+                        className={isRevertingChapter === true ?"chapterListItemSelected" : "chapterListItem"} 
+                        style={{"textDecoration": "underline"}}
+                        onClick={()=>{
+                          setIsRevertingChapter(!isRevertingChapter);
+                        }}>
+                        * Revert a Deleted Chapter
+                      </li>
+                        {isRevertingChapter && <div>
+                              {deletedLocalList.map((item, index) => {
+                                return (<label key={index}>{item[0]}, {item[1]} 
+                                  <button onClick={()=>{revertChapter(item[0]);}}>
+                                    {revertText[languageCode]}
+                                  </button ></label>);
+                              })}
 
-                  </ul>
+                              {deletedLocalList.length === 0 && <label>(No deleted chapter.)</label>}
+                        </div>}
 
-              
-                  </div>
 
-                      <div>
-                            {chapterRevertAreaText[languageCode]}<br></br>
-                            {deletedLocalList.map((item, index) => {
-                              return (<label key={index}>{item[0]}, {item[1]} <button onClick={()=>{revertChapter(item[0]);}}>{revertText[languageCode]}</button ></label>);
-                            })}
-                      </div>
                       <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                       <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
                         <br></br>TODO feature: insert chapter between existing chapters 
                         <br></br>TODO feature: rearrange chapter sequence
                       </p>
 
+                  </ul>
 
+              
+                  </div>
 
                 </div>
 
