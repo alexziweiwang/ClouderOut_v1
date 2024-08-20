@@ -11,7 +11,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     let manageResourceText = ["Manage Resource"];
     let updateText = ["Update"];
     let saveText = ["Save"];
-    let collapseText = ["Collapse"];
+    let collapseText = ["Collapse"]; 
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -338,10 +338,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
 
     <br></br><div
+        className="gameUISetterSectionCollapse"
         onClick={()=>{
             setOpenDefaultButtonSection(false);
         }}
-    >Collapse</div>
+    >{collapseText[languageCode]}</div>
 
 </div>}
 
@@ -521,11 +522,12 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
 
         <br></br><div
-        onClick={()=>{
-                setOpenTextFrameSection(false);
-            }}
-        >Collapse</div>
-    </div>
+            className="gameUISetterSectionCollapse"
+            onClick={()=>{
+                    setOpenTextFrameSection(false);
+                }}
+            >{collapseText[languageCode]}</div>
+                </div>
 
 </div>}
 
@@ -536,7 +538,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         }}
     >
         {!openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) +</label>}
-        {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options -</label>}
+        {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) -</label>}
     </div>
 {openAutoLogSection && <div>
     <div className="indentOne">
@@ -764,11 +766,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <label> {convNav["cornerRadius"]}</label>
 
         <br></br><div
-        onClick={()=>{
-                setOpenAutoLogSection(false);
-            }}
-        >Collapse</div>
-    </div>
+            className="gameUISetterSectionCollapse"
+            onClick={()=>{
+                    setOpenAutoLogSection(false);
+                }}
+            >{collapseText[languageCode]}</div>
+
+        </div>
 </div>}
 
     <br></br>
@@ -1210,10 +1214,12 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
             </div>
             <br></br><div
-        onClick={()=>{
-                setOpenLogPageSection(false);
-            }}
-        >Collapse</div>
+                className="gameUISetterSectionCollapse"
+                onClick={()=>{
+                        setOpenLogPageSection(false);
+                    }}
+                >{collapseText[languageCode]}</div>
+
         </div>
     }
     </div>

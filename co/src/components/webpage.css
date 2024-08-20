@@ -163,6 +163,19 @@ td {
     userSelect: none;
 }
 
+.gameUISetterSectionCollapse {
+    background-color: #8598b1;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 5px;
+    cursor: pointer;
+    userSelect: none;
+    width: 70%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+
 .dashboard_grid {
     background-color: #c0d6e3;
     margin-right: 20px;
