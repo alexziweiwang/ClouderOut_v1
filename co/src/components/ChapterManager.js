@@ -105,12 +105,21 @@ export default function ChapterManager({
   function revertChapter(keyStr) {
     let i = 0;
     let tempChapterData = chapterData;
+    let tempDeletedLocalList = [];
+
     for (; i < tempChapterData.length; i++) {
       if (tempChapterData[i][0] === keyStr) {
-        tempChapterData[i][2] = "display";
+        tempChapterData[i][2] = "display"; //not including this in the updated-deleted-list
         setSelectedChpt(i);
+      } else {
+        if (tempChapterData[i][2] === "delete") {
+          tempDeletedLocalList.push(tempChapterData[i]);
+        }
       }
     }
+
+    // update deletedLocalList
+    setDeletedLocalList(tempDeletedLocalList);
 
     updateChapterData(tempChapterData);
     setIsRevertingChapter(false);
