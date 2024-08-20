@@ -90,7 +90,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     const [openLogPageSection, setOpenLogPageSection] = useState(false);
 
 
-
+//TODO5
     return (
  
     <div className="guiSettings">

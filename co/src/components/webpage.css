@@ -95,6 +95,7 @@ td {
     border-radius: 0px;
     color: #FFFFFF;
     padding: 15px;
+    width: 180px;
 }
 
 
@@ -439,6 +440,7 @@ td {
 
 .guiSettings {
     width: 550px;
+    height: 600px;
     text-align: left;
     padding: 15px;
     margin-left: 5px;
@@ -886,10 +888,13 @@ td {
     border-color: rgb(198, 193, 186);
     border: 3px solid rgb(198, 193, 186);
     margin-left: 2px;
-    margin-right: 2px;
+    margin-right: 5px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
 }
 
 .tabBar1:hover {
@@ -897,10 +902,13 @@ td {
     border-color: rgb(198, 193, 186);
     border: 3px solid rgb(198, 193, 186);
     margin-left: 2px;
-    margin-right: 2px;
+    margin-right: 5px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
 }
 
 .tabBar2 {
@@ -910,8 +918,12 @@ td {
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
+
 }
 
 .tabBar2:hover {
@@ -921,8 +933,12 @@ td {
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
+
 }
 
 .tabBarVSelected {
@@ -930,10 +946,13 @@ td {
     border-color: rgb(92, 120, 110);
     border: 3px solid rgb(92, 120, 110);
     margin-left: 2px;
-    margin-right: 2px;
+    margin-right: 5px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
 }
 
 .tabBarVSelected:hover {
@@ -941,12 +960,14 @@ td {
     border-color: rgb(92, 120, 110);
     border: 3px solid rgb(92, 120, 110);
     margin-left: 2px;
-    margin-right: 2px;
+    margin-right: 5px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
 }
-
 
 
 .tabBarASelected {
@@ -956,8 +977,27 @@ td {
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;
-    height: 30px;
     border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
+
+}
+
+.tabBarASelected:hover {
+    background-color: rgb(170, 175, 184);
+    border-color: rgb(120, 136, 165);
+    border: 3px solid rgb(120, 136, 165);
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 120px;
+    border-bottom: none;
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-bottom: -2px;
+
 }
 
 .tabBarGM {
@@ -1013,18 +1053,6 @@ td {
     border-top-left-radius: 20px;
 }
 
-.tabBarASelected:hover {
-    background-color: rgb(125, 141, 171);
-    border-color: rgb(120, 136, 165);
-    border: 3px solid rgb(120, 136, 165);
-    margin-top: 9px;
-
-    margin-left: 2px;
-    margin-right: 2px;
-    width: 120px;
-    height: 30px;
-    border-bottom: none;
-}
 
 .largerArea {
     background-color: #cecbc8;
