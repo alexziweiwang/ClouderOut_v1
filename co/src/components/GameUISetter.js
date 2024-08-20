@@ -11,6 +11,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     let manageResourceText = ["Manage Resource"];
     let updateText = ["Update"];
     let saveText = ["Save"];
+    let collapseText = ["Collapse"];
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -99,8 +100,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setOpenDefaultButtonSection(!openDefaultButtonSection);
         }}
     >
-        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) +</label>}
-        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Defualt Button (group) -</label>}
+        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) +</label>}
+        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) -</label>}
 
     </div>
 {openDefaultButtonSection && <div>
@@ -196,7 +197,6 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         }}
             min="0" max="100" step="1"
         ></input>{defaultButtonObj["margin"]}
-    
     </div>
         
 
@@ -207,6 +207,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         checked={displayDefaultButtonPreview}
         onChange={()=>{setDisplayDefaultButtonPreview(!displayDefaultButtonPreview);}}
                 ></input><label>Preview in right window</label>  
+   
+   
     <br></br>
     {displayDefaultButtonPreview && <>
         <br></br><label>Button Group PositionX: </label><br></br>
@@ -333,6 +335,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             )}
        
     </div>}
+
+
+    <br></br><div
+        onClick={()=>{
+            setOpenDefaultButtonSection(false);
+        }}
+    >Collapse</div>
+
 </div>}
 
 
@@ -508,6 +518,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             }}
                 ></input>{txtFrameObj["TextContentArea-h"]}            
         </div>}
+
+
+        <br></br><div
+        onClick={()=>{
+                setOpenTextFrameSection(false);
+            }}
+        >Collapse</div>
     </div>
 
 </div>}
@@ -746,7 +763,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         onChange={(event)=>{setConvNav({...convNav,  "cornerRadius": event.target.value});}}></input>
         <label> {convNav["cornerRadius"]}</label>
 
-   
+        <br></br><div
+        onClick={()=>{
+                setOpenAutoLogSection(false);
+            }}
+        >Collapse</div>
     </div>
 </div>}
 
@@ -1188,7 +1209,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }}></input>
 
             </div>
-
+            <br></br><div
+        onClick={()=>{
+                setOpenLogPageSection(false);
+            }}
+        >Collapse</div>
         </div>
     }
     </div>
