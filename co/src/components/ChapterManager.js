@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 
 export default function ChapterManager({
-  chapterData, updateChapterData, 
+  initialChapterData, updateChapterData, 
   getChapterDataInfo,
-  passInChosenChapter, updateLinkingNode, 
-  getCurrentChapterNodeList}) {
+  updateChosenChapterItem, updateLinkingNode, 
+  }) {
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
 //TODO3: add getChapterData (from caller) : "getChapterDataInfo()"
@@ -32,23 +32,26 @@ export default function ChapterManager({
   const [deletedLocalList, setDeletedLocalList] = useState([]);
   const [isRevertingChapter, setIsRevertingChapter] = useState(false);
 
-  const [currChapterNodeList, setCurrChapterNodeList] = useState([]);
+  const [chapterData, setChapterData] = useState(initialChapterData);
 
   useEffect(() => {
-    let fetchedNodeList = getCurrentChapterNodeList(selectedChptKey);
-    setCurrChapterNodeList(fetchedNodeList);
+    let chapterListTemp = getChapterDataInfo();
+    setChapterData(chapterListTemp);
+    //TODO update chapterList-local
     
   });
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
-    // console.log("tempChapterData[index]: "); //TODO test
-    // console.log(index);//TODO test
-    console.log(tempChapterData[index]); //TODO test
+
+    console.log("tempChapterData[index]: ", index); //TODO test
+ 
+    console.log("chapter-data is: ", tempChapterData[index]); //TODO test
+
+
     tempChapterData[index][1] = newTitle;
     updateChapterData(tempChapterData);
     setEditingChapterTitle("");
-    passInChosenChapter(newTitle);
   }
 
   function addNewChapterLine() {
@@ -98,7 +101,7 @@ export default function ChapterManager({
       setSelectedChpt(-1);
     } else {
       setSelectedChpt(item[0]);
-      passInChosenChapter(item[0]); // sends chapter-key info
+      updateChosenChapterItem(item[0]); // sends chapter-key info
     }
   }
 
@@ -169,10 +172,17 @@ export default function ChapterManager({
                           <>
                             <label>*Change Chapter Name*</label><br></br>
                             <label>Chapter Name:</label>
-                            <input value={editingChapterTitle} onChange={(event)=>{setEditingChapterTitle(event.target.value);console.log("changing title: ");console.log(event.target.value);}}></input>
-                            <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
-                            <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
+                            <input value={editingChapterTitle} 
+                              onChange={(event)=>{
+                                setEditingChapterTitle(event.target.value);
+                                                console.log("changing title: "); //TODO testing
+                                                console.log(event.target.value); //TODO testing
+                              }}>
+                            </input>
                             <br></br>
+                            <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
+                            <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
+                            <br></br><br></br><br></br>
                             
                             <label>*Delete Chapter</label><br></br>
                             <button onClick={()=>{hideChapter(index);}}>
@@ -196,7 +206,7 @@ export default function ChapterManager({
                         onClick={()=>{
                           setIsAddNewChapter(!isAddNewChpater);
                           setSelectedChpt(-1);
-                          passInChosenChapter("");
+                          updateChosenChapterItem("");
 console.log("chapterData: ", chapterData); //TODO testing
                         }}>
                         + New Chapter

@@ -386,7 +386,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
-      console.log("GameMaker-state: ", state);//TODO testing
+
+
+        console.log("First Enter - GameMaker-state: ", state);//TODO testing
 
         //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
             //TODO setChapterList(); // from cloud-db
@@ -446,13 +448,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     //TODO either update "starting" or "ending" node of a chapter
   }
 
-  function fetchCurrChapterNodeList(chapterKey) {
-    // with chapter key, return the node list from cloud(?)
-    console.log("fetchCurrChapterNodeList - ", chapterKey); //TODO
-    if (chapterKey === -1) {
-      setCurrChapterKey("");
-    }
-  }
+  // function fetchCurrChapterNodeList(chapterKey) {
+  //   // with chapter key, return the node list from cloud(?)
+  //   console.log("fetchCurrChapterNodeList - key is: ", chapterKey); //TODO
+  //   if (chapterKey === -1) {
+  //     setCurrChapterKey("");
+  //   }
+  
+  //   //TODO when testing, use nodeMapAll...
+
+  // }
+
 
   function updateCurrProjectNavObj(obj) {
     setCurrentProjectNav(obj);
@@ -487,7 +493,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   //     return val;
   // } //TODO remove unused later
 
-  function passInChapterData() {
+  function passInChapterList() {
     return chapterList;
   }
 
@@ -566,10 +572,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return screenHeight;
   }
 
-  function passInChapterList() {
-    return chapterList;
-  }
-
   function updateNodeMapOfChapter(mapObj) {
     let nodeMapAllTemp = chapterNodeMapAll;
     nodeMapAllTemp[currChapterKey] = mapObj;
@@ -583,7 +585,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setGridBlocksAll(gridBlocksAllTemp);
   }
 
-
+  function updateChosenChapterItem(chapterKey) {
+    setCurrChapterKey(chapterKey);
+  }  
 
   return (
   <div>
@@ -626,13 +630,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       
         {!isDisplayRmBool && 
         <ChapterManager 
-          chapterData={chapterList} 
-          updateChapterData={addNewChapter} 
+          initialChapterData={chapterList} 
+          getChapterDataInfo={passInChapterList}
+          
           chosenChapter={currChapterKey} 
-          passInChosenChapter={setCurrChapterKey} 
+          updateChosenChapterItem={updateChosenChapterItem} 
+          
+          updateChapterData={addNewChapter} 
+       
           updateLinkingNode={updateLinkingNodeFunc}
-          getCurrentChapterNodeList={fetchCurrChapterNodeList}
-          getChapterDataInfo={passInChapterData}
+          
         />}
 
         <NodeManager 

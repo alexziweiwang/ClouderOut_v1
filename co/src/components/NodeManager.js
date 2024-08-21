@@ -13,9 +13,9 @@ export default function NodeManager({projectName, currUser,
   updateNodeMapOfChapter, updateGridBlockOfChapter,
 }) {
 
-    console.log("Node Manager ?? "); //TODO testing
-    console.log(initialNodeMap); //TODO testing
-    console.log(initialGridBlock); //TODO testing
+    // console.log("Node Manager ?? "); //TODO testing
+    // console.log(initialNodeMap); //TODO testing
+    // console.log(initialGridBlock); //TODO testing
   
   const [chapterKey, setChapterKey] = useState(initialChapterKey);
 
@@ -124,6 +124,7 @@ export default function NodeManager({projectName, currUser,
 
           setFirstTimeEnter(false);
       }
+  
       console.log("Node Manager ........."); //TODO testing
       console.log(initialNodeMap); //TODO testing
       console.log(initialGridBlock); //TODO testing
@@ -548,7 +549,6 @@ export default function NodeManager({projectName, currUser,
                                                                                       {/* //TODO1 first part */}
  {gridBlocks.map((rowItem, ir) => {
     let rowKeyStr = "linking" + ir;
-    console.log("first part row = ", rowItem ); //TODO testing
     
     return (<div key={rowKeyStr} style={{"position": "absolute"}}>
          {rowItem.map((col,ic) => {
