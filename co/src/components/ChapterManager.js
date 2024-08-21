@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 export default function ChapterManager({
   initialChapterData, updateChapterData, 
   getChapterDataInfo,
-  updateChosenChapterItem, updateLinkingNode, 
+  updateChosenChapterItem, updateLinkingNode,
+  addNewChapter, 
   }) {
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
@@ -43,18 +44,12 @@ export default function ChapterManager({
 
   function updateChapterDataByLine(index, newTitle) {
     let tempChapterData = chapterData;
-
-    console.log("tempChapterData[index]: ", index); //TODO test
- 
-    console.log("chapter-data is: ", tempChapterData[index]); //TODO test
-
-
     tempChapterData[index][1] = newTitle;
     updateChapterData(tempChapterData);
     setEditingChapterTitle("");
   }
 
-  function addNewChapterLine() {
+  function addNewChapterItem() {
 
     //1. not allowing empty chapter key or chapter title
     if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
@@ -75,7 +70,8 @@ export default function ChapterManager({
     let tempChapterData = chapterData;
     let line = [newChapterKeyInput, newChapterTitleInput, "display", "", ""];
     tempChapterData.push(line);
-    updateChapterData(tempChapterData, newChapterKeyInput);
+    updateChapterData(tempChapterData);
+    addNewChapter();
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
   }
@@ -219,7 +215,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                         <label>New Chapter Title (editable later): </label><br></br>
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
                         <br></br>
-                        <button onClick={()=>{addNewChapterLine();}}>{addText[languageCode]}</button>
+                        <button onClick={()=>{addNewChapterItem();}}>{addText[languageCode]}</button>
                       </div>}
                         
                       <br></br><br></br>
