@@ -1531,7 +1531,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
     
 
 
-<p className="plans"> TODO: link-arrows adjustment and improvement: better shaping, for different directions, etc.
+<p className="plans"> TODO:
             <br></br>
   
             <br></br> idea: logic organizer depends heavily on the game-data specified by author.

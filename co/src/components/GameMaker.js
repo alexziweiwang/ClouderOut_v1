@@ -19,21 +19,31 @@ export default function GameMaker() {
 
 
 
+/* Important data structure in this level: Game-Maker
+  chapterList: array of all chapters' info: key, title, display-boolean)
+  hook chapterNodeMapAll: map (key is chapter-key; value is each node's name, position, nextNode, display-boolean, etc.),
+  hook gridBlocksAll: map (key is chapter-key; value is this chapter's node-visualization position matrix) 
+  hook currentProjectNav: UI-setting for navigation system of the entire game-project
+*/
+
+
+
+
+
+
+
   const [isDisplayEntireGameViewer, setDisplayEntierGameViewer] = useState(false);
   
 /* // TODO game-maker task list
 2. logic organizer for game-node-relationship
 3. preview and test for node play-flow (progress: 35%)
 4. testing data for some nodes on cloud-db
-5. consider optimization of "change destination-node" operation
 */
 
 
 /* // TODO game-node visualization task list, dont items removed
 4. optimization of paths: non-overlapping, line to path
-5. optimization of paths: arrow looking
 7. optimization on node positions when generated
-8. dynamic svg size?
 9. game node brief info display and options (hover and click)
 
 */
@@ -54,8 +64,8 @@ export default function GameMaker() {
 
   const [chapterList, setChapterList] = useState(
     [
-      ["key1", "testChapter1", "display"], 
-      ["key2", "testChapter2", "display"],
+      ["chp-key1", "testChapter1", "display"], 
+      ["chp-key2", "testChapter2", "display"],
     ]); //TODO fetch from cloud db when entering game-maker
 
 
@@ -66,9 +76,9 @@ export default function GameMaker() {
   const [currPageName, setCurrPageName] = useState("Main Page");
 
 //TODO ------------------------------------------------------
- 
+
 const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
-  "key1": {"chapterStart1-key": {
+  "chp-key1": {"chapterStart1-key": {
               nodeName: "chapterStart1-title", 
               row: 2, 
               col: 0, 
@@ -131,7 +141,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               screenSize:"h600_800"
           },
   },
-  "key2": {"chapterStart2-key": {
+  "chp-key2": {"chapterStart2-key": {
             nodeName: "chapterStart2-title", 
             row: 2, 
             col: 0, 
@@ -200,9 +210,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({});
 
   const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys
- 
+
   const [gridBlocksAll, setGridBlocksAll] = useState({
-      key1: [
+      "chp-key1": [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
         ["chapterStart1-key","A1-key","","","D1-key","chapterEnd1-key","","","",""], 
@@ -210,7 +220,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         ["C1-key","","","B1-key","","","E1-key","","",""]
       ]
     ,
-      key2: [
+      "chp-key2": [
           ["","","","","","","","","",""], 
           ["","","","","","","","","",""],
           ["chapterStart2-key","A2-key","","","D2-key","chapterEnd2-key","","","",""], 
@@ -219,7 +229,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       ],
     
   }); //stores node-keys
-
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "h450_800",
