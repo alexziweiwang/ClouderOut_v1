@@ -5,7 +5,7 @@ export default function ChapterManager({
   initialChapterData, updateChapterData, 
   getChapterDataInfo,
   updateChosenChapterItem, updateLinkingNode,
-  addNewChapter, 
+  prepareForNewChapterMapping, 
   }) {
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
@@ -41,16 +41,22 @@ export default function ChapterManager({
     //TODO update chapterList-local
     
   });
+  
+  function updateBothLocalAndOuterChapterData(tempChapterData) {
+    updateChapterData(tempChapterData);
+    setChapterData(tempChapterData);
+  }
 
-  function updateChapterDataByLine(index, newTitle) {
+  function changeChapterTitle(index, newTitle) {
     let tempChapterData = chapterData;
     tempChapterData[index][1] = newTitle;
-    updateChapterData(tempChapterData);
+
+    updateBothLocalAndOuterChapterData(tempChapterData);
+
     setEditingChapterTitle("");
   }
 
   function addNewChapterItem() {
-
     //1. not allowing empty chapter key or chapter title
     if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
       alert("Can not have empty chapter key or empty chapter title");
@@ -68,10 +74,13 @@ export default function ChapterManager({
     }
 
     let tempChapterData = chapterData;
-    let line = [newChapterKeyInput, newChapterTitleInput, "display", "", ""];
+    let line = [newChapterKeyInput, newChapterTitleInput, "display"];
     tempChapterData.push(line);
-    updateChapterData(tempChapterData);
-    addNewChapter();
+
+    updateBothLocalAndOuterChapterData(tempChapterData);
+
+    prepareForNewChapterMapping(newChapterKeyInput);
+
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
   }
@@ -86,7 +95,9 @@ export default function ChapterManager({
   
       let tempChapterData = chapterData;
       tempChapterData[index][2] = "delete";
-      updateChapterData(tempChapterData);
+
+      updateBothLocalAndOuterChapterData(tempChapterData);
+
       setSelectedChpt(-1);
     }
 
@@ -120,7 +131,8 @@ export default function ChapterManager({
     // update deletedLocalList
     setDeletedLocalList(tempDeletedLocalList);
 
-    updateChapterData(tempChapterData);
+    updateBothLocalAndOuterChapterData(tempChapterData);
+
     setIsRevertingChapter(false);
 
   }
@@ -177,7 +189,7 @@ export default function ChapterManager({
                             </input>
                             <br></br>
                             <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
-                            <button onClick={()=>{updateChapterDataByLine(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
+                            <button onClick={()=>{changeChapterTitle(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
                             <br></br><br></br><br></br>
                             
                             <label>*Delete Chapter</label><br></br>

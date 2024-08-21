@@ -521,7 +521,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return grid;
   }
 
-  function addNewChapter(newKey) {
+  function prepareForNewChapterMapping(newKey) {
     
     //update all-node-map
     let nodeMapTemp = chapterNodeMapAll;
@@ -640,7 +640,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           updateChosenChapterItem={updateChosenChapterItem} 
           
           updateChapterData={updateChapterList} 
-          addNewChapter={addNewChapter}
+          prepareForNewChapterMapping={prepareForNewChapterMapping}
        
           updateLinkingNode={updateLinkingNodeFunc}
           
