@@ -11,7 +11,7 @@ export default function ProjectManagerPanel() {
     const navigate = useNavigate();
 
     const languageCode = 0;
-    const goToGameMakerButtonText = ["Go To GameMaker!"];
+    const goToGameMakerButtonText = ["Go To Game Maker!"];
     const revertProjectButtonText = ["Revert this project"];
     const trashAreaLabel = ["Trash Area of Project(s):"];
     const trashedProjectSelectListDefaultText = ["Project Name"];
@@ -174,7 +174,7 @@ export default function ProjectManagerPanel() {
 
           {<div style={{"width": "500px"}}>
               <button 
-                className="button" 
+                className="button testEntire" 
                 style={{"display": selected_project_name === "" ? "none" : "flex"}}
                 onClick={()=>{goToGameMaker();}}> 
                 {goToGameMakerButtonText[languageCode]} 

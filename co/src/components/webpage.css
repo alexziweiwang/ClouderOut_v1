@@ -1094,6 +1094,15 @@ td {
     border-top-left-radius: 20px;
 }
 
+.testEntire {
+    border-radius: 50px;
+    color: #000000;
+}
+.testEntire:hover {
+    background-color: #98C1D9;
+    color: #FFFFFF;
+    border-radius: 50px;
+}
 
 .largerArea {
     background-color: #cecbc8;

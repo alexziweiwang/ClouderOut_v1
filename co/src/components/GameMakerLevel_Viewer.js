@@ -94,7 +94,7 @@ return(<>
 <div className={modalStyleName} style={{"overflow": "scroll"}}>
     <div>
 
-        <button onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
+        <button className="testEntire" onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
 
       
         <div style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "300px" : "450px"}}>

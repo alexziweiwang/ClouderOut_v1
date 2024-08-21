@@ -214,7 +214,7 @@ export default function NavigationSetter({initialNavObj,
     
    return (
   
-   <div className="guiSettings" style={{"maxHeight": `${screenHeight-19}px`}}>
+   <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
       
    <button>{saveChangesText[languageCode]}</button>
 

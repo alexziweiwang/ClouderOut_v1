@@ -580,7 +580,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         onClick={()=>{
           setDisplayEntierGameViewer(true);
         }}
-        className="button"
+        className="button testEntire"
       >Test Game-play</button>
 
 
@@ -638,20 +638,20 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
         <div className="parallelFrame sectionArea"> 
           
-     
-          <NavigationSetter 
-            initialNavObj={currentProjectNav} 
-            updateNavObj={updateCurrProjectNavObj} 
-            openRm={handleResourceManagerOpen} 
-            updateCurrentPageName={updateCurrPageName} 
-            fetchPageName={passInCurrSelectedPage}
-            initialScreenHeight={screenHeight}
-            getScreenheight={passInScreenHeight}
-          />
+          <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
+            <NavigationSetter 
+              initialNavObj={currentProjectNav} 
+              updateNavObj={updateCurrProjectNavObj} 
+              openRm={handleResourceManagerOpen} 
+              updateCurrentPageName={updateCurrPageName} 
+              fetchPageName={passInCurrSelectedPage}
+              initialScreenHeight={screenHeight}
+              getScreenheight={passInScreenHeight}
+            />
+          </div>
           
-          
-          <div style={{"marginTop": "15px"}}>
-          <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
+          <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
+            <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
           </div>
     </div>}
    

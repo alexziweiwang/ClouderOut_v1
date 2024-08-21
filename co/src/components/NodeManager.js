@@ -1520,13 +1520,12 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
     
       
         </div>
-        } */} //TODO remove later
+        } */} 
     
    
       
 
       <br></br><br></br><br></br><br></br><br></br>
-      <p className="plans"> revert options : later change into collapsable section with simple icon</p>
         <div className="trashNodeArea">
        
     
@@ -1543,13 +1542,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
         
         </p> 
     
-        <p className="plans"> TODO: consider "reverted node" overlap problem if later created new nodes around 
-        <br></br> for reverted node, it keeps the original content, but relationship needs rebuidling?
-        <br></br> (that is, there can be "pending nodes" that are reverted node to add?)
-        <br></br> idea1: when user append a node, can from scratch, or use "reverted node"?
-        <br></br> idea2: for a revert node, provide available places to insert
-        
-        </p>
+      
     
         </div>
     
