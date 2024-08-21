@@ -38,7 +38,6 @@ export default function ChapterManager({
   useEffect(() => {
     let chapterListTemp = getChapterDataInfo();
     setChapterData(chapterListTemp);
-    //TODO update chapterList-local
     
   });
   
@@ -74,7 +73,7 @@ export default function ChapterManager({
     }
 
     let tempChapterData = chapterData;
-    let line = [newChapterKeyInput, newChapterTitleInput, "display"];
+    let line = [newChapterKeyInput, newChapterTitleInput, "display", ""]; //TODO3
     tempChapterData.push(line);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
@@ -178,9 +177,24 @@ export default function ChapterManager({
                         </li>
                         {selectedChptKey === item[0] && 
                           <>
-                            <label>*Change Chapter Name*</label><br></br>
-                            <label>Chapter Name:</label>
-                            <input value={editingChapterTitle} 
+                            <label>Chapter Unique-ID-Name: {item[0]}</label>
+                            <br></br>
+                            <br></br>
+
+                            <label>Chapter Title:  </label><br></br>
+                            <label>{item[1]}</label>
+                            <br></br>
+                            <br></br>
+
+                            <label>Chapter Notes: </label>
+                            <input></input>
+                            <br></br>
+                            <button>{cancelText[languageCode]}</button>
+                            <button>{saveText[languageCode]}</button>
+
+                            <br></br>
+                            <br></br>
+                            <label>Rename Chapter: </label><input value={editingChapterTitle} 
                               onChange={(event)=>{
                                 setEditingChapterTitle(event.target.value);
                                                 console.log("changing title: "); //TODO testing
@@ -190,9 +204,10 @@ export default function ChapterManager({
                             <br></br>
                             <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
                             <button onClick={()=>{changeChapterTitle(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
-                            <br></br><br></br><br></br>
                             
-                            <label>*Delete Chapter</label><br></br>
+                            <br></br>
+                            <br></br>                          
+                            <label>Delete Chapter</label><br></br>
                             <button onClick={()=>{hideChapter(index);}}>
                               {deleteText[languageCode]}
                             </button>
@@ -223,10 +238,14 @@ console.log("chapterData: ", chapterData); //TODO testing
                       <div>
                         <label>New Chapter Unique-ID-Name (unchangable): </label><br></br>
                         <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
-                        <br></br>
+                        <br></br><br></br>
                         <label>New Chapter Title (editable later): </label><br></br>
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
-                        <br></br>
+                        <br></br><br></br>
+
+                        <label>New Chapter Note (for game-creators): </label><br></br>
+                        <input></input>
+                        <br></br><br></br>
                         <button onClick={()=>{addNewChapterItem();}}>{addText[languageCode]}</button>
                       </div>}
                         

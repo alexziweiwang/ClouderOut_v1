@@ -72,8 +72,8 @@ export default function GameMaker() {
 
   const [chapterList, setChapterList] = useState(
     [
-      ["chp-key1", "testChapter1", "display"], 
-      ["chp-key2", "testChapter2", "display"],
+      ["chp-key1", "testChapter1", "display", ""], 
+      ["chp-key2", "testChapter2", "display", ""],
     ]); //TODO fetch from cloud db when entering game-maker
 
 
