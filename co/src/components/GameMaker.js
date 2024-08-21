@@ -20,10 +20,18 @@ export default function GameMaker() {
 
 
 /* Important data structure in this level: Game-Maker
-  chapterList: array of all chapters' info: key, title, display-boolean)
-  hook chapterNodeMapAll: map (key is chapter-key; value is each node's name, position, nextNode, display-boolean, etc.),
-  hook gridBlocksAll: map (key is chapter-key; value is this chapter's node-visualization position matrix) 
-  hook currentProjectNav: UI-setting for navigation system of the entire game-project
+  -hook chapterList: array of all chapters' info: key, title, display-boolean)
+    fetch from cloud when first entering Game-Maker
+  -hook chapterNodeMapAll: relationship-map (key is chapter-key; value is each node's name, position, nextNode, display-boolean, etc.),
+    fetch from cloud when first entering Game-Maker
+    (for each node, if outside/not entering this node's editor, the specific content of this node would not be fetched from cloud?)
+    important for both game-maker and game-viewer
+    -hook gridBlocksAll: map (key is chapter-key; value is this chapter's node-visualization position matrix) 
+    fetch from cloud when first entering Game-Maker
+    for visualization on node-manager component; more for the game-maker (not game-viewer)
+  -hook currentProjectNav: UI-settings for navigation-system of the [entire game]
+  -TODO: chapter and node brief intro?
+
 */
 
 
