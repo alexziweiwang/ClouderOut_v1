@@ -143,15 +143,18 @@ return(<>
                 </div>
         </div>
 
+{/* screenWidth > screenHeight means horizontal game-screen */}
 
         <div style={{
-            "backgroundColor": "pink", 
-            "position": "absolute", 
-            "marginTop": "470px", 
-            "marginLeft": (screenWidth > screenHeight) ? "300px" : "450px", 
-            "height": "200px",
-            "width": `${screenWidth}px`}}>
+            "width": "350px", 
+            "height": `${screenHeight}px`, 
+            "overflow": "scroll", 
+            "backgroundColor": "pink",
+            "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+350}px` : `${screenWidth+480}px`, 
+            }}>
             Game Data Panel
+
+            
         </div>
 
 
