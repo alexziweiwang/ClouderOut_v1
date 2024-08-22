@@ -92,6 +92,8 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 return(<>
 
 <div className={modalStyleName} style={{"overflow": "scroll"}}>
+  
+  
     <div>
 
         <button className="testEntire" onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
@@ -141,8 +143,20 @@ return(<>
                 </div>
         </div>
 
-    </div>
 
+        <div style={{
+            "backgroundColor": "pink", 
+            "position": "absolute", 
+            "marginTop": "470px", 
+            "marginLeft": (screenWidth > screenHeight) ? "300px" : "450px", 
+            "height": "200px",
+            "width": `${screenWidth}px`}}>
+            Game Data Panel
+        </div>
+
+
+
+    </div>
 
 
 
