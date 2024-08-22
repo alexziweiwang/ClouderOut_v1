@@ -8,6 +8,7 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
 
+    const [showGameDataPanel, setShowGameDataPanel] = useState(true);
 //TODO (with "changing" during in-game actions)
 //game-data tracker
 //progress-tracker: current-chapter & current-node
@@ -97,9 +98,23 @@ return(<>
     <div>
 
         <button className="testEntire" onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
+        <div style={{"marginBottom":" 10px"}}>
+            <input 
+                type="checkbox" 
+                value={showGameDataPanel}
+                checked={showGameDataPanel}
+                onChange={()=>{
+                    setShowGameDataPanel(!showGameDataPanel);
+                }}
+            ></input><label
+                onClick={()=>{
+                    setShowGameDataPanel(!showGameDataPanel);
+                }}
+            >Show Game-Data Tracker Panel</label>
+        </div>
 
       
-        <div style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "300px" : "450px"}}>
+        <div style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "170px" : "320px"}}>
       
 
 
@@ -145,17 +160,20 @@ return(<>
 
 {/* screenWidth > screenHeight means horizontal game-screen */}
 
-        <div style={{
-            "width": "350px", 
-            "height": `${screenHeight}px`, 
-            "overflow": "scroll", 
-            "backgroundColor": "pink",
-            "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+350}px` : `${screenWidth+480}px`, 
-            }}>
-            Game Data Panel
+        
+            {showGameDataPanel && <div style={{
+                "width": "350px", 
+                "height": `${screenHeight}px`, 
+                "overflow": "scroll", 
+                "backgroundColor": "pink",
+                "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+360}px`, 
+                }}>
+                Game Data Panel
 
-            
-        </div>
+
+            </div>}
+
+     
 
 
 
