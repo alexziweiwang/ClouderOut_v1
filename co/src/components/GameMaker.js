@@ -19,6 +19,7 @@ export default function GameMaker() {
 
   const languageCode = 0;
   const resourceManagerButtonText = ["Resource Manager"];
+  const gameDataManagerButtonText = ["Game-Data Manager"];
   const contentChaptersTabText = ["Content Chapters"];
   const menuNavigationsTabText = ["Menu & Navigations"];
 
@@ -693,7 +694,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       >Test Game-play</button>
 
 
-      <button className="buttonRight50 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
+      <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
+      <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText[languageCode]}</button>
+   
     </div>
 
 
@@ -802,6 +805,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         navigationObj={currentProjectNav}
         initialChapterList={chapterList}
         getChapterList={passInChapterList}
+        getGameData={passInGameDataLocal}
+        initialGameData={gameDataLocal}
+
       />}
 
  

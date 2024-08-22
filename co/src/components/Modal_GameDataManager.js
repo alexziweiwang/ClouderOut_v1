@@ -45,14 +45,14 @@ export default function Modal_GameDataManager({
         }
 
 
-        let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
+        let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType, "current_value": defaultNewValue};
         
         if (newGameDataType === "isBoolean") {
-            newObj = {"name": newVarName, "default_value": defaultNewBooleanValue, "data_type": "boolean"};
+            newObj = {"name": newVarName, "default_value": defaultNewBooleanValue, "data_type": "boolean", "current_value": defaultNewBooleanValue};
         } else if (newGameDataType === "isNumber") {
-            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "number"};
+            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "number", "current_value": defaultNewValue};
         } else if (newGameDataType === "isText") {
-            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "string"};
+            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "string", "current_value": defaultNewValue};
         }
 
         const naming = newObj["name"];
@@ -171,7 +171,9 @@ export default function Modal_GameDataManager({
                 const newObj = {
                     "name": usingGameData[k]["name"],
                     "data_type": usingGameData[k]["data_type"],
-                    "default_value": updatedVal                }
+                    "default_value": updatedVal,
+                    "current_value": updatedVal,
+                }
                 newGameData[k] = newObj;
             }
             return newGameData;

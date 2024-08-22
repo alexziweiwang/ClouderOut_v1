@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
 
 
-export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, navigationObj,
-    initialChapterList, getChapterList
+export default function GameMakerLevel_Viewer({isDisplay, 
+    makeNotDisplay, navigationObj,
+    initialChapterList, getChapterList,
+    getGameData, initialGameData
 }) {
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
 
     const [showGameDataPanel, setShowGameDataPanel] = useState(true);
+
+    const [gameDataTracker, setGameData] = useState(initialGameData); 
 //TODO (with "changing" during in-game actions)
 //game-data tracker
 //progress-tracker: current-chapter & current-node
@@ -59,6 +63,9 @@ export default function GameMakerLevel_Viewer({isDisplay, makeNotDisplay, naviga
 
             let chapterListTemp = getChapterList();
             setChapterList(chapterListTemp);
+
+            let gameDataTrackerTemp = getGameData();
+            setGameData(gameDataTrackerTemp);
         });
 
 
@@ -169,7 +176,32 @@ return(<>
                 "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+360}px`, 
                 }}>
                 Game Data Panel
+                <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>  
+                            <tbody> 
+                        {Object.keys(gameDataTracker).map((currKey) => {
+                            let keyName = "gmdt" + currKey;
+                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataTracker[currKey]["current_value"] === true 
+                                        || gameDataTracker[currKey]["current_value"] === "true") ? 
+                                        "true" : "false") 
+                                : gameDataTracker[currKey]["current_value"];
 
+                            return (
+                                <tr value={currKey} key={keyName}>
+                                    <td>{gameDataTracker[currKey]["name"]}</td>
+                                    <td>{val}</td>               
+                                </tr>
+                            
+                            );
+                        })}
+                            </tbody>  
+                        </table>
 
             </div>}
 
