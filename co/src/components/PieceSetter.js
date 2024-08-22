@@ -593,8 +593,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
             <br></br>
             <br></br>
-            {!speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> + {speakerNameSettingText[languageCode]} </button>}
-            {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}> - {speakerNameSettingText[languageCode]} </button>}
+            {!speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{speakerNameSettingText[languageCode]}   ︾</button>}
+            {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{speakerNameSettingText[languageCode]}  ︽</button>}
+            <br></br>
 
             {speakerNameAdd && 
                 <div className="optionAreaSelected2">
@@ -605,13 +606,13 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <input value={currentPieceDetail["speaker_name"]} onChange={(event)=>{handleSpeakerNameEnter(event);}}></input>
                 </div>   
             }
-            {!speakerNameAdd && <div className="textRight">------------(Collapsed)---------------</div>}
             
             {!bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}> + {bgpSettingText[languageCode]}</button>}
+            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︾</button>}
             {bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}> - {bgpSettingText[languageCode]}</button>}
-            
+            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︽</button>}
+            <br></br>
+
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
 
@@ -632,7 +633,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     {currentPieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
                         <label>Source:  </label>
                         <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
-                            <option key="bgp01" value=""> -- Select picture name -- </option>
+                            <option key="bgp01" value=""> ︽- Select picture name -- </option>
                             <option key="bgp_NoPic" value="">(no picture)</option>
                             {visualList.map((item, index) => {
                                 let keyStr = "bgp-" + index + item["var"];
@@ -643,10 +644,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>   
                     </div>}
                 </div>}
-            {!bgpicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> + {charPicSettingText[languageCode]} </button>}
-            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}> - {charPicSettingText[languageCode]} </button>}
+            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︾</button>}
+            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︽</button>}
+            <br></br>
 
             {charPicAdd && 
                 <div className="optionAreaSelected2">
@@ -715,7 +716,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
     <label>Source:  </label>
     <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
-        <option key="charp01" value=""> -- Select picture name -- </option>
+        <option key="charp01" value=""> ︽- Select picture name -- </option>
 
         {visualList.map((item, index) => {
             let keyStr = "charpic" + index + item["var"];
@@ -784,11 +785,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
             
             
             </div>}
-            {!charPicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-
-            {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> + {clkbSettingText[languageCode]} </button>}
-            {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}> - {clkbSettingText[languageCode]} </button>}
+            {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︾</button>}
+            {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>}
+            <br></br>
 
             {clickableAdd && 
                 <div className="optionAreaSelected2">
@@ -909,7 +909,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                     setStndBtnConseqGDataTypeSelected(gameDataListLocal[event.target.value]["data_type"]);
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
-                        <option value="" key="defaultGameDataItem"> -- Select Game Data Item --</option>
+                        <option value="" key="defaultGameDataItem"> ︽- Select Game Data Item --</option>
                         {Object.keys(gameDataListLocal).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
@@ -919,7 +919,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}>  ︾</button>}
 
 
                     <br></br><br></br>
@@ -969,7 +969,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <br></br>
                     <label>Operation: </label>
                     <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
-                        <option value="" key="defaultOperation"> -- Select Operation -- </option>
+                        <option value="" key="defaultOperation"> ︽- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
@@ -1090,7 +1090,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
 
                         </table>
                         {displayCstmClickableAdd === false && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}>Add a New Clickable</button>}
-                        {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
+                        {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> ︽- Collapse Adding New Clickable -- </button>}
                         {displayCstmClickableAdd=== true && <div className="purpleArea">
                             <label>Button Text:</label>
                             <input onChange={(event)=>{
@@ -1162,7 +1162,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 <select value={cstmClkbPicVar} onChange={
                                     (event)=>{setCstmClkbPicVar(event.target.value);}
                                 }>
-                                    <option key="clck01" value=""> -- Select base-pic name -- </option>
+                                    <option key="clck01" value=""> ︽- Select base-pic name -- </option>
 
                                     {visualList.map((item, index) => {
                                         let keyStr = "clickable-" + index + "-" + item["var"];
@@ -1225,7 +1225,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                                 // }
                             }} 
                             value={cstmClkbConseqGDataItemSelected}>
-                        <option value="" key=""> -- Select Game Data Item --</option>
+                        <option value="" key=""> ︽- Select Game Data Item --</option>
                         {Object.keys(gameDataListLocal).map((currKey) => {
                             // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
                             let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
@@ -1235,7 +1235,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> + </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}>  ︾</button>}
 
                     <br></br><br></br>
 
@@ -1287,7 +1287,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <label>Operation: </label>
                     <label>TODO</label>
                     <select value={consequenceCstmClkbIsPlus} onChange={(event)=>{setConsequenceCstmClkbIsPlus(event.target.value);}}>
-                        <option value="" key=""> -- Select Operation -- </option>
+                        <option value="" key=""> ︽- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
@@ -1373,10 +1373,10 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                 </div>
                               
                 }
-            {!clickableAdd && <div className="textRight">------------(Collapsed)---------------</div>}
 
-            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> + {bgmSettingText[languageCode]} </button>}
-            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}> - {bgmSettingText[languageCode]} </button>}
+            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText[languageCode]}  ︾</button>}
+            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText[languageCode]}  ︽</button>}
+            <br></br>
 
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
@@ -1416,7 +1416,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <select value={currentPieceDetail["bgm_source_varname"]} onChange={(event)=>{
                                 setupBgmInfo(event);
                             }}>
-                            <option key="bgm01" value=""> -- Select music name -- </option>
+                            <option key="bgm01" value=""> ︽- Select music name -- </option>
 
                             {audioList.map((item, index) => {
                                 let keyStr = "bgmusic-" + index + item["var"];
@@ -1435,15 +1435,14 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                         <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                         </div>}
                 </div>}
-            {!bgMusicAdd && <div className="textRight">------------(Collapsed)---------------</div>}
                 
 
 
 
 
 
-            {/* {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> + Voiceline Setting </button>}
-            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}> - Voiceline Setting </button>}
+            {/* {!voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}>Voiceline Setting  ︾</button>}
+            {voicelineAdd && <button className="collapseToggle" onClick={toggleVoicelineAddOption}>Voiceline Setting  ︽</button>}
 
             {voicelineAdd && 
                 <div className="optionAreaSelected2">
@@ -1453,7 +1452,7 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <select value={currentPieceDetail["vl_source_varname"]}
                     onChange={(event)=>{setupVoicelineInfo(event);}}
                     >
-                        <option key="vl" value=""> -- Select voiceline name -- </option>
+                        <option key="vl" value=""> ︽- Select voiceline name -- </option>
    
                         {audioList.map((item, index) => {
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
@@ -1465,9 +1464,9 @@ export default function PieceSetter({pieceNum, assignPreviewIndex, allPieceData,
                     <label>TODO</label>
                     <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
                 </div>}
-            {!voicelineAdd && <div className="textRight">------------(Collapsed)---------------</div>}
          */}
 
+        <br></br>
         <button>{saveText[languageCode]}</button>
 
         <br></br>
