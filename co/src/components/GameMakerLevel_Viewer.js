@@ -12,7 +12,7 @@ export default function GameMakerLevel_Viewer({isDisplay,
 
     const [showGameDataPanel, setShowGameDataPanel] = useState(true);
 
-    const [gameDataTracker, setGameData] = useState(initialGameData); 
+    const [gameDataTracker, setGameDataTracker] = useState(initialGameData); 
 //TODO (with "changing" during in-game actions)
 //game-data tracker
 //progress-tracker: current-chapter & current-node
@@ -35,8 +35,6 @@ export default function GameMakerLevel_Viewer({isDisplay,
     }
 
     const [navStatus, setNavStatus] = useState("Main Page");
-
-    const [gameDataTracker, setGameDataTracker] = useState(); //TODO add default from user's setting; pass-in to callee components (game nodes)
 
     const [currChapterKey, setCurrChapterKey] = useState("");
 
@@ -65,7 +63,7 @@ export default function GameMakerLevel_Viewer({isDisplay,
             setChapterList(chapterListTemp);
 
             let gameDataTrackerTemp = getGameData();
-            setGameData(gameDataTrackerTemp);
+            setGameDataTracker(gameDataTrackerTemp);
         });
 
 

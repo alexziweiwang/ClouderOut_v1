@@ -326,3 +326,6 @@
 - 2024-Aug-15: Redesign modal components' UI UX for new visual plan
 
 - 2024-Aug-21: Redesign game-data fetching inside game-maker and sublevels for performance
+
+- 2024-Aug-22: Consider strategies of gameplay game-data-item-tracking for multiple player
+
