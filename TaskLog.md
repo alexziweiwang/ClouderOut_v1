@@ -329,5 +329,5 @@
 
 - 2024-Aug-22: Consider strategies of gameplay game-data-item-tracking for multiple player
 - 2024-Aug-22: Consider and design game-screen-size-setting uniform UI for all editing sections
-
+- 2024-Aug-22: Consider, plan and design UI improvement for previewers (Navigation System & Conversation-Node editing)
 
