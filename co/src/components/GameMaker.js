@@ -4,9 +4,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
+import Modal_GameDataManager from './Modal_GameDataManager';
+
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
 import GameMakerLevel_Viewer from './GameMakerLevel_Viewer';
+
+import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+
 
 export default function GameMaker() {
   const [screenHeight, setScreenHeight] = useState(600);
@@ -58,6 +63,7 @@ export default function GameMaker() {
   const {state} = useLocation();
   let projectName = "default-no-state projectname"; //TODO testing
   let username = "default-no-state username";
+
   if (state !== null) {
     projectName = state.selected_project_name;
     username = state.username;
@@ -78,6 +84,7 @@ export default function GameMaker() {
 
 
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+  const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
 
   const [showChapterMaker, setShowChapterMaker] = useState(true);
 
@@ -378,6 +385,46 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }); //TODO now: default initial values
 
 //TODO ------------------------------------------------------
+
+  const [gameDataLocal, setGameDataLocal] = useState({});
+
+  async function fetchGameDataFromCloud() { //TODO3
+
+    console.log("!!! This is for project: ", projectName);
+    let project  = projectName;
+    console.log("checking2 on project ... [", project, "]");
+    if (project === undefined || project === null || project === "" || project.trim() === "") {
+      return;
+    }
+    const isUpdated = true;
+    const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: username, mostUpdated: isUpdated});
+
+    if (gdataTestResult === undefined) {
+      console.log("Error: no game_data in this project...");
+      return;
+    }
+    console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+    setGameDataLocal(gdataTestResult);
+  }
+
+  const [needCloudGameData, setNeedCloudGameData] = useState(true);
+
+  function markNextNeedCloudGameData() {
+    setNeedCloudGameData(true);
+  }
+
+  function updateGDataToCloud(gameDataLatest) {
+
+    let project = "";
+    project  = projectName;
+    if (project.trim() === "") {
+      return;
+    }
+    updateGameDataVM({projectName: project, uname: username, gameData: gameDataLatest});
+ 
+}
+
+
  
   const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
@@ -444,6 +491,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setDisplayRmModal(false);
   }
 
+  function handleGameDataManagerCancel() {
+    setDisplayGdmBool(false);
+
+  }
+
+  function handleGameDataManagerSaveChanges() {
+    setDisplayGdmBool(false);
+
+  }
+
   function updateLinkingNodeFunc(position, nodename, chapterkey) {
     //TODO either update "starting" or "ending" node of a chapter
   }
@@ -470,6 +527,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function handleResourceManagerOpen() {
     setDisplayRmModal(true);
+  }
+
+  function handleGameDataManagerOpen() {
+    setDisplayGdmBool(true);
   }
 
   function updateCurrPageName(name) {
@@ -692,6 +753,19 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         handleRmSaveChanges={handleResourceManagerSaveChanges}
         refresh={triggerRefresh}
       />}
+
+      {isDisplayGdmBool && <Modal_GameDataManager 
+            isDisplay={isDisplayGdmBool} 
+            handleGdmCancel={handleGameDataManagerCancel} 
+            gameData={gameDataLocal} 
+            resetNeedCloudData={markNextNeedCloudGameData} 
+            fetchFromCloud={fetchGameDataFromCloud} 
+            updateGameDataToCloud={updateGDataToCloud}
+            displayGameDataPanel={handleGameDataManagerOpen}
+      />} 
+          
+   
+          {/* //TODO moved from sublayer, to fix */}
 
     {isDisplayEntireGameViewer && 
       <GameMakerLevel_Viewer

@@ -11,6 +11,7 @@ export default function NodeManager({projectName, currUser,
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock,
   updateNodeMapOfChapter, updateGridBlockOfChapter,
+  displayGameDataPanel, getGameData
 }) {
 
     // console.log("Node Manager ?? "); //TODO testing
@@ -99,7 +100,7 @@ export default function NodeManager({projectName, currUser,
    const [displayRevertArea, setDisplayRevertArea] = useState(false);
    
    const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
-   const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
+
    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
    const [tempNewName, setTempNewName] = useState("");
@@ -117,22 +118,25 @@ export default function NodeManager({projectName, currUser,
           // console.log("First enter node data: ");
           // console.log(nodeData);
           fetchGameDataFromCloud();
-          console.log("\t\tNodeManager: current user is ", currUser); //TODO testing
-          setNodeRelationshipMap(initialNodeMap);
-          setGridBlocks(initialGridBlock);
 
+          console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
+          
+                                      // setNodeRelationshipMap(initialNodeMap);  //TODO remove later
+                                      // setGridBlocks(initialGridBlock);  //TODO remove later
 
           setFirstTimeEnter(false);
       }
   
-      console.log("Node Manager ........."); //TODO testing
-      console.log(initialNodeMap); //TODO testing
-      console.log(initialGridBlock); //TODO testing
-      console.log("local ds:");
-      console.log(nodeRelationshipMap);
-      console.log(gridBlocks);
+      // console.log("Node Manager ........."); //TODO testing
+      // console.log(initialNodeMap); //TODO testing
+      // console.log(initialGridBlock); //TODO testing
+      // console.log("local ds:"); //TODO testing
+      // console.log(nodeRelationshipMap); //TODO testing
+      // console.log(gridBlocks); //TODO testing
 
-
+      let gameDataTemp = getGameData();
+      setGameDataLocal(gameDataTemp);
+      
 
       //TODO fetch this chapter's all node data
           let chapterKeyTemp = getCurrChapterKey();
@@ -283,17 +287,17 @@ export default function NodeManager({projectName, currUser,
     setLsV2IsGData(false);
   }
 
-  async function displayGameDataFunc() {
-    setDisplayGameDataButton(false);
+  // async function displayGameDataFunc() { //TODO changed; remove later
+  //   setDisplayGameDataButton(false);
 
-    if (needCloudGameData === true) {
-      await fetchGameDataFromCloud();
-    } else {
-      console.log("*from local* game-data: using existing data"); 
-    }
-    setDisplayGameDataWindow(!displayGameDataWindow);
-    setDisplayGameDataButton(true);
-  }
+  //   if (needCloudGameData === true) {
+  //     await fetchGameDataFromCloud();
+  //   } else {
+  //     console.log("*from local* game-data: using existing data"); 
+  //   }
+  //   setDisplayGameDataWindow(!displayGameDataWindow);
+  //   setDisplayGameDataButton(true);
+  // }
 
   function changeGameScreenSize(event) {
     const input = event.target.value;
@@ -326,11 +330,9 @@ export default function NodeManager({projectName, currUser,
     setNeedCloudGameData(true);
   }
 
-  function handleModal_GameDataManagerCancel() {
-    setDisplayGameDataWindow(!displayGameDataWindow);
-  }
 
-  async function fetchGameDataFromCloud() {
+
+  async function fetchGameDataFromCloud() { //TODO3
 
         console.log("!!! This is for project: ", projectName);
         let project  = projectName;
@@ -1199,7 +1201,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                   );
                               })}
                           </select>
-                          {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                          {displayGameDataButton && <button onClick={()=>{displayGameDataPanel()}}> + </button>}
                       </div>
 
                       <div>
@@ -1242,7 +1244,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                 );
                               })}
                           </select>
-                        {displayGameDataButton && <button onClick={()=>{displayGameDataFunc()}}> + </button>}
+                        {displayGameDataButton && <button onClick={()=>{displayGameDataPanel()}}> + </button>}
 
                         <br></br>
                         <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:
@@ -1559,14 +1561,16 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
         {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
      
      
-        {displayGameDataWindow && <Modal_GameDataManager 
-          isDisplay={displayGameDataWindow} 
-          handleGdmCancel={handleModal_GameDataManagerCancel} 
-          gameData={gameDataLocal} 
-          resetNeedCloudData={markNextNeedCloudGameData} 
-          fetchFromCloud={fetchGameDataFromCloud} 
-          updateGameDataToCloud={updateGDataToCloud}
-          />}
+        {/* {displayGameDataWindow && 
+          <Modal_GameDataManager 
+            isDisplay={displayGameDataWindow} 
+            handleGdmCancel={handleModal_GameDataManagerCancel} 
+            gameData={gameDataLocal} 
+            resetNeedCloudData={markNextNeedCloudGameData} 
+            fetchFromCloud={fetchGameDataFromCloud} 
+            updateGameDataToCloud={updateGDataToCloud}
+          />
+          } */}
 
       </div>
     );
