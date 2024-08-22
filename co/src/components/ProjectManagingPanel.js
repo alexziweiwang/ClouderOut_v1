@@ -151,7 +151,7 @@ export default function ProjectManagerPanel() {
                     key={projList[index]} 
                     value={item} 
                     onClick={()=>{handleProjectGridClicked(item);}}>
-                          <label style={{"font-weight": "normal"}}>{item}</label>
+                          <label style={{"fontWeight": "normal"}}>{item}</label>
                           <br></br>
                           <br></br>
                           <br></br>

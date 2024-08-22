@@ -324,3 +324,5 @@
 - 2024-Aug-14: Redesign better navigation-UI-setter UX
 
 - 2024-Aug-15: Redesign modal components' UI UX for new visual plan
+
+- 2024-Aug-21: Redesign game-data fetching inside game-maker and sublevels for performance
