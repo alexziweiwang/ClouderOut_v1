@@ -4,14 +4,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
-import Modal_GameDataManager from './Modal_GameDataManager';
 
 export default function NodeManager({projectName, currUser, 
   initialChapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock,
   updateNodeMapOfChapter, updateGridBlockOfChapter,
-  displayGameDataPanel, getGameData
+  displayGameDataPanel, getGameData, loadChapterInfoFromCaller
 }) {
 
     // console.log("Node Manager ?? "); //TODO testing
@@ -117,7 +116,7 @@ export default function NodeManager({projectName, currUser,
                   //    setNodeData(chapterData);
           // console.log("First enter node data: ");
           // console.log(nodeData);
-          fetchGameDataFromCloud();
+    //      fetchGameDataFromCloud(); //TODO remove later
 
           console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
           
@@ -332,24 +331,24 @@ export default function NodeManager({projectName, currUser,
 
 
 
-  async function fetchGameDataFromCloud() { //TODO3
+  // async function fetchGameDataFromCloud() { //TODO3
 
-        console.log("!!! This is for project: ", projectName);
-        let project  = projectName;
-        console.log("checking2 on project ... [", project, "]");
-        if (project === undefined || project === null || project === "" || project.trim() === "") {
-          return;
-        }
-        const isUpdated = true;
-        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
+  //       console.log("!!! This is for project: ", projectName);
+  //       let project  = projectName;
+  //       console.log("checking2 on project ... [", project, "]");
+  //       if (project === undefined || project === null || project === "" || project.trim() === "") {
+  //         return;
+  //       }
+  //       const isUpdated = true;
+  //       const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
      
-        if (gdataTestResult === undefined) {
-          console.log("Error: no game_data in this project...");
-          return;
-        }
-        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-        setGameDataLocal(gdataTestResult);
-  }
+  //       if (gdataTestResult === undefined) {
+  //         console.log("Error: no game_data in this project...");
+  //         return;
+  //       }
+  //       console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+  //       setGameDataLocal(gdataTestResult);
+  // }
 
   function updateNodeToNewName2() {
     let tempNodeData = nodeRelationshipMap;
@@ -494,7 +493,12 @@ export default function NodeManager({projectName, currUser,
             <button>Test this chapter</button>
             <label>{nodeManageMentText[languageCode]}</label>
 
-            <button onClick={()=>{getChapterDataFromCloud(chapterKey);}}> temp: Fetch chapter data </button>
+            <button onClick={()=>{
+              let chapterNodeMapTemp = loadChapterInfoFromCaller();
+              setNodeRelationshipMap(chapterNodeMapTemp);
+            }}> TESTing: Fetch chapter data </button>
+
+
         </div>
 
 

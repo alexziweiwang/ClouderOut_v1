@@ -424,6 +424,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     
   }
 
+  async function getChapterDataFromCloud(chapter) {
+    return await getChapterDataVM({projectName: projectName, uname: username, chapterName: chapter});
+   
+  }
+
   function triggerGdmUpdateList() {
     console.log("Gdm updated"); //TODO6
     //TODO: set the update-signal in game-maker level, then pass-in for node-manager level for game-data-item list
@@ -432,6 +437,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function passInGameDataLocal() {
     return gameDataLocal;
+  }
+
+  function passInSelectedChapterInfo_Cloud() {
+    //TODO fetch cloud-info !
+
+
+    return chapterNodeMapAll[currChapterKey]; //temporary
   }
 
 
@@ -452,6 +464,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         //TODO format: localChapterInfo = <chapter title, node-relationship-map>
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
+        fetchGameDataFromCloud();
+        
         setFirstTimeEnter(false);
     }
     if (projectName === "default-no-state projectname") {
@@ -730,7 +744,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           updateGridBlockOfChapter={updateGridBlockOfChapter}
           getGameData={passInGameDataLocal}
           displayGameDataPanel={handleGameDataManagerOpen}
-
+          loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 
