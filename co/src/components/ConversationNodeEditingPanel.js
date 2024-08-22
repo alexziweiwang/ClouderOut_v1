@@ -738,8 +738,8 @@ export default function ConversationNodeEditingPanel() {
                 resetNeedCloudData={markNextNeedCloudGameData} 
                 fetchFromCloud={fetchGameDataFromCloud} 
                 updateGameDataToCloud={updateGDataToCloud}
-            />}
-
+            />} 
+         
 
             {isDisplayQview && <QuickView_AllPanels_ConvNode
                 initialPieceNum={previewingIndex}

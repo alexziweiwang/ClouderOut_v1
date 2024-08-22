@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function Modal_GameDataManager({
-        isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, 
+        isDisplay, handleGdmCancel, initialGameData, resetNeedCloudData, fetchFromCloud, 
         updateGameDataToCloud,
         triggerListUpdate,
     }) {
@@ -19,7 +19,7 @@ export default function Modal_GameDataManager({
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
-    const [usingGameData, setUsingGameData] = useState(gameData);
+    const [usingGameData, setUsingGameData] = useState(initialGameData);
     const [editLineDisplay, setEditLineDisplay] = useState("");
     const [editAreaOpen, setEditAreaOpen] = useState(false);
     const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");

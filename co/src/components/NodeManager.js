@@ -136,7 +136,7 @@ export default function NodeManager({projectName, currUser,
 
       let gameDataTemp = getGameData();
       setGameDataLocal(gameDataTemp);
-      
+
 
       //TODO fetch this chapter's all node data
           let chapterKeyTemp = getCurrChapterKey();
@@ -1560,17 +1560,6 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
         {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
      
-     
-        {/* {displayGameDataWindow && 
-          <Modal_GameDataManager 
-            isDisplay={displayGameDataWindow} 
-            handleGdmCancel={handleModal_GameDataManagerCancel} 
-            gameData={gameDataLocal} 
-            resetNeedCloudData={markNextNeedCloudGameData} 
-            fetchFromCloud={fetchGameDataFromCloud} 
-            updateGameDataToCloud={updateGDataToCloud}
-          />
-          } */}
 
       </div>
     );

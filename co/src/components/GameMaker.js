@@ -427,7 +427,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   function triggerGdmUpdateList() {
     console.log("Gdm updated"); //TODO6
     //TODO: set the update-signal in game-maker level, then pass-in for node-manager level for game-data-item list
-    
+
+  }
+
+  function passInGameDataLocal() {
+    return gameDataLocal;
   }
 
 
@@ -724,6 +728,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           initialGridBlock={currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []}
           updateNodeMapOfChapter={updateNodeMapOfChapter}
           updateGridBlockOfChapter={updateGridBlockOfChapter}
+          getGameData={passInGameDataLocal}
+          displayGameDataPanel={handleGameDataManagerOpen}
+
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 
@@ -764,11 +771,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         <Modal_GameDataManager 
             isDisplay={isDisplayGdmBool} 
             handleGdmCancel={handleGameDataManagerCancel} 
-            gameData={gameDataLocal} 
+            initialGameData={gameDataLocal} 
             resetNeedCloudData={markNextNeedCloudGameData} 
             fetchFromCloud={fetchGameDataFromCloud} 
             updateGameDataToCloud={updateGDataToCloud}
-            displayGameDataPanel={handleGameDataManagerOpen}
             triggerListUpdate={triggerGdmUpdateList}
         />} 
           
