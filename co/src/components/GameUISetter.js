@@ -100,8 +100,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setOpenDefaultButtonSection(!openDefaultButtonSection);
         }}
     >
-        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) +</label>}
-        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) -</label>}
+        {!openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) ︾</label>}
+        {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) ︽</label>}
 
     </div>
 {openDefaultButtonSection && <div>
@@ -342,7 +342,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         onClick={()=>{
             setOpenDefaultButtonSection(false);
         }}
-    >{collapseText[languageCode]}</div>
+    >{collapseText[languageCode]} ︽</div>
 
 </div>}
 
@@ -354,8 +354,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setOpenTextFrameSection(!openTextFrameSection);
         }}
     >
-        {!openTextFrameSection && <label style={{"cursor": "pointer"}}>Text Frame +</label>}
-        {openTextFrameSection &&<label style={{"cursor": "pointer"}}>Text Frame -</label>}
+        {!openTextFrameSection && <label style={{"cursor": "pointer"}}>Text Frame ︾</label>}
+        {openTextFrameSection &&<label style={{"cursor": "pointer"}}>Text Frame ︽</label>}
     </div>
 
 {openTextFrameSection && <div>
@@ -526,7 +526,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             onClick={()=>{
                     setOpenTextFrameSection(false);
                 }}
-            >{collapseText[languageCode]}</div>
+            >{collapseText[languageCode]} ︽</div>
                 </div>
 
 </div>}
@@ -537,8 +537,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             setOpenAutoLogSection(!openAutoLogSection);
         }}
     >
-        {!openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) +</label>}
-        {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) -</label>}
+        {!openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) ︾</label>}
+        {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) ︽</label>}
     </div>
 {openAutoLogSection && <div>
     <div className="indentOne">
@@ -770,7 +770,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             onClick={()=>{
                     setOpenAutoLogSection(false);
                 }}
-            >{collapseText[languageCode]}</div>
+            >{collapseText[languageCode]} ︽</div>
 
         </div>
 </div>}
@@ -781,8 +781,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             onClick={()=>{
             setOpenLogPageSection(!openLogPageSection);
         }}>
-            {!openLogPageSection && <label>Log Page Settings +</label>}
-            {openLogPageSection && <label>Log Page Settings -</label>}
+            {!openLogPageSection && <label>Log Page Settings ︾</label>}
+            {openLogPageSection && <label>Log Page Settings ︽</label>}
         </div>
     {openLogPageSection && <div className="indentOne">
             <label>Close Button Settings</label>
@@ -1218,7 +1218,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onClick={()=>{
                         setOpenLogPageSection(false);
                     }}
-                >{collapseText[languageCode]}</div>
+                >{collapseText[languageCode]} ︽</div>
 
         </div>
     }
