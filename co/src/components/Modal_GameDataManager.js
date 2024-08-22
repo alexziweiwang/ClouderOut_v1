@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-export default function Modal_GameDataManager({isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, updateGameDataToCloud}) {
+export default function Modal_GameDataManager({
+        isDisplay, handleGdmCancel, gameData, resetNeedCloudData, fetchFromCloud, 
+        updateGameDataToCloud,
+        triggerListUpdate,
+    }) {
     let modalStyleName = "modalBackboard";
 
     if (isDisplay === true) {
@@ -63,7 +67,7 @@ export default function Modal_GameDataManager({isDisplay, handleGdmCancel, gameD
         setUsingGameData(gameDataTemp); /* update local  data structure */
         resetNeedCloudData();
         
-        updateGameDataToCloud(gameDataTemp); /* update cloud db*/
+        updateGameDataToCloud(gameDataTemp); /* update cloud db */
         fetchFromCloud();
         setDisplayNewVarArea(false);
     }
@@ -107,7 +111,12 @@ export default function Modal_GameDataManager({isDisplay, handleGdmCancel, gameD
         });
         setUsingGameData(tempMap);
         //TODO later: change to cloud db
+    }
 
+    function updateGdmInfoBothLayers(gameDataTemp) {
+        //TODO5
+        updateGameDataToCloud(gameDataTemp);
+        triggerListUpdate();       
     }
 
     function editListItem(obj) {

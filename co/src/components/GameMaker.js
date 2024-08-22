@@ -421,8 +421,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       return;
     }
     updateGameDataVM({projectName: project, uname: username, gameData: gameDataLatest});
- 
-}
+    
+  }
+
+  function triggerGdmUpdateList() {
+    console.log("Gdm updated"); //TODO6
+    //TODO: set the update-signal in game-maker level, then pass-in for node-manager level for game-data-item list
+    
+  }
 
 
  
@@ -754,7 +760,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         refresh={triggerRefresh}
       />}
 
-      {isDisplayGdmBool && <Modal_GameDataManager 
+      {isDisplayGdmBool && 
+        <Modal_GameDataManager 
             isDisplay={isDisplayGdmBool} 
             handleGdmCancel={handleGameDataManagerCancel} 
             gameData={gameDataLocal} 
@@ -762,7 +769,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             fetchFromCloud={fetchGameDataFromCloud} 
             updateGameDataToCloud={updateGDataToCloud}
             displayGameDataPanel={handleGameDataManagerOpen}
-      />} 
+            triggerListUpdate={triggerGdmUpdateList}
+        />} 
           
    
           {/* //TODO moved from sublayer, to fix */}
