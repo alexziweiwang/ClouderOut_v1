@@ -43,6 +43,9 @@ export default function GameMaker() {
 
 
 
+  const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
+  const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
+
 
 
 
@@ -414,7 +417,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setNeedCloudGameData(true);
   }
 
-  function updateGDataToCloud(gameDataLatest) {
+
+  function updateGameDataToCloud(gameDataLatest) {
 
     let project = "";
     project  = projectName;
@@ -424,19 +428,20 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     updateGameDataVM({projectName: project, uname: username, gameData: gameDataLatest});
 
     //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
-    
-    
+    setGdmUpdatedSignal(true);
+  }
+
+  function passInGdmUpdatedSignal() {
+    return gdmUpdatedSignal;
+  }
+
+  function resetGdmUpdateSignal() {
+    setGdmUpdatedSignal(false);
   }
 
   async function getChapterDataFromCloud(chapter) {
     return await getChapterDataVM({projectName: projectName, uname: username, chapterName: chapter});
    
-  }
-
-  function triggerGdmUpdateList() {
-    console.log("Gdm updated"); //TODO6
-    //TODO: set the update-signal in game-maker level, then pass-in for node-manager level for game-data-item list
-
   }
 
   function passInGameDataLocal() {
@@ -452,9 +457,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
  
-  const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
-  const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
-
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -751,6 +753,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getGameData={passInGameDataLocal}
           displayGameDataPanel={handleGameDataManagerOpen}
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
+          getGdmUpdatedSignal={passInGdmUpdatedSignal}
+          resetGdmUpdateSignal={resetGdmUpdateSignal}
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 
@@ -794,8 +798,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             initialGameData={gameDataLocal} 
             resetNeedCloudData={markNextNeedCloudGameData} 
             fetchFromCloud={fetchGameDataFromCloud} 
-            updateGameDataToCloud={updateGDataToCloud}
-            triggerListUpdate={triggerGdmUpdateList}
+            updateGameDataToCloud={updateGameDataToCloud}
         />} 
           
    

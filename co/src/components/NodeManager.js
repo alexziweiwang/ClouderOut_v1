@@ -3,14 +3,15 @@ import moment from "moment";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
-import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
 export default function NodeManager({projectName, currUser, 
   initialChapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock,
   updateNodeMapOfChapter, updateGridBlockOfChapter,
-  displayGameDataPanel, getGameData, loadChapterInfoFromCaller
+  displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
+  loadChapterInfoFromCaller,
 }) {
 
     // console.log("Node Manager ?? "); //TODO testing
@@ -135,6 +136,11 @@ export default function NodeManager({projectName, currUser,
 
       let gameDataTemp = getGameData();
       setGameDataLocal(gameDataTemp);
+      let gameDataUpdatedSignal = getGdmUpdatedSignal();
+      if (gameDataUpdatedSignal === true) {
+        //TODO refresh...
+        resetGdmUpdateSignal();
+      }
 
 
       //TODO fetch this chapter's all node data
@@ -196,16 +202,16 @@ export default function NodeManager({projectName, currUser,
         //TODO later add conditions for board game and tower defense
   }
 
-  function updateGDataToCloud(gameDataLatest) {
+  // function updateGDataToCloud(gameDataLatest) {
 
-        let project = "";
-        project  = projectName;
-        if (project.trim() === "") {
-          return;
-        }
-        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+  //       let project = "";
+  //       project  = projectName;
+  //       if (project.trim() === "") {
+  //         return;
+  //       }
+  //       updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
      
-  }
+  // } //TODO remove later
 
   function addNewNode2() { //TODO for new data structure
     let tempNodeMap = nodeRelationshipMap;
