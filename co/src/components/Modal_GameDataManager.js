@@ -146,21 +146,9 @@ export default function Modal_GameDataManager({
     }
 
     function editListItem(obj) {
-       
-        console.log("editing game-data: " , obj); //TODO 
-        console.log("before editing: " , usingGameData); //TODO
-
         setEditLineDisplay(obj["name"]);
         setUpdatedDefaultValue(obj["default_value"]);
 
-                            //TODO3 update to cloud db
-                            //TODO changing area
-                            // resetNeedCloudData();
-                            
-                            // updateGameDataToCloud(obj); /* update cloud db */
-                            // fetchFromCaller();
-                            //TODO changing area
-                                    
         setEditAreaOpen(true);
     }
 
@@ -193,10 +181,9 @@ export default function Modal_GameDataManager({
 
         }
 
-        console.log("updateVarDefaultValue(): ");
         let newGameData = {};
         Object.keys(usingGameData).map((k) => {
-            console.log("each", k, "...", usingGameData[k]);
+
             if (k !== editLineDisplay) {
                 newGameData[k] = usingGameData[k];
             } else {
@@ -212,6 +199,8 @@ export default function Modal_GameDataManager({
         });
 
         setUsingGameData(newGameData);
+
+        updateGameDataToCloud(newGameData);
     }
 
 
