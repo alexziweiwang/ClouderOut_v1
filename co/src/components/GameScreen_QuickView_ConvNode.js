@@ -220,6 +220,12 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
             let gmdtObj = gameDataCurr;
             gmdtObj[name].current_value = value;
             setGameDataCurr(gmdtObj);
+            
+            //TODO3 update to cloud in practice
+            //TODO3 update temporarily in testing?
+            
+                //TODO plan: when testing (any layer), reset the "current_value" into "default_value"; while for players own records, don't reset
+        
         }
     
         function changeGameDataByStatement(name, action, newVal, type) {

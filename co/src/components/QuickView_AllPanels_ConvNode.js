@@ -47,11 +47,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
         let gameDataTemp = gameData;
         let defaultMap = {}; //for the record of entering-game-data
+
         {Object.keys(gameDataTemp).map((currKey) => {
             gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
             //current_value, data_type("boolean"/"string"/"number"), default_value, name
             defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
         })}
+        
         setGameDataCurr(gameDataTemp);
         setOriginalGmdt(defaultMap);
 

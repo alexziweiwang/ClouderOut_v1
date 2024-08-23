@@ -331,3 +331,4 @@
 - 2024-Aug-22: Consider and design game-screen-size-setting uniform UI for all editing sections
 - 2024-Aug-22: Consider, plan and design UI improvement for previewers (Navigation System & Conversation-Node editing)
 
+- 2024-Aug-23: Analyze and design game-data-tracking for multiple scenarios (layers of testing, viewing, in-practice playing), and design optimized data structure and functionalities
