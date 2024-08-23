@@ -735,16 +735,20 @@ export default function ConversationNodeEditingPanel() {
                     />}
             </>}
 
-            {displayGameDataWindow && <Modal_GameDataManager 
-                isDisplay={displayGameDataWindow} 
-                handleGdmCancel={handleModal_GameDataManagerCancel} 
-                gameData={gameData} 
-                resetNeedCloudData={markNextNeedCloudGameData} 
-                fetchFromCloud={fetchGameDataFromCloud} 
-                updateGameDataToCloud={updateGDataToCloud}
-                getGameDataObj={passInGameData}
+            {displayGameDataWindow && 
+                        
+                <Modal_GameDataManager 
+                    isDisplay={displayGameDataWindow}
+                    handleGdmCancel={handleModal_GameDataManagerCancel} 
+                    initialGameData={gameData} 
+                    resetNeedCloudData={markNextNeedCloudGameData} 
+                    updateGameDataToCloud={updateGDataToCloud}
+                />   
+    
+        
 
-            />} 
+                    
+            } 
          
 
             {isDisplayQview && <QuickView_AllPanels_ConvNode

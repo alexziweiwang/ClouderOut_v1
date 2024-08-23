@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 
-export default function Modal_GameDataManager({
+export default function Modal_GameDataManager ({
         isDisplay, handleGdmCancel, 
-        initialGameData, getGameDataObj,
-        resetNeedCloudData, fetchFromCaller, 
+        initialGameData, 
+        resetNeedCloudData, 
         updateGameDataToCloud,
     }) {
     let modalStyleName = "modalBackboard";
@@ -22,8 +21,6 @@ export default function Modal_GameDataManager({
             setFirstTimeEnter(false);
         }
 
-        // let tempGameData = getGameDataObj();
-        // setUsingGameData(tempGameData); 
     });
 
     const [displayNewVarArea, setDisplayNewVarArea] = useState(false);

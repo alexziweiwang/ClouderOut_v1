@@ -432,7 +432,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
     setGdmUpdatedSignal(true);
     
-    setGameDataLocal(gameDataLatest); // update game-data here, to it can send to callee with the latest ver. of data
+    setGameDataLocal(gameDataLatest); // update game-data here, so then it can send to callees with the latest ver. of data
 
   }
 
@@ -802,14 +802,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             handleGdmCancel={handleGameDataManagerCancel} 
             initialGameData={gameDataLocal} 
             resetNeedCloudData={markNextNeedCloudGameData} 
-            fetchFromCaller={fetchGameDataFromCloud} 
             updateGameDataToCloud={updateGameDataToCloud}
-            getGameDataObj={passInGameDataLocal}
         />} 
-          
-   
-          {/* //TODO moved from sublayer, to fix */}
-
+       
     {isDisplayEntireGameViewer && 
       <GameMakerLevel_Viewer
         isDisplay={isDisplayEntireGameViewer}
