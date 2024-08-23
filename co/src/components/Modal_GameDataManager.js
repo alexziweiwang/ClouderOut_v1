@@ -4,7 +4,7 @@ import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 export default function Modal_GameDataManager({
         isDisplay, handleGdmCancel, 
         initialGameData, getGameDataObj,
-        resetNeedCloudData, fetchFromCloud, 
+        resetNeedCloudData, fetchFromCaller, 
         updateGameDataToCloud,
     }) {
     let modalStyleName = "modalBackboard";
@@ -22,8 +22,8 @@ export default function Modal_GameDataManager({
             setFirstTimeEnter(false);
         }
 
-        let tempGameData = getGameDataObj();
-        setUsingGameData(tempGameData); 
+        // let tempGameData = getGameDataObj();
+        // setUsingGameData(tempGameData); 
     });
 
     const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
@@ -78,10 +78,11 @@ export default function Modal_GameDataManager({
         console.log("adding new var: ", gameDataTemp); //TODO test
     
         setUsingGameData(gameDataTemp); /* update local  data structure */
-        resetNeedCloudData();
+    
+        //resetNeedCloudData();// TODO remove?
         
         updateGameDataToCloud(gameDataTemp); /* update cloud db */
-        fetchFromCloud();
+        // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
 
@@ -121,21 +122,21 @@ export default function Modal_GameDataManager({
             if (key !== obj["name"]) {
                 tempMap[key] = usingGameData[key];
             }
-                             // return tempMap;
+            // return tempMap;
         });
         
+        setUsingGameData(tempMap);
 
         //TODO3 later: change to cloud db
 
-        //TODO changing area
-     
+                    //TODO changing area
+                
         resetNeedCloudData();
-                            
+                                        
         updateGameDataToCloud(tempMap); /* update cloud db */
-        setUsingGameData(tempMap);
 
-        fetchFromCloud();
-        //TODO changing area
+        //fetchFromCaller();
+                    //TODO changing area
 
     }
 
@@ -154,10 +155,10 @@ export default function Modal_GameDataManager({
 
                             //TODO3 update to cloud db
                             //TODO changing area
-                            resetNeedCloudData();
+                            // resetNeedCloudData();
                             
-                            updateGameDataToCloud(obj); /* update cloud db */
-                            fetchFromCloud();
+                            // updateGameDataToCloud(obj); /* update cloud db */
+                            // fetchFromCaller();
                             //TODO changing area
                                     
         setEditAreaOpen(true);

@@ -409,6 +409,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     }
     console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
     setGameDataLocal(gdataTestResult);
+    return gdataTestResult;
+
   }
 
   const [needCloudGameData, setNeedCloudGameData] = useState(true);
@@ -429,6 +431,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
     setGdmUpdatedSignal(true);
+    
+    setGameDataLocal(gameDataLatest); // update game-data here, to it can send to callee with the latest ver. of data
+
   }
 
   function passInGdmUpdatedSignal() {
@@ -797,7 +802,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             handleGdmCancel={handleGameDataManagerCancel} 
             initialGameData={gameDataLocal} 
             resetNeedCloudData={markNextNeedCloudGameData} 
-            fetchFromCloud={fetchGameDataFromCloud} 
+            fetchFromCaller={fetchGameDataFromCloud} 
             updateGameDataToCloud={updateGameDataToCloud}
             getGameDataObj={passInGameDataLocal}
         />} 
