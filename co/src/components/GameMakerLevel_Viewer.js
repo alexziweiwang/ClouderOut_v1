@@ -170,7 +170,8 @@ return(<>
                 "width": "350px", 
                 "height": `${screenHeight}px`, 
                 "overflow": "scroll", 
-                "backgroundColor": "pink",
+                "backgroundColor": "grey",
+                "color": "#FFFFFF",
                 "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+360}px`, 
                 }}>
                 Game Data Panel

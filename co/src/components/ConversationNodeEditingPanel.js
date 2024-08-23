@@ -567,7 +567,7 @@ export default function ConversationNodeEditingPanel() {
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
-                <button className="button"
+                <button className="button testEntire"
                     onClick={()=>{setIsDisplayQview(true);}}>
                         {quickGameViewText[languageCode]}
                 </button>

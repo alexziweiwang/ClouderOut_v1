@@ -422,6 +422,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       return;
     }
     updateGameDataVM({projectName: project, uname: username, gameData: gameDataLatest});
+
+    //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
+    
     
   }
 
