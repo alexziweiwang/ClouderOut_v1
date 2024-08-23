@@ -280,6 +280,10 @@ export default function ConversationNodeEditingPanel() {
         navigate('/projectmanagingpanel', { replace: true });
     }
 
+    function passInGameData() {
+        return gameData;
+    }
+
     async function getGameDataFromCloud() {
         let isUpdated = true;
         //TODO 
@@ -738,6 +742,8 @@ export default function ConversationNodeEditingPanel() {
                 resetNeedCloudData={markNextNeedCloudGameData} 
                 fetchFromCloud={fetchGameDataFromCloud} 
                 updateGameDataToCloud={updateGDataToCloud}
+                getGameDataObj={passInGameData}
+
             />} 
          
 

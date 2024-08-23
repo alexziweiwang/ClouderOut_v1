@@ -3,7 +3,7 @@ import moment from "moment";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
-import { getProjectGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM,  getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
 export default function NodeManager({projectName, currUser, 
   initialChapterKey, getNodeMapOfChapter, 

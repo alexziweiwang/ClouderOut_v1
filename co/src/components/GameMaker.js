@@ -799,6 +799,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             resetNeedCloudData={markNextNeedCloudGameData} 
             fetchFromCloud={fetchGameDataFromCloud} 
             updateGameDataToCloud={updateGameDataToCloud}
+            getGameDataObj={passInGameDataLocal}
         />} 
           
    

@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
 
 export default function Modal_GameDataManager({
-        isDisplay, handleGdmCancel, initialGameData, resetNeedCloudData, fetchFromCloud, 
+        isDisplay, handleGdmCancel, 
+        initialGameData, getGameDataObj,
+        resetNeedCloudData, fetchFromCloud, 
         updateGameDataToCloud,
     }) {
     let modalStyleName = "modalBackboard";
@@ -11,6 +14,17 @@ export default function Modal_GameDataManager({
     } else {
         modalStyleName = "displayNone modalBackboard";
     }
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+        useEffect(() => {
+        if (firstTimeEnter === true) {
+
+            setFirstTimeEnter(false);
+        }
+
+        let tempGameData = getGameDataObj();
+        setUsingGameData(tempGameData); 
+    });
 
     const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
     const [newGameDataType, setNewGameDataType] = useState("isNumber");
@@ -101,17 +115,27 @@ export default function Modal_GameDataManager({
 
     function deleteListItem(obj) {
         //change locally for UI
+
         let tempMap = {};
         Object.keys(usingGameData).map((key) => {
             if (key !== obj["name"]) {
                 tempMap[key] = usingGameData[key];
             }
-            return tempMap;
+                             // return tempMap;
         });
+        
+
+        //TODO3 later: change to cloud db
+
+        //TODO changing area
+     
+        resetNeedCloudData();
+                            
+        updateGameDataToCloud(tempMap); /* update cloud db */
         setUsingGameData(tempMap);
-        //TODO later: change to cloud db
 
-
+        fetchFromCloud();
+        //TODO changing area
 
     }
 
@@ -128,8 +152,14 @@ export default function Modal_GameDataManager({
         setEditLineDisplay(obj["name"]);
         setUpdatedDefaultValue(obj["default_value"]);
 
-        //TODO update to cloud db
-                
+                            //TODO3 update to cloud db
+                            //TODO changing area
+                            resetNeedCloudData();
+                            
+                            updateGameDataToCloud(obj); /* update cloud db */
+                            fetchFromCloud();
+                            //TODO changing area
+                                    
         setEditAreaOpen(true);
     }
 
