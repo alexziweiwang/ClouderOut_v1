@@ -13,6 +13,24 @@ export default function GameMakerLevel_Viewer({isDisplay,
     const [showGameDataPanel, setShowGameDataPanel] = useState(true);
 
     const [gameDataTracker, setGameDataTracker] = useState(initialGameData); 
+
+
+
+    const [playerGameData, setPlayerGameData] = useState();
+    const [playerProfile, setPlayerProfil] = useState();
+    const [playerAccount, setPlayerAccount] = useState();
+    const [playerSLRecords, setPlayerSLRecords] = useState();
+    //TODO implementation plan:
+    //when doing this level of testing or game-in-practice, fetch player's above 4 data from cloud
+    //for testing the entire game, use default-testing-player's data, otherwise use cloud-fetched data
+    //consider topics about player authentication for game-in-practice
+
+
+
+    const [currChapterKey, setCurrChapterKey] = useState("");
+
+    const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
+
 //TODO (with "changing" during in-game actions)
 //game-data tracker
 //progress-tracker: current-chapter & current-node
@@ -34,11 +52,7 @@ export default function GameMakerLevel_Viewer({isDisplay,
         modalStyleName = "displayNone modalBackboard";
     }
 
-    const [navStatus, setNavStatus] = useState("Main Page");
-
-    const [currChapterKey, setCurrChapterKey] = useState("");
-
-    const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
+    const [navPageStatus, setNavPageStatus] = useState("Main Page");
 
     const [chapterList, setChapterList] = useState(initialChapterList); 
 
@@ -87,11 +101,11 @@ export default function GameMakerLevel_Viewer({isDisplay,
     }
 
     function passInNavPageName() {
-        return navStatus;
+        return navPageStatus;
     }
 
     function updateNavPageName(pageName) {
-        setNavStatus(pageName);
+        setNavPageStatus(pageName);
     }
 
 
@@ -124,7 +138,7 @@ return(<>
 
 
 {/* game-screen layer */}
-                {navStatus === "During Game" && 
+                {navPageStatus === "During Game" && 
                     <div style={{
                         "position": "absolute", 
                         "backgroundColor": "orange", 
