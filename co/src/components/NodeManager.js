@@ -104,7 +104,8 @@ export default function NodeManager({projectName, currUser,
    const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
 
    const [tempNewName, setTempNewName] = useState("");
- 
+   const [tempNewNote, setTempNewNote] = useState("");
+
    const [addNewNodeAreaDisplay, setAddNewNodeAreaDisplay] = useState(false);
 
 
@@ -367,8 +368,20 @@ export default function NodeManager({projectName, currUser,
     setNodeRelationshipMap(tempNodeData);
   
     setTempNewName("");
+  }
 
-  } 
+  function updateNodeWithNewNote() {
+    let tempNodeData = nodeRelationshipMap;
+
+    if (tempNodeData[clickedNodeKey] === undefined) {
+      return;
+    }
+
+    tempNodeData[clickedNodeKey].notes = tempNewName;
+    setNodeRelationshipMap(tempNodeData);
+  
+    setTempNewName("");
+  }
 
   function deleteNode2() {
     let tempNodeMap = nodeRelationshipMap;
@@ -1000,6 +1013,11 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                   <div className="indentOne">
                                     <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
                                   </div>
+
+                                  <label>Notes: </label>
+                                  <div className="indentOne">
+                                  <label>{nodeRelationshipMap[clickedNodeKey].notes}</label>
+                                  </div>
                                 
                                 {nodeRelationshipMap[clickedNodeKey] !== undefined 
                                 && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" 
@@ -1020,6 +1038,12 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                             <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
                             <br></br><button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
                           </div>
+                          <label>Change Node Notes: </label>
+                          <div className="indentOne">
+                            <input onChange={(event) =>{setTempNewNote(event.target.value);}} value={tempNewNote}></input>
+                            <br></br><button onClick={()=>{updateNodeWithNewNote();}}>{updateText[languageCode]}</button>
+                          </div>
+                          <br></br>
                           <br></br>
                           <label>Delete Node: </label>
                           <div className="indentOne">

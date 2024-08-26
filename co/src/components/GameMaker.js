@@ -104,7 +104,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"A1-key", 
               display: true, 
               nodeType:"*chapterStart*", 
-              screenSize:"h600_800"
+              screenSize:"h600_800",
+              notes: "",
           },
           "A1-key": {
               nodeName: "A1-title", 
@@ -113,7 +114,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800"
+              screenSize:"h600_800",
+              notes: "",
           },
           "B1-key": {
               nodeName: "B1-title", 
@@ -122,7 +124,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800"
+              screenSize:"h600_800",
+              notes: "",
           },
           "C1-key": {
               nodeName: "C1-title", 
@@ -130,7 +133,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               col: 0, 
               spltLogicPairs: [["else", "", "else"],], 
               display: true, 
-              nodeType:"LogicSplitter"
+              nodeType:"LogicSplitter",
+              notes: "",
           },
           "D1-key": {
               nodeName: "D1-title", 
@@ -139,7 +143,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800"
+              screenSize:"h600_800",
+              notes: "",
           },
           "E1-key": {
               nodeName: "E1-title", 
@@ -148,7 +153,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode: "chapterEnd1-key", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800"
+              screenSize:"h600_800",
+              notes: "",
           },
           "chapterEnd1-key": {
               nodeName: "chapterEnd1-title", 
@@ -157,7 +163,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode: "", 
               display: true, 
               nodeType:"*chapterEnd*", 
-              screenSize:"h600_800"
+              screenSize:"h600_800",
+              notes: "",
           },
   },
   "chp-key2": {"chapterStart2-key": {
@@ -167,7 +174,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nextNode:"A2-key", 
             display: true, 
             nodeType:"*chapterStart*", 
-            screenSize:"h600_800"
+            screenSize:"h600_800",
+            notes: "",
         },
         "A2-key": {
             nodeName: "A2-title", 
@@ -176,7 +184,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nextNode:"", 
             display: true, 
             nodeType:"Conversation", 
-            screenSize:"h600_800"
+            screenSize:"h600_800",
+            notes: "",
         },
         "B2-key": {
             nodeName: "B2-title", 
@@ -185,7 +194,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nextNode:"", 
             display: true, 
             nodeType:"Conversation", 
-            screenSize:"h600_800"
+            screenSize:"h600_800",
+            notes: "",
         },
         "C2-key": {
             nodeName: "C2-title", 
@@ -193,7 +203,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             col: 0, 
             spltLogicPairs: [["else", "", "else"],], 
             display: true, 
-            nodeType:"LogicSplitter"
+            nodeType:"LogicSplitter",
+            notes: "",
         },
         "D2-key": {
           nodeName: "D2-title", 
@@ -202,7 +213,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nextNode: "", 
           display: true, 
           nodeType:"Conversation", 
-          screenSize:"h600_800"
+          screenSize:"h600_800",
+          notes: "",
         },
         "E2-key": {
           nodeName: "E2-title", 
@@ -211,7 +223,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nextNode: "chapterEnd2-key", 
           display: true, 
           nodeType:"Conversation", 
-          screenSize:"h600_800"
+          screenSize:"h600_800",
+          notes: "",
         },
         "chapterEnd2-key": {
           nodeName: "chapterEnd2-title", 
@@ -220,7 +233,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nextNode:"", 
           display: true, 
           nodeType:"*chapterEnd*", 
-          screenSize:"h600_800"
+          screenSize:"h600_800",
+          notes: "",
         },
 },
 
