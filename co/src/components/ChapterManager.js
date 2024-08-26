@@ -31,7 +31,7 @@ export default function ChapterManager({
 
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
   const [editingChapterNote, setEditingChapterNote] = useState("");
-  
+
   const [editedLine, setEditedLine] = useState(-1);
   const [selectedChptKey, setSelectedChpt] = useState(-1);
   const [isAddNewChpater, setIsAddNewChapter] = useState(false);
@@ -88,7 +88,7 @@ export default function ChapterManager({
     }
 
     let tempChapterData = chapterData;
-    let line = [newChapterKeyInput, newChapterTitleInput, "display", ""]; //TODO3
+    let line = [newChapterKeyInput, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
     tempChapterData.push(line);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
@@ -202,14 +202,15 @@ export default function ChapterManager({
                             <br></br>
 
                             <label>Chapter Notes: </label>
-                            <textarea>
-
-
-                            </textarea>
+                            <br></br><label>{item[3]}</label>
                             <br></br>
-                            <button>{cancelText[languageCode]}</button>
+                            <textarea value={editingChapterNote} onChange={(event)=>{
+                              setEditingChapterNote(event.target.value);
+                            }}></textarea>
+                            <br></br>
+                            <button onClick={()=>{setEditingChapterNote("");}}>{cancelText[languageCode]}</button>
                             <button onClick={()=>{
-
+                              changeChapterNote(index, editingChapterNote);
                             }}>{saveText[languageCode]}</button>
 
                             <br></br>
