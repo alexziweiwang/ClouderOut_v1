@@ -37,8 +37,12 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
         const [bgpSource, setBgpSource] = useState("");
     
         const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
-    
-        const [gameDataCurr, setGameDataCurr] = useState(gameData);
+
+        
+
+const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve!
+
+
         const [originalGmdt, setOriginalGmdt] = useState({});
     
         const [showConvLog, setShowConvLog] = useState(false);
@@ -55,7 +59,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
                 //current_value, data_type("boolean"/"string"/"number"), default_value, name
                 defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
             })}
-            setGameDataCurr(gameDataTemp);
+            setGameDataTracker(gameDataTemp);
             setOriginalGmdt(defaultMap);
     
      
@@ -180,17 +184,17 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
         }
     
         // function resetViewingPiece() {
-        //     let gameDataTemp = gameDataCurr;
+        //     let gameDataTemp = gameDataTracker;
     
         //     {Object.keys(originalGmdt).map((currKey) => {
         //         gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
         //     })}
-        //     setGameDataCurr(gameDataTemp);
+        //     setGameDataTracker(gameDataTemp);
     
         //     console.log("now gameDataTemp = ", gameDataTemp);
-        //     console.log("now gameDataCurr = ", gameDataCurr);
+        //     console.log("now gameDataTracker = ", gameDataTracker);
     
-        //     console.log("now gameDataCurr[val5] = ", gameDataCurr["val5"]);
+        //     console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
         //     console.log("gameData[val5] = ", gameData["val5"]);
     
         //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
@@ -217,9 +221,9 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
         }
     
         function changeGameData(name, value) {
-            let gmdtObj = gameDataCurr;
+            let gmdtObj = gameDataTracker;
             gmdtObj[name].current_value = value;
-            setGameDataCurr(gmdtObj);
+            setGameDataTracker(gmdtObj);
             
             //TODO3 update to cloud in practice
             //TODO3 update temporarily in testing?
@@ -240,7 +244,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
                 changeGameData(name, newVal);
             } else if (type === "number") {
                 // type - number
-                let currVal = gameDataCurr[name]["current_value"];
+                let currVal = gameDataTracker[name]["current_value"];
     
                 let result = 0;
                 if (action === "plus") {
@@ -355,7 +359,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
                     getCurrentPieceNum={passInCurrentPieceNum} 
                     defualtBtnUISettings={uiData2_buttonOption} 
                     changeGameDataByStatement={changeGameDataByStatement}                                    
-                    gameData={gameDataCurr}
+                    gameData={gameDataTracker}
                 />
             }
 

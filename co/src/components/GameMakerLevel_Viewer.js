@@ -15,11 +15,35 @@ export default function GameMakerLevel_Viewer({isDisplay,
     const [gameDataTracker, setGameDataTracker] = useState(initialGameData); 
 
 
+    const testPlayerGameData = {
+        "username": "playerA",
+        "hp": "100",
+    };
+    const testPlayerProfile = {
+        "username": "playerA",
+        "iconUrl": ""
+    };
+    const testPlayerAccount = {
+        "username": "playerA",
+        "email": "example@email.com",
 
-    const [playerGameData, setPlayerGameData] = useState();
-    const [playerProfile, setPlayerProfil] = useState();
-    const [playerAccount, setPlayerAccount] = useState();
-    const [playerSLRecords, setPlayerSLRecords] = useState();
+    };
+    const testPlayerSLRecords = {
+        "username": "playerA",
+        "itemStatus": [{}, {}, {}]
+
+    };
+
+    const playerDataElem = testPlayerGameData; //TODO change later
+    const playerProfileElem = testPlayerProfile; //TODO change later
+    const playerAccountElem = testPlayerAccount; //TODO change later
+    const playerSLRecordsElem = testPlayerSLRecords; //TODO change later
+
+    const [playerGameData, setPlayerGameData] = useState(playerDataElem);
+    const [playerProfile, setPlayerProfil] = useState(playerProfileElem);
+    const [playerAccount, setPlayerAccount] = useState(playerAccountElem);
+    const [playerSLRecords, setPlayerSLRecords] = useState(playerSLRecordsElem);
+
     //TODO implementation plan:
     //when doing this level of testing or game-in-practice, fetch player's above 4 data from cloud
     //for testing the entire game, use default-testing-player's data, otherwise use cloud-fetched data

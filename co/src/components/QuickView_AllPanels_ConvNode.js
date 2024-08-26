@@ -32,7 +32,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
-    const [gameDataCurr, setGameDataCurr] = useState(gameData);
+    const [gameDataTracker, setGameDataTracker] = useState(gameData);
     const [originalGmdt, setOriginalGmdt] = useState({});
 
     const [showConvLog, setShowConvLog] = useState(false);
@@ -54,7 +54,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
         })}
         
-        setGameDataCurr(gameDataTemp);
+        setGameDataTracker(gameDataTemp);
         setOriginalGmdt(defaultMap);
 
  
@@ -173,17 +173,17 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
     function resetViewingPiece() {
-        let gameDataTemp = gameDataCurr;
+        let gameDataTemp = gameDataTracker;
 
         {Object.keys(originalGmdt).map((currKey) => {
             gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
         })}
-        setGameDataCurr(gameDataTemp);
+        setGameDataTracker(gameDataTemp);
 
         console.log("now gameDataTemp = ", gameDataTemp);
-        console.log("now gameDataCurr = ", gameDataCurr);
+        console.log("now gameDataTracker = ", gameDataTracker);
 
-        console.log("now gameDataCurr[val5] = ", gameDataCurr["val5"]);
+        console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
         console.log("gameData[val5] = ", gameData["val5"]);
         console.log(".......");
         console.log("initialPieceNum = ", initialPieceNum);
@@ -213,9 +213,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     // } //TODO: remove unusued later
 
     // function changeGameData(name, value) {
-    //     let gmdtObj = gameDataCurr;
+    //     let gmdtObj = gameDataTracker;
     //     gmdtObj[name].current_value = value;
-    //     setGameDataCurr(gmdtObj);
+    //     setGameDataTracker(gmdtObj);
     // }  //TODO: remove unusued later
 
     // function changeGameDataByStatement(name, action, newVal, type) {
@@ -230,7 +230,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     //         changeGameData(name, newVal);
     //     } else if (type === "number") {
     //         // type - number
-    //         let currVal = gameDataCurr[name]["current_value"];
+    //         let currVal = gameDataTracker[name]["current_value"];
 
     //         let result = 0;
     //         if (action === "plus") {
@@ -328,16 +328,16 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                                 </tr>
                             </thead>  
                             <tbody> 
-                        {Object.keys(gameDataCurr).map((currKey) => {
+                        {Object.keys(gameDataTracker).map((currKey) => {
                             let keyName = "gmdt" + currKey;
-                            let val = gameDataCurr[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataCurr[currKey]["current_value"] === true || gameDataCurr[currKey]["current_value"] === "true") ? 
+                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataTracker[currKey]["current_value"] === true || gameDataTracker[currKey]["current_value"] === "true") ? 
                                         "true" : "false") 
-                                : gameDataCurr[currKey]["current_value"];
+                                : gameDataTracker[currKey]["current_value"];
 
                             return (
                                 <tr value={currKey} key={keyName}>
-                                    <td>{gameDataCurr[currKey]["name"]}</td>
+                                    <td>{gameDataTracker[currKey]["name"]}</td>
                                     <td>{val}</td>               
                                 </tr>
                             
