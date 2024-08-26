@@ -24,9 +24,14 @@ export default function ChapterManager({
   //TODO other text on UI - localization
 
   const [isCollapse, setIsCollapse] = useState(false);
+
   const [newChapterKeyInput, setNewChapterKeyInput] = useState("");
   const [newChapterTitleInput, setNewChapterTitleInput] = useState("");
+  const [newChapterNoteInput, setNewChapterNoteInput] = useState("");
+
   const [editingChapterTitle, setEditingChapterTitle] = useState("");
+  const [editingChapterNote, setEditingChapterNote] = useState("");
+  
   const [editedLine, setEditedLine] = useState(-1);
   const [selectedChptKey, setSelectedChpt] = useState(-1);
   const [isAddNewChpater, setIsAddNewChapter] = useState(false);
@@ -54,6 +59,16 @@ export default function ChapterManager({
 
     setEditingChapterTitle("");
   }
+
+  function changeChapterNote(index, note) {
+    let tempChapterData = chapterData;
+    tempChapterData[index][3] = note;
+
+    updateBothLocalAndOuterChapterData(tempChapterData);
+
+    setEditingChapterNote("");
+  }
+
 
   function addNewChapterItem() {
     //1. not allowing empty chapter key or chapter title
@@ -187,10 +202,15 @@ export default function ChapterManager({
                             <br></br>
 
                             <label>Chapter Notes: </label>
-                            <input></input>
+                            <textarea>
+
+
+                            </textarea>
                             <br></br>
                             <button>{cancelText[languageCode]}</button>
-                            <button>{saveText[languageCode]}</button>
+                            <button onClick={()=>{
+
+                            }}>{saveText[languageCode]}</button>
 
                             <br></br>
                             <br></br>
