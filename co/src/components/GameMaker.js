@@ -615,8 +615,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function passInCurrentChapterNodeMap() {
     let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {}
-    console.log("passing in1 ..."); //TODO test
-    console.log(nodeMap);
+                          // console.log("passing in1 ..."); //TODO test
+                          // console.log(nodeMap);
     return nodeMap;
   }
 
@@ -626,8 +626,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function passInCurrentGridBlocks() {
     let grid = currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []
-    console.log("passing in2 ..."); //TODO test
-    console.log(grid);
+                        // console.log("passing in2 ..."); //TODO test
+                        // console.log(grid);
     return grid;
   }
 

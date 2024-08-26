@@ -43,6 +43,7 @@ export default function NodeManager({projectName, currUser,
   let nodeOperationsText = ["Node Operations"];
   let targetNodesText = ["Target Nodes"];
   let nextNodeText = ["Next Node"];
+  let resetText = ["Reset"];
 
 
 //TODO important note: node data is operated in this component (and level).
@@ -153,10 +154,10 @@ export default function NodeManager({projectName, currUser,
             //TODO draw gridBlocks of this chapter
           
             //TODO considerations of col & row, etc.   
-            console.log("::: getters...........");
-            console.log(tempMap); //TODO testing
-            console.log(gridTemp); //TODO testing
-          
+                                            // console.log("::: getters...........");
+                                            // console.log(tempMap); //TODO testing
+                                            // console.log(gridTemp); //TODO testing
+                                          
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
             setChapterKey(chapterKeyTemp);
@@ -377,10 +378,10 @@ export default function NodeManager({projectName, currUser,
       return;
     }
 
-    tempNodeData[clickedNodeKey].notes = tempNewName;
+    tempNodeData[clickedNodeKey].notes = tempNewNote;
     setNodeRelationshipMap(tempNodeData);
-  
-    setTempNewName("");
+
+    setTempNewNote("");
   }
 
   function deleteNode2() {
@@ -1016,7 +1017,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
                                   <label>Notes: </label>
                                   <div className="indentOne">
-                                  <label>{nodeRelationshipMap[clickedNodeKey].notes}</label>
+                                    <label>{(nodeRelationshipMap[clickedNodeKey].notes !== undefined && nodeRelationshipMap[clickedNodeKey].notes.length > 0) ? nodeRelationshipMap[clickedNodeKey].notes : "(Empty Note)"}</label>
                                   </div>
                                 
                                 {nodeRelationshipMap[clickedNodeKey] !== undefined 
@@ -1041,7 +1042,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           <label>Change Node Notes: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewNote(event.target.value);}} value={tempNewNote}></input>
-                            <br></br><button onClick={()=>{updateNodeWithNewNote();}}>{updateText[languageCode]}</button>
+                            <br></br>
+                            <button onClick={()=>{setTempNewNote("");}}>{cancelText[languageCode]}</button>
+                            <button onClick={()=>{updateNodeWithNewNote();}}>{updateText[languageCode]}</button>
                           </div>
                           <br></br>
                           <br></br>
