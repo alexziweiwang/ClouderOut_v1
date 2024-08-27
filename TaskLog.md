@@ -334,3 +334,6 @@
 - 2024-Aug-23: Analyze and design game-data-tracking for multiple scenarios (layers of testing, viewing, in-practice playing), and design optimized data structure and functionalities
 
 - 2024-Aug-26: Consider and design players' set of data flow being presented during game-testings and game-in-practice
+
+- 2024-Aug-27: Design database related models for players' side
+
