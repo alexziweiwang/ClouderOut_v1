@@ -40,9 +40,6 @@ export default function GameMaker() {
 
 */
 
-
-
-
   const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
 
@@ -429,12 +426,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
+
   function markNextNeedCloudGameData() {
     setNeedCloudGameData(true);
   }
 
-
-  function updateGameDataToCloud(gameDataLatest) {
+  function updateGameDataSettingsToCloud(gameDataLatest) {
 
     let project = "";
     project  = projectName;
@@ -816,7 +813,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             handleGdmCancel={handleGameDataManagerCancel} 
             initialGameData={gameDataLocal} 
             resetNeedCloudData={markNextNeedCloudGameData} 
-            updateGameDataToCloud={updateGameDataToCloud}
+            updateGameDataSettingsToCloud={updateGameDataSettingsToCloud}
         />} 
        
     {isDisplayEntireGameViewer && 

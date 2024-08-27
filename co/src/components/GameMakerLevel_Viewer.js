@@ -5,8 +5,35 @@ import NavigationPreview from './NavigationPreview';
 export default function GameMakerLevel_Viewer({isDisplay, 
     makeNotDisplay, navigationObj,
     initialChapterList, getChapterList,
-    getGameData, initialGameData
-}) {
+    getGameData, initialGameData,
+    updatePlayingGameData,
+    getPlayerProfile, initialPlayerProfile,
+    updatePlayerProfile,
+    getPlayerAccountSettings, initialPlayerAccountSettings,
+    updatePlayerAccountSettings,
+    getPlayerSlRecords, initialPlayerSlRecords,
+    updatePlayerSlRecords,
+    currentGameProgress, initialGameProgress,
+    updateCurrentGameProgress
+
+}) { //notes: "initialGameData" is this player's cloud-game-data, 
+    // and when updating in this compo, it also updates to outside layer
+
+
+    /* //TODO
+ design of this component:
+ this component is an "inner" screen part of game-play (both testing-entire and play-in-practice)
+ outside of this component, there should be an "outer" component that holds/handles the following:
+1. game-progress(which chapter, which node, which step/piece, etc.)
+2. game-data of the player
+3. player profile
+4. player account
+5. player save/load records
+ 
+that is, this component focuses more on frontend changes?
+ 
+ */
+
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
 
@@ -32,7 +59,8 @@ export default function GameMakerLevel_Viewer({isDisplay,
         "username": "playerA",
         "itemStatus": [{}, {}, {}]
 
-    };
+    }; 
+    //testPlayerGameData, testPlayerProfile, 
 
     const playerDataElem = testPlayerGameData; //TODO change later
     const playerProfileElem = testPlayerProfile; //TODO change later
@@ -60,7 +88,7 @@ export default function GameMakerLevel_Viewer({isDisplay,
 //progress-tracker: current-chapter & current-node
 //path deciding parts
 
-//TODO settled data
+//TODO settled/fixed data
 //resource maps (visual & audio) [settled once started]
 //node-inside-content: 
             // conv-node: <GameScreen_QuickView_ConvNode/>
