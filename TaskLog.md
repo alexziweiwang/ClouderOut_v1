@@ -336,4 +336,4 @@
 - 2024-Aug-26: Consider and design players' set of data flow being presented during game-testings and game-in-practice
 
 - 2024-Aug-27: Design database related models for players' side
-
+- 2024-Aug-27: Organize considerations on authentication and account management for both project-creators and players' sides
