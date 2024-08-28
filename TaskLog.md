@@ -337,3 +337,4 @@
 
 - 2024-Aug-27: Design database related models for players' side
 - 2024-Aug-27: Organize considerations on authentication and account management for both project-creators and players' sides
+- 2024-Aug-27: Consider player game-centre structure design
