@@ -9,6 +9,8 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
 import Viewer_Entire from './Viewer_Entire';
+import Panel_GameDataTest from './Panel_GameDataTest';
+
 
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
@@ -679,6 +681,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return screenHeight;
   }
 
+  function passInScreenWidth() {
+    return screenWidth;
+  }
+
   function updateNodeMapOfChapter(mapObj) {
     let nodeMapAllTemp = chapterNodeMapAll;
     nodeMapAllTemp[currChapterKey] = mapObj;
@@ -865,45 +871,55 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
 {/* screenWidth > screenHeight means horizontal game-screen */}
-      {showGameDataPanel && <div style={{
-                "width": "350px", 
-                "height": `${screenHeight}px`, 
-                "overflow": "scroll", 
-                "backgroundColor": "grey",
-                "color": "#FFFFFF",
-                "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
-                "display": showGameDataPanel === true ? "flex" : "none"
-                }}>
-                <label>Game Data Panel</label>
-                <br></br>
-                <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>  
-                            <tbody> 
-                        {Object.keys(gameDataLocal).map((currKey) => {
-                            let keyName = "gmdt" + currKey;
-                            let val = gameDataLocal[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataLocal[currKey]["current_value"] === true 
-                                        || gameDataLocal[currKey]["current_value"] === "true") ? 
-                                        "true" : "false") 
-                                : gameDataLocal[currKey]["current_value"];
+      {showGameDataPanel && 
+        <Panel_GameDataTest
+        getGameData={passInGameDataLocal}
+        initialGameData={gameDataLocal}
+        getScreenHeight={passInScreenHeight}
+        getScreenWidth={passInScreenWidth}
+        />
+      // <div style={{
+      //           "width": "370px", 
+      //           "height": `${screenHeight}px`, 
+      //           "overflow": "scroll", 
+      //           "backgroundColor": "grey",
+      //           "color": "#FFFFFF",
+      //           "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
+      //           "display": showGameDataPanel === true ? "flex" : "none"
+      //           }}>
+      //           <label>Game Data Panel</label>
+      //           <br></br>
+      //           <table>
+      //                       <thead>
+      //                           <tr style={{"height": "20px"}}>
+      //                               <th>Name</th>
+      //                               <th>Value</th>
+      //                           </tr>
+      //                       </thead>  
+      //                       <tbody> 
+      //                   {Object.keys(gameDataLocal).map((currKey) => {
+      //                       let keyName = "gmdt" + currKey;
+      //                       let val = gameDataLocal[currKey]["data_type"] === "boolean" ? 
+      //                               ((gameDataLocal[currKey]["current_value"] === true 
+      //                                   || gameDataLocal[currKey]["current_value"] === "true") ? 
+      //                                   "true" : "false") 
+      //                           : gameDataLocal[currKey]["current_value"];
 
-                            return (
-                                <tr value={currKey} key={keyName}>
-                                    <td>{gameDataLocal[currKey]["name"]}</td>
-                                    <td>{val}</td>               
-                                </tr>
+      //                       return (
+      //                           <tr value={currKey} key={keyName} style={{"height": "20px"}}>
+      //                               <td>{gameDataLocal[currKey]["name"]}</td>
+      //                               <td>{val}</td>               
+      //                           </tr>
                             
-                            );
-                        })}
-                            </tbody>  
-                        </table>
+      //                       );
+      //                   })}
+      //                       </tbody>  
+      //                   </table>
 
-            </div>}
+      // </div>
+            
+            
+            }
 
      
       
