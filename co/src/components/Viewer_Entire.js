@@ -107,13 +107,16 @@ export default function Viewer_Entire({isDisplay,
             if (navigationObj["screenSize"] === "16:9(horizonal)") {
                 setScreenWidth(800);
                 setScreenHeight(450);
-            } else if (navigationObj["screenSize"] === "16:9(horizonal)") {
+
+            } else if (navigationObj["screenSize"] === "16:9(vertical)") {
                 setScreenWidth(450);
                 setScreenHeight(800);
+
             } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
                 setScreenWidth(800);
                 setScreenHeight(600);
-            } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
+                
+            } else if (navigationObj["screenSize"] === "4:3(vertical)") {
                 setScreenWidth(600);
                 setScreenHeight(800);
             }

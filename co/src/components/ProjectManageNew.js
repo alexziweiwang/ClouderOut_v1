@@ -124,17 +124,18 @@ export default function ProjectManageNew() {
         if (input === "16:9(horizonal)") {
           //TODO pass into cloud: node info
           console.log("16:9(horizonal)");
-        } else if (input === "16:9(horizonal)") {
+
+        } else if (input === "16:9(vertical)") {
           //TODO pass into cloud: node info
-          console.log("16:9(horizonal)");
+          console.log("16:9(vertical)");
 
         } else if (input === "4:3(horizonal)") {
           //TODO pass into cloud: node info
           console.log("4:3(horizonal)");
 
-        } else if (input === "4:3(horizonal)") {
+        } else if (input === "4:3(vertical)") {
           //TODO pass into cloud: node info
-          console.log("4:3(horizonal)");
+          console.log("4:3(vertical)");
         } else {
           
           //TODO: show warning if not selected

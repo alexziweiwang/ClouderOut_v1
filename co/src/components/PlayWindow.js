@@ -78,20 +78,14 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
         const input = event.target.value;
         //TODO update information to cloud db
         if (event != null && event.target != null && event.target.value!= null) {
-          if (input === "16:9(horizonal)") {
-            console.log("16:9(horizonal)");
-            setGameScreenSize("16:9(horizonal)");
-          } else if (input === "16:9(horizonal)") {
-            console.log("16:9(horizonal)");
-            setGameScreenSize("16:9(horizonal)");
-          } else if (input === "4:3(horizonal)") {
-            console.log("4:3(horizonal)");
-            setGameScreenSize("4:3(horizonal)");
-          } else if (input === "4:3(horizonal)") {
-            console.log("4:3(horizonal)");
-            setGameScreenSize("4:3(horizonal)");
+  
+          if (input === "16:9(horizonal)"
+                || input === "16:9(vertical)"
+                || input === "4:3(horizonal)"
+                ||input === "4:3(vertical)") {
+              setSelectedGameScreenSize(input);
           } else {
-            console.log("not selected!");
+              console.log("not selected!");
           }
         }
     }

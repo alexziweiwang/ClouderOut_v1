@@ -312,31 +312,18 @@ export default function NodeManager({projectName, currUser,
   function changeGameScreenSize(event) {
     const input = event.target.value;
     if (event != null && event.target != null && event.target.value!= null) {
-      if (input === "16:9(horizonal)") {
+      
+      if (input === "16:9(horizonal)"
+      || input === "16:9(vertical)"
+      || input === "4:3(horizonal)"
+      ||input === "4:3(vertical)") {
+        setSelectedGameScreenSize(event.target.value);
         //TODO pass into cloud: node info
-        console.log("16:9(horizonal)");
-        setAddedGameScreenSize(event.target.value);
-
-      } else if (input === "16:9(horizonal)") {
-        //TODO pass into cloud: node info
-        console.log("16:9(horizonal)");
-        setAddedGameScreenSize(event.target.value);
-
-      } else if (input === "4:3(horizonal)") {
-        //TODO pass into cloud: node info
-        console.log("4:3(horizonal)");
-        setAddedGameScreenSize(event.target.value);
-
-      } else if (input === "4:3(horizonal)") {
-        //TODO pass into cloud: node info
-        console.log("4:3(horizonal)");
-        setAddedGameScreenSize(event.target.value);
-        
       } else {
-        //TODO: show warning if not selected
         console.log("not selected!");
         setAddedGameScreenSize("");
       }
+            
     }
   }
 
