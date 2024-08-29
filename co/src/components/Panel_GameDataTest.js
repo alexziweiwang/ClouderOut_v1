@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 
 export default function Panel_GameDataTest({
@@ -38,7 +37,7 @@ return (
                 <br></br>
                 <table>
                             <thead>
-                                <tr style={{"height": "20px"}}>
+                                <tr>
                                     <th>Name</th>
                                     <th>Value</th>
                                 </tr>
@@ -53,7 +52,7 @@ return (
                                 : gameData[currKey]["current_value"];
 
                             return (
-                                <tr value={currKey} key={keyName} style={{"height": "20px"}}>
+                                <tr value={currKey} key={keyName}>
                                     <td>{gameData[currKey]["name"]}</td>
                                     <td>{val}</td>               
                                 </tr>

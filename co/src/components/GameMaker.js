@@ -839,7 +839,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
         <button className="testEntire" onClick={()=>{setDisplayEntierGameViewer(false);}}>Stop Testing</button>
 
-        <div style={{"marginBottom":" 10px"}}>
+        <div style={{"marginBottom":" 10px", "userSelect": "none"}}>
             <input 
                 type="checkbox" 
                 value={showGameDataPanel}
@@ -873,52 +873,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 {/* screenWidth > screenHeight means horizontal game-screen */}
       {showGameDataPanel && 
         <Panel_GameDataTest
-        getGameData={passInGameDataLocal}
-        initialGameData={gameDataLocal}
-        getScreenHeight={passInScreenHeight}
-        getScreenWidth={passInScreenWidth}
+          getGameData={passInGameDataLocal}
+          initialGameData={gameDataLocal}
+          getScreenHeight={passInScreenHeight}
+          getScreenWidth={passInScreenWidth}
         />
-      // <div style={{
-      //           "width": "370px", 
-      //           "height": `${screenHeight}px`, 
-      //           "overflow": "scroll", 
-      //           "backgroundColor": "grey",
-      //           "color": "#FFFFFF",
-      //           "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
-      //           "display": showGameDataPanel === true ? "flex" : "none"
-      //           }}>
-      //           <label>Game Data Panel</label>
-      //           <br></br>
-      //           <table>
-      //                       <thead>
-      //                           <tr style={{"height": "20px"}}>
-      //                               <th>Name</th>
-      //                               <th>Value</th>
-      //                           </tr>
-      //                       </thead>  
-      //                       <tbody> 
-      //                   {Object.keys(gameDataLocal).map((currKey) => {
-      //                       let keyName = "gmdt" + currKey;
-      //                       let val = gameDataLocal[currKey]["data_type"] === "boolean" ? 
-      //                               ((gameDataLocal[currKey]["current_value"] === true 
-      //                                   || gameDataLocal[currKey]["current_value"] === "true") ? 
-      //                                   "true" : "false") 
-      //                           : gameDataLocal[currKey]["current_value"];
 
-      //                       return (
-      //                           <tr value={currKey} key={keyName} style={{"height": "20px"}}>
-      //                               <td>{gameDataLocal[currKey]["name"]}</td>
-      //                               <td>{val}</td>               
-      //                           </tr>
-                            
-      //                       );
-      //                   })}
-      //                       </tbody>  
-      //                   </table>
-
-      // </div>
-            
-            
             }
 
      
