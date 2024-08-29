@@ -121,6 +121,7 @@ export default function ProjectManageNew() {
     function changeGameScreenSize(event) {
       const input = event.target.value;
       if (event != null && event.target != null && event.target.value!= null) {
+   
         if (input === "16:9(horizonal)") {
           //TODO pass into cloud: node info
           console.log("16:9(horizonal)");

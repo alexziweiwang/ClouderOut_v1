@@ -56,7 +56,11 @@ export default function NavigationPreview ({
     const [audioMapSize, setAudioMapSize] = useState(0);
     const [visualMapSize, setVisualMapSize] = useState(0);
 
-    
+    const sizeLookupMap = { "16:9(horizonal)": [800, 450],
+        "16:9(vertical)": [450, 800],
+        "4:3(horizonal)": [800, 600],
+        "4:3(vertical)": [600, 800]};
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -131,19 +135,31 @@ export default function NavigationPreview ({
         }
         
 
+        //TODO remove later
+        // if (navObj["screenSize"] === "16:9(horizonal)") {
+        //     setScreenWidth(800);
+        //     setScreenHeight(450);
+        // } else if (navObj["screenSize"] === "16:9(vertical)") {
+        //     setScreenWidth(450);
+        //     setScreenHeight(800);
+        // } else if (navObj["screenSize"] === "4:3(horizonal)") {
+        //     setScreenWidth(800);
+        //     setScreenHeight(600);
+        // } else if (navObj["screenSize"] === "4:3(vertical)") {
+        //     setScreenWidth(600);
+        //     setScreenHeight(800);
+        // }
+        //TODO remove later
 
-        if (navObj["screenSize"] === "16:9(horizonal)") {
-            setScreenWidth(800);
-            setScreenHeight(450);
-        } else if (navObj["screenSize"] === "16:9(vertical)") {
-            setScreenWidth(450);
-            setScreenHeight(800);
-        } else if (navObj["screenSize"] === "4:3(horizonal)") {
-            setScreenWidth(800);
-            setScreenHeight(600);
-        } else if (navObj["screenSize"] === "4:3(vertical)") {
-            setScreenWidth(600);
-            setScreenHeight(800);
+        if (navObj["screenSize"] === "16:9(horizonal)"
+            || navObj["screenSize"] === "16:9(vertical)"
+            || navObj["screenSize"] === "4:3(horizonal)"
+            || navObj["screenSize"] === "4:3(vertical)"
+            ) {
+                let w = sizeLookupMap[navObj["screenSize"]][0];
+                let h = sizeLookupMap[navObj["screenSize"]][1];
+                setScreenWidth(w);
+                setScreenHeight(h);
         }
 
     });

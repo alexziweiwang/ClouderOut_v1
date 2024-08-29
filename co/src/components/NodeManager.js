@@ -314,10 +314,10 @@ export default function NodeManager({projectName, currUser,
     if (event != null && event.target != null && event.target.value!= null) {
       
       if (input === "16:9(horizonal)"
-      || input === "16:9(vertical)"
-      || input === "4:3(horizonal)"
-      ||input === "4:3(vertical)") {
-        setSelectedGameScreenSize(event.target.value);
+        || input === "16:9(vertical)"
+        || input === "4:3(horizonal)"
+        ||input === "4:3(vertical)") {
+        setAddedGameScreenSize(event.target.value);
         //TODO pass into cloud: node info
       } else {
         console.log("not selected!");

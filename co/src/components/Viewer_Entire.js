@@ -40,7 +40,11 @@ export default function Viewer_Entire({isDisplay,
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
-
+    const sizeLookupMap = { "16:9(horizonal)": [800, 450],
+        "16:9(vertical)": [450, 800],
+        "4:3(horizonal)": [800, 600],
+        "4:3(vertical)": [600, 800]};
+        
     const [gameDataTracker, setGameDataTracker] = useState(initialGameData); 
 
 
@@ -102,24 +106,40 @@ export default function Viewer_Entire({isDisplay,
     const [chapterList, setChapterList] = useState(initialChapterList); 
 
 
+
      useEffect(() => {
 
-            if (navigationObj["screenSize"] === "16:9(horizonal)") {
-                setScreenWidth(800);
-                setScreenHeight(450);
+            //TODO remove later
+            // if (navigationObj["screenSize"] === "16:9(horizonal)") {
+            //     setScreenWidth(800);
+            //     setScreenHeight(450);
 
-            } else if (navigationObj["screenSize"] === "16:9(vertical)") {
-                setScreenWidth(450);
-                setScreenHeight(800);
+            // } else if (navigationObj["screenSize"] === "16:9(vertical)") {
+            //     setScreenWidth(450);
+            //     setScreenHeight(800);
 
-            } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
-                setScreenWidth(800);
-                setScreenHeight(600);
-                
-            } else if (navigationObj["screenSize"] === "4:3(vertical)") {
-                setScreenWidth(600);
-                setScreenHeight(800);
+            // } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
+            //     setScreenWidth(800);
+            //     setScreenHeight(600);
+
+            // } else if (navigationObj["screenSize"] === "4:3(vertical)") {
+            //     setScreenWidth(600);
+            //     setScreenHeight(800);
+            // } //TODO remove later
+
+
+            if (navigationObj["screenSize"] === "16:9(horizonal)"
+                || navigationObj["screenSize"] === "16:9(vertical)"
+                || navigationObj["screenSize"] === "4:3(horizonal)"
+                || navigationObj["screenSize"] === "4:3(vertical)"
+            ) {
+                let w = sizeLookupMap[navigationObj["screenSize"]][0];
+                let h = sizeLookupMap[navigationObj["screenSize"]][1];
+                setScreenWidth(w);
+                setScreenHeight(h);
             }
+
+    
 
             let chapterListTemp = getChapterList();
             setChapterList(chapterListTemp);

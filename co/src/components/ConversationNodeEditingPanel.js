@@ -36,6 +36,15 @@ export default function ConversationNodeEditingPanel() {
     }
     console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
  
+
+    const sizeLookupMap = { "16:9(horizonal)": [800, 450],
+    "16:9(vertical)": [450, 800],
+    "4:3(horizonal)": [800, 600],
+    "4:3(vertical)": [600, 800]};
+
+
+
+
     const [audioList, setAudioList] = useState([]); //TODO for sound effect -- future feature
     const [visualList, setVisualList] = useState([]); 
   
@@ -443,19 +452,38 @@ export default function ConversationNodeEditingPanel() {
         //TODO design: each node and have one size, and different nodes can have various sizes?
         let respondGiven = window.confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
           if (respondGiven) {
-            if (selectedGameScreenSize === "16:9(horizonal)") {
-              setScreenWidth(800);
-              setScreenHeight(450);
-          } else if (selectedGameScreenSize === "16:9(vertical)") {
-              setScreenWidth(450);
-              setScreenHeight(800);
-          } else if (selectedGameScreenSize === "4:3(horizonal)") {
-              setScreenWidth(800);
-              setScreenHeight(600);
-          } else if (selectedGameScreenSize === "4:3(vertical)") {
-              setScreenWidth(600);
-              setScreenHeight(800);
-          }
+          
+            if (selectedGameScreenSize === "16:9(horizonal)"
+                || selectedGameScreenSize === "16:9(vertical)"
+                || selectedGameScreenSize === "4:3(horizonal)"
+                || selectedGameScreenSize === "4:3(vertical)"
+            ) {
+                let w = sizeLookupMap[selectedGameScreenSize][0];
+                let h = sizeLookupMap[selectedGameScreenSize][1];
+                setScreenWidth(w);
+                setScreenHeight(h);
+            }
+
+            //TODO remove later
+            // if (selectedGameScreenSize === "16:9(horizonal)") {
+            //   setScreenWidth(800);
+            //   setScreenHeight(450);
+            // } else if (selectedGameScreenSize === "16:9(vertical)") {
+            //   setScreenWidth(450);
+            //   setScreenHeight(800);
+            // } else if (selectedGameScreenSize === "4:3(horizonal)") {
+            //   setScreenWidth(800);
+            //   setScreenHeight(600);
+            // } else if (selectedGameScreenSize === "4:3(vertical)") {
+            //   setScreenWidth(600);
+            //   setScreenHeight(800);
+            // }
+            //   const sizeLookupMap = { "16:9(horizonal)": [800, 450],
+            //   "16:9(vertical)": [450, 800],
+            //   "4:3(horizonal)": [800, 600],
+            //   "4:3(vertical)": [600, 800]};
+
+
         } 
     } 
 
