@@ -32,7 +32,12 @@ export default function Viewer_Entire({isDisplay,
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
 
-//  "isEmu": is the sign for either testing-entire or play-in-practice.
+//  "isEmu": the sign for either testing-entire or play-in-practice.
+// if isEmu === true, then use this author's emu-player account
+// if isEmu === false, then load cloud db for the actual player's info?
+
+//TODO: for emu, allow the author to setup entering status (game-data) for [each] view testing
+//TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 
 
 
