@@ -15,6 +15,7 @@ import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../vie
 
 export default function GameMaker() {
   const [screenHeight, setScreenHeight] = useState(600);
+  const [screenWidth, setScreenWidth] = useState(800); //TODO
 
 
   const languageCode = 0;
@@ -699,6 +700,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setChapterList(chapterData);
   }
 
+  const [showGameDataPanel, setShowGameDataPanel] = useState(true);
+  let modalStyleName = "";
+
+  if (isDisplayEntireGameViewer === true) {
+      modalStyleName = "displayBlock modalBackboard";
+  } else {
+      modalStyleName = "displayNone modalBackboard";
+  }
+
+
   return (
   <div>
     
@@ -817,6 +828,26 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         />} 
        
     {isDisplayEntireGameViewer && 
+
+<div className={modalStyleName} style={{"overflow": "scroll"}}>
+
+        <button className="testEntire" onClick={()=>{setDisplayEntierGameViewer(false);}}>Stop Testing</button>
+
+        <div style={{"marginBottom":" 10px"}}>
+            <input 
+                type="checkbox" 
+                value={showGameDataPanel}
+                checked={showGameDataPanel}
+                onChange={()=>{
+                    setShowGameDataPanel(!showGameDataPanel);
+                }}
+            ></input><label
+                onClick={()=>{
+                    setShowGameDataPanel(!showGameDataPanel);
+                }}
+            >Show Game-Data Tracker Panel</label>
+        </div>
+
       <Viewer_Entire
         isDisplay={isDisplayEntireGameViewer}
         makeNotDisplay={closeEntireGameViewer}
@@ -827,7 +858,57 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         initialGameData={gameDataLocal}
         isEmu={true}
 
-      />}
+      />
+
+
+
+
+
+{/* screenWidth > screenHeight means horizontal game-screen */}
+      {showGameDataPanel && <div style={{
+                "width": "350px", 
+                "height": `${screenHeight}px`, 
+                "overflow": "scroll", 
+                "backgroundColor": "grey",
+                "color": "#FFFFFF",
+                "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
+                "display": showGameDataPanel === true ? "flex" : "none"
+                }}>
+                <label>Game Data Panel</label>
+                <br></br>
+                <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>  
+                            <tbody> 
+                        {Object.keys(gameDataLocal).map((currKey) => {
+                            let keyName = "gmdt" + currKey;
+                            let val = gameDataLocal[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataLocal[currKey]["current_value"] === true 
+                                        || gameDataLocal[currKey]["current_value"] === "true") ? 
+                                        "true" : "false") 
+                                : gameDataLocal[currKey]["current_value"];
+
+                            return (
+                                <tr value={currKey} key={keyName}>
+                                    <td>{gameDataLocal[currKey]["name"]}</td>
+                                    <td>{val}</td>               
+                                </tr>
+                            
+                            );
+                        })}
+                            </tbody>  
+                        </table>
+
+            </div>}
+
+     
+      
+      
+      </div>}
 
  
   </div>

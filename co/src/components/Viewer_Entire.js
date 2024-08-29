@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
 
 /* //TODO
-  This component is an "inner" screen part of game-play (both testing-entire and play-in-practice).
+  This component is a "screen" of game-play (both testing-entire and play-in-practice).
 
   Outside of this component, there should be an "outer" component that holds/handles the following:
 1. game-progress (which chapter, which node, which step/piece, etc.)
@@ -10,9 +10,6 @@ import NavigationPreview from './NavigationPreview';
     TODO    also with optional "chapter lock" for new players-first time playing
 2. player data (from outer compo): in-game-data, profile, account, sl-records
 
-
-        -- This component focuses more on frontend interactions?
- 
  */
 export default function Viewer_Entire({isDisplay, 
     makeNotDisplay, navigationObj,
@@ -43,8 +40,6 @@ export default function Viewer_Entire({isDisplay,
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
-
-    const [showGameDataPanel, setShowGameDataPanel] = useState(true);
 
     const [gameDataTracker, setGameDataTracker] = useState(initialGameData); 
 
@@ -101,15 +96,6 @@ export default function Viewer_Entire({isDisplay,
             // conv-node: <GameScreen_QuickView_ConvNode/>
             // card-game, or board-game, etc.
                
-//TODO styles for game-play
-//screen settings, etc.
-    let modalStyleName = "";
-
-    if (isDisplay === true) {
-        modalStyleName = "displayBlock modalBackboard";
-    } else {
-        modalStyleName = "displayNone modalBackboard";
-    }
 
     const [navPageStatus, setNavPageStatus] = useState("Main Page");
 
@@ -170,26 +156,10 @@ export default function Viewer_Entire({isDisplay,
 
 return(<>
 
-<div className={modalStyleName} style={{"overflow": "scroll"}}>
+<div>
   
   
     <div>
-
-        <button className="testEntire" onClick={()=>{makeNotDisplay();}}>Stop Testing</button>
-        <div style={{"marginBottom":" 10px"}}>
-            <input 
-                type="checkbox" 
-                value={showGameDataPanel}
-                checked={showGameDataPanel}
-                onChange={()=>{
-                    setShowGameDataPanel(!showGameDataPanel);
-                }}
-            ></input><label
-                onClick={()=>{
-                    setShowGameDataPanel(!showGameDataPanel);
-                }}
-            >Show Game-Data Tracker Panel</label>
-        </div>
 
       
         <div style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "170px" : "320px"}}>
@@ -211,6 +181,8 @@ return(<>
                         <br></br>2
                         <br></br>3
                         <br></br>TODO: according to currNodeType, display the component
+
+
                     </div>
                 }
 
@@ -236,48 +208,9 @@ return(<>
                 </div>
         </div>
 
-{/* screenWidth > screenHeight means horizontal game-screen */}
 
         
-            {showGameDataPanel && <div style={{
-                "width": "350px", 
-                "height": `${screenHeight}px`, 
-                "overflow": "scroll", 
-                "backgroundColor": "grey",
-                "color": "#FFFFFF",
-                "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+360}px`, 
-                }}>
-                Game Data Panel
-                <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>  
-                            <tbody> 
-                        {Object.keys(gameDataTracker).map((currKey) => {
-                            let keyName = "gmdt" + currKey;
-                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataTracker[currKey]["current_value"] === true 
-                                        || gameDataTracker[currKey]["current_value"] === "true") ? 
-                                        "true" : "false") 
-                                : gameDataTracker[currKey]["current_value"];
-
-                            return (
-                                <tr value={currKey} key={keyName}>
-                                    <td>{gameDataTracker[currKey]["name"]}</td>
-                                    <td>{val}</td>               
-                                </tr>
-                            
-                            );
-                        })}
-                            </tbody>  
-                        </table>
-
-            </div>}
-
-     
+      
 
 
 
