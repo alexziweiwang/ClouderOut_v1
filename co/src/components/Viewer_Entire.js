@@ -1,11 +1,24 @@
 import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
 
+/* //TODO
+  This component is an "inner" screen part of game-play (both testing-entire and play-in-practice).
 
-export default function GameMakerLevel_Viewer({isDisplay, 
+  Outside of this component, there should be an "outer" component that holds/handles the following:
+1. game-progress (which chapter, which node, which step/piece, etc.)
+    TODO consider separate situation for with-sl and withour-sl, 
+    TODO    also with optional "chapter lock" for new players-first time playing
+2. player data (from outer compo): in-game-data, profile, account, sl-records
+
+
+        -- This component focuses more on frontend interactions?
+ 
+ */
+export default function Viewer_Entire({isDisplay, 
     makeNotDisplay, navigationObj,
     initialChapterList, getChapterList,
     getGameData, initialGameData,
+    isEmu,
     updatePlayingGameData,
     getPlayerProfile, initialPlayerProfile,
     updatePlayerProfile,
@@ -19,20 +32,9 @@ export default function GameMakerLevel_Viewer({isDisplay,
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
 
+//  "isEmu": is the sign for either testing-entire or play-in-practice.
 
-    /* //TODO
- design of this component:
- this component is an "inner" screen part of game-play (both testing-entire and play-in-practice)
- outside of this component, there should be an "outer" component that holds/handles the following:
-1. game-progress(which chapter, which node, which step/piece, etc.)
-2. game-data of the player
-3. player profile
-4. player account
-5. player save/load records
- 
-that is, this component focuses more on frontend changes?
- 
- */
+
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO

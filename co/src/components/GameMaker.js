@@ -8,7 +8,7 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
-import GameMakerLevel_Viewer from './GameMakerLevel_Viewer';
+import Viewer_Entire from './Viewer_Entire';
 
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
@@ -817,7 +817,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         />} 
        
     {isDisplayEntireGameViewer && 
-      <GameMakerLevel_Viewer
+      <Viewer_Entire
         isDisplay={isDisplayEntireGameViewer}
         makeNotDisplay={closeEntireGameViewer}
         navigationObj={currentProjectNav}
@@ -825,6 +825,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         getChapterList={passInChapterList}
         getGameData={passInGameDataLocal}
         initialGameData={gameDataLocal}
+        isEmu={true}
 
       />}
 
