@@ -104,16 +104,16 @@ export default function Viewer_Entire({isDisplay,
 
      useEffect(() => {
 
-            if (navigationObj["screenSize"] === "h450_800") {
+            if (navigationObj["screenSize"] === "16:9(horizonal)") {
                 setScreenWidth(800);
                 setScreenHeight(450);
-            } else if (navigationObj["screenSize"] === "v800_450") {
+            } else if (navigationObj["screenSize"] === "16:9(horizonal)") {
                 setScreenWidth(450);
                 setScreenHeight(800);
-            } else if (navigationObj["screenSize"] === "h600_800") {
+            } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
                 setScreenWidth(800);
                 setScreenHeight(600);
-            } else if (navigationObj["screenSize"] === "v800_600") {
+            } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
                 setScreenWidth(600);
                 setScreenHeight(800);
             }

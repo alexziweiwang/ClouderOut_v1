@@ -79,7 +79,7 @@ export default function NodeManager({projectName, currUser,
 
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
-   const [createdNewNodeScreenSize, setCreatedNewNodeScreenSize] = useState("h450_800");
+   const [createdNewNodeScreenSize, setCreatedNewNodeScreenSize] = useState("16:9(horizonal)");
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNewNode, setIsLinkNewNode] = useState(false);
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
@@ -195,11 +195,14 @@ export default function NodeManager({projectName, currUser,
 
     let currNodeType = nodeRelationshipMap[clickedNodeKey].nodeType;
     let userName = currUser;
+
+    let screenSizeStr = nodeRelationshipMap[clickedNodeKey].screenSize; //TODO5
+
     console.log("enter editor2:", clickedNodeKey, projectName, userName);
     if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName } });
+      navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr } });
     } else if (currNodeType === "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName } });
+      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr } });
     }
         //TODO later add conditions for board game and tower defense
   }
@@ -267,7 +270,7 @@ export default function NodeManager({projectName, currUser,
         // reset the creation layout
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
-        setCreatedNewNodeScreenSize("h600_800");
+        setCreatedNewNodeScreenSize("4:3(horizonal)");
         setClickedNode2(-1);
       } else {
         console.log("2Invalid node name: duplicate"); //TODO test
@@ -309,22 +312,26 @@ export default function NodeManager({projectName, currUser,
   function changeGameScreenSize(event) {
     const input = event.target.value;
     if (event != null && event.target != null && event.target.value!= null) {
-      if (input === "h450_800") {
+      if (input === "16:9(horizonal)") {
         //TODO pass into cloud: node info
-        console.log("h450_800");
+        console.log("16:9(horizonal)");
         setAddedGameScreenSize(event.target.value);
-      } else if (input === "v800_450") {
+
+      } else if (input === "16:9(horizonal)") {
         //TODO pass into cloud: node info
-        console.log("v800_450");
+        console.log("16:9(horizonal)");
         setAddedGameScreenSize(event.target.value);
-      } else if (input === "h600_800") {
+
+      } else if (input === "4:3(horizonal)") {
         //TODO pass into cloud: node info
-        console.log("h600_800");
+        console.log("4:3(horizonal)");
         setAddedGameScreenSize(event.target.value);
-      } else if (input === "v800_600") {
+
+      } else if (input === "4:3(horizonal)") {
         //TODO pass into cloud: node info
-        console.log("v800_600");
+        console.log("4:3(horizonal)");
         setAddedGameScreenSize(event.target.value);
+        
       } else {
         //TODO: show warning if not selected
         console.log("not selected!");
@@ -893,10 +900,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               {createNewNodeGameType !== "LogicSplitter" && <><label>Screen Size: </label>
               <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
                     <option value="" key=""> ----- Select Size and Direction ----- </option>
-                    {/* <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                    <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option> */}
-                    {/* <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option> */} // TODO temp
-                    <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
+                    {/* <option value="16:9(horizonal)" key="node-mgr-16:9(horizonal)"> 16:9 (horizontal) </option>
+                    <option value="16:9(vertical)" key="node-mgr-16:9(vertical)"> 16:9 (vertical) </option> */}
+                    {/* <option value="4:3(vertical)" key="node-mgr-4:3(vertical)"> 4:3 (vertical) </option> */} // TODO temp
+                    <option value="4:3(horizonal)" key="node-mgr-4:3(horizonal)"> 4:3 (horizontal) </option>
                   </select>
               <br></br></>}
               <button 

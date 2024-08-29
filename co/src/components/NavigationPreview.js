@@ -132,16 +132,16 @@ export default function NavigationPreview ({
         
 
 
-        if (navObj["screenSize"] === "h450_800") {
+        if (navObj["screenSize"] === "16:9(horizonal)") {
             setScreenWidth(800);
             setScreenHeight(450);
-        } else if (navObj["screenSize"] === "v800_450") {
+        } else if (navObj["screenSize"] === "16:9(vertical)") {
             setScreenWidth(450);
             setScreenHeight(800);
-        } else if (navObj["screenSize"] === "h600_800") {
+        } else if (navObj["screenSize"] === "4:3(horizonal)") {
             setScreenWidth(800);
             setScreenHeight(600);
-        } else if (navObj["screenSize"] === "v800_600") {
+        } else if (navObj["screenSize"] === "4:3(vertical)") {
             setScreenWidth(600);
             setScreenHeight(800);
         }

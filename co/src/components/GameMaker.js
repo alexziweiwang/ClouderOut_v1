@@ -104,7 +104,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"A1-key", 
               display: true, 
               nodeType:"*chapterStart*", 
-              screenSize:"h600_800",
+              screenSize:"4:3(horizonal)",
               notes: "",
           },
           "A1-key": {
@@ -114,7 +114,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800",
+              screenSize:"4:3(horizonal)",
               notes: "",
           },
           "B1-key": {
@@ -124,7 +124,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800",
+              screenSize:"4:3(horizonal)",
               notes: "",
           },
           "C1-key": {
@@ -143,7 +143,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode:"", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800",
+              screenSize:"4:3(horizonal)",
               notes: "",
           },
           "E1-key": {
@@ -153,7 +153,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode: "chapterEnd1-key", 
               display: true, 
               nodeType:"Conversation", 
-              screenSize:"h600_800",
+              screenSize:"4:3(horizonal)",
               notes: "",
           },
           "chapterEnd1-key": {
@@ -163,7 +163,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nextNode: "", 
               display: true, 
               nodeType:"*chapterEnd*", 
-              screenSize:"h600_800",
+              screenSize:"4:3(horizonal)",
               notes: "",
           },
   },
@@ -174,7 +174,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nextNode:"A2-key", 
             display: true, 
             nodeType:"*chapterStart*", 
-            screenSize:"h600_800",
+            screenSize:"4:3(horizonal)",
             notes: "",
         },
         "A2-key": {
@@ -184,7 +184,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nextNode:"", 
             display: true, 
             nodeType:"Conversation", 
-            screenSize:"h600_800",
+            screenSize:"4:3(horizonal)",
             notes: "",
         },
         "B2-key": {
@@ -194,7 +194,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nextNode:"", 
             display: true, 
             nodeType:"Conversation", 
-            screenSize:"h600_800",
+            screenSize:"4:3(horizonal)",
             notes: "",
         },
         "C2-key": {
@@ -213,7 +213,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nextNode: "", 
           display: true, 
           nodeType:"Conversation", 
-          screenSize:"h600_800",
+          screenSize:"4:3(horizonal)",
           notes: "",
         },
         "E2-key": {
@@ -223,7 +223,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nextNode: "chapterEnd2-key", 
           display: true, 
           nodeType:"Conversation", 
-          screenSize:"h600_800",
+          screenSize:"4:3(horizonal)",
           notes: "",
         },
         "chapterEnd2-key": {
@@ -233,7 +233,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nextNode:"", 
           display: true, 
           nodeType:"*chapterEnd*", 
-          screenSize:"h600_800",
+          screenSize:"4:3(horizonal)",
           notes: "",
         },
 },
@@ -264,7 +264,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }); //stores node-keys
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
-    "screenSize": "h450_800",
+    "screenSize": "16:9(horizonal)",
     
     "isWithSL": true,
     "fontFamilyForAll": "sans-serif",
@@ -503,11 +503,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       setGridBlocks(gridBlocksAll[currChapterKey]);
     }
 
-    if (currentProjectNav["screenSize"] === "h450_800") {
+    if (currentProjectNav["screenSize"] === "16:9(horizonal)") {
       setScreenHeight(450);
-    } else if (currentProjectNav["screenSize"] === "v800_450" || currentProjectNav["screenSize"] === "v800_600") {
+    } else if (currentProjectNav["screenSize"] === "16:9(vertical)" 
+      || currentProjectNav["screenSize"] === "4:3(vertical)") {
       setScreenHeight(800);
-    } else if (currentProjectNav["screenSize"] === "h600_800") {
+    } else if (currentProjectNav["screenSize"] === "4:3(horizonal)") {
       setScreenHeight(600);
     }
 
@@ -649,7 +650,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       nextNode:"", 
       display: true, 
       nodeType:"*chapterStart*", 
-      screenSize:"h600_800"
+      screenSize:"4:3(horizonal)"
     };
     obj[chapterEndKeyStr] = {
       nodeName: chapterEndTitleStr, 
@@ -658,7 +659,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       nextNode: "", 
       display: true, 
       nodeType:"*chapterEnd*", 
-      screenSize:"h600_800"
+      screenSize:"4:3(horizonal)"
     };
     nodeMapTemp[newKey] = obj;
 

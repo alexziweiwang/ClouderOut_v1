@@ -27,12 +27,14 @@ export default function ConversationNodeEditingPanel() {
     let nodeName = "";
     let uname = "default-no-state username";
     let projectName = "default-no-state projectName";
+    let screenSizeInfo = "default-no-state screenSizeInfo";
     if (state != null) {
         nodeName = state.selectedNode;
         uname = state.userName;
         projectName = state.selected_project_name;
+        screenSizeInfo = state.screenSizeStr;
     }
-    // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
+    console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
  
     const [audioList, setAudioList] = useState([]); //TODO for sound effect -- future feature
     const [visualList, setVisualList] = useState([]); 
@@ -425,18 +427,22 @@ export default function ConversationNodeEditingPanel() {
         const input = event.target.value;
         //TODO update information to cloud db
         if (event != null && event.target != null && event.target.value!= null) {
-          if (input === "h450_800") {
-            console.log("h450_800");
-            setSelectedGameScreenSize("h450_800");
-          } else if (input === "v800_450") {
-            console.log("v800_450");
-            setSelectedGameScreenSize("v800_450");
-          } else if (input === "h600_800") {
-            console.log("h600_800");
-            setSelectedGameScreenSize("h600_800");
-          } else if (input === "v800_600") {
-            console.log("v800_600");
-            setSelectedGameScreenSize("v800_600");
+          if (input === "16:9(horizonal)") {
+            console.log("16:9(horizonal)");
+            setSelectedGameScreenSize("16:9(horizonal)");
+
+          } else if (input === "16:9(vertical)") {
+            console.log("16:9(vertical)");
+            setSelectedGameScreenSize("16:9(vertical)");
+
+          } else if (input === "4:3(horizonal)") {
+            console.log("4:3(horizonal)");
+            setSelectedGameScreenSize("4:3(horizonal)");
+
+          } else if (input === "4:3(vertical)") {
+            console.log("4:3(vertical)");
+            setSelectedGameScreenSize("4:3(vertical)");
+
           } else {
             console.log("not selected!");
           }
@@ -448,16 +454,16 @@ export default function ConversationNodeEditingPanel() {
         //TODO design: each node and have one size, and different nodes can have various sizes?
         let respondGiven = window.confirm("Please note that changing game-size would impact current visual elements on each piece and would require adjustments. Click [ok] to continue size-changing, or [cancel].");
           if (respondGiven) {
-            if (selectedGameScreenSize === "h450_800") {
+            if (selectedGameScreenSize === "16:9(horizonal)") {
               setScreenWidth(800);
               setScreenHeight(450);
-          } else if (selectedGameScreenSize === "v800_450") {
+          } else if (selectedGameScreenSize === "16:9(vertical)") {
               setScreenWidth(450);
               setScreenHeight(800);
-          } else if (selectedGameScreenSize === "h600_800") {
+          } else if (selectedGameScreenSize === "4:3(horizonal)") {
               setScreenWidth(800);
               setScreenHeight(600);
-          } else if (selectedGameScreenSize === "v800_600") {
+          } else if (selectedGameScreenSize === "4:3(vertical)") {
               setScreenWidth(600);
               setScreenHeight(800);
           }
@@ -597,10 +603,10 @@ export default function ConversationNodeEditingPanel() {
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
                             <option value="" key=""> ----- Select Size and Direction ----- </option>
-                            <option value="h450_800" key="h450_800"> height: 450px, width: 800px (horizontal) </option>
-                            <option value="v800_450" key="v800_450"> height: 800px, width: 450px (vertical) </option>
-                            <option value="h600_800" key="h600_800"> height: 600px, width: 800px (horizontal) </option>
-                            <option value="v800_600" key="v800_600"> height: 800px, width: 600px (vertical) </option>
+                            <option value="16:9(horizonal)" key="conv-editor-16:9(horizonal)"> 16:9 (horizontal) </option>
+                            <option value="16:9(vertical)" key="conv-editor-16:9(vertical)"> 16:9 (vertical) </option>
+                            <option value="4:3(horizonal)" key="conv-editor-4:3(horizonal)"> 4:3 (horizontal) </option>
+                            <option value="4:3(vertical)" key="conv-editor-4:3(vertical)"> 4:3 (vertical) </option>
 
                         </select>
                         <button onClick={()=>{updateGameSizeSetting();}}>{updateText[languageCode]}</button>

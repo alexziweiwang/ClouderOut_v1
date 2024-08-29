@@ -79,7 +79,7 @@ export default function ProjectManageNew() {
         game_data: empty_game_data,
         author_info: addedAuthorInfo,
         type: "project",
-        game_size_direction: "h450_800"
+        game_size_direction: "16:9(horizonal)"
       };
       //TODO add collection "chapters"
       console.log("Created project info: ");
@@ -121,20 +121,20 @@ export default function ProjectManageNew() {
     function changeGameScreenSize(event) {
       const input = event.target.value;
       if (event != null && event.target != null && event.target.value!= null) {
-        if (input === "h450_800") {
+        if (input === "16:9(horizonal)") {
           //TODO pass into cloud: node info
-          console.log("h450_800");
-        } else if (input === "v800_450") {
+          console.log("16:9(horizonal)");
+        } else if (input === "16:9(horizonal)") {
           //TODO pass into cloud: node info
-          console.log("v800_450");
+          console.log("16:9(horizonal)");
 
-        } else if (input === "h600_800") {
+        } else if (input === "4:3(horizonal)") {
           //TODO pass into cloud: node info
-          console.log("h600_800");
+          console.log("4:3(horizonal)");
 
-        } else if (input === "v800_600") {
+        } else if (input === "4:3(horizonal)") {
           //TODO pass into cloud: node info
-          console.log("v800_600");
+          console.log("4:3(horizonal)");
         } else {
           
           //TODO: show warning if not selected

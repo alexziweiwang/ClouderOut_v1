@@ -78,18 +78,18 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
         const input = event.target.value;
         //TODO update information to cloud db
         if (event != null && event.target != null && event.target.value!= null) {
-          if (input === "h450_800") {
-            console.log("h450_800");
-            setGameScreenSize("h450_800");
-          } else if (input === "v800_450") {
-            console.log("v800_450");
-            setGameScreenSize("v800_450");
-          } else if (input === "h600_800") {
-            console.log("h600_800");
-            setGameScreenSize("h600_800");
-          } else if (input === "v800_600") {
-            console.log("v800_600");
-            setGameScreenSize("v800_600");
+          if (input === "16:9(horizonal)") {
+            console.log("16:9(horizonal)");
+            setGameScreenSize("16:9(horizonal)");
+          } else if (input === "16:9(horizonal)") {
+            console.log("16:9(horizonal)");
+            setGameScreenSize("16:9(horizonal)");
+          } else if (input === "4:3(horizonal)") {
+            console.log("4:3(horizonal)");
+            setGameScreenSize("4:3(horizonal)");
+          } else if (input === "4:3(horizonal)") {
+            console.log("4:3(horizonal)");
+            setGameScreenSize("4:3(horizonal)");
           } else {
             console.log("not selected!");
           }
