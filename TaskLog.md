@@ -340,3 +340,5 @@
 - 2024-Aug-27: Consider player game-centre structure design
 
 - 2024-Aug-28: Consider screen-size and direction management for container and game-screen
+
+- 2024-Aug-30: Analyze and organize game-data-tracking for conv-node level, refactor

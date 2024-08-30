@@ -47,7 +47,7 @@ export default function Panel_GameDataTest({
 
             } else {
                 //TODO not local-test
-                
+
                 //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
 
             }
@@ -101,7 +101,7 @@ return (
                                     
                                     <td>
                                         <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["current_value"] : (gameData[currKey]["current_value"] == "true" ? "True" : "False")}</label><br></br>
-                                        
+                                        <br></br>
                                         {gameData[currKey]["data_type"] === "boolean" && 
                                         <select 
                                             style={{"width": "90px"}}
@@ -157,11 +157,8 @@ return (
                                             }}
                                         
                                         >Update</button>
-                                    
-                                    </td>   
 
-                                    <td>
-                                    <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["default_value"] : (gameData[currKey]["default_value"] == "true" ? "True" : "False")}</label><br></br>
+                                        <br></br>
                                         <button 
                                             onClick={()=>{
                                                 let tempObj = gameData;
@@ -171,6 +168,11 @@ return (
                                                 setEditingItem(inputId);
                                             }}
                                         >Reset</button>
+                                    </td>   
+
+                                    <td>
+                                    <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["default_value"] : (gameData[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                    
                                     </td>            
                                 </tr>
                             
@@ -178,9 +180,6 @@ return (
                         })}
                             </tbody>  
                         </table>
-
             </div>
 );
-
-
 }

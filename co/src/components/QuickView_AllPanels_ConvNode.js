@@ -210,41 +210,45 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     // function passInAutoModeStatus() {
     //     return autoMode;
-    // } //TODO: remove unusued later
-
-    // function changeGameData(name, value) {
-    //     let gmdtObj = gameDataTracker;
-    //     gmdtObj[name].current_value = value;
-    //     setGameDataTracker(gmdtObj);
-    // }  //TODO: remove unusued later
-
-    // function changeGameDataByStatement(name, action, newVal, type) {
-    //     if (type === "boolean" || type === "string") {
-    //         // type - boolean 
-    //             // action is "becomes"
-    //         let boolVal = (newVal === "true" || newVal === true) ? true : false;
-    //         changeGameData(name, boolVal);
-    //     } else if (type === "string") {
-    //         // type - string
-    //             // action is "becomes"
-    //         changeGameData(name, newVal);
-    //     } else if (type === "number") {
-    //         // type - number
-    //         let currVal = gameDataTracker[name]["current_value"];
-
-    //         let result = 0;
-    //         if (action === "plus") {
-    //             result = currVal - (-1 * newVal); //important, not directly adding
-    //             changeGameData(name, result);
-    //         } else if (action === "minus") {   
-    //             result = currVal - newVal;
-    //             changeGameData(name, result);
-    //         } else if (action === "becomes") {
-    //             changeGameData(name, newVal);
-    //         }
-          
-    //     }
     // }
+
+    function changeGameDataTracker(name, value) { //TODO later
+        let gmdtObj = gameDataTracker;
+        gmdtObj[name].current_value = value;
+        setGameDataTracker(gmdtObj);
+    }  
+
+    function changeGameDataTrackerByStatement(name, action, newVal, type) { //TODO later
+        if (type === "boolean" || type === "string") {
+            // type - boolean 
+                // action is "becomes"
+            let boolVal = (newVal === "true" || newVal === true) ? true : false;
+            changeGameDataTracker(name, boolVal);
+        } else if (type === "string") {
+            // type - string
+                // action is "becomes"
+            changeGameDataTracker(name, newVal);
+        } else if (type === "number") {
+            // type - number
+            let currVal = gameDataTracker[name]["current_value"];
+
+            let result = 0;
+            if (action === "plus") {
+                result = currVal - (-1 * newVal); //important, not directly adding
+                changeGameDataTracker(name, result);
+            } else if (action === "minus") {   
+                result = currVal - newVal;
+                changeGameDataTracker(name, result);
+            } else if (action === "becomes") {
+                changeGameDataTracker(name, newVal);
+            }
+        }
+    }
+
+
+
+
+
 
     // function closeConvLog() {
     //     setShowConvLog(false);
