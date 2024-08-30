@@ -220,25 +220,7 @@ export default function NavigationSetter({initialNavObj,
 
 
      <br></br><br></br>
-     <label>Screen Size for all navigation pages:</label>
-     <select
-     value={currentProjectNav["screenSize"]}
-     onChange={(event)=>{
-      let tempObj = currentProjectNav;
-      tempObj["screenSize"] = event.target.value;
-      updateNavObj(tempObj);  
-
-      setCurrentProjectNav({...currentProjectNav, "screenSize": event.target.value});
-     }}
-     >
-               <option value="" key=""> ----- Select Size and Direction ----- </option>
-               <option value="16:9(horizonal)" key="nav-setter-16:9(horizonal)"> 16:9 (horizontal) </option>
-               <option value="16:9(vertical)" key="nav-setter-16:9(vertical)"> 16:9 (vertical) </option>
-               <option value="4:3(horizonal)" key="nav-setter-4:3(horizonal)"> 4:3 (horizontal) </option>
-               <option value="4:3(vertical)" key="nav-setter-4:3(vertical)"> 4:3 (vertical) </option>
-     </select>
-     <br></br><br></br><br></br>
-
+  
      <label>Select a Page to setup:</label>
       <select value={currentSettingPage}
         onChange={(event)=>{

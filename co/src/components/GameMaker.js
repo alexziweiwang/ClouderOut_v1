@@ -795,25 +795,52 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     </div>}
 
     {!showChapterMaker && 
+    <>
+      
 
-        <div className="parallelFrame sectionArea"> 
-          
-          <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
-            <NavigationSetter 
-              initialNavObj={currentProjectNav} 
-              updateNavObj={updateCurrProjectNavObj} 
-              openRm={handleResourceManagerOpen} 
-              updateCurrentPageName={updateCurrPageName} 
-              fetchPageName={passInCurrSelectedPage}
-              initialScreenHeight={screenHeight}
-              getScreenheight={passInScreenHeight}
-            />
+        <div className="sectionArea"> 
+          <div>
+            Screen Size for all navigation pages: 
+            <select
+                value={currentProjectNav["screenSize"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["screenSize"] = event.target.value;
+
+                  setCurrentProjectNav({...currentProjectNav, "screenSize": event.target.value});
+                }}
+                >
+                          <option value="" key=""> ----- Select Size and Direction ----- </option>
+                          <option value="16:9(horizonal)" key="nav-setter-16:9(horizonal)"> 16:9 (horizontal) </option>
+                          <option value="16:9(vertical)" key="nav-setter-16:9(vertical)"> 16:9 (vertical) </option>
+                          <option value="4:3(horizonal)" key="nav-setter-4:3(horizonal)"> 4:3 (horizontal) </option>
+                          <option value="4:3(vertical)" key="nav-setter-4:3(vertical)"> 4:3 (vertical) </option>
+            </select>
+
           </div>
-          
-          <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
-            <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
+
+          <div className="parallelFrame">
+              <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
+                <NavigationSetter 
+                  initialNavObj={currentProjectNav} 
+                  updateNavObj={updateCurrProjectNavObj} 
+                  openRm={handleResourceManagerOpen} 
+                  updateCurrentPageName={updateCurrPageName} 
+                  fetchPageName={passInCurrSelectedPage}
+                  initialScreenHeight={screenHeight}
+                  getScreenheight={passInScreenHeight}
+                />
+              </div>
+              
+              <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
+                <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
+              </div>
           </div>
-    </div>}
+    </div>
+    
+    
+    </>
+    }
    
 
     
