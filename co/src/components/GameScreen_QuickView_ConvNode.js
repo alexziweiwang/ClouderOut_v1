@@ -9,7 +9,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, gameData,
+    visualList, audioList, gameData,notifyNewGameData,
     getResetSignal,
 }) {
 
@@ -52,15 +52,15 @@ const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve
      
           if (firstTimeEnter === true) {
     
-            let gameDataTemp = gameData;
-            let defaultMap = {}; //for the record of entering-game-data
-            {Object.keys(gameDataTemp).map((currKey) => {
-                gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-                //current_value, data_type("boolean"/"string"/"number"), default_value, name
-                defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-            })}
-            setGameDataTracker(gameDataTemp);
-            setOriginalGmdt(defaultMap);
+            // let gameDataTemp = gameData; //TODO refactor: do this at outer-compo
+            // let defaultMap = {}; //for the record of entering-game-data
+            // {Object.keys(gameDataTemp).map((currKey) => {
+            //     gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
+            //     //current_value, data_type("boolean"/"string"/"number"), default_value, name
+            //     defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
+            // })}
+            // setGameDataTracker(gameDataTemp);
+            // setOriginalGmdt(defaultMap); //TODO refactor: do this at outer-compo
     
      
             setFirstTimeEnter(false);
@@ -225,11 +225,9 @@ const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve
             gmdtObj[name].current_value = value;
             setGameDataTracker(gmdtObj);
             
-            //TODO3 update to cloud in practice
-            //TODO3 update temporarily in testing?
-            
-                //TODO plan: when testing (any layer), reset the "current_value" into "default_value"; while for players own records, don't reset
-        
+            //TODO3 update to outer-layer
+            notifyNewGameData(gmdtObj);
+
         }
     
         function changeGameDataByStatement(name, action, newVal, type) {

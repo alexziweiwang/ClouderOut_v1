@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
+import Panel_GameDataTest from './Panel_GameDataTest';
+
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, gameData}) {
+    visualList, audioList, initialGameDataDesignList}) {
 
     let modalStyleName = "modalBackboard";
 
@@ -32,8 +34,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
-    const [gameDataTracker, setGameDataTracker] = useState(gameData);
-    const [originalGmdt, setOriginalGmdt] = useState({});
+
+
+    const [gameDataTracker, setGameDataTracker] = useState({});
+    const [gameDataDesignList, setGameDataDesignList] = useState(initialGameDataDesignList);
+
+
+    // const [originalGmdt, setOriginalGmdt] = useState({});
 
     const [showConvLog, setShowConvLog] = useState(false);
     
@@ -45,17 +52,25 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
  
       if (firstTimeEnter === true) {
 
-        let gameDataTemp = gameData;
-        let defaultMap = {}; //for the record of entering-game-data
+        // let gameDataTemp = gameData; //TODO refactor for separating
+        // let defaultMap = {}; //for the record of entering-game-data
 
-        {Object.keys(gameDataTemp).map((currKey) => {
-            gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-            //current_value, data_type("boolean"/"string"/"number"), default_value, name
-            defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-        })}
-        
-        setGameDataTracker(gameDataTemp);
-        setOriginalGmdt(defaultMap);
+        // {Object.keys(gameDataTemp).map((currKey) => {
+        //     gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
+        //     //current_value, data_type("boolean"/"string"/"number"), default_value, name
+        //     defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
+        // })}
+        // setGameDataTracker(gameDataTemp); 
+
+        // setOriginalGmdt(defaultMap); //TODO refactor for separating
+
+
+
+
+
+
+
+
 
  
         setFirstTimeEnter(false);
@@ -175,18 +190,15 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     function resetViewingPiece() {
         let gameDataTemp = gameDataTracker;
 
-        {Object.keys(originalGmdt).map((currKey) => {
-            gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
+        {Object.keys(gameDataDesignList).map((currKey) => {
+            gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
         })}
         setGameDataTracker(gameDataTemp);
 
-        console.log("now gameDataTemp = ", gameDataTemp);
-        console.log("now gameDataTracker = ", gameDataTracker);
+                                                        console.log("now gameDataTemp = ", gameDataTemp);
+                                                        console.log("now gameDataTracker = ", gameDataTracker);
 
-        console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
-        console.log("gameData[val5] = ", gameData["val5"]);
-        console.log(".......");
-        console.log("initialPieceNum = ", initialPieceNum);
+                                                        console.log("initialPieceNum = ", initialPieceNum);
 
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
         setResetSignal(true);
@@ -292,6 +304,21 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return currSignal;
     }
 
+    function notifyNewGameData(data) {
+        setGameDataTracker(data);
+    }
+
+    function passInScreenHeight() {
+        //TODO
+    }
+
+    function passInScreenWidth() {
+        //TODO
+    }
+
+    function passInGameDataDesignList() {
+        //TODO
+    }
 
     return ( <div className={modalStyleName}>
         <div className="modalArea">
@@ -314,9 +341,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     visualList={visualList} 
                     audioList={audioList}
-                    gameData={gameData}
+                    gameData={initialGameDataDesignList}
                     getCurrPieceNum={passInCurrPieceNum}
                     getResetSignal={passInResetSignal}
+                    notifyNewGameData={notifyNewGameData}
                 />
 
         
@@ -351,8 +379,29 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                         </table>
                     </div>
 
-                    
+
+
+
+
+                <Panel_GameDataTest
+                       localTest={true}
+                       getGameDataDesignList={passInGameDataDesignList} 
+                       initialGameDataDesignList={gameDataDesignList}
+                       getScreenHeight={passInScreenHeight} 
+                       getScreenWidth={passInScreenWidth}
+                />
+
+
+
                 </div>
+
+
+         
+
+
+
+
+
 
                 
 

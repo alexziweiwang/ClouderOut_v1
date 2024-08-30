@@ -265,7 +265,7 @@ export default function ConversationNodeEditingPanel() {
     const [screenHeight, setScreenHeight] = useState(600);
 
 
-    const [gameData, setGameData] = useState({});
+    const [gameDataDesignList, setGameData] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
@@ -292,7 +292,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function passInGameData() {
-        return gameData;
+        return gameDataDesignList;
     }
 
     async function getGameDataFromCloud() {
@@ -572,7 +572,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function passInNewGameDataList() {
-        return gameData;
+        return gameDataDesignList;
     }
 
     function passInAudioList() {
@@ -648,7 +648,7 @@ export default function ConversationNodeEditingPanel() {
                             username={uname} 
                             projName={projectName} 
                             backToList={returnToList} 
-                            gameDataList={gameData} 
+                            gameDataList={gameDataDesignList} 
                             openRm={handleResourceManagerOpen}
                             openModal_GameDataManager={handleModal_GameDataManagerOpen}
                             setIsClickedOnSetters={setIsActionOnSetter}
@@ -763,7 +763,7 @@ export default function ConversationNodeEditingPanel() {
                 <Modal_GameDataManager 
                     isDisplay={displayGameDataWindow}
                     handleGdmCancel={handleModal_GameDataManagerCancel} 
-                    initialGameData={gameData} 
+                    initialGameData={gameDataDesignList} 
                     resetNeedCloudData={markNextNeedCloudGameData} 
                     updateGameDataToCloud={updateGDataToCloud}
                 />   
@@ -787,7 +787,7 @@ export default function ConversationNodeEditingPanel() {
                 screenHeight={screenHeight}
                 visualList={visualList}
                 audioList={audioList}
-                gameData={gameData}
+                initialGameDataDesignList={gameDataDesignList}
             />}
 
 
