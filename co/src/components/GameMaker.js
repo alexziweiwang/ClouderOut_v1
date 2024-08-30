@@ -404,7 +404,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 //TODO ------------------------------------------------------
 
-  const [gameDataLocal, setGameDataLocal] = useState({});
+  const [gameDataList, setGameDataList] = useState({});
 
   async function fetchGameDataFromCloud() { //TODO3
 
@@ -415,14 +415,15 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       return;
     }
     const isUpdated = true;
+    
+    
     const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: username, mostUpdated: isUpdated});
-
     if (gdataTestResult === undefined) {
       console.log("Error: no game_data in this project...");
       return;
     }
-    console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-    setGameDataLocal(gdataTestResult);
+              console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+    setGameDataList(gdataTestResult);
     return gdataTestResult;
 
   }
@@ -446,7 +447,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
     setGdmUpdatedSignal(true);
     
-    setGameDataLocal(gameDataLatest); // update game-data here, so then it can send to callees with the latest ver. of data
+    setGameDataList(gameDataLatest); // update game-data here, so then it can send to callees with the latest ver. of data
 
   }
 
@@ -463,8 +464,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
    
   }
 
-  function passInGameDataLocal() {
-    return gameDataLocal;
+  function passInGameDataList() {
+    return gameDataList;
   }
 
   function passInSelectedChapterInfo_Cloud() {
@@ -784,7 +785,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           initialGridBlock={currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []}
           updateNodeMapOfChapter={updateNodeMapOfChapter}
           updateGridBlockOfChapter={updateGridBlockOfChapter}
-          getGameData={passInGameDataLocal}
+          getGameData={passInGameDataList}
           displayGameDataPanel={handleGameDataManagerOpen}
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
@@ -859,7 +860,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         <Modal_GameDataManager 
             isDisplay={isDisplayGdmBool} 
             handleGdmCancel={handleGameDataManagerCancel} 
-            initialGameData={gameDataLocal} 
+            initialGameData={gameDataList} 
             resetNeedCloudData={markNextNeedCloudGameData} 
             updateGameDataSettingsToCloud={updateGameDataSettingsToCloud}
         />} 
@@ -891,8 +892,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         navigationObj={currentProjectNav}
         initialChapterList={chapterList}
         getChapterList={passInChapterList}
-        getGameData={passInGameDataLocal}
-        initialGameData={gameDataLocal}
+        
+        getGameData={passInGameDataList}
+        initialGameData={gameDataList}
         isEmu={true}
 
       />
@@ -901,8 +903,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       {/* screenWidth > screenHeight means horizontal game-screen */}
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
         <Panel_GameDataTest
-          getGameData={passInGameDataLocal}
-          initialGameData={gameDataLocal}
+          getGameData={passInGameDataList}
+          initialGameData={gameDataList}
+
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}
         />

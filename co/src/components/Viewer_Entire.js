@@ -45,7 +45,7 @@ export default function Viewer_Entire({isDisplay,
         "4:3(horizonal)": [800, 600],
         "4:3(vertical)": [600, 800]};
         
-    const [gameDataTracker, setGameDataTracker] = useState(initialGameData); 
+    // const [gameDataTracker, setGameDataTracker] = useState(initialGameData);  //TODO refactoring
 
 
     const testPlayerGameData = {
@@ -148,21 +148,19 @@ const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is track
             let chapterListTemp = getChapterList();
             setChapterList(chapterListTemp);
 
-            let gameDataTrackerTemp = getGameData();
-            setGameDataTracker(gameDataTrackerTemp);
+            // let gameDataTrackerTemp = getGameData(); //TODO refactoring
+            // setGameDataTracker(gameDataTrackerTemp);
         });
 
 
 
 
 
-    function updateGameData(data) { // model's functionality
-        setGameDataTracker(data);
-    }
+    // function updateGameData(data) { // model's functionality     //TODO refactoring
+    //     setGameDataTracker(data);
+    // }
 
-    function passInGameData() {
-        return gameDataTracker;
-    }
+
 
     function passInNavObj() {
         return navigationObj;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 Keeps a set of creator's preferred configuration data of game-data
 */
 export default function Panel_GameDataTest({
-    getGameData, initialGameData,
+    getGameDataList, initialGameData,
     getScreenHeight, getScreenWidth
 }) {
 
@@ -13,13 +13,17 @@ export default function Panel_GameDataTest({
 
     const [gameData, setGameData] = useState(initialGameData);
 
+    
+
     useEffect(() => {
         let h = getScreenHeight();
         setScreenHeight(h);
         let w = getScreenWidth();
         setScreenWidth(w);
-        let gdMap = getGameData();
-        setGameData(gdMap);
+
+        
+        // getGameDataList() is for "getting newly updated game-data item list", not for game-test-tracking
+       
     });  
 
 
@@ -50,6 +54,7 @@ return (
                                         || gameData[currKey]["current_value"] === "true") ? 
                                         "true" : "false") 
                                 : gameData[currKey]["current_value"];
+
                             let optionFalse = keyName + "-false";
                             let optionTrue = keyName + "-true";
 
