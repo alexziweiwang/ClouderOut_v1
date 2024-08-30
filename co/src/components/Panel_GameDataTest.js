@@ -16,6 +16,8 @@ export default function Panel_GameDataTest({
 
     const [gameData, setGameData] = useState({});
 
+    const [editingInput, setEditingInput] = useState("");
+    const [editingItem, setEditingItem] = useState();
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -45,9 +47,7 @@ export default function Panel_GameDataTest({
 
             //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
 
-
             setFirstTimeEnter(false);
-
         }
 
     });
@@ -84,18 +84,23 @@ return (
 
                             let optionFalse = keyName + "-false";
                             let optionTrue = keyName + "-true";
+                            let inputId = keyName+"-input";
 
                             return (
-                                <tr value={currKey} key={keyName}>
+                                <tr value={currKey} key={keyName} id={inputId}>
                                     <td>{gameData[currKey]["name"]}</td>
+                                    
                                     <td>
+                                        <label>{gameData[currKey]["current_value"]}</label><br></br>
+                                        
                                         {gameData[currKey]["data_type"] === "boolean" && 
-                                        <select value={val} 
+                                        <select 
+                                            value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
-                                                let tempObj = gameData;
-                                                tempObj[currKey]["current_value"] = event.target.value;
-                                                setGameData(tempObj);
+                                                setEditingItem(inputId);
+                                                setEditingInput(event.target.value);
+
                                         }}>
                                             <option key={optionFalse} value="false">False</option>
                                             <option key={optionTrue} value="true">True</option>
@@ -103,29 +108,42 @@ return (
                                         }
 
                                         {gameData[currKey]["data_type"] === "number" && 
-                                        <input value={val} type="number"
+                                        <input 
+                                            type="number"
+                                            value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
-                                                let tempObj = gameData;
-                                                tempObj[currKey]["current_value"] = event.target.value;
-                                                setGameData(tempObj);
+                                                setEditingItem(inputId);
+
+                                                setEditingInput(event.target.value);
+
                                             }}
                                         
                                         ></input>}
 
                                         {gameData[currKey]["data_type"] === "string" && 
-                                        <input value={val}
+                                        <input 
+                                            value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
-                                                let tempObj = gameData;
-                                                tempObj[currKey]["current_value"] = event.target.value;
-                                                setGameData(tempObj);
+                                                setEditingItem(inputId);
+
+                                                setEditingInput(event.target.value);
                                             }}
                                     
                                         ></input>}
 
 
-                                        <button>Update</button>
+                                        <button
+                                            onClick={()=>{
+                                                let tempObj = gameData;
+                                                tempObj[currKey]["current_value"] = editingInput;
+                                                setGameData(tempObj);
+                                                setEditingInput("");
+
+                                            }}
+                                        
+                                        >Update</button>
                                     
                                     </td>               
                                 </tr>

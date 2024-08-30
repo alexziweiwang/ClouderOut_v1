@@ -901,7 +901,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       {/* screenWidth > screenHeight means horizontal game-screen */}
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
         <Panel_GameDataTest
-          getGameData={passInGameDataDesignList}
+          getGameDataDesignList={passInGameDataDesignList}
           initialGameData={gameDataDesignList}
 
           getScreenHeight={passInScreenHeight}
