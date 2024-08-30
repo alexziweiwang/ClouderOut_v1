@@ -4,27 +4,54 @@ import { useState, useEffect } from 'react';
 Keeps a set of creator's preferred configuration data of game-data
 */
 export default function Panel_GameDataTest({
-    getGameDataList, initialGameData,
+    getGameDataDesignList, initialGameDataDesignList,
     getScreenHeight, getScreenWidth
 }) {
 
     const [screenHeight, setScreenHeight] = useState(600);
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
-    const [gameData, setGameData] = useState(initialGameData);
+    const [gameDataDesignList, setGameDataDesignList] = useState(initialGameDataDesignList);
+
+
+    const [gameData, setGameData] = useState({});
 
     
-
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         let h = getScreenHeight();
         setScreenHeight(h);
         let w = getScreenWidth();
         setScreenWidth(w);
 
-        
-        // getGameDataList() is for "getting newly updated game-data item list", not for game-test-tracking
-       
-    });  
+        let gdDesignTemp = getGameDataDesignList();
+        setGameDataDesignList(gdDesignTemp);
+
+        if (firstTimeEnter === true) {
+
+            
+            //local test: create game-data-tracker for this test            
+                    let gdObjTemp = {};
+                    {Object.keys(gdDesignTemp).map((currKey) => {
+                        let item = gdDesignTemp[currKey];
+                        item["current_value"] = gdDesignTemp[currKey]["default_value"];
+                        gdObjTemp[currKey] = item;
+                    }); 
+                
+                    }
+                    setGameData(gdObjTemp);
+                    //local test: create game-data-tracker for this test
+
+
+            //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
+
+
+            setFirstTimeEnter(false);
+
+        }
+
+    });
+
 
 
 return (
@@ -63,8 +90,12 @@ return (
                                     <td>{gameData[currKey]["name"]}</td>
                                     <td>
                                         {gameData[currKey]["data_type"] === "boolean" && 
-                                        <select value={val} onChange={(event)=>{
-                                            //TODO event.target.value
+                                        <select value={val} 
+                                            onChange={(event)=>{
+                                                //TODO event.target.value
+                                                let tempObj = gameData;
+                                                tempObj[currKey]["current_value"] = event.target.value;
+                                                setGameData(tempObj);
                                         }}>
                                             <option key={optionFalse} value="false">False</option>
                                             <option key={optionTrue} value="true">True</option>
@@ -75,6 +106,9 @@ return (
                                         <input value={val} type="number"
                                             onChange={(event)=>{
                                                 //TODO event.target.value
+                                                let tempObj = gameData;
+                                                tempObj[currKey]["current_value"] = event.target.value;
+                                                setGameData(tempObj);
                                             }}
                                         
                                         ></input>}
@@ -83,6 +117,9 @@ return (
                                         <input value={val}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
+                                                let tempObj = gameData;
+                                                tempObj[currKey]["current_value"] = event.target.value;
+                                                setGameData(tempObj);
                                             }}
                                     
                                         ></input>}

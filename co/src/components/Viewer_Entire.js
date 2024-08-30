@@ -14,7 +14,7 @@ import NavigationPreview from './NavigationPreview';
 export default function Viewer_Entire({isDisplay, 
     makeNotDisplay, navigationObj,
     initialChapterList, getChapterList,
-    getGameData, initialGameData,
+   
     isEmu,
     updatePlayingGameData,
     getPlayerProfile, initialPlayerProfile,
