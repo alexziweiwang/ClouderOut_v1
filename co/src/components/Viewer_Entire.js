@@ -90,6 +90,11 @@ export default function Viewer_Entire({isDisplay,
     const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
 
 //TODO (with "changing" during in-game actions)
+const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is tracked here (when "playing" starts)
+
+
+
+
 //game-data tracker
 //progress-tracker: current-chapter & current-node
 //path deciding parts
@@ -101,7 +106,6 @@ export default function Viewer_Entire({isDisplay,
             // card-game, or board-game, etc.
                
 
-    const [navPageStatus, setNavPageStatus] = useState("Main Page");
 
     const [chapterList, setChapterList] = useState(initialChapterList); 
 

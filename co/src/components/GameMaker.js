@@ -799,6 +799,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       
 
         <div className="sectionArea"> 
+
           <div>
             Screen Size for all navigation pages: 
             <select
@@ -820,6 +821,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           </div>
 
           <div className="parallelFrame">
+              
+              
               <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
@@ -895,11 +898,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       />
 
 
-
-
-
-{/* screenWidth > screenHeight means horizontal game-screen */}
-      {showGameDataPanel && 
+      {/* screenWidth > screenHeight means horizontal game-screen */}
+      {(showGameDataPanel && isDisplayEntireGameViewer) && 
         <Panel_GameDataTest
           getGameData={passInGameDataLocal}
           initialGameData={gameDataLocal}
@@ -907,7 +907,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getScreenWidth={passInScreenWidth}
         />
 
-            }
+      }
 
      
       

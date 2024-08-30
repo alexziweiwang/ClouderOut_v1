@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+/*
+Keeps a set of creator's preferred configuration data of game-data
+*/
 export default function Panel_GameDataTest({
     getGameData, initialGameData,
     getScreenHeight, getScreenWidth
@@ -17,9 +20,6 @@ export default function Panel_GameDataTest({
         setScreenWidth(w);
         let gdMap = getGameData();
         setGameData(gdMap);
-
-
-
     });  
 
 
@@ -50,11 +50,42 @@ return (
                                         || gameData[currKey]["current_value"] === "true") ? 
                                         "true" : "false") 
                                 : gameData[currKey]["current_value"];
+                            let optionFalse = keyName + "-false";
+                            let optionTrue = keyName + "-true";
 
                             return (
                                 <tr value={currKey} key={keyName}>
                                     <td>{gameData[currKey]["name"]}</td>
-                                    <td>{val}</td>               
+                                    <td>
+                                        {gameData[currKey]["data_type"] === "boolean" && 
+                                        <select value={val} onChange={(event)=>{
+                                            //TODO event.target.value
+                                        }}>
+                                            <option key={optionFalse} value="false">False</option>
+                                            <option key={optionTrue} value="true">True</option>
+                                        </select>
+                                        }
+
+                                        {gameData[currKey]["data_type"] === "number" && 
+                                        <input value={val} type="number"
+                                            onChange={(event)=>{
+                                                //TODO event.target.value
+                                            }}
+                                        
+                                        ></input>}
+
+                                        {gameData[currKey]["data_type"] === "string" && 
+                                        <input value={val}
+                                            onChange={(event)=>{
+                                                //TODO event.target.value
+                                            }}
+                                    
+                                        ></input>}
+
+
+                                        <button>Update</button>
+                                    
+                                    </td>               
                                 </tr>
                             
                             );

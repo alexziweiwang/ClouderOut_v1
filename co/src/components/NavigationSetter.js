@@ -215,13 +215,8 @@ export default function NavigationSetter({initialNavObj,
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
-      
-   <button>{saveChangesText[languageCode]}</button>
-
-
-     <br></br><br></br>
-  
-     <label>Select a Page to setup:</label>
+        
+      <label>Select a Page to setup:</label>
       <select value={currentSettingPage}
         onChange={(event)=>{
           setCurrentSettingPage(event.target.value);
@@ -237,6 +232,11 @@ export default function NavigationSetter({initialNavObj,
           <option value="Shop Page" key="Shop Page">Shop Page</option>
           <option value="During Game" key="During Game">*During Game-play*</option>
       </select>
+
+      <br></br><br></br>
+
+      <button>{saveChangesText[languageCode]}</button>
+
       <br></br><br></br>
       <div>
         <label>Font for all UI in navigation system:</label>
