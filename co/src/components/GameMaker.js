@@ -899,18 +899,19 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
       {/* screenWidth > screenHeight means horizontal game-screen */}
+
+      {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
         <Panel_GameDataTest
+          localTest={true}
           getGameDataDesignList={passInGameDataDesignList}
           initialGameData={gameDataDesignList}
-
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}
         />
-
       }
+      {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
 
-     
       
       
       </div>}

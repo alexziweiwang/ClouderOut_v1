@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 Keeps a set of creator's preferred configuration data of game-data
 */
 export default function Panel_GameDataTest({
+    localTest,
     getGameDataDesignList, initialGameDataDesignList,
     getScreenHeight, getScreenWidth
 }) {
@@ -31,21 +32,27 @@ export default function Panel_GameDataTest({
 
         if (firstTimeEnter === true) {
 
+            if (localTest === true) {
+                //local test: create game-data-tracker for this test            
+                let gdObjTemp = {};
+                {Object.keys(gdDesignTemp).map((currKey) => {
+                    let item = gdDesignTemp[currKey];
+                    item["current_value"] = gdDesignTemp[currKey]["default_value"];
+                    gdObjTemp[currKey] = item;
+                }); 
             
-            //local test: create game-data-tracker for this test            
-                    let gdObjTemp = {};
-                    {Object.keys(gdDesignTemp).map((currKey) => {
-                        let item = gdDesignTemp[currKey];
-                        item["current_value"] = gdDesignTemp[currKey]["default_value"];
-                        gdObjTemp[currKey] = item;
-                    }); 
+                }
+                setGameData(gdObjTemp);
+                //local test: create game-data-tracker for this test
+
+            } else {
+                //TODO not local-test
                 
-                    }
-                    setGameData(gdObjTemp);
-                    //local test: create game-data-tracker for this test
+                //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
+
+            }
 
 
-            //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
 
             setFirstTimeEnter(false);
         }
