@@ -71,6 +71,7 @@ return (
                                 <tr>
                                     <th>Name</th>
                                     <th>Value</th>
+                                    <th>default Value</th>
                                 </tr>
                             </thead>  
                             <tbody> 
@@ -84,6 +85,7 @@ return (
 
                             let optionFalse = keyName + "-false";
                             let optionTrue = keyName + "-true";
+                            let optionNone = keyName + "-unselected";
                             let inputId = keyName+"-input";
 
                             return (
@@ -91,17 +93,19 @@ return (
                                     <td>{gameData[currKey]["name"]}</td>
                                     
                                     <td>
-                                        <label>{gameData[currKey]["current_value"]}</label><br></br>
+                                        <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["current_value"] : (gameData[currKey]["current_value"] == "true" ? "True" : "False")}</label><br></br>
                                         
                                         {gameData[currKey]["data_type"] === "boolean" && 
                                         <select 
+                                            style={{"width": "90px"}}
                                             value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
                                                 setEditingItem(inputId);
                                                 setEditingInput(event.target.value);
 
-                                        }}>
+                                        }}> 
+                                            <option key={optionNone} value=""> -- </option>
                                             <option key={optionFalse} value="false">False</option>
                                             <option key={optionTrue} value="true">True</option>
                                         </select>
@@ -110,6 +114,7 @@ return (
                                         {gameData[currKey]["data_type"] === "number" && 
                                         <input 
                                             type="number"
+                                            style={{"width": "90px"}}
                                             value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
@@ -123,6 +128,7 @@ return (
 
                                         {gameData[currKey]["data_type"] === "string" && 
                                         <input 
+                                            style={{"width": "90px"}}
                                             value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
                                                 //TODO event.target.value
@@ -140,12 +146,25 @@ return (
                                                 tempObj[currKey]["current_value"] = editingInput;
                                                 setGameData(tempObj);
                                                 setEditingInput("");
-
+                                                setEditingItem();
                                             }}
                                         
                                         >Update</button>
                                     
-                                    </td>               
+                                    </td>   
+
+                                    <td>
+                                    <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["default_value"] : (gameData[currKey]["default_value"] == "true" ? "True" : "False")}</label><br></br>
+                                        <button 
+                                            onClick={()=>{
+                                                let tempObj = gameData;
+                                                tempObj[currKey]["current_value"] = tempObj[currKey]["default_value"];
+                                                setGameData(tempObj);
+                                                setEditingInput("");
+                                                setEditingItem(inputId);
+                                            }}
+                                        >Reset</button>
+                                    </td>            
                                 </tr>
                             
                             );
