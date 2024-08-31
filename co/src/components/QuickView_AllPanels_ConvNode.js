@@ -327,7 +327,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             <button onClick={()=>{handleQViewCancel();}}> {closeText[languageCode]} </button>
             <button onClick={()=>{resetViewingPiece();}}> {resetText[languageCode]} </button>
 
-                <div className="parallelFrame" style={{"overflow": "scroll"}}>
+                <div  style={{"overflow": "scroll", "display": "flex"}}>
 
                 <GameScreen_QuickView_ConvNode
                     initialPieceNum={initialPieceNum}
@@ -357,6 +357,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        initialGameDataDesignList={gameDataDesignList}
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
+                       isQuickView={true}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 

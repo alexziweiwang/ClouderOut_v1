@@ -6,7 +6,8 @@ Keeps a set of creator's preferred configuration data of game-data
 export default function Panel_GameDataTest({
     localTest,
     getGameDataDesignList, initialGameDataDesignList,
-    getScreenHeight, getScreenWidth
+    getScreenHeight, getScreenWidth,
+    isQuickView
 }) {
 
     const [screenHeight, setScreenHeight] = useState(600);
@@ -64,12 +65,12 @@ export default function Panel_GameDataTest({
 return (
     
 <div style={{
-                "width": `${screenHeight}px`, 
+                "width": `570px`, 
                 "height": `${screenHeight}px`, 
                 "overflow": "scroll", 
                 "backgroundColor": "grey",
                 "color": "#FFFFFF",
-                "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
+                "marginLeft": (isQuickView === true) ? "260px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
                 }}>
                 <label>Game Data Panel</label>
                 <br></br>

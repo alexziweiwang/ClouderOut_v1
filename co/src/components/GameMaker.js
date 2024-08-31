@@ -908,6 +908,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           initialGameData={gameDataDesignList}
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}
+          isQuickView={false}
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}

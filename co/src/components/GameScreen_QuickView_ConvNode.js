@@ -279,7 +279,7 @@ const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve
         // }     //TODO: remove unusued later
 
     return (         
-        <div className="previewArea"   
+        <div   
                     style={{"position": "relative", 
                         "height": `${screenHeight}px`, 
                         "width": `${screenWidth}px`,
@@ -398,8 +398,6 @@ const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve
                     {/* //TODO add standardButtonGroup component
                     //TODO add ConNav component */}
 
-
-            Preview Area ...
             </div>
 
     );
