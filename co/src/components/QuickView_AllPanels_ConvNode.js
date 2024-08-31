@@ -46,6 +46,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     
     const [resetSignal, setResetSignal] = useState(false);
 
+    const [clickOnGameScreen, setClickOnGameScreen] = useState(false);
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
@@ -111,8 +113,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     });
 
-
-
     function updateCharPicArr() {
         if (currPieceNum < 0) {
             return;
@@ -150,8 +150,19 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
           }
         
         } 
-      }    
+    } 
+    
+    function triggerClickOnGameScreen() {
+        setClickOnGameScreen(true);
+    }
 
+    function triggerClickOnGameDataPanel() {
+        setClickOnGameScreen(false);
+    }
+
+    function passInClickingObjectStatus() {
+        return clickOnGameScreen;
+    }
 /*
     function triggerToDirectNextPiece() {
  
@@ -345,9 +356,11 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     getCurrPieceNum={passInCurrPieceNum}
                     getResetSignal={passInResetSignal}
                     notifyNewGameData={notifyNewGameData}
+                    triggerClickOnGameScreen={triggerClickOnGameScreen}
                 />
 
         
+// triggerClickOnGameScreen(),     triggerClickOnGameDataPanel(),     passInClickingObjectStatus()
 
 
 
@@ -358,6 +371,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
                        isQuickView={true}
+                       triggerClickOnGameDataPanel={triggerClickOnGameDataPanel}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 

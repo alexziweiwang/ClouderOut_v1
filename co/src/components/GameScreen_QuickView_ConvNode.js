@@ -11,6 +11,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     uiData4_logPageSettings,
     visualList, audioList, gameData,notifyNewGameData,
     getResetSignal,
+    triggerClickOnGameScreen,
 }) {
 
 
@@ -284,6 +285,9 @@ const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve
                         "height": `${screenHeight}px`, 
                         "width": `${screenWidth}px`,
                         "top": "0px"
+                    }}
+                    onClick={()=>{
+                        triggerClickOnGameScreen();
                     }}
                     >
             {<div style={{

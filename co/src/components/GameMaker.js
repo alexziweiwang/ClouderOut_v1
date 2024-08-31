@@ -717,6 +717,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       modalStyleName = "displayNone modalBackboard";
   }
 
+  function notUsing() {
+    //not doing anything
+  }
+
 
   return (
   <div>
@@ -909,6 +913,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}
           isQuickView={false}
+          triggerClickOnGameDataPanel={notUsing}
+          
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
