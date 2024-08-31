@@ -7,7 +7,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, initialGameDataDesignList}) {
+    visualList, audioList, initialGameDataDesignList, getGameDataDesignList}) {
 
     let modalStyleName = "modalBackboard";
 
@@ -52,15 +52,15 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
  
       if (firstTimeEnter === true) {
 
-        // let gameDataTemp = gameData; //TODO refactor for separating
-        // let defaultMap = {}; //for the record of entering-game-data
+        let gameDataTemp = getGameDataDesignList(); //TODO refactor for separating
+        let defaultMap = {}; //for the record of entering-game-data
 
-        // {Object.keys(gameDataTemp).map((currKey) => {
-        //     gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-        //     //current_value, data_type("boolean"/"string"/"number"), default_value, name
-        //     defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-        // })}
-        // setGameDataTracker(gameDataTemp); 
+        {Object.keys(gameDataTemp).map((currKey) => {
+            gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
+            //current_value, data_type("boolean"/"string"/"number"), default_value, name
+            defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
+        })}
+        setGameDataTracker(gameDataTemp); 
 
         // setOriginalGmdt(defaultMap); //TODO refactor for separating
 
@@ -309,15 +309,15 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     function passInScreenHeight() {
-        //TODO
+        return screenHeight;
     }
 
     function passInScreenWidth() {
-        //TODO
+        return screenWidth;
     }
 
     function passInGameDataDesignList() {
-        //TODO
+        return gameDataDesignList;
     }
 
     return ( <div className={modalStyleName}>
@@ -348,38 +348,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                 />
 
         
-                <div className="previewArea" style={{"width": "350px", "height": `${screenHeight}px`, "overflow": "scroll"}}>
-                        Game Data Area...
-                        {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
-                        
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>  
-                            <tbody> 
-                        {Object.keys(gameDataTracker).map((currKey) => {
-                            let keyName = "gmdt" + currKey;
-                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataTracker[currKey]["current_value"] === true || gameDataTracker[currKey]["current_value"] === "true") ? 
-                                        "true" : "false") 
-                                : gameDataTracker[currKey]["current_value"];
-
-                            return (
-                                <tr value={currKey} key={keyName}>
-                                    <td>{gameDataTracker[currKey]["name"]}</td>
-                                    <td>{val}</td>               
-                                </tr>
-                            
-                            );
-                        })}
-                            </tbody>  
-                        </table>
-                    </div>
-
-
 
 
 
@@ -390,6 +358,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
                 />
+{/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 
 
 

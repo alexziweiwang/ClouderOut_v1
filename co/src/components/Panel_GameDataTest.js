@@ -32,7 +32,7 @@ export default function Panel_GameDataTest({
 
         if (firstTimeEnter === true) {
 
-            if (localTest === true) {
+            if (localTest === true && gdDesignTemp !== undefined) {
                 //local test: create game-data-tracker for this test            
                 let gdObjTemp = {};
                 {Object.keys(gdDesignTemp).map((currKey) => {
@@ -64,7 +64,7 @@ export default function Panel_GameDataTest({
 return (
     
 <div style={{
-                "width": "370px", 
+                "width": `${screenHeight}px`, 
                 "height": `${screenHeight}px`, 
                 "overflow": "scroll", 
                 "backgroundColor": "grey",
@@ -82,6 +82,8 @@ return (
                                 </tr>
                             </thead>  
                             <tbody> 
+
+
                         {Object.keys(gameData).map((currKey) => {
                             let keyName = "gmdt" + currKey;
                             let val = gameData[currKey]["data_type"] === "boolean" ? 
@@ -178,8 +180,14 @@ return (
                             
                             );
                         })}
+
+
+                        
                             </tbody>  
                         </table>
             </div>
+
+
+
 );
 }

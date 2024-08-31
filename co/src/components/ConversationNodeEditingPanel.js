@@ -265,8 +265,8 @@ export default function ConversationNodeEditingPanel() {
     const [screenHeight, setScreenHeight] = useState(600);
 
 
-    const [gameDataDesignList, setGameData] = useState({});
-
+    const [gameDataDesignList, setGameData] = useState({});                    /* Important */
+ 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
@@ -291,7 +291,7 @@ export default function ConversationNodeEditingPanel() {
         navigate('/projectmanagingpanel', { replace: true });
     }
 
-    function passInGameData() {
+    function passInGameDataDesignList() {
         return gameDataDesignList;
     }
 
@@ -788,6 +788,7 @@ export default function ConversationNodeEditingPanel() {
                 visualList={visualList}
                 audioList={audioList}
                 initialGameDataDesignList={gameDataDesignList}
+                getGameDataDesignList={passInGameDataDesignList}
             />}
 
 
