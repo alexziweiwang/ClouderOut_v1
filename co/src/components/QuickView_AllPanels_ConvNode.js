@@ -160,7 +160,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         setClickOnGameScreen(false);
     }
 
-    function passInClickingObjectStatus() {
+    function passInIsGameScreenClicked() {
         return clickOnGameScreen;
     }
 /*
@@ -357,6 +357,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     getResetSignal={passInResetSignal}
                     notifyNewGameData={notifyNewGameData}
                     triggerClickOnGameScreen={triggerClickOnGameScreen}
+                    getIsGameScreenClicked={passInIsGameScreenClicked}
                 />
 
         
@@ -372,6 +373,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        getScreenWidth={passInScreenWidth}
                        isQuickView={true}
                        triggerClickOnGameDataPanel={triggerClickOnGameDataPanel}
+                       getIsGameScreenClicked={passInIsGameScreenClicked}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 

@@ -7,7 +7,7 @@ export default function Panel_GameDataTest({
     localTest,
     getGameDataDesignList, initialGameDataDesignList,
     getScreenHeight, getScreenWidth,
-    isQuickView, triggerClickOnGameDataPanel
+    isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked
 }) {
 
     const [screenHeight, setScreenHeight] = useState(600);
@@ -71,7 +71,7 @@ return (
                 "overflow": "scroll", 
                 "backgroundColor": "grey",
                 "color": "#FFFFFF",
-                "marginLeft": (isQuickView === true) ? "260px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
+                "marginLeft": (isQuickView === true) ? "60px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
                 }}
     onClick={()=>{
         triggerClickOnGameDataPanel();

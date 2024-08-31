@@ -914,7 +914,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getScreenWidth={passInScreenWidth}
           isQuickView={false}
           triggerClickOnGameDataPanel={notUsing}
-          
+          getIsGameScreenClicked={notUsing}
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}

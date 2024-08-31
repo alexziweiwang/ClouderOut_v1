@@ -11,9 +11,8 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     uiData4_logPageSettings,
     visualList, audioList, gameData,notifyNewGameData,
     getResetSignal,
-    triggerClickOnGameScreen,
+    triggerClickOnGameScreen, getIsGameScreenClicked,
 }) {
-
 
         let modalStyleName = "modalBackboard"; 
 
@@ -42,7 +41,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
         
 
 const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve!
-
+const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
 
         const [originalGmdt, setOriginalGmdt] = useState({});
     
@@ -67,7 +66,14 @@ const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve
             setFirstTimeEnter(false);
           }
     
-    
+            let clickStatus = getIsGameScreenClicked();
+            if (clickStatus === true) {
+                //clicked on game-screen
+                setGameScreenClickedStatus(true);
+            }
+
+
+
             if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
                 allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
                 setDirectNextPieceBool(false);
