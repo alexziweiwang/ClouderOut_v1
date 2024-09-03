@@ -60,7 +60,7 @@ export default function PieceSetter({
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [selectTextContent, setSelectTextContent] = useState(true);
+    const [selectEditTextContent, setSelectEditTextContent] = useState(true);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
@@ -204,12 +204,23 @@ export default function PieceSetter({
         updateToCaller(tempObj);
     }
 
-    function handleSpeakerNameReset() {
-        setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": ""});
+    function handleStndBtnReset() {
+        // stnd_btn_arr
+        let emptyArr = []
+        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": emptyArr});
         let tempObj = currentPieceDetail;
-        tempObj["speaker_name"] = "";
-
+        tempObj["stnd_btn_arr"] = emptyArr;
         updateToCaller(tempObj);
+
+        setStndButtonDataTable([]);
+
+        setStndButtonText("");
+        setStndButtonConsequenceArray([]);
+        setDisplayStndButtonAdd(false);
+        setStndBtnConseqGDataItemSelected("");
+        setStndBtnConseqGDataTypeSelected("");
+        setStndBtnConseqBecomeAmount("");
+
     }
 
     function handleTextContentReset() {
@@ -268,8 +279,10 @@ export default function PieceSetter({
     function collapseAllOptions() {
         setBgPicAdd(false);
         setCharPicAdd(false);
+
         setTextContentInfoAdd(false);
         setClickableAdd(false);
+
         setBgMusicAdd(false);
         setVoicelineAdd(false);
     }
@@ -277,8 +290,10 @@ export default function PieceSetter({
     function expandAllOptions() {
         setBgPicAdd(true);
         setCharPicAdd(true);
+
         setTextContentInfoAdd(true);
         setClickableAdd(true);
+        
         setBgMusicAdd(true);
         setVoicelineAdd(true);
     }
@@ -481,9 +496,9 @@ export default function PieceSetter({
     }
     
 
-    function setupHideTextFrame(boolVar) {
+    function setupDisplayTextFrame(boolVar) {
         let isDisplay = boolVar;
-        console.log("isDisplay???" , isDisplay);
+                                                            console.log("isDisplay???" , isDisplay); //TODO test
         setCurrentPieceDetail({...currentPieceDetail,  "displayTextFrame": isDisplay});
         let tempObj = currentPieceDetail;
         tempObj["displayTextFrame"] = isDisplay;
@@ -585,16 +600,15 @@ export default function PieceSetter({
 
 
             <input type="radio"
-                value={selectTextContent}
-                checked={selectTextContent}
+                value={selectEditTextContent}
+                checked={selectEditTextContent}
                 onChange={()=>{
                     let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
                     if (response === true) {
-                        setSelectTextContent(true);
+                        setSelectEditTextContent(true);
                         setTextContentInfoAdd(true);
                         setClickableAdd(false); 
-                        //TODO empty the clickable-button settings
-
+                        handleStndBtnReset();
                     }
                     
                 }}
@@ -602,10 +616,10 @@ export default function PieceSetter({
                 onClick={()=>{
                     let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
                     if (response === true) {
-                        setSelectTextContent(true);
+                        setSelectEditTextContent(true);
                         setTextContentInfoAdd(true);
                         setClickableAdd(false); 
-                        //TODO empty the clickable-button settings
+                        handleStndBtnReset();
                     }
                 }}
             >Text Content</label><br></br>
@@ -615,15 +629,16 @@ export default function PieceSetter({
 
 
             <input type="radio"
-                value={selectTextContent}
-                checked={!selectTextContent}
+                value={selectEditTextContent}
+                checked={!selectEditTextContent}
                 onChange={()=>{
                     let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
                     if (response === true) {
-                        setSelectTextContent(false);
+                        setSelectEditTextContent(false);
                         setTextContentInfoAdd(false);
                         setClickableAdd(true);
                         handleTextContentReset();
+                        setupDisplayTextFrame(false);
                     }
 
                 }}
@@ -631,10 +646,11 @@ export default function PieceSetter({
                 onClick={()=>{
                     let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
                     if (response === true) {
-                        setSelectTextContent(false);
+                        setSelectEditTextContent(false);
                         setTextContentInfoAdd(false);
                         setClickableAdd(true);
                         handleTextContentReset();
+                        setupDisplayTextFrame(false);
                     }
                 }}
             >Clickables / Buttons</label><br></br>
@@ -667,9 +683,9 @@ export default function PieceSetter({
                         checked={currentPieceDetail["displayTextFrame"]} 
                         onChange={()=>{
                             if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
-                                setupHideTextFrame(true);
+                                setupDisplayTextFrame(true);
                             } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
-                                setupHideTextFrame(false);
+                                setupDisplayTextFrame(false);
                             }                
                         }}
                 
@@ -678,9 +694,9 @@ export default function PieceSetter({
                         style={{"userSelect": "none"}}
                         onClick={()=>{
                             if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
-                                setupHideTextFrame(true);
+                                setupDisplayTextFrame(true);
                             } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
-                                setupHideTextFrame(false);
+                                setupDisplayTextFrame(false);
                             }                   
                         }}
                         >Include Textframe Content</label>
