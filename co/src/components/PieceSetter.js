@@ -22,7 +22,7 @@ export default function PieceSetter({
     const listText = ["List"];
     const collapseAllText = ["Collapse All"];
     const expandAllText = ["Expand All"];
-    const speakerNameSettingText = ["Speaker Name Setting"];
+    const textContentSettingText = ["Text Content Setting"];
     const resetText = ["Reset"];
     const bgpSettingText = ["Background Picture Setting"];
     const manageResourceText = ["Manage Resource"];
@@ -50,7 +50,7 @@ export default function PieceSetter({
 
     const [bgpicAdd, setBgPicAdd] = useState(true);
     const [charPicAdd, setCharPicAdd] = useState(true);
-    const [speakerNameAdd, setSpeakerNameAdd] = useState(true);
+    const [textContentInfoAdd, setTextContentInfoAdd] = useState(true);
     const [clickableAdd, setClickableAdd] = useState(true);
     const [bgMusicAdd, setBgMusicAdd] = useState(true);
     const [voicelineAdd, setVoicelineAdd] = useState(true);
@@ -238,7 +238,7 @@ export default function PieceSetter({
     }
 
     function toggleSpeakerNameOption() {
-        setSpeakerNameAdd(!speakerNameAdd);
+        setTextContentInfoAdd(!textContentInfoAdd);
     }
 
     function toggleclickableAddOption() {
@@ -256,7 +256,7 @@ export default function PieceSetter({
     function collapseAllOptions() {
         setBgPicAdd(false);
         setCharPicAdd(false);
-        setSpeakerNameAdd(false);
+        setTextContentInfoAdd(false);
         setClickableAdd(false);
         setBgMusicAdd(false);
         setVoicelineAdd(false);
@@ -265,7 +265,7 @@ export default function PieceSetter({
     function expandAllOptions() {
         setBgPicAdd(true);
         setCharPicAdd(true);
-        setSpeakerNameAdd(true);
+        setTextContentInfoAdd(true);
         setClickableAdd(true);
         setBgMusicAdd(true);
         setVoicelineAdd(true);
@@ -569,232 +569,75 @@ export default function PieceSetter({
 
             <label>Piece: {lookingPieceNumber}</label>
             <br></br>
-            <label> Text to display: </label>
-            <br></br>
-            <textarea
-                value={currentPieceDetail["content"]}
-                onChange={(event)=>{handleTextContentEnter(event);}}
-            >
-                {currentPieceDetail["content"]}
-            </textarea>
-            <input type="checkbox" value={currentPieceDetail["displayTextFrame"]} 
-            checked={currentPieceDetail["displayTextFrame"]} 
-            onChange={()=>{
-                if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
-                    setupHideTextFrame(true);
-                } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
-                    setupHideTextFrame(false);
-                }                
-            }}
-    
-            ></input>
-            <label
-            style={{"userSelect": "none"}}
-            onClick={()=>{
-                if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
-                    setupHideTextFrame(true);
-                } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
-                    setupHideTextFrame(false);
-                }                   
-            }}
-            >Include Textframe Content</label>
+
+
+
+            <input type="radio"></input><label>Text Content</label><br></br>
+            <div className="indentOne">
+
+            </div>
+
+
+            <input type="radio"></input><label>Clickables / Buttons</label><br></br>
+            <div className="indentOne">
+
+            </div>
+            <br></br><br></br><br></br><br></br>
+
+
+           
 
             <br></br>
             <br></br>
-            {!speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{speakerNameSettingText[languageCode]}   ︾</button>}
-            {speakerNameAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{speakerNameSettingText[languageCode]}  ︽</button>}
+            {!textContentInfoAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{textContentSettingText[languageCode]}   ︾</button>}
+            {textContentInfoAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{textContentSettingText[languageCode]}  ︽</button>}
             <br></br>
 
-            {speakerNameAdd && 
+            {textContentInfoAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{handleSpeakerNameReset()}}> {resetText[languageCode]} </button>
+                    
+                    <br></br>
+                    <label> Text to display: </label>
+                    <br></br>
+                    <div className="indentOne">
+                        <textarea
+                            value={currentPieceDetail["content"]}
+                            onChange={(event)=>{handleTextContentEnter(event);}}
+                        >
+                        {currentPieceDetail["content"]}
+                        </textarea>
+                        <input type="checkbox" value={currentPieceDetail["displayTextFrame"]} 
+                        checked={currentPieceDetail["displayTextFrame"]} 
+                        onChange={()=>{
+                            if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
+                                setupHideTextFrame(true);
+                            } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
+                                setupHideTextFrame(false);
+                            }                
+                        }}
+                
+                        ></input>
+                        <label
+                        style={{"userSelect": "none"}}
+                        onClick={()=>{
+                            if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
+                                setupHideTextFrame(true);
+                            } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
+                                setupHideTextFrame(false);
+                            }                   
+                        }}
+                        >Include Textframe Content</label>
+                    </div>
+                   
                     <br></br>
                     <label>Speaker Name:  </label>
 
                     <input value={currentPieceDetail["speaker_name"]} onChange={(event)=>{handleSpeakerNameEnter(event);}}></input>
                 </div>   
             }
-            
-            {!bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︾</button>}
-            {bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︽</button>}
-            <br></br>
 
-            {bgpicAdd && 
-                <div className="optionAreaSelected2">
-
-                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> {resetText[languageCode]} </button>
-                    <br></br>
-                    <label>Operation: </label>
-                    <select 
-                        value={currentPieceDetail["bgp_action"]}
-                        onChange={(event)=>{
-                            handleBgpSwitchAction(event);
-                        }}
-                    >
-                        <option key="bgpOperationDefaultMaintain" value="maintainBgp">-- Select Operation (default: maintain) --</option>
-                        <option key="switchToNewBgp" value="switchToNewBgp">switchToNew</option>
-                    </select>
-
-
-                    {currentPieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
-                        <label>Source:  </label>
-                        <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
-                            <option key="bgp01" value=""> ︽- Select picture name -- </option>
-                            <option key="bgp_NoPic" value="">(no picture)</option>
-                            {visualList.map((item, index) => {
-                                let keyStr = "bgp-" + index + item["var"];
-                                return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                            })}
-
-                        </select>
-                        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>   
-                    </div>}
-                </div>}
-
-            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︾</button>}
-            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︽</button>}
-            <br></br>
-
-            {charPicAdd && 
-                <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> {resetText[languageCode]} </button>
-                    <br></br>
-                    <label>Operation:</label>
-                    <select 
-                        value={currentPieceDetail["chp_action"]}
-                        onChange={(event)=>{
-                            handleCharPicArrSwitchAction(event);
-                        }}>
-                            <option key="maintainCharPicArr" value="maintainCharPicArr">-- Select Operation (default: maintain) --</option>
-                            <option key="changeCharPicArr" value="changeCharPicArr">Change Character-List</option>
-                    </select>
-                    <br></br>
-
-    {currentPieceDetail["chp_action"] === "changeCharPicArr"  && <div>
-            <table>
-            <thead>        
-                <tr>
-                    <th>Source</th>
-                    <th>Position x</th>
-                    <th>Position y</th>
-                    <th>Width</th>
-                    <th>Height</th>
-                    <th>Scale</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                {charPicDataTable.map((item, index) => {
-                    let keyStr = "charPicDataTable-" + index;
-                    return (
-                        <tr key={keyStr}>
-                            {charPicDataTable.length > 0 && <td>{item[0]}</td>}
-                            <td>{item[1]}</td>
-                            <td>{item[2]}</td>
-                            <td>{item[3]}</td>
-                            <td>{item[4]}</td>                    
-                            <td>{item[5]}x</td>
-                                {(charPicDataTable.length > 0 && currentPieceDetail["chp_action"] === "changeCharPicArr") && 
-                             <td>
-                                <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
-                                    </td>
-                                }
-                          
-                        </tr>
-                    );
-                })}
-            </tbody>
-
-            </table>
-            <br></br>
-            
-            {currentPieceDetail["chp_action"] === "changeCharPicArr" && <button onClick={()=>{
-                if (anotherCharpic === true) { // going to be false (closed)
-                    resetAddingCharPicRow();
-                }
-                changeAddAnotherCharPicOption();}}>{addAnewCharPicText[languageCode]}
-            </button>}
-    </div>}
-
-    {(anotherCharpic === true && currentPieceDetail["chp_action"] === "changeCharPicArr") &&
-    <>
-        <br></br>
-
-    <label>Source:  </label>
-    <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
-        <option key="charp01" value=""> ︽- Select picture name -- </option>
-
-        {visualList.map((item, index) => {
-            let keyStr = "charpic" + index + item["var"];
-            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-        })}
-    </select >
-
-    <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>
-    <br></br>
-    <label>Position x:      </label>
-    <input type="number" min="0" max={positionMaxX} step="1" 
-        value={currentPieceDetail["chp_curr"][1]}
-        onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxX} value={currentPieceDetail["chp_curr"][1]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
-    <br></br>
-    <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={currentPieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={currentPieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
-    <br></br>
-    <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={currentPieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={currentPieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
-    <br></br>
-    <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
-    <br></br>
-    <label>Scale: </label>
-    <input type="range" className="slider" min="1" max="10" step="1" value={currentPieceDetail["chp_curr"][5]}
-        onChange={(event)=>{
-            onChangeCharPicDataScale(event);
-        }}></input><label>{currentPieceDetail["chp_curr"][5]}x</label>
-
-    <br></br>
-    <button onClick={()=>{
-        if (currentPieceDetail["chp_curr"][0] === "") {
-            console.log("warning: variable cannot be empty"); //TODO warning popping
-
-        } else {
-            /* update to cloud db for this field: character-pic */
-            let tempTable = currentPieceDetail["chp_arr"];
-            tempTable.push(currentPieceDetail["chp_curr"]);
-            setCharPicDataTable(tempTable);
-
-            let tempPieceDetail = currentPieceDetail;
-            tempPieceDetail["chp_arr"] = tempTable;
-            tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, 1];
-
-            setCurrentPieceDetail({...currentPieceDetail,  
-                "chp_arr": tempTable, 
-                "chp_curr": ["", 0, 0, 60, 120, 1]
-            });
-            
-            updateToCaller(tempPieceDetail); //TODO test
-
-            changeAddAnotherCharPicOption();
-        }
-    
-
-    }}>
-        {confirmAddText[languageCode]}
-    </button>        {/* //TODO later */}
-    
-    </>}
-
-            
-            
-            </div>}
-
-            {!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︾</button>}
+{!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︾</button>}
             {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>}
             <br></br>
 
@@ -1381,6 +1224,188 @@ export default function PieceSetter({
                 </div>
                               
                 }
+
+
+
+            
+            {!bgpicAdd
+            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︾</button>}
+            {bgpicAdd
+            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︽</button>}
+            <br></br>
+
+            {bgpicAdd && 
+                <div className="optionAreaSelected2">
+
+                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> {resetText[languageCode]} </button>
+                    <br></br>
+                    <label>Operation: </label>
+                    <select 
+                        value={currentPieceDetail["bgp_action"]}
+                        onChange={(event)=>{
+                            handleBgpSwitchAction(event);
+                        }}
+                    >
+                        <option key="bgpOperationDefaultMaintain" value="maintainBgp">-- Select Operation (default: maintain) --</option>
+                        <option key="switchToNewBgp" value="switchToNewBgp">switchToNew</option>
+                    </select>
+
+
+                    {currentPieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
+                        <label>Source:  </label>
+                        <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
+                            <option key="bgp01" value=""> ︽- Select picture name -- </option>
+                            <option key="bgp_NoPic" value="">(no picture)</option>
+                            {visualList.map((item, index) => {
+                                let keyStr = "bgp-" + index + item["var"];
+                                return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                            })}
+
+                        </select>
+                        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>   
+                    </div>}
+                </div>}
+
+            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︾</button>}
+            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︽</button>}
+            <br></br>
+
+            {charPicAdd && 
+                <div className="optionAreaSelected2">
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> {resetText[languageCode]} </button>
+                    <br></br>
+                    <label>Operation:</label>
+                    <select 
+                        value={currentPieceDetail["chp_action"]}
+                        onChange={(event)=>{
+                            handleCharPicArrSwitchAction(event);
+                        }}>
+                            <option key="maintainCharPicArr" value="maintainCharPicArr">-- Select Operation (default: maintain) --</option>
+                            <option key="changeCharPicArr" value="changeCharPicArr">Change Character-List</option>
+                    </select>
+                    <br></br>
+
+    {currentPieceDetail["chp_action"] === "changeCharPicArr"  && <div>
+            <table>
+            <thead>        
+                <tr>
+                    <th>Source</th>
+                    <th>Position x</th>
+                    <th>Position y</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                    <th>Scale</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {charPicDataTable.map((item, index) => {
+                    let keyStr = "charPicDataTable-" + index;
+                    return (
+                        <tr key={keyStr}>
+                            {charPicDataTable.length > 0 && <td>{item[0]}</td>}
+                            <td>{item[1]}</td>
+                            <td>{item[2]}</td>
+                            <td>{item[3]}</td>
+                            <td>{item[4]}</td>                    
+                            <td>{item[5]}x</td>
+                                {(charPicDataTable.length > 0 && currentPieceDetail["chp_action"] === "changeCharPicArr") && 
+                             <td>
+                                <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
+                                    </td>
+                                }
+                          
+                        </tr>
+                    );
+                })}
+            </tbody>
+
+            </table>
+            <br></br>
+            
+            {currentPieceDetail["chp_action"] === "changeCharPicArr" && <button onClick={()=>{
+                if (anotherCharpic === true) { // going to be false (closed)
+                    resetAddingCharPicRow();
+                }
+                changeAddAnotherCharPicOption();}}>{addAnewCharPicText[languageCode]}
+            </button>}
+    </div>}
+
+    {(anotherCharpic === true && currentPieceDetail["chp_action"] === "changeCharPicArr") &&
+    <>
+        <br></br>
+
+    <label>Source:  </label>
+    <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
+        <option key="charp01" value=""> ︽- Select picture name -- </option>
+
+        {visualList.map((item, index) => {
+            let keyStr = "charpic" + index + item["var"];
+            return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+        })}
+    </select >
+
+    <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>
+    <br></br>
+    <label>Position x:      </label>
+    <input type="number" min="0" max={positionMaxX} step="1" 
+        value={currentPieceDetail["chp_curr"][1]}
+        onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxX} value={currentPieceDetail["chp_curr"][1]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
+    <br></br>
+    <label>Position y:      </label>
+    <input type="number" min="0" max={positionMaxY} step="1" value={currentPieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={currentPieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <br></br>
+    <label>Width:         </label>
+    <input type="number" min="0" max={widthMax} step="1" value={currentPieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={currentPieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <br></br>
+    <label>Height:        </label>
+    <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <br></br>
+    <label>Scale: </label>
+    <input type="range" className="slider" min="1" max="10" step="1" value={currentPieceDetail["chp_curr"][5]}
+        onChange={(event)=>{
+            onChangeCharPicDataScale(event);
+        }}></input><label>{currentPieceDetail["chp_curr"][5]}x</label>
+
+    <br></br>
+    <button onClick={()=>{
+        if (currentPieceDetail["chp_curr"][0] === "") {
+            console.log("warning: variable cannot be empty"); //TODO warning popping
+
+        } else {
+            /* update to cloud db for this field: character-pic */
+            let tempTable = currentPieceDetail["chp_arr"];
+            tempTable.push(currentPieceDetail["chp_curr"]);
+            setCharPicDataTable(tempTable);
+
+            let tempPieceDetail = currentPieceDetail;
+            tempPieceDetail["chp_arr"] = tempTable;
+            tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, 1];
+
+            setCurrentPieceDetail({...currentPieceDetail,  
+                "chp_arr": tempTable, 
+                "chp_curr": ["", 0, 0, 60, 120, 1]
+            });
+            
+            updateToCaller(tempPieceDetail); //TODO test
+
+            changeAddAnotherCharPicOption();
+        }
+    
+
+    }}>
+        {confirmAddText[languageCode]}
+    </button>        {/* //TODO later */}
+    
+    </>}
+
+            
+            
+            </div>}
 
             {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText[languageCode]}  ︾</button>}
             {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText[languageCode]}  ︽</button>}
