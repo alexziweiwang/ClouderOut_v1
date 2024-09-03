@@ -650,7 +650,7 @@ export default function ConversationNodeEditingPanel() {
                             backToList={returnToList} 
                             gameDataList={gameDataDesignList} 
                             openRm={handleResourceManagerOpen}
-                            openModal_GameDataManager={handleModal_GameDataManagerOpen}
+                            openGameDataManager={handleModal_GameDataManagerOpen}
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}

@@ -26,6 +26,7 @@ export default function PieceSetter({
     const resetText = ["Reset"];
     const bgpSettingText = ["Background Picture Setting"];
     const manageResourceText = ["Manage Resource"];
+    const manageGameDataItem = ["Manage Game-Data Item"];
     const charPicSettingText = ["Character Picture Setting"];
     const addAnewCharPicText = ["Add a New Character Picture"];
     const confirmAddText = ["Confirm Add"];
@@ -916,7 +917,7 @@ export default function PieceSetter({
                                     setStndBtnConseqGDataTypeSelected(gameDataListLocal[event.target.value]["data_type"]);
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
-                        <option value="" key="defaultGameDataItem"> ︽- Select Game Data Item --</option>
+                        <option value="" key="defaultGameDataItem"> -- Select Game Data Item --</option>
                         {Object.keys(gameDataListLocal).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
@@ -926,7 +927,7 @@ export default function PieceSetter({
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}>  ︾</button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> {manageGameDataItem[languageCode]} </button>}
 
 
                     <br></br><br></br>
