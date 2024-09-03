@@ -61,11 +61,13 @@ export default function Panel_GameDataTest({
 
 
         let receiveGameScreenClicked = getIsGameScreenClicked();
+                                                               console.log("screen clicked!"); //TODO test
         if (receiveGameScreenClicked === true) {
-            //TODO receive updated game-data-obj from outer layer
+            // receive updated game-data-obj from outer layer
             let newGameDataObj = receiveGameDataObj();
+                                    console.log("\t new game-data-obj:", newGameDataObj); //TODO test
             setGameData(newGameDataObj);
-        }
+        } 
 
     });
 

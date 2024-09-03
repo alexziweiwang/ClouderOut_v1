@@ -342,3 +342,6 @@
 - 2024-Aug-28: Consider screen-size and direction management for container and game-screen
 
 - 2024-Aug-30: Analyze and organize game-data-tracking for conv-node level, refactor
+
+- 2024-Sept-02: Redesign piece-setter for option of text-content and clickables
+
