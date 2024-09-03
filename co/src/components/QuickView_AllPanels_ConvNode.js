@@ -52,31 +52,15 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
  
-      if (firstTimeEnter === true) {
+        if (firstTimeEnter === true) {
 
-        let gameDataTemp = getGameDataDesignList(); //TODO refactor for separating
-        let defaultMap = {}; //for the record of entering-game-data
-
-        {Object.keys(gameDataTemp).map((currKey) => {
-            gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-            //current_value, data_type("boolean"/"string"/"number"), default_value, name
-            defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-        })}
-        setGameDataTracker(gameDataTemp); 
-
-        // setOriginalGmdt(defaultMap); //TODO refactor for separating
+            initializeGameDataTracker();
 
 
 
-
-
-
-
-
-
- 
-        setFirstTimeEnter(false);
-      }
+    
+            setFirstTimeEnter(false);
+        }
 
         if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
             allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
@@ -198,18 +182,37 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
-    function resetViewingPiece() {
-        let gameDataTemp = gameDataTracker;
+    function initializeGameDataTracker() {
+        let gameDataTemp = getGameDataDesignList(); //TODO refactor for separating
+        let defaultMap = {}; //for the record of entering-game-data
 
-        {Object.keys(gameDataDesignList).map((currKey) => {
-            gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
+        {Object.keys(gameDataTemp).map((currKey) => {
+            gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
+            //current_value, data_type("boolean"/"string"/"number"), default_value, name
+            defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
         })}
-        setGameDataTracker(gameDataTemp);
+        setGameDataTracker(gameDataTemp); 
 
-                                                        console.log("now gameDataTemp = ", gameDataTemp);
-                                                        console.log("now gameDataTracker = ", gameDataTracker);
+    }
 
-                                                        console.log("initialPieceNum = ", initialPieceNum);
+    function resetViewingPiece() {
+
+
+        //TODO temp removed
+        // let gameDataTemp = gameDataTracker; 
+
+        // {Object.keys(gameDataDesignList).map((currKey) => {
+        //     gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
+        // })}
+        // setGameDataTracker(gameDataTemp);
+
+        //                                                 console.log("now gameDataTemp = ", gameDataTemp);
+        //                                                 console.log("now gameDataTracker = ", gameDataTracker);
+
+        //                                                 console.log("initialPieceNum = ", initialPieceNum);
+         //TODO temp removed
+
+        initializeGameDataTracker();
 
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
         setResetSignal(true);
