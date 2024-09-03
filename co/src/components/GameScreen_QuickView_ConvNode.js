@@ -113,8 +113,6 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                 setCurrPieceNum(pieceNumTemp);
             }
 
-      
-    
         });
     
     
@@ -231,6 +229,8 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             let gmdtObj = gameDataTracker;
             gmdtObj[name].current_value = value;
             setGameDataTracker(gmdtObj);
+
+            console.log("changed-game-data-obj: ", gmdtObj); //TODO test
             
             //TODO3 update to outer-layer
             notifyNewGameData(gmdtObj);
@@ -238,6 +238,10 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         }
     
         function changeGameDataByStatement(name, action, newVal, type) {
+            console.log("changeGameDataByStatement(): ", name, ":", action, ", ", newVal, " (", type, ")"); //TODO test
+            console.log("curr-val = ", gameDataTracker[name]["current_value"]); //TODO test
+
+
             if (type === "boolean" || type === "string") {
                 // type - boolean 
                     // action is "becomes"
@@ -405,8 +409,6 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             />}
 
 
-                    {/* //TODO add standardButtonGroup component
-                    //TODO add ConNav component */}
 
             </div>
 

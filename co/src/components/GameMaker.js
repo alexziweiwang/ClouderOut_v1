@@ -722,6 +722,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
 
+  function viewerSourceGameDataUpdate() {
+    return {"default": "impl for viewer_entire later"}; //TODO5 later
+  }
+
   return (
   <div>
     
@@ -915,6 +919,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           isQuickView={false}
           triggerClickOnGameDataPanel={notUsing}
           getIsGameScreenClicked={notUsing}
+          receiveGameDataObj={viewerSourceGameDataUpdate}
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}

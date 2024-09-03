@@ -334,6 +334,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return gameDataDesignList;
     }
 
+    function passInGameDataFromScreen() {
+        return gameDataTracker;
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
@@ -377,6 +381,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        isQuickView={true}
                        triggerClickOnGameDataPanel={triggerClickOnGameDataPanel}
                        getIsGameScreenClicked={passInIsGameScreenClicked}
+                       receiveGameDataObj={passInGameDataFromScreen}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 

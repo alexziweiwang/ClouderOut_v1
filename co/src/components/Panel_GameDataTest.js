@@ -7,7 +7,8 @@ export default function Panel_GameDataTest({
     localTest,
     getGameDataDesignList, initialGameDataDesignList,
     getScreenHeight, getScreenWidth,
-    isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked
+    isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
+    receiveGameDataObj
 }) {
 
     const [screenHeight, setScreenHeight] = useState(600);
@@ -56,6 +57,14 @@ export default function Panel_GameDataTest({
 
 
             setFirstTimeEnter(false);
+        }
+
+
+        let receiveGameScreenClicked = getIsGameScreenClicked();
+        if (receiveGameScreenClicked === true) {
+            //TODO receive updated game-data-obj from outer layer
+            let newGameDataObj = receiveGameDataObj();
+            setGameData(newGameDataObj);
         }
 
     });
