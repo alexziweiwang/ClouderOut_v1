@@ -60,6 +60,8 @@ export default function PieceSetter({
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
+    const [selectTextContent, setSelectTextContent] = useState(true);
+
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
     const [stndButtonSound, setStndButtonSound] = useState("default sound"); //TODO test
@@ -208,6 +210,16 @@ export default function PieceSetter({
         tempObj["speaker_name"] = "";
 
         updateToCaller(tempObj);
+    }
+
+    function handleTextContentReset() {
+        setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": "", "content": ""});
+        let tempObj = currentPieceDetail;
+        tempObj["speaker_name"] = "";
+        tempObj["content"] = "";
+
+
+        updateToCaller(tempObj); 
     }
 
     function handleBgpSwitchAction(event) {
@@ -572,13 +584,60 @@ export default function PieceSetter({
 
 
 
-            <input type="radio"></input><label>Text Content</label><br></br>
+            <input type="radio"
+                value={selectTextContent}
+                checked={selectTextContent}
+                onChange={()=>{
+                    let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
+                    if (response === true) {
+                        setSelectTextContent(true);
+                        setTextContentInfoAdd(true);
+                        setClickableAdd(false); 
+                        //TODO empty the clickable-button settings
+
+                    }
+                    
+                }}
+            ></input><label
+                onClick={()=>{
+                    let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
+                    if (response === true) {
+                        setSelectTextContent(true);
+                        setTextContentInfoAdd(true);
+                        setClickableAdd(false); 
+                        //TODO empty the clickable-button settings
+                    }
+                }}
+            >Text Content</label><br></br>
             <div className="indentOne">
 
             </div>
 
 
-            <input type="radio"></input><label>Clickables / Buttons</label><br></br>
+            <input type="radio"
+                value={selectTextContent}
+                checked={!selectTextContent}
+                onChange={()=>{
+                    let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                    if (response === true) {
+                        setSelectTextContent(false);
+                        setTextContentInfoAdd(false);
+                        setClickableAdd(true);
+                        handleTextContentReset();
+                    }
+
+                }}
+            ></input><label
+                onClick={()=>{
+                    let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                    if (response === true) {
+                        setSelectTextContent(false);
+                        setTextContentInfoAdd(false);
+                        setClickableAdd(true);
+                        handleTextContentReset();
+                    }
+                }}
+            >Clickables / Buttons</label><br></br>
             <div className="indentOne">
 
             </div>
@@ -589,13 +648,10 @@ export default function PieceSetter({
 
             <br></br>
             <br></br>
-            {!textContentInfoAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{textContentSettingText[languageCode]}   ︾</button>}
             {textContentInfoAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{textContentSettingText[languageCode]}  ︽</button>}
-            <br></br>
-
             {textContentInfoAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{handleSpeakerNameReset()}}> {resetText[languageCode]} </button>
+                    <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText[languageCode]} </button>
                     
                     <br></br>
                     <label> Text to display: </label>
@@ -637,14 +693,13 @@ export default function PieceSetter({
                 </div>   
             }
 
-{!clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︾</button>}
             {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>}
-            <br></br>
-
             {clickableAdd && 
                 <div className="optionAreaSelected2">
            
-                <button className="buttonRight" onClick={() =>{console.log("TODO reset...");}}> {resetText[languageCode]} </button>
+                <button className="buttonRight" onClick={() =>{
+                    console.log("TODO reset...");
+                    }}> {resetText[languageCode]} </button>
 
                     <div><label>Standard Button/Option Group</label>
                         <div className="indentOne">
