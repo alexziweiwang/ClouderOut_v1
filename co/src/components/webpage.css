@@ -324,6 +324,18 @@ td {
     width: 80%;
 }
 
+.collapseToggleGrey {
+    background-color: #9fa2a7;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    margin: 6px;
+    width: 80%;
+}
+
 .buttonRight30 {
     margin-left: 30%;
 }
