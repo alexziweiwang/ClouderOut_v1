@@ -285,7 +285,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     // }
 
     // function notUsing() {
-    //     return;
+    //     console.log();
     // }
 
     // function passInVisualMap() {
@@ -366,11 +366,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     triggerClickOnGameScreen={triggerClickOnGameScreen}
                     getIsGameScreenClicked={passInIsGameScreenClicked}
                 />
-
-        
-// triggerClickOnGameScreen(),     triggerClickOnGameDataPanel(),     passInClickingObjectStatus()
-
-
 
                 <Panel_GameDataTest
                        localTest={true}

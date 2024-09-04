@@ -11,6 +11,9 @@ export default function Panel_GameDataTest({
     receiveGameDataObj
 }) {
 
+    const trueBoolean = true;
+    const falseBoolean = false;
+
     const [screenHeight, setScreenHeight] = useState(600);
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
@@ -67,13 +70,11 @@ export default function Panel_GameDataTest({
 
 
         let receiveGameScreenClicked = getIsGameScreenClicked();
-                                                               console.log("screen clicked!"); //TODO test
         if (receiveGameScreenClicked === true) {
             // receive updated game-data-obj from outer layer
             let newGameDataObj = receiveGameDataObj();
                                             console.log("\t new game-data-obj:", newGameDataObj); //TODO test
             setGameData(newGameDataObj);
-            updateRenderCounter();
         } 
 
     });
@@ -128,7 +129,7 @@ return (
                                     <td>{gameData[currKey]["name"]}</td>
                                     
                                     <td>
-                                        <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["current_value"] : (gameData[currKey]["current_value"] == "true" ? "True" : "False")}</label><br></br>
+                                        <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["current_value"] : (gameData[currKey]["current_value"] === true ? "True" : "False")}</label><br></br>
                                         <br></br>
                                         {gameData[currKey]["data_type"] === "boolean" && 
                                         <select 
@@ -141,8 +142,8 @@ return (
 
                                         }}> 
                                             <option key={optionNone} value=""> -- </option>
-                                            <option key={optionFalse} value="false">False</option>
-                                            <option key={optionTrue} value="true">True</option>
+                                            <option key={optionFalse} value={falseBoolean}>False</option>
+                                            <option key={optionTrue} value={trueBoolean}>True</option>
                                         </select>
                                         }
 
@@ -177,11 +178,25 @@ return (
 
                                         <button
                                             onClick={()=>{
+                                                triggerClickOnGameDataPanel();
+
                                                 let tempObj = gameData;
-                                                tempObj[currKey]["current_value"] = editingInput;
+                                                if (editingInput === "true") {
+                                                    tempObj[currKey]["current_value"] = true;
+                                                } else if (editingInput === "false") {
+                                                    tempObj[currKey]["current_value"] = false;
+                                                } else {
+                                                    tempObj[currKey]["current_value"] = editingInput;
+                                                }
+
+                                                console.log("update: ", currKey, " =>", editingInput); //TODO test
+                                                console.log(tempObj); //TODO test
+                                                console.log(); //TODO test
+
                                                 setGameData(tempObj);
                                                 setEditingInput("");
                                                 setEditingItem();
+                                                updateRenderCounter();
                                             }}
                                         
                                         >Update</button>
@@ -189,11 +204,14 @@ return (
                                         <br></br>
                                         <button 
                                             onClick={()=>{
+                                                triggerClickOnGameDataPanel();
+
                                                 let tempObj = gameData;
                                                 tempObj[currKey]["current_value"] = tempObj[currKey]["default_value"];
                                                 setGameData(tempObj);
                                                 setEditingInput("");
                                                 setEditingItem(inputId);
+                                                updateRenderCounter();
                                             }}
                                         >Reset</button>
                                     </td>   

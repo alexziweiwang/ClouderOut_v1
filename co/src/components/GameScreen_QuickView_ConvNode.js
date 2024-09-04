@@ -285,7 +285,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         }
     
         function notUsing() {
-            return;
+            console.log();
         }
     
         function passInVisualMap() {

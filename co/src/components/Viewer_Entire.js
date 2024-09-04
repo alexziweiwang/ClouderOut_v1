@@ -167,7 +167,7 @@ const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is track
     }
 
     function notUsing() {
-        return "";
+        console.log();
     }
 
     function passInNavPageName() {

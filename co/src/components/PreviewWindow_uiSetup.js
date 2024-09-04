@@ -70,7 +70,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     });
 
     function notUsing() {
-        return "";
+        console.log();
     }
 
     function passInVisualMap() {
@@ -82,7 +82,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     }
 
     function notUsing() {
-        return;
+        console.log();
     }
 
     function passInIsDisplayConvLog() {
