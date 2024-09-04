@@ -242,7 +242,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             console.log("curr-val = ", gameDataTracker[name]["current_value"]); //TODO test
 
 
-            if (type === "boolean" || type === "string") {
+            if (type === "boolean") {
                 // type - boolean 
                     // action is "becomes"
                 let boolVal = (newVal === "true" || newVal === true) ? true : false;

@@ -817,7 +817,7 @@ export default function PieceSetter({
                             <label>Button Text:</label>
                             <input value={stndButtonText} onChange={(event)=>{
                                 setStndButtonText(event.target.value);
-                            }}></input>TODO
+                            }}></input>
 
                             <div>
                             Consequence(s)
@@ -1392,7 +1392,7 @@ export default function PieceSetter({
                     <br></br>
 
     {currentPieceDetail["chp_action"] === "changeCharPicArr"  && <div>
-            <table>
+            <table style={{"width": " 500px"}}>
             <thead>        
                 <tr>
                     <th>Source</th>
@@ -1443,7 +1443,7 @@ export default function PieceSetter({
 
     <label>Source:  </label>
     <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
-        <option key="charp01" value=""> ︽- Select picture name -- </option>
+        <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
             let keyStr = "charpic" + index + item["var"];

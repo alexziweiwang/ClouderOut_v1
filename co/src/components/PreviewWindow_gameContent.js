@@ -14,7 +14,9 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     getTextFrameUISettings, getIsDisplayDefaultButton, 
     getDefaultButtonUISettings, getBackButtonUISettings, 
     getLogPageUISettings,
-    getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav}) {
+    getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav
+  
+  }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
@@ -234,11 +236,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
       return directNextPieceBool;
     }
 
-    function triggerNextPiece() {
-      //make piece to be the next one
-      triggerToDirectNext();
-    }
-
     function triggerAutoMode() {
       console.log("triggerAutoMode() in game-preview-window");
       //TODO1
@@ -262,6 +259,10 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
     function triggerLogClose() {
       setisShowLogScreen(false);
     }  
+
+    function notUsing() {
+      return;
+    }
 
     return (
     
@@ -290,12 +291,6 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
                 
-                  onClick={()=>{
-                    if (directNextPieceBool === true) {
-                      //TODO1 add "firstTap" for all-content showing on one piece
-                      triggerNextPiece();
-                    }
-                  }}
                 >
 
 
@@ -344,7 +339,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 getAllPieceContent={passInAllPieceDataContent}
                 getCurrentPieceNum={passInCurrentPieceNum}
                 getIsDirectNextPiece={passInDirectNextPieceBool}
-                triggerNextPiece={triggerNextPiece}
+                triggerNextPiece={notUsing}
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
                 triggerAutoMode={triggerAutoMode}
@@ -358,7 +353,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
-                  triggerNextPiece={triggerNextPiece}
+                  triggerNextPiece={notUsing}
                   getIsDisplayDefaultButton={getIsDisplayDefaultButton} 
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
@@ -372,7 +367,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   initialAllPieceData={initialAllPieceData}
                   getAllPieceContent={passInAllPieceDataContent}
                   getCurrentPieceNum={passInCurrentPieceNum}
-                  triggerNextPiece={triggerNextPiece}
+                  triggerNextPiece={notUsing}
                   getScreenSize={getScreenSize}
                   getUIConvNav={getUIConvNav}
                   triggerAutoMode={triggerAutoMode}

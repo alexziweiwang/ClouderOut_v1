@@ -43,7 +43,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
         {<div>
             {stndButtonTextArr.map((item, index)=>{
 
-                    let currId = "defaultButtonDivPreviewWindow" + index;
+                    let currId = "defaultButtonDivPlayWindow" + index;
                     return (
                     <div id={currId} key={currId} style={{   
                             "background": defualtBtnUISettings["bgColor"],
