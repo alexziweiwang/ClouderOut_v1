@@ -260,7 +260,7 @@ export default function PieceSetter({
         setCharPicAdd(!charPicAdd);
     }
 
-    function toggleSpeakerNameOption() {
+    function toggleContentInfoOption() {
         setTextContentInfoAdd(!textContentInfoAdd);
     }
 
@@ -664,8 +664,23 @@ export default function PieceSetter({
 
             <br></br>
             <br></br>
-            {textContentInfoAdd && <button className="collapseToggle" onClick={toggleSpeakerNameOption}>{textContentSettingText[languageCode]}  ︽</button>}
-            {textContentInfoAdd && 
+            {(textContentInfoAdd && selectEditTextContent) && <>
+            <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText[languageCode]}  ︽</button>
+            <br></br>
+            </>
+            }
+            
+            {(!textContentInfoAdd && selectEditTextContent) && <>
+            <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText[languageCode]}  ︾
+            </button>
+            <br></br>
+            </>}
+
+            {(!selectEditTextContent) && 
+            <><button className="collapseToggleGrey">{textContentSettingText[languageCode]} - </button>
+            <br></br></>}
+
+            {(textContentInfoAdd && selectEditTextContent) && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText[languageCode]} </button>
                     
@@ -709,8 +724,15 @@ export default function PieceSetter({
                 </div>   
             }
 
-            {clickableAdd && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>}
-            {clickableAdd && 
+
+            {(clickableAdd && !selectEditTextContent) && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>}
+            {(!textContentInfoAdd) &&
+            
+            <><button className="collapseToggleGrey">{clkbSettingText[languageCode]}  - </button>
+            <br></br>
+            </>}
+
+            {(clickableAdd && !selectEditTextContent) && 
                 <div className="optionAreaSelected2">
            
                 <button className="buttonRight" onClick={() =>{
@@ -1295,7 +1317,7 @@ export default function PieceSetter({
                 </div>
                               
                 }
-
+            {(clickableAdd && !selectEditTextContent) && <br></br>}
 
 
             
