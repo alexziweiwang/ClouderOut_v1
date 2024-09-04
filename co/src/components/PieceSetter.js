@@ -603,23 +603,27 @@ export default function PieceSetter({
                 value={selectEditTextContent}
                 checked={selectEditTextContent}
                 onChange={()=>{
-                    let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
-                    if (response === true) {
-                        setSelectEditTextContent(true);
-                        setTextContentInfoAdd(true);
-                        setClickableAdd(false); 
-                        handleStndBtnReset();
-                    }
+                    if (!selectEditTextContent === true) {
+                        let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
+                        if (response === true) {
+                            setSelectEditTextContent(true);
+                            setTextContentInfoAdd(true);
+                            setClickableAdd(false); 
+                            handleStndBtnReset();
+                        }
+                        }
                     
                 }}
-            ></input><label
+            ></input><label className="textNoSelect"
                 onClick={()=>{
-                    let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
-                    if (response === true) {
-                        setSelectEditTextContent(true);
-                        setTextContentInfoAdd(true);
-                        setClickableAdd(false); 
-                        handleStndBtnReset();
+                    if (!selectEditTextContent === true) {
+                        let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
+                        if (response === true) {
+                            setSelectEditTextContent(true);
+                            setTextContentInfoAdd(true);
+                            setClickableAdd(false); 
+                            handleStndBtnReset();
+                        }
                     }
                 }}
             >Text Content</label><br></br>
@@ -632,25 +636,29 @@ export default function PieceSetter({
                 value={selectEditTextContent}
                 checked={!selectEditTextContent}
                 onChange={()=>{
-                    let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
-                    if (response === true) {
-                        setSelectEditTextContent(false);
-                        setTextContentInfoAdd(false);
-                        setClickableAdd(true);
-                        handleTextContentReset();
-                        setupDisplayTextFrame(false);
+                    if (selectEditTextContent === false) {
+                        let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                        if (response === true) {
+                            setSelectEditTextContent(false);
+                            setTextContentInfoAdd(false);
+                            setClickableAdd(true);
+                            handleTextContentReset();
+                            setupDisplayTextFrame(false);
+                        }
                     }
 
                 }}
-            ></input><label
+            ></input><label className="textNoSelect"
                 onClick={()=>{
-                    let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
-                    if (response === true) {
-                        setSelectEditTextContent(false);
-                        setTextContentInfoAdd(false);
-                        setClickableAdd(true);
-                        handleTextContentReset();
-                        setupDisplayTextFrame(false);
+                    if (!selectEditTextContent === false) {
+                        let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                        if (response === true) {
+                            setSelectEditTextContent(false);
+                            setTextContentInfoAdd(false);
+                            setClickableAdd(true);
+                            handleTextContentReset();
+                            setupDisplayTextFrame(false);
+                        }
                     }
                 }}
             >Clickables / Buttons</label><br></br>
@@ -725,9 +733,17 @@ export default function PieceSetter({
             }
 
 
-            {(clickableAdd && !selectEditTextContent) && <button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>}
-            {(!textContentInfoAdd) &&
-            
+            {(clickableAdd && !selectEditTextContent) && 
+            <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>
+            <br></br>
+            </>}
+            {(!clickableAdd && !selectEditTextContent) && 
+            <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︾</button>
+            <br></br>
+            </>}
+
+
+            {(selectEditTextContent) &&
             <><button className="collapseToggleGrey">{clkbSettingText[languageCode]}  - </button>
             <br></br>
             </>}
@@ -1317,9 +1333,6 @@ export default function PieceSetter({
                 </div>
                               
                 }
-            {(clickableAdd && !selectEditTextContent) && <br></br>}
-
-
             
             {!bgpicAdd
             && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︾</button>}

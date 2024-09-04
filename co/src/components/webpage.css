@@ -18,6 +18,10 @@ td {
     white-space: pre-wrap;
 }
 
+.textNoSelect {
+    user-select: none;
+}
+
 .contentGrid {
     width: 300px;
 }
