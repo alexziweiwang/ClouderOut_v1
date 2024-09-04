@@ -21,6 +21,12 @@ export default function Panel_GameDataTest({
 
     const [editingInput, setEditingInput] = useState("");
     const [editingItem, setEditingItem] = useState();
+
+    const [renderCounter, setRenderCounter] = useState(0);
+    function updateRenderCounter() {
+        setRenderCounter((renderCounter+1) % 100);
+      }
+    
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -65,8 +71,9 @@ export default function Panel_GameDataTest({
         if (receiveGameScreenClicked === true) {
             // receive updated game-data-obj from outer layer
             let newGameDataObj = receiveGameDataObj();
-                                    console.log("\t new game-data-obj:", newGameDataObj); //TODO test
+                                            console.log("\t new game-data-obj:", newGameDataObj); //TODO test
             setGameData(newGameDataObj);
+            updateRenderCounter();
         } 
 
     });

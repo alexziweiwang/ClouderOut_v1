@@ -158,7 +158,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
               }
             
             } 
-          }    
+        }    
     
     
         function triggerToDirectNextPiece() {

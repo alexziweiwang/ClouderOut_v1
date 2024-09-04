@@ -758,12 +758,12 @@ export default function PieceSetter({
                     <div><label>Standard Button/Option Group</label>
                         <div className="indentOne">
 
-                        <table>
+                        <table style={{"width": "400px"}}>
                             <thead>
                             <tr>
-                                <th>Index</th>
-                                <th>Button Text</th>
-                                <th>Consequence</th>
+                                <th style={{"width": "70px"}}>Index</th>
+                                <th style={{"width": "110px"}}>Button Text</th>
+                                <th style={{"width": "160px"}}>Consequence</th>
             
                             </tr>
                             </thead>
