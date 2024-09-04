@@ -113,6 +113,10 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                 setCurrPieceNum(pieceNumTemp);
             }
 
+            if (allPieceContent[currPieceNum].displayTextFrame === false) {
+                setTextStillTyping(false);
+            }
+
         });
     
     
@@ -159,7 +163,10 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
     
         function triggerToDirectNextPiece() {
      
-    
+            // console.log("going to next piece! ", allPieceContent[currPieceNum+1]); //TODO test
+            // console.log("\t  textStillTyping? ", textStillTyping === true ? "True" : "False", ", currPieceNum+1 = ", currPieceNum+1); //TODO test
+
+
                 if (textStillTyping === true) {
                     // notify to finished immediately
                     if (autoMode === false) {
