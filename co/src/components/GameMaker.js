@@ -96,7 +96,14 @@ export default function GameMaker() {
 
   const [currPageName, setCurrPageName] = useState("Main Page");
 
-//TODO ------------------------------------------------------
+
+
+
+
+
+
+
+//TODO ------------------------------------------------------ testing data area
 
 const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   "chp-key1": {"chapterStart1-key": {
@@ -404,7 +411,32 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   }); //TODO now: default initial values
 
-//TODO ------------------------------------------------------
+
+  const [testPlayerData, setTestPlayerData] = useState({});
+
+  const [testPlayerProfile, setTestPlayerProfile] = useState({
+      "username": "playerA",
+      "iconUrl": ""
+  });
+
+  const testPlayerAccount = {
+      "username": "playerA",
+      "email": "example@email.com",
+
+  };
+  const testPlayerSLRecords = {
+      "username": "playerA",
+      "itemStatus": [{}, {}, {}]
+
+  }; 
+
+
+
+
+
+
+
+//TODO ------------------------------------------------------ testing data area
 
   const [gameDataDesignList, setGameDataDesignList] = useState({});
 
@@ -737,14 +769,31 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function passInPlayingGameData() {
+  function passInPlayingGameData(isEmu) {
+    let gameDataTemp = {};
+
     // for local test, make from game-data-design-list
-    let tempObj = {};
+    if (isEmu === true) {
+        {Object.keys(gameDataDesignList).map((currKey) => {
+          gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
+        })}
+        
+        setTestPlayerData(gameDataTemp);
 
-    // for on-cloud test, fetch from cloud
+
+    } else {
+      // for on-cloud test, fetch from cloud
+      //TODO gameDataTemp = ...
+    }
+    
+    // testPlayerGameData <== gameDataDesignList
 
 
-    return {}; //TODO temp
+    return gameDataTemp; //TODO temp
+  }
+
+  function passInPlayerGameData() {
+    return testPlayerData;
   }
 
   return (
@@ -923,7 +972,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getChapterList={passInChapterList}
 
           isEmu={true}
-          getPlayerGameData={passInPlayingGameData}
+          getPlayerGameData={passInPlayerGameData}
 
       />
 
@@ -934,8 +983,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
         <Panel_GameDataTest
           localTest={true}
+          
           getGameDataDesignList={passInGameDataDesignList}
           initialGameData={gameDataDesignList}
+
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}
           isQuickView={false}

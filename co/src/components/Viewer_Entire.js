@@ -50,7 +50,7 @@ export default function Viewer_Entire({isDisplay,
         "4:3(horizonal)": [800, 600],
         "4:3(vertical)": [600, 800]};
         
-    // const [gameDataTracker, setGameDataTracker] = useState(initialGameData);  //TODO refactoring
+    const [gameDataTracker, setGameDataTracker] = useState({});
 
 
     const testPlayerGameData = {
@@ -119,27 +119,28 @@ export default function Viewer_Entire({isDisplay,
 
 
 
-     useEffect(() => {
+    useEffect(() => {
 
-            if (navigationObj["screenSize"] === "16:9(horizonal)"
+        if (navigationObj["screenSize"] === "16:9(horizonal)"
                 || navigationObj["screenSize"] === "16:9(vertical)"
                 || navigationObj["screenSize"] === "4:3(horizonal)"
                 || navigationObj["screenSize"] === "4:3(vertical)"
-            ) {
-                let w = sizeLookupMap[navigationObj["screenSize"]][0];
-                let h = sizeLookupMap[navigationObj["screenSize"]][1];
-                setScreenWidth(w);
-                setScreenHeight(h);
-            }
+        ) {
+            let w = sizeLookupMap[navigationObj["screenSize"]][0];
+            let h = sizeLookupMap[navigationObj["screenSize"]][1];
+            setScreenWidth(w);
+            setScreenHeight(h);
+        }
 
     
 
-            let chapterListTemp = getChapterList();
-            setChapterList(chapterListTemp);
+        let chapterListTemp = getChapterList();
+        setChapterList(chapterListTemp);
 
-            // let gameDataTrackerTemp = getGameData(); //TODO refactoring
-            // setGameDataTracker(gameDataTrackerTemp);
-        });
+        let gameDataTrackerTemp = getPlayerGameData(); //TODO refactoring
+        setGameDataTracker(gameDataTrackerTemp);
+
+    });
 
 
 
