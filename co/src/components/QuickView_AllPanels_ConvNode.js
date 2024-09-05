@@ -198,24 +198,25 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     function resetViewingPiece() {
 
 
-        //TODO temp removed
-        // let gameDataTemp = gameDataTracker; 
+                            //TODO temp removed
+                            // let gameDataTemp = gameDataTracker; 
 
-        // {Object.keys(gameDataDesignList).map((currKey) => {
-        //     gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
-        // })}
-        // setGameDataTracker(gameDataTemp);
+                            // {Object.keys(gameDataDesignList).map((currKey) => {
+                            //     gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
+                            // })}
+                            // setGameDataTracker(gameDataTemp);
 
-        //                                                 console.log("now gameDataTemp = ", gameDataTemp);
-        //                                                 console.log("now gameDataTracker = ", gameDataTracker);
+                            //                                                 console.log("now gameDataTemp = ", gameDataTemp);
+                            //                                                 console.log("now gameDataTracker = ", gameDataTracker);
 
-        //                                                 console.log("initialPieceNum = ", initialPieceNum);
-         //TODO temp removed
+                            //                                                 console.log("initialPieceNum = ", initialPieceNum);
+                            //TODO temp removed
 
         initializeGameDataTracker();
 
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
         setResetSignal(true);
+        setClickOnGameScreen(false);
     }
 
     // function notifyFinished() {

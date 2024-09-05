@@ -306,9 +306,12 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                         "top": "0px"
                     }}
                     onClick={()=>{
-                        triggerClickOnGameScreen();
+                        if (allPieceContent[currPieceNum]["stnd_btn_arr"].length === 0) {
+                            triggerClickOnGameScreen();
+                        }
                     }}
                     >
+
             {<div style={{
                 "backgroundColor": "#000000",
                 "backgroundImage": (currPieceNum >= 0 && bgpSource !== "") ? 
