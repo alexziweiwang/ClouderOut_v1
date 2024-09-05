@@ -108,14 +108,14 @@ return (
                 
                 
                 >
-                <label>Game Data Panel</label>
+                <label className="textNoSelect">Game Data Panel</label>
                 <br></br>
                 <table>
-                            <thead>
+                            <thead className="textNoSelect">
                                 <tr>
                                     <th>Name</th>
                                     <th>Value</th>
-                                    <th>default Value</th>
+                                    <th>Default Value</th>
                                 </tr>
                             </thead>  
                             <tbody> 
@@ -139,7 +139,11 @@ return (
                                     <td>{gameData[currKey]["name"]}</td>
                                     
                                     <td>
-                                        <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["current_value"] : (gameData[currKey]["current_value"] === true ? "True" : "False")}</label><br></br>
+                                        <label>{gameData[currKey]["data_type"] !== "boolean" ? 
+                                            gameData[currKey]["current_value"] 
+                                            : (gameData[currKey]["current_value"] === true ? 
+                                                "True" 
+                                                : "False")}</label><br></br>
                                         <br></br>
                                         {gameData[currKey]["data_type"] === "boolean" && 
                                         <select 
@@ -159,6 +163,7 @@ return (
 
                                         {gameData[currKey]["data_type"] === "number" && 
                                         <input 
+                                            className="textNoSelect"
                                             type="number"
                                             style={{"width": "90px"}}
                                             value={(editingItem === inputId) ? editingInput : ""}
@@ -174,6 +179,7 @@ return (
 
                                         {gameData[currKey]["data_type"] === "string" && 
                                         <input 
+                                            className="textNoSelect"
                                             style={{"width": "90px"}}
                                             value={(editingItem === inputId) ? editingInput : ""}
                                             onChange={(event)=>{
@@ -187,6 +193,7 @@ return (
 
 
                                         <button
+                                            className="textNoSelect"
                                             onClick={()=>{
                                                 triggerClickOnGameDataPanel();
 
@@ -213,6 +220,7 @@ return (
 
                                         <br></br>
                                         <button 
+                                            className="textNoSelect"
                                             onClick={()=>{
                                                 triggerClickOnGameDataPanel();
 

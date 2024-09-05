@@ -22,6 +22,11 @@ td {
     user-select: none;
 }
 
+.noScrolling {
+    overflow: hidden;
+    height: 100%
+}
+
 .contentGrid {
     width: 300px;
 }

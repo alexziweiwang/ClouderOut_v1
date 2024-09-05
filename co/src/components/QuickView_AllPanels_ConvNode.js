@@ -345,8 +345,12 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         <div className="modalArea">
 
             <div style={{"width": "2000px", "marginLeft": "-90px"}}>
-            <button onClick={()=>{handleQViewCancel();}}> {closeText[languageCode]} </button>
-            <button onClick={()=>{resetViewingPiece();}}> {resetText[languageCode]} </button>
+
+            <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
+                <button onClick={()=>{handleQViewCancel();}}> {closeText[languageCode]} </button>
+                <button onClick={()=>{resetViewingPiece();}}> {resetText[languageCode]} </button>
+            </div>
+
 
                 <div  style={{"overflow": "scroll", "display": "flex"}}>
 

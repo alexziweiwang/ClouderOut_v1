@@ -611,6 +611,8 @@ export default function ConversationNodeEditingPanel() {
 
               
                 </div>
+
+
                 <div className="topParalBarRightPart">
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
                         {gameContentSetupText[languageCode]}</button>
@@ -634,7 +636,7 @@ export default function ConversationNodeEditingPanel() {
                
             </div>
      
-            <div className="parallelFrame">
+            <div className={isDisplayQview === true ? "noScrolling" : ""} style={{"display": "flex"}}>
             
             {browseList === false && 
                 <div>
