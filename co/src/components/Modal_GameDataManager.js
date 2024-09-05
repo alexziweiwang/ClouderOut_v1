@@ -212,15 +212,13 @@ export default function Modal_GameDataManager ({
 
         <div className="gameDataDisplayArea">
             <div className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}>
-                <table>
+                <table style={{"width": "900px"}}>
                     <thead>
-                        <tr>
+                        <tr className="textNoSelect tableRow">
                             <th>Variable Name</th>
                             <th>Type</th>
                             <th>Default Value</th>
-                            <th>                                
-                            
-                            </th>
+                            <th>Operations</th>
                         </tr>
                     </thead>
 
@@ -228,26 +226,29 @@ export default function Modal_GameDataManager ({
                     {Object.keys(usingGameData).map((key) => {
                     
                         return (
-                            <tr key={key} className="tableItem">
-                            <td>{key}</td>
+                            <tr key={key} className="tableItem tableRow">
+                                <td>{key}</td>
 
-                            <td>{usingGameData[key]["data_type"]}</td>
+                                <td>{usingGameData[key]["data_type"]}</td>
 
                             {(editLineDisplay !== key) && 
-                            <td>
-                                {usingGameData[key]["default_value"] === true ? "True" : usingGameData[key]["default_value"] === false ? "False" : usingGameData[key]["default_value"]}
-                            
-                            </td>}
-                            {(editLineDisplay === key && editAreaOpen === true) && <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
+                                <td>
+                                    {usingGameData[key]["default_value"] === true ? "True" : usingGameData[key]["default_value"] === false ? "False" : usingGameData[key]["default_value"]}
+                                </td>}
+                            {(editLineDisplay === key && editAreaOpen === true) && 
+                                <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
 
-                            {(editLineDisplay === "") && <td className="parallelFrame">
-                                <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
-                                <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button>
-                            </td>}
-                            {(editLineDisplay === key && editAreaOpen === true) && <td className="parallelFrame">
-                                <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
-                                <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>Cancel</button>
-                            </td>}
+
+                            {(editLineDisplay !== key) && 
+                                <td className="parallelFrame">
+                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
+                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button>
+                                </td>}
+                            {(editLineDisplay === key && editAreaOpen === true) && 
+                                <td className="parallelFrame">
+                                    <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
+                                    <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>Cancel</button>
+                                </td>}
 
 
                             </tr>

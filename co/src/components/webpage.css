@@ -560,8 +560,11 @@ td {
     padding-top: 3px;
     padding-bottom: 3px;
     margin: 3px;
-    height: 100%;
 
+}
+
+.tableRow {
+    height: 30px;
 }
 
 .dataArea {
@@ -572,7 +575,6 @@ td {
 }
 
 .dataAreaShrink {
-    height: 70%;
     background-color: rgb(201, 168, 188);
     overflow: scroll;  
 }
@@ -827,9 +829,6 @@ th,td {
     background-color: rgb(235, 232, 227);
     cursor: pointer;
     color:rgb(7, 7, 7);
-    height: 30px;
-    margin: 2px;
-    padding: 3px;
     width: 500px;
     user-select: none;
 }
@@ -838,9 +837,6 @@ th,td {
     background-color: rgb(231, 222, 237);
     cursor: pointer;
     color:rgb(7, 7, 7);
-    height: 30px;
-    margin: 2px;
-    padding: 3px;
     width: 500px;
     user-select: none;
 }
@@ -850,9 +846,6 @@ th,td {
     background-color: rgb(173, 178, 193);
     cursor: pointer;
     color:rgb(7, 7, 7);
-    height: 30px;
-    margin: 2px;
-    padding: 3px;
     width: 500px;
     overflow: scroll;
     user-select: none;
@@ -906,8 +899,8 @@ th,td {
 }
 
 .editInput {
-    width: 62px;
-    height: 70%;
+    /* width: 62px;
+    height: 100%; */
 }
 
 td {
