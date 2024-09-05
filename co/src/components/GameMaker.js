@@ -525,6 +525,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         fetchGameDataFromCloud();
+
+        setupPlayingGameData(true); //TODO2, is-emu
         
         setFirstTimeEnter(false);
     }
@@ -769,7 +771,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function passInPlayingGameData(isEmu) {
+  function setupPlayingGameData(isEmu) {
     let gameDataTemp = {};
 
     // for local test, make from game-data-design-list
@@ -788,13 +790,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     
     // testPlayerGameData <== gameDataDesignList
 
-
-    return gameDataTemp; //TODO temp
   }
 
   function passInPlayerGameData() {
     return testPlayerData;
   }
+
+
 
   return (
   <div>
@@ -983,9 +985,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
         <Panel_GameDataTest
           localTest={true}
-          
+
           getGameDataDesignList={passInGameDataDesignList}
-          initialGameData={gameDataDesignList}
+          getPlayerGameData={passInPlayerGameData}
 
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}

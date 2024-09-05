@@ -341,6 +341,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return gameDataTracker;
     }
 
+    function notUsing() {
+        return "notUsing";
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
@@ -378,7 +382,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                 <Panel_GameDataTest
                        localTest={true}
                        getGameDataDesignList={passInGameDataDesignList} 
-                       initialGameDataDesignList={gameDataDesignList}
+                       getPlayerGameData={notUsing}
+
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
                        isQuickView={true}
