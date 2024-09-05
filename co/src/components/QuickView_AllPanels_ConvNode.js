@@ -382,7 +382,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                 <Panel_GameDataTest
                        localTest={true}
                        getGameDataDesignList={passInGameDataDesignList} 
-                       getPlayerGameData={notUsing}
 
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
@@ -396,7 +395,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        notifyAfterReset={notifyAfterReset}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
-//TODO       getPlayerGameData & receiveGameDataObj
 
 
 

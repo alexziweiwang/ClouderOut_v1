@@ -59,40 +59,12 @@ export default function Viewer_Entire({isDisplay,
         "4:3(horizonal)": [800, 600],
         "4:3(vertical)": [600, 800]};
         
-    const [gameDataTracker, setGameDataTracker] = useState({});
 
 
-    const testPlayerGameData = {
-        "username": "playerA",
-        "hp": "100",
-    };
-  
-
-    const testPlayerProfile = {
-        "username": "playerA",
-        "iconUrl": ""
-    };
-    const testPlayerAccount = {
-        "username": "playerA",
-        "email": "example@email.com",
-
-    };
-    const testPlayerSLRecords = {
-        "username": "playerA",
-        "itemStatus": [{}, {}, {}]
-
-    }; 
-    //testPlayerGameData, testPlayerProfile, 
-
-    const playerDataElem = testPlayerGameData; //TODO change later
-    const playerProfileElem = testPlayerProfile; //TODO change later
-    const playerAccountElem = testPlayerAccount; //TODO change later
-    const playerSLRecordsElem = testPlayerSLRecords; //TODO change later
-
-    const [playerGameData, setPlayerGameData] = useState(playerDataElem);
-    const [playerProfile, setPlayerProfil] = useState(playerProfileElem);
-    const [playerAccount, setPlayerAccount] = useState(playerAccountElem);
-    const [playerSLRecords, setPlayerSLRecords] = useState(playerSLRecordsElem);
+    const [playerGameData, setPlayerGameData] = useState({});
+    const [playerProfile, setPlayerProfil] = useState({});
+    const [playerAccount, setPlayerAccount] = useState({});
+    const [playerSLRecords, setPlayerSLRecords] = useState({});
 
     //TODO implementation plan:
     //when doing this level of testing or game-in-practice, fetch player's above 4 data from cloud
@@ -147,7 +119,7 @@ export default function Viewer_Entire({isDisplay,
         setChapterList(chapterListTemp);
 
         let gameDataTrackerTemp = getPlayerGameData(); //TODO refactoring
-        setGameDataTracker(gameDataTrackerTemp);
+        setPlayerGameData(gameDataTrackerTemp);
 
     });
 
@@ -156,7 +128,7 @@ export default function Viewer_Entire({isDisplay,
 
 
     // function updateGameData(data) { // model's functionality     //TODO refactoring
-    //     setGameDataTracker(data);
+    //     setPlayerGameData(data);
     // }
 
 

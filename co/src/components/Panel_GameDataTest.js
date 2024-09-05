@@ -5,7 +5,7 @@ Keeps a set of creator's preferred configuration data of game-data
 */
 export default function Panel_GameDataTest({
     localTest,
-    getGameDataDesignList, getPlayerGameData,
+    getGameDataDesignList,
     getScreenHeight, getScreenWidth,
     isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
     receiveGameDataObj,
@@ -61,12 +61,9 @@ export default function Panel_GameDataTest({
                     //TODO not local-test
 
                     //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
-                    let playerGameData = getPlayerGameData();
-                    if (playerGameData !== undefined && playerGameData !== "notUsing") {
-                        //TODO ...
-                        console.log();
-                    }
-                    
+                    let newGameDataObj = receiveGameDataObj();
+                    setGameData(newGameDataObj);
+
                 }
 
 

@@ -416,23 +416,24 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }); //TODO now: default initial values
 
 
-  const [testPlayerData, setTestPlayerData] = useState({});
+  const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
 
   const [testPlayerProfile, setTestPlayerProfile] = useState({
       "username": "playerA",
       "iconUrl": ""
-  });
+  });                                                                 //TODO important for holder-in-practice
 
-  const testPlayerAccount = {
+  const [testPlayerAccount, setTestPlayerAccount] = useState({
       "username": "playerA",
       "email": "example@email.com",
 
-  };
-  const testPlayerSLRecords = {
+    });                                                               //TODO important for holder-in-practice
+
+  const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
       "username": "playerA",
       "itemStatus": [{}, {}, {}]
+    });                                                               //TODO important for holder-in-practice
 
-  }; 
 
 
 
@@ -790,7 +791,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     }
 
-    setTestPlayerData(gameDataTemp);
+    setTestPlayerGameData(gameDataTemp);
     // testPlayerGameData <== gameDataDesignList
 
   }
@@ -798,7 +799,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
   function passInPlayerGameData() { 
-    return testPlayerData;
+    return testPlayerGameData;
   }
 
   function receiveUpdateOnPageStatus(pageName) { //TODO important, needed in holder-in-practice
@@ -999,23 +1000,20 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
           getGameDataDesignList={passInGameDataDesignList}
 
-          getPlayerGameData={passInPlayerGameData}
-
           getScreenHeight={passInScreenHeight}
           getScreenWidth={passInScreenWidth}
           isQuickView={false}
           triggerClickOnGameDataPanel={notUsing}
           getIsGameScreenClicked={notUsing}
 
-          receiveGameDataObj={viewerSourceGameDataUpdate}
+          receiveGameDataObj={passInPlayerGameData}
 
           getResetSignal={notUsingReturnFalse}
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-//TODO       getPlayerGameData & receiveGameDataObj
-      
 
+      
       <div style={{"marginLeft": "200px", "color": "#FFFFFF"}}>
       
       <br></br><br></br>
