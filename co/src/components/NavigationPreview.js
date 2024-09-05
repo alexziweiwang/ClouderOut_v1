@@ -64,10 +64,12 @@ export default function NavigationPreview ({
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        console.log("initial nav-preview: ", initialNavObj); //TODO test
-        console.log("Navigation Preview -- "); //TODO test
-        
         if (firstTimeEnter === true) {
+                                        console.log("initial nav-preview: ", initialNavObj); //TODO test
+                                        console.log("Navigation Preview -- "); //TODO test
+                                        
+
+                                        
             fetchProjResourceLists();
 
             let i = 0;

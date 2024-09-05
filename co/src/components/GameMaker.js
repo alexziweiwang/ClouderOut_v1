@@ -77,12 +77,14 @@ export default function GameMaker() {
   const navigate = useNavigate();
   const name = "/gamemaker";
 
+  const [currChapterKey, setCurrChapterKey] = useState("");
 
   //TODO6
-  const [currPageStatus, setCurrPageStatus] = useState("Main Page");
-  const [currChapterKey, setCurrChapterKey] = useState("");
-  const [currNodeKey, setCurrNodeKey] = useState("");
-  const [currNodeType, setCurrNodeType] = useState("");
+  const [currTestingPageStatus, setCurrTestingPageStatus] = useState("Main Page");
+  const [currTestingChapterKey, setCurrTestingChapterKey] = useState("");
+
+  const [currTestingNodeKey, setCurrTestingNodeKey] = useState("");
+  const [currTestingNodeType, setCurrTestingNodeType] = useState("");
 
   const [chapterList, setChapterList] = useState(
     [
@@ -802,7 +804,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function receiveUpdateOnPageStatus(pageName) {
-    setCurrPageStatus(pageName);
+    setCurrTestingPageStatus(pageName);
   }
 
 
@@ -1016,10 +1018,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       <div>
         <label>Game Progress Panel</label><br></br>
 
-            <label>Current Page Status: </label>
-            <label>Current ChapterKey : {currChapterKey}</label><br></br>
-            <label>Current NodeKey : {currNodeKey}</label><br></br>
-            <label>Current NodeType : {currNodeType}</label>
+            <label>Current Page Status: {currTestingPageStatus}</label><br></br>
+            <label>Current ChapterKey : {currTestingChapterKey}</label><br></br>
+            <label>Current NodeKey : {currTestingNodeKey}</label><br></br>
+            <label>Current NodeType : {currTestingNodeType}</label>
       </div>
 
       
