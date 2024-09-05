@@ -12,6 +12,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     visualList, audioList, gameData,notifyNewGameData,
     getResetSignal,
     triggerClickOnGameScreen, getIsGameScreenClicked,
+    notifyAfterReset
 }) {
 
         let modalStyleName = "modalBackboard"; 
@@ -111,6 +112,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             if (resetSignal === true) {
                 let pieceNumTemp = getCurrPieceNum();
                 setCurrPieceNum(pieceNumTemp);
+                notifyAfterReset();
             }
 
             if (allPieceContent[currPieceNum].displayTextFrame === false) {

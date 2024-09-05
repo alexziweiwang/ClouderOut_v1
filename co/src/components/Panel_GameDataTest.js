@@ -9,7 +9,8 @@ export default function Panel_GameDataTest({
     getScreenHeight, getScreenWidth,
     isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
     receiveGameDataObj,
-    getResetSignal
+    getResetSignal,
+    notifyAfterReset
 }) {
 
     const trueBoolean = true;
@@ -79,6 +80,10 @@ export default function Panel_GameDataTest({
                                               console.log("\t !!! new game-data-obj:", newGameDataObj); //TODO test
             setGameData(newGameDataObj);
         } 
+
+        if (resetSignal === true) {
+            notifyAfterReset();
+        }
 
         
 

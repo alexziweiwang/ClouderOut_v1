@@ -312,10 +312,12 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return currPieceNum;
     }
 
-    function passInResetSignal() {
-        let currSignal = resetSignal;
+    function passInResetSignal() {        
+        return resetSignal;
+    }
+
+    function notifyAfterReset() {
         setResetSignal(false);
-        return currSignal;
     }
 
     function notifyNewGameData(data) {
@@ -365,6 +367,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     notifyNewGameData={notifyNewGameData}
                     triggerClickOnGameScreen={triggerClickOnGameScreen}
                     getIsGameScreenClicked={passInIsGameScreenClicked}
+                    notifyAfterReset={notifyAfterReset}
                 />
 
                 <Panel_GameDataTest
@@ -378,6 +381,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        getIsGameScreenClicked={passInIsGameScreenClicked}
                        receiveGameDataObj={passInGameDataFromScreen}
                        getResetSignal={passInResetSignal}
+                       notifyAfterReset={notifyAfterReset}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 
