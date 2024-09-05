@@ -656,9 +656,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function passInCurrentChapterNodeMap() {
-    let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {}
-                          // console.log("passing in1 ..."); //TODO test
-                          // console.log(nodeMap);
+    let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {};
     return nodeMap;
   }
 
@@ -667,9 +665,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function passInCurrentGridBlocks() {
-    let grid = currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []
-                        // console.log("passing in2 ..."); //TODO test
-                        // console.log(grid);
+    let grid = currChapterKey !== "" ? gridBlocksAll[currChapterKey] : [];
     return grid;
   }
 
@@ -799,11 +795,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   }
 
-  function passInPlayerGameData() {
+
+
+  function passInPlayerGameData() { 
     return testPlayerData;
   }
 
-  function receiveUpdateOnPageStatus(pageName) {
+  function receiveUpdateOnPageStatus(pageName) { //TODO important, needed in holder-in-practice
     setCurrTestingPageStatus(pageName);
   }
 
@@ -1000,6 +998,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           localTest={true}
 
           getGameDataDesignList={passInGameDataDesignList}
+
           getPlayerGameData={passInPlayerGameData}
 
           getScreenHeight={passInScreenHeight}
@@ -1007,21 +1006,40 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           isQuickView={false}
           triggerClickOnGameDataPanel={notUsing}
           getIsGameScreenClicked={notUsing}
+
           receiveGameDataObj={viewerSourceGameDataUpdate}
+
           getResetSignal={notUsingReturnFalse}
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-
+//TODO       getPlayerGameData & receiveGameDataObj
       
 
-      <div>
-        <label>Game Progress Panel</label><br></br>
+      <div style={{"marginLeft": "200px", "color": "#FFFFFF"}}>
+      
+      <br></br><br></br>
+           
+           
+            <table style={{"width": "900px"}}>
+              <thead>
+                <th>Current Page Status</th>
+                <th>Current Chapter-Key</th>
+                <th>Current Node-Key</th>
+                <th>Current Node-Type</th>
 
-            <label>Current Page Status: {currTestingPageStatus}</label><br></br>
-            <label>Current ChapterKey : {currTestingChapterKey}</label><br></br>
-            <label>Current NodeKey : {currTestingNodeKey}</label><br></br>
-            <label>Current NodeType : {currTestingNodeType}</label>
+              </thead>
+
+              <tbody> 
+                <td>{currTestingPageStatus}</td>
+                <td>{currTestingChapterKey}</td>
+                <td>{currTestingNodeKey}</td>
+                <td>{currTestingNodeType}</td>
+
+              </tbody>
+
+            </table>
+
       </div>
 
       

@@ -202,7 +202,7 @@ export default function ChapterManager({
                             <br></br>
 
                             <label>Chapter Notes: </label>
-                            <br></br><label>{item[3]}</label>
+                            <br></br><label>{(item[3].length > 0 ) ? item[3] : "(Empty Note)"}</label>
                             <br></br>
                             <textarea value={editingChapterNote} onChange={(event)=>{
                               setEditingChapterNote(event.target.value);
