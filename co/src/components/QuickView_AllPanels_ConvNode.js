@@ -377,6 +377,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        triggerClickOnGameDataPanel={triggerClickOnGameDataPanel}
                        getIsGameScreenClicked={passInIsGameScreenClicked}
                        receiveGameDataObj={passInGameDataFromScreen}
+                       getResetSignal={passInResetSignal}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 

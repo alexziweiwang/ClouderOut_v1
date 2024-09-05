@@ -8,7 +8,8 @@ export default function Panel_GameDataTest({
     getGameDataDesignList, initialGameDataDesignList,
     getScreenHeight, getScreenWidth,
     isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
-    receiveGameDataObj
+    receiveGameDataObj,
+    getResetSignal
 }) {
 
     const trueBoolean = true;
@@ -70,12 +71,16 @@ export default function Panel_GameDataTest({
 
 
         let receiveGameScreenClicked = getIsGameScreenClicked();
-        if (receiveGameScreenClicked === true) {
+        let resetSignal = getResetSignal();
+
+        if (receiveGameScreenClicked === true || resetSignal === true) {
             // receive updated game-data-obj from outer layer
             let newGameDataObj = receiveGameDataObj();
-                                            console.log("\t new game-data-obj:", newGameDataObj); //TODO test
+                                              console.log("\t !!! new game-data-obj:", newGameDataObj); //TODO test
             setGameData(newGameDataObj);
         } 
+
+        
 
     });
 
