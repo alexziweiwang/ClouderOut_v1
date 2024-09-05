@@ -113,27 +113,38 @@ export default function Modal_GameDataManager ({
 
     function deleteListItem(obj) {
         //change locally for UI
+        let askString = "Are you sure to delete game-data-item " + obj["name"] + " ?";
 
-        let tempMap = {};
-        Object.keys(usingGameData).map((key) => {
-            if (key !== obj["name"]) {
-                tempMap[key] = usingGameData[key];
-            }
-            // return tempMap;
-        });
-        
-        setUsingGameData(tempMap);
+        let response = window.confirm(askString);
+        if (response === true) {
 
-        //TODO3 later: change to cloud db
+            let tempMap = {};
+            Object.keys(usingGameData).map((key) => {
+                if (key !== obj["name"]) {
+                    tempMap[key] = usingGameData[key];
+                }
+                // return tempMap;
+            });
+            
+            setUsingGameData(tempMap);
+    
+            //TODO3 later: change to cloud db
+    
+                        //TODO changing area
+                    
+            resetNeedCloudData();
+                                            
+            updateGameDataToCloud(tempMap); /* update cloud db */
+    
+            //fetchFromCaller();
+                        //TODO changing area
 
-                    //TODO changing area
-                
-        resetNeedCloudData();
-                                        
-        updateGameDataToCloud(tempMap); /* update cloud db */
 
-        //fetchFromCaller();
-                    //TODO changing area
+        }
+
+
+
+      
 
     }
 

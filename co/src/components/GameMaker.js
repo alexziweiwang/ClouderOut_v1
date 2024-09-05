@@ -879,7 +879,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             handleGdmCancel={handleGameDataManagerCancel} 
             initialGameData={gameDataDesignList} 
             resetNeedCloudData={markNextNeedCloudGameData} 
-            updateGameDataSettingsToCloud={updateGameDataSettingsToCloud}
+            updateGameDataToCloud={updateGameDataSettingsToCloud}
         />} 
        
     {isDisplayEntireGameViewer && 
