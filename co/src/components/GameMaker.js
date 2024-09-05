@@ -78,7 +78,9 @@ export default function GameMaker() {
   const name = "/gamemaker";
 
   const [currChapterKey, setCurrChapterKey] = useState("");
-
+  //TODO6
+  const [currNodeKey, setCurrNodeKey] = useState("");
+  const [currNodeType, setCurrNodeType] = useState("");
 
   const [chapterList, setChapterList] = useState(
     [
@@ -735,6 +737,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
+  function passInPlayingGameData() {
+    // for local test, make from game-data-design-list
+    let tempObj = {};
+
+    // for on-cloud test, fetch from cloud
+
+
+    return {}; //TODO temp
+  }
+
   return (
   <div>
     
@@ -904,13 +916,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         </div>
 
       <Viewer_Entire
-        isDisplay={isDisplayEntireGameViewer}
-        makeNotDisplay={closeEntireGameViewer}
-        navigationObj={currentProjectNav}
-        initialChapterList={chapterList}
-        getChapterList={passInChapterList}
+          isDisplay={isDisplayEntireGameViewer}
+          makeNotDisplay={closeEntireGameViewer}
+          navigationObj={currentProjectNav}
+          initialChapterList={chapterList}
+          getChapterList={passInChapterList}
 
-        isEmu={true}
+          isEmu={true}
+          getPlayerGameData={passInPlayingGameData}
 
       />
 

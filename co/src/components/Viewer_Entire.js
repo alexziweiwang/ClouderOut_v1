@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
 
 /* //TODO
-  This component is a "screen" of game-play (both testing-entire and play-in-practice).
+  This component is a View/"screen" of game-play (both testing-entire and play-in-practice).
 
   Outside of this component, there should be an "outer" component that holds/handles the following:
 1. game-progress (which chapter, which node, which step/piece, etc.)
     TODO consider separate situation for with-sl and withour-sl, 
     TODO    also with optional "chapter lock" for new players-first time playing
-2. player data (from outer compo): in-game-data, profile, account, sl-records
+2. player data (from outer compo): in-game-play-data, profile, account, sl-records
 
  */
 export default function Viewer_Entire({isDisplay, 
@@ -16,13 +16,18 @@ export default function Viewer_Entire({isDisplay,
     initialChapterList, getChapterList,
    
     isEmu,
+    getPlayerGameData,
     updatePlayingGameData,
+
     getPlayerProfile, initialPlayerProfile,
     updatePlayerProfile,
+
     getPlayerAccountSettings, initialPlayerAccountSettings,
     updatePlayerAccountSettings,
+
     getPlayerSlRecords, initialPlayerSlRecords,
     updatePlayerSlRecords,
+    
     currentGameProgress, initialGameProgress,
     updateCurrentGameProgress
 
@@ -33,7 +38,7 @@ export default function Viewer_Entire({isDisplay,
 // if isEmu === true, then use this author's emu-player account
 // if isEmu === false, then load cloud db for the actual player's info?
 
-//TODO: for emu, allow the author to setup entering status (game-data) for [each] view testing
+//TODO: for emu, allow the author to setup entering status (game-data) for [each] try of view-testing
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 
 
@@ -52,6 +57,8 @@ export default function Viewer_Entire({isDisplay,
         "username": "playerA",
         "hp": "100",
     };
+  
+
     const testPlayerProfile = {
         "username": "playerA",
         "iconUrl": ""
@@ -84,13 +91,14 @@ export default function Viewer_Entire({isDisplay,
     //consider topics about player authentication for game-in-practice
 
 
-
+    //TODO6
     const [currChapterKey, setCurrChapterKey] = useState("");
 
+    const [currNodeKey, setCurrNodeKey] = useState("");
     const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
 
-//TODO (with "changing" during in-game actions)
-const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is tracked here (when "playing" starts)
+    //TODO (with "changing" during in-game actions)
+    const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is tracked here (when "playing" starts)
 
 
 
@@ -112,25 +120,6 @@ const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is track
 
 
      useEffect(() => {
-
-            //TODO remove later
-            // if (navigationObj["screenSize"] === "16:9(horizonal)") {
-            //     setScreenWidth(800);
-            //     setScreenHeight(450);
-
-            // } else if (navigationObj["screenSize"] === "16:9(vertical)") {
-            //     setScreenWidth(450);
-            //     setScreenHeight(800);
-
-            // } else if (navigationObj["screenSize"] === "4:3(horizonal)") {
-            //     setScreenWidth(800);
-            //     setScreenHeight(600);
-
-            // } else if (navigationObj["screenSize"] === "4:3(vertical)") {
-            //     setScreenWidth(600);
-            //     setScreenHeight(800);
-            // } //TODO remove later
-
 
             if (navigationObj["screenSize"] === "16:9(horizonal)"
                 || navigationObj["screenSize"] === "16:9(vertical)"
@@ -182,8 +171,11 @@ const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is track
 return(<>
 
 <div>
-  
-  
+                                                                                           {/* //TODO6 */}
+<label>currChapterKey : {currChapterKey}</label><br></br>
+<label>currNodeKey : {currNodeKey}</label><br></br>
+<label>currNodeTyoe : {currNodeType}</label>
+
     <div>
 
       
@@ -234,13 +226,9 @@ return(<>
         </div>
 
 
-        
-      
-
-
+         
 
     </div>
-
 
 
 
