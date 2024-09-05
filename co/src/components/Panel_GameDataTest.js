@@ -95,12 +95,12 @@ return (
     
 <div 
     style={{
-                "width": `870px`, 
+                "width": `350px`, 
                 "height": `${screenHeight}px`, 
                 "overflow": "scroll", 
                 "backgroundColor": "grey",
                 "color": "#FFFFFF",
-                "marginLeft": (isQuickView === true) ? "260px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
+                "marginLeft": (isQuickView === true) ? "60px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
                 }}
     onClick={()=>{
         triggerClickOnGameDataPanel();

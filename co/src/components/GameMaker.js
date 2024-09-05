@@ -722,6 +722,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     console.log();
   }
 
+  function notUsingReturnFalse() {
+    return false;
+  }
+
+  function notUsingReturnTrue() {
+    return true;
+  }
+
 
   function viewerSourceGameDataUpdate() {
     return {"default": "impl for viewer_entire later"}; //TODO5 later
@@ -921,6 +929,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           triggerClickOnGameDataPanel={notUsing}
           getIsGameScreenClicked={notUsing}
           receiveGameDataObj={viewerSourceGameDataUpdate}
+          getResetSignal={notUsingReturnFalse}
         />
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
