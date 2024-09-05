@@ -77,8 +77,10 @@ export default function GameMaker() {
   const navigate = useNavigate();
   const name = "/gamemaker";
 
-  const [currChapterKey, setCurrChapterKey] = useState("");
+
   //TODO6
+  const [currPageStatus, setCurrPageStatus] = useState("Main Page");
+  const [currChapterKey, setCurrChapterKey] = useState("");
   const [currNodeKey, setCurrNodeKey] = useState("");
   const [currNodeType, setCurrNodeType] = useState("");
 
@@ -771,7 +773,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function setupPlayingGameData(isEmu) {
+  function setupPlayingGameData(isEmu) {                                          //TODO important
     let gameDataTemp = {};
 
     // for local test, make from game-data-design-list
@@ -780,20 +782,27 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
         })}
         
-        setTestPlayerData(gameDataTemp);
+       
 
 
     } else {
       // for on-cloud test, fetch from cloud
       //TODO gameDataTemp = ...
+
+
     }
-    
+
+    setTestPlayerData(gameDataTemp);
     // testPlayerGameData <== gameDataDesignList
 
   }
 
   function passInPlayerGameData() {
     return testPlayerData;
+  }
+
+  function receiveUpdateOnPageStatus(pageName) {
+    setCurrPageStatus(pageName);
   }
 
 
@@ -976,6 +985,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           isEmu={true}
           getPlayerGameData={passInPlayerGameData}
 
+          notifyPageStatus={receiveUpdateOnPageStatus}
+
       />
 
 
@@ -1001,6 +1012,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
 
       
+
+      <div>
+        <label>Game Progress Panel</label><br></br>
+
+            <label>Current Page Status: </label>
+            <label>Current ChapterKey : {currChapterKey}</label><br></br>
+            <label>Current NodeKey : {currNodeKey}</label><br></br>
+            <label>Current NodeType : {currNodeType}</label>
+      </div>
+
       
       </div>}
 

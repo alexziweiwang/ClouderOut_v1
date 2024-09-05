@@ -29,7 +29,10 @@ export default function Viewer_Entire({isDisplay,
     updatePlayerSlRecords,
     
     currentGameProgress, initialGameProgress,
-    updateCurrentGameProgress
+    updateCurrentGameProgress,
+
+    notifyPageStatus,
+
 
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -165,18 +168,14 @@ export default function Viewer_Entire({isDisplay,
     }
 
     function updateNavPageName(pageName) {
-        setNavPageStatus(pageName);
+        setNavPageStatus(pageName);        
+        notifyPageStatus(pageName);// notify outer layer
     }
 
 
 return(<>
 
 <div>
-                                                                                           {/* //TODO6 */}
-<label>currChapterKey : {currChapterKey}</label><br></br>
-<label>currNodeKey : {currNodeKey}</label><br></br>
-<label>currNodeTyoe : {currNodeType}</label>
-
     <div>
 
       
