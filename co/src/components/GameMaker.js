@@ -1014,7 +1014,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                 onClick={()=>{
                     setShowGameDataPanel(!showGameDataPanel);
                 }}
-            >Show Game-Data Trackinf Panel</label><br></br>
+            >Show Game-Data Tracking Panel</label><br></br>
 
 
             <input 
@@ -1066,32 +1066,48 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
       </div>
 
-
-      {/* screenWidth > screenHeight means horizontal game-screen */}
-
-      {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-      {(showGameDataPanel && isDisplayEntireGameViewer) && 
-        <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
-          <Panel_GameDataTest
-            localTest={true}
-
-            getGameDataDesignList={passInGameDataDesignList}
-
-            getScreenHeight={passInScreenHeight}
-            getScreenWidth={passInScreenWidth}
-            isQuickView={false}
-            triggerClickOnGameDataPanel={notUsing}
-            getIsGameScreenClicked={notUsing}
-
-            receiveGameDataObj={passInPlayerGameData}
-
-            getResetSignal={notUsingReturnFalse}
-          />
-        </div>
-      }
-      {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
+      <div>
+            {(showPlayerInfoPanel && showGameDataPanel && isDisplayEntireGameViewer) &&
+              <div style={{"display": "flex", "marginLeft": `${screenWidth+300}px`}}>
+                <button>Game Data</button>
+                <button>Player Info</button>
+              </div>
+            
+            }
 
 
+            {/* screenWidth > screenHeight means horizontal game-screen */}
+            {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
+            {(showGameDataPanel && isDisplayEntireGameViewer) && 
+              <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
+                <Panel_GameDataTest
+                  localTest={true}
+
+                  getGameDataDesignList={passInGameDataDesignList}
+
+                  getScreenHeight={passInScreenHeight}
+                  getScreenWidth={passInScreenWidth}
+                  isQuickView={false}
+                  triggerClickOnGameDataPanel={notUsing}
+                  getIsGameScreenClicked={notUsing}
+
+                  receiveGameDataObj={passInPlayerGameData}
+
+                  getResetSignal={notUsingReturnFalse}
+                />
+              </div>
+            }
+
+
+            {(showPlayerInfoPanel && isDisplayEntireGameViewer) && 
+              <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
+                <div style={{"width": `350px`, "height": `${screenHeight}px`, "backgroundColor": "orange", "position": "absolute", "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}></div>
+              
+              
+              </div>}
+            {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
+
+          </div>
       
       </div>}
 
