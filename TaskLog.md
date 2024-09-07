@@ -345,3 +345,8 @@
 
 - 2024-Sept-02: Redesign piece-setter for option of text-content and clickables
 
+- 2024-Sept-06: Design user-panel for creators when testing on player-profile/account/sl-records
+
+
+
+
