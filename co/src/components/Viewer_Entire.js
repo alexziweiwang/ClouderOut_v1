@@ -15,7 +15,7 @@ export default function Viewer_Entire({isDisplay,
     makeNotDisplay, navigationObj,
     initialChapterList, getChapterList,
    
-    isEmu,
+    isLocal,
     getPlayerGameData,
     updatePlayingGameData,
 
@@ -36,9 +36,9 @@ export default function Viewer_Entire({isDisplay,
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
 
-//  "isEmu": the sign for either testing-entire or play-in-practice.
-// if isEmu === true, then use this author's emu-player account
-// if isEmu === false, then load cloud db for the actual player's info?
+//  "isLocal": the sign for either testing-entire or play-in-practice.
+// if isLocal === true, then use this author's emu-player account
+// if isLocal === false, then load cloud db for the actual player's info?
 
 
 

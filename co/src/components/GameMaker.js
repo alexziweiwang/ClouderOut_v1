@@ -418,7 +418,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
 
-  const [testPlayerProfile, setTestPlayerProfile] = useState({
+  const [testPlayerProfile, setTestPlayerProfile] = useState({ 
       "username": "playerA",
       "iconUrl": ""
   });                                                                 //TODO important for holder-in-practice
@@ -433,8 +433,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "username": "playerA",
       "itemStatus": [{}, {}, {}]
     });                                                               //TODO important for holder-in-practice
-
-
 
 
 
@@ -531,7 +529,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         fetchGameDataFromCloud();
 
-        setupPlayingGameData(true); //TODO2, is-emu
+
+        let isLocal = true; //TODO temp
+
+        loadPlayingGameData(isLocal); 
+
         
         setFirstTimeEnter(false);
     }
@@ -772,18 +774,15 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function setupPlayingGameData(isEmu) {                                          //TODO important
+  function loadPlayingGameData(isLocal) {                                          //TODO important
     let gameDataTemp = {};
 
     // for local test, make from game-data-design-list
-    if (isEmu === true) {
+    if (isLocal === true) {
         {Object.keys(gameDataDesignList).map((currKey) => {
           gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
         })}
         
-       
-
-
     } else {
       // for on-cloud test, fetch from cloud
       //TODO gameDataTemp = ...
@@ -791,10 +790,26 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     }
 
-    setTestPlayerGameData(gameDataTemp);
-    // testPlayerGameData <== gameDataDesignList
+    setTestPlayerGameData(gameDataTemp); // initialize Playing-Game-Data
+  }
+
+  function loadTestPlayerProfile(isLocal) {
+    let playerProfileTemp = {};
+    if (isLocal === true) {
+      //use emulated test data
+      //TODO
+
+      
+    } else { //use cloud data
+
+    }
+
+    setTestPlayerProfile(playerProfileTemp);
 
   }
+  
+  //loadTestPlayerAccount, loadTestPlayerSLRecords
+
 
 
 
@@ -983,7 +998,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           initialChapterList={chapterList}
           getChapterList={passInChapterList}
 
-          isEmu={true}
+          isLocal={true}
           getPlayerGameData={passInPlayerGameData}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
