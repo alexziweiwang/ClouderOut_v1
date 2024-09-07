@@ -1071,33 +1071,26 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
-        
-        <Panel_GameDataTest
-          localTest={true}
+        <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
+          <Panel_GameDataTest
+            localTest={true}
 
-          getGameDataDesignList={passInGameDataDesignList}
+            getGameDataDesignList={passInGameDataDesignList}
 
-          getScreenHeight={passInScreenHeight}
-          getScreenWidth={passInScreenWidth}
-          isQuickView={false}
-          triggerClickOnGameDataPanel={notUsing}
-          getIsGameScreenClicked={notUsing}
+            getScreenHeight={passInScreenHeight}
+            getScreenWidth={passInScreenWidth}
+            isQuickView={false}
+            triggerClickOnGameDataPanel={notUsing}
+            getIsGameScreenClicked={notUsing}
 
-          receiveGameDataObj={passInPlayerGameData}
+            receiveGameDataObj={passInPlayerGameData}
 
-          getResetSignal={notUsingReturnFalse}
-        />
+            getResetSignal={notUsingReturnFalse}
+          />
+        </div>
       }
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
 
-      
-      <div style={{"marginLeft": "200px", "color": "#FFFFFF"}}>
-      
-      <br></br><br></br>
-           
-           
-         
-      </div>
 
       
       </div>}

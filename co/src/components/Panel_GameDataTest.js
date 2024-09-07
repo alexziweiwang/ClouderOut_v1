@@ -97,7 +97,6 @@ return (
 <div 
     style={{
                 "width": `350px`, 
-                "height": `${screenHeight}px`, 
                 "overflow": "scroll", 
                 "backgroundColor": "grey",
                 "color": "#FFFFFF",
