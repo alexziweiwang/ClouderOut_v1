@@ -745,7 +745,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setChapterList(chapterData);
   }
 
-  const [showGameDataPanel, setShowGameDataPanel] = useState(true);
+  const [showGameDataPanel, setShowGameDataPanel] = useState(false);
   const [showPlayerInfoPanel, setShowPlayerInfoPanel] = useState(true);
 
   let modalStyleName = "";
@@ -1030,7 +1030,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               }}>Show Emulated-Player Info Panel</label>
             
         </div>
-
+    
+      <div>
       <Viewer_Entire
           isDisplay={isDisplayEntireGameViewer}
           makeNotDisplay={closeEntireGameViewer}
@@ -1044,12 +1045,33 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           notifyPageStatus={receiveUpdateOnPageStatus}
 
       />
+      <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
+              <thead>
+                <th>Current Page Status</th>
+                <th>Current Chapter-Key</th>
+                <th>Current Node-Key</th>
+                <th>Current Node-Type</th>
+
+              </thead>
+
+              <tbody> 
+                <td>{currTestingPageStatus}</td>
+                <td>{currTestingChapterKey}</td>
+                <td>{currTestingNodeKey}</td>
+                <td>{currTestingNodeType}</td>
+
+              </tbody>
+
+            </table>
+
+      </div>
 
 
       {/* screenWidth > screenHeight means horizontal game-screen */}
 
       {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
       {(showGameDataPanel && isDisplayEntireGameViewer) && 
+        
         <Panel_GameDataTest
           localTest={true}
 
@@ -1074,25 +1096,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       <br></br><br></br>
            
            
-            <table style={{"width": "900px"}}>
-              <thead>
-                <th>Current Page Status</th>
-                <th>Current Chapter-Key</th>
-                <th>Current Node-Key</th>
-                <th>Current Node-Type</th>
-
-              </thead>
-
-              <tbody> 
-                <td>{currTestingPageStatus}</td>
-                <td>{currTestingChapterKey}</td>
-                <td>{currTestingNodeKey}</td>
-                <td>{currTestingNodeType}</td>
-
-              </tbody>
-
-            </table>
-
+         
       </div>
 
       
