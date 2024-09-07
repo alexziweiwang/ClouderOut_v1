@@ -434,11 +434,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "itemStatus": [{}, {}, {}]
     });                                                               //TODO important for holder-in-practice
 
-
-
-
-
-
 //TODO ------------------------------------------------------ testing data area
 
   const [gameDataDesignList, setGameDataDesignList] = useState({});
@@ -533,6 +528,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         let isLocal = true; //TODO temp
 
         loadPlayingGameData(isLocal); 
+        loadTestPlayerProfile(isLocal); 
+        loadTestPlayerAccount(isLocal); 
+        loadTestPlayerSLRecords(isLocal);
 
         
         setFirstTimeEnter(false);
@@ -793,13 +791,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setTestPlayerGameData(gameDataTemp); // initialize Playing-Game-Data
   }
 
-  function loadTestPlayerProfile(isLocal) {
+  function loadTestPlayerProfile(isLocal) { 
     let playerProfileTemp = {};
     if (isLocal === true) {
       //use emulated test data
-      //TODO
 
-      
+      playerProfileTemp = testPlayerProfile;
+
+      //TODO later: player-account-related panel?
     } else { //use cloud data
 
     }
@@ -807,12 +806,37 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setTestPlayerProfile(playerProfileTemp);
 
   }
+
+  function loadTestPlayerAccount(isLocal) {
+    let playerAccountDataTemp = {};
+    if (isLocal === true) {
+      //use emulated test data
+      //TODO
+
+      playerAccountDataTemp = testPlayerAccount;
+
+    } else {//use cloud data
+
+    }
+
+    setTestPlayerAccount(playerAccountDataTemp);
+
+  }
+
+  function loadTestPlayerSLRecords(isLocal) {
+    let playerSLRecordsTemp = {};
+    if (isLocal === true) {
+      //use emulated test data
+      //TODO
+
+      playerSLRecordsTemp = testPlayerSLRecords;  
+
+    } else {//use cloud data
+
+    }
+
+  }
   
-  //loadTestPlayerAccount, loadTestPlayerSLRecords
-
-
-
-
   function passInPlayerGameData() { 
     return testPlayerGameData;
   }
