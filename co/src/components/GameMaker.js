@@ -746,6 +746,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   const [showGameDataPanel, setShowGameDataPanel] = useState(true);
+  const [showPlayerInfoPanel, setShowPlayerInfoPanel] = useState(true);
+
   let modalStyleName = "";
 
   if (isDisplayEntireGameViewer === true) {
@@ -1000,7 +1002,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
         <button className="testEntire" onClick={()=>{setDisplayEntierGameViewer(false);}}>Stop Testing</button>
 
-        <div style={{"marginBottom":" 10px", "userSelect": "none"}}>
+        <div style={{"marginBottom":" 10px", "userSelect": "none", "color": "#FFFFFF"}}>
             <input 
                 type="checkbox" 
                 value={showGameDataPanel}
@@ -1012,7 +1014,21 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                 onClick={()=>{
                     setShowGameDataPanel(!showGameDataPanel);
                 }}
-            >Show Game-Data Tracker Panel</label>
+            >Show Game-Data Trackinf Panel</label><br></br>
+
+
+            <input 
+              type="checkbox"
+              value={showPlayerInfoPanel}
+              checked={showPlayerInfoPanel}
+              onChange={()=>{
+                setShowPlayerInfoPanel(!showPlayerInfoPanel);
+              }}
+            ></input>
+            <label onClick={()=>{
+                setShowPlayerInfoPanel(!showPlayerInfoPanel);
+              }}>Show Emulated-Player Info Panel</label>
+            
         </div>
 
       <Viewer_Entire
