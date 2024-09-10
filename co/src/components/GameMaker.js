@@ -390,6 +390,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgShadeName": "",
     "playerProfilePage-bgPicName": "",
 
+    "shopPage-isBackgroundShape": false,
+    "shopPage-bgShadeName": "",
+    "shopPage-bgPicName": "",
+
     "storyPage-chapterListHorizontal": true,
     "storyPage-isBackgroundShape": false,
     "storyPage-bgShadeName": "rgb(222, 222, 235)",

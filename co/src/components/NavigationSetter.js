@@ -3307,11 +3307,24 @@ export default function NavigationSetter({initialNavObj,
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
-                        }}></input><label onClick={(event)=>{
-                                
-                                }}>Rectangle & Color Filled </label>
+                        value={currentProjectNav["shopPage-isBackgroundShape"]}
+                        checked={currentProjectNav["shopPage-isBackgroundShape"]}
+                        onChange={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["shopPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj); 
+            
+                          setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": true});  
+                          
+                        }}></input><label onClick={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["shopPage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj); 
+            
+                          setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": true});  
+                          
+                        }}
+                        >Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -3323,10 +3336,23 @@ export default function NavigationSetter({initialNavObj,
                                 </div>}
                             
                         <br></br><input type="radio"
-                          onChange={(event)=>{
-                          
-                        }}></input><label onClick={(event)=>{
-                              }}>Base Picture </label>
+                          value={currentProjectNav["shopPage-isBackgroundShape"]}
+                          checked={!currentProjectNav["shopPage-isBackgroundShape"]}
+                          onChange={()=>{    
+                            let tempObj = currentProjectNav;
+                            tempObj["shopPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj); 
+              
+                            setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": false});  
+                            
+                          }}></input><label onClick={()=>{    
+                            let tempObj = currentProjectNav;
+                            tempObj["shopPage-isBackgroundShape"] = false;
+                            updateNavObj(tempObj); 
+              
+                            setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": false});  
+                            
+                          }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
