@@ -1071,12 +1071,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       <div>
             {(showPlayerInfoPanel && showGameDataPanel && isDisplayEntireGameViewer) &&
               <div style={{"display": "flex", "marginLeft": `${screenWidth+300}px`}}>
-                <button onClick={()=>{
-                  setSelectedGameDataPanelBetween2(true);
-                }}>Game Data</button>
-                <button onClick={()=>{
-                  setSelectedGameDataPanelBetween2(false);
-                }}>Player Info</button>
+                <button 
+                  className={selectedGameDataPanelBetween2 ? "panelTabSelected" : "panelTab"}
+                  onClick={()=>{
+                    setSelectedGameDataPanelBetween2(true);
+                  }}>Game Data</button>
+                <button 
+                  className={!selectedGameDataPanelBetween2 ? "panelTabSelected" : "panelTab"}
+                  onClick={()=>{
+                    setSelectedGameDataPanelBetween2(false);
+                  }}>Player Info</button>
               </div>
             }
 
@@ -1084,7 +1088,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {(showGameDataPanel && isDisplayEntireGameViewer && selectedGameDataPanelBetween2) && 
+            {((isDisplayEntireGameViewer && showGameDataPanel && selectedGameDataPanelBetween2) 
+              ||
+              (isDisplayEntireGameViewer && showGameDataPanel)
+            )
+            && 
               <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
                 <Panel_GameDataTest
                   localTest={true}

@@ -927,6 +927,34 @@ td {
     border-radius: 0px;
 }
 
+.panelTab {
+    border-radius: 0px;
+    background-color: #7e7e7e;
+    color: #FFFFFF;
+    border: none;
+}
+
+.panelTab:hover {
+    border-radius: 0px;
+    background-color: #555555;
+    color: #FFFFFF;
+    border: none;
+}
+
+.panelTabSelected {
+    border-radius: 0px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: none;
+}
+
+.panelTabSelected:hover {
+    border-radius: 0px;
+    background-color: #0b0b0b;
+    color: #FFFFFF;
+    border: none;
+}
+
 .tabBar1 {
     background-color: rgb(198, 193, 186);
     border-color: rgb(198, 193, 186);
