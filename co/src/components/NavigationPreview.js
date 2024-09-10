@@ -157,6 +157,7 @@ export default function NavigationPreview ({
         style={{
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
     }}>
+        
         {page === "Main Page" && 
 
         <div style={{

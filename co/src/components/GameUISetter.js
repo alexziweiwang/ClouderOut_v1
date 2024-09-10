@@ -137,8 +137,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         <select value={defaultButtonObj["fontName"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "fontName": event.target.value})
         }}>
-            <option value="sans-serif" key="deflBtn_sans-serif">sans-serif</option>
             <option value="serif" key="deflBtn_serif">serif</option>
+            <option value="sans-serif" key="deflBtn_sans-serif">sans-serif</option>
             <option value="cursive" key="deflBtn_cursive">cursive</option>
         </select>
         <br></br><label>Border Color: </label><input type="color" value={idvButtonBorderColor} onChange={(event)=>{
@@ -423,8 +423,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         onChange={(event)=>{
                 setTxtFrameObj({...txtFrameObj,  "fontName": event.target.value});
             }}>
-                <option value="sans-serif" key="txf_sans-serif">sans-serif</option>
                 <option value="serif" key="txf_serif">serif</option>
+                <option value="sans-serif" key="txf_sans-serif">sans-serif</option>
                 <option value="cursive" key="txf_cursive">cursive</option>
             </select>
   
@@ -618,8 +618,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <select value={convNav["buttonAutoFontName"]} onChange={(event)=>{
                 setConvNav({...convNav,  "buttonAutoFontName": event.target.value});
             }}>
-                <option value="sans-serif" key="autoBtn_sans-serif">sans-serif</option>
                 <option value="serif" key="autoBtn_serif">serif</option>
+                <option value="sans-serif" key="autoBtn_sans-serif">sans-serif</option>
                 <option value="cursive" key="autoBtn_cursive">cursive</option>
             </select>
 
@@ -673,8 +673,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onChange={(event)=>{
                     setConvNav({...convNav,  "buttonLogFontName": event.target.value});
             }}>
-                <option value="sans-serif" key="logBtn_sans-serif">sans-serif</option>
                 <option value="serif" key="logBtn_serif">serif</option>
+                <option value="sans-serif" key="logBtn_sans-serif">sans-serif</option>
                 <option value="cursive" key="logBtn_cursive">cursive</option>
             </select>
             <br></br>
@@ -945,8 +945,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvLogObj({...convLogObj, "closeButtonFontName": event.target.value});
                     }}
                 >
-                    <option value="sans-serif" key="closeBtn_sans-serif">sans-serif</option>
                     <option value="serif" key="closeBtn_serif">serif</option>
+                    <option value="sans-serif" key="closeBtn_sans-serif">sans-serif</option>
                     <option value="cursive" key="closeBtn_cursive">cursive</option>  
                 </select>
 
@@ -1146,8 +1146,8 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <select value={convLogObj["contentTextFont"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj,  "contentTextFont": event.target.value})
                     }}>
-                        <option value="sans-serif" key="contentTextFont_sans-serif">sans-serif</option>
                         <option value="serif" key="contentTextFont_serif">serif</option>
+                        <option value="sans-serif" key="contentTextFont_sans-serif">sans-serif</option>
                         <option value="cursive" key="contentTextFont_cursive">cursive</option>         
                 </select>  
                 <br></br>Position X
@@ -1191,8 +1191,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <select value={convLogObj["speakerTextFont"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj,  "speakerTextFont": event.target.value})
                     }}>
-                        <option value="sans-serif" key="speakerTextFont_sans-serif">sans-serif</option>
+
                         <option value="serif" key="speakerTextFont_serif">serif</option>
+                        <option value="sans-serif" key="speakerTextFont_sans-serif">sans-serif</option>
                         <option value="cursive" key="speakerTextFont_cursive">cursive</option>         
                 </select>   
                 <br></br>

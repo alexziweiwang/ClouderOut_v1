@@ -280,7 +280,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "screenSize": "16:9(horizonal)",
     
     "isWithSL": true,
-    "fontFamilyForAll": "sans-serif",
+    "fontFamilyForAll": "serif",
 
     "mainPage-story": true,
     "mainPage-shop": true,

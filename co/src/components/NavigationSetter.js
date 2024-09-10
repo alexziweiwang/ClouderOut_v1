@@ -249,8 +249,8 @@ export default function NavigationSetter({initialNavObj,
               setCurrentProjectNav({...currentProjectNav, "fontFamilyForAll": event.target.value});  
           }}
         >
-            <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
             <option value="serif" key="navUI_serif">serif</option>
+            <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
             <option value="cursive" key="navUI_cursive">cursive</option>    
         </select>
       </div>
