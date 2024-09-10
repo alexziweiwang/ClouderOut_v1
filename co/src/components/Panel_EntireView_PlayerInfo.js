@@ -32,7 +32,35 @@ return (
         "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}
     >
 
-    (player info!!!)
+    (players' in-game profile)
+    <div style={{"textAlign": "left", "padding": "10px"}}>
+        <label>Username: </label>
+        <input></input>
+        <br></br><br></br>
+
+        <label>Icon: </label>
+        <div style={{
+            "backgroundColor": "orange",
+            "borderRadius": "0px",
+            "width": "150px",
+            "height": "150px"
+            
+            }}>
+     
+        </div>
+        <button>Change</button><br></br><br></br>
+
+        <label>Level: </label>
+        <input></input><br></br><br></br>
+
+        <label>Membership: </label>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        
+    </div>
 
 </div>
 );
