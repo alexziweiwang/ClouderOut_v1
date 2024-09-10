@@ -3140,11 +3140,24 @@ export default function NavigationSetter({initialNavObj,
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        
-                        onChange={(event)=>{          
-                        }}></input><label onClick={(event)=>{
-                                
-                                }}>Rectangle & Color Filled </label>
+                        value={currentProjectNav["playerProfilePage-isBackgroundShape"]}
+                        checked={currentProjectNav["playerProfilePage-isBackgroundShape"]}
+                        onChange={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["playerProfilePage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+
+                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": true});
+                                 
+                        }}></input><label onClick={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["playerProfilePage-isBackgroundShape"] = true;
+                          updateNavObj(tempObj);
+
+                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": true});
+                                 
+                        }}
+                        >Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -3156,22 +3169,40 @@ export default function NavigationSetter({initialNavObj,
                                 </div>}
                             
                         <br></br><input type="radio"
-                          value={currentProjectNav["playerProfilePage-bgPicName"]}
-                          onChange={(event)=>{
-                            // TODO6
-                            let tempObj = currentProjectNav;
-                            tempObj["playerProfilePage-bgPicName"] = event.target.value;
-                            updateNavObj(tempObj);
+                            value={currentProjectNav["playerProfilePage-isBackgroundShape"]}
+                            checked={!currentProjectNav["playerProfilePage-isBackgroundShape"]}
+                            onChange={()=>{    
+                              let tempObj = currentProjectNav;
+                              tempObj["playerProfilePage-isBackgroundShape"] = false;
+                              updateNavObj(tempObj);
     
-                            setCurrentProjectNav({...currentProjectNav, "playerProfilePage-bgPicName": event.target.value});
-                                    
-                        }}></input><label onClick={(event)=>{
-                          
-                              }}>Base Picture </label>
+                              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": false});
+                                     
+                            }}
+                          ></input><label onClick={()=>{    
+                                let tempObj = currentProjectNav;
+                                tempObj["playerProfilePage-isBackgroundShape"] = false;
+                                updateNavObj(tempObj);
+      
+                                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": false});
+                                      
+                              }}>
+                                Base Picture </label>
                             {
                             <>
-                                <select onChange={(event)=>{
-                                }}>                    
+                                <select 
+                                  value={currentProjectNav["playerProfilePage-bgPicName"]}
+                                  onChange={(event)=>{
+                                    let tempObj = currentProjectNav;
+                                    tempObj["playerProfilePage-bgPicName"] = event.target.value;
+                                    updateNavObj(tempObj);
+        
+                                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-bgPicName": event.target.value});
+                                        
+                                  }}  
+                                
+                                
+                                >                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                                     {visualList.map((item, index) => {
                                         let keyStr = "playerProfilePage-li-" + index + item["var"];

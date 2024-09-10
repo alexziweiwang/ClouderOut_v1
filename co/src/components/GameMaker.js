@@ -386,6 +386,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "settingPage-bgmVolName": "Background Music Volume",
     "settingPage-seVolName": "Sound Effect Volume",
 
+    "playerProfilePage-isBackgroundShape": false,
+    "playerProfilePage-bgShadeName": "",
     "playerProfilePage-bgPicName": "",
 
     "storyPage-chapterListHorizontal": true,
