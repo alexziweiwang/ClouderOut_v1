@@ -3156,16 +3156,27 @@ export default function NavigationSetter({initialNavObj,
                                 </div>}
                             
                         <br></br><input type="radio"
+                          value={currentProjectNav["playerProfilePage-bgPicName"]}
                           onChange={(event)=>{
-                          
+                            // TODO6
+                            let tempObj = currentProjectNav;
+                            tempObj["playerProfilePage-bgPicName"] = event.target.value;
+                            updateNavObj(tempObj);
+    
+                            setCurrentProjectNav({...currentProjectNav, "playerProfilePage-bgPicName": event.target.value});
+                                    
                         }}></input><label onClick={(event)=>{
+                          
                               }}>Base Picture </label>
                             {
                             <>
                                 <select onChange={(event)=>{
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
-                          
+                                    {visualList.map((item, index) => {
+                                        let keyStr = "playerProfilePage-li-" + index + item["var"];
+                                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
                                 </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
                         </>}
 
