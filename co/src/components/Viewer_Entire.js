@@ -199,6 +199,7 @@ return(<>
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 
                         updateCurrentPageName={updateNavPageName}
+                        isEditing={false}
                     />
                 </div>
         </div>

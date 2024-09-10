@@ -418,6 +418,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
 
+  //TODO6
   const [testPlayerProfile, setTestPlayerProfile] = useState({ 
       "username": "playerA",
       "iconUrl": ""
@@ -970,7 +971,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               </div>
               
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
-                <NavigationPreview initialNavObj={currentProjectNav} fetchNavObj={passInNavObj} fetchPageName={passInCurrSelectedPage} chapterData={chapterList} updateCurrentPageName={updateCurrPageName}/>
+                <NavigationPreview
+                  initialNavObj={currentProjectNav} 
+                  fetchNavObj={passInNavObj} 
+                  fetchPageName={passInCurrSelectedPage} 
+                  chapterData={chapterList} 
+                  updateCurrentPageName={updateCurrPageName}
+                  isEditing={true}
+                  />
               </div>
           </div>
     </div>

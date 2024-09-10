@@ -6,8 +6,9 @@ export default function NavigationPreview ({
     initialNavObj, 
     fetchNavObj, 
     fetchPageName, 
+    updateCurrentPageName,
     chapterData, 
-    updateCurrentPageName
+    isEditing,
 
 }) {
     const username = "user002"; //TODO testing
@@ -113,45 +114,29 @@ export default function NavigationPreview ({
             setVisualMap(tempVisualMap);
         }
 
-        let objTemp = fetchNavObj();
-        setNavObj(objTemp);
+        if (isEditing === true) {
+            let objTemp = fetchNavObj();
+            setNavObj(objTemp);
+       
+            if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
+                setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
+                let currRow = [];
+                let j = 0;
+                for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
+                    let num = j;
+                    currRow.push(num);
+                }
+                setSlSlotFrame(currRow);
+                console.log("initial slot-per-page: ", currRow); //TODO Test
 
-
-        if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
-            setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
-            let currRow = [];
-            let j = 0;
-            for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
-                let num = j;
-                currRow.push(num);
             }
-            setSlSlotFrame(currRow);
-            console.log("initial slot-per-page: ", currRow); //TODO Test
-
         }
-
 
         let tempPage= fetchPageName();
         if (tempPage !== undefined && tempPage !== "") {
             setPage(tempPage);
         }
-        
 
-        //TODO remove later
-        // if (navObj["screenSize"] === "16:9(horizonal)") {
-        //     setScreenWidth(800);
-        //     setScreenHeight(450);
-        // } else if (navObj["screenSize"] === "16:9(vertical)") {
-        //     setScreenWidth(450);
-        //     setScreenHeight(800);
-        // } else if (navObj["screenSize"] === "4:3(horizonal)") {
-        //     setScreenWidth(800);
-        //     setScreenHeight(600);
-        // } else if (navObj["screenSize"] === "4:3(vertical)") {
-        //     setScreenWidth(600);
-        //     setScreenHeight(800);
-        // }
-        //TODO remove later
 
         if (navObj["screenSize"] === "16:9(horizonal)"
             || navObj["screenSize"] === "16:9(vertical)"
@@ -942,8 +927,10 @@ export default function NavigationPreview ({
                     {navObj["backButton-displayText"]}
                 </div>   
 
+           
             <br></br>        
-            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+            this is Player Profile Page
+            <br></br>
 
             </div>            
         </div>
@@ -1071,7 +1058,8 @@ export default function NavigationPreview ({
 
 
             <br></br>        
-            {navObj["storyPage-chapterListHorizontal"].toString()}<br></br>
+            this is Shop Page
+            <br></br>
 
 
 
