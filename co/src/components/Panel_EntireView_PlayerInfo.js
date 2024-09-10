@@ -5,7 +5,7 @@ export default function Panel_EntireView_PlayerInfo({
     getScreenHeight, getScreenWidth,
 }) {
 
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenHeight, setScreenHeight] = useState(450);
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
        

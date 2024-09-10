@@ -1093,7 +1093,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               (isDisplayEntireGameViewer && !(showGameDataPanel && showPlayerInfoPanel) && showGameDataPanel )
             )
             && 
-              <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
+              <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
                 <Panel_GameDataTest
                   localTest={true}
 
@@ -1118,7 +1118,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             )
             
             && 
-              <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
+              <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
                 
                 
                 <Panel_EntireView_PlayerInfo

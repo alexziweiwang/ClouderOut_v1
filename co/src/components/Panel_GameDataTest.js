@@ -16,7 +16,7 @@ export default function Panel_GameDataTest({
     const trueBoolean = true;
     const falseBoolean = false;
 
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenHeight, setScreenHeight] = useState(450);
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
 

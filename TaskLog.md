@@ -347,6 +347,5 @@
 
 - 2024-Sept-06: Design user-panel for creators when testing on player-profile/account/sl-records
 
-
-
+- 2024-Sept-09: Design data structures, input and output for player-data during test/in-practice
 
