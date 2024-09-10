@@ -1088,9 +1088,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {((isDisplayEntireGameViewer && showGameDataPanel && selectedGameDataPanelBetween2) 
+            {((isDisplayEntireGameViewer && (showGameDataPanel && showPlayerInfoPanel) && selectedGameDataPanelBetween2) 
               ||
-              (isDisplayEntireGameViewer && showGameDataPanel)
+              (isDisplayEntireGameViewer && !(showGameDataPanel && showPlayerInfoPanel) && showGameDataPanel )
             )
             && 
               <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
@@ -1113,8 +1113,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             }
 
             {/* player info */}
-            {((showPlayerInfoPanel && isDisplayEntireGameViewer && !selectedGameDataPanelBetween2)
-              || (showPlayerInfoPanel && isDisplayEntireGameViewer && !showGameDataPanel)
+            {((isDisplayEntireGameViewer && (showGameDataPanel && showPlayerInfoPanel) && !selectedGameDataPanelBetween2)
+              || (isDisplayEntireGameViewer && !(showGameDataPanel && showPlayerInfoPanel) && showPlayerInfoPanel)
             )
             
             && 
