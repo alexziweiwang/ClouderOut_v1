@@ -436,6 +436,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 //TODO ------------------------------------------------------ testing data area
 
+    const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
+
   const [gameDataDesignList, setGameDataDesignList] = useState({});
 
   async function fetchGameDataFromCloud() { //TODO3
@@ -1069,16 +1071,20 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       <div>
             {(showPlayerInfoPanel && showGameDataPanel && isDisplayEntireGameViewer) &&
               <div style={{"display": "flex", "marginLeft": `${screenWidth+300}px`}}>
-                <button>Game Data</button>
-                <button>Player Info</button>
+                <button onClick={()=>{
+                  setSelectedGameDataPanelBetween2(true);
+                }}>Game Data</button>
+                <button onClick={()=>{
+                  setSelectedGameDataPanelBetween2(false);
+                }}>Player Info</button>
               </div>
-            
             }
 
 
+            {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {(showGameDataPanel && isDisplayEntireGameViewer) && 
+            {(showGameDataPanel && isDisplayEntireGameViewer && selectedGameDataPanelBetween2) && 
               <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
                 <Panel_GameDataTest
                   localTest={true}
@@ -1098,12 +1104,20 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               </div>
             }
 
-
-            {(showPlayerInfoPanel && isDisplayEntireGameViewer) && 
+            {/* player info */}
+            {((showPlayerInfoPanel && isDisplayEntireGameViewer && !selectedGameDataPanelBetween2)
+              || (showPlayerInfoPanel && isDisplayEntireGameViewer && !showGameDataPanel)
+            )
+            
+            && 
               <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
-                <div style={{"width": `350px`, "height": `${screenHeight}px`, "backgroundColor": "orange", "position": "absolute", "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}></div>
-              
-              
+                <div style={{"width": `350px`, "height": `${screenHeight}px`, "backgroundColor": "orange", "position": "absolute", "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}>
+
+                  (player info!!!)
+
+                </div>
+                
+
               </div>}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
 
