@@ -2702,7 +2702,7 @@ export default function NavigationSetter({initialNavObj,
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                                     {visualList.map((item, index) => {
-                                        let keyStr = "settingsPage-li-" + index + item["var"];
+                                        let keyStr = "settingsPage-bgpic-" + index + item["var"];
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
                    
@@ -2779,6 +2779,10 @@ export default function NavigationSetter({initialNavObj,
                                       
                       }}>                    
                           <option key="mpliDefault" value="">-- Select Resource --</option>
+                          {visualList.map((item, index) => {
+                              let keyStr = "settingsPage-li-" + index + item["var"];
+                              return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                          })}
                 
                       </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
               </>}
