@@ -13,6 +13,14 @@ export default function NavigationSetter({initialNavObj,
   let saveChangesText = ["Save Changes"];
   let updateText = ["Update"];
   let manageResourceText = ["Manage Resource"];
+  let gameProgressStrategyText = ["Game Progress Strategy"];
+  let mainPageText = ["Main Page"];
+  let storyPageText = ["Story Page"];
+  let settingsPageText = ["Settings Page"];
+  let playerProfilePageText = ["Player Profile Page"]
+  let gameStatusDataPageText = ["Game Status Data Page"];
+  let shopPageText = ["Shop Page"];
+  let duringGamePlayPageText = ["*During Game-play*"];
 
   const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
@@ -211,7 +219,8 @@ export default function NavigationSetter({initialNavObj,
       console.log(updatedList);
       setAudioList(updatedList);
     }
-    
+  
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -223,14 +232,14 @@ export default function NavigationSetter({initialNavObj,
           updateCurrentPageName(event.target.value);
         }}>
           <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
-          <option value="Game Progress Strategy" key="Game Progress Strategy">Game Progress Strategy</option>
-          <option value="Main Page" key="Main Page">Main Page</option>
-          <option value="Story Page" key="Story Page">Story Page</option>
-          <option value="Settings Page" key="Settings Page">Settings Page</option>
-          <option value="Player Profile Page" key="Player Profile Page">Player Profile Page</option>
-          <option value="Game Status Data Page" key="Game Status Data Page">Game Status Data Page</option>
-          <option value="Shop Page" key="Shop Page">Shop Page</option>
-          <option value="During Game" key="During Game">*During Game-play*</option>
+          <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText[languageCode]}</option>
+          <option value="Main Page" key="Main Page">{mainPageText[languageCode]}</option>
+          <option value="Story Page" key="Story Page">{storyPageText[languageCode]}</option>
+          <option value="Settings Page" key="Settings Page">{settingsPageText[languageCode]}</option>
+          <option value="Player Profile Page" key="Player Profile Page">{playerProfilePageText[languageCode]}</option>
+          <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText[languageCode]}</option>
+          <option value="Shop Page" key="Shop Page">{shopPageText[languageCode]}</option>
+          <option value="During Game" key="During Game">{duringGamePlayPageText[languageCode]}</option>
       </select>
 
       <br></br><br></br>
