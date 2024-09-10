@@ -936,22 +936,21 @@ td {
 
 .panelTab:hover {
     border-radius: 0px;
-    background-color: #555555;
-    color: #FFFFFF;
+    background-color: #dad6d6;
+    color: #000000;
     border: none;
 }
 
 .panelTabSelected {
     border-radius: 0px;
-    background-color: #000000;
+    background-color: #293241;
     color: #FFFFFF;
     border: none;
 }
 
 .panelTabSelected:hover {
     border-radius: 0px;
-    background-color: #0b0b0b;
-    color: #FFFFFF;
+    background-color: #293241;
     border: none;
 }
 

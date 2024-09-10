@@ -10,7 +10,7 @@ import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
 import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
-
+import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
@@ -1119,11 +1119,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             
             && 
               <div style={{"maxHeight": `${screenHeight}px`, "overflow": "scroll"}}>
-                <div style={{"width": `350px`, "height": `${screenHeight}px`, "backgroundColor": "orange", "position": "absolute", "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}>
+                
+                
+                <Panel_EntireView_PlayerInfo
+                  getScreenHeight={passInScreenHeight}
+                  getScreenWidth={passInScreenWidth}
+                
 
-                  (player info!!!)
-
-                </div>
+                  
+                />
+                
+                
                 
 
               </div>}
