@@ -179,6 +179,9 @@ export default function NavigationSetter({initialNavObj,
 
     const [gsdPageMap, setGsdPageMap] = useState({});
 
+    const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
+    const [playerProfilePageAddingValueType, setplayerProfilePageAddingValueType] = useState();
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -3246,20 +3249,14 @@ export default function NavigationSetter({initialNavObj,
            <div className="indentOne">
              <label>Position X: </label><input></input><br></br>
              <label>Position Y: </label><input></input><br></br>
+                         
+             <input type="radio"></input><label>Base Picture</label>
              <div className="indentOne">
-               <input type="radio"></input><label>Rectangle & Color Filled</label>
-               <div className="indentOne">
-                 <label>Background Color:</label>
-                 <input type="color"></input>
-               </div>
-                                    
-               <input type="radio"></input><label>Base Picture</label>
-               <div className="indentOne">
-                 <select></select>
-                 <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                <select></select>
+                <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
 
-               </div>
-             </div>
+              </div>
+             
              <button>Add</button>
 
            </div>
@@ -3274,21 +3271,18 @@ export default function NavigationSetter({initialNavObj,
              <label>Text Color: </label><input type="color"></input>                       
 
            <div className="indentOne">
-             <input type="radio"></input>
-             <label>Game Data: </label><br></br>
-             <select></select>               
-             <br></br>      
+             <select value={playerProfilePageAddingValueType}>
 
-             <input type="radio"></input>
-             <label>Player Profile: </label><br></br>
-             <select></select>               
-             <br></br>             
+               <option>Game Data</option>
+               <option>Player Profile</option>
+               <option>Player Account Info</option>
+             </select>
 
-             <input type="radio"></input>
-             <label>Player Account Info: </label><br></br>
-             <select></select>               
-             <br></br>
+             {/* actual data item names (according to type) */}
+             <select></select><br></br>
+            
 
+             <br></br><br></br>
              <button>Add</button>
            </div>
            <p className="plans">
