@@ -180,7 +180,7 @@ export default function NavigationSetter({initialNavObj,
     const [gsdPageMap, setGsdPageMap] = useState({});
 
     const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
-    const [playerProfilePageAddingValueType, setplayerProfilePageAddingValueType] = useState();
+    const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState();
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -3271,15 +3271,27 @@ export default function NavigationSetter({initialNavObj,
              <label>Text Color: </label><input type="color"></input>                       
 
            <div className="indentOne">
-             <select value={playerProfilePageAddingValueType}>
+             <select value={playerProfilePageAddingValueType}
+              onChange={(event)=>{
+                setPlayerProfilePageAddingValueType(event.target.value);
+              }}
+             >
 
-               <option>Game Data</option>
-               <option>Player Profile</option>
-               <option>Player Account Info</option>
+               <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
+               <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
+               <option key="ppSetting-value-type-accountInfo" value="Player Account Info">Player Account Info</option>
              </select>
 
              {/* actual data item names (according to type) */}
-             <select></select><br></br>
+             {playerProfilePageAddingValueType === "Game Data" && 
+                <select></select>}
+             {playerProfilePageAddingValueType === "Player Profile" && 
+                <select></select>}
+             {playerProfilePageAddingValueType === "Player Account Info" && 
+                <select></select>}
+
+
+             <br></br>
             
 
              <br></br><br></br>
