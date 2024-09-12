@@ -179,6 +179,10 @@ export default function NavigationSetter({initialNavObj,
 
     const [gsdPageMap, setGsdPageMap] = useState({});
 
+    const [playerProfilePageIsAddingText, setPlayerProfilePageIsAddingText] = useState(false);
+    const [playerProfilePageIsAddingPic, setPlayerProfilePageIsAddingPic] = useState(false);
+    const [playerProfilePageIsAddingValue, setPlayerProfilePageIsAddingValue] = useState(false);
+
     const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState();
 
@@ -3227,8 +3231,11 @@ export default function NavigationSetter({initialNavObj,
 
            TODO elements (pic) and data displaying
            <br></br>
-      
-           <button>Add Text</button>
+
+           <button onClick={()=>{
+             setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
+           }}>Add Text</button>
+           {playerProfilePageIsAddingText && <>
            <br></br>
            <div className="indentOne">
              <label>Position X: </label><input></input><br></br>
@@ -3243,10 +3250,17 @@ export default function NavigationSetter({initialNavObj,
              <button>Add</button>
 
            </div>
+           </>}
+
 
            <br></br><br></br><br></br>                        
-           <button>Add Picture</button>
-           <div className="indentOne">
+           <button
+            onClick={()=>{
+              setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
+            }}
+           >Add Picture</button>
+           
+           {playerProfilePageIsAddingPic && <div className="indentOne">
              <label>Position X: </label><input></input><br></br>
              <label>Position Y: </label><input></input><br></br>
                          
@@ -3259,10 +3273,17 @@ export default function NavigationSetter({initialNavObj,
              
              <button>Add</button>
 
-           </div>
+           </div>}
+
+
 
            <br></br><br></br><br></br>    
-           <button>Add Value Display</button><br></br>    
+           <button
+            onClick={()=>{
+              setPlayerProfilePageIsAddingValue(!playerProfilePageIsAddingValue);
+            }}
+           >Add Value Display</button><br></br> 
+           {playerProfilePageIsAddingValue && <>   
              <label>Label Text: </label><input></input><br></br>                       
              <label>Position X: </label><input></input><br></br>
              <label>Position Y: </label><input></input><br></br>
@@ -3297,9 +3318,7 @@ export default function NavigationSetter({initialNavObj,
              <br></br><br></br>
              <button>Add</button>
            </div>
-           <p className="plans">
-             allow reference of game-data, player-profile, player-account values
-           </p>
+           </>}
 
 
        </div>
