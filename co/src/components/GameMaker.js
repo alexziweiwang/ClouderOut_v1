@@ -409,7 +409,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "storyPage-listItemGroupFontColor": "",
     "storyPage-listItemGroupFontSize": 10,
 
-    "gsdPage-isBgShape": false,
+    "gsdPage-isBackgroundShape": false,
     "gsdPage-bgShadeName": "rgb(222, 222, 235)",
     "gsdPage-bgPicName": "",
 

@@ -152,7 +152,7 @@ export default function NavigationSetter({initialNavObj,
       "storyPage-listItemGroupFontSize": initialNavObj["storyPage-listItemGroupFontSize"],
 
 
-      "gsdPage-isBgShape": initialNavObj["gsdPage-isBgShape"],
+      "gsdPage-isBackgroundShape": initialNavObj["gsdPage-isBackgroundShape"],
       "gsdPage-bgShadeName": initialNavObj["gsdPage-bgShadeName"],
       "gsdPage-bgPicName": initialNavObj["gsdPage-bgPicName"],
 
@@ -3162,9 +3162,14 @@ export default function NavigationSetter({initialNavObj,
                                 <div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
+                                    value={currentProjectNav["playerProfilePage-bgShadeName"]}
                                     onChange={(event)=>{
-                                      
-                                        }}></input>
+                                          let tempObj = currentProjectNav;
+                                          tempObj["playerProfilePage-bgShadeName"] = event.target.value;
+                                          updateNavObj(tempObj);
+                
+                                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-bgShadeName": event.target.value});      
+                                    }}></input>
                                     <label></label>
                                 </div>}
                             
@@ -3226,20 +3231,20 @@ export default function NavigationSetter({initialNavObj,
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
-                        value={currentProjectNav["gsdPage-isBgShape"]}
-                        checked={currentProjectNav["gsdPage-isBgShape"]}
+                        value={currentProjectNav["gsdPage-isBackgroundShape"]}
+                        checked={currentProjectNav["gsdPage-isBackgroundShape"]}
                         onChange={()=>{    
                           let tempObj = currentProjectNav;
-                          tempObj["gsdPage-isBgShape"] = true;
+                          tempObj["gsdPage-isBackgroundShape"] = true;
                           updateNavObj(tempObj); 
              
-                          setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": true});
+                          setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": true});
                         }}></input><label onClick={()=>{
                             let tempObj = currentProjectNav;
-                            tempObj["gsdPage-isBgShape"] = true;
+                            tempObj["gsdPage-isBackgroundShape"] = true;
                             updateNavObj(tempObj); 
               
-                            setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": true});                                
+                            setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": true});                                
                         }}>Rectangle & Color Filled </label>
                             {
                                 <div className="indentOne">
@@ -3256,20 +3261,20 @@ export default function NavigationSetter({initialNavObj,
                                 </div>}
                             
                         <input type="radio"
-                          value={currentProjectNav["gsdPage-isBgShape"]}
-                          checked={!currentProjectNav["gsdPage-isBgShape"]}
+                          value={currentProjectNav["gsdPage-isBackgroundShape"]}
+                          checked={!currentProjectNav["gsdPage-isBackgroundShape"]}
                           onChange={()=>{
                             let tempObj = currentProjectNav;
-                            tempObj["gsdPage-isBgShape"] = false;
+                            tempObj["gsdPage-isBackgroundShape"] = false;
                             updateNavObj(tempObj); 
               
-                            setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": false});             
+                            setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": false});             
                         }}></input><label onClick={()=>{
                               let tempObj = currentProjectNav;
-                              tempObj["gsdPage-isBgShape"] = false;
+                              tempObj["gsdPage-isBackgroundShape"] = false;
                               updateNavObj(tempObj); 
                 
-                              setCurrentProjectNav({...currentProjectNav, "gsdPage-isBgShape": false});                           
+                              setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": false});                           
                         }}>Base Picture </label>
                             {
                             <>
