@@ -3235,8 +3235,13 @@ export default function NavigationSetter({initialNavObj,
              <label>Text Font Size: </label><input></input><br></br>
              <label>Text Font: </label><select></select><br></br>
              <label>Text Color: </label><input type="color"></input>
+
+             <br></br><br></br>
+             <button>Add</button>
+
            </div>
 
+           <br></br><br></br><br></br>                        
            <button>Add Picture</button>
            <div className="indentOne">
              <label>Position X: </label><input></input><br></br>
@@ -3254,12 +3259,38 @@ export default function NavigationSetter({initialNavObj,
                  <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
 
                </div>
-               TODO7
              </div>
+             <button>Add</button>
+
            </div>
 
-           <br></br>
-           <button>Add Value Display</button>
+           <br></br><br></br><br></br>    
+           <button>Add Value Display</button><br></br>    
+             <label>Label Text: </label><input></input><br></br>                       
+             <label>Position X: </label><input></input><br></br>
+             <label>Position Y: </label><input></input><br></br>
+             <label>Text Font Size: </label><input></input><br></br>
+             <label>Text Font: </label><select></select><br></br>
+             <label>Text Color: </label><input type="color"></input>                       
+
+           <div className="indentOne">
+             <input type="radio"></input>
+             <label>Game Data: </label><br></br>
+             <select></select>               
+             <br></br>      
+
+             <input type="radio"></input>
+             <label>Player Profile: </label><br></br>
+             <select></select>               
+             <br></br>             
+
+             <input type="radio"></input>
+             <label>Player Account Info: </label><br></br>
+             <select></select>               
+             <br></br>
+
+             <button>Add</button>
+           </div>
            <p className="plans">
              allow reference of game-data, player-profile, player-account values
            </p>
