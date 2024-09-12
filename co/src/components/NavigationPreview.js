@@ -157,7 +157,8 @@ export default function NavigationPreview ({
         style={{
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
     }}>
-        
+
+
         {page === "Main Page" && 
 
         <div style={{
@@ -435,8 +436,8 @@ export default function NavigationPreview ({
             >
 
 
-             {/* //TODO1 */}
-             <div 
+        {/* //TODO remove later */}
+             {/* <div 
                 className="navigationButton"
                 id="slPage-backButton"
                 style={{
@@ -473,7 +474,7 @@ export default function NavigationPreview ({
                 }
                 >
                     {navObj["backButton-displayText"]}
-                </div>
+                </div> */}
 
 
                 
@@ -622,8 +623,8 @@ export default function NavigationPreview ({
                 }}
             >
 
-             {/* //TODO1 */}
-             <div 
+             {/* //TODO remove later */}
+             {/* <div 
                 className="navigationButton"
                 id="storyPage-backButton"
                 style={{
@@ -659,7 +660,7 @@ export default function NavigationPreview ({
                 }
                 >
                     {navObj["backButton-displayText"]}
-                </div>
+                </div> */}
 
 
                 <div style={{
@@ -748,8 +749,8 @@ export default function NavigationPreview ({
 
             >
 
-             {/* //TODO1 */}
-             <div 
+             {/* //TODO remove later */}
+             {/* <div 
                 className="navigationButton"
                 id="settingsPage-backButton"
                 style={{
@@ -786,7 +787,7 @@ export default function NavigationPreview ({
                 >
                     {navObj["backButton-displayText"]}
                 </div>            
-            
+             */}
             <div style={{
                 "left": `${navObj["settingPage-listItemGroupX"]}px`,
                 "top": `${navObj["settingPage-listItemGroupY"]}px`,
@@ -885,50 +886,14 @@ export default function NavigationPreview ({
             "backgroundColor": "rgb(222, 222, 235)"
         }}
         >
+
             <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,}}>
+                "height": `${screenHeight}px`,
+                
+            }}>
 
-                {/* //TODO1 */}
-                <div 
-                    className="navigationButton"
-                    id="playerProfilePage-backButton"
-                    style={{
-                        "position": "absolute",
-                        "top": "0px",
-                        "left": "0px",
-                        "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
-                        "backgroundImage": navObj["backButton-isShape"] === false ?
-                            `url('${visualMap[navObj["backButton-picName"]]}')` : "",
-
-                        "width": `${navObj["backButton-width"]}px`,
-                        "height": `${navObj["backButton-height"]}px`,
-                        "fontSize": `${navObj["backButton-fontSize"]}px`,
-
-                        "transition": "all 0.2s ease-out",
-
-                        "justifyContent": "center",
-                        "alignItems": "center",
-                        "display": "flex",
-                    }}
-                onMouseDown={
-                    ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "brightness(120%)";
-                        console.log("playerProfilePage-backButton");
-  
-                    }
-                }
-                onMouseUp={
-                    ()=>{
-                        document.getElementById("playerProfilePage-backButton").style.filter = "brightness(100%)";
-                        updateCurrentPageName("Main Page");
-                    }
-                }
-                >
-                    {navObj["backButton-displayText"]}
-                </div>   
-
-           
+         
             <br></br>        
             this is Player Profile Page
             <br></br>
@@ -958,8 +923,8 @@ export default function NavigationPreview ({
             
                 }}                
             >
-                  {/* //TODO1 */}
-                  <div 
+                  {/* //TODO remove later */}
+                  {/* <div 
                 className="navigationButton" 
                 id="gsdPage-backButton"
                 style={{
@@ -995,7 +960,7 @@ export default function NavigationPreview ({
                 }
                 >
                     {navObj["backButton-displayText"]}
-                </div>   
+                </div>    */}
 
 
 
@@ -1018,8 +983,8 @@ export default function NavigationPreview ({
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,}}>
 
-                {/* //TODO1 */}
-                <div 
+                {/* //TODO remove later */}
+                {/* <div 
                 className="navigationButton"
                 id="playerProfilePage-backButton"
                 style={{
@@ -1055,7 +1020,7 @@ export default function NavigationPreview ({
                 }
                 >
                     {navObj["backButton-displayText"]}
-                </div>  
+                </div>   */}
 
 
             <br></br>        
@@ -1079,8 +1044,8 @@ export default function NavigationPreview ({
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,}}>
 
-                {/* //TODO1 */}
-                <div 
+                {/* //TODO remove later */}
+                {/* <div 
                 className="navigationButton"
                 id="duringGame-backButton"
                 style={{
@@ -1117,7 +1082,7 @@ export default function NavigationPreview ({
                 >
                     {navObj["backButton-displayText"]}
                 </div>  
-
+ */}
 
         
 
@@ -1126,6 +1091,62 @@ export default function NavigationPreview ({
             </div>
      
         }
+
+                {/* large fram for all elements */}
+                <div
+            style={{
+                "position": "relative",
+            }}
+        >
+
+
+        {/* //TODO5 */}
+        {page !== "Main Page" && <div 
+            className="navigationButton"
+            id="backButton"
+            style={{
+                        "position": "absolute",
+                        "top": "0px",
+                        "left": "0px",
+                        "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
+                        "backgroundImage": navObj["backButton-isShape"] === false ?
+                            `url('${visualMap[navObj["backButton-picName"]]}')` : "",
+
+                        "width": `${navObj["backButton-width"]}px`,
+                        "height": `${navObj["backButton-height"]}px`,
+                        "fontSize": `${navObj["backButton-fontSize"]}px`,
+
+                        "transition": "all 0.2s ease-out",
+
+                        "justifyContent": "center",
+                        "alignItems": "center",
+                        "display": "flex",
+                    }}
+                onMouseDown={
+                    ()=>{
+                        document.getElementById("backButton").style.filter = "brightness(120%)";
+                        console.log("playerProfilePage-backButton");
+  
+                    }
+                }
+                onMouseUp={
+                    ()=>{
+                        document.getElementById("backButton").style.filter = "brightness(100%)";
+                        updateCurrentPageName("Main Page");
+                    }
+                }
+                >
+                    {navObj["backButton-displayText"]}
+        </div>}   
+
+           
+
+
+
+           
+        </div>
+        {/* large fram for all elements */}
+
          
 
     </div>);
