@@ -3221,6 +3221,30 @@ export default function NavigationSetter({initialNavObj,
        
 
            TODO elements (pic) and data displaying
+           <br></br>
+      
+           <button>Add Text</button>
+           <br></br>
+           <div className="indentOne">
+             <label>Position X: </label><input></input><br></br>
+             <label>Position Y: </label><input></input><br></br>
+             <label>Text Content: </label><input></input>
+             <input type="checkbox"></input><label>Italic</label><br></br>
+             <label>Text Font Size: </label><input></input><br></br>
+             <label>Text Font: </label><select></select><br></br>
+             <label>Text Color: </label><input type="color"></input>
+
+
+           </div>
+
+           <button>Add Picture</button>
+
+           <br></br>
+           <button>Add Value Display</button>
+           <p className="plans">
+             allow reference of game-data, player-profile, player-account values
+           </p>
+
 
        </div>
     </div>}
