@@ -3240,11 +3240,18 @@ export default function NavigationSetter({initialNavObj,
            <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              <label>Text Content: </label><input></input>
              <input type="checkbox"></input><label>Italic</label><br></br>
-             <label>Text Font Size: </label><input></input><br></br>
-             <label>Text Font: </label><select></select><br></br>
+
+             <label>Text Font Size: </label><input type="range" min="1" max="50" step="1"></input><br></br>
+             <label>Text Font: </label>
+                <select>
+                  <option value="serif" key="toAddPPpageTextContent_serif">serif</option>
+                  <option value="sans-serif" key="toAddPPpageTextContent_sans-serif">sans-serif</option>
+                  <option value="cursive" key="toAddPPpageTextContent_cursive">cursive</option>
+  
+                </select><br></br>
              <label>Text Color: </label><input type="color"></input><br></br>
-             <label>Position X: </label><input type="range"></input><input></input><br></br>
-             <label>Position Y: </label><input type="range"></input><input></input>
+             <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input>
 
              <br></br><br></br>
              <button>Add</button>
@@ -3261,12 +3268,14 @@ export default function NavigationSetter({initialNavObj,
            >Add Picture {playerProfilePageIsAddingPic ? "︽" : "︾" }</button>
            
            {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-             <label>Position X: </label><input type="range"></input><input></input><br></br>
-             <label>Position Y: </label><input type="range"></input><input></input>
+           <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input><br></br>
                          
              <label>Picture: </label>
              
-             <select></select>
+             <select>
+
+             </select>
              <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
 
              
@@ -3281,53 +3290,60 @@ export default function NavigationSetter({initialNavObj,
             }}
            >Add Value Display {playerProfilePageIsAddingValue ? "︽" : "︾" }</button><br></br> 
            {playerProfilePageIsAddingValue && <div style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
+           
+           
+           
              <label>Label Text: </label><input></input><br></br>                       
-             <label>Position X: </label><input type="range"></input><input></input><br></br>
-             <label>Position Y: </label><input type="range"></input><input></input><br></br>
-             <label>Text Font Size: </label><input></input><br></br>
-             <label>Text Font: </label><select></select><br></br>
-             <label>Text Color: </label><input type="color"></input><br></br>                     
-
              <label>Value Item: </label>
 
-           <div className="indentOne">
-             <select value={playerProfilePageAddingValueType}
-              onChange={(event)=>{
-                setPlayerProfilePageAddingValueType(event.target.value);
-              }}
-             >
+                <div className="indentOne">
+                  <select value={playerProfilePageAddingValueType}
+                    onChange={(event)=>{
+                      setPlayerProfilePageAddingValueType(event.target.value);
+                    }}
+                  >
 
-               <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
-               <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
-               <option key="ppSetting-value-type-accountInfo" value="Player Account Info">Player Account Info</option>
-             </select>
+                    <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
+                    <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
+                    <option key="ppSetting-value-type-accountInfo" value="Player Account Info">Player Account Info</option>
+                  </select>
 
-             {/* actual data item names (according to type) */}
-             {playerProfilePageAddingValueType === "Game Data" && 
-                <select>
-                  <option>-- Select Game Data Item --</option>
-                </select>
-                
-             }
-             
-             {playerProfilePageAddingValueType === "Player Profile" && 
-                <select>
-                  <option>-- Select Player Profile Data Item --</option>
-                </select>
-             }
-             
-             {playerProfilePageAddingValueType === "Player Account Info" && 
-                <select>
-                  <option>-- Select Player Account Data Item --</option>
+                  {/* actual data item names (according to type) */}
+                  {playerProfilePageAddingValueType === "Game Data" && 
+                      <select>
+                        <option>-- Select Game Data Item --</option>
+                      </select>
+                      
+                  }
+                  
+                  {playerProfilePageAddingValueType === "Player Profile" && 
+                      <select>
+                        <option>-- Select Player Profile Data Item --</option>
+                      </select>
+                  }
+                  
+                  {playerProfilePageAddingValueType === "Player Account Info" && 
+                      <select>
+                        <option>-- Select Player Account Data Item --</option>
 
-                </select>
-                
-             }
+                      </select>
+                      
+                  }
+                </div>
 
+           
+             <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input><br></br>
+             <label>Text Font Size: </label><input type="range" min="1" max="50" step="1"></input><br></br>
+             <label>Text Font: </label><select>
+                  <option value="serif" key="toAddPPpageValue_serif">serif</option>
+                  <option value="sans-serif" key="toAddPPpageValue_sans-serif">sans-serif</option>
+                  <option value="cursive" key="toAddPPpageValue_cursive">cursive</option>
+             </select><br></br>
+             <label>Text Color: </label><input type="color"></input><br></br>                     
 
-             <br></br><br></br>
-             
-           </div>
+        
+           
            <button>Add</button>
            </div>}
 
