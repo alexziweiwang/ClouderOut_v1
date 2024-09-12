@@ -372,6 +372,8 @@ export default function NavigationSetter({initialNavObj,
                                 return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                               })}
                         </select>
+                        <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+
                       </div>
                       
                   <label>Display Text (default "←"): </label>
@@ -3233,11 +3235,28 @@ export default function NavigationSetter({initialNavObj,
              <label>Text Font Size: </label><input></input><br></br>
              <label>Text Font: </label><select></select><br></br>
              <label>Text Color: </label><input type="color"></input>
-
-
            </div>
 
            <button>Add Picture</button>
+           <div className="indentOne">
+             <label>Position X: </label><input></input><br></br>
+             <label>Position Y: </label><input></input><br></br>
+             <div className="indentOne">
+               <input type="radio"></input><label>Rectangle & Color Filled</label>
+               <div className="indentOne">
+                 <label>Background Color:</label>
+                 <input type="color"></input>
+               </div>
+                                    
+               <input type="radio"></input><label>Base Picture</label>
+               <div className="indentOne">
+                 <select></select>
+                 <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+
+               </div>
+               TODO7
+             </div>
+           </div>
 
            <br></br>
            <button>Add Value Display</button>
