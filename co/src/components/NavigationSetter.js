@@ -184,7 +184,7 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageIsAddingValue, setPlayerProfilePageIsAddingValue] = useState(false);
 
     const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
-    const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState();
+    const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -3238,13 +3238,13 @@ export default function NavigationSetter({initialNavObj,
            {playerProfilePageIsAddingText && <>
            <br></br>
            <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-             <label>Position X: </label><input></input><br></br>
-             <label>Position Y: </label><input></input><br></br>
              <label>Text Content: </label><input></input>
              <input type="checkbox"></input><label>Italic</label><br></br>
              <label>Text Font Size: </label><input></input><br></br>
              <label>Text Font: </label><select></select><br></br>
-             <label>Text Color: </label><input type="color"></input>
+             <label>Text Color: </label><input type="color"></input><br></br>
+             <label>Position X: </label><input type="range"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"></input><input></input>
 
              <br></br><br></br>
              <button>Add</button>
@@ -3261,15 +3261,14 @@ export default function NavigationSetter({initialNavObj,
            >Add Picture {playerProfilePageIsAddingPic ? "︽" : "︾" }</button>
            
            {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-             <label>Position X: </label><input></input><br></br>
-             <label>Position Y: </label><input></input><br></br>
+             <label>Position X: </label><input type="range"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"></input><input></input>
                          
-             <input type="radio"></input><label>Base Picture</label>
-             <div className="indentOne">
-                <select></select>
-                <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+             <label>Picture: </label>
+             
+             <select></select>
+             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
 
-              </div>
              
              <button>Add</button>
 
@@ -3283,11 +3282,13 @@ export default function NavigationSetter({initialNavObj,
            >Add Value Display {playerProfilePageIsAddingValue ? "︽" : "︾" }</button><br></br> 
            {playerProfilePageIsAddingValue && <div style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              <label>Label Text: </label><input></input><br></br>                       
-             <label>Position X: </label><input></input><br></br>
-             <label>Position Y: </label><input></input><br></br>
+             <label>Position X: </label><input type="range"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"></input><input></input><br></br>
              <label>Text Font Size: </label><input></input><br></br>
              <label>Text Font: </label><select></select><br></br>
-             <label>Text Color: </label><input type="color"></input>                       
+             <label>Text Color: </label><input type="color"></input><br></br>                     
+
+             <label>Value Item: </label>
 
            <div className="indentOne">
              <select value={playerProfilePageAddingValueType}
@@ -3303,19 +3304,31 @@ export default function NavigationSetter({initialNavObj,
 
              {/* actual data item names (according to type) */}
              {playerProfilePageAddingValueType === "Game Data" && 
-                <select></select>}
+                <select>
+                  <option>-- Select Game Data Item --</option>
+                </select>
+                
+             }
+             
              {playerProfilePageAddingValueType === "Player Profile" && 
-                <select></select>}
+                <select>
+                  <option>-- Select Player Profile Data Item --</option>
+                </select>
+             }
+             
              {playerProfilePageAddingValueType === "Player Account Info" && 
-                <select></select>}
+                <select>
+                  <option>-- Select Player Account Data Item --</option>
 
+                </select>
+                
+             }
 
-             <br></br>
-            
 
              <br></br><br></br>
-             <button>Add</button>
+             
            </div>
+           <button>Add</button>
            </div>}
 
 
