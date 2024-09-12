@@ -588,9 +588,6 @@ export default function NavigationPreview ({
                 }}
             >
 
-        
-
-
                 <div style={{
                     "left": `${navObj["storyPage-listItemGroupX"]}px`,
                     "top": `${navObj["storyPage-listItemGroupY"]}px`,
@@ -600,6 +597,44 @@ export default function NavigationPreview ({
                     "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
                     "overflow": "scroll",
                 }}>
+                    {navObj["isWithSL"] === true && <div
+                    id="loadGameEntry"
+                    className="navigationButton"
+                    style={{
+                        "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
+                        "backgroundImage": navObj["storyPage-isListItemShape"] === false 
+                        ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
+                        
+                        "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
+                        "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
+
+                        "marginRight": `${navObj["storyPage-listItemGap"]}px`,
+                        "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
+
+                        "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
+                        "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
+
+                        "transition": "all 0.2s ease-out",
+
+                        "justifyContent": "center",
+                        "alignItems": "center",
+                        "display": "flex",
+                    }}
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("loadGameEntry").style.filter = "brightness(120%)";
+                            updateCurrentPageName("Game Progress Strategy");
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
+                        }
+                    }
+                >
+                    load game from s/l
+                </div>}
+
 
                         {storyPageChapterTitles.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index;
@@ -644,10 +679,12 @@ export default function NavigationPreview ({
                         })}
 
 
+
+
+
                 </div>
 
-
-
+                
             </div>
             
         </div>
@@ -859,50 +896,8 @@ export default function NavigationPreview ({
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,}}>
 
-            <div 
-                className="navigationButton"
-                id="duringGame-backButton"
-                style={{
-                    "position": "absolute",
-                    "top": "0px",
-                    "left": "0px",
-                    "backgroundColor": navObj["backButton-isShape"] === true ? `${navObj["backButton-shapeColor"]}` : "pink",
-                    "backgroundImage": navObj["backButton-isShape"] === false ?
-                        `url('${visualMap[navObj["backButton-picName"]]}')` : "",
-
-                    "width": `${navObj["backButton-width"]}px`,
-                    "height": `${navObj["backButton-height"]}px`,
-                    "fontSize": `${navObj["backButton-fontSize"]}px`,
-
-                    "transition": "all 0.2s ease-out",
-
-                    "justifyContent": "center",
-                    "alignItems": "center",
-                    "display": "flex",
-                    
-                }}
-                onMouseDown={
-                    ()=>{
-                        document.getElementById("duringGame-backButton").style.filter = "brightness(120%)";
-                        console.log("duringGame-backButton");
- 
-                    }
-                }
-                onMouseUp={
-                    ()=>{
-                        document.getElementById("duringGame-backButton").style.filter = "brightness(100%)";
-                        updateCurrentPageName("Story Page");
-                    }
-                }
-                >
-                    {navObj["backButton-displayText"]}
-            </div>  
-
-
-        
-
-
-
+       
+    
         </div>
      
         }
@@ -914,7 +909,7 @@ export default function NavigationPreview ({
            
         }}>
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "During Game" && page !== "Game Progress Strategy") 
+                {((page !== "Main Page" && page !== "Game Progress Strategy") 
                     || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)) 
                 && <div 
                     className="navigationButton"
@@ -947,7 +942,12 @@ export default function NavigationPreview ({
                         onMouseUp={
                             ()=>{
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
-                                updateCurrentPageName("Main Page");
+                                let nextPageName = "Main Page";
+                                if (page === "During Game" || page === "Game Progress Strategy") {
+                                    nextPageName = "Story Page";
+                                }
+        
+                                updateCurrentPageName(nextPageName);
                             }
                         }
                         >
