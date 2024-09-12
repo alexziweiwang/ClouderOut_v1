@@ -157,6 +157,8 @@ export default function NavigationPreview ({
         style={{
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
             "position": "absolute",
+            "userSelect": "none",
+
     }}>
 
 
@@ -416,9 +418,13 @@ export default function NavigationPreview ({
   
 
 
-        {(navObj["isWithSL"] && 
+        {(navObj["isWithSL"] === true && 
         page === "Game Progress Strategy") && 
-        <div style={{"width": `${screenWidth}px`, "height": `${screenHeight}px`,"backgroundColor": "rgb(222, 222, 235)", "marginLeft": `20px`, "position": "relative"}}
+        <div style={{
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "backgroundColor": "rgb(222, 222, 235)", 
+            "position": "relative"}}
         >
                             
                 <div style={{
@@ -873,6 +879,7 @@ export default function NavigationPreview ({
                     "justifyContent": "center",
                     "alignItems": "center",
                     "display": "flex",
+                    
                 }}
                 onMouseDown={
                     ()=>{
@@ -906,9 +913,10 @@ export default function NavigationPreview ({
             "height": `${screenHeight}px`,
            
         }}>
-
                 {/* //TODO5 */}
-                {(page !== "Main Page" && page !== "During Game") && <div 
+                {((page !== "Main Page" && page !== "During Game" && page !== "Game Progress Strategy") 
+                    || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)) 
+                && <div 
                     className="navigationButton"
                     id="backButton"
                     style={{
