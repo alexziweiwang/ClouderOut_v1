@@ -3234,10 +3234,10 @@ export default function NavigationSetter({initialNavObj,
 
            <button onClick={()=>{
              setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
-           }}>Add Text</button>
+           }}>Add Text {playerProfilePageIsAddingText ? "︽" : "︾" }</button>
            {playerProfilePageIsAddingText && <>
            <br></br>
-           <div className="indentOne">
+           <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              <label>Position X: </label><input></input><br></br>
              <label>Position Y: </label><input></input><br></br>
              <label>Text Content: </label><input></input>
@@ -3253,14 +3253,14 @@ export default function NavigationSetter({initialNavObj,
            </>}
 
 
-           <br></br><br></br><br></br>                        
+           <br></br>                     
            <button
             onClick={()=>{
               setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
             }}
-           >Add Picture</button>
+           >Add Picture {playerProfilePageIsAddingPic ? "︽" : "︾" }</button>
            
-           {playerProfilePageIsAddingPic && <div className="indentOne">
+           {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              <label>Position X: </label><input></input><br></br>
              <label>Position Y: </label><input></input><br></br>
                          
@@ -3274,16 +3274,14 @@ export default function NavigationSetter({initialNavObj,
              <button>Add</button>
 
            </div>}
-
-
-
-           <br></br><br></br><br></br>    
+           
+           <br></br>
            <button
             onClick={()=>{
               setPlayerProfilePageIsAddingValue(!playerProfilePageIsAddingValue);
             }}
-           >Add Value Display</button><br></br> 
-           {playerProfilePageIsAddingValue && <>   
+           >Add Value Display {playerProfilePageIsAddingValue ? "︽" : "︾" }</button><br></br> 
+           {playerProfilePageIsAddingValue && <div style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              <label>Label Text: </label><input></input><br></br>                       
              <label>Position X: </label><input></input><br></br>
              <label>Position Y: </label><input></input><br></br>
@@ -3318,7 +3316,7 @@ export default function NavigationSetter({initialNavObj,
              <br></br><br></br>
              <button>Add</button>
            </div>
-           </>}
+           </div>}
 
 
        </div>
