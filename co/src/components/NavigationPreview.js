@@ -601,7 +601,7 @@ export default function NavigationPreview ({
                     id="loadGameEntry"
                     className="navigationButton"
                     style={{
-                        "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
+                        "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "#c0cfe2",
                         "backgroundImage": navObj["storyPage-isListItemShape"] === false 
                         ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
                         
@@ -641,7 +641,7 @@ export default function NavigationPreview ({
                             return (<div key={keyStr} id={keyStr}
                                 className="navigationButton"
                                 style={{
-                                    "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "",
+                                    "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "#c0cfe2",
                                     "backgroundImage": navObj["storyPage-isListItemShape"] === false 
                                     ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
                                     

@@ -347,10 +347,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "mainPage-shop-name": "shop",
 
     "saveloadPage-isBackgroundShape": false,
-    "saveloadPage-bgShadeName": "",
+    "saveloadPage-bgShadeName": "rgb(222, 222, 235)",
     "saveloadPage-bgPicName": "",
     "saveloadPage-isSlotShape": false,
-    "saveloadPage-slotShadeName": "",
+    "saveloadPage-slotShadeName": "#c0cfe2",
     "saveloadPage-slotPicName": "",
     "saveloadPage-slotListIsHorizontal": false,
     "saveloadPage-slotPerPage": 3,
@@ -370,10 +370,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "settingPage-entriesCustom": false,
 
     "settingPage-isBackgroundShape": false,
-    "settingPage-bgShadeName": "",
+    "settingPage-bgShadeName": "rgb(222, 222, 235)",
     "settingPage-bgPicName": "",
     "settingPage-isListItemShape": false,
-    "settingPage-listItemShadeName": "",
+    "settingPage-listItemShadeName": "#c0cfe2",
     "settingPage-listItemPicName": "",
     "settingPage-listItemGroupX": 200,
     "settingPage-listItemGroupY": 35,
@@ -387,11 +387,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "settingPage-seVolName": "Sound Effect Volume",
 
     "playerProfilePage-isBackgroundShape": false,
-    "playerProfilePage-bgShadeName": "",
+    "playerProfilePage-bgShadeName": "rgb(222, 222, 235)",
     "playerProfilePage-bgPicName": "",
+    "playerProfilePage-itemMap": {},
 
     "shopPage-isBackgroundShape": false,
-    "shopPage-bgShadeName": "",
+    "shopPage-bgShadeName": "rgb(222, 222, 235)",
     "shopPage-bgPicName": "",
 
     "storyPage-chapterListHorizontal": true,
