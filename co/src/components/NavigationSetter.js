@@ -3246,6 +3246,39 @@ export default function NavigationSetter({initialNavObj,
        
 
           <div>
+            <table>
+              <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Item Type</th>
+                    <th>Position (x, y)</th>
+                    <th>Operations</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {<tr>
+                <td>(index)</td>
+                <td>(type)</td>
+                <td>(positions)</td>
+                <td>
+                  <button
+                    onClick={()=>{
+                      //TODO highlight this item on previewer ??
+                    }}
+                  >select</button>
+                  <button onClick={()=>{
+                    let askStr = "Are you sure to delete this item?";
+                    let resp = window.confirm(askStr);
+                    if (resp === true) {
+                      //TODO delete this from table
+                    }
+                  }}>delete</button>
+                </td>
+              </tr>}
+
+              </tbody>
+            </table>
         
 
           </div>
