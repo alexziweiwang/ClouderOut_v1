@@ -31,158 +31,7 @@ export default function NavigationSetter({initialNavObj,
 
   const [currentProjectNav, setCurrentProjectNav] = useState(initialNavObj);
 
-  //TODO remove later
-  // const [currentProjectNav, setCurrentProjectNav] = useState({
-  //     "screenSize": initialNavObj["screenSize"],
-  //     "isWithSL": initialNavObj["isWithSL"],
-  //     "mainPage-story": initialNavObj["mainPage-story"],
-  //     "mainPage-shop": initialNavObj["mainPage-shop"],
-  //     "mainPage-setting": initialNavObj["mainPage-setting"],
-  //     "mainPage-playerProfile": initialNavObj["mainPage-playerProfile"],    
-  //     "mainPage-entriesHorizontal": initialNavObj["mainPage-entriesHorizontal"],
-  //     "mainPage-entriesCustom": initialNavObj["mainPage-entriesCustom"],
-
-  //     "mainPage-isBackgroundShape": initialNavObj["mainPage-isBackgroundShape"],
-  //     "mainPage-bgShadeName": initialNavObj["mainPage-bgShadeName"],
-  //     "mainPage-bgPicName": initialNavObj["mainPage-bgPicName"],
-  //     "mainPage-isListItemShape": initialNavObj["mainPage-isListItemShape"],
-  //     "mainPage-listItemShadeName": initialNavObj["mainPage-listItemShadeName"],
-  //     "mainPage-listItemPicName": initialNavObj["mainPage-listItemPicName"],
-  //     "mainPage-listItemGroupX": initialNavObj["mainPage-listItemGroupX"],
-  //     "mainPage-listItemGroupY": initialNavObj["mainPage-listItemGroupY"],
-  //     "mainPage-listItemGroupWidth": initialNavObj["mainPage-listItemGroupWidth"],
-  //     "mainPage-listItemGroupHeight": initialNavObj["mainPage-listItemGroupHeight"],
-  //     "mainPage-listItemGap": initialNavObj["mainPage-listItemGap"],
-  //     "mainPage-listItemGroupFontColor": initialNavObj["mainPage-listItemGroupFontColor"],
-  //     "mainPage-listItemGroupFontSize": initialNavObj["mainPage-listItemGroupFontSize"],
-      
-  //     "mainPage-story-isShape": initialNavObj["mainPage-story-isShape"],
-  //     "mainPage-story-shadeName": initialNavObj["mainPage-story-shadeName"],
-  //     "mainPage-story-picName": initialNavObj["mainPage-story-picName"],
-  //     "mainPage-setting-isShape": initialNavObj["mainPage-setting-isShape"],
-  //     "mainPage-setting-shadeName": initialNavObj["mainPage-setting-shadeName"],
-  //     "mainPage-setting-picName": initialNavObj["mainPage-setting-picName"],
-  //     "mainPage-playerProfile-isShape": initialNavObj["mainPage-playerProfile-isShape"],
-  //     "mainPage-playerProfile-shadeName": initialNavObj["mainPage-playerProfile-shadeName"],
-  //     "mainPage-playerProfile-picName": initialNavObj["mainPage-playerProfile-picName"],
-  //     "mainPage-shop-isShape": initialNavObj["mainPage-shop-isShape"],
-  //     "mainPage-shop-shadeName": initialNavObj["mainPage-shop-shadeName"],
-  //     "mainPage-shop-picName": initialNavObj["mainPage-shop-picName"],
-
-  //     "mainPage-story-posX": initialNavObj["mainPage-story-posX"],
-  //     "mainPage-story-posY": initialNavObj["mainPage-story-posY"],
-  //     "mainPage-story-width": initialNavObj["mainPage-story-width"],
-  //     "mainPage-story-height": initialNavObj["mainPage-story-height"],
-  //     "mainPage-story-fontSize": initialNavObj["mainPage-story-fontSize"],
-  //     "mainPage-story-fontColor": initialNavObj["mainPage-story-fontColor"],
-  //     "mainPage-setting-posX": initialNavObj["mainPage-setting-posX"],
-  //     "mainPage-setting-posY": initialNavObj["mainPage-setting-posY"],
-  //     "mainPage-setting-width": initialNavObj["mainPage-setting-width"],
-  //     "mainPage-setting-height": initialNavObj["mainPage-setting-height"],
-  //     "mainPage-setting-fontSize": initialNavObj["mainPage-setting-fontSize"],
-  //     "mainPage-setting-fontColor": initialNavObj["mainPage-setting-fontColor"],
-  //     "mainPage-playerProfile-posX": initialNavObj["mainPage-playerProfile-posX"],
-  //     "mainPage-playerProfile-posY": initialNavObj["mainPage-playerProfile-posY"],
-  //     "mainPage-playerProfile-width": initialNavObj["mainPage-playerProfile-width"],
-  //     "mainPage-playerProfile-height": initialNavObj["mainPage-playerProfile-height"],
-  //     "mainPage-playerProfile-fontSize": initialNavObj["mainPage-playerProfile-fontSize"],
-  //     "mainPage-playerProfile-fontColor": initialNavObj["mainPage-playerProfile-fontColor"],
-  //     "mainPage-shop-posX": initialNavObj["mainPage-shop-posX"],
-  //     "mainPage-shop-posY": initialNavObj["mainPage-shop-posY"],
-  //     "mainPage-shop-width": initialNavObj["mainPage-shop-width"],
-  //     "mainPage-shop-height": initialNavObj["mainPage-shop-height"],
-  //     "mainPage-shop-fontSize": initialNavObj["mainPage-shop-fontSize"],
-  //     "mainPage-shop-fontColor": initialNavObj["mainPage-shop-fontColor"],
-
-  //     "mainPage-story-name": initialNavObj["mainPage-story-name"],
-  //     "mainPage-setting-name": initialNavObj["mainPage-setting-name"],
-  //     "mainPage-playerProfile-name": initialNavObj["mainPage-playerProfile-name"],
-  //     "mainPage-shop-name": initialNavObj["mainPage-shop-name"],
   
-  //     "saveloadPage-isBackgroundShape": initialNavObj["saveloadPage-isBackgroundShape"],
-  //     "saveloadPage-bgShadeName": initialNavObj["saveloadPage-bgShadeName"],
-  //     "saveloadPage-bgPicName": initialNavObj["saveloadPage-bgPicName"],
-  //     "saveloadPage-isSlotShape": initialNavObj["saveloadPage-isSlotShape"],
-  //     "saveloadPage-slotShadeName": initialNavObj["saveloadPage-slotShadeName"],
-  //     "saveloadPage-slotPicName": initialNavObj["saveloadPage-slotPicName"],
-  //     "saveloadPage-slotListIsHorizontal": initialNavObj["saveloadPage-slotListIsHorizontal"],
-  //     "saveloadPage-slotPerPage": initialNavObj["saveloadPage-slotPerPage"],
-  //     "saveloadPage-slotRowCount": initialNavObj["saveloadPage-slotRowCount"],
-  //     "saveloadPage-slotColCount": initialNavObj["saveloadPage-slotColCount"],
-  //     "saveloadPage-slotPageCount": initialNavObj["saveloadPage-slotPageCount"],
-  //     "saveloadPage-slotWidth": initialNavObj["saveloadPage-slotWidth"],
-  //     "saveloadPage-slotHeight": initialNavObj["saveloadPage-slotHeight"],
-  //     "saveloadPage-slotGap": initialNavObj["saveloadPage-slotGap"],
-  //     "saveloadPage-groupPosX": initialNavObj["saveloadPage-groupPosX"],
-  //     "saveloadPage-groupPosY": initialNavObj["saveloadPage-groupPosY"],
-
-  //     "settingPage-playSpeed": initialNavObj["settingPage-playSpeed"],
-  //     "settingPage-bgmVol": initialNavObj["settingPage-bgmVol"],
-  //     "settingPage-seVol": initialNavObj["settingPage-seVol"],
-  //     "settingPage-entriesHorizontal": initialNavObj["settingPage-entriesHorizontal"],
-  //     "settingPage-entriesCustom": initialNavObj["settingPage-entriesCustom"],
-
-
-  //     //TODO newly added
-  //     "playerProfilePage-isBackgroundShape": initialNavObj[],
-  //     "playerProfilePage-bgShadeName": initialNavObj[],
-  //     "playerProfilePage-bgPicName": initialNavObj["playerProfilePage-bgPicName"],
-  //     "playerProfilePage-itemMap": initialNavObj["playerProfilePage-itemMap"],
-
-  //     "shopPage-isBackgroundShape": initialNavObj["shopPage-isBackgroundShape"],
-  //     "shopPage-bgShadeName": initialNavObj["shopPage-bgShadeName"],
-  //     "shopPage-bgPicName": initialNavObj["shopPage-bgPicName"],
-  //     //TODO newly added
-
-      
-
-  //     "storyPage-chapterListHorizontal": initialNavObj["storyPage-chapterListHorizontal"],
-
-  //     "settingPage-isBackgroundShape": initialNavObj["settingPage-isBackgroundShape"],
-  //     "settingPage-bgShadeName": initialNavObj["settingPage-bgShadeName"],
-  //     "settingPage-bgPicName": initialNavObj[ "settingPage-bgPicName"],
-  //     "settingPage-isListItemShape": initialNavObj["settingPage-isListItemShape"],
-  //     "settingPage-listItemShadeName": initialNavObj["settingPage-listItemShadeName"],
-  //     "settingPage-listItemPicName": initialNavObj["settingPage-listItemPicName"],
-  //     "settingPage-listItemGroupX": initialNavObj["settingPage-listItemGroupX"],
-  //     "settingPage-listItemGroupY": initialNavObj["settingPage-listItemGroupY"],
-  //     "settingPage-listItemGroupWidth": initialNavObj["settingPage-listItemGroupWidth"],
-  //     "settingPage-listItemGroupHeight": initialNavObj["settingPage-listItemGroupHeight"],
-  //     "settingPage-listItemFontSize": initialNavObj["settingPage-listItemFontSize"],
-  //     "settingPage-listItemFontColor": initialNavObj["settingPage-listItemFontColor"],
-  //     "settingPage-listItemGap": initialNavObj["settingPage-listItemGap"],
-  //     "settingPage-playSpeedName": initialNavObj["settingPage-playSpeedName"],
-  //     "settingPage-bgmVolName": initialNavObj["settingPage-bgmVolName"],
-  //     "settingPage-seVolName": initialNavObj["settingPage-seVolName"],
-
-  //     "storyPage-isBackgroundShape": initialNavObj["storyPage-isBackgroundShape"],
-  //     "storyPage-bgShadeName": initialNavObj["storyPage-bgShadeName"],
-  //     "storyPage-bgPicName": initialNavObj["storyPage-bgPicName"],
-  //     "storyPage-isListItemShape": initialNavObj["storyPage-isListItemShape"],
-  //     "storyPage-listItemShadeName": initialNavObj["storyPage-listItemShadeName"],
-  //     "storyPage-listItemPicName": initialNavObj["storyPage-listItemPicName"],
-  //     "storyPage-listItemGroupX": initialNavObj["storyPage-listItemGroupX"],
-  //     "storyPage-listItemGroupY": initialNavObj["storyPage-listItemGroupY"],
-  //     "storyPage-listItemGroupWidth": initialNavObj["storyPage-listItemGroupWidth"],
-  //     "storyPage-listItemGroupHeight": initialNavObj["storyPage-listItemGroupHeight"],
-  //     "storyPage-listItemGap": initialNavObj["storyPage-listItemGap"],
-  //     "storyPage-listItemGroupFontColor": initialNavObj["storyPage-listItemGroupFontColor"],
-  //     "storyPage-listItemGroupFontSize": initialNavObj["storyPage-listItemGroupFontSize"],
-
-
-  //     "gsdPage-isBackgroundShape": initialNavObj["gsdPage-isBackgroundShape"],
-  //     "gsdPage-bgShadeName": initialNavObj["gsdPage-bgShadeName"],
-  //     "gsdPage-bgPicName": initialNavObj["gsdPage-bgPicName"],
-
-
-  //     "backButton-width": initialNavObj["backButton-width"],
-  //     "backButton-height": initialNavObj["backButton-height"],
-  //     "backButton-isShape": initialNavObj["backButton-isShape"],
-  //     "backButton-shapeColor": initialNavObj["backButton-shapeColor"],
-  //     "backButton-picName": initialNavObj["backButton-picName"],
-  //     "backButton-displayText": initialNavObj["backButton-displayText"],
-  //     "backButton-fontSize": initialNavObj["backButton-fontSize"],
-  //   });
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
     const [mainPagePlayerProfileName, setMainPagePlayerProfileName] = useState("");
@@ -203,6 +52,17 @@ export default function NavigationSetter({initialNavObj,
 
     const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
+
+    const [tryingText, setTryingText] = useState({
+      "textContent": "",
+      "textFontSize": 12,
+      "textFont": "serif",
+      "textColor": "#000000",
+      "posX": 0,
+      "poxY": 0,
+    });
+
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
