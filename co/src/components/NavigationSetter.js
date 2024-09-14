@@ -62,7 +62,24 @@ export default function NavigationSetter({initialNavObj,
       "poxY": 0,
     });
 
+    const [tryingValue, setTryingValue] = useState({   
+      "labelText": "",
+      "valueItemType": "Game Data",
+      "valueItemName": "",
+      "posX": 0,
+      "posY": 0,
+      "textFontSize": 12,
+      "textFont": "serif",
+      "textColor": "#000000", 
+    });
 
+    const [tryingPic, setTryingPic] = useState({
+      "posX": 0,
+      "posY": 0,
+      "picName": "",
+      "width": 50,
+      "height": 50,
+    });
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -3282,8 +3299,19 @@ export default function NavigationSetter({initialNavObj,
              <select>
 
              </select>
-             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br>
+             
+             <label>Width: </label>
+             <input type="range"></input>
+             <input></input>
 
+             <label>Height: </label>
+             <input type="range"></input>
+             <input></input>
+             <br></br>
+
+             <br></br>
+            
              
              <button>Add</button>
 
