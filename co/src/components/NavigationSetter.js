@@ -3245,12 +3245,16 @@ export default function NavigationSetter({initialNavObj,
                   </div>
        
 
-           TODO elements (pic) and data displaying
-           <br></br>
+          <div>
+        
 
-           <button onClick={()=>{
+          </div>
+
+           <button 
+            className="w300 textLeft"
+            onClick={()=>{
              setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
-           }}>Add Text {playerProfilePageIsAddingText ? "︽" : "︾" }</button>
+           }}>{playerProfilePageIsAddingText ? "︽" : "︾" } Add Text</button>
            {playerProfilePageIsAddingText && <>
            <br></br>
            <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
@@ -3274,37 +3278,15 @@ export default function NavigationSetter({initialNavObj,
 
            </div>
            </>}
-
-
-           <br></br>                     
-           <button
-            onClick={()=>{
-              setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
-            }}
-           >Add Picture {playerProfilePageIsAddingPic ? "︽" : "︾" }</button>
-           
-           {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-           <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
-             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input><br></br>
-                         
-             <label>Picture: </label>
-             
-             <select>
-
-             </select>
-             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
-
-             
-             <button>Add</button>
-
-           </div>}
-           
+           {!playerProfilePageIsAddingText && <br></br>}
+       
            <br></br>
            <button
+            className="w300 textLeft"
             onClick={()=>{
               setPlayerProfilePageIsAddingValue(!playerProfilePageIsAddingValue);
             }}
-           >Add Value Display {playerProfilePageIsAddingValue ? "︽" : "︾" }</button><br></br> 
+           >{playerProfilePageIsAddingValue ? "︽" : "︾" } Add Value Display</button><br></br> 
            {playerProfilePageIsAddingValue && <div style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
            
            
@@ -3362,7 +3344,31 @@ export default function NavigationSetter({initialNavObj,
            
            <button>Add</button>
            </div>}
+           
+           <br></br>
+           <button
+            className="w300 textLeft"
+            onClick={()=>{
+              setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
+            }}
+           >{playerProfilePageIsAddingPic ? "︽" : "︾" } Add Picture</button>
+           
+           {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
+           <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
+             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input><br></br>
+                         
+             <label>Picture: </label>
+             
+             <select>
 
+             </select>
+             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+
+             
+             <button>Add</button>
+
+           </div>}
+    
 
        </div>
     </div>}

@@ -18,6 +18,14 @@ td {
     white-space: pre-wrap;
 }
 
+.w300 {
+    width: 300px
+}
+
+.textLeft {
+    text-align: left;
+}
+  
 .textNoSelect {
     user-select: none;
 }
