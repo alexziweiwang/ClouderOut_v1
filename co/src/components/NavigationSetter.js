@@ -27,6 +27,7 @@ export default function NavigationSetter({initialNavObj,
   const screenWidth = 800; //TODO temp  
 
   const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
+  const [openBackButtonSettingArea, setOpenBackButtonSettingArea] = useState(true);
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
       "screenSize": initialNavObj["screenSize"],
@@ -271,10 +272,15 @@ export default function NavigationSetter({initialNavObj,
         </select>
       </div>
       <br></br><br></br><br></br>
-      {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
+      {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && 
+      <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
      
-             <label>Back Button Settings (for all pages): </label>
-             <div className="indentOne">
+             <div className="cursor_pointer textNoSelect"
+              onClick={()=>{
+                setOpenBackButtonSettingArea(!openBackButtonSettingArea);
+              }}
+             >Back Button Settings (for all pages) {openBackButtonSettingArea === true ? ":" : "︾"} </div>
+             {openBackButtonSettingArea && <div className="indentOne">
                   <label>Width: </label>
                     <input type="range" 
                       value={currentProjectNav["backButton-width"]} onChange={
@@ -416,6 +422,8 @@ export default function NavigationSetter({initialNavObj,
                     }}
                   ></input>
               </div>
+             }
+     
      </div>}
 
       <br></br><br></br><br></br>
