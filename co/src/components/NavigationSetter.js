@@ -233,53 +233,18 @@ export default function NavigationSetter({initialNavObj,
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
         
-      <label>Select a Page to setup:</label>
-      <select value={currentSettingPage}
-        onChange={(event)=>{
-          setCurrentSettingPage(event.target.value);
-          updateCurrentPageName(event.target.value);
-        }}>
-          <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
-          <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText[languageCode]}</option>
-          <option value="Main Page" key="Main Page">{mainPageText[languageCode]}</option>
-          <option value="Story Page" key="Story Page">{storyPageText[languageCode]}</option>
-          <option value="Settings Page" key="Settings Page">{settingsPageText[languageCode]}</option>
-          <option value="Player Profile Page" key="Player Profile Page">{playerProfilePageText[languageCode]}</option>
-          <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText[languageCode]}</option>
-          <option value="Shop Page" key="Shop Page">{shopPageText[languageCode]}</option>
-          <option value="During Game" key="During Game">{duringGamePlayPageText[languageCode]}</option>
-      </select>
-
-      <br></br><br></br>
-
-      <button>{saveChangesText[languageCode]}</button>
-
-      <br></br><br></br>
-      <div>
-        <label>Font for all UI in navigation system:</label>
-        <select value={currentProjectNav["fontFamilyForAll"]}
-          onChange={(event)=>{
-              let tempObj = currentProjectNav;
-              tempObj["fontFamilyForAll"] = event.target.value;
-              updateNavObj(tempObj);       
-                        
-              setCurrentProjectNav({...currentProjectNav, "fontFamilyForAll": event.target.value});  
-          }}
-        >
-            <option value="serif" key="navUI_serif">serif</option>
-            <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
-            <option value="cursive" key="navUI_cursive">cursive</option>    
-        </select>
-      </div>
-      <br></br><br></br><br></br>
       {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && 
-      <div className="indentOne" style={{"backgroundColor": "grey", "padding": "7px"}}>
-     
+      <div style={{"backgroundColor": "grey", "padding": "7px"}}>
+             
+             {openBackButtonSettingArea && <div className="cursor_pointer textNoSelect"
+                onClick={()=>{
+                  setOpenBackButtonSettingArea(false);
+                }}>︽</div>}
              <div className="cursor_pointer textNoSelect"
               onClick={()=>{
-                setOpenBackButtonSettingArea(!openBackButtonSettingArea);
+                setOpenBackButtonSettingArea(true);
               }}
-             >Back Button Settings (for all pages) {openBackButtonSettingArea === true ? ":" : "︾"} </div>
+             >{openBackButtonSettingArea === true ? "" : "︾"} General Back Button Settings </div>
              {openBackButtonSettingArea && <div className="indentOne">
                   <label>Width: </label>
                     <input type="range" 
@@ -426,6 +391,49 @@ export default function NavigationSetter({initialNavObj,
      
      </div>}
 
+      <br></br>
+      
+      {openBackButtonSettingArea && <br></br>}
+      
+      <div style={{"backgroundColor": "grey", "padding": "7px"}}>
+        <label>Font for all UI in navigation system: </label><br></br>
+        <select value={currentProjectNav["fontFamilyForAll"]}
+          onChange={(event)=>{
+              let tempObj = currentProjectNav;
+              tempObj["fontFamilyForAll"] = event.target.value;
+              updateNavObj(tempObj);       
+                        
+              setCurrentProjectNav({...currentProjectNav, "fontFamilyForAll": event.target.value});  
+          }}
+        >
+            <option value="serif" key="navUI_serif">serif</option>
+            <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
+            <option value="cursive" key="navUI_cursive">cursive</option>    
+        </select>
+      </div>
+
+      <br></br>
+      <label>Select a Page to setup: </label>
+      <select value={currentSettingPage}
+        onChange={(event)=>{
+          setCurrentSettingPage(event.target.value);
+          updateCurrentPageName(event.target.value);
+        }}>
+          <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
+          <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText[languageCode]}</option>
+          <option value="Main Page" key="Main Page">{mainPageText[languageCode]}</option>
+          <option value="Story Page" key="Story Page">{storyPageText[languageCode]}</option>
+          <option value="Settings Page" key="Settings Page">{settingsPageText[languageCode]}</option>
+          <option value="Player Profile Page" key="Player Profile Page">{playerProfilePageText[languageCode]}</option>
+          <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText[languageCode]}</option>
+          <option value="Shop Page" key="Shop Page">{shopPageText[languageCode]}</option>
+          <option value="During Game" key="During Game">{duringGamePlayPageText[languageCode]}</option>
+      </select>
+
+      <br></br><br></br>
+
+      <button>{saveChangesText[languageCode]}</button>
+    
       <br></br><br></br><br></br>
     {currentSettingPage === "Game Progress Strategy" && <div>
      <label>Game Progress Strategy:</label>
