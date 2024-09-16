@@ -822,10 +822,25 @@ export default function NavigationPreview ({
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
             }}>
 
-         
-            <br></br>        
-            this is Player Profile Page<br></br>  
-            <br></br>
+            
+                <br></br>        
+                this is Player Profile Page<br></br>  
+                <br></br>
+                previewing:
+                navObj["playerProfilePage-previewingText"]
+
+                navObj["playerProfilePage-previewingValue"]
+                
+                navObj["playerProfilePage-previewingPic"]
+
+                
+                {/* navObj["playerProfilePage-itemMap"] */}
+                {Object.keys(navObj["playerProfilePage-itemMap"]).map((currKey) => {
+                    let item = navObj["playerProfilePage-itemMap"][currKey];
+
+                    //TODO
+                
+                })}
 
             </div>            
         </div>

@@ -3198,7 +3198,8 @@ export default function NavigationSetter({initialNavObj,
              <label>Text Content: </label><input></input>
              <input type="checkbox"></input><label>Italic</label><br></br>
 
-             <label>Text Font Size: </label><input type="range" min="1" max="50" step="1"></input><br></br>
+             <label>Text Font Size: </label>
+             <input type="range" min="1" max="50" step="1"></input><br></br>
              <label>Text Font: </label>
                 <select>
                   <option value="serif" key="toAddPPpageTextContent_serif">serif</option>
