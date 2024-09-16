@@ -3191,6 +3191,17 @@ export default function NavigationSetter({initialNavObj,
             className="w300 textLeft"
             onClick={()=>{
              setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
+             //TODO set "playerProfilePage-previewingTextObj" ...
+             let tempObj = currentProjectNav;
+             tempObj["playerProfilePage-previewingTextObj"]["previewing"] 
+              = !playerProfilePageIsAddingText;
+             updateNavObj(tempObj);
+
+             setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempObj});
+                 
+             console.log("next currentProjectNav: " , tempObj); //TODO testing
+
+
            }}>{playerProfilePageIsAddingText ? "︽" : "︾" } Add Text</button>
            {playerProfilePageIsAddingText && <>
            <br></br>
@@ -3208,8 +3219,10 @@ export default function NavigationSetter({initialNavObj,
   
                 </select><br></br>
              <label>Text Color: </label><input type="color"></input><br></br>
-             <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
-             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input>
+             <label>Position X: </label>
+             <input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
+             <label>Position Y: </label>
+             <input type="range"  min="1" max={screenHeight} step="1"></input><input></input>
 
              <br></br><br></br>
              <button>Add</button>

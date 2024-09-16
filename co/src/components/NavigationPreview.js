@@ -826,12 +826,23 @@ export default function NavigationPreview ({
                 <br></br>        
                 this is Player Profile Page<br></br>  
                 <br></br>
-                previewing:
-                navObj["playerProfilePage-previewingText"]
 
+                {navObj["playerProfilePage-previewingTextObj"]["previewing"] === true 
+                    && 
+                    <div style={{
+                        "position": "absolute",
+                        "left": `${navObj["playerProfilePage-previewingTextObj"]["posX"]}px`,
+                        "top": `${navObj["playerProfilePage-previewingTextObj"]["posY"]}px`,
+                    }}
+                    >
+                        {navObj["playerProfilePage-previewingTextObj"]["textContent"]}
+                    </div>
+                    
+                }
+{/* 
                 navObj["playerProfilePage-previewingValue"]
                 
-                navObj["playerProfilePage-previewingPic"]
+                navObj["playerProfilePage-previewingPic"] */}
 
                 
                 {/* navObj["playerProfilePage-itemMap"] */}
