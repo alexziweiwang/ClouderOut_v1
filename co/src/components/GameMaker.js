@@ -391,7 +391,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgPicName": "",
     "playerProfilePage-itemMap": {},
 
-    "playerProfilePage-previewingText": {
+    "playerProfilePage-previewingTextObj": {
       "previewing": false,
       "textContent": "",
       "textFontSize": 12,
@@ -400,8 +400,25 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "posX": 0,
       "posY": 0
     },
-    "playerProfilePage-previewingValue": {},
-    "playerProfilePage-previewingPic": {},
+    "playerProfilePage-previewingValueObj": {
+      "previewing": false,
+      "labelText": "",
+      "valueItemType": "GameData",
+      "valueItemName": "",
+      "posX": 0,
+      "posY": 0,
+      "textFontSize": 12,
+      "textFont": "serif",
+      "textColor": "#000000",
+    },
+    "playerProfilePage-previewingPicObj": {
+      "previewing": false,
+      "posX": 0,
+      "posY": 0,
+      "picName": "",
+      "width": 200,
+      "height": 200,
+    },
 
 
     "shopPage-isBackgroundShape": false,

@@ -3304,7 +3304,7 @@ export default function NavigationSetter({initialNavObj,
              
              <label>Width: </label>
              <input type="range"></input>
-             <input></input>
+             <input></input><br></br>
 
              <label>Height: </label>
              <input type="range"></input>
