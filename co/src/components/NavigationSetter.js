@@ -50,7 +50,8 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageIsAddingPic, setPlayerProfilePageIsAddingPic] = useState(false);
     const [playerProfilePageIsAddingValue, setPlayerProfilePageIsAddingValue] = useState(false);
 
-    const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
+    const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
+
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
 
 
@@ -102,8 +103,17 @@ export default function NavigationSetter({initialNavObj,
       setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
                
       updateNavObj(tempNav);
-      console.log("next nav[playerProfilePage-previewingTextObj] = ", tempNav["playerProfilePage-previewingTextObj"]); //TODO testing
                
+    }
+
+    function changePPTryingTextItemTextItalic() {
+      setPpTryingTextItemTextItalicBool(!ppTryingTextItemTextItalicBool);
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"]["textItalic"] = !ppTryingTextItemTextItalicBool;
+
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+               
+      updateNavObj(tempNav);
     }
 
    return (
@@ -3188,11 +3198,17 @@ export default function NavigationSetter({initialNavObj,
            {playerProfilePageIsAddingText && <>
            <br></br>
            <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-             <label>Text Content: </label><input></input>
-             <input type="checkbox" onChange={(event)=>{
+             <label>Text Content: </label><input onChange={(event)=>{
                changePPTryingTextItemTextContent(event);
-      
-             }}></input><label>Italic</label><br></br>
+             }}></input>
+             <input type="checkbox"
+              value={ppTryingTextItemTextItalicBool}
+              checked={ppTryingTextItemTextItalicBool}
+              onChange={()=>{
+                changePPTryingTextItemTextItalic();
+              }}
+             ></input><label    
+             >Italic</label><br></br>
 
              <label>Text Font Size: </label>
              <input type="range" min="1" max="50" step="1"></input><br></br>

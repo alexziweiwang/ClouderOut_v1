@@ -394,6 +394,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingTextObj": {
       "previewing": false,
       "textContent": "...Player Profile Page Previewing Text...",
+      "textItalic": false,
       "textFontSize": 12,
       "textFont": "serif",
       "textColor": "#000000",

@@ -122,7 +122,8 @@ export default function NavigationPreview ({
             let objTemp = fetchNavObj();
             setNavObj(objTemp);
 
-            console.log("nav preview: ", objTemp);
+// console.log("nav preview: ", objTemp); //TODO testing
+
             setTryPPText(objTemp["playerProfilePage-previewingTextObj"]);
 
        
@@ -844,15 +845,10 @@ export default function NavigationPreview ({
                         "top": `${tryPPText["posY"]}px`,
                     }}
                     >
-                        {tryPPText["textContent"]}
+                        {tryPPText["textItalic"] === false && <label>{tryPPText["textContent"]}</label>}
+                        {tryPPText["textItalic"] === true && <em>{tryPPText["textContent"]}</em>}
 
                     </div>}
-
-
-                {tryPPText["previewing"] === true ? "t" : "f"}<br></br>
-                {tryPPText["textContent"]}
-              
-
 
 {/* 
                 navObj["playerProfilePage-previewingValue"]
