@@ -53,32 +53,34 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
 
-    const [tryingText, setTryingText] = useState({
-      "textContent": "",
+    const defaultTryingText = {
+      "textContent": "...Player Profile Page Previewing Text...",
       "textFontSize": 12,
       "textFont": "serif",
       "textColor": "#000000",
       "posX": 0,
-      "poxY": 0,
-    });
+      "posY": 0
+    };
+
+    const [tryingText, setTryingText] = useState(defaultTryingText);
 
     const [tryingValue, setTryingValue] = useState({   
       "labelText": "",
-      "valueItemType": "Game Data",
+      "valueItemType": "GameData",
       "valueItemName": "",
       "posX": 0,
       "posY": 0,
       "textFontSize": 12,
       "textFont": "serif",
-      "textColor": "#000000", 
+      "textColor": "#000000",
     });
 
     const [tryingPic, setTryingPic] = useState({
       "posX": 0,
       "posY": 0,
       "picName": "",
-      "width": 50,
-      "height": 50,
+      "width": 200,
+      "height": 200,
     });
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -3190,16 +3192,23 @@ export default function NavigationSetter({initialNavObj,
            <button 
             className="w300 textLeft"
             onClick={()=>{
-             setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
-             //TODO set "playerProfilePage-previewingTextObj" ...
-             let tempObj = currentProjectNav;
-             tempObj["playerProfilePage-previewingTextObj"]["previewing"] 
-              = !playerProfilePageIsAddingText;
-             updateNavObj(tempObj);
+              //TODO5
+                let tempProjectNav = currentProjectNav;
 
-             setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempObj});
-                 
-             console.log("next currentProjectNav: " , tempObj); //TODO testing
+                if (playerProfilePageIsAddingText === false) { // becoming true
+                  tempProjectNav["playerProfilePage-previewingTextObj"] = tryingText;
+                  setTryingText(defaultTryingText);
+                  updateNavObj(tempProjectNav);
+
+                } else {
+                  tempProjectNav["playerProfilePage-previewingTextObj"] = -1;
+                  updateNavObj(tempProjectNav);
+
+                }
+                
+                console.log("next nav[playerProfilePage-previewingTextObj] = ", tempProjectNav["playerProfilePage-previewingTextObj"]); //TODO testing
+                
+                setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
 
 
            }}>{playerProfilePageIsAddingText ? "︽" : "︾" } Add Text</button>

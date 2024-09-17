@@ -391,15 +391,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgPicName": "",
     "playerProfilePage-itemMap": {},
 
-    "playerProfilePage-previewingTextObj": {
-      "previewing": false,
-      "textContent": "...Player Profile Page Previewing Text...",
-      "textFontSize": 12,
-      "textFont": "serif",
-      "textColor": "#000000",
-      "posX": 0,
-      "posY": 0
-    },
+    "playerProfilePage-previewingTextObj": -1,
     "playerProfilePage-previewingValueObj": {
       "previewing": false,
       "labelText": "",

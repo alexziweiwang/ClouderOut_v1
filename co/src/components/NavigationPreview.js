@@ -117,6 +117,9 @@ export default function NavigationPreview ({
         if (isEditing === true) {
             let objTemp = fetchNavObj();
             setNavObj(objTemp);
+
+            console.log("nav preview: ", objTemp);
+
        
             if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
                 setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
@@ -148,6 +151,7 @@ export default function NavigationPreview ({
                 setScreenWidth(w);
                 setScreenHeight(h);
         }
+
 
     });
     
@@ -827,7 +831,7 @@ export default function NavigationPreview ({
                 this is Player Profile Page<br></br>  
                 <br></br>
 
-                {navObj["playerProfilePage-previewingTextObj"]["previewing"] === true 
+                {navObj["playerProfilePage-previewingTextObj"] !== -1
                     && 
                     <div style={{
                         "position": "absolute",
@@ -836,9 +840,13 @@ export default function NavigationPreview ({
                     }}
                     >
                         {navObj["playerProfilePage-previewingTextObj"]["textContent"]}
-                    </div>
-                    
-                }
+
+                    </div>}
+
+
+                {navObj["playerProfilePage-previewingTextObj"] === -1 ? "-1" : "obj"}<br></br>
+                {navObj["playerProfilePage-previewingTextObj"]["posX"]}<br></br>
+                {navObj["playerProfilePage-previewingTextObj"]["posY"]}
 {/* 
                 navObj["playerProfilePage-previewingValue"]
                 
