@@ -843,6 +843,8 @@ export default function NavigationPreview ({
                         "position": "absolute",
                         "left": `${tryPPText["posX"]}px`,
                         "top": `${tryPPText["posY"]}px`,
+                        "fontSize": `${tryPPText["textFontSize"]}px`,
+                        "font-family": `${tryPPText["textFont"]}`,
                     }}
                     >
                         {tryPPText["textItalic"] === false && <label>{tryPPText["textContent"]}</label>}

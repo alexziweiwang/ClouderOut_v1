@@ -117,10 +117,16 @@ export default function NavigationSetter({initialNavObj,
     }
 
     function changePPTryingTextItemFontSize(event) {
-      setPpTryingTextItemTextItalicBool(!ppTryingTextItemTextItalicBool);
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingTextObj"]["textFontSize"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+               
+      updateNavObj(tempNav);
+    }
 
+    function changePPTryingTextItemFontSize(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"]["textFont"] = event.target.value;
       setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
                
       updateNavObj(tempNav);
@@ -3224,13 +3230,22 @@ export default function NavigationSetter({initialNavObj,
              >Italic</label><br></br>
 
              <label>Text Font Size: </label>
-             <input type="range" min="1" max="50" step="1"
+             <input type="range" min="5" max="90" step="1"
               onChange={(event)=>{
                 changePPTryingTextItemFontSize(event);
               }}
-             ></input><br></br>
+             ></input>
+             <label>{currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]
+}</label>
+             <br></br>
              <label>Text Font: </label>
-                <select>
+                <select value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"]}
+                  onChange={(event)=>{
+                    changePPTryingTextItemFontSize(event);
+
+                  }}
+                
+                >
                   <option value="serif" key="toAddPPpageTextContent_serif">serif</option>
                   <option value="sans-serif" key="toAddPPpageTextContent_sans-serif">sans-serif</option>
                   <option value="cursive" key="toAddPPpageTextContent_cursive">cursive</option>
