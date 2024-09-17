@@ -132,6 +132,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePPTryingTextItemTextColor(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"]["textColor"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+               
+      updateNavObj(tempNav);
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3239,7 +3247,8 @@ export default function NavigationSetter({initialNavObj,
 }</label>
              <br></br>
              <label>Text Font: </label>
-                <select value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"]}
+                <select 
+                  value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"]}
                   onChange={(event)=>{
                     changePPTryingTextItemFontSize(event);
 
@@ -3251,7 +3260,15 @@ export default function NavigationSetter({initialNavObj,
                   <option value="cursive" key="toAddPPpageTextContent_cursive">cursive</option>
   
                 </select><br></br>
-             <label>Text Color: </label><input type="color"></input><br></br>
+             <label>Text Color: </label><input type="color"
+              value={currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"]}
+              onChange={(event)=>{
+                changePPTryingTextItemTextColor(event);
+              }}
+             
+             ></input>
+             <label> {currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"]}</label>
+             <br></br>
              <label>Position X: </label>
              <input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
              <label>Position Y: </label>
