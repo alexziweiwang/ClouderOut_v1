@@ -124,7 +124,7 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
-    function changePPTryingTextItemFontSize(event) {
+    function changePPTryingTextItemFontFamily(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingTextObj"]["textFont"] = event.target.value;
       setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
@@ -154,6 +154,26 @@ export default function NavigationSetter({initialNavObj,
       setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
                
       updateNavObj(tempNav);      
+    }
+
+    function resetPPTryingTextItem() {
+      let resetItem = {      
+        "previewing": currentProjectNav["playerProfilePage-previewingTextObj"]["previewing"],
+        "textContent": "",
+        "textItalic": false,
+        "textFontSize": 12,
+        "textFont": "serif",
+        "textColor": "#000000",
+        "posX": 30,
+        "posY": 50,
+      }
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"] = resetItem;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": resetItem});
+      updateNavObj(tempNav);
+
+      setPpTryingTextItemTextItalicBool(false);
+
     }
 
    return (
@@ -3237,9 +3257,13 @@ export default function NavigationSetter({initialNavObj,
            {playerProfilePageIsAddingText && <>
            <br></br>
            <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-             <label>Text Content: </label><input onChange={(event)=>{
-               changePPTryingTextItemTextContent(event);
-             }}></input>
+             <label>Text Content: </label>
+             
+             <input 
+              value={currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"]}
+              onChange={(event)=>{
+                changePPTryingTextItemTextContent(event);
+              }}></input>
              <input type="checkbox"
               value={ppTryingTextItemTextItalicBool}
               checked={ppTryingTextItemTextItalicBool}
@@ -3255,6 +3279,7 @@ export default function NavigationSetter({initialNavObj,
 
              <label>Text Font Size: </label>
              <input type="range" min="5" max="90" step="1"
+              value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]}
               onChange={(event)=>{
                 changePPTryingTextItemFontSize(event);
               }}
@@ -3266,8 +3291,7 @@ export default function NavigationSetter({initialNavObj,
                 <select 
                   value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"]}
                   onChange={(event)=>{
-                    changePPTryingTextItemFontSize(event);
-
+                    changePPTryingTextItemFontFamily(event);
                   }}
                 
                 >
@@ -3321,7 +3345,9 @@ export default function NavigationSetter({initialNavObj,
               }}
              >Add</button>
              <button
-                //TODO reset the obj ...   
+                onClick={()=>{
+                  resetPPTryingTextItem();
+                }}  
              >Clear</button>
 
 
