@@ -116,6 +116,16 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePPTryingTextItemFontSize(event) {
+      setPpTryingTextItemTextItalicBool(!ppTryingTextItemTextItalicBool);
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"]["textFontSize"] = event.target.value;
+
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+               
+      updateNavObj(tempNav);
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3183,14 +3193,13 @@ export default function NavigationSetter({initialNavObj,
            <button 
             className="w300 textLeft"
             onClick={()=>{
-              //TODO5
+//TODO5
+
                 setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
                 
                 let tempNav = currentProjectNav;
                 tempNav["playerProfilePage-previewingTextObj"]["previewing"] = !playerProfilePageIsAddingText;
-          
-                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
-                         
+                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});         
                 updateNavObj(tempNav);
             
 
@@ -3207,11 +3216,19 @@ export default function NavigationSetter({initialNavObj,
               onChange={()=>{
                 changePPTryingTextItemTextItalic();
               }}
-             ></input><label    
+             ></input><label 
+                style={{"userSelect": "none", "cursor": "pointer"}}
+                onClick={()=>{
+                  changePPTryingTextItemTextItalic();
+                }}
              >Italic</label><br></br>
 
              <label>Text Font Size: </label>
-             <input type="range" min="1" max="50" step="1"></input><br></br>
+             <input type="range" min="1" max="50" step="1"
+              onChange={(event)=>{
+                changePPTryingTextItemFontSize(event);
+              }}
+             ></input><br></br>
              <label>Text Font: </label>
                 <select>
                   <option value="serif" key="toAddPPpageTextContent_serif">serif</option>
@@ -3226,7 +3243,16 @@ export default function NavigationSetter({initialNavObj,
              <input type="range"  min="1" max={screenHeight} step="1"></input><input></input>
 
              <br></br><br></br>
-             <button>Add</button>
+             <button
+              onClick={()=>{
+                //TODO reset the obj ...
+                //TODO add the currentProjectNav["playerProfilePage-itemMap"]
+              }}
+             >Add</button>
+             <button
+                //TODO reset the obj ...   
+             >Clear</button>
+
 
            </div>
            </>}
@@ -3295,6 +3321,7 @@ export default function NavigationSetter({initialNavObj,
         
            
            <button>Add</button>
+           <button>Clear</button>
            </div>}
            
            <br></br>
@@ -3329,6 +3356,8 @@ export default function NavigationSetter({initialNavObj,
             
              
              <button>Add</button>
+             <button>Clear</button>
+
 
            </div>}
     
