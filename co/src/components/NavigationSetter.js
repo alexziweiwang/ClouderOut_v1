@@ -148,6 +148,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePPTryingTextItemPosY(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"]["posY"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+               
+      updateNavObj(tempNav);      
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3293,8 +3301,18 @@ export default function NavigationSetter({initialNavObj,
              
              <br></br>
              <label>Position Y: </label>
-             <input type="range"  min="1" max={screenHeight} step="1"></input><input></input>
-
+             <input type="range" min="1" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingTextObj"]["posY"]}
+              onChange={(event)=>{
+                changePPTryingTextItemPosY(event);
+              }}
+             ></input>
+             <input min="1" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingTextObj"]["posY"]}
+              onChange={(event)=>{
+                changePPTryingTextItemPosY(event);
+              }}
+             ></input>
              <br></br><br></br>
              <button
               onClick={()=>{
