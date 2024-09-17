@@ -94,7 +94,17 @@ export default function NavigationSetter({initialNavObj,
       console.log(updatedList);
       setAudioList(updatedList);
     }
-  
+
+    function changePPTryingTextItemTextContent(event) { 
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingTextObj"]["textContent"] = event.target.value;
+
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+               
+      updateNavObj(tempNav);
+      console.log("next nav[playerProfilePage-previewingTextObj] = ", tempNav["playerProfilePage-previewingTextObj"]); //TODO testing
+               
+    }
 
    return (
   
@@ -3164,30 +3174,25 @@ export default function NavigationSetter({initialNavObj,
             className="w300 textLeft"
             onClick={()=>{
               //TODO5
-                let tempProjectNav = currentProjectNav;
-
-       
-                  tempProjectNav["playerProfilePage-previewingTextObj"]["previewing"] 
-                    = !tempProjectNav["playerProfilePage-previewingTextObj"]["previewing"];
-                  let tempObj = tempProjectNav["playerProfilePage-previewingTextObj"];
-                  setCurrentProjectNav({...currentProjectNav, 
-                    "playerProfilePage-previewingTextObj": tempObj});
-
-            
-                
-                
-                updateNavObj(tempProjectNav);
-                console.log("next nav[playerProfilePage-previewingTextObj] = ", tempProjectNav["playerProfilePage-previewingTextObj"]); //TODO testing
-                
                 setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
-
+                
+                let tempNav = currentProjectNav;
+                tempNav["playerProfilePage-previewingTextObj"]["previewing"] = !playerProfilePageIsAddingText;
+          
+                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+                         
+                updateNavObj(tempNav);
+            
 
            }}>{playerProfilePageIsAddingText ? "︽" : "︾" } Add Text</button>
            {playerProfilePageIsAddingText && <>
            <br></br>
            <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              <label>Text Content: </label><input></input>
-             <input type="checkbox"></input><label>Italic</label><br></br>
+             <input type="checkbox" onChange={(event)=>{
+               changePPTryingTextItemTextContent(event);
+      
+             }}></input><label>Italic</label><br></br>
 
              <label>Text Font Size: </label>
              <input type="range" min="1" max="50" step="1"></input><br></br>

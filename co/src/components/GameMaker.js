@@ -397,8 +397,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "textFontSize": 12,
       "textFont": "serif",
       "textColor": "#000000",
-      "posX": 0,
-      "posY": 0
+      "posX": 30,
+      "posY": 50,
     },
     "playerProfilePage-previewingValueObj": {
       "previewing": false,

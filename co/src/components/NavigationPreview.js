@@ -850,7 +850,10 @@ export default function NavigationPreview ({
 
 
                 {tryPPText["previewing"] === true ? "t" : "f"}<br></br>
+                {tryPPText["textContent"]}
               
+
+
 {/* 
                 navObj["playerProfilePage-previewingValue"]
                 
@@ -942,9 +945,7 @@ export default function NavigationPreview ({
 
         {/* large frame for all elements */}
         <div style={{
-            "width": `${screenWidth}px`, 
-            "height": `${screenHeight}px`,
-           
+
         }}>
                 {/* //TODO5 */}
                 {((page !== "Main Page" && page !== "Game Progress Strategy") 
