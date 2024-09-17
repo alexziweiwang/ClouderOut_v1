@@ -53,35 +53,6 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageAddingPicIsShape, setPlayerProfilePageAddingPicIsShape] = useState();
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
 
-    const defaultTryingText = {
-      "textContent": "...Player Profile Page Previewing Text...",
-      "textFontSize": 12,
-      "textFont": "serif",
-      "textColor": "#000000",
-      "posX": 0,
-      "posY": 0
-    };
-
-    const [tryingText, setTryingText] = useState(defaultTryingText);
-
-    const [tryingValue, setTryingValue] = useState({   
-      "labelText": "",
-      "valueItemType": "GameData",
-      "valueItemName": "",
-      "posX": 0,
-      "posY": 0,
-      "textFontSize": 12,
-      "textFont": "serif",
-      "textColor": "#000000",
-    });
-
-    const [tryingPic, setTryingPic] = useState({
-      "posX": 0,
-      "posY": 0,
-      "picName": "",
-      "width": 200,
-      "height": 200,
-    });
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -3195,17 +3166,17 @@ export default function NavigationSetter({initialNavObj,
               //TODO5
                 let tempProjectNav = currentProjectNav;
 
-                if (playerProfilePageIsAddingText === false) { // becoming true
-                  tempProjectNav["playerProfilePage-previewingTextObj"] = tryingText;
-                  setTryingText(defaultTryingText);
-                  updateNavObj(tempProjectNav);
+       
+                  tempProjectNav["playerProfilePage-previewingTextObj"]["previewing"] 
+                    = !tempProjectNav["playerProfilePage-previewingTextObj"]["previewing"];
+                  let tempObj = tempProjectNav["playerProfilePage-previewingTextObj"];
+                  setCurrentProjectNav({...currentProjectNav, 
+                    "playerProfilePage-previewingTextObj": tempObj});
 
-                } else {
-                  tempProjectNav["playerProfilePage-previewingTextObj"] = -1;
-                  updateNavObj(tempProjectNav);
-
-                }
+            
                 
+                
+                updateNavObj(tempProjectNav);
                 console.log("next nav[playerProfilePage-previewingTextObj] = ", tempProjectNav["playerProfilePage-previewingTextObj"]); //TODO testing
                 
                 setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);

@@ -62,6 +62,10 @@ export default function NavigationPreview ({
         "4:3(horizonal)": [800, 600],
         "4:3(vertical)": [600, 800]};
 
+    const [tryPPText, setTryPPText] = useState(-1);
+    const [tryPPValue, setTryPPValue] = useState(-1);
+    const [tryPPPic, setTryPPPic] = useState(-1);
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -119,6 +123,7 @@ export default function NavigationPreview ({
             setNavObj(objTemp);
 
             console.log("nav preview: ", objTemp);
+            setTryPPText(objTemp["playerProfilePage-previewingTextObj"]);
 
        
             if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
@@ -831,22 +836,21 @@ export default function NavigationPreview ({
                 this is Player Profile Page<br></br>  
                 <br></br>
 
-                {navObj["playerProfilePage-previewingTextObj"] !== -1
+                {tryPPText["previewing"] !== false
                     && 
                     <div style={{
                         "position": "absolute",
-                        "left": `${navObj["playerProfilePage-previewingTextObj"]["posX"]}px`,
-                        "top": `${navObj["playerProfilePage-previewingTextObj"]["posY"]}px`,
+                        "left": `${tryPPText["posX"]}px`,
+                        "top": `${tryPPText["posY"]}px`,
                     }}
                     >
-                        {navObj["playerProfilePage-previewingTextObj"]["textContent"]}
+                        {tryPPText["textContent"]}
 
                     </div>}
 
 
-                {navObj["playerProfilePage-previewingTextObj"] === -1 ? "-1" : "obj"}<br></br>
-                {navObj["playerProfilePage-previewingTextObj"]["posX"]}<br></br>
-                {navObj["playerProfilePage-previewingTextObj"]["posY"]}
+                {tryPPText["previewing"] === true ? "t" : "f"}<br></br>
+              
 {/* 
                 navObj["playerProfilePage-previewingValue"]
                 
