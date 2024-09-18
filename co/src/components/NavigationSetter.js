@@ -176,6 +176,24 @@ export default function NavigationSetter({initialNavObj,
 
     }
 
+    function addPPTryingTextItemNew() {
+      //TODO add to the currentProjectNav["playerProfilePage-itemMap"]
+      
+      //TODO make setter's side update table
+
+
+      //TODO reset the obj ...
+
+    }
+
+    function changePPTryingValueItemLabelText(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["labelText"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);   
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3340,8 +3358,8 @@ export default function NavigationSetter({initialNavObj,
              <br></br><br></br>
              <button
               onClick={()=>{
-                //TODO reset the obj ...
-                //TODO add the currentProjectNav["playerProfilePage-itemMap"]
+                addPPTryingTextItemNew();
+
               }}
              >Add</button>
              <button
@@ -3366,7 +3384,14 @@ export default function NavigationSetter({initialNavObj,
            
            
            
-             <label>Label Text: </label><input></input><br></br>                       
+             <label>Label Text: </label>
+             <input
+              value={currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]}
+              onChange={(event)=>{
+                changePPTryingValueItemLabelText(event);
+              }}
+             ></input>
+             <br></br>                       
              <label>Value Item: </label>
 
                 <div className="indentOne">
