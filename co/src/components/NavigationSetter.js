@@ -6,32 +6,32 @@ export default function NavigationSetter({initialNavObj,
   updateCurrentPageName, fetchPageName,
   initialScreenHeight, getScreenheight
 }) {
-  const username = "user002"; //TODO testing
-  const projName = "project001"; //TODO testing
+    const username = "user002"; //TODO testing
+    const projName = "project001"; //TODO testing
 
-  let languageCode = 0;
-  let saveChangesText = ["Save Changes"];
-  let updateText = ["Update"];
-  let manageResourceText = ["Manage Resource"];
-  let gameProgressStrategyText = ["Game Progress Strategy"];
-  let mainPageText = ["Main Page"];
-  let storyPageText = ["Story Page"];
-  let settingsPageText = ["Settings Page"];
-  let playerProfilePageText = ["Player Profile Page"]
-  let gameStatusDataPageText = ["Game Status Data Page"];
-  let shopPageText = ["Shop Page"];
-  let duringGamePlayPageText = ["*During Game-play*"];
+    let languageCode = 0;
+    let saveChangesText = ["Save Changes"];
+    let updateText = ["Update"];
+    let manageResourceText = ["Manage Resource"];
+    let gameProgressStrategyText = ["Game Progress Strategy"];
+    let mainPageText = ["Main Page"];
+    let storyPageText = ["Story Page"];
+    let settingsPageText = ["Settings Page"];
+    let playerProfilePageText = ["Player Profile Page"]
+    let gameStatusDataPageText = ["Game Status Data Page"];
+    let shopPageText = ["Shop Page"];
+    let duringGamePlayPageText = ["*During Game-play*"];
 
-  const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
+    const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
-  const screenWidth = 800; //TODO temp  
+    const screenWidth = 800; //TODO temp  
 
-  const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
-  const [openBackButtonSettingArea, setOpenBackButtonSettingArea] = useState(true);
+    const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
+    const [openBackButtonSettingArea, setOpenBackButtonSettingArea] = useState(true);
 
-  const [currentProjectNav, setCurrentProjectNav] = useState(initialNavObj);
+    const [currentProjectNav, setCurrentProjectNav] = useState(initialNavObj);
 
-  
+    
 
     const [mainPageStoryName, setMainPageStoryName] = useState("");
     const [mainPagePlayerProfileName, setMainPagePlayerProfileName] = useState("");
@@ -3475,6 +3475,11 @@ export default function NavigationSetter({initialNavObj,
             className="w300 textLeft"
             onClick={()=>{
               setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
+
+              let tempNav = currentProjectNav;
+              tempNav["playerProfilePage-previewingPicObj"]["previewing"] = !playerProfilePageIsAddingText;
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});         
+              updateNavObj(tempNav);
             }}
            >{playerProfilePageIsAddingPic ? "︽" : "︾" } Add Picture</button>
            

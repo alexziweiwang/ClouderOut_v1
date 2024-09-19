@@ -859,17 +859,23 @@ export default function NavigationPreview ({
                 navObj["playerProfilePage-previewingPic"] */}
 
 
+{tryPPPic["previewing"]}
 
                 {tryPPPic["previewing"] !== false && 
                     <div style={{
                         "position": "absolute",
                         "left": `${tryPPPic["posX"]}px`,
                         "top": `${tryPPPic["posY"]}px`,
-                        "url": `url('${visualMap[tryPPPic["picName"]]}')`,
+                        "width": `${tryPPPic["width"]}px`,
+                        "height": `${tryPPPic["height"]}px`,
+                        "backgroundImage": `url('${visualMap[tryPPPic["picName"]]}')`,
                     }}>
-
+?1<br></br>
+{tryPPPic["posX"]}<br></br>
+{tryPPPic["width"]}
 
                     </div>}
+
                 
                 {/* navObj["playerProfilePage-itemMap"] */}
                 {Object.keys(navObj["playerProfilePage-itemMap"]).map((currKey) => {
