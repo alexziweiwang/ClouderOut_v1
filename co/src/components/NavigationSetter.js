@@ -218,6 +218,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePPTryingPicItemWidth(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingPicObj"]["width"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+               
+      updateNavObj(tempNav);   
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3486,13 +3494,13 @@ export default function NavigationSetter({initialNavObj,
            {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              
              <label>Position X: </label>
-             <input type="range" min="1" max={screenWidth} step="1"
+             <input type="range" min="0" max={screenWidth} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["posX"]}
               onChange={(event)=>{
                 changePPTryingPicItemPosX(event);
               }}
              ></input>
-             <input min="1" max={screenWidth} step="1"
+             <input min="0" max={screenWidth} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["posX"]}
               onChange={(event)=>{
                 changePPTryingPicItemPosX(event);
@@ -3503,13 +3511,13 @@ export default function NavigationSetter({initialNavObj,
              
              
              <label>Position Y: </label>
-             <input type="range" min="1" max={screenHeight} step="1"
+             <input type="range" min="0" max={screenHeight} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["posY"]}
               onChange={(event)=>{
                 changePPTryingPicItemPosY(event);
               }}
              ></input>             
-             <input min="1" max={screenHeight} step="1"
+             <input min="0" max={screenHeight} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["posY"]}
               onChange={(event)=>{
                 changePPTryingPicItemPosY(event);
@@ -3533,8 +3541,20 @@ export default function NavigationSetter({initialNavObj,
              <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br>
              
              <label>Width: </label>
-             <input type="range"></input>
-             <input></input><br></br>
+             <input type="range" min="1" max={screenWidth} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["width"]}
+              onChange={(event)=>{
+                changePPTryingPicItemWidth(event);
+              }}
+             ></input>    
+             <input min="1" max={screenWidth} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["width"]}
+              onChange={(event)=>{
+                changePPTryingPicItemWidth(event);
+              }}
+             ></input>  
+             
+             <br></br>
 
              <label>Height: </label>
              <input type="range"></input>
