@@ -173,7 +173,6 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
 
       setPpTryingTextItemTextItalicBool(false);
-
     }
 
     function addPPTryingTextItemNew() {
@@ -224,6 +223,21 @@ export default function NavigationSetter({initialNavObj,
       setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
                
       updateNavObj(tempNav);   
+    }
+
+    function resetPPTryingPicItem() {
+      let resetItem = {
+        "previewing": currentProjectNav["playerProfilePage-previewingPicObj"]["previewing"],
+        "posX": 50,
+        "posY": 50,
+        "picName": "",
+        "width": 200,
+        "height": 200,
+      };
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingPicObj"] = resetItem;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": resetItem});
+      updateNavObj(tempNav);
     }
 
    return (
@@ -3530,7 +3544,9 @@ export default function NavigationSetter({initialNavObj,
 
              <select onChange={(event)=>{
                changePPTryingPicName(event);
-             }}>
+             }}
+                value={currentProjectNav["playerProfilePage-previewingPicObj"]["picName"]}
+             >
                 <option key="profilePage-addingPic-defaultNone" value=""> -- Select Picture Name --</option>
                 {visualList.map((item, index) => {
                   let keyStr = "profilePage-addingPic-" + index + item["var"];
@@ -3560,12 +3576,17 @@ export default function NavigationSetter({initialNavObj,
              <input type="range"></input>
              <input></input>
              <br></br>
-
+{/* //TODO7 */}
              <br></br>
             
              
              <button>Add</button>
-             <button>Clear</button>
+             
+             <button
+              onClick={()=>{
+                resetPPTryingPicItem();
+              }}
+             >Clear</button>
 
 
            </div>}
