@@ -210,6 +210,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePPTryingPicName(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingPicObj"]["picName"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+               
+      updateNavObj(tempNav);
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3505,9 +3513,17 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
                          
              <label>Picture: </label>
-             
-             <select>
 
+
+             <select onChange={(event)=>{
+               changePPTryingPicName(event);
+             }}>
+                <option> -- Select Picture Name --</option>
+                {visualList.map((item, index) => {
+                  let keyStr = "profilePage-addingPic-" + index + item["var"];
+                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                  })}                                    
+                          
              </select>
              <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br>
              
