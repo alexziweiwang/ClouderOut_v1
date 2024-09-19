@@ -125,6 +125,8 @@ export default function NavigationPreview ({
 // console.log("nav preview: ", objTemp); //TODO testing
 
             setTryPPText(objTemp["playerProfilePage-previewingTextObj"]);
+            setTryPPValue(objTemp["playerProfilePage-previewingValueObj"]);
+            setTryPPPic(objTemp["playerProfilePage-previewingPicObj"]);
 
        
             if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
@@ -869,10 +871,10 @@ export default function NavigationPreview ({
                         "width": `${tryPPPic["width"]}px`,
                         "height": `${tryPPPic["height"]}px`,
                         "backgroundImage": `url('${visualMap[tryPPPic["picName"]]}')`,
+                        "backgroundSize": `${tryPPPic["width"]}px ${tryPPPic["height"]}px`,
+                        "borderRadius": "0px",
                     }}>
-?1<br></br>
-{tryPPPic["posX"]}<br></br>
-{tryPPPic["width"]}
+
 
                     </div>}
 

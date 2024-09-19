@@ -3523,7 +3523,7 @@ export default function NavigationSetter({initialNavObj,
              <select onChange={(event)=>{
                changePPTryingPicName(event);
              }}>
-                <option> -- Select Picture Name --</option>
+                <option key="profilePage-addingPic-defaultNone" value=""> -- Select Picture Name --</option>
                 {visualList.map((item, index) => {
                   let keyStr = "profilePage-addingPic-" + index + item["var"];
                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
