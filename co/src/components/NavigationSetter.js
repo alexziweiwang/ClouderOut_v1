@@ -194,6 +194,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);   
     }
 
+    function changePPTryingPicItemPosX(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingPicObj"]["posX"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+               
+      updateNavObj(tempNav);
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3455,8 +3463,27 @@ export default function NavigationSetter({initialNavObj,
            >{playerProfilePageIsAddingPic ? "︽" : "︾" } Add Picture</button>
            
            {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
-           <label>Position X: </label><input type="range" min="1" max={screenWidth} step="1"></input><input></input><br></br>
-             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input><br></br>
+             
+             <label>Position X: </label>
+             <input type="range" min="1" max={screenWidth} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["posX"]}
+              onChange={(event)=>{
+                changePPTryingPicItemPosX(event);
+              }}
+             ></input>
+             <input min="1" max={screenWidth} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["posX"]}
+              onChange={(event)=>{
+                changePPTryingPicItemPosX(event);
+              }}
+             ></input>
+             
+             <br></br>
+             
+             
+             <label>Position Y: </label>
+             <input type="range"  min="1" max={screenHeight} step="1"></input>
+             <input></input><br></br>
                          
              <label>Picture: </label>
              
