@@ -202,6 +202,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePPTryingPicItemPosY(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingPicObj"]["posY"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+               
+      updateNavObj(tempNav);
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3482,8 +3490,19 @@ export default function NavigationSetter({initialNavObj,
              
              
              <label>Position Y: </label>
-             <input type="range"  min="1" max={screenHeight} step="1"></input>
-             <input></input><br></br>
+             <input type="range" min="1" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["posY"]}
+              onChange={(event)=>{
+                changePPTryingPicItemPosY(event);
+              }}
+             ></input>             
+             <input min="1" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["posY"]}
+              onChange={(event)=>{
+                changePPTryingPicItemPosY(event);
+              }}
+             ></input>   
+             <br></br>
                          
              <label>Picture: </label>
              
