@@ -256,6 +256,22 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);      
     }
 
+    function changePPTryingValueItemPosY(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["posY"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);      
+    }
+
+    function changePPTryingValueItemFontSize(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["textFontSize"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);      
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
