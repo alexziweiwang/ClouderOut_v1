@@ -272,6 +272,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);      
     }
 
+    function changePPTryingValueItemFont(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["textFont"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);      
+    }
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3554,7 +3562,13 @@ export default function NavigationSetter({initialNavObj,
              <label> {currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}</label>
              
              <br></br>
-             <label>Text Font: </label><select>
+             <label>Text Font: </label><select
+              value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"]}
+              onChange={(event)=>{
+                changePPTryingValueItemFont(event);
+
+              }}
+             >
                   <option value="serif" key="toAddPPpageValue_serif">serif</option>
                   <option value="sans-serif" key="toAddPPpageValue_sans-serif">sans-serif</option>
                   <option value="cursive" key="toAddPPpageValue_cursive">cursive</option>
