@@ -225,6 +225,14 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);   
     }
 
+    function changePPTryingPicItemHeight(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingPicObj"]["height"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+               
+      updateNavObj(tempNav);   
+    }
+
     function resetPPTryingPicItem() {
       let resetItem = {
         "previewing": currentProjectNav["playerProfilePage-previewingPicObj"]["previewing"],
@@ -3573,10 +3581,19 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
 
              <label>Height: </label>
-             <input type="range"></input>
-             <input></input>
+             <input type="range" min="1" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["height"]}
+              onChange={(event)=>{
+                changePPTryingPicItemHeight(event);
+              }}
+             ></input>  
+             <input min="1" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingPicObj"]["height"]}
+              onChange={(event)=>{
+                changePPTryingPicItemHeight(event);
+              }}
+             ></input>  
              <br></br>
-{/* //TODO7 */}
              <br></br>
             
              
