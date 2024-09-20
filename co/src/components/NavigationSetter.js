@@ -280,6 +280,15 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);      
     }
 
+    function changePPTryingValueItemTextColor(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["textColor"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);     
+    }
+
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3573,7 +3582,17 @@ export default function NavigationSetter({initialNavObj,
                   <option value="sans-serif" key="toAddPPpageValue_sans-serif">sans-serif</option>
                   <option value="cursive" key="toAddPPpageValue_cursive">cursive</option>
              </select><br></br>
-             <label>Text Color: </label><input type="color"></input><br></br>                     
+             <label>Text Color: </label>
+             <input type="color"
+              value={currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"]}
+              onChange={(event)=>{
+                changePPTryingValueItemTextColor(event);
+
+              }}
+             ></input>
+             <label> {currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"]}</label>
+             
+             <br></br>                     
 
         
            
