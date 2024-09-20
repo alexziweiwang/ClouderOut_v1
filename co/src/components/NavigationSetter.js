@@ -3530,8 +3530,30 @@ export default function NavigationSetter({initialNavObj,
             ></input>  
                
                <br></br>
-             <label>Position Y: </label><input type="range"  min="1" max={screenHeight} step="1"></input><input></input><br></br>
-             <label>Text Font Size: </label><input type="range" min="1" max="50" step="1"></input><br></br>
+             <label>Position Y: </label>
+             <input type="range" min="0" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingValueObj"]["posY"]}
+              onChange={(event)=>{
+                changePPTryingValueItemPosY(event);
+              }}
+            ></input>  
+             <input min="0" max={screenHeight} step="1"
+              value={currentProjectNav["playerProfilePage-previewingValueObj"]["posY"]}
+              onChange={(event)=>{
+                changePPTryingValueItemPosY(event);
+              }}
+            ></input>  
+             <br></br>
+             <label>Text Font Size: </label>
+             <input type="range" min="1" max="50" step="1"
+              value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}
+              onChange={(event)=>{
+                changePPTryingValueItemFontSize(event);
+              }}
+             ></input>
+             <label> {currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}</label>
+             
+             <br></br>
              <label>Text Font: </label><select>
                   <option value="serif" key="toAddPPpageValue_serif">serif</option>
                   <option value="sans-serif" key="toAddPPpageValue_sans-serif">sans-serif</option>

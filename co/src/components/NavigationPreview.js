@@ -861,6 +861,7 @@ export default function NavigationPreview ({
                         "position": "absolute",
                         "left": `${tryPPValue["posX"]}px`,
                         "top": `${tryPPValue["posY"]}px`,
+                        "fontSize": `${tryPPValue["textFontSize"]}px`
                     }}>
                         {tryPPValue["labelText"]}: ___
                     </div>}
