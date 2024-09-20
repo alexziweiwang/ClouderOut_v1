@@ -3432,6 +3432,12 @@ export default function NavigationSetter({initialNavObj,
             className="w300 textLeft"
             onClick={()=>{
               setPlayerProfilePageIsAddingValue(!playerProfilePageIsAddingValue);
+              
+              let tempNav = currentProjectNav;
+              tempNav["playerProfilePage-previewingValueObj"]["previewing"] = !playerProfilePageIsAddingValue;
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});         
+              updateNavObj(tempNav);
+
             }}
            >{playerProfilePageIsAddingValue ? "︽" : "︾" } Add Value Display</button><br></br> 
            {playerProfilePageIsAddingValue && <div style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
@@ -3464,20 +3470,21 @@ export default function NavigationSetter({initialNavObj,
                   {playerProfilePageAddingValueType === "Game Data" && 
                       <select>
                         <option>-- Select Game Data Item --</option>
-                      </select>
-                      
+//TODO7
+                      </select> 
                   }
                   
                   {playerProfilePageAddingValueType === "Player Profile" && 
                       <select>
                         <option>-- Select Player Profile Data Item --</option>
+//TODO7
                       </select>
                   }
                   
                   {playerProfilePageAddingValueType === "Player Account Info" && 
                       <select>
                         <option>-- Select Player Account Data Item --</option>
-
+//TODO7
                       </select>
                       
                   }
@@ -3507,7 +3514,7 @@ export default function NavigationSetter({initialNavObj,
               setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
 
               let tempNav = currentProjectNav;
-              tempNav["playerProfilePage-previewingPicObj"]["previewing"] = !playerProfilePageIsAddingText;
+              tempNav["playerProfilePage-previewingPicObj"]["previewing"] = !playerProfilePageIsAddingPic;
               setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});         
               updateNavObj(tempNav);
             }}

@@ -855,13 +855,15 @@ export default function NavigationPreview ({
 
                     </div>}
 
-{/* 
-                navObj["playerProfilePage-previewingValue"]
-                
-                navObj["playerProfilePage-previewingPic"] */}
 
-
-{tryPPPic["previewing"]}
+                {tryPPValue["previewing"] !== false && 
+                    <div style={{
+                        "position": "absolute",
+                        "left": `${tryPPValue["posX"]}px`,
+                        "top": `${tryPPValue["posY"]}px`,
+                    }}>
+                        {tryPPValue["labelText"]}: ___
+                    </div>}
 
                 {tryPPPic["previewing"] !== false && 
                     <div style={{
