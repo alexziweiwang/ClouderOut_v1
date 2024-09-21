@@ -65,6 +65,7 @@ export default function NavigationSetter({initialNavObj,
             console.log("Navigation Setter -- "); //TODO test
             fetchProjResourceLists();
             getGameDataFromCloud();
+
             setFirstTimeEnter(false);
       }
 
@@ -338,11 +339,6 @@ console.log(gDataMap); //TODO
 
     function changePlayerProfilePageAddingValueType(val) {
       setPlayerProfilePageAddingValueType(val);
-      if (playerProfilePageAddingValueType !== "Game Data" 
-        && val === "Game Data"
-      ) {
-        getGameDataFromCloud();
-      }
 
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingValueObj"]["valueItemType"] = val;
@@ -3573,11 +3569,23 @@ console.log(gDataMap); //TODO
 
                   {/* actual data item names (according to type) */}
                   {playerProfilePageAddingValueType === "Game Data" && 
+                      <>
                       <select>
                         <option>-- Select Game Data Item --</option>
-//TODO7
+                        <option>{gameDataDesignList.length > 0 ? "T" : "F"}</option>
+                        {Object.keys(gameDataDesignList).map((currKey) => {
+                          let item = gameDataDesignList[currKey];
+                          return (<option>{item["name"]}</option>);
+                        })}
 
                       </select> 
+                      <button
+                        onClick={()=>{
+                          getGameDataFromCloud();
+                        }
+                        }
+                      >Update Game Data</button>
+                      </>
                   }
                   
                   {playerProfilePageAddingValueType === "Player Profile" && 
