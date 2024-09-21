@@ -55,8 +55,8 @@ export default function NavigationSetter({initialNavObj,
 
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
 
-    const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
-    const [gameDataDesignList, setGameData] = useState({});                    /* Important */
+    const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
+    const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -64,6 +64,7 @@ export default function NavigationSetter({initialNavObj,
       if (firstTimeEnter === true) {
             console.log("Navigation Setter -- "); //TODO test
             fetchProjResourceLists();
+            getGameDataFromCloud();
             setFirstTimeEnter(false);
       }
 
@@ -74,6 +75,7 @@ export default function NavigationSetter({initialNavObj,
 
       let heightTemp = getScreenheight();
       setScreenHeight(heightTemp);
+
     });
 
 
@@ -104,15 +106,19 @@ export default function NavigationSetter({initialNavObj,
       let isUpdated = true;
       //TODO 
       let gDataMap = {};
-      gDataMap = await getProjectGameDataVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
 
-      // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
-      // console.log(state); //TODO remove later
+      if (gameDataDesignList === -1) {
+        gDataMap = await getProjectGameDataVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
+     
+     
+     
+     
+     
+console.log("Nav-setter-:$$$$$$$$$$$ game data from cloud = "); //TODO
+console.log(gDataMap); //TODO
+      
+      }
 
-      
-      // console.log("Conv-editing-:$$$$$$$$$$$ game data from cloud = ");
-      // console.log(gDataMap);
-      
 
       //TODO transform to a list  
 
@@ -332,6 +338,11 @@ export default function NavigationSetter({initialNavObj,
 
     function changePlayerProfilePageAddingValueType(val) {
       setPlayerProfilePageAddingValueType(val);
+      if (playerProfilePageAddingValueType !== "Game Data" 
+        && val === "Game Data"
+      ) {
+        getGameDataFromCloud();
+      }
 
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingValueObj"]["valueItemType"] = val;
@@ -3553,6 +3564,7 @@ export default function NavigationSetter({initialNavObj,
                       changePlayerProfilePageAddingValueType(event.target.value);
                     }}
                   >
+                    <option key="ppSetting-value-type-defaultNone" value="">-- Select Data Range --</option>
 
                     <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
                     <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
@@ -3564,6 +3576,7 @@ export default function NavigationSetter({initialNavObj,
                       <select>
                         <option>-- Select Game Data Item --</option>
 //TODO7
+
                       </select> 
                   }
                   
