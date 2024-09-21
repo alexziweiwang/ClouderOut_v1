@@ -334,6 +334,21 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);  
     }
   
+    function changePlayerProfilePageAddingValueName(event) {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["valueItemName"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);  
+    }
+
+    function resetPlayerProfilePageAddingValueName() {
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["valueItemName"] = "";
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);  
+    }
 
    return (
   
@@ -3560,7 +3575,7 @@ export default function NavigationSetter({initialNavObj,
                       <select 
                         value={currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"]}
                         onChange={(event)=>{
-                          //TODO
+                          changePlayerProfilePageAddingValueName(event);
                         }}
                         >
                         <option key="ppValue-gameData-option-defaultNone" value="">-- Select Game Data Item --</option>
@@ -3574,7 +3589,7 @@ export default function NavigationSetter({initialNavObj,
                       <button
                         onClick={()=>{
                           getGameDataFromCloud();
-                          //TODO reset select-list-value
+                          resetPlayerProfilePageAddingValueName();
                         }
                         }
                       >Update Game Data</button>
