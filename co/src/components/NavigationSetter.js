@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+
+
 
 export default function NavigationSetter({initialNavObj, 
   updateNavObj, openRm, 
   updateCurrentPageName, fetchPageName,
-  initialScreenHeight, getScreenheight
+  initialScreenHeight, getScreenheight,
+  userName,
+  projName
 }) {
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
 
     let languageCode = 0;
     let saveChangesText = ["Save Changes"];
@@ -53,6 +56,7 @@ export default function NavigationSetter({initialNavObj,
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
 
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("Game Data");
+    const [gameDataDesignList, setGameData] = useState({});                    /* Important */
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -78,7 +82,7 @@ export default function NavigationSetter({initialNavObj,
     async function fetchProjResourceLists() {
       console.log("nav-setter: fetchProjResourceLists()"); //TODO test
       /* fetch from cloud db */
-      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+      const obj = await fetchProjectResourceVarPairsVM({userName: userName, projectName: projName});
       console.log("new render- nav setter: obj from cloud (resource list):"); //TODO test
       console.log(obj); //TODO test
       setAudioList(obj.audio);
@@ -95,6 +99,26 @@ export default function NavigationSetter({initialNavObj,
       console.log(updatedList);
       setAudioList(updatedList);
     }
+
+    async function getGameDataFromCloud() {
+      let isUpdated = true;
+      //TODO 
+      let gDataMap = {};
+      gDataMap = await getProjectGameDataVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
+
+      // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
+      // console.log(state); //TODO remove later
+
+      
+      // console.log("Conv-editing-:$$$$$$$$$$$ game data from cloud = ");
+      // console.log(gDataMap);
+      
+
+      //TODO transform to a list  
+
+      setGameData(gDataMap);
+  }
+
 
     function changePPTryingTextItemTextContent(event) { 
       let tempNav = currentProjectNav;

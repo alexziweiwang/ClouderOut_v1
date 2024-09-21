@@ -1007,6 +1007,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
                   getScreenheight={passInScreenHeight}
+                  userName={username} 
+                  projName={projectName} 
                 />
               </div>
               
