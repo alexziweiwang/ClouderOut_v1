@@ -306,6 +306,17 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
     }
 
+    function changePlayerProfilePageAddingValueType(val) {
+      setPlayerProfilePageAddingValueType(val);
+
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"]["valueItemType"] = val;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+               
+      updateNavObj(tempNav);  
+    }
+  
+
    return (
   
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
@@ -3515,7 +3526,7 @@ export default function NavigationSetter({initialNavObj,
                 <div className="indentOne">
                   <select value={playerProfilePageAddingValueType}
                     onChange={(event)=>{
-                      setPlayerProfilePageAddingValueType(event.target.value);
+                      changePlayerProfilePageAddingValueType(event.target.value);
                     }}
                   >
 
