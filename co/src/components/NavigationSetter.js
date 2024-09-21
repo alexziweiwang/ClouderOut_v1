@@ -105,24 +105,11 @@ export default function NavigationSetter({initialNavObj,
 
     async function getGameDataFromCloud() {
       let isUpdated = true;
-      //TODO 
+
       let gDataMap = {};
 
-      if (gameDataDesignList === -1) {
-        gDataMap = await getProjectGameDataVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
-     
-     
-     
-     
-     
-console.log("Nav-setter-:$$$$$$$$$$$ game data from cloud = "); //TODO
-console.log(gDataMap); //TODO
       
-      }
-
-
-      //TODO transform to a list  
-
+      gDataMap = await getProjectGameDataVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
       setGameData(gDataMap);
   }
 
@@ -3570,18 +3557,24 @@ console.log(gDataMap); //TODO
                   {/* actual data item names (according to type) */}
                   {playerProfilePageAddingValueType === "Game Data" && 
                       <>
-                      <select>
-                        <option>-- Select Game Data Item --</option>
-                        <option>{gameDataDesignList.length > 0 ? "T" : "F"}</option>
+                      <select 
+                        value={currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"]}
+                        onChange={(event)=>{
+                          //TODO
+                        }}
+                        >
+                        <option key="ppValue-gameData-option-defaultNone" value="">-- Select Game Data Item --</option>
                         {Object.keys(gameDataDesignList).map((currKey) => {
                           let item = gameDataDesignList[currKey];
-                          return (<option>{item["name"]}</option>);
+                          let keyStr = "ppValue-gameData-option-" + currKey;
+                          return (<option key={keyStr} value={item["name"]}>{item["name"]}</option>);
                         })}
 
                       </select> 
                       <button
                         onClick={()=>{
                           getGameDataFromCloud();
+                          //TODO reset select-list-value
                         }
                         }
                       >Update Game Data</button>
