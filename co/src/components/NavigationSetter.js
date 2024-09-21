@@ -288,6 +288,23 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);     
     }
 
+    function resetPPTryingValueItem() {
+      let resetItem = {
+        "previewing": currentProjectNav["playerProfilePage-previewingValueObj"]["previewing"],
+        "labelText": "",
+        "valueItemType": "GameData",
+        "valueItemName": "",
+        "posX": 30,
+        "posY": 70,
+        "textFontSize": 12,
+        "textFont": "serif",
+        "textColor": "#000000",
+      };
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj"] = resetItem;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": resetItem});
+      updateNavObj(tempNav);
+    }
 
    return (
   
@@ -3597,7 +3614,11 @@ export default function NavigationSetter({initialNavObj,
         
            
            <button>Add</button>
-           <button>Clear</button>
+           <button
+            onClick={()=>{
+              resetPPTryingValueItem();
+            }}
+           >Clear</button>
            </div>}
            
            <br></br>
