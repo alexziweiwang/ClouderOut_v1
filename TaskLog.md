@@ -350,3 +350,10 @@
 - 2024-Sept-09: Design data structures, input and output for player-data during test/in-practice
 
 - 2024-Sept-23: Consider and design -- data presenting in nav-previewing layer (of 3 sets of info)
+- 2024-Sept-23: Design shop page element and features
+
+
+
+
+
+
