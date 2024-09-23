@@ -11,6 +11,9 @@ export default function NavigationPreview ({
     isEditing,
 
 }) {
+//TODO game-data, player-profile, player-account-info fetching for testing ...
+
+
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
@@ -846,7 +849,7 @@ export default function NavigationPreview ({
                         "left": `${tryPPText["posX"]}px`,
                         "top": `${tryPPText["posY"]}px`,
                         "fontSize": `${tryPPText["textFontSize"]}px`,
-                        "font-family": `${tryPPText["textFont"]}`,
+                        "fontFamily": `${tryPPText["textFont"]}`,
                         "color": `${tryPPText["textColor"]}`,
                     }}
                     >
@@ -865,7 +868,7 @@ export default function NavigationPreview ({
                         "fontFamily": `${tryPPValue["textFont"]}`,
                         "color": `${tryPPValue["textColor"]}`,
                     }}>
-                        {tryPPValue["labelText"]}: ___
+                        {tryPPValue["labelText"]}: ({tryPPValue["valueItemName"]}'s value here)
                     </div>}
 
                 {tryPPPic["previewing"] !== false && 
