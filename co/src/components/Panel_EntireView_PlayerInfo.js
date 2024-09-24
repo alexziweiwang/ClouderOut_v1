@@ -21,6 +21,11 @@ export default function Panel_EntireView_PlayerInfo({
     const [inputIconPicName, setInputIconPicName] = useState("");
 
     const [picList, setPicList] = useState(initialPicResourceList);
+
+    const [picMap, setPicMap] = useState({});
+
+
+    console.log("initialPicResourceList = ", initialPicResourceList); //TODO testing
        
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -30,8 +35,10 @@ export default function Panel_EntireView_PlayerInfo({
             setPlayerProfile(obj["playerProfile"]);
             setUserAccountData(obj["userAccount"]);
 
-            setupPictureList();
-      
+            setupPictureList(true);
+
+
+
             setFirstTimeEnter(false);
         }
         let h = getScreenHeight();
@@ -46,9 +53,19 @@ export default function Panel_EntireView_PlayerInfo({
     });
 
 
-    function setupPictureList() {
+    function setupPictureList(isFirst) {
         let picListTemp = fetchPicResourceList();
         setPicList(picListTemp);
+
+        if (isFirst === true) {
+            let i = 0;
+            let tempPicMap = {};
+            for (;i < picList.length; i++) {
+                let item = picList[i];
+                tempPicMap[item["var"]] = item["url"];
+            }
+            setPicMap(tempPicMap);
+        }
 
         console.log("got pic list: ", picListTemp); //TODO testing
     }
@@ -110,6 +127,11 @@ return (
             //TODO (value=player-profile info's icon-pic-name)
                 onChange={(event)=>{
                     //TODO change player-profile info's icon-pic-name
+                    let selectedPicName = event.target.value;
+
+console.log("selectedPicName = ", selectedPicName); //TODO testing
+
+                
 
                 }}
             >
