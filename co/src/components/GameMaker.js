@@ -891,14 +891,24 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function updatePlayerInfoSets(playerProfileData, userAccountData) {
+    
+    //TODO for testing only, update test-data here
     setTestPlayerProfile(playerProfileData);
     setTestPlayerAccount(userAccountData);
+
+    //TODO: later, update non-emu data here
+
   }
 
-  function fetchPlayerInfoSets() {
+  function passInPlayerInfoSets() {
     let obj = {};
+
+    //TODO for testing only, pass-in test-data
     obj["playerProfile"] = testPlayerProfile;
     obj["userAccount"] = testPlayerAccount;
+
+
+    //TODO: later, non-emu data, pass-in non-emu data
 
     return obj;
   }
@@ -1186,7 +1196,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                 <Panel_EntireView_PlayerInfo
                   getScreenHeight={passInScreenHeight}
                   getScreenWidth={passInScreenWidth}
-                  fetchPlayerInfoSet={fetchPlayerInfoSets}
+                  fetchPlayerInfoSet={passInPlayerInfoSets}
                   updatePlayerInfoSets={updatePlayerInfoSets}
                  
 
