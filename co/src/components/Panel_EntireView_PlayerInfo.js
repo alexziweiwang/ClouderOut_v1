@@ -12,6 +12,11 @@ export default function Panel_EntireView_PlayerInfo({
 
     const [playerProfile, setPlayerProfile] = useState(-1);
     const [userAccountData, setUserAccountData] = useState(-1);
+
+
+
+    const [inputUsername, setInpuUsername] = useState("");
+    const [inputIconPicName, setInputIconPicName] = useState("");
        
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -54,7 +59,22 @@ return (
     (players' in-game profile)
     <div style={{"textAlign": "left", "padding": "10px"}}>
         <label>Username: </label>
-        <input></input>
+        <label> {playerProfile["username"]}</label>
+        <br></br>
+        <input 
+            value={inputUsername}
+            onChange={(event)=>{
+                setInpuUsername(event.target.value);
+            }}
+        ></input>
+        <button
+            onClick={()=>{
+                let obj = playerProfile;
+                obj["username"] = inputUsername;
+                setPlayerProfile(obj);
+                updateDataSetsToCaller(obj, userAccountData);
+            }}
+        >Change</button>
         <br></br><br></br>
 
         <label>Icon: </label>

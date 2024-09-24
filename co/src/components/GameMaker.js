@@ -461,7 +461,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   //TODO6
   const [testPlayerProfile, setTestPlayerProfile] = useState({ 
       "username": "playerA",
-      "iconUrl": ""
+      "userTitle": "",
+      "iconPicName": "",
+      "level": 2,
+      "membership": 1,
+
   });                                                                 //TODO important for holder-in-practice
 
   const [testPlayerAccount, setTestPlayerAccount] = useState({
@@ -1196,7 +1200,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                 <Panel_EntireView_PlayerInfo
                   getScreenHeight={passInScreenHeight}
                   getScreenWidth={passInScreenWidth}
-                  fetchPlayerInfoSet={passInPlayerInfoSets}
+                  fetchPlayerInfoSets={passInPlayerInfoSets}
                   updatePlayerInfoSets={updatePlayerInfoSets}
                  
 
