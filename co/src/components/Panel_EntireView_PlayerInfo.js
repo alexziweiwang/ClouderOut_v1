@@ -21,8 +21,8 @@ export default function Panel_EntireView_PlayerInfo({
     const [inputIconPicName, setInputIconPicName] = useState("");
 
     const [picList, setPicList] = useState(initialPicResourceList);
-
     const [picMap, setPicMap] = useState({});
+    const [iconPicUrl, setIconPicUrl] = useState("");
 
 
     console.log("initialPicResourceList = ", initialPicResourceList); //TODO testing
@@ -114,11 +114,13 @@ return (
         <label>Icon: </label>
         <div className="indentOne">
             <div style={{
-                "backgroundColor": "orange",
                 "borderRadius": "0px",
+                "border": "#3D5A80 dotted 2px",
                 "width": "150px",
-                "height": "150px"
-                
+                "height": "150px",
+                "backgroundImage": `url('${iconPicUrl}')`,
+                "backgroundSize": `150px 150px`,
+
                 }}>
         
             </div>
@@ -126,12 +128,18 @@ return (
             <select
             //TODO (value=player-profile info's icon-pic-name)
                 onChange={(event)=>{
-                    //TODO change player-profile info's icon-pic-name
+                    
                     let selectedPicName = event.target.value;
 
-console.log("selectedPicName = ", selectedPicName); //TODO testing
+                    if (selectedPicName.length === 0 || selectedPicName === "") {
+                        setIconPicUrl();
+                        return;
+                    }
 
-                
+                    //TODO change player-profile info's icon-pic-name
+
+                    let url = picMap[selectedPicName];
+                    setIconPicUrl(url);
 
                 }}
             >
