@@ -6,6 +6,7 @@ export default function Panel_EntireView_PlayerInfo({
     updatePlayerInfoSets,
     fetchPlayerInfoSets,
     fetchPicResourceList,
+    initialPicResourceList,
 }) {
 
     const [screenHeight, setScreenHeight] = useState(450);
@@ -19,7 +20,7 @@ export default function Panel_EntireView_PlayerInfo({
     const [inputUsername, setInpuUsername] = useState("");
     const [inputIconPicName, setInputIconPicName] = useState("");
 
-    const [picList, setPicList] = useState(-1);
+    const [picList, setPicList] = useState(initialPicResourceList);
        
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -71,36 +72,59 @@ return (
     (players' in-game profile)
     <div style={{"textAlign": "left", "padding": "10px"}}>
         <label>Username: </label>
-        <label> {playerProfile["username"]}</label>
-        <br></br>
-        <input 
-            value={inputUsername}
-            onChange={(event)=>{
-                setInpuUsername(event.target.value);
-            }}
-        ></input>
-        <button
-            onClick={()=>{
-                let obj = playerProfile;
-                obj["username"] = inputUsername;
-                setPlayerProfile(obj);
-                updateDataSetsToCaller(obj, userAccountData);
-                setInpuUsername("");
-            }}
-        >Change</button>
+        <div className="indentOne">
+             <label> {playerProfile["username"]}</label>
+            <br></br>
+            <input 
+                value={inputUsername}
+                onChange={(event)=>{
+                    setInpuUsername(event.target.value);
+                }}
+            ></input>
+            <button
+                onClick={()=>{
+                    let obj = playerProfile;
+                    obj["username"] = inputUsername;
+                    setPlayerProfile(obj);
+                    updateDataSetsToCaller(obj, userAccountData);
+                    setInpuUsername("");
+                }}
+            >Change</button>
+        </div>
+       
         <br></br><br></br>
 
         <label>Icon: </label>
-        <div style={{
-            "backgroundColor": "orange",
-            "borderRadius": "0px",
-            "width": "150px",
-            "height": "150px"
-            
-            }}>
-     
+        <div className="indentOne">
+            <div style={{
+                "backgroundColor": "orange",
+                "borderRadius": "0px",
+                "width": "150px",
+                "height": "150px"
+                
+                }}>
+        
+            </div>
+            <br></br>
+            <select
+            //TODO (value=player-profile info's icon-pic-name)
+                onChange={(event)=>{
+                    //TODO change player-profile info's icon-pic-name
+
+                }}
+            >
+                <option key="panel-playerInfo-Pic-defaultNone" value="">-- Select Picture Name --</option>
+                {picList.map((item, index) => {
+                    let keyStr = "panel-playerInfo-Pic" + index + item["var"];
+                    return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                })}
+
+            </select>
+            <br></br>
+            <button>Change</button>
+
         </div>
-        <button>Change</button><br></br><br></br>
+        <br></br>
 
         <label>Level: </label>
         <input></input><br></br><br></br>

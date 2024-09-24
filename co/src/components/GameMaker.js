@@ -1076,12 +1076,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
    
 
     
-    {isDisplayRmBool && 
-      <Modal_ResourceManagingWindow 
-        isDisplay = {isDisplayRmBool} 
-        handleRmCancel={handleResourceManagerCancel} 
-        handleRmSaveChanges={handleResourceManagerSaveChanges}
-        refresh={triggerRefresh}
+      {isDisplayRmBool && 
+        <Modal_ResourceManagingWindow 
+          isDisplay = {isDisplayRmBool} 
+          handleRmCancel={handleResourceManagerCancel} 
+          handleRmSaveChanges={handleResourceManagerSaveChanges}
+          refresh={triggerRefresh}
       />}
 
       {isDisplayGdmBool && 
@@ -1091,7 +1091,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             initialGameData={gameDataDesignList} 
             resetNeedCloudData={markNextNeedCloudGameData} 
             updateGameDataToCloud={updateGameDataSettingsToCloud}
-        />} 
+      />} 
        
     {isDisplayEntireGameViewer && 
 
@@ -1222,8 +1222,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                   fetchPlayerInfoSets={passInPlayerInfoSets}
                   updatePlayerInfoSets={updatePlayerInfoSets}
                   fetchPicResourceList={passInPicResourceList}
-
-                  
+                  initialPicResourceList={visualList}
                 />
                 
                 
@@ -1237,6 +1236,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       </div>}
 
  
+
+
+
+
   </div>
 
   
