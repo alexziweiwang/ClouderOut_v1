@@ -5,6 +5,7 @@ export default function Panel_EntireView_PlayerInfo({
     getScreenHeight, getScreenWidth,
     updatePlayerInfoSets,
     fetchPlayerInfoSets,
+    fetchPicResourceList,
 }) {
 
     const [screenHeight, setScreenHeight] = useState(450);
@@ -17,6 +18,8 @@ export default function Panel_EntireView_PlayerInfo({
 
     const [inputUsername, setInpuUsername] = useState("");
     const [inputIconPicName, setInputIconPicName] = useState("");
+
+    const [picList, setPicList] = useState(-1);
        
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -26,6 +29,8 @@ export default function Panel_EntireView_PlayerInfo({
             setPlayerProfile(obj["playerProfile"]);
             setUserAccountData(obj["userAccount"]);
 
+            setupPictureList();
+      
             setFirstTimeEnter(false);
         }
         let h = getScreenHeight();
@@ -34,11 +39,18 @@ export default function Panel_EntireView_PlayerInfo({
         setScreenWidth(w);
 
         
-
+       
    
 
     });
 
+
+    function setupPictureList() {
+        let picListTemp = fetchPicResourceList();
+        setPicList(picListTemp);
+
+        console.log("got pic list: ", picListTemp); //TODO testing
+    }
 
     function updateDataSetsToCaller() { //update when settings changed ...
         updatePlayerInfoSets(playerProfile, userAccountData);
@@ -73,6 +85,7 @@ return (
                 obj["username"] = inputUsername;
                 setPlayerProfile(obj);
                 updateDataSetsToCaller(obj, userAccountData);
+                setInpuUsername("");
             }}
         >Change</button>
         <br></br><br></br>

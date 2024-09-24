@@ -91,6 +91,7 @@ export default function NavigationSetter({initialNavObj,
       setAudioList(obj.audio);
       setVisualList(obj.visual);
     }
+    
     function handleVisualRsrcSelectorSave(updatedList) {
       //TODO update visualList
       setVisualList(updatedList);

@@ -13,9 +13,13 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 export default function GameMaker() {
+
+  
+
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO
 
@@ -101,7 +105,17 @@ export default function GameMaker() {
   const [currPageName, setCurrPageName] = useState("Main Page");
 
 
+  const [visualList, setVisualList] = useState([]); 
+  async function fetchProjResourceLists() {
 
+    let username001 = "user002";                                              //TODO testing
+    let projName001 = "project001";                                           //TODO testing
+
+    /* fetch from cloud db */
+    const obj = await fetchProjectResourceVarPairsVM({userName: username001, projectName: projName001});
+
+    setVisualList(obj.visual);
+  }
 
 
 
@@ -570,6 +584,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         fetchGameDataFromCloud();
+        fetchProjResourceLists();
 
 
         let isLocal = true; //TODO temp
@@ -917,6 +932,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return obj;
   }
 
+  function passInPicResourceList() {
+    return visualList;
+  }
+
 
   return (
   <div>
@@ -1202,7 +1221,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                   getScreenWidth={passInScreenWidth}
                   fetchPlayerInfoSets={passInPlayerInfoSets}
                   updatePlayerInfoSets={updatePlayerInfoSets}
-                 
+                  fetchPicResourceList={passInPicResourceList}
 
                   
                 />
