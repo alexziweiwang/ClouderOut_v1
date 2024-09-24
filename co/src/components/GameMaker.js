@@ -890,6 +890,18 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setCurrTestingPageStatus(pageName);
   }
 
+  function updatePlayerInfoSets(playerProfileData, userAccountData) {
+    setTestPlayerProfile(playerProfileData);
+    setTestPlayerAccount(userAccountData);
+  }
+
+  function fetchPlayerInfoSets() {
+    let obj = {};
+    obj["playerProfile"] = testPlayerProfile;
+    obj["userAccount"] = testPlayerAccount;
+
+    return obj;
+  }
 
 
   return (
@@ -1174,7 +1186,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                 <Panel_EntireView_PlayerInfo
                   getScreenHeight={passInScreenHeight}
                   getScreenWidth={passInScreenWidth}
-                
+                  fetchPlayerInfoSet={fetchPlayerInfoSets}
+                  updatePlayerInfoSets={updatePlayerInfoSets}
+                 
 
                   
                 />

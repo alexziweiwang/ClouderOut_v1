@@ -3,11 +3,15 @@ import { useState, useEffect } from 'react';
 
 export default function Panel_EntireView_PlayerInfo({
     getScreenHeight, getScreenWidth,
+    updatePlayerInfoSets,
+    fetchPlayerInfoSets,
 }) {
 
     const [screenHeight, setScreenHeight] = useState(450);
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
+    const [playerProfile, setPlayerProfile] = useState(-1);
+    const [userAccountInfo, setUserAccountInfo] = useState(-1);
        
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -16,6 +20,11 @@ export default function Panel_EntireView_PlayerInfo({
         let w = getScreenWidth();
         setScreenWidth(w);
 
+        
+        let obj = fetchPlayerInfoSets();
+        setPlayerProfile(obj["playerProfile"]);
+        setUserAccountInfo(obj["userAccount"]);
+            
    
 
     });
