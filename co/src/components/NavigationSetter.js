@@ -3799,8 +3799,27 @@ export default function NavigationSetter({initialNavObj,
     
            <br></br><br></br>
 
-           <input type="checkbox"></input>  
-           <label>Player Profile Nickname</label> 
+           <input type="checkbox"
+            value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
+            checked={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
+            onChange={()=>{
+              let tempNav = currentProjectNav;
+              tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+              updateNavObj(tempNav);
+            }}
+           ></input>  
+           <label
+            className="textNoSelect cursor_pointer"
+            onClick={()=>{
+              let tempNav = currentProjectNav;
+              tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+              updateNavObj(tempNav);              
+            }}
+           >Player Profile Nickname</label> 
+
+           {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"] && 
            <div className="indentOne">
               <label>Text Content: </label><input></input>
                 <input type="checkbox"></input><label>Italic</label>
@@ -3816,22 +3835,41 @@ export default function NavigationSetter({initialNavObj,
               <label>Position Y: </label><input></input>
 
 
-           </div>
+           </div>}
            
            <br></br>
-           <input type="checkbox"></input>  
-           <label>Player Profile Icon</label> 
-           <div className="indentOne">
-             <label>Position X: </label><input type="range"></input><input></input>
-             <br></br>
-             <label>Position Y: </label><input type="range"></input><input></input>
-             <br></br>
-             <label>Picture: </label><select></select><button>Manage Resource</button>
-             <br></br>
-             <label>Width: </label><input type="range"></input><input></input>
-             <br></br>
-             <label>Height: </label><input type="range"></input><input></input>
-           </div>
+           <br></br>
+           <input type="checkbox"
+              value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"]}
+              checked={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"]}
+              onChange={()=>{
+                let tempNav = currentProjectNav;
+                tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"] = !tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"];
+                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                updateNavObj(tempNav);
+              }}
+           ></input>  
+           <label
+            className="textNoSelect cursor_pointer"
+            onClick={()=>{
+                let tempNav = currentProjectNav;
+                tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"] = !tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"];
+                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                updateNavObj(tempNav);              
+            }}
+           >Player Profile Icon</label> 
+           {currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"] &&
+            <div className="indentOne">
+                <label>Position X: </label><input type="range"></input><input></input>
+                <br></br>
+                <label>Position Y: </label><input type="range"></input><input></input>
+                <br></br>
+                <label>Picture: </label><select></select><button>Manage Resource</button>
+                <br></br>
+                <label>Width: </label><input type="range"></input><input></input>
+                <br></br>
+                <label>Height: </label><input type="range"></input><input></input>
+            </div>}
                       
 
 
