@@ -436,6 +436,26 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     },
 
 
+    "playerProfilePage-playerProfileNickNameItem": {
+      "adding": false,
+      "textContent": "",
+      "textItalic": false,
+      "textFontSize": 12,
+      "textFont": "serif",
+      "textColor": "#000000",
+      "posX": 30,
+      "posY": 50,
+    },
+    "playerProfilePage-playerProfileIconPicItem": {
+      "adding": false,
+      "posX": 50,
+      "posY": 50,
+      "picName": "",
+      "width": 200,
+      "height": 200,
+    },
+
+
     "shopPage-isBackgroundShape": false,
     "shopPage-bgShadeName": "rgb(222, 222, 235)",
     "shopPage-bgPicName": "",
