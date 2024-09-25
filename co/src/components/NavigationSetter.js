@@ -3817,10 +3817,23 @@ export default function NavigationSetter({initialNavObj,
               setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
               updateNavObj(tempNav);              
             }}
-           >Player Profile Nickname</label> 
+           >
+           Player Profile Nickname
+           </label> 
 
            {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"] && 
            <div className="indentOne">
+              <label>Prefix (optional): </label>
+              <input
+                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["prefix"]}
+                onChange={(event)=>{
+                  let tempNav = currentProjectNav;
+                  tempNav["playerProfilePage-playerProfileNickNameItem"]["prefix"] = event.target.value;
+                  setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                  updateNavObj(tempNav);   
+                }}
+              ></input>
+              <br></br>
               <label>Text Content: </label><input></input>
                 <input type="checkbox"></input><label>Italic</label>
               <br></br>

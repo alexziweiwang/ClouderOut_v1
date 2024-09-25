@@ -438,6 +438,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     "playerProfilePage-playerProfileNickNameItem": {
       "adding": false,
+      "prefix": "",
       "textContent": "",
       "textItalic": false,
       "textFontSize": 12,
