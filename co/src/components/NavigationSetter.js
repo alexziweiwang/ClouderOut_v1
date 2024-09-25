@@ -3834,7 +3834,15 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <br></br>
-              <label>Text Content: </label><input></input>
+              <label
+                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textContent"]}
+                onChange={(event)=>{
+                  let tempNav = currentProjectNav;
+                  tempNav["playerProfilePage-playerProfileNickNameItem"]["textContent"] = event.target.value;
+                  setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                  updateNavObj(tempNav);   
+                }}
+              >Text Content: </label><input></input>
                 <input type="checkbox"></input><label>Italic</label>
               <br></br>
               <label>Text Font Size: </label><input type="range"></input><label></label>
