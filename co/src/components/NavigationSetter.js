@@ -91,7 +91,7 @@ export default function NavigationSetter({initialNavObj,
       setAudioList(obj.audio);
       setVisualList(obj.visual);
     }
-    
+
     function handleVisualRsrcSelectorSave(updatedList) {
       //TODO update visualList
       setVisualList(updatedList);
@@ -518,20 +518,23 @@ export default function NavigationSetter({initialNavObj,
       {openBackButtonSettingArea && <br></br>}
       
       <div style={{"backgroundColor": "grey", "padding": "7px"}}>
-        <label>Font for all UI in navigation system: </label><br></br>
-        <select value={currentProjectNav["fontFamilyForAll"]}
-          onChange={(event)=>{
-              let tempObj = currentProjectNav;
-              tempObj["fontFamilyForAll"] = event.target.value;
-              updateNavObj(tempObj);       
-                        
-              setCurrentProjectNav({...currentProjectNav, "fontFamilyForAll": event.target.value});  
-          }}
-        >
-            <option value="serif" key="navUI_serif">serif</option>
-            <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
-            <option value="cursive" key="navUI_cursive">cursive</option>    
-        </select>
+        <label>Font for all UI in navigation system: </label>
+        <div className="indentOne">
+            <select value={currentProjectNav["fontFamilyForAll"]}
+              onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["fontFamilyForAll"] = event.target.value;
+                  updateNavObj(tempObj);       
+                            
+                  setCurrentProjectNav({...currentProjectNav, "fontFamilyForAll": event.target.value});  
+              }}
+            >
+                <option value="serif" key="navUI_serif">serif</option>
+                <option value="sans-serif" key="navUI_sans-serif">sans-serif</option>
+                <option value="cursive" key="navUI_cursive">cursive</option>    
+            </select>          
+        </div>
+
       </div>
 
       <br></br>
@@ -1391,7 +1394,7 @@ export default function NavigationSetter({initialNavObj,
            readOnly
            onClick={()=>{alert("Story-option must be kept.");}}
          ></input>
-         <label>Story</label>
+         <label>Story Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -1653,7 +1656,7 @@ export default function NavigationSetter({initialNavObj,
              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
             }}               
          ></input>
-           <label>Player Profile</label>
+           <label>Player Profile Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -1918,7 +1921,7 @@ export default function NavigationSetter({initialNavObj,
              setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
             }}      
          ></input>
-         <label>Settings</label>
+         <label>Settings Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -2172,7 +2175,7 @@ export default function NavigationSetter({initialNavObj,
              setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
             }}                     
          ></input>
-         <label>Shop</label>
+         <label>Shop Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -3794,6 +3797,43 @@ export default function NavigationSetter({initialNavObj,
 
            </div>}
     
+           <br></br><br></br>
+
+           <input type="checkbox"></input>  
+           <label>Player Profile Nickname</label> 
+           <div className="indentOne">
+              <label>Text Content: </label><input></input>
+                <input type="checkbox"></input><label>Italic</label>
+              <br></br>
+              <label>Text Font Size: </label><input type="range"></input><label></label>
+              <br></br>
+              <label>Text Font: </label><select></select>
+              <br></br>
+              <label>Text Color: </label><input type="color"></input><label></label>
+              <br></br>
+              <label>Position X: </label><input></input>
+              <br></br>
+              <label>Position Y: </label><input></input>
+
+
+           </div>
+           
+           <br></br>
+           <input type="checkbox"></input>  
+           <label>Player Profile Icon</label> 
+           <div className="indentOne">
+             <label>Position X: </label><input type="range"></input><input></input>
+             <br></br>
+             <label>Position Y: </label><input type="range"></input><input></input>
+             <br></br>
+             <label>Picture: </label><select></select><button>Manage Resource</button>
+             <br></br>
+             <label>Width: </label><input type="range"></input><input></input>
+             <br></br>
+             <label>Height: </label><input type="range"></input><input></input>
+           </div>
+                      
+
 
        </div>
     </div>}
