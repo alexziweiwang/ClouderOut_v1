@@ -3868,9 +3868,24 @@ export default function NavigationSetter({initialNavObj,
               <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}
 </label>
               <br></br>
-              <label>Text Font: </label><select></select>
+              <label>Text Font: </label>
+              <select
+                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFont"]}
+                onChange={(event)=>{
+                  let tempNav = currentProjectNav;
+                  tempNav["playerProfilePage-playerProfileNickNameItem"]["textFont"] = event.target.value;
+                  setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                  updateNavObj(tempNav);   
+                }}
+              >
+                <option value="serif" key="playerProfile_nickname_serif">serif</option>
+                <option value="sans-serif" key="playerProfile_nickname_sans-serif">sans-serif</option>
+                <option value="cursive" key="playerProfile_nickname_cursive">cursive</option>   
+              </select>
               <br></br>
-              <label>Text Color: </label><input type="color"></input><label></label>
+              <label>Text Color: </label>
+              <input type="color"></input>
+              <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textColor"]}</label>
               <br></br>
               <label>Position X: </label><input></input>
               <br></br>
