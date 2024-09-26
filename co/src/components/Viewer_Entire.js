@@ -48,6 +48,12 @@ export default function Viewer_Entire({isDisplay,
 // getCurrNodeType //TODO
 
 
+//currentGameProgress names:
+// "pageStatus"
+// "chapterKey"
+// "nodeKey"
+// "nodeType"
+
 //TODO: for emu, allow the author to setup entering status (game-data) for [each] try of view-testing
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 

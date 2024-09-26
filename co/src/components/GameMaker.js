@@ -438,7 +438,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     "playerProfilePage-playerProfileNickNameItem": {
       "adding": false,
-      "nicknameLabel": "(default)",
+      "nicknameLabel": "",
       "textContent": "",
       "textItalic": false,
       "textFontSize": 12,
@@ -966,7 +966,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function updateCurrentGameProgress(obj) {
-
+    setCurrTestingPageStatus(obj["pageStatus"]);
+    setCurrTestingChapterKey(obj["chapterKey"]);
+    setCurrTestingNodeKey(obj["nodeKey"]);
+    setCurrTestingNodeType(obj["nodeType"]);
   }
 
   
@@ -1224,7 +1227,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           updatePlayerSlRecords={updatePlayerSlRecords}
           
           getCurrentGameProgress={passInCurrentGameProgress}
-          updateCurrentGameProgress={}
+          updateCurrentGameProgress={updateCurrentGameProgress}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
 

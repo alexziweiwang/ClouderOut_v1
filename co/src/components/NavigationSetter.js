@@ -59,6 +59,7 @@ export default function NavigationSetter({initialNavObj,
     const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
 
 
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -3812,7 +3813,7 @@ export default function NavigationSetter({initialNavObj,
            <label
             className="textNoSelect cursor_pointer"
             onClick={()=>{
-
+              
               let tempNav = currentProjectNav;
               tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
               setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
@@ -3826,12 +3827,21 @@ export default function NavigationSetter({initialNavObj,
            <div className="indentOne">
               <label>Label (optional): </label>
               <input
+                placeholder="Nickname"
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}
                 onChange={(event)=>{
                   let tempNav = currentProjectNav;
                   tempNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] = event.target.value;
                   setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
                   updateNavObj(tempNav);   
+                }}
+                onClick={()=>{
+                  if (currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] === "") {
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] = "Nickname";
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                    updateNavObj(tempNav);   
+                  }
                 }}
               ></input>
               <br></br>
@@ -3856,8 +3866,7 @@ export default function NavigationSetter({initialNavObj,
                     updateNavObj(tempNav);   
                   }}  
               ></input>
-              <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}
-</label>
+              <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}</label>
               <br></br>
               <label>Text Font: </label>
               <select
