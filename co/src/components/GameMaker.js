@@ -926,6 +926,53 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return testPlayerGameData;
   }
 
+  function passInPlayerProfile() {
+    return testPlayerProfile;
+  }
+
+  function passInPlayerAccountInfo() {
+    return testPlayerAccount;
+  }
+
+  function passInPlayerSlRecords() {
+    return testPlayerSLRecords;
+  }
+
+  function updatePlayingGameData(data) {
+    setTestPlayerGameData(data);
+  }
+
+  function updatePlayerProfile(data) {
+    setTestPlayerProfile(data);
+  }
+
+  function updatePlayerAccountSettings(data) {
+    setTestPlayerAccount(data);
+  }
+
+  function updatePlayerSlRecords(data) {
+    setTestPlayerSLRecords(data);
+  }
+
+  function passInCurrentGameProgress() {
+    //TODO7
+    let obj = {};
+    obj["pageStatus"] = currTestingPageStatus;
+    obj["chapterKey"] = currTestingChapterKey;
+    obj["nodeKey"] = currTestingNodeKey;
+    obj["nodeType"] = currTestingNodeType;
+
+    return obj;
+  }
+
+  function updateCurrentGameProgress(obj) {
+
+  }
+
+  
+
+
+
   function receiveUpdateOnPageStatus(pageName) { //TODO important, needed in holder-in-practice
     setCurrTestingPageStatus(pageName);
   }
@@ -1165,8 +1212,23 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
           isLocal={true}
           getPlayerGameData={passInPlayerGameData}
+          updatePlayingGameData={updatePlayingGameData}
+
+          getPlayerProfile={passInPlayerProfile}
+          updatePlayerProfile={updatePlayerProfile}
+      
+          getPlayerAccountSettings={passInPlayerAccountInfo}
+          updatePlayerAccountSettings={updatePlayerAccountSettings}
+      
+          getPlayerSlRecords={passInPlayerSlRecords}
+          updatePlayerSlRecords={updatePlayerSlRecords}
+          
+          getCurrentGameProgress={passInCurrentGameProgress}
+          updateCurrentGameProgress={}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
+
+
 
 
       />

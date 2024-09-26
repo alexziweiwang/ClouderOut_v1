@@ -16,19 +16,20 @@ export default function Viewer_Entire({isDisplay,
     initialChapterList, getChapterList,
    
     isLocal,
+
     getPlayerGameData,
     updatePlayingGameData,
 
-    getPlayerProfile, initialPlayerProfile,
+    getPlayerProfile,
     updatePlayerProfile,
 
-    getPlayerAccountSettings, initialPlayerAccountSettings,
+    getPlayerAccountSettings, 
     updatePlayerAccountSettings,
 
-    getPlayerSlRecords, initialPlayerSlRecords,
+    getPlayerSlRecords, 
     updatePlayerSlRecords,
     
-    currentGameProgress, initialGameProgress,
+    getCurrentGameProgress,
     updateCurrentGameProgress,
 
     notifyPageStatus,
@@ -62,7 +63,7 @@ export default function Viewer_Entire({isDisplay,
 
 
     const [playerGameData, setPlayerGameData] = useState({});
-    const [playerProfile, setPlayerProfil] = useState({});
+    const [playerProfile, setPlayerProfile] = useState({});
     const [playerAccount, setPlayerAccount] = useState({});
     const [playerSLRecords, setPlayerSLRecords] = useState({});
 
@@ -120,6 +121,13 @@ export default function Viewer_Entire({isDisplay,
 
         let gameDataTrackerTemp = getPlayerGameData(); //TODO refactoring
         setPlayerGameData(gameDataTrackerTemp);
+
+        let pp = getPlayerProfile();
+        setPlayerProfile(pp);
+
+        let ua = getPlayerAccountSettings();
+        setPlayerAccount(ua);
+
 
     });
 
