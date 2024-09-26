@@ -891,8 +891,23 @@ export default function NavigationPreview ({
                     </div>}
 
                 {navObj["playerProfilePage-playerProfileNickNameItem"]["adding"] === true &&
-                    <div>
-                        {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: (nickname value here)
+                    <div
+                        style={{
+                            "fontSize": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}px`,
+                            "fontFamily": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textFont"]}`,
+                        }}
+                    >
+                        
+                        {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === false &&
+                        <label>
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: (nickname value here)
+                        </label>}
+
+                        {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === true &&
+                        <em>
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: (nickname value here)
+                        </em>
+                        }
                     </div>
                 }
 
