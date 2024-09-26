@@ -32,7 +32,7 @@ export default function Viewer_Entire({isDisplay,
     updateCurrentGameProgress,
 
     notifyPageStatus,
-
+    
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
 
@@ -200,6 +200,10 @@ return(<>
                         fetchPageName={passInNavPageName} 
                         updateCurrentPageName={updateNavPageName}
                         isEditing={false}
+                        refDataGameData={playerGameData}
+                        refDataPlayerProfile={playerProfile}
+                        refDataPlayerUserAccount={playerAccount}
+
                     />
                 </div>
         </div>

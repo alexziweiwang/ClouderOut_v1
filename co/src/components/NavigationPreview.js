@@ -10,6 +10,10 @@ export default function NavigationPreview ({
     chapterData, 
     isEditing,
 
+    refDataGameData,
+    refDataPlayerProfile,
+    refDataPlayerUserAccount,
+
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 

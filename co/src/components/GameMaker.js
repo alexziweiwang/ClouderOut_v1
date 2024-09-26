@@ -957,6 +957,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return visualList;
   }
 
+  const emptyValue = {};
+
 
   return (
   <div>
@@ -1086,6 +1088,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                   chapterData={chapterList} 
                   updateCurrentPageName={updateCurrPageName}
                   isEditing={true}
+                  refDataGameData={emptyValue}
+                  playerProfileRefData={testPlayerProfile}
+                  playerAccountRefData={testPlayerAccount}
+
                   />
               </div>
           </div>
@@ -1161,6 +1167,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getPlayerGameData={passInPlayerGameData}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
+
 
       />
       <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
