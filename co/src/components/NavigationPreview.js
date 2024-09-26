@@ -886,6 +886,12 @@ export default function NavigationPreview ({
 
                     </div>}
 
+                {navObj["playerProfilePage-playerProfileNickNameItem"]["adding"] === true &&
+                    <div>
+                        {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: (nickname value here)
+                    </div>
+                }
+
                 
                 {/* navObj["playerProfilePage-itemMap"] */}
                 {Object.keys(navObj["playerProfilePage-itemMap"]).map((currKey) => {

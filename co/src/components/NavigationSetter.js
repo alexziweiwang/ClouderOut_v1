@@ -3812,6 +3812,7 @@ export default function NavigationSetter({initialNavObj,
            <label
             className="textNoSelect cursor_pointer"
             onClick={()=>{
+
               let tempNav = currentProjectNav;
               tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
               setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
@@ -3823,27 +3824,18 @@ export default function NavigationSetter({initialNavObj,
 
            {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"] && 
            <div className="indentOne">
-              <label>Prefix (optional): </label>
+              <label>Label (optional): </label>
               <input
-                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["prefix"]}
+                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}
                 onChange={(event)=>{
                   let tempNav = currentProjectNav;
-                  tempNav["playerProfilePage-playerProfileNickNameItem"]["prefix"] = event.target.value;
+                  tempNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] = event.target.value;
                   setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
                   updateNavObj(tempNav);   
                 }}
               ></input>
               <br></br>
-              <label>Text Content: </label>
-              <input
-                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textContent"]}
-                 onChange={(event)=>{
-                   let tempNav = currentProjectNav;
-                   tempNav["playerProfilePage-playerProfileNickNameItem"]["textContent"] = event.target.value;
-                   setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-                   updateNavObj(tempNav);   
-                 }}             
-              ></input>
+              <label>Nickname Italic</label>
                 <input type="checkbox"
                   value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textItalic"]}
                   onChange={()=>{
@@ -3853,7 +3845,6 @@ export default function NavigationSetter({initialNavObj,
                     updateNavObj(tempNav);   
                   }}    
                 ></input>
-                <label>Italic</label>
               <br></br>
               <label>Text Font Size: </label>
               <input type="range"
@@ -3916,8 +3907,26 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <br></br>
-              <label>Position Y: </label><input></input>
-
+              <label>Position Y: </label>
+              <input
+                type="range"
+                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posY"]}
+                onChange={(event)=>{
+                  let tempNav = currentProjectNav;
+                  tempNav["playerProfilePage-playerProfileNickNameItem"]["posY"] = event.target.value;
+                  setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                  updateNavObj(tempNav);  
+                }}
+              ></input>
+              <input
+                value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posY"]}
+                onChange={(event)=>{
+                  let tempNav = currentProjectNav;
+                  tempNav["playerProfilePage-playerProfileNickNameItem"]["posY"] = event.target.value;
+                  setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                  updateNavObj(tempNav);  
+                }}
+              ></input>
 
            </div>}
            
