@@ -597,7 +597,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     if (firstTimeEnter === true) {
 
 
-        console.log("First Enter - GameMaker-state: ", state);//TODO testing
+        console.log("!!! First Enter - GameMaker-state: ", state);//TODO testing
 
         //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
             //TODO setChapterList(); // from cloud-db
@@ -1152,24 +1152,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     }
    
 
-    
-      {isDisplayRmBool && 
-        <Modal_ResourceManagingWindow 
-          isDisplay = {isDisplayRmBool} 
-          handleRmCancel={handleResourceManagerCancel} 
-          handleRmSaveChanges={handleResourceManagerSaveChanges}
-          refresh={triggerRefresh}
-      />}
-
-      {isDisplayGdmBool && 
-        <Modal_GameDataManager 
-            isDisplay={isDisplayGdmBool} 
-            handleGdmCancel={handleGameDataManagerCancel} 
-            initialGameData={gameDataDesignList} 
-            resetNeedCloudData={markNextNeedCloudGameData} 
-            updateGameDataToCloud={updateGameDataSettingsToCloud}
-      />} 
-       
+         
     {isDisplayEntireGameViewer && 
 
 <div className={modalStyleName} style={{"overflow": "scroll"}}>
@@ -1330,7 +1313,22 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
  
 
+      {isDisplayRmBool && 
+        <Modal_ResourceManagingWindow 
+          isDisplay = {isDisplayRmBool} 
+          handleRmCancel={handleResourceManagerCancel} 
+          handleRmSaveChanges={handleResourceManagerSaveChanges}
+          refresh={triggerRefresh}
+      />}
 
+      {isDisplayGdmBool && 
+        <Modal_GameDataManager 
+          isDisplay={isDisplayGdmBool} 
+          handleGdmCancel={handleGameDataManagerCancel} 
+          initialGameData={gameDataDesignList} 
+          resetNeedCloudData={markNextNeedCloudGameData} 
+          updateGameDataToCloud={updateGameDataSettingsToCloud}
+      />} 
 
 
   </div>

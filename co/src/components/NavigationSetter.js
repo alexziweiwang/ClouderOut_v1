@@ -3975,6 +3975,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posX"]}
                 ></input>
                 <input
                     min="0" max={screenWidth} step="1"
@@ -3983,7 +3984,8 @@ export default function NavigationSetter({initialNavObj,
                       tempNav["playerProfilePage-playerProfileIconPicItem"]["posX"] = event.target.value;
                       setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                       updateNavObj(tempNav);                       
-                  }}
+                    }}
+                    value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posX"]}
                 ></input>
                 <br></br>
                 <label>Position Y: </label>
@@ -3995,6 +3997,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posY"]}
                 ></input>
                 <input
                   min="0" max={screenHeight} step="1"
@@ -4004,6 +4007,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posY"]}
                 ></input>
                 <br></br>
                 <label>Picture: </label>
@@ -4026,7 +4030,7 @@ export default function NavigationSetter({initialNavObj,
 
                 <button
                   onClick={()=>{
-                    //TODO open resource-manager
+                    openRm();
                   }}
                 >Manage Resource</button>
                 <br></br>
@@ -4039,6 +4043,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["width"]}
                 ></input>
                 <input
                   min="0" max={screenWidth} step="1"
@@ -4048,6 +4053,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["width"]}
                 ></input>
                 <br></br>
                 <label>Height: </label>
@@ -4059,6 +4065,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["height"]}
                 ></input>
                 <input
                   min="0" max={screenHeight} step="1"
@@ -4068,6 +4075,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
                     updateNavObj(tempNav);                       
                   }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["height"]}
                 ></input>
             </div>}
                       
