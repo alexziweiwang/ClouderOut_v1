@@ -876,20 +876,18 @@ export default function NavigationPreview ({
                     </div>}
 
                 {tryPPPic["previewing"] !== false && 
-                    <div style={{
+                <div style={{
                         "position": "absolute",
                         "left": `${tryPPPic["posX"]}px`,
                         "top": `${tryPPPic["posY"]}px`,
-                        "width": `${tryPPPic["width"]}px`,
-                        "height": `${tryPPPic["height"]}px`,
-                        "backgroundImage": `url('${visualMap[tryPPPic["picName"]]}')`,
-                        "backgroundSize": `${tryPPPic["width"]}px ${tryPPPic["height"]}px`,
                         "borderRadius": "0px",
                     }}>
-                        <image
-                        />
-TOOD9
-                    </div>}
+                        <img
+                            src={visualMap[tryPPPic["picName"]]}
+                            width={tryPPPic["width"]}
+                            height={tryPPPic["height"]}
+                        ></img>
+                </div>}
 
                 {navObj["playerProfilePage-playerProfileNickNameItem"]["adding"] === true &&
                     <div
@@ -918,12 +916,18 @@ TOOD9
 
                 {navObj["playerProfilePage-playerProfileIconPicItem"]["adding"] === true &&
                     <div style={{
-                        "backgroundImage": `url('${visualMap[navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]]}')`,
-                        "backgroundSize": `${navObj["playerProfilePage-playerProfileIconPicItem"]["width"]}px 
-                            ${navObj["playerProfilePage-playerProfileIconPicItem"]["height"]}px`,
+                        "position": "absolute",
+                        "left": `${navObj["playerProfilePage-playerProfileIconPicItem"]["posX"]}px`,
+                        "top": `${navObj["playerProfilePage-playerProfileIconPicItem"]["posY"]}px`,
+                        "borderRadius": "0px",
                     }}>
-TOOD9
-                    </div>}
+                        <img
+                            src={visualMap[navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]]}
+                            width={navObj["playerProfilePage-playerProfileIconPicItem"]["width"]}
+                            height={navObj["playerProfilePage-playerProfileIconPicItem"]["height"]}
+                        ></img>
+                        
+                </div>}
 
                 
                 {/* navObj["playerProfilePage-itemMap"] */}
