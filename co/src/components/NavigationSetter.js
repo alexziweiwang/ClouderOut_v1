@@ -4050,7 +4050,25 @@ export default function NavigationSetter({initialNavObj,
                   }}
                 ></input>
                 <br></br>
-                <label>Height: </label><input type="range"></input><input></input>
+                <label>Height: </label>
+                <input type="range"
+                  min="0" max={screenHeight} step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["height"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                ></input>
+                <input
+                  min="0" max={screenHeight} step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["height"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                ></input>
             </div>}
                       
 
