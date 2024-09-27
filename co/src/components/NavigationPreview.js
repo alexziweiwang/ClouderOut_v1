@@ -915,6 +915,15 @@ export default function NavigationPreview ({
                     </div>
                 }
 
+                {navObj["playerProfilePage-playerProfileIconPicItem"]["adding"] === true &&
+                    <div style={{
+                        "backgroundImage": `url('${visualMap[navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]]}')`,
+                        "backgroundSize": `${navObj["playerProfilePage-playerProfileIconPicItem"]["width"]}px 
+                            ${navObj["playerProfilePage-playerProfileIconPicItem"]["height"]}px`,
+                    }}>
+                        
+                    </div>}
+
                 
                 {/* navObj["playerProfilePage-itemMap"] */}
                 {Object.keys(navObj["playerProfilePage-itemMap"]).map((currKey) => {
