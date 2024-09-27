@@ -3897,6 +3897,7 @@ export default function NavigationSetter({initialNavObj,
               <br></br>
               <label>Position X: </label>
               <input
+                min="0" max={screenWidth} step="1"
                 type="range"
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posX"]}
                 onChange={(event)=>{
@@ -3907,6 +3908,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <input
+                min="0" max={screenWidth} step="1"
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posX"]}
                 onChange={(event)=>{
                   let tempNav = currentProjectNav;
@@ -3918,6 +3920,7 @@ export default function NavigationSetter({initialNavObj,
               <br></br>
               <label>Position Y: </label>
               <input
+                min="0" max={screenHeight} step="1"
                 type="range"
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posY"]}
                 onChange={(event)=>{
@@ -3928,6 +3931,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <input
+                min="0" max={screenHeight} step="1"
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posY"]}
                 onChange={(event)=>{
                   let tempNav = currentProjectNav;

@@ -893,8 +893,12 @@ export default function NavigationPreview ({
                 {navObj["playerProfilePage-playerProfileNickNameItem"]["adding"] === true &&
                     <div
                         style={{
+                            "position": "absolute",
                             "fontSize": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}px`,
                             "fontFamily": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textFont"]}`,
+                            "color": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textColor"]}`,
+                            "left": `${navObj["playerProfilePage-playerProfileNickNameItem"]["posX"]}px`,
+                            "top": `${navObj["playerProfilePage-playerProfileNickNameItem"]["posY"]}px`,
                         }}
                     >
                         
