@@ -4024,9 +4024,31 @@ export default function NavigationSetter({initialNavObj,
 
                     </select>
 
-                <button>Manage Resource</button>
+                <button
+                  onClick={()=>{
+                    //TODO open resource-manager
+                  }}
+                >Manage Resource</button>
                 <br></br>
-                <label>Width: </label><input type="range"></input><input></input>
+                <label>Width: </label>
+                <input type="range"
+                  min="0" max={screenWidth} step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["width"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                ></input>
+                <input
+                  min="0" max={screenWidth} step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["width"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                ></input>
                 <br></br>
                 <label>Height: </label><input type="range"></input><input></input>
             </div>}
