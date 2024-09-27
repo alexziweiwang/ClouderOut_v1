@@ -4007,7 +4007,23 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>
                 <label>Picture: </label>
-                    <select></select>
+                    <select
+                      value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["picName"]}
+                      onChange={(event)=>{
+                        let tempNav = currentProjectNav;
+                        tempNav["playerProfilePage-playerProfileIconPicItem"]["picName"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                        updateNavObj(tempNav);   
+                      }}
+                    >
+                      <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
+                      {visualList.map((item, index) => {
+                          let keyStr = "ppIcon-" + index + item["var"];
+                          return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                      })}
+
+                    </select>
+
                 <button>Manage Resource</button>
                 <br></br>
                 <label>Width: </label><input type="range"></input><input></input>

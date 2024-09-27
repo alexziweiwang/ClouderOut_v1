@@ -886,8 +886,9 @@ export default function NavigationPreview ({
                         "backgroundSize": `${tryPPPic["width"]}px ${tryPPPic["height"]}px`,
                         "borderRadius": "0px",
                     }}>
-
-
+                        <image
+                        />
+TOOD9
                     </div>}
 
                 {navObj["playerProfilePage-playerProfileNickNameItem"]["adding"] === true &&
@@ -921,7 +922,7 @@ export default function NavigationPreview ({
                         "backgroundSize": `${navObj["playerProfilePage-playerProfileIconPicItem"]["width"]}px 
                             ${navObj["playerProfilePage-playerProfileIconPicItem"]["height"]}px`,
                     }}>
-                        
+TOOD9
                     </div>}
 
                 
