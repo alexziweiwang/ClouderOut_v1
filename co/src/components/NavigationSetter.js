@@ -3966,11 +3966,31 @@ export default function NavigationSetter({initialNavObj,
            >Player Profile Icon</label> 
            {currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"] &&
             <div className="indentOne">
-                <label>Position X: </label><input type="range"></input><input></input>
+                <label>Position X: </label>
+                <input type="range"
+                  min="0" max={screenWidth} step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["posX"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                ></input>
+                <input
+                    min="0" max={screenWidth} step="1"
+                    onChange={(event)=>{
+                      let tempNav = currentProjectNav;
+                      tempNav["playerProfilePage-playerProfileIconPicItem"]["posX"] = event.target.value;
+                      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                      updateNavObj(tempNav);                       
+                  }}
+                ></input>
                 <br></br>
                 <label>Position Y: </label><input type="range"></input><input></input>
                 <br></br>
-                <label>Picture: </label><select></select><button>Manage Resource</button>
+                <label>Picture: </label>
+                    <select></select>
+                <button>Manage Resource</button>
                 <br></br>
                 <label>Width: </label><input type="range"></input><input></input>
                 <br></br>
