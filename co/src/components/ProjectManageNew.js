@@ -93,6 +93,9 @@ export default function ProjectManageNew() {
       if (response) {
         const selected_project_name = addedNewProjName;
         navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
+//TODO9 gamemaker refactor
+      
+      
       } else {
         //TODO reset all the inputs in the new-project form
         

@@ -21,6 +21,8 @@ export default function CardGameNodeEditingPanel() {
         const username = uname;
         const selected_project_name = projectName;
         navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
+    //TODO9 gamemaker refactor
+    
     }
 
     return (

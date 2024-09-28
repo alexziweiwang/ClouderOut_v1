@@ -1012,6 +1012,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   return (
   <div>
+<div>
     
     <div className="returning_buttons">
       <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
@@ -1311,32 +1312,34 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       
       </div>}
 
- 
+</div>
 
-      {isDisplayRmBool && 
-      <div
-        style={{
-          "display": isDisplayRmBool === false ? "none" : "flex",
-        }}
-      >
-        <Modal_ResourceManagingWindow 
-          isDisplay = {isDisplayRmBool} 
-          handleRmCancel={handleResourceManagerCancel} 
-          handleRmSaveChanges={handleResourceManagerSaveChanges}
-          refresh={triggerRefresh}
-      />
-      
-      </div>}
+<div>
 
-      {isDisplayGdmBool && 
-        <Modal_GameDataManager 
-          isDisplay={isDisplayGdmBool} 
-          handleGdmCancel={handleGameDataManagerCancel} 
-          initialGameData={gameDataDesignList} 
-          resetNeedCloudData={markNextNeedCloudGameData} 
-          updateGameDataToCloud={updateGameDataSettingsToCloud}
-      />} 
+          {isDisplayRmBool && 
+          <div
+            style={{
+              "display": isDisplayRmBool === false ? "none" : "flex",
+            }}
+          >
+            <Modal_ResourceManagingWindow 
+              isDisplay = {isDisplayRmBool} 
+              handleRmCancel={handleResourceManagerCancel} 
+              handleRmSaveChanges={handleResourceManagerSaveChanges}
+              refresh={triggerRefresh}
+          />
+          
+          </div>}
 
+          {isDisplayGdmBool && 
+            <Modal_GameDataManager 
+              isDisplay={isDisplayGdmBool} 
+              handleGdmCancel={handleGameDataManagerCancel} 
+              initialGameData={gameDataDesignList} 
+              resetNeedCloudData={markNextNeedCloudGameData} 
+              updateGameDataToCloud={updateGameDataSettingsToCloud}
+          />} 
+</div>
 
   </div>
 

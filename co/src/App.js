@@ -10,6 +10,7 @@ import ProjectManageEdit from './components/ProjectManageEdit';
 import AccountPage from './components/AccountPage';
 import CardGameNodeEditingPanel from './components/CardGameNodeEditingPanel';
 import ProfilePage from './components/ProfilePage';
+import Container_GameEditor_Outer from './Container_GameEditor_Outer';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/projectmanageedit" element={<ProjectManageEdit/>} />
         <Route path="/accountpage" element={<AccountPage/>} />
         <Route path="/profilepage" element={<ProfilePage/>} />
+        <Route path="/editorcontainer" element={<Container_GameEditor_Outer/>} />
 
       </Routes>     
     </div>
