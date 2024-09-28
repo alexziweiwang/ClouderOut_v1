@@ -8,6 +8,7 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 import GameMaker from './GameMaker'
 
 export default function Container_GameEditor_Outer() {
+//TODO handle project-creator's authorization here?
 
     const navigate = useNavigate();
 
@@ -21,13 +22,13 @@ export default function Container_GameEditor_Outer() {
       username = state.username;
     }
 
-
-//TODO borderline between values and functions
-
-
 return (<div>
 
-    <GameMaker/>
+    <GameMaker
+        projectName={projectName}
+        username={username}
+    
+    />
 
 
   

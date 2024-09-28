@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
@@ -16,7 +16,7 @@ import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../vie
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function GameMaker() {
+export default function GameMaker({username, projectName}) {
 
   
 
@@ -68,14 +68,7 @@ export default function GameMaker() {
 9. game node brief info display and options (hover and click)
 
 */
-  const {state} = useLocation();
-  let projectName = "default-no-state projectname"; //TODO testing
-  let username = "default-no-state username";
 
-  if (state !== null) {
-    projectName = state.selected_project_name;
-    username = state.username;
-  }
 
   /* variable area */
   const navigate = useNavigate();
@@ -108,11 +101,8 @@ export default function GameMaker() {
   const [visualList, setVisualList] = useState([]); 
   async function fetchProjResourceLists() {
 
-    let username001 = "user002";                                              //TODO testing
-    let projName001 = "project001";                                           //TODO testing
-
     /* fetch from cloud db */
-    const obj = await fetchProjectResourceVarPairsVM({userName: username001, projectName: projName001});
+    const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
 
     setVisualList(obj.visual);
   }
@@ -598,7 +588,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     if (firstTimeEnter === true) {
 
 
-        console.log("!!! First Enter - GameMaker-state: ", state);//TODO testing
+        console.log("!!! First Enter - GameMaker: ");//TODO testing
 
         //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
             //TODO setChapterList(); // from cloud-db
