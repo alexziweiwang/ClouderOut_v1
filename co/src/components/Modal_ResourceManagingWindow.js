@@ -410,7 +410,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
 
                 <br></br><br></br>
                 <label> Add a New Picture: </label> <br></br>
-                <div  style={{"text-align": "left", "padding": "3px"}}>
+                <div  style={{"textAlign": "left", "padding": "3px"}}>
                 <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(true);}}></input> <label onClick={()=>{setIsSourceByUpload(true);}}>New File Upload</label> <br></br>
                 {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 

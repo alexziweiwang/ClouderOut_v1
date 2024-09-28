@@ -594,6 +594,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
+
     if (firstTimeEnter === true) {
 
 
@@ -604,8 +605,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         //TODO format: localChapterInfo = <chapter title, node-relationship-map>
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
-        fetchGameDataFromCloud();
-        fetchProjResourceLists();
+        triggerRefresh();
 
 
         let isLocal = true; //TODO temp
@@ -618,6 +618,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         
         setFirstTimeEnter(false);
     }
+
+
+
     if (projectName === "default-no-state projectname") {
       alert("No project selected. Returning to project selection page...");
       goToProjectManagingPanel();
@@ -717,7 +720,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function triggerRefresh() {
-    setFirstTimeEnter(true);
+    fetchGameDataFromCloud();
+    fetchProjResourceLists();
+
   }
 
   // function resetRmUpdatedSignal() {
@@ -1314,7 +1319,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 </div>
 
-{/* <div>
+<div>
 
           {isDisplayRmBool && 
           <div
@@ -1339,7 +1344,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               resetNeedCloudData={markNextNeedCloudGameData} 
               updateGameDataToCloud={updateGameDataSettingsToCloud}
           />} 
-</div> */}
+</div>
 
   </div>
 

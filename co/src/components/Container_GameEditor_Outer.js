@@ -22,84 +22,15 @@ export default function Container_GameEditor_Outer() {
     }
 
 
-    const [isDisplayRmBool, setDisplayRmModal] = useState(false);
-    const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
-
-    const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
-    const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
-  
-  
-
-
-
-
 //TODO borderline between values and functions
 
-
-
-
-
-    function handleResourceManagerCancel() {
-        setDisplayRmModal(false);
-        
-        //TODO3 fetch laterst data from cloud?
-        setRmUpdatedSignal(true);
-    
-    }
-
-
-    function handleResourceManagerSaveChanges() {
-        console.log("modal save changes!");
-        //TODO update to cloud db
-        setDisplayRmModal(false);
-    }
-    
-    function handleGameDataManagerCancel() {
-        setDisplayGdmBool(false);
-    }
-    
-    function handleGameDataManagerSaveChanges() {
-        setDisplayGdmBool(false);
-    
-    }
-
-    function triggerRefresh() {
-        setFirstTimeEnter(true);
-    }
 
 return (<div>
 
     <GameMaker/>
 
 
-    {isDisplayRmBool && 
-          <div
-            style={{
-              "display": isDisplayRmBool === false ? "none" : "flex",
-            }}
-          >
-            <Modal_ResourceManagingWindow 
-              isDisplay = {isDisplayRmBool} 
-              handleRmCancel={handleResourceManagerCancel} 
-              handleRmSaveChanges={handleResourceManagerSaveChanges}
-              refresh={triggerRefresh}
-          />
-          
-          </div>}
-
-          {isDisplayGdmBool && 
-            <Modal_GameDataManager 
-              isDisplay={isDisplayGdmBool} 
-              handleGdmCancel={handleGameDataManagerCancel} 
-              initialGameData={gameDataDesignList} 
-              resetNeedCloudData={markNextNeedCloudGameData} 
-              updateGameDataToCloud={updateGameDataSettingsToCloud}
-          />} 
-    //TODO: game-maker
-    //TODO: resource-manager
-    //TODO: game-data-manager
-
-
+  
 </div>);
 
 
