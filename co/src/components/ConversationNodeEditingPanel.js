@@ -319,8 +319,8 @@ export default function ConversationNodeEditingPanel() {
 
     function goToGameMaker() {
         let stateObj = {selected_project_name: state.projectName, username: state.userName};
-        navigate('/gamemaker', { replace: true, state: stateObj });
-//TODO9 gamemaker refactor
+        navigate('/editorcontainer', { replace: true, state: stateObj });
+
 
     }
 

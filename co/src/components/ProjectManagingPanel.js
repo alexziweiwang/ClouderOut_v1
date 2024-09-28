@@ -41,10 +41,8 @@ export default function ProjectManagerPanel() {
         return;
       }
 
-      navigate('/gamemaker', { replace: true, state: { selected_project_name, username } });
-//TODO9 gamemaker refactor
+      navigate('/editorcontainer', { replace: true, state: { selected_project_name, username } });
 
-    
     }
 
     async function loadProjectListFromCloud() {
