@@ -1314,12 +1314,19 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
  
 
       {isDisplayRmBool && 
+      <div
+        style={{
+          "display": isDisplayRmBool === false ? "none" : "flex",
+        }}
+      >
         <Modal_ResourceManagingWindow 
           isDisplay = {isDisplayRmBool} 
           handleRmCancel={handleResourceManagerCancel} 
           handleRmSaveChanges={handleResourceManagerSaveChanges}
           refresh={triggerRefresh}
-      />}
+      />
+      
+      </div>}
 
       {isDisplayGdmBool && 
         <Modal_GameDataManager 

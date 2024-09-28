@@ -352,6 +352,14 @@
 - 2024-Sept-23: Consider and design -- data presenting in nav-previewing layer (of 3 sets of info)
 - 2024-Sept-23: Design shop page element and features
 
+- 2024-Sept-27: Explore and design resource-manager modal refreshing strategy
+
+
+
+
+
+
+
 
 
 
