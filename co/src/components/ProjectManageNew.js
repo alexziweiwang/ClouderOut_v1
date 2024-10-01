@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 
-export default function ProjectManageNew() {
+export default function ProjectManageNew({cancelAction, showCancelButton}) {
     const navigate = useNavigate();
 
     const name = "/projectmanagenew";
@@ -110,11 +110,6 @@ export default function ProjectManageNew() {
       //TODO call VM function here to pass the data
     }
 
-    function returnToDashBoard() {
-      navigate('/dashboard', { replace: true });
-
-    }
-
     function changeProjDescription(event) {
       setProjDescription(event.target.value);
     }
@@ -187,11 +182,12 @@ export default function ProjectManageNew() {
         Create Project
         </button>
 
+        {showCancelButton === true && 
         <button
           onClick={()=>{
-            returnToDashBoard();
+            cancelAction();
           }}
-        >Cancel</button>
+        >Cancel</button>}
 
         {/* <br></br>
         <br></br>

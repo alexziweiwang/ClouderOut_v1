@@ -93,6 +93,9 @@ export default function ProjectManagerPanel() {
       loadProjectListFromCloud();
     }
 
+    function notUsing() {
+      return "";
+    }
 
     
     let name = "/projectmanagingpanel";
@@ -120,7 +123,8 @@ export default function ProjectManagerPanel() {
             
             >
               <ProjectManageNew
-                prevPath={compoPathName}
+                cancelAction={notUsing}
+                showCancelButton={false}
               />
             </div>
 

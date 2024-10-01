@@ -24,8 +24,12 @@ export default function Dashboard() {
     }
 
     function projectManageNew() {
-      // navigate('/projectmanagenew', { replace: true, state: { uname } });
+      // navigate('/projectmanagenew', { replace: true, state: { uname } }); //TODO remove later
       setShowNewProjCreationPage(true);
+    }
+
+    function returnToDashboard() {
+      setShowNewProjCreationPage(false);
     }
 
     return (
@@ -33,7 +37,7 @@ export default function Dashboard() {
     <Sidebar compName={name} username={uname}/>
 
     
-    {showNewProjCreationPage && <div className="dashboard_content">
+    {!showNewProjCreationPage && <div className="dashboard_content">
      <div>
 
        
@@ -66,9 +70,10 @@ export default function Dashboard() {
     }
 
 
-    {!showNewProjCreationPage && 
+    {showNewProjCreationPage && 
       <ProjectManageNew
-          prevPath={name}
+          cancelAction={returnToDashboard}
+          showCancelButton={true}
       />
 }
   </div>
