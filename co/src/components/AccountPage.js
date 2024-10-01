@@ -21,21 +21,38 @@ export default function AccountPage({}) {
 
     <div className="dashboard_content">
         <div style={{"textAlign": "left", "padding": "10px"}}>
+          <table className="noBorder">
+       
+            <tbody>
+              <tr>
+                <td className="noBorder">Username: </td>
+                <td className="noBorder">(username value)</td>
+              </tr>
+
+              <tr>
+                <td className="noBorder">Nickname: </td>
+                <td className="noBorder">(nickname value) <button>Edit</button></td>
+              </tr>
+
+              <tr>
+                <td className="noBorder">Email linked: </td>
+                <td className="noBorder">(email value) <button>Edit</button></td>
+              </tr>
+
+              <tr>
+                <td className="noBorder">Phone number linked: </td>
+                <td className="noBorder">(phone number value) <button>Edit</button></td>
+              </tr>
+
+              <tr>
+                <td className="noBorder">Clouder-Credits:</td>
+                <td className="noBorder">(credit value <button>Top Up</button></td>
+              </tr>
+            </tbody>
+            
+
+          </table>
      
-          <label>Username: </label>
-          <label>(username)</label>
-          <br></br>
-          <label>Nickname: </label>
-          <label>(nickname)</label><button>Update</button>
-          <br></br>
-          <label>Email linked: </label>
-          <label>(email)</label><button>Update</button>
-          <br></br>
-          <label>Phone Number: </label>
-          <label>(phone number)</label><button>Update</button>
-          <br></br>
-          <label>ClouderCredits: </label>
-          <label>(credits)</label><button>Top up</button>
           <br></br><br></br><br></br><br></br>
           <button>Deactivate Account</button>
         </div>
