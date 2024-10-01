@@ -168,11 +168,12 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             <table className="pieceTable">
         <thead>
             <tr>
-            <th>Editor</th>
-            <th>Number</th>
+            <th style={{"width": "50px"}}>Editor</th>
+            <th style={{"width": "30px"}}>#</th>
             <th className="contentGrid">Content</th>
             {isManage === true && 
-            <th>Operations</th>}
+            <th style={{"width": "90px"}}>Operations</th>}
+            <th style={{"width": "60px"}}></th>
             </tr>
         </thead>
         <tbody>
@@ -196,7 +197,8 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                             assignPieceNum(item["num"]);}}>{editText[languageCode]}</button>
                     </td>
                     <td>{item["num"]}</td>
-                    <td className="contentGrid">{item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
+                    <td className="contentGrid">
+                        {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
                     
                     </td>
@@ -212,7 +214,9 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     
                     </td>}
                     {isManage === true && <td>
-                        <button onClick={()=>{
+                        <button 
+                        
+                        onClick={()=>{
                             let content = "Are you sure to delete this node: " + item["num"] + ":" + item["content"] + "?";
                             let respondGiven = window.confirm(content);
                             if (respondGiven) {

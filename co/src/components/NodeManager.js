@@ -502,7 +502,7 @@ export default function NodeManager({projectName, currUser,
       
 
         {/* //TODO testing panel area */}
-        <div style={{"backgroundColor": "orange"}}>
+        {/* <div style={{"backgroundColor": "orange"}}>
             <label>Chapter Key: {chapterKey}</label>
             <button>Test this chapter</button>
             <label>{nodeManageMentText[languageCode]}</label>
@@ -511,9 +511,8 @@ export default function NodeManager({projectName, currUser,
               let chapterNodeMapTemp = loadChapterInfoFromCaller();
               setNodeRelationshipMap(chapterNodeMapTemp);
             }}> TESTing: Fetch chapter data </button>
-
-
-        </div>
+        </div> */}
+        {/* //TODO testing panel area */}
 
 
 <div style={{"display": "flex"}}> 
@@ -562,10 +561,11 @@ export default function NodeManager({projectName, currUser,
             "overflow": "scroll", 
             "width": "1250px", 
             "position": "relative"}}>
-                                  TEST: visualization of node-grids grv marker
+
+
+
 
 {/* link-drawing */}
-
                                                                                       {/* //TODO1 first part */}
  {gridBlocks.map((rowItem, ir) => {
     let rowKeyStr = "linking" + ir;
@@ -1413,22 +1413,6 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
     </div> 
 
     <div style={{"marginLeft": "20px"}}>
-      direction area
-
-{(clickedNode2 !== -1 
-          && nodeRelationshipMap[clickedNodeKey] !== undefined
-          && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
-          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*"
-          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*") && 
- <div>
-            <button 
-              className="setting_item"
-              onClick={()=>{enterNodeEditor2();}}>
-                {enterEditorText[languageCode]}
-            </button>
-        
-        
-  </div>}
 
 
 <div>
@@ -1523,6 +1507,21 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
         </div>
 
 
+
+        {(clickedNode2 !== -1 
+          && nodeRelationshipMap[clickedNodeKey] !== undefined
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter"
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*"
+          && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*") && 
+ <div>
+            <button 
+              className="setting_item"
+              onClick={()=>{enterNodeEditor2();}}>
+                {enterEditorText[languageCode]}
+            </button>
+        
+        
+  </div>}
     </div>
 </div>
           </div>}
