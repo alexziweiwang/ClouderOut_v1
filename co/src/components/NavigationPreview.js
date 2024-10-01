@@ -509,14 +509,14 @@ export default function NavigationPreview ({
          
 
 
-            <div style={{"display": "flex", "top": "357px", "left": "495px", "position": "absolute"}}>
+            <div style={{"display": "flex", "top": "357px", "left": "495px", "position": "absolute", "height":"150px",}}>
+                
                 <div 
                     id="slSlotPageLeftControler" 
                     style={{
                         "width": "150px", 
                         "height":"150px", 
-                        "fontSize": "70px", 
-                        "color": "#272626"
+                        "color": "#272626",
                     }}
                     onClick={()=>{
                         console.log("prev sl page");//TODO2
@@ -537,7 +537,13 @@ export default function NavigationPreview ({
                         }
                     }
                 >
-                    ◂
+                        {slCurrentSlotPage >= 2 &&  <label
+                            style={{"cursor": "pointer",
+                            "textDecoration": "underline"}}
+                        >
+                            Previous
+                        </label>}
+
                 </div>
 
                 <div>
@@ -545,11 +551,10 @@ export default function NavigationPreview ({
                 </div>
 
                 <div id="slSlotPageRightControler"
-                    style={{
+                  style={{
                         "width": "150px", 
                         "height":"150px", 
-                        "fontSize": "70px", 
-                        "color": "#272626"
+                        "color": "#272626",
                     }}
                     onClick={()=>{
                         console.log("next sl page");//TODO2
@@ -571,8 +576,18 @@ export default function NavigationPreview ({
                         }
                     }
                 >
-                    ▸
+
+                {(slCurrentSlotPage !== navObj["saveloadPage-slotPageCount"]) &&
+                    <label
+                    style={{"cursor": "pointer",
+                        "textDecoration": "underline"}}
+                    >
+                        Next
+                    </label>}
+                    
                 </div>
+            
+                
             </div>
 
 

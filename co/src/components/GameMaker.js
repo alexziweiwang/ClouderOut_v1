@@ -1019,7 +1019,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           setDisplayEntierGameViewer(true);
         }}
         className="button testEntire"
-      >Test Game-play</button>
+      >Test ▶︎ </button>
 
 
       <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
