@@ -1792,3 +1792,7 @@ button:hover {
 .noBorder {
     border: none;
 }
+
+.someGrey{
+    background-color: rgb(247, 247, 247);
+}

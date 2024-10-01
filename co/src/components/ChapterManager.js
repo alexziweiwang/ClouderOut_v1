@@ -290,13 +290,14 @@ console.log("chapterData: ", chapterData); //TODO testing
                               {deletedLocalList.length === 0 && <label>(No deleted chapter.)</label>}
                         </div>}
 
+{/* //TODO plan */}
 
-                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                      <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
+                      {/* <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> */}
+                      {/* <p className="plans">on cloud db: chapter-key is the colleciton name; detailed data fetch from cloud
                         <br></br>TODO feature: insert chapter between existing chapters 
                         <br></br>TODO feature: rearrange chapter sequence
-                      </p>
-
+                      </p> */}
+{/* //TODO plan */}
                   </ul>
 
               

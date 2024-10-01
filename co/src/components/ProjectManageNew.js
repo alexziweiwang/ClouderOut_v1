@@ -140,13 +140,16 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
 
 
     return (
-    <div>    
+    <div className="someGrey" style={{"width": "100%"}}>    
    
-   <button className="buttonRight80"
-      onClick={()=>{
-        clearForm();
-      }}
-   >Clear Form</button>
+    <button
+        style={{"marginTop": "20px", "marginRight": "-200px"}}
+        onClick={()=>{
+          clearForm();
+        }}
+    >Clear Form</button>
+
+
    <br></br><br></br>
 
 
@@ -154,11 +157,12 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
           {/* //TODO later: use table, etc. */}
   
           <div className="parallelFrame newProjForm">
-            <table>
+            <table 
+              className="noBorder">
               <tbody>
                 <tr>
-                  <td>Project Name: </td>
-                  <td>
+                  <td className="noBorder">Project Name: </td>
+                  <td className="noBorder">
                       <input 
                         className="newProjectInfoElement" 
                         type="text" 
@@ -168,8 +172,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
                 </tr>
 
                 <tr>
-                  <td>Project Description:</td>
-                  <td>
+                  <td className="noBorder">Project Description:</td>
+                  <td className="noBorder">
                     <textarea 
                       className="newProjectInfoElement" 
                       rows={5} 
@@ -183,8 +187,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
                 </tr>
 
                 <tr>
-                  <td>Author Info:</td>
-                  <td>
+                  <td className="noBorder">Author Info:</td>
+                  <td className="noBorder">
                     <textarea 
                       className="newProjectInfoElement" 
                       rows={2} 

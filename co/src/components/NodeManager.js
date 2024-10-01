@@ -1539,15 +1539,14 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
 
 
-
-          <p className="plans">TODO: 
+{/* //TODO plan */}
+          {/* <p className="plans">TODO: 
               <br></br>user can also add column or row for new grids 
               <br></br>TODO: consider adjustment of node-place
               <br></br>other settings (next-node condition, etc.) are the same 
-          -------------------------------------------------------------
-          
-          </p>
-
+          -------------------------------------------------------------         
+          </p> */}
+{/* //TODO plan */}
 
           {/* {(clickedNode !== "") && 
         <div>
@@ -1568,8 +1567,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
         <div className="trashNodeArea">
        
     
-
-
+{/* //TODO plans */}
+{/* 
 <p className="plans"> TODO:
             <br></br>
   
@@ -1581,8 +1580,11 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
         
         </p> 
     
-      
-    
+       */}
+{/* //TODO plans */}
+
+
+
         </div>
     
     
