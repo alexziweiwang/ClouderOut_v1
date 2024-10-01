@@ -85,25 +85,11 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
       console.log("Created project info: ");
       console.log(obj);
 
-      let alertStr = "Project" + addedNewProjName + "Created!";
+      let alertStr = "Project " + addedNewProjName + " Created!";
       alert(alertStr);
 
 
-      let response = window.confirm("Navigating to Project Editor ...");
-      if (response) {
-        const selected_project_name = addedNewProjName;
-        navigate('/editorcontainer', { replace: true, state: { selected_project_name, username } });
-
-      } else {
-        //TODO reset all the inputs in the new-project form
-        
-        setAddedNewProjName("");   
-        setProjDescription(""); 
-         //addedAuthorInfo
-        setAddedAuthorInfo("");
-
-
-      }
+      clearForm();
       
       // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
 
@@ -146,15 +132,28 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
       }
     }
 
+    function clearForm() {
+      setAddedNewProjName("");
+      setProjDescription("");
+      setAddedAuthorInfo("");
+
+    }
+
 
     return (
     <div>    
    
- 
+   <button className="buttonRight80"
+      onClick={()=>{
+        clearForm();
+      }}
+   >Clear Form</button>
+   <br></br><br></br>
+
+
         <div style={{"fontWeight": "normal"}}>
           {/* //TODO later: use table, etc. */}
-        <label>Create a new project: </label>
-            <br></br>
+  
           <div className="parallelFrame newProjForm">
  
            <div className="newProjLineName">
@@ -191,6 +190,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
 
          <br></br>
         <br></br>
+
 {/*
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
         <br></br>

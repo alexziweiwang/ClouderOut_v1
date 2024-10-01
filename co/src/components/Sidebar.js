@@ -73,12 +73,7 @@ export default function Sidebar({compName, username}) {
         <div> 
             <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
         </div>
-        <div>
-            <br></br> <br></br> <br></br>
-            <button className="sidebar_options sidebar_options2" onClick={()=>{projectManageNew()}}>{newProjectButtonText[languageCode]}</button>
-
-        </div>
-
+    
         </div>
     }
 
@@ -86,18 +81,8 @@ export default function Sidebar({compName, username}) {
     <div className="sidebar2" >
         <div> 
             <button className="sidebar_options sidebar_options2" onClick={()=>{
-                goToProjectManagingPanel();
-            }}>← {projectManagerText[languageCode]}</button>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-
-            <button className="sidebar_options sidebar_options2" onClick={()=>{
                 backToDashboard();
-            }}>←← {dashBoardButtonText[languageCode]}</button>
+            }}>← {dashBoardButtonText[languageCode]}</button>
         </div>
 
         </div>
