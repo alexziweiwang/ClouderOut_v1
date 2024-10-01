@@ -7,7 +7,12 @@ import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
 
 export default function ProjectManagerPanel() {
+
+    const compoPathName = "/projectmanagingpanel";
+
     const username = "user002"; //TODO test
+    
+    
     const navigate = useNavigate();
 
     const languageCode = 0;
@@ -114,7 +119,9 @@ export default function ProjectManagerPanel() {
               }}
             
             >
-              <ProjectManageNew/>
+              <ProjectManageNew
+                prevPath={compoPathName}
+              />
             </div>
 
         </div>

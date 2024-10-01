@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Sidebar from './Sidebar';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
+import ProjectManageNew from './ProjectManageNew';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
@@ -14,20 +17,23 @@ export default function Dashboard() {
     const myProjectsButtonText = ["My Projects"];
     const newProjectButtonText = ["New Project"];
 
+    const [showNewProjCreationPage, setShowNewProjCreationPage] = useState(false);
 
     function goToProjectManagingPanel() {
       navigate('/projectmanagingpanel', { replace: true, state: { uname } });
     }
 
     function projectManageNew() {
-      navigate('/projectmanagenew', { replace: true, state: { uname } });
+      // navigate('/projectmanagenew', { replace: true, state: { uname } });
+      setShowNewProjCreationPage(true);
     }
+
     return (
   <div className="page">
     <Sidebar compName={name} username={uname}/>
 
     
-    <div className="dashboard_content">
+    {showNewProjCreationPage && <div className="dashboard_content">
      <div>
 
        
@@ -57,7 +63,14 @@ export default function Dashboard() {
       </div>
       
     </div>
- 
+    }
+
+
+    {!showNewProjCreationPage && 
+      <ProjectManageNew
+          prevPath={name}
+      />
+}
   </div>
     );
 }

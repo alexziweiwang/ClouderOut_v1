@@ -193,7 +193,7 @@ export default function ProjectManageNew() {
           }}
         >Cancel</button>
 
-        <br></br>
+        {/* <br></br>
         <br></br>
 
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
@@ -206,8 +206,8 @@ export default function ProjectManageNew() {
         <p className="plans">
           Validate user input, and then create a new folder for this new project
           <br></br> TODO: design and construct new-set for each new project: layers, etc.
-        </p>
-
+        </p> */}
+{/* //TODO plans */}
 
   </div>
     );
