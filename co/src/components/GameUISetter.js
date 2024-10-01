@@ -93,7 +93,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 //TODO5
     return (
  
-    <div className="guiSettings">
+    <div className="guiSettings" style={{"height": `${screenHeight}px`}}>
 
     <div className="gameUISetterSectionTitle"
         onClick={()=>{
@@ -104,6 +104,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         {openDefaultButtonSection && <label style={{"cursor": "pointer"}}>Default Button (group) ︽</label>}
 
     </div>
+
 {openDefaultButtonSection && <div>
     <div className="indentOne">
         <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" onChange={(event)=>{

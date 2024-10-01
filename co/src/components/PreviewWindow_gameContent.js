@@ -413,8 +413,8 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
             }
 
 
-
-            <p className="plans">
+//TODO9
+            {/* <p className="plans">
             This is conversation-node editing panel
             <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)
 
@@ -431,7 +431,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                 * idea: provide "game-data-viewer" for authors:
                 <br></br> at all points (pieces) of the game, the author can check game-data for that progress to keep track of everything in game
                 <br></br> toggle in preview-related component
-            </p>
+            </p> */}
 
                
         </div>

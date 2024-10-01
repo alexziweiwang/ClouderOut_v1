@@ -38,7 +38,7 @@ export default function Dashboard() {
         <br></br>User Authentication: only logged-in user can see this page with their own info only
       </p>
       
-      <div className="parallelFrame">
+      <div className="parallelFrame" style={{"marginLeft": "15px"}}>
         <div className="dashboard_grid" style={{"marginRight": "20px"}}
           onClick={()=>{projectManageNew()}}
         >

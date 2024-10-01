@@ -110,6 +110,11 @@ export default function ProjectManageNew() {
       //TODO call VM function here to pass the data
     }
 
+    function returnToDashBoard() {
+      navigate('/dashboard', { replace: true });
+
+    }
+
     function changeProjDescription(event) {
       setProjDescription(event.target.value);
     }
@@ -182,7 +187,11 @@ export default function ProjectManageNew() {
         Create Project
         </button>
 
-   
+        <button
+          onClick={()=>{
+            returnToDashBoard();
+          }}
+        >Cancel</button>
 
         <br></br>
         <br></br>
