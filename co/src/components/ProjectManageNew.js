@@ -189,9 +189,9 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
           }}
         >Cancel</button>}
 
-        {/* <br></br>
+         <br></br>
         <br></br>
-
+{/*
         <p className="plans">TODO: For authors, later do the "@"-like for link to the author space?</p>
         <br></br>
 

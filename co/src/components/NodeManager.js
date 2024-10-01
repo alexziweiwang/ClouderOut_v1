@@ -1175,6 +1175,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                         </td>
                         <td>
                             <select 
+                                style={{"maxWidth": "100px", "backgroundColor": "orange"}}
                                 value={lscElseSelected} 
                                 onChange={(event)=>{
                                   setLscElseSelected(event.target.value);
@@ -1190,9 +1191,15 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                 <option 
                                   key={lscElseKey}
                                   value={currKey}
-                                  >{currKey}: {item["nodeName"]}</option>);
+                                  >
+                                    <label>
+                                        {currKey}:{item["nodeName"]}
+                                    </label>
+
+                                    </option>);
                                 })}          
                             </select>
+                          
                           <button 
                             onClick={()=>{
                               updateTableCondt();
