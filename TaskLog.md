@@ -354,7 +354,7 @@
 
 - 2024-Sept-27: Explore and design resource-manager modal refreshing strategy
 
-
+- 2024-Sept-30: Setup UI UX optimization plans and design
 
 
 
