@@ -136,7 +136,6 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
       setAddedNewProjName("");
       setProjDescription("");
       setAddedAuthorInfo("");
-
     }
 
 
@@ -155,21 +154,51 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
           {/* //TODO later: use table, etc. */}
   
           <div className="parallelFrame newProjForm">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Project Name: </td>
+                  <td>
+                      <input 
+                        className="newProjectInfoElement" 
+                        type="text" 
+                        value={addedNewProjName} 
+                        onChange={(event)=>{changeProjNameInput(event)}}/>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Project Description:</td>
+                  <td>
+                    <textarea 
+                      className="newProjectInfoElement" 
+                      rows={5} 
+                      cols={36} 
+                      value={projDedscription} 
+                      onChange={(event)=>{changeProjDescription(event)}}
+                    />
+
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Author Info:</td>
+                  <td>
+                    <textarea 
+                      className="newProjectInfoElement" 
+                      rows={2} 
+                      cols={20} 
+                      value={addedAuthorInfo} 
+                      onChange={(event)=>{changeAuthorInfo(event)}}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
  
-           <div className="newProjLineName">
-            <label className="newProjectInfoElement">Project Name: </label>
-            <br></br><br></br>
-            <label className="newProjectInfoElement"></label>Project Description: 
-            <br></br><br></br><br></br><br></br><br></br><br></br>
-            <label className="newProjectInfoElement">Author Info: </label>
-          </div>
-          <div className="newProjLineContent">
-            <input className="newProjectInfoElement" type="text" value={addedNewProjName} onChange={changeProjNameInput}/>
-            <br></br><br></br>
-            <textarea className="newProjectInfoElement" rows={5} cols={36} value={projDedscription} onChange={changeProjDescription}></textarea>
-            <br></br><br></br><br></br>
-            <textarea className="newProjectInfoElement" rows={2} cols={20} value={addedAuthorInfo} onChange={changeAuthorInfo}></textarea>
-          </div>
+      
+      
         </div>
 
         </div>
