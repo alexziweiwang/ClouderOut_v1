@@ -466,26 +466,6 @@ export default function ConversationNodeEditingPanel() {
                 setScreenHeight(h);
             }
 
-            //TODO remove later
-            // if (selectedGameScreenSize === "16:9(horizonal)") {
-            //   setScreenWidth(800);
-            //   setScreenHeight(450);
-            // } else if (selectedGameScreenSize === "16:9(vertical)") {
-            //   setScreenWidth(450);
-            //   setScreenHeight(800);
-            // } else if (selectedGameScreenSize === "4:3(horizonal)") {
-            //   setScreenWidth(800);
-            //   setScreenHeight(600);
-            // } else if (selectedGameScreenSize === "4:3(vertical)") {
-            //   setScreenWidth(600);
-            //   setScreenHeight(800);
-            // }
-            //   const sizeLookupMap = { "16:9(horizonal)": [800, 450],
-            //   "16:9(vertical)": [450, 800],
-            //   "4:3(horizonal)": [800, 600],
-            //   "4:3(vertical)": [600, 800]};
-
-
         } 
     } 
 
@@ -638,10 +618,20 @@ export default function ConversationNodeEditingPanel() {
                
             </div>
      
-            <div className={isDisplayQview === true ? "noScrolling" : ""} style={{"display": "flex"}}>
+            <div 
+                className={isDisplayQview === true ? "noScrolling" : ""} 
+                style={{
+                    "display": "flex",
+                    "backgroundColor": "rgb(124, 129, 124)",
+                    "maxHeight": `${screenHeight+50}px`,
+                    "overflow": "scroll"
+                }}
+            >
             
             {browseList === false && 
-                <div>
+                <div
+                    style={{"maxHeight": `${screenHeight+1}px`, "overflow": "scroll", "marginTop": "16px"}}
+                >
                     {gameUISetterOpen === false && 
                         <PieceSetter 
                             pieceNum={previewingIndex+1} 
@@ -683,7 +673,9 @@ export default function ConversationNodeEditingPanel() {
             }
 
             {browseList === true &&
-                <div>                 
+                <div
+                    style={{"maxHeight": `${screenHeight+1}px`, "overflow": "scroll", "marginTop": "16px"}}
+                >        
                     {gameUISetterOpen === false && 
                         <PieceManager 
                             allPieceData={pieceDataStructure} 

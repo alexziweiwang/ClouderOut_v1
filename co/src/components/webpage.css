@@ -485,7 +485,6 @@ td {
     text-align: left;
     padding: 15px;
     flex: 1;
-    height: 620px;
     overflow: scroll;
     white-space: nowrap;
 }
@@ -510,7 +509,6 @@ td {
     text-align: left;
     padding: 15px;
     flex: 1;
-    height: 620px;
     overflow: scroll;
     white-space: nowrap;
 }
@@ -528,7 +526,7 @@ td {
     margin-right: 10px;
     white-space: nowrap;
 
-    height: 650px;
+    height: 100%;
 }
 
 .playWindow {
