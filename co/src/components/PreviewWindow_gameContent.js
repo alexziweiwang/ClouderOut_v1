@@ -401,19 +401,21 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
 
 
             </div>
-            1currentPieceNum={currentPieceNum} (TESTing)
-
-
-            <br></br>
+   
             {(bgmSource !== undefined) && 
                       // <audio src={bgmSource} controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO actual game-playing
-
-                <audio src={bgmSource} autoPlay="autoPlay" controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO previewing/testing
-
+                <>
+                <audio 
+                  src={bgmSource} 
+                  autoPlay="autoPlay" 
+                  controls loop={allPieceData[currentPieceNum]["bgm_loop"]}
+                  style={{"height": "30px"}}
+                /> 
+                  {/* //TODO previewing/testing */}
+                </>
             }
 
 
-//TODO9
             {/* <p className="plans">
             This is conversation-node editing panel
             <br></br> users can do tutorials, or "conversational-like" displaying (As so far planned)

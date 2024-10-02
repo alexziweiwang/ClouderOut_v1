@@ -608,14 +608,14 @@ export default function ConversationNodeEditingPanel() {
             </div>
 
             {state!= undefined  &&<>
-            <div className="parallelFrame">
+            <div className="parallelFrame" style={{"marginTop": "-5px"}}>
                 <div className="topParalBarLeftPart">
 
               
                 </div>
 
 
-                <div className="topParalBarRightPart">
+                <div className="topParalBarRightPart" style={{"height": "45px"}}>
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
                         {gameContentSetupText[languageCode]}</button>
                     <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
@@ -795,7 +795,7 @@ export default function ConversationNodeEditingPanel() {
                 getGameDataDesignList={passInGameDataDesignList}
             />}
 
-
+        <br></br>
         </div>
     );
 }

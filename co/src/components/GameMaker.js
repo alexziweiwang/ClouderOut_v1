@@ -165,8 +165,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           },
           "E1-key": {
               nodeName: "E1-title", 
-              row: 4, 
-              col: 6, 
+              row: 2, 
+              col: 5, 
               nextNode: "chapterEnd1-key", 
               display: true, 
               nodeType:"Conversation", 
@@ -175,8 +175,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           },
           "chapterEnd1-key": {
               nodeName: "chapterEnd1-title", 
-              row: 2, 
-              col: 5, 
+              row: 4, 
+              col: 6, 
               nextNode: "", 
               display: true, 
               nodeType:"*chapterEnd*", 
@@ -235,8 +235,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         },
         "E2-key": {
           nodeName: "E2-title", 
-          row: 4, 
-          col: 6, 
+          row: 2, 
+          col: 5, 
           nextNode: "chapterEnd2-key", 
           display: true, 
           nodeType:"Conversation", 
@@ -245,8 +245,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         },
         "chapterEnd2-key": {
           nodeName: "chapterEnd2-title", 
-          row: 2, 
-          col: 5, 
+          row: 4, 
+          col: 6, 
           nextNode:"", 
           display: true, 
           nodeType:"*chapterEnd*", 
@@ -265,17 +265,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "chp-key1": [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
-        ["chapterStart1-key","A1-key","","","D1-key","chapterEnd1-key","","","",""], 
+        ["chapterStart1-key","A1-key","","","D1-key","E1-key","","","",""], 
         ["","","","","","","","","",""],
-        ["C1-key","","","B1-key","","","E1-key","","",""]
+        ["C1-key","","","B1-key","","","chapterEnd1-key","","",""]
       ]
     ,
       "chp-key2": [
           ["","","","","","","","","",""], 
           ["","","","","","","","","",""],
-          ["chapterStart2-key","A2-key","","","D2-key","chapterEnd2-key","","","",""], 
+          ["chapterStart2-key","A2-key","","","D2-key","E2-key","","","",""], 
           ["","","","","","","","","",""],
-          ["C2-key","","","B2-key","","","E2-key","","",""]
+          ["C2-key","","","B2-key","","","chapterEnd2-key","","",""]
       ],
     
   }); //stores node-keys

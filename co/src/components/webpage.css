@@ -528,7 +528,7 @@ td {
     margin-right: 10px;
     white-space: nowrap;
 
-    height: 660px;
+    height: 650px;
 }
 
 .playWindow {
@@ -539,7 +539,7 @@ td {
     margin-right: 10px;
     white-space: nowrap;
     overflow: scroll;
-    height: 660px;
+    height: 650px;
 }
 
 .previewArea {
