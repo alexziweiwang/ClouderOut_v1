@@ -587,7 +587,7 @@ export default function PieceSetter({
         <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 
 
-        <div className="buttonRight">
+        <div className="buttonRight50">
             <button onClick={collapseAllOptions}> {collapseAllText[languageCode]} </button>
             <button onClick={expandAllOptions}> {expandAllText[languageCode]} </button>
         </div>
@@ -1615,7 +1615,7 @@ export default function PieceSetter({
 
         <br></br>
         <br></br>
-        <div className="buttonRight">
+        <div className="buttonRight50">
             <button onClick={()=>{collapseAllOptions()}}> {collapseAllText[languageCode]} </button>
             <button onClick={()=>{expandAllOptions()}}> {expandAllText[languageCode]} </button>
         </div>

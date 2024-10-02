@@ -172,8 +172,9 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
             <th style={{"width": "30px"}}>#</th>
             <th className="contentGrid">Content</th>
             {isManage === true && 
-            <th style={{"width": "90px"}}>Operations</th>}
-            <th style={{"width": "60px"}}></th>
+                <th style={{"width": "90px"}}>Operations</th>}
+            {isManage === true &&   
+                <th style={{"width": "60px"}}></th>}
             </tr>
         </thead>
         <tbody>

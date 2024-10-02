@@ -446,17 +446,13 @@ td {
 
 .modalArea3 {
     position: fixed;
-    width: 80%;
-    height: 85%;
     top: 50%;
     left: 50%;
-   
     transform: translate(-50%,-50%);
 }
 
 .modalContent {
     color: rgb(242, 241, 240);
-    height: 93%;
 }
 
 .modalControl {
@@ -563,10 +559,9 @@ td {
 }
 
 .gameDataDisplayArea {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    margin: 3px;
 
+    width: 100%;
+    height: 100%;
 }
 
 .tableRow {
@@ -587,11 +582,13 @@ td {
 
 .addNewGameDataArea {
     background-color: rgb(185, 193, 185);
-    height: 30%;
+    padding: 5px;
+    margin-top: 10px;
 }
 
 .addNewGameDataAreaClosed {
     height: 10%;
+    margin-top: 10px;
 }
 
 .clickableListItem {

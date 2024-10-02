@@ -44,6 +44,11 @@ export default function Modal_GameDataManager ({
     }
 
     function addVarPair() {
+        if (newVarName === "") {
+            window.alert("Variable name can not be empty.");
+            return;
+        }
+
         if (newGameDataType === "isBoolean" && defaultNewBooleanValue === "invalid") {
             console.log("invalid boolean");
             return;
@@ -214,15 +219,26 @@ export default function Modal_GameDataManager ({
     return (
     <div className={modalStyleName}>
 
-    <div className="modalArea3">
+    <div>
 
     <div className="modalContent">
-        <button className="buttonRight90 cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
+        <button className="cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
             Close
         </button>
 
-        <div className="gameDataDisplayArea">
-            <div className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}>
+        <div 
+            className="gameDataDisplayArea">
+            
+            <div 
+                className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}
+                style={{
+                    "maxHeight": "310px", 
+                    "overflow": "scroll",
+                    "marginTop": "10px",
+                    "marginLeft": "20%",
+                    "width": "900px"
+                }}
+            >
                 <table style={{"width": "900px"}}>
                     <thead>
                         <tr className="textNoSelect tableRow">
@@ -272,14 +288,23 @@ export default function Modal_GameDataManager ({
 
                 </table>
         
-           
-    
+            </div>
+
+
             {!displayNewVarArea && 
-                <div className="addNewGameDataAreaClosed areaLeft">
+                <div className="addNewGameDataAreaClosed"
+                >
                     <button onClick={showNewVarForm}> + New Variable </button>
                 </div>}
             {displayNewVarArea && 
-                <div className="addNewGameDataArea areaLeft">
+                <div className="addNewGameDataArea"
+                    style={{
+                        "overflow": "scroll",
+                        "marginTop": "10px",
+                        "marginLeft": "20%",
+                        "width": "889px"
+                    }}
+                >
                     <label>Variable Name: </label>
                     <input type="text" value={newVarName} onChange={changeNewVarName}/>
                     <br></br>
@@ -306,11 +331,7 @@ export default function Modal_GameDataManager ({
                     <button onClick={()=>{addVarPair()}}>Submit</button>
 
                 </div>
-
             }
-         
-
-            </div>
         </div>
 
 

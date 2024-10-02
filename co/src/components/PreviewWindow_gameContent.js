@@ -404,7 +404,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
    
             {(bgmSource !== undefined) && 
                       // <audio src={bgmSource} controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO actual game-playing
-                <>
+                <div style={{"marginTop": "2px"}}>
                 <audio 
                   src={bgmSource} 
                   autoPlay="autoPlay" 
@@ -412,7 +412,7 @@ console.log("preview-window first-time entry, resource-list fetched."); //TODO t
                   style={{"height": "30px"}}
                 /> 
                   {/* //TODO previewing/testing */}
-                </>
+                </div>
             }
 
 
