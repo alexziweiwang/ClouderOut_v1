@@ -74,6 +74,7 @@ export default function Dashboard() {
       <ProjectManageNew
           cancelAction={returnToDashboard}
           showCancelButton={true}
+          isPart={false}
       />
 }
   </div>

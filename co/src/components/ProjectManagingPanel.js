@@ -108,12 +108,19 @@ export default function ProjectManagerPanel() {
       <div className="backboardForAll">
   
         <div 
-        className={currentProjectAction === "createProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
-        onClick={()=>{  
-            setCurrentProjectAction("createProject");
-          }}
+          className={currentProjectAction === "createProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
         >
-            <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
+            <div 
+              className="titleBar"
+              style={{"display": "flex", "justifyContent": "start", "padding": "10px", "cursor": "pointer"}}
+              onClick={()=>{  
+                if (currentProjectAction !== "createProject") {
+                  setCurrentProjectAction("createProject");
+                } else {
+                  setCurrentProjectAction("");
+                }
+              }}
+            >
                 <label className="cursor_pointer">Create a New Project ...</label>
             </div>
 
@@ -127,19 +134,26 @@ export default function ProjectManagerPanel() {
               <ProjectManageNew
                 cancelAction={notUsing}
                 showCancelButton={false}
+                isPart={true}
               />
             </div>
 
         </div>
 
-        <div className={currentProjectAction === "selectProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
-          onClick={()=>{
-              setCurrentProjectAction("selectProject");
-          }}
- 
+        <div 
+          className={currentProjectAction === "selectProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
         >
         <div>
-        <div style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}>
+        <div  style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}
+              onClick={()=>{  
+                if (currentProjectAction !== "selectProject") {
+                  setCurrentProjectAction("selectProject");
+                } else {
+                  setCurrentProjectAction("");
+                }
+              }}
+              className="titleBar"
+        >
           <label className="cursor_pointer">Select an Ongoing Project ...</label>
         </div>
 
@@ -202,17 +216,26 @@ export default function ProjectManagerPanel() {
         </div>
 
 
-        <div 
-        className={currentProjectAction === "revertProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
-        onClick={()=>{
-            setCurrentProjectAction("revertProject");
-          }}
-        >
+          <div 
+            className={currentProjectAction === "revertProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
+          >   
+            <div
+                className="titleBar"
+                onClick={()=>{  
+                    if (currentProjectAction !== "revertProject") {
+                        setCurrentProjectAction("revertProject");
+                    } else {
+                        setCurrentProjectAction("");
+                    }
+                }}
+            >
               <label 
                 className="cursor_pointer"
                 style={{"justifyContent": "start", "display": "flex", "padding": "10px"}}
               >Revert a Deleted Project ...</label>
-     
+            </div>
+
+
               <div className="trashedProjectArea" 
               
               

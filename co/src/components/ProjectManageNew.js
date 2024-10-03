@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
 
-export default function ProjectManageNew({cancelAction, showCancelButton}) {
+export default function ProjectManageNew({cancelAction, showCancelButton, isPart}) {
     const navigate = useNavigate();
 
     const name = "/projectmanagenew";
@@ -140,7 +140,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton}) {
 
 
     return (
-    <div className="someGrey" style={{"width": "100%"}}>    
+    <div className={!isPart ? "someGrey" : ""} style={{"width": "100%"}}>    
    
     <button
         style={{"marginTop": "20px", "marginRight": "-200px"}}
