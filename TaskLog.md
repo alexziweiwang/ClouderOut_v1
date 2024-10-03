@@ -356,6 +356,8 @@
 
 - 2024-Sept-30: Setup UI UX optimization plans and design
 
+- 2024-Oct-02: Design strategy of project's all-set-data initialization on current editing-pages
+
 
 
 
