@@ -105,7 +105,7 @@ export default function ProjectManagerPanel() {
     <div style={{"display": "flex"}}>    
       <Sidebar compName = {name}/>
 
-      <div className="backboardForAll">
+      <div className="dashboard_content">
   
         <div 
           className={currentProjectAction === "createProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}

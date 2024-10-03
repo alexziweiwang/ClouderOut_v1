@@ -51,12 +51,12 @@ export default function ProfilePage({}) {
 
             <br></br>
             <table className="noBorder">
+                <tbody>
                 <tr>
                     <td className="noBorder">Username: </td>
                     <td className="noBorder">{profileInfo["username"]}</td>
                 </tr>
-                <br></br>
-                <br></br>
+
                 <tr>
                     <td className="noBorder">Instruction:</td>
                     <td className="noBorder">
@@ -76,6 +76,7 @@ export default function ProfilePage({}) {
 
                     </td>
                 </tr>
+                </tbody>
             </table>
          
       

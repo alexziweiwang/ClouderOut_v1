@@ -34,7 +34,7 @@ export default function Dashboard() {
 
     return (
   <div className="page">
-    <Sidebar compName={name} username={uname}/>
+    {!showNewProjCreationPage && <Sidebar compName={name} username={uname}/>}
 
     
     {!showNewProjCreationPage && <div className="dashboard_content">

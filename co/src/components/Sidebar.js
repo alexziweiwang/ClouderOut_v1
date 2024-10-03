@@ -23,10 +23,6 @@ export default function Sidebar({compName, username}) {
         navigate('/dashboard', { replace: true });
     }
 
-    function projectManageNew() {
-        navigate('/projectmanagenew', { replace: true, state: { username } });
-    }
-
     function goToAccountPage() {
         navigate('/accountpage',  { replace: true, state: { username } });
     }
@@ -69,26 +65,15 @@ export default function Sidebar({compName, username}) {
     }
 
     {(compName === "/projectmanagingpanel") && 
-    <div className="sidebar2" >
+    <div className="sidebar1" >
         <div> 
-            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>←</button>
         </div>
     
         </div>
     }
 
-    {(compName === "/projectmanagenew") && 
-    <div className="sidebar2" >
-        <div> 
-            <button className="sidebar_options sidebar_options2" onClick={()=>{
-                backToDashboard();
-            }}>← {dashBoardButtonText[languageCode]}</button>
-        </div>
-
-        </div>
-    }
-
-
+  
 
 
     </>
