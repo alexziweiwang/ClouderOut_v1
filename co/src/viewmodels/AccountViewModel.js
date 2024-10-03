@@ -1,4 +1,4 @@
-import { getProjectGameData } from '../models/AccountModel';
+import { getProjectInfo } from '../models/AccountModel';
 
 /**
  * Get profile data
@@ -6,7 +6,7 @@ import { getProjectGameData } from '../models/AccountModel';
  * @param {*} uname username
  * @returns profile data
  */
-export async function getProjectGameDataVM({uname}) {
-    const profile = await getProjectGameData({uname});
+export async function getProjectInfoVM({uname}) {
+    const profile = await getProjectInfo({uname});
     return profile;
 }

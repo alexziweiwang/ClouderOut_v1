@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { getProjectGameDataVM } from '../viewmodels/AccountViewModel';
+import { getProjectInfoVM } from '../viewmodels/AccountViewModel';
 
 export default function ProfilePage({}) {
 
@@ -36,7 +36,7 @@ export default function ProfilePage({}) {
             console.log("Not getting profile -- no state");
             return;
         }
-        profile = await getProjectGameDataVM({uname: username});
+        profile = await getProjectInfoVM({uname: username});
         console.log("page: ", profile); //TODO test
         setProfile(profile);
     }
@@ -48,7 +48,6 @@ export default function ProfilePage({}) {
 
     <div className="dashboard_content" style={{"padding": "10px"}}>
         <div className="profilePage">
-            <button onClick={getProfile}> Load my profile </button>
 
             <br></br>
             <table className="noBorder">

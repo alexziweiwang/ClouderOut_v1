@@ -7,7 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
  * @param {*} uname username
  * @returns fetched profiled data
  */
-export async function getProjectGameData({uname}) {
+export async function getProjectInfo({uname}) {
     // fetch account information according to provided username
     const docRef = doc(db, "user_projects", uname);
     const docSnap = await getDoc(docRef);
