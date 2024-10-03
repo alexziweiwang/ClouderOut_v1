@@ -346,9 +346,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
 
     return (
       <div className={modalStyleName}>
-        <div className="modalArea">
-
-            <div style={{"overflow": "scroll"}}>
+            <br></br>
             <button 
                 className="modalClose"
                 onClick={()=>{
@@ -360,6 +358,12 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                     refresh();
                 }
             }}> {closeText[languageCode]} </button>
+
+        <div className="modalArea">
+
+
+            <div style={{"overflow": "scroll"}}>
+
 
                 <div className="parallelFrame">
                     <button className={isTabVisual ? "buttonClicked tabBarVSelected" : "buttonUnclicked tabBar1"} onClick={()=>{
@@ -393,7 +397,10 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 </button>
                 
                 <br></br>
-                <select value={visualListFilter} onChange={(event)=>{setVisualListFilter(event.target.value); changeVisFilter(event.target.value);}}>
+                <select value={visualListFilter} onChange={(event)=>{
+                    setVisualListFilter(event.target.value); 
+                    changeVisFilter(event.target.value);}}
+                >
                         <option value="curr" key="currVis">In this project</option>
                         <option value="all" key="allVis">All resources</option>
                         <option value="not" key="notVis">Not in this project</option>
@@ -402,7 +409,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 {visualListFilteredList.length > 0 && <div className="rsrcListArea">
                     <ul>
                         {visualListFilteredList.map((item, index) => (
-                        <li className="clickableListItem5" key={index} onClick={()=>{itemClicked(item);}}>
+                        <li className="clickableListItem6" key={index} onClick={()=>{itemClicked(item);}}>
                             {item["filename"]}</li>
                         ))}
                     </ul>
@@ -496,7 +503,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
                 {audioListFilteredList.length > 0&& <div className="rsrcListArea">
                     <ul>
                         {audioListFilteredList.map((item, index) => (
-                        <li className="clickableListItem5" key={index} onClick={()=>{
+                        <li className="clickableListItem6" key={index} onClick={()=>{
                             console.log("list clicked.", cloudFileList[index]["filename"]); //TODO 
                             itemClicked(item);
                         

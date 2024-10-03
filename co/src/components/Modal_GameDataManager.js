@@ -222,6 +222,7 @@ export default function Modal_GameDataManager ({
     <div>
 
     <div className="modalContent">
+        <br></br>
         <button className="cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
             Close
         </button>

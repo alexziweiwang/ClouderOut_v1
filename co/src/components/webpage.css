@@ -94,7 +94,6 @@ td {
     color: #FFFFFF;
     padding: 15px;
     margin-top: 0px;
-
 }
 
 .modalClose:hover {
@@ -421,7 +420,7 @@ td {
     height: 100%;
     top: 0%;
     left: 0%;
-    background: rgba(220, 223, 227, 0.74);
+    background: rgba(190, 193, 196, 0.74);
 }
 
 .modalArea {
@@ -680,6 +679,31 @@ td {
     cursor: pointer;
 }
 
+.clickableListItem6 {
+    background-color: rgb(220, 220, 220);
+    margin: 1px;
+    height: 50px;
+    width: 90%;
+    text-align: left;
+    padding-left: 5px;
+    overflow: scroll;
+    outline: 1px solid rgb(123, 123, 123);
+    cursor: pointer;
+}
+
+.clickableListItem6:hover {
+    background-color: rgb(95, 99, 104);
+    color: rgb(237, 236, 235);
+    margin: 1px;
+    height: 50px;
+    width: 90%;
+    text-align: left;
+    padding-left: 5px;
+    overflow: scroll;
+    outline: 1px solid rgb(123, 123, 123);
+    cursor: pointer;
+}
+
 .clickableListItem3 {
     background-color: rgb(240, 239, 242);
     margin: 1px;
@@ -708,7 +732,6 @@ li {
     width: 30%;
     overflow: scroll;
     border-right: 2px solid rgb(0, 0, 0);
-    height: 700px;
     background-color: rgb(167, 193, 184);
     border-radius: 0px;
 }
@@ -717,8 +740,7 @@ li {
     width: 30%;
     overflow: scroll;
     border-right: 2px solid rgb(0, 0, 0);
-    height: 700px;
-    background-color: rgb(154, 167, 191);
+    background-color: rgb(156, 140, 176);
     border-radius: 0px;
 
 }
@@ -726,7 +748,7 @@ li {
 .areaBlue {
     overflow: scroll;
     width:70%;
-    height: 700px;
+    height: 500px;
     padding: 3px;
 }
 
@@ -918,7 +940,7 @@ td {
 }
 
 .rmTypeAreaA {
-    background-color: rgb(98, 118, 154);
+    background-color: rgb(87, 71, 104);
     height: 90%;
     color:rgb(7, 7, 7);
     border-radius: 0px;
@@ -1056,9 +1078,9 @@ td {
 
 
 .tabBarASelected {
-    background-color: rgb(120, 136, 165);
-    border-color: rgb(120, 136, 165);
-    border: 3px solid rgb(120, 136, 165);
+    background-color: rgb(117, 99, 138);
+    border-color: rgb(117, 99, 138);
+    border: 3px solid rgb(117, 99, 138);
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;
@@ -1072,9 +1094,9 @@ td {
 }
 
 .tabBarASelected:hover {
-    background-color: rgb(120, 136, 165);
-    border-color: rgb(120, 136, 165);
-    border: 3px solid rgb(120, 136, 165);
+    background-color: rgb(117, 99, 138);
+    border-color: rgb(117, 99, 138);
+    border: 3px solid rgb(117, 99, 138);
     margin-left: 2px;
     margin-right: 2px;
     width: 120px;
@@ -1088,7 +1110,7 @@ td {
 }
 
 .loadResourceBtn {
-    background-color: #EE6C4D;
+    background-color: #d2c2bf;
     border-radius: 0px;
     border: none;
     width: 200px;
@@ -1100,7 +1122,8 @@ td {
 }
 
 .loadResourceBtn:hover {
-    background-color: #e3a99b;
+    background-color: #726c6a;
+    color: #ee734d;
     border-radius: 0px;
     border: none;
     width: 200px;
@@ -1191,7 +1214,6 @@ td {
 }
 
 .rsrcListArea {
-    background-color: rgb(183, 208, 170);
     color:rgb(7, 7, 7);
     overflow: scroll;
     margin-top: 0px;
@@ -1649,11 +1671,6 @@ button:hover {
 .uploadArea {
     background-color: rgb(199, 196, 199);
     border-radius: 0px;
-}
-
-.rsrcListArea {
-    background-color: rgb(210, 192, 210);
-    border-radius: 0px; 
 }
 
 .buttonPreviewArea {
