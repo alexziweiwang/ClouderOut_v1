@@ -42,11 +42,12 @@ export default function Dashboard() {
 
        
      </div>
-      <p className="plans"> This is ... *Dashboard Component* for {uname}</p>
+      {/* <p className="plans"> This is ... *Dashboard Component* for {uname}</p>
 
       <p className="plans">TODO: responsibility of this page: 
         <br></br>User Authentication: only logged-in user can see this page with their own info only
-      </p>
+      </p> */}
+      <br></br><br></br><br></br>
       
       <div className="parallelFrame" style={{"marginLeft": "15px"}}>
         <div className="dashboard_grid" style={{"marginRight": "20px"}}
