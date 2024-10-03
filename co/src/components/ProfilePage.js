@@ -46,20 +46,40 @@ export default function ProfilePage({}) {
     
     <Sidebar compName = {name}/>
 
-    <div className="dashboard_content">
+    <div className="dashboard_content" style={{"padding": "10px"}}>
         <div className="profilePage">
-            <p className="plans"> This is Profile Page!  </p>
             <button onClick={getProfile}> Load my profile </button>
 
             <br></br>
-            <label>Username: </label>
-            <label>{profileInfo["username"]}</label>
+            <table className="noBorder">
+                <tr>
+                    <td className="noBorder">Username: </td>
+                    <td className="noBorder">{profileInfo["username"]}</td>
+                </tr>
+                <br></br>
+                <br></br>
+                <tr>
+                    <td className="noBorder">Instruction:</td>
+                    <td className="noBorder">
+                        {profileInfo["introduction"]}
+                        <textarea type="text" onChange={(event)=>{
+                                setProfileEditInput(event.target.value);
+                            }} 
+                            value={profileEditInput}
+                        ></textarea>
+                        <button onClick={()=>{
+                            let obj = {}; 
+                            obj["username"] = profileInfo["username"]; 
+                            obj["introduction"] = "\"" + profileEditInput + "\""; 
+                            setProfile(obj);
+                            setProfileEditInput("");
+                        }}>Change</button>
 
-            <br></br>
-            <label>Instruction: {profileInfo["introduction"]}</label>
-            <input type="text" onChange={(event)=>{setProfileEditInput(event.target.value);}} value={profileEditInput}></input>
-            <button onClick={()=>{let obj = {}; obj["username"] = profileInfo["username"]; obj["introduction"] = "\"" + profileEditInput + "\""; setProfile(obj);}}>Change</button>
-
+                    </td>
+                </tr>
+            </table>
+         
+      
         </div>
 
 
