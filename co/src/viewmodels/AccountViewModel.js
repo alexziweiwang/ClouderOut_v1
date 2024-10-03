@@ -1,5 +1,13 @@
 import { getProjectInfo } from '../models/AccountModel';
 
+
+/**
+List of functions:
+
+function getProjectInfoVM({uname})
+
+*/
+
 /**
  * Get profile data
  * 

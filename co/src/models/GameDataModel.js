@@ -58,13 +58,13 @@ export async function getChapterData({projectName, uname, chapterName}) {
   const chapterRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterName);
   const chapterSnap = await getDoc(chapterRef);
   if (!chapterSnap.exists()) {
-    console.log("chapter-key does not exist..."); //TODO test
+                                  console.log("chapter-key does not exist..."); //TODO test
     return;
   }
 
   let projectData = chapterSnap.data();
  
-  console.log("game-data-model(cloud): getChapterData", projectData); //TODO test
+                                  console.log("game-data-model(cloud): getChapterData", projectData); //TODO test
 
   return projectData;
 }

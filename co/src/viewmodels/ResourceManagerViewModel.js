@@ -4,7 +4,7 @@ export async function submitFileVM({file, uname, filename}) {
     if (filename === "" || filename === undefined) {
         return;
     } else {
-        console.log("step1. submitFileVM ::: ", filename); //TODO test
+                                        console.log("step1. submitFileVM ::: ", filename); //TODO test
         await submitFile({file, uname, filename});
     }
 }

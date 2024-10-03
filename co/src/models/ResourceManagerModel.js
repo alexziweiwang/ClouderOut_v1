@@ -29,7 +29,8 @@ storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-
 export async function submitFile({file, uname, filename}) {
     console.log("step2.RM model submitFile ...", filename); //TODO test
     if (filename === "" || filename === undefined) {
-      console.log("returned");//TODO test
+
+                                    console.log("returned");//TODO test
 
       return;
     } else {
@@ -37,7 +38,8 @@ export async function submitFile({file, uname, filename}) {
 
       uploadBytes(storageRef, file);
 
-      console.log("file upload complete."); //TODO test
+                                    console.log("file upload complete."); //TODO test
+
     }
 }
 
@@ -86,7 +88,9 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
       currFileList.push(obj);
     }
 
-    console.log("update file list:", currFileList);//TODO test
+                                        console.log("update file list:", currFileList);//TODO test
+
+
     await updateDoc(ref, {filenames: currFileList});
 }
 
@@ -113,7 +117,11 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
  * @returns file url
  */
 export async function fetchUrlByFilename({fullFilename}) {
-  console.log("model-fetchUrlByFilename(): ", fullFilename); //TODO test
+
+
+                                  console.log("model-fetchUrlByFilename(): ", fullFilename); //TODO test
+  
+
   const storageG = getStorage();
   const dir = "/rm001test/";
   const filePath = dir + fullFilename;
@@ -124,7 +132,7 @@ export async function fetchUrlByFilename({fullFilename}) {
       return url;
     })
     .catch((error) => {
-      console.log("Error:", error);
+                                  console.log("Error:", error);
     });
 }
 
@@ -165,11 +173,11 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
  */
 export async function storeProjectResourceVarPairsToCloud({userName, projectName, obj}) {
 
-          console.log("model - storeProjectResourceVarPairsToCloud()");
-          console.log(userName);
-          console.log(projectName);
-          console.log(obj);
-  
+                                    console.log("model - storeProjectResourceVarPairsToCloud()");
+                                    console.log(userName);
+                                    console.log(projectName);
+                                    console.log(obj);
+                            
   const projectRef = doc(db, "user_projects", userName, "projects", projectName);
   const projectSnap = await getDoc(projectRef);
 
@@ -177,7 +185,7 @@ export async function storeProjectResourceVarPairsToCloud({userName, projectName
     return;
   }
 
-  console.log("VM - before updating to cloud db: ", obj); //TODO test
+                                    console.log("VM - before updating to cloud db: ", obj); //TODO test
   
   await updateDoc(projectRef, {
     "proj_resource_audio": obj.audio,
