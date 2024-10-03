@@ -166,7 +166,7 @@ export default function ChapterManager({
   }
 
     return (
-      <>
+      <div style={{"height": "600px"}}>
         {isCollapse === false && 
         <div className="parallelFrame">
           <div className="listBar" style={{"overflow": "hidden"}}>
@@ -318,6 +318,6 @@ console.log("chapterData: ", chapterData); //TODO testing
 
 
 
-      </>
+      </div>
     );
 }

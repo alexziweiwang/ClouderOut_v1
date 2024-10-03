@@ -496,7 +496,7 @@ export default function NodeManager({projectName, currUser,
   }
 
     return (      
-        <div style={{"overflow": "scroll", "width": "100%"}}>
+        <div style={{"overflow": "scroll", "width": "100%", "height": "600px"}}>
 
         {chapterKey!== "" && <div className="setting_area"> 
       

@@ -81,7 +81,7 @@ return (
     style={{
         "width": `350px`, 
         "height": `${screenHeight}px`, 
-        "backgroundColor": "pink", 
+        "backgroundColor": "#98C1D9", 
         "position": "absolute", 
         "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}
     >
