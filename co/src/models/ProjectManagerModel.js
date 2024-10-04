@@ -1,5 +1,5 @@
 import  {db} from '../GoogleCloudConnections';
-import { doc, getDoc, getDocs, collection, query, where, updateDoc } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 /*
 List of functions:
@@ -77,19 +77,12 @@ export async function createProject(currUser, projectName, projectObj) {
 
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
-  const newGameData = {};
-  const newRmAudio = [];
-  const newRmVisual = [];
-  
+  await setDoc(projRef, projectObj);
 
-  await setDoc(projRef, {
-    game_data: newGameData,
-    proj_resource_audio: newRmAudio,
-    proj_resource_visual: newRmVisual,
-    trashed: false,
-    type: "project",
-    project_name: projectName
-  });
+  const chapterHead = "chapter0";
+  const chapterCollRef = doc(db, "user_projects", currUser, "projects", projectName, "chapters", chapterHead);
 
-                    console.log("before impl: createProject()");
+
+
+                console.log("Created project = ", projectObj);//TODO testing
 }

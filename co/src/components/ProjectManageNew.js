@@ -1,8 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Sidebar from './Sidebar';
-import {fetchProjectListVM} from '../viewmodels/ProjectManagerViewModel';
+import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManageNew({cancelAction, showCancelButton, isPart}) {
     const navigate = useNavigate();
@@ -73,20 +72,29 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       
 
       const empty_game_data = {};
-      const obj = {
+      const empty_rm_audio = [];
+      const empty_rm_visual = [];
+
+      const projectObj = {
         project_name: addedNewProjName,
         project_description: projDedscription,
         game_data: empty_game_data,
+        proj_resource_audio: empty_rm_audio,
+        proj_resource_visual: empty_rm_visual,
         author_info: addedAuthorInfo,
         type: "project",
-        game_size_direction: "16:9(horizonal)"
+        trashed: false,
       };
+
+
       //TODO add collection "chapters"
       console.log("Created project info: ");
-      console.log(obj);
+      console.log(projectObj);
 
       let alertStr = "Project " + addedNewProjName + " Created!";
       alert(alertStr);
+
+      createProjectVM(username, addedNewProjName, projectObj);
 
 
       clearForm();
