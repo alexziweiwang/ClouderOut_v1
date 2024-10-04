@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchProjectListVM, createProjectVM, initializeChaptersCollectionVM } from '../viewmodels/ProjectManagerViewModel';
+import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
 
 export default function ProjectManageNew({cancelAction, showCancelButton, isPart}) {
     const navigate = useNavigate();
@@ -91,12 +91,11 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       console.log("Created project info: ");
       console.log(projectObj);
 
-      // let alertStr = "Project " + addedNewProjName + " Created!";
-      // alert(alertStr);
+      let alertStr = "Project " + addedNewProjName + " Created!";
+      alert(alertStr);
 
       createProjectVM(username, addedNewProjName, projectObj);
-      initializeChaptersCollectionVM(username, addedNewProjName);
-
+  
       clearForm();
       
       // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db

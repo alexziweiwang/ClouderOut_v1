@@ -72,13 +72,13 @@ export async function createProject(currUser, projectName, projectObj) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
   await setDoc(projRef, projectObj);
-}
 
-export async function initializeChaptersCollection (currUser, projectName) {
-  const tempKey = "chapter0";
-  const tempVal = "chaptero-value-placeholder";
-  const chapterHead = {tempKey: tempVal};
-  const chapterCollRef = doc(db, "user_projects", currUser, "projects", projectName, "chapters", chapterHead);
 
-  await addDoc(chapterCollRef, chapterHead);
+  const placeholder = "chapter0";
+  await setDoc(projRef, projectObj).then(() => {
+    setDoc(doc(db, "user_projects", currUser, "projects", projectName, "chapters", placeholder), 
+    {})
+  }).catch((e) => {
+    console.log(e)
+  })
 }
