@@ -359,7 +359,7 @@
 - 2024-Oct-02: Design strategy of project's all-set-data initialization on current editing-pages
 
 - 2024-Oct-03: Adjust test-data on cloud db
-
+- 2024-Oct-03: Optimize data structure for cloud db
 
 
 

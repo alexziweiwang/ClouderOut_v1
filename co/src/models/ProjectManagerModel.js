@@ -30,6 +30,7 @@ export async function fetchProjectList(currUser) {
     return;
   }
 
+//TODO10 refactor for rm-folder direct-access
   const q = query(collection(docRef, "projects"), where("type", "!=", "rm"));
   const querySnapshot = await getDocs(q);
   let projectArr = [];

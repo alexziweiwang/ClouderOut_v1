@@ -57,6 +57,8 @@ export async function getRmFileList({uname}) {
       return;
     }
 
+
+//TODO10 refactor for rm-folder direct-access
     const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
     const querySnapshot = await getDocs(q);
     let dataContentData;
@@ -76,6 +78,8 @@ export async function getRmFileList({uname}) {
  * @returns void
  */
 export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
+//TODO10 refactor for rm-folder direct-access
+
 
     const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
     let currFileData = await getDoc(ref, "fileRecord");
@@ -95,6 +99,9 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 }
 
 export async function removeFromRmFileList({uname, filetitle}) { // in database
+//TODO10 refactor for rm-folder direct-access
+  
+  
   // in user -> projects -> resource_manager -> filenames
   const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
   let currFileData = await getDoc(ref, "fileRecord");
