@@ -73,15 +73,23 @@ export async function createProject(currUser, projectName, projectObj) {
   // TODO create a directory of projectName
   // TODO save any other info in projectObj
 
-  // TODO create default directories: chapters, etc.
+  // TODO create default directories: chapters
 
-  //TODO initialize game_data
-  //TODO initialize proj_resource_audio
-  //TODO initialize proj_resource_visual
-  //TODO initialize project_name
-  //TODO initialize trashed [false]
-  //TODO initialize type ["project"]  
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
+  const newGameData = {};
+  const newRmAudio = [];
+  const newRmVisual = [];
+  
+
+  await setDoc(projRef, {
+    game_data: newGameData,
+    proj_resource_audio: newRmAudio,
+    proj_resource_visual: newRmVisual,
+    trashed: false,
+    type: "project",
+    project_name: projectName
+  });
 
                     console.log("before impl: createProject()");
 }
