@@ -1,5 +1,5 @@
 import  {db} from '../GoogleCloudConnections';
-import { doc, getDoc, getDocs, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 /*
 List of functions:
@@ -69,20 +69,16 @@ export async function deleteProject(projectToDelete, currUser) {
 }
 
 export async function createProject(currUser, projectName, projectObj) {
-  // TODO go to currUser's directory
-  // TODO create a directory of projectName
-  // TODO save any other info in projectObj
-
-  // TODO create default directories: chapters
-
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
   await setDoc(projRef, projectObj);
+}
 
-  const chapterHead = "chapter0";
+export async function initializeChaptersCollection (currUser, projectName) {
+  const tempKey = "chapter0";
+  const tempVal = "chaptero-value-placeholder";
+  const chapterHead = {tempKey: tempVal};
   const chapterCollRef = doc(db, "user_projects", currUser, "projects", projectName, "chapters", chapterHead);
 
-
-
-                console.log("Created project = ", projectObj);//TODO testing
+  await addDoc(chapterCollRef, chapterHead);
 }
