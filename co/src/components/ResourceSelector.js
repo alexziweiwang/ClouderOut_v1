@@ -49,6 +49,11 @@ export default function ResourceSelector ({handleRsCancel, isDisplay, handleRsVi
     async function fetchRmFileList() {
         let fileList = await getRmFileListVM({uname: username});
         fileList = fileList.filenames;
+        if (fileList === undefined || fileList.length === 0) {
+            return;
+        }
+        console.log("fileList = ", fileList); //TOOD 
+        
         setCloudFileList(fileList);
         const audioList = fileList.filter((item) => (item.filetype === "audio"));
         setAudioList(audioList);

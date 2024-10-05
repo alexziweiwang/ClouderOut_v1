@@ -50,12 +50,12 @@ export async function submitFile({file, uname, filename}) {
  * @returns list of uploaded files
  */
 export async function getRmFileList({uname}) {
-    const docRef = doc(db, "user_projects", uname);
-    const docSnap = await getDoc(docRef);
+    // const docRef = doc(db, "user_projects", uname);
+    // const docSnap = await getDoc(docRef);
   
-    if (!docSnap.exists()) {
-      return;
-    }
+    // if (!docSnap.exists()) {
+    //   return;
+    // }
 
     
 //TODO10 refactor for rm-folder direct-access
@@ -64,20 +64,31 @@ export async function getRmFileList({uname}) {
     //TODO new: "<username>doc - filename_records"
 
 
+    const projRef = doc(db, "user_projects", uname); //new
+    if (projRef === undefined) {
+      window.alert("projRef does not exist."); //TODO
+    }
+  
+    const docItem = await getDoc(projRef, "filename_records");
 
-    const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
 
-    const querySnapshot = await getDocs(q);
-    let dataContentData;
+    // const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
+
+    // const querySnapshot = await getDocs(q);
+    // let dataContentData;
 
 
-    querySnapshot.forEach((doc) => {
-        dataContentData = doc.data(); 
-    });  
+    // querySnapshot.forEach((doc) => {
+    //     dataContentData = doc.data(); 
+    // });  
+
+
+// TODO11    
     
-    
-    return dataContentData;
+    // return dataContentData;
+    return docItem;
 }
+
 
 /**
  * Add file name to resource-manager file-list (in database)
@@ -92,11 +103,11 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 //TODO10 refactor for rm-folder direct-access
 
 
-    const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
-//TODO new: const ref = doc(db, "user_projects", uname);
+  //  const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
+const ref = doc(db, "user_projects", uname); //new
 
-    let currFileData = await getDoc(ref, "fileRecord");
-//TODO new: let currFileData = await getDoc(ref, "filename_records");
+ //   let currFileData = await getDoc(ref, "fileRecord");
+let currFileData = await getDoc(ref, "filename_records"); //new
 
     
     
@@ -120,12 +131,12 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
   
   
 //TODO new: "<username>doc - filename_records"
-      const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
+  //    const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
       
-//TODO new: const ref = doc(db, "user_projects", uname);
+const ref = doc(db, "user_projects", uname); //new
 
-      let currFileData = await getDoc(ref, "fileRecord");
-//TODO new: let currFileData = await getDoc(ref, "filename_records");
+ //     let currFileData = await getDoc(ref, "fileRecord");
+let currFileData = await getDoc(ref, "filename_records"); //new
 
 
 

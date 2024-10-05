@@ -24,17 +24,14 @@ export async function fetchProjectList(currUser) {
                           console.log("*from cloud*: model - fetch project list ...");
   
   const docRef = doc(db, "user_projects", currUser);
+ 
   const docSnap = await getDoc(docRef);
 
   if (!docSnap.exists()) {
     return;
   }
 
-//TODO10 refactor for rm-folder direct-access
-
-  const q = query(collection(docRef, "projects"), where("type", "!=", "rm"));
-
-//TODO new: const q = query(collection(docRef, "projects")); // new version
+const q = query(collection(docRef, "projects")); // new version
 
 
   const querySnapshot = await getDocs(q);
