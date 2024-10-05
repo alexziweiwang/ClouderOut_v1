@@ -31,7 +31,12 @@ export async function fetchProjectList(currUser) {
   }
 
 //TODO10 refactor for rm-folder direct-access
+
   const q = query(collection(docRef, "projects"), where("type", "!=", "rm"));
+
+//TODO new: const q = query(collection(docRef, "projects")); // new version
+
+
   const querySnapshot = await getDocs(q);
   let projectArr = [];
   querySnapshot.forEach((doc) => {

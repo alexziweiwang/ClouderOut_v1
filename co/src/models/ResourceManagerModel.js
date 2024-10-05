@@ -57,14 +57,25 @@ export async function getRmFileList({uname}) {
       return;
     }
 
-
+    
 //TODO10 refactor for rm-folder direct-access
+    
+
+    //TODO new: "<username>doc - filename_records"
+
+
+
     const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
+
     const querySnapshot = await getDocs(q);
     let dataContentData;
+
+
     querySnapshot.forEach((doc) => {
         dataContentData = doc.data(); 
-    });    
+    });  
+    
+    
     return dataContentData;
 }
 
@@ -82,7 +93,13 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 
 
     const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
+//TODO new: const ref = doc(db, "user_projects", uname);
+
     let currFileData = await getDoc(ref, "fileRecord");
+//TODO new: let currFileData = await getDoc(ref, "filename_records");
+
+    
+    
     let currFileList = currFileData.data().filenames;
     const obj = {"filename": filetitle, "fileurl": fileUrl, "filetype": fileType};
 
@@ -102,9 +119,16 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
 //TODO10 refactor for rm-folder direct-access
   
   
-  // in user -> projects -> resource_manager -> filenames
-  const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
-  let currFileData = await getDoc(ref, "fileRecord");
+//TODO new: "<username>doc - filename_records"
+      const ref = doc(db, "user_projects", uname, "projects", "resource_manager");
+      
+//TODO new: const ref = doc(db, "user_projects", uname);
+
+      let currFileData = await getDoc(ref, "fileRecord");
+//TODO new: let currFileData = await getDoc(ref, "filename_records");
+
+
+
   let currFileList = currFileData.data().filenames;
 
   // remove the given filename from the list
