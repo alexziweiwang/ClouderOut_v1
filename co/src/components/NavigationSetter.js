@@ -515,7 +515,14 @@ export default function NavigationSetter({initialNavObj,
      </div>}
 
       <br></br>
-      
+      <button
+        onClick={()=>{
+          fetchProjResourceLists();
+          getGameDataFromCloud();
+        }}
+      >Reload Setter</button><br></br>
+
+
       {openBackButtonSettingArea && <br></br>}
       
       <div style={{"backgroundColor": "grey", "padding": "7px"}}>
