@@ -70,7 +70,7 @@ export async function getRmFileList({uname}) {
     }
   
     const docItem = await getDoc(projRef, "filename_records");
-
+    console.log("docItem.data(): ", docItem.data());
 
     // const q = query(collection(docRef, "projects"), where("type", "==", "rm"));
 
@@ -86,7 +86,7 @@ export async function getRmFileList({uname}) {
 // TODO11    
     
     // return dataContentData;
-    return docItem;
+    return docItem.data();
 }
 
 
@@ -111,7 +111,7 @@ let currFileData = await getDoc(ref, "filename_records"); //new
 
     
     
-    let currFileList = currFileData.data().filenames;
+    let currFileList = currFileData.data().filename_records;
     const obj = {"filename": filetitle, "fileurl": fileUrl, "filetype": fileType};
 
     const duplicatePart = currFileList.filter(item => item.filename === filetitle && item.fileurl === fileUrl);
@@ -123,7 +123,7 @@ let currFileData = await getDoc(ref, "filename_records"); //new
                                         console.log("update file list:", currFileList);//TODO test
 
 
-    await updateDoc(ref, {filenames: currFileList});
+    await updateDoc(ref, {filename_records: currFileList});
 }
 
 export async function removeFromRmFileList({uname, filetitle}) { // in database
@@ -140,7 +140,7 @@ let currFileData = await getDoc(ref, "filename_records"); //new
 
 
 
-  let currFileList = currFileData.data().filenames;
+  let currFileList = currFileData.data().filename_records;
 
   // remove the given filename from the list
 

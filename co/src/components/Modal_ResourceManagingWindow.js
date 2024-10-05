@@ -231,6 +231,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
 
     async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
+        
         setCloudFileList(fileList.filename_records);
         const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
         setFileListVisual(vList);
