@@ -231,21 +231,21 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
 
     async function fetchRmFileList() { //TODO temp debugging
         const fileList = await getRmFileListVM({uname: username});
-        setCloudFileList(fileList.filenames);
-        const vList = fileList.filenames.filter((item)=>(item.filetype === "visual"));
+        setCloudFileList(fileList.filename_records);
+        const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
         setFileListVisual(vList);
         if (visualListFilter !== "allVis") {
             setVisualListFilteredList(vList);
         }
-        const aList = fileList.filenames.filter((item)=>(item.filetype === "audio"));
+        const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
         setFileListAudio(aList);
         if (audioListFilter !== "allAu") {
             setAudioListFilteredList(aList);
         }
-                                // console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
+                                console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
 
-                                // console.log("raw-rsrc vlist = ", vList); //TODO test
-                                // console.log("raw-rsrc alist = ", aList); //TODO test
+                                console.log("raw-rsrc vlist = ", vList); //TODO test
+                                console.log("raw-rsrc alist = ", aList); //TODO test
     }
 
     function changeVisFilter(type) {
