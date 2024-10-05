@@ -1402,7 +1402,9 @@ export default function NavigationSetter({initialNavObj,
            readOnly
            onClick={()=>{alert("Story-option must be kept.");}}
          ></input>
-         <label>Story Page Entry</label>
+         <label
+            onClick={()=>{alert("Story-option must be kept.");}}
+         >Story Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -1664,7 +1666,17 @@ export default function NavigationSetter({initialNavObj,
              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
             }}               
          ></input>
-           <label>Player Profile Page Entry</label>
+           <label
+            onClick={()=>{
+              let val = currentProjectNav["mainPage-playerProfile"];
+              
+              let tempObj = currentProjectNav;
+              tempObj["mainPage-playerProfile"] = !val;
+              updateNavObj(tempObj);              
+
+              setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
+            }} 
+           >Player Profile Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -1917,7 +1929,9 @@ export default function NavigationSetter({initialNavObj,
          
          
 
-         <br></br><input type="checkbox" value={currentProjectNav["mainPage-setting"]}
+         <br></br><input 
+          type="checkbox" 
+          value={currentProjectNav["mainPage-setting"]}
            checked={currentProjectNav["mainPage-setting"]}
            onChange={()=>{
              let val = currentProjectNav["mainPage-setting"];
@@ -1929,7 +1943,17 @@ export default function NavigationSetter({initialNavObj,
              setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
             }}      
          ></input>
-         <label>Settings Page Entry</label>
+         <label
+            onClick={()=>{
+             let val = currentProjectNav["mainPage-setting"];
+             
+             let tempObj = currentProjectNav;
+             tempObj["mainPage-setting"] = !val;
+             updateNavObj(tempObj);  
+
+             setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
+            }} 
+         >Settings Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 
@@ -2183,7 +2207,17 @@ export default function NavigationSetter({initialNavObj,
              setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
             }}                     
          ></input>
-         <label>Shop Page Entry</label>
+         <label
+           onClick={()=>{
+            let val = currentProjectNav["mainPage-shop"];
+           
+            let tempObj = currentProjectNav;
+            tempObj["mainPage-shop"] = !val;
+            updateNavObj(tempObj);
+
+            setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
+           }}     
+         >Shop Page Entry</label>
          <div className="indentOne">
            <label>Display Naming: </label>
            <input 

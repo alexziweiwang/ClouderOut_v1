@@ -864,7 +864,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
             }}
           ></input><label className="cursor_pointer" onClick={()=>{
             setNewGridActionCreate(true);
-          }}>Add A New Node</label>
+          }}>Add A New Node Here </label>
           {newGridActionCreate && <div className="section">
                
               <label>Node Unique-ID-Name and Title: </label>
@@ -918,7 +918,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               setNewGridActionCreate(false);
             }}></input><label className="cursor_pointer" onClick={()=>{
               setNewGridActionCreate(false);
-            }}>Revert a deleted Node</label>
+            }}>Revert a deleted Node Here </label>
           {!newGridActionCreate && <div className="section">
                   <select value={toRevertNodeKey} onChange={(event)=>{
                     setToRevertNodeKey(event.target.value);
@@ -1103,7 +1103,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                       updateRenderCounter();
                     }
                 }}>{confirmText[languageCode]}</button>
-                <br></br><button
+                <br></br>
+                
+                  <button
                   onClick={()=>{
 
                     let tempMap2 = nodeRelationshipMap;
@@ -1125,6 +1127,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                     
                   }}
                 >{detachLinkingText[languageCode]}</button>
+             
+
+
               </div>}
 
 
@@ -1171,11 +1176,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
                             && 
                             <label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}</label>}
-                      
-                        </td>
+                        </td> 
                         <td>
                             <select 
-                                style={{"maxWidth": "100px", "backgroundColor": "orange"}}
+                                style={{"maxWidth": "100px"}}
                                 value={lscElseSelected} 
                                 onChange={(event)=>{
                                   setLscElseSelected(event.target.value);
