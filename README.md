@@ -19,26 +19,26 @@
 - [ ] solution plans for concerns
 - [x] hosting and launching options, plan
 - [ ] hosting and launching options, implementation
-- [ ] game product: resource management solution (carefully handle re-renders)
+- [x] game product: resource management solution
 - [x] abstraction of game logic: into modularizable organizer
 - [x] game mode analysis, draft
 - [ ] game mode analysis, advanced
 - [ ] logic organizer for game rule (this can be a module to be used), implement: between nodes & inside one game-round for specific game rules
-- [ ] game-node visualization optimization
+- [x] game-node visualization optimization
 - [x] logic organizer: analysis and design
 - [ ] logic organizer: preliminary implement
 - [x] game data sharing and update design, architecture design
 - [x] game data sharing and update implementation
-- [ ] game data manager: UI
-- [ ] game data management: edit and delete
+- [x] game data manager: UI
+- [x] game data management: edit and delete
 - [x] cloud db data structure design, preliminary
 - [x] cloud db data structure design, optimized
 - [ ] account-system design
 - [ ] sample small projects (for test and demo)
 - [x] consider UI language switching design
 - [ ] implement and optimize UI language switching feature
-- [ ] resource selector preview window/player tech exploration
-- [ ] resource selector variable name paring implementation
+- [x] resource selector preview window
+- [x] resource selector variable name paring implementation
 - [ ] refactor to RESTful API in a later stage
 - [ ] add warning/asking related to project/progress saving, that reminds authors to save to cloud (in balance of frequent updating)
 - [x] consideration on undo/redo/revert or log and records for authors
@@ -46,5 +46,5 @@
 - [ ] author account "networking" considerations
 - [ ] consider and design version control system for projects
 - [ ] consider safe account authorization & data keeping for each user
-- [ ] resource naming/renaming considerations
+- [x] resource naming/renaming considerations
 
