@@ -76,6 +76,7 @@ export default function Dashboard() {
           cancelAction={returnToDashboard}
           showCancelButton={true}
           isPart={false}
+          triggerCreationSubmit={returnToDashboard}
       />
 }
   </div>

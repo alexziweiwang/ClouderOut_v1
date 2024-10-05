@@ -97,7 +97,10 @@ export default function ProjectManagerPanel() {
       return "";
     }
 
-    
+    function triggerCreationSubmit() {
+      loadProjectListFromCloud();
+      setCurrentProjectAction("selectProject");
+    }
 
     
     let name = "/projectmanagingpanel";
@@ -135,6 +138,7 @@ export default function ProjectManagerPanel() {
                 cancelAction={notUsing}
                 showCancelButton={false}
                 isPart={true}
+                triggerCreationSubmit={triggerCreationSubmit}
               />
             </div>
 
