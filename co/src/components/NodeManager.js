@@ -498,6 +498,7 @@ export default function NodeManager({projectName, currUser,
     return (      
         <div style={{"overflow": "scroll", "width": "100%", "height": "600px"}}>
 
+
         {chapterKey!== "" && <div className="setting_area"> 
       
 
@@ -603,7 +604,8 @@ export default function NodeManager({projectName, currUser,
               let hasNextNode = false;
               let srcNodeHigher = true; 
               let srcNodeAtLeft= true; 
- 
+
+//TODO12
               if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                 //such a node exists
                 if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
@@ -792,7 +794,47 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               let lscNodeList = nodeRelationshipMap[currNodeKey].spltLogicPairs;
 
 
-//TODO working area
+              let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
+              let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+              let sourceRightLineHEnd = sourceRightLineHStart + 10;
+
+// example:
+// nodeRelationshipMap[currNodeKey].spltLogicPairs         // the array
+// content: 
+// [
+//   [
+//       "else",
+//       "A1-key",
+//       "else"
+//   ],
+//   [
+//       "type[number]^hp_001^larger(pureValue)^1",
+//       "B1-key",
+//       "[hp_001](type: number) \n larger- \n(value) 1"
+//   ]
+// ]
+              //TODO for each of the next-node in splt:
+              /*
+                        let destLeftLineVStart = 0;
+                        let destLeftLineHStart = 0;
+                        
+                        let betweenNodeVerticalUnit = nodeHeight + 10;
+                        let betweenNodesVerticalLink = 0;
+
+                        let betweenNodeHorizontalUnit = nodeWidth + 22;
+                        let betweenNodesHorizontalLink = 0;
+
+                        let unitDiffVert = 0;
+                        let unitDiffHori = 0;
+
+                        let nextNodeKey = "";
+
+                        let hasNextNode = false;
+                        let srcNodeHigher = true; 
+                        let srcNodeAtLeft= true; 
+                        */
+
+//TODO11 working area
 
             }
 
@@ -801,7 +843,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
             </div>);
     })
 
-}
+ }
 
 
 
@@ -1216,9 +1258,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                                   key={lscElseKey}
                                   value={currKey}
                                   >
-                                    <label>
+                                  
                                         {currKey}:{item["nodeName"]}
-                                    </label>
+                                    
 
                                     </option>);
                                 })}          
