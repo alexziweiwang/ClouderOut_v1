@@ -798,6 +798,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
               let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
               let sourceRightLineHEnd = sourceRightLineHStart + 10;
 
+
+//TODO11 working area
+
 // example:
 // nodeRelationshipMap[currNodeKey].spltLogicPairs         // the array
 // content: 
@@ -833,8 +836,6 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                         let srcNodeHigher = true; 
                         let srcNodeAtLeft= true; 
                         */
-
-//TODO11 working area
 
             }
 

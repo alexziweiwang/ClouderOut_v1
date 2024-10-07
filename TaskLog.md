@@ -361,6 +361,8 @@
 - 2024-Oct-03: Adjust test-data on cloud db
 - 2024-Oct-03: Optimize data structure for cloud db
 
+- 2024-Oct-07: Design logic-splitter-node outward links, multiple ideas and thoughts
+
 
 
 
