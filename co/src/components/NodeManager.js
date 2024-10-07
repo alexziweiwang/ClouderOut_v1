@@ -651,9 +651,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 {/* links between nodes */}
              return (
                 <div key={keyStr}>
-                {currNodeKey !== "" && <div>
+                {(currNodeKey !== "" && hasNextNode === true) 
+                && <div>
 
-                      {hasNextNode && <div 
+                      <div 
                         style={{
                           "position": "absolute",
                           "top": `${sourceRightLineVStart}px`, 
@@ -662,10 +663,12 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "width": `10px`, 
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}
-                        >       
-                      </div>}
+                        >
+                         {/* source-node outward-line */}        
+                      </div>
+                      
                    
-                      {hasNextNode && <div 
+                      <div 
                         style={{
                           "position": "absolute",
                           "top": `${destLeftLineVStart}px`, 
@@ -675,9 +678,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}
                         >       
-                      </div>}
+                        {/* destination-node inward-line */}
+                      </div>
 
-                      {hasNextNode && <div 
+                      <div 
                         style={{
                           "position": "absolute",
                           "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
@@ -687,9 +691,11 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}
                         >     
-                      </div>}
+                        {/* the vertical line, right after the source-node-outward-horizontal-line */}
+                        {/* always associates with source-node */}
+                      </div>
 
-                      {(hasNextNode && unitDiffHori > 0) && <div 
+                      {(unitDiffHori > 0) && <div 
                         style={{
                           "position": "absolute",
                           "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
@@ -699,9 +705,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}
                         >
+                          {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
                       </div>}
 
-                      {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                      {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                         style={{
                           "position": "absolute",
                           "top": `${destLeftLineVStart}px`, 
@@ -711,8 +718,10 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "blue",
                           "borderRadius": `0px`}}                              
                         >
+                          {/* horizontal line from source-node to dest-node, if source-right dest-left */}
                         </div>}
-                        {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+
+                        {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                         style={{
                           "position": "absolute",
                           "top": `${destLeftLineVStart-10}px`, 
@@ -722,8 +731,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}                              
                         >
-                        </div>}                                
-                        {(hasNextNode === true && (unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                        </div>}   
+
+                        {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                         style={{
                           "position": "absolute",
                           "top": `${destLeftLineVStart-10}px`, 
@@ -735,7 +745,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                         >
                         </div>}
 
-                        {(hasNextNode === true && unitDiffVert === 0  && srcNodeAtLeft === false)
+                        {(unitDiffVert === 0  && srcNodeAtLeft === false)
                         && <div
                         style={{
                           "position": "absolute",
@@ -746,7 +756,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}                                     
                         ></div>}
-                       {(hasNextNode === true && unitDiffVert === 0 && srcNodeAtLeft === false)
+
+                       {(unitDiffVert === 0 && srcNodeAtLeft === false)
                        && <div
                         style={{
                           "position": "absolute",
@@ -760,6 +771,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
 
 
                 </div>}
+
+
                 </div>);
 
             } else if (currNodeKey !== "" 
