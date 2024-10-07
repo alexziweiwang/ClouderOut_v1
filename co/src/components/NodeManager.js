@@ -667,7 +667,6 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                          {/* source-node outward-line */}        
                       </div>
                       
-                   
                       <div 
                         style={{
                           "position": "absolute",
@@ -692,7 +691,7 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "borderRadius": `0px`}}
                         >     
                         {/* the vertical line, right after the source-node-outward-horizontal-line */}
-                        {/* always associates with source-node */}
+                            {/* always associates with source-node */}
                       </div>
 
                       {(unitDiffHori > 0) && <div 
@@ -731,6 +730,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}                              
                         >
+                          {/* vertical "turning" part for dest-node, 
+                              when dest-node is at the same col or left of source-node */}
                         </div>}   
 
                         {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
@@ -743,6 +744,8 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}                              
                         >
+                          {/* horizontal "turning" part for dest-node, 
+                              when dest-node is on the same col or to the left of source-node */}
                         </div>}
 
                         {(unitDiffVert === 0  && srcNodeAtLeft === false)
@@ -755,7 +758,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "width": `1px`, 
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}                                     
-                        ></div>}
+                        >
+                          {/* vertical part out of source-node if both node on same row */}
+                        </div>}
 
                        {(unitDiffVert === 0 && srcNodeAtLeft === false)
                        && <div
@@ -767,7 +772,9 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                           "width": `10px`, 
                           "backgroundColor": "#000000",
                           "borderRadius": `0px`}}                                  
-                        ></div>}
+                        >
+                          {/* horizontal part out of source-node if both node on same row && dest-node at left */}
+                        </div>}
 
 
                 </div>}
