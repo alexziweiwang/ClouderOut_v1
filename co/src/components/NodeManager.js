@@ -165,6 +165,8 @@ export default function NodeManager({projectName, currUser,
             setGridBlocks(gridTemp);
             setChapterKey(chapterKeyTemp);
             updateSpltNodeLinksDataOnce(tempMap, gridTemp);
+          } else {
+            updateSpltNodeLinksDataOnce(nodeRelationshipMap, gridBlocks);
           }
 
     });
@@ -557,11 +559,6 @@ export default function NodeManager({projectName, currUser,
                   let srcNodeHigher = true; 
                   let srcNodeAtLeft= true; 
 
-                  let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-                  let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
-                  let sourceRightLineHEnd = sourceRightLineHStart + 10;
-                  let extraHorizontalStart  = 0;              
-
                 if (item[1] !== "") {
                           destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
                           destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
@@ -589,7 +586,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": `${sourceRightLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "pink", //#000000
+                                  "backgroundColor": "red", //#000000
                                   "borderRadius": `0px`};
                                  {/* source-node outward-line */}  
                           styleArray.push(obj1); 
@@ -600,7 +597,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": `${destLeftLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "pink", //#000000
+                                  "backgroundColor": "red", //#000000
                                   "borderRadius": `0px`}
                                   {/* destination-node inward-line */}  
                           styleArray.push(obj2);    
@@ -611,7 +608,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": `${sourceRightLineHStart+10}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
-                                  "backgroundColor": "pink", //#000000
+                                  "backgroundColor": "red", //#000000
                                   "borderRadius": `0px`};
                                 {/* the vertical line, right after the source-node-outward-horizontal-line */}
                                     {/* always associates with source-node */}
@@ -624,7 +621,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "pink", //#000000
+                                  "backgroundColor": "red", //#000000
                                   "borderRadius": `0px`}
                                   {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
                           
@@ -664,7 +661,7 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${destLeftLineHStart}px`, 
                                     "height": `1px`, 
                                     "width": `10px`, 
-                                    "backgroundColor": "pink", //#000000
+                                    "backgroundColor": "red", //#000000
                                     "borderRadius": `0px`}
                               styleArray.push(obj7);
                               {/* horizontal "turning" part for dest-node, 
@@ -678,7 +675,7 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${sourceRightLineHStart+10}px`, 
                                     "height": `10px`, 
                                     "width": `1px`, 
-                                    "backgroundColor": "pink", //#000000
+                                    "backgroundColor": "red", //#000000
                                     "borderRadius": `0px`};
                               styleArray.push(obj8);
 
@@ -692,7 +689,7 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${sourceRightLineHStart}px`, 
                                     "height": `1px`, 
                                     "width": `10px`, 
-                                    "backgroundColor": "pink", //#000000
+                                    "backgroundColor": "red", //#000000
                                     "borderRadius": `0px`};
                             styleArray.push(obj9);        
                           }
@@ -705,7 +702,7 @@ export default function NodeManager({projectName, currUser,
       })
     })
         
-    console.log("updateSpltNodeLinksDataOnce(), styleArray = ", styleArray);
+    console.log("updateSpltNodeLinksDataOnce - func: styleArray = ", styleArray);
     setStyleArrHook(styleArray);
 
   }
@@ -782,7 +779,7 @@ export default function NodeManager({projectName, currUser,
 
 
 {/* link-drawing */}
-                                                                                      {/* //TODO1 first part */}
+<div style={{"position": "absolute"}}>                                                                                      {/* //TODO1 first part */}
  {gridBlocks.map((rowItem, ir) => {
     let rowKeyStr = "linking" + ir;
     
@@ -1009,27 +1006,20 @@ export default function NodeManager({projectName, currUser,
 
 
           })} 
-
-
-
-
-          {styleArrHook.map((item, index)=>{
-            let keyStr = "StyleArrHook" + index;
-            
-            
-            return (<div key={keyStr}
-              style={{item}}
-            >
-?
-            </div>)
-          })}
             </div>);
     })
 
  }
 
 
-
+          {styleArrHook.map((item, index)=>{
+            let keyStr = "StyleArrHook" + index;
+            return (<div key={keyStr}
+              style={item}
+            ></div>)
+          })}
+</div>
+//TODO11
 
                                                                                   {/* //TODO1 second part */}
  <div>
