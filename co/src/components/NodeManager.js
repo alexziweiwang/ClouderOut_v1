@@ -114,22 +114,24 @@ export default function NodeManager({projectName, currUser,
   
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
-      if (firstTimeEnter === true) {
-          // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
-          //updateNodeDataActions(chapterData);
-                  //    setNodeData(chapterData);
-          // console.log("First enter node data: ");
-          // console.log(nodeData);
-    //      fetchGameDataFromCloud(); //TODO remove later
 
-          console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
-          
-                                      // setNodeRelationshipMap(initialNodeMap);  //TODO remove later
-                                      // setGridBlocks(initialGridBlock);  //TODO remove later
-
-          setFirstTimeEnter(false);
-      }
   
+              if (firstTimeEnter === true) {
+                // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
+                //updateNodeDataActions(chapterData);
+                        //    setNodeData(chapterData);
+                // console.log("First enter node data: ");
+                // console.log(nodeData);
+          //      fetchGameDataFromCloud(); //TODO remove later
+
+                console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
+                
+                                            // setNodeRelationshipMap(initialNodeMap);  //TODO remove later
+                                            // setGridBlocks(initialGridBlock);  //TODO remove later
+                                            
+                
+                setFirstTimeEnter(false);
+              }
       // console.log("Node Manager ........."); //TODO testing
       // console.log(initialNodeMap); //TODO testing
       // console.log(initialGridBlock); //TODO testing
@@ -162,7 +164,9 @@ export default function NodeManager({projectName, currUser,
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
             setChapterKey(chapterKeyTemp);
+            updateSpltNodeLinksDataOnce(tempMap, gridTemp);
           }
+
     });
 
   async function getChapterDataFromCloud(chapter) {
@@ -497,17 +501,17 @@ export default function NodeManager({projectName, currUser,
     return num;
   }
 
-  function drawSpltNodeLinksOnce() { //TODO15
+  function updateSpltNodeLinksDataOnce(nodeMap, grid) { //TODO15
     let styleArray = [];
-//TODO only called when initializing, new-node-added, node-deleted, node-moved, 
-//TODO        and when node-link-added, node-link-detached, node-link-changed
+//TODO9 only called when initializing, new-node-added, node-deleted, node-moved, 
+//TODO9        and when node-link-added, node-link-detached, node-link-changed
 
-    gridBlocks.map((rowItem, ir) => {
+    grid.map((rowItem, ir) => {
       rowItem.map((col,ic) => {
-        let currNodeKey = gridBlocks[ir][ic];
+        let currNodeKey = grid[ir][ic];
         if (currNodeKey !== "" 
-            && nodeRelationshipMap[currNodeKey] !== undefined
-            && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter") 
+            && nodeMap[currNodeKey] !== undefined
+            && nodeMap[currNodeKey].nodeType === "LogicSplitter") 
         {
           
             let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
@@ -533,10 +537,10 @@ export default function NodeManager({projectName, currUser,
             let srcNodeHigher = true; 
             let srcNodeAtLeft= true;
 
-            nodeRelationshipMap[currNodeKey].spltLogicPairs.map((item, itemIndex) => {
+            nodeMap[currNodeKey].spltLogicPairs.map((item, itemIndex) => {
      
-                  let nextR = nodeRelationshipMap[item[1]].row;
-                  let nextC = nodeRelationshipMap[item[1]].col;
+                  let nextR = nodeMap[item[1]].row;
+                  let nextC = nodeMap[item[1]].col;
 
                   let destLeftLineVStart = 0;
                   let destLeftLineHStart = 0;
@@ -701,6 +705,7 @@ export default function NodeManager({projectName, currUser,
       })
     })
         
+    console.log("updateSpltNodeLinksDataOnce(), styleArray = ", styleArray);
     setStyleArrHook(styleArray);
 
   }
@@ -1000,23 +1005,24 @@ export default function NodeManager({projectName, currUser,
 
 
 
-            } else if (currNodeKey !== "" 
-              && nodeRelationshipMap[currNodeKey] !== undefined
-              && nodeRelationshipMap[currNodeKey].nodeType === "LogicSplitter"){
-           
-           
-           
-              //case2: is logic-splitter   
-//TODO11 working area
-
-
-
-
-
-            }
+            } 
 
 
           })} 
+
+
+
+
+          {styleArrHook.map((item, index)=>{
+            let keyStr = "StyleArrHook" + index;
+            
+            
+            return (<div key={keyStr}
+              style={{item}}
+            >
+?
+            </div>)
+          })}
             </div>);
     })
 
