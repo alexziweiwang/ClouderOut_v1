@@ -608,21 +608,18 @@ export default function NodeManager({projectName, currUser,
 //TODO12
               if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
                 //such a node exists
-                if(nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter" 
-                && nodeRelationshipMap[currNodeKey].nextNode !== "" 
+                if(nodeRelationshipMap[currNodeKey].nextNode !== "" 
                 && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
                   // not logic-splitter & has next-node
                   hasNextNode = true;
                   nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
 
 
-if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
-  console.log("invalid nodeRelationshipMap[nextNodeKey]: ", nodeRelationshipMap[nextNodeKey]);
-  console.log("from node...", currNodeKey);
-  console.log("to node...", nextNodeKey);
+                  if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
+                    return;
+                  }
 
-  return;
-}
+
                   let nextR = nodeRelationshipMap[nextNodeKey].row;
                   let nextC = nodeRelationshipMap[nextNodeKey].col;
 
@@ -647,146 +644,151 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
                   }
 
 
+                  let keyStr = "linking-singleNode-" + +ic+ "=" + currNodeKey;
+
+
+                                {/* links between nodes */}
+                                return (
+                                  <div key={keyStr}>
+                                  {(currNodeKey !== "" && hasNextNode === true) 
+                                  && 
+                                  <div>
+
+                                        <div 
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${sourceRightLineVStart}px`, 
+                                            "left": `${sourceRightLineHStart}px`, 
+                                            "height": `1px`, 
+                                            "width": `10px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}
+                                          >
+                                          {/* source-node outward-line */}        
+                                        </div>
+                                        
+                                        <div 
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${destLeftLineVStart}px`, 
+                                            "left": `${destLeftLineHStart}px`, 
+                                            "height": `1px`, 
+                                            "width": `10px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}
+                                          >       
+                                          {/* destination-node inward-line */}
+                                        </div>
+
+                                        <div 
+                                          style={{
+                                            "position": "absolute",
+                                            "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                            "left": `${sourceRightLineHStart+10}px`, 
+                                            "height": `${betweenNodesVerticalLink}px`, 
+                                            "width": `1px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}
+                                          >     
+                                          {/* the vertical line, right after the source-node-outward-horizontal-line */}
+                                              {/* always associates with source-node */}
+                                        </div>
+
+                                        {(unitDiffHori > 0) && <div 
+                                          style={{
+                                            "position": "absolute",
+                                            "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                            "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
+                                            "height": `1px`, 
+                                            "width": `${betweenNodesHorizontalLink}px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}
+                                          >
+                                            {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
+                                        </div>}
+
+                                        {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${destLeftLineVStart}px`, 
+                                            "left": `${destLeftLineHStart}px`, 
+                                            "height": `1px`, 
+                                            "width": `${betweenNodesHorizontalLink}px`, 
+                                            "backgroundColor": "blue",
+                                            "borderRadius": `0px`}}                              
+                                          >
+                                            {/* horizontal line from source-node to dest-node, if source-right dest-left */}
+                                          </div>}
+
+                                          {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${destLeftLineVStart-10}px`, 
+                                            "left": `${destLeftLineHStart}px`, 
+                                            "height": `10px`, 
+                                            "width": `1px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}                              
+                                          >
+                                            {/* vertical "turning" part for dest-node, 
+                                                when dest-node is at the same col or left of source-node */}
+                                          </div>}   
+
+                                          {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${destLeftLineVStart-10}px`, 
+                                            "left": `${destLeftLineHStart}px`, 
+                                            "height": `1px`, 
+                                            "width": `10px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}                              
+                                          >
+                                            {/* horizontal "turning" part for dest-node, 
+                                                when dest-node is on the same col or to the left of source-node */}
+                                          </div>}
+
+                                          {(unitDiffVert === 0  && srcNodeAtLeft === false)
+                                          && <div
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${sourceRightLineVStart}px`, 
+                                            "left": `${sourceRightLineHStart+10}px`, 
+                                            "height": `10px`, 
+                                            "width": `1px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}                                     
+                                          >
+                                            {/* vertical part out of source-node if both node on same row */}
+                                          </div>}
+
+                                        {(unitDiffVert === 0 && srcNodeAtLeft === false)
+                                        && <div
+                                          style={{
+                                            "position": "absolute",
+                                            "top": `${sourceRightLineVStart+10}px`, 
+                                            "left": `${sourceRightLineHStart}px`, 
+                                            "height": `1px`, 
+                                            "width": `10px`, 
+                                            "backgroundColor": "#000000",
+                                            "borderRadius": `0px`}}                                  
+                                          >
+                                            {/* horizontal part out of source-node if both node on same row && dest-node at left */}
+                                          </div>}
+
+
+                                  </div>}
+
+
+                                  </div>);
+
 
                 }
               }
-              let keyStr = "linking-singleNode-" + +ic+ "=" + currNodeKey;
+              
 
 
-{/* links between nodes */}
-             return (
-                <div key={keyStr}>
-                {(currNodeKey !== "" && hasNextNode === true) 
-                && 
-                <div>
 
-                      <div 
-                        style={{
-                          "position": "absolute",
-                          "top": `${sourceRightLineVStart}px`, 
-                          "left": `${sourceRightLineHStart}px`, 
-                          "height": `1px`, 
-                          "width": `10px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}
-                        >
-                         {/* source-node outward-line */}        
-                      </div>
-                      
-                      <div 
-                        style={{
-                          "position": "absolute",
-                          "top": `${destLeftLineVStart}px`, 
-                          "left": `${destLeftLineHStart}px`, 
-                          "height": `1px`, 
-                          "width": `10px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}
-                        >       
-                        {/* destination-node inward-line */}
-                      </div>
-
-                      <div 
-                        style={{
-                          "position": "absolute",
-                          "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                          "left": `${sourceRightLineHStart+10}px`, 
-                          "height": `${betweenNodesVerticalLink}px`, 
-                          "width": `1px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}
-                        >     
-                        {/* the vertical line, right after the source-node-outward-horizontal-line */}
-                            {/* always associates with source-node */}
-                      </div>
-
-                      {(unitDiffHori > 0) && <div 
-                        style={{
-                          "position": "absolute",
-                          "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                          "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
-                          "height": `1px`, 
-                          "width": `${betweenNodesHorizontalLink}px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}
-                        >
-                          {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
-                      </div>}
-
-                      {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                        style={{
-                          "position": "absolute",
-                          "top": `${destLeftLineVStart}px`, 
-                          "left": `${destLeftLineHStart}px`, 
-                          "height": `1px`, 
-                          "width": `${betweenNodesHorizontalLink}px`, 
-                          "backgroundColor": "blue",
-                          "borderRadius": `0px`}}                              
-                        >
-                          {/* horizontal line from source-node to dest-node, if source-right dest-left */}
-                        </div>}
-
-                        {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                        style={{
-                          "position": "absolute",
-                          "top": `${destLeftLineVStart-10}px`, 
-                          "left": `${destLeftLineHStart}px`, 
-                          "height": `10px`, 
-                          "width": `1px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}                              
-                        >
-                          {/* vertical "turning" part for dest-node, 
-                              when dest-node is at the same col or left of source-node */}
-                        </div>}   
-
-                        {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                        style={{
-                          "position": "absolute",
-                          "top": `${destLeftLineVStart-10}px`, 
-                          "left": `${destLeftLineHStart}px`, 
-                          "height": `1px`, 
-                          "width": `10px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}                              
-                        >
-                          {/* horizontal "turning" part for dest-node, 
-                              when dest-node is on the same col or to the left of source-node */}
-                        </div>}
-
-                        {(unitDiffVert === 0  && srcNodeAtLeft === false)
-                        && <div
-                        style={{
-                          "position": "absolute",
-                          "top": `${sourceRightLineVStart}px`, 
-                          "left": `${sourceRightLineHStart+10}px`, 
-                          "height": `10px`, 
-                          "width": `1px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}                                     
-                        >
-                          {/* vertical part out of source-node if both node on same row */}
-                        </div>}
-
-                       {(unitDiffVert === 0 && srcNodeAtLeft === false)
-                       && <div
-                        style={{
-                          "position": "absolute",
-                          "top": `${sourceRightLineVStart+10}px`, 
-                          "left": `${sourceRightLineHStart}px`, 
-                          "height": `1px`, 
-                          "width": `10px`, 
-                          "backgroundColor": "#000000",
-                          "borderRadius": `0px`}}                                  
-                        >
-                          {/* horizontal part out of source-node if both node on same row && dest-node at left */}
-                        </div>}
-
-
-                </div>}
-
-
-                </div>);
 
             } else if (currNodeKey !== "" 
               && nodeRelationshipMap[currNodeKey] !== undefined
@@ -796,25 +798,6 @@ if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNo
            
               //case2: is logic-splitter
 
-              let destLeftLineVStart = 0;
-              let destLeftLineHStart = 0;
-              
-              let betweenNodeVerticalUnit = nodeHeight + 10;
-              let betweenNodesVerticalLink = 0;
-
-              let betweenNodeHorizontalUnit = nodeWidth + 22;
-              let betweenNodesHorizontalLink = 0;
-
-              let unitDiffVert = 0;
-              let unitDiffHori = 0;
-
-              let srcNodeHigher = true; 
-              let srcNodeAtLeft= true; 
-
-              let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-              let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
-              let sourceRightLineHEnd = sourceRightLineHStart + 10;
-              let extraHorizontalStart  = 0;
 
          
 //TODO11 working area
@@ -843,6 +826,26 @@ console.log("logic-splt: " + nodeRelationshipMap[item[1]].row + ", " + nodeRelat
 console.log("sl-row = ", nextR);
 console.log("sl-col = ", nextC);
 
+                          let destLeftLineVStart = 0;
+                          let destLeftLineHStart = 0;
+
+                          let betweenNodeVerticalUnit = nodeHeight + 10;
+                          let betweenNodesVerticalLink = 0;
+
+                          let betweenNodeHorizontalUnit = nodeWidth + 22;
+                          let betweenNodesHorizontalLink = 0;
+
+                          let unitDiffVert = 0;
+                          let unitDiffHori = 0;
+
+                          let srcNodeHigher = true; 
+                          let srcNodeAtLeft= true; 
+
+                          let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
+                          let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+                          let sourceRightLineHEnd = sourceRightLineHStart + 10;
+                          let extraHorizontalStart  = 0;
+
 
                           destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
                           destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
@@ -868,158 +871,143 @@ console.log("sl-col = ", nextC);
 
 //TODO11 testing
                           return (
-                            <div>
-                              curr= {destLeftLineVStart}, {destLeftLineHStart}, {extraHorizontalStart}
               
-                            </div>
               
-                        //     <div
-                        //       key={keyStr2}
-                        //       style={{
-           
-                        //         "width": "200px",
-                        //         "height": "200px",
-                        //         "backgroundColor": "purple"
-                        //       }}
-                        //     >
-                        //       <div
-                    
-                        //       >
+
+                            <div key={keyStr2}>
 
 
-                        //       <div 
-                        //         style={{
-                        //           "top": `${sourceRightLineVStart}px`, 
-                        //           "left": `${sourceRightLineHStart}px`, 
-                        //           "height": `1px`, 
-                        //           "width": `10px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}
-                        //         >
-                        //          {/* source-node outward-line */}  
-                        //          source-node outward-line      
-                        //       </div>
+                              <div 
+                                style={{
+                                  "top": `${sourceRightLineVStart}px`, 
+                                  "left": `${sourceRightLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}
+                                >
+                                 {/* source-node outward-line */}  
+                                 source-node outward-line      
+                              </div>
                               
-                        //       <div 
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": `${destLeftLineVStart}px`, 
-                        //           "left": `${destLeftLineHStart}px`, 
-                        //           "height": `1px`, 
-                        //           "width": `10px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}
-                        //         >       
-                        //         {/* destination-node inward-line */}
-                        //         destination-node inward-line
-                        //       </div>
+                              <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}
+                                >       
+                                {/* destination-node inward-line */}
+                                destination-node inward-line
+                              </div>
         
-                        //       <div 
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                        //           "left": `${sourceRightLineHStart+10}px`, 
-                        //           "height": `${betweenNodesVerticalLink}px`, 
-                        //           "width": `1px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}
-                        //         >     
-                        //         {/* the vertical line, right after the source-node-outward-horizontal-line */}
-                        //             {/* always associates with source-node */}
-                        //             the vertical line, right after the source-node-outward-horizontal-line
-                        //       </div>
+                              <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": `${sourceRightLineHStart+10}px`, 
+                                  "height": `${betweenNodesVerticalLink}px`, 
+                                  "width": `1px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}
+                                >     
+                                {/* the vertical line, right after the source-node-outward-horizontal-line */}
+                                    {/* always associates with source-node */}
+                                    the vertical line, right after the source-node-outward-horizontal-line
+                              </div>
         
-                        //       {(unitDiffHori > 0) && <div 
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                        //           "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
-                        //           "height": `1px`, 
-                        //           "width": `${betweenNodesHorizontalLink}px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}
-                        //         >
-                        //           {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
-                        //           horizontal line from source-node to dest-node, if source-left & dest-right
-                        //       </div>}
+                              {(unitDiffHori > 0) && <div 
+                                style={{
+                                  "position": "absolute",
+                                  "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
+                                  "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
+                                  "height": `1px`, 
+                                  "width": `${betweenNodesHorizontalLink}px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}
+                                >
+                                  {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
+                                  horizontal line from source-node to dest-node, if source-left & dest-right
+                              </div>}
         
-                        //       {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": `${destLeftLineVStart}px`, 
-                        //           "left": `${destLeftLineHStart}px`, 
-                        //           "height": `1px`, 
-                        //           "width": `${betweenNodesHorizontalLink}px`, 
-                        //           "backgroundColor": "orange", //blue
-                        //           "borderRadius": `0px`}}                              
-                        //         >
-                        //           {/* horizontal line from source-node to dest-node, if source-right dest-left */}
-                        //           horizontal line from source-node to dest-node, if source-right dest-left
-                        //         </div>}
+                              {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `${betweenNodesHorizontalLink}px`, 
+                                  "backgroundColor": "orange", //blue
+                                  "borderRadius": `0px`}}                              
+                                >
+                                  {/* horizontal line from source-node to dest-node, if source-right dest-left */}
+                                  horizontal line from source-node to dest-node, if source-right dest-left
+                                </div>}
         
-                        //         {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": `${destLeftLineVStart-10}px`, 
-                        //           "left": `${destLeftLineHStart}px`, 
-                        //           "height": `10px`, 
-                        //           "width": `1px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}                              
-                        //         >
-                        //           {/* vertical "turning" part for dest-node, 
-                        //               when dest-node is at the same col or left of source-node */}
-                        //               vertical "turning" part for dest-node, 
-                        //               when dest-node is at the same col or left of source-node
-                        //         </div>}   
+                                {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart-10}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `10px`, 
+                                  "width": `1px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}                              
+                                >
+                                  {/* vertical "turning" part for dest-node, 
+                                      when dest-node is at the same col or left of source-node */}
+                                      vertical "turning" part for dest-node, 
+                                      when dest-node is at the same col or left of source-node
+                                </div>}   
         
-                        //         {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": `${destLeftLineVStart-10}px`, 
-                        //           "left": `${destLeftLineHStart}px`, 
-                        //           "height": `1px`, 
-                        //           "width": `10px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}                              
-                        //         >
-                        //           {/* horizontal "turning" part for dest-node, 
-                        //               when dest-node is on the same col or to the left of source-node */}
-                        //         </div>}
+                                {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${destLeftLineVStart-10}px`, 
+                                  "left": `${destLeftLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}                              
+                                >
+                                  {/* horizontal "turning" part for dest-node, 
+                                      when dest-node is on the same col or to the left of source-node */}
+                                </div>}
         
-                        //         {(unitDiffVert === 0  && srcNodeAtLeft === false)
-                        //         && <div
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": `${sourceRightLineVStart}px`, 
-                        //           "left": `${sourceRightLineHStart+10}px`, 
-                        //           "height": `10px`, 
-                        //           "width": `1px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}                                     
-                        //         >
-                        //           {/* vertical part out of source-node if both node on same row */}
-                        //         </div>}
+                                {(unitDiffVert === 0  && srcNodeAtLeft === false)
+                                && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart}px`, 
+                                  "left": `${sourceRightLineHStart+10}px`, 
+                                  "height": `10px`, 
+                                  "width": `1px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}                                     
+                                >
+                                  {/* vertical part out of source-node if both node on same row */}
+                                </div>}
         
-                        //        {(unitDiffVert === 0 && srcNodeAtLeft === false)
-                        //        && <div
-                        //         style={{
-                        //           "position": "absolute",
-                        //           "top": `${sourceRightLineVStart+10}px`, 
-                        //           "left": `${sourceRightLineHStart}px`, 
-                        //           "height": `1px`, 
-                        //           "width": `10px`, 
-                        //           "backgroundColor": "pink", //#000000
-                        //           "borderRadius": `0px`}}                                  
-                        //         >
-                        //           {/* horizontal part out of source-node if both node on same row && dest-node at left */}
-                        //         </div>}
-        
-        
-                        // </div>
+                               {(unitDiffVert === 0 && srcNodeAtLeft === false)
+                               && <div
+                                style={{
+                                  "position": "absolute",
+                                  "top": `${sourceRightLineVStart+10}px`, 
+                                  "left": `${sourceRightLineHStart}px`, 
+                                  "height": `1px`, 
+                                  "width": `10px`, 
+                                  "backgroundColor": "pink", //#000000
+                                  "borderRadius": `0px`}}                                  
+                                >
+                                  {/* horizontal part out of source-node if both node on same row && dest-node at left */}
+                                </div>}
         
         
-                        //     </div>
+                        </div>
+        
 
                             )
 
