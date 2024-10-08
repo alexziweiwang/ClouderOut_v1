@@ -860,7 +860,8 @@ export default function NodeManager({projectName, currUser,
                                   "backgroundColor": "pink", //#000000
                                   "borderRadius": `0px`};
                                  {/* source-node outward-line */}  
-                             
+                          styleArray.push(obj1); 
+
                           let obj2 = {
                                   "position": "absolute",
                                   "top": `${destLeftLineVStart}px`, 
@@ -870,6 +871,7 @@ export default function NodeManager({projectName, currUser,
                                   "backgroundColor": "pink", //#000000
                                   "borderRadius": `0px`}
                                   {/* destination-node inward-line */}  
+                          styleArray.push(obj2);    
 
                           let obj3 = {
                                   "position": "absolute",
@@ -881,9 +883,10 @@ export default function NodeManager({projectName, currUser,
                                   "borderRadius": `0px`};
                                 {/* the vertical line, right after the source-node-outward-horizontal-line */}
                                     {/* always associates with source-node */}
+                          styleArray.push(obj3);
 
-
-                          let obj4 = {
+                          if (unitDiffHori > 0) {
+                              let obj4 = {
                                   "position": "absolute",
                                   "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
                                   "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
@@ -892,54 +895,64 @@ export default function NodeManager({projectName, currUser,
                                   "backgroundColor": "pink", //#000000
                                   "borderRadius": `0px`}
                                   {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
+                          
+                              styleArray.push(obj4);
+                          }
+        
+                          
+                          // only add obj if ((unitDiffHori <= 0) && (srcNodeAtLeft === false))
+                          if ((unitDiffHori <= 0) && (srcNodeAtLeft === false)) {
+                              let obj5 = {
+                                   "position": "absolute",
+                                   "top": `${destLeftLineVStart}px`, 
+                                   "left": `${destLeftLineHStart}px`, 
+                                   "height": `1px`, 
+                                   "width": `${betweenNodesHorizontalLink}px`, 
+                                   "backgroundColor": "orange", //blue
+                                   "borderRadius": `0px`};
+                              styleArray.push(obj5);
+                              {/* horizontal line from source-node to dest-node
+                                when dest-node is at the same col or to the left of source-node */}
 
-        //TODO12
+                              let obj6 = {
+                                    "position": "absolute",
+                                    "top": `${destLeftLineVStart-10}px`, 
+                                    "left": `${destLeftLineHStart}px`, 
+                                    "height": `10px`, 
+                                    "width": `1px`, 
+                                    "backgroundColor": "pink", //#000000
+                                    "borderRadius": `0px`}
+                              styleArray.push(obj6);      
+                              {/* vertical "turning" part for dest-node, 
+                                when dest-node is at the same col or to the left of source-node */}
 
-//                               {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-//                                 style={{
-//                                   "position": "absolute",
-//                                   "top": `${destLeftLineVStart}px`, 
-//                                   "left": `${destLeftLineHStart}px`, 
-//                                   "height": `1px`, 
-//                                   "width": `${betweenNodesHorizontalLink}px`, 
-//                                   "backgroundColor": "orange", //blue
-//                                   "borderRadius": `0px`}}                              
-//                                 >
-//                                   {/* horizontal line from source-node to dest-node, if source-right dest-left */}
-//                                   horizontal line from source-node to dest-node, if source-right dest-left
-//                                 </div>}
+
+                              let obj7 = {
+                                    "position": "absolute",
+                                    "top": `${destLeftLineVStart-10}px`, 
+                                    "left": `${destLeftLineHStart}px`, 
+                                    "height": `1px`, 
+                                    "width": `10px`, 
+                                    "backgroundColor": "pink", //#000000
+                                    "borderRadius": `0px`}
+                              styleArray.push(obj7);
+                              {/* horizontal "turning" part for dest-node, 
+                                when dest-node is on the same col or to the left of source-node */}
+
+                          }
+                          
+
+
+
+          //TODO12                
+                          if (unitDiffVert === 0  && srcNodeAtLeft === false) {
+   
+                          }
+                          {/* vertical part out of source-node if both node on same row */}
+
+
         
-//                                 {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-//                                 style={{
-//                                   "position": "absolute",
-//                                   "top": `${destLeftLineVStart-10}px`, 
-//                                   "left": `${destLeftLineHStart}px`, 
-//                                   "height": `10px`, 
-//                                   "width": `1px`, 
-//                                   "backgroundColor": "pink", //#000000
-//                                   "borderRadius": `0px`}}                              
-//                                 >
-//                                   {/* vertical "turning" part for dest-node, 
-//                                       when dest-node is at the same col or left of source-node */}
-//                                       vertical "turning" part for dest-node, 
-//                                       when dest-node is at the same col or left of source-node
-//                                 </div>}   
-        
-//                                 {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-//                                 style={{
-//                                   "position": "absolute",
-//                                   "top": `${destLeftLineVStart-10}px`, 
-//                                   "left": `${destLeftLineHStart}px`, 
-//                                   "height": `1px`, 
-//                                   "width": `10px`, 
-//                                   "backgroundColor": "pink", //#000000
-//                                   "borderRadius": `0px`}}                              
-//                                 >
-//                                   {/* horizontal "turning" part for dest-node, 
-//                                       when dest-node is on the same col or to the left of source-node */}
-//                                 </div>}
-        
-//                                 {(unitDiffVert === 0  && srcNodeAtLeft === false)
+//                                 {
 //                                 && <div
 //                                 style={{
 //                                   "position": "absolute",
@@ -950,7 +963,7 @@ export default function NodeManager({projectName, currUser,
 //                                   "backgroundColor": "pink", //#000000
 //                                   "borderRadius": `0px`}}                                     
 //                                 >
-//                                   {/* vertical part out of source-node if both node on same row */}
+//                                   
 //                                 </div>}
         
 //                                {(unitDiffVert === 0 && srcNodeAtLeft === false)
