@@ -148,7 +148,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nodeName: "C1-title", 
               row: 4, 
               col: 0, 
-              spltLogicPairs: [["else", "", "else"],], 
+              spltLogicPairs: [["else", "A1-key", "else"]], 
               display: true, 
               nodeType:"LogicSplitter",
               notes: "",
