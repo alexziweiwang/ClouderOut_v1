@@ -365,6 +365,7 @@
 
 - 2024-Oct-08: Design further for testing-with-emu-user streategy and plans
 
+- 2024-Oct-09: Design optimizzation of game-runtime component flow and structure
 
 
 
