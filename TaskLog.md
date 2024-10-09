@@ -363,7 +363,7 @@
 
 - 2024-Oct-07: Design logic-splitter-node outward links, multiple ideas and thoughts
 
-
+- 2024-Oct-08: Design further for testing-with-emu-user streategy and plans
 
 
 
