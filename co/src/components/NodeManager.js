@@ -682,7 +682,79 @@ export default function NodeManager({projectName, currUser,
                     }
                   })
 
+        } else if (currNodeKey !== "" 
+            && nodeMap[currNodeKey] !== undefined
+            && nodeMap[currNodeKey].nodeType !== "LogicSplitter") {
+//TODO12
+
+           let sourceRightLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (ir);
+              let sourceRightLineHStart = (nodeGap + nodeWidth + nodeGap + 2) * (ic + 1);
+              let sourceRightLineHEnd = sourceRightLineHStart + 10;
+              let extraHorizontalStart  = 0;
+
+              let destLeftLineVStart = 0;
+              let destLeftLineHStart = 0;
+              
+              let betweenNodeVerticalUnit = nodeHeight + nodeGap;
+              let betweenNodesVerticalLink = 0;
+
+              let betweenNodeHorizontalUnit = nodeWidth + nodeGap * 2 + 2;
+              let betweenNodesHorizontalLink = 0;
+
+              let unitDiffVert = 0;
+              let unitDiffHori = 0;
+
+              let nextNodeKey = "";
+
+              let hasNextNode = false;
+              let srcNodeHigher = true; 
+              let srcNodeAtLeft= true; 
+
+
+              if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
+                //such a node exists
+                if(nodeRelationshipMap[currNodeKey].nextNode !== "" 
+                && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
+                  // not logic-splitter & has next-node
+                  hasNextNode = true;
+                  nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
+
+
+                  if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
+                    return;
+                  }
+
+                  let nextR = nodeRelationshipMap[nextNodeKey].row;
+                  let nextC = nodeRelationshipMap[nextNodeKey].col;
+
+                  destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
+                  destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
+                  extraHorizontalStart  = (nodeGap + nodeWidth + nodeGap + 2) * (ir + 1);
+
+                  unitDiffVert = nextR - ir;
+                  if (unitDiffVert > 0) {
+                    srcNodeHigher = false;
+                  } else if (unitDiffVert < 0) {
+                    unitDiffVert = unitDiffVert * -1;
+                  }
+                  betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
+
+                  unitDiffHori = nextC - ic;
+                  if (unitDiffHori <= 0) { //source-node at right, dest-node at left
+                    betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
+                    srcNodeAtLeft = false;
+                  } else {
+                    betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
+                  }
+
+
+                  //TODO add objs for links to next-node
+                  
+                }
+          }  
+//TODO12
         }
+
       })
     })
         
