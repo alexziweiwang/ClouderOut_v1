@@ -17,6 +17,9 @@ export default function NodeManager({projectName, currUser,
     // console.log("Node Manager ?? "); //TODO testing
     // console.log(initialNodeMap); //TODO testing
     // console.log(initialGridBlock); //TODO testing
+  const verticalOffset = 22;
+  const horizontalOffset = 3;
+  const nodeGap = 10;
   
   const [chapterKey, setChapterKey] = useState(initialChapterKey);
 
@@ -516,29 +519,12 @@ export default function NodeManager({projectName, currUser,
             && nodeMap[currNodeKey].nodeType === "LogicSplitter") 
         {
           
-            let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-            let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+            let sourceRightLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (ir);
+            let sourceRightLineHStart = (nodeGap + nodeWidth + nodeGap + 2) * (ic + 1);
             let sourceRightLineHEnd = sourceRightLineHStart + 10;
             let extraHorizontalStart  = 0;
 
-            let destLeftLineVStart = 0;
-            let destLeftLineHStart = 0;
-            
-            let betweenNodeVerticalUnit = nodeHeight + 10;
-            let betweenNodesVerticalLink = 0;
-
-            let betweenNodeHorizontalUnit = nodeWidth + 22;
-            let betweenNodesHorizontalLink = 0;
-
-            let unitDiffVert = 0;
-            let unitDiffHori = 0;
-
-            let nextNodeKey = "";
-
-            let hasNextNode = false;
-            let srcNodeHigher = true; 
-            let srcNodeAtLeft= true;
-
+     
             nodeMap[currNodeKey].spltLogicPairs.map((item, itemIndex) => {
      
                   let nextR = nodeMap[item[1]].row;
@@ -547,10 +533,10 @@ export default function NodeManager({projectName, currUser,
                   let destLeftLineVStart = 0;
                   let destLeftLineHStart = 0;
 
-                  let betweenNodeVerticalUnit = nodeHeight + 10;
+                  let betweenNodeVerticalUnit = nodeHeight + nodeGap;
                   let betweenNodesVerticalLink = 0;
 
-                  let betweenNodeHorizontalUnit = nodeWidth + 22;
+                  let betweenNodeHorizontalUnit = nodeWidth + nodeGap * 2 + 2;
                   let betweenNodesHorizontalLink = 0;
 
                   let unitDiffVert = 0;
@@ -560,9 +546,9 @@ export default function NodeManager({projectName, currUser,
                   let srcNodeAtLeft= true; 
 
                 if (item[1] !== "") {
-                          destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
-                          destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
-                          extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
+                          destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
+                          destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
+                          extraHorizontalStart  = (nodeGap + nodeWidth + nodeGap + 2) * (ir + 1);
 
                           unitDiffVert = nextR - ir;
                           if (unitDiffVert > 0) {
@@ -605,7 +591,7 @@ export default function NodeManager({projectName, currUser,
                           let obj3 = {
                                   "position": "absolute",
                                   "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": `${sourceRightLineHStart+10}px`, 
+                                  "left": `${sourceRightLineHStart+nodeGap}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
                                   "backgroundColor": "red", //#000000
@@ -672,7 +658,7 @@ export default function NodeManager({projectName, currUser,
                               let obj8 = {
                                     "position": "absolute",
                                     "top": `${sourceRightLineVStart}px`, 
-                                    "left": `${sourceRightLineHStart+10}px`, 
+                                    "left": `${sourceRightLineHStart+nodeGap}px`, 
                                     "height": `10px`, 
                                     "width": `1px`, 
                                     "backgroundColor": "red", //#000000
@@ -685,7 +671,7 @@ export default function NodeManager({projectName, currUser,
                           if (unitDiffVert === 0 && srcNodeAtLeft === false) {
                             let obj9 = {
                                     "position": "absolute",
-                                    "top": `${sourceRightLineVStart+10}px`, 
+                                    "top": `${sourceRightLineVStart+nodeGap}px`, 
                                     "left": `${sourceRightLineHStart}px`, 
                                     "height": `1px`, 
                                     "width": `10px`, 
@@ -794,18 +780,18 @@ export default function NodeManager({projectName, currUser,
       
       
                 // case1: not logic-splitter
-              let sourceRightLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (ir);
-              let sourceRightLineHStart = (10 + nodeWidth + 10 + 2) * (ic + 1);
+              let sourceRightLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (ir);
+              let sourceRightLineHStart = (nodeGap + nodeWidth + nodeGap + 2) * (ic + 1);
               let sourceRightLineHEnd = sourceRightLineHStart + 10;
               let extraHorizontalStart  = 0;
 
               let destLeftLineVStart = 0;
               let destLeftLineHStart = 0;
               
-              let betweenNodeVerticalUnit = nodeHeight + 10;
+              let betweenNodeVerticalUnit = nodeHeight + nodeGap;
               let betweenNodesVerticalLink = 0;
 
-              let betweenNodeHorizontalUnit = nodeWidth + 22;
+              let betweenNodeHorizontalUnit = nodeWidth + nodeGap * 2 + 2;
               let betweenNodesHorizontalLink = 0;
 
               let unitDiffVert = 0;
@@ -835,9 +821,9 @@ export default function NodeManager({projectName, currUser,
                   let nextR = nodeRelationshipMap[nextNodeKey].row;
                   let nextC = nodeRelationshipMap[nextNodeKey].col;
 
-                  destLeftLineVStart = 3 + 1 + (nodeHeight / 2) + (nodeHeight + 10) * (nextR);
-                  destLeftLineHStart = 10 + (10 + nodeWidth + 10 + 2) * (nextC);
-                  extraHorizontalStart  = (10 + nodeWidth + 10 + 2) * (ir + 1);
+                  destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
+                  destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
+                  extraHorizontalStart  = (nodeGap + nodeWidth + nodeGap + 2) * (ir + 1);
 
                   unitDiffVert = nextR - ir;
                   if (unitDiffVert > 0) {
@@ -896,7 +882,7 @@ export default function NodeManager({projectName, currUser,
                                           style={{
                                             "position": "absolute",
                                             "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                            "left": `${sourceRightLineHStart+10}px`, 
+                                            "left": `${sourceRightLineHStart+nodeGap}px`, 
                                             "height": `${betweenNodesVerticalLink}px`, 
                                             "width": `1px`, 
                                             "backgroundColor": "#000000",
@@ -965,7 +951,7 @@ export default function NodeManager({projectName, currUser,
                                           style={{
                                             "position": "absolute",
                                             "top": `${sourceRightLineVStart}px`, 
-                                            "left": `${sourceRightLineHStart+10}px`, 
+                                            "left": `${sourceRightLineHStart+nodeGap}px`, 
                                             "height": `10px`, 
                                             "width": `1px`, 
                                             "backgroundColor": "#000000",
@@ -978,7 +964,7 @@ export default function NodeManager({projectName, currUser,
                                         && <div
                                           style={{
                                             "position": "absolute",
-                                            "top": `${sourceRightLineVStart+10}px`, 
+                                            "top": `${sourceRightLineVStart+nodeGap}px`, 
                                             "left": `${sourceRightLineHStart}px`, 
                                             "height": `1px`, 
                                             "width": `10px`, 
