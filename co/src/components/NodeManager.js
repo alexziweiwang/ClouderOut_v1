@@ -508,8 +508,6 @@ export default function NodeManager({projectName, currUser,
 
   function updateSpltNodeLinksDataOnce(nodeMap, grid) { //TODO15
     let styleArray = [];
-//TODO9 only called when initializing, new-node-added, node-deleted, node-moved, 
-//TODO9        and when node-link-added, node-link-detached, node-link-changed
 
     grid.map((rowItem, ir) => {
       rowItem.map((col,ic) => {
@@ -568,11 +566,12 @@ export default function NodeManager({projectName, currUser,
 
 
                           let obj1 = {
+                                  "position": "absolute",
                                   "top": `${sourceRightLineVStart}px`, 
                                   "left": `${sourceRightLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "red", //#000000
+                                  "backgroundColor": "orange", //#000000
                                   "borderRadius": `0px`};
                                  {/* source-node outward-line */}  
                           styleArray.push(obj1); 
@@ -631,7 +630,7 @@ export default function NodeManager({projectName, currUser,
 
                               let obj6 = {
                                     "position": "absolute",
-                                    "top": `${destLeftLineVStart-10}px`, 
+                                    "top": `${destLeftLineVStart-nodeGap}px`, 
                                     "left": `${destLeftLineHStart}px`, 
                                     "height": `10px`, 
                                     "width": `1px`, 
@@ -643,7 +642,7 @@ export default function NodeManager({projectName, currUser,
 
                               let obj7 = {
                                     "position": "absolute",
-                                    "top": `${destLeftLineVStart-10}px`, 
+                                    "top": `${destLeftLineVStart-nodeGap}px`, 
                                     "left": `${destLeftLineHStart}px`, 
                                     "height": `1px`, 
                                     "width": `10px`, 
@@ -681,7 +680,6 @@ export default function NodeManager({projectName, currUser,
                           }
                           {/* horizontal part out of source-node if both node on same row && dest-node at left */}
                     }
-
                   })
 
         }
@@ -690,7 +688,6 @@ export default function NodeManager({projectName, currUser,
         
     console.log("updateSpltNodeLinksDataOnce - func: styleArray = ", styleArray);
     setStyleArrHook(styleArray);
-
   }
 
     return (      
@@ -921,7 +918,7 @@ export default function NodeManager({projectName, currUser,
                                           {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                           style={{
                                             "position": "absolute",
-                                            "top": `${destLeftLineVStart-10}px`, 
+                                            "top": `${destLeftLineVStart-nodeGap}px`, 
                                             "left": `${destLeftLineHStart}px`, 
                                             "height": `10px`, 
                                             "width": `1px`, 
@@ -935,7 +932,7 @@ export default function NodeManager({projectName, currUser,
                                           {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
                                           style={{
                                             "position": "absolute",
-                                            "top": `${destLeftLineVStart-10}px`, 
+                                            "top": `${destLeftLineVStart-nodeGap}px`, 
                                             "left": `${destLeftLineHStart}px`, 
                                             "height": `1px`, 
                                             "width": `10px`, 
