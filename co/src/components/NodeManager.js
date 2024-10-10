@@ -509,8 +509,9 @@ export default function NodeManager({projectName, currUser,
   function addOneNodeLinks(
     givenR, givenC, givenArray, ir, ic,
     sourceRightLineVStart, sourceRightLineHStart, sourceRightLineHEnd) {
-      
+
     let styleArray = givenArray;
+//TODO mark-start "let nextR ="
 
                           let nextR = givenR;
                           let nextC = givenC;
@@ -556,7 +557,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": `${sourceRightLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "orange", //#000000
+                                  "backgroundColor": "#000000", //#000000
                                   "borderRadius": `0px`};
                                  // source-node outward-line  
                           styleArray.push(obj1); 
@@ -567,7 +568,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": `${destLeftLineHStart}px`, 
                                   "height": `1px`, 
                                   "width": `10px`, 
-                                  "backgroundColor": "red", //#000000
+                                  "backgroundColor": "#000000", //#000000
                                   "borderRadius": `0px`}
                                   // destination-node inward-line  
                           styleArray.push(obj2);    
@@ -578,7 +579,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": `${sourceRightLineHStart+nodeGap}px`, 
                                   "height": `${betweenNodesVerticalLink}px`, 
                                   "width": `1px`, 
-                                  "backgroundColor": "red", //#000000
+                                  "backgroundColor": "#000000", //#000000
                                   "borderRadius": `0px`};
                                 // the vertical line, right after the source-node-outward-horizontal-line 
                                     // always associates with source-node 
@@ -591,7 +592,7 @@ export default function NodeManager({projectName, currUser,
                                   "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
                                   "height": `1px`, 
                                   "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "red", //#000000
+                                  "backgroundColor": "#000000", //#000000
                                   "borderRadius": `0px`}
                                   // horizontal line from source-node to dest-node, if source-left & dest-right
                           
@@ -605,9 +606,9 @@ export default function NodeManager({projectName, currUser,
                                    "position": "absolute",
                                    "top": `${destLeftLineVStart}px`, 
                                    "left": `${destLeftLineHStart}px`, 
-                                   "height": `1px`, 
+                                   "height": `2px`, 
                                    "width": `${betweenNodesHorizontalLink}px`, 
-                                   "backgroundColor": "orange", //blue
+                                   "backgroundColor": "blue", //blue
                                    "borderRadius": `0px`};
                               styleArray.push(obj5);
                               // horizontal line from source-node to dest-node
@@ -619,7 +620,7 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${destLeftLineHStart}px`, 
                                     "height": `10px`, 
                                     "width": `1px`, 
-                                    "backgroundColor": "pink", //#000000
+                                    "backgroundColor": "#000000", //#000000
                                     "borderRadius": `0px`}
                               styleArray.push(obj6);      
                               // vertical "turning" part for dest-node, 
@@ -631,7 +632,7 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${destLeftLineHStart}px`, 
                                     "height": `1px`, 
                                     "width": `10px`, 
-                                    "backgroundColor": "red", //#000000
+                                    "backgroundColor": "#000000", //#000000
                                     "borderRadius": `0px`}
                               styleArray.push(obj7);
                               // horizontal "turning" part for dest-node, 
@@ -645,7 +646,7 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${sourceRightLineHStart+nodeGap}px`, 
                                     "height": `10px`, 
                                     "width": `1px`, 
-                                    "backgroundColor": "red", //#000000
+                                    "backgroundColor": "#000000", //#000000
                                     "borderRadius": `0px`};
                               styleArray.push(obj8);
 
@@ -659,13 +660,13 @@ export default function NodeManager({projectName, currUser,
                                     "left": `${sourceRightLineHStart}px`, 
                                     "height": `1px`, 
                                     "width": `10px`, 
-                                    "backgroundColor": "red", //#000000
+                                    "backgroundColor": "#000000", //#000000
                                     "borderRadius": `0px`};
                             styleArray.push(obj9);        
                           }
                           // horizontal part out of source-node if both node on same row && dest-node at left
 
-
+//TODO mark-start "horizontal part out of source-node"
                 return styleArray;
   }
 
@@ -686,166 +687,17 @@ export default function NodeManager({projectName, currUser,
 
      
             nodeMap[currNodeKey].spltLogicPairs.map((item, itemIndex) => {
-     
-                  let nextR = nodeMap[item[1]].row;
-                  let nextC = nodeMap[item[1]].col;
+                    addOneNodeLinks(
+                      nodeMap[item[1]].row, 
+                      nodeMap[item[1]].col, 
+                      styleArray, 
+                      ir, 
+                      ic,
+                      sourceRightLineVStart, 
+                      sourceRightLineHStart, 
+                      sourceRightLineHEnd);
 
-                  let destLeftLineVStart = 0;
-                  let destLeftLineHStart = 0;
-
-                  let betweenNodeVerticalUnit = nodeHeight + nodeGap;
-                  let betweenNodesVerticalLink = 0;
-
-                  let betweenNodeHorizontalUnit = nodeWidth + nodeGap * 2 + 2;
-                  let betweenNodesHorizontalLink = 0;
-
-                  let unitDiffVert = 0;
-                  let unitDiffHori = 0;
-
-                  let srcNodeHigher = true; 
-                  let srcNodeAtLeft= true; 
-
-                if (item[1] !== "") {
-                  //adding for one node ... start
-
-                          destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
-                          destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
-
-                          unitDiffVert = nextR - ir;
-                          if (unitDiffVert > 0) {
-                            srcNodeHigher = false;
-                          } else if (unitDiffVert < 0) {
-                            unitDiffVert = unitDiffVert * -1;
-                          }
-                          betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
-
-                          unitDiffHori = nextC - ic;
-                          if (unitDiffHori <= 0) { //source-node at right, dest-node at left
-                            betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
-                            srcNodeAtLeft = false;
-                          } else {
-                            betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
-                          }
-
-
-                          let obj1 = {
-                                  "position": "absolute",
-                                  "top": `${sourceRightLineVStart}px`, 
-                                  "left": `${sourceRightLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "orange", //#000000
-                                  "borderRadius": `0px`};
-                                 // source-node outward-line  
-                          styleArray.push(obj1); 
-
-                          let obj2 = {
-                                  "position": "absolute",
-                                  "top": `${destLeftLineVStart}px`, 
-                                  "left": `${destLeftLineHStart}px`, 
-                                  "height": `1px`, 
-                                  "width": `10px`, 
-                                  "backgroundColor": "red", //#000000
-                                  "borderRadius": `0px`}
-                                  // destination-node inward-line  
-                          styleArray.push(obj2);    
-
-                          let obj3 = {
-                                  "position": "absolute",
-                                  "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": `${sourceRightLineHStart+nodeGap}px`, 
-                                  "height": `${betweenNodesVerticalLink}px`, 
-                                  "width": `1px`, 
-                                  "backgroundColor": "red", //#000000
-                                  "borderRadius": `0px`};
-                                // the vertical line, right after the source-node-outward-horizontal-line 
-                                    // always associates with source-node 
-                          styleArray.push(obj3);
-
-                          if (unitDiffHori > 0) {
-                              let obj4 = {
-                                  "position": "absolute",
-                                  "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                  "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
-                                  "height": `1px`, 
-                                  "width": `${betweenNodesHorizontalLink}px`, 
-                                  "backgroundColor": "red", //#000000
-                                  "borderRadius": `0px`}
-                                  // horizontal line from source-node to dest-node, if source-left & dest-right
-                          
-                              styleArray.push(obj4);
-                          }
-        
-                          
-                          // only add obj if ((unitDiffHori <= 0) && (srcNodeAtLeft === false))
-                          if ((unitDiffHori <= 0) && (srcNodeAtLeft === false)) {
-                              let obj5 = {
-                                   "position": "absolute",
-                                   "top": `${destLeftLineVStart}px`, 
-                                   "left": `${destLeftLineHStart}px`, 
-                                   "height": `1px`, 
-                                   "width": `${betweenNodesHorizontalLink}px`, 
-                                   "backgroundColor": "orange", //blue
-                                   "borderRadius": `0px`};
-                              styleArray.push(obj5);
-                              // horizontal line from source-node to dest-node
-                              //  when dest-node is at the same col or to the left of source-node 
-
-                              let obj6 = {
-                                    "position": "absolute",
-                                    "top": `${destLeftLineVStart-nodeGap}px`, 
-                                    "left": `${destLeftLineHStart}px`, 
-                                    "height": `10px`, 
-                                    "width": `1px`, 
-                                    "backgroundColor": "pink", //#000000
-                                    "borderRadius": `0px`}
-                              styleArray.push(obj6);      
-                              // vertical "turning" part for dest-node, 
-                              //  when dest-node is at the same col or to the left of source-node 
-
-                              let obj7 = {
-                                    "position": "absolute",
-                                    "top": `${destLeftLineVStart-nodeGap}px`, 
-                                    "left": `${destLeftLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `10px`, 
-                                    "backgroundColor": "red", //#000000
-                                    "borderRadius": `0px`}
-                              styleArray.push(obj7);
-                              // horizontal "turning" part for dest-node, 
-                              //  when dest-node is on the same col or to the left of source-node
-                          }
-                                      
-                          if (unitDiffVert === 0  && srcNodeAtLeft === false) {
-                              let obj8 = {
-                                    "position": "absolute",
-                                    "top": `${sourceRightLineVStart}px`, 
-                                    "left": `${sourceRightLineHStart+nodeGap}px`, 
-                                    "height": `10px`, 
-                                    "width": `1px`, 
-                                    "backgroundColor": "red", //#000000
-                                    "borderRadius": `0px`};
-                              styleArray.push(obj8);
-
-                          }
-                          // vertical part out of source-node if both node on same row 
-
-                          if (unitDiffVert === 0 && srcNodeAtLeft === false) {
-                            let obj9 = {
-                                    "position": "absolute",
-                                    "top": `${sourceRightLineVStart+nodeGap}px`, 
-                                    "left": `${sourceRightLineHStart}px`, 
-                                    "height": `1px`, 
-                                    "width": `10px`, 
-                                    "backgroundColor": "red", //#000000
-                                    "borderRadius": `0px`};
-                            styleArray.push(obj9);        
-                          }
-                          // horizontal part out of source-node if both node on same row && dest-node at left
-
-          //adding for one node ... end
-                    }
-                  })
+            })
 
         } else if (currNodeKey !== "" 
             && nodeMap[currNodeKey] !== undefined
@@ -888,6 +740,8 @@ export default function NodeManager({projectName, currUser,
                     return;
                   }
 
+
+                  
                   let nextR = nodeRelationshipMap[nextNodeKey].row;
                   let nextC = nodeRelationshipMap[nextNodeKey].col;
 
