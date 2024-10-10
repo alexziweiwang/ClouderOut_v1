@@ -511,7 +511,6 @@ export default function NodeManager({projectName, currUser,
     sourceRightLineVStart, sourceRightLineHStart, sourceRightLineHEnd) {
 
     let styleArray = givenArray;
-//TODO mark-start "let nextR ="
 
                           let nextR = givenR;
                           let nextC = givenC;
@@ -530,7 +529,9 @@ export default function NodeManager({projectName, currUser,
 
                           let srcNodeHigher = true; 
                           let srcNodeAtLeft= true; 
-    //TODO borderline
+
+
+
                           destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
                           destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
 
@@ -666,7 +667,6 @@ export default function NodeManager({projectName, currUser,
                           }
                           // horizontal part out of source-node if both node on same row && dest-node at left
 
-//TODO mark-start "horizontal part out of source-node"
                 return styleArray;
   }
 
@@ -702,9 +702,8 @@ export default function NodeManager({projectName, currUser,
         } else if (currNodeKey !== "" 
             && nodeMap[currNodeKey] !== undefined
             && nodeMap[currNodeKey].nodeType !== "LogicSplitter") {
-//TODO12
 
-           let sourceRightLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (ir);
+              let sourceRightLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (ir);
               let sourceRightLineHStart = (nodeGap + nodeWidth + nodeGap + 2) * (ic + 1);
               let sourceRightLineHEnd = sourceRightLineHStart + 10;
 
@@ -739,9 +738,7 @@ export default function NodeManager({projectName, currUser,
                   if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
                     return;
                   }
-
-
-                  
+                 
                   let nextR = nodeRelationshipMap[nextNodeKey].row;
                   let nextC = nodeRelationshipMap[nextNodeKey].col;
 
@@ -764,12 +761,18 @@ export default function NodeManager({projectName, currUser,
                     betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
                   }
 
-
-                  //TODO add objs for links to next-node
+                  addOneNodeLinks(
+                    nextR, 
+                    nextC, 
+                    styleArray, 
+                    ir, 
+                    ic,
+                    sourceRightLineVStart, 
+                    sourceRightLineHStart, 
+                    sourceRightLineHEnd);
 
                 }
           }  
-//TODO12
         }
 
       })
@@ -926,7 +929,7 @@ export default function NodeManager({projectName, currUser,
                   }
 
 
-                  let keyStr = "linking-singleNode-" + +ic+ "=" + currNodeKey;
+      
 
 //TODO15 remove later
                                 // {/* links between nodes */}
