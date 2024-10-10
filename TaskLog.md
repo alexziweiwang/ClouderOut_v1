@@ -366,6 +366,7 @@
 - 2024-Oct-08: Design further for testing-with-emu-user streategy and plans
 
 - 2024-Oct-09: Design optimizzation of game-runtime component flow and structure
+- 2024-Oct-09: Design editor-new-project’s default-game-UI set, scenarios
 
 
 
