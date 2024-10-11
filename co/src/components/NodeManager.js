@@ -332,35 +332,13 @@ export default function NodeManager({projectName, currUser,
       } else {
         console.log("not selected!");
         setAddedGameScreenSize("");
-      }
-            
+      }   
     }
   }
 
   function markNextNeedCloudGameData() {
     setNeedCloudGameData(true);
   }
-
-
-
-  // async function fetchGameDataFromCloud() { //TODO3
-
-  //       console.log("!!! This is for project: ", projectName);
-  //       let project  = projectName;
-  //       console.log("checking2 on project ... [", project, "]");
-  //       if (project === undefined || project === null || project === "" || project.trim() === "") {
-  //         return;
-  //       }
-  //       const isUpdated = true;
-  //       const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
-     
-  //       if (gdataTestResult === undefined) {
-  //         console.log("Error: no game_data in this project...");
-  //         return;
-  //       }
-  //       console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-  //       setGameDataLocal(gdataTestResult);
-  // }
 
   function updateNodeToNewName2() {
     let tempNodeData = nodeRelationshipMap;
@@ -406,8 +384,6 @@ export default function NodeManager({projectName, currUser,
     let c =  tempNodeMap[clickedNodeKey].col;
     tempGridBlocks[r][c] = "";
 
-
-
     // delete the parent-node's next-node
     Object.keys(tempNodeMap).map((nodeKey) => {
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
@@ -429,10 +405,8 @@ export default function NodeManager({projectName, currUser,
         let nextNodeName = tempNodeMap[nodeKey].nextNode;
         if (nextNodeName !== "" && nextNodeName === clickedNodeKey) {
           tempNodeMap[nodeKey].nextNode = "";
-        }
-        
+        } 
       }
-    
     });
 
 
@@ -443,8 +417,6 @@ export default function NodeManager({projectName, currUser,
     updateNodeMapOfChapter(tempNodeMap);
     updateGridBlockOfChapter(tempGridBlocks);
   }
-
-
 
   function updateRenderCounter() {
     setRenderCounter((renderCounter+1) % 100);
@@ -457,7 +429,6 @@ export default function NodeManager({projectName, currUser,
     }
     let len = pairsArr.length;
     
-
       if (len === 0) {
         let pairItem = ["else", lscElseSelected, "else"];
         pairsArr.push(pairItem);
@@ -802,7 +773,7 @@ export default function NodeManager({projectName, currUser,
         </div> */}
         {/* //TODO testing panel area */}
 
-
+{/* Node-list */}
 <div style={{"display": "flex"}}> 
           <div style={{
             "height": "350px", 
@@ -854,238 +825,7 @@ export default function NodeManager({projectName, currUser,
 
 
 {/* link-drawing */}
-<div style={{"position": "absolute"}}>                                                                                      {/* //TODO1 first part */}
- {gridBlocks.map((rowItem, ir) => {
-    let rowKeyStr = "linking" + ir;
-    
-    return (<div key={rowKeyStr} style={{"position": "absolute"}}>
-         {rowItem.map((col,ic) => {
-            let currNodeKey = gridBlocks[ir][ic];
-            
-
-            if (currNodeKey !== "" 
-              && nodeRelationshipMap[currNodeKey] !== undefined 
-              && nodeRelationshipMap[currNodeKey].nodeType !== "LogicSplitter") {
-      
-      
-                // case1: not logic-splitter
-              let sourceRightLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (ir);
-              let sourceRightLineHStart = (nodeGap + nodeWidth + nodeGap + 2) * (ic + 1);
-              let sourceRightLineHEnd = sourceRightLineHStart + 10;
-
-              let destLeftLineVStart = 0;
-              let destLeftLineHStart = 0;
-              
-              let betweenNodeVerticalUnit = nodeHeight + nodeGap;
-              let betweenNodesVerticalLink = 0;
-
-              let betweenNodeHorizontalUnit = nodeWidth + nodeGap * 2 + 2;
-              let betweenNodesHorizontalLink = 0;
-
-              let unitDiffVert = 0;
-              let unitDiffHori = 0;
-
-              let nextNodeKey = "";
-
-              let hasNextNode = false;
-              let srcNodeHigher = true; 
-              let srcNodeAtLeft= true; 
-
-
-              if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
-                //such a node exists
-                if(nodeRelationshipMap[currNodeKey].nextNode !== "" 
-                && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
-                  // not logic-splitter & has next-node
-                  hasNextNode = true;
-                  nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
-
-
-                  if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
-                    return;
-                  }
-
-
-                  let nextR = nodeRelationshipMap[nextNodeKey].row;
-                  let nextC = nodeRelationshipMap[nextNodeKey].col;
-
-                  destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
-                  destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
-
-                  unitDiffVert = nextR - ir;
-                  if (unitDiffVert > 0) {
-                    srcNodeHigher = false;
-                  } else if (unitDiffVert < 0) {
-                    unitDiffVert = unitDiffVert * -1;
-                  }
-                  betweenNodesVerticalLink = unitDiffVert * betweenNodeVerticalUnit + 1;
-
-                  unitDiffHori = nextC - ic;
-                  if (unitDiffHori <= 0) { //source-node at right, dest-node at left
-                    betweenNodesHorizontalLink = ((unitDiffHori * (-1))+1) * betweenNodeHorizontalUnit;
-                    srcNodeAtLeft = false;
-                  } else {
-                    betweenNodesHorizontalLink = unitDiffHori * betweenNodeHorizontalUnit - betweenNodeHorizontalUnit;
-                  }
-
-
-      
-
-//TODO15 remove later
-                                // {/* links between nodes */}
-                                // return (
-                                //   <div key={keyStr}>
-                                //   {(currNodeKey !== "" && hasNextNode === true) 
-                                //   && 
-                                //   <div>
-
-                                //         <div 
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${sourceRightLineVStart}px`, 
-                                //             "left": `${sourceRightLineHStart}px`, 
-                                //             "height": `1px`, 
-                                //             "width": `10px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}
-                                //           >
-                                //           {/* source-node outward-line */}        
-                                //         </div>
-                                        
-                                //         <div 
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${destLeftLineVStart}px`, 
-                                //             "left": `${destLeftLineHStart}px`, 
-                                //             "height": `1px`, 
-                                //             "width": `10px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}
-                                //           >       
-                                //           {/* destination-node inward-line */}
-                                //         </div>
-
-                                //         <div 
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": (srcNodeHigher === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                //             "left": `${sourceRightLineHStart+nodeGap}px`, 
-                                //             "height": `${betweenNodesVerticalLink}px`, 
-                                //             "width": `1px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}
-                                //           >     
-                                //           {/* the vertical line, right after the source-node-outward-horizontal-line */}
-                                //               {/* always associates with source-node */}
-                                //         </div>
-
-                                //         {(unitDiffHori > 0) && <div 
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": (srcNodeAtLeft === false ? `${sourceRightLineVStart}px` : `${destLeftLineVStart}px`), 
-                                //             "left": (srcNodeAtLeft === false ? `${sourceRightLineHStart}px` : `${sourceRightLineHEnd}px`), 
-                                //             "height": `1px`, 
-                                //             "width": `${betweenNodesHorizontalLink}px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}
-                                //           >
-                                //             {/* horizontal line from source-node to dest-node, if source-left & dest-right */}
-                                //         </div>}
-
-                                //         {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${destLeftLineVStart}px`, 
-                                //             "left": `${destLeftLineHStart}px`, 
-                                //             "height": `1px`, 
-                                //             "width": `${betweenNodesHorizontalLink}px`, 
-                                //             "backgroundColor": "blue",
-                                //             "borderRadius": `0px`}}                              
-                                //           >
-                                //             {/* horizontal line from source-node to dest-node, if source-right dest-left */}
-                                //           </div>}
-
-                                //           {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${destLeftLineVStart-nodeGap}px`, 
-                                //             "left": `${destLeftLineHStart}px`, 
-                                //             "height": `10px`, 
-                                //             "width": `1px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}                              
-                                //           >
-                                //             {/* vertical "turning" part for dest-node, 
-                                //                 when dest-node is at the same col or left of source-node */}
-                                //           </div>}   
-
-                                //           {((unitDiffHori <= 0) && (srcNodeAtLeft === false)) && <div
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${destLeftLineVStart-nodeGap}px`, 
-                                //             "left": `${destLeftLineHStart}px`, 
-                                //             "height": `1px`, 
-                                //             "width": `10px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}                              
-                                //           >
-                                //             {/* horizontal "turning" part for dest-node, 
-                                //                 when dest-node is on the same col or to the left of source-node */}
-                                //           </div>}
-
-                                //           {(unitDiffVert === 0  && srcNodeAtLeft === false)
-                                //           && <div
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${sourceRightLineVStart}px`, 
-                                //             "left": `${sourceRightLineHStart+nodeGap}px`, 
-                                //             "height": `10px`, 
-                                //             "width": `1px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}                                     
-                                //           >
-                                //             {/* vertical part out of source-node if both node on same row */}
-                                //           </div>}
-
-                                //         {(unitDiffVert === 0 && srcNodeAtLeft === false)
-                                //         && <div
-                                //           style={{
-                                //             "position": "absolute",
-                                //             "top": `${sourceRightLineVStart+nodeGap}px`, 
-                                //             "left": `${sourceRightLineHStart}px`, 
-                                //             "height": `1px`, 
-                                //             "width": `10px`, 
-                                //             "backgroundColor": "#000000",
-                                //             "borderRadius": `0px`}}                                  
-                                //           >
-                                //             {/* horizontal part out of source-node if both node on same row && dest-node at left */}
-                                //           </div>}
-
-
-                                //   </div>}
-
-
-                                //   </div>);
-
-//TODO15 remove later
-
-                }
-              }
-              
-
-
-
-
-            } 
-
-
-          })} 
-            </div>);
-    })
-
- }
-
-
+<div style={{"position": "absolute"}}>                                                                                    
           {styleArrHook.map((item, index)=>{
             let keyStr = "StyleArrObj-" + index;
             return (<div key={keyStr}
@@ -1093,9 +833,8 @@ export default function NodeManager({projectName, currUser,
             ></div>)
           })}
 </div>
-//TODO11
 
-                                                                                  {/* //TODO1 second part */}
+{/* Node-grid-blocks */}
  <div>
 {gridBlocks.map((rowItem, ir) => {
    let rowKeyStr = "grid" + ir;
