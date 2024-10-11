@@ -371,4 +371,4 @@
 
 - 2024-Oct-10: Design editor-new-project’s default-game-UI set, themes
 - 2024-Oct-10: Design multi-language UI plans, buttons
-
+- 2024-Oct-10: Design multi-language UI plans, instruction labels
