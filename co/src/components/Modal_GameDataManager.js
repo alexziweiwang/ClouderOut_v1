@@ -14,6 +14,15 @@ export default function Modal_GameDataManager ({
         modalStyleName = "displayNone modalBackboard";
     }
 
+    let languageCode = 0;
+    let submitText = ["Submit"];
+    let cancelText = ["Cancel"];
+    let closeText = ["Close"];
+    let saveText = ["Save"];
+    let deleteText = ["Delete"];
+    let editText = ["Edit"];
+
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
         useEffect(() => {
         if (firstTimeEnter === true) {
@@ -224,7 +233,7 @@ export default function Modal_GameDataManager ({
     <div className="modalContent">
         <br></br>
         <button className="cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
-            Close
+            {closeText[languageCode]}
         </button>
 
         <div 
@@ -269,13 +278,13 @@ export default function Modal_GameDataManager ({
 
                             {(editLineDisplay !== key) && 
                                 <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>Edit</button>
-                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>Delete</button>
+                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>{editText[languageCode]}</button>
+                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>{deleteText[languageCode]}</button>
                                 </td>}
                             {(editLineDisplay === key && editAreaOpen === true) && 
                                 <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>Save</button>
-                                    <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>Cancel</button>
+                                    <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText[languageCode]}</button>
+                                    <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText[languageCode]}</button>
                                 </td>}
 
 
@@ -328,8 +337,8 @@ export default function Modal_GameDataManager ({
                     </select>
                     }
                     <br></br>
-                    <button onClick={()=>{showNewVarForm()}}> Cancel </button>
-                    <button onClick={()=>{addVarPair()}}>Submit</button>
+                    <button onClick={()=>{showNewVarForm()}}>{cancelText[languageCode]}</button>
+                    <button onClick={()=>{addVarPair()}}>{submitText[languageCode]}</button>
 
                 </div>
             }
