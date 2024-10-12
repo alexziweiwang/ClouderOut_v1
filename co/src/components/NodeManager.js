@@ -18,7 +18,7 @@ export default function NodeManager({projectName, currUser,
     // console.log("Node Manager ?? "); //TODO testing
     // console.log(initialNodeMap); //TODO testing
     // console.log(initialGridBlock); //TODO testing
-  const verticalOffset = 22;
+  const verticalOffset = 8;
   const horizontalOffset = 3;
   const nodeGap = 10;
   
@@ -139,7 +139,7 @@ export default function NodeManager({projectName, currUser,
 
       //TODO fetch this chapter's all node data
           let chapterKeyTemp = getCurrChapterKey();
-          if (chapterKeyTemp !== chapterKey || firstTimeEnter === true) {
+          if (chapterKeyTemp !== chapterKey) {
             let tempMap = getNodeMapOfChapter();
           
             let gridTemp = getGridBlocks();
@@ -153,12 +153,10 @@ export default function NodeManager({projectName, currUser,
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
             setChapterKey(chapterKeyTemp);
-            updateSpltNodeLinksDataOnce(tempMap, gridTemp);
+            if (firstTimeEnter == false) {
+              updateSpltNodeLinksDataOnce(tempMap, gridTemp);
+            }
           } 
-          //else {//TODO remove later
-            //updateSpltNodeLinksDataOnce(nodeRelationshipMap, gridBlocks);
-          //}//TODO remove later
-
           if (firstTimeEnter === true) {
             // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
             //updateNodeDataActions(chapterData);
@@ -166,7 +164,7 @@ export default function NodeManager({projectName, currUser,
             // console.log("First enter node data: ");
             // console.log(nodeData);
       //      fetchGameDataFromCloud(); //TODO remove later
-
+            updateSpltNodeLinksDataOnce(initialNodeMap, initialGridBlock);
             console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
     
             setFirstTimeEnter(false);
@@ -272,11 +270,15 @@ export default function NodeManager({projectName, currUser,
 
         tempNodeMap[createNewNodeName] = newDataItem;
         setNodeRelationshipMap(tempNodeMap);
+        
 
         let tempGrid = gridBlocks;
         gridBlocks[clickedRow][clickedCol] = createNewNodeName;
         setGridBlocks(tempGrid);
- 
+
+        updateSpltNodeLinksDataOnce(tempNodeMap, tempGrid);
+
+
         // reset the creation layout
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
@@ -412,6 +414,7 @@ export default function NodeManager({projectName, currUser,
 
     setNodeRelationshipMap(tempNodeMap);
     setGridBlocks(tempGridBlocks);
+    updateSpltNodeLinksDataOnce(tempNodeMap, tempGridBlocks);
 
     //update both data structures to outer layer
     updateNodeMapOfChapter(tempNodeMap);
@@ -443,6 +446,7 @@ export default function NodeManager({projectName, currUser,
     let tempNodeRelMap = nodeRelationshipMap;
     tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
     setNodeRelationshipMap(tempNodeRelMap);
+    updateSpltNodeLinksDataOnce(tempNodeRelMap, gridBlocks);
 
   }
 
@@ -460,6 +464,7 @@ export default function NodeManager({projectName, currUser,
     let tempNodeRelMap = nodeRelationshipMap;
     tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempPairs;
     setNodeRelationshipMap(tempNodeRelMap);
+    updateSpltNodeLinksDataOnce(tempNodeRelMap, gridBlocks);
 
     updateRenderCounter();
   }
@@ -699,21 +704,21 @@ export default function NodeManager({projectName, currUser,
               let srcNodeAtLeft= true; 
 
 
-              if (currNodeKey !== "" && nodeRelationshipMap[currNodeKey] !== undefined) {
+              if (currNodeKey !== "" && nodeMap[currNodeKey] !== undefined) {
                 //such a node exists
-                if(nodeRelationshipMap[currNodeKey].nextNode !== "" 
-                && nodeRelationshipMap[currNodeKey].nextNode !== "-") {
+                if(nodeMap[currNodeKey].nextNode !== "" 
+                && nodeMap[currNodeKey].nextNode !== "-") {
                   // not logic-splitter & has next-node
                   hasNextNode = true;
-                  nextNodeKey = nodeRelationshipMap[currNodeKey].nextNode;
+                  nextNodeKey = nodeMap[currNodeKey].nextNode;
 
 
-                  if (nodeRelationshipMap[nextNodeKey] === undefined || nodeRelationshipMap[nextNodeKey] === "") {
+                  if (nodeMap[nextNodeKey] === undefined || nodeMap[nextNodeKey] === "") {
                     return;
                   }
                  
-                  let nextR = nodeRelationshipMap[nextNodeKey].row;
-                  let nextC = nodeRelationshipMap[nextNodeKey].col;
+                  let nextR = nodeMap[nextNodeKey].row;
+                  let nextC = nodeMap[nextNodeKey].col;
 
                   destLeftLineVStart = verticalOffset + 1 + (nodeHeight / 2) + (nodeHeight + nodeGap) * (nextR);
                   destLeftLineHStart = nodeGap + (nodeGap + nodeWidth + nodeGap + 2) * (nextC);
@@ -1004,6 +1009,7 @@ export default function NodeManager({projectName, currUser,
 
                       setNodeRelationshipMap(nodeMapTemp);
                       setGridBlocks(gridBlocksTemp);
+                      updateSpltNodeLinksDataOnce(nodeMapTemp, gridBlocksTemp);
 
                       updateNodeMapOfChapter(nodeMapTemp);
                       updateGridBlockOfChapter(gridBlocksTemp);
@@ -1149,6 +1155,7 @@ export default function NodeManager({projectName, currUser,
                       let tempMap = nodeRelationshipMap;
                       tempMap[clickedNodeKey].nextNode = selectedNextNode;
                       setNodeRelationshipMap(tempMap);
+                      updateSpltNodeLinksDataOnce(tempMap, gridBlocks);
                       setSelectedNextNode("-");
                       updateRenderCounter();
                     }
@@ -1173,7 +1180,7 @@ export default function NodeManager({projectName, currUser,
                       tempMap2[clickedNodeKey].nextNode = "-";
                       setNodeRelationshipMap(tempMap2);
                       updateRenderCounter();
-                      
+                      updateSpltNodeLinksDataOnce(tempMap2, gridBlocks);
                       //updateSpltNodeLinksDataOnce(tempMap2, gridBlocks); //TODO
                     }
                     
@@ -1452,6 +1459,7 @@ export default function NodeManager({projectName, currUser,
                       let tempNodeRelMap = nodeRelationshipMap;
                       tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs;
                       setNodeRelationshipMap(tempNodeRelMap);
+                      updateSpltNodeLinksDataOnce(tempNodeRelMap, gridBlocks);
 
       console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                       
@@ -1498,7 +1506,7 @@ export default function NodeManager({projectName, currUser,
                 setNodeRelationshipMap(tempMap);
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
-                //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+                updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
               }
               
             }}>←</button>
@@ -1521,7 +1529,7 @@ export default function NodeManager({projectName, currUser,
                 setNodeRelationshipMap(tempMap);
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
-                //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+                updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
               }
             }}>↑</button></div>
             <div><button
@@ -1542,7 +1550,7 @@ export default function NodeManager({projectName, currUser,
                   setNodeRelationshipMap(tempMap);
                   let crd = targetR * 10000 + targetC;
                   setClickedNode2(crd);
-                  //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+                  updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
                 }
             }}>↓</button></div>
           </div>
@@ -1565,7 +1573,7 @@ export default function NodeManager({projectName, currUser,
                 setNodeRelationshipMap(tempMap);
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
-                //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+                updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
               }
             }}>→</button>            
           </div>
