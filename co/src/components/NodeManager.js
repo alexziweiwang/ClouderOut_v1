@@ -14,6 +14,7 @@ export default function NodeManager({projectName, currUser,
   loadChapterInfoFromCaller,
 }) {
 
+
     // console.log("Node Manager ?? "); //TODO testing
     // console.log(initialNodeMap); //TODO testing
     // console.log(initialGridBlock); //TODO testing
@@ -119,22 +120,7 @@ export default function NodeManager({projectName, currUser,
    useEffect(() => {
 
   
-              if (firstTimeEnter === true) {
-                // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
-                //updateNodeDataActions(chapterData);
-                        //    setNodeData(chapterData);
-                // console.log("First enter node data: ");
-                // console.log(nodeData);
-          //      fetchGameDataFromCloud(); //TODO remove later
 
-                console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
-                
-                                            // setNodeRelationshipMap(initialNodeMap);  //TODO remove later
-                                            // setGridBlocks(initialGridBlock);  //TODO remove later
-                                            
-                
-                setFirstTimeEnter(false);
-              }
       // console.log("Node Manager ........."); //TODO testing
       // console.log(initialNodeMap); //TODO testing
       // console.log(initialGridBlock); //TODO testing
@@ -153,7 +139,7 @@ export default function NodeManager({projectName, currUser,
 
       //TODO fetch this chapter's all node data
           let chapterKeyTemp = getCurrChapterKey();
-          if (chapterKeyTemp !== chapterKey) {
+          if (chapterKeyTemp !== chapterKey || firstTimeEnter === true) {
             let tempMap = getNodeMapOfChapter();
           
             let gridTemp = getGridBlocks();
@@ -168,8 +154,22 @@ export default function NodeManager({projectName, currUser,
             setGridBlocks(gridTemp);
             setChapterKey(chapterKeyTemp);
             updateSpltNodeLinksDataOnce(tempMap, gridTemp);
-          } else {
-            updateSpltNodeLinksDataOnce(nodeRelationshipMap, gridBlocks);
+          } 
+          //else {//TODO remove later
+            //updateSpltNodeLinksDataOnce(nodeRelationshipMap, gridBlocks);
+          //}//TODO remove later
+
+          if (firstTimeEnter === true) {
+            // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
+            //updateNodeDataActions(chapterData);
+                    //    setNodeData(chapterData);
+            // console.log("First enter node data: ");
+            // console.log(nodeData);
+      //      fetchGameDataFromCloud(); //TODO remove later
+
+            console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
+    
+            setFirstTimeEnter(false);
           }
 
     });
@@ -416,6 +416,7 @@ export default function NodeManager({projectName, currUser,
     //update both data structures to outer layer
     updateNodeMapOfChapter(tempNodeMap);
     updateGridBlockOfChapter(tempGridBlocks);
+    //TODO updateSpltNodeLinksDataOnce(nodeRelationshipMap, gridBlocks);
   }
 
   function updateRenderCounter() {
@@ -642,6 +643,7 @@ export default function NodeManager({projectName, currUser,
   }
 
   function updateSpltNodeLinksDataOnce(nodeMap, grid) { //TODO15
+  
     let styleArray = [];
 
     grid.map((rowItem, ir) => {
@@ -1171,6 +1173,8 @@ export default function NodeManager({projectName, currUser,
                       tempMap2[clickedNodeKey].nextNode = "-";
                       setNodeRelationshipMap(tempMap2);
                       updateRenderCounter();
+                      
+                      //updateSpltNodeLinksDataOnce(tempMap2, gridBlocks); //TODO
                     }
                     
                   }}
@@ -1476,6 +1480,7 @@ export default function NodeManager({projectName, currUser,
 
 <div>
 {clickedNode2 !== -1 && <div className="parallelFrame">
+{/* node-moving */}
           <div>
             <button
               onClick={()=>{
@@ -1493,7 +1498,9 @@ export default function NodeManager({projectName, currUser,
                 setNodeRelationshipMap(tempMap);
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
+                //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
               }
+              
             }}>←</button>
           </div>
           <div>
@@ -1514,6 +1521,7 @@ export default function NodeManager({projectName, currUser,
                 setNodeRelationshipMap(tempMap);
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
+                //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
               }
             }}>↑</button></div>
             <div><button
@@ -1534,6 +1542,7 @@ export default function NodeManager({projectName, currUser,
                   setNodeRelationshipMap(tempMap);
                   let crd = targetR * 10000 + targetC;
                   setClickedNode2(crd);
+                  //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
                 }
             }}>↓</button></div>
           </div>
@@ -1556,6 +1565,7 @@ export default function NodeManager({projectName, currUser,
                 setNodeRelationshipMap(tempMap);
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
+                //updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
               }
             }}>→</button>            
           </div>
