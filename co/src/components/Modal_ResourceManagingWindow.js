@@ -28,7 +28,7 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
     let submitText = ["Submit"];
     let previewText = ["Preview"];
     let addText = ["Add"];
-    let saveToCloud = ["Save to Cloud"];
+    let saveToCloudText = ["Save to Cloud"];
 
 
     if (isDisplay === true) {

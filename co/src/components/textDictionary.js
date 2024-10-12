@@ -1,5 +1,30 @@
 const textDictionary = {
     en: {
+        updateText: "Update",
+        saveText: "Save",
+        manageResourceText: "Manage Resource",
+        collapseText: "Collapse",
+        submitText: "Submit",
+        cancelText: "Cancel",
+        closeText: "Close",
+        saveText: "Save",
+        deleteText: "Delete",
+        editText: "Edit",
+        addNewVariableText: "New Variable",
+        visualResourceText: "Visual Resource",
+        audioResourceText: "Audio Resource",
+        loadResourceListText: "Load Resource List",
+        confirmText: "Confirm",
+        previewText: "Preview",
+        addText: "Add",
+        saveToCloudText: "Save to Cloud",
+        saveChangesText: "Save Changes",
+        manageResourceText: "Manage Resource",
+        gameProgressStrategyText: "Game Progress Strategy",
+        mainPageText: "Main Page",
+        storyPageText: "Story Page",
+        settingsPageText: "Settings Page",
+        playerProfilePageText: "Player Profile Page",
 
     }, 
     chn: {
@@ -11,38 +36,11 @@ const textDictionary = {
 
 }
 
+
 export default textDictionary;
 
 /*
- let manageResourceText = ["Manage Resource"];
-    let updateText = ["Update"];
-    let saveText = ["Save"];
-    let collapseText = ["Collapse"]; 
-    let submitText = ["Submit"];
-    let cancelText = ["Cancel"];
-    let closeText = ["Close"];
-    let saveText = ["Save"];
-    let deleteText = ["Delete"];
-    let editText = ["Edit"];
-    let addNewVariableText = [" + New Variable "];
-    let closeText = ["Close"];
-    let visualResourceText = ["Visual Resource"];
-    let audioResourceText = ["Audio Resource"];
-    let loadResourceListText = ["Load Resource List"];
-    let cancelText = ["Cancel"];
-    let confirmText = ["Confirm"];
-    let submitText = ["Submit"];
-    let previewText = ["Preview"];
-    let addText = ["Add"];
-    let saveToCloud = ["Save to Cloud"];
-    let saveChangesText = ["Save Changes"];
-    let updateText = ["Update"];
-    let manageResourceText = ["Manage Resource"];
-    let gameProgressStrategyText = ["Game Progress Strategy"];
-    let mainPageText = ["Main Page"];
-    let storyPageText = ["Story Page"];
-    let settingsPageText = ["Settings Page"];
-    let playerProfilePageText = ["Player Profile Page"]
+
     let gameStatusDataPageText = ["Game Status Data Page"];
     let shopPageText = ["Shop Page"];
     let duringGamePlayPageText = ["*During Game-play*"];
