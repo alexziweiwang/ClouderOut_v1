@@ -6,6 +6,7 @@ export default function Modal_GameDataManager ({
         resetNeedCloudData, 
         updateGameDataToCloud,
     }) {
+        
     let modalStyleName = "modalBackboard";
 
     if (isDisplay === true) {
@@ -21,6 +22,7 @@ export default function Modal_GameDataManager ({
     let saveText = ["Save"];
     let deleteText = ["Delete"];
     let editText = ["Edit"];
+    let addNewVariableText = [" + New Variable "];
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -304,7 +306,7 @@ export default function Modal_GameDataManager ({
             {!displayNewVarArea && 
                 <div className="addNewGameDataAreaClosed"
                 >
-                    <button onClick={showNewVarForm}> + New Variable </button>
+                    <button onClick={showNewVarForm}>{addNewVariableText[languageCode]}</button>
                 </div>}
             {displayNewVarArea && 
                 <div className="addNewGameDataArea"
