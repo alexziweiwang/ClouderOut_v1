@@ -25,6 +25,27 @@ const textDictionary = {
         storyPageText: "Story Page",
         settingsPageText: "Settings Page",
         playerProfilePageText: "Player Profile Page",
+        gameStatusDataPageText: "Game Status Data Page",
+        shopPageText: "Shop Page",
+        duringGamePlayPageText: "During Game-play",
+        createText: "Create",
+        enterEditorText: "Enter Editor",
+        detachLinkingText: "Detach Linking",
+        addNewConditionTargetText: "Add a New Condition & Target",
+        addConditionText: "Add Condition",
+        addAsNextNodeText: "Add As Next-Node",
+        revertText: "Revert",
+        saveToMyProjectText: "Save To My Project",
+        nodeManageMentText: "Node Management",
+        listOfNodesText: "List of nodes",
+        nodeInfoText: "Node Info",
+        nodeOperationsText: "Node Operations",
+        targetNodesText: "Target Nodes",
+        nextNodeText: "Next Node",
+        resetText: "Reset",
+        manageModeText: "Manage Mode",
+
+
 
     }, 
     chn: {
@@ -41,40 +62,15 @@ export default textDictionary;
 
 /*
 
-    let gameStatusDataPageText = ["Game Status Data Page"];
-    let shopPageText = ["Shop Page"];
-    let duringGamePlayPageText = ["*During Game-play*"];
-  let createText = ["Create"];
-  let cancelText = ["Cancel"];
-  let enterEditorText = ["Enter Editor"];
-  let updateText = ["Update"];
-  let confirmText = ["Confirm"];
-  let detachLinkingText = ["Detach Linking"];
-  let addNewConditionTargetText = ["Add a New Condition & Target"];
-  let addConditionText = ["Add Condition"];
-  let addAsNextNodeText = ["Add As Next-Node"];
-  let deleteText = ["Delete"];
-  let revertText = ["Revert"];
-  let saveToMyProjectText = ["Save To My Project"];
-  let nodeManageMentText = ["Node Management"];
-  let listOfNodesText = ["List of nodes"];
-  let nodeInfoText = ["Node Info"];
-  let nodeOperationsText = ["Node Operations"];
-  let targetNodesText = ["Target Nodes"];
-  let nextNodeText = ["Next Node"];
-  let resetText = ["Reset"];
-    let saveToCloudText = ["Save to Cloud"];
-    let manageModeText = ["Manage Mode"];
     let viewModeText = ["View Mode"];
-    let editText = ["Edit"];
+
     let moveUpText = ["Move Up"];
     let moveDownText = ["Move Down"];
     let duplicateText = ["Duplicate"];
     let insertText = ["Insert"];
-    let deleteText = ["Delete"];
+
     let addNewRowText = ["Add New Row"];
-        let closeText = ["Close"];
-    let resetText = ["Reset"];
+
 
 
 */
