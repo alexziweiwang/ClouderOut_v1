@@ -44,7 +44,12 @@ const textDictionary = {
         nextNodeText: "Next Node",
         resetText: "Reset",
         manageModeText: "Manage Mode",
-
+        viewModeText: "View Mode",
+        moveUpText: "Move Up",
+        moveDownText: "Move Down",
+        duplicateText: "Duplicate",
+        insertText: "Insert",
+        addNewRowText: "Add New Row",
 
 
     }, 
@@ -59,18 +64,3 @@ const textDictionary = {
 
 
 export default textDictionary;
-
-/*
-
-    let viewModeText = ["View Mode"];
-
-    let moveUpText = ["Move Up"];
-    let moveDownText = ["Move Down"];
-    let duplicateText = ["Duplicate"];
-    let insertText = ["Insert"];
-
-    let addNewRowText = ["Add New Row"];
-
-
-
-*/

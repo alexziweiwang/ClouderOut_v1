@@ -4,6 +4,7 @@ import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM }
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
+import langDictionary from './textDictionary';
 
 export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh}) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
@@ -19,16 +20,17 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
     const projName = "project001"; //TODO testing
 
     let languageCode = 0;
-    let closeText = ["Close"];
-    let visualResourceText = ["Visual Resource"];
-    let audioResourceText = ["Audio Resource"];
-    let loadResourceListText = ["Load Resource List"];
-    let cancelText = ["Cancel"];
-    let confirmText = ["Confirm"];
-    let submitText = ["Submit"];
-    let previewText = ["Preview"];
-    let addText = ["Add"];
-    let saveToCloudText = ["Save to Cloud"];
+    let languageCode2 = 'en';
+    let closeText = langDictionary.languageCode2.closeText;
+    let visualResourceText = langDictionary.languageCode2.visualResourceText;
+    let audioResourceText = langDictionary.languageCode2.audioResourceText;
+    let loadResourceListText = langDictionary.languageCode2.loadResourceListText;
+    let cancelText = langDictionary.languageCode2.cancelText;
+    let confirmText = langDictionary.languageCode2.confirmText;
+    let submitText = langDictionary.languageCode2.submitText;
+    let previewText = langDictionary.languageCode2.previewText;
+    let addText = langDictionary.languageCode2.addText;
+    let saveToCloudText = langDictionary.languageCode2.saveToCloudText;
 
 
     if (isDisplay === true) {
