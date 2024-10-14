@@ -861,7 +861,7 @@ export default function NavigationPreview ({
                 this is Player Profile Page<br></br>  
                 <br></br>
 
-                {tryPPText["previewing"] !== false
+                {(tryPPText !== -1 && tryPPText["previewing"] !== false)
                     && 
                     <div style={{
                         "position": "absolute",
@@ -878,7 +878,7 @@ export default function NavigationPreview ({
                     </div>}
 
 
-                {tryPPValue["previewing"] !== false && 
+                {(tryPPValue !== -1 && tryPPValue["previewing"] !== false) && 
                     <div style={{
                         "position": "absolute",
                         "left": `${tryPPValue["posX"]}px`,
@@ -890,7 +890,7 @@ export default function NavigationPreview ({
                         {tryPPValue["labelText"]}: ({tryPPValue["valueItemName"]}'s value here)
                     </div>}
 
-                {tryPPPic["previewing"] !== false && 
+                {(tryPPPic !== -1 && tryPPPic["previewing"] !== false) && 
                 <div style={{
                         "position": "absolute",
                         "left": `${tryPPPic["posX"]}px`,
