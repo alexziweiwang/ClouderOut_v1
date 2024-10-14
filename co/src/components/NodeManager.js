@@ -152,7 +152,7 @@ export default function NodeManager({projectName, currUser,
             setGridBlocks(gridTemp);
             setChapterKey(chapterKeyTemp);
             if (firstTimeEnter == false) {
-              updateSpltNodeLinksDataOnce(tempMap, gridTemp);
+              updateNodeLinkingsOnce(tempMap, gridTemp);
             }
           } 
 
@@ -164,7 +164,7 @@ export default function NodeManager({projectName, currUser,
             // console.log("First enter node data: ");
             // console.log(nodeData);
       //      fetchGameDataFromCloud(); //TODO remove later
-            updateSpltNodeLinksDataOnce(initialNodeMap, initialGridBlock);
+            updateNodeLinkingsOnce(initialNodeMap, initialGridBlock);
             console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
     
             setFirstTimeEnter(false);
@@ -269,14 +269,17 @@ export default function NodeManager({projectName, currUser,
 
 
         tempNodeMap[createNewNodeName] = newDataItem;
-        setNodeRelationshipMap(tempNodeMap);
+        
         
 
         let tempGrid = gridBlocks;
         gridBlocks[clickedRow][clickedCol] = createNewNodeName;
-        setGridBlocks(tempGrid);
+        
 
-        updateSpltNodeLinksDataOnce(tempNodeMap, tempGrid);
+        /* update all node-mappings */
+        setGridBlocks(tempGrid);
+        setNodeRelationshipMap(tempNodeMap);
+        updateNodeLinkingsOnce(tempNodeMap, tempGrid);
 
 
         // reset the creation layout
@@ -412,14 +415,15 @@ export default function NodeManager({projectName, currUser,
     });
 
 
+    /* update all node-mappings */
     setNodeRelationshipMap(tempNodeMap);
     setGridBlocks(tempGridBlocks);
-    updateSpltNodeLinksDataOnce(tempNodeMap, tempGridBlocks);
+    updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks);
 
     //update both data structures to outer layer
     updateNodeMapOfChapter(tempNodeMap);
     updateGridBlockOfChapter(tempGridBlocks);
-    //TODO updateSpltNodeLinksDataOnce(nodeRelationshipMap, gridBlocks);
+    //TODO updateNodeLinkingsOnce(nodeRelationshipMap, gridBlocks);
   }
 
   function updateRenderCounter() {
@@ -445,8 +449,9 @@ export default function NodeManager({projectName, currUser,
                         
     let tempNodeRelMap = nodeRelationshipMap;
     tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
+
     setNodeRelationshipMap(tempNodeRelMap);
-    updateSpltNodeLinksDataOnce(tempNodeRelMap, gridBlocks);
+    updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
 
   }
 
@@ -463,8 +468,9 @@ export default function NodeManager({projectName, currUser,
 
     let tempNodeRelMap = nodeRelationshipMap;
     tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempPairs;
+
     setNodeRelationshipMap(tempNodeRelMap);
-    updateSpltNodeLinksDataOnce(tempNodeRelMap, gridBlocks);
+    updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
 
     updateRenderCounter();
   }
@@ -647,7 +653,7 @@ export default function NodeManager({projectName, currUser,
                 return styleArray;
   }
 
-  function updateSpltNodeLinksDataOnce(nodeMap, grid) { //TODO15
+  function updateNodeLinkingsOnce(nodeMap, grid) { //TODO15
   
     let styleArray = [];
 
@@ -758,7 +764,7 @@ export default function NodeManager({projectName, currUser,
       })
     })
         
-    console.log("updateSpltNodeLinksDataOnce - func: styleArray = ", styleArray);
+    console.log("updateNodeLinkingsOnce - func: styleArray = ", styleArray);
     setStyleArrHook(styleArray);
   }
 
@@ -1013,9 +1019,10 @@ export default function NodeManager({projectName, currUser,
                       let gridBlocksTemp = gridBlocks;
                       gridBlocksTemp[ir][ic] = toRevertNodeKey;
 
+                      /* update all node-mappings */
                       setNodeRelationshipMap(nodeMapTemp);
                       setGridBlocks(gridBlocksTemp);
-                      updateSpltNodeLinksDataOnce(nodeMapTemp, gridBlocksTemp);
+                      updateNodeLinkingsOnce(nodeMapTemp, gridBlocksTemp);
 
                       updateNodeMapOfChapter(nodeMapTemp);
                       updateGridBlockOfChapter(gridBlocksTemp);
@@ -1160,8 +1167,10 @@ export default function NodeManager({projectName, currUser,
                     if (selectedNextNode !== "-") {
                       let tempMap = nodeRelationshipMap;
                       tempMap[clickedNodeKey].nextNode = selectedNextNode;
+
                       setNodeRelationshipMap(tempMap);
-                      updateSpltNodeLinksDataOnce(tempMap, gridBlocks);
+                      updateNodeLinkingsOnce(tempMap, gridBlocks);
+
                       setSelectedNextNode("-");
                       updateRenderCounter();
                     }
@@ -1184,10 +1193,11 @@ export default function NodeManager({projectName, currUser,
                     let resp = window.confirm(confirmStr);
                     if (resp) {
                       tempMap2[clickedNodeKey].nextNode = "-";
+                      
                       setNodeRelationshipMap(tempMap2);
+                      updateNodeLinkingsOnce(tempMap2, gridBlocks);
+
                       updateRenderCounter();
-                      updateSpltNodeLinksDataOnce(tempMap2, gridBlocks);
-                      //updateSpltNodeLinksDataOnce(tempMap2, gridBlocks); //TODO
                     }
                     
                   }}
@@ -1464,8 +1474,9 @@ export default function NodeManager({projectName, currUser,
 
                       let tempNodeRelMap = nodeRelationshipMap;
                       tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs;
+
                       setNodeRelationshipMap(tempNodeRelMap);
-                      updateSpltNodeLinksDataOnce(tempNodeRelMap, gridBlocks);
+                      updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
 
       console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                       
@@ -1505,14 +1516,18 @@ export default function NodeManager({projectName, currUser,
                 let tempGrid = gridBlocks;
                 tempGrid[node.row][node.col] = "";
                 tempGrid[targetR][targetC] = clickedNodeKey;
-                setGridBlocks(tempGrid);
+                
 
                 let tempMap = nodeRelationshipMap;
                 tempMap[clickedNodeKey].col = targetC;
-                setNodeRelationshipMap(tempMap);
+                
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
-                updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+
+                /* update all node-mappings */
+                setGridBlocks(tempGrid);
+                setNodeRelationshipMap(tempMap);
+                updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
               }
               
             }}>←</button>
@@ -1528,14 +1543,18 @@ export default function NodeManager({projectName, currUser,
                 let tempGrid = gridBlocks;
                 tempGrid[node.row][node.col] = "";
                 tempGrid[targetR][targetC] = clickedNodeKey;
-                setGridBlocks(tempGrid);
+                
 
                 let tempMap = nodeRelationshipMap;
                 tempMap[clickedNodeKey].row = targetR;
-                setNodeRelationshipMap(tempMap);
+                
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
-                updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+
+                /* update all node-mappings */
+                setGridBlocks(tempGrid);
+                setNodeRelationshipMap(tempMap);
+                updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
               }
             }}>↑</button></div>
             <div><button
@@ -1549,14 +1568,18 @@ export default function NodeManager({projectName, currUser,
                   let tempGrid = gridBlocks;
                   tempGrid[node.row][node.col] = "";
                   tempGrid[targetR][targetC] = clickedNodeKey;
-                  setGridBlocks(tempGrid);
+                  
 
                   let tempMap = nodeRelationshipMap;
                   tempMap[clickedNodeKey].row = targetR;
-                  setNodeRelationshipMap(tempMap);
+                  
                   let crd = targetR * 10000 + targetC;
                   setClickedNode2(crd);
-                  updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+
+                  /* update all node-mappings */
+                  setGridBlocks(tempGrid);
+                  setNodeRelationshipMap(tempMap);
+                  updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
                 }
             }}>↓</button></div>
           </div>
@@ -1572,14 +1595,17 @@ export default function NodeManager({projectName, currUser,
                 let tempGrid = gridBlocks;
                 tempGrid[node.row][node.col] = "";
                 tempGrid[targetR][targetC] = clickedNodeKey;
-                setGridBlocks(tempGrid);
-
+                
                 let tempMap = nodeRelationshipMap;
                 tempMap[clickedNodeKey].col = targetC;
-                setNodeRelationshipMap(tempMap);
+                
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
-                updateSpltNodeLinksDataOnce(tempMap, tempGrid); //TODO
+
+                /* update all node-mappings */
+                setGridBlocks(tempGrid);
+                setNodeRelationshipMap(tempMap);
+                updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
               }
             }}>→</button>            
           </div>
