@@ -816,7 +816,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function updateChosenChapterItem(chapterKey) {
-    setCurrChapterKey(chapterKey);
+ 
+console.log("clicked on chapter-key: ", chapterKey); //TODO testing
+
+    if (chapterKey !== "") {
+      setCurrChapterKey(chapterKey);
+    }
   } 
   
   function updateChapterList(chapterData) {

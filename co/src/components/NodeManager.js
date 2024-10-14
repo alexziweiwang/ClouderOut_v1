@@ -143,9 +143,7 @@ export default function NodeManager({projectName, currUser,
             let tempMap = getNodeMapOfChapter();
           
             let gridTemp = getGridBlocks();
-            //TODO draw gridBlocks of this chapter
-          
-            //TODO considerations of col & row, etc.   
+  
                                             // console.log("::: getters...........");
                                             // console.log(tempMap); //TODO testing
                                             // console.log(gridTemp); //TODO testing
@@ -157,6 +155,8 @@ export default function NodeManager({projectName, currUser,
               updateSpltNodeLinksDataOnce(tempMap, gridTemp);
             }
           } 
+
+
           if (firstTimeEnter === true) {
             // let chapterData = getChapterDataFromCloud(chapter); //TODO: call in later stage
             //updateNodeDataActions(chapterData);
@@ -665,15 +665,17 @@ export default function NodeManager({projectName, currUser,
 
      
             nodeMap[currNodeKey].spltLogicPairs.map((item, itemIndex) => {
-                    addOneNodeLinks(
-                      nodeMap[item[1]].row, 
-                      nodeMap[item[1]].col, 
-                      styleArray, 
-                      ir, 
-                      ic,
-                      sourceRightLineVStart, 
-                      sourceRightLineHStart, 
-                      sourceRightLineHEnd);
+                    if (item[1] !== "") {
+                        addOneNodeLinks(
+                          nodeMap[item[1]].row, 
+                          nodeMap[item[1]].col, 
+                          styleArray, 
+                          ir, 
+                          ic,
+                          sourceRightLineVStart, 
+                          sourceRightLineHStart, 
+                          sourceRightLineHEnd);
+                    }
 
             })
 
@@ -780,12 +782,16 @@ export default function NodeManager({projectName, currUser,
         </div> */}
         {/* //TODO testing panel area */}
 
-{/* Node-list */}
+
 <div style={{"display": "flex"}}> 
+
+
+
+
+{/* Node-list */}
           <div style={{
             "height": "350px", 
-            "marginRight": "20px",
-          
+            "marginRight": "20px",      
           }}>
 
                 {listOfNodesText[languageCode]}:<br></br>
@@ -831,77 +837,77 @@ export default function NodeManager({projectName, currUser,
 
 
 
-{/* link-drawing */}
-<div style={{"position": "absolute"}}>                                                                                    
-          {styleArrHook.map((item, index)=>{
-            let keyStr = "StyleArrObj-" + index;
-            return (<div key={keyStr}
-              style={item}
-            ></div>)
-          })}
-</div>
+    {/* link-drawing */}
+    <div style={{"position": "absolute"}}>                                                                                    
+              {styleArrHook.map((item, index)=>{
+                let keyStr = "StyleArrObj-" + index;
+                return (<div key={keyStr}
+                  style={item}
+                ></div>)
+              })}
+    </div>
 
-{/* Node-grid-blocks */}
- <div>
-{gridBlocks.map((rowItem, ir) => {
-   let rowKeyStr = "grid" + ir;
-    return (<div key={rowKeyStr} className="parallelFrame gridRow">
-          {rowItem.map((col,ic) => {
-            let content = gridBlocks[ir][ic];
-  
-            let crd = ir * 10000 + ic;
-            let keyStr = "grid" + +ic+ "=" + content;
-            return (
-              <div key={keyStr} className="parallelFrame gridNodeGroup">
-                <div 
-                      style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
-                      className={
-                        crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
-                        
-                      onClick={()=>{       
-                 
-                        if (crd === clickedNode2) { //cancel if already clicked
-                          setClickedNode2(-1);
-                        } else {//setup clicked node
-                          setClickedNode2(crd);
-                        }       
-                  
-                        if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
-                          setAddNewNodeAreaDisplay(true);
-                        }
-
-                        if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
-                          setAddNewNodeAreaDisplay(false);
-                        }
-
-                        if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
-                          setAddNewNodeAreaDisplay(false);
-                        }
-
-                        setClickedNodeKey(content);
-                  
-                    }}
-                      >
-                        {content !== "" && nodeRelationshipMap[content] !== undefined
-                        && 
-                          <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
-                        {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
-                        {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
+    {/* Node-grid-blocks */}
+      <div>
+      {gridBlocks.map((rowItem, ir) => {
+        let rowKeyStr = "grid" + ir;
+          return (<div key={rowKeyStr} className="parallelFrame gridRow">
+                {rowItem.map((col,ic) => {
+                  let content = gridBlocks[ir][ic];
+        
+                  let crd = ir * 10000 + ic;
+                  let keyStr = "grid" + +ic+ "=" + content;
+                  return (
+                    <div key={keyStr} className="parallelFrame gridNodeGroup">
+                      <div 
+                            style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
+                            className={
+                              crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
+                              
+                            onClick={()=>{       
                       
-                </div>
+                              if (crd === clickedNode2) { //cancel if already clicked
+                                setClickedNode2(-1);
+                              } else {//setup clicked node
+                                setClickedNode2(crd);
+                              }       
+                        
+                              if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
+                                setAddNewNodeAreaDisplay(true);
+                              }
 
-                <div></div>
-       
-              </div>)
-          })}
-    
+                              if (clickedNode2 !== "" && clickedNode2 == crd) {//get clicked & was clicked last time: cancel
+                                setAddNewNodeAreaDisplay(false);
+                              }
+
+                              if (clickedNode2 !== "" && content !== "") {// clicked on a non-empty grid
+                                setAddNewNodeAreaDisplay(false);
+                              }
+
+                              setClickedNodeKey(content);
+                        
+                          }}
+                            >
+                              {content !== "" && nodeRelationshipMap[content] !== undefined
+                              && 
+                                <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
+                              {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+                              {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
+                            
+                      </div>
+
+                      <div></div>
+            
+                    </div>)
+                })}
+          
 
 
-            </div>);
-    })
+                  </div>);
+          })
 
-}
-</div>
+      }
+      </div>
 
 
 </div>}

@@ -33,7 +33,7 @@ export default function ChapterManager({
   const [editingChapterNote, setEditingChapterNote] = useState("");
 
   const [editedLine, setEditedLine] = useState(-1);
-  const [selectedChptKey, setSelectedChpt] = useState(-1);
+  const [selectedChptKey, setSelectedChpt] = useState("");
   const [isAddNewChpater, setIsAddNewChapter] = useState(false);
   const [deletedLocalList, setDeletedLocalList] = useState([]);
   const [isRevertingChapter, setIsRevertingChapter] = useState(false);
@@ -112,14 +112,14 @@ export default function ChapterManager({
 
       updateBothLocalAndOuterChapterData(tempChapterData);
 
-      setSelectedChpt(-1);
+      setSelectedChpt("");
     }
 
   }
   
   function handleSelectChapterKey(item) {
     if (selectedChptKey === item[0]) {
-      setSelectedChpt(-1);
+      setSelectedChpt("");
     } else {
       setSelectedChpt(item[0]);
       updateChosenChapterItem(item[0]); // sends chapter-key info
@@ -249,7 +249,7 @@ export default function ChapterManager({
                         style={{"textDecoration": "underline"}}
                         onClick={()=>{
                           setIsAddNewChapter(!isAddNewChpater);
-                          setSelectedChpt(-1);
+                          setSelectedChpt("");
                           updateChosenChapterItem("");
 console.log("chapterData: ", chapterData); //TODO testing
                         }}>
