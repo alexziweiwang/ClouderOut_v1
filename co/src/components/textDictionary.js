@@ -49,6 +49,8 @@ const textDictionary = {
         insertText: "Insert",
         addNewRowText: "Add New Row",
         chapterManagementText: "Chapter Management",
+        newProjectButtonText: "New Project",
+        myProjectsButtonText: "My Project"
     }, 
     chn: {
         updateText: "更新",
@@ -100,6 +102,8 @@ const textDictionary = {
         insertText: "插入",
         addNewRowText: "添加新一行",
         chapterManagementText: "章节管理",
+        newProjectButtonText: "新项目",
+        myProjectsButtonText: "我的项目"
     },
     jp: {
 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import ProjectManageNew from './ProjectManageNew';
+import langDictionary from './textDictionary';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
@@ -13,9 +14,18 @@ export default function Dashboard() {
     const uname = "user002";
     const navigate = useNavigate();
 
-    const languageCode = 0;
-    const myProjectsButtonText = ["My Projects"];
-    const newProjectButtonText = ["New Project"];
+    let languageCodeTextOption = 'en';
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    const myProjectsButtonText = textDictItem.myProjectsButtonText !== undefined ?
+          textDictItem.myProjectsButtonText
+          : textDictItemDefault.myProjectsButtonText;
+    
+    const newProjectButtonText = textDictItem.newProjectButtonText !== undefined ?
+          textDictItem.newProjectButtonText
+          : textDictItemDefault.newProjectButtonText;
+    
 
     const [showNewProjCreationPage, setShowNewProjCreationPage] = useState(false);
 
@@ -53,13 +63,13 @@ export default function Dashboard() {
         <div className="dashboard_grid" style={{"marginRight": "20px"}}
           onClick={()=>{projectManageNew()}}
         >
-          {newProjectButtonText[languageCode]}
+          {newProjectButtonText}
         </div>
 
         <div className="dashboard_grid" style={{"marginRight": "20px"}}
           onClick={()=>{goToProjectManagingPanel()}}
         >
-          {myProjectsButtonText[languageCode]}
+          {myProjectsButtonText}
         </div>
 
         <div className="dashboard_grid" style={{"marginRight": "20px"}}>
