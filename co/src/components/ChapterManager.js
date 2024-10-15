@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import langDictionary from './textDictionary';
 
 export default function ChapterManager({
   initialChapterData, updateChapterData, 
@@ -10,15 +11,38 @@ export default function ChapterManager({
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
 //TODO3: add getChapterData (from caller) : "getChapterDataInfo()"
+  let languageCodeTextOption = 'en';
+  let textDictItem = langDictionary[languageCodeTextOption];
+  let textDictItemDefault = langDictionary["en"];
 
-  const languageCode = 0;
-  const saveText = ["Save"];
-  const cancelText = ["Cancel"];
-  const deleteText = ["Delete"];
-  const addText = ["Add"];
-  const collapseText = ["Collapse"];
-  const revertText = ["Revert"];
-  const chapterManagementText = ["Chapter Management"];
+
+  let saveText = textDictItem.saveText !== undefined ?
+        textDictItem.saveText
+        : textDictItemDefault.saveText;
+
+  let cancelText = textDictItem.cancelText !== undefined ?
+        textDictItem.cancelText
+        : textDictItemDefault.cancelText;
+
+  let deleteText = textDictItem.deleteText !== undefined ?
+        textDictItem.deleteText
+        : textDictItemDefault.deleteText;
+
+  let addText = textDictItem.addText !== undefined ?
+        textDictItem.addText
+        : textDictItemDefault.addText;
+
+  let collapseText = textDictItem.collapseText !== undefined ?
+        textDictItem.collapseText
+        : textDictItemDefault.collapseText;
+
+  let revertText = textDictItem.revertText !== undefined ?
+        textDictItem.revertText
+        : textDictItemDefault.revertText;
+
+  let chapterManagementText = textDictItem.chapterManagementText !== undefined ?
+        textDictItem.chapterManagementText
+        : textDictItemDefault.chapterManagementText;
 
   
   //TODO other text on UI - localization
@@ -208,10 +232,10 @@ export default function ChapterManager({
                               setEditingChapterNote(event.target.value);
                             }}></textarea>
                             <br></br>
-                            <button onClick={()=>{setEditingChapterNote("");}}>{cancelText[languageCode]}</button>
+                            <button onClick={()=>{setEditingChapterNote("");}}>{cancelText}</button>
                             <button onClick={()=>{
                               changeChapterNote(index, editingChapterNote);
-                            }}>{saveText[languageCode]}</button>
+                            }}>{saveText}</button>
 
                             <br></br>
                             <br></br>
@@ -223,14 +247,14 @@ export default function ChapterManager({
                               }}>
                             </input>
                             <br></br>
-                            <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText[languageCode]}</button>
-                            <button onClick={()=>{changeChapterTitle(index, editingChapterTitle);}}>{saveText[languageCode]}</button>
+                            <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText}</button>
+                            <button onClick={()=>{changeChapterTitle(index, editingChapterTitle);}}>{saveText}</button>
                             
                             <br></br>
                             <br></br>                          
                             <label>Delete Chapter</label><br></br>
                             <button onClick={()=>{hideChapter(index);}}>
-                              {deleteText[languageCode]}
+                              {deleteText}
                             </button>
                               
                             <br></br>
@@ -267,7 +291,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                         <label>New Chapter Note (for game-creators): </label><br></br>
                         <input></input>
                         <br></br><br></br>
-                        <button onClick={()=>{addNewChapterItem();}}>{addText[languageCode]}</button>
+                        <button onClick={()=>{addNewChapterItem();}}>{addText}</button>
                       </div>}
                         
                       <br></br><br></br>
@@ -283,7 +307,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                               {deletedLocalList.map((item, index) => {
                                 return (<label key={index}>{item[0]}, {item[1]} 
                                   <button onClick={()=>{revertChapter(item[0]);}}>
-                                    {revertText[languageCode]}
+                                    {revertText}
                                   </button ></label>);
                               })}
 
@@ -306,14 +330,14 @@ console.log("chapterData: ", chapterData); //TODO testing
                 </div>
 
                   <div>
-                    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>{collapseText[languageCode]}</button>
+                    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>{collapseText}</button>
                   </div>     
         </div>
         }
 
 
         {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>
-          {chapterManagementText[languageCode]}
+          {chapterManagementText}
           </button>}
 
 

@@ -25,7 +25,6 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         textDictItem.saveText
         : textDictItemDefault.saveText;
 
-
     let collapseText = textDictItem.collapseText !== undefined ?
         textDictItem.collapseText
         : textDictItemDefault.collapseText;

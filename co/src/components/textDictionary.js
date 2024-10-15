@@ -48,6 +48,7 @@ const textDictionary = {
         duplicateText: "Duplicate",
         insertText: "Insert",
         addNewRowText: "Add New Row",
+        chapterManagementText: "Chapter Management",
     }, 
     chn: {
         updateText: "更新",
@@ -66,7 +67,7 @@ const textDictionary = {
         confirmText: "确认",
         previewText: "预览",
         addText: "添加",
-        saveToCloudText: "储存到云",
+        saveToCloudText: "保存到云",
         saveChangesText: "将变更保存",
         gameProgressStrategyText: "游戏进度策略",
         mainPageText: "主页",
@@ -83,7 +84,7 @@ const textDictionary = {
         addConditionText: "添加条件",
         addAsNextNodeText: "作为下一节点添加",
         revertText: "恢复",
-        saveToMyProjectText: "存入我的项目",
+        saveToMyProjectText: "保存到我的项目",
         nodeManageMentText: "节点管理",
         listOfNodesText: "节点列表",
         nodeInfoText: "节点信息",
@@ -98,6 +99,7 @@ const textDictionary = {
         duplicateText: "复制",
         insertText: "插入",
         addNewRowText: "添加新一行",
+        chapterManagementText: "章节管理",
     },
     jp: {
 
