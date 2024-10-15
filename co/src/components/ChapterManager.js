@@ -330,7 +330,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                 </div>
 
                   <div>
-                    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>{collapseText}</button>
+                    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>︽</button>
                   </div>     
         </div>
         }
