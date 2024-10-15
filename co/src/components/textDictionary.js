@@ -50,7 +50,12 @@ const textDictionary = {
         addNewRowText: "Add New Row",
         chapterManagementText: "Chapter Management",
         newProjectButtonText: "New Project",
-        myProjectsButtonText: "My Project"
+        myProjectsButtonText: "My Project",
+        resourceManagerButtonText: "Resource Manager",
+        contentChaptersTabText: "Content Chapters",
+        menuNavigationsTabText: "Menu & Navigations",
+        gameDataManagerButtonText: "Game Data Manager",
+
     }, 
     chn: {
         updateText: "更新",
@@ -103,7 +108,13 @@ const textDictionary = {
         addNewRowText: "添加新一行",
         chapterManagementText: "章节管理",
         newProjectButtonText: "新项目",
-        myProjectsButtonText: "我的项目"
+        myProjectsButtonText: "我的项目",
+        resourceManagerButtonText: "资源管理器",
+        contentChaptersTabText: "内容章节",
+        menuNavigationsTabText: "菜单 & 导航栏",
+        gameDataManagerButtonText: "游戏数据管理器",
+
+
     },
     jp: {
 

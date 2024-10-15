@@ -14,21 +14,38 @@ import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
 import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import langDictionary from './textDictionary';
 
 
 export default function GameMaker({username, projectName}) {
 
   
 
+  let languageCodeTextOption = 'chn';
+
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO
 
+  let textDictItem = langDictionary[languageCodeTextOption];
+  let textDictItemDefault = langDictionary["en"];
 
-  const languageCode = 0;
-  const resourceManagerButtonText = ["Resource Manager"];
-  const gameDataManagerButtonText = ["Game-Data Manager"];
-  const contentChaptersTabText = ["Content Chapters"];
-  const menuNavigationsTabText = ["Menu & Navigations"];
+  const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
+        textDictItem.resourceManagerButtonText
+        : textDictItemDefault.resourceManagerButtonText;
+
+  const gameDataManagerButtonText = textDictItem.gameDataManagerButtonText !== undefined ?
+        textDictItem.gameDataManagerButtonText
+        : textDictItemDefault.gameDataManagerButtonText;
+  
+  const contentChaptersTabText = textDictItem.contentChaptersTabText !== undefined ?
+        textDictItem.contentChaptersTabText
+        : textDictItemDefault.contentChaptersTabText;
+  
+  
+  const menuNavigationsTabText = textDictItem.menuNavigationsTabText !== undefined ?
+        textDictItem.menuNavigationsTabText
+        : textDictItemDefault.menuNavigationsTabText;
+
 
 
 
@@ -1027,8 +1044,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       >Test ▶︎ </button>
 
 
-      <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText[languageCode]} </button>
-      <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText[languageCode]}</button>
+      <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
+      <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
    
     </div>
 
@@ -1046,8 +1063,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
     <div>
-      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText[languageCode]}</button>
-      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText[languageCode]}</button>
+      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
+      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
     </div>
     
     {showChapterMaker && <div className="parallelFrame sectionArea">
