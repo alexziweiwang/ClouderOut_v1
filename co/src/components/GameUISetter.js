@@ -1,17 +1,35 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import langDictionary from './textDictionary';
 
 export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, updateConvLogUISettings, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
 }) {
     const screenWidth = 800;
     const screenHeight = 600;
+    let languageCodeTextOption = 'en';
 
-    let languageCode = 0;
-    let manageResourceText = ["Manage Resource"];
-    let updateText = ["Update"];
-    let saveText = ["Save"];
-    let collapseText = ["Collapse"]; 
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+
+    let manageResourceText = textDictItem.manageResourceText !== undefined ?
+        textDictItem.manageResourceText
+        : textDictItemDefault.manageResourceText;
+    
+    let updateText = textDictItem.updateText !== undefined ?
+        textDictItem.updateText
+        : textDictItemDefault.updateText;
+
+    let saveText = textDictItem.saveText !== undefined ?
+        textDictItem.saveText
+        : textDictItemDefault.saveText;
+
+
+    let collapseText = textDictItem.collapseText !== undefined ?
+        textDictItem.collapseText
+        : textDictItemDefault.collapseText;
+
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -189,7 +207,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
-                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
          
                 </>}
         <br></br><label>Gap between buttons: </label>
@@ -343,7 +361,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         onClick={()=>{
             setOpenDefaultButtonSection(false);
         }}
-    >{collapseText[languageCode]} ︽</div>
+    >{collapseText} ︽</div>
 
 </div>}
 
@@ -415,7 +433,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             );
                     })}
             </select>
-        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button></>}
+        <button onClick={() => {openRm()}}>{manageResourceText}</button></>}
 
     <br></br><label>Font: </label>
 
@@ -527,7 +545,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             onClick={()=>{
                     setOpenTextFrameSection(false);
                 }}
-            >{collapseText[languageCode]} ︽</div>
+            >{collapseText} ︽</div>
                 </div>
 
 </div>}
@@ -566,7 +584,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                         <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
                                     );
                             })}
-                        </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                        </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
                     <br></br>
                     <label>Display Text:</label>
                     <input value={auto0DisplayText}
@@ -576,7 +594,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
                     <button onClick={()=>{
                         setConvNav({...convNav,  "buttonAutoDisplayText0": auto0DisplayText});     
-                    }}>{updateText[languageCode]}</button>
+                    }}>{updateText}</button>
                     <br></br>
             </div>
 
@@ -600,7 +618,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                         <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
                                     );
                             })}
-                        </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                        </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
                     <br></br>
                     <label>Display Text:</label>
                     <input value={auto1DisplayText}
@@ -610,7 +628,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
                     <button onClick={()=>{
                         setConvNav({...convNav,  "buttonAutoDisplayText1": auto1DisplayText});     
-                    }}>{updateText[languageCode]}</button>
+                    }}>{updateText}</button>
                     <br></br>
             </div>
 
@@ -657,7 +675,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
                             );
                     })}
-                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
             <br></br>
             <input value={logDisplayText}
                         onChange={(event)=>{
@@ -666,7 +684,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
                     <button onClick={()=>{
                         setConvNav({...convNav,  "buttonLogDisplayText": logDisplayText});     
-                    }}>{updateText[languageCode]}</button>
+                    }}>{updateText}</button>
             <br></br>
             <label>Font:</label>
             <select 
@@ -771,7 +789,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             onClick={()=>{
                     setOpenAutoLogSection(false);
                 }}
-            >{collapseText[languageCode]} ︽</div>
+            >{collapseText} ︽</div>
 
         </div>
 </div>}
@@ -825,7 +843,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                     );
                             })}
                         </select>
-                        <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                        <button onClick={() => {openRm();}}>{manageResourceText}</button>
                 
                     </div>
 
@@ -1000,7 +1018,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                     );
                             })}
                         </select>
-                        <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                        <button onClick={() => {openRm();}}>{manageResourceText}</button>
                 
                     </div>
             </div>
@@ -1055,7 +1073,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 })}
 
                             </select>
-                            <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button>
+                            <button onClick={() => {openRm();}}>{manageResourceText}</button>
                     </div>  
                     <label>Corner Radius</label>
                     <input type="range" value={convLogObj["groupUnitCornerRadius"]}
@@ -1220,7 +1238,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onClick={()=>{
                         setOpenLogPageSection(false);
                     }}
-                >{collapseText[languageCode]} ︽</div>
+                >{collapseText} ︽</div>
 
         </div>
     }
@@ -1228,7 +1246,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
   
    
 
-    <br></br><button>{saveText[languageCode]}</button>
+    <br></br><button>{saveText}</button>
 </div>
 
 );

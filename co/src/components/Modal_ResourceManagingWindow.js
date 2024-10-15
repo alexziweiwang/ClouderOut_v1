@@ -21,13 +21,10 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
 
-    let languageCode = 0;
 
-    
-    console.log("langDictionary = ", langDictionary); //TODO testing
+
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
-
     let closeText = textDictItem.closeText !== undefined ? 
             textDictItem.closeText 
             : textDictItemDefault.closeText;
