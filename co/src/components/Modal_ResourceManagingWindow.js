@@ -9,6 +9,8 @@ import langDictionary from './textDictionary';
 export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh}) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
+    let languageCodeTextOption = 'en';
+
     let modalStyleName = "modalBackboard";
 
     const GoogleDrivePrefix = "https://drive.google.com/thumbnail?id=";
@@ -20,18 +22,21 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
     const projName = "project001"; //TODO testing
 
     let languageCode = 0;
-    let languageCode2 = 'en';
+
+    
     console.log("langDictionary = ", langDictionary); //TODO testing
-    let closeText = langDictionary.languageCode2.closeText;
-    let visualResourceText = langDictionary.languageCode2.visualResourceText;
-    let audioResourceText = langDictionary.languageCode2.audioResourceText;
-    let loadResourceListText = langDictionary.languageCode2.loadResourceListText;
-    let cancelText = langDictionary.languageCode2.cancelText;
-    let confirmText = langDictionary.languageCode2.confirmText;
-    let submitText = langDictionary.languageCode2.submitText;
-    let previewText = langDictionary.languageCode2.previewText;
-    let addText = langDictionary.languageCode2.addText;
-    let saveToCloudText = langDictionary.languageCode2.saveToCloudText;
+    let textDictItem = langDictionary[languageCodeTextOption];
+
+    let closeText = textDictItem.closeText;
+    let visualResourceText = textDictItem.visualResourceText;
+    let audioResourceText = textDictItem.audioResourceText;
+    let loadResourceListText = textDictItem.loadResourceListText;
+    let cancelText = textDictItem.cancelText;
+    let confirmText = textDictItem.confirmText;
+    let submitText = textDictItem.submitText;
+    let previewText = textDictItem.previewText;
+    let addText = textDictItem.addText;
+    let saveToCloudText = textDictItem.saveToCloudText;
 
 
     if (isDisplay === true) {
