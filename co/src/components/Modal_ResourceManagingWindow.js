@@ -26,17 +26,38 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
     
     console.log("langDictionary = ", langDictionary); //TODO testing
     let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
 
-    let closeText = textDictItem.closeText;
-    let visualResourceText = textDictItem.visualResourceText;
-    let audioResourceText = textDictItem.audioResourceText;
-    let loadResourceListText = textDictItem.loadResourceListText;
-    let cancelText = textDictItem.cancelText;
-    let confirmText = textDictItem.confirmText;
-    let submitText = textDictItem.submitText;
-    let previewText = textDictItem.previewText;
-    let addText = textDictItem.addText;
-    let saveToCloudText = textDictItem.saveToCloudText;
+    let closeText = textDictItem.closeText !== undefined ? 
+            textDictItem.closeText 
+            : textDictItemDefault.closeText;
+    let visualResourceText = textDictItem.visualResourceText !== undefined ? 
+            textDictItem.visualResourceText 
+            : textDictItemDefault.visualResourceText;
+    let audioResourceText = textDictItem.audioResourceText !== undefined ? 
+            textDictItem.audioResourceText
+            : textDictItemDefault.audioResourceText;
+    let loadResourceListText = textDictItem.loadResourceListText !== undefined ?
+            textDictItem.loadResourceListText
+            : textDictItemDefault.loadResourceListText;
+    let cancelText = textDictItem.cancelText !== undefined ?
+            textDictItem.cancelText
+            : textDictItemDefault.cancelText;
+    let confirmText = textDictItem.confirmText !== undefined ? 
+            textDictItem.confirmText
+            : textDictItemDefault.confirmText;
+    let submitText = textDictItem.submitText !== undefined ? 
+            textDictItem.submitText
+            : textDictItemDefault.submitText;
+    let previewText = textDictItem.previewText !== undefined ? 
+            textDictItem.previewText
+            : textDictItemDefault.previewText;
+    let addText = textDictItem.addText !== undefined ? 
+            textDictItem.addText
+            : textDictItemDefault.addText;
+    let saveToCloudText = textDictItem.saveToCloudText !== undefined ?
+            textDictItem.saveToCloudText
+            : textDictItemDefault.saveToCloudText;
 
 
     if (isDisplay === true) {
