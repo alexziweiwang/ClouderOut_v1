@@ -21,7 +21,7 @@ export default function GameMaker({username, projectName}) {
 
   
 
-  let languageCodeTextOption = 'chn';
+  let languageCodeTextOption = 'en';
 
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO

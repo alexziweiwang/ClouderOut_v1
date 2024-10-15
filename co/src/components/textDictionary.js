@@ -55,6 +55,11 @@ const textDictionary = {
         contentChaptersTabText: "Content Chapters",
         menuNavigationsTabText: "Menu & Navigations",
         gameDataManagerButtonText: "Game Data Manager",
+        profileButtonText: "Profile",
+        accountButtonText: "Account",
+        logOutButtonText: "Log Out",
+        dashBoardButtonText: "Dashboard",
+
 
     }, 
     chn: {
@@ -113,6 +118,10 @@ const textDictionary = {
         contentChaptersTabText: "内容章节",
         menuNavigationsTabText: "菜单 & 导航栏",
         gameDataManagerButtonText: "游戏数据管理器",
+        profileButtonText: "资料",
+        accountButtonText: "帐户",
+        logOutButtonText: "退出登录",
+        dashBoardButtonText: "用户面板",
 
 
     },

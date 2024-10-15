@@ -377,9 +377,13 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
             <button 
                 className="modalClose"
                 onClick={()=>{
-         
-                    handleRmCancel(); 
-                    refresh();
+                    if (varPairToCloud !== "default") {
+                        console.log("!!! please save to cloud first");
+                        alert("Please save to cloud first.");
+                    } else {
+                        handleRmCancel(); 
+                        refresh();
+                    }
                 
             }}> {closeText} </button>
 

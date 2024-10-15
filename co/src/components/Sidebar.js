@@ -1,18 +1,32 @@
 import * as React from 'react';
 import { useNavigate} from 'react-router-dom';
+import langDictionary from './textDictionary';
 
 export default function Sidebar({compName, username}) {
     console.log("sidebar, compName:", compName);
     const navigate = useNavigate();
 
-    const languageCode = 0;
-    const profileButtonText = ["Profile"];
-    const accountButtonText = ["Account"];
-    const logOutButtonText = ["Log Out"];
-    const dashBoardButtonText = ["Dashboard"];
-    const newProjectButtonText = ["New Project"];
-    const cancelButtonText = ["Cancel"];
-    const projectManagerText = ["Project Manager"];
+
+    let languageCodeTextOption = 'chn';
+
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    const profileButtonText = textDictItem.profileButtonText !== undefined ?
+            textDictItem.profileButtonText
+            : textDictItemDefault.profileButtonText;
+
+    const accountButtonText = textDictItem.accountButtonText !== undefined ?
+            textDictItem.accountButtonText
+            : textDictItemDefault.accountButtonText;
+
+    const logOutButtonText = textDictItem.logOutButtonText !== undefined ?
+            textDictItem.logOutButtonText
+            : textDictItemDefault.logOutButtonText;
+
+    const dashBoardButtonText = textDictItem.dashBoardButtonText !== undefined ?
+            textDictItem.dashBoardButtonText
+            : textDictItemDefault.dashBoardButtonText;
     
 
     function goToProjectManagingPanel() {
@@ -37,8 +51,8 @@ export default function Sidebar({compName, username}) {
     {(compName === "/dashboard") && 
     <div className="sidebar1" > Welcome, {username}!
         <div> 
-            <button className="sidebar_options sidebar_options1" onClick={()=>{goToProfilePage()}}>{profileButtonText[languageCode]}</button>
-            <button className="sidebar_options sidebar_options1" onClick={()=>{goToAccountPage()}}>{accountButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options1" onClick={()=>{goToProfilePage()}}>{profileButtonText}</button>
+            <button className="sidebar_options sidebar_options1" onClick={()=>{goToAccountPage()}}>{accountButtonText}</button>
         </div>
         
         <br></br>
@@ -48,7 +62,7 @@ export default function Sidebar({compName, username}) {
         <br></br>
         <br></br>
 
-        <button className="sidebar_options sidebar_options1" onClick={() => {console.log("log out pressed")}}>{logOutButtonText[languageCode]}</button>
+        <button className="sidebar_options sidebar_options1" onClick={() => {console.log("log out pressed")}}>{logOutButtonText}</button>
 
         </div>
     }
@@ -57,7 +71,7 @@ export default function Sidebar({compName, username}) {
     <div className="sidebar1" >
         <div> 
             
-            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText[languageCode]}</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText}</button>
         </div>
         
 
