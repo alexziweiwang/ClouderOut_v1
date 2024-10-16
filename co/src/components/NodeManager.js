@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 import { getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import langDictionary from './textDictionary';
+
 
 export default function NodeManager({projectName, currUser, 
   initialChapterKey, getNodeMapOfChapter, 
@@ -14,6 +16,7 @@ export default function NodeManager({projectName, currUser,
   loadChapterInfoFromCaller,
 }) {
 
+  let languageCodeTextOption = 'en';
 
     // console.log("Node Manager ?? "); //TODO testing
     // console.log(initialNodeMap); //TODO testing
@@ -28,13 +31,35 @@ export default function NodeManager({projectName, currUser,
 
   const [toRevertNodeKey, setToRevertNodeKey] = useState("");
 
-  let languageCode = 0;
-  let createText = ["Create"];
-  let cancelText = ["Cancel"];
-  let enterEditorText = ["Enter Editor"];
-  let updateText = ["Update"];
-  let confirmText = ["Confirm"];
-  let detachLinkingText = ["Detach Linking"];
+
+  let textDictItem = langDictionary[languageCodeTextOption];
+  let textDictItemDefault = langDictionary["en"];
+
+  let createText = textDictItem.createText !== undefined ?
+    textDictItem.createText
+    : textDictItemDefault.createText;
+
+  let cancelText = textDictItem.cancelText !== undefined ?
+    textDictItem.calcenText
+    : textDictItemDefault.cancelText;
+
+  let enterEditorText = textDictItem.enterEditorText !== undefined ?
+    textDictItem.enterEditorText
+    : textDictItemDefault.enterEditorText;
+
+  let updateText = textDictItem.updateText !== undefined ?
+    textDictItem.updateText
+    : textDictItemDefault.updateText;
+
+  let confirmText = textDictItem.confirmText !== undefined ?
+    textDictItem.confirmText
+    : textDictItemDefault.confirmText;
+
+  let detachLinkingText = textDictItem.detachLinkingText !== undefined ?
+    textDictItem.detachLinkingText
+    : textDictItemDefault.detachLinkingText;
+  
+  //TODO5    
   let addNewConditionTargetText = ["Add a New Condition & Target"];
   let addConditionText = ["Add Condition"];
   let addAsNextNodeText = ["Add As Next-Node"];
@@ -779,7 +804,7 @@ export default function NodeManager({projectName, currUser,
         {/* <div style={{"backgroundColor": "orange"}}>
             <label>Chapter Key: {chapterKey}</label>
             <button>Test this chapter</button>
-            <label>{nodeManageMentText[languageCode]}</label>
+            <label>{nodeManageMentText}</label>
 
             <button onClick={()=>{
               let chapterNodeMapTemp = loadChapterInfoFromCaller();
@@ -800,7 +825,7 @@ export default function NodeManager({projectName, currUser,
             "marginRight": "20px",      
           }}>
 
-                {listOfNodesText[languageCode]}:<br></br>
+                {listOfNodesText}:<br></br>
           
             <ul style={{"width": "320px", "marginLeft": "-25px"}}>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
@@ -968,13 +993,13 @@ export default function NodeManager({projectName, currUser,
                   setClickedNodeKey("");
                   setAddNewNodeAreaDisplay(false);
                   }}>
-                  {createText[languageCode]}
+                  {createText}
               </button>
               <button
                 onClick={()=>{
                   setAddNewNodeAreaDisplay(false);
                   setClickedNode2(-1);}}
-              >{cancelText[languageCode]}</button>
+              >{cancelText}</button>
             
             </div>
           } 
@@ -1030,7 +1055,7 @@ export default function NodeManager({projectName, currUser,
                       setClickedNode2(-1);
 
                     }
-                  }}>{revertText[languageCode]}</button>
+                  }}>{revertText}</button>
           </div>
           }
           </>
@@ -1061,7 +1086,7 @@ export default function NodeManager({projectName, currUser,
 
               <div style={{"flex": "1"}}>
                 
-                              <p className="sectionHeader"> {nodeInfoText[languageCode]} </p>
+                              <p className="sectionHeader"> {nodeInfoText} </p>
 
                                   <label>Node Unique-ID-Name: </label>
                                     <div className="indentOne">
@@ -1093,21 +1118,21 @@ export default function NodeManager({projectName, currUser,
                                 </>}
                          
 
-                          <p className="sectionHeader"> {nodeOperationsText[languageCode]} </p>
+                          <p className="sectionHeader"> {nodeOperationsText} </p>
                   
 
                       <div>
                           <label>Change Node Title: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-                            <br></br><button onClick={()=>{updateNodeToNewName2();}}>{updateText[languageCode]}</button>
+                            <br></br><button onClick={()=>{updateNodeToNewName2();}}>{updateText}</button>
                           </div>
                           <label>Change Node Notes: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewNote(event.target.value);}} value={tempNewNote}></input>
                             <br></br>
-                            <button onClick={()=>{setTempNewNote("");}}>{cancelText[languageCode]}</button>
-                            <button onClick={()=>{updateNodeWithNewNote();}}>{updateText[languageCode]}</button>
+                            <button onClick={()=>{setTempNewNote("");}}>{cancelText}</button>
+                            <button onClick={()=>{updateNodeWithNewNote();}}>{updateText}</button>
                           </div>
                           <br></br>
                           <br></br>
@@ -1137,7 +1162,7 @@ export default function NodeManager({projectName, currUser,
               {nodeRelationshipMap[clickedNodeKey] !== undefined
               && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <div>
                 <p className="sectionHeader"> 
-                {nextNodeText[languageCode]} </p>
+                {nextNodeText} </p>
                 {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
                   && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
                     Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
@@ -1174,7 +1199,7 @@ export default function NodeManager({projectName, currUser,
                       setSelectedNextNode("-");
                       updateRenderCounter();
                     }
-                }}>{confirmText[languageCode]}</button>
+                }}>{confirmText}</button>
                 <br></br>
                 
                   <button
@@ -1201,7 +1226,7 @@ export default function NodeManager({projectName, currUser,
                     }
                     
                   }}
-                >{detachLinkingText[languageCode]}</button>
+                >{detachLinkingText}</button>
              
 
 
@@ -1210,7 +1235,7 @@ export default function NodeManager({projectName, currUser,
 
               {nodeRelationshipMap[clickedNodeKey] !== undefined
               && nodeRelationshipMap[clickedNodeKey].nodeType === "LogicSplitter" && <div>
-                <p className="sectionHeader"> {targetNodesText[languageCode]} </p>
+                <p className="sectionHeader"> {targetNodesText} </p>
                   Path-deciding
                   <br></br>
                   <table>
@@ -1284,7 +1309,7 @@ export default function NodeManager({projectName, currUser,
                               updateTableCondt();
                               setLscElseSelected("");
                             }}
-                          >{updateText[languageCode]}</button>
+                          >{updateText}</button>
 
                         </td>
                       </tr>
@@ -1293,7 +1318,7 @@ export default function NodeManager({projectName, currUser,
 
                   <button onClick={()=>{
                     setDisplayAddNewTargetCondt(!displayAddNewTargetCondt);
-                  }}>{addNewConditionTargetText[languageCode]}</button>
+                  }}>{addNewConditionTargetText}</button>
                   {displayAddNewTargetCondt && <div>
 
                     <div className="areaFrame">
@@ -1481,7 +1506,7 @@ export default function NodeManager({projectName, currUser,
       console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                       
                       setDisplayAddNewTargetCondt(false);
-                    }}>{addConditionText[languageCode]}</button>
+                    }}>{addConditionText}</button>
 
                           </div>
 
@@ -1626,7 +1651,7 @@ export default function NodeManager({projectName, currUser,
             <button 
               className="setting_item"
               onClick={()=>{enterNodeEditor2();}}>
-                {enterEditorText[languageCode]}
+                {enterEditorText}
             </button>
         
         
@@ -1693,7 +1718,7 @@ export default function NodeManager({projectName, currUser,
         <button 
           className="setting_item"
           onClick={() => console.log("saving settings of nodes...")}>
-            {saveToMyProjectText[languageCode]}
+            {saveToMyProjectText}
         </button>
     
         </div>
