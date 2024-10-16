@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 import Panel_GameDataTest from './Panel_GameDataTest';
+import langDictionary from './textDictionary';
 
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
@@ -9,6 +10,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     uiData4_logPageSettings,
     visualList, audioList, initialGameDataDesignList, getGameDataDesignList}) {
 
+    let languageCodeTextOption = 'en';
+
+    
+
     let modalStyleName = "modalBackboard";
 
     if (isDisplay === true) {
@@ -16,6 +21,22 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     } else {
         modalStyleName = "displayNone modalBackboard";
     }
+
+
+
+
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    let closeText = textDictItem.closeText !== undefined ?
+        textDictItem.closeText
+        : textDictItemDefault.closeText;
+
+    let resetText = textDictItem.resetText !== undefined ?
+    textDictItem.resetText
+    : textDictItemDefault.resetText;
+
+
 
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
     
@@ -301,14 +322,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
-
-
-
-    let languageCode = 0;
-    let closeText = ["Close"];
-    let resetText = ["Reset"];
-
-
     function passInCurrPieceNum() {
         return currPieceNum;
     }
@@ -351,8 +364,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             <div style={{"width": "2000px", "marginLeft": "-90px"}}>
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
-                <button onClick={()=>{handleQViewCancel();}}> {closeText[languageCode]} </button>
-                <button onClick={()=>{resetViewingPiece();}}> {resetText[languageCode]} </button>
+                <button onClick={()=>{handleQViewCancel();}}> {closeText} </button>
+                <button onClick={()=>{resetViewingPiece();}}> {resetText} </button>
             </div>
 
 

@@ -10,7 +10,7 @@ export default function Modal_GameDataManager ({
     }) {
 
 
-    let languageCodeTextOption = 'chn';
+    let languageCodeTextOption = 'en';
 
     let modalStyleName = "modalBackboard";
 

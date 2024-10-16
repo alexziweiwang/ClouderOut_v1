@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+import langDictionary from './textDictionary';
 
 
 
@@ -11,13 +12,35 @@ export default function NavigationSetter({initialNavObj,
   userName,
   projName
 }) {
+    let languageCodeTextOption = 'en';
+
+
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
 
     let languageCode = 0;
+//TODO5
+    
     let saveChangesText = ["Save Changes"];
-    let updateText = ["Update"];
-    let manageResourceText = ["Manage Resource"];
-    let gameProgressStrategyText = ["Game Progress Strategy"];
-    let mainPageText = ["Main Page"];
+
+    const updateText = textDictItem.updateText !== undefined ?
+        textDictItem.updateText
+        : textDictItemDefault.updateText;
+
+    let manageResourceText = textDictItem.manageResourceText !== undefined ?
+        textDictItem.manageResourceText
+        : textDictItemDefault.manageResourceText;
+
+    let gameProgressStrategyText = textDictItem.gameProgressStrategyText !== undefined ?
+        textDictItem.gameProgressStrategyText
+        : textDictItemDefault.gameProgressStrategyText;
+    
+    
+    let mainPageText = textDictItem.mainPageText !== undefined ?
+        textDictItem.mainPageText
+        : textDictItemDefault.mainPageText;
+//TODO5
+
     let storyPageText = ["Story Page"];
     let settingsPageText = ["Settings Page"];
     let playerProfilePageText = ["Player Profile Page"]
@@ -473,7 +496,7 @@ export default function NavigationSetter({initialNavObj,
                                 return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                               })}
                         </select>
-                        <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                        <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
 
                       </div>
                       
@@ -488,7 +511,7 @@ export default function NavigationSetter({initialNavObj,
                       updateNavObj(tempObj);       
 
                       setCurrentProjectNav({...currentProjectNav, "backButton-displayText": backButtonName});         
-                    }}>{updateText[languageCode]}</button>
+                    }}>{updateText}</button>
                   </div>
                   <label>Font Size:</label>
                   <input type="range" value={currentProjectNav["backButton-fontSize"]}
@@ -553,19 +576,19 @@ export default function NavigationSetter({initialNavObj,
           updateCurrentPageName(event.target.value);
         }}>
           <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
-          <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText[languageCode]}</option>
-          <option value="Main Page" key="Main Page">{mainPageText[languageCode]}</option>
-          <option value="Story Page" key="Story Page">{storyPageText[languageCode]}</option>
-          <option value="Settings Page" key="Settings Page">{settingsPageText[languageCode]}</option>
-          <option value="Player Profile Page" key="Player Profile Page">{playerProfilePageText[languageCode]}</option>
-          <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText[languageCode]}</option>
-          <option value="Shop Page" key="Shop Page">{shopPageText[languageCode]}</option>
-          <option value="During Game" key="During Game">{duringGamePlayPageText[languageCode]}</option>
+          <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option>
+          <option value="Main Page" key="Main Page">{mainPageText}</option>
+          <option value="Story Page" key="Story Page">{storyPageText}</option>
+          <option value="Settings Page" key="Settings Page">{settingsPageText}</option>
+          <option value="Player Profile Page" key="Player Profile Page">{playerProfilePageText}</option>
+          <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText}</option>
+          <option value="Shop Page" key="Shop Page">{shopPageText}</option>
+          <option value="During Game" key="During Game">{duringGamePlayPageText}</option>
       </select>
 
       <br></br><br></br>
 
-      <button>{saveChangesText[languageCode]}</button>
+      <button>{saveChangesText}</button>
     
       <br></br><br></br><br></br>
     {currentSettingPage === "Game Progress Strategy" && <div>
@@ -673,7 +696,7 @@ export default function NavigationSetter({initialNavObj,
                                       let keyStr = "sl-bg-" + index + item["var"];
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
-                                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
           
@@ -822,7 +845,7 @@ export default function NavigationSetter({initialNavObj,
                                       let keyStr = "sl-slot-" + index + item["var"];
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
-                                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
           
@@ -1048,7 +1071,7 @@ export default function NavigationSetter({initialNavObj,
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
                                 </select>
-                                <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </div>}
 
           
@@ -1366,7 +1389,7 @@ export default function NavigationSetter({initialNavObj,
                               let keyStr = "mainPage-li-" + index + item["var"];
                               return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                           })}
-                      </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                      </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
               </div>}
    
   
@@ -1421,7 +1444,7 @@ export default function NavigationSetter({initialNavObj,
               
               setCurrentProjectNav({...currentProjectNav, "mainPage-story-name": mainPageStoryName});             
 
-           }}>{updateText[languageCode]}</button>
+           }}>{updateText}</button>
 
          </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && 
@@ -1649,7 +1672,7 @@ export default function NavigationSetter({initialNavObj,
                                   let keyStr = "mainPage-li-" + index + item["var"];
                                   return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                               })}
-                          </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                          </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                   </div>}
 
            </div>}
@@ -1693,7 +1716,7 @@ export default function NavigationSetter({initialNavObj,
               
               setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-name": mainPagePlayerProfileName});             
 
-           }}>{updateText[languageCode]}</button>
+           }}>{updateText}</button>
          </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
            Position X:
@@ -1922,7 +1945,7 @@ export default function NavigationSetter({initialNavObj,
                             let keyStr = "mainPage-li-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
-                    </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                    </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
             </div>}
 
            </div>}             
@@ -1970,7 +1993,7 @@ export default function NavigationSetter({initialNavObj,
               
               setCurrentProjectNav({...currentProjectNav, "mainPage-setting-name": mainPageSettingsName});             
 
-           }}>{updateText[languageCode]}</button>
+           }}>{updateText}</button>
          </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
            Position X:
@@ -2190,7 +2213,7 @@ export default function NavigationSetter({initialNavObj,
                             let keyStr = "mainPage-li-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
-                    </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                    </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
             </div>}
  
            </div>}
@@ -2234,7 +2257,7 @@ export default function NavigationSetter({initialNavObj,
               
               setCurrentProjectNav({...currentProjectNav, "mainPage-shop-name": mainPageShopName});             
 
-           }}>{updateText[languageCode]}</button>
+           }}>{updateText}</button>
          </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
            Position X:
@@ -2453,7 +2476,7 @@ export default function NavigationSetter({initialNavObj,
                             let keyStr = "mainPage-li-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                         })}
-                    </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                    </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
             </div>}
                
            </div>} 
@@ -2543,7 +2566,7 @@ export default function NavigationSetter({initialNavObj,
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
 
-                             </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                             </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
           
@@ -2661,7 +2684,7 @@ export default function NavigationSetter({initialNavObj,
                               return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                           })}
                    
-                      </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                      </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
               </>}
               <label>Item Width: </label>
               <input type="range"
@@ -2898,7 +2921,7 @@ export default function NavigationSetter({initialNavObj,
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
                    
-                                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
           
                   </div>
@@ -2976,7 +2999,7 @@ export default function NavigationSetter({initialNavObj,
                               return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                           })}
                 
-                      </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                      </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
               </>}
 
  
@@ -3239,7 +3262,7 @@ export default function NavigationSetter({initialNavObj,
               updateNavObj(tempObj);     
 
               setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeedName": settingsPagePlaySpeedName});
-            }}>{updateText[languageCode]}</button>
+            }}>{updateText}</button>
           </div>
 
          <input type="checkbox"
@@ -3277,7 +3300,7 @@ export default function NavigationSetter({initialNavObj,
               updateNavObj(tempObj);     
 
               setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVolName": settingsPageBgmVolName});   
-            }}>{updateText[languageCode]}</button> 
+            }}>{updateText}</button> 
           </div>
      
 
@@ -3315,7 +3338,7 @@ export default function NavigationSetter({initialNavObj,
               updateNavObj(tempObj); 
 
               setCurrentProjectNav({...currentProjectNav, "settingPage-seVolName": settingsPageSeVolName});
-            }}>{updateText[languageCode]}</button>
+            }}>{updateText}</button>
           </div>
 
 
@@ -3405,7 +3428,7 @@ export default function NavigationSetter({initialNavObj,
                                         let keyStr = "playerProfilePage-li-" + index + item["var"];
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
-                                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
           
@@ -3793,7 +3816,7 @@ export default function NavigationSetter({initialNavObj,
                   })}                                    
                           
              </select>
-             <button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br>
+             <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br>
              
              <label>Width: </label>
              <input type="range" min="1" max={screenWidth} step="1"
@@ -4191,7 +4214,7 @@ export default function NavigationSetter({initialNavObj,
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}                                    
                           
-                                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
           
@@ -4264,7 +4287,7 @@ export default function NavigationSetter({initialNavObj,
                                 }}>                    
                                     <option key="mpliDefault" value="">-- Select Resource --</option>
                           
-                                </select><button onClick={() => {openRm();}}>{manageResourceText[languageCode]}</button><br></br><br></br>
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
           
@@ -4280,7 +4303,7 @@ export default function NavigationSetter({initialNavObj,
 
     <br></br>
 
-    <button>{saveChangesText[languageCode]}</button>
+    <button>{saveChangesText}</button>
 
 
 
