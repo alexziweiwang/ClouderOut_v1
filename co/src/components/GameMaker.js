@@ -41,7 +41,6 @@ export default function GameMaker({username, projectName}) {
         textDictItem.contentChaptersTabText
         : textDictItemDefault.contentChaptersTabText;
   
-  
   const menuNavigationsTabText = textDictItem.menuNavigationsTabText !== undefined ?
         textDictItem.menuNavigationsTabText
         : textDictItemDefault.menuNavigationsTabText;

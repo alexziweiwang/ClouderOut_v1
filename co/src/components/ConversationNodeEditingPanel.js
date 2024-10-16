@@ -13,6 +13,7 @@ import QuickView_AllPanels_ConvNode from './QuickView_AllPanels_ConvNode';
 import PieceManager from './PieceManager';
 import GameUISetter from './GameUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
+import langDictionary from './textDictionary';
 //TODO fetch navigation(all game type) data from cloud?
 
 export default function ConversationNodeEditingPanel() {
@@ -20,6 +21,8 @@ export default function ConversationNodeEditingPanel() {
  
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
+
+    let languageCodeTextOption = 'en';
 
 
     const navigate = useNavigate();
@@ -34,15 +37,17 @@ export default function ConversationNodeEditingPanel() {
         projectName = state.selected_project_name;
         screenSizeInfo = state.screenSizeStr;
     }
-    console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
+
+
+    
+console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
  
 
-    const sizeLookupMap = { "16:9(horizonal)": [800, 450],
-    "16:9(vertical)": [450, 800],
-    "4:3(horizonal)": [800, 600],
-    "4:3(vertical)": [600, 800]};
-
-
+    const sizeLookupMap = { 
+        "16:9(horizonal)": [800, 450],
+        "16:9(vertical)": [450, 800],
+        "4:3(horizonal)": [800, 600],
+        "4:3(vertical)": [600, 800]};
 
 
     const [audioList, setAudioList] = useState([]); //TODO for sound effect -- future feature
@@ -78,14 +83,38 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
 
-    const languageCode = 0;
-    const returnGameMakerButtonText = [" ← "];
-    const showResourceManagerButtonText = ["Resource Manager"]; 
-    const gameDataManagerText = ["Game Data Manager"];
-    const quickGameViewText = ["Quick View"];
-    const gameContentSetupText = ["Game Content Setup"];
-    const gameUIsetupText = ["Game UI Setup"];
-    const updateText = ["Update"];
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    const returnGameMakerButtonText = textDictItem.returnGameMakerButtonText !== undefined ?
+            textDictItem.returnGameMakerButtonText
+            : textDictItemDefault.returnGameMakerButtonText;
+    
+    const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
+            textDictItem.resourceManagerButtonText
+            : textDictItemDefault.resourceManagerButtonText;
+    
+    const gameDataManagerText = textDictItem.gameDataManagerButtonText !== undefined ?
+            textDictItem.gameDataManagerButtonText
+            : textDictItemDefault.gameDataManagerButtonText;
+
+    const quickGameViewText = textDictItem.quickGameViewText !== undefined ?
+            textDictItem.quickGameViewText
+            : textDictItemDefault.quickGameViewText;
+    
+    const gameContentSetupText = textDictItem.gameContentSetupText !== undefined ?
+            textDictItem.gameContentSetupText
+            : textDictItemDefault.gameContentSetupText;
+    
+    const gameUIsetupText = textDictItem.gameUIsetupText !== undefined ?
+            textDictItem.gameUIsetupText
+            : textDictItemDefault.gameUIsetupText;
+
+    const updateText = textDictItem.updateText !== undefined ?
+            textDictItem.updateText
+            : textDictItemDefault.updateText;
+
+
 
 
     const [pieceDataStructure, setPieceDatastructure] = useState([
@@ -574,15 +603,15 @@ export default function ConversationNodeEditingPanel() {
 
         <div>
             <div className="returning_buttons">
-                <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText[languageCode]} </button>
+                <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
                 <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
                 <button className="button testEntire"
                     onClick={()=>{setIsDisplayQview(true);}}>
-                        {quickGameViewText[languageCode]}
+                        {quickGameViewText}
                 </button>
                 <div className="buttonRight30 parallelFrame">
-                    <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText[languageCode]}</button>
-                    <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {showResourceManagerButtonText[languageCode]} </button>
+                    <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
+                    <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
                 </div>
 
             </div>
@@ -597,9 +626,9 @@ export default function ConversationNodeEditingPanel() {
 
                 <div className="topParalBarRightPart" style={{"height": "45px"}}>
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
-                        {gameContentSetupText[languageCode]}</button>
+                        {gameContentSetupText}</button>
                     <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
-                        {gameUIsetupText[languageCode]}</button>
+                        {gameUIsetupText}</button>
 
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
@@ -610,7 +639,7 @@ export default function ConversationNodeEditingPanel() {
                             <option value="4:3(vertical)" key="conv-editor-4:3(vertical)"> 4:3 (vertical) </option>
 
                         </select>
-                        <button onClick={()=>{updateGameSizeSetting();}}>{updateText[languageCode]}</button>
+                        <button onClick={()=>{updateGameSizeSetting();}}>{updateText}</button>
                     </>
 
 

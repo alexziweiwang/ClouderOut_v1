@@ -59,6 +59,10 @@ const textDictionary = {
         accountButtonText: "Account",
         logOutButtonText: "Log Out",
         dashBoardButtonText: "Dashboard",
+        returnGameMakerButtonText: " ← ",
+        quickGameViewText: "Quick View",
+        gameContentSetupText: "Game Content Setup",
+        gameUIsetupText: "Game UI Setup",
 
 
     }, 
@@ -122,7 +126,10 @@ const textDictionary = {
         accountButtonText: "帐户",
         logOutButtonText: "退出登录",
         dashBoardButtonText: "用户面板",
-
+        returnGameMakerButtonText: " ← ",
+        quickGameViewText: "快速查看",
+        gameContentSetupText: "游戏内容设置",
+        gameUIsetupText: "游戏界面设置",
 
     },
     jp: {

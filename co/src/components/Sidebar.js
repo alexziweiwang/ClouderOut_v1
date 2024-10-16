@@ -7,7 +7,7 @@ export default function Sidebar({compName, username}) {
     const navigate = useNavigate();
 
 
-    let languageCodeTextOption = 'chn';
+    let languageCodeTextOption = 'en';
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
