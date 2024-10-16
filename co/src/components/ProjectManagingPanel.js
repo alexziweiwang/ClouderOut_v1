@@ -5,8 +5,11 @@ import Sidebar from './Sidebar';
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
+import langDictionary from './textDictionary';
+
 
 export default function ProjectManagerPanel() {
+    let languageCodeTextOption = 'en';
 
     const compoPathName = "/projectmanagingpanel";
 
@@ -15,12 +18,25 @@ export default function ProjectManagerPanel() {
     
     const navigate = useNavigate();
 
-    const languageCode = 0;
-    const goToGameMakerButtonText = ["Go To Game Maker!"];
-    const revertProjectButtonText = ["Revert this project"];
-    const trashAreaLabel = ["Trash Area of Project(s):"];
-    const trashedProjectSelectListDefaultText = ["Project Name"];
-    const manageDeletedProjectText = ["Manage Deleted Project"];
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    const gameMakerButtonText = textDictItem.gameMakerButtonText !== undefined ?
+        textDictItem.gameMakerButtonText
+        : textDictItemDefault.gameMakerButtonText;
+    
+    const revertProjectButtonText = textDictItem.revertProjectButtonText !== undefined ?
+        textDictItem.revertProjectButtonText
+        : textDictItemDefault.revertProjectButtonText;
+    
+    const trashedProjectSelectListDefaultText = textDictItem.trashedProjectSelectListDefaultText !== undefined ? 
+        textDictItem.trashedProjectSelectListDefaultText
+        : textDictItemDefault.trashedProjectSelectListDefaultText;
+    
+
+
+
+
 
     const [selected_project_name, setProjectName] = useState("");
     const [projList, setProjList] = useState(false); 
@@ -209,7 +225,7 @@ export default function ProjectManagerPanel() {
                 className="button testEntire" 
                 style={{"display": selected_project_name === "" ? "none" : "flex"}}
                 onClick={()=>{goToGameMaker();}}> 
-                {goToGameMakerButtonText[languageCode]} 
+                {gameMakerButtonText} 
               </button>
           </div>}
 
@@ -253,7 +269,7 @@ export default function ProjectManagerPanel() {
 
                   {trashedProjList && 
                     <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
-                      <option value="" key="">-- {trashedProjectSelectListDefaultText[languageCode]} --</option>
+                      <option value="" key="">-- {trashedProjectSelectListDefaultText} --</option>
                       {
                         trashedProjList.map((item, index) => {
                           return (
@@ -264,7 +280,7 @@ export default function ProjectManagerPanel() {
                     </select>
                   }
 
-                  <button onClick={revertTrashedProject}>{revertProjectButtonText[languageCode]}</button>
+                  <button onClick={revertTrashedProject}>{revertProjectButtonText}</button>
                   
               </div>
         </div>

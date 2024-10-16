@@ -20,7 +20,7 @@ export default function NavigationSetter({initialNavObj,
 
     let languageCode = 0;
 //TODO5
-    
+
     let saveChangesText = ["Save Changes"];
 
     const updateText = textDictItem.updateText !== undefined ?
@@ -34,20 +34,38 @@ export default function NavigationSetter({initialNavObj,
     let gameProgressStrategyText = textDictItem.gameProgressStrategyText !== undefined ?
         textDictItem.gameProgressStrategyText
         : textDictItemDefault.gameProgressStrategyText;
-    
-    
+        
     let mainPageText = textDictItem.mainPageText !== undefined ?
         textDictItem.mainPageText
         : textDictItemDefault.mainPageText;
-//TODO5
 
-    let storyPageText = ["Story Page"];
-    let settingsPageText = ["Settings Page"];
-    let playerProfilePageText = ["Player Profile Page"]
-    let gameStatusDataPageText = ["Game Status Data Page"];
-    let shopPageText = ["Shop Page"];
-    let duringGamePlayPageText = ["*During Game-play*"];
+    let storyPageText = textDictItem.storyPageText !== undefined ?
+        textDictItem.storyPageText
+        : textDictItemDefault.storyPageText;
+    
+    let settingsPageText = textDictItem.settingsPageText !== undefined ?
+        textDictItem.settingsPageText
+        : textDictItemDefault.settingsPageText;
+    
+    let playerProfilePageText = textDictItem.playerProfilePageText !== undefined ?
+        textDictItem.playerProfilePageText
+        : textDictItemDefault.playerProfilePageText;
+    
+    let gameStatusDataPageText = textDictItem.gameStatusDataPageText !== undefined ?
+        textDictItem.gameStatusDataPageText
+        : textDictItemDefault.gameStatusDataPageText;
+    
+    let shopPageText = textDictItem.shopPageText !== undefined ?
+        textDictItem.shopPageText
+        : textDictItemDefault.shopPageText;
+    
+    let duringGamePlayPageText = textDictItem.duringGamePlayPageText !== undefined ?
+        textDictITem.duringGamePlayPageText
+        : textDictItemDefault.duringGamePlayPageText;
+    
 
+
+        
     const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
     const screenWidth = 800; //TODO temp  

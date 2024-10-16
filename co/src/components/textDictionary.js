@@ -63,6 +63,9 @@ const textDictionary = {
         quickGameViewText: "Quick View",
         gameContentSetupText: "Game Content Setup",
         gameUIsetupText: "Game UI Setup",
+        gameMakerButtonText: "Game Maker",
+        revertProjectButtonText: "Revert this project",
+
 
 
     }, 
@@ -130,6 +133,9 @@ const textDictionary = {
         quickGameViewText: "快速查看",
         gameContentSetupText: "游戏内容设置",
         gameUIsetupText: "游戏界面设置",
+        gameMakerButtonText: "游戏制作器",
+        revertProjectButtonText: "恢复这个项目",
+
 
     },
     jp: {
