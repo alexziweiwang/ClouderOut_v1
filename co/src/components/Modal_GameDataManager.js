@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import langDictionary from './textDictionary';
+
 
 export default function Modal_GameDataManager ({
         isDisplay, handleGdmCancel, 
@@ -6,7 +8,10 @@ export default function Modal_GameDataManager ({
         resetNeedCloudData, 
         updateGameDataToCloud,
     }) {
-        
+
+
+    let languageCodeTextOption = 'chn';
+
     let modalStyleName = "modalBackboard";
 
     if (isDisplay === true) {
@@ -15,14 +20,39 @@ export default function Modal_GameDataManager ({
         modalStyleName = "displayNone modalBackboard";
     }
 
-    let languageCode = 0;
-    let submitText = ["Submit"];
-    let cancelText = ["Cancel"];
-    let closeText = ["Close"];
-    let saveText = ["Save"];
-    let deleteText = ["Delete"];
-    let editText = ["Edit"];
-    let addNewVariableText = [" + New Variable "];
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    let submitText = textDictItem.submitText !== undefined ?
+            textDictItem.submitText
+            : textDictItemDefault.submitText;
+    
+    let cancelText = textDictItem.cancelText !== undefined ?
+            textDictItem.cancelText
+            : textDictItemDefault.cancelText;
+    
+    let closeText = textDictItem.closeText !== undefined ?
+            textDictItem.closeText
+            : textDictItemDefault.closeText;
+    
+    let saveText = textDictItem.saveText !== undefined ?
+            textDictItem.saveText
+            : textDictItemDefault.saveText;
+    
+    let deleteText = textDictItem.deleteText !== undefined ?
+            textDictItem.deleteText
+            : textDictItemDefault.deleteText;
+
+    let editText = textDictItem.editText !== undefined ?
+            textDictItem.editText
+            : textDictItemDefault.editText;
+    
+
+    
+    let addNewVariableText = textDictItem.addNewVariableText !== undefined ?
+            textDictItem.addNewVariableText
+            : textDictItemDefault.addNewVariableText;
+    
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -235,7 +265,7 @@ export default function Modal_GameDataManager ({
     <div className="modalContent">
         <br></br>
         <button className="cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
-            {closeText[languageCode]}
+            {closeText}
         </button>
 
         <div 
@@ -280,13 +310,13 @@ export default function Modal_GameDataManager ({
 
                             {(editLineDisplay !== key) && 
                                 <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>{editText[languageCode]}</button>
-                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>{deleteText[languageCode]}</button>
+                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>{editText}</button>
+                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>{deleteText}</button>
                                 </td>}
                             {(editLineDisplay === key && editAreaOpen === true) && 
                                 <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText[languageCode]}</button>
-                                    <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText[languageCode]}</button>
+                                    <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
+                                    <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>
                                 </td>}
 
 
@@ -306,7 +336,7 @@ export default function Modal_GameDataManager ({
             {!displayNewVarArea && 
                 <div className="addNewGameDataAreaClosed"
                 >
-                    <button onClick={showNewVarForm}>{addNewVariableText[languageCode]}</button>
+                    <button onClick={showNewVarForm}>+ {addNewVariableText}</button>
                 </div>}
             {displayNewVarArea && 
                 <div className="addNewGameDataArea"
@@ -339,8 +369,8 @@ export default function Modal_GameDataManager ({
                     </select>
                     }
                     <br></br>
-                    <button onClick={()=>{showNewVarForm()}}>{cancelText[languageCode]}</button>
-                    <button onClick={()=>{addVarPair()}}>{submitText[languageCode]}</button>
+                    <button onClick={()=>{showNewVarForm()}}>{cancelText}</button>
+                    <button onClick={()=>{addVarPair()}}>{submitText}</button>
 
                 </div>
             }
