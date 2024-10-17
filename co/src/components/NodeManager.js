@@ -57,22 +57,45 @@ export default function NodeManager({projectName, currUser,
 
   let detachLinkingText = textDictItem.detachLinkingText !== undefined ?
     textDictItem.detachLinkingText
-    : textDictItemDefault.detachLinkingText;
+    : textDictItemDefault.detachLinkingText;  
+    
+  let addNewConditionTargetText = textDictItem.addNewConditionTargetText !== undefined ?
+    textDictItem.addNewConditionTargetText
+    : textDictItemDefault.addNewConditionTargetText;
+
+  let addConditionText = textDictItem.addConditionText !== undefined ?
+    textDictItem.addConditionText
+    : textDictItemDefault.addConditionText;
+
+  let revertText = textDictItem.revertText !== undefined ?
+    textDictItem.revertText
+    : textDictItemDefault.revertText;
   
-  //TODO5    
-  let addNewConditionTargetText = ["Add a New Condition & Target"];
-  let addConditionText = ["Add Condition"];
-  let addAsNextNodeText = ["Add As Next-Node"];
-  let deleteText = ["Delete"];
-  let revertText = ["Revert"];
-  let saveToMyProjectText = ["Save To My Project"];
-  let nodeManageMentText = ["Node Management"];
-  let listOfNodesText = ["List of nodes"];
-  let nodeInfoText = ["Node Info"];
-  let nodeOperationsText = ["Node Operations"];
-  let targetNodesText = ["Target Nodes"];
-  let nextNodeText = ["Next Node"];
-  let resetText = ["Reset"];
+  let saveToMyProjectText = textDictItem.saveToMyProjectText !== undefined ?
+    textDictItem.saveToMyProjectText
+    : textDictItemDefault.saveToMyProjectText;
+
+
+  let listOfNodesText = textDictItem.listOfNodesText !== undefined ? 
+    textDictItem.listOfNodesText
+    : textDictItemDefault.listOfNodesText;
+    
+
+  let nodeInfoText = textDictItem.nodeInfoText !== undefined ?
+    textDictItem.nodeInfoText
+    : textDictItemDefault.nodeInfoText;
+
+  let nodeOperationsText = textDictItem.nodeOperationsText !== undefined ?
+    textDictItem.nodeOperationsText
+    : textDictItemDefault.nodeOperationsText;
+    
+  let targetNodesText = textDictItem.targetNodesText !== undefined ?
+    textDictItem.targetNodesText
+    : textDictItemDefault.targetNodesText;
+  
+  let nextNodeText = textDictItem.nextNodeText !== undefined ?
+    textDictItem.nextNodeText
+    : textDictItemDefault.nextNodeText;
 
 
 //TODO important note: node data is operated in this component (and level).
