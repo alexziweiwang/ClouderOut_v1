@@ -65,6 +65,10 @@ const textDictionary = {
         gameUIsetupText: "Game UI Setup",
         gameMakerButtonText: "Game Maker",
         revertProjectButtonText: "Revert this project",
+        listText: "List",
+        collapseAllText: "Collapse All",
+        expandAllText: "Expand All",
+        textContentSettingText: "Text Content Settings",
 
 
 
@@ -135,6 +139,12 @@ const textDictionary = {
         gameUIsetupText: "游戏界面设置",
         gameMakerButtonText: "游戏制作器",
         revertProjectButtonText: "恢复这个项目",
+        listText: "列表",
+        collapseAllText: "收起全部",
+        expandAllText: "展开全部",
+        textContentSettingText: "文字内容设置",
+
+
 
 
     },

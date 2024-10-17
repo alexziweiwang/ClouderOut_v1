@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
+import langDictionary from './textDictionary';
 
 
 export default function PieceSetter({
@@ -17,13 +18,32 @@ export default function PieceSetter({
 }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
+    let languageCodeTextOption = 'en';
 
-    const languageCode = 0;
-    const listText = ["List"];
-    const collapseAllText = ["Collapse All"];
-    const expandAllText = ["Expand All"];
-    const textContentSettingText = ["Text Content Setting"];
-    const resetText = ["Reset"];
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    const listText = textDictItem.listText !== undefined ?
+        textDictItem.listText
+        : textDictItemDefault.listText;
+    
+    const collapseAllText = textDictItem.collapseAllText !== undefined ?
+        textDictItem.collapseAllText
+        : textDictItemDefault.collapseAllText;
+    
+    const expandAllText = textDictItem.expandAllText !== undefined ?
+        textDictItem.expandAllText
+        : textDictItemDefault.expandAllText;
+    
+    const textContentSettingText = textDictItem.textContentSettingText !== undefined ?
+        textDictItem.textContentSettingText
+        : textDictItemDefault.textContentSettingText;
+    
+    const resetText = textDictItem.resetText !== undefined ?
+        textDictItem.resetText
+        : textDictItemDefault.resetText;
+
+        
     const bgpSettingText = ["Background Picture Setting"];
     const manageResourceText = ["Manage Resource"];
     const manageGameDataItem = ["Manage Game-Data Item"];
@@ -31,6 +51,7 @@ export default function PieceSetter({
     const addAnewCharPicText = ["Add a New Character Picture"];
     const confirmAddText = ["Confirm Add"];
     const clkbSettingText = ["Clickable(customizable button) Setting"];
+
     const addAnewButtonText = ["Add a New Button"];
     const collaposeAddingNewButtonText = ["Collapse Adding New Button"];
     const addAnewConsequenceText = ["Add a New Consequence"];
@@ -581,15 +602,15 @@ export default function PieceSetter({
     }}>
 
     <div className="pieceSetterArea userChoice">
-        <button onClick={()=>{backToList();}}>← {listText[languageCode]}</button><br></br>
+        <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
         <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
         <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
 
 
         <div className="buttonRight50">
-            <button onClick={collapseAllOptions}> {collapseAllText[languageCode]} </button>
-            <button onClick={expandAllOptions}> {expandAllText[languageCode]} </button>
+            <button onClick={collapseAllOptions}> {collapseAllText} </button>
+            <button onClick={expandAllOptions}> {expandAllText} </button>
         </div>
         <br></br>
         <br></br>
@@ -673,24 +694,24 @@ export default function PieceSetter({
             <br></br>
             <br></br>
             {(textContentInfoAdd && selectEditTextContent) && <>
-            <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText[languageCode]}  ︽</button>
+            <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText}  ︽</button>
             <br></br>
             </>
             }
             
             {(!textContentInfoAdd && selectEditTextContent) && <>
-            <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText[languageCode]}  ︾
+            <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText}  ︾
             </button>
             <br></br>
             </>}
 
             {(!selectEditTextContent) && 
-            <><button className="collapseToggleGrey">{textContentSettingText[languageCode]} - </button>
+            <><button className="collapseToggleGrey">{textContentSettingText} - </button>
             <br></br></>}
 
             {(textContentInfoAdd && selectEditTextContent) && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText[languageCode]} </button>
+                    <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText} </button>
                     
                     <br></br>
                     <label> Text to display: </label>
@@ -734,17 +755,17 @@ export default function PieceSetter({
 
 
             {(clickableAdd && !selectEditTextContent) && 
-            <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︽</button>
+            <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText}  ︽</button>
             <br></br>
             </>}
             {(!clickableAdd && !selectEditTextContent) && 
-            <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText[languageCode]}  ︾</button>
+            <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText}  ︾</button>
             <br></br>
             </>}
 
 
             {(selectEditTextContent) &&
-            <><button className="collapseToggleGrey">{clkbSettingText[languageCode]}  - </button>
+            <><button className="collapseToggleGrey">{clkbSettingText}  - </button>
             <br></br>
             </>}
 
@@ -753,7 +774,7 @@ export default function PieceSetter({
            
                 <button className="buttonRight" onClick={() =>{
                     console.log("TODO reset...");
-                    }}> {resetText[languageCode]} </button>
+                    }}> {resetText} </button>
 
                     <div><label>Standard Button/Option Group</label>
                         <div className="indentOne">
@@ -802,11 +823,11 @@ export default function PieceSetter({
                         {!displayStndButtonAdd && <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
                         }}>
-                            {addAnewButtonText[languageCode]}
+                            {addAnewButtonText}
                         </button>}
                         {displayStndButtonAdd && <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
-                        }}>-- {collaposeAddingNewButtonText[languageCode]} --
+                        }}>-- {collaposeAddingNewButtonText} --
                         </button>}
                        
 
@@ -852,7 +873,7 @@ export default function PieceSetter({
                             </table>
                             {!isStndBtnAddNewConsq && <button className="indentOne" onClick={()=>{
                                 setIsStndBtnAddNewConsq(!isStndBtnAddNewConsq);
-                                }}>{addAnewConsequenceText[languageCode]}</button>}
+                                }}>{addAnewConsequenceText}</button>}
                             {isStndBtnAddNewConsq && 
                     <div className="orangeArea indentOne">
 
@@ -879,7 +900,7 @@ export default function PieceSetter({
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> {manageGameDataItem[languageCode]} </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> {manageGameDataItem} </button>}
 
 
                     <br></br><br></br>
@@ -944,7 +965,7 @@ export default function PieceSetter({
                         setStndBtnConseqGDataItemSelected("");
                         setStndBtnConseqGDataTypeSelected("");
                     
-                    }}>{cancelText[languageCode]}</button> 
+                    }}>{cancelText}</button> 
 
                     <button className="buttonRight"
                         onClick={()=>{
@@ -976,7 +997,7 @@ export default function PieceSetter({
                         setIsStndBtnAddNewConsq(false);
 
 
-                    }}>{addText[languageCode]}</button>
+                    }}>{addText}</button>
 
                     </div>}
                     </div>
@@ -1012,7 +1033,7 @@ export default function PieceSetter({
                         setStndBtnConseqGDataTypeSelected("");
                         setStndBtnConseqBecomeAmount("");
                     }}
-                    >{confirmAddText[languageCode]}</button>
+                    >{confirmAddText}</button>
                         
                         </div>}
 
@@ -1335,15 +1356,15 @@ export default function PieceSetter({
                 }
             
             {!bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︾</button>}
+            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText}  ︾</button>}
             {bgpicAdd
-            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText[languageCode]}  ︽</button>}
+            && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText}  ︽</button>}
             <br></br>
 
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
 
-                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> {resetText[languageCode]} </button>
+                    <button className="buttonRight" onClick={() =>{resetBgpInfo()}}> {resetText} </button>
                     <br></br>
                     <label>Operation: </label>
                     <select 
@@ -1368,17 +1389,17 @@ export default function PieceSetter({
                             })}
 
                         </select>
-                        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>   
+                        <button onClick={() => {openRm()}}>{manageResourceText}</button>   
                     </div>}
                 </div>}
 
-            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︾</button>}
-            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText[languageCode]}  ︽</button>}
+            {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText}  ︾</button>}
+            {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText}  ︽</button>}
             <br></br>
 
             {charPicAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> {resetText[languageCode]} </button>
+                    <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> {resetText} </button>
                     <br></br>
                     <label>Operation:</label>
                     <select 
@@ -1433,7 +1454,7 @@ export default function PieceSetter({
                 if (anotherCharpic === true) { // going to be false (closed)
                     resetAddingCharPicRow();
                 }
-                changeAddAnotherCharPicOption();}}>{addAnewCharPicText[languageCode]}
+                changeAddAnotherCharPicOption();}}>{addAnewCharPicText}
             </button>}
     </div>}
 
@@ -1451,7 +1472,7 @@ export default function PieceSetter({
         })}
     </select >
 
-    <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>
+    <button onClick={() => {openRm()}}>{manageResourceText}</button>
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
@@ -1504,7 +1525,7 @@ export default function PieceSetter({
     
 
     }}>
-        {confirmAddText[languageCode]}
+        {confirmAddText}
     </button>        {/* //TODO later */}
     
     </>}
@@ -1513,8 +1534,8 @@ export default function PieceSetter({
             
             </div>}
 
-            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText[languageCode]}  ︾</button>}
-            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText[languageCode]}  ︽</button>}
+            {!bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText}  ︾</button>}
+            {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText}  ︽</button>}
             <br></br>
 
             {bgMusicAdd && 
@@ -1522,7 +1543,7 @@ export default function PieceSetter({
                     <button className="buttonRight" onClick={() =>{
                         setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});
                         setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});
-                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> {resetText[languageCode]} </button>
+                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> {resetText} </button>
                     <br></br>
                     <label>Operation: </label>
                     <select value={currentPieceDetail["bgm_action"]}
@@ -1562,7 +1583,7 @@ export default function PieceSetter({
                                 return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                             })}
                         </select>
-                        <button onClick={() => {openRm()}}>{manageResourceText[languageCode]}</button>
+                        <button onClick={() => {openRm()}}>{manageResourceText}</button>
                             
                         {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
@@ -1606,7 +1627,7 @@ export default function PieceSetter({
          */}
 
         <br></br>
-        <button>{saveText[languageCode]}</button>
+        <button>{saveText}</button>
 
         <br></br>
         <br></br>
@@ -1616,8 +1637,8 @@ export default function PieceSetter({
         <br></br>
         <br></br>
         <div className="buttonRight50">
-            <button onClick={()=>{collapseAllOptions()}}> {collapseAllText[languageCode]} </button>
-            <button onClick={()=>{expandAllOptions()}}> {expandAllText[languageCode]} </button>
+            <button onClick={()=>{collapseAllOptions()}}> {collapseAllText} </button>
+            <button onClick={()=>{expandAllOptions()}}> {expandAllText} </button>
         </div>
   </div>
 
