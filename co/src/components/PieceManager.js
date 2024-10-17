@@ -1,18 +1,43 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import GameUISetter from './GameUISetter';
+import langDictionary from './textDictionary';
+
 
 export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum}) {
     const screenWidth = 800;
     const screenHeight =450;
+    let languageCodeTextOption = 'en';
+
     let name = "/piecemanager";
 
-    let languageCode = 0;
-    let saveToCloudText = ["Save to Cloud"];
-    let manageModeText = ["Manage Mode"];
-    let viewModeText = ["View Mode"];
-    let editText = ["Edit"];
-    let moveUpText = ["Move Up"];
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+
+    let saveToCloudText = textDictItem.saveToCloudText !== undefined ?
+        textDictItem.saveToCloudText
+        : textDictItemDefault.saveToCloudText;
+    
+    let manageModeText = textDictItem.manageModeText !== undefined ?
+        textDictItem.manageModeText
+        : textDictItemDefault.manageModeText;
+    
+    let viewModeText = textDictItem.viewModeText !== undefined ?
+        textDictItem.viewModeText
+        : textDictItemDefault.viewModeText;
+
+
+    let editText = textDictItem.editText !== undefined ?
+        textDictItem.editText
+        : textDictItemDefault.editText;
+    
+    
+    let moveUpText = textDictItem.moveUpText !== undefined ?
+        textDictItem.moveUpText
+        : textDictItemDefault.moveUpText;
+
+
+
     let moveDownText = ["Move Down"];
     let duplicateText = ["Duplicate"];
     let insertText = ["Insert"];
@@ -156,14 +181,14 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                 setIsClickedOnSetters(true);
             }}
         >
-            <button onClick={updateLocalDataToCloud}>{saveToCloudText[languageCode]}</button>
+            <button onClick={updateLocalDataToCloud}>{saveToCloudText}</button>
             <br></br><br></br><br></br>
             {isManage === false && <button onClick={()=>{setIsManage(!isManage);}}>
-                    {manageModeText[languageCode]}
+                    {manageModeText}
             </button>} 
 
             {isManage === true && <button onClick={()=>{setIsManage(!isManage);}}>
-                    {viewModeText[languageCode]}
+                    {viewModeText}
             </button>}             
             <table className="pieceTable">
         <thead>
@@ -195,7 +220,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
-                            assignPieceNum(item["num"]);}}>{editText[languageCode]}</button>
+                            assignPieceNum(item["num"]);}}>{editText}</button>
                     </td>
                     <td>{item["num"]}</td>
                     <td className="contentGrid">
@@ -205,12 +230,12 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                     </td>
                     {isManage === true &&  <td>
                     <div>
-                        <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>{moveUpText[languageCode]}</button>
+                        <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>{moveUpText}</button>
                         <br></br>
-                        <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>{moveDownText[languageCode]}</button>
+                        <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>{moveDownText}</button>
                         <br></br>
-                        <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>{duplicateText[languageCode]}</button>
-                        <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>{insertText[languageCode]}</button> 
+                        <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>{duplicateText}</button>
+                        <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>{insertText}</button> 
                     </div>
                     
                     </td>}
@@ -225,7 +250,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
                                 updatePieceData(pieceDataLocal);
                             }       
                         }}
-                        >{deleteText[languageCode]}</button>
+                        >{deleteText}</button>
                     </td>}
                 </tr>
                 );
@@ -233,7 +258,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
 
         </tbody>
     </table>
-    <button onClick={createNewListItem}>{addNewRowText[languageCode]}</button>
+    <button onClick={createNewListItem}>{addNewRowText}</button>
     
         </div>
     );

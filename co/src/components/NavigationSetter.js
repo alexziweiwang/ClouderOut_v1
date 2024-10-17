@@ -18,10 +18,9 @@ export default function NavigationSetter({initialNavObj,
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
 
-    let languageCode = 0;
-//TODO5
-
-    let saveChangesText = ["Save Changes"];
+    let saveChangesText = textDictItem.saveChangesText !== undefined ?
+      textDictItem.saveChangesText
+      : textDictItemDefault.saveChangesText;
 
     const updateText = textDictItem.updateText !== undefined ?
         textDictItem.updateText
