@@ -26,25 +26,37 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
         textDictItem.viewModeText
         : textDictItemDefault.viewModeText;
 
-
     let editText = textDictItem.editText !== undefined ?
         textDictItem.editText
         : textDictItemDefault.editText;
-    
-    
+        
     let moveUpText = textDictItem.moveUpText !== undefined ?
         textDictItem.moveUpText
         : textDictItemDefault.moveUpText;
 
+    let moveDownText = textDictItem.moveDownText !== undefined ?
+        textDictItem.moveDownText
+        : textDictItemDefault.moveDownText;
+    
 
+    let duplicateText = textDictItem.duplicateText !== undefined ?
+        textDictItem.duplicateText
+        : textDictItemDefault.duplicateText;
+    
+    let insertText = textDictItem.insertText !== undefined ?
+        textDictItem.insertText
+        : textDictItemDefault.insertText;
+    
+    let deleteText = textDictItem.deleteText !== undefined ?
+        textDictItem.deleteText
+        : textDictItemDefault.deleteText;
+    
+    let addNewRowText = textDictItem.addNewRowText !== undefined ?
+        textDictItem.addNewRowText
+        : textDictItemDefualt.addNewRowText;
+    
 
-    let moveDownText = ["Move Down"];
-    let duplicateText = ["Duplicate"];
-    let insertText = ["Insert"];
-    let deleteText = ["Delete"];
-    let addNewRowText = ["Add New Row"];
-
-
+        
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
  
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
