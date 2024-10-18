@@ -69,6 +69,10 @@ const textDictionary = {
         collapseAllText: "Collapse All",
         expandAllText: "Expand All",
         textContentSettingText: "Text Content Settings",
+        bgpSettingText: "Background Picture Setting",
+        manageGameData: "Manage Game Data",
+        charPicSettingText: "Character Picture Setting",
+        addAnewCharPicText: "Add a New Character Picture",
 
 
 
@@ -143,7 +147,10 @@ const textDictionary = {
         collapseAllText: "收起全部",
         expandAllText: "展开全部",
         textContentSettingText: "文字内容设置",
-
+        bgpSettingText: "背景图设置",
+        manageGameData: "管理游戏数据",
+        charPicSettingText: "角色图设置",
+        addAnewCharPicText: "添加一个新·角色图",
 
 
 

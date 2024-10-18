@@ -43,15 +43,29 @@ export default function PieceSetter({
         textDictItem.resetText
         : textDictItemDefault.resetText;
 
+    const bgpSettingText = textDictItem.bgpSettingText !== undefined ?
+        textDictItem.bgpSettingText
+        : textDictItemDefault.bgpSettingText;
+    
+    const manageResourceText = textDictItem.manageResourceText !== undefined ?
+        textDictItem.manageResourceText
+        : textDictItemDefault.manageResourceText;
+    
+    const manageGameData = textDictItem.manageGameData !== undefined ?
+        textDictItem.manageGameData
+        : textDictItemDefault.manageGameData;
         
-    const bgpSettingText = ["Background Picture Setting"];
-    const manageResourceText = ["Manage Resource"];
-    const manageGameDataItem = ["Manage Game-Data Item"];
-    const charPicSettingText = ["Character Picture Setting"];
-    const addAnewCharPicText = ["Add a New Character Picture"];
+    const charPicSettingText = textDictItem.charPicSettingText !== undefined ?
+        textDictItem.charPicSettingText
+        : textDictItemDefault.charPicSettingText;
+
+    const addAnewCharPicText = textDictItem.addAnewCharPicText !== undefind ?
+        textDictItem.addAnewCharPicText
+        : textDictItemDefault.addAnewCharPicText;
+
+
     const confirmAddText = ["Confirm Add"];
     const clkbSettingText = ["Clickable(customizable button) Setting"];
-
     const addAnewButtonText = ["Add a New Button"];
     const collaposeAddingNewButtonText = ["Collapse Adding New Button"];
     const addAnewConsequenceText = ["Add a New Consequence"];
@@ -900,7 +914,7 @@ export default function PieceSetter({
                             );
                         })}
                     </select>
-                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> {manageGameDataItem} </button>}
+                    {displayGameDataButton && <button onClick={()=>{openGameDataManager()}}> {manageGameData} </button>}
 
 
                     <br></br><br></br>
