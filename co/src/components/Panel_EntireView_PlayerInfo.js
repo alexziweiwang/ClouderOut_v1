@@ -20,7 +20,6 @@ export default function Panel_EntireView_PlayerInfo({
     const [inputUsername, setInpuUsername] = useState("");
     const [inputIconPicName, setInputIconPicName] = useState("");
 
-    const [picList, setPicList] = useState(initialPicResourceList);
     const [picMap, setPicMap] = useState({});
     const [iconPicUrl, setIconPicUrl] = useState("");
 
@@ -35,9 +34,7 @@ export default function Panel_EntireView_PlayerInfo({
             setPlayerProfile(obj["playerProfile"]);
             setUserAccountData(obj["userAccount"]);
 
-            // setupPictureList(true);
-
-
+            setupPicMap();
 
             setFirstTimeEnter(false);
         }
@@ -46,29 +43,20 @@ export default function Panel_EntireView_PlayerInfo({
         let w = getScreenWidth();
         setScreenWidth(w);
 
-        
-        
-   
-
     });
 
-
-    function setupPictureListOnce() {
-        let picListTemp = fetchPicResourceList();
-        setPicList(picListTemp);
-
-
-        let i = 0;
-        let tempPicMap = {};
-        for (;i < picList.length; i++) {
-            let item = picList[i];
-            tempPicMap[item["var"]] = item["url"];
-        }
-        setPicMap(tempPicMap);
-        
-
- //       console.log("got pic list: ", picListTemp); //TODO testing
+    function setupPicMap() {
+        let tempMap = {};
+        initialPicResourceList.map((item, index) => {
+            console.log("setup pic map: item...", item);
+            let keyStr = item["var"];
+            tempMap[keyStr] = item["url"];
+        })
+                                                    console.log("     temp map : ", tempMap); 
+        setPicMap(tempMap);
     }
+
+
 
     function updateDataSetsToCaller() { //update when settings changed ...
         updatePlayerInfoSets(playerProfile, userAccountData);
@@ -113,20 +101,30 @@ return (
 
         <label>Icon: </label>
         <div className="indentOne">
-            <div style={{
-                "borderRadius": "0px",
-                "border": "#3D5A80 dotted 2px",
-                "width": "150px",
-                "height": "150px",
-                "backgroundImage": `url('${iconPicUrl}')`,
-                "backgroundSize": `150px 150px`,
-
-                }}>
+                {iconPicUrl === "" && <div
+                    style={{
+                        "width": "150px",
+                        "height": "150px",
+                        "border": "#3D5A80 dotted 2px",
+                        "borderRadius": "0px",
+                    }}
+                />}
+             
+                {iconPicUrl !== "" && <img 
+                    style={{
+                        "width": "150px",
+                        "height": "150px",
+                        "border": "#3D5A80 dotted 2px",
+                        "borderRadius": "0px",
+                    }}
+                    src={iconPicUrl}
+                    alt="icon picture"
+                />}
         
-            </div>
             <br></br>
             <select
             //TODO (value=player-profile info's icon-pic-name)
+                value={iconPicUrl}
                 onChange={(event)=>{
                     
                     let selectedPicName = event.target.value;
@@ -140,11 +138,11 @@ return (
 
                     let url = picMap[selectedPicName];
                     setIconPicUrl(url);
-
+                                  
                 }}
             >
                 <option key="panel-playerInfo-Pic-defaultNone" value="">-- Select Picture Name --</option>
-                {picList.map((item, index) => {
+                {initialPicResourceList.map((item, index) => {
                     let keyStr = "panel-playerInfo-Pic" + index + item["var"];
                     return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                 })}
