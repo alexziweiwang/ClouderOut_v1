@@ -101,44 +101,42 @@ return (
 
         <label>Icon: </label>
         <div className="indentOne">
-                {iconPicUrl === "" && <div
+                
+                <div
                     style={{
                         "width": "150px",
                         "height": "150px",
                         "border": "#3D5A80 dotted 2px",
                         "borderRadius": "0px",
+                        "margin": "0px",                        
                     }}
-                />}
+                >
              
-                {iconPicUrl !== "" && <img 
-                    style={{
-                        "width": "150px",
-                        "height": "150px",
-                        "border": "#3D5A80 dotted 2px",
-                        "borderRadius": "0px",
-                    }}
-                    src={iconPicUrl}
-                    alt="icon picture"
-                />}
+                    {iconPicUrl !== "" && <img 
+                        style={{
+                            "width": "150px",
+                            "height": "150px",
+                            "borderRadius": "0px",
+                        }}
+                        src={iconPicUrl}
+                        alt="icon picture"
+                    />}
+                </div>
         
-            <br></br>
             <select
             //TODO (value=player-profile info's icon-pic-name)
                 value={iconPicUrl}
                 onChange={(event)=>{
-                    
                     let selectedPicName = event.target.value;
 
                     if (selectedPicName.length === 0 || selectedPicName === "") {
-                        setIconPicUrl();
+                        setIconPicUrl("");
                         return;
-                    }
-
-                    //TODO change player-profile info's icon-pic-name
-
-                    let url = picMap[selectedPicName];
-                    setIconPicUrl(url);
-                                  
+                    } else {
+                   
+                        let url = picMap[selectedPicName];
+                        setIconPicUrl(url);     
+                    }             
                 }}
             >
                 <option key="panel-playerInfo-Pic-defaultNone" value="">-- Select Picture Name --</option>
@@ -149,7 +147,18 @@ return (
 
             </select>
             <br></br>
-            <button>Change</button>
+            <button
+                onClick={()=>{
+                    //TODO update to player-info
+
+                }}
+            >Update</button>
+            <br></br>
+            <button
+                onClick={()=>{
+                    setIconPicUrl("");
+                }}
+            >Reset</button>
 
         </div>
         <br></br>
