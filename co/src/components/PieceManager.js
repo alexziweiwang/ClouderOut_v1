@@ -53,7 +53,7 @@ export default function PieceManager({allPieceData, assignPieceNum, assignPrevie
     
     let addNewRowText = textDictItem.addNewRowText !== undefined ?
         textDictItem.addNewRowText
-        : textDictItemDefualt.addNewRowText;
+        : textDictItemDefault.addNewRowText;
     
 
         

@@ -94,6 +94,10 @@ export default function PieceSetter({
     const saveText = textDictItem.saveText !== undefined ?
         textDictItem.saveText
         : textDictItemDefault.saveText;
+
+    const collapseText = textDictItem.collapseText !== undefined ?
+        textDictItem.collapseText
+        : textDictItemDefault.collapseText;
     
 
 

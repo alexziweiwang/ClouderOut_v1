@@ -1237,18 +1237,22 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       />
       <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
               <thead>
-                <th>Current Page Status</th>
-                <th>Current Chapter-Key</th>
-                <th>Current Node-Key</th>
-                <th>Current Node-Type</th>
-
+                <tr>
+                  <th>Current Page Status</th>
+                  <th>Current Chapter-Key</th>
+                  <th>Current Node-Key</th>
+                  <th>Current Node-Type</th>
+                </tr>
               </thead>
 
               <tbody> 
-                <td>{currTestingPageStatus}</td>
-                <td>{currTestingChapterKey}</td>
-                <td>{currTestingNodeKey}</td>
-                <td>{currTestingNodeType}</td>
+                <tr>
+                  <td>{currTestingPageStatus}</td>
+                  <td>{currTestingChapterKey}</td>
+                  <td>{currTestingNodeKey}</td>
+                  <td>{currTestingNodeType}</td>         
+                </tr>
+      
 
               </tbody>
 

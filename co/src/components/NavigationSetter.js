@@ -59,7 +59,7 @@ export default function NavigationSetter({initialNavObj,
         : textDictItemDefault.shopPageText;
     
     let duringGamePlayPageText = textDictItem.duringGamePlayPageText !== undefined ?
-        textDictITem.duringGamePlayPageText
+        textDictItem.duringGamePlayPageText
         : textDictItemDefault.duringGamePlayPageText;
     
 
