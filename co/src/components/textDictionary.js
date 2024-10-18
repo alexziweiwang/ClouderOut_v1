@@ -78,6 +78,7 @@ const textDictionary = {
         addAnewButtonText: "Add a New Button",
         collaposeAddingNewButtonText: "Collapse Adding New Button",
         addAnewConsequenceText: "Add a New Consequence",
+        bgmSettingText: "Background Music Setting",
 
 
 
@@ -160,6 +161,7 @@ const textDictionary = {
         clkbSettingText: "可点击物(个性化按钮)设置",
         addAnewButtonText: "添加一个新·按钮",
         addAnewConsequenceText: "添加一个新·调整效果",
+        bgmSettingText: "背景音乐设置",
 
 
 

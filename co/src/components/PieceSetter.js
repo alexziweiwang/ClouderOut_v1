@@ -79,13 +79,22 @@ export default function PieceSetter({
         textDictItem.addAnewConsequenceText
         : textDictItemDefault.addAnewConsequenceText;
     
-
-
-    const cancelText = ["Cancel"];
-    const addText = ["Add"];
-    const bgmSettingText = ["Background Music Setting"];
-    const saveText = ["Save"];
-
+    const cancelText = textDictItem.cancelText !== undefined ?
+        textDictItem.cancelText
+        : textDictItemDefault.cancelText;
+    
+    const addText = textDictItem.addText !== undefined ?
+        textDictItem.addText
+        : textDictItemDefault.addText;
+    
+    const bgmSettingText = textDictItem.bgmSettingText !== undefined ?
+        textDictItem.bgmSettingText
+        : textDictItemDefault.bgmSettingText;
+    
+    const saveText = textDictItem.saveText !== undefined ?
+        textDictItem.saveText
+        : textDictItemDefault.saveText;
+    
 
 
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
