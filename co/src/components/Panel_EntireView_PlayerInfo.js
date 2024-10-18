@@ -55,11 +55,9 @@ export default function Panel_EntireView_PlayerInfo({
     function setupPicMap() {
         let tempMap = {};
         initialPicResourceList.map((item, index) => {
-            console.log("setup pic map: item...", item);
             let keyStr = item["var"];
             tempMap[keyStr] = item["url"];
         })
-                                                    console.log("     temp map : ", tempMap); 
         setPicMap(tempMap);
     }
 

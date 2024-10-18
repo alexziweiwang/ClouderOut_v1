@@ -30,8 +30,8 @@ export default function NavigationPreview ({
       console.log("nav-preview: fetchProjResourceLists()"); //TODO test
       /* fetch from cloud db */
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-      console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test
-      console.log(obj); //TODO test
+                                                // console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test
+                                                // console.log(obj); //TODO test
       setAudioList(obj.audio);
       setVisualList(obj.visual);
     }
@@ -859,7 +859,7 @@ export default function NavigationPreview ({
             
                 <br></br>        
                 this is Player Profile Page<br></br>  
-                icon pic name: {navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]}
+                ... icon pic name: {navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]}
                 <br></br>
 
                 {(tryPPText !== -1 && tryPPText["previewing"] !== false)

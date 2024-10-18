@@ -3368,6 +3368,62 @@ export default function NavigationSetter({initialNavObj,
 
      {currentSettingPage === "Player Profile Page" && <div>
      <label>Player Profile Page:</label>
+             
+     <br></br><br></br>
+            <div>Emulated User Data (for Test) Setting</div>
+            <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
+                <label>Username: </label>
+                <input 
+                    
+                    onChange={(event)=>{
+              
+                    }}
+                ></input>
+                <br></br>
+                <label>Icon Picture: </label>
+                    <select
+                      value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["picName"]}
+                      onChange={(event)=>{
+                        let tempNav = currentProjectNav;
+                        tempNav["playerProfilePage-playerProfileIconPicItem"]["picName"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                        updateNavObj(tempNav);   
+                      }}
+                    >
+                      <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
+                      {visualList.map((item, index) => {
+                          let keyStr = "ppIcon-" + index + item["var"];
+                          return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                      })}
+
+                    </select>
+
+                <button
+                  onClick={()=>{
+                    openRm();
+                  }}
+                >Manage Resource</button>
+                <br></br>
+
+                <label>Level: </label>
+                <input></input>
+                <br></br>
+
+                <label>Membership: </label>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+
+            </div>
+          
+               
+               
+
+
+
+       <br></br><label>Element Settings: </label>
        <div className="indentOne">
        <label>Background of the entire page:</label><br></br>
                 <div className="indentOne">
@@ -4091,30 +4147,6 @@ export default function NavigationSetter({initialNavObj,
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posY"]}
                 ></input>
                 <br></br>
-                <label>Picture: </label>
-                    <select
-                      value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["picName"]}
-                      onChange={(event)=>{
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileIconPicItem"]["picName"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
-                        updateNavObj(tempNav);   
-                      }}
-                    >
-                      <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
-                      {visualList.map((item, index) => {
-                          let keyStr = "ppIcon-" + index + item["var"];
-                          return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                      })}
-
-                    </select>
-
-                <button
-                  onClick={()=>{
-                    openRm();
-                  }}
-                >Manage Resource</button>
-                <br></br>
                 <label>Width: </label>
                 <input type="range"
                   min="0" max={screenWidth} step="1"
@@ -4181,10 +4213,14 @@ export default function NavigationSetter({initialNavObj,
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["scale"]}
                 ></input>
             </div>}
-                      
+            
+      
+
 
 
        </div>
+
+
     </div>}
 
     {currentSettingPage === "Game Status Data Page" && <div>

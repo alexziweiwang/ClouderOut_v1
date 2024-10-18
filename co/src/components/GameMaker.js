@@ -848,7 +848,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   const [showGameDataPanel, setShowGameDataPanel] = useState(false);
-  const [showPlayerInfoPanel, setShowPlayerInfoPanel] = useState(true);
 
   let modalStyleName = "";
 
@@ -1200,18 +1199,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                 }}
             >Show Game-Data Tracking Panel</label><br></br>
 
-
-            <input 
-              type="checkbox"
-              value={showPlayerInfoPanel}
-              checked={showPlayerInfoPanel}
-              onChange={()=>{
-                setShowPlayerInfoPanel(!showPlayerInfoPanel);
-              }}
-            ></input>
-            <label onClick={()=>{
-                setShowPlayerInfoPanel(!showPlayerInfoPanel);
-              }}>Show Emulated-Player Info Panel</label>
             
         </div>
     
@@ -1272,29 +1259,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       </div>
 
       <div>
-            {(showPlayerInfoPanel && showGameDataPanel && isDisplayEntireGameViewer) &&
-              <div style={{"display": "flex", "marginLeft": `${screenWidth+300}px`}}>
-                <button 
-                  className={selectedGameDataPanelBetween2 ? "panelTabSelected" : "panelTab"}
-                  onClick={()=>{
-                    setSelectedGameDataPanelBetween2(true);
-                  }}>Game Data</button>
-                <button 
-                  className={!selectedGameDataPanelBetween2 ? "panelTabSelected" : "panelTab"}
-                  onClick={()=>{
-                    setSelectedGameDataPanelBetween2(false);
-                  }}>Player Info</button>
-              </div>
-            }
-
 
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {((isDisplayEntireGameViewer && (showGameDataPanel && showPlayerInfoPanel) && selectedGameDataPanelBetween2) 
-              ||
-              (isDisplayEntireGameViewer && !(showGameDataPanel && showPlayerInfoPanel) && showGameDataPanel )
-            )
+            {
+              (isDisplayEntireGameViewer && showGameDataPanel )
             && 
               <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
                 <Panel_GameDataTest
@@ -1315,32 +1285,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               </div>
             }
 
-            {/* player info */}
-            {((isDisplayEntireGameViewer && (showGameDataPanel && showPlayerInfoPanel) && !selectedGameDataPanelBetween2)
-              || (isDisplayEntireGameViewer && !(showGameDataPanel && showPlayerInfoPanel) && showPlayerInfoPanel)
-            )
-            
-            && 
-              <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
-                
-                
-                <Panel_EntireView_PlayerInfo
-                  getScreenHeight={passInScreenHeight}
-                  getScreenWidth={passInScreenWidth}
-                  fetchPlayerInfoSets={passInPlayerInfoSets}
-                  updatePlayerInfoSets={updatePlayerInfoSets}
-                  fetchPicResourceList={passInPicResourceList}
-                  initialPicResourceList={visualList}
-                  fetchProjectNavData={passInProjectNavData}
-                  initialProjNavData={currentProjectNav}
-                  updateProjectNavData={updateProjectNavData}
-                />
-                
-                
-                
-
-              </div>}
-            {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
 
           </div>
       
