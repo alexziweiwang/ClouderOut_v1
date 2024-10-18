@@ -615,7 +615,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         //TODO format: localChapterInfo = <chapter title, node-relationship-map>
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
-        triggerRefresh();
+        triggerRefreshFetchCloudData();
 
         let isLocal = true; //TODO temp
 
@@ -709,6 +709,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function passInNavObj() {
+    console.log("game-maker, icon pic name = ", currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["picName"]);
     return currentProjectNav;
   }
 
@@ -728,7 +729,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return currPageName;
   }
 
-  function triggerRefresh() {
+  function triggerRefreshFetchCloudData() {
     fetchGameDataFromCloud();
     fetchProjResourceLists();
   }
@@ -1219,6 +1220,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           isDisplay={isDisplayEntireGameViewer}
           makeNotDisplay={closeEntireGameViewer}
           navigationObj={currentProjectNav}
+          fetchNavigationObj={passInNavObj}
           initialChapterList={chapterList}
           getChapterList={passInChapterList}
 
@@ -1358,7 +1360,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               isDisplay = {isDisplayRmBool} 
               handleRmCancel={handleResourceManagerCancel} 
               handleRmSaveChanges={handleResourceManagerSaveChanges}
-              refresh={triggerRefresh}
+              refresh={triggerRefreshFetchCloudData}
           />
           
           </div>}

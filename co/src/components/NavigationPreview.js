@@ -859,6 +859,7 @@ export default function NavigationPreview ({
             
                 <br></br>        
                 this is Player Profile Page<br></br>  
+                icon pic name: {navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]}
                 <br></br>
 
                 {(tryPPText !== -1 && tryPPText["previewing"] !== false)

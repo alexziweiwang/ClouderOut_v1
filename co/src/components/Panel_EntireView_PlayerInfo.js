@@ -78,7 +78,11 @@ return (
         "height": `${screenHeight}px`, 
         "backgroundColor": "#98C1D9", 
         "position": "absolute", 
-        "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`}}
+        "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`,
+        "overflow": "scroll"
+    }}
+        
+
     >
 
     (players' in-game profile)
@@ -161,6 +165,7 @@ return (
                     let tempNav = navData;
                     tempNav["playerProfilePage-playerProfileIconPicItem"]["picName"] = iconName;
                     updateProjectNavData(tempNav);
+                    console.log("new pic: ", iconName);
                 }}
             >Update</button>
             <br></br>

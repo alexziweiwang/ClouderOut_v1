@@ -12,7 +12,7 @@ import NavigationPreview from './NavigationPreview';
 
  */
 export default function Viewer_Entire({isDisplay, 
-    makeNotDisplay, navigationObj,
+    makeNotDisplay, navigationObj, fetchNavigationObj,
     initialChapterList, getChapterList,
    
     isLocal,
@@ -209,7 +209,7 @@ return(<>
                 }}>
                     <NavigationPreview 
                         initialNavObj={navigationObj} 
-                        fetchNavObj={passInNavObj} 
+                        fetchNavObj={fetchNavigationObj} 
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 
                         updateCurrentPageName={updateNavPageName}
