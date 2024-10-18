@@ -73,6 +73,11 @@ const textDictionary = {
         manageGameData: "Manage Game Data",
         charPicSettingText: "Character Picture Setting",
         addAnewCharPicText: "Add a New Character Picture",
+        confirmAddText: "Confirm Add",
+        clkbSettingText: "Clickable(customizable button) Setting",
+        addAnewButtonText: "Add a New Button",
+        collaposeAddingNewButtonText: "Collapse Adding New Button",
+        addAnewConsequenceText: "Add a New Consequence",
 
 
 
@@ -151,6 +156,10 @@ const textDictionary = {
         manageGameData: "管理游戏数据",
         charPicSettingText: "角色图设置",
         addAnewCharPicText: "添加一个新·角色图",
+        confirmAddText: "确认添加",
+        clkbSettingText: "可点击物(个性化按钮)设置",
+        addAnewButtonText: "添加一个新·按钮",
+        addAnewConsequenceText: "添加一个新·调整效果",
 
 
 

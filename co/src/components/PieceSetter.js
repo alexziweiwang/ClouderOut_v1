@@ -59,20 +59,34 @@ export default function PieceSetter({
         textDictItem.charPicSettingText
         : textDictItemDefault.charPicSettingText;
 
-    const addAnewCharPicText = textDictItem.addAnewCharPicText !== undefind ?
+    const addAnewCharPicText = textDictItem.addAnewCharPicText !== undefined ?
         textDictItem.addAnewCharPicText
         : textDictItemDefault.addAnewCharPicText;
 
+    const confirmAddText = textDictItem.confirmAddText !== undefined ?
+        textDictItem.confirmAddText
+        : textDictItemDefault.confirmAddText;  
+    
+    const clkbSettingText = textDictItem.clkbSettingText !== undefined ?
+        textDictItem.clkbSettingText
+        : textDictItemDefault.clkbSettingText;    
+    
+    const addAnewButtonText = textDictItem.addAnewButtonText !== undefined ?
+        textDictItem.addAnewButtonText
+        : textDictItemDefault.addAnewButtonText;
 
-    const confirmAddText = ["Confirm Add"];
-    const clkbSettingText = ["Clickable(customizable button) Setting"];
-    const addAnewButtonText = ["Add a New Button"];
-    const collaposeAddingNewButtonText = ["Collapse Adding New Button"];
-    const addAnewConsequenceText = ["Add a New Consequence"];
+    const addAnewConsequenceText = textDictItem.addAnewConsequenceText !== undefined ?
+        textDictItem.addAnewConsequenceText
+        : textDictItemDefault.addAnewConsequenceText;
+    
+
+
     const cancelText = ["Cancel"];
     const addText = ["Add"];
     const bgmSettingText = ["Background Music Setting"];
     const saveText = ["Save"];
+
+
 
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
 
@@ -841,7 +855,7 @@ export default function PieceSetter({
                         </button>}
                         {displayStndButtonAdd && <button onClick={()=>{
                             setDisplayStndButtonAdd(!displayStndButtonAdd);
-                        }}>-- {collaposeAddingNewButtonText} --
+                        }}>-- {collapseText} --
                         </button>}
                        
 
