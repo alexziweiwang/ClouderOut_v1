@@ -157,18 +157,30 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
 
   const ref = doc(db, "user_projects", userName, "projects", projectName);
+  
   let visualListSnap = await getDoc(ref, "proj_resource_visual");
-  //TODO validate visualListSnap
+  if (visualListSnap === undefined) {
+                                                        console.log("visualListSnap undefined");
+    return;
+  }
+                                                        console.log(visualListSnap.data());
+
   let visualList = visualListSnap.data();
   visualList = visualList["proj_resource_visual"];
+
   let audioListSnap = await getDoc(ref, "proj_resource_audio");
-  //TODO validate audioListSnap
+                                                        console.log(audioListSnap.data());
+  if (audioListSnap === undefined) {
+                                                        console.log("audioListSnap undefined");
+
+    return;
+  }
 
   let audioList = audioListSnap.data();
   audioList = audioList["proj_resource_audio"];
 
   const obj = {audio: audioList, visual: visualList};
-                      //console.log("rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
+                      console.log("rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
 
   return obj;
 }

@@ -120,7 +120,10 @@ export default function GameMaker({username, projectName}) {
     /* fetch from cloud db */
     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
 
+    console.log("obj: ", obj); 
     setVisualList(obj.visual);
+
+    return obj.visual;
   }
 
 
@@ -613,7 +616,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         triggerRefresh();
 
-
         let isLocal = true; //TODO temp
 
         loadPlayingGameData(isLocal); 
@@ -728,7 +730,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   function triggerRefresh() {
     fetchGameDataFromCloud();
     fetchProjResourceLists();
-
   }
 
   // function resetRmUpdatedSignal() {
@@ -1020,7 +1021,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInPicResourceList() {
-    return visualList;
+      return visualList;
   }
 
   const emptyValue = {};

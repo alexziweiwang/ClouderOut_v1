@@ -25,7 +25,7 @@ export default function Panel_EntireView_PlayerInfo({
     const [iconPicUrl, setIconPicUrl] = useState("");
 
 
-    console.log("initialPicResourceList = ", initialPicResourceList); //TODO testing
+ //   console.log("initialPicResourceList = ", initialPicResourceList); //TODO testing
        
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -35,7 +35,7 @@ export default function Panel_EntireView_PlayerInfo({
             setPlayerProfile(obj["playerProfile"]);
             setUserAccountData(obj["userAccount"]);
 
-            setupPictureList(true);
+            // setupPictureList(true);
 
 
 
@@ -47,27 +47,27 @@ export default function Panel_EntireView_PlayerInfo({
         setScreenWidth(w);
 
         
-       
+        
    
 
     });
 
 
-    function setupPictureList(isFirst) {
+    function setupPictureListOnce() {
         let picListTemp = fetchPicResourceList();
         setPicList(picListTemp);
 
-        if (isFirst === true) {
-            let i = 0;
-            let tempPicMap = {};
-            for (;i < picList.length; i++) {
-                let item = picList[i];
-                tempPicMap[item["var"]] = item["url"];
-            }
-            setPicMap(tempPicMap);
-        }
 
-        console.log("got pic list: ", picListTemp); //TODO testing
+        let i = 0;
+        let tempPicMap = {};
+        for (;i < picList.length; i++) {
+            let item = picList[i];
+            tempPicMap[item["var"]] = item["url"];
+        }
+        setPicMap(tempPicMap);
+        
+
+ //       console.log("got pic list: ", picListTemp); //TODO testing
     }
 
     function updateDataSetsToCaller() { //update when settings changed ...
