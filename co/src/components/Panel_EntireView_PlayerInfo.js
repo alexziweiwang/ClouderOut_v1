@@ -7,6 +7,9 @@ export default function Panel_EntireView_PlayerInfo({
     fetchPlayerInfoSets,
     fetchPicResourceList,
     initialPicResourceList,
+    fetchProjectNavData,
+    initialProjNavData,
+    updateProjectNavData
 }) {
 
     const [screenHeight, setScreenHeight] = useState(450);
@@ -22,7 +25,9 @@ export default function Panel_EntireView_PlayerInfo({
 
     const [picMap, setPicMap] = useState({});
     const [iconPicUrl, setIconPicUrl] = useState("");
+    const [iconName, setIconName] = useState("");
 
+    const [navData, setNavData] = useState(initialProjNavData);
 
  //   console.log("initialPicResourceList = ", initialPicResourceList); //TODO testing
        
@@ -42,6 +47,8 @@ export default function Panel_EntireView_PlayerInfo({
         setScreenHeight(h);
         let w = getScreenWidth();
         setScreenWidth(w);
+        let navTemp = fetchProjectNavData();
+        setNavData(navTemp);
 
     });
 
@@ -125,7 +132,7 @@ return (
         
             <select
             //TODO (value=player-profile info's icon-pic-name)
-                value={iconPicUrl}
+                value={iconName}
                 onChange={(event)=>{
                     let selectedPicName = event.target.value;
 
@@ -137,6 +144,7 @@ return (
                         let url = picMap[selectedPicName];
                         setIconPicUrl(url);     
                     }             
+                    setIconName(selectedPicName);
                 }}
             >
                 <option key="panel-playerInfo-Pic-defaultNone" value="">-- Select Picture Name --</option>
@@ -149,8 +157,10 @@ return (
             <br></br>
             <button
                 onClick={()=>{
-                    //TODO update to player-info
-
+                    //TODO update to player-info, to-test
+                    let tempNav = navData;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["picName"] = iconName;
+                    updateProjectNavData(tempNav);
                 }}
             >Update</button>
             <br></br>

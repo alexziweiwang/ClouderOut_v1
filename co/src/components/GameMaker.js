@@ -1027,6 +1027,13 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   const emptyValue = {};
 
+  function passInProjectNavData() {
+      return currentProjectNav;
+  }
+
+  function updateProjectNavData(data) {
+    setCurrentProjectNav(data);
+  }
 
   return (
   <div>
@@ -1322,6 +1329,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   updatePlayerInfoSets={updatePlayerInfoSets}
                   fetchPicResourceList={passInPicResourceList}
                   initialPicResourceList={visualList}
+                  fetchProjectNavData={passInProjectNavData}
+                  initialProjNavData={currentProjectNav}
+                  updateProjectNavData={updateProjectNavData}
                 />
                 
                 

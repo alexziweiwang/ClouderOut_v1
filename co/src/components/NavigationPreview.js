@@ -938,8 +938,8 @@ export default function NavigationPreview ({
                     }}>
                         <img
                             src={visualMap[navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]]}
-                            width={navObj["playerProfilePage-playerProfileIconPicItem"]["width"]}
-                            height={navObj["playerProfilePage-playerProfileIconPicItem"]["height"]}
+                            width={navObj["playerProfilePage-playerProfileIconPicItem"]["width"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
+                            height={navObj["playerProfilePage-playerProfileIconPicItem"]["height"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
                         ></img>
                         
                 </div>}
