@@ -414,7 +414,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgPicName": "",
     "playerProfilePage-itemMap": {},
 
-    "playerProfilePage-previewingTextObj": {
+    "playerProfilePage-previewingTextObj": { //for previewing only
       "previewing": false,
       "textContent": "",
       "textItalic": false,
@@ -424,7 +424,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "posX": 30,
       "posY": 50,
     },
-    "playerProfilePage-previewingValueObj": {
+    "playerProfilePage-previewingValueObj": { //for previewing only
       "previewing": false,
       "labelText": "",
       "valueItemType": "GameData",
@@ -435,7 +435,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "textFont": "serif",
       "textColor": "#000000",
     },
-    "playerProfilePage-previewingPicObj": {
+    "playerProfilePage-previewingPicObj": { //for previewing only
       "previewing": false,
       "posX": 50,
       "posY": 50,
@@ -445,7 +445,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     },
 
 
-    "playerProfilePage-playerProfileNickNameItem": {
+    "playerProfilePage-playerProfileNickNameItem": { //used in actual game
       "adding": false,
       "nicknameLabel": "",
       "textContent": "",
@@ -456,13 +456,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "posX": 30,
       "posY": 50,
     },
-    "playerProfilePage-playerProfileIconPicItem": {
+    "playerProfilePage-playerProfileIconPicItem": { //used in actual game
       "adding": false,
       "posX": 50,
       "posY": 50,
       "picName": "",
       "width": 200,
       "height": 200,
+      "scale": 1
     },
 
 

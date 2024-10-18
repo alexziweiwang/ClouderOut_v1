@@ -4158,6 +4158,28 @@ export default function NavigationSetter({initialNavObj,
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["height"]}
                 ></input>
+                <br></br>
+                <label>Scale: </label>
+                <input type="range"
+                  min="1" max="5" step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["scale"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["scale"]}
+                ></input>
+                <input
+                  min="1" max="5" step="1"
+                  onChange={(event)=>{
+                    let tempNav = currentProjectNav;
+                    tempNav["playerProfilePage-playerProfileIconPicItem"]["scale"] = event.target.value;
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                    updateNavObj(tempNav);                       
+                  }}
+                  value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["scale"]}
+                ></input>
             </div>}
                       
 
