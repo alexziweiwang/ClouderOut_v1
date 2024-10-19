@@ -164,6 +164,19 @@ export default function Viewer_Entire({isDisplay,
         notifyPageStatus(pageName);// notify outer layer
     }
 
+    function passInPlayerInfoSets() {
+        let obj = {};
+    
+        //TODO for testing only, pass-in test-data
+        obj["playerProfile"] = playerProfile;
+        obj["userAccount"] = playerAccount;
+    
+    
+        //TODO: later, non-emu data, pass-in non-emu data
+    
+        return obj;
+      }
+
 
 return(<>
 
@@ -214,9 +227,12 @@ return(<>
                         fetchPageName={passInNavPageName} 
                         updateCurrentPageName={updateNavPageName}
                         isEditing={false}
-                        refDataGameData={playerGameData}
-                        playerProfileRefData={playerProfile}
-                        playerAccountRefData={playerAccount}
+                        initialGameDataRefData={playerGameData}
+                        initialPlayerProfileRefData={playerProfile}
+                        initialPlayerAccountRefData={playerAccount}
+
+                        fetchPlayerInfoSets={passInPlayerInfoSets}
+
 
                     />
                 </div>

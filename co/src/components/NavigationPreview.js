@@ -10,9 +10,11 @@ export default function NavigationPreview ({
     chapterData, 
     isEditing,
 
-    refDataGameData,
-    playerProfileRefData,
-    playerAccountRefData,
+    initialGameDataRefData,
+    initialPlayerProfileRefData,
+    initialPlayerAccountRefData,
+
+    fetchPlayerInfoSets,
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -38,6 +40,9 @@ export default function NavigationPreview ({
 
     const [navObj, setNavObj] = useState(initialNavObj);
     const [page, setPage] = useState("Main Page");
+
+    const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
+    const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
     const mainPagePictureVariableNames = [
@@ -128,6 +133,9 @@ export default function NavigationPreview ({
         if (isEditing === true) {
             let objTemp = fetchNavObj();
             setNavObj(objTemp);
+            let playerInfoObj = fetchPlayerInfoSets();
+            setRefDataPlayerAccount(playerInfoObj["userAccount"]);
+            setRefDataPlayerProfile(playerInfoObj["playerProfile"])
 
 // console.log("nav preview: ", objTemp); //TODO testing
 
@@ -919,12 +927,12 @@ export default function NavigationPreview ({
                         
                         {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === false &&
                         <label>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: {(playerProfileRefData !== undefined && playerProfileRefData["playername"] !== undefined) ? playerProfileRefData["playername"] : " (value here)"}
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {(refDataPlayerProfile !== undefined && refDataPlayerProfile["playername"] !== undefined) ? refDataPlayerProfile["playername"] : " (value here)"}
                         </label>}
 
                         {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === true &&
                         <em>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: {(playerProfileRefData !== undefined && playerProfileRefData["playername"] !== undefined) ? playerProfileRefData["playername"] : " (value here)"}
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {(refDataPlayerProfile !== undefined && refDataPlayerProfile["playername"] !== undefined) ? refDataPlayerProfile["playername"] : " (value here)"}
                         </em>
                         }
                     </div>

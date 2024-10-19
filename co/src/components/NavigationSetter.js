@@ -12,7 +12,7 @@ export default function NavigationSetter({initialNavObj,
   userName,
   projName,
   updateEmuPlayerInfo,
-  fetchEmuPlayerInfo,
+  intialEmuPlayerInfo,
 
 }) {
     let languageCodeTextOption = 'en';
@@ -101,7 +101,7 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
     const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
 
-    const [emuPlayerInfo, setEmuPlayerInfo] = useState({});
+    const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerInfo);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -113,8 +113,6 @@ export default function NavigationSetter({initialNavObj,
             setFirstTimeEnter(false);
       }
 
-      let playerInfoTemp = fetchEmuPlayerInfo();
-      setEmuPlayerInfo(playerInfoTemp);
 
 
       //fetch from nav-previewer for current-page-name
@@ -3380,13 +3378,22 @@ export default function NavigationSetter({initialNavObj,
             <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
                 <label>Username: </label>
                 <input 
-                    value={emuPlayerInfo["playername"]}
+                    defaultValue={emuPlayerInfo["playername"]}
                     onChange={(event)=>{
                       let infoObj = emuPlayerInfo;
                       infoObj["playername"] = event.target.value;
-                      updateEmuPlayerInfo(infoObj);
+                      setEmuPlayerInfo({...emuPlayerInfo, "playername": event.target.value});         
+
+                      updateEmuPlayerInfo(emuPlayerInfo);
+
                     }}
                 ></input>
+                <button
+                    onClick={()=>{
+                      // updateEmuPlayerInfo(emuPlayerInfo);
+                      // console.log("updating...", emuPlayerInfo);
+                    }}
+                >Update</button>
                 <br></br>
                 <label>Icon Picture: </label>
                     <select

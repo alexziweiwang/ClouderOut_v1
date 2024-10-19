@@ -708,7 +708,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function passInNavObj() {
-    console.log("game-maker, icon pic name = ", currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["picName"]);
     return currentProjectNav;
   }
 
@@ -1035,6 +1034,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function updateEmuPlayerInfo(data) {
+    console.log("game-maker: updateEmuPlayerInfo = ", data); //TODO test
     setTestPlayerProfile(data);
   }
 
@@ -1161,7 +1161,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   userName={username} 
                   projName={projectName} 
                   updateEmuPlayerInfo={updateEmuPlayerInfo}
-                  fetchEmuPlayerInfo={passInEmuPlayerInfo}
+                  intialEmuPlayerInfo={testPlayerProfile}
                 />
               </div>
               
@@ -1173,9 +1173,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   chapterData={chapterList} 
                   updateCurrentPageName={updateCurrPageName}
                   isEditing={true}
-                  refDataGameData={emptyValue}
-                  playerProfileRefData={testPlayerProfile}
-                  playerAccountRefData={testPlayerAccount}
+                  initialGameDataRefData={emptyValue}
+                  initialPlayerProfileRefData={testPlayerProfile}
+                  initialPlayerAccountRefData={testPlayerAccount}
+
+                  fetchPlayerInfoSets={passInPlayerInfoSets}
+       
 
                   />
               </div>
