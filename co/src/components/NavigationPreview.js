@@ -11,8 +11,8 @@ export default function NavigationPreview ({
     isEditing,
 
     refDataGameData,
-    refDataPlayerProfile,
-    refDataPlayerUserAccount,
+    playerProfileRefData,
+    playerAccountRefData,
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -915,15 +915,16 @@ export default function NavigationPreview ({
                             "top": `${navObj["playerProfilePage-playerProfileNickNameItem"]["posY"]}px`,
                         }}
                     >
+                        {/* TODO5 */}
                         
                         {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === false &&
                         <label>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: (nickname value here)
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: {(playerProfileRefData !== undefined && playerProfileRefData["playername"] !== undefined) ? playerProfileRefData["playername"] : " (value here)"}
                         </label>}
 
                         {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === true &&
                         <em>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: (nickname value here)
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}: {(playerProfileRefData !== undefined && playerProfileRefData["playername"] !== undefined) ? playerProfileRefData["playername"] : " (value here)"}
                         </em>
                         }
                     </div>

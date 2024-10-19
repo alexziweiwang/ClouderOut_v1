@@ -215,8 +215,8 @@ return(<>
                         updateCurrentPageName={updateNavPageName}
                         isEditing={false}
                         refDataGameData={playerGameData}
-                        refDataPlayerProfile={playerProfile}
-                        refDataPlayerUserAccount={playerAccount}
+                        playerProfileRefData={playerProfile}
+                        playerAccountRefData={playerAccount}
 
                     />
                 </div>
