@@ -859,7 +859,6 @@ export default function NavigationPreview ({
             
                 <br></br>        
                 this is Player Profile Page<br></br>  
-                ... icon pic name: {navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]}
                 <br></br>
 
                 {(tryPPText !== -1 && tryPPText["previewing"] !== false)
@@ -937,8 +936,9 @@ export default function NavigationPreview ({
                         "top": `${navObj["playerProfilePage-playerProfileIconPicItem"]["posY"]}px`,
                         "borderRadius": "0px",
                     }}>
+                        TODO img src (player-info-data's pic-name)
                         <img
-                            src={visualMap[navObj["playerProfilePage-playerProfileIconPicItem"]["picName"]]}
+                            src=""
                             width={navObj["playerProfilePage-playerProfileIconPicItem"]["width"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
                             height={navObj["playerProfilePage-playerProfileIconPicItem"]["height"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
                         ></img>

@@ -460,7 +460,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "adding": false,
       "posX": 50,
       "posY": 50,
-      "picName": "",
       "width": 200,
       "height": 200,
       "scale": 1
@@ -505,7 +504,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   //TODO6
   const [testPlayerProfile, setTestPlayerProfile] = useState({ 
-      "username": "playerA",
+      "playername": "playerA",
       "userTitle": "",
       "iconPicName": "",
       "level": 2,
@@ -514,13 +513,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   });                                                                 //TODO important for holder-in-practice
 
   const [testPlayerAccount, setTestPlayerAccount] = useState({
-      "username": "playerA",
+      "playername": "playerA",
       "email": "example@email.com",
 
     });                                                               //TODO important for holder-in-practice
 
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
-      "username": "playerA",
+      "playername": "playerA",
       "itemStatus": [{}, {}, {}]
     });                                                               //TODO important for holder-in-practice
 
@@ -1035,6 +1034,14 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     setCurrentProjectNav(data);
   }
 
+  function updateEmuPlayerInfo(data) {
+    setTestPlayerProfile(data);
+  }
+
+  function passInEmuPlayerInfo() {
+    return testPlayerProfile;
+  }
+
   return (
   <div>
 <div>
@@ -1153,6 +1160,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   getScreenheight={passInScreenHeight}
                   userName={username} 
                   projName={projectName} 
+                  updateEmuPlayerInfo={updateEmuPlayerInfo}
+                  fetchEmuPlayerInfo={passInEmuPlayerInfo}
                 />
               </div>
               

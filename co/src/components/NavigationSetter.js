@@ -10,7 +10,10 @@ export default function NavigationSetter({initialNavObj,
   updateCurrentPageName, fetchPageName,
   initialScreenHeight, getScreenheight,
   userName,
-  projName
+  projName,
+  updateEmuPlayerInfo,
+  fetchEmuPlayerInfo,
+
 }) {
     let languageCodeTextOption = 'en';
 
@@ -98,7 +101,7 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
     const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
 
-
+    const [emuPlayerInfo, setEmuPlayerInfo] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -109,6 +112,9 @@ export default function NavigationSetter({initialNavObj,
 
             setFirstTimeEnter(false);
       }
+
+      let playerInfoTemp = fetchEmuPlayerInfo();
+      setEmuPlayerInfo(playerInfoTemp);
 
 
       //fetch from nav-previewer for current-page-name
@@ -3374,20 +3380,19 @@ export default function NavigationSetter({initialNavObj,
             <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
                 <label>Username: </label>
                 <input 
-                    
+                    value={emuPlayerInfo["playername"]}
                     onChange={(event)=>{
-              
+                      let infoObj = emuPlayerInfo;
+                      infoObj["playername"] = event.target.value;
+                      updateEmuPlayerInfo(infoObj);
                     }}
                 ></input>
                 <br></br>
                 <label>Icon Picture: </label>
                     <select
-                      value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["picName"]}
+
                       onChange={(event)=>{
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileIconPicItem"]["picName"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
-                        updateNavObj(tempNav);   
+                //TODO change emu-player-info-data       
                       }}
                     >
                       <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
