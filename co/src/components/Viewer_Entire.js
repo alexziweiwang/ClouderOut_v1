@@ -166,10 +166,12 @@ export default function Viewer_Entire({isDisplay,
 
     function passInPlayerInfoSets() {
         let obj = {};
+        let pp = getPlayerProfile();
+        let ua = getPlayerAccountSettings();
     
         //TODO for testing only, pass-in test-data
-        obj["playerProfile"] = playerProfile;
-        obj["userAccount"] = playerAccount;
+        obj["playerProfile"] = pp;
+        obj["userAccount"] = ua;
     
     
         //TODO: later, non-emu data, pass-in non-emu data

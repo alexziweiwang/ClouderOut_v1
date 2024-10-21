@@ -927,12 +927,20 @@ export default function NavigationPreview ({
                         
                         {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === false &&
                         <label>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {(refDataPlayerProfile !== undefined && refDataPlayerProfile["playername"] !== undefined) ? refDataPlayerProfile["playername"] : " (value here)"}
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {
+                                (refDataPlayerProfile !== undefined 
+                                && refDataPlayerProfile["playername"] !== undefined) 
+                                ? refDataPlayerProfile["playername"] 
+                                : " (value here)"}
                         </label>}
 
                         {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === true &&
                         <em>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {(refDataPlayerProfile !== undefined && refDataPlayerProfile["playername"] !== undefined) ? refDataPlayerProfile["playername"] : " (value here)"}
+                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {
+                            (refDataPlayerProfile !== undefined 
+                            && refDataPlayerProfile["playername"] !== undefined) 
+                            ? refDataPlayerProfile["playername"] 
+                            : " (value here)"}
                         </em>
                         }
                     </div>
@@ -945,9 +953,8 @@ export default function NavigationPreview ({
                         "top": `${navObj["playerProfilePage-playerProfileIconPicItem"]["posY"]}px`,
                         "borderRadius": "0px",
                     }}>
-                        TODO img src (player-info-data's pic-name)
                         <img
-                            src=""
+                            src={visualMap[refDataPlayerProfile["iconPicName"]]}
                             width={navObj["playerProfilePage-playerProfileIconPicItem"]["width"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
                             height={navObj["playerProfilePage-playerProfileIconPicItem"]["height"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
                         ></img>

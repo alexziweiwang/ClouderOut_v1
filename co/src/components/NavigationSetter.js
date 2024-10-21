@@ -3388,18 +3388,17 @@ export default function NavigationSetter({initialNavObj,
 
                     }}
                 ></input>
-                <button
-                    onClick={()=>{
-                      // updateEmuPlayerInfo(emuPlayerInfo);
-                      // console.log("updating...", emuPlayerInfo);
-                    }}
-                >Update</button>
                 <br></br>
                 <label>Icon Picture: </label>
                     <select
 
                       onChange={(event)=>{
-                //TODO change emu-player-info-data       
+                //TODO change emu-player-info-data  
+                        let infoObj = emuPlayerInfo;
+                        infoObj["iconPicName"] = event.target.value;
+                        setEmuPlayerInfo({...emuPlayerInfo, "iconPicName": event.target.value});         
+
+                        updateEmuPlayerInfo(emuPlayerInfo);
                       }}
                     >
                       <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
