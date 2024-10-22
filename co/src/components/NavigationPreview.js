@@ -961,7 +961,6 @@ export default function NavigationPreview ({
                 <div style={{"position": "absolute"}}>
                 {/* navObj["playerProfilePage-itemMap"] */}
                 {navObj["playerProfilePage-itemMap"].map((item, index) => {
-console.log("playerProfilePage-itemMap ... item = ", item);
                     let keyStr = "playerProfilePage-itemMap" + index;
 
                     if (item["itemType"] === "text") {

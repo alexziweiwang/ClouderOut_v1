@@ -279,7 +279,7 @@ export default function NavigationSetter({initialNavObj,
         objTemp["height"] = currentProjectNav["playerProfilePage-previewingPicObj"]["height"];
 
      }
-
+      objTemp["selected"] = false;
 
       tableTemp.push(objTemp);
 
@@ -291,6 +291,23 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
 
       resetPPTryingTextItem();
+    }
+
+    function editItemTable(giveIndex, newItem) {
+      let tableTemp = [];
+      itemAddingTable.map((item, i)=>{
+        if (i === giveIndex) {
+          tableTemp.push(newItem);
+        } else {
+          tableTemp.push(itemAddingTable[i]);
+        }
+      })
+
+      setItemAddingTable(tableTemp);
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-itemMap"] = tableTemp;
+      updateNavObj(tempNav);
+
     }
 
     function deleteFromItemTable(givenItemName) {
@@ -3550,8 +3567,11 @@ export default function NavigationSetter({initialNavObj,
 
                               //TODO notify caller-layer...
                               console.log("selected...", item);
+                              let itemTemp = item;
+                              itemTemp["selected"] = !itemTemp["selected"];
+                              editItemTable(index, itemTemp);
                             }}
-                          >select</button>
+                          >{item["selected"] === true ? "unselect" : "select"}</button>
                           <button onClick={()=>{
                             let askStr = "Are you sure to delete this item: " + item["itemName"] + "?";
                             let resp = window.confirm(askStr);
