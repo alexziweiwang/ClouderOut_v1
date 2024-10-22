@@ -99,6 +99,7 @@ export default function NavigationSetter({initialNavObj,
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
 
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
+    const [itemAddingTable, setItemAddingTable] = useState([]);
 
 
     const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
@@ -246,14 +247,22 @@ export default function NavigationSetter({initialNavObj,
       setPpTryingTextItemTextItalicBool(false);
     }
 
-    function addPPTryingTextItemNew() {
-      //TODO add to the currentProjectNav["playerProfilePage-itemMap"]
+    function addPPTryingTextItemNew(obj) { //TODO16
+      // make setter's side update table
+      let tableTemp = itemAddingTable;
+
+      tableTemp.push(obj);
+
+      setItemAddingTable(tableTemp);
       
-      //TODO make setter's side update table
 
 
-      //TODO reset the obj ...
+      // add to the currentProjectNav["playerProfilePage-itemMap"]
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-itemMap"] = tableTemp;
+      updateNavObj(tempNav);
 
+      resetPPTryingTextItem();
     }
 
     function changePPTryingValueItemLabelText(event) {
@@ -3476,13 +3485,12 @@ export default function NavigationSetter({initialNavObj,
                     <th>Item Name</th>
                     <th>Item Type</th>
                     <th>Position (x, y)</th>
-                    <th>Operations</th>
+            
                 </tr>
               </thead>
               <tbody>
-              {Object.keys(currentProjectNav["playerProfilePage-itemMap"]).map((currKey) => {
-                 let item = currentProjectNav["playerProfilePage-itemMap"][currKey];
-
+              {itemAddingTable.map((item, index) => {
+                 
                  return (
                    <tr>
                         <td>{item["name"]}</td>
@@ -3617,8 +3625,17 @@ export default function NavigationSetter({initialNavObj,
              <br></br><br></br>
              <button
               onClick={()=>{
-                addPPTryingTextItemNew();
-
+                let itemName = "text-" + currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
+                let itemType = "text";
+                let x = currentProjectNav["playerProfilePage-previewingTextObj"]["posX"];
+                let y = currentProjectNav["playerProfilePage-previewingTextObj"]["posY"];
+                let obj = {
+                  "itemName": itemName,
+                  "itemType": itemType,
+                  "itemX": x,
+                  "itemY": y
+                }
+                addPPTryingTextItemNew(obj);
               }}
              >Add</button>
              <button
