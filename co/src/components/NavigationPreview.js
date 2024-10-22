@@ -866,12 +866,6 @@ export default function NavigationPreview ({
                     ? `url('${visualMap[navObj["playerProfilePage-bgPicName"]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
             }}>
-
-            
-                <br></br>        
-                this is Player Profile Page<br></br>  
-                <br></br>
-
                 {(tryPPText !== -1 && tryPPText["previewing"] !== false)
                     && 
                     <div style={{
@@ -968,7 +962,7 @@ export default function NavigationPreview ({
                 {/* navObj["playerProfilePage-itemMap"] */}
                 {navObj["playerProfilePage-itemMap"].map((item, index) => {
 console.log("playerProfilePage-itemMap ... item = ", item);
-
+                    let keyStr = "playerProfilePage-itemMap" + index;
 
                     if (item["itemType"] === "text") {
                         // item["textContent"];
@@ -979,10 +973,12 @@ console.log("playerProfilePage-itemMap ... item = ", item);
                         return (
 
                             <div 
+                                key={keyStr}
                                 style={{
                                 "position": "absolute",
                                 "left": `${item["posX"]}px`,
-                                "right": `${item["posY"]}px`,
+                                "top": `${item["posY"]}px`,
+                                "margin": "0px",
 
                                 "fontSize": `${item["textFontSize"]}px`,
                                 "fontFamily": `${item["textFont"]}`,
@@ -990,7 +986,6 @@ console.log("playerProfilePage-itemMap ... item = ", item);
                             }}>
                                 {item["textItalic"] === false && <label>{item["textContent"]}</label>}
                                 {item["textItalic"] === true && <em>{item["textContent"]}</em>}
-                                {item["posX"]},{item["posY"]}
                             </div>
 
                         );

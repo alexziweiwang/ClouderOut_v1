@@ -293,11 +293,11 @@ export default function NavigationSetter({initialNavObj,
       resetPPTryingTextItem();
     }
 
-    function deleteFromItemTable(index) {
+    function deleteFromItemTable(givenItemName) {
       let tableTemp = [];
       
       itemAddingTable.map((item, i)=>{
-        if (i !== index) {
+        if (item["itemName"] !== givenItemName) {
           tableTemp.push(item);
         }
       })
@@ -3542,7 +3542,7 @@ export default function NavigationSetter({initialNavObj,
                    <tr key={keyStr}>
                         <td>{item["itemName"]}</td>
                         <td>{item["itemType"]}</td>
-                        <td>{item["itemX"]}, {item["itemY"]}</td>
+                        <td>{item["posX"]}, {item["posY"]}</td>
                         <td>
                           <button
                             onClick={()=>{
@@ -3557,7 +3557,7 @@ export default function NavigationSetter({initialNavObj,
                             let resp = window.confirm(askStr);
                             if (resp === true) {
                               //TODO delete this from table
-                              deleteFromItemTable(index);
+                              deleteFromItemTable(item["itemName"]);
 
                               //TODO update to caller-layer...
                             }
@@ -3685,8 +3685,8 @@ export default function NavigationSetter({initialNavObj,
                 let obj = {
                   "itemName": itemName,
                   "itemType": itemType,
-                  "itemX": x,
-                  "itemY": y
+                  "posX": x,
+                  "posY": y
                 }
 
                 addPPTryingAnyItemNew(obj);
@@ -3874,8 +3874,8 @@ export default function NavigationSetter({initialNavObj,
               let obj = {
                 "itemName": itemName,
                 "itemType": itemType,
-                "itemX": x,
-                "itemY": y
+                "posX": x,
+                "posY": y
               }
 
               addPPTryingAnyItemNew(obj);
@@ -4002,8 +4002,8 @@ export default function NavigationSetter({initialNavObj,
                   let obj = {
                     "itemName": itemName,
                     "itemType": itemType,
-                    "itemX": x,
-                    "itemY": y
+                    "posX": x,
+                    "posY": y
                   }
     
                   addPPTryingAnyItemNew(obj);
