@@ -121,6 +121,8 @@ export default function NavigationSetter({initialNavObj,
             setFirstTimeEnter(false);
       }
 
+      console.log("itemAddingTable = ", itemAddingTable); //TODO testing
+
 
 
       //fetch from nav-previewer for current-page-name
@@ -263,6 +265,22 @@ export default function NavigationSetter({initialNavObj,
       updateNavObj(tempNav);
 
       resetPPTryingTextItem();
+    }
+
+    function deleteFromItemTable(index) {
+      let tableTemp = [];
+      
+      itemAddingTable.map((item, i)=>{
+        if (i !== index) {
+          tableTemp.push(item);
+        }
+      })
+
+      setItemAddingTable(tableTemp);
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-itemMap"] = tableTemp;
+      updateNavObj(tempNav);
+
     }
 
     function changePPTryingValueItemLabelText(event) {
@@ -411,6 +429,8 @@ export default function NavigationSetter({initialNavObj,
                
       updateNavObj(tempNav);  
     }
+
+
 
    return (
   
@@ -3493,22 +3513,24 @@ export default function NavigationSetter({initialNavObj,
                  
                  return (
                    <tr>
-                        <td>{item["name"]}</td>
-                        <td>{item["type"]}</td>
-                        <td>{item["posX"]}, {item["posY"]}</td>
+                        <td>{item["itemName"]}</td>
+                        <td>{item["itemType"]}</td>
+                        <td>{item["itemX"]}, {item["itemY"]}</td>
                         <td>
                           <button
                             onClick={()=>{
                               //TODO highlight this item on previewer ??
 
                               //TODO notify caller-layer...
+                              console.log("selected...", item);
                             }}
                           >select</button>
                           <button onClick={()=>{
-                            let askStr = "Are you sure to delete this item?";
+                            let askStr = "Are you sure to delete this item: " + item["itemName"] + "?";
                             let resp = window.confirm(askStr);
                             if (resp === true) {
                               //TODO delete this from table
+                              deleteFromItemTable(index);
 
                               //TODO update to caller-layer...
                             }
@@ -3625,6 +3647,10 @@ export default function NavigationSetter({initialNavObj,
              <br></br><br></br>
              <button
               onClick={()=>{
+                if (currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"].length === 0) {
+                  alert("Cannot add empty text content.");
+                  return;
+                }
                 let itemName = "text-" + currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
                 let itemType = "text";
                 let x = currentProjectNav["playerProfilePage-previewingTextObj"]["posX"];
@@ -3635,6 +3661,7 @@ export default function NavigationSetter({initialNavObj,
                   "itemX": x,
                   "itemY": y
                 }
+
                 addPPTryingTextItemNew(obj);
               }}
              >Add</button>
