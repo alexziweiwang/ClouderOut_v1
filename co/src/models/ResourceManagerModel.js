@@ -163,13 +163,13 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
                                                         console.log("visualListSnap undefined");
     return;
   }
-                                                        console.log(visualListSnap.data());
+                                                        // console.log(visualListSnap.data());
 
   let visualList = visualListSnap.data();
   visualList = visualList["proj_resource_visual"];
 
   let audioListSnap = await getDoc(ref, "proj_resource_audio");
-                                                        console.log(audioListSnap.data());
+                                                        // console.log(audioListSnap.data());
   if (audioListSnap === undefined) {
                                                         console.log("audioListSnap undefined");
 
@@ -196,9 +196,9 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
 export async function storeProjectResourceVarPairsToCloud({userName, projectName, obj}) {
 
                                     console.log("model - storeProjectResourceVarPairsToCloud()");
-                                    console.log(userName);
-                                    console.log(projectName);
-                                    console.log(obj);
+                                    console.log("userName: ", userName);
+                                    console.log("projectName:", projectName);
+                                    console.log("obj:", obj);
                             
   const projectRef = doc(db, "user_projects", userName, "projects", projectName);
   const projectSnap = await getDoc(projectRef);

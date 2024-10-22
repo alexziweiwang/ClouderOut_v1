@@ -121,10 +121,6 @@ export default function NavigationSetter({initialNavObj,
             setFirstTimeEnter(false);
       }
 
-      console.log("itemAddingTable = ", itemAddingTable); //TODO testing
-
-
-
       //fetch from nav-previewer for current-page-name
       let tempPage= fetchPageName();
       setCurrentSettingPage(tempPage);
@@ -256,7 +252,47 @@ export default function NavigationSetter({initialNavObj,
       tableTemp.push(obj);
 
       setItemAddingTable(tableTemp);
+
+      //common properties (for all types):     
+      // itemName
+      // itemType
+      // pos-x
+      // pos-y
       
+      //TODO details of this item, based on its type
+      //1.text type
+      /* 
+        text content, 
+        text font size, 
+        text font family, 
+        text color, 
+        text is-italic,
+
+      */
+      if (obj.itemType === "text") {
+          obj["textContent"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
+          obj["textItalic"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textItalic"];
+          obj["textFontSize"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"];
+          obj["textFont"]  = currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"];
+          obj["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"];
+     }
+
+      //2.value type
+      /* 
+        label text content,
+        value range,
+        value item actual name,
+        text font size,
+        text font family,
+        text color
+      */
+      //3.picture type
+      /* 
+        picture name,
+        width,
+        height,
+      */
+
 
 
       // add to the currentProjectNav["playerProfilePage-itemMap"]
@@ -3752,7 +3788,7 @@ export default function NavigationSetter({initialNavObj,
                         })}
 
                       </select>
-                  } //playerProfileItemList
+                  }
                   
                   {playerProfilePageAddingValueType === "Player Account Info" && 
                       <select>
