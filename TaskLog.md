@@ -374,7 +374,7 @@
 - 2024-Oct-10: Design multi-language UI plans, instruction labels
 - 2024-Oct-10: Consider piece-switching visual effects, etc.
 
-
+- 2024-Oct-21: Debug viewer displaying issue
 
 
 
