@@ -246,12 +246,9 @@ export default function NavigationSetter({initialNavObj,
     }
 
     function addPPTryingTextItemNew(obj) { //TODO16
+      let objTemp = obj;
       // make setter's side update table
       let tableTemp = itemAddingTable;
-
-      tableTemp.push(obj);
-
-      setItemAddingTable(tableTemp);
 
       //common properties (for all types):     
       // itemName
@@ -260,37 +257,33 @@ export default function NavigationSetter({initialNavObj,
       // pos-y
       
       //TODO details of this item, based on its type
-      //1.text type
-      /* 
-        text content, 
-        text font size, 
-        text font family, 
-        text color, 
-        text is-italic,
 
-      */
-      if (obj.itemType === "text") {
-          obj["textContent"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
-          obj["textItalic"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textItalic"];
-          obj["textFontSize"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"];
-          obj["textFont"]  = currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"];
-          obj["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"];
+      if (objTemp.itemType === "text") {
+        objTemp["textContent"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
+        objTemp["textItalic"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textItalic"];
+        objTemp["textFontSize"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"];
+        objTemp["textFont"]  = currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"];
+        objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"];
 
-     } else if (obj.itemType === "value") {
-          obj["labelText"] = currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"];
-          obj["valueItemType"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"];
-          obj["valueItemName"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
-          obj["textFontSize"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"];
-          obj["textFont"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"];
-          obj["textColor"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"];
+     } else if (objTemp.itemType === "value") {
+        objTemp["labelText"] = currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"];
+        objTemp["valueItemType"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"];
+        objTemp["valueItemName"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
+        objTemp["textFontSize"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"];
+        objTemp["textFont"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"];
+        objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"];
 
-     } else if (obj.itemType === "pic") {
-          obj["picName"] = currentProjectNav["playerProfilePage-previewingPicObj"]["picName"];
-          obj["width"] = currentProjectNav["playerProfilePage-previewingPicObj"]["width"];
-          obj["height"] = currentProjectNav["playerProfilePage-previewingPicObj"]["height"];
+     } else if (objTemp.itemType === "pic") {
+        objTemp["picName"] = currentProjectNav["playerProfilePage-previewingPicObj"]["picName"];
+        objTemp["width"] = currentProjectNav["playerProfilePage-previewingPicObj"]["width"];
+        objTemp["height"] = currentProjectNav["playerProfilePage-previewingPicObj"]["height"];
 
      }
 
+
+      tableTemp.push(objTemp);
+
+      setItemAddingTable(tableTemp);
 
       // add to the currentProjectNav["playerProfilePage-itemMap"]
       let tempNav = currentProjectNav;
@@ -3861,7 +3854,34 @@ export default function NavigationSetter({initialNavObj,
 
         
            
-           <button>Add</button>
+           <button
+            onClick={()=>{
+              let itemType = "value";
+
+
+              if (currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"].length === 0) {
+                alert("Cannot add empty value-item.");
+                return;
+              }
+              let itemName = "value-" + currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]
+                + currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"]
+                + currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
+              
+          
+              let x = currentProjectNav["playerProfilePage-previewingValueObj"]["posX"];
+              let y = currentProjectNav["playerProfilePage-previewingValueObj"]["posY"];
+              let obj = {
+                "itemName": itemName,
+                "itemType": itemType,
+                "itemX": x,
+                "itemY": y
+              }
+
+              addPPTryingTextItemNew(obj);
+            }}
+           
+           
+           >Add</button>
            <button
             onClick={()=>{
               resetPPTryingValueItem();
@@ -3966,7 +3986,11 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
             
              
-             <button>Add</button>
+             <button
+              onClick={()=>{
+                let itemType = "pic";
+              }}
+             >Add</button>
              
              <button
               onClick={()=>{
