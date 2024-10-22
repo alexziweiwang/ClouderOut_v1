@@ -245,7 +245,7 @@ export default function NavigationSetter({initialNavObj,
       setPpTryingTextItemTextItalicBool(false);
     }
 
-    function addPPTryingTextItemNew(obj) { //TODO16
+    function addPPTryingAnyItemNew(obj) { //TODO16
       let objTemp = obj;
       // make setter's side update table
       let tableTemp = itemAddingTable;
@@ -3688,7 +3688,7 @@ export default function NavigationSetter({initialNavObj,
                   "itemY": y
                 }
 
-                addPPTryingTextItemNew(obj);
+                addPPTryingAnyItemNew(obj);
               }}
              >Add</button>
              <button
@@ -3877,7 +3877,7 @@ export default function NavigationSetter({initialNavObj,
                 "itemY": y
               }
 
-              addPPTryingTextItemNew(obj);
+              addPPTryingAnyItemNew(obj);
             }}
            
            
@@ -3988,7 +3988,25 @@ export default function NavigationSetter({initialNavObj,
              
              <button
               onClick={()=>{
-                let itemType = "pic";
+                  let itemType = "pic";
+
+                  if (currentProjectNav["playerProfilePage-previewingPicObj"]["picName"].length === 0) {
+                    alert("Cannot add empty picture option.");
+                    return;
+                  }
+                  let itemName = "pic-" + currentProjectNav["playerProfilePage-previewingPicObj"]["picName"];
+                  
+                  let x = currentProjectNav["playerProfilePage-previewingPicObj"]["posX"];
+                  let y = currentProjectNav["playerProfilePage-previewingPicObj"]["posY"];
+                  let obj = {
+                    "itemName": itemName,
+                    "itemType": itemType,
+                    "itemX": x,
+                    "itemY": y
+                  }
+    
+                  addPPTryingAnyItemNew(obj);
+        
               }}
              >Add</button>
              
