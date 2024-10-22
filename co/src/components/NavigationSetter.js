@@ -11,8 +11,8 @@ export default function NavigationSetter({initialNavObj,
   initialScreenHeight, getScreenheight,
   userName,
   projName,
-  updateEmuPlayerInfo,
-  intialEmuPlayerInfo,
+  updateEmuPlayerProfile,
+  intialEmuPlayerProfile,
 
 }) {
     let languageCodeTextOption = 'en';
@@ -99,16 +99,23 @@ export default function NavigationSetter({initialNavObj,
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
 
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
+
+
     const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
 
-    const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerInfo);
+    const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
             console.log("Navigation Setter -- "); //TODO test
             fetchProjResourceLists();
-            getGameDataFromCloud();
+            getGameDataFromCloud(); //value-list: game-data
+ 
+
+            //TODO value-list player-account 
+
+
 
             setFirstTimeEnter(false);
       }
@@ -3694,10 +3701,14 @@ export default function NavigationSetter({initialNavObj,
                   
                   {playerProfilePageAddingValueType === "Player Profile" && 
                       <select>
-                        <option>-- Select Player Profile Data Item --</option>
-//TODO7
+                        <option key="ppValue-playerProfile-option-defaultNone" value="">-- Select Player Profile Data Item --</option>
+                        {Object.keys(intialEmuPlayerProfile).map((currKey) => {                     
+                          let keyStr = "ppValue-playerProfile-option-" + currKey;
+                          return (<option key={keyStr} value={currKey}>{currKey}</option>);
+                        })}
+
                       </select>
-                  }
+                  } //playerProfileItemList
                   
                   {playerProfilePageAddingValueType === "Player Account Info" && 
                       <select>
@@ -3893,7 +3904,7 @@ export default function NavigationSetter({initialNavObj,
            <label>Player Profile Settings</label>
            <div className="indentOne">
 
-           <br></br><br></br>
+            <br></br>
             <div>Emulated User Data (for Test) Setting</div>
             <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
                 <label>Username: </label>
@@ -3944,7 +3955,7 @@ export default function NavigationSetter({initialNavObj,
                 <br></br>
                 <button 
                   onClick={()=>{
-                    updateEmuPlayerInfo(emuPlayerInfo);
+                    updateEmuPlayerProfile(emuPlayerInfo);
 
                   }}
                 >Update</button>
@@ -4394,3 +4405,24 @@ export default function NavigationSetter({initialNavObj,
 
 
 }
+
+
+/*
+PlayerProfile { 
+  "playername": "playerA",
+  "userTitle": "",
+  "iconPicName": "",
+  "level": 2,
+  "membership": 1,
+}
+
+PlayerAccount {
+  "playername": "playerA",
+  "email": "example@email.com",
+}
+
+PlayerSLRecords {
+  "playername": "playerA",
+  "itemStatus": [{}, {}, {}]
+}  
+*/

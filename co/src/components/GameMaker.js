@@ -509,13 +509,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "iconPicName": "",
       "level": 2,
       "membership": 1,
-
   });                                                                 //TODO important for holder-in-practice
 
   const [testPlayerAccount, setTestPlayerAccount] = useState({
       "playername": "playerA",
       "email": "example@email.com",
-
     });                                                               //TODO important for holder-in-practice
 
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
@@ -1033,8 +1031,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     setCurrentProjectNav(data);
   }
 
-  function updateEmuPlayerInfo(data) {
-    console.log("game-maker: updateEmuPlayerInfo = ", data); //TODO test
+  function updateEmuPlayerProfile(data) {
+    console.log("game-maker: updateEmuPlayerProfile = ", data); //TODO test
     setTestPlayerProfile(data);
   }
 
@@ -1160,8 +1158,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   getScreenheight={passInScreenHeight}
                   userName={username} 
                   projName={projectName} 
-                  updateEmuPlayerInfo={updateEmuPlayerInfo}
-                  intialEmuPlayerInfo={testPlayerProfile}
+                  updateEmuPlayerProfile={updateEmuPlayerProfile}
+                  intialEmuPlayerProfile={testPlayerProfile}
                 />
               </div>
               
