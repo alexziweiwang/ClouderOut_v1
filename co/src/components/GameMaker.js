@@ -446,7 +446,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
     "playerProfilePage-playerProfileNickNameItem": { //used in actual game
-      "adding": false,
+      "adding": true,
       "nicknameLabel": "",
       "textContent": "",
       "textItalic": false,
@@ -457,7 +457,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "posY": 50,
     },
     "playerProfilePage-playerProfileIconPicItem": { //used in actual game
-      "adding": false,
+      "adding": true,
       "posX": 50,
       "posY": 50,
       "width": 200,

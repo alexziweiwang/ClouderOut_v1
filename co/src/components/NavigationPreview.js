@@ -130,12 +130,15 @@ export default function NavigationPreview ({
             setVisualMap(tempVisualMap);
         }
 
+
+        let playerInfoObj = fetchPlayerInfoSets();
+        setRefDataPlayerAccount(playerInfoObj["userAccount"]);
+        setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+
         if (isEditing === true) {
             let objTemp = fetchNavObj();
             setNavObj(objTemp);
-            let playerInfoObj = fetchPlayerInfoSets();
-            setRefDataPlayerAccount(playerInfoObj["userAccount"]);
-            setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+
 
 // console.log("nav preview: ", objTemp); //TODO testing
 

@@ -3373,64 +3373,7 @@ export default function NavigationSetter({initialNavObj,
      {currentSettingPage === "Player Profile Page" && <div>
      <label>Player Profile Page:</label>
              
-     <br></br><br></br>
-            <div>Emulated User Data (for Test) Setting</div>
-            <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
-                <label>Username: </label>
-                <input 
-                    defaultValue={emuPlayerInfo["playername"]}
-                    onChange={(event)=>{
-                      let infoObj = emuPlayerInfo;
-                      infoObj["playername"] = event.target.value;
-                      setEmuPlayerInfo({...emuPlayerInfo, "playername": event.target.value});         
-
-                      updateEmuPlayerInfo(emuPlayerInfo);
-
-                    }}
-                ></input>
-                <br></br>
-                <label>Icon Picture: </label>
-                    <select
-
-                      onChange={(event)=>{
-                //TODO change emu-player-info-data  
-                        let infoObj = emuPlayerInfo;
-                        infoObj["iconPicName"] = event.target.value;
-                        setEmuPlayerInfo({...emuPlayerInfo, "iconPicName": event.target.value});         
-
-                        updateEmuPlayerInfo(emuPlayerInfo);
-                      }}
-                    >
-                      <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
-                      {visualList.map((item, index) => {
-                          let keyStr = "ppIcon-" + index + item["var"];
-                          return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                      })}
-
-                    </select>
-
-                <button
-                  onClick={()=>{
-                    openRm();
-                  }}
-                >Manage Resource</button>
-                <br></br>
-
-                <label>Level: </label>
-                <input></input>
-                <br></br>
-
-                <label>Membership: </label>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-
-            </div>
-          
-               
-               
+    
 
 
 
@@ -3948,16 +3891,17 @@ export default function NavigationSetter({initialNavObj,
     
            <br></br><br></br>
 
-           <input type="checkbox"
+           {/* <input type="checkbox"
             value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
             checked={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
             onChange={()=>{
-              let tempNav = currentProjectNav;
-              tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
-              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-              updateNavObj(tempNav);
+              // let tempNav = currentProjectNav;
+              // tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
+              // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+              // updateNavObj(tempNav);
+//TODO12
             }}
-           ></input>  
+           ></input>   */}
            <label
             className="textNoSelect cursor_pointer"
             onClick={()=>{
@@ -4093,16 +4037,17 @@ export default function NavigationSetter({initialNavObj,
            
            <br></br>
            <br></br>
-           <input type="checkbox"
+           {/* <input type="checkbox"
               value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"]}
               checked={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"]}
               onChange={()=>{
-                let tempNav = currentProjectNav;
-                tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"] = !tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"];
-                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
-                updateNavObj(tempNav);
+                // let tempNav = currentProjectNav;
+                // tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"] = !tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"];
+                // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+                // updateNavObj(tempNav);
+//TODO12                
               }}
-           ></input>  
+           ></input>   */}
            <label
             className="textNoSelect cursor_pointer"
             onClick={()=>{
@@ -4226,7 +4171,65 @@ export default function NavigationSetter({initialNavObj,
             </div>}
             
       
+            <br></br><br></br>
+            <div>Emulated User Data (for Test) Setting</div>
+            <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
+                <label>Username: </label>
+                <input 
+                    defaultValue={emuPlayerInfo["playername"]}
+                    onChange={(event)=>{
+                      let infoObj = emuPlayerInfo;
+                      infoObj["playername"] = event.target.value;
+                      setEmuPlayerInfo({...emuPlayerInfo, "playername": event.target.value});
+                    }}
+                ></input>
+                <br></br>
+                <label>Icon Picture: </label>
+                    <select
 
+                      onChange={(event)=>{
+                        let infoObj = emuPlayerInfo;
+                        infoObj["iconPicName"] = event.target.value;
+                        setEmuPlayerInfo({...emuPlayerInfo, "iconPicName": event.target.value});         
+                      }}
+                    >
+                      <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
+                      {visualList.map((item, index) => {
+                          let keyStr = "ppIcon-" + index + item["var"];
+                          return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                      })}
+
+                    </select>
+
+                <button
+                  onClick={()=>{
+                    openRm();
+                  }}
+                >Manage Resource</button>
+                <br></br>
+
+                <label>Level: </label>
+                <input></input>
+                <br></br>
+
+                <label>Membership: </label>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+
+                <br></br>
+                <button 
+                  onClick={()=>{
+                    updateEmuPlayerInfo(emuPlayerInfo);
+
+                  }}
+                >Update</button>
+            </div>
+          
+               
+           
 
 
        </div>
