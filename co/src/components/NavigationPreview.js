@@ -964,10 +964,11 @@ export default function NavigationPreview ({
                         
                 </div>}
 
-                
+                <div style={{"position": "absolute"}}>
                 {/* navObj["playerProfilePage-itemMap"] */}
-                {Object.keys(navObj["playerProfilePage-itemMap"]).map((currKey) => {
-                    let item = navObj["playerProfilePage-itemMap"][currKey];
+                {navObj["playerProfilePage-itemMap"].map((item, index) => {
+console.log("playerProfilePage-itemMap ... item = ", item);
+
 
                     if (item["itemType"] === "text") {
                         // item["textContent"];
@@ -975,6 +976,24 @@ export default function NavigationPreview ({
                         // item["textFontSize"];
                         // item["textFont"];
                         // item["textColor"];
+                        return (
+
+                            <div 
+                                style={{
+                                "position": "absolute",
+                                "left": `${item["posX"]}px`,
+                                "right": `${item["posY"]}px`,
+
+                                "fontSize": `${item["textFontSize"]}px`,
+                                "fontFamily": `${item["textFont"]}`,
+                                "color": `${item["textColor"]}`
+                            }}>
+                                {item["textItalic"] === false && <label>{item["textContent"]}</label>}
+                                {item["textItalic"] === true && <em>{item["textContent"]}</em>}
+                                {item["posX"]},{item["posY"]}
+                            </div>
+
+                        );
               
                    } else if (item["itemType"] === "value") {
                         // item["labelText"];
@@ -992,6 +1011,7 @@ export default function NavigationPreview ({
                    }
 
                 })}
+                </div>
 
             </div>            
         </div>

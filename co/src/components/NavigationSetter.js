@@ -3536,9 +3536,10 @@ export default function NavigationSetter({initialNavObj,
               </thead>
               <tbody>
               {itemAddingTable.map((item, index) => {
+                 let keyStr = "itemAddingTable" + index;
                  
                  return (
-                   <tr>
+                   <tr key={keyStr}>
                         <td>{item["itemName"]}</td>
                         <td>{item["itemType"]}</td>
                         <td>{item["itemX"]}, {item["itemY"]}</td>
