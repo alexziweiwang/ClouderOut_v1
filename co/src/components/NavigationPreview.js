@@ -969,8 +969,28 @@ export default function NavigationPreview ({
                 {Object.keys(navObj["playerProfilePage-itemMap"]).map((currKey) => {
                     let item = navObj["playerProfilePage-itemMap"][currKey];
 
-                    //TODO
-                
+                    if (item["itemType"] === "text") {
+                        // item["textContent"];
+                        // item["textItalic"];
+                        // item["textFontSize"];
+                        // item["textFont"];
+                        // item["textColor"];
+              
+                   } else if (item["itemType"] === "value") {
+                        // item["labelText"];
+                        // item["valueItemType"];
+                        // item["valueItemName"];
+                        // item["textFontSize"];
+                        // item["textFont"];
+                        // item["textColor"];
+              
+                   } else if (item["itemType"] === "pic") {
+                        // item["picName"];
+                        // item["width"];
+                        // item["height"];
+              
+                   }
+
                 })}
 
             </div>            

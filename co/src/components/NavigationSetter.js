@@ -275,24 +275,21 @@ export default function NavigationSetter({initialNavObj,
           obj["textFontSize"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"];
           obj["textFont"]  = currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"];
           obj["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"];
+
+     } else if (obj.itemType === "value") {
+          obj["labelText"] = currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"];
+          obj["valueItemType"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"];
+          obj["valueItemName"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
+          obj["textFontSize"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"];
+          obj["textFont"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"];
+          obj["textColor"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"];
+
+     } else if (obj.itemType === "pic") {
+          obj["picName"] = currentProjectNav["playerProfilePage-previewingPicObj"]["picName"];
+          obj["width"] = currentProjectNav["playerProfilePage-previewingPicObj"]["width"];
+          obj["height"] = currentProjectNav["playerProfilePage-previewingPicObj"]["height"];
+
      }
-
-      //2.value type
-      /* 
-        label text content,
-        value range,
-        value item actual name,
-        text font size,
-        text font family,
-        text color
-      */
-      //3.picture type
-      /* 
-        picture name,
-        width,
-        height,
-      */
-
 
 
       // add to the currentProjectNav["playerProfilePage-itemMap"]
