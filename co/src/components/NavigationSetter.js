@@ -432,7 +432,7 @@ export default function NavigationSetter({initialNavObj,
       let resetItem = {
         "previewing": currentProjectNav["playerProfilePage-previewingValueObj"]["previewing"],
         "labelText": "",
-        "valueItemType": "GameData",
+        "valueItemType": "Game Data",
         "valueItemName": "",
         "posX": 30,
         "posY": 70,

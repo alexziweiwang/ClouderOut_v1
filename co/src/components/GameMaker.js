@@ -427,7 +427,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingValueObj": { //for previewing only
       "previewing": false,
       "labelText": "",
-      "valueItemType": "GameData",
+      "valueItemType": "Game Data",
       "valueItemName": "",
       "posX": 30,
       "posY": 70,
@@ -878,7 +878,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     // for local test, make from game-data-design-list
     if (isLocal === true) {
         {Object.keys(gameDataDesignList).map((currKey) => {
-          gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
+          gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey]["default_value"];
         })}
         
     } else {
@@ -1041,11 +1041,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return testPlayerProfile;
   }
 
-  function passInCurrentGameDataList() { //pure emu-data
+  function passInCurrentGameDataList() { // emu-data
     if (gameDataArray.length > 0) {
       return gameDataArray;
     }
-
 
     let gameDataTemp = gameDataDesignList;
     if (gameDataDesignList.size === 0) {

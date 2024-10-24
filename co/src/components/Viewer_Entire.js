@@ -73,6 +73,8 @@ export default function Viewer_Entire({isDisplay,
     const [playerAccount, setPlayerAccount] = useState({});
     const [playerSLRecords, setPlayerSLRecords] = useState({});
 
+    const [playerGameDataList, setPlayerDataList] = useState([]);
+
     //TODO implementation plan:
     //when doing this level of testing or game-in-practice, fetch player's above 4 data from cloud
     //for testing the entire game, use default-testing-player's data, otherwise use cloud-fetched data
@@ -180,20 +182,21 @@ export default function Viewer_Entire({isDisplay,
       }
 
 
-    function passInCurrentGameDataList() {
-        //playerGameData;
+    function passInCurrentGameDataList() { //non-emu data
         let gameDataTemp = playerGameData;
         let gameDataList = [];
 
-
-        {Object.keys(gameDataTemp).map((currKey) => {
-            let pair = [];
-
-            pair.push(gameDataTemp[currKey]["name"]);
-            pair.push(gameDataTemp[currKey]["current_value"])
-            gameDataList.push(pair);
-        })}
-                console.log ("2passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+        if (playerGameDataList.length === 0) {
+            {Object.keys(gameDataTemp).map((currKey) => {
+                let pair = [];
+                pair.push(gameDataTemp[currKey]["name"]);
+                pair.push(gameDataTemp[currKey]["current_value"])
+                gameDataList.push(pair);
+            })}
+        } else {
+            gameDataList = playerGameDataList;
+        }
+        console.log("......??????");
 
         return gameDataList;
     }

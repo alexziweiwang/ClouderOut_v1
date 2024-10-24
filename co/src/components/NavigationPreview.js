@@ -970,10 +970,6 @@ export default function NavigationPreview ({
 
                 {navObj["playerProfilePage-itemMap"].map((item, index) => {
                     let keyStr = "playerProfilePage-itemMap" + index;
-console.log("item = ", item);
-if (item["itemType"] === "pic") {
-   console.log("item pic url = ", visualMap[item["picName"]]); 
-}
 
 
                     if (item["itemType"] === "text") {
@@ -1020,9 +1016,12 @@ if (item["itemType"] === "pic") {
 
                         if (item["valueItemType"] === "Game Data") {
                             let tempArr = refGameDataList.filter(e => e[0] === item["valueItemName"]);
-                            actualValue = tempArr[0][1];
-
-                            isValueFetched = true;
+                            if (tempArr.length > 0) {
+                                actualValue = tempArr[0][1].toString();
+                                // console.log("entire item = ", tempArr[0]);
+                                isValueFetched = true;
+                            }
+  
                         } else if (item["valueItemType"] === "Player Profile") {
                             actualValue = refDataPlayerProfile[item["valueItemName"]];
                             isValueFetched = true;
@@ -1031,13 +1030,10 @@ if (item["itemType"] === "pic") {
                             isValueFetched = true;
                         }
 
-console.log("item = ", item["itemName"], "... actualVal = ", actualValue);
-
-console.log("refDataPlayerProfile: ", refDataPlayerProfile);
-
-console.log("refDataPlayerAccount: ", refDataPlayerAccount);
-
-console.log("refGameDataList: ", refGameDataList);
+// console.log("item = ", item["itemName"], "... actualVal = ", actualValue, " type = ", item["valueItemType"]);
+// console.log("refDataPlayerProfile: ", refDataPlayerProfile);
+// console.log("refDataPlayerAccount: ", refDataPlayerAccount);
+// console.log("refGameDataList: ", refGameDataList);
 
 
 
@@ -1061,10 +1057,10 @@ console.log("refGameDataList: ", refGameDataList);
                                     "fontSize": `${item["textFontSize"]}px`,
                                     "color": `${item["textColor"]}`,
                                     "fontFamily": `${item["textFont"]}`,
+                                    "backgroundColor": "orange"
                                 }}
-                               
                             >
-                                <label>{item["labelText"]}= {actualValue}</label>
+                                {item["labelText"]}: {actualValue}
 
 
                         </div>}
