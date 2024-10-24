@@ -949,10 +949,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   }
   
-  function passInPlayerGameData() {
+  function passInPlayerGameData() { //TODO5
     if (testPlayerGameData.length > 0) {
       return testPlayerGameData;
     } else {
+      //TODO
+
       return -1;
     }
     
@@ -1073,12 +1075,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
     {Object.keys(gameDataTemp).map((currKey) => {
       let pair = [];
-
+                              console.log("\t\t item = ", gameDataTemp[currKey]);
       pair.push(gameDataTemp[currKey]["name"]);
       pair.push(gameDataTemp[currKey]["default_value"]);
       gameDataList.push(pair);
     })}
-                              console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+                // console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp); //TODO remove later
 
     setGameDataArray(gameDataList);
     return gameDataList;
@@ -1267,7 +1269,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           getChapterList={passInChapterList}
 
           isLocal={true}
-          getPlayerGameData={passInPlayerGameData}
+          getPlayerGameData={passInCurrentGameDataList}
           updatePlayingGameData={updatePlayingGameData}
 
           getPlayerProfile={passInPlayerProfile}
