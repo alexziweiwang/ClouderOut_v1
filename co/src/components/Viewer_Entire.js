@@ -210,7 +210,11 @@ return(<>
                         <br></br>2
                         <br></br>3
                         <br></br>TODO: according to currNodeType, display the component
-                                                    {/* //TODO15 updatePlayingGameData(data)
+                                                    {/* //TODO15 
+                                                    // updatePlayingGameData(data)
+                                                    // updateCurrentStanding (track by nav-buttons & in-game changes: 
+                                                    //                          page-status + chapter-key + node-type + node-key) */}
+
                                                         important: setup entry-gameData-set (if multiple)
                                                     */}
                     </div>
@@ -236,7 +240,7 @@ return(<>
 
                         updateCurrentPageName={updateNavPageName}
                         updateCurrentStanding={updateCurrentStanding}
-                        
+
                         isEditing={false}
                         initialGameDataRefData={playerGameData}
                         initialPlayerProfileRefData={playerProfile}

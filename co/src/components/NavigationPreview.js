@@ -285,13 +285,14 @@ export default function NavigationPreview ({
                             onMouseDown={
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "brightness(120%)";
-                                    console.log("main-page clicked: ", item);
-
                                 }
                             }
                             onMouseUp={
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "brightness(100%)";
+
+
+                                    console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
                                 }
                             }
@@ -434,13 +435,13 @@ export default function NavigationPreview ({
                             onMouseDown={
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "brightness(120%)";
-                                    console.log("main-page clicked: ", item);
-              
                                 }
                             }
                             onMouseUp={
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "brightness(100%)";
+
+                                    console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
                                 }
                             }
@@ -512,14 +513,18 @@ export default function NavigationPreview ({
                             onMouseDown={
                                 ()=>{
                                     document.getElementById(keyStr).style.filter = "brightness(120%)";
-                                    console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
-                                    //TODO data update operation
+
 
                                 }
                             }
                             onMouseUp={
                                 ()=>{
                                     document.getElementById(keyStr).style.filter = "brightness(100%)";
+
+                                    console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
+                                    //TODO data update operation
+
+
                                 }
                             }
                         >
@@ -679,12 +684,12 @@ export default function NavigationPreview ({
                     onMouseDown={
                         ()=>{
                             document.getElementById("loadGameEntry").style.filter = "brightness(120%)";
-                            updateCurrentPageName("Game Progress Strategy");
                         }
                     }
                     onMouseUp={
                         ()=>{
                             document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
+                            updateCurrentPageName("Game Progress Strategy");
                         }
                     }
                 >
@@ -721,9 +726,15 @@ export default function NavigationPreview ({
                                 onMouseDown={
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById(keyStr).style.filter = "brightness(100%)";
+
 
                                         console.log("story-page-title clicked: ", item);
-                                                                    //TODO update-current-in-chapter
+                           
                                         let currentStandingObjTemp = {};
                                         currentStandingObjTemp["pageStatus"] = "During Game";
                                         currentStandingObjTemp["chapterKey"] = item;
@@ -732,11 +743,6 @@ export default function NavigationPreview ({
                                         updateCurrentStanding(currentStandingObjTemp);
 
                                         updateCurrentPageName("During Game");
-                                    }
-                                }
-                                onMouseUp={
-                                    ()=>{
-                                        document.getElementById(keyStr).style.filter = "brightness(100%)";
                                     }
                                 }
                             >
@@ -846,13 +852,12 @@ export default function NavigationPreview ({
                                         onMouseDown={
                                             ()=>{
                                                 document.getElementById(keyStr3).style.filter = "brightness(120%)";
-                                                console.log("setting-page clicked: ", item);
-                                         
                                             }
                                         }
                                         onMouseUp={
                                             ()=>{
                                                 document.getElementById(keyStr3).style.filter = "brightness(100%)";
+                                                console.log("setting-page clicked: ", item);
                                             }
                                         }
                                     >
@@ -1215,16 +1220,23 @@ export default function NavigationPreview ({
                         onMouseDown={
                             ()=>{
                                 document.getElementById("backButton").style.filter = "brightness(120%)";
-                                console.log("playerProfilePage-backButton");
-        
                             }
                         }
                         onMouseUp={
                             ()=>{
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
+
+
+                                console.log("playerProfilePage-backButton");
                                 let nextPageName = "Main Page";
                                 if (page === "During Game" || page === "Game Progress Strategy") {
                                     nextPageName = "Story Page";
+                                    let currentStandingObjTemp = {};
+                                    currentStandingObjTemp["pageStatus"] = "Story Page";
+                                    currentStandingObjTemp["chapterKey"] = "";
+                                    currentStandingObjTemp["nodeKey"] = "";
+                                    currentStandingObjTemp["nodeType"] = ""; 
+                                    updateCurrentStanding(currentStandingObjTemp);
                                 }
         
                                 updateCurrentPageName(nextPageName);
