@@ -6,6 +6,7 @@ export default function NavigationPreview ({
     initialNavObj, 
     fetchNavObj, 
     fetchPageName, 
+
     updateCurrentPageName,
     chapterData, 
     isEditing,
@@ -112,8 +113,6 @@ export default function NavigationPreview ({
 
             setFirstTimeEnter(false);
 
-            let gameDataTemp = fetchCurrentGameData();
-            setRefGameData(gameDataTemp);
         }
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
@@ -140,6 +139,9 @@ export default function NavigationPreview ({
         let playerInfoObj = fetchPlayerInfoSets();
         setRefDataPlayerAccount(playerInfoObj["userAccount"]);
         setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+
+        let gameDataTemp = fetchCurrentGameData();
+        setRefGameData(gameDataTemp);
 
         if (isEditing === true) {
             let objTemp = fetchNavObj();
@@ -1026,6 +1028,14 @@ if (item["itemType"] === "pic") {
                             actualValue = refDataPlayerAccount[item["valueItemName"]];
                             isValueFetched = true;
                         }
+                        console.log("item = ", item["itemName"], "... actualVal = ", actualValue);
+console.log("refDataPlayerProfile: ", refDataPlayerProfile);
+
+console.log("refDataPlayerAccount: ", refDataPlayerAccount);
+
+console.log("refGameData: ", refGameData);
+
+
 
                         if (isValueFetched === false) {
                             return;
@@ -1035,7 +1045,9 @@ if (item["itemType"] === "pic") {
                         
                         //TODO from item["valueItemType"] and item["valueItemName"], fetch the actual value
 
-                        return (<div
+                        return (
+                        <div>
+                        {isValueFetched === true && <div
                                 key={keyStr}
                                 style={{
                                     "position": "absolute",
@@ -1051,6 +1063,7 @@ if (item["itemType"] === "pic") {
                                 <label>{item["labelText"]}: {actualValue}</label>
 
 
+                        </div>}
                         </div>);
 
               

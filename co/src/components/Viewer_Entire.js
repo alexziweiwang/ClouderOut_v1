@@ -179,11 +179,24 @@ export default function Viewer_Entire({isDisplay,
         return obj;
       }
 
-      function passInCurrentGameData() {
-          return playerGameData;
 
-      }
+    function passInCurrentGameDataList() {
+        //playerGameData;
+        let gameDataTemp = playerGameData;
+        let gameDataList = [];
 
+
+        {Object.keys(gameDataTemp).map((currKey) => {
+            let pair = [];
+
+            pair.push(gameDataTemp[currKey]["name"]);
+            pair.push(gameDataTemp[currKey]["current_value"])
+            gameDataList.push(pair);
+        })}
+                console.log ("passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+
+        return gameDataList;
+    }
 
 return(<>
 
@@ -239,7 +252,7 @@ return(<>
                         initialPlayerAccountRefData={playerAccount}
 
                         fetchPlayerInfoSets={passInPlayerInfoSets}
-                        fetchCurrentGameData={passInCurrentGameData}
+                        fetchCurrentGameData={passInCurrentGameDataList}
 
                     />
                 </div>

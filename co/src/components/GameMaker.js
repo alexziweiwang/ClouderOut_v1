@@ -1040,8 +1040,25 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return testPlayerProfile;
   }
 
-  function passInCurrentGameData() {
-    return testPlayerGameData;
+  function passInCurrentGameDataList() { //pure emu-data
+    let gameDataTemp = gameDataDesignList;
+    if (gameDataDesignList.size === 0) {
+      let tempList = fetchGameDataFromCloud();
+      gameDataTemp = tempList;
+    }
+    let gameDataList = [];
+
+
+    {Object.keys(gameDataTemp).map((currKey) => {
+      let pair = [];
+
+      pair.push(gameDataTemp[currKey]["name"]);
+      pair.push(gameDataTemp[currKey]["current_value"])
+      gameDataList.push(pair);
+    })}
+              console.log ("passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+
+    return gameDataList;
   }
 
   return (
@@ -1180,7 +1197,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   initialPlayerAccountRefData={testPlayerAccount}
 
                   fetchPlayerInfoSets={passInPlayerInfoSets}
-                  fetchCurrentGameData={passInCurrentGameData}
+                  fetchCurrentGameData={passInCurrentGameDataList}
 
 
                   />
@@ -1278,8 +1295,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {
-              (isDisplayEntireGameViewer && showGameDataPanel )
+            {(isDisplayEntireGameViewer && showGameDataPanel)
             && 
               <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
                 <Panel_GameDataTest
