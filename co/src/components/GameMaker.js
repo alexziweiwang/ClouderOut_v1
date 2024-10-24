@@ -1215,7 +1215,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   fetchNavObj={passInNavObj} 
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
+                  
                   updateCurrentPageName={updateCurrPageName}
+                  updateCurrentStanding={updateCurrentStanding}
+
                   isEditing={true}
                   initialGameDataRefData={emptyValue}
                   initialPlayerProfileRefData={testPlayerProfile}

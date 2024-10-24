@@ -5,9 +5,12 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 export default function NavigationPreview ({
     initialNavObj, 
     fetchNavObj, 
-    fetchPageName, 
 
+    fetchPageName, 
     updateCurrentPageName,
+    updateCurrentStanding,
+
+
     chapterData, 
     isEditing,
 
@@ -691,6 +694,8 @@ export default function NavigationPreview ({
 
                         {storyPageChapterTitles.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index;
+
+
                             return (<div key={keyStr} id={keyStr}
                                 className="navigationButton"
                                 style={{
@@ -716,7 +721,16 @@ export default function NavigationPreview ({
                                 onMouseDown={
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "brightness(120%)";
+
                                         console.log("story-page-title clicked: ", item);
+                                                                    //TODO update-current-in-chapter
+                                        let currentStandingObjTemp = {};
+                                        currentStandingObjTemp["pageStatus"] = "During Game";
+                                        currentStandingObjTemp["chapterKey"] = item;
+                                        currentStandingObjTemp["nodeKey"] = ""; //TODO set to default start-node's key ... if non-SL system
+                                        currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
+                                        updateCurrentStanding(currentStandingObjTemp);
+
                                         updateCurrentPageName("During Game");
                                     }
                                 }

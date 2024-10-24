@@ -233,7 +233,10 @@ return(<>
                         fetchNavObj={fetchNavigationObj} 
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 
+
                         updateCurrentPageName={updateNavPageName}
+                        updateCurrentStanding={updateCurrentStanding}
+                        
                         isEditing={false}
                         initialGameDataRefData={playerGameData}
                         initialPlayerProfileRefData={playerProfile}
