@@ -30,7 +30,7 @@ export default function Viewer_Entire({isDisplay,
     updatePlayerSlRecords,
     
     getCurrentGameProgress,
-    updateCurrentGameProgress,
+    updateCurrentStanding,
 
     notifyPageStatus,
     
@@ -210,8 +210,9 @@ return(<>
                         <br></br>2
                         <br></br>3
                         <br></br>TODO: according to currNodeType, display the component
-
-
+                                                    {/* //TODO15 updatePlayingGameData(data)
+                                                        important: setup entry-gameData-set (if multiple)
+                                                    */}
                     </div>
                 }
 
@@ -242,6 +243,12 @@ return(<>
                         fetchCurrentGameData={passInCurrentGameDataList}
 
                     />
+                                                                                {/* //TODO16
+                    //updatePlayerProfile (by player input)
+                    //updatePlayerAccountSettings (by player input)
+                    //updatePlayerSlRecords (by nav-buttons)
+                    //updateCurrentStanding (track by nav-buttons: page-status + chapter-key + node-type + node-key) */}
+
                 </div>
         </div>
 
@@ -258,3 +265,4 @@ return(<>
 </>);
 
 }
+

@@ -376,5 +376,6 @@
 
 - 2024-Oct-21: Debug viewer displaying issue
 
+- 2024-Oct-24: Consider data-driven strategies, for each layer & compo for entire-viewing
 
 

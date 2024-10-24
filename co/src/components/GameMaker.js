@@ -999,7 +999,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return obj;
   }
 
-  function updateCurrentGameProgress(obj) {
+  function updateCurrentStanding(obj) {
     setCurrTestingPageStatus(obj["pageStatus"]);
     setCurrTestingChapterKey(obj["chapterKey"]);
     setCurrTestingNodeKey(obj["nodeKey"]);
@@ -1282,7 +1282,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           updatePlayerSlRecords={updatePlayerSlRecords}
           
           getCurrentGameProgress={passInCurrentGameProgress}
-          updateCurrentGameProgress={updateCurrentGameProgress}
+          updateCurrentStanding={updateCurrentStanding}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
 
