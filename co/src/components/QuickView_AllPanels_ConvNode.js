@@ -216,29 +216,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     }
 
-    function resetViewingPiece() {
+                            function resetViewingPiece() {
+                                initializeGameDataTracker();
 
-
-                            //TODO temp removed
-                            // let gameDataTemp = gameDataTracker; 
-
-                            // {Object.keys(gameDataDesignList).map((currKey) => {
-                            //     gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey];
-                            // })}
-                            // setGameDataTracker(gameDataTemp);
-
-                            //                                                 console.log("now gameDataTemp = ", gameDataTemp);
-                            //                                                 console.log("now gameDataTracker = ", gameDataTracker);
-
-                            //                                                 console.log("initialPieceNum = ", initialPieceNum);
-                            //TODO temp removed
-
-        initializeGameDataTracker();
-
-        setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        setResetSignal(true);
-        setClickOnGameScreen(false);
-    }
+                                setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+                                setResetSignal(true);
+                                setClickOnGameScreen(false);
+                            }
 
     // function notifyFinished() {
     //     setTextStillTyping(false);
@@ -365,7 +349,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
                 <button onClick={()=>{handleQViewCancel();}}> {closeText} </button>
-                <button onClick={()=>{resetViewingPiece();}}> {resetText} </button>
+                {/* <button onClick={()=>{resetViewingPiece();}}> {resetText} </button> //TODO remove later */}
             </div>
 
 
