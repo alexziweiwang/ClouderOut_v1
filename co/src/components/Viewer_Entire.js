@@ -210,13 +210,14 @@ return(<>
                         <br></br>2
                         <br></br>3
                         <br></br>TODO: according to currNodeType, display the component
-                                                    {/* //TODO15 
+                                          {/*            //TODO15 
                                                     // updatePlayingGameData(data)
                                                     // updateCurrentStanding (track by nav-buttons & in-game changes: 
-                                                    //                          page-status + chapter-key + node-type + node-key) */}
+                                                    //              page-status + chapter-key + node-type + node-key) 
 
-                                                        important: setup entry-gameData-set (if multiple)
-                                                    */}
+                                                    //important: setup entry-gameData-set (if multiple) 
+                                                    //important: return or to next chapter when reaching the "<chapter-key>_end" node
+                                          */}
                     </div>
                 }
 

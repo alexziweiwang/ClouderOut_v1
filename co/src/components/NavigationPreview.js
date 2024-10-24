@@ -294,6 +294,15 @@ export default function NavigationPreview ({
 
                                     console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
+
+
+                                    let currentStandingObjTemp = {};
+                                    currentStandingObjTemp["pageStatus"] = pageNaming;
+                                    currentStandingObjTemp["chapterKey"] = "";
+                                    currentStandingObjTemp["nodeKey"] = "";
+                                    currentStandingObjTemp["nodeType"] = ""; 
+                                    updateCurrentStanding(currentStandingObjTemp);
+
                                 }
                             }
                             >
@@ -443,6 +452,13 @@ export default function NavigationPreview ({
 
                                     console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
+
+                                    let currentStandingObjTemp = {};
+                                    currentStandingObjTemp["pageStatus"] = pageNaming;
+                                    currentStandingObjTemp["chapterKey"] = "";
+                                    currentStandingObjTemp["nodeKey"] = "";
+                                    currentStandingObjTemp["nodeType"] = ""; 
+                                    updateCurrentStanding(currentStandingObjTemp);
                                 }
                             }
                         >
@@ -690,6 +706,13 @@ export default function NavigationPreview ({
                         ()=>{
                             document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
                             updateCurrentPageName("Game Progress Strategy");
+
+                            let currentStandingObjTemp = {};
+                            currentStandingObjTemp["pageStatus"] = "Game Progress Strategy";
+                            currentStandingObjTemp["chapterKey"] = "";
+                            currentStandingObjTemp["nodeKey"] = "";
+                            currentStandingObjTemp["nodeType"] = ""; 
+                            updateCurrentStanding(currentStandingObjTemp);
                         }
                     }
                 >
@@ -735,14 +758,17 @@ export default function NavigationPreview ({
 
                                         console.log("story-page-title clicked: ", item);
                            
+
+
+                                        updateCurrentPageName("During Game");
+
                                         let currentStandingObjTemp = {};
                                         currentStandingObjTemp["pageStatus"] = "During Game";
                                         currentStandingObjTemp["chapterKey"] = item;
-                                        currentStandingObjTemp["nodeKey"] = ""; //TODO set to default start-node's key ... if non-SL system
+                                        currentStandingObjTemp["nodeKey"] = item + "_start"; //TODO default start-node's key ... if non-SL system
                                         currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
                                         updateCurrentStanding(currentStandingObjTemp);
 
-                                        updateCurrentPageName("During Game");
                                     }
                                 }
                             >
@@ -1240,6 +1266,8 @@ export default function NavigationPreview ({
                                 }
         
                                 updateCurrentPageName(nextPageName);
+
+                                
                             }
                         }
                         >

@@ -133,7 +133,7 @@ export default function GameMaker({username, projectName}) {
 //TODO ------------------------------------------------------ testing data area
 
 const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
-  "chp-key1": {"chapterStart1-key": {
+  "chp-key1": {"chp-key1_start": {
               nodeName: "chapterStart1-title", 
               row: 2, 
               col: 0, 
@@ -186,13 +186,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nodeName: "E1-title", 
               row: 2, 
               col: 5, 
-              nextNode: "chapterEnd1-key", 
+              nextNode: "chp-key1_end", 
               display: true, 
               nodeType:"Conversation", 
               screenSize:"4:3(horizonal)",
               notes: "",
           },
-          "chapterEnd1-key": {
+          "chp-key1_end": {
               nodeName: "chapterEnd1-title", 
               row: 4, 
               col: 6, 
@@ -203,7 +203,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               notes: "",
           },
   },
-  "chp-key2": {"chapterStart2-key": {
+  "chp-key2": {"chp-key2_start": {
             nodeName: "chapterStart2-title", 
             row: 2, 
             col: 0, 
@@ -256,13 +256,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           nodeName: "E2-title", 
           row: 2, 
           col: 5, 
-          nextNode: "chapterEnd2-key", 
+          nextNode: "chp-key2_end", 
           display: true, 
           nodeType:"Conversation", 
           screenSize:"4:3(horizonal)",
           notes: "",
         },
-        "chapterEnd2-key": {
+        "chp-key2_end": {
           nodeName: "chapterEnd2-title", 
           row: 4, 
           col: 6, 
@@ -284,17 +284,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "chp-key1": [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
-        ["chapterStart1-key","A1-key","","","D1-key","E1-key","","","",""], 
+        ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
         ["","","","","","","","","",""],
-        ["C1-key","","","B1-key","","","chapterEnd1-key","","",""]
+        ["C1-key","","","B1-key","","","chp-key1_end","","",""]
       ]
     ,
       "chp-key2": [
           ["","","","","","","","","",""], 
           ["","","","","","","","","",""],
-          ["chapterStart2-key","A2-key","","","D2-key","E2-key","","","",""], 
+          ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
           ["","","","","","","","","",""],
-          ["C2-key","","","B2-key","","","chapterEnd2-key","","",""]
+          ["C2-key","","","B2-key","","","chp-key2_end","","",""]
       ],
     
   }); //stores node-keys
@@ -1215,7 +1215,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   fetchNavObj={passInNavObj} 
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
-                  
+
                   updateCurrentPageName={updateCurrPageName}
                   updateCurrentStanding={updateCurrentStanding}
 
