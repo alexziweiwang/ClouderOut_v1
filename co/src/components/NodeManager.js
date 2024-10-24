@@ -263,14 +263,14 @@ export default function NodeManager({projectName, currUser,
         //TODO later add conditions for board game and tower defense
   }
 
-  // function updateGDataToCloud(gameDataLatest) {
+  // function updateGDataDesignToCloud(gameDataLatest) {
 
   //       let project = "";
   //       project  = projectName;
   //       if (project.trim() === "") {
   //         return;
   //       }
-  //       updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+  //       updateGameDataDesignVM({projectName: project, uname: currUser, gameData: gameDataLatest});
      
   // } //TODO remove later
 

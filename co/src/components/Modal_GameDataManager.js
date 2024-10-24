@@ -6,7 +6,7 @@ export default function Modal_GameDataManager ({
         isDisplay, handleGdmCancel, 
         initialGameData, 
         resetNeedCloudData, 
-        updateGameDataToCloud,
+        updateGameDataDesignToCloud,
     }) {
 
 
@@ -124,7 +124,7 @@ export default function Modal_GameDataManager ({
     
         //resetNeedCloudData();// TODO remove?
         
-        updateGameDataToCloud(gameDataTemp); /* update cloud db */
+        updateGameDataDesignToCloud(gameDataTemp); /* update cloud db */
         // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
@@ -180,7 +180,7 @@ export default function Modal_GameDataManager ({
                     
             resetNeedCloudData();
                                             
-            updateGameDataToCloud(tempMap); /* update cloud db */
+            updateGameDataDesignToCloud(tempMap); /* update cloud db */
     
             //fetchFromCaller();
                         //TODO changing area
@@ -196,7 +196,7 @@ export default function Modal_GameDataManager ({
 
     function updateGdmInfoBothLayers(gameDataTemp) {
         //TODO5
-        updateGameDataToCloud(gameDataTemp);
+        updateGameDataDesignToCloud(gameDataTemp);
     }
 
     function editListItem(obj) {
@@ -253,7 +253,7 @@ export default function Modal_GameDataManager ({
 
         setUsingGameData(newGameData);
 
-        updateGameDataToCloud(newGameData);
+        updateGameDataDesignToCloud(newGameData);
     }
 
 

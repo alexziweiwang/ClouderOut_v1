@@ -19,7 +19,7 @@ export async function getProjectGameDataVM({projectName, uname}) {
  * @param {*} uname username
  * @param {*} gameData game data
  */
-export async function updateGameDataVM({projectName, uname, gameData}) {
+export async function updateGameDataDesignVM({projectName, uname, gameData}) {
     await updateGameData({projectName, uname, gameData});
 }
 

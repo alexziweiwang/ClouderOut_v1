@@ -12,7 +12,7 @@ import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
 import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
-import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import langDictionary from './textDictionary';
 
@@ -557,14 +557,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setNeedCloudGameData(true);
   }
 
-  function updateGameDataSettingsToCloud(gameDataLatest) {
+  function updateGameDataDesignSettingToCloud(gameDataLatest) {
 
     let project = "";
     project  = projectName;
     if (project.trim() === "") {
       return;
     }
-    updateGameDataVM({projectName: project, uname: username, gameData: gameDataLatest});
+    updateGameDataDesignVM({projectName: project, uname: username, gameData: gameDataLatest});
 
     //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
     setGdmUpdatedSignal(true);
@@ -1371,7 +1371,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               handleGdmCancel={handleGameDataManagerCancel} 
               initialGameData={gameDataDesignList} 
               resetNeedCloudData={markNextNeedCloudGameData} 
-              updateGameDataToCloud={updateGameDataSettingsToCloud}
+              updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
           />} 
 </div>
 

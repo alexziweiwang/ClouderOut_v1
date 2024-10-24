@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
-import { getProjectGameDataVM, updateGameDataVM} from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataDesignVM} from '../viewmodels/GameDataViewModel';
 import langDictionary from './textDictionary';
 
 

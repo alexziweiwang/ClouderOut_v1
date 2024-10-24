@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
-import { getProjectGameDataVM, updateGameDataVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 import PreviewWindow_gameContent from './PreviewWindow_gameContent';
@@ -539,7 +539,7 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
   }
 
 
-    function updateGDataToCloud(gameDataLatest) {
+    function updateGDataDesignToCloud(gameDataLatest) {
 
         let project = "";
         project  = state.selected_project_name;
@@ -547,7 +547,7 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
             return;
         }
         let currUser = uname;
-        updateGameDataVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+        updateGameDataDesignVM({projectName: project, uname: currUser, gameData: gameDataLatest});
     
     }
 
@@ -790,7 +790,7 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                     handleGdmCancel={handleModal_GameDataManagerCancel} 
                     initialGameData={gameDataDesignList} 
                     resetNeedCloudData={markNextNeedCloudGameData} 
-                    updateGameDataToCloud={updateGDataToCloud}
+                    updateGameDataDesignToCloud={updateGDataDesignToCloud}
                 />   
     
         
