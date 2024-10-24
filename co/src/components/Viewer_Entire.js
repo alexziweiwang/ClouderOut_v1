@@ -179,6 +179,11 @@ export default function Viewer_Entire({isDisplay,
         return obj;
       }
 
+      function passInCurrentGameData() {
+          return playerGameData;
+
+      }
+
 
 return(<>
 
@@ -234,7 +239,7 @@ return(<>
                         initialPlayerAccountRefData={playerAccount}
 
                         fetchPlayerInfoSets={passInPlayerInfoSets}
-
+                        fetchCurrentGameData={passInCurrentGameData}
 
                     />
                 </div>

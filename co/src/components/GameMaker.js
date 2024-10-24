@@ -1040,6 +1040,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return testPlayerProfile;
   }
 
+  function passInCurrentGameData() {
+    return testPlayerGameData;
+  }
+
   return (
   <div>
 <div>
@@ -1176,7 +1180,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   initialPlayerAccountRefData={testPlayerAccount}
 
                   fetchPlayerInfoSets={passInPlayerInfoSets}
-       
+                  fetchCurrentGameData={passInCurrentGameData}
+
 
                   />
               </div>

@@ -3885,7 +3885,9 @@ export default function NavigationSetter({initialNavObj,
                 return;
               }
               let itemName = "value-" + currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]
+                + "-"
                 + currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"]
+                + "-"
                 + currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
               
           

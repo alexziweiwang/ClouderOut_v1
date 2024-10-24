@@ -15,6 +15,7 @@ export default function NavigationPreview ({
     initialPlayerAccountRefData,
 
     fetchPlayerInfoSets,
+    fetchCurrentGameData,
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -43,6 +44,9 @@ export default function NavigationPreview ({
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
     const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
+    const [refGameData, setRefGameData] = useState(initialGameDataRefData);
+
+
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
     const mainPagePictureVariableNames = [
@@ -108,6 +112,9 @@ export default function NavigationPreview ({
             setStoryPageChapterTitles(initialChapterTitle);
 
             setFirstTimeEnter(false);
+
+            let gameDataTemp = fetchCurrentGameData();
+            setRefGameData(gameDataTemp);
         }
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
@@ -1001,13 +1008,35 @@ if (item["itemType"] === "pic") {
                         // item["textFontSize"];
                         // item["textFont"];
                         // item["textColor"];
+
+                        let actualValue = "";
+                        //TODO from item["valueItemType"] and item["valueItemName"], fetch the actual value
+
+                        return (<div
+                                key={keyStr}
+                                style={{
+                                    "position": "absolute",
+                                    "left": `${item["posX"]}px`,
+                                    "top": `${item["posY"]}px`,
+                                    "margin": "0px",
+                                    "fontSize": `${item["textFontSize"]}px`,
+                                    "color": `${item["textColor"]}`,
+                                    "fontFamily": `${item["textFont"]}`,
+                                }}
+                               
+                            >
+                                <label>{item["labelText"]}: {actualValue}</label>
+
+
+                        </div>);
+
               
                    } else if (item["itemType"] === "pic") {
                         // item["picName"];
                         // item["width"];
                         // item["height"];
 
-                        <div 
+                        return (<div 
                             key={keyStr}
                             style={{
                                 "position": "absolute",
@@ -1023,8 +1052,7 @@ if (item["itemType"] === "pic") {
                                     width={item["width"]}
                                     height={item["height"]}
                                 ></img>
-
-                        </div>
+                        </div>);
               
                    }
 
