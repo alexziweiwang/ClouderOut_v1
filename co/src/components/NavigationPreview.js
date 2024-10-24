@@ -47,7 +47,6 @@ export default function NavigationPreview ({
     const [refGameData, setRefGameData] = useState(initialGameDataRefData);
 
 
-
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
     const mainPagePictureVariableNames = [
         "mainPage-bgPicName",               //0
@@ -1009,7 +1008,31 @@ if (item["itemType"] === "pic") {
                         // item["textFont"];
                         // item["textColor"];
 
+                        //refDataPlayerProfile
+                        //refDataPlayerAccount
+                        //refGameData
+
+                        //"Game Data"     "Player Profile"     "Player Account Info"
                         let actualValue = "";
+                        let isValueFetched = false;
+
+                        if (item["valueItemType"] === "Game Data") {
+                            actualValue = refGameData[item["valueItemName"]];
+                            isValueFetched = true;
+                        } else if (item["valueItemType"] === "Player Profile") {
+                            actualValue = refDataPlayerProfile[item["valueItemName"]];
+                            isValueFetched = true;
+                        } else if (item["valueItemType"] === "Player Account Info") {
+                            actualValue = refDataPlayerAccount[item["valueItemName"]];
+                            isValueFetched = true;
+                        }
+
+                        if (isValueFetched === false) {
+                            return;
+                        }
+                        
+
+                        
                         //TODO from item["valueItemType"] and item["valueItemName"], fetch the actual value
 
                         return (<div

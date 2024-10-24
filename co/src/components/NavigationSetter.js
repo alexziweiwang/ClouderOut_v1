@@ -3756,7 +3756,7 @@ export default function NavigationSetter({initialNavObj,
                       changePlayerProfilePageAddingValueType(event.target.value);
                     }}
                   >
-                    <option key="ppSetting-value-type-defaultNone" value="">-- Select Data Range --</option>
+                    <option key="ppSetting-value-type-defaultNone" value="">-- Select Data Item Category --</option>
 
                     <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
                     <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
