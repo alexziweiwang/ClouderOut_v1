@@ -73,7 +73,7 @@ export default function Viewer_Entire({isDisplay,
     const [playerAccount, setPlayerAccount] = useState({});
     const [playerSLRecords, setPlayerSLRecords] = useState({});
 
-    const [playerGameDataList, setPlayerDataList] = useState([]);
+    const [playerGameDataList, setPlayerGameDataList] = useState([]);
 
     //TODO implementation plan:
     //when doing this level of testing or game-in-practice, fetch player's above 4 data from cloud
@@ -186,17 +186,23 @@ export default function Viewer_Entire({isDisplay,
         let gameDataTemp = playerGameData;
         let gameDataList = [];
 
-        if (playerGameDataList.length === 0) {
+        if (playerGameData !== -1 && playerGameDataList.length === 0) {
             {Object.keys(gameDataTemp).map((currKey) => {
                 let pair = [];
                 pair.push(gameDataTemp[currKey]["name"]);
                 pair.push(gameDataTemp[currKey]["current_value"])
                 gameDataList.push(pair);
             })}
-        } else {
+            setPlayerGameDataList(gameDataList);
+                                                       console.log("\t\t\tplayerGameDataList.length === 0");
+
+        } else if (playerGameDataList.length > 0) {
             gameDataList = playerGameDataList;
+
+        } else {
+            return -1;
         }
-        console.log("......??????");
+                                                     console.log("......??????", gameDataList);
 
         return gameDataList;
     }

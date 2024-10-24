@@ -628,6 +628,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
 
+
     if (projectName === "default-no-state projectname") {
       alert("No project selected. Returning to project selection page...");
       goToProjectManagingPanel();
@@ -877,18 +878,29 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
     // for local test, make from game-data-design-list
     if (isLocal === true) {
-        {Object.keys(gameDataDesignList).map((currKey) => {
-          gameDataTemp[currKey]["current_value"] = gameDataDesignList[currKey]["default_value"];
-        })}
-        
+      let tempList = gameDataDesignList;
+
+      if (tempList === -1) { //TODO5
+            const gdataTestResult = fetchGameDataFromCloud();
+            if (gdataTestResult !== undefined) {
+              {Object.keys(tempList).map((currKey) => {
+                gameDataTemp[currKey]["current_value"] = tempList[currKey]["default_value"];
+              })}
+            }
+      }
+
+
+
+
     } else {
       // for on-cloud test, fetch from cloud
       //TODO gameDataTemp = ...
 
 
     }
-
+                                                            console.log("load-gdata: ", gameDataTemp);
     setTestPlayerGameData(gameDataTemp); // initialize Playing-Game-Data
+    return gameDataTemp;
   }
 
   function loadTestPlayerProfile(isLocal) { 
@@ -937,8 +949,13 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   }
   
-  function passInPlayerGameData() { 
-    return testPlayerGameData;
+  function passInPlayerGameData() {
+    if (testPlayerGameData.length > 0) {
+      return testPlayerGameData;
+    } else {
+      return -1;
+    }
+    
   }
 
   function passInPlayerProfile() {
@@ -1048,8 +1065,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
     let gameDataTemp = gameDataDesignList;
     if (gameDataDesignList.size === 0) {
-      let tempList = fetchGameDataFromCloud();
-      gameDataTemp = tempList;
+      let tempMap = loadPlayingGameData(true);
+      gameDataTemp = tempMap;
     }
     let gameDataList = [];
 
@@ -1061,7 +1078,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       pair.push(gameDataTemp[currKey]["default_value"]);
       gameDataList.push(pair);
     })}
-              console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+                              console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
 
     setGameDataArray(gameDataList);
     return gameDataList;
