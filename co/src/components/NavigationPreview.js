@@ -959,9 +959,14 @@ export default function NavigationPreview ({
                 </div>}
 
                 <div style={{"position": "absolute"}}>
-                {/* navObj["playerProfilePage-itemMap"] */}
+
                 {navObj["playerProfilePage-itemMap"].map((item, index) => {
                     let keyStr = "playerProfilePage-itemMap" + index;
+console.log("item = ", item);
+if (item["itemType"] === "pic") {
+   console.log("item pic url = ", visualMap[item["picName"]]); 
+}
+
 
                     if (item["itemType"] === "text") {
                         // item["textContent"];
@@ -1001,6 +1006,25 @@ export default function NavigationPreview ({
                         // item["picName"];
                         // item["width"];
                         // item["height"];
+
+                        <div 
+                            key={keyStr}
+                            style={{
+                                "position": "absolute",
+                                "left": `${item["posX"]}px`,
+                                "top": `${item["posY"]}px`,
+                                "margin": "0px",
+                                "width": `${item["width"]}px`,
+                                "height": `${item["height"]}px`,
+                                "backgroundColor": "orange",
+                            }}>
+                                <img
+                                    src={visualMap[item["picName"]]}
+                                    width={item["width"]}
+                                    height={item["height"]}
+                                ></img>
+
+                        </div>
               
                    }
 

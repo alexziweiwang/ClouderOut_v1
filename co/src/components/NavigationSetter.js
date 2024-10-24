@@ -290,7 +290,6 @@ export default function NavigationSetter({initialNavObj,
       tempNav["playerProfilePage-itemMap"] = tableTemp;
       updateNavObj(tempNav);
 
-      resetPPTryingTextItem();
     }
 
     function editItemTable(giveIndex, newItem) {
@@ -3710,6 +3709,7 @@ export default function NavigationSetter({initialNavObj,
                 }
 
                 addPPTryingAnyItemNew(obj);
+                resetPPTryingTextItem();
               }}
              >Add</button>
              <button
@@ -3899,6 +3899,7 @@ export default function NavigationSetter({initialNavObj,
               }
 
               addPPTryingAnyItemNew(obj);
+              resetPPTryingValueItem();
             }}
            
            
@@ -4027,6 +4028,7 @@ export default function NavigationSetter({initialNavObj,
                   }
     
                   addPPTryingAnyItemNew(obj);
+                  resetPPTryingPicItem();
         
               }}
              >Add</button>
