@@ -526,6 +526,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
 
   const [gameDataDesignList, setGameDataDesignList] = useState({});
+  const [gameDataArray, setGameDataArray] = useState([]);
 
   async function fetchGameDataFromCloud() { //TODO3
 
@@ -1041,6 +1042,11 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInCurrentGameDataList() { //pure emu-data
+    if (gameDataArray.length > 0) {
+      return gameDataArray;
+    }
+
+
     let gameDataTemp = gameDataDesignList;
     if (gameDataDesignList.size === 0) {
       let tempList = fetchGameDataFromCloud();
@@ -1053,11 +1059,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       let pair = [];
 
       pair.push(gameDataTemp[currKey]["name"]);
-      pair.push(gameDataTemp[currKey]["current_value"])
+      pair.push(gameDataTemp[currKey]["default_value"]);
       gameDataList.push(pair);
     })}
-              console.log ("passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+              console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
 
+    setGameDataArray(gameDataList);
     return gameDataList;
   }
 

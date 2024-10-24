@@ -3880,8 +3880,9 @@ export default function NavigationSetter({initialNavObj,
               let itemType = "value";
 
 
-              if (currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"].length === 0) {
-                alert("Cannot add empty value-item.");
+              if (currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"].length === 0
+                || currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"].length === 0) {
+                alert("Cannot add unclear value-item.");
                 return;
               }
               let itemName = "value-" + currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]

@@ -193,7 +193,7 @@ export default function Viewer_Entire({isDisplay,
             pair.push(gameDataTemp[currKey]["current_value"])
             gameDataList.push(pair);
         })}
-                console.log ("passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
+                console.log ("2passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp);
 
         return gameDataList;
     }

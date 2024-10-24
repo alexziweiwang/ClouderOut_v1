@@ -45,7 +45,7 @@ export default function NavigationPreview ({
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
     const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
-    const [refGameData, setRefGameData] = useState(initialGameDataRefData);
+    const [refGameDataList, setRefGameDataList] = useState(initialGameDataRefData);
 
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
@@ -141,7 +141,7 @@ export default function NavigationPreview ({
         setRefDataPlayerProfile(playerInfoObj["playerProfile"])
 
         let gameDataTemp = fetchCurrentGameData();
-        setRefGameData(gameDataTemp);
+        setRefGameDataList(gameDataTemp);
 
         if (isEditing === true) {
             let objTemp = fetchNavObj();
@@ -1012,14 +1012,16 @@ if (item["itemType"] === "pic") {
 
                         //refDataPlayerProfile
                         //refDataPlayerAccount
-                        //refGameData
+                        //refGameDataList
 
                         //"Game Data"     "Player Profile"     "Player Account Info"
                         let actualValue = "";
                         let isValueFetched = false;
 
                         if (item["valueItemType"] === "Game Data") {
-                            actualValue = refGameData[item["valueItemName"]];
+                            let tempArr = refGameDataList.filter(e => e[0] === item["valueItemName"]);
+                            actualValue = tempArr[0][1];
+
                             isValueFetched = true;
                         } else if (item["valueItemType"] === "Player Profile") {
                             actualValue = refDataPlayerProfile[item["valueItemName"]];
@@ -1028,12 +1030,14 @@ if (item["itemType"] === "pic") {
                             actualValue = refDataPlayerAccount[item["valueItemName"]];
                             isValueFetched = true;
                         }
-                        console.log("item = ", item["itemName"], "... actualVal = ", actualValue);
+
+console.log("item = ", item["itemName"], "... actualVal = ", actualValue);
+
 console.log("refDataPlayerProfile: ", refDataPlayerProfile);
 
 console.log("refDataPlayerAccount: ", refDataPlayerAccount);
 
-console.log("refGameData: ", refGameData);
+console.log("refGameDataList: ", refGameDataList);
 
 
 
@@ -1060,7 +1064,7 @@ console.log("refGameData: ", refGameData);
                                 }}
                                
                             >
-                                <label>{item["labelText"]}: {actualValue}</label>
+                                <label>{item["labelText"]}= {actualValue}</label>
 
 
                         </div>}
