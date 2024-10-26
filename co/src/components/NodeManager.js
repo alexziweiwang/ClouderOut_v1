@@ -137,9 +137,28 @@ export default function NodeManager({projectName, currUser,
     textDictItem.deleteText
     : textDictItemDefault.deleteText;
 
-  let addANewNodeHereText textDictItem.addANewNodeHereText !== undefined ?
+  let addANewNodeHereText = textDictItem.addANewNodeHereText !== undefined ?
     textDictItem.addANewNodeHereText
     : textDictItemDefault.addANewNodeHereText;
+
+  let titleText = textDictItem.titleText !== undefined ?
+    textDictItem.titleText
+    : textDictItemDefault.titleText;
+
+  let screenSizeText = textDictItem.screenSizeText !== undefined ?
+    textDictItem.screenSizeText
+    : textDictItemDefault.screenSizeText;
+
+  let revertADeletedNodeHereText = textDictItem.revertADeletedNodeHereText !== undefined ?
+    textDictItem.revertADeletedNodeHereText
+    : textDictItemDefault.revertADeletedNodeHereText;
+
+  let nodeGameType = textDictItem.nodeGameType !== undefined ?
+    textDictItem.nodeGameType
+    : textDictItemDefault.nodeGameType;
+
+
+
     //TODO12
 
 
@@ -1027,14 +1046,14 @@ export default function NodeManager({projectName, currUser,
           }}>{addANewNodeHereText}</label>
           {newGridActionCreate && <div className="section">
                
-              <label>Node Unique-ID-Name and Title: </label>
+              <label>{nodeUniqueIDNameText} & {titleText}: </label>
               <input 
                 className="setting_item"
                 type="text" value={createNewNodeName} 
                 onChange={e => {setCreateNewNodeName(e.target.value)}}  
               />
               <br></br>
-              <label>Node Game Type: </label>
+              <label>{nodeGameType}: </label>
               <select className="setting_item" onChange={(event)=>{addNewNodeGameType(event);}} value={createNewNodeGameType}>
                 <option value="" key=""> -- Select Node's Game Type -- </option>
                 {/* <option value="Card Game" key="Card Game">Card Game</option>
@@ -1044,7 +1063,7 @@ export default function NodeManager({projectName, currUser,
                 <option value="Conversation" key="Conversation">Conversation</option>
               </select>
               <br></br>
-              {createNewNodeGameType !== "LogicSplitter" && <><label>Screen Size: </label>
+              {createNewNodeGameType !== "LogicSplitter" && <><label>{screenSizeText}: </label>
               <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
                     <option value="" key=""> ----- Select Size and Direction ----- </option>
                     {/* <option value="16:9(horizonal)" key="node-mgr-16:9(horizonal)"> 16:9 (horizontal) </option>
@@ -1078,7 +1097,7 @@ export default function NodeManager({projectName, currUser,
               setNewGridActionCreate(false);
             }}></input><label className="cursor_pointer" onClick={()=>{
               setNewGridActionCreate(false);
-            }}>Revert a deleted Node Here </label>
+            }}>{revertADeletedNodeHereText}</label>
           {!newGridActionCreate && <div className="section">
                   <select value={toRevertNodeKey} onChange={(event)=>{
                     setToRevertNodeKey(event.target.value);

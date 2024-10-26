@@ -98,6 +98,10 @@ const textDictionary = {
         changeSText: "Change ",
         nodeText: "Node",
         addANewNodeHereText: "Add A New Node Here",
+        titleText: "Title",
+        screenSizeText: "Screen Size",
+        revertADeletedNodeHereText: "Revert a deleted Node Here",
+        nodeGameType: "Node Game Type",
 
 
 
@@ -203,6 +207,10 @@ const textDictionary = {
         changeSText: "更改",
         nodeText: "节点",
         addANewNodeHereText: "在此处添加一个节点",
+        titleText: "标题",
+        screenSizeText: "画面尺寸",
+        revertADeletedNodeHereText: "在此恢复一个被删除的节点",
+        nodeGameType: "节点游戏类型",
 
 
 
