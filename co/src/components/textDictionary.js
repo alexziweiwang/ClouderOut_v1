@@ -79,6 +79,10 @@ const textDictionary = {
         collaposeAddingNewButtonText: "Collapse Adding New Button",
         addAnewConsequenceText: "Add a New Consequence",
         bgmSettingText: "Background Music Setting",
+        chapterManagementText: "Chapter Management",
+        chapterUniqueIDNameText: "Chapter Unique-ID-Name",
+        chapterTitleText: "Chapter Title",
+        newWordText: "New ",
 
 
 
@@ -162,6 +166,10 @@ const textDictionary = {
         addAnewButtonText: "添加一个新·按钮",
         addAnewConsequenceText: "添加一个新·调整效果",
         bgmSettingText: "背景音乐设置",
+        chapterManagementText: "章节管理",
+        chapterUniqueIDNameText: "章节ID",
+        chapterTitleText: "章节标题",
+        newWordText: "新",
 
 
 

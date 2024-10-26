@@ -11,7 +11,7 @@ export default function ChapterManager({
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
 //TODO3: add getChapterData (from caller) : "getChapterDataInfo()"
-  let languageCodeTextOption = 'en';
+  let languageCodeTextOption = 'chn';
   let textDictItem = langDictionary[languageCodeTextOption];
   let textDictItemDefault = langDictionary["en"];
 
@@ -43,6 +43,19 @@ export default function ChapterManager({
   let chapterManagementText = textDictItem.chapterManagementText !== undefined ?
         textDictItem.chapterManagementText
         : textDictItemDefault.chapterManagementText;
+
+  let chapterUniqueIDNameText = textDictItem.chapterUniqueIDNameText !== undefined ?
+        textDictItem.chapterUniqueIDNameText
+        : textDictItemDefault.chapterUniqueIDNameText;
+
+  let chapterTitleText = textDictItem.chapterTitleText !== undefined ?
+        textDictItem.chapterTitleText
+        : textDictItemDefault.chapterTitleText;
+
+  let newWordText = textDictItem.newWordText !== undefined ?
+        textDictItem.newWordText
+        : textDictItemDefault.newWordText;
+
 
   
   //TODO other text on UI - localization
@@ -195,7 +208,7 @@ export default function ChapterManager({
         <div className="parallelFrame">
           <div className="listBar" style={{"overflow": "hidden"}}>
               <div className="chapterManagingArea"> 
-                        <label>Chapter Management: </label>
+                        <label>{chapterManagementText}: </label>
                 
 
                   <ul>
@@ -216,11 +229,11 @@ export default function ChapterManager({
                         </li>
                         {selectedChptKey === item[0] && 
                           <>
-                            <label>Chapter Unique-ID-Name: {item[0]}</label>
+                            <label>{chapterUniqueIDNameText}: {item[0]}</label>
                             <br></br>
                             <br></br>
 
-                            <label>Chapter Title:  </label><br></br>
+                            <label>{chapterTitleText}:  </label><br></br>
                             <label>{item[1]}</label>
                             <br></br>
                             <br></br>
@@ -281,14 +294,14 @@ console.log("chapterData: ", chapterData); //TODO testing
                       </li>
                       {isAddNewChpater === true && 
                       <div>
-                        <label>New Chapter Unique-ID-Name (unchangable): </label><br></br>
+                        <label>{newWordText}{chapterUniqueIDNameText} (unchangable): </label><br></br>
                         <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
                         <br></br><br></br>
-                        <label>New Chapter Title (editable later): </label><br></br>
+                        <label>{newWordText}{chapterTitleText} (editable later): </label><br></br>
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
                         <br></br><br></br>
 
-                        <label>New Chapter Note (for game-creators): </label><br></br>
+                        <label>{newWordText}Chapter Note (for game-creators): </label><br></br>
                         <input></input>
                         <br></br><br></br>
                         <button onClick={()=>{addNewChapterItem();}}>{addText}</button>
