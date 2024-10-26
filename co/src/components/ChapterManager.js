@@ -56,9 +56,9 @@ export default function ChapterManager({
         textDictItem.newWordText
         : textDictItemDefault.newWordText;
 
-  let chapterNoteText = textDictItem.chapterNoteText !== undefined ?
-        textDictItem.chapterNoteText
-        : textDictItemDefault.chapterNoteText;
+  let noteText = textDictItem.noteText !== undefined ?
+        textDictItem.noteText
+        : textDictItemDefault.noteText;
 
   let chapterText = textDictItem.chapterText !== undefined ?
         textDictItem.chapterText
@@ -270,7 +270,7 @@ export default function ChapterManager({
                             <br></br>
                             <br></br>
 
-                            <label>{chapterNoteText}: </label>
+                            <label>{noteText}: </label>
                             <br></br><label>{(item[3].length > 0 ) ? item[3] : emptyNotePlaceHolder}</label>
                             <br></br>
                             <textarea value={editingChapterNote} onChange={(event)=>{
@@ -333,7 +333,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
                         <br></br><br></br>
 
-                        <label>{newWordText}{chapterNoteText}:</label><br></br>
+                        <label>{noteText}:</label><br></br>
                         <input></input>
                         <br></br><br></br>
                         <button onClick={()=>{addNewChapterItem();}}>{addText}</button>

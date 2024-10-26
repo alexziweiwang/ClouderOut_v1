@@ -84,13 +84,19 @@ const textDictionary = {
         chapterUniqueIDNameText: "Chapter Unique-ID-Name",
         chapterTitleText: "Chapter Title",
         newWordText: "New ",
-        chapterNoteText: "Chapter Note",
+        noteText: "Note",
         chapterText: "Chapter",
         unchangableOnceSubmittedText: "unchangable once submitted",
         editableLaterText: "editable later",
         renameText: "Rename ",
         emptyNotePlaceHolder: "(Empty Note)",
         noDeletedChapterText: "(No Deleted Chapter)",
+        nodeUniqueIDNameText: "Node Unique-ID-Name",
+        nodeTitleText: "Node Title",
+        nextNodeTitleText: "Next Node Title",
+
+
+
 
 
 
@@ -179,13 +185,16 @@ const textDictionary = {
         chapterUniqueIDNameText: "章节ID",
         chapterTitleText: "章节标题",
         newWordText: "新",
-        chapterNoteText: "章节备注",
+        noteText: "备注",
         chapterText: "章节",
         unchangableOnceSubmittedText: "提交后无法变更",
         editableLaterText: "之后可变更",
         renameText: "重命名",
         emptyNotePlaceHolder: "(备注为空)",
         noDeletedChapterText: "(无被删除章节)",
+        nodeUniqueIDNameText: "节点ID",
+        nodeTitleText: "节点标题",
+        nextNodeTitleText: "下一节点标题",
 
 
 

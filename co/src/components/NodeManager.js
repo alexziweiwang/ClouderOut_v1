@@ -16,7 +16,7 @@ export default function NodeManager({projectName, currUser,
   loadChapterInfoFromCaller,
 }) {
 
-  let languageCodeTextOption = 'en';
+  let languageCodeTextOption = 'chn';
 
     // console.log("Node Manager ?? "); //TODO testing
     // console.log(initialNodeMap); //TODO testing
@@ -96,6 +96,20 @@ export default function NodeManager({projectName, currUser,
   let nextNodeText = textDictItem.nextNodeText !== undefined ?
     textDictItem.nextNodeText
     : textDictItemDefault.nextNodeText;
+
+  let nextNodeTitleText = textDictItem.nextNodeTitleText !== undefined ?
+    textDictItem.nextNodeTitleText
+    : textDictItemDefault.nextNodeTitleText;
+
+  let nodeUniqueIDNameText = textDictItem.nodeUniqueIDNameText !== undefined ?
+    textDictItem.nodeUniqueIDNameText
+    : textDictItemDefault.nodeUniqueIDNameText;
+
+  let nodeTitleText = textDictItem.nodeTitleText !== undefined ? 
+    textDictItem.nodeTitleText
+    : textDictItemDefault.nodeTitleText;
+
+    //TODO12
 
 
 //TODO important note: node data is operated in this component (and level).
@@ -1111,12 +1125,12 @@ export default function NodeManager({projectName, currUser,
                 
                               <p className="sectionHeader"> {nodeInfoText} </p>
 
-                                  <label>Node Unique-ID-Name: </label>
+                                  <label>{nodeUniqueIDNameText}: </label>
                                     <div className="indentOne">
                                       {clickedNodeKey}
                                   </div>
 
-                                  <label>Node Title: </label>
+                                  <label>{nodeTitleText}: </label>
                                   <div className="indentOne">                      
                                     <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
                                   </div>
@@ -1188,10 +1202,10 @@ export default function NodeManager({projectName, currUser,
                 {nextNodeText} </p>
                 {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
                   && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
-                    Next Node Name: <label>{nodeRelationshipMap[clickedNodeKey].nextNode}</label><br></br>
+                    {nextNodeTitleText}: <label>{nodeRelationshipMap[nodeRelationshipMap[clickedNodeKey].nextNode]["nodeName"]}</label><br></br>
                   </>}
               
-                <label>Update: </label>
+                <label>{updateText}: </label>
                 <select onChange={(event)=>{
                     setSelectedNextNode(event.target.value);
                 }}
