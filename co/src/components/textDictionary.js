@@ -94,6 +94,8 @@ const textDictionary = {
         nodeUniqueIDNameText: "Node Unique-ID-Name",
         nodeTitleText: "Node Title",
         nextNodeTitleText: "Next Node Title",
+        nodeTypeText: "Node Type",
+        changeSText: "Change ",
 
 
 
@@ -195,6 +197,8 @@ const textDictionary = {
         nodeUniqueIDNameText: "节点ID",
         nodeTitleText: "节点标题",
         nextNodeTitleText: "下一节点标题",
+        nodeTypeText: "节点类型",
+        changeSText: "更改",
 
 
 

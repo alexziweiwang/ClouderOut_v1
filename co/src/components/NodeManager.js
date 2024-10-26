@@ -40,7 +40,7 @@ export default function NodeManager({projectName, currUser,
     : textDictItemDefault.createText;
 
   let cancelText = textDictItem.cancelText !== undefined ?
-    textDictItem.calcenText
+    textDictItem.cancelText
     : textDictItemDefault.cancelText;
 
   let enterEditorText = textDictItem.enterEditorText !== undefined ?
@@ -108,6 +108,23 @@ export default function NodeManager({projectName, currUser,
   let nodeTitleText = textDictItem.nodeTitleText !== undefined ? 
     textDictItem.nodeTitleText
     : textDictItemDefault.nodeTitleText;
+
+  let noteText = textDictItem.noteText !== undefined ?
+    textDictItem.noteText
+    : textDictItemDefault.noteText;
+
+  let nodeTypeText = textDictItem.nodeTypeText !== undefined ?
+    textDictItem.nodeTypeText
+    : textDictItemDefault.nodeTypeText;
+
+  let changeSText = textDictItem.changeSText !== undefined ?
+    textDictItem.changeSText
+    : textDictItemDefault.changeSText;
+
+  let emptyNotePlaceHolder = textDictItem.emptyNotePlaceHolder !== undefined ?
+    textDictItem.emptyNotePlaceHolder
+    : textDictItemDefault.emptyNotePlaceHolder;
+
 
     //TODO12
 
@@ -1135,14 +1152,14 @@ export default function NodeManager({projectName, currUser,
                                     <label>{nodeRelationshipMap[clickedNodeKey].nodeName}</label>
                                   </div>
 
-                                  <label>Node Type: </label>
+                                  <label>{nodeTypeText}: </label>
                                   <div className="indentOne">
                                     <label>{nodeRelationshipMap[clickedNodeKey].nodeType}</label>
                                   </div>
 
-                                  <label>Notes: </label>
+                                  <label>{noteText}: </label>
                                   <div className="indentOne">
-                                    <label>{(nodeRelationshipMap[clickedNodeKey].notes !== undefined && nodeRelationshipMap[clickedNodeKey].notes.length > 0) ? nodeRelationshipMap[clickedNodeKey].notes : "(Empty Note)"}</label>
+                                    <label>{(nodeRelationshipMap[clickedNodeKey].notes !== undefined && nodeRelationshipMap[clickedNodeKey].notes.length > 0) ? nodeRelationshipMap[clickedNodeKey].notes : emptyNotePlaceHolder}</label>
                                   </div>
                                 
                                 {nodeRelationshipMap[clickedNodeKey] !== undefined 
@@ -1159,12 +1176,12 @@ export default function NodeManager({projectName, currUser,
                   
 
                       <div>
-                          <label>Change Node Title: </label>
+                          <label>{changeSText}{nodeTitleText}: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
                             <br></br><button onClick={()=>{updateNodeToNewName2();}}>{updateText}</button>
                           </div>
-                          <label>Change Node Notes: </label>
+                          <label>{changeSText}{noteText}: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewNote(event.target.value);}} value={tempNewNote}></input>
                             <br></br>
