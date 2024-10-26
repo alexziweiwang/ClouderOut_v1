@@ -96,6 +96,8 @@ const textDictionary = {
         nextNodeTitleText: "Next Node Title",
         nodeTypeText: "Node Type",
         changeSText: "Change ",
+        nodeText: "Node",
+        addANewNodeHereText: "Add A New Node Here",
 
 
 
@@ -199,6 +201,8 @@ const textDictionary = {
         nextNodeTitleText: "下一节点标题",
         nodeTypeText: "节点类型",
         changeSText: "更改",
+        nodeText: "节点",
+        addANewNodeHereText: "在此处添加一个节点",
 
 
 

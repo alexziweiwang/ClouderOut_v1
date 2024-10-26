@@ -124,8 +124,22 @@ export default function NodeManager({projectName, currUser,
   let emptyNotePlaceHolder = textDictItem.emptyNotePlaceHolder !== undefined ?
     textDictItem.emptyNotePlaceHolder
     : textDictItemDefault.emptyNotePlaceHolder;
+  
+  let nodeText = textDictItem.nodeText !== undefined ?
+    textDictItem.nodeText
+    : textDictItemDefault.nodeText;
+  
+  let deleteSText = textDictItem.deleteSText !== undefined ?
+    textDictItem.deleteSText
+    : textDictItemDefault.deleteSText;
 
+  let deleteText = textDictItem.deleteText !== undefined ?
+    textDictItem.deleteText
+    : textDictItemDefault.deleteText;
 
+  let addANewNodeHereText textDictItem.addANewNodeHereText !== undefined ?
+    textDictItem.addANewNodeHereText
+    : textDictItemDefault.addANewNodeHereText;
     //TODO12
 
 
@@ -1010,7 +1024,7 @@ export default function NodeManager({projectName, currUser,
             }}
           ></input><label className="cursor_pointer" onClick={()=>{
             setNewGridActionCreate(true);
-          }}>Add A New Node Here </label>
+          }}>{addANewNodeHereText}</label>
           {newGridActionCreate && <div className="section">
                
               <label>Node Unique-ID-Name and Title: </label>
@@ -1190,7 +1204,7 @@ export default function NodeManager({projectName, currUser,
                           </div>
                           <br></br>
                           <br></br>
-                          <label>Delete Node: </label>
+                          <label>{deleteSText}{nodeText}: </label>
                           <div className="indentOne">
                               <button onClick={()=>{
                                 let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
@@ -1200,7 +1214,7 @@ export default function NodeManager({projectName, currUser,
                                   setClickedNodeKey("");
                                   setClickedNode2(-1);
                                 }
-                              }}>Delete</button>
+                              }}>{deleteText}</button>
                           </div>
                       </div>
                
