@@ -8,6 +8,7 @@ const textDictionary = {
         cancelText: "Cancel",
         closeText: "Close",
         deleteText: "Delete",
+        deleteSText: "Delete ",
         editText: "Edit",
         addNewVariableText: "New Variable",
         visualResourceText: "Visual Resource",
@@ -87,6 +88,9 @@ const textDictionary = {
         chapterText: "Chapter",
         unchangableOnceSubmittedText: "unchangable once submitted",
         editableLaterText: "editable later",
+        renameText: "Rename ",
+        emptyNotePlaceHolder: "(Empty Note)",
+        noDeletedChapterText: "(No Deleted Chapter)",
 
 
 
@@ -100,6 +104,7 @@ const textDictionary = {
         cancelText: "取消",
         closeText: "关闭",
         deleteText: "删除",
+        deleteSText: "删除",
         editText: "编辑",
         addNewVariableText: "添加新变量",
         visualResourceText: "视觉资源",
@@ -178,6 +183,9 @@ const textDictionary = {
         chapterText: "章节",
         unchangableOnceSubmittedText: "提交后无法变更",
         editableLaterText: "之后可变更",
+        renameText: "重命名",
+        emptyNotePlaceHolder: "(备注为空)",
+        noDeletedChapterText: "(无被删除章节)",
 
 
 

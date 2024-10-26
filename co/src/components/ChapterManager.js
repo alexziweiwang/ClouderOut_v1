@@ -72,8 +72,24 @@ export default function ChapterManager({
         textDictItem.editableLaterText
         : textDictItemDefault.editableLaterText;
 
+  let renameText = textDictItem.renameText !== undefined ?
+        textDictItem.renameText
+        : textDictItemDefault.renameText;
 
+  let deleteSText = textDictItem.deleteSText !== undefined ?
+        textDictItem.deleteSText
+        : textDictItemDefault.deleteSText;
+
+  let emptyNotePlaceHolder = textDictItem.emptyNotePlaceHolder !== undefined ?
+        textDictItem.emptyNotePlaceHolder
+        : textDictItemDefault.emptyNotePlaceHolder;
+
+  let noDeletedChapterText = textDictItem.noDeletedChapterText !== undefined ?
+        textDictItem.noDeletedChapterText
+        : textDictItemDefault.noDeletedChapterText;
   
+
+
   //TODO other text on UI - localization
 
   const [isCollapse, setIsCollapse] = useState(false);
@@ -255,7 +271,7 @@ export default function ChapterManager({
                             <br></br>
 
                             <label>{chapterNoteText}: </label>
-                            <br></br><label>{(item[3].length > 0 ) ? item[3] : "(Empty Note)"}</label>
+                            <br></br><label>{(item[3].length > 0 ) ? item[3] : emptyNotePlaceHolder}</label>
                             <br></br>
                             <textarea value={editingChapterNote} onChange={(event)=>{
                               setEditingChapterNote(event.target.value);
@@ -268,7 +284,7 @@ export default function ChapterManager({
 
                             <br></br>
                             <br></br>
-                            <label>Rename Chapter: </label><input value={editingChapterTitle} 
+                            <label>{renameText}{chapterText}: </label><input value={editingChapterTitle} 
                               onChange={(event)=>{
                                 setEditingChapterTitle(event.target.value);
                                                 console.log("changing title: "); //TODO testing
@@ -281,7 +297,7 @@ export default function ChapterManager({
                             
                             <br></br>
                             <br></br>                          
-                            <label>Delete Chapter</label><br></br>
+                            <label>{deleteSText}{chapterText}</label><br></br>
                             <button onClick={()=>{hideChapter(index);}}>
                               {deleteText}
                             </button>
@@ -317,7 +333,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
                         <br></br><br></br>
 
-                        <label>{newWordText}{chapterNoteText} (for game-creators): </label><br></br>
+                        <label>{newWordText}{chapterNoteText}:</label><br></br>
                         <input></input>
                         <br></br><br></br>
                         <button onClick={()=>{addNewChapterItem();}}>{addText}</button>
@@ -340,7 +356,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                                   </button ></label>);
                               })}
 
-                              {deletedLocalList.length === 0 && <label>(No deleted chapter.)</label>}
+                              {deletedLocalList.length === 0 && <label>{noDeletedChapterText}</label>}
                         </div>}
 
 {/* //TODO plan */}
