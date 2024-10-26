@@ -83,6 +83,10 @@ const textDictionary = {
         chapterUniqueIDNameText: "Chapter Unique-ID-Name",
         chapterTitleText: "Chapter Title",
         newWordText: "New ",
+        chapterNoteText: "Chapter Note",
+        chapterText: "Chapter",
+        unchangableOnceSubmittedText: "unchangable once submitted",
+        editableLaterText: "editable later",
 
 
 
@@ -170,6 +174,10 @@ const textDictionary = {
         chapterUniqueIDNameText: "章节ID",
         chapterTitleText: "章节标题",
         newWordText: "新",
+        chapterNoteText: "章节备注",
+        chapterText: "章节",
+        unchangableOnceSubmittedText: "提交后无法变更",
+        editableLaterText: "之后可变更",
 
 
 

@@ -56,6 +56,22 @@ export default function ChapterManager({
         textDictItem.newWordText
         : textDictItemDefault.newWordText;
 
+  let chapterNoteText = textDictItem.chapterNoteText !== undefined ?
+        textDictItem.chapterNoteText
+        : textDictItemDefault.chapterNoteText;
+
+  let chapterText = textDictItem.chapterText !== undefined ?
+        textDictItem.chapterText
+        : textDictItemDefault.chapterText;
+
+  let unchangableOnceSubmittedText = textDictItem.unchangableOnceSubmittedText !== undefined ?
+        textDictItem.unchangableOnceSubmittedText
+        : textDictItemDefault.unchangableOnceSubmittedText;
+
+  let editableLaterText = textDictItem.editableLaterText !== undefined ?
+        textDictItem.editableLaterText
+        : textDictItemDefault.editableLaterText;
+
 
   
   //TODO other text on UI - localization
@@ -238,7 +254,7 @@ export default function ChapterManager({
                             <br></br>
                             <br></br>
 
-                            <label>Chapter Notes: </label>
+                            <label>{chapterNoteText}: </label>
                             <br></br><label>{(item[3].length > 0 ) ? item[3] : "(Empty Note)"}</label>
                             <br></br>
                             <textarea value={editingChapterNote} onChange={(event)=>{
@@ -290,18 +306,18 @@ export default function ChapterManager({
                           updateChosenChapterItem("");
 console.log("chapterData: ", chapterData); //TODO testing
                         }}>
-                        + New Chapter
+                        + {newWordText}{chapterText}
                       </li>
                       {isAddNewChpater === true && 
                       <div>
-                        <label>{newWordText}{chapterUniqueIDNameText} (unchangable): </label><br></br>
+                        <label>{newWordText}{chapterUniqueIDNameText} ({unchangableOnceSubmittedText}): </label><br></br>
                         <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
                         <br></br><br></br>
-                        <label>{newWordText}{chapterTitleText} (editable later): </label><br></br>
+                        <label>{newWordText}{chapterTitleText} ({editableLaterText}): </label><br></br>
                         <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
                         <br></br><br></br>
 
-                        <label>{newWordText}Chapter Note (for game-creators): </label><br></br>
+                        <label>{newWordText}{chapterNoteText} (for game-creators): </label><br></br>
                         <input></input>
                         <br></br><br></br>
                         <button onClick={()=>{addNewChapterItem();}}>{addText}</button>
