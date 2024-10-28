@@ -64,9 +64,13 @@ export default function NavigationSetter({initialNavObj,
     let duringGamePlayPageText = textDictItem.duringGamePlayPageText !== undefined ?
         textDictItem.duringGamePlayPageText
         : textDictItemDefault.duringGamePlayPageText;
+
+    let fontForAllNavUIText = textDictItem.fontForAllNavUIText !== undefined ?
+        textDictItem.fontForAllNavUIText
+        : textDictItemDefault.fontForAllNavUIText;
     
 
-
+//TODO12
         
     const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
@@ -648,7 +652,7 @@ export default function NavigationSetter({initialNavObj,
       {openBackButtonSettingArea && <br></br>}
       
       <div style={{"backgroundColor": "grey", "padding": "7px"}}>
-        <label>Font for all UI in navigation system: </label>
+        <label>{fontForAllNavUIText}: </label>
         <div className="indentOne">
             <select value={currentProjectNav["fontFamilyForAll"]}
               onChange={(event)=>{

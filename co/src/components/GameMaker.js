@@ -21,7 +21,7 @@ export default function GameMaker({username, projectName}) {
 
   
 
-  let languageCodeTextOption = 'en';
+  let languageCodeTextOption = 'chn';
 
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO
@@ -45,8 +45,12 @@ export default function GameMaker({username, projectName}) {
         textDictItem.menuNavigationsTabText
         : textDictItemDefault.menuNavigationsTabText;
 
+  const screenSizeForAllNavPageText = textDictItem.screenSizeForAllNavPageText !== undefined ?
+        textDictItem.screenSizeForAllNavPageText
+        : textDictItemDefault.screenSizeForAllNavPageText;
 
 
+//TODO12
 
 /* Important data structure in this level: Game-Maker
   -hook chapterList: array of all chapters' info: key, title, display-boolean)
@@ -1171,7 +1175,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         <div className="sectionArea"> 
 
           <div>
-            Screen Size for all navigation pages: 
+            {screenSizeForAllNavPageText}: 
             <select
                 value={currentProjectNav["screenSize"]}
                 onChange={(event)=>{

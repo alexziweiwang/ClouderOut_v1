@@ -106,9 +106,9 @@ const textDictionary = {
         selectNodeGameTypeText: "Select Node's Game Type",
         selectSizeDirectionText: "Select Screen Size & Direction",
         selectNodeText: "Select Node",
-
-
-
+        screenSizeForAllNavPageText: "Screen Size for all navigation pages",
+        fontForAllNavUIText: "Font for all UI in navigation system",
+        pleaseSelectOrSetupChaptersInChapterMngText: "Please Select or Setup Chapters in the Chapter Management Area (at left)",
 
 
     }, 
@@ -218,7 +218,9 @@ const textDictionary = {
         selectNodeGameTypeText: "选择节点游戏类型",
         selectSizeDirectionText: "选择画面尺寸&方向",
         selectNodeText: "选择节点",
-
+        screenSizeForAllNavPageText: "所有导航页画面尺寸",
+        fontForAllNavUIText: "所有导航界面字体",
+        pleaseSelectOrSetupChaptersInChapterMngText: "请在(左侧)章节管理区里选择或设定章节",
 
 
     },

@@ -173,6 +173,10 @@ export default function NodeManager({projectName, currUser,
     textDictItem.selectNodeText
     : textDictItemDefault.selectNodeText;
 
+  let pleaseSelectOrSetupChaptersInChapterMngText = textDictItem.pleaseSelectOrSetupChaptersInChapterMngText !== undefined ?
+    textDictItem.pleaseSelectOrSetupChaptersInChapterMngText
+    : textDictItemDefault.pleaseSelectOrSetupChaptersInChapterMngText;
+
 
     //TODO12
 
@@ -1826,7 +1830,10 @@ export default function NodeManager({projectName, currUser,
         </div>
         }
 
-        {chapterKey === "" && <div>Please Select or Setup Chapters in the Chapter Management Area (at left)...</div>}
+        {chapterKey === "" && <div>
+          {pleaseSelectOrSetupChaptersInChapterMngText}...
+          
+        </div>}
      
 
       </div>
