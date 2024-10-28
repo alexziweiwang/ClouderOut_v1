@@ -157,6 +157,21 @@ export default function NodeManager({projectName, currUser,
     textDictItem.nodeGameType
     : textDictItemDefault.nodeGameType;
 
+  let selectTheNextNodeText = textDictItem.selectTheNextNodeText !== undefined ?
+    textDictItem.selectTheNextNodeText
+    : textDictItemDefault.selectTheNextNodeText;
+
+  let selectNodeGameTypeText = textDictItem.selectNodeGameTypeText !== undefined ?
+    textDictItem.selectNodeGameTypeText
+    : textDictItemDefault.selectNodeGameTypeText;
+
+  let selectSizeDirectionText = textDictItem.selectSizeDirectionText !== undefined ? 
+    textDictItem.selectSizeDirectionText
+    : textDictItemDefault.selectSizeDirectionText;
+  
+  let selectNodeText = textDictItem.selectNodeText !== undefined ?
+    textDictItem.selectNodeText
+    : textDictItemDefault.selectNodeText;
 
 
     //TODO12
@@ -1055,7 +1070,7 @@ export default function NodeManager({projectName, currUser,
               <br></br>
               <label>{nodeGameType}: </label>
               <select className="setting_item" onChange={(event)=>{addNewNodeGameType(event);}} value={createNewNodeGameType}>
-                <option value="" key=""> -- Select Node's Game Type -- </option>
+                <option value="" key=""> -- {selectNodeGameTypeText} -- </option>
                 {/* <option value="Card Game" key="Card Game">Card Game</option>
                 <option value="Board Game" key="Board Game">Board Game</option>
                 <option value="Tower Defense" key="Tower Defense">Tower Defense</option> */} // TODO temp
@@ -1065,7 +1080,7 @@ export default function NodeManager({projectName, currUser,
               <br></br>
               {createNewNodeGameType !== "LogicSplitter" && <><label>{screenSizeText}: </label>
               <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
-                    <option value="" key=""> ----- Select Size and Direction ----- </option>
+                    <option value="" key=""> ----- {selectSizeDirectionText} ----- </option>
                     {/* <option value="16:9(horizonal)" key="node-mgr-16:9(horizonal)"> 16:9 (horizontal) </option>
                     <option value="16:9(vertical)" key="node-mgr-16:9(vertical)"> 16:9 (vertical) </option> */}
                     {/* <option value="4:3(vertical)" key="node-mgr-4:3(vertical)"> 4:3 (vertical) </option> */} // TODO temp
@@ -1102,7 +1117,7 @@ export default function NodeManager({projectName, currUser,
                   <select value={toRevertNodeKey} onChange={(event)=>{
                     setToRevertNodeKey(event.target.value);
                   }}>
-                    <option>-- Select a deleted node --</option>
+                    <option>-- {selectNodeText} --</option>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     if (nodeRelationshipMap[currKey].display === false) {
                       let keyStr = "revertOption" + currKey
@@ -1198,7 +1213,7 @@ export default function NodeManager({projectName, currUser,
                                 {nodeRelationshipMap[clickedNodeKey] !== undefined 
                                 && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" 
                                 && <>
-                                  <label>Screen Size: </label>
+                                  <label>{screenSizeText}: </label>
                                   <div className="indentOne">
                                     <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
                                   </div>
@@ -1261,7 +1276,7 @@ export default function NodeManager({projectName, currUser,
                 }}
                   value={selectedNextNode}
                 >
-                  <option key="defaultNextNodeEmpty" value="-">-- Select the next-node --</option>
+                  <option key="defaultNextNodeEmpty" value="-">-- {selectTheNextNodeText} --</option>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     
                             let item = nodeRelationshipMap[currKey];

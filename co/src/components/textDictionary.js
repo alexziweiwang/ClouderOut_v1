@@ -102,7 +102,10 @@ const textDictionary = {
         screenSizeText: "Screen Size",
         revertADeletedNodeHereText: "Revert a deleted Node Here",
         nodeGameType: "Node Game Type",
-
+        selectTheNextNodeText: "Select the next-node",
+        selectNodeGameTypeText: "Select Node's Game Type",
+        selectSizeDirectionText: "Select Screen Size & Direction",
+        selectNodeText: "Select Node",
 
 
 
@@ -211,6 +214,10 @@ const textDictionary = {
         screenSizeText: "画面尺寸",
         revertADeletedNodeHereText: "在此恢复一个被删除的节点",
         nodeGameType: "节点游戏类型",
+        selectTheNextNodeText: "选择下一节点",
+        selectNodeGameTypeText: "选择节点游戏类型",
+        selectSizeDirectionText: "选择画面尺寸&方向",
+        selectNodeText: "选择节点",
 
 
 
