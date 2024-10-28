@@ -108,7 +108,14 @@ const textDictionary = {
         selectNodeText: "Select Node",
         screenSizeForAllNavPageText: "Screen Size for all navigation pages",
         fontForAllNavUIText: "Font for all UI in navigation system",
-        pleaseSelectOrSetupChaptersInChapterMngText: "Please Select or Setup Chapters in the Chapter Management Area (at left)",
+        pleaseSelectOrSetupChaptersInChapterMngText: "Please Select or Create Chapters in the Chapter Management Area (at left)",
+        selectAPageName: "Select a Page Name",
+        backGroundOfTheEntirePageText: "Background of the entire page",
+        rectangleAndColorFilled: "Rectangle & Color Filled",
+
+
+
+
 
 
     }, 
@@ -220,7 +227,13 @@ const textDictionary = {
         selectNodeText: "选择节点",
         screenSizeForAllNavPageText: "所有导航页画面尺寸",
         fontForAllNavUIText: "所有导航界面字体",
-        pleaseSelectOrSetupChaptersInChapterMngText: "请在(左侧)章节管理区里选择或设定章节",
+        pleaseSelectOrSetupChaptersInChapterMngText: "请在(左侧)章节管理区里选择或创建章节",
+        selectAPageName: "选择页面名",
+        backGroundOfTheEntirePageText: "整页背景",
+        rectangleAndColorFilled: "长方形填充颜色",
+
+
+
 
 
     },

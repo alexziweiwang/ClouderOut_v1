@@ -15,7 +15,7 @@ export default function NavigationSetter({initialNavObj,
   intialEmuPlayerProfile,
 
 }) {
-    let languageCodeTextOption = 'en';
+    let languageCodeTextOption = 'chn';
 
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -68,9 +68,22 @@ export default function NavigationSetter({initialNavObj,
     let fontForAllNavUIText = textDictItem.fontForAllNavUIText !== undefined ?
         textDictItem.fontForAllNavUIText
         : textDictItemDefault.fontForAllNavUIText;
+
+    let selectAPageName = textDictItem.selectAPageName !== undefined ?
+        textDictItem.selectAPageName
+        : textDictItemDefault.selectAPageName;
+
+    let  backGroundOfTheEntirePageText = textDictItem.backGroundOfTheEntirePageText !== undefined ?
+        textDictItem. backGroundOfTheEntirePageText
+        : textDictItemDefault. backGroundOfTheEntirePageText;
+
+    let rectangleAndColorFilled = textDictItem.rectangleAndColorFilled !== undefined ?
+        textDictItem.rectangleAndColorFilled
+        : textDictItemDefault.rectangleAndColorFilled;
+
     
 
-//TODO12
+//TODO15
         
     const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
@@ -555,7 +568,7 @@ export default function NavigationSetter({initialNavObj,
                       updateNavObj(tempObj);       
 
                       setCurrentProjectNav({...currentProjectNav, "backButton-isShape": true});       
-                  }}>Rectangle & Color Filled</label>
+                  }}>{rectangleAndColorFilled}</label>
                       <div className="indentOne">
                         <input type="color" value={currentProjectNav["backButton-shapeColor"]} onChange={(event)=>{
                             let tempObj = currentProjectNav;
@@ -678,7 +691,7 @@ export default function NavigationSetter({initialNavObj,
           setCurrentSettingPage(event.target.value);
           updateCurrentPageName(event.target.value);
         }}>
-          <option value="" key="defaultEmptyPage">-- Select a Page Name --</option>
+          <option value="" key="defaultEmptyPage">-- {selectAPageName} --</option>
           <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option>
           <option value="Main Page" key="Main Page">{mainPageText}</option>
           <option value="Story Page" key="Story Page">{storyPageText}</option>
@@ -735,7 +748,7 @@ export default function NavigationSetter({initialNavObj,
      
               <div className="indentOne">
    
-              <label>Background of the entire page:</label><br></br>
+              <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["saveloadPage-isBackgroundShape"]}
@@ -752,7 +765,7 @@ export default function NavigationSetter({initialNavObj,
                             updateNavObj(tempObj);       
                             
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": true});    
-                        }}>Rectangle & Color Filled </label>
+                        }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -900,7 +913,7 @@ export default function NavigationSetter({initialNavObj,
                           updateNavObj(tempObj);       
                           
                           setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": true});              
-                                }}>Rectangle & Color Filled </label>
+                                }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -1092,9 +1105,9 @@ export default function NavigationSetter({initialNavObj,
     </div>}   
        
     {currentSettingPage === "Main Page" && <div>
-     <label>Main Page:</label>
+     <label>{mainPageText}:</label>
      <div className="indentOne">
-     <label>Background of the entire page:</label><br></br>
+     <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["mainPage-isBackgroundShape"]}
@@ -1116,7 +1129,7 @@ export default function NavigationSetter({initialNavObj,
                           //TODO test
 
                           setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
-                        }}>Rectangle & Color Filled </label>
+                        }}>{rectangleAndColorFilled} </label>
                             {currentProjectNav["mainPage-isBackgroundShape"] &&
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -1435,7 +1448,7 @@ export default function NavigationSetter({initialNavObj,
 
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 
-              }}>Rectangle & Color Filled </label>
+              }}>{rectangleAndColorFilled} </label>
               
                   {currentProjectNav["mainPage-isListItemShape"] &&
                       <div className="indentOne">
@@ -1718,7 +1731,7 @@ export default function NavigationSetter({initialNavObj,
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-story-isShape": true});             
                         
-                  }}>Rectangle & Color Filled </label>
+                  }}>{rectangleAndColorFilled} </label>
                   
                       {
                           <div className="indentOne">
@@ -1989,7 +2002,7 @@ export default function NavigationSetter({initialNavObj,
                       setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": true});             
                           
               }}>
-              Rectangle & Color Filled </label>
+              {rectangleAndColorFilled} </label>
               
                 {
                     <div className="indentOne">
@@ -2262,7 +2275,7 @@ export default function NavigationSetter({initialNavObj,
                       //TODO test
 
                       setCurrentProjectNav({...currentProjectNav, "mainPage-setting-isShape": true});  
-              }}>Rectangle & Color Filled </label>
+              }}>{rectangleAndColorFilled} </label>
               
                 {
                     <div className="indentOne">
@@ -2526,7 +2539,7 @@ export default function NavigationSetter({initialNavObj,
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": true});     
               }}>
-              Rectangle & Color Filled </label>
+              {rectangleAndColorFilled} </label>
             
                 {
                     <div className="indentOne">
@@ -2590,7 +2603,7 @@ export default function NavigationSetter({initialNavObj,
     {currentSettingPage === "Story Page" && <div>
      <label>Story Page:</label>
        <div className="indentOne">
-       <label>Background of the entire page:</label><br></br>
+       <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["storyPage-isBackgroundShape"]}
@@ -2611,8 +2624,8 @@ export default function NavigationSetter({initialNavObj,
 
                           setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": true});            
                       
-                        }}>Rectangle & Color Filled </label>
-                           {/* Background of the entire page */}
+                        }}>{rectangleAndColorFilled} </label>
+                           {/* {backGroundOfTheEntirePageText} */}
                             {<div className="indentOne">
                                     <label>Background Color: </label>
                                     <input type="color"
@@ -2647,7 +2660,7 @@ export default function NavigationSetter({initialNavObj,
                             //TODO test
 
                             setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": false});            
-                     {/* Background of the entire page */}
+                     {/* {backGroundOfTheEntirePageText} */}
                         }}>Base Picture </label>
                             {
                             <>
@@ -2736,7 +2749,7 @@ export default function NavigationSetter({initialNavObj,
                     updateNavObj(tempObj);
 
                     setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": true});             
-              }}>Rectangle & Color Filled </label>
+              }}>{rectangleAndColorFilled} </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
@@ -2952,7 +2965,7 @@ export default function NavigationSetter({initialNavObj,
     {currentSettingPage === "Settings Page" && <div>
      <label>Settings Page:</label>
      <div className="indentOne">
-     <label>Background of the entire page:</label><br></br>
+     <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["settingPage-isBackgroundShape"]}
@@ -2971,7 +2984,7 @@ export default function NavigationSetter({initialNavObj,
 
                               setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": true});
       
-                        }}>Rectangle & Color Filled </label>
+                        }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -3050,7 +3063,7 @@ export default function NavigationSetter({initialNavObj,
 
                   setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": true});
                         
-                      }}>Rectangle & Color Filled </label>
+                      }}>{rectangleAndColorFilled} </label>
                   {
                       <div className="indentOne">
                           <label>Background Color: </label>
@@ -3461,7 +3474,7 @@ export default function NavigationSetter({initialNavObj,
 
        <br></br><label>Element Settings: </label>
        <div className="indentOne">
-       <label>Background of the entire page:</label><br></br>
+       <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["playerProfilePage-isBackgroundShape"]}
@@ -3481,7 +3494,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": true});
                                  
                         }}
-                        >Rectangle & Color Filled </label>
+                        >{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -4393,7 +4406,7 @@ export default function NavigationSetter({initialNavObj,
     {currentSettingPage === "Game Status Data Page" && <div>
      <label>Game Status Data Page:</label>
        <div className="indentOne">
-       <label>Background of the entire page:</label><br></br>
+       <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["gsdPage-isBackgroundShape"]}
@@ -4410,7 +4423,7 @@ export default function NavigationSetter({initialNavObj,
                             updateNavObj(tempObj); 
               
                             setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": true});                                
-                        }}>Rectangle & Color Filled </label>
+                        }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
@@ -4474,7 +4487,7 @@ export default function NavigationSetter({initialNavObj,
     {currentSettingPage === "Shop Page" && <div>
      <label>Shop Page:</label>
        <div className="indentOne">
-       <label>Background of the entire page:</label><br></br>
+       <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["shopPage-isBackgroundShape"]}
@@ -4494,7 +4507,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": true});  
                           
                         }}
-                        >Rectangle & Color Filled </label>
+                        >{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
                                     <label>Background Color: </label>
