@@ -93,6 +93,22 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.listItemSettingsText
         : textDictItemDefault.listItemSettingsText;
 
+    let displayNamingText = textDictItem.displayNamingText !== undefined ?
+        textDictItem.displayNamingText
+        : textDictItemDefault.displayNamingText;
+
+    let sEntryText = textDictItem.sEntryText !== undefined ?
+        textDictItem.sEntryText
+        : textDictItemDefault.sEntryText;
+
+    let fixedListText = textDictItem.fixedListText !== undefined ?
+        textDictItem.fixedListText
+        : textDictItemDefault.fixedListText;
+
+    let customizedItemsText = textDictItem.customizedItemsText !== undefined ? 
+        textDictItem.customizedItemsText
+        : textDictItemDefault.customizedItemsText;
+
 
     
 
@@ -1226,7 +1242,7 @@ export default function NavigationSetter({initialNavObj,
         
                       setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": false });
                     }}
-         >Fixed List (Grouped Items)</label>
+         >{fixedListText}</label>
              {!currentProjectNav["mainPage-entriesCustom"] && <div className="indentOne" style={{"backgroundColor": "grey"}}>
 
                <input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={currentProjectNav["mainPage-entriesHorizontal"]}
@@ -1543,7 +1559,7 @@ export default function NavigationSetter({initialNavObj,
                       setCurrentProjectNav({...currentProjectNav, "mainPage-entriesCustom": true });
                   }}
          
-         >Customized Items</label>
+         >{customizedItemsText}</label>
 
          <br></br>
          <br></br>
@@ -1556,9 +1572,9 @@ export default function NavigationSetter({initialNavObj,
          ></input>
          <label
             onClick={()=>{alert("Story-option must be kept.");}}
-         >Story Page Entry</label>
+         >{storyPageText}{sEntryText}</label>
          <div className="indentOne">
-           <label>Display Naming: </label>
+           <label>{displayNamingText}: </label>
            <input 
             value={mainPageStoryName}
             onChange={(event)=>{
@@ -1828,9 +1844,9 @@ export default function NavigationSetter({initialNavObj,
 
               setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
             }} 
-           >Player Profile Page Entry</label>
+           >{playerProfilePageText}{sEntryText}</label>
          <div className="indentOne">
-           <label>Display Naming: </label>
+           <label>{displayNamingText}: </label>
            <input 
             value={mainPagePlayerProfileName}
             onChange={(event)=>{
@@ -2105,9 +2121,9 @@ export default function NavigationSetter({initialNavObj,
 
              setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
             }} 
-         >Settings Page Entry</label>
+         >{settingsPageText}{sEntryText}</label>
          <div className="indentOne">
-           <label>Display Naming: </label>
+           <label>{displayNamingText}: </label>
            <input 
             value={mainPageSettingsName}
             onChange={(event)=>{
@@ -2369,9 +2385,9 @@ export default function NavigationSetter({initialNavObj,
 
             setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
            }}     
-         >Shop Page Entry</label>
+         >{shopPageText}{sEntryText}</label>
          <div className="indentOne">
-           <label>Display Naming: </label>
+           <label>{displayNamingText}: </label>
            <input 
             value={mainPageShopName}
             onChange={(event)=>{
@@ -3378,7 +3394,7 @@ export default function NavigationSetter({initialNavObj,
          >Play Speed</label>
          <br></br>
           <div className="indentOne">
-            <label>Display Naming:</label>
+            <label>{displayNamingText}:</label>
             <input value={settingsPagePlaySpeedName} onChange={
               (event)=>{
                 setSettingsPagePlaySpeedName(event.target.value);
@@ -3418,7 +3434,7 @@ export default function NavigationSetter({initialNavObj,
             }}      
          >Background Music Volume</label>
           <div className="indentOne">
-            <label>Display Naming:</label>
+            <label>{displayNamingText}:</label>
             <input value={settingsPageBgmVolName}
             onChange={(event)=>{
               setSettingsPageBgmVolName(event.target.value);
@@ -3457,7 +3473,7 @@ export default function NavigationSetter({initialNavObj,
             }}    
          >Sound Effect Volume</label>
           <div className="indentOne">
-            <label>Display Naming:</label>
+            <label>{displayNamingText}:</label>
             <input value={settingsPageSeVolName} onChange={(event)=>{
               setSettingsPageSeVolName(event.target.value);
             }}></input>

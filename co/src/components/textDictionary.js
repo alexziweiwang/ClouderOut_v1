@@ -115,11 +115,14 @@ const textDictionary = {
         basePictureText: "Base Picture",
         selectResource: "Select Resource",
         listItemSettingsText: "List Item Settings",
+        displayNamingText: "Display Naming",
+        sEntryText: " Entry",
+        fixedListText: "Fixed List (Grouped Items)",
+        customizedItemsText: "Customized Items",
 
 
 
-
-
+// TODO15
 
     }, 
     chn: {
@@ -237,6 +240,10 @@ const textDictionary = {
         basePictureText: "基底图片",
         selectResource: "选择资源",
         listItemSettingsText: "(列表的)单项设置",
+        displayNamingText: "展现的名称",
+        sEntryText: "入口",
+        fixedListText: "固定群组单项",
+        customizedItemsText: "自定义单项",
 
 
 
