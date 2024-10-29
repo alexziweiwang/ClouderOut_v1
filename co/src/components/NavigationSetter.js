@@ -109,6 +109,22 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.customizedItemsText
         : textDictItemDefault.customizedItemsText;
 
+    let selectPageToSetupText = textDictItem.selectPageToSetupText !== undefined ?
+        textDictItem.selectPageToSetupText
+        : textDictItemDefault.selectPageToSetupText;
+
+    let backgroundColorText = textDictItem.backgroundColorText !== undefined ?
+        textDictItem.backgroundColorText
+        : textDictItemDefault.backgroundColorText;
+
+    let horizontalText = textDictItem.horizontalText !== undefined ?
+        textDictItem.horizontalText
+        : textDictItemDefault.horizontalText;
+
+    let verticalText = textDictItem.verticalText !== undefined ?
+        textDictItem.verticalText
+        : textDictItemDefault.verticalText;
+
 
     
 
@@ -714,7 +730,7 @@ export default function NavigationSetter({initialNavObj,
       </div>
 
       <br></br>
-      <label>Select a Page to setup: </label>
+      <label>{selectPageToSetupText}: </label>
       <select value={currentSettingPage}
         onChange={(event)=>{
           setCurrentSettingPage(event.target.value);
@@ -797,7 +813,7 @@ export default function NavigationSetter({initialNavObj,
                         }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     onChange={(event)=>{
                                       let tempObj = currentProjectNav;
@@ -869,7 +885,7 @@ export default function NavigationSetter({initialNavObj,
                             
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": true});                 
                           }}
-                     >Horizontal</label>
+                     >{horizontalText}</label>
                      <br></br>
                      <input type="radio"
                         value={currentProjectNav["saveloadPage-slotListIsHorizontal"]}
@@ -890,7 +906,7 @@ export default function NavigationSetter({initialNavObj,
                               
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": false});                 
                         }}
-                     >Vertical</label>         
+                     >{verticalText}</label>         
                      <br></br>
                      <label>Slot per page:</label>
                      <select
@@ -945,7 +961,7 @@ export default function NavigationSetter({initialNavObj,
                                 }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     onChange={(event)=>{
                                       let tempObj = currentProjectNav;
@@ -1161,7 +1177,7 @@ export default function NavigationSetter({initialNavObj,
                         }}>{rectangleAndColorFilled} </label>
                             {currentProjectNav["mainPage-isBackgroundShape"] &&
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                       value={currentProjectNav["mainPage-bgShadeName"]}
                                       onChange={(event)=>{
@@ -1265,7 +1281,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": true});
                 }
                 }
-               >Horizontal</label>
+               >{horizontalText}</label>
                <br></br><input type="radio" value={currentProjectNav["mainPage-entriesHorizontal"]} checked={!currentProjectNav["mainPage-entriesHorizontal"]}
                  onChange={()=>{                    
                     let tempObj = currentProjectNav;
@@ -1283,7 +1299,7 @@ export default function NavigationSetter({initialNavObj,
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-entriesHorizontal": false});
                 }}
-               >Vertical</label>
+               >{verticalText}</label>
                <br></br>
                <label>Group Position X:</label>
                  <input type="range"
@@ -1481,7 +1497,7 @@ export default function NavigationSetter({initialNavObj,
               
                   {currentProjectNav["mainPage-isListItemShape"] &&
                       <div className="indentOne">
-                          <label>Background Color: </label>
+                          <label>{backgroundColorText}: </label>
                           <input type="color"
                           value={currentProjectNav["mainPage-listItemShadeName"]}
                           onChange={(event)=>{
@@ -1862,7 +1878,7 @@ export default function NavigationSetter({initialNavObj,
                   
                       {
                           <div className="indentOne">
-                              <label>Background Color: </label>
+                              <label>{backgroundColorText}: </label>
                               <input type="color"
                               value={currentProjectNav["mainPage-story-shadeName"]}
                               onChange={(event)=>{
@@ -2112,7 +2128,7 @@ export default function NavigationSetter({initialNavObj,
               
                 {
                     <div className="indentOne">
-                        <label>Background Color: </label>
+                        <label>{backgroundColorText}: </label>
                         <input type="color"
                           value={currentProjectNav["mainPage-playerProfile-shadeName"]}
                         onChange={(event)=>{
@@ -2362,7 +2378,7 @@ export default function NavigationSetter({initialNavObj,
               
                 {
                     <div className="indentOne">
-                        <label>Background Color: </label>
+                        <label>{backgroundColorText}: </label>
                         <input type="color"
                         value={currentProjectNav["mainPage-setting-shadeName"]}
                         onChange={(event)=>{
@@ -2606,7 +2622,7 @@ export default function NavigationSetter({initialNavObj,
             
                 {
                     <div className="indentOne">
-                        <label>Background Color: </label>
+                        <label>{backgroundColorText}: </label>
                         <input type="color"
                           value={currentProjectNav["mainPage-shop-shadeName"]}
                           onChange={(event)=>{
@@ -2690,7 +2706,7 @@ export default function NavigationSetter({initialNavObj,
                         }}>{rectangleAndColorFilled} </label>
                            {/* {backGroundOfTheEntirePageText} */}
                             {<div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     value={currentProjectNav["storyPage-bgShadeName"]}
                                     onChange={(event)=>{
@@ -2771,7 +2787,7 @@ export default function NavigationSetter({initialNavObj,
   
                 setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": true});
               }}  
-            >Horizontal</label>
+            >{horizontalText}</label>
            <br></br>
            <input type="radio"
               value={currentProjectNav["storyPage-chapterListHorizontal"]} 
@@ -2791,7 +2807,7 @@ export default function NavigationSetter({initialNavObj,
 
                 setCurrentProjectNav({...currentProjectNav, "storyPage-chapterListHorizontal": false});
               }}    
-           >Vertical</label>
+           >{verticalText}</label>
            <br></br>
 
            <label>Chapter Title Looking:</label>
@@ -2815,7 +2831,7 @@ export default function NavigationSetter({initialNavObj,
               }}>{rectangleAndColorFilled} </label>
                   {
                       <div className="indentOne">
-                          <label>Background Color: </label>
+                          <label>{backgroundColorText}: </label>
                           <input type="color"
                           value={currentProjectNav["storyPage-listItemShadeName"]}
                           onChange={(event)=>{
@@ -3050,7 +3066,7 @@ export default function NavigationSetter({initialNavObj,
                         }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     value={currentProjectNav["settingPage-bgShadeName"]}
                                     onChange={(event)=>{
@@ -3129,7 +3145,7 @@ export default function NavigationSetter({initialNavObj,
                       }}>{rectangleAndColorFilled} </label>
                   {
                       <div className="indentOne">
-                          <label>Background Color: </label>
+                          <label>{backgroundColorText}: </label>
                           <input type="color"
                           onChange={(event)=>{
                                 let tempObj = currentProjectNav;
@@ -3202,7 +3218,7 @@ export default function NavigationSetter({initialNavObj,
                   
                   setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": true});
               }}
-               >Horizontal</label>
+               >{horizontalText}</label>
                <br></br>
                <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={!currentProjectNav["settingPage-entriesHorizontal"]}
                  onChange={()=>{
@@ -3223,7 +3239,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "settingPage-entriesHorizontal": false});
                 
                   }}
-               >Vertical</label>
+               >{verticalText}</label>
                <br></br>
                Group Position X:
                  <input type="range"
@@ -3560,7 +3576,7 @@ export default function NavigationSetter({initialNavObj,
                         >{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     value={currentProjectNav["playerProfilePage-bgShadeName"]}
                                     onChange={(event)=>{
@@ -4489,7 +4505,7 @@ export default function NavigationSetter({initialNavObj,
                         }}>{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     onChange={(event)=>{
                                       let tempObj = currentProjectNav;
@@ -4573,7 +4589,7 @@ export default function NavigationSetter({initialNavObj,
                         >{rectangleAndColorFilled} </label>
                             {
                                 <div className="indentOne">
-                                    <label>Background Color: </label>
+                                    <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     onChange={(event)=>{
                                       

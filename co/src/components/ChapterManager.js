@@ -87,6 +87,10 @@ export default function ChapterManager({
   let noDeletedChapterText = textDictItem.noDeletedChapterText !== undefined ?
         textDictItem.noDeletedChapterText
         : textDictItemDefault.noDeletedChapterText;
+
+  let revertDeletedChapterText = textDictItem.revertDeletedChapterText !== undefined ?
+        textDictItem.revertDeletedChapterText
+        : textDictItemDefault.revertDeletedChapterText;
   
 
 
@@ -346,7 +350,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                         onClick={()=>{
                           setIsRevertingChapter(!isRevertingChapter);
                         }}>
-                        * Revert a Deleted Chapter
+                        {revertDeletedChapterText}
                       </li>
                         {isRevertingChapter && <div>
                               {deletedLocalList.map((item, index) => {

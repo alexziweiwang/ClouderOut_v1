@@ -119,6 +119,11 @@ const textDictionary = {
         sEntryText: " Entry",
         fixedListText: "Fixed List (Grouped Items)",
         customizedItemsText: "Customized Items",
+        revertDeletedChapterText: "Revert Deleted Chapter(s)",
+        selectPageToSetupText: "Select a Page to Setup",
+        backgroundColorText: "Background Color",
+        horizontalText: "Horizontal",
+        verticalText: "Vertical",
 
 
 
@@ -244,6 +249,11 @@ const textDictionary = {
         sEntryText: "入口",
         fixedListText: "固定群组单项",
         customizedItemsText: "自定义单项",
+        revertDeletedChapterText: "恢复被删除的章节",
+        selectPageToSetupText: "选择一个页面来设置",
+        backgroundColorText: "背景板颜色",
+        horizontalText: "横向",
+        verticalText: "纵向",
 
 
 
