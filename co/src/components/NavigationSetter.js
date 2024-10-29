@@ -81,6 +81,19 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.rectangleAndColorFilled
         : textDictItemDefault.rectangleAndColorFilled;
 
+    let basePictureText = textDictItem.basePictureText !== undefined ?
+        textDictItem.basePictureText
+        : textDictItemDefault.basePictureText;
+
+    let selectResource = textDictItem.selectResource !== undefined ?
+        textDictItem.selectResource
+        : textDictItemDefault.selectResource;
+
+    let listItemSettingsText = textDictItem.listItemSettingsText !== undefined ?
+        textDictItem.listItemSettingsText
+        : textDictItemDefault.listItemSettingsText;
+
+
     
 
 //TODO15
@@ -595,7 +608,7 @@ export default function NavigationSetter({initialNavObj,
                       updateNavObj(tempObj);       
 
                       setCurrentProjectNav({...currentProjectNav, "backButton-isShape": false});  
-                  }}>Base Picture</label>
+                  }}>{basePictureText}</label>
                       
                       <div className="indentOne">
                         <select value={currentProjectNav["backButton-picName"]} onChange={(event)=>{
@@ -606,7 +619,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "backButton-picName": event.target.value});  
  
                         }}>
-                          <option key="backButtonDefault" value="">-- Select Resource --</option>
+                          <option key="backButtonDefault" value="">-- {selectResource} --</option>
                           {visualList.map((item, index) => {
                               let keyStr = "backButton-" + index + item["var"];
                                 return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -795,7 +808,7 @@ export default function NavigationSetter({initialNavObj,
                             updateNavObj(tempObj);       
                             
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": false});   
-                        }}>Base Picture </label>
+                        }}>{basePictureText} </label>
                             {
                             <>
                                 <select 
@@ -807,7 +820,7 @@ export default function NavigationSetter({initialNavObj,
                                     
                                     setCurrentProjectNav({...currentProjectNav, "saveloadPage-bgPicName": event.target.value});   
                                 }}>                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                                    <option key="mpliDefault" value="">-- {selectResource} --</option>
                                     {visualList.map((item, index) => {
                                       let keyStr = "sl-bg-" + index + item["var"];
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -945,7 +958,7 @@ export default function NavigationSetter({initialNavObj,
                               updateNavObj(tempObj);       
                               
                               setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": false}); 
-                        }}>Base Picture </label>
+                        }}>{basePictureText} </label>
                             {
                             <>
                                 <select onChange={(event)=>{
@@ -956,7 +969,7 @@ export default function NavigationSetter({initialNavObj,
                                       setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotPicName": event.target.value});                         
                                       
                                 }}>                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                                    <option key="mpliDefault" value="">-- {selectResource} --</option>
                                     {visualList.map((item, index) => {
                                       let keyStr = "sl-slot-" + index + item["var"];
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -1166,7 +1179,7 @@ export default function NavigationSetter({initialNavObj,
 
                               setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": false});
                             
-                              }}>Base Picture </label><br></br>
+                              }}>{basePictureText} </label><br></br>
                             {!currentProjectNav["mainPage-isBackgroundShape"] &&
                             <div className="indentOne">
                                 <select 
@@ -1181,7 +1194,7 @@ export default function NavigationSetter({initialNavObj,
                                     
                                 }}>  
                                 {/* //TODO  resource, var-name                */}
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                                    <option key="mpliDefault" value="">-- {selectResource} --</option>
                                     {visualList.map((item, index) => {
                                       let keyStr = "mainPage-bg-" + index + item["var"];
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -1193,7 +1206,7 @@ export default function NavigationSetter({initialNavObj,
           
                   </div>
 
-         <label>List item configuration: </label><br></br>
+         <label>{listItemSettingsText}: </label><br></br>
          <input type="radio" 
           value={currentProjectNav["mainPage-entriesCustom"]} 
           checked={!currentProjectNav["mainPage-entriesCustom"]}
@@ -1486,7 +1499,7 @@ export default function NavigationSetter({initialNavObj,
 
                   setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": false});
                   
-                    }}>Base Picture </label><br></br>
+                    }}>{basePictureText} </label><br></br>
                   {!currentProjectNav["mainPage-isListItemShape"] &&
                   <div className="indentOne">
                       <select
@@ -1500,7 +1513,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "mainPage-listItemPicName": event.target.value});
                           
                       }}>                    
-                          <option key="mpliDefault" value="">-- Select Resource --</option>
+                          <option key="mpliDefault" value="">-- {selectResource} --</option>
                           {visualList.map((item, index) => {
                               let keyStr = "mainPage-li-" + index + item["var"];
                               return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -1769,7 +1782,7 @@ export default function NavigationSetter({initialNavObj,
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-story-isShape": false});             
                           
-                        }}>Base Picture </label><br></br>
+                        }}>{basePictureText} </label><br></br>
                       {
                       <div className="indentOne">
                           <select 
@@ -1783,7 +1796,7 @@ export default function NavigationSetter({initialNavObj,
                               setCurrentProjectNav({...currentProjectNav, "mainPage-story-picName": event.target.value});             
                                                         
                           }}>                    
-                              <option key="mpliDefault" value="">-- Select Resource --</option>
+                              <option key="mpliDefault" value="">-- {selectResource} --</option>
                               {visualList.map((item, index) => {
                                   let keyStr = "mainPage-li-" + index + item["var"];
                                   return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -2042,7 +2055,7 @@ export default function NavigationSetter({initialNavObj,
 
                   setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": false});             
                                 
-                  }}>Base Picture </label><br></br>
+                  }}>{basePictureText} </label><br></br>
                 {
                 <div className="indentOne">
                     <select 
@@ -2056,7 +2069,7 @@ export default function NavigationSetter({initialNavObj,
                        setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-picName": event.target.value});             
                                            
                     }}>                    
-                        <option key="mpliDefault" value="">-- Select Resource --</option>
+                        <option key="mpliDefault" value="">-- {selectResource} --</option>
                         {visualList.map((item, index) => {
                             let keyStr = "mainPage-li-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -2311,7 +2324,7 @@ export default function NavigationSetter({initialNavObj,
                     //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-setting-isShape": false});                  
-                  }}>Base Picture </label><br></br>
+                  }}>{basePictureText} </label><br></br>
                 {
                 <div className="indentOne">
                     <select 
@@ -2324,7 +2337,7 @@ export default function NavigationSetter({initialNavObj,
     
                           setCurrentProjectNav({...currentProjectNav, "mainPage-setting-picName": event.target.value});                         
                     }}>                    
-                        <option key="mpliDefault" value="">-- Select Resource --</option>
+                        <option key="mpliDefault" value="">-- {selectResource} --</option>
                         {visualList.map((item, index) => {
                             let keyStr = "mainPage-li-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -2574,7 +2587,7 @@ export default function NavigationSetter({initialNavObj,
               //TODO test
 
               setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": false});                   
-                  }}>Base Picture </label><br></br>
+                  }}>{basePictureText} </label><br></br>
                 {
                 <div className="indentOne">
                     <select 
@@ -2587,7 +2600,7 @@ export default function NavigationSetter({initialNavObj,
         
                           setCurrentProjectNav({...currentProjectNav, "mainPage-shop-picName": event.target.value});               
                     }}>                    
-                        <option key="mpliDefault" value="">-- Select Resource --</option>
+                        <option key="mpliDefault" value="">-- {selectResource} --</option>
                         {visualList.map((item, index) => {
                             let keyStr = "mainPage-li-" + index + item["var"];
                             return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -2661,7 +2674,7 @@ export default function NavigationSetter({initialNavObj,
 
                             setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": false});            
                      {/* {backGroundOfTheEntirePageText} */}
-                        }}>Base Picture </label>
+                        }}>{basePictureText} </label>
                             {
                             <>
                                 <select 
@@ -2675,7 +2688,7 @@ export default function NavigationSetter({initialNavObj,
                                       setCurrentProjectNav({...currentProjectNav, "storyPage-bgPicName": event.target.value});
 
                                 }}>               
-                                    <option key="stryBgDefault" value="">-- Select Resource --</option>
+                                    <option key="stryBgDefault" value="">-- {selectResource} --</option>
 
                                      {visualList.map((item, index) => {
                                         let keyStr = "storyPage-bg-pic" + index + item["var"];
@@ -2782,7 +2795,7 @@ export default function NavigationSetter({initialNavObj,
                 updateNavObj(tempObj);
 
                 setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": false});
-                    }}>Base Picture </label>
+                    }}>{basePictureText} </label>
                   {
                   <>
                       <select
@@ -2794,7 +2807,7 @@ export default function NavigationSetter({initialNavObj,
           
                           setCurrentProjectNav({...currentProjectNav, "storyPage-listItemPicName": event.target.value});
                       }}>                    
-                          <option key="storyPage-li-Default" value="">-- Select Resource --</option>
+                          <option key="storyPage-li-Default" value="">-- {selectResource} --</option>
                           {visualList.map((item, index) => {
                               let keyStr = "storyPage-li-" + index + item["var"];
                               return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -3018,7 +3031,7 @@ export default function NavigationSetter({initialNavObj,
 
                                 setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": false});
       
-                              }}>Base Picture </label>
+                              }}>{basePictureText} </label>
                             {
                             <>
                                 <select 
@@ -3031,7 +3044,7 @@ export default function NavigationSetter({initialNavObj,
                                   setCurrentProjectNav({...currentProjectNav, "settingPage-bgPicName": event.target.value});
         
                                 }}>                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                                    <option key="mpliDefault" value="">-- {selectResource} --</option>
                                     {visualList.map((item, index) => {
                                         let keyStr = "settingsPage-bgpic-" + index + item["var"];
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -3096,7 +3109,7 @@ export default function NavigationSetter({initialNavObj,
 
                   setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": false});
                         
-                }}>Base Picture </label>
+                }}>{basePictureText} </label>
                   {
                   <>
                       <select 
@@ -3109,7 +3122,7 @@ export default function NavigationSetter({initialNavObj,
                         setCurrentProjectNav({...currentProjectNav, "settingPage-listItemPicName": event.target.value});
                                       
                       }}>                    
-                          <option key="mpliDefault" value="">-- Select Resource --</option>
+                          <option key="mpliDefault" value="">-- {selectResource} --</option>
                           {visualList.map((item, index) => {
                               let keyStr = "settingsPage-li-" + index + item["var"];
                               return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -3529,7 +3542,7 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": false});
                                       
                               }}>
-                                Base Picture </label>
+                                {basePictureText} </label>
                             {
                             <>
                                 <select 
@@ -3545,7 +3558,7 @@ export default function NavigationSetter({initialNavObj,
                                 
                                 
                                 >                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                                    <option key="mpliDefault" value="">-- {selectResource} --</option>
                                     {visualList.map((item, index) => {
                                         let keyStr = "playerProfilePage-li-" + index + item["var"];
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -4453,7 +4466,7 @@ export default function NavigationSetter({initialNavObj,
                               updateNavObj(tempObj); 
                 
                               setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": false});                           
-                        }}>Base Picture </label>
+                        }}>{basePictureText} </label>
                             {
                             <>
                               <select onChange={(event)=>{
@@ -4463,7 +4476,7 @@ export default function NavigationSetter({initialNavObj,
                         
                                   setCurrentProjectNav({...currentProjectNav, "gsdPage-bgPicName": event.target.value});                                     
                               }}>                    
-                                    <option key="gsdPage-bgPicNameDefault" value="">-- Select Resource --</option>
+                                    <option key="gsdPage-bgPicNameDefault" value="">-- {selectResource} --</option>
                                     {visualList.map((item, index) => {
                                       let keyStr = "gsdPage-bgPic-" + index + item["var"];
                                       return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
@@ -4535,12 +4548,12 @@ export default function NavigationSetter({initialNavObj,
               
                             setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": false});  
                             
-                          }}>Base Picture </label>
+                          }}>{basePictureText} </label>
                             {
                             <>
                                 <select onChange={(event)=>{
                                 }}>                    
-                                    <option key="mpliDefault" value="">-- Select Resource --</option>
+                                    <option key="mpliDefault" value="">-- {selectResource} --</option>
                           
                                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}

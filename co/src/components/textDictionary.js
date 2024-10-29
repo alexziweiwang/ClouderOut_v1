@@ -112,6 +112,9 @@ const textDictionary = {
         selectAPageName: "Select a Page Name",
         backGroundOfTheEntirePageText: "Background of the entire page",
         rectangleAndColorFilled: "Rectangle & Color Filled",
+        basePictureText: "Base Picture",
+        selectResource: "Select Resource",
+        listItemSettingsText: "List Item Settings",
 
 
 
@@ -231,6 +234,9 @@ const textDictionary = {
         selectAPageName: "选择页面名",
         backGroundOfTheEntirePageText: "整页背景",
         rectangleAndColorFilled: "长方形填充颜色",
+        basePictureText: "基底图片",
+        selectResource: "选择资源",
+        listItemSettingsText: "(列表的)单项设置",
 
 
 
