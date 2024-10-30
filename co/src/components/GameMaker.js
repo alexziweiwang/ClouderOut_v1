@@ -20,8 +20,7 @@ import langDictionary from './textDictionary';
 export default function GameMaker({username, projectName}) {
 
   
-
-  let languageCodeTextOption = 'chn';
+  const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO
@@ -1090,6 +1089,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return gameDataList;
   }
 
+  function passInUILanguage() {
+    return languageCodeTextOption;
+  }
+
+
+
   return (
   <div>
 <div>
@@ -1109,7 +1114,16 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
       <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
       <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
-   
+        
+      <select value={languageCodeTextOption}
+        onChange={(event)=>{
+          setLanguageCodeTextOption(event.target.value);
+        }}
+      >
+        <option key="lang-Eng" value="en">English</option>
+        <option key="lang-chn" value="chn">简体中文</option> 
+        {/* //TODO16 */}
+      </select>
     </div>
 
 
