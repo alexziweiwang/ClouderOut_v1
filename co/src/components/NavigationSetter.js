@@ -145,6 +145,23 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.itemGapText
         : textDictItemDefault.itemGapText;
 
+    let fontColorText = textDictItem.fontColorText !== undefined ?
+        textDictItem.fontColorText
+        : textDictItemDefault.fontColorText;
+
+    let fontSizeText = textDictItem.fontSizeText !== undefined ?
+        textDictItem.fontSizeText
+        : textDictItemDefault.fontSizeText;
+
+    let positionXText = textDictItem.positionXText !== undefined ?
+        textDictItem.positionXText
+        : textDictItemDefault.positionXText;
+
+    let positionYText = textDictItem.positionYText !== undefined ?
+        textDictItem.positionYText
+        : textDictItemDefault.positionYText;
+
+
 
 //TODO15
         
@@ -692,7 +709,7 @@ export default function NavigationSetter({initialNavObj,
                       setCurrentProjectNav({...currentProjectNav, "backButton-displayText": backButtonName});         
                     }}>{updateText}</button>
                   </div>
-                  <label>Font Size:</label>
+                  <label>{fontSizeText}:</label>
                   <input type="range" value={currentProjectNav["backButton-fontSize"]}
                     onChange={(event)=>{
                       let tempObj = currentProjectNav;
@@ -1424,7 +1441,7 @@ export default function NavigationSetter({initialNavObj,
                     }}               
                ></input> 
                <br></br>
-               <label>Item gap:</label>
+               <label>{itemGapText}:</label>
                <input type="range" 
                 min="1" max="110" step="1"
                 value={currentProjectNav["mainPage-listItemGap"]}
@@ -1449,7 +1466,7 @@ export default function NavigationSetter({initialNavObj,
                   }}  
                 ></input>
                 <br></br>
-                <label>Font Color:</label>
+                <label>{fontColorText}:</label>
                  <input type="color" 
                   value={currentProjectNav["mainPage-listItemGroupFontColor"]}
                   onChange={(event)=>{
@@ -1464,7 +1481,7 @@ export default function NavigationSetter({initialNavObj,
                  ></input>
                  <label> {currentProjectNav["mainPage-listItemGroupFontColor"]}</label>
                <br></br>
-                Font Size:
+                {fontSizeText}:
                 <input type="range"
                   min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-listItemGroupFontSize"]}
@@ -1726,7 +1743,7 @@ export default function NavigationSetter({initialNavObj,
          </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-story"]) && 
          <div className="indentOne">
-           Position X:
+           {positionXText}:
                <input type="range"
                 min="1" max={screenWidth} step="1"
                 value={currentProjectNav["mainPage-story-posX"]}
@@ -1752,7 +1769,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
                ></input>
                <br></br>
-           Position Y:
+           {positionYText}:
               <input type="range"
                 min="1" max={screenHeight} step="1"
                 value={currentProjectNav["mainPage-story-posY"]}
@@ -1830,7 +1847,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
                ></input>
                <br></br>
-           Font Color:
+           {fontColorText}:
                  <input type="color" 
                   value={currentProjectNav["mainPage-story-fontColor"]}
                   onChange={(event)=>{
@@ -1845,7 +1862,7 @@ export default function NavigationSetter({initialNavObj,
                  ></input>
                  <label> {currentProjectNav["mainPage-story-fontColor"]}</label>
                <br></br>
-           Font Size:
+           {fontSizeText}:
                 <input type="range"
                   min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-story-fontSize"]}
@@ -1975,7 +1992,7 @@ export default function NavigationSetter({initialNavObj,
            }}>{updateText}</button>
          </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-playerProfile"]) && <div className="indentOne">
-           Position X:
+           {positionXText}:
                  <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-playerProfile-posX"]}
@@ -2001,7 +2018,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
                  ></input>
                <br></br>
-           Position Y:
+           {positionYText}:
                 <input type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-posY"]}
@@ -2079,7 +2096,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
                  ></input>                 
                <br></br>
-           Font Color:
+           {fontColorText}:
                 <input type="color"
                   value={currentProjectNav["mainPage-playerProfile-fontColor"]}
                   onChange={(event)=>{
@@ -2093,7 +2110,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <label> {currentProjectNav["mainPage-playerProfile-fontColor"]}</label>
                <br></br>
-           Font Size:
+           {fontSizeText}:
               <input type="range"
                   min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-playerProfile-fontSize"]}
@@ -2229,7 +2246,7 @@ export default function NavigationSetter({initialNavObj,
            }}>{updateText}</button>
          </div>
          {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-setting"]) && <div className="indentOne">
-           Position X:
+           {positionXText}:
                  <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-setting-posX"]}
@@ -2255,7 +2272,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>                 
                <br></br>
-           Position Y:
+           {positionYText}:
                 <input type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-setting-posY"]}
@@ -2333,7 +2350,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>                 
                <br></br>
-           Font Color:
+           {fontColorText}:
                 <input type="color"
                   value={currentProjectNav["mainPage-setting-fontColor"]}
                   onChange={(event)=>{
@@ -2347,7 +2364,7 @@ export default function NavigationSetter({initialNavObj,
                  ></input>
                  <label> {currentProjectNav["mainPage-setting-fontColor"]}</label>
                <br></br>
-           Font Size:
+           {fontSizeText}:
                 <input type="range"
                   min="5" max="32" step="1"
                   value={currentProjectNav["mainPage-setting-fontSize"]}
@@ -2473,7 +2490,7 @@ export default function NavigationSetter({initialNavObj,
            }}>{updateText}</button>
          </div>
        {(currentProjectNav["mainPage-entriesCustom"] && currentProjectNav["mainPage-shop"]) && <div className="indentOne">
-           Position X:
+           {positionXText}:
             <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-posX"]}
@@ -2499,7 +2516,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
             ></input>
                <br></br>
-           Position Y:
+           {positionYText}:
            <input type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-posY"]}
@@ -2577,7 +2594,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
             ></input> 
                <br></br>
-           Font Color:
+           {fontColorText}:
                 <input type="color"
                   value={currentProjectNav["mainPage-shop-fontColor"]}
                   onChange={(event)=>{
@@ -2592,7 +2609,7 @@ export default function NavigationSetter({initialNavObj,
                 
                 <label> {currentProjectNav["mainPage-shop-fontColor"]}</label>
                <br></br>
-           Font Size:
+           {fontSizeText}:
             <input type="range"
                     min="5" max="32" step="1"
                     value={currentProjectNav["mainPage-shop-fontSize"]}
@@ -3030,7 +3047,7 @@ export default function NavigationSetter({initialNavObj,
               ></input>   
               <label>{currentProjectNav["storyPage-listItemGroupFontColor"]}</label>
               <br></br>
-              <label>Font Size:</label>
+              <label>{fontSizeText}:</label>
               <input type="range"
                 max="32" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupFontSize"]}
@@ -3393,7 +3410,7 @@ export default function NavigationSetter({initialNavObj,
                   </input>
 
                   <br></br>
-                  Font Color:
+                  {fontColorText}:
                     <input type="color" 
                       value={currentProjectNav["settingPage-listItemFontColor"]}
                       onChange={(event)=>{
@@ -3407,7 +3424,7 @@ export default function NavigationSetter({initialNavObj,
                     </input>
                     <label> {currentProjectNav["settingPage-listItemFontColor"]}</label>
                    <br></br>
-               Font Size:
+               {fontSizeText}:
                      <input type="range" value={currentProjectNav["settingPage-listItemFontSize"]}
                       onChange={(event)=>{
                         let tempObj = currentProjectNav;
@@ -3744,7 +3761,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
              >Italic</label><br></br>
 
-             <label>Text Font Size: </label>
+             <label>Text {fontSizeText}: </label>
              <input type="range" min="5" max="90" step="1"
               value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]}
               onChange={(event)=>{
@@ -3776,7 +3793,7 @@ export default function NavigationSetter({initialNavObj,
              ></input>
              <label> {currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"]}</label>
              <br></br>
-             <label>Position X: </label>
+             <label>{positionXText}: </label>
              <input type="range" min="1" max={screenWidth} step="1"
               value={currentProjectNav["playerProfilePage-previewingTextObj"]["posX"]}
               onChange={(event)=>{
@@ -3791,7 +3808,7 @@ export default function NavigationSetter({initialNavObj,
              ></input>
              
              <br></br>
-             <label>Position Y: </label>
+             <label>{positionYText}: </label>
              <input type="range" min="1" max={screenHeight} step="1"
               value={currentProjectNav["playerProfilePage-previewingTextObj"]["posY"]}
               onChange={(event)=>{
@@ -3925,7 +3942,7 @@ export default function NavigationSetter({initialNavObj,
                 </div>
 
            
-            <label>Position X</label>
+            <label>{positionXText}</label>
             <input type="range" min="0" max={screenWidth} step="1"
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["posX"]}
               onChange={(event)=>{
@@ -3940,7 +3957,7 @@ export default function NavigationSetter({initialNavObj,
             ></input>  
                
                <br></br>
-             <label>Position Y: </label>
+             <label>{positionYText}: </label>
              <input type="range" min="0" max={screenHeight} step="1"
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["posY"]}
               onChange={(event)=>{
@@ -3954,7 +3971,7 @@ export default function NavigationSetter({initialNavObj,
               }}
             ></input>  
              <br></br>
-             <label>Text Font Size: </label>
+             <label>Text {fontSizeText}: </label>
              <input type="range" min="1" max="50" step="1"
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}
               onChange={(event)=>{
@@ -4043,7 +4060,7 @@ export default function NavigationSetter({initialNavObj,
            
            {playerProfilePageIsAddingPic && <div className="indentOne" style={{"backgroundColor": "#98C1D9", "padding": "5px", "borderRadius": "0px", "margin": "3px", "color": "#000000"}}>
              
-             <label>Position X: </label>
+             <label>{positionXText}: </label>
              <input type="range" min="0" max={screenWidth} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["posX"]}
               onChange={(event)=>{
@@ -4060,7 +4077,7 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
              
              
-             <label>Position Y: </label>
+             <label>{positionYText}: </label>
              <input type="range" min="0" max={screenHeight} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["posY"]}
               onChange={(event)=>{
@@ -4275,7 +4292,7 @@ export default function NavigationSetter({initialNavObj,
                   }}    
                 ></input>
               <br></br>
-              <label>Text Font Size: </label>
+              <label>Text {fontSizeText}: </label>
               <input type="range"
                   value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}
                   onChange={(event)=>{
@@ -4314,7 +4331,7 @@ export default function NavigationSetter({initialNavObj,
               ></input>
               <label> {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textColor"]}</label>
               <br></br>
-              <label>Position X: </label>
+              <label>{positionXText}: </label>
               <input
                 min="0" max={screenWidth} step="1"
                 type="range"
@@ -4337,7 +4354,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <br></br>
-              <label>Position Y: </label>
+              <label>{positionYText}: </label>
               <input
                 min="0" max={screenHeight} step="1"
                 type="range"
@@ -4379,7 +4396,7 @@ export default function NavigationSetter({initialNavObj,
            >Player Profile Icon</label> 
            {currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["adding"] &&
             <div className="indentOne">
-                <label>Position X: </label>
+                <label>{positionXText}: </label>
                 <input type="range"
                   min="0" max={screenWidth} step="1"
                   onChange={(event)=>{
@@ -4401,7 +4418,7 @@ export default function NavigationSetter({initialNavObj,
                     value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posX"]}
                 ></input>
                 <br></br>
-                <label>Position Y: </label>
+                <label>{positionYText}: </label>
                 <input type="range"
                   min="0" max={screenHeight} step="1"
                   onChange={(event)=>{

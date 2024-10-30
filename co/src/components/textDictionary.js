@@ -129,6 +129,10 @@ const textDictionary = {
         itemWidthText: "Item Width",
         itemHeightText: "Item Height",
         itemGapText: "Item Gap",
+        fontColorText: "Font Color",
+        fontSizeText: "Font Size",
+        positionXText: "Position X",
+        positionYText: "Position Y",
 
 
 
@@ -265,8 +269,10 @@ const textDictionary = {
         itemWidthText: "单项宽度",
         itemHeightText: "单项高度",
         itemGapText: "单项间隔",
-
-
+        fontColorText: "字体颜色",
+        fontSizeText: "字体大小",
+        positionXText: "X位置",
+        positionYText: "Y位置",
 
 
     },
