@@ -133,6 +133,10 @@ const textDictionary = {
         fontSizeText: "Font Size",
         positionXText: "Position X",
         positionYText: "Position Y",
+        widthText: "Width",
+        heightText: "Height",
+        mainPageItemsText: "Main Page Items",
+
 
 
 
@@ -273,6 +277,11 @@ const textDictionary = {
         fontSizeText: "字体大小",
         positionXText: "X位置",
         positionYText: "Y位置",
+        widthText: "宽度",
+        heightText: "高度",
+        mainPageItemsText: "主页 各单项",
+
+
 
 
     },

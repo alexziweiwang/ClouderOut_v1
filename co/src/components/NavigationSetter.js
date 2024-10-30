@@ -161,6 +161,18 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.positionYText
         : textDictItemDefault.positionYText;
 
+    let widthText = textDictItem.widthText !== undefined ?
+        textDictItem.widthText
+        : textDictItemDefault.widthText;
+
+    let heightText = textDictItem.heightText !== undefined ? 
+        textDictItem.heightText
+        : textDictItemDefault.heightText;
+
+    let mainPageItemsText = textDictItem.mainPageItemsText !== undefined ?
+        textDictItem.mainPageItemsText
+        : textDictItemDefault.mainPageItemsText;
+
 
 
 //TODO15
@@ -588,7 +600,7 @@ export default function NavigationSetter({initialNavObj,
               }}
              >{openBackButtonSettingArea === true ? "" : "︾"} General Back Button Settings </div>
              {openBackButtonSettingArea && <div className="indentOne">
-                  <label>Width: </label>
+                  <label>{widthText}: </label>
                     <input type="range" 
                       value={currentProjectNav["backButton-width"]} onChange={
                       (event)=>{
@@ -610,7 +622,7 @@ export default function NavigationSetter({initialNavObj,
                       }
                     }></input>
 
-                  <br></br><label>Height: </label>
+                  <br></br><label>{heightText}: </label>
                   <input type="range" 
                       value={currentProjectNav["backButton-height"]} onChange={
                       (event)=>{
@@ -1050,7 +1062,7 @@ export default function NavigationSetter({initialNavObj,
      
                 <label>Slot Size:</label><br></br>
                   <div className="indentOne">
-                      <label>Width:</label>
+                      <label>{widthText}:</label>
                       <input type="range" 
                         min="1" max="500" step="1"
                         value={currentProjectNav["saveloadPage-slotWidth"]}
@@ -1073,7 +1085,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotWidth": event.target.value});
                         }}></input>
                       <br></br>
-                      <label>Height:</label>
+                      <label>{heightText}:</label>
                       <input type="range" 
                         min="1" max="240" step="1"
                         value={currentProjectNav["saveloadPage-slotHeight"]}
@@ -1614,7 +1626,7 @@ export default function NavigationSetter({initialNavObj,
 
          <br></br>
          <br></br>
-         <label>Main Page Items: </label>
+         <label>{mainPageItemsText}: </label>
          <div className="indentOne someGrey" style={{"color": "#000000"}}>
             <input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
                 checked={currentProjectNav["mainPage-playerProfile"]}
@@ -1795,7 +1807,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
                ></input>               
                <br></br>
-           Width:
+           {widthText}:
               <input type="range"
                 min="1" max={screenWidth} step="1"
                 value={currentProjectNav["mainPage-story-width"]}
@@ -1821,7 +1833,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
                ></input>               
                <br></br>
-           Height:
+           {heightText}:
               <input type="range"
                 min="1" max={screenHeight} step="1"
                 value={currentProjectNav["mainPage-story-height"]}
@@ -2044,7 +2056,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
                  ></input>
                <br></br>
-           Width:
+           {widthText}:
                 <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-playerProfile-width"]}
@@ -2070,7 +2082,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
                  ></input>                 
                <br></br>
-           Height:
+           {heightText}:
                 <input type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-playerProfile-height"]}
@@ -2298,7 +2310,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>        
                <br></br>
-           Width:
+           {widthText}:
                 <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-setting-width"]}
@@ -2324,7 +2336,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>                 
                <br></br>
-           Height:
+           {heightText}:
                 <input type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-setting-height"]}
@@ -2542,7 +2554,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
             ></input>
                <br></br>
-           Width:
+           {widthText}:
            <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-shop-width"]}
@@ -2568,7 +2580,7 @@ export default function NavigationSetter({initialNavObj,
                   }}                                 
             ></input>            
                <br></br>
-           Height:
+           {heightText}:
            <input type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-shop-height"]}
@@ -2715,7 +2727,7 @@ export default function NavigationSetter({initialNavObj,
     </div>}
 
     {currentSettingPage === "Story Page" && <div>
-     <label>Story Page:</label>
+     <label>{storyPageText}:</label>
        <div className="indentOne">
        <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
@@ -3328,7 +3340,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>  
                <br></br>
-               Group Width:
+               Group {widthText}:
                <input type="range"
                   min="1" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupWidth"]}
@@ -3354,7 +3366,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                   ></input>
                <br></br>
-               Group Height:
+               Group {heightText}:
                <input type="range"
                   min="1" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupHeight"]}
@@ -4109,7 +4121,7 @@ export default function NavigationSetter({initialNavObj,
              </select>
              <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br>
              
-             <label>Width: </label>
+             <label>{widthText}: </label>
              <input type="range" min="1" max={screenWidth} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["width"]}
               onChange={(event)=>{
@@ -4125,7 +4137,7 @@ export default function NavigationSetter({initialNavObj,
              
              <br></br>
 
-             <label>Height: </label>
+             <label>{heightText}: </label>
              <input type="range" min="1" max={screenHeight} step="1"
               value={currentProjectNav["playerProfilePage-previewingPicObj"]["height"]}
               onChange={(event)=>{
@@ -4440,7 +4452,7 @@ export default function NavigationSetter({initialNavObj,
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["posY"]}
                 ></input>
                 <br></br>
-                <label>Width: </label>
+                <label>{widthText}: </label>
                 <input type="range"
                   min="0" max={screenWidth} step="1"
                   onChange={(event)=>{
@@ -4462,7 +4474,7 @@ export default function NavigationSetter({initialNavObj,
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem"]["width"]}
                 ></input>
                 <br></br>
-                <label>Height: </label>
+                <label>{heightText}: </label>
                 <input type="range"
                   min="0" max={screenHeight} step="1"
                   onChange={(event)=>{
