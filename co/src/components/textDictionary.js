@@ -124,6 +124,12 @@ const textDictionary = {
         backgroundColorText: "Background Color",
         horizontalText: "Horizontal",
         verticalText: "Vertical",
+        groupPositionXText: "Group Position X",
+        groupPositionYText: "Group Position Y",
+        itemWidthText: "Item Width",
+        itemHeightText: "Item Height",
+        itemGapText: "Item Gap",
+
 
 
 
@@ -254,7 +260,11 @@ const textDictionary = {
         backgroundColorText: "背景板颜色",
         horizontalText: "横向",
         verticalText: "纵向",
-
+        groupPositionXText: "群组X位置",
+        groupPositionYText: "群组Y位置",
+        itemWidthText: "单项宽度",
+        itemHeightText: "单项高度",
+        itemGapText: "单项间隔",
 
 
 

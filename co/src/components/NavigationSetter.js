@@ -125,8 +125,26 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.verticalText
         : textDictItemDefault.verticalText;
 
+    let groupPositionXText = textDictItem.groupPositionXText !== undefined ?
+        textDictItem.groupPositionXText
+        : textDictItemDefault.groupPositionXText;
 
-    
+    let groupPositionYText = textDictItem.groupPositionYText !== undefined ?
+        textDictItem.groupPositionYText
+        : textDictItemDefault.groupPositionYText;
+
+    let itemWidthText = textDictItem.itemWidthText !== undefined ?
+        textDictItem.itemWidthText
+        : textDictItemDefault.itemWidthText;
+
+    let itemHeightText = textDictItem.itemHeightText !== undefined ?
+        textDictItem.itemHeightText
+        : textDictItemDefault.itemHeightText;
+
+    let itemGapText = textDictItem.itemGapText !== undefined ?
+        textDictItem.itemGapText
+        : textDictItemDefault.itemGapText;
+
 
 //TODO15
         
@@ -1301,7 +1319,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
                >{verticalText}</label>
                <br></br>
-               <label>Group Position X:</label>
+               <label>{groupPositionXText}:</label>
                  <input type="range"
                   min="0" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupX"]}
@@ -1328,7 +1346,7 @@ export default function NavigationSetter({initialNavObj,
                     }}
                  ></input>                 
                <br></br>
-               <label>Group Position Y:</label>
+               <label>{groupPositionYText}:</label>
                <input type="range"
                   min="0" max={screenHeight} step="1"
                   value={currentProjectNav["mainPage-listItemGroupY"]}
@@ -1354,7 +1372,7 @@ export default function NavigationSetter({initialNavObj,
                     }}               
                ></input>               
                <br></br>
-               <label>Item Width:</label>
+               <label>{itemWidthText}:</label>
                <input type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["mainPage-listItemGroupWidth"]}
@@ -1380,7 +1398,7 @@ export default function NavigationSetter({initialNavObj,
                     }}               
                ></input>                 
                <br></br>
-               <label>Item Height:</label>
+               <label>{itemHeightText}:</label>
                <input type="range"
                   min="1" max={screenHeight/4} step="1"
                   value={currentProjectNav["mainPage-listItemGroupHeight"]}
@@ -2881,7 +2899,7 @@ export default function NavigationSetter({initialNavObj,
                    
                       </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
               </>}
-              <label>Item Width: </label>
+              <label>{itemWidthText}: </label>
               <input type="range"
                 max="560" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupWidth"]}
@@ -2905,7 +2923,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <br></br>
-              <label>Item Height: </label>
+              <label>{itemHeightText}: </label>
               <input type="range"
                 value={currentProjectNav["storyPage-listItemGroupHeight"]}
                 onChange={(event)=>{
@@ -2975,7 +2993,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input> 
               <br></br>    
-              <label>Item Gap: </label>  
+              <label>{itemGapText}: </label>  
               <input type="range"
                 max="20" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGap"]}
@@ -3241,7 +3259,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                >{verticalText}</label>
                <br></br>
-               Group Position X:
+               {groupPositionXText}:
                  <input type="range"
                   min="0" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupX"]}
@@ -3267,7 +3285,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>                 
                <br></br>
-               Group Position Y:
+               {groupPositionYText}:
                <input type="range"
                   min="0" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupY"]}
@@ -3346,7 +3364,7 @@ export default function NavigationSetter({initialNavObj,
                   ></input>
 
                   <br></br>
-                  Item Gap: 
+                  {itemGapText}: 
                   <input type="range"
                     min="0" max="150" step="1"
                     value={currentProjectNav["settingPage-listItemGap"]}
