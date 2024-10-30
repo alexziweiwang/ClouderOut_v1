@@ -10,8 +10,11 @@ export default function Panel_GameDataTest({
     isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
     receiveGameDataObj,
     getResetSignal,
-    notifyAfterReset
+    notifyAfterReset,
+    getUILanguage
 }) {
+    
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     const trueBoolean = true;
     const falseBoolean = false;
@@ -38,7 +41,8 @@ export default function Panel_GameDataTest({
         let w = getScreenWidth();
         setScreenWidth(w);
 
-   
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
 
         if (firstTimeEnter === true) {
 

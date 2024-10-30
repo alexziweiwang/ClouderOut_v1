@@ -597,6 +597,11 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     function handleqvCancel() {
         setIsDisplayQview(false);
     }
+
+    function passInUILanguage() {
+        return 'en'; //TODO20 //navigation-jumpped here, add strategy later
+        
+    }
     
 
     return (
@@ -814,6 +819,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                 audioList={audioList}
                 initialGameDataDesignList={gameDataDesignList}
                 getGameDataDesignList={passInGameDataDesignList}
+
+                getUILanguage={passInUILanguage}
             />}
 
         <br></br>

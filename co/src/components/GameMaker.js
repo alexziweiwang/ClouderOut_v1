@@ -1230,7 +1230,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   updateEmuPlayerProfile={updateEmuPlayerProfile}
                   intialEmuPlayerProfile={testPlayerProfile}
                    
-                  getUILanguage={passInUILanguage}  //TODO20 languageOption
+                  getUILanguage={passInUILanguage}
           
                 />
               </div>
@@ -1254,7 +1254,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   fetchCurrentGameData={passInCurrentGameDataList}
 
  
-                  getUILanguage={passInUILanguage}  //TODO20 languageOption
+                  getUILanguage={passInUILanguage}
           
                   />
               </div>
@@ -1318,7 +1318,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           notifyPageStatus={receiveUpdateOnPageStatus}
 
  
-          getUILanguage={passInUILanguage}  //TODO20 languageOption
+          getUILanguage={passInUILanguage}
           
 
 
@@ -1372,7 +1372,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   getResetSignal={notUsingReturnFalse}
 
                    
-                  getUILanguage={passInUILanguage}  //TODO20 languageOption
+                  getUILanguage={passInUILanguage}
           
                 />
               </div>

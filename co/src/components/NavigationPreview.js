@@ -21,9 +21,12 @@ export default function NavigationPreview ({
     fetchPlayerInfoSets,
     fetchCurrentGameData,
 
+    getUILanguage,
+
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -117,6 +120,9 @@ export default function NavigationPreview ({
             setFirstTimeEnter(false);
 
         }
+
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;

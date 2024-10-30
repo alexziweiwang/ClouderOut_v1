@@ -13,7 +13,7 @@ import NavigationPreview from './NavigationPreview';
  */
 export default function Viewer_Entire({isDisplay, 
     makeNotDisplay, navigationObj, fetchNavigationObj,
-    initialChapterList, getChapterList,
+    initialChapterList, getChapterList,getUILanguage,
    
     isLocal,
 
@@ -58,6 +58,7 @@ export default function Viewer_Entire({isDisplay,
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 
 
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
@@ -120,6 +121,9 @@ export default function Viewer_Entire({isDisplay,
             setScreenWidth(w);
             setScreenHeight(h);
         }
+
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
 
     
 
@@ -249,6 +253,7 @@ return(<>
 
                         fetchPlayerInfoSets={passInPlayerInfoSets}
                         fetchCurrentGameData={passInCurrentGameDataList}
+                        getUILanguage={getUILanguage}  //TODO20 languageOption
 
                     />
                                                                                 {/* //TODO16
