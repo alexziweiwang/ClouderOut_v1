@@ -1,4 +1,4 @@
-import { getProjectGameData, updateGameData, getChapterData } from '../models/GameDataModel';
+import { getProjectGameDataDesign, updateGameDataDesign, getChapterData } from '../models/GameDataModel';
 
 /**
  * Get project data, call cloud-db related model function
@@ -7,8 +7,8 @@ import { getProjectGameData, updateGameData, getChapterData } from '../models/Ga
  * @param {*} uname username
  * @returns 
  */
-export async function getProjectGameDataVM({projectName, uname}) {
-    const result = await getProjectGameData({projectName, uname});
+export async function getProjectGameDataDesignVM({projectName, uname}) {
+    const result = await getProjectGameDataDesign({projectName, uname});
     return result;
 }
 
@@ -20,7 +20,7 @@ export async function getProjectGameDataVM({projectName, uname}) {
  * @param {*} gameData game data
  */
 export async function updateGameDataDesignVM({projectName, uname, gameData}) {
-    await updateGameData({projectName, uname, gameData});
+    await updateGameDataDesign({projectName, uname, gameData});
 }
 
 export async function getChapterDataVM({projectName, uname, chapterName}) {

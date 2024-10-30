@@ -7,10 +7,12 @@ export default function Modal_GameDataManager ({
         initialGameData, 
         resetNeedCloudData, 
         updateGameDataDesignToCloud,
+
+        getUILanguage,
     }) {
 
 
-    let languageCodeTextOption = 'en';
+        const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     let modalStyleName = "modalBackboard";
 
@@ -61,7 +63,8 @@ export default function Modal_GameDataManager ({
 
             setFirstTimeEnter(false);
         }
-
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
     });
 
     const [displayNewVarArea, setDisplayNewVarArea] = useState(false);

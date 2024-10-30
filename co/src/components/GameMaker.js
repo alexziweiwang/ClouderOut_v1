@@ -12,7 +12,7 @@ import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
 import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
-import { getProjectGameDataVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import langDictionary from './textDictionary';
 
@@ -542,7 +542,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     const isUpdated = true;
     
     
-    const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: username, mostUpdated: isUpdated});
+    const gdataTestResult = await getProjectGameDataDesignVM({projectName: project, uname: username, mostUpdated: isUpdated});
     if (gdataTestResult === undefined) {
       console.log("Error: no game_data in this project...");
       return;
@@ -1398,8 +1398,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               handleRmCancel={handleResourceManagerCancel} 
               handleRmSaveChanges={handleResourceManagerSaveChanges}
               refresh={triggerRefreshFetchCloudData}
-
-               
+        
               getUILanguage={passInUILanguage}  //TODO20 languageOption
           
           />
@@ -1414,7 +1413,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               resetNeedCloudData={markNextNeedCloudGameData} 
               updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
 
-               
               getUILanguage={passInUILanguage}  //TODO20 languageOption
           
           />} 

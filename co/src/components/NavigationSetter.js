@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { getProjectGameDataVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import langDictionary from './textDictionary';
 
 
@@ -273,7 +273,7 @@ export default function NavigationSetter({initialNavObj,
       let gDataMap = {};
 
       
-      gDataMap = await getProjectGameDataVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
+      gDataMap = await getProjectGameDataDesignVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
       setGameData(gDataMap);
   }
 

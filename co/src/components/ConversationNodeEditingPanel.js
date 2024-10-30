@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
-import { getProjectGameDataVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 import PreviewWindow_gameContent from './PreviewWindow_gameContent';
@@ -330,7 +330,7 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
         let gDataMap = {};
         let project = state.projectName;
         let currUser = state.userName;
-        gDataMap = await getProjectGameDataVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
+        gDataMap = await getProjectGameDataDesignVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
 
         // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
         // console.log(state); //TODO remove later
@@ -528,7 +528,7 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
         }
         const isUpdated = true;
         let currUser = uname;
-        const gdataTestResult = await getProjectGameDataVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
+        const gdataTestResult = await getProjectGameDataDesignVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
      
         if (gdataTestResult === undefined) {
           console.log("Error: no game_data in this project...");
@@ -785,6 +785,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                     handleRmCancel={handleResourceManagerCancel} 
                     handleRmSaveChanges={handleResourceManagerSaveChanges} 
                     refresh={triggerRefresh}
+
+                    getUILanguage={passInUILanguage}                    
                     />}
             </>}
 
@@ -796,6 +798,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                     initialGameData={gameDataDesignList} 
                     resetNeedCloudData={markNextNeedCloudGameData} 
                     updateGameDataDesignToCloud={updateGDataDesignToCloud}
+
+                    getUILanguage={passInUILanguage}
                 />   
     
         

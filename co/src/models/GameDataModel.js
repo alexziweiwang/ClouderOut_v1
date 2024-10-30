@@ -9,7 +9,7 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc} from "fireba
  * @param {*} uname username
  * @returns specific project data of the user
  */
-export async function getProjectGameData({projectName, uname}) {
+export async function getProjectGameDataDesign({projectName, uname}) {
   if (projectName === "" || projectName === undefined) {
     return;
   }
@@ -34,7 +34,7 @@ export async function getProjectGameData({projectName, uname}) {
  * @param {*} gameData game data to update
  * @returns void
  */
-export async function updateGameData({projectName, uname, gameData}) {
+export async function updateGameDataDesign({projectName, uname, gameData}) {
   const projectRef = doc(db, "user_projects", uname, "projects", projectName);
   const projectSnap = await getDoc(projectRef);
 

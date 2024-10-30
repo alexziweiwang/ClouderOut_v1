@@ -6,10 +6,14 @@ import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
 import langDictionary from './textDictionary';
 
-export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh}) {
+export default function Modal_ResourceManagingWindow ({
+    handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh,
+    getUILanguage,
+
+}) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
-    let languageCodeTextOption = 'en';
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     let modalStyleName = "modalBackboard";
 
@@ -94,6 +98,8 @@ export default function Modal_ResourceManagingWindow ({handleRmCancel, handleRmS
             fetchProjResourceVarPairLists();
             setFirstTimeEnter(false);
         }
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
     });
 
     function storeNewVarPairDataFuncGen(type, url, givenContent, fileType) {
