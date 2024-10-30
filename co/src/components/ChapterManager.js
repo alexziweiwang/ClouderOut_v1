@@ -7,11 +7,15 @@ export default function ChapterManager({
   getChapterDataInfo,
   updateChosenChapterItem, updateLinkingNode,
   prepareForNewChapterMapping, 
+
+  getUILanguage,
   }) {
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
 //TODO3: add getChapterData (from caller) : "getChapterDataInfo()"
-  let languageCodeTextOption = 'chn';
+
+  const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+
   let textDictItem = langDictionary[languageCodeTextOption];
   let textDictItemDefault = langDictionary["en"];
 
@@ -116,6 +120,10 @@ export default function ChapterManager({
   useEffect(() => {
     let chapterListTemp = getChapterDataInfo();
     setChapterData(chapterListTemp);
+
+    let UILang = getUILanguage();
+    setLanguageCodeTextOption(UILang);
+
     
   });
   

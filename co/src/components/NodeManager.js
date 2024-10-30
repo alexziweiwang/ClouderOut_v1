@@ -14,9 +14,12 @@ export default function NodeManager({projectName, currUser,
   updateNodeMapOfChapter, updateGridBlockOfChapter,
   displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
   loadChapterInfoFromCaller,
+
+  getUILanguage,
+
 }) {
 
-  let languageCodeTextOption = 'chn';
+  const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     // console.log("Node Manager ?? "); //TODO testing
     // console.log(initialNodeMap); //TODO testing
@@ -258,6 +261,10 @@ export default function NodeManager({projectName, currUser,
       // console.log("local ds:"); //TODO testing
       // console.log(nodeRelationshipMap); //TODO testing
       // console.log(gridBlocks); //TODO testing
+
+      let UILang = getUILanguage();
+      setLanguageCodeTextOption(UILang);
+  
 
       let gameDataTemp = getGameData();
       setGameDataLocal(gameDataTemp);

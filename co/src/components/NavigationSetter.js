@@ -13,9 +13,10 @@ export default function NavigationSetter({initialNavObj,
   projName,
   updateEmuPlayerProfile,
   intialEmuPlayerProfile,
+  getUILanguage,
 
 }) {
-    let languageCodeTextOption = 'chn';
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -229,6 +230,8 @@ export default function NavigationSetter({initialNavObj,
 
             setFirstTimeEnter(false);
       }
+      let UILang = getUILanguage();
+      setLanguageCodeTextOption(UILang);
 
       //fetch from nav-previewer for current-page-name
       let tempPage= fetchPageName();

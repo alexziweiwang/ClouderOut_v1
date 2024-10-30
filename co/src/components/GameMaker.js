@@ -1159,6 +1159,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
        
           updateLinkingNode={updateLinkingNodeFunc}
           
+          getUILanguage={passInUILanguage}
+          
         />}
 
         <NodeManager 
@@ -1177,6 +1179,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
+           
+          getUILanguage={passInUILanguage}
+          
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 
@@ -1224,6 +1229,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   projName={projectName} 
                   updateEmuPlayerProfile={updateEmuPlayerProfile}
                   intialEmuPlayerProfile={testPlayerProfile}
+                   
+                  getUILanguage={passInUILanguage}  //TODO20 languageOption
+          
                 />
               </div>
               
@@ -1245,7 +1253,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   fetchPlayerInfoSets={passInPlayerInfoSets}
                   fetchCurrentGameData={passInCurrentGameDataList}
 
-
+ 
+                  getUILanguage={passInUILanguage}  //TODO20 languageOption
+          
                   />
               </div>
           </div>
@@ -1307,7 +1317,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
           notifyPageStatus={receiveUpdateOnPageStatus}
 
-
+ 
+          getUILanguage={passInUILanguage}  //TODO20 languageOption
+          
 
 
       />
@@ -1358,6 +1370,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   receiveGameDataObj={passInPlayerGameData}
 
                   getResetSignal={notUsingReturnFalse}
+
+                   
+                  getUILanguage={passInUILanguage}  //TODO20 languageOption
+          
                 />
               </div>
             }
@@ -1382,6 +1398,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               handleRmCancel={handleResourceManagerCancel} 
               handleRmSaveChanges={handleResourceManagerSaveChanges}
               refresh={triggerRefreshFetchCloudData}
+
+               
+              getUILanguage={passInUILanguage}  //TODO20 languageOption
+          
           />
           
           </div>}
@@ -1393,6 +1413,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               initialGameData={gameDataDesignList} 
               resetNeedCloudData={markNextNeedCloudGameData} 
               updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
+
+               
+              getUILanguage={passInUILanguage}  //TODO20 languageOption
+          
           />} 
 </div>
 
