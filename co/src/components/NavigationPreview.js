@@ -205,10 +205,7 @@ export default function NavigationPreview ({
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
             "position": "absolute",
             "userSelect": "none",
-
     }}>
-
-
         {page === "Main Page" && 
 
         <div style={{
@@ -266,10 +263,12 @@ export default function NavigationPreview ({
                                     "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
                                     "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
-    
+                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+                                    
                                     "justifyContent": "center",
                                     "alignItems": "center",
                                     "display": "flex",
+                                    
                                 } : {            
                                     "backgroundImage": `url('${visualMap[navObj[mainPagePictureVariableNames[1]]]}')`,
                                     "backgroundSize": `${navObj["mainPage-listItemGroupWidth"]}px ${navObj["mainPage-listItemGroupHeight"]}px`,
@@ -280,10 +279,12 @@ export default function NavigationPreview ({
                                     "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
                                     "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
-    
+                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
                                     "justifyContent": "center",
                                     "alignItems": "center",
                                     "display": "flex",
+                                    
                                 
                                     "transition": "all 0.2s ease-out",
                                 }
@@ -421,6 +422,7 @@ export default function NavigationPreview ({
                                 "height": `${currItemHeight}px`,
                                 "color": `${currItemFontColor}`,
                                 "fontSize": `${currItemFontSize}px`,
+                                "borderRadius": `${navObj["defaultCornerRadius"]}px`,
 
                                 "justifyContent": "center",
                                 "alignItems": "center",
@@ -439,6 +441,7 @@ export default function NavigationPreview ({
                                 "height": `${currItemHeight}px`,
                                 "color": `${currItemFontColor}`,
                                 "fontSize": `${currItemFontSize}px`,
+                                "borderRadius": `${navObj["defaultCornerRadius"]}px`,
 
                                 "transition": "all 0.2s ease-out",
 
@@ -528,7 +531,8 @@ export default function NavigationPreview ({
                             "height": `${navObj["saveloadPage-slotHeight"]}px`,
                             "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
                             "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
-                        
+                            "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
                             "transition": "all 0.2s ease-out",
                         }}
               
@@ -604,6 +608,7 @@ export default function NavigationPreview ({
                         "width": "150px", 
                         "height":"150px", 
                         "color": "#272626",
+                        
                     }}
                     onClick={()=>{
                         console.log("next sl page");//TODO2
@@ -696,6 +701,7 @@ export default function NavigationPreview ({
 
                         "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
                         "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
+                        "borderRadius": `${navObj["defaultCornerRadius"]}px`,
 
                         "transition": "all 0.2s ease-out",
 
@@ -745,6 +751,7 @@ export default function NavigationPreview ({
 
                                     "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
+                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
 
                                     "transition": "all 0.2s ease-out",
 
@@ -875,7 +882,8 @@ export default function NavigationPreview ({
 
                                             "marginRight": navObj["settingPage-entriesHorizontal"] === true ? `${navObj["settingPage-listItemGap"]}px` : "0px",
                                             "marginBottom": navObj["settingPage-entriesHorizontal"] === false ? `${navObj["settingPage-listItemGap"]}px` : "0px",
-
+                                            "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+                                            
                                             "transition": "all 0.2s ease-out",
 
                                             "padding": "7px",
@@ -1242,6 +1250,7 @@ export default function NavigationPreview ({
                                 "width": `${navObj["backButton-width"]}px`,
                                 "height": `${navObj["backButton-height"]}px`,
                                 "fontSize": `${navObj["backButton-fontSize"]}px`,
+                                "borderRadius": `${navObj["defaultCornerRadius"]}px`,
 
                                 "transition": "all 0.2s ease-out",
 

@@ -791,10 +791,20 @@ export default function NavigationSetter({initialNavObj,
                 <option value="cursive" key="navUI_cursive">cursive</option>    
             </select>          
         </div>
-        
+
         <label>All Rectangle Corner Radius:</label><br></br>
-        <input type="range"></input>
-        <label></label>
+        <input type="range"
+          min="0" max="50" step="1"
+          value={currentProjectNav["defaultCornerRadius"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["defaultCornerRadius"] = event.target.value;
+            updateNavObj(tempObj);       
+                      
+            setCurrentProjectNav({...currentProjectNav, "defaultCornerRadius": event.target.value});  
+          }}
+        ></input>
+        <label>{currentProjectNav["defaultCornerRadius"]} px</label>
 
       </div>
 
