@@ -1150,15 +1150,18 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
       <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
         
-      <select value={languageCodeTextOption}
-        onChange={(event)=>{
-          userChangeEditorUILang(event.target.value);
-        }}
-      >
-        <option key="lang-Eng" value="en">English</option>
-        <option key="lang-chn" value="chn">简体中文</option> 
-        {/* //TODO16 */}
-      </select>
+      <div style={{"alignItems": "start"}}>
+          <label>Project Language</label><br></br>
+          <select value={languageCodeTextOption}
+            onChange={(event)=>{
+              userChangeEditorUILang(event.target.value);
+            }}
+          >
+            <option key="lang-Eng" value="en">English</option>
+            <option key="lang-chn" value="chn">简体中文</option> 
+            {/* //TODO16 */}
+          </select>
+      </div>
     </div>
 
 
