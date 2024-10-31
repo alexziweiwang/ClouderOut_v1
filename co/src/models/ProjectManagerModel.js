@@ -73,11 +73,14 @@ export async function deleteProject(projectToDelete, currUser) {
 export async function createProject(currUser, projectName, projectObj) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
-  await setDoc(projRef, projectObj);
+  let projObjTemp = projectObj;
+  projObjTemp = {...projObjTemp, ui_language: 'en'}; //default editor-UI-language
+
+  await setDoc(projRef, projObjTemp);
 
 
   const placeholder = "chapter0";
-  await setDoc(projRef, projectObj).then(() => {
+  await setDoc(projRef, projObjTemp).then(() => {
     setDoc(doc(db, "user_projects", currUser, "projects", projectName, "chapters", placeholder), 
     {})
   }).catch((e) => {
@@ -90,4 +93,19 @@ export async function updateProjectUILang({projectName, currUser, selectedUILang
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
   await updateDoc(projRef, {ui_language: selectedUILang});
+}
+
+export async function fetchProjectUILang({projectName, currUser}) {
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+  const projSnap = await getDoc(projRef);
+
+  if (!projSnap.exists()) {
+    return;
+  }
+
+  let projectData = projSnap.data();
+
+  //TODO fetch the property of "ui_language" and return
+
+  return "en"; //TODO temp value
 }

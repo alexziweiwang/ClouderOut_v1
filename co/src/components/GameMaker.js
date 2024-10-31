@@ -14,6 +14,7 @@ import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { updateProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
 import langDictionary from './textDictionary';
 
 
@@ -1093,6 +1094,14 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return languageCodeTextOption;
   }
 
+  function userChangeEditorUILang(val) {
+    let resp = window.confirm("Are you sure to change the editor language to: ", val, " ?");
+    if (resp) {
+      setLanguageCodeTextOption(val);
+      //call updateProjectUILangVM({projectName, currUser, selectedUILang})
+    }
+  }
+
 
 
   return (
@@ -1117,7 +1126,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         
       <select value={languageCodeTextOption}
         onChange={(event)=>{
-          setLanguageCodeTextOption(event.target.value);
+          userChangeEditorUILang(event.target.value);
         }}
       >
         <option key="lang-Eng" value="en">English</option>

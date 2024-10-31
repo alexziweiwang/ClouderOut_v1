@@ -1,4 +1,8 @@
-import {fetchProjectList, revertProject, deleteProject, createProject, initializeChaptersCollection } from '../models/ProjectManagerModel';
+import {fetchProjectList, revertProject, 
+    deleteProject, createProject, 
+    initializeChaptersCollection, updateProjectUILang,
+    fetchProjectUILang
+} from '../models/ProjectManagerModel';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
 export async function fetchProjectListVM(currUser) {
@@ -33,7 +37,12 @@ export async function createProjectVM(currUser, projectName, projectObj) {
     await createProject(currUser, projectName, projectObj);
 }
 
-export async function updateProjectUILang({projectName, currUser, selectedUILang}) {
+export async function updateProjectUILangVM({projectName, currUser, selectedUILang}) {
     await updateProjectUILang({projectName, currUser, selectedUILang});
 
+}
+
+export async function fetchProjectUILangVM({projectName, currUser}) {
+    let res = await fetchProjectUILang({projectName, currUser});
+    return res;
 }
