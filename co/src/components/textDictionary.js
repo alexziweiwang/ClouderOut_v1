@@ -136,6 +136,11 @@ const textDictionary = {
         widthText: "Width",
         heightText: "Height",
         mainPageItemsText: "Main Page Items",
+        generalBackButtonSettingsText: "General Back Button Settings",
+        buttonLookingText: "Button Looking",
+        chapterTitleLookingText: "Chapter Title Looking",
+
+
 
 
 
@@ -220,8 +225,8 @@ const textDictionary = {
         charPicSettingText: "角色图设置",
         addAnewCharPicText: "添加一个新·角色图",
         confirmAddText: "确认添加",
-        clkbSettingText: "可点击物(个性化按钮)设置",
-        addAnewButtonText: "添加一个新·按钮",
+        clkbSettingText: "可点击物(个性化按键)设置",
+        addAnewButtonText: "添加一个新·按键",
         addAnewConsequenceText: "添加一个新·调整效果",
         bgmSettingText: "背景音乐设置",
         chapterManagementText: "章节管理",
@@ -280,6 +285,9 @@ const textDictionary = {
         widthText: "宽度",
         heightText: "高度",
         mainPageItemsText: "主页 各单项",
+        generalBackButtonSettingsText: "通用返回键 设置",
+        buttonLookingText: "按键外观",
+        chapterTitleLookingText: "章节标题外观",
 
 
 

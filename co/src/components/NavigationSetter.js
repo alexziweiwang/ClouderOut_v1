@@ -174,6 +174,21 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.mainPageItemsText
         : textDictItemDefault.mainPageItemsText;
 
+    let generalBackButtonSettingsText = textDictItem.generalBackButtonSettingsText !== undefined ?
+        textDictItem.generalBackButtonSettingsText
+        : textDictItemDefault.generalBackButtonSettingsText;
+
+    let buttonLookingText = textDictItem.buttonLookingText !== undefined ?
+        textDictItem.buttonLookingText
+        : textDictItemDefault.buttonLookingText;
+
+    let chapterTitleLookingText = textDictItem.chapterTitleLookingText !== undefined ?
+        textDictItem.chapterTitleLookingText
+        : textDictItemDefault.chapterTitleLookingText;
+
+    
+
+
 
 
 //TODO15
@@ -601,7 +616,7 @@ export default function NavigationSetter({initialNavObj,
               onClick={()=>{
                 setOpenBackButtonSettingArea(true);
               }}
-             >{openBackButtonSettingArea === true ? "" : "︾"} General Back Button Settings </div>
+             >{openBackButtonSettingArea === true ? "" : "︾"} {generalBackButtonSettingsText} </div>
              {openBackButtonSettingArea && <div className="indentOne">
                   <label>{widthText}: </label>
                     <input type="range" 
@@ -646,7 +661,7 @@ export default function NavigationSetter({initialNavObj,
                         setCurrentProjectNav({...currentProjectNav, "backButton-height": event.target.value});  
                       }
                     }></input>
-                  <br></br><label>Button Looking: </label>
+                  <br></br><label>{buttonLookingText}: </label>
                   <br></br><input type="radio" 
                     value={currentProjectNav["backButton-isShape"]}
                     checked={currentProjectNav["backButton-isShape"]}
@@ -776,6 +791,10 @@ export default function NavigationSetter({initialNavObj,
                 <option value="cursive" key="navUI_cursive">cursive</option>    
             </select>          
         </div>
+        
+        <label>All Rectangle Corner Radius:</label><br></br>
+        <input type="range"></input>
+        <label></label>
 
       </div>
 
@@ -2860,7 +2879,7 @@ export default function NavigationSetter({initialNavObj,
            >{verticalText}</label>
            <br></br>
 
-           <label>Chapter Title Looking:</label>
+           <label>{chapterTitleLookingText}:</label>
           <div className="indentOne">
                 
             <input type="radio" 
@@ -2977,7 +2996,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input> 
               <br></br>
-              <label>Group X: </label>    
+              <label>{groupPositionXText}: </label>    
               <input type="range"
                 min="0" max="650" step="1"
                 value={currentProjectNav["storyPage-listItemGroupX"]}
@@ -3001,7 +3020,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input> 
               <br></br>
-              <label>Group Y: </label>    
+              <label>{groupPositionYText}: </label>    
               <input type="range"
                 min="0" max="600" step="1"
                 value={currentProjectNav["storyPage-listItemGroupY"]}
@@ -3049,7 +3068,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input> 
               <br></br>
-              <label>Font Shade: </label>
+              <label>{fontColorText}: </label>
               <input type="color"
                 value={currentProjectNav["storyPage-listItemGroupFontColor"]}
                 onChange={(event)=>{
