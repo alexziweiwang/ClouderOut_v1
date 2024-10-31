@@ -14,7 +14,7 @@ import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { updateProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
+import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
 import langDictionary from './textDictionary';
 
 
@@ -628,6 +628,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
         
         setFirstTimeEnter(false);
+
+        fetchUILangFromCLoud();
     }
 
 
@@ -654,6 +656,19 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
   });
+
+  function firstSetupUILanguage() {
+    return fetchUILangFromCLoud()
+  }
+
+  async function fetchUILangFromCLoud() {
+    let obj= {projectName: projectName, currUser: username}
+    let ans = await fetchProjectUILangVM(obj); //TODO21
+                console.log("fetchUILangFromCLoud(): ", ans);
+    //TODO
+    setLanguageCodeTextOption(ans);
+    return ans;
+  }
 
   function goToProjectManagingPanel() {
     navigate('/projectmanagingpanel', { replace: true });

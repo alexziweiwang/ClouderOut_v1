@@ -105,7 +105,5 @@ export async function fetchProjectUILang({projectName, currUser}) {
 
   let projectData = projSnap.data();
 
-  //TODO fetch the property of "ui_language" and return
-
-  return "en"; //TODO temp value
+  return projectData.ui_language;
 }
