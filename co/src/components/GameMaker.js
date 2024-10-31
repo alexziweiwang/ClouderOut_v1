@@ -16,7 +16,7 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } 
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
 import langDictionary from './textDictionary';
-
+import uiLangMap from './uiLangMap';
 
 export default function GameMaker({username, projectName}) {
 
@@ -664,8 +664,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   async function fetchUILangFromCLoud() {
     let obj= {projectName: projectName, currUser: username}
     let ans = await fetchProjectUILangVM(obj); //TODO21
-                console.log("fetchUILangFromCLoud(): ", ans);
-    //TODO
+
     setLanguageCodeTextOption(ans);
     return ans;
   }
@@ -1109,11 +1108,23 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return languageCodeTextOption;
   }
 
-  function userChangeEditorUILang(val) {
-    let resp = window.confirm("Are you sure to change the editor language to: ", val, " ?");
+  async function userChangeEditorUILang(val) {
+    
+    if (val.length === 0 || uiLangMap[val] === undefined) {
+      return;
+    }
+
+    //TODO add to dictionary later
+    let askStr = "Are you sure to change the editor language to: " + uiLangMap[val] + " ?";
+
+
+    let resp = window.confirm(askStr);
+    
     if (resp) {
       setLanguageCodeTextOption(val);
-      //call updateProjectUILangVM({projectName, currUser, selectedUILang})
+
+      let obj= {projectName: projectName, currUser: username, selectedUILang: val};
+      await updateProjectUILangVM(obj);
     }
   }
 
