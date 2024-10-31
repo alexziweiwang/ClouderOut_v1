@@ -32,3 +32,8 @@ export async function deleteProjectVM(projectToDelete, currUser) {
 export async function createProjectVM(currUser, projectName, projectObj) {
     await createProject(currUser, projectName, projectObj);
 }
+
+export async function updateProjectUILang({projectName, currUser, selectedUILang}) {
+    await updateProjectUILang({projectName, currUser, selectedUILang});
+
+}

@@ -84,3 +84,10 @@ export async function createProject(currUser, projectName, projectObj) {
     console.log(e)
   })
 }
+
+
+export async function updateProjectUILang({projectName, currUser, selectedUILang}) {
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+
+  await updateDoc(projRef, {ui_language: selectedUILang});
+}
