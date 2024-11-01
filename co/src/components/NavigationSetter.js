@@ -213,6 +213,18 @@ export default function NavigationSetter({initialNavObj,
     let selectDataItemCategoryText = textDictItem.selectDataItemCategoryText !== undefined ?
         textDictItem.selectDataItemCategoryText
         : textDictItemDefault.selectDataItemCategoryText;
+
+    let gameDataText = textDictItem.gameDataText !== undefined ?
+        textDictItem.gameDataText
+        : textDictItemDefault.gameDataText;
+    
+    let playerProfileText = textDictItem.playerProfileText !== undefined ?
+        textDictItem.playerProfileText
+        : textDictItemDefault.playerProfileText;
+        
+    let playerAccountInfoText = textDictItem.playerAccountInfoText !== undefined ?
+        textDictItem.playerAccountInfoText
+        : textDictItemDefault.playerAccountInfoText;
     
 
 
@@ -248,6 +260,12 @@ export default function NavigationSetter({initialNavObj,
     const [playerProfilePageIsAddingPic, setPlayerProfilePageIsAddingPic] = useState(false);
     const [playerProfilePageIsAddingValue, setPlayerProfilePageIsAddingValue] = useState(false);
 
+    const [toggleIsPlayerProfile, setToggleIsPlayerProfile] = useState(true);
+    const [toggleIsSetting, setToggleIsSetting] = useState(true);
+    const [toggleIsShop, setToggleIsShop] = useState(true);
+
+
+
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
 
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
@@ -257,6 +275,7 @@ export default function NavigationSetter({initialNavObj,
     const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
+    
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -1688,31 +1707,15 @@ export default function NavigationSetter({initialNavObj,
          <br></br>
          <label>{mainPageItemsText}: </label>
          <div className="indentOne someGrey" style={{"color": "#000000"}}>
-            <input type="checkbox" value={currentProjectNav["mainPage-playerProfile"]}
-                checked={currentProjectNav["mainPage-playerProfile"]}
+            <input type="checkbox" value={toggleIsPlayerProfile}
+                checked={toggleIsPlayerProfile}
                 onChange={()=>{
-                  /*
-                  let val = currentProjectNav["mainPage-playerProfile"];
-                  
-                  let tempObj = currentProjectNav;
-                  tempObj["mainPage-playerProfile"] = !val;
-                  updateNavObj(tempObj);              
-
-                  setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
-                  */
-                  }}               
+                  setToggleIsPlayerProfile(!toggleIsPlayerProfile);
+                }}               
             ></input>
            <label
                 onClick={()=>{
-/*
-                  let val = currentProjectNav["mainPage-playerProfile"];
-                  
-                  let tempObj = currentProjectNav;
-                  tempObj["mainPage-playerProfile"] = !val;
-                  updateNavObj(tempObj);              
-
-                  setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile": !val});
-*/
+                  setToggleIsPlayerProfile(!toggleIsPlayerProfile);
                 }} 
            >{playerProfilePageText}{sEntryText}</label>
            <br></br>
@@ -1784,6 +1787,11 @@ export default function NavigationSetter({initialNavObj,
               onClick={()=>{
                   //TODO 4 entries' status
                   //TODO update the following: currentProjectNav["mainPage-playerProfile"] , currentProjectNav["mainPage-setting"], currentProjectNav["mainPage-shop"]
+                  
+                  // toggleIsPlayerProfile, setToggleIsPlayerProfile
+                  // toggleIsSetting, setToggleIsSetting
+                  // toggleIsShop, setToggleIsShop
+
 
               }}
             >{updateListText}</button>
@@ -3960,9 +3968,9 @@ export default function NavigationSetter({initialNavObj,
                   >
                     <option key="ppSetting-value-type-defaultNone" value="">-- {selectDataItemCategoryText} --</option>
 
-                    <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
-                    <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
-                    <option key="ppSetting-value-type-accountInfo" value="Player Account Info">Player Account Info</option>
+                    <option key="ppSetting-value-type-gameData" value="Game Data">{gameDataText}</option>
+                    <option key="ppSetting-value-type-playerProfileData" value="Player Profile">{playerProfileText}</option>
+                    <option key="ppSetting-value-type-accountInfo" value="Player Account Info">{playerAccountInfoText}</option>
                   </select>
 
                   {/* actual data item names (according to type) */}
