@@ -194,9 +194,17 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.updateListText
         : textDictItemDefault.updateListText;
 
-    let reloadSetterText =textDictItem.reloadSetterText !== undefined ?
+    let reloadSetterText = textDictItem.reloadSetterText !== undefined ?
         textDictItem.reloadSetterText
         : textDictItemDefault.reloadSetterText;
+
+    let fontNameText = textDictItem.fontNameText !== undefined ?
+        textDictItem.fontNameText
+        : textDictItemDefault.fontNameText;
+
+    let labelTextText = textDictItem.labelTextText !== undefined ?
+        textDictItem.labelTextText
+        : textDictItemDefault.labelTextText;
 
     
 
@@ -780,6 +788,7 @@ export default function NavigationSetter({initialNavObj,
         onClick={()=>{
           fetchProjResourceLists();
           getGameDataFromCloud();
+          updateCurrentPageName("Main Page");
         }}
       >{reloadSetterText}</button><br></br>
 
@@ -3636,13 +3645,12 @@ export default function NavigationSetter({initialNavObj,
 
 
      {currentSettingPage === "Player Profile Page" && <div>
-     <label>Player Profile Page:</label>
+     <label>{playerProfilePageText}:</label>
              
     
 
 
-
-       <br></br><label>Element Settings: </label>
+       <br></br>
        <div className="indentOne">
        <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
@@ -3817,7 +3825,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
              >Italic</label><br></br>
 
-             <label>Text {fontSizeText}: </label>
+             <label>{fontSizeText}: </label>
              <input type="range" min="5" max="90" step="1"
               value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]}
               onChange={(event)=>{
@@ -3827,7 +3835,7 @@ export default function NavigationSetter({initialNavObj,
              <label>{currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]
 }</label>
              <br></br>
-             <label>Text Font: </label>
+             <label>{fontNameText}: </label>
                 <select 
                   value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"]}
                   onChange={(event)=>{
@@ -3840,7 +3848,7 @@ export default function NavigationSetter({initialNavObj,
                   <option value="cursive" key="toAddPPpageTextContent_cursive">cursive</option>
   
                 </select><br></br>
-             <label>Text Color: </label><input type="color"
+             <label>{fontColorText}: </label><input type="color"
               value={currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"]}
               onChange={(event)=>{
                 changePPTryingTextItemTextColor(event);
@@ -3927,7 +3935,7 @@ export default function NavigationSetter({initialNavObj,
            
            
            
-             <label>Label Text: </label>
+             <label>{labelTextText}: </label>
              <input
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]}
               onChange={(event)=>{
@@ -4027,7 +4035,7 @@ export default function NavigationSetter({initialNavObj,
               }}
             ></input>  
              <br></br>
-             <label>Text {fontSizeText}: </label>
+             <label>{fontSizeText}: </label>
              <input type="range" min="1" max="50" step="1"
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}
               onChange={(event)=>{
@@ -4037,7 +4045,7 @@ export default function NavigationSetter({initialNavObj,
              <label> {currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}</label>
              
              <br></br>
-             <label>Text Font: </label><select
+             <label>{fontNameText}: </label><select
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"]}
               onChange={(event)=>{
                 changePPTryingValueItemFont(event);
@@ -4048,7 +4056,7 @@ export default function NavigationSetter({initialNavObj,
                   <option value="sans-serif" key="toAddPPpageValue_sans-serif">sans-serif</option>
                   <option value="cursive" key="toAddPPpageValue_cursive">cursive</option>
              </select><br></br>
-             <label>Text Color: </label>
+             <label>{fontColorText}: </label>
              <input type="color"
               value={currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"]}
               onChange={(event)=>{
@@ -4348,7 +4356,7 @@ export default function NavigationSetter({initialNavObj,
                   }}    
                 ></input>
               <br></br>
-              <label>Text {fontSizeText}: </label>
+              <label>{fontSizeText}: </label>
               <input type="range"
                   value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}
                   onChange={(event)=>{
@@ -4360,7 +4368,7 @@ export default function NavigationSetter({initialNavObj,
               ></input>
               <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}</label>
               <br></br>
-              <label>Text Font: </label>
+              <label>{fontNameText}: </label>
               <select
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFont"]}
                 onChange={(event)=>{
@@ -4375,7 +4383,7 @@ export default function NavigationSetter({initialNavObj,
                 <option value="cursive" key="playerProfile_nickname_cursive">cursive</option>   
               </select>
               <br></br>
-              <label>Text Color: </label>
+              <label>{fontColorText}: </label>
               <input type="color"
                 value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textColor"]}
                 onChange={(event)=>{

@@ -141,7 +141,9 @@ const textDictionary = {
         chapterTitleLookingText: "Chapter Title Looking",
         allButtonCornerRadiusText: "All Button Corner Radius",
         updateListText: "Update List",
-        reloadSetterText: "Reload Setter",
+        reloadSetterText: "Reload Setter Area",
+        fontNameText: "Text Font",
+        labelTextText: "Label Text",
 
 
 
@@ -293,8 +295,9 @@ const textDictionary = {
         chapterTitleLookingText: "章节标题外观",
         allButtonCornerRadiusText: "所有按钮圆角半径",
         updateListText: "更新此列表",
-        reloadSetterText: "重新加载 设置器",
-
+        reloadSetterText: "重新加载设置区域",
+        fontNameText: "字体",
+        labelTextText: "标签文字",
 
 
 
