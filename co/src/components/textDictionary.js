@@ -160,6 +160,12 @@ const textDictionary = {
         varNameText: "Variable Name",
         defaultValueText: "Default Value",
         operationsText: "Operations",
+        textText: "Text",
+        numberText: "Number",
+        trueFalseText: "True/False",
+        trueText: "True",
+        falseText: "False",
+        selectText: "Select",
 
 
 
@@ -330,7 +336,12 @@ const textDictionary = {
         varNameText: "变量名",
         defaultValueText: "默认值",
         operationsText: "操作",
-
+        textText: "文字",
+        numberText: "数",
+        trueFalseText: "是或否",
+        trueText: "是",
+        falseText: "否",
+        selectText: "选择",
 
 
 

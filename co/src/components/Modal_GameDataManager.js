@@ -69,6 +69,32 @@ export default function Modal_GameDataManager ({
             textDictItem.operationsText
             : textDictItemDefault.operationsText;
 
+    let textText = textDictItem.textText !== undefined ?
+            textDictItem.textText
+            : textDictItemDefault.textText; 
+
+    let numberText = textDictItem.numberText !== undefined ?
+            textDictItem.numberText
+            : textDictItemDefault.numberText;
+
+    let trueFalseText = textDictItem.trueFalseText !== undefined ?
+            textDictItem.trueFalseText
+            : textDictItemDefault.trueFalseText;
+
+    let trueText = textDictItem.trueText !== undefined ?
+            textDictItem.trueText
+            : textDictItemDefault.trueText;
+
+    let falseText = textDictItem.falseText !== undefined ?
+            textDictItem.falseText
+            : textDictItemDefault.falseText;
+
+    let selectText = textDictItem.selectText !== undefined ?
+            textDictItem.selectText
+            : textDictItemDefault.selectText;
+
+
+
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -107,7 +133,7 @@ export default function Modal_GameDataManager ({
             return;
         }
 
-        if (newGameDataType === "isBoolean" && defaultNewBooleanValue === "invalid") {
+        if (newGameDataType === "isBoolean" && (defaultNewBooleanValue === "invalid" || defaultNewBooleanValue.length === 0)) {
             console.log("invalid boolean");
             return;
         }
@@ -121,7 +147,8 @@ export default function Modal_GameDataManager ({
         let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
         
         if (newGameDataType === "isBoolean") {
-            newObj = {"name": newVarName, "default_value": defaultNewBooleanValue, "data_type": "boolean"};
+            let boolVal = defaultNewBooleanValue === "isTrue" ? true : false;
+            newObj = {"name": newVarName, "default_value": boolVal, "data_type": "boolean"};
         } else if (newGameDataType === "isNumber") {
             newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "number"};
         } else if (newGameDataType === "isText") {
@@ -158,11 +185,11 @@ export default function Modal_GameDataManager ({
 
     function selectOnDefaultBoolean(event) {
         if (event.target.value === "isTrue") {
-            setDefaultNewBooleanValue(true);
+            setDefaultNewBooleanValue("isTrue");
         } else if (event.target.value === "isFalse") {
-            setDefaultNewBooleanValue(false);
+            setDefaultNewBooleanValue("isFalse");
         } else {
-            setDefaultNewBooleanValue("invalid");
+            setDefaultNewBooleanValue("");
         }
     }
 
@@ -369,9 +396,9 @@ export default function Modal_GameDataManager ({
                     <br></br>
                     <label>{typeText}: </label>
                     <select value={newGameDataType} onChange={selectOnNewGdataType}>
-                        <option value="isText" key="text"> Text </option>
-                        <option value="isNumber" key="number"> Number </option>
-                        <option value="isBoolean" key="boolean"> True/False </option>
+                        <option value="isText" key="new-val-type-text"> {textText} </option>
+                        <option value="isNumber" key="new-val-type-number"> {numberText} </option>
+                        <option value="isBoolean" key="new-val-type-boolean"> {trueFalseText} </option>
                     </select>
                     <br></br>
                     <label>{defaultValueText}: </label>
@@ -379,10 +406,10 @@ export default function Modal_GameDataManager ({
                     <input type="text" value={defaultNewValue} onChange={changeDefaultNewValue}></input>
                     }
                     {isNewGdataTypeBoolean && 
-                    <select value={defaultNewBooleanValue} onChange={selectOnDefaultBoolean}>
-                        <option value="" key=""> True or False </option>
-                        <option value="isTrue" key="true"> True </option>
-                        <option value="isFalse" key="false"> False </option>
+                    <select value={defaultNewBooleanValue} onChange={(event)=>{selectOnDefaultBoolean(event)}}>
+                        <option value="" key="new-val-bool-defaultNone"> --- {selectText} ---</option>
+                        <option value="isTrue" key="new-val-bool-true"> {trueText} </option>
+                        <option value="isFalse" key="new-val-bool-false"> {falseText} </option>
                     </select>
                     }
                     <br></br>
