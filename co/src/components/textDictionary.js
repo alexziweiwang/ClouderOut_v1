@@ -166,6 +166,11 @@ const textDictionary = {
         trueText: "True",
         falseText: "False",
         selectText: "Select",
+        projectNameText: "Project Name",
+        newFileUploadText: "New File Upload",
+        allResourcesText: "All Resources",
+        inThisProjectText: "In this Project",
+        notInThisProjectText: "Not in this project",
 
 
 
@@ -342,7 +347,11 @@ const textDictionary = {
         trueText: "是",
         falseText: "否",
         selectText: "选择",
-
+        projectNameText: "项目名",
+        newFileUploadText: "新文件上传",
+        allResourcesText: "所有资源",
+        inThisProjectText: "本项目内 资源",
+        notInThisProjectText: "非本项目 资源",
 
 
     },

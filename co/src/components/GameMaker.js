@@ -61,7 +61,11 @@ export default function GameMaker({username, projectName}) {
         textDictItem.selectSizeDirectionText
         : textDictItemDefault.selectSizeDirectionText;
 
-//TODO12
+  const projectNameText = textDictItem.projectNameText !== undefined ?
+        textDictItem.projectNameText
+        : textDictItemDefault.projectNameText;
+
+//TODO15
 
 /* Important data structure in this level: Game-Maker
   -hook chapterList: array of all chapters' info: key, title, display-boolean)
@@ -1148,7 +1152,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     
     <div className="returning_buttons">
       <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
-      <p>Project Name: {projectName}</p>
+      <p>{projectNameText}: {projectName}</p>
      
      
       <button

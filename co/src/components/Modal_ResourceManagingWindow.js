@@ -59,8 +59,20 @@ export default function Modal_ResourceManagingWindow ({
     let saveToCloudText = textDictItem.saveToCloudText !== undefined ?
             textDictItem.saveToCloudText
             : textDictItemDefault.saveToCloudText;
+    let newFileUploadText = textDictItem.newFileUploadText !== undefined ?
+            textDictItem.newFileUploadText
+            : textDictItemDefault.newFileUploadText;
+    let allResourcesText = textDictItem.allResourcesText !== undefined ?
+            textDictItem.allResourcesText
+            : textDictItemDefault.allResourcesText;
+    let inThisProjectText = textDictItem.inThisProjectText !== undefined ?
+            textDictItem.inThisProjectText
+            : textDictItemDefault.inThisProjectText;
+    let notInThisProjectText = textDictItem.notInThisProjectText !== undefined ?
+            textDictItem.notInThisProjectText
+            : textDictItemDefault.notInThisProjectText;
 
-
+//TODO15
     if (isDisplay === true) {
         modalStyleName = "displayBlock modalBackboard";
     } else {
@@ -435,9 +447,9 @@ export default function Modal_ResourceManagingWindow ({
                     setVisualListFilter(event.target.value); 
                     changeVisFilter(event.target.value);}}
                 >
-                        <option value="curr" key="currVis">In this project</option>
-                        <option value="all" key="allVis">All resources</option>
-                        <option value="not" key="notVis">Not in this project</option>
+                        <option value="curr" key="currVis">{inThisProjectText}</option>
+                        <option value="all" key="allVis">{allResourcesText}</option>
+                        <option value="not" key="notVis">{notInThisProjectText}</option>
                 </select>
                 
                 {visualListFilteredList.length > 0 && <div className="rsrcListArea">
@@ -452,7 +464,7 @@ export default function Modal_ResourceManagingWindow ({
                 <br></br><br></br>
                 <label> Add a New Picture: </label> <br></br>
                 <div  style={{"textAlign": "left", "padding": "3px"}}>
-                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(true);}}></input> <label onClick={()=>{setIsSourceByUpload(true);}}>New File Upload</label> <br></br>
+                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(true);}}></input> <label onClick={()=>{setIsSourceByUpload(true);}}>{newFileUploadText}</label> <br></br>
                 {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 
                         type="file"
@@ -529,9 +541,9 @@ export default function Modal_ResourceManagingWindow ({
                
                 <br></br>
                 <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value); changeAuFilter(event.target.value);}}>
-                        <option value="curr" key="currAu">In this project</option>
-                        <option value="all" key="allAu">All resources</option>
-                        <option value="not" key="notAu">Not in this project</option>
+                        <option value="curr" key="currAu">{inThisProjectText}</option>
+                        <option value="all" key="allAu">{allResourcesText}</option>
+                        <option value="not" key="notAu">{notInThisProjectText}</option>
                 </select>
                 
                 {audioListFilteredList.length > 0&& <div className="rsrcListArea">
