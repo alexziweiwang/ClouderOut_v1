@@ -49,12 +49,26 @@ export default function Modal_GameDataManager ({
             textDictItem.editText
             : textDictItemDefault.editText;
     
-
-    
     let addNewVariableText = textDictItem.addNewVariableText !== undefined ?
             textDictItem.addNewVariableText
             : textDictItemDefault.addNewVariableText;
     
+    let typeText = textDictItem.typeText !== undefined ? 
+            textDictItem.typeText
+            : textDictItemDefault.typeText;
+
+    let varNameText = textDictItem.varNameText !== undefined ?
+            textDictItem.varNameText
+            : textDictItemDefault.varNameText;
+
+    let defaultValueText = textDictItem.defaultValueText !== undefined ?
+            textDictItem.defaultValueText
+            : textDictItemDefault.defaultValueText;
+
+    let operationsText = textDictItem.operationsText !== undefined ?
+            textDictItem.operationsText
+            : textDictItemDefault.operationsText;
+
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -287,10 +301,10 @@ export default function Modal_GameDataManager ({
                 <table style={{"width": "900px"}}>
                     <thead>
                         <tr className="textNoSelect tableRow">
-                            <th>Variable Name</th>
-                            <th>Type</th>
-                            <th>Default Value</th>
-                            <th>Operations</th>
+                            <th>{varNameText}</th>
+                            <th>{typeText}</th>
+                            <th>{defaultValueText}</th>
+                            <th>{operationsText}</th>
                         </tr>
                     </thead>
 
@@ -350,17 +364,17 @@ export default function Modal_GameDataManager ({
                         "width": "889px"
                     }}
                 >
-                    <label>Variable Name: </label>
+                    <label>{varNameText}: </label>
                     <input type="text" value={newVarName} onChange={changeNewVarName}/>
                     <br></br>
-                    <label>Data Type: </label>
+                    <label>{typeText}: </label>
                     <select value={newGameDataType} onChange={selectOnNewGdataType}>
                         <option value="isText" key="text"> Text </option>
                         <option value="isNumber" key="number"> Number </option>
                         <option value="isBoolean" key="boolean"> True/False </option>
                     </select>
                     <br></br>
-                    <label>Default Value: </label>
+                    <label>{defaultValueText}: </label>
                     {!isNewGdataTypeBoolean && 
                     <input type="text" value={defaultNewValue} onChange={changeDefaultNewValue}></input>
                     }

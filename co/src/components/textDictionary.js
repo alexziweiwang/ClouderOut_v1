@@ -156,6 +156,10 @@ const textDictionary = {
         sItems: " Items",
         horizontalMarkText: "(horizontal)",
         verticalMarkText: "(vertical)",
+        typeText: "Type",
+        varNameText: "Variable Name",
+        defaultValueText: "Default Value",
+        operationsText: "Operations",
 
 
 
@@ -322,6 +326,13 @@ const textDictionary = {
         sItems: "单项",
         horizontalMarkText: "(横向)",
         verticalMarkText: "(纵向)",
+        typeText: "类型",
+        varNameText: "变量名",
+        defaultValueText: "默认值",
+        operationsText: "操作",
+
+
+
 
     },
     jp: {
