@@ -305,7 +305,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "16:9(horizonal)",
-    "defaultCornerRadius": 5,
+    "defaultCornerRadius": 0,
     
     "isWithSL": true,
     "fontFamilyForAll": "serif",

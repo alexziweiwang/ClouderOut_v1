@@ -876,8 +876,9 @@ export default function NavigationSetter({initialNavObj,
       <br></br><br></br>
 
       <button>{saveChangesText}</button>
-    
-      <br></br><br></br><br></br>
+
+<div style={{"border": "1px dotted #FFFFFF", "padding": "2px"}}>    
+      <br></br>
     {currentSettingPage === "Game Progress Strategy" && <div>
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
@@ -1750,13 +1751,18 @@ export default function NavigationSetter({initialNavObj,
             <br></br><br></br>
             <button
               onClick={()=>{
-                  //TODO 4 entries' status
-                  //TODO update the following: currentProjectNav["mainPage-playerProfile"] , currentProjectNav["mainPage-setting"], currentProjectNav["mainPage-shop"]
+                  let tempObj = currentProjectNav;
+                  tempObj["mainPage-playerProfile"] = toggleIsPlayerProfile;
+                  tempObj["mainPage-setting"] = toggleIsSetting;
+                  tempObj["mainPage-shop"] = toggleIsShop;
+                  updateNavObj(tempObj);                  
+                
                   
-                  // toggleIsPlayerProfile, setToggleIsPlayerProfile
-                  // toggleIsSetting, setToggleIsSetting
-                  // toggleIsShop, setToggleIsShop
-
+                  setCurrentProjectNav({...currentProjectNav, 
+                    "mainPage-playerProfile": toggleIsPlayerProfile,
+                    "mainPage-setting":  toggleIsSetting,
+                    "mainPage-shop": toggleIsShop
+                  });   
 
               }}
             >{updateListText}</button>
@@ -4714,7 +4720,8 @@ export default function NavigationSetter({initialNavObj,
 
     <br></br>
 
-    <br></br>
+
+</div>
 
     <button>{saveChangesText}</button>
 
