@@ -149,6 +149,11 @@ const textDictionary = {
         gameDataText: "Game Data",
         playerProfileText: "Player Profile",
         playerAccountInfoText: "Player Account Info",
+        italicText: "Italic",
+        chapterListText: "Chapter List",
+        listDirectionText: "List Direction",
+        listItemLookingText: "List Item Looking",
+        sItems: " Items",
 
 
 
@@ -308,6 +313,11 @@ const textDictionary = {
         gameDataText: "游戏数据",
         playerProfileText: "玩家资料",
         playerAccountInfoText: "玩家帐号信息",
+        italicText: "斜体",
+        chapterListText: "章节列表",
+        listDirectionText: "列表方向",
+        listItemLookingText: "列表单项外观",
+        sItems: "单项",
 
 
     },

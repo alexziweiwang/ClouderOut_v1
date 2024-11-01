@@ -226,6 +226,25 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.playerAccountInfoText
         : textDictItemDefault.playerAccountInfoText;
     
+    let italicText = textDictItem.italicText !== undefined ?
+        textDictItem.italicText
+        : textDictItemDefault.italicText;
+
+    let chapterListText = textDictItem.chapterListText !== undefined ?
+        textDictItem.chapterListText
+        : textDictItemDefault.chapterListText;
+
+    let listDirectionText = textDictItem.listDirectionText !== undefined ?
+        textDictItem.listDirectionText
+        : textDictItemDefault.listDirectionText;
+
+    let listItemLookingText = textDictItem.listItemLookingText !== undefined ?
+        textDictItem.listItemLookingText
+        : textDictItemDefault.listItemLookingText;
+    
+    let sItems = textDictItem.sItems !== undefined ?
+        textDictItem.sItems
+        : textDictItemDefault.sItems;
 
 
 
@@ -2853,7 +2872,7 @@ export default function NavigationSetter({initialNavObj,
           
                   </div>
        
-           Chapter List:
+           {chapterListText}:
            <br></br>
            <input type="radio" 
             value={currentProjectNav["storyPage-chapterListHorizontal"]} 
@@ -3128,8 +3147,8 @@ export default function NavigationSetter({initialNavObj,
     </div>}
 
     {currentSettingPage === "Settings Page" && <div>
-     <label>Settings Page:</label>
-     <div className="indentOne">
+     <label>{settingsPageText}</label>
+     <div className="indentOne"><br></br>
      <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
                       <input type="radio" 
@@ -3208,7 +3227,7 @@ export default function NavigationSetter({initialNavObj,
                   </div>
        
 
-          <label>List Item Looking:</label>
+          <label>{listItemLookingText}:</label>
           <div className="indentOne">
                 
             <input type="radio" 
@@ -3286,7 +3305,7 @@ export default function NavigationSetter({initialNavObj,
  
          </div>
 
-         <label>List Direction: </label><br></br>             
+         <label>{listDirectionText}: </label><br></br>             
                <input type="radio" value={currentProjectNav["settingPage-entriesHorizontal"]} checked={currentProjectNav["settingPage-entriesHorizontal"]}
                  onChange={()=>{
                     let tempObj = currentProjectNav;
@@ -3503,7 +3522,7 @@ export default function NavigationSetter({initialNavObj,
        
   
        <br></br><br></br>
-       <label>Settings Page Items:</label>
+       <label>{settingsPageText}{sItems}:</label>
        <div>
          <input type="checkbox"
            value={ currentProjectNav["settingPage-playSpeed"]}
@@ -3809,7 +3828,7 @@ export default function NavigationSetter({initialNavObj,
                 onClick={()=>{
                   changePPTryingTextItemTextItalic();
                 }}
-             >Italic</label><br></br>
+             >{italicText}</label><br></br>
 
              <label>{fontSizeText}: </label>
              <input type="range" min="5" max="90" step="1"
@@ -4227,7 +4246,6 @@ export default function NavigationSetter({initialNavObj,
            </div>}
     
            <br></br><br></br>
-           <label>Player Profile Settings</label>
            <div className="indentOne">
 
             <br></br>
@@ -4264,7 +4282,7 @@ export default function NavigationSetter({initialNavObj,
                   onClick={()=>{
                     openRm();
                   }}
-                >Manage Resource</button>
+                >{manageResourceText}</button>
                 <br></br>
 
                 <label>Level: </label>
@@ -4284,7 +4302,7 @@ export default function NavigationSetter({initialNavObj,
                     updateEmuPlayerProfile(emuPlayerInfo);
 
                   }}
-                >Update</button>
+                >{updateText}</button>
             </div>
           
             <br></br>
@@ -4331,7 +4349,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <br></br>
-              <label>Nickname Italic</label>
+              <label>{italicText}</label>
                 <input type="checkbox"
                   value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textItalic"]}
                   onChange={()=>{
