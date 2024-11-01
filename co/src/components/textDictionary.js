@@ -154,6 +154,8 @@ const textDictionary = {
         listDirectionText: "List Direction",
         listItemLookingText: "List Item Looking",
         sItems: " Items",
+        horizontalMarkText: "(horizontal)",
+        verticalMarkText: "(vertical)",
 
 
 
@@ -318,7 +320,8 @@ const textDictionary = {
         listDirectionText: "列表方向",
         listItemLookingText: "列表单项外观",
         sItems: "单项",
-
+        horizontalMarkText: "(横向)",
+        verticalMarkText: "(纵向)",
 
     },
     jp: {

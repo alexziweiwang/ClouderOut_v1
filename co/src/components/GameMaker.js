@@ -49,6 +49,17 @@ export default function GameMaker({username, projectName}) {
         textDictItem.screenSizeForAllNavPageText
         : textDictItemDefault.screenSizeForAllNavPageText;
 
+  const horizontalMarkText = textDictItem.horizontalMarkText !== undefined ?
+        textDictItem.horizontalMarkText
+        : textDictItemDefault.horizontalMarkText;
+
+  const verticalMarkText = textDictItem.verticalMarkText !== undefined ?
+        textDictItem.verticalMarkText
+        : textDictItemDefault.verticalMarkText;
+
+  const selectSizeDirectionText = textDictItem.selectSizeDirectionText !== undefined ?
+        textDictItem.selectSizeDirectionText
+        : textDictItemDefault.selectSizeDirectionText;
 
 //TODO12
 
@@ -1243,11 +1254,11 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   setCurrentProjectNav({...currentProjectNav, "screenSize": event.target.value});
                 }}
                 >
-                          <option value="" key=""> ----- Select Size and Direction ----- </option>
-                          <option value="16:9(horizonal)" key="nav-setter-16:9(horizonal)"> 16:9 (horizontal) </option>
-                          <option value="16:9(vertical)" key="nav-setter-16:9(vertical)"> 16:9 (vertical) </option>
-                          <option value="4:3(horizonal)" key="nav-setter-4:3(horizonal)"> 4:3 (horizontal) </option>
-                          <option value="4:3(vertical)" key="nav-setter-4:3(vertical)"> 4:3 (vertical) </option>
+                          <option value="" key=""> ----- {selectSizeDirectionText} ----- </option>
+                          <option value="16:9(horizonal)" key="nav-setter-16:9(horizonal)"> 16:9 {horizontalMarkText} </option>
+                          <option value="16:9(vertical)" key="nav-setter-16:9(vertical)"> 16:9 {verticalMarkText} </option>
+                          <option value="4:3(horizonal)" key="nav-setter-4:3(horizonal)"> 4:3 {horizontalMarkText} </option>
+                          <option value="4:3(vertical)" key="nav-setter-4:3(vertical)"> 4:3 {verticalMarkText} </option>
             </select>
 
           </div>

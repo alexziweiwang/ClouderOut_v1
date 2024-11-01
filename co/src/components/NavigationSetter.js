@@ -4667,7 +4667,7 @@ export default function NavigationSetter({initialNavObj,
     </div>}
 
     {currentSettingPage === "Shop Page" && <div>
-     <label>Shop Page:</label>
+     <label>{shopPageText}:</label>
        <div className="indentOne">
        <label>{backGroundOfTheEntirePageText}:</label><br></br>
                 <div className="indentOne">
