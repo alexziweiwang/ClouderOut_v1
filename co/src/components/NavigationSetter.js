@@ -186,6 +186,18 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.chapterTitleLookingText
         : textDictItemDefault.chapterTitleLookingText;
 
+    let allButtonCornerRadiusText = textDictItem.allButtonCornerRadiusText !== undefined ?
+        textDictItem.allButtonCornerRadiusText
+        : textDictItemDefault.allButtonCornerRadiusText;
+
+    let updateListText = textDictItem.updateListText !== undefined ?
+        textDictItem.updateListText
+        : textDictItemDefault.updateListText;
+
+    let reloadSetterText =textDictItem.reloadSetterText !== undefined ?
+        textDictItem.reloadSetterText
+        : textDictItemDefault.reloadSetterText;
+
     
 
 
@@ -769,7 +781,7 @@ export default function NavigationSetter({initialNavObj,
           fetchProjResourceLists();
           getGameDataFromCloud();
         }}
-      >Reload Setter</button><br></br>
+      >{reloadSetterText}</button><br></br>
 
 
       {openBackButtonSettingArea && <br></br>}
@@ -792,7 +804,7 @@ export default function NavigationSetter({initialNavObj,
             </select>          
         </div>
 
-        <label>All Rectangle Corner Radius:</label><br></br>
+        <label>{allButtonCornerRadiusText}:</label><br></br>
         <input type="range"
           min="0" max="50" step="1"
           value={currentProjectNav["defaultCornerRadius"]}
@@ -1758,7 +1770,7 @@ export default function NavigationSetter({initialNavObj,
                   //TODO update the following: currentProjectNav["mainPage-playerProfile"] , currentProjectNav["mainPage-setting"], currentProjectNav["mainPage-shop"]
 
               }}
-            >Update Entry List</button>
+            >{updateListText}</button>
          </div>
          <br></br>
   

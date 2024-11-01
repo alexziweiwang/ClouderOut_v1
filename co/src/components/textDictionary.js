@@ -139,6 +139,9 @@ const textDictionary = {
         generalBackButtonSettingsText: "General Back Button Settings",
         buttonLookingText: "Button Looking",
         chapterTitleLookingText: "Chapter Title Looking",
+        allButtonCornerRadiusText: "All Button Corner Radius",
+        updateListText: "Update List",
+        reloadSetterText: "Reload Setter",
 
 
 
@@ -288,6 +291,9 @@ const textDictionary = {
         generalBackButtonSettingsText: "通用返回键 设置",
         buttonLookingText: "按键外观",
         chapterTitleLookingText: "章节标题外观",
+        allButtonCornerRadiusText: "所有按钮圆角半径",
+        updateListText: "更新此列表",
+        reloadSetterText: "重新加载 设置器",
 
 
 
