@@ -144,6 +144,11 @@ const textDictionary = {
         reloadSetterText: "Reload Setter Area",
         fontNameText: "Text Font",
         labelTextText: "Label Text",
+        valueItemText: "Value Item",
+        selectDataItemCategoryText: "Select Data Item Category",
+        gameDataText: "Game Data",
+        playerProfileText: "Player Profile",
+        playerAccountInfoText: "Player Account Info",
 
 
 
@@ -298,7 +303,11 @@ const textDictionary = {
         reloadSetterText: "重新加载设置区域",
         fontNameText: "字体",
         labelTextText: "标签文字",
-
+        valueItemText: "数值单项",
+        selectDataItemCategoryText: "选择数据类别",
+        gameDataText: "游戏数据",
+        playerProfileText: "玩家资料",
+        playerAccountInfoText: "玩家帐号信息",
 
 
     },

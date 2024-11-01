@@ -206,6 +206,13 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.labelTextText
         : textDictItemDefault.labelTextText;
 
+    let valueItemText = textDictItem.valueItemText !== undefined ?
+        textDictItem.valueItemText
+        : textDictItemDefault.valueItemText;
+
+    let selectDataItemCategoryText = textDictItem.selectDataItemCategoryText !== undefined ?
+        textDictItem.selectDataItemCategoryText
+        : textDictItemDefault.selectDataItemCategoryText;
     
 
 
@@ -3943,7 +3950,7 @@ export default function NavigationSetter({initialNavObj,
               }}
              ></input>
              <br></br>                       
-             <label>Value Item: </label>
+             <label>{valueItemText}: </label>
 
                 <div className="indentOne">
                   <select value={playerProfilePageAddingValueType}
@@ -3951,7 +3958,7 @@ export default function NavigationSetter({initialNavObj,
                       changePlayerProfilePageAddingValueType(event.target.value);
                     }}
                   >
-                    <option key="ppSetting-value-type-defaultNone" value="">-- Select Data Item Category --</option>
+                    <option key="ppSetting-value-type-defaultNone" value="">-- {selectDataItemCategoryText} --</option>
 
                     <option key="ppSetting-value-type-gameData" value="Game Data">Game Data</option>
                     <option key="ppSetting-value-type-playerProfileData" value="Player Profile">Player Profile</option>
