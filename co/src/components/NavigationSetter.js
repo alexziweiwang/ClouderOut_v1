@@ -1713,7 +1713,7 @@ export default function NavigationSetter({initialNavObj,
                   setToggleIsPlayerProfile(!toggleIsPlayerProfile);
                 }}               
             ></input>
-           <label
+           <label class="textNoSelect"
                 onClick={()=>{
                   setToggleIsPlayerProfile(!toggleIsPlayerProfile);
                 }} 
@@ -1722,65 +1722,30 @@ export default function NavigationSetter({initialNavObj,
 
            <input 
               type="checkbox" 
-              value={currentProjectNav["mainPage-setting"]}
-              checked={currentProjectNav["mainPage-setting"]}
+              value={toggleIsSetting}
+              checked={toggleIsSetting}
               onChange={()=>{
-/*
-                let val = currentProjectNav["mainPage-setting"];
-                
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-setting"] = !val;
-                updateNavObj(tempObj);  
-
-                setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
-*/
-                }}      
+                setToggleIsSetting(!toggleIsSetting);
+              }}      
             ></input>
-            <label
+            <label class="textNoSelect"
                 onClick={()=>{
-/*
-                let val = currentProjectNav["mainPage-setting"];
-                
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-setting"] = !val;
-                updateNavObj(tempObj);  
-
-                setCurrentProjectNav({...currentProjectNav, "mainPage-setting": !val});
-*/
+                  setToggleIsSetting(!toggleIsSetting);
                 }} 
             >{settingsPageText}{sEntryText}</label>
             <br></br>
-            <input type="checkbox" value={currentProjectNav["mainPage-shop"]}
-              checked={currentProjectNav["mainPage-shop"]}
+            <input type="checkbox" value={toggleIsShop}
+              checked={toggleIsShop}
               onChange={()=>{
-/*
-                let val = currentProjectNav["mainPage-shop"];
-                
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-shop"] = !val;
-                updateNavObj(tempObj);
-
-                setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
-*/
-                }}                     
+                  setToggleIsShop(!toggleIsShop);
+              }}                     
             ></input>
-            <label
+            <label class="textNoSelect"
               onClick={()=>{
-/*
-                let val = currentProjectNav["mainPage-shop"];
-              
-                let tempObj = currentProjectNav;
-                tempObj["mainPage-shop"] = !val;
-                updateNavObj(tempObj);
-
-                setCurrentProjectNav({...currentProjectNav, "mainPage-shop": !val});
-*/
+                  setToggleIsShop(!toggleIsShop);
               }}     
             >{shopPageText}{sEntryText}</label>
 
-
-
-{/* TODO16 */}
 
             <br></br><br></br>
             <button
