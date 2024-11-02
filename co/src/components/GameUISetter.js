@@ -53,7 +53,26 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         textDictItem.selectResourceText
         : textDictItemDefault.selectResourceText;
 
-//TODO12
+    let buttonLookingText = textDictItem.buttonLookingText !== undefined ?
+        textDictItem.buttonLookingText
+        : textDictItemDefault.buttonLookingText;
+
+    let positionXText = textDictItem.positionXText !== undefined ?
+        textDictItem.positionXText
+        : textDictItemDefault.positionXText;        
+
+    let positionYText = textDictItem.positionYText !== undefined ?
+        textDictItem.positionYText
+        : textDictItemDefault.positionYText;
+
+    let basePictureText = textDictItem.basePictureText !== undefined ?
+        textDictItem.basePictureText
+        : textDictItemDefault.basePictureText;
+
+    let rectangleAndColorFilled = textDictItem.rectangleAndColorFilled !== undefined ?
+        textDictItem.rectangleAndColorFilled
+        : textDictItemDefault.rectangleAndColorFilled;  
+
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -195,14 +214,14 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         let temp = event.target.value + "px solid " + idvButtonBorderColor;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
                     }}></input><label>{idvButtonBorderSize}px</label>
-        <br></br><label>Button Looking: </label>
+        <br></br><label>{buttonLookingText}: </label>
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={defaultButtonObj["isShape"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
           
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
                 
-                }}>Rectangle & Color Filled </label>
+                }}>{rectangleAndColorFilled} </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
                     <label>Background Color: </label>
@@ -218,7 +237,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
-              }}>Base Picture </label>
+              }}>{basePictureText} </label>
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[event.target.value]["var"]}); 
@@ -416,7 +435,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         }}></input><input type="number" value={txtFrameObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
         }}></input>
-    <br></br>Position Y: <input type="range" value={txtFrameObj["positionY"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
+    <br></br>{positionYText}: <input type="range" value={txtFrameObj["positionY"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});    
         }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});           
@@ -431,13 +450,13 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         }}></input><label>{txtFrameObj["transparency"]}</label> */}
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={txtFrameObj["isShape"]} onChange={()=>{
             setTxtFrameObj({...txtFrameObj, "isShape": true});    
-        }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>Rectangle: </label>
+        }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>{rectangleAndColorFilled}: </label>
     
         {txtFrameObj["isShape"] && <><input type="color" value={txtFrameObj["bgColor"]} onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "bgColor": event.target.value});    
             }}></input><label>{txtFrameObj["bgColor"]}</label></>}
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label 
-    onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>Base Picture </label>
+    onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>{basePictureText} </label>
         {!txtFrameObj["isShape"] && <>
         
         <select value={txtFrameObj["picVar"]} onChange={(event)=>{
@@ -596,7 +615,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <label> {convNav["buttonAutoShade0"]}</label>
 
                     <br></br>
-                <label>Base Picture: </label>
+                <label>{basePictureText}: </label>
                     <select value={convNav["buttonAutoPicName0"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonAutoPicName0": event.target.value});     
                     
@@ -631,7 +650,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <label> {convNav["buttonAutoShade1"]}</label>
 
                     <br></br>
-                    <label>Base Picture: </label>
+                    <label>{basePictureText}: </label>
                     <select value={convNav["buttonAutoPicName1"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonAutoPicName1": event.target.value});     
                     }}>                    
@@ -687,7 +706,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <label> {convNav["buttonLogShade"]}</label> 
     
             <br></br>
-            <label>Base Picture: </label>
+            <label>{basePictureText}: </label>
             
             <select value={convNav["buttonLogPicName"]} onChange={(event)=>{
                 setConvNav({...convNav, "buttonLogPicName": event.target.value});
@@ -838,7 +857,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 onClick={()=>{
                     setConvLogObj({...convLogObj, "closeButtonIsShape": true});
                 }}
-            >Rectangle & Color Filled</label>
+            >{rectangleAndColorFilled}</label>
                 <input type="color" value={convLogObj["closeButtonShade"]}
                     onChange={(event)=>{
                         setConvLogObj({...convLogObj, "closeButtonShade": event.target.value});
@@ -853,7 +872,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onClick={()=>{
                         setConvLogObj({...convLogObj, "closeButtonIsShape": false});
                     }}
-                >Base Picture</label>
+                >{basePictureText}</label>
                     <div className="indentOne">
                         <select value={visualMap[convLogObj["closeButtonPicName"]]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "closeButtonPicName": visualMap[event.target.value]["var"]}); 
@@ -871,7 +890,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 
                     </div>
 
-                <label> Position X:</label>
+                <label> {positionXText}:</label>
                     <input type="range" value={convLogObj["closeButtonPositionX"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "closeButtonPositionX": event.target.value});
@@ -885,7 +904,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         max={screenWidth} min="1" step="1"
                         ></input>
                 <br></br>
-                <label> Position Y:</label>
+                <label> {positionYText}:</label>
                 <input type="range" value={convLogObj["closeButtonPositionY"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "closeButtonPositionY": event.target.value});
@@ -1013,7 +1032,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onClick={()=>{
                         setConvLogObj({...convLogObj, "bgpIsShape": true});
                     }}
-                >Rectangle & Color Filled</label>
+                >{rectangleAndColorFilled}</label>
                 <input type="color" value={convLogObj["bgpShade"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj, "bgpShade": event.target.value});
                 }}></input>
@@ -1028,7 +1047,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     onClick={()=>{
                         setConvLogObj({...convLogObj, "bgpIsShape": false});
                     }}
-                >Base Picture</label>
+                >{basePictureText}</label>
                 <div className="indentOne">
                         <select value={visualMap[convLogObj["bgpPicName"]]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 
@@ -1061,7 +1080,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             <label onClick={()=>{
                                     setConvLogObj({...convLogObj, "groupBgIsShape": true});
                             }}>
-                            Rectangle & Color Filled</label>
+                            {rectangleAndColorFilled}</label>
                             
                             <input type="color" value={convLogObj["groupBgShade"]}
                                 onChange={(event)=>{
@@ -1081,7 +1100,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                 onClick={()=>{
                                     setConvLogObj({...convLogObj, "groupBgIsShape": false});
                                 }}
-                            >Base Picture</label>
+                            >{basePictureText}</label>
                             <select value={visualMap[convLogObj["groupBgpName"]]}
                                 onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "groupBgpName": visualMap[event.target.value]["var"]}); 
@@ -1204,7 +1223,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }}
                     max="200" min="0" step="1"
                 ></input>
-                <br></br>Position Y
+                <br></br>{positionYText}
                 <input type="range" value={convLogObj["contentPosY"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentPosY": event.target.value});
                 }}></input>
@@ -1248,7 +1267,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <input type="number" value={convLogObj["speakerPosX"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "speakerPosX": event.target.value});
                 }}></input>
-                <br></br>Position Y
+                <br></br>{positionYText}
                 <input type="range" value={convLogObj["speakerPosY"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "speakerPosY": event.target.value});
                 }}></input>
