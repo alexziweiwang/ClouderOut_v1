@@ -171,6 +171,8 @@ const textDictionary = {
         allResourcesText: "All Resources",
         inThisProjectText: "In this Project",
         notInThisProjectText: "Not in this project",
+        borderSizeText: "Border Size",
+        buttonTextText: "Button Text",
 
 
 
@@ -352,6 +354,10 @@ const textDictionary = {
         allResourcesText: "所有资源",
         inThisProjectText: "本项目内 资源",
         notInThisProjectText: "非本项目 资源",
+        borderSizeText: "边框尺寸",
+        buttonTextText: "按键文本",
+
+
 
 
     },

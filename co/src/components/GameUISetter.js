@@ -73,6 +73,26 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         textDictItem.rectangleAndColorFilled
         : textDictItemDefault.rectangleAndColorFilled;  
 
+    let itemGapText = textDictItem.itemGapText !== undefined ?
+        textDictItem.itemGapText
+        : textDictItemDefault.itemGapText;    
+
+    let borderSizeText = textDictItem.borderSizeText !== undefined ?
+        textDictItem.borderSizeText
+        : textDictItemDefault.borderSizeText;
+    
+    let buttonTextText = textDictItem.buttonTextText !== undefined ?
+        textDictItem.buttonTextText
+        : textDictItemDefault.buttonTextText;
+
+    let groupPositionXText = textDictItem.groupPositionXText !== undefined ?
+        textDictItem.groupPositionXText
+        : textDictItemDefault.groupPositionXText;
+
+    let groupPositionYText = textDictItem.groupPositionYText !== undefined ?
+        textDictItem.groupPositionYText
+        : textDictItemDefault.groupPositionYText;
+
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -208,7 +228,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
                     }}></input><label> {idvButtonBorderColor}</label>
-        <br></br><label>Border Size: </label>
+        <br></br><label>{borderSizeText}: </label>
                     <input type="range" value={idvButtonBorderSize} min="0" max="3" step="1" onChange={(event)=>{
                         setIdvButtonBorderSize(event.target.value);
                         let temp = event.target.value + "px solid " + idvButtonBorderColor;
@@ -253,7 +273,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
          
                 </>}
-        <br></br><label>Gap between buttons: </label>
+        <br></br><label>{itemGapText}: </label>
         <input type="range" value={defaultButtonObj["margin"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "margin": event.target.value});
         }}
@@ -273,7 +293,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
    
     <br></br>
     {displayDefaultButtonPreview && <>
-        <br></br><label>Button Group PositionX: </label><br></br>
+        <br></br><label>{groupPositionXText}: </label><br></br>
             <div className="indentOne">
                 <input type="range" value={defaultButtonObj["groupX"]}
                     onChange={(event)=>{
@@ -311,7 +331,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }   
                 }}>Horizontally Centered</label>
             </div>
-        <br></br><label>Button Group PositionY: </label><br></br>
+        <br></br><label>{groupPositionYText}: </label><br></br>
             <div className="indentOne">
    
                 <input type="range" value={defaultButtonObj["groupY"]}
@@ -768,10 +788,9 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         </div>
 
         <br></br><br></br>
-        <label>Group Positions:</label>
    
         <div className="indentOne">
-                <label>X:</label>
+                <label>{groupPositionXText}:</label>
                 <input type="range" max="800" min="0" step="1" value={convNav["groupX"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupX": event.target.value});    
@@ -783,7 +802,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}
                 ></input>
 
-                <br></br><label>Y:</label>
+                <br></br><label>{groupPositionYText}:</label>
                 <input type="range" max="600" min="0" step="1" value={convNav["groupY"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupY": event.target.value});    
@@ -960,7 +979,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         max={50} min="0" step="1"
                         ></input>
                 <br></br>
-                <label> Border Size:</label>
+                <label> {borderSizeText}:</label>
                     <input type="range" min="0" max="3" step="1"
                         value={convLogObj["closeButtonBorderSize"]}
                         onChange={(event)=>{
@@ -983,7 +1002,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     ></input>
 
                 <br></br>
-                <label>Button Text: </label>
+                <label>{buttonTextText}: </label>
                 <input value={logCloseDisplayText}
                     onChange={(event)=>{
                         setLogCloseDisplayText(event.target.value);
@@ -1130,7 +1149,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         }}></input>
 
                     <br></br>
-                    <label>Group Position X</label>
+                    <label>{groupPositionXText}</label>
                         <input type="range" value={convLogObj["groupPosX"]} onChange={(event)=>{
                                 setConvLogObj({...convLogObj, "groupPosX": event.target.value});
 
@@ -1143,7 +1162,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             max={screenWidth} min="1" step="1"
                         ></input><br></br>
 
-                    <label>Group Position Y</label>
+                    <label>{groupPositionYText}</label>
                     <input type="range" value={convLogObj["groupPosY"]} onChange={(event)=>{
                                 setConvLogObj({...convLogObj, "groupPosY": event.target.value});
                         }}
@@ -1155,7 +1174,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                             max={screenHeight} min="1" step="1"
                         ></input><br></br>
 
-                    <label>Group Position Width</label>
+                    <label>Group Width</label>
                     <input type="range" value={convLogObj["groupWidth"]} onChange={(event)=>{
                                 setConvLogObj({...convLogObj, "groupWidth": event.target.value});    
                         }}
@@ -1169,7 +1188,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
                 
 
-                    <label>Group Item Gap</label>
+                    <label>{itemGapText}</label>
                     <input type="range" value={convLogObj["groupItemGap"]} onChange={(event)=>{
                                 setConvLogObj({...convLogObj, "groupItemGap": event.target.value});
 
@@ -1212,7 +1231,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         <option value="sans-serif" key="contentTextFont_sans-serif">sans-serif</option>
                         <option value="cursive" key="contentTextFont_cursive">cursive</option>         
                 </select>  
-                <br></br>Position X
+                <br></br>{positionXText}
                 <input type="range" value={convLogObj["contentPosX"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentPosX": event.target.value});
                 }}
@@ -1260,7 +1279,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 </select>   
                 <br></br>
             
-                <br></br>Position X
+                <br></br>{positionXText}
                 <input type="range" value={convLogObj["speakerPosX"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "speakerPosX": event.target.value});
                 }}></input>
