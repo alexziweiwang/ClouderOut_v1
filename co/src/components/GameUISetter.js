@@ -7,7 +7,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 }) {
     const screenWidth = 800;
     const screenHeight = 600;
-    let languageCodeTextOption = 'en';
+    let languageCodeTextOption = 'chn';
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -29,6 +29,31 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
         textDictItem.collapseText
         : textDictItemDefault.collapseText;
 
+    let widthText = textDictItem.widthText !== undefined ?
+        textDictItem.widthText
+        : textDictItemDefault.widthText;
+
+    let heightText = textDictItem.heightText !== undefined ? 
+        textDictItem.heightText
+        : textDictItemDefault.heightText;
+
+    let fontColorText = textDictItem.fontColorText !== undefined ?
+        textDictItem.fontColorText
+        : textDictItemDefault.fontColorText;
+
+    let fontSizeText = textDictItem.fontSizeText !== undefined ?
+        textDictItem.fontSizeText
+        : textDictItemDefault.fontSizeText;
+
+    let fontNameText = textDictItem.fontNameText !== undefined ?
+        textDictItem.fontNameText
+        : textDictItemDefault.fontNameText;
+
+    let selectResourceText = textDictItem.selectResourceText !== undefined ?
+        textDictItem.selectResourceText
+        : textDictItemDefault.selectResourceText;
+
+//TODO12
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -124,19 +149,19 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
 {openDefaultButtonSection && <div>
     <div className="indentOne">
-        <br></br>Width: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
+        <br></br>{widthText}: <input type="range" value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});
         }}></input><input value={defaultButtonObj["widthMin"]} min="0" max={screenWidth} step="1" type="number" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "widthMin": event.target.value});}}></input>
-        {/* <br></br>Max-Width: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
+        {/* <br></br>Max-{widthText}: <input type="range" value={defaultButtonObj["widthMax"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
             }}></input><input value={defaultButtonObj["widthMax"]} min="0" max={screenWidth} step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
         }}></input> */}
-        <br></br>Height: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
+        <br></br>{heightText}: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
         <br></br><label>Corner Radius: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         {/* <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label> */}
-        <br></br><label>Text Size: </label><input type="range" value={defaultButtonObj["textSize"]}  min="0" max="90" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textSize": event.target.value});}}></input><label> {defaultButtonObj["textSize"]} px</label>
-        <br></br><label>Text Color: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label> {defaultButtonObj["textColor"]}</label>
+        <br></br><label>{fontSizeText}: </label><input type="range" value={defaultButtonObj["textSize"]}  min="0" max="90" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textSize": event.target.value});}}></input><label> {defaultButtonObj["textSize"]} px</label>
+        <br></br><label>{fontColorText}: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label> {defaultButtonObj["textColor"]}</label>
         <br></br><label>Text Horizontal Alignment: </label>
             <select value={defaultButtonObj["justifyContent"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "justifyContent": event.target.value});}}>
                 <option value="center" key="defaultButtonTextAlignCenter">Center</option>
@@ -151,7 +176,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option value="end" key="defaultButtonAlignItemsBottom">Bottom</option>
             </select>
 
-        <br></br><label>Text Font: </label>
+        <br></br><label>{fontNameText}: </label>
         <select value={defaultButtonObj["fontName"]} onChange={(event)=>{
             setDefaultButtonObj({...defaultButtonObj,  "fontName": event.target.value})
         }}>
@@ -198,7 +223,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
                             setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[event.target.value]["var"]}); 
                 }}>                    
-                    <option key="idvDefault" value="">-- Select Resource --</option>
+                    <option key="idvDefault" value="">-- {selectResourceText} --</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "defaultButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
@@ -377,7 +402,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
     </div>
 
 {openTextFrameSection && <div>
-    Width: <input type="range" value={txtFrameObj["width"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
+    {widthText}: <input type="range" value={txtFrameObj["width"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             let posX = (screenWidth - txtFrameObj["width"]) / 2 - 1;
           
             setTxtFrameObj({...txtFrameObj, "positionX": posX, "width": event.target.value});
@@ -386,7 +411,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             let posX = (screenWidth - txtFrameObj["width"]) / 2;
             setTxtFrameObj({...txtFrameObj, "width": event.target.value, "positionX": posX});        
         }}></input>
-    <br></br>Height: <input type="range" value={txtFrameObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
+    <br></br>{heightText}: <input type="range" value={txtFrameObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
         }}></input><input type="number" value={txtFrameObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "height": event.target.value});    
@@ -422,7 +447,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 setTxtFrameObj({...txtFrameObj, "picVar": visualMap[event.target.value]["var"]});    
             }
             }}>
-                <option key="tfvDefault" value="">-- Select Resource --</option>
+                <option key="tfvDefault" value="">-- {selectResourceText} --</option>
                 <option key="noPic" value="">(no picture)</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "tfvButton" + currKey;
@@ -446,10 +471,10 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 <option value="cursive" key="txf_cursive">cursive</option>
             </select>
   
-    <br></br><label>Text Size: </label><input type="range" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{
+    <br></br><label>{fontSizeText}: </label><input type="range" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "textSize": event.target.value});            
     }}></input><input type="number" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameObj({...txtFrameObj, "textSize": event.target.value});}}></input>
-    <br></br><label>Text Color: </label><input type="color" value={txtFrameObj["textColor"]} onChange={(event)=>{
+    <br></br><label>{fontColorText}: </label><input type="color" value={txtFrameObj["textColor"]} onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "textColor": event.target.value});            
     }}></input><label> {txtFrameObj["textColor"]}</label>
     <br></br>Text Content Area:
@@ -576,7 +601,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvNav({...convNav,  "buttonAutoPicName0": event.target.value});     
                     
                     }}>                    
-                            <option key="autoDefault0" value="">-- Select Resource --</option>
+                            <option key="autoDefault0" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "autoButton0" + currKey;
                                     return (
@@ -610,7 +635,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     <select value={convNav["buttonAutoPicName1"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonAutoPicName1": event.target.value});     
                     }}>                    
-                            <option key="autoDefault1" value="">-- Select Resource --</option>
+                            <option key="autoDefault1" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "autoButton1" + currKey;
                                     return (
@@ -667,7 +692,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
             <select value={convNav["buttonLogPicName"]} onChange={(event)=>{
                 setConvNav({...convNav, "buttonLogPicName": event.target.value});
             }}>                    
-                    <option key="logDefault" value="">-- Select Resource --</option>
+                    <option key="logDefault" value="">-- {selectResourceText} --</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "logButton" + currKey;
                             return (
@@ -751,7 +776,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}        
                 ></input>
 
-                <br></br><label>Width:</label>
+                <br></br><label>{widthText}:</label>
                 <input type="range" max="200" min="40" step="2" value={convNav["groupWidth"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupWidth": event.target.value});    
@@ -763,7 +788,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     }}       
                 ></input>
 
-                <br></br><label>Height:</label>
+                <br></br><label>{heightText}:</label>
                 <input type="range" max="200" min="10" step="1" value={convNav["groupHeight"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupHeight": event.target.value});    
@@ -833,7 +858,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         <select value={visualMap[convLogObj["closeButtonPicName"]]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "closeButtonPicName": visualMap[event.target.value]["var"]}); 
                         }}>                    
-                            <option key="convLogCloseBtnPic-default" value="">-- Select Resource --</option>
+                            <option key="convLogCloseBtnPic-default" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "convLogCloseBtnPic-" + currKey;
                                     /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
@@ -874,7 +899,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         max={screenHeight} min="1" step="1"
                         ></input>
                 <br></br>
-                <label> Width:</label>
+                <label> {widthText}:</label>
                 <input type="range" value={convLogObj["closeButtonWidth"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "closeButtonWidth": event.target.value});
@@ -888,7 +913,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         max={screenWidth/5} min="1" step="1"
                         ></input>
                 <br></br>
-                <label> Height:</label>
+                <label> {heightText}:</label>
                 <input type="range" value={convLogObj["closeButtonHeight"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "closeButtonHeight": event.target.value});
@@ -950,7 +975,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvLogObj({...convLogObj, "closeButtonText": logCloseDisplayText});
                     }}>Update</button>
                 <br></br>
-                <label>Text Color: </label>
+                <label>{fontColorText}: </label>
                 <input type="color" value={convLogObj["closeButtonTextColor"]}
                     onChange={(event)=>{
                         setConvLogObj({...convLogObj, "closeButtonTextColor": event.target.value});
@@ -1008,7 +1033,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         <select value={visualMap[convLogObj["bgpPicName"]]} onChange={(event)=>{
                                     setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 
                         }}>                    
-                            <option key="convLogBgp-default" value="">-- Select Resource --</option>
+                            <option key="convLogBgp-default" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "convLogBgp-" + currKey;
                                     /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
@@ -1062,7 +1087,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                                     setConvLogObj({...convLogObj,  "groupBgpName": visualMap[event.target.value]["var"]}); 
                                 }}
                             >
-                                <option key="convLogGroupUnitBgp-default" value="">-- Select Resource --</option>
+                                <option key="convLogGroupUnitBgp-default" value="">-- {selectResourceText} --</option>
                                 {Object.keys(visualMap).map((currKey) => {
                                         let keyName = "convLogGroupUnitBgp-" + currKey;
                                         /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
@@ -1151,7 +1176,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                         setConvLogObj({...convLogObj, "contentTextShade": event.target.value});
                     }}
                 ></input>
-                <br></br>Content Text Size: 
+                <br></br>Content {fontSizeText}: 
                 <input type="range" value={convLogObj["contentTextSize"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentTextSize": event.target.value});
                 }}></input>
@@ -1160,7 +1185,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                 }}></input>
 
                 <br></br>
-                <label>Content Text Font: </label>
+                <label>Content {fontNameText}: </label>
                 <select value={convLogObj["contentTextFont"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj,  "contentTextFont": event.target.value})
                     }}>
@@ -1205,7 +1230,7 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
                     setConvLogObj({...convLogObj, "speakerTextSize": event.target.value});
                 }}></input><br></br>
                 
-                <br></br><label>Speaker Text Font: </label>
+                <br></br><label>Speaker {fontNameText}: </label>
                 <select value={convLogObj["speakerTextFont"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj,  "speakerTextFont": event.target.value})
                     }}>
