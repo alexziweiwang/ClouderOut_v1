@@ -361,8 +361,8 @@ const textDictionary = {
         borderSizeText: "边框尺寸",
         buttonTextText: "按键文本",
         playSpeedText: "播放速度",
-        bgmVolume: "背景音乐 音量",
-        soundEffectVolume: "声音效果 音量",
+        bgmVolumeText: "背景音乐 音量",
+        soundEffectVolumeText: "声音效果 音量",
         groupsText: "群组",
 
 
