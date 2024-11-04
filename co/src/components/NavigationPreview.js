@@ -520,6 +520,7 @@ export default function NavigationPreview ({
                     "position": "absolute",
                     "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
                     "overflow": "scroll",
+                    "borderRadius": "0px",
                 }}>
                     {slSlotFrame.map((item, index) => {
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index;
@@ -566,17 +567,25 @@ export default function NavigationPreview ({
          
 
 
-            <div style={{"display": "flex", "top": "357px", "left": "495px", "position": "absolute", "height":"150px",}}>
+            <div 
+                style={{
+                    "display": "flex", 
+                    "top": "357px", 
+                    "left": "495px", 
+                    "position": "absolute", 
+
+                    "backgroundColor": "orange"    
+                    
+                }}>
                 
                 <div 
                     id="slSlotPageLeftControler" 
                     style={{
-                        "width": "150px", 
-                        "height":"150px", 
+                        //TODO width
                         "color": "#272626",
                     }}
                     onClick={()=>{
-                        console.log("prev sl page");//TODO2
+            
                         if (slCurrentSlotPage - 1 > 0) {
                             setSlCurrentSlotPage(slCurrentSlotPage-1);
                         } else {
@@ -609,13 +618,12 @@ export default function NavigationPreview ({
 
                 <div id="slSlotPageRightControler"
                   style={{
-                        "width": "150px", 
-                        "height":"150px", 
+                        //TODO width 
                         "color": "#272626",
                         
                     }}
                     onClick={()=>{
-                        console.log("next sl page");//TODO2
+                   
                         let pageLimit = navObj["saveloadPage-slotPageCount"];
                         if (slCurrentSlotPage + 1 > pageLimit) {
                             setSlCurrentSlotPage(pageLimit);

@@ -914,7 +914,8 @@ export default function NavigationSetter({initialNavObj,
       </select>
 
       <br></br><br></br>
-
+{currentSettingPage !== "During Game" &&      
+    <>
       <button>{saveChangesText}</button>
 
 <div style={{"border": "1px dotted #FFFFFF", "padding": "2px"}}>    
@@ -1030,7 +1031,7 @@ export default function NavigationSetter({initialNavObj,
           
                   </div>
 
-                  <label>Slot Layout</label>
+                  <label>{listDirectionText}:</label>
                     <div className="indentOne">
                      <input 
                       type="radio" 
@@ -1108,7 +1109,7 @@ export default function NavigationSetter({initialNavObj,
                
               
                         <br></br>
-                <label>Slot Looking:</label>
+                <label>{listItemLookingText}:</label>
                     <div className="indentOne">
                       <input type="radio" 
                         value={currentProjectNav["saveloadPage-isSlotShape"]}
@@ -1228,9 +1229,8 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotHeight": event.target.value});
                         }}></input>
                   </div>
-                <label>Gaps between slots:</label><br></br>
-                  <div className="indentOne">
-                   
+                <label>{itemGapText}:</label>
+                 
                       <input type="range" 
                           min="0" max="20" step="1"
                           value={currentProjectNav["saveloadPage-slotGap"]}
@@ -1254,8 +1254,6 @@ export default function NavigationSetter({initialNavObj,
                           }}
                         ></input>    
                 
-       
-                  </div>
                     <div className="indentOne">
                         <label>{positionXText}:</label>
                         <input type="range" 
@@ -4767,9 +4765,15 @@ export default function NavigationSetter({initialNavObj,
 
 </div>
 
+
+
     <button>{saveChangesText}</button>
+    </>}
 
-
+{currentSettingPage === "During Game" && <div>
+    Please confirm back-button for during-game situation. <br></br>
+    Feel free to setup node UI in specific node-editors.
+</div>}
 
  </div>
 );
