@@ -246,6 +246,21 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.sItems
         : textDictItemDefault.sItems;
 
+    let playSpeedText = textDictItem.playSpeedText !== undefined ?
+        textDictItem.playSpeedText
+        : textDictItemDefault.playSpeedText;
+
+    let bgmVolumeText = textDictItem.bgmVolumeText !== undefined ? 
+        textDictItem.bgmVolumeText
+        : textDictItemDefault.bgmVolumeText;
+
+    let soundEffectVolumeText = textDictItem.soundEffectVolumeText !== undefined ?
+        textDictItem.soundEffectVolumeText
+        : textDictItemDefault.soundEffectVolumeText;
+
+    let groupsText = textDictItem.groupsText !== undefined ?
+        textDictItem.groupsText
+        : textDictItemDefault.groupsText;
 
 
 
@@ -1239,9 +1254,8 @@ export default function NavigationSetter({initialNavObj,
                 
        
                   </div>
-                  <label>Group Positions:</label><br></br>
                     <div className="indentOne">
-                        <label>position X:</label>
+                        <label>{positionXText}:</label>
                         <input type="range" 
                           min="0" max="600" step="1"
                           value={currentProjectNav["saveloadPage-groupPosX"]}
@@ -1266,7 +1280,7 @@ export default function NavigationSetter({initialNavObj,
                         ></input>
                        
                         <br></br>
-                        <label>position Y:</label>
+                        <label>{positionYText}:</label>
                         <input type="range" 
                           min="0" max="600" step="1"
                           value={currentProjectNav["saveloadPage-groupPosY"]}
@@ -3402,7 +3416,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>  
                <br></br>
-               Group {widthText}:
+               {groupsText}{widthText}:
                <input type="range"
                   min="1" max="800" step="1"
                   value={currentProjectNav["settingPage-listItemGroupWidth"]}
@@ -3428,7 +3442,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                   ></input>
                <br></br>
-               Group {heightText}:
+               {groupsText}{heightText}:
                <input type="range"
                   min="1" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupHeight"]}
@@ -3550,7 +3564,7 @@ export default function NavigationSetter({initialNavObj,
 
               setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeed": !currVal});
             }}  
-         >Play Speed</label>
+         >{playSpeedText}</label>
          <br></br>
           <div className="indentOne">
             <label>{displayNamingText}:</label>
@@ -3591,7 +3605,7 @@ export default function NavigationSetter({initialNavObj,
 
               setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVol": !currVal});
             }}      
-         >Background Music Volume</label>
+         >{bgmVolumeText}</label>
           <div className="indentOne">
             <label>{displayNamingText}:</label>
             <input value={settingsPageBgmVolName}
@@ -3630,7 +3644,7 @@ export default function NavigationSetter({initialNavObj,
 
               setCurrentProjectNav({...currentProjectNav, "settingPage-seVol": !currVal});
             }}    
-         >Sound Effect Volume</label>
+         >{soundEffectVolumeText}</label>
           <div className="indentOne">
             <label>{displayNamingText}:</label>
             <input value={settingsPageSeVolName} onChange={(event)=>{

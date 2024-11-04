@@ -173,6 +173,10 @@ const textDictionary = {
         notInThisProjectText: "Not in this project",
         borderSizeText: "Border Size",
         buttonTextText: "Button Text",
+        playSpeedText: "Play Speed",
+        bgmVolumeText: "Background Music Volume",
+        soundEffectVolumeText: "Sound Effect Volume",
+        groupsText: "Group ",
 
 
 
@@ -356,7 +360,10 @@ const textDictionary = {
         notInThisProjectText: "非本项目 资源",
         borderSizeText: "边框尺寸",
         buttonTextText: "按键文本",
-
+        playSpeedText: "播放速度",
+        bgmVolume: "背景音乐 音量",
+        soundEffectVolume: "声音效果 音量",
+        groupsText: "群组",
 
 
 
