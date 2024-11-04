@@ -302,10 +302,6 @@ export default function NavigationSetter({initialNavObj,
     const [toggleIsSettingBgmVol, setToggleIsSettingBgmVol] = useState(true);
     const [toggleIsSettingSeVol, setToggleIsSettingSeVol] = useState(true);
 
-    //TODO22
-
-
-
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
 
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
@@ -3593,12 +3589,18 @@ export default function NavigationSetter({initialNavObj,
          <br></br><br></br>
          <button
           onClick={()=>{
-            //"settingPage-playSpeed"   "settingPage-bgmVol"   "settingPage-seVol"
-            //
-//TODO22
+              let tempObj = currentProjectNav;
+              tempObj["settingPage-playSpeed"] = toggleIsSettingPlaySpeed;
+              tempObj["settingPage-bgmVol"] = toggleIsSettingBgmVol;
+              tempObj["settingPage-seVol"] = toggleIsSettingSeVol;
+              updateNavObj(tempObj);                  
 
 
-
+              setCurrentProjectNav({...currentProjectNav, 
+                "settingPage-playSpeed": toggleIsSettingPlaySpeed,
+                "settingPage-bgmVol": toggleIsSettingBgmVol,
+                "settingPage-seVol": toggleIsSettingSeVol
+              });  
 
           }}
          >{updateListText}</button>
@@ -3607,8 +3609,10 @@ export default function NavigationSetter({initialNavObj,
        
        
        <div>
-         <label>{playSpeedText}</label>
-          {<div className="indentOne">
+
+          {currentProjectNav["settingPage-playSpeed"] &&  <>
+            <label>{playSpeedText}</label>
+            <div className="indentOne">
             <label>{displayNamingText}:</label>
             <input value={settingsPagePlaySpeedName} onChange={
               (event)=>{
@@ -3624,12 +3628,11 @@ export default function NavigationSetter({initialNavObj,
               setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeedName": settingsPagePlaySpeedName});
             }}>{updateText}</button>
           </div>
-          }  
+          </>}  
 
-
-
-         <label>{bgmVolumeText}</label>
-          {<div className="indentOne">
+         {currentProjectNav["settingPage-bgmVol"] && <>
+            <label>{bgmVolumeText}</label>
+            <div className="indentOne">
             <label>{displayNamingText}:</label>
             <input value={settingsPageBgmVolName}
             onChange={(event)=>{
@@ -3643,10 +3646,12 @@ export default function NavigationSetter({initialNavObj,
               setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVolName": settingsPageBgmVolName});   
             }}>{updateText}</button> 
           </div>
-          }
+          </>}
 
-         <label>{soundEffectVolumeText}</label>
-          {<div className="indentOne">
+
+          {currentProjectNav["settingPage-seVol"] && <>
+            <label>{soundEffectVolumeText}</label>
+            <div className="indentOne">
             <label>{displayNamingText}:</label>
             <input value={settingsPageSeVolName} onChange={(event)=>{
               setSettingsPageSeVolName(event.target.value);
@@ -3659,7 +3664,8 @@ export default function NavigationSetter({initialNavObj,
               setCurrentProjectNav({...currentProjectNav, "settingPage-seVolName": settingsPageSeVolName});
             }}>{updateText}</button>
           </div>
-          }
+          
+          </>}
 
 
        </div>
