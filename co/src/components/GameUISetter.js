@@ -127,6 +127,11 @@ export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameOb
 
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+
+        if (username === "default-no-state username" || projName === "default-no-state projectName") {
+            return;
+        }
+
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         

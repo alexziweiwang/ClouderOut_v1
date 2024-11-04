@@ -38,6 +38,10 @@ export default function NavigationPreview ({
     const [visualList, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
       console.log("nav-preview: fetchProjResourceLists()"); //TODO test
+
+      if (username === "default-no-state username" || projName === "default-no-state projectName") {
+        return;
+      }
       /* fetch from cloud db */
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
                                                 // console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test

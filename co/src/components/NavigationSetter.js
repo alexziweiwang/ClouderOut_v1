@@ -326,8 +326,12 @@ export default function NavigationSetter({initialNavObj,
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
-      console.log("nav-setter: fetchProjResourceLists()"); //TODO test
+      console.log("nav-setter: fetchProjResourceLists()"); //TODO21 test
       /* fetch from cloud db */
+      if (userName === "default-no-state username" || projName === "default-no-state projectName") {
+        return;
+      }
+
       const obj = await fetchProjectResourceVarPairsVM({userName: userName, projectName: projName});
       console.log("new render- nav setter: obj from cloud (resource list):"); //TODO test
       console.log(obj); //TODO test

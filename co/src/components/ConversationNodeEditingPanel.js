@@ -19,8 +19,6 @@ import langDictionary from './textDictionary';
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
  
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
 
     let languageCodeTextOption = 'en';
 
@@ -58,7 +56,12 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                                                         console.log("conv-editing panel: fetchProjResourceLists()"); //TODO test
       /* fetch from cloud db */
 
-      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+
+      if (uname === "default-no-state username" || projectName === "default-no-state projectName") {
+          return;
+      }
+
+      const obj = await fetchProjectResourceVarPairsVM({userName: uname, projectName: projectName});
                                                        
                                                         console.log("conv-editing panel: obj from cloud (resource list):"); //TODO test
                                                         console.log(obj); //TODO test

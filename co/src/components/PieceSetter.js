@@ -522,6 +522,10 @@ export default function PieceSetter({
 
     async function fetchProjResourceLists() {
         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+        if (username === "default-no-state username" || projName === "default-no-state projectName") {
+            return;
+        }
+        
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         // console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test

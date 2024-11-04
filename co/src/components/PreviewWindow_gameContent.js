@@ -50,7 +50,10 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     const [visualList, setVisualList] = useState([]); 
     
     async function fetchProjResourceLists() {
-
+      if (username === "default-no-state username" || projName === "default-no-state projectName") {
+        return;
+      }
+      
       /* fetch from cloud db */
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
       // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test

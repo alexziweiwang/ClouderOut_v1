@@ -135,6 +135,10 @@ export default function GameMaker({username, projectName}) {
 
   const [visualList, setVisualList] = useState([]); 
   async function fetchProjResourceLists() {
+    if (username === "default-no-state username" || projectName === "default-no-state projectName") {
+      return;
+    }
+
 
     /* fetch from cloud db */
     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
