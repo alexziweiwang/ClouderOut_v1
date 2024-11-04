@@ -298,6 +298,12 @@ export default function NavigationSetter({initialNavObj,
     const [toggleIsSetting, setToggleIsSetting] = useState(true);
     const [toggleIsShop, setToggleIsShop] = useState(true);
 
+    const [toggleIsSettingPlaySpeed, setToggleIsSettingPlaySpeed] = useState(true);
+    const [toggleIsSettingBgmVol, setToggleIsSettingBgmVol] = useState(true);
+    const [toggleIsSettingSeVol, setToggleIsSettingSeVol] = useState(true);
+
+    //TODO22
+
 
 
     const [ppTryingTextItemTextItalicBool, setPpTryingTextItemTextItalicBool] = useState(false);
@@ -3544,81 +3550,58 @@ export default function NavigationSetter({initialNavObj,
        <div className="indentOne someGrey" style={{"color": "#000000"}}>
   
          <input type="checkbox"
-           value={ currentProjectNav["settingPage-playSpeed"]}
-           checked={ currentProjectNav["settingPage-playSpeed"]}
+           value={toggleIsSettingPlaySpeed}
+           checked={toggleIsSettingPlaySpeed}
            onChange={()=>{
-             let currVal =  currentProjectNav["settingPage-playSpeed"];
-                  
-             let tempObj = currentProjectNav;
-             tempObj["settingPage-playSpeed"] = !currVal;
-             updateNavObj(tempObj);     
-
-             setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeed": !currVal});
+              setToggleIsSettingPlaySpeed(!toggleIsSettingPlaySpeed);
             }}
          ></input><label
             onClick={()=>{
-              let currVal =  currentProjectNav["settingPage-playSpeed"];
-                  
-              let tempObj = currentProjectNav;
-              tempObj["settingPage-playSpeed"] = !currVal;
-              updateNavObj(tempObj);     
-
-              setCurrentProjectNav({...currentProjectNav, "settingPage-playSpeed": !currVal});
+              setToggleIsSettingPlaySpeed(!toggleIsSettingPlaySpeed);
             }}  
          >{playSpeedText}</label>
          <br></br>
 
          <input type="checkbox"
-           value={ currentProjectNav["settingPage-bgmVol"]}
-           checked={ currentProjectNav["settingPage-bgmVol"]}
+           value={toggleIsSettingBgmVol}
+           checked={toggleIsSettingBgmVol}
            onChange={()=>{
-             let currVal =  currentProjectNav["settingPage-bgmVol"];
-                    
-             let tempObj = currentProjectNav;
-             tempObj["settingPage-bgmVol"] = !currVal;
-             updateNavObj(tempObj);     
+              setToggleIsSettingBgmVol(!toggleIsSettingBgmVol);  
 
-             setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVol": !currVal});
             }}                  
          ></input><label
             onClick={()=>{
-              let currVal =  currentProjectNav["settingPage-bgmVol"];
-                    
-              let tempObj = currentProjectNav;
-              tempObj["settingPage-bgmVol"] = !currVal;
-              updateNavObj(tempObj);     
+              setToggleIsSettingBgmVol(!toggleIsSettingBgmVol);  
 
-              setCurrentProjectNav({...currentProjectNav, "settingPage-bgmVol": !currVal});
             }}      
          >{bgmVolumeText}</label>
          <br></br>
 
          <input type="checkbox"
-           value={ currentProjectNav["settingPage-seVol"]}
-           checked={ currentProjectNav["settingPage-seVol"]}
+           value={toggleIsSettingSeVol}
+           checked={toggleIsSettingSeVol}
            onChange={()=>{
-             let currVal =  currentProjectNav["settingPage-seVol"];
-                                         
-             let tempObj = currentProjectNav;
-             tempObj["settingPage-seVol"] = !currVal;
-             updateNavObj(tempObj); 
+              setToggleIsSettingSeVol(!toggleIsSettingSeVol);
 
-             setCurrentProjectNav({...currentProjectNav, "settingPage-seVol": !currVal});
             }}                  
          ></input><label
             onClick={()=>{
-              let currVal =  currentProjectNav["settingPage-seVol"];
-                                          
-              let tempObj = currentProjectNav;
-              tempObj["settingPage-seVol"] = !currVal;
-              updateNavObj(tempObj); 
-
-              setCurrentProjectNav({...currentProjectNav, "settingPage-seVol": !currVal});
+              setToggleIsSettingSeVol(!toggleIsSettingSeVol);
             }}    
          >{soundEffectVolumeText}</label>
 
          <br></br><br></br>
-         <button>{updateListText}</button>
+         <button
+          onClick={()=>{
+            //"settingPage-playSpeed"   "settingPage-bgmVol"   "settingPage-seVol"
+            //
+//TODO22
+
+
+
+
+          }}
+         >{updateListText}</button>
 
        </div>
        
