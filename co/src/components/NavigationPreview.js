@@ -1210,7 +1210,24 @@ export default function NavigationPreview ({
         >
         <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,}}>
+                "height": `${screenHeight}px`,
+                
+                
+                
+                
+                
+                
+                
+                "backgroundColor":  navObj["shopPage-isBackgroundShape"] === true ? `${navObj[ "shopPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
+                    ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+                
+
+                "position": "relative", 
+                "overflow": "scroll",
+                
+                }}>
 
         
 

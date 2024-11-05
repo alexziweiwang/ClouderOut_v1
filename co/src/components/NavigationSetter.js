@@ -4719,7 +4719,11 @@ export default function NavigationSetter({initialNavObj,
                                     <label>{backgroundColorText}: </label>
                                     <input type="color"
                                     onChange={(event)=>{
-                                      
+                                            let tempObj = currentProjectNav;
+                                            tempObj["shopPage-bgShadeName"] = event.target.value;
+                                            updateNavObj(tempObj); 
+                    
+                                            setCurrentProjectNav({...currentProjectNav, "shopPage-bgShadeName": event.target.value}); 
                                         }}></input>
                                     <label></label>
                                 </div>}
