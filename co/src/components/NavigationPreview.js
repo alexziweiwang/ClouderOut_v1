@@ -846,10 +846,12 @@ export default function NavigationPreview ({
 
                 "display": navObj["settingPage-entriesHorizontal"] === true ? "flex" : "",
                 "overflow": "scroll",
+                "border-radius": "0px",
             }}>
 
                         {settingsPageEntryNames.map((item, index) => {
                             let optionName = "settingsDefault";
+                            
                             if (index === 0) {
                                 optionName = navObj["settingPage-playSpeed"];
                             } else if (index === 1) {
