@@ -14,13 +14,15 @@ import PieceManager from './PieceManager';
 import GameUISetter from './GameUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './textDictionary';
+import uiLangMap from './uiLangMap';
+
 //TODO fetch navigation(all game type) data from cloud?
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
  
 
-    let languageCodeTextOption = 'en';
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
 
     const navigate = useNavigate();
@@ -604,7 +606,7 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
     }
 
     function passInUILanguage() {
-        return 'en'; //TODO20 //navigation-jumpped here, add strategy later
+        return languageCodeTextOption; //TODO20 //navigation-jumpped here, add strategy later
         
     }
     
@@ -622,6 +624,25 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                 <div className="buttonRight30 parallelFrame">
                     <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
                     <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
+                </div>
+
+                    
+                <div>
+                    <label>Editor Language</label><br></br>
+                    <select value={languageCodeTextOption}
+                        onChange={(event)=>{
+                            let opt = event.target.value;
+                            let askStr = "Are you sure to change editor language to " + uiLangMap[opt] + " ?";
+                            let response = window.confirm(askStr);
+                            if (response) {
+                                setLanguageCodeTextOption(opt);
+                            }
+
+                        }}
+                    >
+                        <option key="lang-Eng" value="en">English</option>
+                        <option key="lang-chn" value="chn">简体中文</option> 
+                    </select>
                 </div>
 
             </div>

@@ -1173,8 +1173,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
       <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
         
-      <div style={{"alignItems": "start"}}>
-          <label>Project Language</label><br></br>
+      <div>
+          <label>Editor Language</label><br></br>
           <select value={languageCodeTextOption}
             onChange={(event)=>{
               userChangeEditorUILang(event.target.value);
