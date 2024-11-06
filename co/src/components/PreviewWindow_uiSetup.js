@@ -10,8 +10,13 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
     getLogPageUISettings,
     getBackButtonUISettings, getScreenSize, getUIConvNav, 
-    passInAudioList, passInVisualList
+    passInAudioList, passInVisualList,
+
+    getUILanguage,
+    
 }) {
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
 
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);

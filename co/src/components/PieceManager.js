@@ -4,10 +4,18 @@ import GameUISetter from './GameUISetter';
 import langDictionary from './textDictionary';
 
 
-export default function PieceManager({allPieceData, assignPieceNum, assignPreviewIndex, updatePieceData, getAllPieceData, setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum}) {
+export default function PieceManager({
+    allPieceData, assignPieceNum, assignPreviewIndex, 
+    updatePieceData, getAllPieceData, 
+    setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum,
+
+    getUILanguage,
+    
+}) {
     const screenWidth = 800;
     const screenHeight =450;
-    let languageCodeTextOption = 'en';
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
 
     let name = "/piecemanager";
 

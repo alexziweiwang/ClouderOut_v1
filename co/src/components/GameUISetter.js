@@ -3,11 +3,26 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import langDictionary from './textDictionary';
 
-export default function GameUISetter({openRm, iniDefaultButtonObj, iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,updateIsDisplayDefaultButtonPreview, updateDefaultButtonSettings, updateTextFrameUISettings, updateBackButtonSettings, updateConvNavSettings, fetchRmUpdatedSignal, updateConvLogUISettings, fetchGdmUpdatedSignal, resetRmUpdatedSignal, respondUpdatedRm
+export default function GameUISetter({
+    openRm, iniDefaultButtonObj, 
+    iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,
+    updateIsDisplayDefaultButtonPreview, 
+    updateDefaultButtonSettings, 
+    updateTextFrameUISettings, 
+    updateBackButtonSettings, 
+    updateConvNavSettings, 
+    fetchRmUpdatedSignal, 
+    updateConvLogUISettings, 
+    fetchGdmUpdatedSignal, 
+    resetRmUpdatedSignal, 
+    respondUpdatedRm,
+
+    getUILanguage,
+    
 }) {
     const screenWidth = 800;
     const screenHeight = 600;
-    let languageCodeTextOption = 'chn';
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];

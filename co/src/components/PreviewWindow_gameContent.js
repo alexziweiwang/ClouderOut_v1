@@ -14,12 +14,17 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     getTextFrameUISettings, getIsDisplayDefaultButton, 
     getDefaultButtonUISettings, getBackButtonUISettings, 
     getLogPageUISettings,
-    getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav
+    getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav,
+
+    getUILanguage,
+    
   
   }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
   
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
    

@@ -711,6 +711,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
                             fetchNewGameDataList={passInNewGameDataList}
+
+                            getUILanguage={passInUILanguage}
                         />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
@@ -728,6 +730,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                             updateConvLogUISettings={updateConvLogUISettings}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
+
+                            getUILanguage={passInUILanguage}
                     />}
                 </div>
             }
@@ -746,6 +750,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}
+
+                            getUILanguage={passInUILanguage}
                         />}   
                     {gameUISetterOpen === true && 
                         <GameUISetter 
@@ -763,6 +769,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                             updateConvLogUISettings={updateConvLogUISettings}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
+
+                            getUILanguage={passInUILanguage}
                         />}
                 
                 </div>
@@ -784,6 +792,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                     triggerToDirectNext={triggerToDirectNextFunc}
                     setIsClickedOnSetters={setIsActionOnSetter}
                     getUIConvNav={passInUIConvNav}
+
+                    getUILanguage={passInUILanguage}
                 />}
             {isDisplayGameContentPreview === false && 
                 <PreviewWindow_uiSetup
@@ -800,6 +810,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                     getUIConvNav={passInUIConvNav}
                     passInAudioList={passInAudioList}
                     passInVisualList={passInVisualList}
+
+                    getUILanguage={passInUILanguage}
                 />
             }
 

@@ -14,11 +14,15 @@ export default function PieceSetter({
     openRm, openGameDataManager, 
     setIsClickedOnSetters, 
     fetchClickedIsOnSetter, getCurrentPieceNum, 
-    fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList
+    fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList,
+
+    getUILanguage,
+
 }) {
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
-    let languageCodeTextOption = 'en';
+        const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
