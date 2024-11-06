@@ -177,6 +177,8 @@ const textDictionary = {
         bgmVolumeText: "Background Music Volume",
         soundEffectVolumeText: "Sound Effect Volume",
         groupsText: "Group ",
+        sliderSText: "Slider ",
+        colorText: "Color",
 
 
 
@@ -364,6 +366,8 @@ const textDictionary = {
         bgmVolumeText: "背景音乐 音量",
         soundEffectVolumeText: "声音效果 音量",
         groupsText: "群组",
+        sliderSText: "调节条",
+        colorText: "颜色",
 
 
 

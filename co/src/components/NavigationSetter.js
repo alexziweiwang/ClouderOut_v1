@@ -262,6 +262,14 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.groupsText
         : textDictItemDefault.groupsText;
 
+    let sliderSText = textDictItem.sliderSText !== undefined ?
+        textDictItem.sliderSText
+        : textDictItemDefault.sliderSText;
+    
+    let colorText = textDictItem.colorText !== undefined ?
+        textDictItem.colorText
+        : textDictItemDefault.colorText;
+
 
 
 //TODO15
@@ -3536,17 +3544,17 @@ export default function NavigationSetter({initialNavObj,
                    <br></br>
 
                    <br></br>
-                   <label>Slider Width: </label>
+                   <label>{sliderSText}{widthText}: </label>
                    <input type="range"></input>
                    <input></input>
 
                    <br></br>
-                   <label>Slider Height: </label>
+                   <label>{sliderSText}{heightText}: </label>
                    <input type="range"></input>
                    <input></input>
 
                    <br></br>
-                   <label>Slider Color: </label>
+                   <label>{sliderSText}{colorText}: </label>
                    <input type="color"></input>
                    <label></label>
                    {/* <br></br>

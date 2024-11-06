@@ -432,6 +432,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "settingPage-playSpeedName":"Play Speed",
     "settingPage-bgmVolName": "Background Music Volume",
     "settingPage-seVolName": "Sound Effect Volume",
+    "settingPage-sliderWidth": 350,
+    "settingPage-sliderHeight": 50,
+    "settingPage-sliderColor": "pink",
 
     "playerProfilePage-isBackgroundShape": false,
     "playerProfilePage-bgShadeName": "rgb(222, 222, 235)",

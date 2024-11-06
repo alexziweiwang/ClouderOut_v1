@@ -927,9 +927,9 @@ export default function NavigationPreview ({
                                         <div>
                                             <input type="range"
                                                 style={{
-                                                    "accentColor": "green",
-                                                    "width": "350px",
-                                                    "height": "50px",
+                                                    "accentColor": navObj["settingPage-sliderColor"],
+                                                    "width": `${navObj["settingPage-sliderWidth"]}px`,
+                                                    "height": `${navObj["settingPage-sliderHeight"]}px`,
                                                 }}
                                             ></input> 
                                  
