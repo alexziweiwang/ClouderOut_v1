@@ -3545,8 +3545,29 @@ export default function NavigationSetter({initialNavObj,
 
                    <br></br>
                    <label>{sliderSText}{widthText}: </label>
-                   <input type="range"></input>
-                   <input></input>
+                   <input type="range"
+                      min="20" max="545" step="1"
+                      value={currentProjectNav["settingPage-sliderWidth"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-sliderWidth"] = event.target.value;
+                        updateNavObj(tempObj);   
+    
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-sliderWidth": event.target.value});  
+                      }}
+                   
+                   ></input>
+                   <input type="number"
+                      min="20" max="545" step="1"
+                      value={currentProjectNav["settingPage-sliderWidth"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-sliderWidth"] = event.target.value;
+                        updateNavObj(tempObj);   
+    
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-sliderWidth": event.target.value});  
+                      }}
+                   ></input>
 
                    <br></br>
                    <label>{sliderSText}{heightText}: </label>
