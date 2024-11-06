@@ -3533,10 +3533,128 @@ export default function NavigationSetter({initialNavObj,
                      ></input>
              
                    <br></br>
-               
-               Slider Looking: TODO
 
-  
+                   <br></br>
+                   <label>Slider Width:</label>
+                   <input></input>
+                   <input></input>
+
+                   <br></br>
+                   <label>Slider Height:</label>
+                   <input></input>
+                   <input></input>
+
+                   <br></br>
+                   <label>Slider Thumb Looking:</label>
+                   <div className="indentOne"
+                    style={{"backgroundColor": "orange"}}
+                   >
+                        <input type="radio"
+                            onChange={()=>{    
+                                  
+                            }}
+                        ></input>
+                        
+                        
+                        <label onClick={()=>{    
+                                  
+                        }}>{rectangleAndColorFilled} </label>
+                        {<div className="indentOne">
+                            <input type="color"></input>
+                            <label></label>
+                        </div>}
+                        
+
+
+                          <br></br>
+                          <input type="radio"
+                              onChange={()=>{    
+                                    
+                              }}
+                          ></input>
+                          <label onClick={()=>{    
+                                   
+                          }}>{basePictureText} </label>
+                            
+                              {<>
+                                <select 
+                                  onChange={(event)=>{
+                                    
+                                  }}  
+                                
+                                
+                                >                    
+                                    <option key="mpliDefault" value="">-- {selectResourceText} --</option>
+                                    {visualList.map((item, index) => {
+                                        let keyStr = "setting-slider-thumb-li-" + index + item["var"];
+                                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
+                                </select>
+                                <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
+                              </>}
+
+                   </div>
+
+
+                   <br></br>
+                   <label>Slider Track Looking:</label>
+             
+                      <div className="indentOne"
+                    style={{"backgroundColor": "orange"}}
+                   >
+                        <input type="radio"
+                            onChange={()=>{    
+                                  
+                            }}
+                        ></input>
+                        
+                        
+                        <label onClick={()=>{    
+                                  
+                        }}>{rectangleAndColorFilled} </label>
+                        {<div className="indentOne">
+                            <input type="color"></input>
+                            <label></label>
+                        </div>}
+                        
+
+
+                          <br></br>
+                          <input type="radio"
+                              onChange={()=>{    
+                                    
+                              }}
+                          ></input>
+                          <label onClick={()=>{    
+                                   
+                          }}>{basePictureText} </label>
+                            
+                              {<>
+                                <select 
+                                  onChange={(event)=>{
+                                    
+                                  }}  
+                                
+                                
+                                >                    
+                                    <option key="mpliDefault" value="">-- {selectResourceText} --</option>
+                                    {visualList.map((item, index) => {
+                                        let keyStr = "setting-slider-track-li-" + index + item["var"];
+                                        return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
+                                </select>
+                                <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
+                              </>}
+
+                  
+
+
+
+
+                   </div>
+
+               
+        
        
   
        <br></br><br></br>
