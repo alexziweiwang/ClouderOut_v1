@@ -252,7 +252,7 @@ export default function NavigationPreview ({
                     }
 
                     if (navObj[item] === true) {
-                        let keyStr1 = item + "_groupedItems";
+                        let keyStr1 = item + "_groupedItems" + (isEditing === true ? "__e" : "__ne");
                         return (
                             <div 
                                 className="navigationButton"
@@ -337,7 +337,7 @@ export default function NavigationPreview ({
 
             {mainPageEntryNames.map((item, index) => {
          
-                let keyStr2 = item + "_customizedItems";
+                let keyStr2 = item + "_customizedItems" + (isEditing === true ? "__e" : "__ne");
                 let pageNaming = "default";
 
                 let optionName = "";
@@ -523,7 +523,7 @@ export default function NavigationPreview ({
                     "borderRadius": "0px",
                 }}>
                     {slSlotFrame.map((item, index) => {
-                        let keyStr = "slSlot" + slCurrentSlotPage + "-" + index;
+                        let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
                         return (<div 
                             className="navigationButton"
                             id={keyStr}
@@ -745,7 +745,7 @@ export default function NavigationPreview ({
 
 
                         {storyPageChapterTitles.map((item, index) => {
-                            let keyStr = "storyPageSameplTitle" + index;
+                            let keyStr = "storyPageSameplTitle" + index + (isEditing === true ? "__e" : "__ne");
 
 
                             return (<div key={keyStr} id={keyStr}
@@ -824,8 +824,6 @@ export default function NavigationPreview ({
         >
 
 
-{/* //TODO for sliders */}
-
               <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -877,9 +875,8 @@ export default function NavigationPreview ({
                                         title = navObj["settingPage-seVolName"];
                                     }
 
-                                    //TODO: slider bar, slider handle
 
-                                   let keyStr3 = "settingItem" + index;
+                                   let keyStr3 = "settingItem" + index + (isEditing === true ? "__e" : "__ne");
 
                                     return (
                                     <div
@@ -920,7 +917,7 @@ export default function NavigationPreview ({
                                         }
                                     >
                                         <div style={{"height": "30px"}}>
-                                            <label style={{"height": "20px"}}>{title}</label>
+                                            <label style={{"height": "20px"}}>{title} [{keyStr3}]</label>
                                             <label>(value)</label>
                                         </div>
 
