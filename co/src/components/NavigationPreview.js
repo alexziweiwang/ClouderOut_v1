@@ -916,17 +916,22 @@ export default function NavigationPreview ({
                                             }
                                         }
                                     >
-                                        <div style={{"height": "30px"}}>
+                                        <div style={{"height": "30px",}}>
                                             <label style={{"height": "20px"}}>{title} [{keyStr3}]</label>
                                             <label>(value)</label>
                                         </div>
 
-                                        <div>
+                                        <div
+                                        >
                                             <input type="range"
+                                                
+                                                onChange={()=>{
+                                                    //TODO update to player-gameSettings?
+                                                    
+                                                }}
                                                 style={{
                                                     "accentColor": navObj["settingPage-sliderColor"],
                                                     "width": `${navObj["settingPage-sliderWidth"]}px`,
-                                                    "height": `${navObj["settingPage-sliderHeight"]}px`,
                                                 }}
                                             ></input> 
                                  

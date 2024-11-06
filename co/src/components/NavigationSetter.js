@@ -3451,7 +3451,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                   ></input>
                <br></br>
-               {groupsText}{heightText}:
+               {itemHeightText}:
                <input type="range"
                   min="1" max="600" step="1"
                   value={currentProjectNav["settingPage-listItemGroupHeight"]}
@@ -3570,14 +3570,19 @@ export default function NavigationSetter({initialNavObj,
                    ></input>
 
                    <br></br>
-                   <label>{sliderSText}{heightText}: </label>
-                   <input type="range"></input>
-                   <input></input>
-
-                   <br></br>
                    <label>{sliderSText}{colorText}: </label>
-                   <input type="color"></input>
-                   <label></label>
+                   <input type="color"
+                      min="20" max="545" step="1"
+                      value={currentProjectNav["settingPage-sliderColor"]}
+                      onChange={(event)=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["settingPage-sliderColor"] = event.target.value;
+                        updateNavObj(tempObj);   
+    
+                        setCurrentProjectNav({...currentProjectNav, "settingPage-sliderColor": event.target.value});  
+                      }}
+                   ></input>
+                   <label>{currentProjectNav["settingPage-sliderColor"]}</label>
                    {/* <br></br>
                    <label>Slider Thumb Looking:</label>
                    <div className="indentOne someGrey"
