@@ -3165,6 +3165,7 @@ export default function NavigationSetter({initialNavObj,
     </div>}
 
     {currentSettingPage === "Settings Page" && <div>
+
      <label>{settingsPageText}</label>
      <div className="indentOne"><br></br>
      <label>{backGroundOfTheEntirePageText}:</label><br></br>
@@ -3535,20 +3536,33 @@ export default function NavigationSetter({initialNavObj,
                    <br></br>
 
                    <br></br>
-                   <label>Slider Width:</label>
-                   <input></input>
-                   <input></input>
-
-                   <br></br>
-                   <label>Slider Height:</label>
-                   <input></input>
+                   <label>Slider Width: </label>
+                   <input type="range"></input>
                    <input></input>
 
                    <br></br>
+                   <label>Slider Height: </label>
+                   <input type="range"></input>
+                   <input></input>
+
+                   <br></br>
+                   <label>Slider Color: </label>
+                   <input type="color"></input>
+                   <label></label>
+                   {/* <br></br>
                    <label>Slider Thumb Looking:</label>
-                   <div className="indentOne"
-                    style={{"backgroundColor": "orange"}}
+                   <div className="indentOne someGrey"
                    >
+                     <label>Corner Radius: </label>
+                     <input type="range"
+                      min="0" max="50" step="1"
+                      
+                     ></input>
+                     <label>
+
+                     </label>
+                     <br></br>
+
                         <input type="radio"
                             onChange={()=>{    
                                   
@@ -3593,10 +3607,10 @@ export default function NavigationSetter({initialNavObj,
                                 <button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                               </>}
 
-                   </div>
+                   </div> */}
 
 
-                   <br></br>
+                   {/* <br></br>
                    <label>Slider Track Looking:</label>
              
                       <div className="indentOne"
@@ -3653,7 +3667,7 @@ export default function NavigationSetter({initialNavObj,
 
                    </div>
 
-               
+                */}
         
        
   

@@ -822,6 +822,10 @@ export default function NavigationPreview ({
             "backgroundColor": "rgb(222, 222, 235)"
         }}
         >
+
+
+{/* //TODO for sliders */}
+
               <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -915,8 +919,22 @@ export default function NavigationPreview ({
                                             }
                                         }
                                     >
+                                        <div style={{"height": "30px"}}>
+                                            <label style={{"height": "20px"}}>{title}</label>
+                                            <label>(value)</label>
+                                        </div>
 
-                                        {title}
+                                        <div>
+                                            <input type="range"
+                                                style={{
+                                                    "accentColor": "green",
+                                                    "width": "350px",
+                                                    "height": "50px",
+                                                }}
+                                            ></input> 
+                                 
+                                        </div>
+                                        
                                         </div>);
 
                             }
