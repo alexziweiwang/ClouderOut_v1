@@ -927,7 +927,6 @@ export default function NavigationPreview ({
                                                 
                                                 onChange={()=>{
                                                     //TODO update to player-gameSettings?
-                                                    
                                                 }}
                                                 style={{
                                                     "accentColor": navObj["settingPage-sliderColor"],

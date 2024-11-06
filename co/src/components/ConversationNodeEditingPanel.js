@@ -65,9 +65,11 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
                                                        
                                                         console.log("conv-editing panel: obj from cloud (resource list):"); //TODO test
                                                         console.log(obj); //TODO test
+      if (obj !== undefined) {
+        setAudioList(obj.audio);
+        setVisualList(obj.visual);          
+      }
 
-      setAudioList(obj.audio);
-      setVisualList(obj.visual);
     }
 
 

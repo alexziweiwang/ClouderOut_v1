@@ -1759,7 +1759,7 @@ export default function NavigationSetter({initialNavObj,
                   setToggleIsPlayerProfile(!toggleIsPlayerProfile);
                 }}               
             ></input>
-           <label class="textNoSelect"
+           <label className="textNoSelect"
                 onClick={()=>{
                   setToggleIsPlayerProfile(!toggleIsPlayerProfile);
                 }} 
@@ -1774,7 +1774,7 @@ export default function NavigationSetter({initialNavObj,
                 setToggleIsSetting(!toggleIsSetting);
               }}      
             ></input>
-            <label class="textNoSelect"
+            <label className="textNoSelect"
                 onClick={()=>{
                   setToggleIsSetting(!toggleIsSetting);
                 }} 
@@ -1786,7 +1786,7 @@ export default function NavigationSetter({initialNavObj,
                   setToggleIsShop(!toggleIsShop);
               }}                     
             ></input>
-            <label class="textNoSelect"
+            <label className="textNoSelect"
               onClick={()=>{
                   setToggleIsShop(!toggleIsShop);
               }}     

@@ -155,6 +155,10 @@ export async function fetchUrlByFilename({fullFilename}) {
  */
 export async function fetchProjectResourceVarPairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
+  if (userName === undefined || projectName === undefined) {
+              console.log("!!! fetchProjectResourceVarPairs() uname/projName undefined.");
+    return;
+  }
 
   const ref = doc(db, "user_projects", userName, "projects", projectName);
   
