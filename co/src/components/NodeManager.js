@@ -933,8 +933,9 @@ export default function NodeManager({projectName, currUser,
 
 
 {/* Node-list */}
+    <div>
           <div style={{
-            "height": "350px", 
+            "height": "250px", 
             "marginRight": "20px",      
           }}>
 
@@ -972,6 +973,18 @@ export default function NodeManager({projectName, currUser,
                   })}
             </ul>
           </div>  
+          <div
+            style={{"height": "100px"}}
+          >
+            <button 
+              className="setting_item"
+              style={{"height": "30px", "overflow": "scroll", "width": "100px"}}
+              onClick={()=>{enterNodeEditor2();}}>
+                {enterEditorText}
+            </button>
+
+          </div>
+    </div>
 
           {<div style={{
             "overflow": "scroll", 
@@ -1763,6 +1776,7 @@ export default function NodeManager({projectName, currUser,
  <div>
             <button 
               className="setting_item"
+              style={{"height": "30px", "overflow": "scroll", "width": "100px"}}
               onClick={()=>{enterNodeEditor2();}}>
                 {enterEditorText}
             </button>

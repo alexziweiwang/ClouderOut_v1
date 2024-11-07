@@ -32,7 +32,7 @@ export default function ConversationNodeEditingPanel() {
     let projectName = "default-no-state projectname";
     let screenSizeInfo = "default-no-state screenSizeInfo";
     if (state != null) {
-        nodeName = state.selectedNode;
+        nodeName = state.clickedNodeKey;
         uname = state.userName;
         projectName = state.selected_project_name;
         screenSizeInfo = state.screenSizeStr;
@@ -617,7 +617,12 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
         <div>
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-                <p><label>Conversational Game Node - Project Name: {state.projectName}</label></p>
+                <p>
+                <label>Project: {state.projectName}</label>
+                <br></br>
+                <label>Node: {state.clickedNodeKey}</label>
+                </p>
+
                 <button className="button testEntire"
                     onClick={()=>{setIsDisplayQview(true);}}>
                         {quickGameViewText}
