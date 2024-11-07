@@ -657,8 +657,12 @@ export default function PieceSetter({
     <div className="pieceSetterArea userChoice">
         <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
-        <button onClick={jumpToPrevPiece} className="pairGroup"> ← </button>
-        <button onClick={jumpToNextpiece} className="pairGroup"> → </button>
+        <div className="buttonRight90">
+            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>
+            <br></br>
+            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>            
+        </div>
+
 
 
         <div className="buttonRight50">
@@ -1684,9 +1688,11 @@ export default function PieceSetter({
 
         <br></br>
         <br></br>
-        <button onClick={()=>{jumpToPrevPiece()}} className="pairGroup"> ← </button>
-        <button onClick={()=>{jumpToNextpiece()}} className="pairGroup"> → </button>
-
+        <div className="buttonRight90">
+            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>
+            <br></br>
+            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>            
+        </div>
         <br></br>
         <br></br>
         <div className="buttonRight50">

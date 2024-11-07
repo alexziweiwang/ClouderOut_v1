@@ -179,6 +179,9 @@ const textDictionary = {
         groupsText: "Group ",
         sliderSText: "Slider ",
         colorText: "Color",
+        enterEditorText: "Enter Editor",
+        contentsText: "Contents",
+
 
 
 
@@ -368,6 +371,8 @@ const textDictionary = {
         groupsText: "群组",
         sliderSText: "调节条",
         colorText: "颜色",
+        enterEditorText: "编辑器",
+        contentsText: "内容",
 
 
 

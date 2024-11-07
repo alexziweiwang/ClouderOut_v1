@@ -62,6 +62,18 @@ export default function PieceManager({
     let addNewRowText = textDictItem.addNewRowText !== undefined ?
         textDictItem.addNewRowText
         : textDictItemDefault.addNewRowText;
+
+    let enterEditorText = textDictItem.enterEditorText !== undefined ?
+        textDictItem.enterEditorText
+        : textDictItemDefault.enterEditorText;
+
+    let contentsText = textDictItem.contentsText !== undefined ?
+        textDictItem.contentsText
+        : textDictItemDefault.contentsText;
+
+    let operationsText = textDictItem.operationsText !== undefined ?
+        textDictItem.operationsText
+        :textDictItemDefault.operationsText;
     
 
         
@@ -217,11 +229,11 @@ export default function PieceManager({
             <table className="pieceTable">
         <thead>
             <tr>
-            <th style={{"width": "50px"}}>Editor</th>
+            <th style={{"width": "50px"}}>{enterEditorText}</th>
             <th style={{"width": "30px"}}>#</th>
-            <th className="contentGrid">Content</th>
+            <th className="contentGrid">{contentsText}</th>
             {isManage === true && 
-                <th style={{"width": "90px"}}>Operations</th>}
+                <th style={{"width": "90px"}}>{operationsText}</th>}
             {isManage === true &&   
                 <th style={{"width": "60px"}}></th>}
             </tr>
