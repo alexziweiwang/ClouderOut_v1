@@ -117,6 +117,10 @@ export default function GameUISetter({
             fetchProjResourceLists();
             setFirstTimeEnter(false);
         }
+
+        let uiLangTemp = getUILanguage();
+        setLanguageCodeTextOption(uiLangTemp);
+
         updateIsDisplayDefaultButtonPreview(displayDefaultButtonPreview);
         updateDefaultButtonSettings(defaultButtonObj);
   

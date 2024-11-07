@@ -209,6 +209,10 @@ export default function PieceSetter({
         const allPiece = getAllPieceData();
         setPieceAllDataLocal(allPiece);  
 
+
+        let uiLangTemp = getUILanguage();
+        setLanguageCodeTextOption(uiLangTemp);
+
         if (firstTimeEnter === true) {
             /* initialization of project-resource-list in drop-down list */
             fetchProjResourceLists();

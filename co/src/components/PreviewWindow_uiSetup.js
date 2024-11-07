@@ -17,7 +17,6 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 }) {
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
-
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
@@ -39,6 +38,10 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
 
     useEffect(() => {
+
+
+        let uiLangTemp = getUILanguage();
+        setLanguageCodeTextOption(uiLangTemp);
     
         let screenSizePair = getScreenSize();
         setScreenWidth(screenSizePair[0]);

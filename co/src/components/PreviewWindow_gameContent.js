@@ -84,6 +84,10 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
 console.log("preview-window first-time entry, resource-list fetched."); //TODO test
       }
 
+
+      let uiLangTemp = getUILanguage();
+      setLanguageCodeTextOption(uiLangTemp);
+
       let allPieceContentTemp = getAllPieceContent();
       if (allPieceContentTemp !== allPieceData) {
         setAllPieceData(allPieceContentTemp);

@@ -82,6 +82,10 @@ export default function PieceManager({
             setFirstTimeEnter(false);
         }
 
+
+        let uiLangTemp = getUILanguage();
+        setLanguageCodeTextOption(uiLangTemp);
+
         let isActionOnSetter = fetchClickedIsOnSetter();
         if (isActionOnSetter === false) {
             //fetch action from preview-screen
