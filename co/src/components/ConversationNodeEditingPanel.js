@@ -29,7 +29,7 @@ export default function ConversationNodeEditingPanel() {
     const {state} = useLocation();
     let nodeName = "";
     let uname = "default-no-state username";
-    let projectName = "default-no-state projectName";
+    let projectName = "default-no-state projectname";
     let screenSizeInfo = "default-no-state screenSizeInfo";
     if (state != null) {
         nodeName = state.selectedNode;
@@ -309,6 +309,11 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
 
 
     useEffect(() => {
+        if (projectName === "default-no-state projectname") {
+            alert("No project selected. Returning to project selection page...");
+            goToProjectManagingPanel();
+        }
+
         if (firstTimeEnter === true) {
             getGameDataFromCloud();
             fetchProjResourceLists();
@@ -316,10 +321,6 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
             setFirstTimeEnter(false);
         }
         
-        if (projectName === "default-no-state projectName") {
-            alert("No project selected. Returning to project selection page...");
-            goToProjectManagingPanel();
-          }
     
     });
       
