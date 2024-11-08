@@ -395,17 +395,6 @@ export default function PieceSetter({
         } 
 
 
-
-        // else {
-          
-        //     setLookingPieceNumber(1);
-        //     assignPreviewIndex(0); // TODO note : number = index+1, index = num-1
-
-        //     setStndButtonDataTable(pieceAllDataLocal[0]["stnd_btn_arr"]);
-        //     setStndButtonDataTable(pieceAllDataLocal[0]["clkb_arr"]);
-        // }
-
-
     }
 
     function jumpToNextpiece() {
@@ -419,16 +408,6 @@ export default function PieceSetter({
             setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
             setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["clkb_arr"]);
         } 
-        
-
-
-        // else {
-        //     setLookingPieceNumber(pieceAllDataLocal.length);
-        //     assignPreviewIndex(pieceAllDataLocal.length-1); // TODO note : number = index+1, index = num-1
-
-        //     setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["stnd_btn_arr"]);
-        //     setStndButtonDataTable(pieceAllDataLocal[pieceAllDataLocal.length-1]["clkb_arr"]);
-        // }
 
     }
 
@@ -657,10 +636,15 @@ export default function PieceSetter({
     <div className="pieceSetterArea userChoice">
         <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
+        
         <div className="buttonRight90">
-            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>
-            <br></br>
-            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>            
+            {(lookingPieceNumber > 1) &&
+            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>}
+
+            {(lookingPieceNumber < pieceAllDataLocal.length) &&
+            <><br></br>
+            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>
+            </>}         
         </div>
 
 
@@ -1688,11 +1672,18 @@ export default function PieceSetter({
 
         <br></br>
         <br></br>
+        <br></br>
+
         <div className="buttonRight90">
-            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>
-            <br></br>
-            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>            
+            {(lookingPieceNumber > 1) &&
+            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>}
+
+            {(lookingPieceNumber < pieceAllDataLocal.length) &&
+            <><br></br>
+            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>
+            </>}         
         </div>
+
         <br></br>
         <br></br>
         <div className="buttonRight50">
