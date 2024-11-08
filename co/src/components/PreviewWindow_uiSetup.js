@@ -50,6 +50,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
         let visualListTemp = passInVisualList();
         setVisualList(visualListTemp);
+                                console.log("preview-w: visual-list = ", visualListTemp); //TODO test
 
         let audioListTemp = passInAudioList();
         setAudioList(audioListTemp);

@@ -167,20 +167,20 @@ export default function GameUISetter({
     const [audioMap, setAudioMap] = useState([]);
 
     async function fetchProjResourceLists() {
-                                            console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+                   //                         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
 
         if (username === "default-no-state username" || projName === "default-no-state projectName") {
-                                            console.log("!!!state not ok");
+                  //                          console.log("!!!state not ok"); //TODO test
             return;
         }
 
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-                                            console.log("...state ok, resource-obj = ", obj);
+                                //            console.log("...state ok, resource-obj = ", obj); //TODO test
 
 
         if (obj === undefined || obj === null) {
-                                                console.log("resource obj not ok");
+                                      //          console.log("resource obj not ok"); //TODO test
             return;
         }
 
@@ -200,6 +200,7 @@ export default function GameUISetter({
             tempMap[item["var"]] = item["url"];
             i++;
         }
+                 //   console.log("initialized visual map = ", tempMap); //TODO test
 
         setVisualMap(tempMap);
     }
@@ -345,23 +346,17 @@ export default function GameUISetter({
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
               }}>{basePictureText} </label>
 
-
-<br></br>
-<label>TEST: [{defaultButtonObj["picVar"]}]</label>
-<br></br>
-
-
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                        let key = event.target.value;
-                        setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[key]["var"]}); 
+                        let keyStr = event.target.value;
+                        setDefaultButtonObj({...defaultButtonObj,  "picVar": keyStr}); 
                 }}>                    
                     <option key="idvDefault" value="">-- {selectResourceText} --</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "defaultButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                <option value={currKey} key={keyName}>{currKey}</option>
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
