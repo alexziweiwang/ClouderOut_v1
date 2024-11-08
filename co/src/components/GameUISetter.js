@@ -108,6 +108,28 @@ export default function GameUISetter({
         textDictItem.groupPositionYText
         : textDictItemDefault.groupPositionYText;
 
+    let backgroundColorText = textDictItem.backgroundColorText !== undefined ?
+        textDictItem.backgroundColorText
+        : textDictItemDefault.backgroundColorText;
+    
+    let cornerRadiusText = textDictItem.cornerRadiusText !== undefined ?
+        textDictItem.cornerRadiusText
+        : textDictItemDefault.cornerRadiusText;
+
+    let borderColorText = textDictItem.borderColorText !== undefined ?
+        textDictItem.borderColorText
+        : textDictItemDefault.borderColorText;
+
+    let horizontallyCentreText = textDictItem.horizontallyCentreText !== undefined ?
+        textDictItem.horizontallyCentreText
+        : textDictItemDefault.horizontallyCentreText;
+
+
+//TODO15
+
+
+
+
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
     
@@ -220,7 +242,7 @@ export default function GameUISetter({
             }}></input><input value={defaultButtonObj["widthMax"]} min="0" max={screenWidth} step="1" type="number" onChange={(event)=>{            setDefaultButtonObj({...defaultButtonObj,  "widthMax": event.target.value});
         }}></input> */}
         <br></br>{heightText}: <input type="range" value={defaultButtonObj["height"]} min="0" max="80" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj, "height": event.target.value});}}></input><input type="number" value={defaultButtonObj["height"]} min="0" max={screenWidth} step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "height": event.target.value});}}></input>
-        <br></br><label>Corner Radius: </label>
+        <br></br><label>{cornerRadiusText}: </label>
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         {/* <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label> */}
         <br></br><label>{fontSizeText}: </label><input type="range" value={defaultButtonObj["textSize"]}  min="0" max="90" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textSize": event.target.value});}}></input><label> {defaultButtonObj["textSize"]} px</label>
@@ -247,7 +269,7 @@ export default function GameUISetter({
             <option value="sans-serif" key="deflBtn_sans-serif">sans-serif</option>
             <option value="cursive" key="deflBtn_cursive">cursive</option>
         </select>
-        <br></br><label>Border Color: </label><input type="color" value={idvButtonBorderColor} onChange={(event)=>{
+        <br></br><label>{borderColorText}: </label><input type="color" value={idvButtonBorderColor} onChange={(event)=>{
                         setIdvButtonBorderColor(event.target.value);
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
@@ -268,7 +290,7 @@ export default function GameUISetter({
                 }}>{rectangleAndColorFilled} </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
-                    <label>Background Color: </label>
+                    <label>{backgroundColorText}: </label>
                     <input type="color" value={defaultButtonObj["bgColor"]} 
                     onChange={(event)=>{
                         setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});
@@ -353,7 +375,7 @@ export default function GameUISetter({
                     } else {
                         setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
                     }   
-                }}>Horizontally Centered</label>
+                }}>{horizontallyCentreText}</label>
             </div>
         <br></br><label>{groupPositionYText}: </label><br></br>
             <div className="indentOne">
@@ -484,7 +506,7 @@ export default function GameUISetter({
         }}></input><input type="number" value={txtFrameObj["positionY"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "positionY": event.target.value});           
         }}></input>
-    <br></br><label>Corner Radius: </label>
+    <br></br><label>{cornerRadiusText}: </label>
     <input type="range" min="0" max="100" step="1" onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "cornerRadius": event.target.value});    
         }} value={txtFrameObj["cornerRadius"]}></input><label> {txtFrameObj["cornerRadius"]}</label>
@@ -865,7 +887,7 @@ export default function GameUISetter({
         </div>
 
         <br></br>
-        <label>Corner Radius:</label>
+        <label>{cornerRadiusText}:</label>
         <input type="range" value={convNav["cornerRadius"]} min="0" max="200" step="1" 
         onChange={(event)=>{setConvNav({...convNav,  "cornerRadius": event.target.value});}}></input>
         <label> {convNav["cornerRadius"]}</label>
@@ -989,7 +1011,7 @@ export default function GameUISetter({
                         max={screenHeight/5} min="1" step="1"
                         ></input>
                 <br></br>
-                <label> Corner Radius:</label>
+                <label> {cornerRadiusText}:</label>
                 <input type="range" value={convLogObj["closeButtonCornerRadius"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "closeButtonCornerRadius": event.target.value});
@@ -1017,7 +1039,7 @@ export default function GameUISetter({
                         }}                   
                     ></input>
                 <br></br>
-                <label> Border Color:</label>
+                <label> {borderColorText}:</label>
                     <input type="color" value={convLogObj["closeButtonBorderColor"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "closeButtonBorderColor": event.target.value});
@@ -1161,7 +1183,7 @@ export default function GameUISetter({
                             </select>
                             <button onClick={() => {openRm();}}>{manageResourceText}</button>
                     </div>  
-                    <label>Corner Radius</label>
+                    <label>{cornerRadiusText}</label>
                     <input type="range" value={convLogObj["groupUnitCornerRadius"]}
                         onChange={(event)=>{
                             setConvLogObj({...convLogObj, "groupUnitCornerRadius": event.target.value});

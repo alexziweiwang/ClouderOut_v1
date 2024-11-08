@@ -181,10 +181,9 @@ const textDictionary = {
         colorText: "Color",
         enterEditorText: "Enter Editor",
         contentsText: "Contents",
-
-
-
-
+        cornerRadiusText: "Corner Radius",
+        borderColorText: "Border Color",
+        horizontallyCentreText: "Horizontally Centre",
 
 
 
@@ -363,7 +362,7 @@ const textDictionary = {
         allResourcesText: "所有资源",
         inThisProjectText: "本项目内 资源",
         notInThisProjectText: "非本项目 资源",
-        borderSizeText: "边框尺寸",
+        borderSizeText: "边框粗细",
         buttonTextText: "按键文本",
         playSpeedText: "播放速度",
         bgmVolumeText: "背景音乐 音量",
@@ -373,6 +372,10 @@ const textDictionary = {
         colorText: "颜色",
         enterEditorText: "编辑器",
         contentsText: "内容",
+
+        cornerRadiusText: "圆角半径",
+        borderColorText: "边框颜色",
+        horizontallyCentreText: "横向居中",
 
 
 
