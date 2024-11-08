@@ -51,42 +51,8 @@ export default function ConversationNodeEditingPanel() {
         "16:9(horizonal)": [800, 450],
         "16:9(vertical)": [450, 800],
         "4:3(horizonal)": [800, 600],
-        "4:3(vertical)": [600, 800]};
-
-
-    const [audioList, setAudioList] = useState([]); //TODO for sound effect -- future feature
-    const [visualList, setVisualList] = useState([]); 
-  
-    async function fetchProjResourceLists() {
-
-                                                        console.log("conv-editing panel: fetchProjResourceLists-func"); //TODO test
-      /* fetch from cloud db */
-
-
-      if (uname === "default-no-state username" || projectName === "default-no-state projectName") {
-          return;
-      }
-
-      let res = await fetchProjectResourceVarPairsVM({userName: uname, projectName: projectName}).then(
-        obj=>{
-                                                                
-            console.log("... conv-editing panel: obj from cloud (resource list):"); //TODO test
-            console.log(obj); //TODO test
-
-
-            if (obj !== undefined) {
-                setAudioList(obj.audio);
-                setVisualList(obj.visual);          
-            }
-
-            return obj;
-        }
-      );
-
-                                        console.log("conv-node-editor: finished.", res); //TODO test
-
-
-    }
+        "4:3(vertical)": [600, 800]
+    };
 
 
     const [isActionOnSetter, setIsActionOnSetter] = useState(true);
@@ -315,7 +281,7 @@ export default function ConversationNodeEditingPanel() {
     const [screenHeight, setScreenHeight] = useState(600);
 
 
-    const [gameDataDesignList, setGameData] = useState({});                    /* Important */
+    const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
  
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
@@ -332,19 +298,11 @@ export default function ConversationNodeEditingPanel() {
         if (firstTimeEnter === true) {
             initializeUILang();
 
-            getGameDataFromCloud();
-            fetchProjResourceLists();
-
             setFirstTimeEnter(false);
         }
 
 
 
-
-
-
-        console.log("conv-node-editor, visual list = ", visualList);
-        
     
     });
       
@@ -365,28 +323,6 @@ export default function ConversationNodeEditingPanel() {
                                 console.log("!!initializeUILang(): ", uiLangFromOuterCompo);
         }
 
-    }
-
-    async function getGameDataFromCloud() {
-        let isUpdated = true;
-        //TODO 
-        let gDataMap = {};
-        let project = state.projectName;
-        let currUser = state.userName;
-
-        gDataMap = await getProjectGameDataDesignVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
-
-        // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
-        // console.log(state); //TODO remove later
-
-        
-        // console.log("Conv-editing-:$$$$$$$$$$$ game data from cloud = ");
-        // console.log(gDataMap);
-        
-
-        //TODO transform to a list  
-
-        setGameData(gDataMap);
     }
 
 
@@ -562,25 +498,6 @@ export default function ConversationNodeEditingPanel() {
         setNeedCloudGameData(true);
     }
 
-    async function fetchGameDataFromCloud() {
-
-        console.log("!!! This is for project: ", projectName);
-        let project  = projectName;
-        console.log("checking2 on project ... [", project, "]");
-        if (project === undefined || project === null || project === "" || project.trim() === "") {
-          return;
-        }
-        const isUpdated = true;
-        let currUser = uname;
-        const gdataTestResult = await getProjectGameDataDesignVM({projectName: project, uname: currUser, mostUpdated: isUpdated});
-     
-        if (gdataTestResult === undefined) {
-          console.log("Error: no game_data in this project...");
-          return;
-        }
-        console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-        setGameData(gdataTestResult);
-  }
 
 
     function updateGDataDesignToCloud(gameDataLatest) {
@@ -628,14 +545,6 @@ export default function ConversationNodeEditingPanel() {
 
     function passInNewGameDataList() {
         return gameDataDesignList;
-    }
-
-    function passInAudioList() {
-        return audioList;  //for previewing
-    }
-
-    function passInVisualList() {
-        return visualList; //for previewing
     }
 
     function handleqvCancel() {
@@ -854,8 +763,6 @@ export default function ConversationNodeEditingPanel() {
                     getLogPageUISettings={passInLogPageUISettings}
                     getScreenSize={passInScreenSize}
                     getUIConvNav={passInUIConvNav}
-                    passInAudioList={passInAudioList}
-                    passInVisualList={passInVisualList}
 
                     getUILanguage={passInUILanguage}
 
@@ -883,7 +790,6 @@ export default function ConversationNodeEditingPanel() {
                 <Modal_GameDataManager 
                     isDisplay={displayGameDataWindow}
                     handleGdmCancel={handleModal_GameDataManagerCancel} 
-                    initialGameData={gameDataDesignList} 
                     resetNeedCloudData={markNextNeedCloudGameData} 
                     updateGameDataDesignToCloud={updateGDataDesignToCloud}
 
@@ -907,11 +813,7 @@ export default function ConversationNodeEditingPanel() {
                 uiData4_logPageSettings={logPageUISettings}
                 screenWidth={screenWidth}
                 screenHeight={screenHeight}
-                visualList={visualList}
-                audioList={audioList}
-                initialGameDataDesignList={gameDataDesignList}
-                getGameDataDesignList={passInGameDataDesignList}
-
+    
                 getUILanguage={passInUILanguage}
             />}
 

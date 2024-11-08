@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
+import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
+
+
+
+//TODO adjust plan: fetch data from cloud-db, and provde display and setup features
 
 export default function Modal_GameDataManager ({
         isDisplay, handleGdmCancel, 
-        initialGameData, 
         resetNeedCloudData, 
         updateGameDataDesignToCloud,
 
@@ -113,7 +117,7 @@ export default function Modal_GameDataManager ({
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
-    const [usingGameData, setUsingGameData] = useState(initialGameData);
+    const [usingGameData, setUsingGameData] = useState([]);
     const [editLineDisplay, setEditLineDisplay] = useState("");
     const [editAreaOpen, setEditAreaOpen] = useState(false);
     const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");

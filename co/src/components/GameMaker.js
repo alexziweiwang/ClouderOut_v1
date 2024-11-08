@@ -1470,7 +1470,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             <Modal_GameDataManager 
               isDisplay={isDisplayGdmBool} 
               handleGdmCancel={handleGameDataManagerCancel} 
-              initialGameData={gameDataDesignList} 
               resetNeedCloudData={markNextNeedCloudGameData} 
               updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
 

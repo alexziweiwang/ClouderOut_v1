@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 import Panel_GameDataTest from './Panel_GameDataTest';
 import langDictionary from './textDictionary';
+//TODO get game-data-design-list from?
 
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, initialGameDataDesignList, getGameDataDesignList,
+    visualList, audioList, 
     getUILanguage,
 
 }) {
+
+    const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
 
     let languageCodeTextOption = 'en';
 
@@ -61,7 +64,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
     const [gameDataTracker, setGameDataTracker] = useState({});
-    const [gameDataDesignList, setGameDataDesignList] = useState(initialGameDataDesignList);
+    const [gameDataDesignList, setGameDataDesignList] = useState([]);
 
 
     // const [originalGmdt, setOriginalGmdt] = useState({});
@@ -207,15 +210,17 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
     function initializeGameDataTracker() {
-        let gameDataTemp = getGameDataDesignList(); //TODO refactor for separating
-        let defaultMap = {}; //for the record of entering-game-data
+        // let gameDataTemp = getGameDataDesignList(); //TODO refactor for separating
+        // let defaultMap = {}; //for the record of entering-game-data
 
-        {Object.keys(gameDataTemp).map((currKey) => {
-            gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-            //current_value, data_type("boolean"/"string"/"number"), default_value, name
-            defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-        })}
-        setGameDataTracker(gameDataTemp); 
+        // {Object.keys(gameDataTemp).map((currKey) => {
+        //     gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
+        //     //current_value, data_type("boolean"/"string"/"number"), default_value, name
+        //     defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
+        // })}
+        // setGameDataTracker(gameDataTemp); 
+
+        //TODO re-impl later with VM-data-fetching
 
     }
 
@@ -370,7 +375,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     visualList={visualList} 
                     audioList={audioList}
-                    gameData={initialGameDataDesignList}
+                    gameData={tempPlaceholder}
                     getCurrPieceNum={passInCurrPieceNum}
                     getResetSignal={passInResetSignal}
                     notifyNewGameData={notifyNewGameData}
