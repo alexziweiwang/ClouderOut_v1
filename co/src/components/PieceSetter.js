@@ -508,7 +508,7 @@ export default function PieceSetter({
     }
 
     async function fetchProjResourceLists() {
-        console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+        console.log("piece-setter: fetchProjResourceLists-func"); //TODO test
         if (username === "default-no-state username" || projName === "default-no-state projectName") {
             return;
         }

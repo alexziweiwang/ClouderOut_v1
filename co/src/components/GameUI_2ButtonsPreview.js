@@ -41,7 +41,7 @@ const [visualMap, setVisualMap] = useState([]);
 
         let visualMapTemp = passInVisualMap();
 
-                                            console.log("\tgame-ui-2-buttons-preview visualMap = ", visualMapTemp);
+                               //             console.log("\t\t\tgame-ui-2-buttons-preview visualMap = ", visualMapTemp);
 
         setVisualMap(visualMapTemp);
 
@@ -124,10 +124,7 @@ const [visualMap, setVisualMap] = useState([]);
             }
             
             >
-            {item["buttonText"]}, 
-
-{defaultBtnUISettings["picVar"]}, {visualMap[defaultBtnUISettings["picVar"]]}
-
+                {item["buttonText"]}
             </div>);
         }                
         )}

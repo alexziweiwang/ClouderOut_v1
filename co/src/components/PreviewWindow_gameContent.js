@@ -17,11 +17,11 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav,
 
     getUILanguage,
+
+    username, projName,
     
   
   }) {
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
   
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -81,7 +81,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
         fetchProjResourceLists();
         setFirstTimeEnter(false);
 
-console.log("preview-window first-time entry, resource-list fetched."); //TODO test
+console.log("preview-window game-content first-time entry, resource-list fetched."); //TODO test
       }
 
 

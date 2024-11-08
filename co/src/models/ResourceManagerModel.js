@@ -156,7 +156,7 @@ export async function fetchUrlByFilename({fullFilename}) {
 export async function fetchProjectResourceVarPairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
   if (userName === undefined || projectName === undefined) {
-              console.log("!!! fetchProjectResourceVarPairs() uname/projName undefined.");
+                                    console.log("~fetchProjectResourceVarPairs() uname/projName undefined.");
     return;
   }
 
@@ -164,7 +164,7 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
   
   let visualListSnap = await getDoc(ref, "proj_resource_visual");
   if (visualListSnap === undefined) {
-                                                        console.log("visualListSnap undefined");
+                                                        console.log("~~visualListSnap undefined");
     return;
   }
                                                         // console.log(visualListSnap.data());
@@ -175,7 +175,7 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
   let audioListSnap = await getDoc(ref, "proj_resource_audio");
                                                         // console.log(audioListSnap.data());
   if (audioListSnap === undefined) {
-                                                        console.log("audioListSnap undefined");
+                                                        console.log("~~audioListSnap undefined");
 
     return;
   }
@@ -184,7 +184,8 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
   audioList = audioList["proj_resource_audio"];
 
   const obj = {audio: audioList, visual: visualList};
-                      // console.log("rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
+
+                        console.log("~~~~~~~ rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
 
   return obj;
 }

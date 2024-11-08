@@ -59,7 +59,7 @@ export default function ConversationNodeEditingPanel() {
   
     async function fetchProjResourceLists() {
 
-                                                        console.log("conv-editing panel: fetchProjResourceLists()"); //TODO test
+                                                        console.log("conv-editing panel: fetchProjResourceLists-func"); //TODO test
       /* fetch from cloud db */
 
 
@@ -67,14 +67,24 @@ export default function ConversationNodeEditingPanel() {
           return;
       }
 
-      const obj = await fetchProjectResourceVarPairsVM({userName: uname, projectName: projectName});
-                                                       
-                                                        console.log("conv-editing panel: obj from cloud (resource list):"); //TODO test
-                                                        console.log(obj); //TODO test
-      if (obj !== undefined) {
-        setAudioList(obj.audio);
-        setVisualList(obj.visual);          
-      }
+      let res = await fetchProjectResourceVarPairsVM({userName: uname, projectName: projectName}).then(
+        obj=>{
+                                                                
+            console.log("... conv-editing panel: obj from cloud (resource list):"); //TODO test
+            console.log(obj); //TODO test
+
+
+            if (obj !== undefined) {
+                setAudioList(obj.audio);
+                setVisualList(obj.visual);          
+            }
+
+            return obj;
+        }
+      );
+
+                                        console.log("conv-node-editor: finished.", res); //TODO test
+
 
     }
 
@@ -313,6 +323,7 @@ export default function ConversationNodeEditingPanel() {
 
 
     useEffect(() => {
+    
         if (projectName === "default-no-state projectname") {
             alert("No project selected. Returning to project selection page...");
             goToProjectManagingPanel();
@@ -326,6 +337,13 @@ export default function ConversationNodeEditingPanel() {
 
             setFirstTimeEnter(false);
         }
+
+
+
+
+
+
+        console.log("conv-node-editor, visual list = ", visualList);
         
     
     });
@@ -355,6 +373,7 @@ export default function ConversationNodeEditingPanel() {
         let gDataMap = {};
         let project = state.projectName;
         let currUser = state.userName;
+
         gDataMap = await getProjectGameDataDesignVM(({projectName: project, uname: currUser, mostUpdated: isUpdated}));
 
         // console.log("!!!!!!!!!! firstenter: getGameDataFromCloud(): ");
@@ -817,6 +836,10 @@ export default function ConversationNodeEditingPanel() {
                     getUIConvNav={passInUIConvNav}
 
                     getUILanguage={passInUILanguage}
+
+                    
+                    username={state.userName}
+                    projName={state.projectName}
                 />}
             {isDisplayGameContentPreview === false && 
                 <PreviewWindow_uiSetup
@@ -835,6 +858,10 @@ export default function ConversationNodeEditingPanel() {
                     passInVisualList={passInVisualList}
 
                     getUILanguage={passInUILanguage}
+
+            
+                    username={state.userName}
+                    projName={state.projectName}
                 />
             }
 

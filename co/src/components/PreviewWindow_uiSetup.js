@@ -4,15 +4,18 @@ import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
     getLogPageUISettings,
     getBackButtonUISettings, getScreenSize, getUIConvNav, 
-    passInAudioList, passInVisualList,
 
     getUILanguage,
+
+    username, projName,
+
     
 }) {
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -37,8 +40,15 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
 
-    useEffect(() => {
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            fetchProjResourceLists();
+            setFirstTimeEnter(false);
+    
+    console.log("preview-window ui-setup first-time entry, resource-list fetched."); //TODO test
+        }
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
@@ -48,37 +58,44 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
         setScreenHeight(screenSizePair[1]);
 
 
-        let visualListTemp = passInVisualList();
-        setVisualList(visualListTemp);
-                                console.log("preview-w: visual-list = ", visualListTemp); //TODO test
-
-        let audioListTemp = passInAudioList();
-        setAudioList(audioListTemp);
 
 
-        if (audioMapSize < audioListTemp.length || visualMapSize < visualListTemp.length) {
+
+        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
             let tempAudioMap = {};
-            setAudioMapSize(audioListTemp.length);
-            for (;i < audioListTemp.length; i++) {
-                let item = audioListTemp[i];
+            setAudioMapSize(audioList.length);
+            for (;i < audioList.length; i++) {
+                let item = audioList[i];
                 tempAudioMap[item["var"]] = item["url"];
             }
             setAudioMap(tempAudioMap);
 
             i = 0;
             let tempVisualMap = {};
-            setVisualMapSize(visualListTemp.length);
-            for (;i < visualListTemp.length; i++) {
-                let item = visualListTemp[i];
+            setVisualMapSize(visualList.length);
+            for (;i < visualList.length; i++) {
+                let item = visualList[i];
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
-                                    console.log("!!! preview-w ui-set, visual-map = ", tempVisualMap);
       }
 
 
     });
+
+    async function fetchProjResourceLists() {
+        if (username === "default-no-state username" || projName === "default-no-state projectName") {
+          return;
+        }
+        
+        /* fetch from cloud db */
+        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+        // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
+        // console.log(obj); //TODO test
+        setAudioList(obj.audio);
+        setVisualList(obj.visual);
+    }
 
     function notUsing() {
         console.log();
