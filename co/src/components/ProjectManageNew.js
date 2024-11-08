@@ -54,7 +54,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       author-info field: addedAuthorInfo
       field: type = "project"
       chapter directory: collection "chapters"
-      game node directory: default in chapter-management (at least one defualt node in ecah chapter)
+      game node directory: default in chapter-management (at least one default node in ecah chapter)
                  genre field (later) */
       
     

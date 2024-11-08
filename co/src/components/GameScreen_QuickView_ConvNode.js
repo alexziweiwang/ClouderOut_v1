@@ -381,7 +381,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                     visualMap={visualMap}
                     allPieceContent={allPieceContent} 
                     getCurrentPieceNum={passInCurrentPieceNum} 
-                    defualtBtnUISettings={uiData2_buttonOption} 
+                    defaultBtnUISettings={uiData2_buttonOption} 
                     changeGameDataByStatement={changeGameDataByStatement}                                    
                     gameData={gameDataTracker}
                 />

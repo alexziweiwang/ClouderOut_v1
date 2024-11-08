@@ -574,8 +574,8 @@ export default function PieceSetter({
         let tempObj = currentPieceDetail;
 
         if (urlArr.length == 0) {
-            tempObj["vl_source_link"] = "defualt-none";
-            setCurrentPieceDetail({...currentPieceDetail, "vl_source_link": "defualt-none", "vl_source_varname": varName});
+            tempObj["vl_source_link"] = "default-none";
+            setCurrentPieceDetail({...currentPieceDetail, "vl_source_link": "default-none", "vl_source_varname": varName});
         } else {
             let url =  urlArr[0]["url"];
             tempObj["vl_source_link"] = url;
@@ -636,7 +636,7 @@ export default function PieceSetter({
     <div className="pieceSetterArea userChoice">
         <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
-        
+
         <div className="buttonRight90">
             {(lookingPieceNumber > 1) &&
             <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>}

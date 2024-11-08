@@ -25,9 +25,9 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
 //settled data:
     const allPieceData = initialAllPieceData;
 
-               //TODO remove later?                            // const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
+               //TODO remove later?                            // const [isDisplaydefaultBtnUISettings, setIsDisplaydefaultBtnUISettings] = useState({});
 
-    const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
+    const [defaultBtnUISettings, setdefaultBtnUISettings] = useState({});
 
     const stndButtonTextArr //TODO change later ??
         = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] 
@@ -45,7 +45,7 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
             setScreenHeight(screenSizePair[1]);  
 
             let defaultBtnUISettings = getDefaultButtonUISettings();
-            setDefualtBtnUISettings(defaultBtnUISettings);
+            setdefaultBtnUISettings(defaultBtnUISettings);
            
             // let backBtnUISettings = getBackButtonUISettings();
             // setBackButtonUISettings(backBtnUISettings); //TODO temp
@@ -68,8 +68,8 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
     return (
         <div style={{"width": screenWidth, "position": "absolute", "top": "0px", "left": "0px"}}>
 
-        <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
-        "top": `${defualtBtnUISettings["groupY"]}px`,                       
+        <div style={{"left": `${defaultBtnUISettings["groupX"]}px`,
+        "top": `${defaultBtnUISettings["groupY"]}px`,                       
         "position": "absolute"}}>
 
 
@@ -81,23 +81,23 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
             let currId = "defaultButtonDivPreviewWindow" + index;
             return (
             <div id={currId} key={index} style={{   
-                    "background": defualtBtnUISettings["bgColor"],
-                    "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
+                    "background": defaultBtnUISettings["bgColor"],
+                    "backgroundImage": defaultBtnUISettings["isShape"] === true ? "" 
                         : `url('')`, //TODO improve later
-                    "backgroundSize": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
+                    "backgroundSize": `${defaultBtnUISettings["widthMax"]}px ${defaultBtnUISettings["height"]}px`,
                     
-                    "width": `${defualtBtnUISettings["widthMin"]}px`,
-                    "height": `${defualtBtnUISettings["height"]}px`,
-                    "borderRadius": `${defualtBtnUISettings["cornerRadius"]}px`,
-                    "color": defualtBtnUISettings["textColor"],
-                    "opacity": defualtBtnUISettings["transparency"],
-                    "border": `${defualtBtnUISettings["border"]}`,
-                    "margin-bottom": `${defualtBtnUISettings["margin"]}px`,
+                    "width": `${defaultBtnUISettings["widthMin"]}px`,
+                    "height": `${defaultBtnUISettings["height"]}px`,
+                    "borderRadius": `${defaultBtnUISettings["cornerRadius"]}px`,
+                    "color": defaultBtnUISettings["textColor"],
+                    "opacity": defaultBtnUISettings["transparency"],
+                    "border": `${defaultBtnUISettings["border"]}`,
+                    "margin-bottom": `${defaultBtnUISettings["margin"]}px`,
                     "padding-left": `10px`,
-                    "justifyContent": defualtBtnUISettings["justifyContent"],
-                    "align-items": defualtBtnUISettings["alignItems"],
-                    "fontSize": `${defualtBtnUISettings["textSize"]}px`,
-                    "fontFamily": `${defualtBtnUISettings["fontName"]}`,
+                    "justifyContent": defaultBtnUISettings["justifyContent"],
+                    "align-items": defaultBtnUISettings["alignItems"],
+                    "fontSize": `${defaultBtnUISettings["textSize"]}px`,
+                    "fontFamily": `${defaultBtnUISettings["fontName"]}`,
                     
                     "display": "flex",
                     "cursor": "pointer",

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
-    defualtBtnUISettings,
+    defaultBtnUISettings,
     gameData, changeGameDataByStatement
     }) {
 
@@ -29,15 +29,15 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                 : []);
     
 
-        setButtonPicUrl(visualMap[defualtBtnUISettings["picVar"]]);
+        setButtonPicUrl(visualMap[defaultBtnUISettings["picVar"]]);
    
     });
 
     return (
         <div style={{"position": "absolute", "top": "0px", "left": "0px"}}>
 
-        <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
-        "top": `${defualtBtnUISettings["groupY"]}px`,                       
+        <div style={{"left": `${defaultBtnUISettings["groupX"]}px`,
+        "top": `${defaultBtnUISettings["groupY"]}px`,                       
         "position": "absolute"}}>
         
         {<div>
@@ -46,23 +46,23 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                     let currId = "defaultButtonDivPlayWindow" + index;
                     return (
                     <div id={currId} key={currId} style={{   
-                            "background": defualtBtnUISettings["bgColor"],
-                            "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
+                            "background": defaultBtnUISettings["bgColor"],
+                            "backgroundImage": defaultBtnUISettings["isShape"] === true ? "" 
                                 : `url('${buttonPicUrl}')`,
-                            "backgroundSize": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
+                            "backgroundSize": `${defaultBtnUISettings["widthMax"]}px ${defaultBtnUISettings["height"]}px`,
                             
-                            "width": `${defualtBtnUISettings["widthMin"]}px`,
-                            "height": `${defualtBtnUISettings["height"]}px`,
-                            "borderRadius": `${defualtBtnUISettings["cornerRadius"]}px`,
-                            "color": defualtBtnUISettings["textColor"],
-                            "opacity": defualtBtnUISettings["transparency"],
-                            "border": `${defualtBtnUISettings["border"]}`,
-                            "marginBottom": `${defualtBtnUISettings["margin"]}px`,
+                            "width": `${defaultBtnUISettings["widthMin"]}px`,
+                            "height": `${defaultBtnUISettings["height"]}px`,
+                            "borderRadius": `${defaultBtnUISettings["cornerRadius"]}px`,
+                            "color": defaultBtnUISettings["textColor"],
+                            "opacity": defaultBtnUISettings["transparency"],
+                            "border": `${defaultBtnUISettings["border"]}`,
+                            "marginBottom": `${defaultBtnUISettings["margin"]}px`,
                             "paddingLeft": `10px`,
-                            "justifyContent": defualtBtnUISettings["justifyContent"],
-                            "alignItems": defualtBtnUISettings["alignItems"],
-                            "fontSize": `${defualtBtnUISettings["textSize"]}px`,
-                            "fontFamily": `${defualtBtnUISettings["fontName"]}`,
+                            "justifyContent": defaultBtnUISettings["justifyContent"],
+                            "alignItems": defaultBtnUISettings["alignItems"],
+                            "fontSize": `${defaultBtnUISettings["textSize"]}px`,
+                            "fontFamily": `${defaultBtnUISettings["fontName"]}`,
                             
                             "display": "flex",
                             "cursor": "pointer",

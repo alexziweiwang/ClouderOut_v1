@@ -30,7 +30,7 @@ export default function ConversationNodeEditingPanel() {
     let uname = "default-no-state username";
     let projectName = "default-no-state projectname";
     let screenSizeInfo = "default-no-state screenSizeInfo";
-    let editorUiLang = "defualt-no-state uiLang";
+    let editorUiLang = "default-no-state uiLang";
     if (state != null) {
         nodeName = state.clickedNodeKey;
         uname = state.userName;
@@ -44,7 +44,7 @@ export default function ConversationNodeEditingPanel() {
 
 
     
-console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
+// console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
  
 
     const sizeLookupMap = { 

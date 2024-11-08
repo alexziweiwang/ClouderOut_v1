@@ -73,7 +73,9 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
+                                    console.log("!!! preview-w ui-set, visual-map = ", tempVisualMap);
       }
+
 
     });
 

@@ -10,9 +10,9 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
 
-    const [isDisplayDefualtBtnUISettings, setIsDisplayDefualtBtnUISettings] = useState({});
+    const [isDisplaydefaultBtnUISettings, setIsDisplaydefaultBtnUISettings] = useState({});
 
-    const [defualtBtnUISettings, setDefualtBtnUISettings] = useState({});
+    const [defaultBtnUISettings, setdefaultBtnUISettings] = useState({});
 
     const stndButtonTextArr = (isSettingUpUI == true) ? [{"buttonText": "Sample1: Default Button"}, {"buttonText": "Sample2: Default Button, Longer Content"}, {"buttonText": "Sample3: Another option..."}] 
         : (allPieceData[currentPieceNum]["stnd_btn_arr"] !== undefined ? allPieceData[currentPieceNum]["stnd_btn_arr"] : []);
@@ -40,6 +40,9 @@ const [visualMap, setVisualMap] = useState([]);
         }
 
         let visualMapTemp = passInVisualMap();
+
+                                            console.log("\tgame-ui-2-buttons-preview visualMap = ", visualMapTemp);
+
         setVisualMap(visualMapTemp);
 
         let audioMapTemp = passInAudioMap();
@@ -48,12 +51,12 @@ const [visualMap, setVisualMap] = useState([]);
 
   
         let isDisplayDefaultValTemp = getIsDisplayDefaultButton();
-        setIsDisplayDefualtBtnUISettings(isDisplayDefaultValTemp);
+        setIsDisplaydefaultBtnUISettings(isDisplayDefaultValTemp);
        
        
         let defaultBtnUISettingsTemp = getDefaultButtonUISettings();
-        if (defaultBtnUISettingsTemp !== defualtBtnUISettings) {
-            setDefualtBtnUISettings(defaultBtnUISettingsTemp);
+        if (defaultBtnUISettingsTemp !== defaultBtnUISettings) {
+            setdefaultBtnUISettings(defaultBtnUISettingsTemp);
             setButtonPicurl(visualMapTemp[defaultBtnUISettingsTemp["picVar"]]); 
         }
 
@@ -69,10 +72,10 @@ const [visualMap, setVisualMap] = useState([]);
     return (
         <div style={{"width": screenWidth, "position": "absolute", "top": "0px", "left": "0px"}}>
 
-        <div style={{"left": `${defualtBtnUISettings["groupX"]}px`,
-        "top": `${defualtBtnUISettings["groupY"]}px`,                       
+        <div style={{"left": `${defaultBtnUISettings["groupX"]}px`,
+        "top": `${defaultBtnUISettings["groupY"]}px`,                       
         "position": "absolute"}}>
-        {isDisplayDefualtBtnUISettings && 
+        {isDisplaydefaultBtnUISettings && 
 
         <div>
         {stndButtonTextArr.map((item, index)=>{
@@ -80,23 +83,23 @@ const [visualMap, setVisualMap] = useState([]);
             let currId = "defaultButtonDivPreviewWindow" + index;
             return (
             <div id={currId} key={index} style={{   
-                    "background": defualtBtnUISettings["bgColor"],
-                    "backgroundImage": defualtBtnUISettings["isShape"] === true ? "" 
-                        : `url('${buttonPicUrl}')`,
-                    "backgroundSize": `${defualtBtnUISettings["widthMax"]}px ${defualtBtnUISettings["height"]}px`,
+                    "background": defaultBtnUISettings["bgColor"],
+                    "backgroundImage": defaultBtnUISettings["isShape"] === true ? "" 
+                        : `url('${visualMap[defaultBtnUISettings["picVar"]]}')`,
+                    "backgroundSize": `${defaultBtnUISettings["widthMax"]}px ${defaultBtnUISettings["height"]}px`,
                     
-                    "width": `${defualtBtnUISettings["widthMin"]}px`,
-                    "height": `${defualtBtnUISettings["height"]}px`,
-                    "borderRadius": `${defualtBtnUISettings["cornerRadius"]}px`,
-                    "color": defualtBtnUISettings["textColor"],
-                    "opacity": defualtBtnUISettings["transparency"],
-                    "border": `${defualtBtnUISettings["border"]}`,
-                    "marginBottom": `${defualtBtnUISettings["margin"]}px`,
+                    "width": `${defaultBtnUISettings["widthMin"]}px`,
+                    "height": `${defaultBtnUISettings["height"]}px`,
+                    "borderRadius": `${defaultBtnUISettings["cornerRadius"]}px`,
+                    "color": defaultBtnUISettings["textColor"],
+                    "opacity": defaultBtnUISettings["transparency"],
+                    "border": `${defaultBtnUISettings["border"]}`,
+                    "marginBottom": `${defaultBtnUISettings["margin"]}px`,
                     "paddingLeft": `10px`,
-                    "justifyContent": defualtBtnUISettings["justifyContent"],
-                    "alignItems": defualtBtnUISettings["alignItems"],
-                    "fontSize": `${defualtBtnUISettings["textSize"]}px`,
-                    "fontFamily": `${defualtBtnUISettings["fontName"]}`,
+                    "justifyContent": defaultBtnUISettings["justifyContent"],
+                    "alignItems": defaultBtnUISettings["alignItems"],
+                    "fontSize": `${defaultBtnUISettings["textSize"]}px`,
+                    "fontFamily": `${defaultBtnUISettings["fontName"]}`,
                     
                     "display": "flex",
                     "cursor": "pointer",
@@ -121,7 +124,10 @@ const [visualMap, setVisualMap] = useState([]);
             }
             
             >
-            {item["buttonText"]}
+            {item["buttonText"]}, 
+
+{defaultBtnUISettings["picVar"]}, {visualMap[defaultBtnUISettings["picVar"]]}
+
             </div>);
         }                
         )}

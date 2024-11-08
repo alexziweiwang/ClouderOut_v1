@@ -167,23 +167,63 @@ export default function GameUISetter({
     const [audioMap, setAudioMap] = useState([]);
 
     async function fetchProjResourceLists() {
-        console.log("piece-setter: fetchProjResourceLists()"); //TODO test
+                                            console.log("piece-setter: fetchProjResourceLists()"); //TODO test
 
         if (username === "default-no-state username" || projName === "default-no-state projectName") {
+                                            console.log("!!!state not ok");
             return;
         }
 
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        
-        setVisualMap(obj.visual);
-        setAudioMap(obj.audio);
+                                            console.log("...state ok, resource-obj = ", obj);
+
+
+        if (obj === undefined || obj === null) {
+                                                console.log("resource obj not ok");
+            return;
+        }
+
+        initializeVisualMap(obj.visual);
+        initializeAudioMap(obj.audio)
+
+    }
+
+    function initializeVisualMap(visualList) {
+        let tempMap = {};
+
+        //TODO
+        let len = visualList.length;
+        let i = 0;
+        while (i < len) {
+            let item = visualList[i];
+            tempMap[item["var"]] = item["url"];
+            i++;
+        }
+
+        setVisualMap(tempMap);
+    }
+
+
+    function initializeAudioMap(audioList) {
+        let tempMap = {};
+
+        //TODO
+        let len = audioList.length;
+        let i = 0;
+        while (i < len) {
+            let item = audioList[i];
+            tempMap[item["var"]] = item["url"];
+            i++;
+        }
+                                  
+        setAudioMap(tempMap);
     }
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
 
-    //TODO current: defualt-reset when start rendering this component
+    //TODO current: default-reset when start rendering this component
     //TODO later: fetch from cloud-db for setting records
     const [defaultButtonObj, setDefaultButtonObj] = useState(iniDefaultButtonObj);
 
@@ -304,9 +344,17 @@ export default function GameUISetter({
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": false});
               }}>{basePictureText} </label>
+
+
+<br></br>
+<label>TEST: [{defaultButtonObj["picVar"]}]</label>
+<br></br>
+
+
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                            setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[event.target.value]["var"]}); 
+                        let key = event.target.value;
+                        setDefaultButtonObj({...defaultButtonObj,  "picVar": visualMap[key]["var"]}); 
                 }}>                    
                     <option key="idvDefault" value="">-- {selectResourceText} --</option>
                     {Object.keys(visualMap).map((currKey) => {
