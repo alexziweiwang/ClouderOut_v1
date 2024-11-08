@@ -344,11 +344,13 @@ export default function NodeManager({projectName, currUser,
 
     let screenSizeStr = nodeRelationshipMap[clickedNodeKey].screenSize; //TODO5
 
-    console.log("enter editor2:", clickedNodeKey, projectName, userName);
+    let uiLang = languageCodeTextOption;
+
+    console.log("enter editor2:", clickedNodeKey, projectName, userName, uiLang);
     if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr } });
+      navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang } });
     } else if (currNodeType === "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr } });
+      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang } });
     }
         //TODO later add conditions for board game and tower defense
   }

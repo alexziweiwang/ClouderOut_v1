@@ -22,7 +22,6 @@ export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
  
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
 
     const navigate = useNavigate();
@@ -31,12 +30,17 @@ export default function ConversationNodeEditingPanel() {
     let uname = "default-no-state username";
     let projectName = "default-no-state projectname";
     let screenSizeInfo = "default-no-state screenSizeInfo";
+    let editorUiLang = "defualt-no-state uiLang";
     if (state != null) {
         nodeName = state.clickedNodeKey;
         uname = state.userName;
         projectName = state.selected_project_name;
         screenSizeInfo = state.screenSizeStr;
+        editorUiLang = state.uiLang;        
     }
+
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
 
 
     
@@ -315,6 +319,8 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
         }
 
         if (firstTimeEnter === true) {
+            initializeUILang();
+
             getGameDataFromCloud();
             fetchProjResourceLists();
 
@@ -330,6 +336,17 @@ console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
 
     function passInGameDataDesignList() {
         return gameDataDesignList;
+    }
+
+    function initializeUILang() {
+        if (state === undefined || state === null) {
+            return;
+        } else {
+            let uiLangFromOuterCompo = state.uiLang;
+            setLanguageCodeTextOption(uiLangFromOuterCompo);
+                                console.log("!!initializeUILang(): ", uiLangFromOuterCompo);
+        }
+
     }
 
     async function getGameDataFromCloud() {
