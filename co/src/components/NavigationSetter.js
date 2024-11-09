@@ -316,7 +316,7 @@ export default function NavigationSetter({initialNavObj,
     const [itemAddingTable, setItemAddingTable] = useState([]);
 
 
-    const [gameDataDesignList, setGameData] = useState(-1);                    /* Important */
+    const [gameDataDesignList, setGameDataDesignList] = useState(-1);                    /* Important */
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
     
@@ -326,7 +326,7 @@ export default function NavigationSetter({initialNavObj,
       if (firstTimeEnter === true) {
             console.log("Navigation Setter -- "); //TODO test
             fetchProjResourceLists();
-            getGameDataFromCloud(); //value-list: game-data
+            getGameDataDesignFromCloud(); //value-list: game-data
  
 
             //TODO value-list player-account 
@@ -376,14 +376,13 @@ export default function NavigationSetter({initialNavObj,
       setAudioList(updatedList);
     }
 
-    async function getGameDataFromCloud() {
+    async function getGameDataDesignFromCloud() {
       let isUpdated = true;
 
       let gDataMap = {};
 
-      
       gDataMap = await getProjectGameDataDesignVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
-      setGameData(gDataMap);
+      setGameDataDesignList(gDataMap);
   }
 
 
@@ -861,7 +860,7 @@ export default function NavigationSetter({initialNavObj,
       <button
         onClick={()=>{
           fetchProjResourceLists();
-          getGameDataFromCloud();
+          getGameDataDesignFromCloud();
           updateCurrentPageName("Main Page");
         }}
       >{reloadSetterText}</button><br></br>
@@ -4172,7 +4171,7 @@ export default function NavigationSetter({initialNavObj,
                       </select> 
                       <button
                         onClick={()=>{
-                          getGameDataFromCloud();
+                          getGameDataDesignFromCloud();
                           resetPlayerProfilePageAddingValueName();
                         }
                         }

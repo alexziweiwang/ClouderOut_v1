@@ -122,17 +122,22 @@ export default function Modal_GameDataManager ({
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
-    const [usingGameDataDesign, setUsingGameDataDesign] = useState([]);
+    const [usingGameDataDesign, setUsingGameDataDesign] = useState({});
     const [editLineDisplay, setEditLineDisplay] = useState("");
     const [editAreaOpen, setEditAreaOpen] = useState(false);
     const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
+
+    const [gdmMapSize, setGdmMapSize] = useState(0);
 
     async function initialization() {
         let isUpdated = true;
         let tempGameDataDesign = await getProjectGameDataDesignVM({projectName: projName, uname: username, mostUpdated: isUpdated});
 
-                                    console.log("game-data-manager window initialized: ", tempGameDataDesign);
-        
+        let objSize = Object.keys(tempGameDataDesign).length;
+        setGdmMapSize(objSize);
+                                    console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
+                                    
+
         setUsingGameDataDesign(tempGameDataDesign);
     }
 
@@ -180,7 +185,11 @@ export default function Modal_GameDataManager ({
           [naming]: newObj,
         };
 
-        console.log("adding new var: ", gameDataTemp); //TODO test
+
+        let objSize = Object.keys(gameDataTemp).length;
+        setGdmMapSize(objSize);
+
+                        console.log("adding new var: ", gameDataTemp, ", size = ", gameDataTemp.size); //TODO test
     
         setUsingGameDataDesign(gameDataTemp); /* update local  data structure */
     
@@ -233,7 +242,9 @@ export default function Modal_GameDataManager ({
                 }
                 // return tempMap;
             });
-            
+            let objSize = Object.keys(tempMap).length;
+            setGdmMapSize(objSize);
+                                    console.log("new gdm-design size = ", tempMap.size);
             setUsingGameDataDesign(tempMap);
     
             //TODO3 later: change to cloud db
@@ -312,7 +323,9 @@ export default function Modal_GameDataManager ({
             }
             return newGameData;
         });
-
+        let objSize = Object.keys(newGameData).length;
+        setGdmMapSize(objSize);
+                                console.log("new gdmMap-data size = ", newGameData.size);
         setUsingGameDataDesign(newGameData);
 
         updateGameDataDesignToCloud(newGameData);
@@ -325,74 +338,90 @@ export default function Modal_GameDataManager ({
     <div>
 
     <div className="modalContent">
-        <button className="cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
+        <div style={{
+            "marginTop": "50px",
+        }}>
+        <button className="cursor_pointer modalClose buttonRight50" onClick={()=>{handleGdmCancel()}}>
             {closeText}
         </button>
 
         <div 
             className="gameDataDisplayArea">
             
-            <div 
-                className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}
-                style={{
-                    "maxHeight": "310px", 
-                    "overflow": "scroll",
-                    "marginTop": "10px",
-                    "marginLeft": "20%",
-                    "width": "900px"
-                }}
-            >
-                <table style={{"width": "900px"}}>
-                    <thead>
-                        <tr className="textNoSelect tableRow">
-                            <th>{varNameText}</th>
-                            <th>{typeText}</th>
-                            <th>{defaultValueText}</th>
-                            <th>{operationsText}</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>       
-                    {Object.keys(usingGameDataDesign).map((key) => {
-                    
-                        return (
-                            <tr key={key} className="tableItem tableRow">
-                                <td>{key}</td>
-
-                                <td>{usingGameDataDesign[key]["data_type"]}</td>
-
-                            {(editLineDisplay !== key) && 
-                                <td>
-                                    {usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}
-                                </td>}
-                            {(editLineDisplay === key && editAreaOpen === true) && 
-                                <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
-
-
-                            {(editLineDisplay !== key) && 
-                                <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button>
-                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameDataDesign[key]);}}>{deleteText}</button>
-                                </td>}
-                            {(editLineDisplay === key && editAreaOpen === true) && 
-                                <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
-                                    <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>
-                                </td>}
-
-
+            <div>
+                <div 
+                    className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}
+                    style={{
+                        "overflow": "scroll",
+                        "marginTop": "10px",
+                        "marginLeft": "20%",
+                        "width": "900px",
+                        "height": "292px"
+                    }}
+                >
+                    <table style={{"width": "900px"}}>
+                        <thead>
+                            <tr className="textNoSelect tableRow">
+                                <th>{varNameText}</th>
+                                <th>{typeText}</th>
+                                <th>{defaultValueText}</th>
+                                <th>{operationsText}</th>
                             </tr>
-                            
-                        );    
-                    }
-                    )}
- 
-                    </tbody>
+                        </thead>
 
-                </table>
-        
+                        <tbody>       
+                        {Object.keys(usingGameDataDesign).map((key) => {
+                        
+                            return (
+                                <tr key={key} className="tableItem tableRow">
+                                    <td>{key}</td>
+
+                                    <td>{usingGameDataDesign[key]["data_type"]}</td>
+
+                                {(editLineDisplay !== key) && 
+                                    <td>
+                                        {usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}
+                                    </td>}
+                                {(editLineDisplay === key && editAreaOpen === true) && 
+                                    <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
+
+
+                                {(editLineDisplay !== key) && 
+                                    <td className="parallelFrame">
+                                        <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button>
+                                        <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameDataDesign[key]);}}>{deleteText}</button>
+                                    </td>}
+                                {(editLineDisplay === key && editAreaOpen === true) && 
+                                    <td className="parallelFrame">
+                                        <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
+                                        <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>
+                                    </td>}
+
+
+                                </tr>
+                                
+                            );    
+                        }
+                        )}
+    
+                        </tbody>
+
+                    </table>
+            
+                </div>
+               
+                {(gdmMapSize >= 8)
+                    && <div style={{
+                    "backgroundColor": "grey",
+                    "marginLeft": "20%",
+                    "width": "900px",
+                    "height": "17px",
+                    "borderRadius": "0px",
+                }}>
+                   ... ...
+                </div>}
+
             </div>
-
 
             {!displayNewVarArea && 
                 <div className="addNewGameDataAreaClosed"
@@ -437,13 +466,13 @@ export default function Modal_GameDataManager ({
             }
         </div>
 
-
-    </div> 
+            </div>
+        </div> 
     
     
     
     </div> 
     
-    </div>
+</div>
     );
 }

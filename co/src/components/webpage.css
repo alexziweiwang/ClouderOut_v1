@@ -564,7 +564,7 @@ td {
 }
 
 .dataArea {
-    height: 95%;
+    /* height: 95%; */
     background-color: rgb(201, 168, 188);
     overflow: scroll;
     border-radius: 0px;
