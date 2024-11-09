@@ -102,7 +102,27 @@ export default function PieceSetter({
     const collapseText = textDictItem.collapseText !== undefined ?
         textDictItem.collapseText
         : textDictItemDefault.collapseText;
+
+    const textContentText = textDictItem.textContentText !== undefined ?
+        textDictItem.textContentText
+        : textDictItemDefault.textContentText;
     
+    const speakerNameText = textDictItem.speakerNameText !== undefined ?
+        textDictItem.speakerNameText
+        : textDictItemDefault.speakerNameText;
+
+    const withTextFrameText = textDictItem.withTextFrameText !== undefined ?
+        textDictItem.withTextFrameText
+        : textDictItemDefault.withTextFrameText;
+
+    const selectOperationDefaultMaintain = textDictItem.selectOperationDefaultMaintain !== undefined ?
+        textDictItem.selectOperationDefaultMaintain
+        : textDictItemDefault.selectOperationDefaultMaintain;
+
+
+//TODO15
+
+
 
 
     const positionMaxX = 1200, positionMaxY = 1200, widthMax = 1200, heightMax = 1200;
@@ -755,7 +775,8 @@ export default function PieceSetter({
                     <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText} </button>
                     
                     <br></br>
-                    <label> Text to display: </label>
+
+                    <label> {textContentText }: </label>
                     <br></br>
                     <div className="indentOne">
                         <textarea
@@ -784,11 +805,12 @@ export default function PieceSetter({
                                 setupDisplayTextFrame(false);
                             }                   
                         }}
-                        >Include Textframe Content</label>
+                        >{withTextFrameText}</label>
+
                     </div>
-                   
+
                     <br></br>
-                    <label>Speaker Name:  </label>
+                    <label>{speakerNameText}:  </label>
 
                     <input value={currentPieceDetail["speaker_name"]} onChange={(event)=>{handleSpeakerNameEnter(event);}}></input>
                 </div>   
@@ -1414,7 +1436,7 @@ export default function PieceSetter({
                             handleBgpSwitchAction(event);
                         }}
                     >
-                        <option key="bgpOperationDefaultMaintain" value="maintainBgp">-- Select Operation (default: maintain) --</option>
+                        <option key="bgpOperationDefaultMaintain" value="maintainBgp">-- {selectOperationDefaultMaintain} --</option>
                         <option key="switchToNewBgp" value="switchToNewBgp">switchToNew</option>
                     </select>
 
@@ -1448,7 +1470,7 @@ export default function PieceSetter({
                         onChange={(event)=>{
                             handleCharPicArrSwitchAction(event);
                         }}>
-                            <option key="maintainCharPicArr" value="maintainCharPicArr">-- Select Operation (default: maintain) --</option>
+                            <option key="maintainCharPicArr" value="maintainCharPicArr">-- {selectOperationDefaultMaintain} --</option>
                             <option key="changeCharPicArr" value="changeCharPicArr">Change Character-List</option>
                     </select>
                     <br></br>
@@ -1605,7 +1627,7 @@ export default function PieceSetter({
                                 setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value});
                             }
                     }}>
-                        <option key="maintainBgm" value="maintainBgm">-- Select Operation (default: maintain)--</option>
+                        <option key="maintainBgm" value="maintainBgm">-- {selectOperationDefaultMaintain}--</option>
                         <option key="startNewBgm" value="startNewBgm">start new</option>
                         <option key="stopBgm" value="stopBgm">stop playing (immediately)</option>
                         <option key="naturalStop" value="naturalStopBgm">naturally stop looping (after finish)</option>

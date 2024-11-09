@@ -189,7 +189,7 @@ export default function Modal_GameDataManager ({
         let objSize = Object.keys(gameDataTemp).length;
         setGdmMapSize(objSize);
 
-                        console.log("adding new var: ", gameDataTemp, ", size = ", gameDataTemp.size); //TODO test
+                        console.log("adding new var: ", gameDataTemp, ", size = ", objSize); //TODO test
     
         setUsingGameDataDesign(gameDataTemp); /* update local  data structure */
     
@@ -244,7 +244,7 @@ export default function Modal_GameDataManager ({
             });
             let objSize = Object.keys(tempMap).length;
             setGdmMapSize(objSize);
-                                    console.log("new gdm-design size = ", tempMap.size);
+                                    console.log("new gdm-design size = ", objSize);
             setUsingGameDataDesign(tempMap);
     
             //TODO3 later: change to cloud db
@@ -325,7 +325,7 @@ export default function Modal_GameDataManager ({
         });
         let objSize = Object.keys(newGameData).length;
         setGdmMapSize(objSize);
-                                console.log("new gdmMap-data size = ", newGameData.size);
+                                console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
         updateGameDataDesignToCloud(newGameData);
