@@ -346,7 +346,7 @@ export default function ConversationNodeEditingPanel() {
         setDisplayRmModal(false);
 
         //TODO3 fetch laterst data from cloud?
-        setRmUpdatedSignal(true);
+        // setRmUpdatedSignal(true);
         
     }
     
@@ -774,7 +774,13 @@ export default function ConversationNodeEditingPanel() {
 
  
             </div>
-            {isDisplayRmBool && 
+
+            <div
+                style={{
+                    "display": isDisplayRmBool === true ? "flex" : "none"
+                }}
+            >
+                                                                {/* {isDisplayRmBool &&  */}
                 <Modal_ResourceManagingWindow 
                     isDisplay = {isDisplayRmBool} 
                     handleRmCancel={handleResourceManagerCancel} 
@@ -782,11 +788,19 @@ export default function ConversationNodeEditingPanel() {
                     refresh={triggerRefresh}
 
                     getUILanguage={passInUILanguage}                    
-                    />}
+                    />
+                                                                    {/* } */}
+            </div>
+
+
             </>}
 
-            {displayGameDataWindow && 
-                        
+            {/* {displayGameDataWindow &&  */}
+            <div
+                style={{
+                    "display": displayGameDataWindow === true ? "flex" : "none"
+                }}
+            >
                 <Modal_GameDataManager 
                     isDisplay={displayGameDataWindow}
                     handleGdmCancel={handleModal_GameDataManagerCancel} 
@@ -795,11 +809,11 @@ export default function ConversationNodeEditingPanel() {
 
                     getUILanguage={passInUILanguage}
                 />   
-    
+            </div>
         
 
                     
-            } 
+            {/* }  */}
          
 
             {isDisplayQview && <QuickView_AllPanels_ConvNode
