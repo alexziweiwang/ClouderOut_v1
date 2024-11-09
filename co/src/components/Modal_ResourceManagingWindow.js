@@ -391,16 +391,16 @@ export default function Modal_ResourceManagingWindow ({
 
     return (
       <div className={modalStyleName}>
-            <br></br>
-            <button 
-                className="modalClose"
-                onClick={()=>{
-                    
-                        handleRmCancel(); 
-                        // refresh();
-                    
-                
-            }}> {closeText} </button>
+        <div>
+
+        <div className="modalContent">
+
+            <div>
+
+                <button className="cursor_pointer modalClose" onClick={()=>{handleRmCancel()}}>
+                {closeText}
+                </button>
+            </div>
 
         <div className="modalArea">
 
@@ -583,6 +583,8 @@ export default function Modal_ResourceManagingWindow ({
             </div>
 
        
+        </div>
+      </div>
       </div>
     );
   };
