@@ -661,9 +661,10 @@ export default function ConversationNodeEditingPanel() {
                             getCurrentPieceNum={passInCurrentPieceNum}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
-                            fetchNewGameDataList={passInNewGameDataList}
 
                             getUILanguage={passInUILanguage}
+                            username={state.userName} 
+                            projName={state.projectName}    
                         />}
                     {gameUISetterOpen === true && 
                         <GameUISetter 
@@ -683,6 +684,8 @@ export default function ConversationNodeEditingPanel() {
                             respondUpdatedRm={resetRmUpdatedSignal}
 
                             getUILanguage={passInUILanguage}
+                            username={state.userName} 
+                            projName={state.projectName}    
                     />}
                 </div>
             }
@@ -722,6 +725,8 @@ export default function ConversationNodeEditingPanel() {
                             respondUpdatedRm={resetRmUpdatedSignal}
 
                             getUILanguage={passInUILanguage}
+                            username={state.userName} 
+                            projName={state.projectName}    
                         />}
                 
                 </div>

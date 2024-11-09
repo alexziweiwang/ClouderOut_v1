@@ -18,8 +18,11 @@ export default function GameUISetter({
     respondUpdatedRm,
 
     getUILanguage,
+    username, projName,
     
 }) {
+
+
     const screenWidth = 800;
     const screenHeight = 600;
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -160,8 +163,6 @@ export default function GameUISetter({
      
     });
 
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
 
     const [visualMap, setVisualMap] = useState([]); 
     const [audioMap, setAudioMap] = useState([]);

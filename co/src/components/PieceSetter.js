@@ -14,14 +14,14 @@ export default function PieceSetter({
     openRm, openGameDataManager, 
     setIsClickedOnSetters, 
     fetchClickedIsOnSetter, getCurrentPieceNum, 
-    fetchRmUpdatedSignal, respondUpdatedRm, fetchNewGameDataList,
+    fetchRmUpdatedSignal, respondUpdatedRm, 
 
     getUILanguage,
+    username, projName,
 
 }) {
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
-        const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -239,6 +239,8 @@ export default function PieceSetter({
             // TODO fetch visualList and audioList from cloud-db to setup the local lists
             //TODO1: fetch game data for the first time
 
+            fetchGameDataListFromCloud();
+
             setFirstTimeEnter(false);
         }
 
@@ -261,14 +263,25 @@ export default function PieceSetter({
             respondUpdatedRm();
         }
 
-    //     let currGameData = fetchNewGameDataList();
-    //     if (currGameData !== gameDataListLocal) {
-    //         setGameDatListLocal(currGameData);
-    //     }
+        
    
 
         //TODO2 current: gameDataList, future: fetch updated game-data inside this component?
     });
+
+    async function fetchGameDataListFromCloud() {
+        
+        let isUpdated = true;
+        let tempObj = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
+      
+//TODO20
+
+        console.log("piece-setter fetchGameDataListFromCloud-func: game-data obj/map = ", tempObj);
+        setGameDatListLocal(tempObj);
+
+        
+
+    }
 
     function changeLoopingSetting() {
         let tempObj = currentPieceDetail;
@@ -1013,7 +1026,7 @@ export default function PieceSetter({
                     <br></br>
                     <label>Operation: </label>
                     <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
-                        <option value="" key="defaultOperation"> ︽- Select Operation -- </option>
+                        <option value="" key="defaultOperation"> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
