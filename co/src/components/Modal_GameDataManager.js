@@ -13,6 +13,8 @@ export default function Modal_GameDataManager ({
         updateGameDataDesignToCloud,
 
         getUILanguage,
+
+        username, projName,
     }) {
 
 
@@ -102,10 +104,12 @@ export default function Modal_GameDataManager ({
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-        useEffect(() => {
+    
+    useEffect(() => {
         if (firstTimeEnter === true) {
                                             console.log("GameDataManager-ModalWindow: First Enter!");
 
+            initialization();
             setFirstTimeEnter(false);
         }
         let UILang = getUILanguage();
@@ -118,10 +122,19 @@ export default function Modal_GameDataManager ({
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
-    const [usingGameData, setUsingGameData] = useState([]);
+    const [usingGameDataDesign, setUsingGameDataDesign] = useState([]);
     const [editLineDisplay, setEditLineDisplay] = useState("");
     const [editAreaOpen, setEditAreaOpen] = useState(false);
     const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
+
+    async function initialization() {
+        let isUpdated = true;
+        let tempGameDataDesign = await getProjectGameDataDesignVM({projectName: projName, uname: username, mostUpdated: isUpdated});
+
+                                    console.log("game-data-manager window initialized: ", tempGameDataDesign);
+        
+        setUsingGameDataDesign(tempGameDataDesign);
+    }
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
@@ -143,7 +156,7 @@ export default function Modal_GameDataManager ({
             return;
         }
 
-        if (usingGameData.hasOwnProperty(newVarName)) {
+        if (usingGameDataDesign.hasOwnProperty(newVarName)) {
             console.log("Error: duplicate game-data name."); //TODO test
             return;
         }
@@ -163,13 +176,13 @@ export default function Modal_GameDataManager ({
         const naming = newObj["name"];
     
         const gameDataTemp = {
-          ...usingGameData,
+          ...usingGameDataDesign,
           [naming]: newObj,
         };
 
         console.log("adding new var: ", gameDataTemp); //TODO test
     
-        setUsingGameData(gameDataTemp); /* update local  data structure */
+        setUsingGameDataDesign(gameDataTemp); /* update local  data structure */
     
         //resetNeedCloudData();// TODO remove?
         
@@ -214,14 +227,14 @@ export default function Modal_GameDataManager ({
         if (response === true) {
 
             let tempMap = {};
-            Object.keys(usingGameData).map((key) => {
+            Object.keys(usingGameDataDesign).map((key) => {
                 if (key !== obj["name"]) {
-                    tempMap[key] = usingGameData[key];
+                    tempMap[key] = usingGameDataDesign[key];
                 }
                 // return tempMap;
             });
             
-            setUsingGameData(tempMap);
+            setUsingGameDataDesign(tempMap);
     
             //TODO3 later: change to cloud db
     
@@ -272,7 +285,7 @@ export default function Modal_GameDataManager ({
         }
 
         let updatedVal = updatedDefaultValue;
-        if (usingGameData[editLineDisplay]["data_type"] === "boolean") {
+        if (usingGameDataDesign[editLineDisplay]["data_type"] === "boolean") {
             if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
                 updatedVal = true;
             } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
@@ -285,14 +298,14 @@ export default function Modal_GameDataManager ({
         }
 
         let newGameData = {};
-        Object.keys(usingGameData).map((k) => {
+        Object.keys(usingGameDataDesign).map((k) => {
 
             if (k !== editLineDisplay) {
-                newGameData[k] = usingGameData[k];
+                newGameData[k] = usingGameDataDesign[k];
             } else {
                 const newObj = {
-                    "name": usingGameData[k]["name"],
-                    "data_type": usingGameData[k]["data_type"],
+                    "name": usingGameDataDesign[k]["name"],
+                    "data_type": usingGameDataDesign[k]["data_type"],
                     "default_value": updatedVal,
                 }
                 newGameData[k] = newObj;
@@ -300,7 +313,7 @@ export default function Modal_GameDataManager ({
             return newGameData;
         });
 
-        setUsingGameData(newGameData);
+        setUsingGameDataDesign(newGameData);
 
         updateGameDataDesignToCloud(newGameData);
     }
@@ -340,17 +353,17 @@ export default function Modal_GameDataManager ({
                     </thead>
 
                     <tbody>       
-                    {Object.keys(usingGameData).map((key) => {
+                    {Object.keys(usingGameDataDesign).map((key) => {
                     
                         return (
                             <tr key={key} className="tableItem tableRow">
                                 <td>{key}</td>
 
-                                <td>{usingGameData[key]["data_type"]}</td>
+                                <td>{usingGameDataDesign[key]["data_type"]}</td>
 
                             {(editLineDisplay !== key) && 
                                 <td>
-                                    {usingGameData[key]["default_value"] === true ? "True" : usingGameData[key]["default_value"] === false ? "False" : usingGameData[key]["default_value"]}
+                                    {usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}
                                 </td>}
                             {(editLineDisplay === key && editAreaOpen === true) && 
                                 <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
@@ -358,8 +371,8 @@ export default function Modal_GameDataManager ({
 
                             {(editLineDisplay !== key) && 
                                 <td className="parallelFrame">
-                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameData[key]);}}>{editText}</button>
-                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameData[key]);}}>{deleteText}</button>
+                                    <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button>
+                                    <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameDataDesign[key]);}}>{deleteText}</button>
                                 </td>}
                             {(editLineDisplay === key && editAreaOpen === true) && 
                                 <td className="parallelFrame">

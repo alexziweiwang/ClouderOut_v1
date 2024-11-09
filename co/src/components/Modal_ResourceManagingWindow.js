@@ -9,6 +9,7 @@ import langDictionary from './textDictionary';
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh,
     getUILanguage,
+    username, projName,
 
 }) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
@@ -21,10 +22,6 @@ export default function Modal_ResourceManagingWindow ({
     const [googleDriveFileSharedLink, setGoogleDriveFileSharedLink] = useState("");
     const [googleDriveFileId, setGoogleDriveFileId] = useState("");
     const [googleDriveFileDisplayLink, setGoogleDriveFileDisplayLink] = useState("");
-
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
-
 
 
     let textDictItem = langDictionary[languageCodeTextOption];

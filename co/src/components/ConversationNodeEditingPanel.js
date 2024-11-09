@@ -787,7 +787,9 @@ export default function ConversationNodeEditingPanel() {
                     handleRmSaveChanges={handleResourceManagerSaveChanges} 
                     refresh={triggerRefresh}
 
-                    getUILanguage={passInUILanguage}                    
+                    getUILanguage={passInUILanguage}    
+                    username={state.userName} 
+                    projName={state.projectName}                
                     />
                                                                     {/* } */}
             </div>
@@ -808,6 +810,8 @@ export default function ConversationNodeEditingPanel() {
                     updateGameDataDesignToCloud={updateGDataDesignToCloud}
 
                     getUILanguage={passInUILanguage}
+                    username={state.userName} 
+                    projName={state.projectName}    
                 />   
             </div>
         

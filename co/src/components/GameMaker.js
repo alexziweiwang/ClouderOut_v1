@@ -1461,6 +1461,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                 refresh={triggerRefreshFetchCloudData}
           
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
+
+                username={username} 
+                projName={projectName}   
             
               />
           
@@ -1479,7 +1482,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                 updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
 
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
-            
+                username={username} 
+                projName={projectName}  
               />
 
           </div>
