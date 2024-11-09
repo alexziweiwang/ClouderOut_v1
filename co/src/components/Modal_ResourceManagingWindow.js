@@ -106,6 +106,7 @@ export default function Modal_ResourceManagingWindow ({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
+                                        console.log("ResourceManager-ModalWindow: First Enter!");
             fetchRmFileList();
             fetchProjResourceVarPairLists();
             setFirstTimeEnter(false);
@@ -218,7 +219,7 @@ export default function Modal_ResourceManagingWindow ({
     async function fetchProjResourceVarPairLists() {
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        console.log(obj);//TODO 
+                            console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
 
         setVisualVarPairs(obj.visual);
         setAudioVarPairs(obj.audio);
@@ -229,9 +230,9 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function submitFile(type, selectedFile) {
-        console.log("Window: called ... submitFile"); //TODO
+                                                                console.log("rmWindow -- submitFile"); //TODO
         if (selectedFile === "") {
-            console.log("File NOT chosen"); //TODO
+                                                                console.log("\trmWindow --File NOT chosen"); //TODO
             return;
         }
 
@@ -257,9 +258,9 @@ export default function Modal_ResourceManagingWindow ({
 
     async function updateUploadedFileRecords(username, fileName, type) {
         let url = await fetchUrlByFilenameVM({fullFilename: fileName});
-        console.log("1 uploaded url in window: ", url); //TODO test
+                                            console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
         if (url === undefined || url === "") {
-            console.log("Error: empty url"); //TODO test
+                                            console.log("\trmWindow -- Error: empty url"); //TODO test
             return;
         }
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
@@ -287,10 +288,10 @@ export default function Modal_ResourceManagingWindow ({
         if (audioListFilter !== "allAu") {
             setAudioListFilteredList(aList);
         }
-                                console.log("raw-rsrc ...gen list = ", cloudFileList); //TODO test
+                                // console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
 
-                                console.log("raw-rsrc vlist = ", vList); //TODO test
-                                console.log("raw-rsrc alist = ", aList); //TODO test
+                                // console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
+                                // console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
     }
 
     function changeVisFilter(type) {
@@ -322,10 +323,10 @@ export default function Modal_ResourceManagingWindow ({
         // visual: in-this-project = currVis, all-resources = allVis, not-in-this-project = notVis
         if (type === "curr") { // in-this-project
             setVisualListFilteredList(inList); 
-            console.log("filter: in vis...");//TODO 
+                                                console.log("rmWindow -- changeVisFilter: in vis...");//TODO 
         } else if (type === "not") { // not-in-this-project
             setVisualListFilteredList(notInList); 
-            console.log("filter: not in vis...");//TODO 
+                                                console.log("rmWindow -- changeVisFilter: not in vis...");//TODO 
         } else if (type !== "all") { // unexpected input
             return;
         }
@@ -356,19 +357,19 @@ export default function Modal_ResourceManagingWindow ({
             }
         }
 
-        console.log(" in list: ");//TODO 
-        console.log(inList);//TODO 
+                                                                console.log("rmWindow -- in list: ");//TODO 
+                                                                console.log(inList);//TODO 
 
-        console.log(" not in the list: ");//TODO 
-        console.log(notInList);//TODO 
+                                                                console.log("rmWindow -- not in the list: ");//TODO 
+                                                                console.log(notInList);//TODO 
 
         // audio: in-this-project = currAu, all-resources = allAu, not-in-this-project = notAu */
         if (type === "curr") { // in-this-project
             setAudioListFilteredList(inList); 
-            console.log("filter: in au");//TODO 
+                                                                    console.log("rmWindow --filter: in au");//TODO 
         } else if (type === "not") { // not-in-this-project
             setAudioListFilteredList(notInList); 
-            console.log("filter: not in au");//TODO 
+                                                                    console.log("rmWindow --filter: not in au");//TODO 
         } else if (type !== "all") { // unexpected input
             return;
         }
@@ -395,12 +396,7 @@ export default function Modal_ResourceManagingWindow ({
 
         <div className="modalContent">
 
-            <div>
-
-                <button className="cursor_pointer modalClose" onClick={()=>{handleRmCancel()}}>
-                {closeText}
-                </button>
-            </div>
+ 
 
         <div className="modalArea">
 
@@ -424,9 +420,12 @@ export default function Modal_ResourceManagingWindow ({
                                 setClickedFileType("");
                     }}>{audioResourceText}</button>
 
-                    <button className="buttonRight saveToCloud" 
+                    {/* <button className="buttonRight saveToCloud" 
                         onClick={()=>{updateVarPairToCloud();}}>
                             {saveToCloudText}
+                    </button> */}
+                    <button className="buttonRight cursor_pointer modalClose" onClick={()=>{handleRmCancel()}}>
+                        {closeText}
                     </button>
                 </div>
 
@@ -493,8 +492,8 @@ export default function Modal_ResourceManagingWindow ({
                                 i = arr.length;
                             }
                         }
-                        console.log("arr: ");//TODO 
-                        console.log(arr);//TODO 
+                                                                        // console.log("arr: ");//TODO 
+                                                                        // console.log(arr);//TODO 
                         
                         setClickedFileName("");
                         setClickedFileType("");
@@ -547,7 +546,7 @@ export default function Modal_ResourceManagingWindow ({
                     <ul>
                         {audioListFilteredList.map((item, index) => (
                         <li className="clickableListItem6" key={index} onClick={()=>{
-                            console.log("list clicked.", cloudFileList[index]["filename"]); //TODO 
+                                                            console.log("rmWindow --list clicked.", cloudFileList[index]["filename"]); //TODO 
                             itemClicked(item);
                         
                         }}>{item["filename"]}</li>

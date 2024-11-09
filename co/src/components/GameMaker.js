@@ -1448,34 +1448,41 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 <div>
 
-          {isDisplayRmBool && 
+          
           <div
             style={{
               "display": isDisplayRmBool === false ? "none" : "flex",
             }}
           >
-            <Modal_ResourceManagingWindow 
-              isDisplay = {isDisplayRmBool} 
-              handleRmCancel={handleResourceManagerCancel} 
-              handleRmSaveChanges={handleResourceManagerSaveChanges}
-              refresh={triggerRefreshFetchCloudData}
-        
-              getUILanguage={passInUILanguage}  //TODO20 languageOption
+              <Modal_ResourceManagingWindow 
+                isDisplay = {isDisplayRmBool} 
+                handleRmCancel={handleResourceManagerCancel} 
+                handleRmSaveChanges={handleResourceManagerSaveChanges}
+                refresh={triggerRefreshFetchCloudData}
           
-          />
+                getUILanguage={passInUILanguage}  //TODO20 languageOption
+            
+              />
           
-          </div>}
+          </div>
+         
+          <div
+            style={{
+              "display": isDisplayGdmBool === false ? "none" : "flex",
+            }}
+          >
+       
+              <Modal_GameDataManager 
+                isDisplay={isDisplayGdmBool} 
+                handleGdmCancel={handleGameDataManagerCancel} 
+                resetNeedCloudData={markNextNeedCloudGameData} 
+                updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
 
-          {isDisplayGdmBool && 
-            <Modal_GameDataManager 
-              isDisplay={isDisplayGdmBool} 
-              handleGdmCancel={handleGameDataManagerCancel} 
-              resetNeedCloudData={markNextNeedCloudGameData} 
-              updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
+                getUILanguage={passInUILanguage}  //TODO20 languageOption
+            
+              />
 
-              getUILanguage={passInUILanguage}  //TODO20 languageOption
-          
-          />} 
+          </div>
 </div>
 
   </div>

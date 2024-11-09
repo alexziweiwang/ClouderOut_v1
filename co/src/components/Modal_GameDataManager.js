@@ -104,6 +104,7 @@ export default function Modal_GameDataManager ({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
         useEffect(() => {
         if (firstTimeEnter === true) {
+                                            console.log("GameDataManager-ModalWindow: First Enter!");
 
             setFirstTimeEnter(false);
         }
@@ -311,7 +312,6 @@ export default function Modal_GameDataManager ({
     <div>
 
     <div className="modalContent">
-        <br></br>
         <button className="cursor_pointer modalClose" onClick={()=>{handleGdmCancel()}}>
             {closeText}
         </button>

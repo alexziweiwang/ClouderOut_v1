@@ -185,7 +185,7 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
 
   const obj = {audio: audioList, visual: visualList};
 
-                        console.log("~~~~~~~ rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
+                       // console.log("~~~~~~~ rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
 
   return obj;
 }
