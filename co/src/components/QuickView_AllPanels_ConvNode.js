@@ -425,6 +425,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return gameDataTracker;
     }
 
+
+
+
     function notUsing() {
         return "notUsing";
     }
@@ -475,7 +478,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
                 <Panel_GameDataTest
                        localTest={true}
-                       getGameDataDesignList={passInGameDataDesignList}  //TODO20
+                       initialGameDataStatus={gameDataTracker}
 
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}

@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 Keeps a set of creator's preferred configuration data of game-data
 */
 export default function Panel_GameDataTest({
-    localTest,
-    getGameDataDesignList,
+    localTest, initialGameDataStatus,
     getScreenHeight, getScreenWidth,
     isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
     receiveGameDataObj,
@@ -26,7 +25,7 @@ export default function Panel_GameDataTest({
 
 
 
-                                    const [gameData, setGameData] = useState({}); //TODO20 improve later
+    const [gameDataTrackerMap, setGameDataTrackerMap] = useState(initialGameDataStatus); //TODO20 improve later
     //TODO plan1.manage game-data-tracker outside; plan2.manage here and pass-to-outside
 
 
@@ -53,31 +52,8 @@ export default function Panel_GameDataTest({
         setLanguageCodeTextOption(UILang);
 
         if (firstTimeEnter === true) {
-
-                let gdDesignTemp = getGameDataDesignList();
-
-                if (localTest === true && gdDesignTemp !== undefined) {
-                    //local test: create game-data-tracker for this test            
-                    let gdObjTemp = {};
-                    {Object.keys(gdDesignTemp).map((currKey) => {
-                        let item = gdDesignTemp[currKey];
-                        item["current_value"] = gdDesignTemp[currKey]["default_value"];
-                        gdObjTemp[currKey] = item;
-                    }); 
-                
-                    }
-                    setGameData(gdObjTemp);
-                    //local test: create game-data-tracker for this test
-
-                } else {
-                    //TODO not local-test
-
-                    //TODO later for cloud: save this settings to cloud or outer-compo? then allow loading for later resuing
-                    let newGameDataObj = receiveGameDataObj();
-                    setGameData(newGameDataObj);
-
-                }
-
+                                    console.log("quickview ... Panel_GameData");
+            fetchGdataTrackerFromOuterLayer();
 
 
             setFirstTimeEnter(false);
@@ -88,10 +64,8 @@ export default function Panel_GameDataTest({
         let resetSignal = getResetSignal();
 
         if (receiveGameScreenClicked === true || resetSignal === true) {
-            // receive updated game-data-obj from outer layer
-            let newGameDataObj = receiveGameDataObj();
-                                              console.log("\t !!! new game-data-obj:", newGameDataObj); //TODO test
-            setGameData(newGameDataObj);
+
+            fetchGdataTrackerFromOuterLayer();
         } 
 
         if (resetSignal === true) {
@@ -101,6 +75,13 @@ export default function Panel_GameDataTest({
         
 
     });
+
+    function fetchGdataTrackerFromOuterLayer() {
+        let newGameDataObj = receiveGameDataObj();
+                            console.log("\t (Panel_GameData) !!! new game-data-obj:", newGameDataObj); //TODO test
+        setGameDataTrackerMap(newGameDataObj);
+
+    }
 
 
 
@@ -133,13 +114,13 @@ return (
                             <tbody> 
 
 
-                        {Object.keys(gameData).map((currKey) => {
+                        {Object.keys(gameDataTrackerMap).map((currKey) => {
                             let keyName = "gmdt" + currKey;
-                            let val = gameData[currKey]["data_type"] === "boolean" ? 
-                                    ((gameData[currKey]["current_value"] === true 
-                                        || gameData[currKey]["current_value"] === "true") ? 
+                            let val = gameDataTrackerMap[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataTrackerMap[currKey]["current_value"] === true 
+                                        || gameDataTrackerMap[currKey]["current_value"] === "true") ? 
                                         "true" : "false") 
-                                : gameData[currKey]["current_value"];
+                                : gameDataTrackerMap[currKey]["current_value"];
 
                             let optionFalse = keyName + "-false";
                             let optionTrue = keyName + "-true";
@@ -148,16 +129,16 @@ return (
 
                             return (
                                 <tr value={currKey} key={keyName} id={inputId}>
-                                    <td>{gameData[currKey]["name"]}</td>
+                                    <td>{gameDataTrackerMap[currKey]["name"]}</td>
                                     
                                     <td>
-                                        <label>{gameData[currKey]["data_type"] !== "boolean" ? 
-                                            gameData[currKey]["current_value"] 
-                                            : (gameData[currKey]["current_value"] === true ? 
+                                        <label>{gameDataTrackerMap[currKey]["data_type"] !== "boolean" ? 
+                                            gameDataTrackerMap[currKey]["current_value"] 
+                                            : (gameDataTrackerMap[currKey]["current_value"] === true ? 
                                                 "True" 
                                                 : "False")}</label><br></br>
                                         <br></br>
-                                        {gameData[currKey]["data_type"] === "boolean" && 
+                                        {gameDataTrackerMap[currKey]["data_type"] === "boolean" && 
                                         <select 
                                             style={{"width": "90px"}}
                                             value={(editingItem === inputId) ? editingInput : ""}
@@ -173,7 +154,7 @@ return (
                                         </select>
                                         }
 
-                                        {gameData[currKey]["data_type"] === "number" && 
+                                        {gameDataTrackerMap[currKey]["data_type"] === "number" && 
                                         <input 
                                             className="textNoSelect"
                                             type="number"
@@ -189,7 +170,7 @@ return (
                                         
                                         ></input>}
 
-                                        {gameData[currKey]["data_type"] === "string" && 
+                                        {gameDataTrackerMap[currKey]["data_type"] === "string" && 
                                         <input 
                                             className="textNoSelect"
                                             style={{"width": "90px"}}
@@ -209,7 +190,7 @@ return (
                                             onClick={()=>{
                                                 triggerClickOnGameDataPanel();
 
-                                                let tempObj = gameData;
+                                                let tempObj = gameDataTrackerMap;
                                                 if (editingInput === "true") {
                                                     tempObj[currKey]["current_value"] = true;
                                                 } else if (editingInput === "false") {
@@ -222,7 +203,7 @@ return (
                                                 console.log(tempObj); //TODO test
                                                 console.log(); //TODO test
 
-                                                setGameData(tempObj);
+                                                setGameDataTrackerMap(tempObj);
                                                 setEditingInput("");
                                                 setEditingItem();
                                                 updateRenderCounter();
@@ -236,9 +217,11 @@ return (
                                             onClick={()=>{
                                                 triggerClickOnGameDataPanel();
 
-                                                let tempObj = gameData;
-                                                tempObj[currKey]["current_value"] = tempObj[currKey]["default_value"];
-                                                setGameData(tempObj);
+                                                            // let tempObj = gameDataTrackerMap;
+                                                            // tempObj[currKey]["current_value"] = tempObj[currKey]["default_value"];
+                                                            // setGameDataTrackerMap(tempObj);
+                                                            //TODO refactor data-structure-resetting later
+
                                                 setEditingInput("");
                                                 setEditingItem(inputId);
                                                 updateRenderCounter();
@@ -247,7 +230,7 @@ return (
                                     </td>   
 
                                     <td>
-                                    <label>{gameData[currKey]["data_type"] !== "boolean" ? gameData[currKey]["default_value"] : (gameData[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                    <label>{gameDataTrackerMap[currKey]["data_type"] !== "boolean" ? gameDataTrackerMap[currKey]["default_value"] : (gameDataTrackerMap[currKey]["default_value"] == "true" ? "True" : "False")}</label>
                                     
                                     </td>            
                                 </tr>

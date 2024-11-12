@@ -857,10 +857,8 @@ export default function ConversationNodeEditingPanel() {
          
 
            
-            <div
-                style={{"display": isDisplayQview === true ? "flex" : "none"}}
-            >
-                <QuickView_AllPanels_ConvNode
+            //important: here the quick-view SHOULD rerender when entered
+            {isDisplayQview && <QuickView_AllPanels_ConvNode
                     initialPieceNum={previewingIndex}
                     isDisplay={isDisplayQview}
                     handleQViewCancel={handleqvCancel}
@@ -875,8 +873,8 @@ export default function ConversationNodeEditingPanel() {
                     getUILanguage={passInUILanguage}
                     username={state.userName} 
                     projName={state.projectName}    
-                />
-            </div>
+            />}
+            
 
 
             <div
