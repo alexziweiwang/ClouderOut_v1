@@ -500,17 +500,17 @@ export default function ConversationNodeEditingPanel() {
 
 
 
-    function updateGDataDesignToCloud(gameDataLatest) {
+    // function updateGDataDesignToCloud(gameDataLatest) {
 
-        let project = "";
-        project  = state.selected_project_name;
-        if (project === "" || project === undefined || project.trim() === "") {
-            return;
-        }
-        let currUser = uname;
-        updateGameDataDesignVM({projectName: project, uname: currUser, gameData: gameDataLatest});
+    //     let project = "";
+    //     project  = state.selected_project_name;
+    //     if (project === "" || project === undefined || project.trim() === "") {
+    //         return;
+    //     }
+    //     let currUser = uname;
+    //     updateGameDataDesignVM({projectName: project, uname: currUser, gameData: gameDataLatest});
     
-    }
+    // } //TODO remove
 
 
     function triggerToDirectNextFunc() {
@@ -815,7 +815,6 @@ export default function ConversationNodeEditingPanel() {
                     isDisplay={displayGameDataWindow}
                     handleGdmCancel={handleModal_GameDataManagerCancel} 
                     resetNeedCloudData={markNextNeedCloudGameData} 
-                    updateGameDataDesignToCloud={updateGDataDesignToCloud}
 
                     getUILanguage={passInUILanguage}
                     username={state.userName} 

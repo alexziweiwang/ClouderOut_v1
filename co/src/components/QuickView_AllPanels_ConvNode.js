@@ -12,9 +12,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     getUILanguage,
 
 }) {
-    const visualList = []; //TODO temp
-    const audioList = []; //TODO temp
-
+    const [visualList, setVisualList] = useState([]); //TODO temp
+    const [audioList, setAudioList] = useState([]); //TODO temp
 
     const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
 
@@ -125,6 +124,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         }
 
     });
+
+    function initializeResourceLists() {
+//setVisualList setAudioList
+
+
+
+    }
 
     function updateCharPicArr() {
         if (currPieceNum < 0) {

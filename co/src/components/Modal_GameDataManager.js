@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
-import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 
 
 
@@ -10,7 +10,6 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodel
 export default function Modal_GameDataManager ({
         isDisplay, handleGdmCancel, 
         resetNeedCloudData, 
-        updateGameDataDesignToCloud,
 
         getUILanguage,
 
@@ -195,7 +194,7 @@ export default function Modal_GameDataManager ({
     
         //resetNeedCloudData();// TODO remove?
         
-        updateGameDataDesignToCloud(gameDataTemp); /* update cloud db */
+        updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
         // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
@@ -253,7 +252,7 @@ export default function Modal_GameDataManager ({
                     
             resetNeedCloudData();
                                             
-            updateGameDataDesignToCloud(tempMap); /* update cloud db */
+            updateGDataDesignToCloud(tempMap); /* update cloud db */
     
             //fetchFromCaller();
                         //TODO changing area
@@ -269,7 +268,7 @@ export default function Modal_GameDataManager ({
 
     function updateGdmInfoBothLayers(gameDataTemp) {
         //TODO5
-        updateGameDataDesignToCloud(gameDataTemp);
+        updateGDataDesignToCloud(gameDataTemp);
     }
 
     function editListItem(obj) {
@@ -328,7 +327,19 @@ export default function Modal_GameDataManager ({
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        updateGameDataDesignToCloud(newGameData);
+        updateGDataDesignToCloud(newGameData);
+    }
+
+    function updateGDataDesignToCloud(gameDataLatest) {
+
+
+        if (projName === "" || projName === undefined || projName.trim() === "") {
+            return;
+        }
+        let currUser = username;
+
+        updateGameDataDesignVM({projectName: projName, uname: currUser, gameData: gameDataLatest});
+    
     }
 
 

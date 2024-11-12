@@ -1479,7 +1479,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                 isDisplay={isDisplayGdmBool} 
                 handleGdmCancel={handleGameDataManagerCancel} 
                 resetNeedCloudData={markNextNeedCloudGameData} 
-                updateGameDataDesignToCloud={updateGameDataDesignSettingToCloud}
 
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
                 username={username} 
