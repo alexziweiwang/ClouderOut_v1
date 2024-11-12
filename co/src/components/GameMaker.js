@@ -1515,6 +1515,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             <Modal_EmuManager
               isDisplay={isDisplayEmBool}
               handleEmCancel={handleEmuManagerCancel}
+              getUILanguage={passInUILanguage}
             />
 
 

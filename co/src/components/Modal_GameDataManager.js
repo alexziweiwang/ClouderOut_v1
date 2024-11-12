@@ -17,7 +17,7 @@ export default function Modal_GameDataManager ({
     }) {
 
 
-        const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     let modalStyleName = "modalBackboard";
 
