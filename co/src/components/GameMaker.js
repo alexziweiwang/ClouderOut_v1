@@ -1206,20 +1206,26 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
         <button className="rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
         <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
+        <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
+          Emu-Manager
+        </button>
+      
+
+            <div>
+                <label>Editor Language</label><br></br>
+                <select value={languageCodeTextOption}
+                  onChange={(event)=>{
+                    userChangeEditorUILang(event.target.value);
+                  }}
+                >
+                  <option key="lang-Eng" value="en">English</option>
+                  <option key="lang-chn" value="chn">简体中文</option> 
+                  {/* //TODO16 */}
+                </select>
+            </div>
+
       </div>
 
-      <div>
-          <label>Editor Language</label><br></br>
-          <select value={languageCodeTextOption}
-            onChange={(event)=>{
-              userChangeEditorUILang(event.target.value);
-            }}
-          >
-            <option key="lang-Eng" value="en">English</option>
-            <option key="lang-chn" value="chn">简体中文</option> 
-            {/* //TODO16 */}
-          </select>
-      </div>
     </div>
 
 
@@ -1541,8 +1547,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               getUILanguage={passInUILanguage}
 
             />
-
-
           </div>
 </div>
 

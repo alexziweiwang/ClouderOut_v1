@@ -352,7 +352,8 @@ export default function Modal_GameDataManager ({
         <div style={{
             "marginTop": "50px",
         }}>
-        <button className="cursor_pointer modalClose buttonRight50" onClick={()=>{handleGdmCancel()}}>
+        <button className="cursor_pointer modalClose buttonRight50" 
+            onClick={()=>{handleGdmCancel()}}>
             {closeText}
         </button>
 

@@ -28,6 +28,8 @@ export default function Modal_EmuManager({
         modalStyleName = "displayNone modalBackboard";
     }
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
 
     let closeText = textDictItem.closeText !== undefined ?
         textDictItem.closeText
@@ -93,17 +95,24 @@ return (<div className={modalStyleName}>
 
         <div className="modalContent">
 
-            <button
+            <button className="cursor_pointer modalClose buttonRight50" 
                 onClick={()=>{
+                    setFocusingPanelName("");
                     handleEmCancel();
                 }}
             >{closeText}</button>
 
-            <div>
-                (emu-manager panels)
-                <div className="someGrey">
-                    <button
-                        
+            <div style={{
+                "width": "900px",
+                "marginLeft": "20%",
+                "borderRadius": "0px"
+            }}>
+                <div className="someGrey parallelFrame"
+                    style={{
+                        "borderRadius": "0px"
+                    }}
+                >
+                    <button 
                         onClick={()=>{
                             setFocusingPanelName("1gdt");
                         }}
