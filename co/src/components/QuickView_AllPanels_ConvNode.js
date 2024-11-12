@@ -2,22 +2,26 @@ import { useState, useEffect } from 'react';
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 import Panel_GameDataTest from './Panel_GameDataTest';
 import langDictionary from './textDictionary';
-//TODO get game-data-design-list from?
 
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
+   
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
     getUILanguage,
-
+    username, projName
 }) {
+
+
     const [visualList, setVisualList] = useState([]); //TODO temp
     const [audioList, setAudioList] = useState([]); //TODO temp
 
     const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
 
-    let languageCodeTextOption = 'en';
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
     
 
@@ -97,12 +101,47 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             setDirectNextPieceBool(true);
         }
 
-      
-      updateCharPicArr();
-      updateBgmSource();
-      updateBgpSource();
-      
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
 
+      
+        updateCharPicArr();
+        updateBgmSource();
+        updateBgpSource();
+        
+
+        // if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+        //     let i = 0;
+        //     let tempAudioMap = {};
+        //     setAudioMapSize(audioList.length);
+        //     for (;i < audioList.length; i++) {
+        //         let item = audioList[i];
+        //         tempAudioMap[item["var"]] = item["url"];
+        //     }
+        //     setAudioMap(tempAudioMap);
+
+        //     i = 0;
+        //     let tempVisualMap = {};
+        //     setVisualMapSize(visualList.length);
+        //     for (;i < visualList.length; i++) {
+        //         let item = visualList[i];
+        //         tempVisualMap[item["var"]] = item["url"];
+        //     }
+        //     setVisualMap(tempVisualMap);
+        // }
+
+    });
+
+    function initializeResourceLists() {
+
+//fetchProjectResourceVarPairsVM
+
+
+
+//setVisualList setAudioList
+
+
+        //set visualMap & audioMap?
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
             let tempAudioMap = {};
@@ -123,14 +162,29 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             setVisualMap(tempVisualMap);
         }
 
-    });
 
-    function initializeResourceLists() {
-//setVisualList setAudioList
+    }
+
+    async function initializeGameDataTracker() {
+
+        let isUpdated = true;
+
+        let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
+      
+
+        // TODO add starting-current-value for each item of the design-list
+
+
 
 
 
     }
+
+    function resetGameDataTracker() {
+
+
+    }
+
 
     function updateCharPicArr() {
         if (currPieceNum < 0) {
@@ -216,21 +270,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 */ //TODO: remove unusued later
 
 
-
-    function initializeGameDataTracker() {
-        // let gameDataTemp = getGameDataDesignList(); //TODO refactor for separating
-        // let defaultMap = {}; //for the record of entering-game-data
-
-        // {Object.keys(gameDataTemp).map((currKey) => {
-        //     gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-        //     //current_value, data_type("boolean"/"string"/"number"), default_value, name
-        //     defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-        // })}
-        // setGameDataTracker(gameDataTemp); 
-
-        //TODO re-impl later with VM-data-fetching
-
-    }
 
                             function resetViewingPiece() {
                                 initializeGameDataTracker();

@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
+
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 import PreviewWindow_gameContent from './PreviewWindow_gameContent';
 import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
@@ -844,6 +844,8 @@ export default function ConversationNodeEditingPanel() {
                     screenHeight={screenHeight}
         
                     getUILanguage={passInUILanguage}
+                    username={state.userName} 
+                    projName={state.projectName}    
                 />
             </div>
             
