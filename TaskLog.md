@@ -378,5 +378,8 @@
 
 - 2024-Oct-24: Consider data-driven strategies, for each layer & compo for entire-viewing
 
-
 - 2024-Nov-05: Consider and design settings slider features
+
+- 2024-Nov-11: Consider and design emu-modal-window related
+
+
