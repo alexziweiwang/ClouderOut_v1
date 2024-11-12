@@ -23,7 +23,15 @@ export default function Panel_GameDataTest({
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
 
-    const [gameData, setGameData] = useState({});
+
+
+
+                                    const [gameData, setGameData] = useState({}); //TODO20 improve later
+    //TODO plan1.manage game-data-tracker outside; plan2.manage here and pass-to-outside
+
+
+
+
 
     const [editingInput, setEditingInput] = useState("");
     const [editingItem, setEditingItem] = useState();

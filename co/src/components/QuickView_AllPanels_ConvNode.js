@@ -68,8 +68,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
-    const [gameDataTracker, setGameDataTracker] = useState({});
-    const [gameDataDesignList, setGameDataDesignList] = useState([]);
+    const [gameDataTracker, setGameDataTracker] = useState({}); //used during test-play
+    const [gameDataDesignMap, setGameDataDesignMap] = useState([]); //used for storing fetched-design-list from cloud
 
 
     // const [originalGmdt, setOriginalGmdt] = useState({});
@@ -93,7 +93,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             setFirstTimeEnter(false);
         }
 
-        
+
         if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
             allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
             setDirectNextPieceBool(false);
@@ -164,23 +164,56 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         let isUpdated = true;
 
         let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
-      
+      console.log("fetched from cloud: ", gDataDesignMap);
         if (gDataDesignMap === null || gDataDesignMap === undefined) {
             return;
         }
+        setGameDataDesignMap(gDataDesignMap);
 
-        // TODO add starting-current-value for each item of the design-list
+        
+        let trackerMap = {};
+        {Object.keys(gDataDesignMap).map((currKey) => {
+            let name = gDataDesignMap[currKey]["name"];
+            let defaultVal = gDataDesignMap[currKey]["default_value"];
+            let dataType = gDataDesignMap[currKey]["data_type"];
+
+            let obj = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": defaultVal
+            }
+            let keyStr = currKey;
+            trackerMap[keyStr] = obj;
+        })} 
+        setGameDataTracker(trackerMap); 
 
 
+                                                        console.log("quick-view, initialized-game-data: ", "\ndesign-map = ", gDataDesignMap, "\ntracker = ", trackerMap);
 
+    } //-- initializeGameDataTracker() --
 
+    function reset_GameDataTracker() {
+        let gDataDesignMap = gameDataDesignMap;
+        let trackerMap = {};
+        {Object.keys(gDataDesignMap).map((currKey) => {
+            let name = gDataDesignMap[currKey]["name"];
+            let defaultVal = gDataDesignMap[currKey]["default_value"];
+            let dataType = gDataDesignMap[currKey]["data_type"];
 
-    }
+            let obj = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": defaultVal
+            }
+            let keyStr = currKey;
+            trackerMap[keyStr] = obj;
+        })}
+        
+        setGameDataTracker(trackerMap);
 
-    function resetGameDataTracker() {
-
-
-    }
+    } //-- reset_GameDataTracker() --
 
 
     function updateCharPicArr() {
@@ -296,10 +329,12 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     //     return autoMode;
     // }
 
-    function changeGameDataTracker(name, value) { //TODO later
+    function changeGameDataTracker(name, value) {
         let gmdtObj = gameDataTracker;
         gmdtObj[name].current_value = value;
-        setGameDataTracker(gmdtObj);
+        
+        setGameDataTracker(gmdtObj); //TODO20
+
     }  
 
     function changeGameDataTrackerByStatement(name, action, newVal, type) { //TODO later
@@ -383,7 +418,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     function passInGameDataDesignList() {
-        return gameDataDesignList;
+        return gameDataDesignMap;
     }
 
     function passInGameDataFromScreen() {
@@ -419,22 +454,32 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     visualList={visualList} 
                     audioList={audioList}
+
                     gameData={tempPlaceholder}
+
                     getCurrPieceNum={passInCurrPieceNum}
+
+
                     getResetSignal={passInResetSignal}
-                    notifyNewGameData={notifyNewGameData}
+
+
                     triggerClickOnGameScreen={triggerClickOnGameScreen}
                     getIsGameScreenClicked={passInIsGameScreenClicked}
+
+
+                    notifyNewGameData={notifyNewGameData}
                     notifyAfterReset={notifyAfterReset}
                 />
 
                 <Panel_GameDataTest
                        localTest={true}
-                       getGameDataDesignList={passInGameDataDesignList} 
+                       getGameDataDesignList={passInGameDataDesignList}  //TODO20
 
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
                        isQuickView={true}
+
+
                        triggerClickOnGameDataPanel={triggerClickOnGameDataPanel}
                        getIsGameScreenClicked={passInIsGameScreenClicked}
 
