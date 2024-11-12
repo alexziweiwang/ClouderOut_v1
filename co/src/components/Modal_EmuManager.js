@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
 
-export default function EmuManager () {
+export default function Modal_EmuManager({
+    isDisplay,
+    handleEmCancel
+}) {
 //allows user to setup emu-data for testing
 
 
@@ -28,7 +31,11 @@ return (<div className={modalStyleName}>
 <div>
 
         <div className="modalContent">
-            <button>close</button>
+            <button
+                onClick={()=>{
+                    handleEmCancel();
+                }}
+            >close</button>
 
             <div>
                 (emu-manager panels)

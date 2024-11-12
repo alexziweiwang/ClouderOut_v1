@@ -5,6 +5,8 @@ import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_GameDataManager from './Modal_GameDataManager';
+import Modal_EmuManager from './Modal_EmuManager';
+
 
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
@@ -127,6 +129,8 @@ export default function GameMaker({username, projectName}) {
 
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
   const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
+  const [isDisplayEmBool, setDisplayEmBool] = useState(false);
+
 
   const [showChapterMaker, setShowChapterMaker] = useState(true);
 
@@ -722,6 +726,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setDisplayGdmBool(false);
 
   }
+
+  function handleEmuManagerCancel() {
+    setDisplayEmBool(false);
+  }  
+
 
   function handleGameDataManagerSaveChanges() {
     setDisplayGdmBool(false);
@@ -1494,6 +1503,20 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                 username={username} 
                 projName={projectName}  
               />
+
+          </div>
+
+
+          <div
+            style={{
+              "display": isDisplayEmBool === false ? "none" : "flex",
+            }}
+          >
+            <Modal_EmuManager
+              isDisplay={isDisplayEmBool}
+              handleEmCancel={handleEmuManagerCancel}
+            />
+
 
           </div>
 </div>
