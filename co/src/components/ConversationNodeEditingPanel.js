@@ -562,16 +562,19 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-                <p>
-                <label>Project: {state.projectName}</label>
-                <br></br>
-                <label>Node: {state.clickedNodeKey}</label>
-                </p>
+                <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "15px"}}>
+                    <label>Project: {state.projectName}</label>
+                    <br></br>
+                    <label>Node: {state.clickedNodeKey}</label>
+                </div>
+                <div style={{"width": "200px", "marginTop": "9px"}}>
+                    <button className="button testEntire"
+                        onClick={()=>{setIsDisplayQview(true);}}>
+                            {quickGameViewText}
+                    </button>                    
+                </div>
 
-                <button className="button testEntire"
-                    onClick={()=>{setIsDisplayQview(true);}}>
-                        {quickGameViewText}
-                </button>
+
                 <div className="buttonRight30 parallelFrame">
                     <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
                     <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
@@ -825,20 +828,26 @@ export default function ConversationNodeEditingPanel() {
             {/* }  */}
          
 
-            {isDisplayQview && <QuickView_AllPanels_ConvNode
-                initialPieceNum={previewingIndex}
-                isDisplay={isDisplayQview}
-                handleQViewCancel={handleqvCancel}
-                allPieceContent={pieceDataStructure}
-                uiData1_textframe={gameUITextFrame} 
-                uiData2_buttonOption={gameUIDefaultButton} 
-                uiData3_ConvNavigation={uiConvNav} 
-                uiData4_logPageSettings={logPageUISettings}
-                screenWidth={screenWidth}
-                screenHeight={screenHeight}
-    
-                getUILanguage={passInUILanguage}
-            />}
+           
+            <div
+                style={{"display": isDisplayQview === true ? "flex" : "none"}}
+            >
+                <QuickView_AllPanels_ConvNode
+                    initialPieceNum={previewingIndex}
+                    isDisplay={isDisplayQview}
+                    handleQViewCancel={handleqvCancel}
+                    allPieceContent={pieceDataStructure}
+                    uiData1_textframe={gameUITextFrame} 
+                    uiData2_buttonOption={gameUIDefaultButton} 
+                    uiData3_ConvNavigation={uiConvNav} 
+                    uiData4_logPageSettings={logPageUISettings}
+                    screenWidth={screenWidth}
+                    screenHeight={screenHeight}
+        
+                    getUILanguage={passInUILanguage}
+                />
+            </div>
+            
 
         <br></br>
         </div>

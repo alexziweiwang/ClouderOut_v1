@@ -272,7 +272,11 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function fetchRmFileList() { //TODO temp debugging
+
         const fileList = await getRmFileListVM({uname: username});
+        if (fileList === undefined || fileList === null) {
+            return;
+        }
 
         setCloudFileList(fileList.filename_records);
         const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));

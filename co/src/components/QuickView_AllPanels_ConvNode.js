@@ -9,10 +9,12 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, 
     getUILanguage,
 
 }) {
+    const visualList = []; //TODO temp
+    const audioList = []; //TODO temp
+
 
     const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
 
