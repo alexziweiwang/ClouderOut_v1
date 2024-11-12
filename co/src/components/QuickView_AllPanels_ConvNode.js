@@ -87,13 +87,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         if (firstTimeEnter === true) {
 
             initializeGameDataTracker();
-
-
+            initializeResourceLists();
 
     
             setFirstTimeEnter(false);
         }
 
+        
         if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
             allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
             setDirectNextPieceBool(false);
@@ -110,57 +110,51 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         updateBgpSource();
         
 
-        // if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-        //     let i = 0;
-        //     let tempAudioMap = {};
-        //     setAudioMapSize(audioList.length);
-        //     for (;i < audioList.length; i++) {
-        //         let item = audioList[i];
-        //         tempAudioMap[item["var"]] = item["url"];
-        //     }
-        //     setAudioMap(tempAudioMap);
-
-        //     i = 0;
-        //     let tempVisualMap = {};
-        //     setVisualMapSize(visualList.length);
-        //     for (;i < visualList.length; i++) {
-        //         let item = visualList[i];
-        //         tempVisualMap[item["var"]] = item["url"];
-        //     }
-        //     setVisualMap(tempVisualMap);
-        // }
-
     });
 
-    function initializeResourceLists() {
+    async function initializeResourceLists() {
 
-//fetchProjectResourceVarPairsVM
+        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
 
+        if (obj === undefined 
+            || obj === null 
+            || obj.audio === undefined 
+            || obj.visual === undefined
+            || obj.audio === null 
+            || obj.visual === null
+            ) {
+            return;
+        }
 
+        let audioListTemp = obj.audio;
+        let visualListTemp = obj.visual;
 
-//setVisualList setAudioList
+        setAudioList(audioListTemp);
+        setVisualList(visualListTemp);
 
 
         //set visualMap & audioMap?
-        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+        if (audioMapSize < audioListTemp.length || visualMapSize < visualListTemp.length) {
             let i = 0;
             let tempAudioMap = {};
-            setAudioMapSize(audioList.length);
-            for (;i < audioList.length; i++) {
-                let item = audioList[i];
+            setAudioMapSize(audioListTemp.length);
+            for (;i < audioListTemp.length; i++) {
+                let item = audioListTemp[i];
                 tempAudioMap[item["var"]] = item["url"];
             }
             setAudioMap(tempAudioMap);
 
             i = 0;
             let tempVisualMap = {};
-            setVisualMapSize(visualList.length);
-            for (;i < visualList.length; i++) {
-                let item = visualList[i];
+            setVisualMapSize(visualListTemp.length);
+            for (;i < visualListTemp.length; i++) {
+                let item = visualListTemp[i];
                 tempVisualMap[item["var"]] = item["url"];
             }
             setVisualMap(tempVisualMap);
         }
+
+
 
 
     }
@@ -171,6 +165,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
         let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
       
+        if (gDataDesignMap === null || gDataDesignMap === undefined) {
+            return;
+        }
 
         // TODO add starting-current-value for each item of the design-list
 
