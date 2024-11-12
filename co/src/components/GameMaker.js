@@ -1545,6 +1545,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
               getUILanguage={passInUILanguage}
+              isForGameMaker={true}
 
             />
           </div>

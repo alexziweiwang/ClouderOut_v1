@@ -6,6 +6,7 @@ export default function Modal_EmuManager({
     handleEmCancel,
     getUILanguage,
     update1Gdt, update2Epp, update3Epa, update4Ess,
+    isForGameMaker,
 
 }) {
 //allows user to setup emu-data for testing
@@ -107,7 +108,7 @@ return (<div className={modalStyleName}>
                 "marginLeft": "20%",
                 "borderRadius": "0px"
             }}>
-                <div className="someGrey parallelFrame"
+{isForGameMaker === true && <div className="someGrey parallelFrame"
                     style={{
                         "borderRadius": "0px"
                     }}
@@ -117,6 +118,7 @@ return (<div className={modalStyleName}>
                             setFocusingPanelName("1gdt");
                         }}
                     >1.Game Data to Test</button>
+
                     <br></br>
                     <button
 
@@ -138,13 +140,21 @@ return (<div className={modalStyleName}>
                             setFocusingPanelName("4ess");
                         }}             
                     >4.Emu SL slots</button>
-                </div>
 
-                {focusingPanelName === "1gdt" && <div>
+
+</div>}
+
+                {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
                 {/* "1.Game Data to Test" */}
+                {/* for Game-Maker and other Node-Level Editor */}
 1
                 </div>}
 
+
+
+
+{/* for Game-Maker-Level only */}
+{isForGameMaker === true && <>
                 {focusingPanelName === "2epp" && <div>
                 {/* "2.Emu Player Profile" */}
 2
@@ -160,7 +170,7 @@ return (<div className={modalStyleName}>
 4
                 </div>}
 
-
+</>}
 
             </div>
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
+import Modal_EmuManager from './Modal_EmuManager';
 
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 
@@ -62,6 +63,8 @@ export default function ConversationNodeEditingPanel() {
 
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [isDisplayQview, setIsDisplayQview] = useState(false);
+    const [isDisplayEmBool, setDisplayEmBool] = useState(false);
+
 
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
@@ -350,6 +353,10 @@ export default function ConversationNodeEditingPanel() {
         
     }
     
+    function handleEmuManagerCancel() {
+        setDisplayEmBool(false);
+    } 
+
     function handleResourceManagerSaveChanges() {
         console.log("modal save changes!");
         //TODO update to cloud db
@@ -547,6 +554,24 @@ export default function ConversationNodeEditingPanel() {
         return gameDataDesignList;
     }
 
+
+    function fetchUserConfigFromEmuManager1Gdt(data1) {
+        //TODO update data1 to be the new Game-Data-Tracker
+    }
+
+    function fetchUserConfigFromEmuManager2Epp(data2) {
+        //TODO update data2 to be the new Emu-Player-Profile
+    }
+
+    function fetchUserConfigFromEmuManager3Epa(data3) {
+        //TODO update data3 to be the new Emu Player Account
+    }
+
+    function fetchUserConfigFromEmuManager4Ess(data4) {
+        //TODO update data4 to be the new Emu SL slots
+    }
+
+
     function handleqvCancel() {
         setIsDisplayQview(false);
     }
@@ -578,26 +603,30 @@ export default function ConversationNodeEditingPanel() {
                 <div className="buttonRight30px parallelFrame" style={{"width": "500px"}}>
                     <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
                     <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
-                </div>
+                    <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
+                        Emu-Manager
+                    </button>
 
                     
-                <div>
-                    <label>Editor Language</label><br></br>
-                    <select value={languageCodeTextOption}
-                        onChange={(event)=>{
-                            let opt = event.target.value;
-                            let askStr = "Are you sure to change editor language to " + uiLangMap[opt] + " ?";
-                            let response = window.confirm(askStr);
-                            if (response) {
-                                setLanguageCodeTextOption(opt);
-                            }
+                            <div>
+                                <label>Editor Language</label><br></br>
+                                <select value={languageCodeTextOption}
+                                    onChange={(event)=>{
+                                        let opt = event.target.value;
+                                        let askStr = "Are you sure to change editor language to " + uiLangMap[opt] + " ?";
+                                        let response = window.confirm(askStr);
+                                        if (response) {
+                                            setLanguageCodeTextOption(opt);
+                                        }
 
-                        }}
-                    >
-                        <option key="lang-Eng" value="en">English</option>
-                        <option key="lang-chn" value="chn">简体中文</option> 
-                    </select>
+                                    }}
+                                >
+                                    <option key="lang-Eng" value="en">English</option>
+                                    <option key="lang-chn" value="chn">简体中文</option> 
+                                </select>
+                            </div>
                 </div>
+
 
             </div>
 
@@ -846,6 +875,27 @@ export default function ConversationNodeEditingPanel() {
                     getUILanguage={passInUILanguage}
                     username={state.userName} 
                     projName={state.projectName}    
+                />
+            </div>
+
+
+            <div
+                style={{
+                "display": isDisplayEmBool === false ? "none" : "flex",
+                }}
+            >
+                <Modal_EmuManager
+                    isDisplay={isDisplayEmBool}
+                    handleEmCancel={handleEmuManagerCancel}
+
+                    update1Gdt={fetchUserConfigFromEmuManager1Gdt}
+                    update2Epp={fetchUserConfigFromEmuManager2Epp}
+                    update3Epa={fetchUserConfigFromEmuManager3Epa}
+                    update4Ess={fetchUserConfigFromEmuManager4Ess}
+
+                    getUILanguage={passInUILanguage}
+                    isForGameMaker={false}
+
                 />
             </div>
             

@@ -435,7 +435,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             <div style={{"width": "2000px", "marginLeft": "-90px"}}>
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
-                <button onClick={()=>{handleQViewCancel();}}> {closeText} </button>
+                <button 
+                    className="cursor_pointer modalClose" 
+                    onClick={()=>{handleQViewCancel();}}> {closeText} </button>
                 {/* <button onClick={()=>{resetViewingPiece();}}> {resetText} </button> //TODO remove later */}
             </div>
 
