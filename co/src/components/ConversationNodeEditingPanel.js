@@ -562,12 +562,12 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-                <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "15px"}}>
+                <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
                     <label>Project: {state.projectName}</label>
                     <br></br>
                     <label>Node: {state.clickedNodeKey}</label>
                 </div>
-                <div style={{"width": "200px", "marginTop": "9px"}}>
+                <div style={{"minWidth": "200px", "marginTop": "2px"}}>
                     <button className="button testEntire"
                         onClick={()=>{setIsDisplayQview(true);}}>
                             {quickGameViewText}
@@ -575,7 +575,7 @@ export default function ConversationNodeEditingPanel() {
                 </div>
 
 
-                <div className="buttonRight30 parallelFrame">
+                <div className="buttonRight30px parallelFrame" style={{"width": "500px"}}>
                     <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
                     <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
                 </div>

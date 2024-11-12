@@ -133,6 +133,8 @@ td {
     border-radius: 0px;
     border: #FFFFFF solid 1px;
     margin-top: -1px;
+    overflow: scroll;
+    min-width: 220px;
 }
 
 .rmTab:hover {
@@ -367,6 +369,10 @@ td {
     user-select: none;
     height: 30px;
    
+}
+
+.buttonRight30px {
+    margin-left: 30px;
 }
 
 .buttonRight30 {

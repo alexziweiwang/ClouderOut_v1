@@ -1158,21 +1158,31 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 <div>
     
     <div className="returning_buttons">
+      
       <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
-      <p>{projectNameText}: {projectName}</p>
-     
-     
-      <button
-        onClick={()=>{
-          setDisplayEntierGameViewer(true);
-        }}
-        className="button testEntire"
-      >Test ▶︎ </button>
+
+      <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
+        <label>{projectNameText}: {projectName}</label>
+      
+      </div>    
 
 
-      <button className="buttonRight30 rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
-      <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
-        
+      <div
+        style={{"minWidth": "150px"}}
+      >
+        <button
+          onClick={()=>{
+            setDisplayEntierGameViewer(true);
+          }}
+          className="button testEntire"
+        >Test ▶︎ </button>
+      </div>
+
+      <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
+        <button className="rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
+        <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
+      </div>
+
       <div>
           <label>Editor Language</label><br></br>
           <select value={languageCodeTextOption}
