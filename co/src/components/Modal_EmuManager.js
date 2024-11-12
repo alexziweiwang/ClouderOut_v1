@@ -5,6 +5,7 @@ export default function Modal_EmuManager({
     isDisplay,
     handleEmCancel,
     getUILanguage,
+    update1Gdt, update2Epp, update3Epa, update4Ess,
 
 }) {
 //allows user to setup emu-data for testing
@@ -32,6 +33,10 @@ export default function Modal_EmuManager({
         textDictItem.closeText
         : textDictItemDefault.closeText;
 
+    const [gdt1, setGdt1] = useState({});
+    const [epp2, setEpp2] = useState({});
+    const [epa3, setEpa3] = useState({});
+    const [ess4, setEss4] = useState({});
 
 
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -44,12 +49,38 @@ export default function Modal_EmuManager({
     }
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
+    function update1GdtToOuterLayer() {
+        //gdt1
+        update1Gdt(gdt1);
+    }
+
+    function update2EppToOuterLayer() {
+        //epp2 
+        update2Epp(epp2);
+    }
+
+    function update3EpaToOuterLayer() {
+        //epa3
+        update3Epa(epa3);
+    }
+
+    function update4EssToOuterLayer() {
+        //ess4
+        update4Ess(ess4);
+    }
+
+
+
+
+
     
     useEffect(() => {
         if (firstTimeEnter === true) {
 
             setFirstTimeEnter(false);
         }
+
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
     });
@@ -61,7 +92,7 @@ return (<div className={modalStyleName}>
 <div>
 
         <div className="modalContent">
-            
+
             <button
                 onClick={()=>{
                     handleEmCancel();
@@ -70,7 +101,7 @@ return (<div className={modalStyleName}>
 
             <div>
                 (emu-manager panels)
-                <div>
+                <div className="someGrey">
                     <button
                         
                         onClick={()=>{
@@ -101,20 +132,26 @@ return (<div className={modalStyleName}>
                 </div>
 
                 {focusingPanelName === "1gdt" && <div>
+                {/* "1.Game Data to Test" */}
 1
                 </div>}
 
                 {focusingPanelName === "2epp" && <div>
+                {/* "2.Emu Player Profile" */}
 2
                 </div>}
                 
                 {focusingPanelName === "3epa" && <div>
+                {/* "3.Emu Player Account" */}
 3
                 </div>}
 
                 {focusingPanelName === "4ess" && <div>
+                {/* "4.Emu SL slots" */}
 4
                 </div>}
+
+
 
             </div>
 
