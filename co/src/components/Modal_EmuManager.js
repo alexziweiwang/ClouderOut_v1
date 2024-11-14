@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
+import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM } from '../viewmodels/EmuManagingViewModel';
+
 
 export default function Modal_EmuManager({
     isDisplay,
@@ -7,7 +9,7 @@ export default function Modal_EmuManager({
     getUILanguage,
     update1Gdt, update2Epp, update3Epa, update4Ess,
     isForGameMaker,
-    fetch1Gdt, fetch2Epp, fetch3Epa, fetch4Ess,
+
 
 }) {
 //allows user to setup emu-data for testing
@@ -75,6 +77,24 @@ export default function Modal_EmuManager({
     }
 
 
+    function fetch1GdtFromCloud () {
+        // if local is not ready, from cloud
+//fetchEmuData1GdtVM
+
+    } 
+    function fetch2EppFromCloud () {
+        // if local is not ready, from cloud
+//fetchEmuData2EppVM
+    }        
+    function fetch3EpaFromCloud () {
+        // if local is not ready, from cloud
+//fetchEmuData3EpaVM
+    }              
+    function fetch4EssFromCloud () {
+        // if local is not ready, from cloud
+//fetchEmuData4EssVM
+
+    }
 
 
 
