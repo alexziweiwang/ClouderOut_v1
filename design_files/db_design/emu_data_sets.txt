@@ -1,0 +1,70 @@
+Design of Emu-data-set
+
+//1.PlayerGameData (tracker)
+    - object format
+        gdt1: {
+            dataItem1: {
+                "name": "",
+                "data_type:" : "",
+                "default_value": "",
+                "current_value": "",
+            },
+            dataItem2: {
+                "name": "",
+                "data_type:" : "",
+                "default_value": "",
+                "current_value": "",
+            },   
+            ...
+        }
+
+    - array format
+        gdt1 = [
+            //keyName, name-value, data_type-value, defaut_value-value, current_value-value
+            [dataItem1, "name1", "boolean", "True", "True"],
+            [dataItem2, "name2", "number", "2", "3"],
+            ...
+        ]
+
+//2.PlayerProfile (player profile for this game)
+epp2: {
+    "playername": "playerA",
+    "userTitle": "",
+    "iconPicName": "",
+    "level": "",
+    "membership": "",
+}
+
+//3.PlayerAccountSettings (player account info for all games)
+epa3: {
+    "playername": "playerA",
+    "email": "example@email.com",
+}
+
+
+//4.Save/Load slot (emu)
+    //object format
+        ess4: {
+            "s1-1": {
+                saved-game-data: {
+                    //game-data-arr
+                },
+                timestamp: "",
+                note: ""
+            },
+            "s2-1": {
+                saved-game-data: {
+                    //game-data-arr
+                },
+                timestamp: "",
+                note: ""
+            },   
+        }
+
+    // arr format
+         ess4: [
+                //slot-key, game-data-arr, timestamp-string, note-string
+
+            [s1-1",[],"timestamp1","note1"],
+            [s1-2",[],"timestamp2","note2"],
+         ]
