@@ -912,6 +912,9 @@ export default function ConversationNodeEditingPanel() {
                     fetch3Epa={passIn3Epa} 
                     fetch4Ess={passIn4Ess} 
 
+                    username={state.userName} 
+                    projName={state.projectName}  
+
                 />
             </div>
             

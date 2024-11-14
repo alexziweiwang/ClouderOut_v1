@@ -1560,6 +1560,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               getUILanguage={passInUILanguage}
               isForGameMaker={true}
 
+              username={username} 
+              projName={projectName}  
+
             />
           </div>
 </div>

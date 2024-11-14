@@ -9,7 +9,7 @@ export default function Modal_EmuManager({
     getUILanguage,
     update1Gdt, update2Epp, update3Epa, update4Ess,
     isForGameMaker,
-
+    username,projName,
 
 }) {
 //allows user to setup emu-data for testing
@@ -77,22 +77,25 @@ export default function Modal_EmuManager({
     }
 
 
-    function fetch1GdtFromCloud () {
+    async function fetch1GdtFromCloud () {
         // if local is not ready, from cloud
-//fetchEmuData1GdtVM
+        let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
 
     } 
-    function fetch2EppFromCloud () {
+    async function fetch2EppFromCloud () {
         // if local is not ready, from cloud
-//fetchEmuData2EppVM
+        let tempObj2 = await fetchEmuData2EppVM({projectName: projName, currUser: username});
+
     }        
-    function fetch3EpaFromCloud () {
+    async function fetch3EpaFromCloud () {
         // if local is not ready, from cloud
-//fetchEmuData3EpaVM
+        let tempObj3 = await fetchEmuData3EpaVM({projectName: projName, currUser: username});
+
     }              
-    function fetch4EssFromCloud () {
+    async function fetch4EssFromCloud () {
         // if local is not ready, from cloud
-//fetchEmuData4EssVM
+        let tempObj4 = await fetchEmuData4EssVM({projectName: projName, currUser: username});
+
 
     }
 
