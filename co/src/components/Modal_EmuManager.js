@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
 import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM } from '../viewmodels/EmuManagingViewModel';
+import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 
 export default function Modal_EmuManager({
@@ -77,39 +78,70 @@ export default function Modal_EmuManager({
     }
 
 
-    async function fetch1GdtFromCloud() {
-        // if local is not ready, from cloud
-        let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
+    async function prepare1Gdt() {
 
-        if (tempObj1 === undefined || tempObj1 === null) {
-            return;
+        let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
+        let objSize = Object.keys(tempObj1).length;
+
+        if (objSize === 0 || tempObj1 === undefined || tempObj1 === null) {
+            // create from game-data-design-list
+
+            let isUpdated = true;
+            let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
+                                    console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
+            if (gDataDesignMap === null || gDataDesignMap === undefined) {
+                return;
+            }
+
+            let trackerMap = {};
+            {Object.keys(gDataDesignMap).map((currKey) => {
+                let name = gDataDesignMap[currKey]["name"];
+                let defaultVal = gDataDesignMap[currKey]["default_value"];
+                let dataType = gDataDesignMap[currKey]["data_type"];
+
+                let obj = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": defaultVal
+                }
+                let keyStr = currKey;
+                trackerMap[keyStr] = obj;
+            })} 
+
+            tempObj1 = trackerMap;
         }
+
+                    console.log("... gdt1 prep: ", tempObj1);
         setGdt1(tempObj1);
 
     } 
-    async function fetch2EppFromCloud() {
+
+
+
+    async function prepare2Epp() {
         // if local is not ready, from cloud
         let tempObj2 = await fetchEmuData2EppVM({projectName: projName, currUser: username});
-
-        if (tempObj2 === undefined || tempObj2 === null) {
+        let objSize = Object.keys(tempObj2).length;
+        if (objSize === 0 || tempObj2 === undefined || tempObj2 === null) {
             return;
         }
         setEpp2(tempObj2);
     }        
-    async function fetch3EpaFromCloud() {
+    async function prepare3Epa() {
         // if local is not ready, from cloud
         let tempObj3 = await fetchEmuData3EpaVM({projectName: projName, currUser: username});
-
-        if (tempObj3 === undefined || tempObj3 === null) {
+        let objSize = Object.keys(tempObj3).length;
+        if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
             return;
         }
         setEpa3(tempObj3);
     }              
-    async function fetch4EssFromCloud() {
+    async function prepare4Ess() {
         // if local is not ready, from cloud
         let tempObj4 = await fetchEmuData4EssVM({projectName: projName, currUser: username});
-
-        if (tempObj4 === undefined || tempObj4 === null) {
+        let objSize = Object.keys(tempObj4).length;
+        if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
             return;
         }
         setEss4(tempObj4);
@@ -120,10 +152,10 @@ export default function Modal_EmuManager({
     
     useEffect(() => {
         if (firstTimeEnter === true) {
-            fetch1GdtFromCloud ();
-            fetch2EppFromCloud();
-            fetch3EpaFromCloud();
-            fetch4EssFromCloud();
+            prepare1Gdt();
+            prepare2Epp();
+            prepare3Epa();
+            prepare4Ess();
 
                                                 console.log("Emu-Manager first-enter...");
             setFirstTimeEnter(false);
@@ -202,8 +234,31 @@ return (<div className={modalStyleName}>
                                 "borderRadius": "0px"
                             }}
                         >
-                            TODO: setup initial-values of game-data-tracker ...
+                            <table>
 
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Default Value</th>
+                                        <th>Current Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(gdt1).map((currKey) => {
+                                        let keyName = "gdt1" + currKey;
+                                        let item = gdt1[currKey];
+                                        return (
+                                            <tr key={keyName}>
+                                                <td>{currKey}</td>
+                                                <td>{item["data_type"]}</td>
+                                                <td>{item["default_value"]}</td>
+                                                <td>{item["current_value"]}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
 
 
 
