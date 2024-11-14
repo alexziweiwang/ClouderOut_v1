@@ -56,47 +56,63 @@ export default function Modal_EmuManager({
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
-    function update1GdtToOuterLayer() {
+    function update1GdtToOuterLayer(data1) {
         //gdt1
-        update1Gdt(gdt1);
+        update1Gdt(data1);
     }
 
-    function update2EppToOuterLayer() {
+    function update2EppToOuterLayer(data2) {
         //epp2 
-        update2Epp(epp2);
+        update2Epp(data2);
     }
 
-    function update3EpaToOuterLayer() {
+    function update3EpaToOuterLayer(data3) {
         //epa3
-        update3Epa(epa3);
+        update3Epa(data3);
     }
 
-    function update4EssToOuterLayer() {
+    function update4EssToOuterLayer(data4) {
         //ess4
-        update4Ess(ess4);
+        update4Ess(data4);
     }
 
 
-    async function fetch1GdtFromCloud () {
+    async function fetch1GdtFromCloud() {
         // if local is not ready, from cloud
         let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
 
+        if (tempObj1 === undefined || tempObj1 === null) {
+            return;
+        }
+        setGdt1(tempObj1);
+
     } 
-    async function fetch2EppFromCloud () {
+    async function fetch2EppFromCloud() {
         // if local is not ready, from cloud
         let tempObj2 = await fetchEmuData2EppVM({projectName: projName, currUser: username});
 
+        if (tempObj2 === undefined || tempObj2 === null) {
+            return;
+        }
+        setEpp2(tempObj2);
     }        
-    async function fetch3EpaFromCloud () {
+    async function fetch3EpaFromCloud() {
         // if local is not ready, from cloud
         let tempObj3 = await fetchEmuData3EpaVM({projectName: projName, currUser: username});
 
+        if (tempObj3 === undefined || tempObj3 === null) {
+            return;
+        }
+        setEpa3(tempObj3);
     }              
-    async function fetch4EssFromCloud () {
+    async function fetch4EssFromCloud() {
         // if local is not ready, from cloud
         let tempObj4 = await fetchEmuData4EssVM({projectName: projName, currUser: username});
 
-
+        if (tempObj4 === undefined || tempObj4 === null) {
+            return;
+        }
+        setEss4(tempObj4);
     }
 
 
@@ -104,7 +120,12 @@ export default function Modal_EmuManager({
     
     useEffect(() => {
         if (firstTimeEnter === true) {
+            fetch1GdtFromCloud ();
+            fetch2EppFromCloud();
+            fetch3EpaFromCloud();
+            fetch4EssFromCloud();
 
+                                                console.log("Emu-Manager first-enter...");
             setFirstTimeEnter(false);
         }
 

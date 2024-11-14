@@ -216,7 +216,8 @@ export default function Modal_ResourceManagingWindow ({
     async function fetchProjResourceVarPairLists() {
         /* fetch from cloud db */
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-                            console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
+        
+                                    //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
 
         setVisualVarPairs(obj.visual);
         setAudioVarPairs(obj.audio);

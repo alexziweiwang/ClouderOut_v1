@@ -554,19 +554,19 @@ export default function ConversationNodeEditingPanel() {
     }
 
 
-    function fetchUserConfigFromEmuManager1Gdt(data1) {
+    function getUserConfigFromEmuManager1Gdt(data1) {
         //TODO update data1 to be the new Game-Data-Tracker
     }
 
-    function fetchUserConfigFromEmuManager2Epp(data2) {
+    function getUserConfigFromEmuManager2Epp(data2) {
         //TODO update data2 to be the new Emu-Player-Profile
     }
 
-    function fetchUserConfigFromEmuManager3Epa(data3) {
+    function getUserConfigFromEmuManager3Epa(data3) {
         //TODO update data3 to be the new Emu Player Account
     }
 
-    function fetchUserConfigFromEmuManager4Ess(data4) {
+    function getUserConfigFromEmuManager4Ess(data4) {
         //TODO update data4 to be the new Emu SL slots
     }
 
@@ -899,18 +899,13 @@ export default function ConversationNodeEditingPanel() {
                     isDisplay={isDisplayEmBool}
                     handleEmCancel={handleEmuManagerCancel}
 
-                    update1Gdt={fetchUserConfigFromEmuManager1Gdt}
-                    update2Epp={fetchUserConfigFromEmuManager2Epp}
-                    update3Epa={fetchUserConfigFromEmuManager3Epa}
-                    update4Ess={fetchUserConfigFromEmuManager4Ess}
+                    update1Gdt={getUserConfigFromEmuManager1Gdt}
+                    update2Epp={getUserConfigFromEmuManager2Epp}
+                    update3Epa={getUserConfigFromEmuManager3Epa}
+                    update4Ess={getUserConfigFromEmuManager4Ess}
 
                     getUILanguage={passInUILanguage}
                     isForGameMaker={false}
-
-                    fetch1Gdt={passIn1Gdt} 
-                    fetch2Epp={passIn2Epp} 
-                    fetch3Epa={passIn3Epa} 
-                    fetch4Ess={passIn4Ess} 
 
                     username={state.userName} 
                     projName={state.projectName}  
