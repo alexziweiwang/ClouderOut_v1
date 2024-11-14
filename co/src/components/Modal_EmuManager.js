@@ -148,8 +148,8 @@ return (<div className={modalStyleName}>
                 {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
                 {/* "1.Game Data to Test" */}
                 {/* for Game-Maker and other Node-Level Editor */}
-                    <div>Game Data</div>
-
+                    <div>Game Data (When start testing)</div>
+                        
                         <div 
                             className="darkerGrey"
                             style={{

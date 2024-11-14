@@ -5,7 +5,6 @@ import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_EmuManager from './Modal_EmuManager';
 
-import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
 
 import PreviewWindow_gameContent from './PreviewWindow_gameContent';
 import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
