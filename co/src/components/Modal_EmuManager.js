@@ -7,6 +7,7 @@ export default function Modal_EmuManager({
     getUILanguage,
     update1Gdt, update2Epp, update3Epa, update4Ess,
     isForGameMaker,
+    fetch1Gdt, fetch2Epp, fetch3Epa, fetch4Ess,
 
 }) {
 //allows user to setup emu-data for testing
@@ -147,7 +148,23 @@ return (<div className={modalStyleName}>
                 {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
                 {/* "1.Game Data to Test" */}
                 {/* for Game-Maker and other Node-Level Editor */}
-1
+                    <div>Game Data</div>
+
+                        <div 
+                            className="darkerGrey"
+                            style={{
+                                "width": "900px",
+                                "height": "500px",
+                                "borderRadius": "0px"
+                            }}
+                        >
+                            TODO: setup initial-values of game-data-tracker ...
+
+
+
+
+
+                        </div>
                 </div>}
 
 
