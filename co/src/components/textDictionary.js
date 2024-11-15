@@ -184,11 +184,15 @@ const textDictionary = {
         cornerRadiusText: "Corner Radius",
         borderColorText: "Border Color",
         horizontallyCentreText: "Horizontally Centre",
-
         textContentText: "Text Content", 
         speakerNameText: "Speaker Name",
         withTextFrameText: "Include Text-frame",
         selectOperationDefaultMaintain: "Select Operation (default: maintain)",
+
+        nameText: "Name",
+        currentValueText: "Current Text",
+
+
 
 
 
@@ -379,12 +383,13 @@ const textDictionary = {
         cornerRadiusText: "圆角半径",
         borderColorText: "边框颜色",
         horizontallyCentreText: "横向居中",
-
         textContentText: "文字内容",
-        speakerNameText: "说话者 名",
+        speakerNameText: "说话者 名称",
         withTextFrameText: "有文本框",
         selectOperationDefaultMaintain: "选择操作(默认: 保持)",
 
+        nameText: "名称",
+        currentValueText: "当前值",
 
 
     },

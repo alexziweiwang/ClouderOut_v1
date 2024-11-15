@@ -68,6 +68,22 @@ export default function Modal_EmuManager({
         textDictItem.falseText
         : textDictItemDefault.falseText;
 
+    const nameText = textDictItem.nameText !== undefined ?
+        textDictItem.nameText
+        : textDictItemDefault.nameText;
+    
+    const typeText = textDictItem.typeText !== undefined ?
+        textDictItem.typeText
+        : textDictItemDefault.typeText;
+
+    const defaultValueText = textDictItem.defaultValueText !== undefined ?
+        textDictItem.defaultValueText
+        : textDictItemDefault.defaultValueText;
+
+    const currentValueText = textDictItem.currentValueText !== undefined ?
+        textDictItem.currentValueText
+        : textDictItemDefault.currentValueText;
+
 
     const [gdt1, setGdt1] = useState({});
     const [epp2, setEpp2] = useState({});
@@ -197,6 +213,11 @@ export default function Modal_EmuManager({
         setLanguageCodeTextOption(UILang);
     });
 
+    function saveAllChangesToCloud() {
+        //TODO send all 4 sets to cloud
+
+    }
+
 
 
 return (<div className={modalStyleName}>
@@ -278,10 +299,10 @@ return (<div className={modalStyleName}>
 
                                 <thead>
                                     <tr>
-                                        <th style={{"width": "120px"}}>Name</th>
-                                        <th style={{"width": "70px"}}>Type</th>
-                                        <th style={{"width": "120px"}}>Default Value</th>
-                                        <th style={{"width": "170px"}}>Current Value</th>
+                                        <th style={{"width": "120px"}}>{nameText}</th>
+                                        <th style={{"width": "70px"}}>{typeText}</th>
+                                        <th style={{"width": "120px"}}>{defaultValueText}</th>
+                                        <th style={{"width": "170px"}}>{currentValueText}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -385,7 +406,7 @@ return (<div className={modalStyleName}>
                             </div>
                             <button
                                 onClick={()=>{
-                                    //TODO save current gdt1(object) to cloud...
+                                    saveAllChangesToCloud(); //TODO impl later
                                 }}
                             
                             >{saveToCloudText}</button>
