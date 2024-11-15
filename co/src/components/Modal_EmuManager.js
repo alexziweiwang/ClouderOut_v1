@@ -46,6 +46,7 @@ export default function Modal_EmuManager({
     const [ess4, setEss4] = useState({});
 
     const [gdt1Input, setGdt1Input] = useState("");
+    const [gdt1EditItemName, setGdt1EditItemName] = useState("");
 
 
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -251,26 +252,69 @@ return (<div className={modalStyleName}>
                                     {Object.keys(gdt1).map((currKey) => {
                                         let keyName = "gdt1" + currKey;
                                         let item = gdt1[currKey];
+                                        let itemType = item["data_type"];
+                                        let defaultVal = "True";
+                                        let currentVal = "True";
+
+                                        if (itemType === "boolean") {
+                                            if (item["default_value"] === false) {
+                                                defaultVal = "False";
+                                            }
+                                            if (item["current_value"] === false) {
+                                                currentVal = "False";
+                                            }
+                                        } else {
+                                            defaultVal = item["default_value"];
+                                            currentVal = item["current_value"];
+                                        }
+
                                         return (
                                             <tr key={keyName}>
                                                 <td>{currKey}</td>
                                                 <td>{item["data_type"]}</td>
-                                                <td>{item["default_value"]}</td>
+                                                <td>{defaultVal}</td>
                                                 <td>
                                                     <div>
-                                                        <label>{item["current_value"]}</label>
-                                                        <input value={gdt1Input}
-                                                            onChange={(event)=>{
-                                                                setGdt1Input(event.target.value);
-                                                            }}
-                                                            style={{"width": "60px"}}
-                                                        ></input>
-                                                        <button
+                                                        <label>{currentVal}</label><br></br>
+                                                        
+                                                        {gdt1EditItemName !== currKey && <button
                                                             onClick={()=>{
-                                                                //TODO set gdt1's item["current_value"] to be gdt1Input (for local test)
-
+                                                                setGdt1EditItemName(currKey);
                                                             }}
-                                                        >Update</button>
+                                                        >Edit</button>}
+                                                        {gdt1EditItemName === currKey && <div>
+                                                                {itemType !== "boolean" && <input value={gdt1Input}
+                                                                    onChange={(event)=>{
+                                                                        setGdt1Input(event.target.value);
+                                                                    }}
+                                                                    style={{"width": "60px"}}
+                                                                ></input>}
+                                                                {itemType === "boolean" && 
+                                                                    <select 
+                                                                        value={gdt1Input}
+                                                                        onChange={(event)=>{
+                                                                            setGdt1Input(event.target.value);
+                                                                        }}                                                                        
+                                                                    >
+                                                                        <option value="True" key="gdt1editbooltrue">True</option>
+                                                                        <option value="False" key="gdt1editboolfalse">False</option>
+                                                                    </select>
+                                                                }
+                                                                <button
+                                                                    onClick={()=>{
+                                                                        //TODO set gdt1's item["current_value"] to be gdt1Input (for local test)
+                                                                            
+                                                                            //TODO for boolean ... transfer boolStr to bool-type
+                                                                    }}
+                                                                >Update</button>  
+                                                                <br></br> 
+                                                                <button
+                                                                    onClick={()=>{
+                                                                        setGdt1EditItemName("");
+                                                                    }}
+                                                                >Cancel</button>                                                     
+                                                        </div>}
+
 
                                                     </div>
                                                 </td>
