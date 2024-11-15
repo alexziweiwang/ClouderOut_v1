@@ -295,22 +295,39 @@ return (<div className={modalStyleName}>
                                                                         onChange={(event)=>{
                                                                             setGdt1Input(event.target.value);
                                                                         }}                                                                        
-                                                                    >
+                                                                    >   
+                                                                        <option value="" key="gdt1editbooldefaultnone">-- Select --</option>
                                                                         <option value="True" key="gdt1editbooltrue">True</option>
                                                                         <option value="False" key="gdt1editboolfalse">False</option>
                                                                     </select>
                                                                 }
                                                                 <button
                                                                     onClick={()=>{
-                                                                        //TODO set gdt1's item["current_value"] to be gdt1Input (for local test)
+                                                                        let newVal = gdt1Input;
+                                                                        if (newVal.length === 0) {
+                                                                            return;
+                                                                        }
                                                                             
-                                                                            //TODO for boolean ... transfer boolStr to bool-type
+                                                                        if (itemType === "boolean") {
+                                                                            if (newVal === "True") {
+                                                                                newVal = true;
+                                                                            } else {
+                                                                                newVal = false;
+                                                                            }
+                                                                        }
+                                                                        let gdt1Temp = gdt1;
+                                                                        gdt1[currKey]["current_value"] = newVal;
+
+                                                                        setGdt1(gdt1Temp);
+                                                                        setGdt1EditItemName("");
+                                                                        setGdt1Input("");
                                                                     }}
                                                                 >Update</button>  
                                                                 <br></br> 
                                                                 <button
                                                                     onClick={()=>{
                                                                         setGdt1EditItemName("");
+                                                                        setGdt1Input("");
                                                                     }}
                                                                 >Cancel</button>                                                     
                                                         </div>}
