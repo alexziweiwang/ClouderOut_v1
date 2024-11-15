@@ -45,6 +45,8 @@ export default function Modal_EmuManager({
     const [epa3, setEpa3] = useState({});
     const [ess4, setEss4] = useState({});
 
+    const [gdt1Input, setGdt1Input] = useState("");
+
 
     const [focusingPanelName, setFocusingPanelName] = useState("");
 
@@ -231,7 +233,8 @@ return (<div className={modalStyleName}>
                             style={{
                                 "width": "900px",
                                 "height": "500px",
-                                "borderRadius": "0px"
+                                "borderRadius": "0px",
+                                "overflow": "scroll"
                             }}
                         >
                             <table>
@@ -253,12 +256,36 @@ return (<div className={modalStyleName}>
                                                 <td>{currKey}</td>
                                                 <td>{item["data_type"]}</td>
                                                 <td>{item["default_value"]}</td>
-                                                <td>{item["current_value"]}</td>
+                                                <td>
+                                                    <div>
+                                                        <label>{item["current_value"]}</label>
+                                                        <input value={gdt1Input}
+                                                            onChange={(event)=>{
+                                                                setGdt1Input(event.target.value);
+                                                            }}
+                                                            style={{"width": "60px"}}
+                                                        ></input>
+                                                        <button
+                                                            onClick={()=>{
+                                                                //TODO set gdt1's item["current_value"] to be gdt1Input (for local test)
+
+                                                            }}
+                                                        >Update</button>
+
+                                                    </div>
+                                                </td>
                                             </tr>
                                         );
                                     })}
                                 </tbody>
                             </table>
+
+                            <button
+                                onClick={()=>{
+                                    //TODO save current gdt1(object) to cloud...
+                                }}
+                            
+                            >Save to Cloud</button>
 
 
 
