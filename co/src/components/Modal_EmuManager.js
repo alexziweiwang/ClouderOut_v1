@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
-import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM } from '../viewmodels/EmuManagingViewModel';
+import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 
@@ -215,6 +215,13 @@ export default function Modal_EmuManager({
 
     function saveAllChangesToCloud() {
         //TODO send all 4 sets to cloud
+        let resObj = {};
+        resObj["gdt1"] = gdt1;
+        resObj["epp2"] = epp2;
+        resObj["epa3"] = epa3;
+        resObj["ess4"] = ess4;
+
+
 
     }
 
@@ -310,15 +317,15 @@ return (<div className={modalStyleName}>
                                         let keyName = "gdt1" + currKey;
                                         let item = gdt1[currKey];
                                         let itemType = item["data_type"];
-                                        let defaultVal = "True";
-                                        let currentVal = "True";
+                                        let defaultVal = trueText;
+                                        let currentVal = trueText;
 
                                         if (itemType === "boolean") {
                                             if (item["default_value"] === false) {
-                                                defaultVal = "False";
+                                                defaultVal = falseText;
                                             }
                                             if (item["current_value"] === false) {
-                                                currentVal = "False";
+                                                currentVal = falseText;
                                             }
                                         } else {
                                             defaultVal = item["default_value"];
@@ -331,9 +338,9 @@ return (<div className={modalStyleName}>
                                                 <td>{item["data_type"]}</td>
                                                 <td>{defaultVal}</td>
                                                 <td style={{"width": "320px", "overflow": "scroll"}}>
-                                                    <div style={{"display": "flex"}}>
+                                                    <div style={{"display": "flex", "alignItems": "center"}}>
                                                         <div style={{"width": "120px", "overflow": "scroll"}}>
-                                                           <label>{currentVal}</label> 
+                                                           <label>{currentVal} </label>
                                                         </div>
                                                         
                                                         <div>
@@ -358,8 +365,8 @@ return (<div className={modalStyleName}>
                                                                         }}                                                                        
                                                                     >   
                                                                         <option value="" key="gdt1editbooldefaultnone">-- {selectText} --</option>
-                                                                        <option value="True" key="gdt1editbooltrue">{trueText}</option>
-                                                                        <option value="False" key="gdt1editboolfalse">{falseText}</option>
+                                                                        <option value={trueText} key="gdt1editbooltrue">{trueText}</option>
+                                                                        <option value={falseText} key="gdt1editboolfalse">{falseText}</option>
                                                                     </select>
                                                                 }
                                                                 <button
@@ -370,7 +377,7 @@ return (<div className={modalStyleName}>
                                                                         }
                                                                             
                                                                         if (itemType === "boolean") {
-                                                                            if (newVal === "True") {
+                                                                            if (newVal === trueText) {
                                                                                 newVal = true;
                                                                             } else {
                                                                                 newVal = false;

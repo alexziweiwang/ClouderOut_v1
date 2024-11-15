@@ -29,3 +29,8 @@ export async function fetchEmuData4Ess({projectName, currUser}) {
     //TODO
     return obj;
 }
+
+export async function updateAllSets({projectName, currUser, dataObj}) {
+    
+    //TODO
+}
