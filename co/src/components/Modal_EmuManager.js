@@ -227,25 +227,32 @@ return (<div className={modalStyleName}>
                 {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
                 {/* "1.Game Data to Test" */}
                 {/* for Game-Maker and other Node-Level Editor */}
-                    <div>Game Data (When start testing)</div>
+                    <div>Game Data Value Setup for Testing</div>
                         
                         <div 
-                            className="darkerGrey"
+                 
                             style={{
-                                "width": "900px",
-                                "height": "500px",
                                 "borderRadius": "0px",
-                                "overflow": "scroll"
+                                "overflow": "scroll",
+                                "paddingLeft": "20%"
                             }}
                         >
-                            <table>
+                            <div  className="darkerGrey"
+                             style={{
+                                "borderRadius": "0px",
+                                "overflow": "scroll",
+                                "width": "509px",
+                                }}
+                            
+                            >
+                                <table>
 
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Default Value</th>
-                                        <th>Current Value</th>
+                                        <th style={{"width": "120px"}}>Name</th>
+                                        <th style={{"width": "70px"}}>Type</th>
+                                        <th style={{"width": "120px"}}>Default Value</th>
+                                        <th style={{"width": "170px"}}>Current Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -270,19 +277,23 @@ return (<div className={modalStyleName}>
 
                                         return (
                                             <tr key={keyName}>
-                                                <td>{currKey}</td>
+                                                <td style={{"backgroundColor": ""}}>{currKey}</td>
                                                 <td>{item["data_type"]}</td>
                                                 <td>{defaultVal}</td>
-                                                <td>
-                                                    <div>
-                                                        <label>{currentVal}</label><br></br>
+                                                <td style={{"width": "320px", "overflow": "scroll"}}>
+                                                    <div style={{"display": "flex"}}>
+                                                        <div style={{"width": "120px", "overflow": "scroll"}}>
+                                                           <label>{currentVal}</label> 
+                                                        </div>
                                                         
-                                                        {gdt1EditItemName !== currKey && <button
+                                                        <div>
+
+                                                            {gdt1EditItemName !== currKey && <button
                                                             onClick={()=>{
                                                                 setGdt1EditItemName(currKey);
                                                             }}
                                                         >Edit</button>}
-                                                        {gdt1EditItemName === currKey && <div>
+                                                            {gdt1EditItemName === currKey && <div>
                                                                 {itemType !== "boolean" && <input value={gdt1Input}
                                                                     onChange={(event)=>{
                                                                         setGdt1Input(event.target.value);
@@ -331,7 +342,7 @@ return (<div className={modalStyleName}>
                                                                     }}
                                                                 >Cancel</button>                                                     
                                                         </div>}
-
+                                                        </div>                          
 
                                                     </div>
                                                 </td>
@@ -341,6 +352,8 @@ return (<div className={modalStyleName}>
                                 </tbody>
                             </table>
 
+                            
+                            </div>
                             <button
                                 onClick={()=>{
                                     //TODO save current gdt1(object) to cloud...
