@@ -36,9 +36,38 @@ export default function Modal_EmuManager({
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
 
-    let closeText = textDictItem.closeText !== undefined ?
+    const closeText = textDictItem.closeText !== undefined ?
         textDictItem.closeText
         : textDictItemDefault.closeText;
+
+    const updateText = textDictItem.updateText !== undefined ?
+        textDictItem.updateText
+        : textDictItemDefault.updateText;
+
+    const cancelText = textDictItem.cancelText !== undefined ?
+        textDictItem.cancelText
+        : textDictItemDefault.cancelText;
+
+    const editText = textDictItem.editText !== undefined ?
+        textDictItem.editText
+        : textDictItemDefault.editText;
+
+    const saveToCloudText = textDictItem.saveToCloudText !== undefined ?
+        textDictItem.saveToCloudText
+        : textDictItemDefault.saveToCloudText;
+
+    const selectText = textDictItem.selectText !== undefined ?
+        textDictItem.selectText
+        : textDictItemDefault.selectText;
+
+    const trueText = textDictItem.trueText !== undefined ?
+        textDictItem.trueText
+        : textDictItemDefault.trueText;
+    
+    const falseText = textDictItem.falseText !== undefined ?   
+        textDictItem.falseText
+        : textDictItemDefault.falseText;
+
 
     const [gdt1, setGdt1] = useState({});
     const [epp2, setEpp2] = useState({});
@@ -292,7 +321,7 @@ return (<div className={modalStyleName}>
                                                             onClick={()=>{
                                                                 setGdt1EditItemName(currKey);
                                                             }}
-                                                        >Edit</button>}
+                                                        >{editText}</button>}
                                                             {gdt1EditItemName === currKey && <div>
                                                                 {itemType !== "boolean" && <input value={gdt1Input}
                                                                     onChange={(event)=>{
@@ -307,9 +336,9 @@ return (<div className={modalStyleName}>
                                                                             setGdt1Input(event.target.value);
                                                                         }}                                                                        
                                                                     >   
-                                                                        <option value="" key="gdt1editbooldefaultnone">-- Select --</option>
-                                                                        <option value="True" key="gdt1editbooltrue">True</option>
-                                                                        <option value="False" key="gdt1editboolfalse">False</option>
+                                                                        <option value="" key="gdt1editbooldefaultnone">-- {selectText} --</option>
+                                                                        <option value="True" key="gdt1editbooltrue">{trueText}</option>
+                                                                        <option value="False" key="gdt1editboolfalse">{falseText}</option>
                                                                     </select>
                                                                 }
                                                                 <button
@@ -333,14 +362,14 @@ return (<div className={modalStyleName}>
                                                                         setGdt1EditItemName("");
                                                                         setGdt1Input("");
                                                                     }}
-                                                                >Update</button>  
+                                                                >{updateText}</button>  
                                                                 <br></br> 
                                                                 <button
                                                                     onClick={()=>{
                                                                         setGdt1EditItemName("");
                                                                         setGdt1Input("");
                                                                     }}
-                                                                >Cancel</button>                                                     
+                                                                >{cancelText}</button>                                                     
                                                         </div>}
                                                         </div>                          
 
@@ -359,7 +388,7 @@ return (<div className={modalStyleName}>
                                     //TODO save current gdt1(object) to cloud...
                                 }}
                             
-                            >Save to Cloud</button>
+                            >{saveToCloudText}</button>
 
 
 
