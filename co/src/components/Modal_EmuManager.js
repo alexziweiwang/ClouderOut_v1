@@ -94,6 +94,9 @@ export default function Modal_EmuManager({
     const [gdt1EditItemName, setGdt1EditItemName] = useState("");
 
 
+    const [epp2EditItemName, setEpp2EditItemName] = useState("");
+
+
     const [focusingPanelName, setFocusingPanelName] = useState("");
 
     const namingMap = {
@@ -453,9 +456,9 @@ return (<div className={modalStyleName}>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Value Name</th>
-                                    <th>Value Content</th>
-                                    <th>Operation</th>
+                                    <th style={{"width": "200px"}}>Value Name</th>
+                                    <th style={{"width": "200px"}}>Value Content</th>
+                                    <th style={{"width": "200px"}}>Operation</th>
                                 
                                 </tr>
 
@@ -464,16 +467,27 @@ return (<div className={modalStyleName}>
                             <tbody>
  
                                 <tr>
-                                    <td>Player Name Key</td>
+                                    <td><label>Player Name Key</label></td>
                                     <td>
                                         <label>(player name key value)</label>
                                     </td>
                                     <td>
-                                        <div>
+                                        {epp2EditItemName !== "PlayerNameKey" && <div>
+                                            <button
+                                                onClick={()=>{
+                                                    setEpp2EditItemName("PlayerNameKey");
+                                                }}
+                                            >Edit</button>
+                                        </div>}
+                                        {epp2EditItemName === "PlayerNameKey" && <div>
                                                 <input></input><br></br>
                                                 <button>Update</button><br></br>
-                                                <button>Cancel</button>
-                                        </div>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2EditItemName("");
+                                                    }}
+                                                >Cancel</button>
+                                        </div>}
                                        
                                     </td>
                                 </tr>
@@ -483,12 +497,23 @@ return (<div className={modalStyleName}>
                                         <label>(user title value)</label>
                                     </td>
                                     <td>
-                                        <div>
+                                        {epp2EditItemName !== "UserTitle" && <div>
+                                            <button
+                                                onClick={()=>{
+                                                    setEpp2EditItemName("UserTitle");
+                                                }}
+                                            >Edit</button>
+                                        </div>}
+                                        {epp2EditItemName === "UserTitle" && <div>
                                                 <input></input><br></br>
                                                 <button>Update</button><br></br>
-                                                <button>Cancel</button>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2EditItemName("");
+                                                    }}
+                                                >Cancel</button>
                                             
-                                        </div>
+                                        </div>}
                                     </td>
                                 </tr>
                                 <tr>
@@ -497,8 +522,10 @@ return (<div className={modalStyleName}>
                                         <div>(current icon display)</div>
                                     </td>
                                     <td>
-                                        <div>
-
+                                        {<div>
+                                                    <button>Edit</button>
+                                        </div>}
+                                        {<div>
                                       
                                                 <select>
 
@@ -512,7 +539,7 @@ return (<div className={modalStyleName}>
                                                 <button>Cancel</button>
                                       
                                                                                
-                                        </div>
+                                        </div>}
                                     </td>
                                 </tr>
                                 <tr>
@@ -521,12 +548,15 @@ return (<div className={modalStyleName}>
                                         <label>(level value)</label>
                                     </td>
                                     <td>
-                                        <div>
+                                        {<div>
+                                                    <button>Edit</button>
+                                        </div>}
+                                        {<div>
                                                 <input></input><br></br>
                                                 <button>Update</button><br></br>
                                                 <button>Cancel</button>
                                            
-                                        </div>
+                                        </div>}
 
                                     </td>
                                 </tr>
@@ -536,11 +566,15 @@ return (<div className={modalStyleName}>
                                         <label>(membership value)</label>
                                     </td>
                                     <td>
-                                        <div>
+                                        {<div>
+                                                    <button>Edit</button>
+                                        </div>}
+                                        {<div>
+
                                                 <input></input><br></br>
                                                 <button>Update</button><br></br>
                                                 <button>Cancel</button>
-                                        </div>
+                                        </div>}
 
                                     </td>
                                 </tr>
