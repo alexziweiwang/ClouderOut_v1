@@ -213,7 +213,7 @@ export default function Modal_EmuManager({
         setLanguageCodeTextOption(UILang);
     });
 
-    function saveAllChangesToCloud() {
+    async function saveAllChangesToCloud() {
         //TODO send all 4 sets to cloud
         let resObj = {};
         resObj["gdt1"] = gdt1;
@@ -221,7 +221,7 @@ export default function Modal_EmuManager({
         resObj["epa3"] = epa3;
         resObj["ess4"] = ess4;
 
-
+        await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
 
     }
 
