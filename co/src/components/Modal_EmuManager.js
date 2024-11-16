@@ -165,7 +165,7 @@ export default function Modal_EmuManager({
                                           // console.log("\t\t--fetched from cloud."); //TODO test
                                             }
 
-                                                    console.log("... gdt1 prep: ", tempObj1);
+                                                    // console.log("... gdt1 prep: ", tempObj1); //TODO test
         setGdt1(tempObj1);
 
     } 
@@ -447,7 +447,75 @@ return (<div className={modalStyleName}>
 {isForGameMaker === true && <>
                 {focusingPanelName === "2epp" && <div>
                 {/* "2.Emu Player Profile" */}
-2
+                    <div>Emu-Player Profile for Testing</div>
+
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Value Name</th>
+                                    <th>Value Content</th>
+                                
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+ 
+                                <tr>
+                                    <td>Player Name Key</td>
+                                    <td>
+                                        
+                                        <div>
+                                            <label>(player name key value)</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>User Title</td>
+                                    <td>
+
+                                        <div>
+                                            <label>(user title value)</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Icon</td>
+                                    <td>
+                                        <div>
+
+                                            <div>
+                                                <label>(icon pic)</label>
+                                            </div>                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Level</td>
+                                    <td>(level value)
+
+                                        <div>
+                                            <label></label>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Membership</td>
+                                    <td>
+
+                                        <div>
+                                            <label>(membership value)</label>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>}
                 
                 {focusingPanelName === "3epa" && <div>
