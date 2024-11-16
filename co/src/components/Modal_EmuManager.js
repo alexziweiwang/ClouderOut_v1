@@ -351,12 +351,23 @@ return (<div className={modalStyleName}>
                                                             }}
                                                         >{editText}</button>}
                                                             {gdt1EditItemName === currKey && <div>
-                                                                {itemType !== "boolean" && <input value={gdt1Input}
+                                                                {itemType === "string" && <input value={gdt1Input}
                                                                     onChange={(event)=>{
                                                                         setGdt1Input(event.target.value);
                                                                     }}
                                                                     style={{"width": "60px"}}
                                                                 ></input>}
+
+                                                                {itemType === "number" && <input 
+                                                                    value={gdt1Input}
+                                                                    type="number"
+                                                                    max="2147483647" min="-2147483648" step="1" 
+                                                                    onChange={(event)=>{
+                                                                        setGdt1Input(event.target.value);
+                                                                    }}
+                                                                    style={{"width": "60px"}}
+                                                                ></input>}
+
                                                                 {itemType === "boolean" && 
                                                                     <select 
                                                                         value={gdt1Input}
