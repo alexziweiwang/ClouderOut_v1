@@ -903,6 +903,7 @@ export default function ConversationNodeEditingPanel() {
                     update2Epp={getUserConfigFromEmuManager2Epp}
                     update3Epa={getUserConfigFromEmuManager3Epa}
                     update4Ess={getUserConfigFromEmuManager4Ess}
+                    
 
                     getUILanguage={passInUILanguage}
                     isForGameMaker={false}

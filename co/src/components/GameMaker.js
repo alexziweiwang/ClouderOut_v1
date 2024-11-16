@@ -147,7 +147,7 @@ export default function GameMaker({username, projectName}) {
     /* fetch from cloud db */
     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
 
-    console.log("obj: ", obj); 
+                              console.log("game-maker, visuallist = : ", obj); //TODO
     setVisualList(obj.visual);
 
     return obj.visual;
@@ -1174,19 +1174,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   function getUserConfigFromEmuManager4Ess(data4) {
     //TODO update data4 to be the new Emu SL slots
-  }
-
-  function passIn1Gdt () {
-
-  } 
-  function passIn2Epp () {
-
-  }        
-  function passIn3Epa () {
-
-  }              
-  function passIn4Ess () {
-      
   }
 
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
 import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 export default function Modal_EmuManager({
@@ -32,6 +33,8 @@ export default function Modal_EmuManager({
     } else {
         modalStyleName = "displayNone modalBackboard";
     }
+
+
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -84,6 +87,9 @@ export default function Modal_EmuManager({
         textDictItem.currentValueText
         : textDictItemDefault.currentValueText;
 
+
+    
+    const [visualList, setVisualList] = useState([]);
 
     const [gdt1, setGdt1] = useState({});
     const [epp2, setEpp2] = useState({});
@@ -232,6 +238,14 @@ export default function Modal_EmuManager({
         await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
 
     }
+
+    async function fetchVisualListFromCloud() {
+
+        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+        
+        
+        //TODO obj.visual
+      }
 
 
 
@@ -512,7 +526,7 @@ return (<div className={modalStyleName}>
                                                         setEpp2EditItemName("");
                                                     }}
                                                 >Cancel</button>
-                                            
+    
                                         </div>}
                                     </td>
                                 </tr>
@@ -522,8 +536,12 @@ return (<div className={modalStyleName}>
                                         <div>(current icon display)</div>
                                     </td>
                                     <td>
-                                        {<div>
-                                                    <button>Edit</button>
+                                        {epp2EditItemName !== "Icon" && <div>
+                                            <button
+                                                onClick={()=>{
+                                                    setEpp2EditItemName("Icon");
+                                                }}
+                                            >Edit</button>
                                         </div>}
                                         {<div>
                                       
@@ -536,7 +554,11 @@ return (<div className={modalStyleName}>
                                                 
                                                 <br></br>
                                                 <button>Update</button><br></br>
-                                                <button>Cancel</button>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2EditItemName("");
+                                                    }}
+                                                >Cancel</button>
                                       
                                                                                
                                         </div>}
@@ -548,13 +570,21 @@ return (<div className={modalStyleName}>
                                         <label>(level value)</label>
                                     </td>
                                     <td>
-                                        {<div>
-                                                    <button>Edit</button>
+                                        {epp2EditItemName !== "Level" && <div>
+                                            <button
+                                                onClick={()=>{
+                                                    setEpp2EditItemName("Level");
+                                                }}
+                                            >Edit</button>
                                         </div>}
                                         {<div>
                                                 <input></input><br></br>
                                                 <button>Update</button><br></br>
-                                                <button>Cancel</button>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2EditItemName("");
+                                                    }}
+                                                >Cancel</button>
                                            
                                         </div>}
 
@@ -566,14 +596,22 @@ return (<div className={modalStyleName}>
                                         <label>(membership value)</label>
                                     </td>
                                     <td>
-                                        {<div>
-                                                    <button>Edit</button>
+                                        {epp2EditItemName !== "Membership" && <div>
+                                            <button
+                                                onClick={()=>{
+                                                    setEpp2EditItemName("Membership");
+                                                }}
+                                            >Edit</button>
                                         </div>}
                                         {<div>
 
                                                 <input></input><br></br>
                                                 <button>Update</button><br></br>
-                                                <button>Cancel</button>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2EditItemName("");
+                                                    }}
+                                                >Cancel</button>
                                         </div>}
 
                                     </td>
