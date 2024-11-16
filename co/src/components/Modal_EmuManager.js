@@ -455,6 +455,7 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <th>Value Name</th>
                                     <th>Value Content</th>
+                                    <th>Operation</th>
                                 
                                 </tr>
 
@@ -465,38 +466,66 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Player Name Key</td>
                                     <td>
-                                        
+                                        <label>(player name key value)</label>
+                                    </td>
+                                    <td>
                                         <div>
-                                            <label>(player name key value)</label>
+                                                <input></input><br></br>
+                                                <button>Update</button><br></br>
+                                                <button>Cancel</button>
                                         </div>
+                                       
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>User Title</td>
                                     <td>
-
+                                        <label>(user title value)</label>
+                                    </td>
+                                    <td>
                                         <div>
-                                            <label>(user title value)</label>
+                                                <input></input><br></br>
+                                                <button>Update</button><br></br>
+                                                <button>Cancel</button>
+                                            
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Icon</td>
                                     <td>
+                                        <div>(current icon display)</div>
+                                    </td>
+                                    <td>
                                         <div>
 
-                                            <div>
-                                                <label>(icon pic)</label>
-                                            </div>                                            
+                                      
+                                                <select>
+
+                                                </select>
+                                                <div>
+                                                        (icon pic preview)
+                                                </div>
+                                                
+                                                <br></br>
+                                                <button>Update</button><br></br>
+                                                <button>Cancel</button>
+                                      
+                                                                               
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Level</td>
-                                    <td>(level value)
-
+                                    <td>
+                                        <label>(level value)</label>
+                                    </td>
+                                    <td>
                                         <div>
-                                            <label></label>
+                                                <input></input><br></br>
+                                                <button>Update</button><br></br>
+                                                <button>Cancel</button>
+                                           
                                         </div>
 
                                     </td>
@@ -504,9 +533,13 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Membership</td>
                                     <td>
-
+                                        <label>(membership value)</label>
+                                    </td>
+                                    <td>
                                         <div>
-                                            <label>(membership value)</label>
+                                                <input></input><br></br>
+                                                <button>Update</button><br></br>
+                                                <button>Cancel</button>
                                         </div>
 
                                     </td>
