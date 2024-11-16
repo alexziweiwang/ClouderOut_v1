@@ -158,9 +158,14 @@ export default function Modal_EmuManager({
             })} 
 
             tempObj1 = trackerMap;
-        }
+                                           // console.log("\t\t--prepared from design-list."); //TODO test
 
-                    console.log("... gdt1 prep: ", tempObj1);
+        } 
+                                            if (objSize !== 0 && tempObj1 !== undefined && tempObj1 !== null) { 
+                                          // console.log("\t\t--fetched from cloud."); //TODO test
+                                            }
+
+                                                    console.log("... gdt1 prep: ", tempObj1);
         setGdt1(tempObj1);
 
     } 

@@ -4,9 +4,23 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 
 export async function fetchEmuData1Gdt({projectName, currUser}) {
-    console.log("model - fetchEmuData1Gdt");
     let obj = {};
     //TODO
+
+    if (projectName === "" || projectName === undefined) {
+        return;
+    }
+    const projectRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectSnap = await getDoc(projectRef);
+
+    if (!projectSnap.exists()) {
+        return;
+    }
+
+    obj = projectSnap.data().emu4sets.gdt1; 
+
+                            console.log("model - fetchEmuData1Gdt", obj); //TODO test
+
     return obj;
 
 }
