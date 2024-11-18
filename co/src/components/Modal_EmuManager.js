@@ -196,7 +196,7 @@ export default function Modal_EmuManager({
                 "membership": 1,
             };
         }
-        
+
         setEpp2(tempObj2);
     }        
     async function prepare3Epa() {
@@ -506,7 +506,7 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td><label>Player Name Key</label></td>
                                     <td>
-                                        <label>(player name key value)</label>
+                                        <label>{epp2["playername"]}</label>
                                     </td>
                                     <td>
                                         {epp2EditItemName !== "PlayerNameKey" && <div>
@@ -514,16 +514,16 @@ return (<div className={modalStyleName}>
                                                 onClick={()=>{
                                                     setEpp2EditItemName("PlayerNameKey");
                                                 }}
-                                            >Edit</button>
+                                            >{editText}</button>
                                         </div>}
                                         {epp2EditItemName === "PlayerNameKey" && <div>
                                                 <input></input><br></br>
-                                                <button>Update</button><br></br>
+                                                <button>{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
                                                     }}
-                                                >Cancel</button>
+                                                >{cancelText}</button>
                                         </div>}
                                        
                                     </td>
@@ -531,7 +531,7 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>User Title</td>
                                     <td>
-                                        <label>(user title value)</label>
+                                        <label>{epp2["userTitle"]}</label>
                                     </td>
                                     <td>
                                         {epp2EditItemName !== "UserTitle" && <div>
@@ -539,16 +539,16 @@ return (<div className={modalStyleName}>
                                                 onClick={()=>{
                                                     setEpp2EditItemName("UserTitle");
                                                 }}
-                                            >Edit</button>
+                                            >{editText}</button>
                                         </div>}
                                         {epp2EditItemName === "UserTitle" && <div>
                                                 <input></input><br></br>
-                                                <button>Update</button><br></br>
+                                                <button>{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
                                                     }}
-                                                >Cancel</button>
+                                                >{cancelText}</button>
     
                                         </div>}
                                     </td>
@@ -556,7 +556,7 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Icon</td>
                                     <td>
-                                        <div>(current icon display)</div>
+                                        <div>{epp2["iconPicName"]}</div>
                                     </td>
                                     <td>
                                         {epp2EditItemName !== "Icon" && <div>
@@ -564,9 +564,9 @@ return (<div className={modalStyleName}>
                                                 onClick={()=>{
                                                     setEpp2EditItemName("Icon");
                                                 }}
-                                            >Edit</button>
+                                            >{editText}</button>
                                         </div>}
-                                        {<div>
+                                        {epp2EditItemName === "Icon" && <div>
                                       
                                                 <select>
 
@@ -576,12 +576,12 @@ return (<div className={modalStyleName}>
                                                 </div>
                                                 
                                                 <br></br>
-                                                <button>Update</button><br></br>
+                                                <button>{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
                                                     }}
-                                                >Cancel</button>
+                                                >{cancelText}</button>
                                       
                                                                                
                                         </div>}
@@ -590,7 +590,7 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Level</td>
                                     <td>
-                                        <label>(level value)</label>
+                                        <label>{epp2["level"]}</label>
                                     </td>
                                     <td>
                                         {epp2EditItemName !== "Level" && <div>
@@ -598,16 +598,16 @@ return (<div className={modalStyleName}>
                                                 onClick={()=>{
                                                     setEpp2EditItemName("Level");
                                                 }}
-                                            >Edit</button>
+                                            >{editText}</button>
                                         </div>}
-                                        {<div>
+                                        {epp2EditItemName === "Level" && <div>
                                                 <input></input><br></br>
-                                                <button>Update</button><br></br>
+                                                <button>{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
                                                     }}
-                                                >Cancel</button>
+                                                >{cancelText}</button>
                                            
                                         </div>}
 
@@ -616,7 +616,7 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Membership</td>
                                     <td>
-                                        <label>(membership value)</label>
+                                        <label>{epp2["membership"]}</label>
                                     </td>
                                     <td>
                                         {epp2EditItemName !== "Membership" && <div>
@@ -624,17 +624,17 @@ return (<div className={modalStyleName}>
                                                 onClick={()=>{
                                                     setEpp2EditItemName("Membership");
                                                 }}
-                                            >Edit</button>
+                                            >{editText}</button>
                                         </div>}
-                                        {<div>
+                                        {epp2EditItemName === "Membership" && <div>
 
                                                 <input></input><br></br>
-                                                <button>Update</button><br></br>
+                                                <button>{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
                                                     }}
-                                                >Cancel</button>
+                                                >{cancelText}</button>
                                         </div>}
 
                                     </td>
