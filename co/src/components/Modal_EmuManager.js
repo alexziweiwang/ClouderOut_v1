@@ -186,8 +186,17 @@ export default function Modal_EmuManager({
         let tempObj2 = await fetchEmuData2EppVM({projectName: projName, currUser: username});
         let objSize = Object.keys(tempObj2).length;
         if (objSize === 0 || tempObj2 === undefined || tempObj2 === null) {
-            return;
+            // initialize
+
+            tempObj2 = { 
+                "playername": "playerA",
+                "userTitle": "",
+                "iconPicName": "",
+                "level": 2,
+                "membership": 1,
+            };
         }
+        
         setEpp2(tempObj2);
     }        
     async function prepare3Epa() {
@@ -465,8 +474,22 @@ return (<div className={modalStyleName}>
                 {focusingPanelName === "2epp" && <div>
                 {/* "2.Emu Player Profile" */}
                     <div>Emu-Player Profile for Testing</div>
+                    <div
+                        style={{
+                            "borderRadius": "0px",
+                            "overflow": "scroll",
+                            "paddingLeft": "12%"
+                        }}
+                    >
 
-                    <div>
+                        <div  className="darkerGrey"
+                             style={{
+                                "borderRadius": "0px",
+                                "overflow": "scroll",
+                                "width": "622px",
+                                }}
+                            
+                    >
                         <table>
                             <thead>
                                 <tr>
@@ -621,6 +644,8 @@ return (<div className={modalStyleName}>
                             </tbody>
                         </table>
                     </div>
+                
+                    </div>                                 
                 </div>}
                 
                 {focusingPanelName === "3epa" && <div>
