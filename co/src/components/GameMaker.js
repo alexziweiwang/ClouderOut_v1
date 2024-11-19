@@ -88,6 +88,7 @@ export default function GameMaker({username, projectName}) {
   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
 
 
+  const [gameDataTracker, setGameDataTracker] = useState({}); //used during test-play
 
 
   const [isDisplayEntireGameViewer, setDisplayEntierGameViewer] = useState(false);
@@ -1458,25 +1459,27 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             {(isDisplayEntireGameViewer && showGameDataPanel)
             && 
               <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
+
                 <Panel_GameDataTest
-                  localTest={true}
+                       localTest={true}
+                       initialGameDataStatus={gameDataTracker}
 
-                  getGameDataDesignList={passInGameDataDesignList}
+                       getScreenHeight={passInScreenHeight} 
+                       getScreenWidth={passInScreenWidth}
+                       isQuickView={true}
 
-                  getScreenHeight={passInScreenHeight}
-                  getScreenWidth={passInScreenWidth}
-                  isQuickView={false}
-                  triggerClickOnGameDataPanel={notUsing}
-                  getIsGameScreenClicked={notUsing}
 
-                  receiveGameDataObj={passInPlayerGameData}
+                       triggerClickOnGameDataPanel={notUsing}
+                       getIsGameScreenClicked={notUsing}
 
-                  getResetSignal={notUsingReturnFalse}
+                       receiveGameDataObj={passInPlayerGameData}
 
-                   
-                  getUILanguage={passInUILanguage}
-          
+                       getResetSignal={notUsingReturnFalse}
+                       notifyAfterReset={notUsing}
+
+                       getUILanguage={passInUILanguage}
                 />
+
               </div>
             }
 
@@ -1535,7 +1538,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             }}
           >
             <Modal_EmuManager
-              isDisplay={isDisplayEmBool}
               handleEmCancel={handleEmuManagerCancel}
 
               update1Gdt={getUserConfigFromEmuManager1Gdt}
