@@ -26,13 +26,15 @@ export default function Modal_EmuManager({
 //4.Save/Load slot (emu)
 
 
-    let modalStyleName = "modalBackboard";
+    // let modalStyleName = "modalBackboard";
 
-    if (isDisplay === true) {
-        modalStyleName = "displayBlock modalBackboard";
-    } else {
-        modalStyleName = "displayNone modalBackboard";
-    }
+    // if (isDisplay === true) {
+    //     modalStyleName = "displayBlock modalBackboard";
+    // } else {
+    //     modalStyleName = "displayNone modalBackboard";
+    // }
+
+    let modalStyleName = "displayBlock modalBackboard"; //TODO temp, fixing
 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -176,7 +178,7 @@ export default function Modal_EmuManager({
                                           // console.log("\t\t--fetched from cloud."); //TODO test
                                             }
 
-                                                    // console.log("... gdt1 prep: ", tempObj1); //TODO test
+                                                    console.log("... gdt1 prep: ", tempObj1); //TODO test
         setGdt1(tempObj1);
 
     } 
@@ -198,6 +200,7 @@ export default function Modal_EmuManager({
                 "membership": 1,
             };
         }
+                                                console.log("... epp2 prep: ", tempObj2); //TODO test
 
         setEpp2(tempObj2);
     }        
@@ -208,6 +211,9 @@ export default function Modal_EmuManager({
         if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
             return;
         }
+
+                                            console.log("... epa3 prep: ", tempObj3); //TODO test
+
         setEpa3(tempObj3);
     }              
     async function prepare4Ess() {
@@ -217,27 +223,35 @@ export default function Modal_EmuManager({
         if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
             return;
         }
+
+                                            console.log("... ess4 prep: ", tempObj4); //TODO test
         setEss4(tempObj4);
     }
 
 
-
-    
     useEffect(() => {
+        console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
+        console.log("\t\tinfo: username,projName", username , "and" ,projName);
+
+        
         if (firstTimeEnter === true) {
             prepare1Gdt();
-            prepare2Epp();
-            prepare3Epa();
-            prepare4Ess();
-            fetchVisualListFromCloud();
+            // prepare2Epp();
+            // prepare3Epa();
+            // prepare4Ess();
+            // fetchVisualListFromCloud();
 
-                                                console.log("Emu-Manager first-enter...");
+                                                console.log("!!!!!!!!!!!! Emu-Manager first-enter...");
             setFirstTimeEnter(false);
         }
 
-        let UILang = getUILanguage();
-        setLanguageCodeTextOption(UILang);
+        // let UILang = getUILanguage();
+        // prepUILange(UILang);
     });
+
+    function prepUILange(langOption) {
+        setLanguageCodeTextOption(langOption);
+    }
 
     async function saveAllChangesToCloud() {
         //TODO send all 4 sets to cloud

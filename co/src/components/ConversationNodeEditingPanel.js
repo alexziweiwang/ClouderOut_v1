@@ -847,7 +847,6 @@ export default function ConversationNodeEditingPanel() {
 
             </>}
 
-            {/* {displayGameDataWindow &&  */}
             <div
                 style={{
                     "display": displayGameDataWindow === true ? "flex" : "none"
@@ -896,7 +895,6 @@ export default function ConversationNodeEditingPanel() {
                 }}
             >
                 <Modal_EmuManager
-                    isDisplay={isDisplayEmBool}
                     handleEmCancel={handleEmuManagerCancel}
 
                     update1Gdt={getUserConfigFromEmuManager1Gdt}

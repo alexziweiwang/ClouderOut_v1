@@ -5,7 +5,6 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export async function fetchEmuData1Gdt({projectName, currUser}) {
     let obj = {};
-    //TODO
 
     if (projectName === "" || projectName === undefined) {
         return;
@@ -26,9 +25,22 @@ export async function fetchEmuData1Gdt({projectName, currUser}) {
 }
 
 export async function fetchEmuData2Epp({projectName, currUser}) {
-    console.log("model - fetchEmuData2Epp");
     let obj = {};
-    //TODO
+
+    if (projectName === "" || projectName === undefined) {
+        return;
+    }
+    const projectRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectSnap = await getDoc(projectRef);
+
+    if (!projectSnap.exists()) {
+        return;
+    }
+
+    obj = projectSnap.data().emu4sets.epp2; 
+
+                            console.log("model - fetchEmuData2Epp", obj); //TODO test
+
     return obj;
 }
 

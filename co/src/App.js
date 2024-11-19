@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Container_GameEditor_Outer />} />  {/* TODO change later for default entry page */}
+        <Route path="/" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         <Route path="*" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         
         
