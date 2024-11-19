@@ -1823,3 +1823,8 @@ button:hover {
     background-color: rgb(210, 210, 210);
     color: #000000;
 }
+
+.iconPreview {
+    width: 150px;
+    height: 150px;
+}

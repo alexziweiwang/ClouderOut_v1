@@ -89,8 +89,7 @@ export default function Modal_EmuManager({
 
 
     
-    const [visualMap, setVisualMap] = useState([]);
-    const [picNames, setPicNames] = useState([]);
+    const [visualMap, setVisualMap] = useState({});
 
     const [gdt1, setGdt1] = useState({});
     const [epp2, setEpp2] = useState({});
@@ -102,7 +101,7 @@ export default function Modal_EmuManager({
 
 
     const [epp2EditItemName, setEpp2EditItemName] = useState("");
-    const [epp2IconPreview, setEpp2IconPreview] = useState("");
+    const [epp2IconNamePreview, setEpp2IconNamePreview] = useState("");
 
 
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -257,10 +256,20 @@ export default function Modal_EmuManager({
         if (obj === undefined || obj === null) {
             return;
         }
-        
-        setVisualMap(obj.visual);
 
-                                    //console.log("emu-mgr, resource -- visual list  = =", list);
+        console.log("fetched obj = ", obj.visual);
+
+        let tempMap = {};
+        let resVis = obj.visual;
+        resVis.map((item, index) => {  
+            let varName = item["var"];
+            let urlName = item["url"];
+            tempMap[varName] = urlName;
+        });
+
+        setVisualMap(tempMap);
+
+                                    console.log("emu-mgr, resource -- visual map  = =", tempMap);
       }
 
 
@@ -579,7 +588,10 @@ return (<div className={modalStyleName}>
 
                                                     onChange={(event)=>{
                                                         let varVal = event.target.value; //var-name
-                                                        let urlVal = visualMap[varVal];
+                                                        // let urlVal = visualMap[varVal];
+                                                        // console.log("Select-list change: now get..", urlVal, " \nfrom ", varVal);
+                                                        // console.log("visualMap = ", visualMap);
+                                                        setEpp2IconNamePreview(varVal);
 
                                                         //TODO update previewing-icon-url
 
@@ -589,26 +601,31 @@ return (<div className={modalStyleName}>
 
                                                     {Object.keys(visualMap).map((currKey) => {
                                                         let keyStr = "picNames_" + currKey;
-                                                        let item = visualMap[currKey];
-                                                        let varName = item["var"];
-
+                                                        
                                                         return (
                                                             <option
                                                                 key={keyStr}
-                                                                value={varName}
-                                                            >{varName}</option>
+                                                                value={currKey}
+                                                            >{currKey}</option>
                                                         ) 
 
                                                     })}
 
                                                 </select>
-                                                <div>
-                                                        (icon pic preview)
+                                                <div>   
+                                                        {(visualMap[epp2IconNamePreview] !== undefined && visualMap[epp2IconNamePreview] !== "") && <img 
+                                                            className="iconPreview" 
+                                                            src={visualMap[epp2IconNamePreview]} 
+                                                            alt="preview icon"
+                                                        />}
                                                 </div>
                                                 
                                                 <br></br>
                                                 <button
                                                     onClick={()=>{
+                                                        // use current epp2IconNamePreview as the new url...
+                                                        setEpp2({...epp2,  "iconPicName": epp2IconNamePreview});
+
                                                     }}
                                                 >{updateText}</button><br></br>
                                                 <button
