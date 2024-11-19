@@ -572,11 +572,19 @@ return (<div className={modalStyleName}>
                                             >{editText}</button>
                                         </div>}
                                         {epp2EditItemName === "UserTitle" && <div>
-                                                <input></input><br></br>
+                                                <input
+                                                    onChange={(event)=>{
+                                                        let val = event.target.value;
+                                                        setEpp2Input(val);
+                                                    }}
+                                                ></input>
+                                                <br></br>
                                                 <button
-                                                  onClick={()=>{
-                                                        
-                                                  }}
+                                                    onClick={()=>{
+                                                        setEpp2({...epp2,  "userTitle": epp2Input});
+                                                        setEpp2EditItemName("");
+                                                        setEpp2Input("");
+                                                    }}
                                                 >{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
@@ -679,10 +687,18 @@ return (<div className={modalStyleName}>
                                             >{editText}</button>
                                         </div>}
                                         {epp2EditItemName === "Level" && <div>
-                                                <input></input><br></br>
+                                                <input
+                                                    onChange={(event)=>{
+                                                        let val = event.target.value;
+                                                        setEpp2Input(val);
+                                                    }}
+                                                ></input>
+                                                <br></br>
                                                 <button
                                                     onClick={()=>{
-
+                                                        setEpp2({...epp2,  "level": epp2Input});
+                                                        setEpp2EditItemName("");
+                                                        setEpp2Input("");
                                                     }}
                                                 >{updateText}</button><br></br>
                                                 <button
@@ -710,8 +726,20 @@ return (<div className={modalStyleName}>
                                         </div>}
                                         {epp2EditItemName === "Membership" && <div>
 
-                                                <input></input><br></br>
-                                                <button>{updateText}</button><br></br>
+                                                <input
+                                                    onChange={(event)=>{
+                                                        let val = event.target.value;
+                                                        setEpp2Input(val);
+                                                    }}
+                                                ></input>
+                                                <br></br>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2({...epp2,  "membership": epp2Input});
+                                                        setEpp2EditItemName("");
+                                                        setEpp2Input("");
+                                                    }}
+                                                >{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
