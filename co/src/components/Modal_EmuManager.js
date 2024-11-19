@@ -89,7 +89,7 @@ export default function Modal_EmuManager({
 
 
     
-    const [visualList, setVisualList] = useState([]);
+    const [visualMap, setVisualMap] = useState([]);
     const [picNames, setPicNames] = useState([]);
 
     const [gdt1, setGdt1] = useState({});
@@ -102,6 +102,7 @@ export default function Modal_EmuManager({
 
 
     const [epp2EditItemName, setEpp2EditItemName] = useState("");
+    const [epp2IconPreview, setEpp2IconPreview] = useState("");
 
 
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -256,13 +257,8 @@ export default function Modal_EmuManager({
         if (obj === undefined || obj === null) {
             return;
         }
-
-        let visualMap = obj.visual;
-        let list = [];
-        Object.keys(visualMap).map((currKey) => {
-            list.push(visualMap[currKey]["var"]);
-        })
-        setPicNames(list);
+        
+        setVisualMap(obj.visual);
 
                                     //console.log("emu-mgr, resource -- visual list  = =", list);
       }
@@ -579,7 +575,31 @@ return (<div className={modalStyleName}>
                                         </div>}
                                         {epp2EditItemName === "Icon" && <div>
                                       
-                                                <select>
+                                                <select
+
+                                                    onChange={(event)=>{
+                                                        let varVal = event.target.value; //var-name
+                                                        let urlVal = visualMap[varVal];
+
+                                                        //TODO update previewing-icon-url
+
+                                                    }}
+                                                >
+                                                    <option key="picNamesDefaultNone" value="">-- {selectText} --</option>
+
+                                                    {Object.keys(visualMap).map((currKey) => {
+                                                        let keyStr = "picNames_" + currKey;
+                                                        let item = visualMap[currKey];
+                                                        let varName = item["var"];
+
+                                                        return (
+                                                            <option
+                                                                key={keyStr}
+                                                                value={varName}
+                                                            >{varName}</option>
+                                                        ) 
+
+                                                    })}
 
                                                 </select>
                                                 <div>
@@ -587,7 +607,10 @@ return (<div className={modalStyleName}>
                                                 </div>
                                                 
                                                 <br></br>
-                                                <button>{updateText}</button><br></br>
+                                                <button
+                                                    onClick={()=>{
+                                                    }}
+                                                >{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
