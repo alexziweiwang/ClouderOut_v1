@@ -90,6 +90,7 @@ export default function Modal_EmuManager({
 
     
     const [visualList, setVisualList] = useState([]);
+    const [picNames, setPicNames] = useState([]);
 
     const [gdt1, setGdt1] = useState({});
     const [epp2, setEpp2] = useState({});
@@ -190,7 +191,7 @@ export default function Modal_EmuManager({
 
             tempObj2 = { 
                 "playername": "playerA",
-                "userTitle": "",
+                "userTitle": "title1",
                 "iconPicName": "",
                 "level": 2,
                 "membership": 1,
@@ -227,6 +228,7 @@ export default function Modal_EmuManager({
             prepare2Epp();
             prepare3Epa();
             prepare4Ess();
+            fetchVisualListFromCloud();
 
                                                 console.log("Emu-Manager first-enter...");
             setFirstTimeEnter(false);
@@ -251,9 +253,18 @@ export default function Modal_EmuManager({
     async function fetchVisualListFromCloud() {
 
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        
-        
-        //TODO obj.visual
+        if (obj === undefined || obj === null) {
+            return;
+        }
+
+        let visualMap = obj.visual;
+        let list = [];
+        Object.keys(visualMap).map((currKey) => {
+            list.push(visualMap[currKey]["var"]);
+        })
+        setPicNames(list);
+
+                                    //console.log("emu-mgr, resource -- visual list  = =", list);
       }
 
 
