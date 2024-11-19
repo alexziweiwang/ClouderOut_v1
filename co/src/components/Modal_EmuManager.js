@@ -102,6 +102,7 @@ export default function Modal_EmuManager({
 
     const [epp2EditItemName, setEpp2EditItemName] = useState("");
     const [epp2IconNamePreview, setEpp2IconNamePreview] = useState("");
+    const [epp2Input, setEpp2Input] = useState("");
 
 
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -533,11 +534,24 @@ return (<div className={modalStyleName}>
                                             >{editText}</button>
                                         </div>}
                                         {epp2EditItemName === "PlayerNameKey" && <div>
-                                                <input></input><br></br>
-                                                <button>{updateText}</button><br></br>
+                                                <input
+                                                    onChange={(event)=>{
+                                                        let val = event.target.value;
+                                                        setEpp2Input(val);
+                                                    }}
+                                                ></input>
+                                                <br></br>
+                                                <button
+                                                    onClick={()=>{
+                                                        setEpp2({...epp2,  "playername": epp2Input});
+                                                        setEpp2EditItemName("");
+                                                        setEpp2Input("");
+                                                    }}
+                                                >{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
+                                                        setEpp2Input("");
                                                     }}
                                                 >{cancelText}</button>
                                         </div>}
@@ -559,7 +573,11 @@ return (<div className={modalStyleName}>
                                         </div>}
                                         {epp2EditItemName === "UserTitle" && <div>
                                                 <input></input><br></br>
-                                                <button>{updateText}</button><br></br>
+                                                <button
+                                                  onClick={()=>{
+                                                        
+                                                  }}
+                                                >{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
@@ -572,7 +590,15 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Icon</td>
                                     <td>
-                                        <div>{epp2["iconPicName"]}</div>
+                                        <div>
+                                                {(epp2["iconPicName"] !== undefined && epp2["iconPicName"] !== "") &&
+                                                    <img 
+                                                        className="iconPreview" 
+                                                        src={visualMap[epp2["iconPicName"]]} 
+                                                        alt="preview icon"
+                                                    />}
+                                        
+                                        </div>
                                     </td>
                                     <td>
                                         {epp2EditItemName !== "Icon" && <div>
@@ -613,7 +639,8 @@ return (<div className={modalStyleName}>
 
                                                 </select>
                                                 <div>   
-                                                        {(visualMap[epp2IconNamePreview] !== undefined && visualMap[epp2IconNamePreview] !== "") && <img 
+                                                        {(visualMap[epp2IconNamePreview] !== undefined && visualMap[epp2IconNamePreview] !== "") && 
+                                                        <img 
                                                             className="iconPreview" 
                                                             src={visualMap[epp2IconNamePreview]} 
                                                             alt="preview icon"
@@ -653,7 +680,11 @@ return (<div className={modalStyleName}>
                                         </div>}
                                         {epp2EditItemName === "Level" && <div>
                                                 <input></input><br></br>
-                                                <button>{updateText}</button><br></br>
+                                                <button
+                                                    onClick={()=>{
+
+                                                    }}
+                                                >{updateText}</button><br></br>
                                                 <button
                                                     onClick={()=>{
                                                         setEpp2EditItemName("");
