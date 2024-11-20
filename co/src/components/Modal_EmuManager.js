@@ -106,7 +106,11 @@ export default function Modal_EmuManager({
     const [epp2IconNamePreview, setEpp2IconNamePreview] = useState("");
     const [epp2Input, setEpp2Input] = useState("");
 
+    const [epa3EditItemName, setEpa3EditItemName] = useState("");
+    const [epa3Input, setEpa3Input] = useState("");
 
+
+//TODO20
     const [focusingPanelName, setFocusingPanelName] = useState("");
 
     const namingMap = {
@@ -243,7 +247,7 @@ export default function Modal_EmuManager({
             prepare2Epp();
             prepare3Epa();
             // prepare4Ess();
-            // fetchVisualListFromCloud();
+            fetchVisualListFromCloud();
 
                                                 console.log("!!!!!!!!!!!! Emu-Manager first-enter...");
             setFirstTimeEnter(false);
@@ -815,16 +819,22 @@ return (<div className={modalStyleName}>
                                         <td>{epa3["playername"]}</td>
                                         <td>
                                             <div>
-                                                <button
+                                                {epa3EditItemName !== "playername" && <button
                                                     onClick={()=>{
-
+                                                        setEpa3EditItemName("playername");
                                                     }}
-                                                >{editText}</button>
-                                                <div>
-                                                    <input></input><br></br>
+                                                >{editText}</button>}
+                                                {epa3EditItemName === "playername" && <div>
+                                                    <input
+                                                        style={{"width":"90px"}}
+                                                    ></input><br></br>
                                                     <button>{updateText}</button><br></br>
-                                                    <button>{cancelText}</button>
-                                                </div>
+                                                    <button
+                                                        onClick={()=>{
+                                                            setEpa3EditItemName("");
+                                                        }}
+                                                    >{cancelText}</button>
+                                                </div>}
                                             </div>
                                         </td>
                                     </tr>
@@ -834,16 +844,22 @@ return (<div className={modalStyleName}>
                                         <td>{epa3["email"]}</td>
                                         <td>
                                             <div>
-                                                <button
+                                                {epa3EditItemName !== "email" && <button
                                                     onClick={()=>{
-
+                                                        setEpa3EditItemName("email");
                                                     }}
-                                                >{editText}</button>
-                                                <div>
-                                                    <input></input><br></br>
+                                                >{editText}</button>}
+                                                {epa3EditItemName === "email" && <div>
+                                                    <input
+                                                        style={{"width":"90px"}}
+                                                    ></input><br></br>
                                                     <button>{updateText}</button><br></br>
-                                                    <button>{cancelText}</button>
-                                                </div>
+                                                    <button
+                                                        onClick={()=>{
+                                                            setEpa3EditItemName("");
+                                                        }}
+                                                    >{cancelText}</button>
+                                                </div>}
                                             </div>
                                         </td>
                                     </tr>
