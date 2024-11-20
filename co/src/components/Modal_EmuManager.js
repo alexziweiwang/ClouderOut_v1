@@ -209,13 +209,17 @@ export default function Modal_EmuManager({
         let tempObj3 = await fetchEmuData3EpaVM({projectName: projName, currUser: username});
         let objSize = Object.keys(tempObj3).length;
         if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
-            return;
+            tempObj3 = {
+                "playername": "playerA",
+                "email": "example@email.com",
+            }
         }
 
                                             console.log("... epa3 prep: ", tempObj3); //TODO test
 
         setEpa3(tempObj3);
     }              
+
     async function prepare4Ess() {
         // if local is not ready, from cloud
         let tempObj4 = await fetchEmuData4EssVM({projectName: projName, currUser: username});
@@ -236,8 +240,8 @@ export default function Modal_EmuManager({
         
         if (firstTimeEnter === true) {
             prepare1Gdt();
-            // prepare2Epp();
-            // prepare3Epa();
+            prepare2Epp();
+            prepare3Epa();
             // prepare4Ess();
             // fetchVisualListFromCloud();
 
@@ -245,8 +249,8 @@ export default function Modal_EmuManager({
             setFirstTimeEnter(false);
         }
 
-        // let UILang = getUILanguage();
-        // prepUILange(UILang);
+        let UILang = getUILanguage();
+        prepUILange(UILang);
     });
 
     function prepUILange(langOption) {
@@ -779,7 +783,7 @@ return (<div className={modalStyleName}>
                         style={{
                             "borderRadius": "0px",
                             "overflow": "scroll",
-                            "paddingLeft": "29%"
+                            "paddingLeft": "15%"
                         }}
                     >
 
@@ -787,20 +791,20 @@ return (<div className={modalStyleName}>
                              style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "350px",
+                                "width": "613px",
                                 }}
                             
                     >
                         <table>
                             <thead>
                                 <tr>
-                                    <th>     
+                                    <th style={{"width":"170px", "overflow": "scroll"}}>     
                                         Value Name
        </th>
-                                    <th>
+                                    <th style={{"width":"320px", "overflow": "scroll"}}>
                                         Value Content
                                     </th>
-                                    <th>
+                                    <th style={{"width":"100px", "overflow": "scroll"}}>
                                         Operation
                                     </th>
                                 </tr>
@@ -808,17 +812,39 @@ return (<div className={modalStyleName}>
                             <tbody>
                                     <tr>
                                         <td>Player Account Name</td>
-                                        <td>(player name value here, ["playername"])</td>
+                                        <td>{epa3["playername"]}</td>
                                         <td>
-                                            <div>(buttons)</div>
+                                            <div>
+                                                <button
+                                                    onClick={()=>{
+
+                                                    }}
+                                                >{editText}</button>
+                                                <div>
+                                                    <input></input><br></br>
+                                                    <button>{updateText}</button><br></br>
+                                                    <button>{cancelText}</button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>Account Email</td>
-                                        <td>(account email value here, ["email"])</td>
+                                        <td>{epa3["email"]}</td>
                                         <td>
-                                            <div>(buttons)</div>
+                                            <div>
+                                                <button
+                                                    onClick={()=>{
+
+                                                    }}
+                                                >{editText}</button>
+                                                <div>
+                                                    <input></input><br></br>
+                                                    <button>{updateText}</button><br></br>
+                                                    <button>{cancelText}</button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                             </tbody>
