@@ -45,16 +45,41 @@ export async function fetchEmuData2Epp({projectName, currUser}) {
 }
 
 export async function fetchEmuData3Epa({projectName, currUser}) {
-    console.log("model - fetchEmuData3Epa");
     let obj = {};
-    //TODO
+    if (projectName === "" || projectName === undefined) {
+        return;
+    }
+    const projectRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectSnap = await getDoc(projectRef);
+
+    if (!projectSnap.exists()) {
+        return;
+    }
+
+    obj = projectSnap.data().emu4sets.epa3; 
+
+                                        console.log("model - fetchEmuData3Epa: ", obj);
+
+
     return obj;
 }
 
 export async function fetchEmuData4Ess({projectName, currUser}) {
-    console.log("model - fetchEmuData4Ess");
     let obj = {};
-    //TODO
+    if (projectName === "" || projectName === undefined) {
+        return;
+    }
+    const projectRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectSnap = await getDoc(projectRef);
+
+    if (!projectSnap.exists()) {
+        return;
+    }
+
+    obj = projectSnap.data().emu4sets.ess4; 
+
+                                    console.log("model - fetchEmuData4Ess: ", obj);
+
     return obj;
 }
 
