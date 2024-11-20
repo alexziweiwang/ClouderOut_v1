@@ -827,8 +827,21 @@ return (<div className={modalStyleName}>
                                                 {epa3EditItemName === "playername" && <div>
                                                     <input
                                                         style={{"width":"90px"}}
+                                                        onChange={(event)=>{
+                                                            let val = event.target.value;
+                                                            setEpa3Input(val);
+                                                        }}
                                                     ></input><br></br>
-                                                    <button>{updateText}</button><br></br>
+                                                    <button
+                                                        onClick={()=>{
+                                                            if (epa3Input.length === 0) {
+                                                                return;
+                                                            }
+                                                            setEpa3({...epa3,  "playername": epa3Input});
+                                                            setEpa3EditItemName("");
+                                                            setEpa3Input("");
+                                                        }}
+                                                    >{updateText}</button><br></br>
                                                     <button
                                                         onClick={()=>{
                                                             setEpa3EditItemName("");
@@ -852,8 +865,21 @@ return (<div className={modalStyleName}>
                                                 {epa3EditItemName === "email" && <div>
                                                     <input
                                                         style={{"width":"90px"}}
+                                                        onChange={(event)=>{
+                                                            let val = event.target.value;
+                                                            setEpa3Input(val);
+                                                        }}
                                                     ></input><br></br>
-                                                    <button>{updateText}</button><br></br>
+                                                    <button
+                                                        onClick={()=>{
+                                                            if (epa3Input.length === 0) {
+                                                                return;
+                                                            }
+                                                            setEpa3({...epa3,  "email": epa3Input});
+                                                            setEpa3EditItemName("");
+                                                            setEpa3Input("");
+                                                        }}
+                                                    >{updateText}</button><br></br>
                                                     <button
                                                         onClick={()=>{
                                                             setEpa3EditItemName("");
