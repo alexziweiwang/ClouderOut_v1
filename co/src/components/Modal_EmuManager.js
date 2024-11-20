@@ -774,7 +774,60 @@ return (<div className={modalStyleName}>
                 
                 {focusingPanelName === "3epa" && <div>
                 {/* "3.Emu Player Account" */}
-3
+                    <label>Emu-Player Account for Testing</label>
+                    <div
+                        style={{
+                            "borderRadius": "0px",
+                            "overflow": "scroll",
+                            "paddingLeft": "29%"
+                        }}
+                    >
+
+                        <div  className="darkerGrey"
+                             style={{
+                                "borderRadius": "0px",
+                                "overflow": "scroll",
+                                "width": "350px",
+                                }}
+                            
+                    >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>     
+                                        Value Name
+       </th>
+                                    <th>
+                                        Value Content
+                                    </th>
+                                    <th>
+                                        Operation
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>Player Account Name</td>
+                                        <td>(player name value here, ["playername"])</td>
+                                        <td>
+                                            <div>(buttons)</div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Account Email</td>
+                                        <td>(account email value here, ["email"])</td>
+                                        <td>
+                                            <div>(buttons)</div>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
                 </div>}
 
                 {focusingPanelName === "4ess" && <div>
