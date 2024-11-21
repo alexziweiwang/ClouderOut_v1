@@ -167,19 +167,46 @@ export default function Modal_EmuManager({
             tempObj[keyStr] = obj;
         })} 
 
-                            console.log("sending out gdt1(dup)... ", tempObj);
+                                        console.log("sending out gdt1(dup)... ", tempObj);
         
         update1Gdt(tempObj);
     }
 
     function update2EppToOuterLayer() {
         //epp2 
-        update2Epp(epp2);
+        let pn = epp2["playername"];
+        let ut = epp2["userTitle"];
+        let icpn = epp2["iconPicName"];
+        let lvl = epp2["level"];
+        let mbsp = epp2["membership"];
+
+        let tempObj = { 
+            "playername": pn,
+            "userTitle": ut,
+            "iconPicName": icpn,
+            "level": lvl,
+            "membership": mbsp,
+        };
+
+                                console.log("sending out epp2(dup)... ", tempObj);
+
+        update2Epp(tempObj);
     }
 
     function update3EpaToOuterLayer() {
         //epa3
-        update3Epa(epa3);
+        let pn = epa3["playername"];
+        let eml = epa3["email"];
+
+        let tempObj = {
+            "playername": pn,
+            "email": eml,            
+        }
+
+
+                                    console.log("sending out epa3(dup)... ", tempObj);
+
+        update3Epa(tempObj);
     }
 
     // function update4EssToOuterLayer(data4) {
@@ -300,9 +327,9 @@ export default function Modal_EmuManager({
             setFirstTimeEnter(false);
         }
 
-        update1GdtToOuterLayer(); 
-        update2EppToOuterLayer(); 
-        update3EpaToOuterLayer();
+        // update1GdtToOuterLayer(); 
+        // update2EppToOuterLayer(); 
+        // update3EpaToOuterLayer();
 
         let UILang = getUILanguage();
         prepUILange(UILang);
