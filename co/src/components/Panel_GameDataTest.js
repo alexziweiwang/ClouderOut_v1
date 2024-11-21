@@ -78,7 +78,10 @@ export default function Panel_GameDataTest({
 
     function fetchGdataTrackerFromOuterLayer() {
         let newGameDataObj = receiveGameDataObj();
+        
                             console.log("\t (Panel_GameData) !!! new game-data-obj:", newGameDataObj); //TODO test
+
+
         setGameDataTrackerMap(newGameDataObj);
 
     }

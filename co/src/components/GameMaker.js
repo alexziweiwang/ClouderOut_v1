@@ -535,24 +535,15 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
 
   //TODO21
-  const [testPlayerProfile, setTestPlayerProfile] = useState({ 
-      "playername": "playerA",
-      "userTitle": "",
-      "iconPicName": "",
-      "level": 2,
-      "membership": 1,
-  });                                                                 //TODO important for holder-in-practice
+  const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
 
-  const [testPlayerAccount, setTestPlayerAccount] = useState({
-      "playername": "playerA",
-      "email": "example@email.com",
-    });                                                               //TODO important for holder-in-practice
+  const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                               //TODO important for holder-in-practice
 
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
       "playername": "playerA",
       "itemStatus": [{}, {}, {}]
-    });                                                               //TODO important for holder-in-practice
-
+    });       
+                                                            //TODO important for holder-in-practice
 //TODO ------------------------------------------------------ testing data area
 
     const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
@@ -649,10 +640,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
         let isLocal = true; //TODO temp
 
-        loadPlayingGameData(isLocal); 
-        loadTestPlayerProfile(isLocal); 
-        loadTestPlayerAccount(isLocal); 
-        loadTestPlayerSLRecords(isLocal);
+                                          // loadPlayingGameData(isLocal); 
+                                          // loadTestPlayerProfile(isLocal); 
+                                          // loadTestPlayerAccount(isLocal); 
+                                          // loadTestPlayerSLRecords(isLocal);
 
         
         setFirstTimeEnter(false);
@@ -924,91 +915,80 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function loadPlayingGameData(isLocal) {                                          //TODO important
-    let gameDataTemp = {};
+  // function loadPlayingGameData(isLocal) {                                          //TODO important
+  //   let gameDataTemp = {};
 
-    // for local test, make from game-data-design-list
-    if (isLocal === true) {
-      let tempList = gameDataDesignList;
+  //   // for local test, make from game-data-design-list
+  //   if (isLocal === true) {
+  //     let tempList = gameDataDesignList;
 
-      if (tempList === -1) { //TODO5
-            const gdataTestResult = fetchGameDataFromCloud();
-            if (gdataTestResult !== undefined) {
-              {Object.keys(tempList).map((currKey) => {
-                gameDataTemp[currKey]["current_value"] = tempList[currKey]["default_value"];
-              })}
-            }
-      }
+  //     if (tempList === -1) { //TODO5
+  //           const gdataTestResult = fetchGameDataFromCloud();
+  //           if (gdataTestResult !== undefined) {
+  //             {Object.keys(tempList).map((currKey) => {
+  //               gameDataTemp[currKey]["current_value"] = tempList[currKey]["default_value"];
+  //             })}
+  //           }
+  //     }
 
+  //   } else {
+  //     // for on-cloud test, fetch from cloud
+  //     //TODO gameDataTemp = ...
 
+  //   }
+  //                                                           console.log("load-gdata: ", gameDataTemp);
+  //   setTestPlayerGameData(gameDataTemp); // initialize Playing-Game-Data
+  //   return gameDataTemp;
+  // }
 
+  // function loadTestPlayerProfile(isLocal) { 
+  //   let playerProfileTemp = {};
+  //   if (isLocal === true) {
+  //     //use emulated test data
 
-    } else {
-      // for on-cloud test, fetch from cloud
-      //TODO gameDataTemp = ...
+  //     playerProfileTemp = testPlayerProfile;
 
+  //     //TODO later: player-account-related panel?
+  //   } else { //use cloud data
 
-    }
-                                                            console.log("load-gdata: ", gameDataTemp);
-    setTestPlayerGameData(gameDataTemp); // initialize Playing-Game-Data
-    return gameDataTemp;
-  }
+  //   }
 
-  function loadTestPlayerProfile(isLocal) { 
-    let playerProfileTemp = {};
-    if (isLocal === true) {
-      //use emulated test data
+  //   setTestPlayerProfile(playerProfileTemp);
 
-      playerProfileTemp = testPlayerProfile;
+  // }
 
-      //TODO later: player-account-related panel?
-    } else { //use cloud data
+  // function loadTestPlayerAccount(isLocal) {
+  //   let playerAccountDataTemp = {};
+  //   if (isLocal === true) {
+  //     //use emulated test data
+  //     //TODO
 
-    }
+  //     playerAccountDataTemp = testPlayerAccount;
 
-    setTestPlayerProfile(playerProfileTemp);
+  //   } else {//use cloud data
 
-  }
+  //   }
 
-  function loadTestPlayerAccount(isLocal) {
-    let playerAccountDataTemp = {};
-    if (isLocal === true) {
-      //use emulated test data
-      //TODO
+  //   setTestPlayerAccount(playerAccountDataTemp);
 
-      playerAccountDataTemp = testPlayerAccount;
+  // }
 
-    } else {//use cloud data
+  // function loadTestPlayerSLRecords(isLocal) {
+  //   let playerSLRecordsTemp = {};
+  //   if (isLocal === true) {
+  //     //use emulated test data
+  //     //TODO
 
-    }
+  //     playerSLRecordsTemp = testPlayerSLRecords;  
 
-    setTestPlayerAccount(playerAccountDataTemp);
+  //   } else {//use cloud data
 
-  }
+  //   }
 
-  function loadTestPlayerSLRecords(isLocal) {
-    let playerSLRecordsTemp = {};
-    if (isLocal === true) {
-      //use emulated test data
-      //TODO
-
-      playerSLRecordsTemp = testPlayerSLRecords;  
-
-    } else {//use cloud data
-
-    }
-
-  }
+  // }
   
   function passInPlayerGameData() { //TODO5
-    if (testPlayerGameData.length > 0) {
-      return testPlayerGameData;
-    } else {
-      //TODO
-
-      return -1;
-    }
-    
+    return testPlayerGameData;
   }
 
   function passInPlayerProfile() {
@@ -1112,29 +1092,37 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInCurrentGameDataList() { // emu-data
-    if (gameDataArray.length > 0) {
-      return gameDataArray;
-    }
+    // if (gameDataArray.length > 0) {
+    //   return gameDataArray;
+    // }
 
-    let gameDataTemp = gameDataDesignList;
-    if (gameDataDesignList.size === 0) {
-      let tempMap = loadPlayingGameData(true);
-      gameDataTemp = tempMap;
-    }
-    let gameDataList = [];
+    // let gameDataTemp = gameDataDesignList;
+    // if (gameDataDesignList.size === 0) {
+    //   let tempMap = loadPlayingGameData(true);
+    //   gameDataTemp = tempMap;
+    // }
+    // let gameDataList = [];
 
 
-    {Object.keys(gameDataTemp).map((currKey) => {
-      let pair = [];
-                              console.log("\t\t item = ", gameDataTemp[currKey]);
-      pair.push(gameDataTemp[currKey]["name"]);
-      pair.push(gameDataTemp[currKey]["default_value"]);
-      gameDataList.push(pair);
-    })}
-                // console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp); //TODO remove later
+    // {Object.keys(gameDataTemp).map((currKey) => {
+    //   let pair = [];
+    //                           console.log("\t\t item = ", gameDataTemp[currKey]);
+    //   pair.push(gameDataTemp[currKey]["name"]);
+    //   pair.push(gameDataTemp[currKey]["default_value"]);
+    //   gameDataList.push(pair);
+    // })}
+    //             // console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp); //TODO remove later
 
-    setGameDataArray(gameDataList);
-    return gameDataList;
+    // setGameDataArray(gameDataList);
+    // return gameDataList;
+
+    //TODO refactor for new-emu-strategy
+                                      console.log("game-maker, passInCurrentGameDataList-func: returning ", testPlayerGameData);
+
+
+
+    return testPlayerGameData;
+
   }
 
   function passInUILanguage() {
@@ -1163,18 +1151,23 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   function getUserConfigFromEmuManager1Gdt(data1) {
     //TODO update data1 to be the new Game-Data-Tracker
+    setTestPlayerGameData(data1);
+
   }
 
   function getUserConfigFromEmuManager2Epp(data2) {
     //TODO update data2 to be the new Emu-Player-Profile
+    setTestPlayerProfile(data2);
   }
 
   function getUserConfigFromEmuManager3Epa(data3) {
     //TODO update data3 to be the new Emu Player Account
+    setTestPlayerAccount(data3);
   }
 
   function getUserConfigFromEmuManager4Ess(data4) {
     //TODO update data4 to be the new Emu SL slots
+    //TODO temp: not using
   }
 
 
@@ -1458,7 +1451,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
             {(isDisplayEntireGameViewer && showGameDataPanel)
             && 
-              <div style={{"height": `${screenHeight}px`, "overflow": "scroll"}}>
+              <div style={{"height": `${screenHeight}px`, "overflow": "scroll", "marginLeft": "920px"}}>
 
                 <Panel_GameDataTest
                        localTest={true}

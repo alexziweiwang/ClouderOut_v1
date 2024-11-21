@@ -148,25 +148,25 @@ export default function Modal_EmuManager({
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
-    function update1GdtToOuterLayer(data1) {
+    function update1GdtToOuterLayer() {
         //gdt1
-        update1Gdt(data1);
+        update1Gdt(gdt1);
     }
 
-    function update2EppToOuterLayer(data2) {
+    function update2EppToOuterLayer() {
         //epp2 
-        update2Epp(data2);
+        update2Epp(epp2);
     }
 
-    function update3EpaToOuterLayer(data3) {
+    function update3EpaToOuterLayer() {
         //epa3
-        update3Epa(data3);
+        update3Epa(epa3);
     }
 
-    function update4EssToOuterLayer(data4) {
-        //ess4
-        update4Ess(data4);
-    }
+    // function update4EssToOuterLayer(data4) {
+    //     //ess4
+    //     update4Ess(data4);
+    // } //TODO temp: not using
 
 
     async function prepare1Gdt() {
@@ -264,20 +264,26 @@ export default function Modal_EmuManager({
 
 
     useEffect(() => {
-        console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
-        console.log("\t\tinfo: username,projName", username , "and" ,projName);
+                                    //TODO
+                                    // console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
+                                    // console.log("\t\tinfo: username,projName", username , "and" ,projName);
 
         
         if (firstTimeEnter === true) {
             prepare1Gdt();
             prepare2Epp();
             prepare3Epa();
-            // prepare4Ess();
+            // prepare4Ess();                                   //TODO later
             fetchVisualListFromCloud();
 
-                                                console.log("!!!!!!!!!!!! Emu-Manager first-enter...");
+
+                                                console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
             setFirstTimeEnter(false);
         }
+
+        update1GdtToOuterLayer(); 
+        update2EppToOuterLayer(); 
+        update3EpaToOuterLayer();
 
         let UILang = getUILanguage();
         prepUILange(UILang);
@@ -288,6 +294,11 @@ export default function Modal_EmuManager({
     }
 
     async function saveAllChangesToCloud() {
+        update1GdtToOuterLayer(); 
+        update2EppToOuterLayer(); 
+        update3EpaToOuterLayer();
+
+
         //TODO send all 4 sets to cloud
         let resObj = {};
         resObj["gdt1"] = gdt1;

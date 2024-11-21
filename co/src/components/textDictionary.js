@@ -194,7 +194,6 @@ const textDictionary = {
         itemNameText: "Item Name",
         itemContentText: "Item Content",
         operationText: "Operation",
-
         emuGameDataText: "Emu Game Data",
         emuPlayerProfile: "Emu Player Profile",
         emuPlayerAccount: "Emu Player Account",
