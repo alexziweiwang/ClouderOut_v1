@@ -12,7 +12,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
     getUILanguage,
-    username, projName
+    username, projName,
+    initialEmuGameDataTracker,
 }) {
 
 
@@ -86,7 +87,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
  
         if (firstTimeEnter === true) {
 
-            initializeGameDataTracker();
             initializeResourceLists();
 
     
@@ -159,59 +159,25 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     }
 
-    async function initializeGameDataTracker() {
-
-        let isUpdated = true;
-
-        let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
-      console.log("fetched from cloud: ", gDataDesignMap);
-        if (gDataDesignMap === null || gDataDesignMap === undefined) {
-            return;
-        }
-        setGameDataDesignMap(gDataDesignMap);
-
-        
-        let trackerMap = {};
-        {Object.keys(gDataDesignMap).map((currKey) => {
-            let name = gDataDesignMap[currKey]["name"];
-            let defaultVal = gDataDesignMap[currKey]["default_value"];
-            let dataType = gDataDesignMap[currKey]["data_type"];
-
-            let obj = {
-                "name": name,
-                "default_value": defaultVal,
-                "data_type": dataType,
-                "current_value": defaultVal
-            }
-            let keyStr = currKey;
-            trackerMap[keyStr] = obj;
-        })} 
-        setGameDataTracker(trackerMap); 
-
-
-                                                        console.log("quick-view, initialized-game-data: ", "\ndesign-map = ", gDataDesignMap, "\ntracker = ", trackerMap);
-
-    } //-- initializeGameDataTracker() --
-
     function reset_GameDataTracker() {
-        let gDataDesignMap = gameDataDesignMap;
-        let trackerMap = {};
-        {Object.keys(gDataDesignMap).map((currKey) => {
-            let name = gDataDesignMap[currKey]["name"];
-            let defaultVal = gDataDesignMap[currKey]["default_value"];
-            let dataType = gDataDesignMap[currKey]["data_type"];
+        // let gDataDesignMap = gameDataDesignMap;
+        // let trackerMap = {};
+        // {Object.keys(gDataDesignMap).map((currKey) => {
+        //     let name = gDataDesignMap[currKey]["name"];
+        //     let defaultVal = gDataDesignMap[currKey]["default_value"];
+        //     let dataType = gDataDesignMap[currKey]["data_type"];
 
-            let obj = {
-                "name": name,
-                "default_value": defaultVal,
-                "data_type": dataType,
-                "current_value": defaultVal
-            }
-            let keyStr = currKey;
-            trackerMap[keyStr] = obj;
-        })}
+        //     let obj = {
+        //         "name": name,
+        //         "default_value": defaultVal,
+        //         "data_type": dataType,
+        //         "current_value": defaultVal
+        //     }
+        //     let keyStr = currKey;
+        //     trackerMap[keyStr] = obj;
+        // })}
         
-        setGameDataTracker(trackerMap);
+        // setGameDataTracker(trackerMap); //TODO refactor
 
     } //-- reset_GameDataTracker() --
 
@@ -302,8 +268,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
                             function resetViewingPiece() {
-                                initializeGameDataTracker();
-
+                                
                                 setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
                                 setResetSignal(true);
                                 setClickOnGameScreen(false);

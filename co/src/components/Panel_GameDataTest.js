@@ -78,7 +78,7 @@ export default function Panel_GameDataTest({
 
     function fetchGdataTrackerFromOuterLayer() {
         let newGameDataObj = receiveGameDataObj();
-        
+
                             console.log("\t (Panel_GameData) !!! new game-data-obj:", newGameDataObj); //TODO test
 
 
@@ -140,96 +140,7 @@ return (
                                             : (gameDataTrackerMap[currKey]["current_value"] === true ? 
                                                 "True" 
                                                 : "False")}</label><br></br>
-                                        <br></br>
-                                        {gameDataTrackerMap[currKey]["data_type"] === "boolean" && 
-                                        <select 
-                                            style={{"width": "90px"}}
-                                            value={(editingItem === inputId) ? editingInput : ""}
-                                            onChange={(event)=>{
-                                                //TODO event.target.value
-                                                setEditingItem(inputId);
-                                                setEditingInput(event.target.value);
 
-                                        }}> 
-                                            <option key={optionNone} value=""> -- </option>
-                                            <option key={optionFalse} value={falseBoolean}>False</option>
-                                            <option key={optionTrue} value={trueBoolean}>True</option>
-                                        </select>
-                                        }
-
-                                        {gameDataTrackerMap[currKey]["data_type"] === "number" && 
-                                        <input 
-                                            className="textNoSelect"
-                                            type="number"
-                                            style={{"width": "90px"}}
-                                            value={(editingItem === inputId) ? editingInput : ""}
-                                            onChange={(event)=>{
-                                                //TODO event.target.value
-                                                setEditingItem(inputId);
-
-                                                setEditingInput(event.target.value);
-
-                                            }}
-                                        
-                                        ></input>}
-
-                                        {gameDataTrackerMap[currKey]["data_type"] === "string" && 
-                                        <input 
-                                            className="textNoSelect"
-                                            style={{"width": "90px"}}
-                                            value={(editingItem === inputId) ? editingInput : ""}
-                                            onChange={(event)=>{
-                                                //TODO event.target.value
-                                                setEditingItem(inputId);
-
-                                                setEditingInput(event.target.value);
-                                            }}
-                                    
-                                        ></input>}
-
-
-                                        <button
-                                            className="textNoSelect"
-                                            onClick={()=>{
-                                                triggerClickOnGameDataPanel();
-
-                                                let tempObj = gameDataTrackerMap;
-                                                if (editingInput === "true") {
-                                                    tempObj[currKey]["current_value"] = true;
-                                                } else if (editingInput === "false") {
-                                                    tempObj[currKey]["current_value"] = false;
-                                                } else {
-                                                    tempObj[currKey]["current_value"] = editingInput;
-                                                }
-
-                                                console.log("update: ", currKey, " =>", editingInput); //TODO test
-                                                console.log(tempObj); //TODO test
-                                                console.log(); //TODO test
-
-                                                setGameDataTrackerMap(tempObj);
-                                                setEditingInput("");
-                                                setEditingItem();
-                                                updateRenderCounter();
-                                            }}
-                                        
-                                        >Update</button>
-
-                                        <br></br>
-                                        <button 
-                                            className="textNoSelect"
-                                            onClick={()=>{
-                                                triggerClickOnGameDataPanel();
-
-                                                            // let tempObj = gameDataTrackerMap;
-                                                            // tempObj[currKey]["current_value"] = tempObj[currKey]["default_value"];
-                                                            // setGameDataTrackerMap(tempObj);
-                                                            //TODO refactor data-structure-resetting later
-
-                                                setEditingInput("");
-                                                setEditingItem(inputId);
-                                                updateRenderCounter();
-                                            }}
-                                        >Reset</button>
                                     </td>   
 
                                     <td>

@@ -534,7 +534,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
 
-  //TODO21
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
 
   const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                               //TODO important for holder-in-practice
@@ -1150,18 +1149,17 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function getUserConfigFromEmuManager1Gdt(data1) {
-    //TODO update data1 to be the new Game-Data-Tracker
+    //update data1 to be the new Game-Data-Tracker
     setTestPlayerGameData(data1);
-
   }
 
   function getUserConfigFromEmuManager2Epp(data2) {
-    //TODO update data2 to be the new Emu-Player-Profile
+    //update data2 to be the new Emu-Player-Profile
     setTestPlayerProfile(data2);
   }
 
   function getUserConfigFromEmuManager3Epa(data3) {
-    //TODO update data3 to be the new Emu Player Account
+    //update data3 to be the new Emu Player Account
     setTestPlayerAccount(data3);
   }
 

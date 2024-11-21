@@ -163,22 +163,6 @@ export default function ConversationNodeEditingPanel() {
     "TextContentArea-w": 580,
     "TextContentArea-h": 180,
 
-    // "buttonAutoIsTextFont": true,
-    // "buttonAutoShade0": "#bf8da5",
-    // "buttonAutoPicName0": "",
-    // "buttonAutoShade1": "#4a54a1",
-    // "buttonAutoPicName1": "",
-    // "buttonAutoFontName": "serif",
-    // "buttonAutoFontItalic": false,
-
-    // "buttonLogIsTextFont": true,
-    // "buttonLogShade": "#bf8da5",
-    // "buttonLogPicName":  "",
-    // "buttonLogShade": "#4a54a1",
-    // "buttonLogPicName": "",
-    // "buttonLogFontName": "serif",
-    // "buttonLogFontItalic": false,
-
     "picPair": "" //TODO impl
 
 }); //TODO fetch from cloud-db
@@ -277,6 +261,13 @@ export default function ConversationNodeEditingPanel() {
         "speakerPosY": 10,
 
     });
+
+
+    const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
+
+    const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
+  
+    const [testPlayerAccount, setTestPlayerAccount] = useState({});        
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
     const [screenWidth, setScreenWidth] = useState(800);
@@ -555,16 +546,19 @@ export default function ConversationNodeEditingPanel() {
 
 
     function getUserConfigFromEmuManager1Gdt(data1) {
-        //TODO update data1 to be the new Game-Data-Tracker
-    }
-
-    function getUserConfigFromEmuManager2Epp(data2) {
-        //TODO update data2 to be the new Emu-Player-Profile
-    }
-
-    function getUserConfigFromEmuManager3Epa(data3) {
-        //TODO update data3 to be the new Emu Player Account
-    }
+        //update data1 to be the new Game-Data-Tracker
+        setTestPlayerGameData(data1);
+      }
+    
+      function getUserConfigFromEmuManager2Epp(data2) {
+        //update data2 to be the new Emu-Player-Profile
+        setTestPlayerProfile(data2);
+      }
+    
+      function getUserConfigFromEmuManager3Epa(data3) {
+        //update data3 to be the new Emu Player Account
+        setTestPlayerAccount(data3);
+      }
 
     function getUserConfigFromEmuManager4Ess(data4) {
         //TODO update data4 to be the new Emu SL slots
@@ -592,6 +586,10 @@ export default function ConversationNodeEditingPanel() {
     function passInUILanguage() {
         return languageCodeTextOption; //TODO20 //navigation-jumpped here, add strategy later
         
+    }
+
+    function notUsing() {
+        return;
     }
     
 
@@ -884,7 +882,8 @@ export default function ConversationNodeEditingPanel() {
         
                     getUILanguage={passInUILanguage}
                     username={state.userName} 
-                    projName={state.projectName}    
+                    projName={state.projectName} 
+                    initialEmuGameDataTracker={testPlayerGameData}
             />}
             
 
@@ -898,11 +897,10 @@ export default function ConversationNodeEditingPanel() {
                     handleEmCancel={handleEmuManagerCancel}
 
                     update1Gdt={getUserConfigFromEmuManager1Gdt}
-                    update2Epp={getUserConfigFromEmuManager2Epp}
-                    update3Epa={getUserConfigFromEmuManager3Epa}
-                    update4Ess={getUserConfigFromEmuManager4Ess}
+                    update2Epp={notUsing}
+                    update3Epa={notUsing}
+                    update4Ess={notUsing}
                     
-
                     getUILanguage={passInUILanguage}
                     isForGameMaker={false}
 
