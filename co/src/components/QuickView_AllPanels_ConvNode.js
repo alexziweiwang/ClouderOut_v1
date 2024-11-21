@@ -283,7 +283,22 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
     function resetViewingPiece() {
-                                
+        let mapTemp = {};
+        {Object.keys(gameDataTracker).map((currKey) => {
+            let item = gameDataTracker[currKey];
+            let itemName = item["name"];
+            let newItem = {};
+    
+            newItem["name"] = itemName;
+            newItem["current_value"] = item["default_value"];
+            newItem["default_value"] = item["default_value"];
+            newItem["data_type"] = item["data_type"];
+            
+            mapTemp[itemName] = newItem;
+        })} 
+        setGameDataTracker(mapTemp); //TODO20
+
+        
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
         setResetSignal(true);
         setClickOnGameScreen(false);

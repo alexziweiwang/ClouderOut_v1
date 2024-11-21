@@ -564,22 +564,9 @@ export default function ConversationNodeEditingPanel() {
         //TODO update data4 to be the new Emu SL slots
     }
 
-    function passIn1Gdt () {
-
-    } 
-    function passIn2Epp () {
-
-    }        
-    function passIn3Epa () {
-
-    }              
-    function passIn4Ess () {
-
-    }
-
-
 
     function handleqvCancel() {
+
         setIsDisplayQview(false);
     }
 
