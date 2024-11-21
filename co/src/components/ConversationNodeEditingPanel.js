@@ -862,12 +862,7 @@ export default function ConversationNodeEditingPanel() {
             </div>
         
 
-                    
-            {/* }  */}
-         
-
            
-            //important: here the quick-view SHOULD rerender when entered
             {isDisplayQview && <QuickView_AllPanels_ConvNode
                     initialPieceNum={previewingIndex}
                     isDisplay={isDisplayQview}

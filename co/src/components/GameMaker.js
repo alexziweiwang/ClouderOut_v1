@@ -1168,6 +1168,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     //TODO temp: not using
   }
 
+  function openEmuManager() {
+      setDisplayEmBool(true);
+  }
+
 
 
   return (
@@ -1321,8 +1325,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   getScreenheight={passInScreenHeight}
                   userName={username} 
                   projName={projectName} 
-                  updateEmuPlayerProfile={updateEmuPlayerProfile}
+
                   intialEmuPlayerProfile={testPlayerProfile}
+                  openEmuManager={openEmuManager}
+                  fetchEmuPlayerProfile={passInPlayerProfile}
                    
                   getUILanguage={passInUILanguage}
           

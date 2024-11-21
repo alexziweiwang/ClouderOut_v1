@@ -11,11 +11,16 @@ export default function NavigationSetter({initialNavObj,
   initialScreenHeight, getScreenheight,
   userName,
   projName,
-  updateEmuPlayerProfile,
   intialEmuPlayerProfile,
+  fetchEmuPlayerProfile,
+  openEmuManager,
   getUILanguage,
 
 }) {
+  //TODO1
+
+
+
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
 
@@ -319,7 +324,6 @@ export default function NavigationSetter({initialNavObj,
     const [gameDataDesignList, setGameDataDesignList] = useState(-1);                    /* Important */
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
-    
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -344,6 +348,9 @@ export default function NavigationSetter({initialNavObj,
 
       let heightTemp = getScreenheight();
       setScreenHeight(heightTemp);
+
+      let ppTemp = fetchEmuPlayerProfile();
+      setEmuPlayerInfo(ppTemp);
 
     });
 
@@ -4441,57 +4448,33 @@ export default function NavigationSetter({initialNavObj,
             <div>Emulated User Data (for Test) Setting</div>
             <div className="indentOne someGrey" style={{"color": "#000000", "padding": "3px"}}>
                 <label>Username: </label>
-                <input 
-                    defaultValue={emuPlayerInfo["playername"]}
-                    onChange={(event)=>{
-                      let infoObj = emuPlayerInfo;
-                      infoObj["playername"] = event.target.value;
-                      setEmuPlayerInfo({...emuPlayerInfo, "playername": event.target.value});
-                    }}
-                ></input>
+                <label>{emuPlayerInfo["playername"]}</label>
                 <br></br>
+                
+                <label>User Title:</label>
+                <label>  {emuPlayerInfo["userTitle"]}</label>
+                <br></br>
+                
                 <label>Icon Picture: </label>
-                    <select
-
-                      onChange={(event)=>{
-                        let infoObj = emuPlayerInfo;
-                        infoObj["iconPicName"] = event.target.value;
-                        setEmuPlayerInfo({...emuPlayerInfo, "iconPicName": event.target.value});         
-                      }}
-                    >
-                      <option key="ppIcon-defaultNone" value="">-- Select Picture Name --</option>
-                      {visualList.map((item, index) => {
-                          let keyStr = "ppIcon-" + index + item["var"];
-                          return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
-                      })}
-
-                    </select>
-
-                <button
-                  onClick={()=>{
-                    openRm();
-                  }}
-                >{manageResourceText}</button>
+                <label>  {emuPlayerInfo["iconPicName"]}</label>
+                    <div>
+                      
+                    </div>
                 <br></br>
 
                 <label>Level: </label>
-                <input></input>
+                <label>{emuPlayerInfo["level"]}</label>
                 <br></br>
 
                 <label>Membership: </label>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
+                <label>{emuPlayerInfo["membership"]}</label>
 
                 <br></br>
                 <button 
                   onClick={()=>{
-                    updateEmuPlayerProfile(emuPlayerInfo);
-
+                    openEmuManager();
                   }}
-                >{updateText}</button>
+                >Emu Manager</button>
             </div>
           
             <br></br>
