@@ -283,19 +283,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
     function resetViewingPiece() {
-        // let mapTemp = {};
-        // {Object.keys(gameDataTracker).map((currKey) => {
-        //     let item = gameDataTracker[currKey];
-        //     let itemName = item["name"];
-        //     let newItem = {};
-    
-        //     newItem["name"] = itemName;
-        //     newItem["current_value"] = item["default_value"];
-        //     newItem["default_value"] = item["default_value"];
-        //     newItem["data_type"] = item["data_type"];
-            
-        //     mapTemp[itemName] = newItem;
-        // })} 
+
         setGameDataTracker(initialEmuGameDataTracker); //TODO20
 
         
@@ -468,6 +456,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
                     notifyNewGameData={notifyNewGameData}
                     notifyAfterReset={notifyAfterReset}
+
+                    receiveGameDataObj={passInGameDataFromScreen}
+
                 />
 
                 <Panel_GameDataTest

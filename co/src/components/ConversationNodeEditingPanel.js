@@ -550,17 +550,17 @@ export default function ConversationNodeEditingPanel() {
 
                                                 console.log("*** from emu-manger, gdt = ", data1);
         setTestPlayerGameData(data1);
-      }
+    }
     
-      function getUserConfigFromEmuManager2Epp(data2) {
+    function getUserConfigFromEmuManager2Epp(data2) {
         //update data2 to be the new Emu-Player-Profile
         setTestPlayerProfile(data2);
-      }
+    }
     
-      function getUserConfigFromEmuManager3Epa(data3) {
+    function getUserConfigFromEmuManager3Epa(data3) {
         //update data3 to be the new Emu Player Account
         setTestPlayerAccount(data3);
-      }
+    }
 
     function getUserConfigFromEmuManager4Ess(data4) {
         //TODO update data4 to be the new Emu SL slots

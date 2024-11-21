@@ -150,7 +150,26 @@ export default function Modal_EmuManager({
 
     function update1GdtToOuterLayer() {
         //gdt1
-        update1Gdt(gdt1);
+        let tempObj = {};
+        {Object.keys(gdt1).map((currKey) => {
+            let name = gdt1[currKey]["name"];
+            let defaultVal = gdt1[currKey]["default_value"];
+            let dataType = gdt1[currKey]["data_type"];
+            let currVal = gdt1[currKey]["current_value"];
+
+            let obj = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": currVal
+            }
+            let keyStr = currKey;
+            tempObj[keyStr] = obj;
+        })} 
+
+                            console.log("sending out gdt1(dup)... ", tempObj);
+        
+        update1Gdt(tempObj);
     }
 
     function update2EppToOuterLayer() {

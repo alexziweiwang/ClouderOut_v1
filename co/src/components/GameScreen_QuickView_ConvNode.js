@@ -12,7 +12,8 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     visualList, audioList, gameData, notifyNewGameData,
     getResetSignal,
     triggerClickOnGameScreen, getIsGameScreenClicked,
-    notifyAfterReset
+    notifyAfterReset,
+    receiveGameDataObj
 }) {
 
         let modalStyleName = "modalBackboard"; 
@@ -52,18 +53,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         useEffect(() => {
      
           if (firstTimeEnter === true) {
-    
-            // let gameDataTemp = gameData; //TODO refactor: do this at outer-compo
-            // let defaultMap = {}; //for the record of entering-game-data
-            // {Object.keys(gameDataTemp).map((currKey) => {
-            //     gameDataTemp[currKey]["current_value"] = gameDataTemp[currKey]["default_value"];
-            //     //current_value, data_type("boolean"/"string"/"number"), default_value, name
-            //     defaultMap[currKey] = gameDataTemp[currKey]["default_value"];
-            // })}
-            // setGameDataTracker(gameDataTemp);
-            // setOriginalGmdt(defaultMap); //TODO refactor: do this at outer-compo
-    
-     
+
             setFirstTimeEnter(false);
           }
     
@@ -112,7 +102,11 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             if (resetSignal === true) {
                 let pieceNumTemp = getCurrPieceNum();
                 setCurrPieceNum(pieceNumTemp);
-                //TODO fetch game-data-tracker from caller compo
+                if (clickStatus === true) {
+                        //TODO fetch game-data-tracker from caller compo
+                    let newGdt = receiveGameDataObj();
+                    setGameDataTracker(newGdt);
+                }
 
                 notifyAfterReset();
             }
