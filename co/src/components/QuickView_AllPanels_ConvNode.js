@@ -282,12 +282,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
-                            function resetViewingPiece() {
+    function resetViewingPiece() {
                                 
-                                setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-                                setResetSignal(true);
-                                setClickOnGameScreen(false);
-                            }
+        setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+        setResetSignal(true);
+        setClickOnGameScreen(false);
+
+    }
 
     // function notifyFinished() {
     //     setTextStillTyping(false);
@@ -396,10 +397,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return screenWidth;
     }
 
-    function passInGameDataDesignList() {
-        return gameDataDesignMap;
-    }
-
     function passInGameDataFromScreen() {
         return gameDataTracker;
     }
@@ -442,7 +439,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     visualList={visualList} 
                     audioList={audioList}
 
-                    gameData={tempPlaceholder}
+                    gameData={gameDataTracker}
 
                     getCurrPieceNum={passInCurrPieceNum}
 

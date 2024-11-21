@@ -9,7 +9,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_buttonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    visualList, audioList, gameData,notifyNewGameData,
+    visualList, audioList, gameData, notifyNewGameData,
     getResetSignal,
     triggerClickOnGameScreen, getIsGameScreenClicked,
     notifyAfterReset
@@ -248,7 +248,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             gmdtObj[name].current_value = value;
             setGameDataTracker(gmdtObj);
 
-            console.log("changed-game-data-obj: ", gmdtObj); //TODO test
+            console.log("gamescreenquickviewconvnode... changed-game-data, now-obj: ", gmdtObj); //TODO test
             
             //TODO3 update to outer-layer
             notifyNewGameData(gmdtObj);
@@ -256,7 +256,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         }
     
         function changeGameDataByStatement(name, action, newVal, type) {
-            console.log("changeGameDataByStatement(): ", name, ":", action, ", ", newVal, " (", type, ")"); //TODO test
+            console.log("!!! changeGameDataByStatement(): ", name, ":", action, ", ", newVal, " (", type, ")"); //TODO test
             console.log("curr-val = ", gameDataTracker[name]["current_value"]); //TODO test
 
 

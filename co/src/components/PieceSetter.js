@@ -731,7 +731,7 @@ export default function PieceSetter({
                 value={selectEditTextContent}
                 checked={!selectEditTextContent}
                 onChange={()=>{
-                    if (selectEditTextContent === false) {
+                    if (selectEditTextContent === true) {
                         let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
                         if (response === true) {
                             setSelectEditTextContent(false);

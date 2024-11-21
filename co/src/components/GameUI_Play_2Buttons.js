@@ -78,8 +78,9 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                     onMouseUp={
                         ()=>{
                             document.getElementById(currId).style.filter = "brightness(100%)";
-        
+                                                            console.log("GameUIPlay2Buttons pressed...");
                             if (gameData === undefined) {
+                                                                    console.log("... gameData undefined.");
                                 return;
                             }
                             
@@ -88,25 +89,30 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                             let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
                             
                             if (conseqArray === undefined) {
+                                                                    console.log("... conseqArray undefined.");
+
                                 return;
                             }
                             let len = conseqArray.length;
-
+                                                                    console.log("conseqArray: ", conseqArray, ", len = ", len);
                     
                             let i = 0;
                             for (; i < len; i++) {
                                 let name = conseqArray[i][0];
                                 
                                 if (gameData[name] === undefined) {
+                                                                    console.log("\t\t\titem naem not found... continue");
+                                                        
                                     continue;
                                 }
 
                                 let action = conseqArray[i][1];
                                 let newVal = conseqArray[i][2];
                                 let type = gameData[name]["data_type"];
-
+                                                                    console.log("calling outside func:  change-by-stmt");
                                 changeGameDataByStatement(name, action, newVal, type);
                             }
+
 
                             triggerNextPiece();
                         }
