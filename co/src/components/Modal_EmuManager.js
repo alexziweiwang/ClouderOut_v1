@@ -89,6 +89,32 @@ export default function Modal_EmuManager({
         textDictItem.currentValueText
         : textDictItemDefault.currentValueText;
 
+    const itemNameText = textDictItem.itemNameText !== undefined ? 
+        textDictItem.itemNameText
+        :textDictItemDefault.itemNameText;
+
+    const itemContentText = textDictItem.itemContentText !== undefined ?
+        textDictItem.itemContentText
+        : textDictItemDefault.itemContentText;
+
+    const operationText = textDictItem.operationText !== undefined ?
+        textDictItem.operationText
+        : textDictItemDefault.operationText;
+
+    const emuGameDataText = textDictItem.emuGameDataText !== undefined ?
+        textDictItem.emuGameDataText
+        : textDictItemDefault.emuGameDataText
+
+    const emuPlayerProfile = textDictItem.emuPlayerProfile !== undefined ? 
+        textDictItem.emuPlayerProfile
+        : textDictItemDefault.emuPlayerProfile;
+
+    const emuPlayerAccount = textDictItem.emuPlayerAccount !== undefined ?
+        textDictItem.emuPlayerAccount
+        : textDictItemDefault.emuPlayerAccount;
+
+//TODO15
+
 
     
     const [visualMap, setVisualMap] = useState({});
@@ -324,7 +350,7 @@ return (<div className={modalStyleName}>
                         onClick={()=>{
                             setFocusingPanelName("1gdt");
                         }}
-                    >1.Game Data to Test</button>
+                    >1.{emuGameDataText}</button>
 
                     <br></br>
                     <button
@@ -332,14 +358,14 @@ return (<div className={modalStyleName}>
                         onClick={()=>{
                             setFocusingPanelName("2epp");
                         }}                    
-                    >2.Emu Player Profile</button>
+                    >2.{emuPlayerProfile}</button>
                     <br></br>
                     <button
 
                         onClick={()=>{
                             setFocusingPanelName("3epa");
                         }}             
-                    >3.Emu Player Account</button>
+                    >3.{emuPlayerAccount} </button>
                     <br></br>
                     <button
 
@@ -532,10 +558,10 @@ return (<div className={modalStyleName}>
                         <table>
                             <thead>
                                 <tr>
-                                    <th style={{"width": "200px"}}>Value Name</th>
-                                    <th style={{"width": "200px"}}>Value Content</th>
-                                    <th style={{"width": "200px"}}>Operation</th>
-                                
+                                    <th style={{"width": "200px"}}>{itemNameText}</th>
+                                    <th style={{"width": "200px"}}>{itemContentText}</th>
+                                    <th style={{"width": "200px"}}>{operationText}</th>
+
                                 </tr>
 
                             </thead>
@@ -797,19 +823,20 @@ return (<div className={modalStyleName}>
                                 "overflow": "scroll",
                                 "width": "613px",
                                 }}
-                            
                     >
+
+
                         <table>
                             <thead>
                                 <tr>
                                     <th style={{"width":"170px", "overflow": "scroll"}}>     
-                                        Value Name
+                                        {itemNameText}
        </th>
                                     <th style={{"width":"320px", "overflow": "scroll"}}>
-                                        Value Content
+                                        {itemContentText}
                                     </th>
                                     <th style={{"width":"100px", "overflow": "scroll"}}>
-                                        Operation
+                                        {operationText}
                                     </th>
                                 </tr>
                             </thead>

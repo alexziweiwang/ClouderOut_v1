@@ -188,9 +188,18 @@ const textDictionary = {
         speakerNameText: "Speaker Name",
         withTextFrameText: "Include Text-frame",
         selectOperationDefaultMaintain: "Select Operation (default: maintain)",
-
         nameText: "Name",
         currentValueText: "Current Text",
+
+        itemNameText: "Item Name",
+        itemContentText: "Item Content",
+        operationText: "Operation",
+
+        emuGameDataText: "Emu Game Data",
+        emuPlayerProfile: "Emu Player Profile",
+        emuPlayerAccount: "Emu Player Account",
+
+
 
 
 
@@ -387,10 +396,15 @@ const textDictionary = {
         speakerNameText: "说话者 名称",
         withTextFrameText: "有文本框",
         selectOperationDefaultMaintain: "选择操作(默认: 保持)",
-
         nameText: "名称",
         currentValueText: "当前值",
 
+        itemNameText: "单项名称",
+        itemContentText: "单项内容",
+        operationText: "操作",
+        emuGameDataText: "模拟/测试用 游戏数据",
+        emuPlayerProfile: "模拟/测试用 玩家资料",
+        emuPlayerAccount: "模拟/测试用 玩家帐户",
 
     },
     jp: {
