@@ -112,6 +112,8 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             if (resetSignal === true) {
                 let pieceNumTemp = getCurrPieceNum();
                 setCurrPieceNum(pieceNumTemp);
+                //TODO fetch game-data-tracker from caller compo
+
                 notifyAfterReset();
             }
 
@@ -307,6 +309,36 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         //     return showConvLog;
         // }     //TODO: remove unusued later
 
+        function changeGameDataByStatement2Arr(pieceNum, item) {
+            let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
+            let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
+            if (conseqArray === undefined) {
+                                                    console.log("2... conseqArray undefined.");
+                return;
+            }
+            let len = conseqArray.length;
+                                                    console.log("2conseqArray: ", conseqArray, ", len = ", len);
+
+            let i = 0;
+            for (; i < len; i++) {
+                let name = conseqArray[i][0];
+
+                if (gameData[name] === undefined) {
+                                                        console.log("\t\t\t 2 item naem not found... continue");
+                    continue;
+                }
+
+                let action = conseqArray[i][1];
+                let newVal = conseqArray[i][2];
+                let type = gameData[name]["data_type"];
+                                                        console.log("2calling change-by-stmt");
+                changeGameDataByStatement(name, action, newVal, type);
+
+            }
+            
+        }
+
+
     return (         
         <div   
                     style={{"position": "relative", 
@@ -393,6 +425,8 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                     defaultBtnUISettings={uiData2_buttonOption} 
                     changeGameDataByStatement={changeGameDataByStatement}                                    
                     gameData={gameDataTracker}
+                    changeGameDataByStatement2Arr={changeGameDataByStatement2Arr}
+
                 />
             }
 

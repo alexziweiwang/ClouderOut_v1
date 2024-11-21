@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defaultBtnUISettings,
-    gameData, changeGameDataByStatement
+    gameData, changeGameDataByStatement,
+    changeGameDataByStatement2Arr
     }) {
 
     const [currentPieceNum, setCurrentPieceNum] = useState(initialPieceNum);
@@ -85,34 +86,36 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                             }
                             
                             //TODO1 important: update game-data!!
-                            let stndButtonThisButtonInfo = allPieceContent[currentPieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
-                            let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
+                      //      let stndButtonThisButtonInfo = allPieceContent[currentPieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
+                      //      let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
                             
-                            if (conseqArray === undefined) {
-                                                                    console.log("... conseqArray undefined.");
+                            // if (conseqArray === undefined) {
+                            //                                   //      console.log("... conseqArray undefined.");
 
-                                return;
-                            }
-                            let len = conseqArray.length;
-                                                                    console.log("conseqArray: ", conseqArray, ", len = ", len);
+                            //     return;
+                            // }
+                            // let len = conseqArray.length;
+                                                                    //console.log("conseqArray: ", conseqArray, ", len = ", len);
                     
-                            let i = 0;
-                            for (; i < len; i++) {
-                                let name = conseqArray[i][0];
+                            // let i = 0;
+                            // for (; i < len; i++) {
+                            //     let name = conseqArray[i][0];
                                 
-                                if (gameData[name] === undefined) {
-                                                                    console.log("\t\t\titem naem not found... continue");
+                            //     if (gameData[name] === undefined) {
+                            //                                     //    console.log("\t\t\titem naem not found... continue");
                                                         
-                                    continue;
-                                }
+                            //         continue;
+                            //     }
 
-                                let action = conseqArray[i][1];
-                                let newVal = conseqArray[i][2];
-                                let type = gameData[name]["data_type"];
-                                                                    console.log("calling outside func:  change-by-stmt");
-                                changeGameDataByStatement(name, action, newVal, type);
-                            }
+                            //     let action = conseqArray[i][1];
+                            //     let newVal = conseqArray[i][2];
+                            //     let type = gameData[name]["data_type"];
+                            //                                     //    console.log("calling outside func:  change-by-stmt");
+                            //     changeGameDataByStatement(name, action, newVal, type);
 
+                            // }
+                            
+                            changeGameDataByStatement2Arr(currentPieceNum, item);
 
                             triggerNextPiece();
                         }

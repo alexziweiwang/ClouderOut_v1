@@ -547,6 +547,8 @@ export default function ConversationNodeEditingPanel() {
 
     function getUserConfigFromEmuManager1Gdt(data1) {
         //update data1 to be the new Game-Data-Tracker
+
+                                                console.log("*** from emu-manger, gdt = ", data1);
         setTestPlayerGameData(data1);
       }
     
