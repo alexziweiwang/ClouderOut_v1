@@ -358,6 +358,7 @@ return (<div className={modalStyleName}>
                     }}
                 >
                     <button 
+                        className={focusingPanelName === "1gdt" ? "selectedTab" : ""}
                         onClick={()=>{
                             setFocusingPanelName("1gdt");
                         }}
@@ -365,21 +366,21 @@ return (<div className={modalStyleName}>
 
                     <br></br>
                     <button
-
+                        className={focusingPanelName === "2epp" ? "selectedTab" : ""}
                         onClick={()=>{
                             setFocusingPanelName("2epp");
                         }}                    
                     >2.{emuPlayerProfile}</button>
                     <br></br>
                     <button
-
+                        className={focusingPanelName === "3epa" ? "selectedTab" : ""}
                         onClick={()=>{
                             setFocusingPanelName("3epa");
                         }}             
                     >3.{emuPlayerAccount} </button>
                     <br></br>
                     <button
-
+                        className={focusingPanelName === "4ess" ? "selectedTab" : ""}
                         onClick={()=>{
                             setFocusingPanelName("4ess");
                         }}             

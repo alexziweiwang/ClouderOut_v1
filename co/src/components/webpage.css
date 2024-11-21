@@ -1828,3 +1828,8 @@ button:hover {
     width: 150px;
     height: 150px;
 }
+
+.selectedTab {
+    background-color: #293241;
+    color: #FFFFFF
+}

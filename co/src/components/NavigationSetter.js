@@ -4455,19 +4455,16 @@ export default function NavigationSetter({initialNavObj,
                 <label>  {emuPlayerInfo["userTitle"]}</label>
                 <br></br>
                 
-                <label>Icon Picture: </label>
+                <label>Icon Name: </label>
                 <label>  {emuPlayerInfo["iconPicName"]}</label>
-                    <div>
-                      
-                    </div>
                 <br></br>
 
                 <label>Level: </label>
-                <label>{emuPlayerInfo["level"]}</label>
+                <label>  {emuPlayerInfo["level"]}</label>
                 <br></br>
 
                 <label>Membership: </label>
-                <label>{emuPlayerInfo["membership"]}</label>
+                <label>  {emuPlayerInfo["membership"]}</label>
 
                 <br></br>
                 <button 
