@@ -69,7 +69,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
-    const [gameDataTracker, setGameDataTracker] = useState({}); //used during test-play
+    const [gameDataTracker, setGameDataTracker] = useState(initialEmuGameDataTracker); //used during test-play
     const [gameDataDesignMap, setGameDataDesignMap] = useState([]); //used for storing fetched-design-list from cloud
 
 
@@ -178,6 +178,21 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         // })}
         
         // setGameDataTracker(trackerMap); //TODO refactor
+
+        let mapTemp = {};
+        {Object.keys(gameDataTracker).map((currKey) => {
+            let item = gameDataTracker[currKey];
+            let itemName = item["name"];
+            let newItem = {};
+    
+            newItem["name"] = itemName;
+            newItem["current_value"] = item["default_value"];
+            newItem["default_value"] = item["default_value"];
+            newItem["data_type"] = item["data_type"];
+            
+            mapTemp[itemName] = newItem;
+        })} 
+        setGameDataTracker(mapTemp); //TODO20
 
     } //-- reset_GameDataTracker() --
 
@@ -298,8 +313,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         let gmdtObj = gameDataTracker;
         gmdtObj[name].current_value = value;
         
-        setGameDataTracker(gmdtObj); //TODO20
-
+        setGameDataTracker(gmdtObj);
     }  
 
     function changeGameDataTrackerByStatement(name, action, newVal, type) { //TODO later
@@ -406,7 +420,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                 <button 
                     className="cursor_pointer modalClose" 
                     onClick={()=>{handleQViewCancel();}}> {closeText} </button>
-                {/* <button onClick={()=>{resetViewingPiece();}}> {resetText} </button> //TODO remove later */}
+                <button 
+                    className="cursor_pointer modalClose" 
+                    onClick={()=>{resetViewingPiece();}}
+                > {resetText} </button> //TODO remove later
             </div>
 
 

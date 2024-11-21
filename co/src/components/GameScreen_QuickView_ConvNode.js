@@ -197,22 +197,31 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             return directNextPieceBool;
         }
     
-        // function resetViewingPiece() {
-        //     let gameDataTemp = gameDataTracker;
+        function resetViewingPiece() {
+            let mapTemp = {};
+            {Object.keys(gameDataTracker).map((currKey) => {
+                let item = gameDataTracker[currKey];
+                let itemName = item["name"];
+                let newItem = {};
+        
+                newItem["name"] = itemName;
+                newItem["current_value"] = item["default_value"];
+                newItem["default_value"] = item["default_value"];
+                newItem["data_type"] = item["data_type"];
+                
+                mapTemp[itemName] = newItem;
+            })} 
+            setGameDataTracker(mapTemp); //TODO20
     
-        //     {Object.keys(originalGmdt).map((currKey) => {
-        //         gameDataTemp[currKey]["current_value"] = originalGmdt[currKey];
-        //     })}
-        //     setGameDataTracker(gameDataTemp);
     
-        //     console.log("now gameDataTemp = ", gameDataTemp);
-        //     console.log("now gameDataTracker = ", gameDataTracker);
+            console.log("now gameDataTemp = ", mapTemp);
+            console.log("now gameDataTracker = ", gameDataTracker);
     
-        //     console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
-        //     console.log("gameData[val5] = ", gameData["val5"]);
+            console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
+            console.log("gameData[val5] = ", gameData["val5"]);
     
-        //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        // }      //TODO: remove unusued later
+            setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+        }      //TODO
     
         function notifyFinished() {
             setTextStillTyping(false);
