@@ -348,6 +348,16 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }  
 
     function changeGameDataTrackerByStatement(name, action, newVal, type) { //TODO later
+        //TODO check if valid
+        if (gameDataTracker[name] === undefined) {
+            return;
+        }
+        //TODO check if valid
+
+
+
+
+
         if (type === "boolean" || type === "string") {
             // type - boolean 
                 // action is "becomes"
@@ -458,27 +468,30 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                 <div  style={{"overflow": "scroll", "display": "flex"}}>
 
                 <GameScreen_QuickView_ConvNode
-                    initialPieceNum={initialPieceNum}
+                    
                     isDisplay={isDisplay} 
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
+
+                    initialPieceNum={initialPieceNum}
                     allPieceContent={allPieceContent}
+                    
                     uiData1_textframe={uiData1_textframe}
                     uiData2_buttonOption={uiData2_buttonOption}
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
+                    
                     visualList={visualList} 
                     audioList={audioList}
 
                     gameData={gameDataTracker}
-
                     getCurrPieceNum={passInCurrPieceNum}
 
 
                     getResetSignal={passInResetSignal}
 
 
-                    triggerClickOnGameScreen={triggerClickOnGameScreen}
+                    triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
                     getIsGameScreenClicked={passInIsGameScreenClicked}
 
 
@@ -486,11 +499,11 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     notifyAfterReset={notifyAfterReset}
 
                     receiveGameDataObj={passInGameDataFromScreen}
-                    changeGameDataTrackerByStatement={changeGameDataTrackerByStatement}
+                    buttonConseqByStatement={changeGameDataTrackerByStatement}
 
                 />
 
-                <Panel_GameDataTest
+                {/* <Panel_GameDataTest
                        localTest={true}
                        initialGameDataStatus={gameDataTracker}
 
@@ -508,7 +521,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        notifyAfterReset={notifyAfterReset}
 
                        getUILanguage={getUILanguage}
-                />
+                /> */}
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
 
 

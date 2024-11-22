@@ -6,16 +6,20 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 // includes conversational-node content+UI
 export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurrPieceNum, 
-    isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
-    uiData2_buttonOption, uiData3_ConvNavigation, 
-    uiData4_logPageSettings,
-    visualList, audioList, gameData, notifyNewGameData,
+    isDisplay, screenWidth, screenHeight, allPieceContent, 
+    uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
+    visualList, audioList, 
+    buttonConseqByStatement,
+    
+
+    gameData, 
+    notifyNewGameData,
     getResetSignal,
-    triggerClickOnGameScreen, getIsGameScreenClicked,
+                                //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
     notifyAfterReset,
     receiveGameDataObj,
-    changeGameDataTrackerByStatement
-}) {
+
+}) { //temp: not holding game-data-tracker
 
         let modalStyleName = "modalBackboard"; 
 
@@ -43,9 +47,7 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
 
         
 
-// const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve!
-
-const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
+// const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false); //TODO temp remove, test before removing
 
     
         const [showConvLog, setShowConvLog] = useState(false);
@@ -58,11 +60,11 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             setFirstTimeEnter(false);
           }
     
-            let clickStatus = getIsGameScreenClicked();
-            if (clickStatus === true) {
-                //clicked on game-screen
-                setGameScreenClickedStatus(true);
-            }
+            // let clickStatus = getIsGameScreenClicked();
+            // if (clickStatus === true) {
+            //     //clicked on game-screen
+            //     setGameScreenClickedStatus(true);
+            // }
 
 
 
@@ -99,19 +101,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                 setVisualMap(tempVisualMap);
             }
 
-            let resetSignal = getResetSignal();
-            if (resetSignal === true) {
-                let pieceNumTemp = getCurrPieceNum();
-                setCurrPieceNum(pieceNumTemp);
-                                                            // if (clickStatus === true) {
-                                                            //         //TODO fetch game-data-tracker from caller compo
-                                                            //     let newGdt = receiveGameDataObj();
-                                                            //     setGameDataTracker(newGdt);
-                                                            // }
-
-                notifyAfterReset();
-            }
-
+ 
             if (allPieceContent[currPieceNum].displayTextFrame === false) {
                 setTextStillTyping(false);
             }
@@ -194,31 +184,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             return directNextPieceBool;
         }
     
-        // function resetViewingPiece() {
-        //     let mapTemp = {};
-        //     {Object.keys(gameDataTracker).map((currKey) => {
-        //         let item = gameDataTracker[currKey];
-        //         let itemName = item["name"];
-        //         let newItem = {};
-        
-        //         newItem["name"] = itemName;
-        //         newItem["current_value"] = item["default_value"];
-        //         newItem["default_value"] = item["default_value"];
-        //         newItem["data_type"] = item["data_type"];
-                
-        //         mapTemp[itemName] = newItem;
-        //     })} 
-        //     setGameDataTracker(mapTemp); //TODO20
     
-    
-        //     console.log("now gameDataTemp = ", mapTemp);
-        //     console.log("now gameDataTracker = ", gameDataTracker);
-    
-        //     console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
-        //     console.log("gameData[val5] = ", gameData["val5"]);
-    
-        //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        // }      //TODO
     
         function notifyFinished() {
             setTextStillTyping(false);
@@ -239,51 +205,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         function passInAutoModeStatus() {
             return autoMode;
         }
-    
-        // function changeGameData(name, value) {
-        //     let gmdtObj = gameDataTracker;
-        //     gmdtObj[name].current_value = value;
-        //     setGameDataTracker(gmdtObj);
-
-        //     console.log("gamescreenquickviewconvnode... changed-game-data, now-obj: ", gmdtObj); //TODO test
-            
-        //     //TODO3 update to outer-layer
-        //     notifyNewGameData(gmdtObj);
-
-        // }
-    
-        // function changeGameDataByStatement(name, action, newVal, type) {
-        //     console.log("!!! changeGameDataByStatement(): ", name, ":", action, ", ", newVal, " (", type, ")"); //TODO test
-        //     console.log("curr-val = ", gameDataTracker[name]["current_value"]); //TODO test
-
-
-        //     if (type === "boolean") {
-        //         // type - boolean 
-        //             // action is "becomes"
-        //         let boolVal = (newVal === "true" || newVal === true) ? true : false;
-        //         changeGameData(name, boolVal);
-        //     } else if (type === "string") {
-        //         // type - string
-        //             // action is "becomes"
-        //         changeGameData(name, newVal);
-        //     } else if (type === "number") {
-        //         // type - number
-        //         let currVal = gameDataTracker[name]["current_value"];
-    
-        //         let result = 0;
-        //         if (action === "plus") {
-        //             result = currVal - (-1 * newVal); //important, not directly adding
-        //             changeGameData(name, result);
-        //         } else if (action === "minus") {   
-        //             result = currVal - newVal;
-        //             changeGameData(name, result);
-        //         } else if (action === "becomes") {
-        //             changeGameData(name, newVal);
-        //         }
-              
-        //     }
-        // }
-    
+        
         function closeConvLog() {
             setShowConvLog(false);
         }
@@ -299,37 +221,26 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
         function passInVisualMap() {
             return visualMap;
         }
-    
-        // function passInIsDisplayConvLog() {
-        //     return showConvLog;
-        // }     //TODO: remove unusued later
 
-        function changeGameDataByStatement2Arr(pieceNum, item) {
+        function buttonConsequenceByStatementEntireArray(pieceNum, item) {
             let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
             let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
             if (conseqArray === undefined) {
-                                                    console.log("2... conseqArray undefined.");
+                                                                console.log("2... conseqArray undefined.");
                 return;
             }
             let len = conseqArray.length;
-                                                    console.log("2conseqArray: ", conseqArray, ", len = ", len);
+                                                                console.log("2conseqArray: ", conseqArray, ", len = ", len);
 
             let i = 0;
             for (; i < len; i++) {
                 let name = conseqArray[i][0];
-
-                if (gameData[name] === undefined) {
-                                                        console.log("\t\t\t 2 item naem not found... continue");
-                    continue;
-                }
-
                 let action = conseqArray[i][1];
                 let newVal = conseqArray[i][2];
-                let type = gameData[name]["data_type"];
-                                                        console.log("2calling change-by-stmt");
+                let type = conseqArray[i][3];
+                                                                console.log("2calling change-by-stmt, ", conseqArray[i]);
                 
-                changeGameDataTrackerByStatement(name, action, newVal, type);
-
+                buttonConseqByStatement(name, action, newVal, type);
             }
             
         }
@@ -342,11 +253,11 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                         "width": `${screenWidth}px`,
                         "top": "0px"
                     }}
-                    onClick={()=>{
-                        if (allPieceContent[currPieceNum]["stnd_btn_arr"].length === 0) {
-                            triggerClickOnGameScreen();
-                        }
-                    }}
+                    // onClick={()=>{  //TODO test before removing!
+                    //     if (allPieceContent[currPieceNum]["stnd_btn_arr"].length === 0) {
+                    //         triggerClickOnGameScreen();
+                    //     }
+                    // }} //TODO test before removing!
                     >
 
             {<div style={{
@@ -419,9 +330,7 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                     allPieceContent={allPieceContent} 
                     getCurrentPieceNum={passInCurrentPieceNum} 
                     defaultBtnUISettings={uiData2_buttonOption} 
-                    // changeGameDataByStatement={changeGameDataByStatement}                                    
-                    // gameData={gameDataTracker}
-                    changeGameDataByStatement2Arr={changeGameDataByStatement2Arr}
+                    buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
 
                 />
             }

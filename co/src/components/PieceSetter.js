@@ -1066,6 +1066,8 @@ export default function PieceSetter({
                         }
                         
                         obj.push(stndBtnConseqBecomeAmount); //TODO
+
+                        obj.push(stndBtnConseqGDataTypeSelected); //TODO add data-type! //[3] "number", "boolean", "string"
                       
                         /* push to stndButtonConsequenceArray */
                         stndButtonConsequenceArray.push(obj);

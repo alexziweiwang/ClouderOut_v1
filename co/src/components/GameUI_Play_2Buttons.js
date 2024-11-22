@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defaultBtnUISettings,
-    // gameData, changeGameDataByStatement,
-    changeGameDataByStatement2Arr
+    buttonConsequenceByStatementEntireArray
     }) {
 
     const [currentPieceNum, setCurrentPieceNum] = useState(initialPieceNum);
@@ -79,44 +78,10 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                     onMouseUp={
                         ()=>{
                             document.getElementById(currId).style.filter = "brightness(100%)";
-                                                            console.log("GameUIPlay2Button pressed...");
-
-                            // if (gameData === undefined) { //TODO trying to remove
-                            //                                         console.log("... gameData undefined.");
-                            //     return;
-                            // } //TODO trying to remove
-                            
-                            //TODO1 important: update game-data!!
-                      //      let stndButtonThisButtonInfo = allPieceContent[currentPieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
-                      //      let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
-                            
-                            // if (conseqArray === undefined) {
-                            //                                   //      console.log("... conseqArray undefined.");
-
-                            //     return;
-                            // }
-                            // let len = conseqArray.length;
-                                                                    //console.log("conseqArray: ", conseqArray, ", len = ", len);
-                    
-                            // let i = 0;
-                            // for (; i < len; i++) {
-                            //     let name = conseqArray[i][0];
-                                
-                            //     if (gameData[name] === undefined) {
-                            //                                     //    console.log("\t\t\titem naem not found... continue");
-                                                        
-                            //         continue;
-                            //     }
-
-                            //     let action = conseqArray[i][1];
-                            //     let newVal = conseqArray[i][2];
-                            //     let type = gameData[name]["data_type"];
-                            //                                     //    console.log("calling outside func:  change-by-stmt");
-                            //     changeGameDataByStatement(name, action, newVal, type);
-
-                            // }
-                            
-                            changeGameDataByStatement2Arr(currentPieceNum, item);
+                                                            
+                                                                            console.log("GameUIPlay2Button pressed...", item);
+  
+                            buttonConsequenceByStatementEntireArray(currentPieceNum, item);
 
                             triggerNextPiece();
                         }

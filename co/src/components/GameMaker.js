@@ -1457,7 +1457,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             && 
               <div style={{"height": `${screenHeight}px`, "overflow": "scroll", "marginLeft": "920px"}}>
 
-                <Panel_GameDataTest
+                {/* <Panel_GameDataTest
                        localTest={true}
                        initialGameDataStatus={gameDataTracker}
 
@@ -1475,7 +1475,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                        notifyAfterReset={notUsing}
 
                        getUILanguage={passInUILanguage}
-                />
+                /> */}
 
               </div>
             }
