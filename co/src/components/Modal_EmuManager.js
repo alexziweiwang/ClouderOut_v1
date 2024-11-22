@@ -124,6 +124,11 @@ export default function Modal_EmuManager({
     const [epa3, setEpa3] = useState({});
     const [ess4, setEss4] = useState({});
 
+    const [gdt1Dup, setGdt1Dup] = useState({});
+    const [epp2Dup, setEpp2Dup] = useState({});
+    const [epa3Dup, setEpa3Dup] = useState({});
+    const [ess4Dup, setEss4Dup] = useState({});
+
     const [gdt1Input, setGdt1Input] = useState("");
     const [gdt1EditItemName, setGdt1EditItemName] = useState("");
 
@@ -150,12 +155,16 @@ export default function Modal_EmuManager({
 
     function update1GdtToOuterLayer() {
         //gdt1
+        update1Gdt(gdt1Dup);
+    }
+
+    function makeDupGdt1(data1) {
         let tempObj = {};
-        {Object.keys(gdt1).map((currKey) => {
-            let name = gdt1[currKey]["name"];
-            let defaultVal = gdt1[currKey]["default_value"];
-            let dataType = gdt1[currKey]["data_type"];
-            let currVal = gdt1[currKey]["current_value"];
+        {Object.keys(data1).map((currKey) => {
+            let name = data1[currKey]["name"];
+            let defaultVal = data1[currKey]["default_value"];
+            let dataType =data1[currKey]["data_type"];
+            let currVal = data1[currKey]["current_value"];
 
             let obj = {
                 "name": name,
@@ -167,18 +176,24 @@ export default function Modal_EmuManager({
             tempObj[keyStr] = obj;
         })} 
 
-                                        console.log("sending out gdt1(dup)... ", tempObj);
-        
-        update1Gdt(tempObj);
+                            console.log("making dup-gdt1... ", tempObj);
+
+        setGdt1Dup(tempObj);
+        return tempObj;
+
     }
 
     function update2EppToOuterLayer() {
-        //epp2 
-        let pn = epp2["playername"];
-        let ut = epp2["userTitle"];
-        let icpn = epp2["iconPicName"];
-        let lvl = epp2["level"];
-        let mbsp = epp2["membership"];
+        //epp2
+        update2Epp(epp2Dup);
+    }
+
+    function makeDupEpp2(data2) {
+        let pn = data2["playername"];
+        let ut = data2["userTitle"];
+        let icpn = data2["iconPicName"];
+        let lvl = data2["level"];
+        let mbsp = data2["membership"];
 
         let tempObj = { 
             "playername": pn,
@@ -188,15 +203,21 @@ export default function Modal_EmuManager({
             "membership": mbsp,
         };
 
-                                console.log("sending out epp2(dup)... ", tempObj);
+                                console.log("making dup-epp2... ", tempObj);
+        setEpp2Dup(tempObj);
+        return tempObj;
 
-        update2Epp(tempObj);
     }
 
     function update3EpaToOuterLayer() {
         //epa3
-        let pn = epa3["playername"];
-        let eml = epa3["email"];
+
+        update3Epa(epa3Dup);
+    }
+
+    function makeDupEpa3(data3) {
+        let pn = data3["playername"];
+        let eml = data3["email"];
 
         let tempObj = {
             "playername": pn,
@@ -204,10 +225,12 @@ export default function Modal_EmuManager({
         }
 
 
-                                    console.log("sending out epa3(dup)... ", tempObj);
+                                    console.log("making dup-epa3... ", tempObj);
+        setEpa3Dup(tempObj);
+        return tempObj;
 
-        update3Epa(tempObj);
     }
+
 
     // function update4EssToOuterLayer(data4) {
     //     //ess4
@@ -256,7 +279,7 @@ export default function Modal_EmuManager({
 
                                                     console.log("... gdt1 prep: ", tempObj1); //TODO test
         setGdt1(tempObj1);
-
+        makeDupGdt1(tempObj1);
     } 
 
 
@@ -279,6 +302,7 @@ export default function Modal_EmuManager({
                                                 console.log("... epp2 prep: ", tempObj2); //TODO test
 
         setEpp2(tempObj2);
+        makeDupEpp2(tempObj2);
     }        
     async function prepare3Epa() {
         // if local is not ready, from cloud
@@ -294,6 +318,7 @@ export default function Modal_EmuManager({
                                             console.log("... epa3 prep: ", tempObj3); //TODO test
 
         setEpa3(tempObj3);
+        makeDupEpa3(tempObj3);
     }              
 
     async function prepare4Ess() {
@@ -327,9 +352,9 @@ export default function Modal_EmuManager({
             setFirstTimeEnter(false);
         }
 
-        // update1GdtToOuterLayer(); 
-        // update2EppToOuterLayer(); 
-        // update3EpaToOuterLayer();
+        update1GdtToOuterLayer(); 
+        update2EppToOuterLayer(); 
+        update3EpaToOuterLayer();
 
         let UILang = getUILanguage();
         prepUILange(UILang);
@@ -340,9 +365,16 @@ export default function Modal_EmuManager({
     }
 
     async function saveAllChangesToCloud() {
+        makeDupGdt1(gdt1); 
+        makeDupEpp2(epp2); 
+        makeDupEpa3(epa3);
+
+
         update1GdtToOuterLayer(); 
         update2EppToOuterLayer(); 
         update3EpaToOuterLayer();
+
+        
 
 
         //TODO send all 4 sets to cloud
