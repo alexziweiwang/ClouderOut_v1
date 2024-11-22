@@ -732,28 +732,28 @@ export default function PieceSetter({
                 checked={!selectEditTextContent}
                 onChange={()=>{
                     if (selectEditTextContent === true) {
-                        let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
-                        if (response === true) {
+                      //  let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                      //  if (response === true) {
                             setSelectEditTextContent(false);
                             setTextContentInfoAdd(false);
                             setClickableAdd(true);
                             handleTextContentReset();
                             setupDisplayTextFrame(false);
-                        }
+                       // }
                     }
 
                 }}
             ></input><label className="textNoSelect"
                 onClick={()=>{
                     if (!selectEditTextContent === false) {
-                        let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
-                        if (response === true) {
+                       // let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                      //  if (response === true) {
                             setSelectEditTextContent(false);
                             setTextContentInfoAdd(false);
                             setClickableAdd(true);
                             handleTextContentReset();
                             setupDisplayTextFrame(false);
-                        }
+                    //    }
                     }
                 }}
             >Clickables / Buttons</label><br></br>

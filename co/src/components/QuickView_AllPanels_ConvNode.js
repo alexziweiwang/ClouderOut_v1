@@ -72,6 +72,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     const [gameDataTracker, setGameDataTracker] = useState(initialEmuGameDataTracker); //used during test-play
     const [gameDataDesignMap, setGameDataDesignMap] = useState([]); //used for storing fetched-design-list from cloud
 
+    const [initGdtRecord , setInitGdtRecord] = useState(initialEmuGameDataTracker);
 
     // const [originalGmdt, setOriginalGmdt] = useState({});
 
@@ -89,7 +90,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
             initializeResourceLists();
 
-    
+            makeDupGdt();
+
             setFirstTimeEnter(false);
         }
 
@@ -157,6 +159,28 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
+    }
+
+    function makeDupGdt() {
+        let tempObj = {};
+
+        {Object.keys(initGdtRecord).map((currKey) => {
+            let name = initGdtRecord[currKey]["name"];
+            let defaultVal = initGdtRecord[currKey]["default_value"];
+            let dataType =initGdtRecord[currKey]["data_type"];
+            let currVal = initGdtRecord[currKey]["current_value"];
+
+            let obj = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": currVal
+            }
+            let keyStr = currKey;
+            tempObj[keyStr] = obj;
+        })} 
+
+        setInitGdtRecord(tempObj);
     }
 
     function reset_GameDataTracker() {
@@ -285,6 +309,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     function resetViewingPiece() {
 
         setGameDataTracker(initialEmuGameDataTracker); //TODO20
+        console.log("initial-gdt = ", initialEmuGameDataTracker);
+        console.log("initial-gdt2 = ", initGdtRecord);
+
 
         
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
@@ -389,6 +416,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     function notifyNewGameData(data) {
+                                                    console.log("quickview-allpanel... new-gdt  = ", data);
         setGameDataTracker(data);
     }
 
@@ -458,6 +486,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     notifyAfterReset={notifyAfterReset}
 
                     receiveGameDataObj={passInGameDataFromScreen}
+                    changeGameDataTrackerByStatement={changeGameDataTrackerByStatement}
 
                 />
 

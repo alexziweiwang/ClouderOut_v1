@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defaultBtnUISettings,
-    gameData, changeGameDataByStatement,
+    // gameData, changeGameDataByStatement,
     changeGameDataByStatement2Arr
     }) {
 
@@ -79,11 +79,12 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                     onMouseUp={
                         ()=>{
                             document.getElementById(currId).style.filter = "brightness(100%)";
-                                                            console.log("GameUIPlay2Buttons pressed...");
-                            if (gameData === undefined) {
-                                                                    console.log("... gameData undefined.");
-                                return;
-                            }
+                                                            console.log("GameUIPlay2Button pressed...");
+
+                            // if (gameData === undefined) { //TODO trying to remove
+                            //                                         console.log("... gameData undefined.");
+                            //     return;
+                            // } //TODO trying to remove
                             
                             //TODO1 important: update game-data!!
                       //      let stndButtonThisButtonInfo = allPieceContent[currentPieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);

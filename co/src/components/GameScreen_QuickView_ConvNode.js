@@ -13,7 +13,8 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     getResetSignal,
     triggerClickOnGameScreen, getIsGameScreenClicked,
     notifyAfterReset,
-    receiveGameDataObj
+    receiveGameDataObj,
+    changeGameDataTrackerByStatement
 }) {
 
         let modalStyleName = "modalBackboard"; 
@@ -42,10 +43,10 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
 
         
 
-const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve!
+// const [gameDataTracker, setGameDataTracker] = useState(gameData); //TODO improve!
+
 const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
 
-        const [originalGmdt, setOriginalGmdt] = useState({});
     
         const [showConvLog, setShowConvLog] = useState(false);
     
@@ -102,11 +103,11 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             if (resetSignal === true) {
                 let pieceNumTemp = getCurrPieceNum();
                 setCurrPieceNum(pieceNumTemp);
-                if (clickStatus === true) {
-                        //TODO fetch game-data-tracker from caller compo
-                    let newGdt = receiveGameDataObj();
-                    setGameDataTracker(newGdt);
-                }
+                                                            // if (clickStatus === true) {
+                                                            //         //TODO fetch game-data-tracker from caller compo
+                                                            //     let newGdt = receiveGameDataObj();
+                                                            //     setGameDataTracker(newGdt);
+                                                            // }
 
                 notifyAfterReset();
             }
@@ -193,31 +194,31 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             return directNextPieceBool;
         }
     
-        function resetViewingPiece() {
-            let mapTemp = {};
-            {Object.keys(gameDataTracker).map((currKey) => {
-                let item = gameDataTracker[currKey];
-                let itemName = item["name"];
-                let newItem = {};
+        // function resetViewingPiece() {
+        //     let mapTemp = {};
+        //     {Object.keys(gameDataTracker).map((currKey) => {
+        //         let item = gameDataTracker[currKey];
+        //         let itemName = item["name"];
+        //         let newItem = {};
         
-                newItem["name"] = itemName;
-                newItem["current_value"] = item["default_value"];
-                newItem["default_value"] = item["default_value"];
-                newItem["data_type"] = item["data_type"];
+        //         newItem["name"] = itemName;
+        //         newItem["current_value"] = item["default_value"];
+        //         newItem["default_value"] = item["default_value"];
+        //         newItem["data_type"] = item["data_type"];
                 
-                mapTemp[itemName] = newItem;
-            })} 
-            setGameDataTracker(mapTemp); //TODO20
+        //         mapTemp[itemName] = newItem;
+        //     })} 
+        //     setGameDataTracker(mapTemp); //TODO20
     
     
-            console.log("now gameDataTemp = ", mapTemp);
-            console.log("now gameDataTracker = ", gameDataTracker);
+        //     console.log("now gameDataTemp = ", mapTemp);
+        //     console.log("now gameDataTracker = ", gameDataTracker);
     
-            console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
-            console.log("gameData[val5] = ", gameData["val5"]);
+        //     console.log("now gameDataTracker[val5] = ", gameDataTracker["val5"]);
+        //     console.log("gameData[val5] = ", gameData["val5"]);
     
-            setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        }      //TODO
+        //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+        // }      //TODO
     
         function notifyFinished() {
             setTextStillTyping(false);
@@ -239,49 +240,49 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
             return autoMode;
         }
     
-        function changeGameData(name, value) {
-            let gmdtObj = gameDataTracker;
-            gmdtObj[name].current_value = value;
-            setGameDataTracker(gmdtObj);
+        // function changeGameData(name, value) {
+        //     let gmdtObj = gameDataTracker;
+        //     gmdtObj[name].current_value = value;
+        //     setGameDataTracker(gmdtObj);
 
-            console.log("gamescreenquickviewconvnode... changed-game-data, now-obj: ", gmdtObj); //TODO test
+        //     console.log("gamescreenquickviewconvnode... changed-game-data, now-obj: ", gmdtObj); //TODO test
             
-            //TODO3 update to outer-layer
-            notifyNewGameData(gmdtObj);
+        //     //TODO3 update to outer-layer
+        //     notifyNewGameData(gmdtObj);
 
-        }
+        // }
     
-        function changeGameDataByStatement(name, action, newVal, type) {
-            console.log("!!! changeGameDataByStatement(): ", name, ":", action, ", ", newVal, " (", type, ")"); //TODO test
-            console.log("curr-val = ", gameDataTracker[name]["current_value"]); //TODO test
+        // function changeGameDataByStatement(name, action, newVal, type) {
+        //     console.log("!!! changeGameDataByStatement(): ", name, ":", action, ", ", newVal, " (", type, ")"); //TODO test
+        //     console.log("curr-val = ", gameDataTracker[name]["current_value"]); //TODO test
 
 
-            if (type === "boolean") {
-                // type - boolean 
-                    // action is "becomes"
-                let boolVal = (newVal === "true" || newVal === true) ? true : false;
-                changeGameData(name, boolVal);
-            } else if (type === "string") {
-                // type - string
-                    // action is "becomes"
-                changeGameData(name, newVal);
-            } else if (type === "number") {
-                // type - number
-                let currVal = gameDataTracker[name]["current_value"];
+        //     if (type === "boolean") {
+        //         // type - boolean 
+        //             // action is "becomes"
+        //         let boolVal = (newVal === "true" || newVal === true) ? true : false;
+        //         changeGameData(name, boolVal);
+        //     } else if (type === "string") {
+        //         // type - string
+        //             // action is "becomes"
+        //         changeGameData(name, newVal);
+        //     } else if (type === "number") {
+        //         // type - number
+        //         let currVal = gameDataTracker[name]["current_value"];
     
-                let result = 0;
-                if (action === "plus") {
-                    result = currVal - (-1 * newVal); //important, not directly adding
-                    changeGameData(name, result);
-                } else if (action === "minus") {   
-                    result = currVal - newVal;
-                    changeGameData(name, result);
-                } else if (action === "becomes") {
-                    changeGameData(name, newVal);
-                }
+        //         let result = 0;
+        //         if (action === "plus") {
+        //             result = currVal - (-1 * newVal); //important, not directly adding
+        //             changeGameData(name, result);
+        //         } else if (action === "minus") {   
+        //             result = currVal - newVal;
+        //             changeGameData(name, result);
+        //         } else if (action === "becomes") {
+        //             changeGameData(name, newVal);
+        //         }
               
-            }
-        }
+        //     }
+        // }
     
         function closeConvLog() {
             setShowConvLog(false);
@@ -326,7 +327,8 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                 let newVal = conseqArray[i][2];
                 let type = gameData[name]["data_type"];
                                                         console.log("2calling change-by-stmt");
-                changeGameDataByStatement(name, action, newVal, type);
+                
+                changeGameDataTrackerByStatement(name, action, newVal, type);
 
             }
             
@@ -417,8 +419,8 @@ const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false);
                     allPieceContent={allPieceContent} 
                     getCurrentPieceNum={passInCurrentPieceNum} 
                     defaultBtnUISettings={uiData2_buttonOption} 
-                    changeGameDataByStatement={changeGameDataByStatement}                                    
-                    gameData={gameDataTracker}
+                    // changeGameDataByStatement={changeGameDataByStatement}                                    
+                    // gameData={gameDataTracker}
                     changeGameDataByStatement2Arr={changeGameDataByStatement2Arr}
 
                 />
