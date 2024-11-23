@@ -585,13 +585,21 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function resetPlayerProfileDataDup() {
-        let tempObjDup = {};
+        let tempObjDup1 = {};
+        let tempObjDup2 = {};
         {Object.keys(testPlayerGameData).map((currKey) => {
             let name = testPlayerGameData[currKey]["name"];
             let defaultVal = testPlayerGameData[currKey]["default_value"];
             let dataType = testPlayerGameData[currKey]["data_type"];
             let currVal = testPlayerGameData[currKey]["current_value"];
 
+
+            let obj1 = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": currVal
+            }
             let obj2 = {
                 "name": name,
                 "default_value": defaultVal,
@@ -600,10 +608,13 @@ export default function ConversationNodeEditingPanel() {
             }
             let keyStr = currKey;
 
-            tempObjDup[keyStr] = obj2;
+            tempObjDup1[keyStr] = obj1;
+            tempObjDup2[keyStr] = obj2;
+
         })} 
 
-        setTestPlayerGameDataDup(tempObjDup);
+        setTestPlayerGameDataDup(tempObjDup1);
+        return tempObjDup2;
     }
     
     function getUserConfigFromEmuManager2Epp(data2) {
@@ -635,6 +646,18 @@ export default function ConversationNodeEditingPanel() {
     function notUsing() {
         return;
     }
+
+    function resetQuickView () {
+        let arr = [];
+        arr.push(previewingIndex);
+
+        let newPPDup = resetPlayerProfileDataDup();
+        arr.push(newPPDup);
+
+        return arr;
+
+//TODO5
+    } 
     
 
     return (
@@ -923,6 +946,7 @@ export default function ConversationNodeEditingPanel() {
                     username={state.userName} 
                     projName={state.projectName} 
                     initialEmuGameDataTracker={testPlayerGameDataDup}
+                    resetViewing={resetQuickView}
             />}
             
 

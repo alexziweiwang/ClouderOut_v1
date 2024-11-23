@@ -5,7 +5,7 @@ import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 // includes conversational-node content+UI
-export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurrPieceNum, 
+export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getResetSignal, getResetInfoSets, notifyAfterReset,
     isDisplay, screenWidth, screenHeight, allPieceContent, 
     uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
     visualList, audioList, 
@@ -50,10 +50,19 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
         useEffect(() => {
      
-          if (firstTimeEnter === true) {
+            if (firstTimeEnter === true) {
 
-            setFirstTimeEnter(false);
-          }
+                setFirstTimeEnter(false);
+            }
+
+            let resetSignal = getResetSignal();
+            if (resetSignal === true) {
+                let info = getResetInfoSets();
+                resetPlaying(info);
+
+
+                notifyAfterReset();
+            }
     
             // let clickStatus = getIsGameScreenClicked();
             // if (clickStatus === true) {
@@ -70,11 +79,11 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
                 setDirectNextPieceBool(true);
             }
     
-          
-          updateCharPicArr();
-          updateBgmSource();
-          updateBgpSource();
-          
+            
+            updateCharPicArr();
+            updateBgmSource();
+            updateBgpSource();
+            
     
             if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
                 let i = 0;
@@ -169,6 +178,12 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
                     setImmediateFinishSignal(false);
                 } 
             
+        }
+
+        function resetPlaying(arr) {
+            setCurrPieceNum(arr[0]);
+            
+
         }
     
         function passInCurrentPieceNum() {

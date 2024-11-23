@@ -15,6 +15,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     getUILanguage,
     username, projName,
     initialEmuGameDataTracker,
+    resetViewing
 }) {
 
 
@@ -80,6 +81,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     const [showConvLog, setShowConvLog] = useState(false);
     
     const [resetSignal, setResetSignal] = useState(false);
+    const [resetInfo, setResetInfo] = useState([]);
 
     const [clickOnGameScreen, setClickOnGameScreen] = useState(false);
 
@@ -458,6 +460,12 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return gameDataTracker;
     }
 
+    function passInResetInfoSets() {
+        
+        //TODO
+        return resetInfo;
+
+    }
 
 
 
@@ -475,11 +483,21 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     className="cursor_pointer modalClose" 
                     onClick={()=>{
                         setGameDataTracker(initGdtRecord)
-                        handleQViewCancel();}}> {closeText} </button>
-                                        {/* <button 
-                                            className="cursor_pointer modalClose" 
-                                            onClick={()=>{resetButtonPressed();}}
-                                        > {resetText} </button> //TODO remove later */}
+                        handleQViewCancel();
+                        
+                    }}> {closeText} </button>
+                    
+                    <button 
+                        className="cursor_pointer modalClose" 
+                        onClick={()=>{
+                            let resArr = resetViewing();
+                                                                        console.log("reset clicked: ", resArr);
+
+                            setGameDataTracker(resArr[1]);
+                            setResetSignal(true);
+                            setResetInfo(resArr);
+                        }}
+                    > {resetText} </button> //TODO remove later
             </div>
 
 
@@ -507,6 +525,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
                     getResetSignal={passInResetSignal}
+                    getResetInfoSets={passInResetInfoSets}
 
 
                     triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
