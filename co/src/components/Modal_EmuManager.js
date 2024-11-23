@@ -185,7 +185,7 @@ export default function Modal_EmuManager({
 
     function update2EppToOuterLayer() {
         //epp2
-        update2Epp(epp2Dup);
+        update2Epp(epp2);
     }
 
     function makeDupEpp2(data2) {
@@ -212,7 +212,7 @@ export default function Modal_EmuManager({
     function update3EpaToOuterLayer() {
         //epa3
 
-        update3Epa(epa3Dup);
+        update3Epa(epa3);
     }
 
     function makeDupEpa3(data3) {

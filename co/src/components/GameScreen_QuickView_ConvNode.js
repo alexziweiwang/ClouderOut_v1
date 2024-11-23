@@ -9,16 +9,10 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
     isDisplay, screenWidth, screenHeight, allPieceContent, 
     uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
     visualList, audioList, 
-    buttonConseqByStatement,
     buttonConsequenceByStatementEntireArray,
     
 
-    gameData, 
-    notifyNewGameData,
-    getResetSignal,
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
-    notifyAfterReset,
-    receiveGameDataObj,
 
 }) { //temp: not holding game-data-tracker
 
@@ -222,29 +216,6 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getCurr
         function passInVisualMap() {
             return visualMap;
         }
-
-        // function buttonConsequenceByStatementEntireArray(pieceNum, item) {
-        //     let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
-        //     let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
-        //     if (conseqArray === undefined) {
-        //                                                         console.log("2... conseqArray undefined.");
-        //         return;
-        //     }
-        //     let len = conseqArray.length;
-        //                                                         console.log("2conseqArray: ", conseqArray, ", len = ", len);
-
-        //     let i = 0;
-        //     for (; i < len; i++) {
-        //         let name = conseqArray[i][0];
-        //         let action = conseqArray[i][1];
-        //         let newVal = conseqArray[i][2];
-        //         let type = conseqArray[i][3];
-        //                                                         console.log("2calling change-by-stmt, ", conseqArray[i]);
-                
-        //         buttonConseqByStatement(name, action, newVal, type);
-        //     }
-            
-        // }
 
 
     return (         

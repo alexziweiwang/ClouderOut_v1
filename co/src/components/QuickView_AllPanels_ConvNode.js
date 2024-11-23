@@ -93,6 +93,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
             makeDupGdt();
 
+                                        console.log("first entry quick-view, gdt = ", initialEmuGameDataTracker);
+
             setFirstTimeEnter(false);
         }
 
@@ -306,17 +308,16 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 */ //TODO: remove unusued later
 
 
-
     function resetViewingPiece() {
         //                                 console.log("---------");
         //                                 console.log("before resetting = ", gameDataTracker);
 
         setGameDataTracker(initGdtRecord); //TODO20
         //                                 console.log("initial-gdt = ", initialEmuGameDataTracker);
-        //                                 console.log("initial-gdt2 = ", initGdtRecord);
+                                           console.log("initial-gdt2 = ", initGdtRecord);
         //                                 console.log("---------");
         
-        //                                 console.log("initialPieceNum = ", initialPieceNum);
+                                           console.log("initialPieceNum = ", initialPieceNum);
 
         
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
@@ -401,7 +402,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         }
         let len = conseqArray.length;
                                                           //  console.log("2conseqArray: ", conseqArray, ", len = ", len);
-        let res = {};
+        let res = gameDataTracker;
         let i = 0;
                                                             console.log("\nchange-by-stmt-arr: before - ", res);
         for (; i < len; i++) {
@@ -411,7 +412,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             let type = conseqArray[i][3];
                                                             console.log("2calling change-by-stmt, ", conseqArray[i]);
             
-            res = changeGameDataTrackerByStatement(gameDataTracker, name, action, newVal, type);
+            res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
         }
 
                                                             console.log("\nchange-by-stmt-arr: after - ", res);
@@ -423,27 +424,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
 
-
-
-    // function closeConvLog() {
-    //     setShowConvLog(false);
-    // }
-
-    // function openConvLog() {
-    //     setShowConvLog(true);
-    // }
-
-    // function notUsing() {
-    //     console.log();
-    // }
-
-    // function passInVisualMap() {
-    //     return visualMap;
-    // }
-
-    // function passInIsDisplayConvLog() {
-    //     return showConvLog;
-    // }       //TODO: remove unusued later
 
 
 
@@ -493,11 +473,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
                 <button 
                     className="cursor_pointer modalClose" 
-                    onClick={()=>{handleQViewCancel();}}> {closeText} </button>
-                <button 
-                    className="cursor_pointer modalClose" 
-                    onClick={()=>{resetViewingPiece();}}
-                > {resetText} </button> //TODO remove later
+                    onClick={()=>{
+                        setGameDataTracker(initGdtRecord)
+                        handleQViewCancel();}}> {closeText} </button>
+                                        {/* <button 
+                                            className="cursor_pointer modalClose" 
+                                            onClick={()=>{resetButtonPressed();}}
+                                        > {resetText} </button> //TODO remove later */}
             </div>
 
 

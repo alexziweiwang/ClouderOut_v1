@@ -264,6 +264,7 @@ export default function ConversationNodeEditingPanel() {
 
 
     const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
+    const [testPlayerGameDataDup, setTestPlayerGameDataDup] = useState({});   //TODO important for holder-in-practice
 
     const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
   
@@ -554,6 +555,7 @@ export default function ConversationNodeEditingPanel() {
         //TODO make dup here
 
         let tempObj = {};
+        let tempObjDup = {};
         {Object.keys(data1).map((currKey) => {
             let name = data1[currKey]["name"];
             let defaultVal = data1[currKey]["default_value"];
@@ -566,11 +568,20 @@ export default function ConversationNodeEditingPanel() {
                 "data_type": dataType,
                 "current_value": currVal
             }
+            let obj2 = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": currVal
+            }
             let keyStr = currKey;
             tempObj[keyStr] = obj;
+            tempObjDup[keyStr] = obj2;
         })} 
 
         setTestPlayerGameData(tempObj);
+
+        setTestPlayerGameDataDup(tempObjDup);
     }
     
     function getUserConfigFromEmuManager2Epp(data2) {
@@ -590,6 +601,8 @@ export default function ConversationNodeEditingPanel() {
 
     function handleqvCancel() {
         setIsDisplayQview(false);
+
+        setTestPlayerGameDataDup(testPlayerGameData);
     }
 
     function passInUILanguage() {
@@ -887,7 +900,7 @@ export default function ConversationNodeEditingPanel() {
                     getUILanguage={passInUILanguage}
                     username={state.userName} 
                     projName={state.projectName} 
-                    initialEmuGameDataTracker={testPlayerGameData}
+                    initialEmuGameDataTracker={testPlayerGameDataDup}
             />}
             
 
