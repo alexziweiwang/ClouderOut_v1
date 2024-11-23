@@ -5,6 +5,7 @@ import langDictionary from './textDictionary';
 
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
+import { GiSolarSystem } from 'react-icons/gi';
    
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
@@ -354,7 +355,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         }
         //TODO check if valid
 
-
+        console.log("\tchange by statement ... ", gameDataTracker);
 
 
 

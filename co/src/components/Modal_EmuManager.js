@@ -155,7 +155,7 @@ export default function Modal_EmuManager({
 
     function update1GdtToOuterLayer() {
         //gdt1
-        update1Gdt(gdt1Dup);
+        update1Gdt(gdt1);
     }
 
     function makeDupGdt1(data1) {
@@ -279,7 +279,8 @@ export default function Modal_EmuManager({
 
                                                     console.log("... gdt1 prep: ", tempObj1); //TODO test
         setGdt1(tempObj1);
-        makeDupGdt1(tempObj1);
+        update1Gdt(tempObj1);
+        
     } 
 
 
@@ -302,7 +303,8 @@ export default function Modal_EmuManager({
                                                 console.log("... epp2 prep: ", tempObj2); //TODO test
 
         setEpp2(tempObj2);
-        makeDupEpp2(tempObj2);
+        update2Epp(tempObj2);
+
     }        
     async function prepare3Epa() {
         // if local is not ready, from cloud
@@ -318,7 +320,9 @@ export default function Modal_EmuManager({
                                             console.log("... epa3 prep: ", tempObj3); //TODO test
 
         setEpa3(tempObj3);
-        makeDupEpa3(tempObj3);
+        update3Epa(tempObj3);
+
+
     }              
 
     async function prepare4Ess() {
@@ -348,13 +352,15 @@ export default function Modal_EmuManager({
             fetchVisualListFromCloud();
 
 
+            update1GdtToOuterLayer(); 
+            update2EppToOuterLayer(); 
+            update3EpaToOuterLayer();
+
                                                 console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
             setFirstTimeEnter(false);
         }
 
-        update1GdtToOuterLayer(); 
-        update2EppToOuterLayer(); 
-        update3EpaToOuterLayer();
+
 
         let UILang = getUILanguage();
         prepUILange(UILang);
@@ -365,9 +371,9 @@ export default function Modal_EmuManager({
     }
 
     async function saveAllChangesToCloud() {
-        makeDupGdt1(gdt1); 
-        makeDupEpp2(epp2); 
-        makeDupEpa3(epa3);
+        // let temp1 =  makeDupGdt1(gdt1); 
+        // let temp2 = makeDupEpp2(epp2); 
+        // let temp3 = makeDupEpa3(epa3);
 
 
         update1GdtToOuterLayer(); 

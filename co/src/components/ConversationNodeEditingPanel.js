@@ -548,8 +548,29 @@ export default function ConversationNodeEditingPanel() {
     function getUserConfigFromEmuManager1Gdt(data1) {
         //update data1 to be the new Game-Data-Tracker
 
-                                                console.log("conv-node-editor, getUserConfigFromEmuManager1Gdt-func, from emu-manger, gdt = ", data1);
-        setTestPlayerGameData(data1);
+                                                console.log("conv-node-editor, getUserConfigFromEmuManager1Gdt-func, from emu-manger, \ngdt = hp_001 current value is \n", 
+                                                data1);
+                                                //data1["hp_001"]["current_value"]
+        //TODO make dup here
+
+        let tempObj = {};
+        {Object.keys(data1).map((currKey) => {
+            let name = data1[currKey]["name"];
+            let defaultVal = data1[currKey]["default_value"];
+            let dataType =data1[currKey]["data_type"];
+            let currVal = data1[currKey]["current_value"];
+
+            let obj = {
+                "name": name,
+                "default_value": defaultVal,
+                "data_type": dataType,
+                "current_value": currVal
+            }
+            let keyStr = currKey;
+            tempObj[keyStr] = obj;
+        })} 
+
+        setTestPlayerGameData(tempObj);
     }
     
     function getUserConfigFromEmuManager2Epp(data2) {
