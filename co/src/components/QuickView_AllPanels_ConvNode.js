@@ -308,11 +308,15 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
 
     function resetViewingPiece() {
+        //                                 console.log("---------");
+        //                                 console.log("before resetting = ", gameDataTracker);
 
-        setGameDataTracker(initialEmuGameDataTracker); //TODO20
-        console.log("initial-gdt = ", initialEmuGameDataTracker);
-        console.log("initial-gdt2 = ", initGdtRecord);
-
+        setGameDataTracker(initGdtRecord); //TODO20
+        //                                 console.log("initial-gdt = ", initialEmuGameDataTracker);
+        //                                 console.log("initial-gdt2 = ", initGdtRecord);
+        //                                 console.log("---------");
+        
+        //                                 console.log("initialPieceNum = ", initialPieceNum);
 
         
         setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
@@ -341,48 +345,79 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     //     return autoMode;
     // }
 
-    function changeGameDataTracker(name, value) {
-        let gmdtObj = gameDataTracker;
+    function changeGameDataTracker(ds, name, value) {
+        let gmdtObj = ds;
         gmdtObj[name].current_value = value;
         
-        setGameDataTracker(gmdtObj);
+                                                            // setGameDataTracker(gmdtObj);//TODO remove later
+        return gmdtObj;
     }  
 
-    function changeGameDataTrackerByStatement(name, action, newVal, type) { //TODO later
+    function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TODO later
         //TODO check if valid
-        if (gameDataTracker[name] === undefined) {
+        if (ds[name] === undefined) {
             return;
         }
         //TODO check if valid
 
-        console.log("\tchange by statement ... ", gameDataTracker);
+        console.log("\tchange by statement ... ", ds);
 
-
-
+        let res = {};
+        
         if (type === "boolean" || type === "string") {
             // type - boolean 
                 // action is "becomes"
             let boolVal = (newVal === "true" || newVal === true) ? true : false;
-            changeGameDataTracker(name, boolVal);
+            res = changeGameDataTracker(ds, name, boolVal);
         } else if (type === "string") {
             // type - string
                 // action is "becomes"
-            changeGameDataTracker(name, newVal);
+                res = changeGameDataTracker(ds, name, newVal);
         } else if (type === "number") {
             // type - number
-            let currVal = gameDataTracker[name]["current_value"];
+            let currVal = ds[name]["current_value"];
 
             let result = 0;
             if (action === "plus") {
                 result = currVal - (-1 * newVal); //important, not directly adding
-                changeGameDataTracker(name, result);
+                res = changeGameDataTracker(ds, name, result);
             } else if (action === "minus") {   
                 result = currVal - newVal;
-                changeGameDataTracker(name, result);
+                res = changeGameDataTracker(ds, name, result);
             } else if (action === "becomes") {
-                changeGameDataTracker(name, newVal);
+                res = changeGameDataTracker(ds, name, newVal);
             }
         }
+
+        return res;
+    }
+
+    function buttonConsequenceByStatementEntireArray(pieceNum, item) {
+        let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
+        let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
+        if (conseqArray === undefined) {
+                                                            console.log("2... conseqArray undefined.");
+            return;
+        }
+        let len = conseqArray.length;
+                                                          //  console.log("2conseqArray: ", conseqArray, ", len = ", len);
+        let res = {};
+        let i = 0;
+                                                            console.log("\nchange-by-stmt-arr: before - ", res);
+        for (; i < len; i++) {
+            let name = conseqArray[i][0];
+            let action = conseqArray[i][1];
+            let newVal = conseqArray[i][2];
+            let type = conseqArray[i][3];
+                                                            console.log("2calling change-by-stmt, ", conseqArray[i]);
+            
+            res = changeGameDataTrackerByStatement(gameDataTracker, name, action, newVal, type);
+        }
+
+                                                            console.log("\nchange-by-stmt-arr: after - ", res);
+
+        setGameDataTracker(res);
+        
     }
 
 
@@ -501,6 +536,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
                     receiveGameDataObj={passInGameDataFromScreen}
                     buttonConseqByStatement={changeGameDataTrackerByStatement}
+                    buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
 
                 />
 
