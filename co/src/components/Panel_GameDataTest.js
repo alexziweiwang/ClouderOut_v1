@@ -6,7 +6,8 @@ Keeps a set of creator's preferred configuration data of game-data
 export default function Panel_GameDataTest({
     localTest, initialGameDataStatus,
     getScreenHeight, getScreenWidth,
-    isQuickView, triggerClickOnGameDataPanel, getIsGameScreenClicked,
+    isQuickView, triggerClickOnGameDataPanel, 
+    getIsGameScreenClicked,
     receiveGameDataObj,
     getResetSignal,
     notifyAfterReset,
@@ -43,6 +44,9 @@ export default function Panel_GameDataTest({
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        fetchGdataTrackerFromOuterLayer();
+
+
         let h = getScreenHeight();
         setScreenHeight(h);
         let w = getScreenWidth();
@@ -53,24 +57,19 @@ export default function Panel_GameDataTest({
 
         if (firstTimeEnter === true) {
                                     console.log("quickview ... Panel_GameData");
-            fetchGdataTrackerFromOuterLayer();
-
 
             setFirstTimeEnter(false);
         }
 
 
-        let receiveGameScreenClicked = getIsGameScreenClicked();
-        let resetSignal = getResetSignal();
+        // let receiveGameScreenClicked = getIsGameScreenClicked();
+        // let resetSignal = getResetSignal();
 
-        if (receiveGameScreenClicked === true || resetSignal === true) {
+        
 
-            fetchGdataTrackerFromOuterLayer();
-        } 
-
-        if (resetSignal === true) {
-            notifyAfterReset();
-        }
+        // if (resetSignal === true) {
+        //     notifyAfterReset();
+        // }
 
         
 
@@ -125,9 +124,6 @@ return (
                                         "true" : "false") 
                                 : gameDataTrackerMap[currKey]["current_value"];
 
-                            let optionFalse = keyName + "-false";
-                            let optionTrue = keyName + "-true";
-                            let optionNone = keyName + "-unselected";
                             let inputId = keyName+"-input";
 
                             return (

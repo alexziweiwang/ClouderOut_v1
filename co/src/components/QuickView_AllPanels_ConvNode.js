@@ -51,6 +51,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     : textDictItemDefault.resetText;
 
 
+    const [renderCounter, setRenderCounter] = useState(0);
 
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
     
@@ -95,7 +96,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
             makeDupGdt();
 
-                                        console.log("first entry quick-view, gdt = ", initialEmuGameDataTracker);
+                            //            console.log("first entry quick-view, gdt = ", initialEmuGameDataTracker);
 
             setFirstTimeEnter(false);
         }
@@ -118,6 +119,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         
 
     });
+
+    function updateRenderCounter() {
+        setRenderCounter((renderCounter+1) % 100);
+    }
 
     async function initializeResourceLists() {
 
@@ -270,7 +275,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     function triggerClickOnGameDataPanel() {
-        setClickOnGameScreen(false);
+        //setClickOnGameScreen(false);
     }
 
     function passInIsGameScreenClicked() {
@@ -363,8 +368,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         }
         //TODO check if valid
 
-        console.log("\tchange by statement ... ", ds);
-
         let res = {};
         
         if (type === "boolean" || type === "string") {
@@ -406,13 +409,13 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                                                           //  console.log("2conseqArray: ", conseqArray, ", len = ", len);
         let res = gameDataTracker;
         let i = 0;
-                                                            console.log("\nchange-by-stmt-arr: before - ", res);
+                                                    //        console.log("\nchange-by-stmt-arr: before - ", res);
         for (; i < len; i++) {
             let name = conseqArray[i][0];
             let action = conseqArray[i][1];
             let newVal = conseqArray[i][2];
             let type = conseqArray[i][3];
-                                                            console.log("2calling change-by-stmt, ", conseqArray[i]);
+                                      //                      console.log("2calling change-by-stmt, ", conseqArray[i]);
             
             res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
         }
@@ -420,14 +423,9 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                                                             console.log("\nchange-by-stmt-arr: after - ", res);
 
         setGameDataTracker(res);
+        updateRenderCounter();
         
     }
-
-
-
-
-
-
 
 
 
@@ -457,6 +455,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     function passInGameDataFromScreen() {
+        console.log("\t\t!! qv- gameDataTracker = ", gameDataTracker);
+
         return gameDataTracker;
     }
 
@@ -541,7 +541,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
                 />
 
-                {/* <Panel_GameDataTest
+                <Panel_GameDataTest
                        localTest={true}
                        initialGameDataStatus={gameDataTracker}
 
@@ -559,11 +559,59 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        notifyAfterReset={notifyAfterReset}
 
                        getUILanguage={getUILanguage}
-                /> */}
+                />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
+                {/* <div>
+                <table>
+                            <thead className="textNoSelect">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                    <th>Default Value</th>
+                                </tr>
+                            </thead>  
+                            <tbody> 
 
 
+                        {Object.keys(gameDataTracker).map((currKey) => {
+                            let keyName = "gmdt" + currKey;
+                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataTracker[currKey]["current_value"] === true 
+                                        || gameDataTracker[currKey]["current_value"] === "true") ? 
+                                        "true" : "false") 
+                                : gameDataTracker[currKey]["current_value"];
 
+                            let inputId = keyName+"-input";
+
+                            return (
+                                <tr value={currKey} key={keyName} id={inputId}>
+                                    <td>{gameDataTracker[currKey]["name"]}</td>
+                                    
+                                    <td>
+                                        <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? 
+                                            gameDataTracker[currKey]["current_value"] 
+                                            : (gameDataTracker[currKey]["current_value"] === true ? 
+                                                "True" 
+                                                : "False")}</label><br></br>
+
+                                    </td>   
+
+                                    <td>
+                                    <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? gameDataTracker[currKey]["default_value"] : (gameDataTracker[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                    
+                                    </td>            
+                                </tr>
+                            
+                            );
+                        })}
+
+
+                        
+                            </tbody>  
+                        </table>
+                </div>
+
+ */}
                 </div>
 
 
