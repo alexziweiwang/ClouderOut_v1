@@ -33,6 +33,9 @@ export default function NavigationPreview ({
 
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(450);
+    
+    const [renderCounter, setRenderCounter] = useState(0);
+
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
@@ -91,6 +94,11 @@ export default function NavigationPreview ({
     const [tryPPText, setTryPPText] = useState(-1);
     const [tryPPValue, setTryPPValue] = useState(-1);
     const [tryPPPic, setTryPPPic] = useState(-1);
+
+    
+    function updateRenderCounter() {
+        setRenderCounter((renderCounter+1) % 100);
+    }
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);

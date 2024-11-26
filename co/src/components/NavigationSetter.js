@@ -20,7 +20,6 @@ export default function NavigationSetter({initialNavObj,
   //TODO1
 
 
-
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
 
@@ -319,7 +318,8 @@ export default function NavigationSetter({initialNavObj,
 
     const [playerProfilePageAddingValueType, setPlayerProfilePageAddingValueType] = useState("");
     const [itemAddingTable, setItemAddingTable] = useState([]);
-
+    const [ppNicknameDisplay, setPPNicknameDisplay] = useState(initialNavObj["playerProfilePage-playerProfileNickNameItem"]["adding"]);
+    const [ppIconDisplay, setPPIconDisplay] = useState(initialNavObj["playerProfilePage-playerProfileIconPicItem"]["adding"]);
 
     const [gameDataDesignList, setGameDataDesignList] = useState(-1);                    /* Important */
 
@@ -3959,7 +3959,7 @@ export default function NavigationSetter({initialNavObj,
                         <td>{item["itemType"]}</td>
                         <td>{item["posX"]}, {item["posY"]}</td>
                         <td>
-                          <button
+                          {/* <button
                             onClick={()=>{
                               //TODO highlight this item on previewer ??
 
@@ -3969,7 +3969,7 @@ export default function NavigationSetter({initialNavObj,
                               itemTemp["selected"] = !itemTemp["selected"];
                               editItemTable(index, itemTemp);
                             }}
-                          >{item["selected"] === true ? "unselect" : "select"}</button>
+                          >{item["selected"] === true ? "unselect" : "select"}</button> */}
                           <button onClick={()=>{
                             let askStr = "Are you sure to delete this item: " + item["itemName"] + "?";
                             let resp = window.confirm(askStr);
@@ -3978,7 +3978,6 @@ export default function NavigationSetter({initialNavObj,
                               deleteFromItemTable(item["itemName"]);
 
                               //TODO update to caller-layer...
-                              //from ["playerProfilePage-itemMap"]
                             }
                           }}>delete</button>
                         </td>
@@ -4490,30 +4489,94 @@ export default function NavigationSetter({initialNavObj,
             <br></br>
             <br></br>
  
-
-           {/* <input type="checkbox"
-            value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
-            checked={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
+        <div className="someGrey">
+           <input type="checkbox"
+            value={ppNicknameDisplay}
+            checked={ppNicknameDisplay}
             onChange={()=>{
-              // let tempNav = currentProjectNav;
-              // tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"];
-              // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-              // updateNavObj(tempNav);
-//TODO12
+                setPPNicknameDisplay(!ppNicknameDisplay);
             }}
-           ></input>   */}
+           ></input> 
+           <label
+              className="textNoSelect cursor_pointer"
+           >
+                Display Nickname
+           </label>
+           <br></br>
+
+           <input type="checkbox"
+            value={ppIconDisplay}
+            checked={ppIconDisplay}
+            onChange={()=>{
+                setPPIconDisplay(!ppIconDisplay);
+            }}
+           ></input> 
+           <label
+              className="textNoSelect cursor_pointer"
+           >
+                Display Icon
+           </label>
+
+           <br></br>
+           <button
+            onClick={()=>{
+              //TODO2
+              //setPPNicknameDisplay(); setPPIconDisplay();
+              //ppNicknameDisplay         ppIconDisplay
+
+              let tempNav = currentProjectNav;
+              tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = ppNicknameDisplay;
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+              updateNavObj(tempNav);
+
+              tempNav = currentProjectNav;
+              tempNav["playerProfilePage-playerProfileIconPicItem"]["adding"] = ppIconDisplay;
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": tempNav["playerProfilePage-playerProfileIconPicItem"]});         
+
+
+            }}
+           >Update</button>
+
+        </div>
+
+    
           <label
               className="textNoSelect cursor_pointer"
-              onClick={()=>{
-                setPpNicknameAreaExpand(!ppNicknameAreaExpand);
-              }}
           >
               Player Profile Nickname
-          </label><br></br>
+          </label>
+                <br></br>
 
+                {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&& 
+                <label
+                  onClick={()=>{
+                    setPpNicknameAreaExpand(!ppNicknameAreaExpand);
+                  }}
+                > (Displaying)</label>}
+                {!currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&& 
+                <label> (Not Displaying)</label>}
 
-                {ppNicknameAreaExpand && <div className="indentOne">
+                <br></br>
 
+                {<div className="indentOne">
+                    {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&&<button
+                      onClick={()=>{
+                        let tempNav = currentProjectNav;
+                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = false;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        updateNavObj(tempNav); 
+                      }}
+                    >Hide Nickname</button>}
+                    {!currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&&<button
+                      onClick={()=>{
+                        let tempNav = currentProjectNav;
+                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = true;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        updateNavObj(tempNav); 
+                      }}
+                    >Display Nickname</button>}
+
+                    <br></br>
                     <label>Label (optional): </label>
                     <input
                       placeholder="Nickname"
