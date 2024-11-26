@@ -398,10 +398,9 @@ export default function NavigationSetter({initialNavObj,
 
     function changePPTryingTextItemTextContent(event) { 
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["textContent"] = event.target.value;
+      tempNav["playerProfilePage-previewingTextObj-textContent"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-textContent": event.target.value});
 
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
-               
       updateNavObj(tempNav);
                
     }
@@ -409,56 +408,55 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingTextItemTextItalic() {
       setPpTryingTextItemTextItalicBool(!ppTryingTextItemTextItalicBool);
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["textItalic"] = !ppTryingTextItemTextItalicBool;
-
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+      tempNav["playerProfilePage-previewingTextObj-textItalic"] = !ppTryingTextItemTextItalicBool;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-textItalic": !ppTryingTextItemTextItalicBool});
                
       updateNavObj(tempNav);
     }
 
     function changePPTryingTextItemFontSize(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["textFontSize"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+      tempNav["playerProfilePage-previewingTextObj-textFontSize"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-textFontSize": event.target.value});
                
       updateNavObj(tempNav);
     }
 
     function changePPTryingTextItemFontFamily(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["textFont"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+      tempNav["playerProfilePage-previewingTextObj-textFont"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-textFont": event.target.value});
                
       updateNavObj(tempNav);
     }
 
     function changePPTryingTextItemTextColor(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["textColor"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+      tempNav["playerProfilePage-previewingTextObj-textColor"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-textColor": event.target.value});
                
       updateNavObj(tempNav);
     }
 
     function changePPTryingTextItemPosX(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["posX"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+      tempNav["playerProfilePage-previewingTextObj-posX"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-posX": event.target.value});
                
       updateNavObj(tempNav);
     }
 
     function changePPTryingTextItemPosY(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"]["posY"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});
+      tempNav["playerProfilePage-previewingTextObj-posY"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-posY": event.target.value});
                
       updateNavObj(tempNav);      
     }
 
     function resetPPTryingTextItem() {
       let resetItem = {      
-        "isPreviewing": currentProjectNav["playerProfilePage-previewingTextObj"]["isPreviewing"],
+        "isPreviewing": currentProjectNav["playerProfilePage-previewingTextObj-isPreviewing"],
         "textContent": "",
         "textItalic": false,
         "textFontSize": 12,
@@ -489,11 +487,11 @@ export default function NavigationSetter({initialNavObj,
       //TODO details of this item, based on its type
 
       if (objTemp.itemType === "text") {
-        objTemp["textContent"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
-        objTemp["textItalic"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textItalic"];
-        objTemp["textFontSize"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"];
-        objTemp["textFont"]  = currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"];
-        objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"];
+        objTemp["textContent"] = currentProjectNav["playerProfilePage-previewingTextObj-textContent"];
+        objTemp["textItalic"] = currentProjectNav["playerProfilePage-previewingTextObj-textItalic"];
+        objTemp["textFontSize"] = currentProjectNav["playerProfilePage-previewingTextObj-textFontSize"];
+        objTemp["textFont"]  = currentProjectNav["playerProfilePage-previewingTextObj-textFont"];
+        objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj-textColor"];
 
      } else if (objTemp.itemType === "value") {
         objTemp["labelText"] = currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"];
@@ -4000,8 +3998,8 @@ export default function NavigationSetter({initialNavObj,
                 setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
                 
                 let tempNav = currentProjectNav;
-                tempNav["playerProfilePage-previewingTextObj"]["isPreviewing"] = !playerProfilePageIsAddingText;
-                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});         
+                tempNav["playerProfilePage-previewingTextObj-isPreviewing"] = !playerProfilePageIsAddingText;
+                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": !playerProfilePageIsAddingText});         
                 updateNavObj(tempNav);
             
 
@@ -4012,7 +4010,7 @@ export default function NavigationSetter({initialNavObj,
              <label>Text Content: </label>
              
              <input 
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-textContent"]}
               onChange={(event)=>{
                 changePPTryingTextItemTextContent(event);
               }}></input>
@@ -4031,17 +4029,17 @@ export default function NavigationSetter({initialNavObj,
 
              <label>{fontSizeText}: </label>
              <input type="range" min="5" max="90" step="1"
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-textFontSize"]}
               onChange={(event)=>{
                 changePPTryingTextItemFontSize(event);
               }}
              ></input>
-             <label>{currentProjectNav["playerProfilePage-previewingTextObj"]["textFontSize"]
+             <label>{currentProjectNav["playerProfilePage-previewingTextObj-textFontSize"]
 }</label>
              <br></br>
              <label>{fontNameText}: </label>
                 <select 
-                  value={currentProjectNav["playerProfilePage-previewingTextObj"]["textFont"]}
+                  value={currentProjectNav["playerProfilePage-previewingTextObj-textFont"]}
                   onChange={(event)=>{
                     changePPTryingTextItemFontFamily(event);
                   }}
@@ -4059,17 +4057,17 @@ export default function NavigationSetter({initialNavObj,
               }}
              
              ></input>
-             <label> {currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"]}</label>
+             <label> {currentProjectNav["playerProfilePage-previewingTextObj-textColor"]}</label>
              <br></br>
              <label>{positionXText}: </label>
              <input type="range" min="1" max={screenWidth} step="1"
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["posX"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-posX"]}
               onChange={(event)=>{
                 changePPTryingTextItemPosX(event);
               }}
              ></input>
              <input min="1" max={screenWidth} step="1"
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["posX"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-posX"]}
               onChange={(event)=>{
                 changePPTryingTextItemPosX(event);
               }}
@@ -4078,13 +4076,13 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
              <label>{positionYText}: </label>
              <input type="range" min="1" max={screenHeight} step="1"
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["posY"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-posY"]}
               onChange={(event)=>{
                 changePPTryingTextItemPosY(event);
               }}
              ></input>
              <input min="1" max={screenHeight} step="1"
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["posY"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-posY"]}
               onChange={(event)=>{
                 changePPTryingTextItemPosY(event);
               }}
@@ -4092,14 +4090,14 @@ export default function NavigationSetter({initialNavObj,
              <br></br><br></br>
              <button
               onClick={()=>{
-                if (currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"].length === 0) {
+                if (currentProjectNav["playerProfilePage-previewingTextObj-textContent"].length === 0) {
                   alert("Cannot add empty text content.");
                   return;
                 }
-                let itemName = "text-" + currentProjectNav["playerProfilePage-previewingTextObj"]["textContent"];
+                let itemName = "text-" + currentProjectNav["playerProfilePage-previewingTextObj-textContent"];
                 let itemType = "text";
-                let x = currentProjectNav["playerProfilePage-previewingTextObj"]["posX"];
-                let y = currentProjectNav["playerProfilePage-previewingTextObj"]["posY"];
+                let x = currentProjectNav["playerProfilePage-previewingTextObj-posX"];
+                let y = currentProjectNav["playerProfilePage-previewingTextObj-posY"];
                 let obj = {
                   "itemName": itemName,
                   "itemType": itemType,
