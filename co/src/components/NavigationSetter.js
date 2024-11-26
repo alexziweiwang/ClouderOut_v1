@@ -357,6 +357,9 @@ export default function NavigationSetter({initialNavObj,
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
+
+    const [ppNicknameAreaExpand, setPpNicknameAreaExpand] = useState(false);
+
     async function fetchProjResourceLists() {
       console.log("nav-setter: fetchProjResourceLists()"); //TODO21 test
       /* fetch from cloud db */
@@ -3975,6 +3978,7 @@ export default function NavigationSetter({initialNavObj,
                               deleteFromItemTable(item["itemName"]);
 
                               //TODO update to caller-layer...
+                              //from ["playerProfilePage-itemMap"]
                             }
                           }}>delete</button>
                         </td>
@@ -4180,14 +4184,19 @@ export default function NavigationSetter({initialNavObj,
                         onClick={()=>{
                           getGameDataDesignFromCloud();
                           resetPlayerProfilePageAddingValueName();
-                        }
-                        }
+                        }}
                       >Update Game Data</button>
                       </>
                   }
                   
                   {playerProfilePageAddingValueType === "Player Profile" && 
-                      <select>
+                      <>
+                      <select 
+                        value={currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"]}
+                        onChange={(event)=>{
+                          changePlayerProfilePageAddingValueName(event);
+                        }}
+                      >
                         <option key="ppValue-playerProfile-option-defaultNone" value="">-- Select Player Profile Data Item --</option>
                         {Object.keys(intialEmuPlayerProfile).map((currKey) => {                     
                           let keyStr = "ppValue-playerProfile-option-" + currKey;
@@ -4195,6 +4204,10 @@ export default function NavigationSetter({initialNavObj,
                         })}
 
                       </select>
+                      {/* <button>
+
+                      </button> */}
+                      </>
                   }
                   
                   {playerProfilePageAddingValueType === "Player Account Info" && 
@@ -4491,65 +4504,15 @@ export default function NavigationSetter({initialNavObj,
            ></input>   */}
           <label
               className="textNoSelect cursor_pointer"
+              onClick={()=>{
+                setPpNicknameAreaExpand(!ppNicknameAreaExpand);
+              }}
           >
               Player Profile Nickname
-          </label> 
-            <input type="radio"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
-                      onClick={()=>{
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = true;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-                        updateNavObj(tempNav);
-                      }}
-            
-            >Display</input><br></br>
-            <input type="radio"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]}
-                      onClick={()=>{
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = false;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-                        updateNavObj(tempNav);
-                      }}
-            
-            >Hide</input><br></br>
-            <button
+          </label><br></br>
 
-            >Update</button>
 
-                {<div className="indentOne">
-                    <button
-                      onClick={()=>{
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = false;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-                        updateNavObj(tempNav);
-                      }}
-                    >Remove Nickname Displaying</button>
-                    <br></br>
-                    
-                    <input onChange={(event)=>{
-                      let val = event.target.value;
-                      if (val == 0) {
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = false;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-                        updateNavObj(tempNav);
-                      } else {
-                        let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = true;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
-                        updateNavObj(tempNav);
-                      }
-                    }}
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="1">
-                    </input>
-                    <label>Display?</label>
-                    <br></br>
+                {ppNicknameAreaExpand && <div className="indentOne">
 
                     <label>Label (optional): </label>
                     <input
