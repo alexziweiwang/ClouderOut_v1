@@ -455,19 +455,28 @@ export default function NavigationSetter({initialNavObj,
     }
 
     function resetPPTryingTextItem() {
-      let resetItem = {      
-        "isPreviewing": currentProjectNav["playerProfilePage-previewingTextObj-isPreviewing"],
-        "textContent": "",
-        "textItalic": false,
-        "textFontSize": 12,
-        "textFont": "serif",
-        "textColor": "#000000",
-        "posX": 30,
-        "posY": 50,
-      }
+
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingTextObj"] = resetItem;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": resetItem});
+      tempNav["playerProfilePage-previewingTextObj-isPreviewing"] = false;
+      tempNav["playerProfilePage-previewingTextObj-textContent"] = "";
+      tempNav["playerProfilePage-previewingTextObj-textItalic"] = false;
+      tempNav["playerProfilePage-previewingTextObj-textFontSize"] = 12;
+      tempNav["playerProfilePage-previewingTextObj-textFont"] = "serif";
+      tempNav["playerProfilePage-previewingTextObj-textColor"] = "#000000";
+      tempNav["playerProfilePage-previewingTextObj-posX"] = 30;
+      tempNav["playerProfilePage-previewingTextObj-posY"] = 50;    
+ 
+      setCurrentProjectNav({...currentProjectNav, 
+        "playerProfilePage-previewingTextObj-isPreviewing": false,
+        "playerProfilePage-previewingTextObj-textContent": "",
+        "playerProfilePage-previewingTextObj-textItalic": false,
+        "playerProfilePage-previewingTextObj-textFontSize": 12,
+        "playerProfilePage-previewingTextObj-textFont": "serif",
+        "playerProfilePage-previewingTextObj-textColor": "#000000",
+        "playerProfilePage-previewingTextObj-posX": 30,
+        "playerProfilePage-previewingTextObj-posY": 50,
+      
+      });
       updateNavObj(tempNav);
 
       setPpTryingTextItemTextItalicBool(false);
@@ -494,12 +503,12 @@ export default function NavigationSetter({initialNavObj,
         objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingTextObj-textColor"];
 
      } else if (objTemp.itemType === "value") {
-        objTemp["labelText"] = currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"];
-        objTemp["valueItemType"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"];
-        objTemp["valueItemName"] = currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
-        objTemp["textFontSize"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"];
-        objTemp["textFont"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"];
-        objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"];
+        objTemp["labelText"] = currentProjectNav["playerProfilePage-previewingValueObj-labelText"];
+        objTemp["valueItemType"] = currentProjectNav["playerProfilePage-previewingValueObj-valueItemType"];
+        objTemp["valueItemName"] = currentProjectNav["playerProfilePage-previewingValueObj-valueItemName"];
+        objTemp["textFontSize"] = currentProjectNav["playerProfilePage-previewingValueObj-textFontSize"];
+        objTemp["textFont"] = currentProjectNav["playerProfilePage-previewingValueObj-textFont"];
+        objTemp["textColor"] = currentProjectNav["playerProfilePage-previewingValueObj-textColor"];
 
      } else if (objTemp.itemType === "pic") {
         objTemp["picName"] = currentProjectNav["playerProfilePage-previewingPicObj"]["picName"];
@@ -555,24 +564,24 @@ export default function NavigationSetter({initialNavObj,
 
     function changePPTryingValueItemLabelText(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["labelText"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-labelText"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-labelText": event.target.value});
                
       updateNavObj(tempNav);   
     }
 
     function changePPTryingPicItemPosX(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingPicObj"]["posX"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+      tempNav["playerProfilePage-previewingPicObj-posX"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj-posX": event.target.value});
                
       updateNavObj(tempNav);
     }
 
     function changePPTryingPicItemPosY(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingPicObj"]["posY"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+      tempNav["playerProfilePage-previewingPicObj-posY"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj-posY": event.target.value});
                
       updateNavObj(tempNav);
     }
@@ -580,7 +589,7 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingPicName(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingPicObj"]["picName"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": event.target.value});
                
       updateNavObj(tempNav);
     }
@@ -588,7 +597,7 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingPicItemWidth(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingPicObj"]["width"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": event.target.value});
                
       updateNavObj(tempNav);   
     }
@@ -596,106 +605,109 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingPicItemHeight(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingPicObj"]["height"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": event.target.value});
                
       updateNavObj(tempNav);   
     }
 
     function resetPPTryingPicItem() {
-      let resetItem = {
-        "isPreviewing": currentProjectNav["playerProfilePage-previewingPicObj"]["isPreviewing"],
-        "posX": 50,
-        "posY": 50,
-        "picName": "",
-        "width": 200,
-        "height": 200,
-      };
-      let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingPicObj"] = resetItem;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": resetItem});
-      updateNavObj(tempNav);
+      // let resetItem = {
+      //   "isPreviewing": currentProjectNav["playerProfilePage-previewingPicObj"]["isPreviewing"],
+      //   "posX": 50,
+      //   "posY": 50,
+      //   "picName": "",
+      //   "width": 200,
+      //   "height": 200,
+      // };
+      // let tempNav = currentProjectNav;
+      // tempNav["playerProfilePage-previewingPicObj"] = resetItem;
+      // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": resetItem});
+
+
+
+      // updateNavObj(tempNav); //TODO12
     }
 
     function changePPTryingValueItemPosX(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["posX"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-posX"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-posX": event.target.value});
                
       updateNavObj(tempNav);      
     }
 
     function changePPTryingValueItemPosY(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["posY"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-posY"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-posY": event.target.value});
                
       updateNavObj(tempNav);      
     }
 
     function changePPTryingValueItemFontSize(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["textFontSize"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-textFontSize"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-textFontSize": event.target.value});
                
       updateNavObj(tempNav);      
     }
 
     function changePPTryingValueItemFont(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["textFont"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-textFont"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-textFont": event.target.value});
                
       updateNavObj(tempNav);      
     }
 
     function changePPTryingValueItemTextColor(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["textColor"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-textColor"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-textColor": event.target.value});
                
       updateNavObj(tempNav);     
     }
 
     function resetPPTryingValueItem() {
-      let resetItem = {
-        "isPreviewing": currentProjectNav["playerProfilePage-previewingValueObj"]["isPreviewing"],
-        "labelText": "",
-        "valueItemType": "Game Data",
-        "valueItemName": "",
-        "posX": 30,
-        "posY": 70,
-        "textFontSize": 12,
-        "textFont": "serif",
-        "textColor": "#000000",
-      };
-      let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"] = resetItem;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": resetItem});
-      updateNavObj(tempNav);
+      // let resetItem = {
+      //   "isPreviewing": currentProjectNav["playerProfilePage-previewingValueObj-isPreviewing"],
+      //   "labelText": "",
+      //   "valueItemType": "Game Data",
+      //   "valueItemName": "",
+      //   "posX": 30,
+      //   "posY": 70,
+      //   "textFontSize": 12,
+      //   "textFont": "serif",
+      //   "textColor": "#000000",
+      // };
+      // let tempNav = currentProjectNav;
+      // tempNav["playerProfilePage-previewingValueObj"] = resetItem;
+      // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": resetItem});
+      // updateNavObj(tempNav); //TODO12
     }
 
     function changePlayerProfilePageAddingValueType(val) {
       setPlayerProfilePageAddingValueType(val);
 
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["valueItemType"] = val;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-valueItemType"] = val;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-valueItemType": val});
                
       updateNavObj(tempNav);  
     }
   
     function changePlayerProfilePageAddingValueName(event) {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["valueItemName"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-valueItemName"] = event.target.value;
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-valueItemName": event.target.value});
                
       updateNavObj(tempNav);  
     }
 
     function resetPlayerProfilePageAddingValueName() {
       let tempNav = currentProjectNav;
-      tempNav["playerProfilePage-previewingValueObj"]["valueItemName"] = "";
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});
+      tempNav["playerProfilePage-previewingValueObj-valueItemName"] = "";
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-valueItemName": ""});
                
       updateNavObj(tempNav);  
     }
@@ -4051,7 +4063,7 @@ export default function NavigationSetter({initialNavObj,
   
                 </select><br></br>
              <label>{fontColorText}: </label><input type="color"
-              value={currentProjectNav["playerProfilePage-previewingTextObj"]["textColor"]}
+              value={currentProjectNav["playerProfilePage-previewingTextObj-textColor"]}
               onChange={(event)=>{
                 changePPTryingTextItemTextColor(event);
               }}
@@ -4127,8 +4139,8 @@ export default function NavigationSetter({initialNavObj,
               setPlayerProfilePageIsAddingValue(!playerProfilePageIsAddingValue);
               
               let tempNav = currentProjectNav;
-              tempNav["playerProfilePage-previewingValueObj"]["isPreviewing"] = !playerProfilePageIsAddingValue;
-              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});         
+              tempNav["playerProfilePage-previewingValueObj-isPreviewing"] = !playerProfilePageIsAddingValue;
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj-isPreviewing": !playerProfilePageIsAddingValue});         
               updateNavObj(tempNav);
 
             }}
@@ -4139,7 +4151,7 @@ export default function NavigationSetter({initialNavObj,
            
              <label>{labelTextText}: </label>
              <input
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-labelText"]}
               onChange={(event)=>{
                 changePPTryingValueItemLabelText(event);
               }}
@@ -4164,7 +4176,7 @@ export default function NavigationSetter({initialNavObj,
                   {playerProfilePageAddingValueType === "Game Data" && 
                       <>
                       <select 
-                        value={currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"]}
+                        value={currentProjectNav["playerProfilePage-previewingValueObj-valueItemName"]}
                         onChange={(event)=>{
                           changePlayerProfilePageAddingValueName(event);
                         }}
@@ -4189,7 +4201,7 @@ export default function NavigationSetter({initialNavObj,
                   {playerProfilePageAddingValueType === "Player Profile" && 
                       <>
                       <select 
-                        value={currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"]}
+                        value={currentProjectNav["playerProfilePage-previewingValueObj-valueItemName"]}
                         onChange={(event)=>{
                           changePlayerProfilePageAddingValueName(event);
                         }}
@@ -4219,13 +4231,13 @@ export default function NavigationSetter({initialNavObj,
            
             <label>{positionXText}</label>
             <input type="range" min="0" max={screenWidth} step="1"
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["posX"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-posX"]}
               onChange={(event)=>{
                 changePPTryingValueItemPosX(event);
               }}
             ></input>  
             <input min="0" max={screenWidth} step="1"
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["posX"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-posX"]}
               onChange={(event)=>{
                 changePPTryingValueItemPosX(event);
               }}
@@ -4234,13 +4246,13 @@ export default function NavigationSetter({initialNavObj,
                <br></br>
              <label>{positionYText}: </label>
              <input type="range" min="0" max={screenHeight} step="1"
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["posY"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-posY"]}
               onChange={(event)=>{
                 changePPTryingValueItemPosY(event);
               }}
             ></input>  
              <input min="0" max={screenHeight} step="1"
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["posY"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-posY"]}
               onChange={(event)=>{
                 changePPTryingValueItemPosY(event);
               }}
@@ -4248,16 +4260,16 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
              <label>{fontSizeText}: </label>
              <input type="range" min="1" max="50" step="1"
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-textFontSize"]}
               onChange={(event)=>{
                 changePPTryingValueItemFontSize(event);
               }}
              ></input>
-             <label> {currentProjectNav["playerProfilePage-previewingValueObj"]["textFontSize"]}</label>
+             <label> {currentProjectNav["playerProfilePage-previewingValueObj-textFontSize"]}</label>
              
              <br></br>
              <label>{fontNameText}: </label><select
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["textFont"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-textFont"]}
               onChange={(event)=>{
                 changePPTryingValueItemFont(event);
 
@@ -4269,13 +4281,13 @@ export default function NavigationSetter({initialNavObj,
              </select><br></br>
              <label>{fontColorText}: </label>
              <input type="color"
-              value={currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"]}
+              value={currentProjectNav["playerProfilePage-previewingValueObj-textColor"]}
               onChange={(event)=>{
                 changePPTryingValueItemTextColor(event);
 
               }}
              ></input>
-             <label> {currentProjectNav["playerProfilePage-previewingValueObj"]["textColor"]}</label>
+             <label> {currentProjectNav["playerProfilePage-previewingValueObj-textColor"]}</label>
              
              <br></br>                     
 
@@ -4286,20 +4298,20 @@ export default function NavigationSetter({initialNavObj,
               let itemType = "value";
 
 
-              if (currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"].length === 0
-                || currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"].length === 0) {
+              if (currentProjectNav["playerProfilePage-previewingValueObj-valueItemType"].length === 0
+                || currentProjectNav["playerProfilePage-previewingValueObj-valueItemName"].length === 0) {
                 alert("Cannot add unclear value-item.");
                 return;
               }
-              let itemName = "value-" + currentProjectNav["playerProfilePage-previewingValueObj"]["labelText"]
+              let itemName = "value-" + currentProjectNav["playerProfilePage-previewingValueObj-labelText"]
                 + "-"
-                + currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemType"]
+                + currentProjectNav["playerProfilePage-previewingValueObj-valueItemType"]
                 + "-"
-                + currentProjectNav["playerProfilePage-previewingValueObj"]["valueItemName"];
+                + currentProjectNav["playerProfilePage-previewingValueObj-valueItemName"];
               
           
-              let x = currentProjectNav["playerProfilePage-previewingValueObj"]["posX"];
-              let y = currentProjectNav["playerProfilePage-previewingValueObj"]["posY"];
+              let x = currentProjectNav["playerProfilePage-previewingValueObj-posX"];
+              let y = currentProjectNav["playerProfilePage-previewingValueObj-posY"];
               let obj = {
                 "itemName": itemName,
                 "itemType": itemType,

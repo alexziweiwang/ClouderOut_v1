@@ -446,17 +446,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgPicName": "",
     "playerProfilePage-itemMap": [],
 
-    "playerProfilePage-previewingTextObj": { //for previewing only  //TODO remove later
-      "isPreviewing": false,
-      "textContent": "",
-      "textItalic": false,
+    // "playerProfilePage-previewingTextObj": { //for previewing only  //TODO remove later
+    //   "isPreviewing": false,
+    //   "textContent": "",
+    //   "textItalic": false,
 
-      "textFontSize": 12,
-      "textFont": "serif",
-      "textColor": "#000000",
-      "posX": 30,
-      "posY": 50,
-    }, //TODO remove later
+    //   "textFontSize": 12,
+    //   "textFont": "serif",
+    //   "textColor": "#000000",
+    //   "posX": 30,
+    //   "posY": 50,
+    // }, //TODO remove later
 
     "playerProfilePage-previewingTextObj-isPreviewing": false,
     "playerProfilePage-previewingTextObj-textContent": "",
@@ -468,17 +468,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingTextObj-posY": 50,
 
 
-    "playerProfilePage-previewingValueObj": { //for previewing only  //TODO remove later
-      "isPreviewing": false,
-      "labelText": "",
-      "valueItemType": "Game Data",
-      "valueItemName": "",
-      "posX": 30,
-      "posY": 70,
-      "textFontSize": 12,
-      "textFont": "serif",
-      "textColor": "#000000",
-    },  //TODO remove later
+    // "playerProfilePage-previewingValueObj": { //for previewing only  //TODO remove later
+    //   "isPreviewing": false,
+    //   "labelText": "",
+    //   "valueItemType": "Game Data",
+    //   "valueItemName": "",
+    //   "posX": 30,
+    //   "posY": 70,
+    //   "textFontSize": 12,
+    //   "textFont": "serif",
+    //   "textColor": "#000000",
+    // },  //TODO remove later
 
     "playerProfilePage-previewingValueObj-isPreviewing": false,
     "playerProfilePage-previewingValueObj-labelText": "",
