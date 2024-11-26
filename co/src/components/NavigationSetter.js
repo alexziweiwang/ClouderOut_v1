@@ -458,7 +458,7 @@ export default function NavigationSetter({initialNavObj,
 
     function resetPPTryingTextItem() {
       let resetItem = {      
-        "previewing": currentProjectNav["playerProfilePage-previewingTextObj"]["previewing"],
+        "isPreviewing": currentProjectNav["playerProfilePage-previewingTextObj"]["isPreviewing"],
         "textContent": "",
         "textItalic": false,
         "textFontSize": 12,
@@ -605,7 +605,7 @@ export default function NavigationSetter({initialNavObj,
 
     function resetPPTryingPicItem() {
       let resetItem = {
-        "previewing": currentProjectNav["playerProfilePage-previewingPicObj"]["previewing"],
+        "isPreviewing": currentProjectNav["playerProfilePage-previewingPicObj"]["isPreviewing"],
         "posX": 50,
         "posY": 50,
         "picName": "",
@@ -660,7 +660,7 @@ export default function NavigationSetter({initialNavObj,
 
     function resetPPTryingValueItem() {
       let resetItem = {
-        "previewing": currentProjectNav["playerProfilePage-previewingValueObj"]["previewing"],
+        "isPreviewing": currentProjectNav["playerProfilePage-previewingValueObj"]["isPreviewing"],
         "labelText": "",
         "valueItemType": "Game Data",
         "valueItemName": "",
@@ -4000,7 +4000,7 @@ export default function NavigationSetter({initialNavObj,
                 setPlayerProfilePageIsAddingText(!playerProfilePageIsAddingText);
                 
                 let tempNav = currentProjectNav;
-                tempNav["playerProfilePage-previewingTextObj"]["previewing"] = !playerProfilePageIsAddingText;
+                tempNav["playerProfilePage-previewingTextObj"]["isPreviewing"] = !playerProfilePageIsAddingText;
                 setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": tempNav["playerProfilePage-previewingTextObj"]});         
                 updateNavObj(tempNav);
             
@@ -4129,7 +4129,7 @@ export default function NavigationSetter({initialNavObj,
               setPlayerProfilePageIsAddingValue(!playerProfilePageIsAddingValue);
               
               let tempNav = currentProjectNav;
-              tempNav["playerProfilePage-previewingValueObj"]["previewing"] = !playerProfilePageIsAddingValue;
+              tempNav["playerProfilePage-previewingValueObj"]["isPreviewing"] = !playerProfilePageIsAddingValue;
               setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": tempNav["playerProfilePage-previewingValueObj"]});         
               updateNavObj(tempNav);
 
@@ -4329,7 +4329,7 @@ export default function NavigationSetter({initialNavObj,
               setPlayerProfilePageIsAddingPic(!playerProfilePageIsAddingPic);
 
               let tempNav = currentProjectNav;
-              tempNav["playerProfilePage-previewingPicObj"]["previewing"] = !playerProfilePageIsAddingPic;
+              tempNav["playerProfilePage-previewingPicObj"]["isPreviewing"] = !playerProfilePageIsAddingPic;
               setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": tempNav["playerProfilePage-previewingPicObj"]});         
               updateNavObj(tempNav);
             }}

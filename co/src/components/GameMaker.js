@@ -446,18 +446,30 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgPicName": "",
     "playerProfilePage-itemMap": [],
 
-    "playerProfilePage-previewingTextObj": { //for previewing only
-      "previewing": false,
+    "playerProfilePage-previewingTextObj": { //for previewing only  //TODO remove later
+      "isPreviewing": false,
       "textContent": "",
       "textItalic": false,
+
       "textFontSize": 12,
       "textFont": "serif",
       "textColor": "#000000",
       "posX": 30,
       "posY": 50,
-    },
-    "playerProfilePage-previewingValueObj": { //for previewing only
-      "previewing": false,
+    }, //TODO remove later
+
+    "playerProfilePage-previewingTextObj-isPreviewing": false,
+    "playerProfilePage-previewingTextObj-textContent": "",
+    "playerProfilePage-previewingTextObj-textItalic": false,
+    "playerProfilePage-previewingTextObj-textFontSize": 12,
+    "playerProfilePage-previewingTextObj-textFont": "serif",
+    "playerProfilePage-previewingTextObj-textColor": "#000000",
+    "playerProfilePage-previewingTextObj-posX": 30,
+    "playerProfilePage-previewingTextObj-posY": 50,
+
+
+    "playerProfilePage-previewingValueObj": { //for previewing only  //TODO remove later
+      "isPreviewing": false,
       "labelText": "",
       "valueItemType": "Game Data",
       "valueItemName": "",
@@ -466,17 +478,37 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "textFontSize": 12,
       "textFont": "serif",
       "textColor": "#000000",
-    },
-    "playerProfilePage-previewingPicObj": { //for previewing only
-      "previewing": false,
+    },  //TODO remove later
+
+    "playerProfilePage-previewingValueObj-isPreviewing": false,
+    "playerProfilePage-previewingValueObj-labelText": "",
+    "playerProfilePage-previewingValueObj-valueItemType": "Game Data",
+    "playerProfilePage-previewingValueObj-valueItemName": "",
+    "playerProfilePage-previewingValueObj-posX": 30,
+    "playerProfilePage-previewingValueObj-posY": 70,
+    "playerProfilePage-previewingValueObj-textFontSize": 12,
+    "playerProfilePage-previewingValueObj-textFont": "serif",
+    "playerProfilePage-previewingValueObj-textColor": "#000000",
+
+    "playerProfilePage-previewingPicObj": { //for previewing only  //TODO remove later
+      "isPreviewing": false,
       "posX": 50,
       "posY": 50,
       "picName": "",
       "width": 200,
       "height": 200,
-    },
+    },  //TODO remove later
 
-    "playerProfilePage-playerProfileNickNameItem": { //used in actual game
+    "playerProfilePage-previewingPicObj-isPreviewing": false,
+    "playerProfilePage-previewingPicObj-posX": 50,
+    "playerProfilePage-previewingPicObj-posY": 50,
+    "playerProfilePage-previewingPicObj-picName": "",
+    "playerProfilePage-previewingPicObj-width": 200,
+    "playerProfilePage-previewingPicObj-height": 200,
+
+
+
+    "playerProfilePage-playerProfileNickNameItem": { //used in actual game   //TODO remove later
       "adding": true,
       "nicknameLabel": "",
       "textContent": "",
@@ -486,15 +518,34 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "textColor": "#000000",
       "posX": 30,
       "posY": 50,
-    },
-    "playerProfilePage-playerProfileIconPicItem": { //used in actual game
+    },   //TODO remove later
+
+    "playerProfilePage-playerProfileNickNameItem-adding": true,
+    "playerProfilePage-playerProfileNickNameItem-nicknameLabel": "",
+    "playerProfilePage-playerProfileNickNameItem-textContent": "",
+    "playerProfilePage-playerProfileNickNameItem-textItalic": false,
+    "playerProfilePage-playerProfileNickNameItem-textFontSize": 12,
+    "playerProfilePage-playerProfileNickNameItem-textFont": "serif",
+    "playerProfilePage-playerProfileNickNameItem-textColor": "#000000",
+    "playerProfilePage-playerProfileNickNameItem-posX": 30,
+    "playerProfilePage-playerProfileNickNameItem-posY": 50,
+
+    "playerProfilePage-playerProfileIconPicItem": { //used in actual game   //TODO remove later
       "adding": true,
       "posX": 50,
       "posY": 50,
       "width": 200,
       "height": 200,
       "scale": 1
-    },
+    },   //TODO remove later
+
+    "playerProfilePage-playerProfileIconPicItem-adding": true,
+    "playerProfilePage-playerProfileIconPicItem-posX": 50,
+    "playerProfilePage-playerProfileIconPicItem-posY": 50,
+    "playerProfilePage-playerProfileIconPicItem-width": 200,
+    "playerProfilePage-playerProfileIconPicItem-height": 200,
+    "playerProfilePage-playerProfileIconPicItem-scale": 1,
+
 
 
     "shopPage-isBackgroundShape": false,

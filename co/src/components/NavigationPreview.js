@@ -167,7 +167,9 @@ export default function NavigationPreview ({
         if (isEditing === true) {
             let objTemp = fetchNavObj();
             setNavObj(objTemp);
-
+            if (objTemp != navObj) {
+                updateRenderCounter();
+            }
 
 // console.log("nav preview: ", objTemp); //TODO testing
 
@@ -974,7 +976,7 @@ export default function NavigationPreview ({
                     ? `url('${visualMap[navObj["playerProfilePage-bgPicName"]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
             }}>
-                {(tryPPText !== -1 && tryPPText["previewing"] !== false)
+                {(tryPPText !== -1 && tryPPText["isPreviewing"] !== false)
                     && 
                     <div style={{
                         "position": "absolute",
@@ -991,7 +993,7 @@ export default function NavigationPreview ({
                     </div>}
 
 
-                {(tryPPValue !== -1 && tryPPValue["previewing"] !== false) && 
+                {(tryPPValue !== -1 && tryPPValue["isPreviewing"] !== false) && 
                     <div style={{
                         "position": "absolute",
                         "left": `${tryPPValue["posX"]}px`,
@@ -1003,7 +1005,7 @@ export default function NavigationPreview ({
                         {tryPPValue["labelText"]}: ({tryPPValue["valueItemName"]}'s value here)
                     </div>}
 
-                {(tryPPPic !== -1 && tryPPPic["previewing"] !== false) && 
+                {(tryPPPic !== -1 && tryPPPic["isPreviewing"] !== false) && 
                 <div style={{
                         "position": "absolute",
                         "left": `${tryPPPic["posX"]}px`,
