@@ -476,7 +476,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       "height": 200,
     },
 
-
     "playerProfilePage-playerProfileNickNameItem": { //used in actual game
       "adding": true,
       "nicknameLabel": "",
