@@ -490,14 +490,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingValueObj-textFont": "serif",
     "playerProfilePage-previewingValueObj-textColor": "#000000",
 
-    "playerProfilePage-previewingPicObj": { //for previewing only  //TODO remove later
-      "isPreviewing": false,
-      "posX": 50,
-      "posY": 50,
-      "picName": "",
-      "width": 200,
-      "height": 200,
-    },  //TODO remove later
+    // "playerProfilePage-previewingPicObj": { //for previewing only  //TODO remove later
+    //   "isPreviewing": false,
+    //   "posX": 50,
+    //   "posY": 50,
+    //   "picName": "",
+    //   "width": 200,
+    //   "height": 200,
+    // },  //TODO remove later
 
     "playerProfilePage-previewingPicObj-isPreviewing": false,
     "playerProfilePage-previewingPicObj-posX": 50,
@@ -506,19 +506,17 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingPicObj-width": 200,
     "playerProfilePage-previewingPicObj-height": 200,
 
-
-
-    "playerProfilePage-playerProfileNickNameItem": { //used in actual game   //TODO remove later
-      "adding": true,
-      "nicknameLabel": "",
-      "textContent": "",
-      "textItalic": false,
-      "textFontSize": 12,
-      "textFont": "serif",
-      "textColor": "#000000",
-      "posX": 30,
-      "posY": 50,
-    },   //TODO remove later
+    // "playerProfilePage-playerProfileNickNameItem": { //used in actual game   //TODO remove later
+    //   "adding": true,
+    //   "nicknameLabel": "",
+    //   "textContent": "",
+    //   "textItalic": false,
+    //   "textFontSize": 12,
+    //   "textFont": "serif",
+    //   "textColor": "#000000",
+    //   "posX": 30,
+    //   "posY": 50,
+    // },   //TODO remove later"
 
     "playerProfilePage-playerProfileNickNameItem-adding": true,
     "playerProfilePage-playerProfileNickNameItem-nicknameLabel": "",

@@ -611,21 +611,25 @@ export default function NavigationSetter({initialNavObj,
     }
 
     function resetPPTryingPicItem() {
-      // let resetItem = {
-      //   "isPreviewing": currentProjectNav["playerProfilePage-previewingPicObj-isPreviewing"],
-      //   "posX": 50,
-      //   "posY": 50,
-      //   "picName": "",
-      //   "width": 200,
-      //   "height": 200,
-      // };
-      // let tempNav = currentProjectNav;
-      // tempNav["playerProfilePage-previewingPicObj"] = resetItem;
-      // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": resetItem});
+      let tempNav = currentProjectNav;
 
+      tempNav["isPreviewing"] = false;
+      tempNav["posX"] = 50;
+      tempNav["posY"] = 50;
+      tempNav["picName"] = "";
+      tempNav["width"] = 200;
+      tempNav["height"] = 200;
 
+      setCurrentProjectNav({...currentProjectNav, 
+          "isPreviewing": false,
+          "posX": 50,
+          "posY": 50,
+          "picName": "",
+          "width": 200,
+          "height": 200,
+      });
 
-      // updateNavObj(tempNav); //TODO12
+      updateNavObj(tempNav); //TODO12
     }
 
     function changePPTryingValueItemPosX(event) {
