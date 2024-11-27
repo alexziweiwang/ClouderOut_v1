@@ -173,11 +173,9 @@ export default function NavigationPreview ({
 
 // console.log("nav preview: ", objTemp); //TODO testing
 
-            setTryPPText(objTemp["playerProfilePage-previewingTextObj"]);
-            setTryPPValue(objTemp["playerProfilePage-previewingValueObj"]);
-            setTryPPPic(objTemp["playerProfilePage-previewingPicObj"]);
-
-       
+            setupPPTryingObjects(objTemp);
+            
+            
             if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
                 setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
                 let currRow = [];
@@ -211,6 +209,45 @@ export default function NavigationPreview ({
 
 
     });
+
+    function setupPPTryingObjects(navObj) {
+        let textObjTemp = {
+            "playerProfilePage-previewingTextObj-isPreviewing": navObj["playerProfilePage-previewingTextObj-isPreviewing"],
+            "playerProfilePage-previewingTextObj-textContent": navObj["playerProfilePage-previewingTextObj-textContent"],
+            "playerProfilePage-previewingTextObj-textItalic": navObj["playerProfilePage-previewingTextObj-textItalic"],
+            "playerProfilePage-previewingTextObj-textFontSize": navObj["playerProfilePage-previewingTextObj-textFontSize"],
+            "playerProfilePage-previewingTextObj-textFont": navObj["playerProfilePage-previewingTextObj-textFont"],
+            "playerProfilePage-previewingTextObj-textColor": navObj["playerProfilePage-previewingTextObj-textColor"],
+            "playerProfilePage-previewingTextObj-posX": navObj["playerProfilePage-previewingTextObj-posX"],
+            "playerProfilePage-previewingTextObj-posY": navObj["playerProfilePage-previewingTextObj-posY"],
+        };
+
+
+        let valObjTemp = {
+            "playerProfilePage-previewingValueObj-isPreviewing": navObj["playerProfilePage-previewingValueObj-isPreviewing"],
+            "playerProfilePage-previewingValueObj-labelText": navObj["playerProfilePage-previewingValueObj-labelText"],
+            "playerProfilePage-previewingValueObj-valueItemType": navObj["playerProfilePage-previewingValueObj-valueItemType"],
+            "playerProfilePage-previewingValueObj-valueItemName": navObj["playerProfilePage-previewingValueObj-valueItemName"],
+            "playerProfilePage-previewingValueObj-posX": navObj["playerProfilePage-previewingValueObj-posX"],
+            "playerProfilePage-previewingValueObj-posY": navObj["playerProfilePage-previewingValueObj-posY"],
+            "playerProfilePage-previewingValueObj-textFontSize": navObj["playerProfilePage-previewingValueObj-textFontSize"],
+            "playerProfilePage-previewingValueObj-textFont": navObj["playerProfilePage-previewingValueObj-textFont"],
+            "playerProfilePage-previewingValueObj-textColor": navObj["playerProfilePage-previewingValueObj-textColor"],
+        };
+
+
+        let picObjTemp = {};
+
+
+
+
+
+
+        setTryPPText(textObjTemp);
+        setTryPPValue(valObjTemp);
+        setTryPPPic(picObjTemp);
+
+    }
     
 
     return (
