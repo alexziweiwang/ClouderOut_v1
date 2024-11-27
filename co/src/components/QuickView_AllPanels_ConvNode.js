@@ -193,7 +193,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         setInitGdtRecord(tempObj);
     }
 
-    function reset_GameDataTracker() {
+ //   function reset_GameDataTracker() { //TODO: remove unusued later
         // let gDataDesignMap = gameDataDesignMap;
         // let trackerMap = {};
         // {Object.keys(gDataDesignMap).map((currKey) => {
@@ -211,24 +211,23 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         //     trackerMap[keyStr] = obj;
         // })}
         
-        // setGameDataTracker(trackerMap); //TODO refactor
-
-        let mapTemp = {};
-        {Object.keys(gameDataTracker).map((currKey) => {
-            let item = gameDataTracker[currKey];
-            let itemName = item["name"];
-            let newItem = {};
+        // setGameDataTracker(trackerMap);   //TODO: remove unusued later
+        // let mapTemp = {};
+        // {Object.keys(gameDataTracker).map((currKey) => {
+        //     let item = gameDataTracker[currKey];
+        //     let itemName = item["name"];
+        //     let newItem = {};
     
-            newItem["name"] = itemName;
-            newItem["current_value"] = item["default_value"];
-            newItem["default_value"] = item["default_value"];
-            newItem["data_type"] = item["data_type"];
+        //     newItem["name"] = itemName;
+        //     newItem["current_value"] = item["default_value"];
+        //     newItem["default_value"] = item["default_value"];
+        //     newItem["data_type"] = item["data_type"];
             
-            mapTemp[itemName] = newItem;
-        })} 
-        setGameDataTracker(mapTemp); //TODO20
+        //     mapTemp[itemName] = newItem;
+        // })} 
+        // setGameDataTracker(mapTemp);
 
-    } //-- reset_GameDataTracker() --
+   // } //-- reset_GameDataTracker() -- //TODO: remove unusued later
 
 
     function updateCharPicArr() {
@@ -315,23 +314,23 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 */ //TODO: remove unusued later
 
 
-    function resetViewingPiece() {
-        //                                 console.log("---------");
-        //                                 console.log("before resetting = ", gameDataTracker);
+    // function resetViewingPiece() { //TODO: remove unusued later
+    //     //                                 console.log("---------");
+    //     //                                 console.log("before resetting = ", gameDataTracker);
 
-        setGameDataTracker(initGdtRecord); //TODO20
-        //                                 console.log("initial-gdt = ", initialEmuGameDataTracker);
-                                           console.log("initial-gdt2 = ", initGdtRecord);
-        //                                 console.log("---------");
+    //     setGameDataTracker(initGdtRecord); //TODO20
+    //     //                                 console.log("initial-gdt = ", initialEmuGameDataTracker);
+    //                                        console.log("initial-gdt2 = ", initGdtRecord);
+    //     //                                 console.log("---------");
         
-                                           console.log("initialPieceNum = ", initialPieceNum);
+    //                                        console.log("initialPieceNum = ", initialPieceNum);
 
         
-        setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-        setResetSignal(true);
-        setClickOnGameScreen(false);
+    //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
+    //     setResetSignal(true);
+    //     setClickOnGameScreen(false);
 
-    }
+    // }//TODO: remove unusued later
 
     // function notifyFinished() {
     //     setTextStillTyping(false);
@@ -561,57 +560,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        getUILanguage={getUILanguage}
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
-                {/* <div>
-                <table>
-                            <thead className="textNoSelect">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Value</th>
-                                    <th>Default Value</th>
-                                </tr>
-                            </thead>  
-                            <tbody> 
-
-
-                        {Object.keys(gameDataTracker).map((currKey) => {
-                            let keyName = "gmdt" + currKey;
-                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataTracker[currKey]["current_value"] === true 
-                                        || gameDataTracker[currKey]["current_value"] === "true") ? 
-                                        "true" : "false") 
-                                : gameDataTracker[currKey]["current_value"];
-
-                            let inputId = keyName+"-input";
-
-                            return (
-                                <tr value={currKey} key={keyName} id={inputId}>
-                                    <td>{gameDataTracker[currKey]["name"]}</td>
-                                    
-                                    <td>
-                                        <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? 
-                                            gameDataTracker[currKey]["current_value"] 
-                                            : (gameDataTracker[currKey]["current_value"] === true ? 
-                                                "True" 
-                                                : "False")}</label><br></br>
-
-                                    </td>   
-
-                                    <td>
-                                    <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? gameDataTracker[currKey]["default_value"] : (gameDataTracker[currKey]["default_value"] == "true" ? "True" : "False")}</label>
-                                    
-                                    </td>            
-                                </tr>
-                            
-                            );
-                        })}
-
-
-                        
-                            </tbody>  
-                        </table>
-                </div>
-
- */}
+         
                 </div>
 
 

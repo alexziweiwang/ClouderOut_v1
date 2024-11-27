@@ -259,6 +259,7 @@ export default function NavigationPreview ({
             "fontFamily": `${navObj["fontFamilyForAll"]}`,
             "position": "absolute",
             "userSelect": "none",
+            "borderRadius": "0px",
     }}>
         {page === "Main Page" && 
 
@@ -271,7 +272,7 @@ export default function NavigationPreview ({
                 
              
                 "position": "relative", 
-            
+                "borderRadius": "0px",
                 }}
             >
 
@@ -545,7 +546,9 @@ export default function NavigationPreview ({
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
             "backgroundColor": "rgb(222, 222, 235)", 
-            "position": "relative"}}
+            "position": "relative",
+            "borderRadius": "0px",
+        }}
         >
                             
                 <div style={{
@@ -718,7 +721,9 @@ export default function NavigationPreview ({
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "backgroundColor": "rgb(222, 222, 235)"
+            "backgroundColor": "rgb(222, 222, 235)",
+            "borderRadius": "0px",
+            "borderRadius": "0px",
         }}
         >
 
@@ -734,7 +739,8 @@ export default function NavigationPreview ({
                 
                 "position": "relative", 
                 "overflow": "scroll",
-
+                "borderRadius": "0px",
+                "borderRadius": "0px",
                 }}
             >
 
@@ -746,6 +752,7 @@ export default function NavigationPreview ({
 
                     "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
                     "overflow": "scroll",
+                    "borderRadius": "0px",
                 }}>
                     {navObj["isWithSL"] === true && <div
                     id="loadGameEntry"
@@ -770,6 +777,7 @@ export default function NavigationPreview ({
                         "justifyContent": "center",
                         "alignItems": "center",
                         "display": "flex",
+                        "borderRadius": "0px",
                     }}
                     onMouseDown={
                         ()=>{
@@ -820,6 +828,7 @@ export default function NavigationPreview ({
                                     "justifyContent": "center",
                                     "alignItems": "center",
                                     "display": "flex",
+                                    "borderRadius": "0px",
                                 }}
                                 onMouseDown={
                                     ()=>{
@@ -869,7 +878,8 @@ export default function NavigationPreview ({
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "backgroundColor": "rgb(222, 222, 235)"
+            "backgroundColor": "rgb(222, 222, 235)",
+            "borderRadius": "0px",
         }}
         >
 
@@ -995,6 +1005,7 @@ export default function NavigationPreview ({
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
+            "borderRadius": "0px",
         }}
         >
 
@@ -1235,7 +1246,8 @@ export default function NavigationPreview ({
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "backgroundColor": "rgb(222, 222, 235)"
+            "backgroundColor": "rgb(222, 222, 235)",
+            "borderRadius": "0px",
         }}
         >
             <div style={{
@@ -1266,7 +1278,8 @@ export default function NavigationPreview ({
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "backgroundColor": "rgb(222, 222, 235)"
+            "backgroundColor": "rgb(222, 222, 235)",
+            "borderRadius": "0px",
         }}
         >
         <div style={{"position": "relative",                 
@@ -1307,20 +1320,24 @@ export default function NavigationPreview ({
 
 
 
+        {/* 
+        //TODO remove later
         {page === "During Game" && 
             
         <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,}}>
+                "height": `${screenHeight}px`,
+                "borderRadius": "0px",
+                }}>
 
-       
     
         </div>
      
-        }
+        } //TODO remove ltaer*/}
 
         {/* large frame for all elements */}
         <div style={{
+            "borderRadius": "0px",
 
         }}>
                 {/* //TODO5 */}

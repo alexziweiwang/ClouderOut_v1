@@ -1415,12 +1415,19 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
    
 
          
+
+
+
+
+{/*  Entire Viewing -- all parts  */}
     {isDisplayEntireGameViewer && 
 
 <div className={modalStyleName} style={{"overflow": "scroll"}}>
 
         <button className="testEntire" onClick={()=>{setDisplayEntierGameViewer(false);}}>Stop Testing</button>
 
+
+  {/* top bar for optional displaying */}
         <div style={{"marginBottom":" 10px", "userSelect": "none", "color": "#FFFFFF"}}>
             <input 
                 type="checkbox" 
@@ -1438,6 +1445,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             
         </div>
     
+
+
+  {/* entire-viewer-screen */}
       <div>
       <Viewer_Entire
           isDisplay={isDisplayEntireGameViewer}
@@ -1471,6 +1481,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
       />
+
+
+
+  {/* status table */}
       <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
               <thead>
                 <tr>
@@ -1496,23 +1510,27 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
       </div>
 
-      <div>
 
+
+  {/* game data table panel  */}
+      <div>
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
             {(isDisplayEntireGameViewer && showGameDataPanel)
             && 
-              <div style={{"height": `${screenHeight}px`, "overflow": "scroll", "marginLeft": "920px"}}>
+              <div style={{
+                "height": `${screenHeight}px`, 
+                "overflow": "scroll", 
+              }}>
 
-                {/* <Panel_GameDataTest
+                <Panel_GameDataTest
                        localTest={true}
                        initialGameDataStatus={gameDataTracker}
 
                        getScreenHeight={passInScreenHeight} 
                        getScreenWidth={passInScreenWidth}
-                       isQuickView={true}
-
+                       isQuickView={false}
 
                        triggerClickOnGameDataPanel={notUsing}
                        getIsGameScreenClicked={notUsing}
@@ -1523,8 +1541,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                        notifyAfterReset={notUsing}
 
                        getUILanguage={passInUILanguage}
-                /> */}
-
+                /> 
+        
               </div>
             }
 
@@ -1532,8 +1550,33 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           </div>
       
       </div>}
+{/*  Entire Viewing -- all parts  */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <div>
 

@@ -105,6 +105,7 @@ return (
                 >
                 <label className="textNoSelect">Game Data Panel</label>
                 <br></br>
+  
                 <table>
                             <thead className="textNoSelect">
                                 <tr>
