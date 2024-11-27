@@ -914,17 +914,7 @@ export default function NavigationPreview ({
                                             "padding": "7px",
                                             "userSelect": "none"
                                         }}
-                                        onMouseDown={
-                                            ()=>{
-                                                document.getElementById(keyStr3).style.filter = "brightness(120%)";
-                                            }
-                                        }
-                                        onMouseUp={
-                                            ()=>{
-                                                document.getElementById(keyStr3).style.filter = "brightness(100%)";
-                                                console.log("setting-page clicked: ", item);
-                                            }
-                                        }
+                                      
                                     >
                                         <div style={{"height": "30px",}}>
                                             <label style={{"height": "20px"}}>{title} [{keyStr3}]</label>

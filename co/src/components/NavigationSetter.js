@@ -4536,12 +4536,12 @@ export default function NavigationSetter({initialNavObj,
 
               let tempNav = currentProjectNav;
               tempNav["playerProfilePage-playerProfileNickNameItem-adding"] = ppNicknameDisplay;
-              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": ppNicknameDisplay});         
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-adding": ppNicknameDisplay});         
               updateNavObj(tempNav);
 
               tempNav = currentProjectNav;
               tempNav["playerProfilePage-playerProfileIconPicItem-adding"] = ppIconDisplay;
-              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": ppIconDisplay});         
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-adding": ppIconDisplay});         
 
 
             }}
@@ -4557,31 +4557,31 @@ export default function NavigationSetter({initialNavObj,
           </label>
                 <br></br>
 
-                {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&& 
+                {currentProjectNav["playerProfilePage-playerProfileNickNameItem-adding"]&& 
                 <label
                   onClick={()=>{
                     setPpNicknameAreaExpand(!ppNicknameAreaExpand);
                   }}
                 > (Displaying)</label>}
-                {!currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&& 
+                {!currentProjectNav["playerProfilePage-playerProfileNickNameItem-adding"]&& 
                 <label> (Not Displaying)</label>}
 
                 <br></br>
 
                 {<div className="indentOne">
-                    {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&&<button
+                    {currentProjectNav["playerProfilePage-playerProfileNickNameItem-adding"]&&<button
                       onClick={()=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = false;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-adding"] = false;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-adding": false});         
                         updateNavObj(tempNav); 
                       }}
                     >Hide Nickname</button>}
-                    {!currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["adding"]&&<button
+                    {!currentProjectNav["playerProfilePage-playerProfileNickNameItem-adding"]&&<button
                       onClick={()=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["adding"] = true;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-adding"] = true;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-adding": true});         
                         updateNavObj(tempNav); 
                       }}
                     >Display Nickname</button>}
@@ -4590,18 +4590,18 @@ export default function NavigationSetter({initialNavObj,
                     <label>Label (optional): </label>
                     <input
                       placeholder="Nickname"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-nicknameLabel"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-nicknameLabel"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-nicknameLabel": event.target.value});         
                         updateNavObj(tempNav);   
                       }}
                       onClick={()=>{
-                        if (currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] === "") {
+                        if (currentProjectNav["playerProfilePage-playerProfileNickNameItem-nicknameLabel"] === "") {
                           let tempNav = currentProjectNav;
-                          tempNav["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"] = "Nickname";
-                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                          tempNav["playerProfilePage-playerProfileNickNameItem-nicknameLabel"] = "Nickname";
+                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-nicknameLabel": "Nickname"});         
                           updateNavObj(tempNav);   
                         }
                       }}
@@ -4609,34 +4609,35 @@ export default function NavigationSetter({initialNavObj,
                     <br></br>
                     <label>{italicText}</label>
                       <input type="checkbox"
-                        value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textItalic"]}
+                        value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-textItalic"]}
                         onChange={()=>{
                           let tempNav = currentProjectNav;
-                          tempNav["playerProfilePage-playerProfileNickNameItem"]["textItalic"] = !tempNav["playerProfilePage-playerProfileNickNameItem"]["textItalic"];
-                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                          let val = !tempNav["playerProfilePage-playerProfileNickNameItem-textItalic"];
+                          tempNav["playerProfilePage-playerProfileNickNameItem-textItalic"] = val;
+                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-textItalic": val});         
                           updateNavObj(tempNav);   
                         }}    
                       ></input>
                     <br></br>
                     <label>{fontSizeText}: </label>
                     <input type="range"
-                        value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}
+                        value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-textFontSize"]}
                         onChange={(event)=>{
                           let tempNav = currentProjectNav;
-                          tempNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"] = event.target.value;
-                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                          tempNav["playerProfilePage-playerProfileNickNameItem-textFontSize"] = event.target.value;
+                          setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-textFontSize": event.target.value});         
                           updateNavObj(tempNav);   
                         }}  
                     ></input>
-                    <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}</label>
+                    <label>{currentProjectNav["playerProfilePage-playerProfileNickNameItem-textFontSize"]}</label>
                     <br></br>
                     <label>{fontNameText}: </label>
                     <select
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textFont"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-textFont"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["textFont"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-textFont"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-textFont": event.target.value});         
                         updateNavObj(tempNav);   
                       }}
                     >
@@ -4647,35 +4648,35 @@ export default function NavigationSetter({initialNavObj,
                     <br></br>
                     <label>{fontColorText}: </label>
                     <input type="color"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textColor"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-textColor"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["textColor"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-textColor"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-textColor": event.target.value});         
                         updateNavObj(tempNav);  
                       }}              
                     ></input>
-                    <label> {currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["textColor"]}</label>
+                    <label> {currentProjectNav["playerProfilePage-playerProfileNickNameItem-textColor"]}</label>
                     <br></br>
                     <label>{positionXText}: </label>
                     <input
                       min="0" max={screenWidth} step="1"
                       type="range"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posX"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-posX"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["posX"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-posX"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-posX": event.target.value});         
                         updateNavObj(tempNav);  
                       }}
                     ></input>
                     <input
                       min="0" max={screenWidth} step="1"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posX"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-posX"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["posX"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-posX"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-posX": event.target.value});         
                         updateNavObj(tempNav);  
                       }}
                     ></input>
@@ -4684,21 +4685,21 @@ export default function NavigationSetter({initialNavObj,
                     <input
                       min="0" max={screenHeight} step="1"
                       type="range"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posY"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-posY"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["posY"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-posY"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-posY": event.target.value});         
                         updateNavObj(tempNav);  
                       }}
                     ></input>
                     <input
                       min="0" max={screenHeight} step="1"
-                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem"]["posY"]}
+                      value={currentProjectNav["playerProfilePage-playerProfileNickNameItem-posY"]}
                       onChange={(event)=>{
                         let tempNav = currentProjectNav;
-                        tempNav["playerProfilePage-playerProfileNickNameItem"]["posY"] = event.target.value;
-                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem": tempNav["playerProfilePage-playerProfileNickNameItem"]});         
+                        tempNav["playerProfilePage-playerProfileNickNameItem-posY"] = event.target.value;
+                        setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileNickNameItem-posY": event.target.value});         
                         updateNavObj(tempNav);  
                       }}
                     ></input>
@@ -4719,7 +4720,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-posX"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-posX": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-posX"]}
@@ -4729,7 +4730,7 @@ export default function NavigationSetter({initialNavObj,
                     onChange={(event)=>{
                       let tempNav = currentProjectNav;
                       tempNav["playerProfilePage-playerProfileIconPicItem-posX"] = event.target.value;
-                      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-posX": event.target.value});         
                       updateNavObj(tempNav);                       
                     }}
                     value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-posX"]}
@@ -4741,7 +4742,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-posY"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-posY": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-posY"]}
@@ -4751,7 +4752,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-posY"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-posY": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-posY"]}
@@ -4763,7 +4764,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-width"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-width": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-width"]}
@@ -4773,7 +4774,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-width"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-width": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-width"]}
@@ -4785,7 +4786,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-height"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-height": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-height"]}
@@ -4795,7 +4796,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-height"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-height": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-height"]}
@@ -4807,7 +4808,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-scale"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-scale": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-scale"]}
@@ -4817,7 +4818,7 @@ export default function NavigationSetter({initialNavObj,
                   onChange={(event)=>{
                     let tempNav = currentProjectNav;
                     tempNav["playerProfilePage-playerProfileIconPicItem-scale"] = event.target.value;
-                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem": event.target.value});         
+                    setCurrentProjectNav({...currentProjectNav, "playerProfilePage-playerProfileIconPicItem-scale": event.target.value});         
                     updateNavObj(tempNav);                       
                   }}
                   value={currentProjectNav["playerProfilePage-playerProfileIconPicItem-scale"]}
