@@ -589,7 +589,7 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingPicName(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingPicObj-picName"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": event.target.value});
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj-picName": event.target.value});
                
       updateNavObj(tempNav);
     }
@@ -597,7 +597,7 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingPicItemWidth(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingPicObj-width"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": event.target.value});
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj-width": event.target.value});
                
       updateNavObj(tempNav);   
     }
@@ -605,7 +605,7 @@ export default function NavigationSetter({initialNavObj,
     function changePPTryingPicItemHeight(event) {
       let tempNav = currentProjectNav;
       tempNav["playerProfilePage-previewingPicObj-height"] = event.target.value;
-      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": event.target.value});
+      setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj-height": event.target.value});
                
       updateNavObj(tempNav);   
     }
@@ -669,21 +669,32 @@ export default function NavigationSetter({initialNavObj,
     }
 
     function resetPPTryingValueItem() {
-      // let resetItem = {
-      //   "isPreviewing": currentProjectNav["playerProfilePage-previewingValueObj-isPreviewing"],
-      //   "labelText": "",
-      //   "valueItemType": "Game Data",
-      //   "valueItemName": "",
-      //   "posX": 30,
-      //   "posY": 70,
-      //   "textFontSize": 12,
-      //   "textFont": "serif",
-      //   "textColor": "#000000",
-      // };
-      // let tempNav = currentProjectNav;
-      // tempNav["playerProfilePage-previewingValueObj"] = resetItem;
-      // setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingValueObj": resetItem});
-      // updateNavObj(tempNav); //TODO12
+
+      let tempNav = currentProjectNav;
+      tempNav["playerProfilePage-previewingValueObj-isPreviewing"] = false;
+      tempNav["playerProfilePage-previewingValueObj-labelText"] = "";
+      tempNav["playerProfilePage-previewingValueObj-valueItemType"] = "Game Data";
+      tempNav["playerProfilePage-previewingValueObj-valueItemName"] = "";
+      tempNav["playerProfilePage-previewingValueObj-posX"] = 30;
+      tempNav["playerProfilePage-previewingValueObj-posY"] = 70;
+      tempNav["playerProfilePage-previewingValueObj-textFontSize"] = 12;
+      tempNav["playerProfilePage-previewingValueObj-textFont"] = "serif";
+      tempNav["playerProfilePage-previewingValueObj-textColor"] = "#000000";
+
+
+      setCurrentProjectNav({...currentProjectNav, 
+          "playerProfilePage-previewingValueObj-isPreviewing": false,
+          "playerProfilePage-previewingValueObj-labelText": "",
+          "playerProfilePage-previewingValueObj-valueItemType": "Game Data",
+          "playerProfilePage-previewingValueObj-valueItemName": "",
+          "playerProfilePage-previewingValueObj-posX": 30,
+          "playerProfilePage-previewingValueObj-posY": 70,
+          "playerProfilePage-previewingValueObj-textFontSize": 12,
+          "playerProfilePage-previewingValueObj-textFont": "serif",
+          "playerProfilePage-previewingValueObj-textColor": "#000000"
+      });
+      updateNavObj(tempNav);
+
     }
 
     function changePlayerProfilePageAddingValueType(val) {
@@ -4011,7 +4022,7 @@ export default function NavigationSetter({initialNavObj,
                 
                 let tempNav = currentProjectNav;
                 tempNav["playerProfilePage-previewingTextObj-isPreviewing"] = !playerProfilePageIsAddingText;
-                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj": !playerProfilePageIsAddingText});         
+                setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingTextObj-isPreviewing": !playerProfilePageIsAddingText});         
                 updateNavObj(tempNav);
             
 
@@ -4340,7 +4351,7 @@ export default function NavigationSetter({initialNavObj,
 
               let tempNav = currentProjectNav;
               tempNav["playerProfilePage-previewingPicObj-isPreviewing"] = !playerProfilePageIsAddingPic;
-              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj": !playerProfilePageIsAddingPic});         
+              setCurrentProjectNav({...currentProjectNav, "playerProfilePage-previewingPicObj-isPreviewing": !playerProfilePageIsAddingPic});         
               updateNavObj(tempNav);
             }}
            >{playerProfilePageIsAddingPic ? "︽" : "︾" } Add Picture</button>
