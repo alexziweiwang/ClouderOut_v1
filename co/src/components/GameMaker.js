@@ -528,14 +528,14 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-playerProfileNickNameItem-posX": 30,
     "playerProfilePage-playerProfileNickNameItem-posY": 50,
 
-    "playerProfilePage-playerProfileIconPicItem": { //used in actual game   //TODO remove later
-      "adding": true,
-      "posX": 50,
-      "posY": 50,
-      "width": 200,
-      "height": 200,
-      "scale": 1
-    },   //TODO remove later
+    // "playerProfilePage-playerProfileIconPicItem": { //used in actual game   //TODO remove later
+    //   "adding": true,
+    //   "posX": 50,
+    //   "posY": 50,
+    //   "width": 200,
+    //   "height": 200,
+    //   "scale": 1
+    // },   //TODO remove later
 
     "playerProfilePage-playerProfileIconPicItem-adding": true,
     "playerProfilePage-playerProfileIconPicItem-posX": 50,

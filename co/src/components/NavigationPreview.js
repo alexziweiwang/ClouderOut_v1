@@ -212,36 +212,39 @@ export default function NavigationPreview ({
 
     function setupPPTryingObjects(navObj) {
         let textObjTemp = {
-            "playerProfilePage-previewingTextObj-isPreviewing": navObj["playerProfilePage-previewingTextObj-isPreviewing"],
-            "playerProfilePage-previewingTextObj-textContent": navObj["playerProfilePage-previewingTextObj-textContent"],
-            "playerProfilePage-previewingTextObj-textItalic": navObj["playerProfilePage-previewingTextObj-textItalic"],
-            "playerProfilePage-previewingTextObj-textFontSize": navObj["playerProfilePage-previewingTextObj-textFontSize"],
-            "playerProfilePage-previewingTextObj-textFont": navObj["playerProfilePage-previewingTextObj-textFont"],
-            "playerProfilePage-previewingTextObj-textColor": navObj["playerProfilePage-previewingTextObj-textColor"],
-            "playerProfilePage-previewingTextObj-posX": navObj["playerProfilePage-previewingTextObj-posX"],
-            "playerProfilePage-previewingTextObj-posY": navObj["playerProfilePage-previewingTextObj-posY"],
+            "isPreviewing": navObj["playerProfilePage-previewingTextObj-isPreviewing"],
+            "textContent": navObj["playerProfilePage-previewingTextObj-textContent"],
+            "textItalic": navObj["playerProfilePage-previewingTextObj-textItalic"],
+            "textFontSize": navObj["playerProfilePage-previewingTextObj-textFontSize"],
+            "textFont": navObj["playerProfilePage-previewingTextObj-textFont"],
+            "textColor": navObj["playerProfilePage-previewingTextObj-textColor"],
+            "posX": navObj["playerProfilePage-previewingTextObj-posX"],
+            "posY": navObj["playerProfilePage-previewingTextObj-posY"],
         };
 
 
         let valObjTemp = {
-            "playerProfilePage-previewingValueObj-isPreviewing": navObj["playerProfilePage-previewingValueObj-isPreviewing"],
-            "playerProfilePage-previewingValueObj-labelText": navObj["playerProfilePage-previewingValueObj-labelText"],
-            "playerProfilePage-previewingValueObj-valueItemType": navObj["playerProfilePage-previewingValueObj-valueItemType"],
-            "playerProfilePage-previewingValueObj-valueItemName": navObj["playerProfilePage-previewingValueObj-valueItemName"],
-            "playerProfilePage-previewingValueObj-posX": navObj["playerProfilePage-previewingValueObj-posX"],
-            "playerProfilePage-previewingValueObj-posY": navObj["playerProfilePage-previewingValueObj-posY"],
-            "playerProfilePage-previewingValueObj-textFontSize": navObj["playerProfilePage-previewingValueObj-textFontSize"],
-            "playerProfilePage-previewingValueObj-textFont": navObj["playerProfilePage-previewingValueObj-textFont"],
-            "playerProfilePage-previewingValueObj-textColor": navObj["playerProfilePage-previewingValueObj-textColor"],
+            "isPreviewing": navObj["playerProfilePage-previewingValueObj-isPreviewing"],
+            "labelText": navObj["playerProfilePage-previewingValueObj-labelText"],
+            "valueItemType": navObj["playerProfilePage-previewingValueObj-valueItemType"],
+            "valueItemName": navObj["playerProfilePage-previewingValueObj-valueItemName"],
+            "posX": navObj["playerProfilePage-previewingValueObj-posX"],
+            "posY": navObj["playerProfilePage-previewingValueObj-posY"],
+            "textFontSize": navObj["playerProfilePage-previewingValueObj-textFontSize"],
+            "textFont": navObj["playerProfilePage-previewingValueObj-textFont"],
+            "textColor": navObj["playerProfilePage-previewingValueObj-textColor"],
         };
 
 
-        let picObjTemp = {};
+        let picObjTemp = {
+            "isPreviewing": navObj["playerProfilePage-previewingPicObj-isPreviewing"],
+            "posX": navObj["playerProfilePage-previewingPicObj-posX"],
+            "posY": navObj["playerProfilePage-previewingPicObj-posY"],
+            "picName": navObj["playerProfilePage-previewingPicObj-picName"],
+            "width": navObj["playerProfilePage-previewingPicObj-width"],
+            "height": navObj["playerProfilePage-previewingPicObj-height"],
 
-
-
-
-
+        };
 
         setTryPPText(textObjTemp);
         setTryPPValue(valObjTemp);
@@ -1046,51 +1049,51 @@ export default function NavigationPreview ({
                         ></img>
                 </div>}
 
-                {navObj["playerProfilePage-playerProfileNickNameItem"]["adding"] === true &&
+                {navObj["playerProfilePage-playerProfileNickNameItem-adding"] === true &&
                     <div
                         style={{
                             "position": "absolute",
-                            "fontSize": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textFontSize"]}px`,
-                            "fontFamily": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textFont"]}`,
-                            "color": `${navObj["playerProfilePage-playerProfileNickNameItem"]["textColor"]}`,
-                            "left": `${navObj["playerProfilePage-playerProfileNickNameItem"]["posX"]}px`,
-                            "top": `${navObj["playerProfilePage-playerProfileNickNameItem"]["posY"]}px`,
+                            "fontSize": `${navObj["playerProfilePage-playerProfileNickNameItem-textFontSize"]}px`,
+                            "fontFamily": `${navObj["playerProfilePage-playerProfileNickNameItem-textFont"]}`,
+                            "color": `${navObj["playerProfilePage-playerProfileNickNameItem-textColor"]}`,
+                            "left": `${navObj["playerProfilePage-playerProfileNickNameItem-posX"]}px`,
+                            "top": `${navObj["playerProfilePage-playerProfileNickNameItem-posY"]}px`,
                         }}
                     >
                         {/* TODO5 */}
                         
-                        {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === false &&
+                        {navObj["playerProfilePage-playerProfileNickNameItem-textItalic"] === false &&
                         <label>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {
+                            {navObj["playerProfilePage-playerProfileNickNameItem-nicknameLabel"]} {
                                 (refDataPlayerProfile !== undefined 
                                 && refDataPlayerProfile["playername"] !== undefined) 
                                 ? refDataPlayerProfile["playername"] 
-                                : " (value here)"}
+                                : " (refDataPlayerProfile[playername]) "}
                         </label>}
 
-                        {navObj["playerProfilePage-playerProfileNickNameItem"]["textItalic"] === true &&
+                        {navObj["playerProfilePage-playerProfileNickNameItem-textItalic"] === true &&
                         <em>
-                            {navObj["playerProfilePage-playerProfileNickNameItem"]["nicknameLabel"]} {
+                            {navObj["playerProfilePage-playerProfileNickNameItem-nicknameLabel"]} {
                             (refDataPlayerProfile !== undefined 
                             && refDataPlayerProfile["playername"] !== undefined) 
                             ? refDataPlayerProfile["playername"] 
-                            : " (value here)"}
+                            : " (refDataPlayerProfile[playername]) "}
                         </em>
                         }
                     </div>
                 }
 
-                {navObj["playerProfilePage-playerProfileIconPicItem"]["adding"] === true &&
+                {navObj["playerProfilePage-playerProfileIconPicItem-adding"] === true &&
                     <div style={{
                         "position": "absolute",
-                        "left": `${navObj["playerProfilePage-playerProfileIconPicItem"]["posX"]}px`,
-                        "top": `${navObj["playerProfilePage-playerProfileIconPicItem"]["posY"]}px`,
+                        "left": `${navObj["playerProfilePage-playerProfileIconPicItem-posX"]}px`,
+                        "top": `${navObj["playerProfilePage-playerProfileIconPicItem-posY"]}px`,
                         "borderRadius": "0px",
                     }}>
                         <img
                             src={visualMap[refDataPlayerProfile["iconPicName"]]}
-                            width={navObj["playerProfilePage-playerProfileIconPicItem"]["width"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
-                            height={navObj["playerProfilePage-playerProfileIconPicItem"]["height"] * navObj["playerProfilePage-playerProfileIconPicItem"]["scale"]}
+                            width={navObj["playerProfilePage-playerProfileIconPicItem-width"] * navObj["playerProfilePage-playerProfileIconPicItem-scale"]}
+                            height={navObj["playerProfilePage-playerProfileIconPicItem-height"] * navObj["playerProfilePage-playerProfileIconPicItem-scale"]}
                         ></img>
                         
                 </div>}
