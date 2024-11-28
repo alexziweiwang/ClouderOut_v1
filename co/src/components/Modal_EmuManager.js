@@ -140,6 +140,8 @@ export default function Modal_EmuManager({
     const [epa3EditItemName, setEpa3EditItemName] = useState("");
     const [epa3Input, setEpa3Input] = useState("");
 
+    const [allowClosing, setAllowClosing] = useState(false);
+
 
 //TODO20
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -392,6 +394,10 @@ export default function Modal_EmuManager({
 
         await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
 
+        alert("Changes updated!");
+        setAllowClosing(true);
+
+
     }
 
     async function fetchVisualListFromCloud() {
@@ -427,9 +433,18 @@ return (<div className={modalStyleName}>
             <button className="cursor_pointer modalClose buttonRight50" 
                 onClick={()=>{
                     setFocusingPanelName("");
-                    handleEmCancel();
+                    if (allowClosing === false) {
+                        alert("Please save to cloud first or cancel changes!");
+                    } else {
+                        handleEmCancel();
+                        setAllowClosing(false);
+                    }
+                    
+                    
                 }}
             >{closeText}</button>
+
+
 
             <div style={{
                 "width": "900px",
@@ -472,6 +487,22 @@ return (<div className={modalStyleName}>
 
 
 </div>}
+
+            <div>                
+                <button
+                    onClick={()=>{
+                        saveAllChangesToCloud(); //TODO impl later
+                    }}
+                >{saveToCloudText}</button>
+                <button
+                    onClick={()=>{
+                        setAllowClosing(true);
+                    }}
+                >
+                    cancel changes
+                </button>
+            </div>
+
 
                 {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
                 {/* "1.Game Data to Test" */}
@@ -632,13 +663,6 @@ return (<div className={modalStyleName}>
                 {focusingPanelName === "2epp" && <div>
                 {/* "2.Emu Player Profile" */}
                     <div>Emu-Player Profile for Testing
-                        <br></br>                    
-                        <button
-                            onClick={()=>{
-                                saveAllChangesToCloud(); //TODO impl later
-                            }}
-                        >{saveToCloudText}</button>
-
                     </div>
                     <div
                         style={{
