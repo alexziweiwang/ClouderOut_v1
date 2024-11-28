@@ -100,6 +100,9 @@ export default function Modal_ResourceManagingWindow ({
 
     const [varPairToCloud, setVarPairToCloud] = useState("default");
 
+    const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
+
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -136,74 +139,88 @@ export default function Modal_ResourceManagingWindow ({
             info["projectName"] = projName;
             info["obj"] = object;
     
-            setVarPairToCloud(info);
+            
 
-            let userResponse = window.confirm("Save to cloud?");
+            let userResponse = window.confirm("Save to cloud?"); //TODO15 
             if (userResponse) {
                 console.log("saving to cloud...");
+                
+                setVarPairToCloud(info);
 //TODO save to cloud-db
+
+                alert("Changes saved to cloud!");
+            } //TODO15 
+
+        } else {
+            if (givenContent.length === 0) {
+                console.log("empty input in storeNewVarPairDataFuncGen(), direct return");//TODO 
+                return;
             }
-            return;
-        }
-
-
-
-        if (givenContent.length === 0) {
-            console.log("empty input in storeNewVarPairDataFuncGen(), direct return");//TODO 
-            return;
-        }
-        let updatePart = "";
-        let updatePartArr = [];
-
-        if (type === "add") {
-            updatePart = {};
-            updatePart["url"] = url;
-            updatePart["var"] = givenContent;
-        } else if (type === "edit") {
-
-            if (fileType === "visual") {
-                updatePartArr = visualVarPairs.filter(elem => elem["url"] === url);
-            } else if (fileType === "audio") {
-                updatePartArr = audioVarPairs.filter(elem => elem["url"] === url);
+            let updatePart = "";
+            let updatePartArr = [];
+    
+            if (type === "add") {
+                updatePart = {};
+                updatePart["url"] = url;
+                updatePart["var"] = givenContent;
+            } else if (type === "edit") {
+    
+                if (fileType === "visual") {
+                    updatePartArr = visualVarPairs.filter(elem => elem["url"] === url);
+                } else if (fileType === "audio") {
+                    updatePartArr = audioVarPairs.filter(elem => elem["url"] === url);
+                } else {
+                    return;
+                }
+                updatePart = updatePartArr[0];
+                updatePart["var"] = givenContent;
             } else {
                 return;
             }
-            updatePart = updatePartArr[0];
-            updatePart["var"] = givenContent;
-        } else {
-            return;
+    
+            let other = [];
+            if (fileType === "visual") {
+                other = visualVarPairs.filter(e => e["url"] !== url);
+            } else if (fileType === "audio") {
+                other = audioVarPairs.filter(e => e["url"] !== url);
+            } else {
+                return;
+            }
+            
+            other.push(updatePart);
+    
+            let object = {};
+            if (fileType === "visual") {
+                setVisualVarPairs(other);
+                object["visual"] = other;
+                object["audio"] = audioVarPairs;
+            } else if (fileType === "audio") {
+                setAudioVarPairs(other);
+                object["audio"] = other;
+                object["visual"] = visualVarPairs;
+            } else {
+                return;
+            }
+    
+            const info = {};
+            info["userName"] = username;
+            info["projectName"] = projName;
+            info["obj"] = object;
+
+            let userResponse = window.confirm("Save to cloud?"); //TODO15 
+            if (userResponse) {
+                console.log("saving to cloud...");
+                
+                setVarPairToCloud(info);
+//TODO save to cloud-db
+
+                alert("Changes saved to cloud!");
+            } //TODO15 
         }
 
-        let other = [];
-        if (fileType === "visual") {
-            other = visualVarPairs.filter(e => e["url"] !== url);
-        } else if (fileType === "audio") {
-            other = audioVarPairs.filter(e => e["url"] !== url);
-        } else {
-            return;
-        }
-        
-        other.push(updatePart);
 
-        let object = {};
-        if (fileType === "visual") {
-            setVisualVarPairs(other);
-            object["visual"] = other;
-            object["audio"] = audioVarPairs;
-        } else if (fileType === "audio") {
-            setAudioVarPairs(other);
-            object["audio"] = other;
-            object["visual"] = visualVarPairs;
-        } else {
-            return;
-        }
 
-        const info = {};
-        info["userName"] = username;
-        info["projectName"] = projName;
-        info["obj"] = object;
-
-        setVarPairToCloud(info);
+     
     }
 
     async function updateVarPairToCloud() { //TODO test and debug
@@ -211,6 +228,8 @@ export default function Modal_ResourceManagingWindow ({
             await storeProjectResourceVarPairsToCloudVM(varPairToCloud);
             setVarPairToCloud("default");
         }
+        setCloudUpdated(true); //TODO15 
+
     }
 
     async function fetchProjResourceVarPairLists() {
@@ -426,7 +445,18 @@ export default function Modal_ResourceManagingWindow ({
                         onClick={()=>{updateVarPairToCloud();}}>
                             {saveToCloudText}
                     </button> */}
-                    <button className="buttonRight cursor_pointer modalClose" onClick={()=>{handleRmCancel()}}>
+                    <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
+                            if (cloudUpdated === false) { //TODO15 
+                                let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
+                                if (!resp) {
+                                    return;
+                                }
+                            }
+                            handleRmCancel();
+                            setCloudUpdated(false); //TODO15 
+                        
+                        
+                        }}>
                         {closeText}
                     </button>
                 </div>
