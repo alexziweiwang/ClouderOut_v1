@@ -167,25 +167,23 @@ export default function NavigationPreview ({
 
         if (isEditing === true) { 
             let objTemp = fetchNavObj();
-            setNavObj(objTemp);
-                                                            // if (objTemp != navObj) {
-                                                            //     updateRenderCounter(); //TODO too-many-rendering
-                                                            // }
-
-
-        //    setupPPTryingObjects(objTemp);//TODO too-many-rendering
+            if (objTemp != navObj) {
+                setNavObj(objTemp);
+   
+                setupPPTryingObjects(objTemp);//TODO too-many-rendering
+           
             
-            
-            if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
-                setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
-                let currRow = [];
-                let j = 0;
-                for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
-                    let num = j;
-                    currRow.push(num);
-                }
-                setSlSlotFrame(currRow);
+                if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
+                    setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
+                    let currRow = [];
+                    let j = 0;
+                    for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
+                        let num = j;
+                        currRow.push(num);
+                    }
+                    setSlSlotFrame(currRow);
 
+                } 
             }
         } 
 

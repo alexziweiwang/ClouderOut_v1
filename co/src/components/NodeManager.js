@@ -567,6 +567,7 @@ export default function NodeManager({projectName, currUser,
   }
 
   function updateRenderCounter() {
+    console.log("updateRenderCounter!");
     setRenderCounter((renderCounter+1) % 100);
   }
 

@@ -38,6 +38,7 @@ export default function Panel_GameDataTest({
 
     const [renderCounter, setRenderCounter] = useState(0);
     function updateRenderCounter() {
+        console.log("updateRenderCounter!");
         setRenderCounter((renderCounter+1) % 100);
       }
     
