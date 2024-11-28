@@ -140,7 +140,7 @@ export default function Modal_EmuManager({
     const [epa3EditItemName, setEpa3EditItemName] = useState("");
     const [epa3Input, setEpa3Input] = useState("");
 
-    const [allowClosing, setAllowClosing] = useState(false);
+    const [cloudUpdated, setCloudUpdated] = useState(false);
 
 
 //TODO20
@@ -395,7 +395,7 @@ export default function Modal_EmuManager({
         await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
 
         alert("Changes updated!");
-        setAllowClosing(true);
+        setCloudUpdated(true);
 
 
     }
@@ -433,13 +433,14 @@ return (<div className={modalStyleName}>
             <button className="cursor_pointer modalClose buttonRight50" 
                 onClick={()=>{
                     setFocusingPanelName("");
-                    if (allowClosing === false) {
-                        alert("Please save to cloud first or cancel changes!");
-                    } else {
-                        handleEmCancel();
-                        setAllowClosing(false);
+                    if (cloudUpdated === false) {
+                        let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
+                        if (!resp) {
+                            return;
+                        }
                     }
-                    
+                    handleEmCancel();
+                    setCloudUpdated(false);
                     
                 }}
             >{closeText}</button>
@@ -494,13 +495,6 @@ return (<div className={modalStyleName}>
                         saveAllChangesToCloud(); //TODO impl later
                     }}
                 >{saveToCloudText}</button>
-                <button
-                    onClick={()=>{
-                        setAllowClosing(true);
-                    }}
-                >
-                    cancel changes
-                </button>
             </div>
 
 
