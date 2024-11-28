@@ -1396,6 +1396,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
  
                   getUILanguage={passInUILanguage}
+                  initialUILanguage={languageCodeTextOption}
           
                   />
               </div>

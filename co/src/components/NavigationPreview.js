@@ -22,11 +22,12 @@ export default function NavigationPreview ({
     fetchCurrentGameData,
 
     getUILanguage,
+    initialUILanguage,
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState(initialUILanguage); //TODO16
 
     const username = "user002"; //TODO testing
     const projName = "project001"; //TODO testing
@@ -97,18 +98,19 @@ export default function NavigationPreview ({
 
     
     function updateRenderCounter() {
+        console.log("updateRenderCounter!");
         setRenderCounter((renderCounter+1) % 100);
     }
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-    // useEffect(() => {
+    useEffect(() => {
+
+
         if (firstTimeEnter === true) {
                                         // console.log("initial nav-preview: ", initialNavObj); //TODO test
                                         // console.log("Navigation Preview -- "); //TODO test
-                                        
-
-                                        
+                                                                 
             fetchProjResourceLists();
 
             let i = 0;
@@ -132,8 +134,8 @@ export default function NavigationPreview ({
 
         }
 
-        // let UILang = getUILanguage();
-        // setLanguageCodeTextOption(UILang);
+        let UILang = getUILanguage();
+        setLanguageCodeTextOption(UILang);
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
@@ -156,56 +158,56 @@ export default function NavigationPreview ({
         }
 
 
-        // let playerInfoObj = fetchPlayerInfoSets();
-        // setRefDataPlayerAccount(playerInfoObj["userAccount"]);
-        // setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+        let playerInfoObj = fetchPlayerInfoSets();
+        setRefDataPlayerAccount(playerInfoObj["userAccount"]);
+        setRefDataPlayerProfile(playerInfoObj["playerProfile"])
 
-        // let gameDataTemp = fetchCurrentGameData();
-        // setRefGameDataList(gameDataTemp);
+        let gameDataTemp = fetchCurrentGameData();
+        setRefGameDataList(gameDataTemp);
 
-        // if (isEditing === true) {
-        //     let objTemp = fetchNavObj();
-        //     setNavObj(objTemp);
-        //     if (objTemp != navObj) {
-        //         updateRenderCounter();
-        //     }
+        if (isEditing === true) { 
+            let objTemp = fetchNavObj();
+            setNavObj(objTemp);
+                                                            // if (objTemp != navObj) {
+                                                            //     updateRenderCounter(); //TODO too-many-rendering
+                                                            // }
 
 
-        //     setupPPTryingObjects(objTemp);
+        //    setupPPTryingObjects(objTemp);//TODO too-many-rendering
             
             
-        //     if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
-        //         setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
-        //         let currRow = [];
-        //         let j = 0;
-        //         for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
-        //             let num = j;
-        //             currRow.push(num);
-        //         }
-        //         setSlSlotFrame(currRow);
+            if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
+                setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
+                let currRow = [];
+                let j = 0;
+                for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
+                    let num = j;
+                    currRow.push(num);
+                }
+                setSlSlotFrame(currRow);
 
-        //     }
-        // }
+            }
+        } 
 
-    //     let tempPage= fetchPageName();
-    //     if (tempPage !== undefined && tempPage !== "") {
-    //         setPage(tempPage);
-    //     }
-
-
-    //     if (navObj["screenSize"] === "16:9(horizonal)"
-    //         || navObj["screenSize"] === "16:9(vertical)"
-    //         || navObj["screenSize"] === "4:3(horizonal)"
-    //         || navObj["screenSize"] === "4:3(vertical)"
-    //         ) {
-    //             let w = sizeLookupMap[navObj["screenSize"]][0];
-    //             let h = sizeLookupMap[navObj["screenSize"]][1];
-    //             setScreenWidth(w);
-    //             setScreenHeight(h);
-    //     }
+        let tempPage= fetchPageName();
+        if (tempPage !== undefined && tempPage !== "") {
+            setPage(tempPage);
+        }
 
 
-    // });
+        if (navObj["screenSize"] === "16:9(horizonal)"
+            || navObj["screenSize"] === "16:9(vertical)"
+            || navObj["screenSize"] === "4:3(horizonal)"
+            || navObj["screenSize"] === "4:3(vertical)"
+            ) {
+                let w = sizeLookupMap[navObj["screenSize"]][0];
+                let h = sizeLookupMap[navObj["screenSize"]][1];
+                setScreenWidth(w);
+                setScreenHeight(h);
+        }
+
+
+    });
 
     function setupPPTryingObjects(navObj) {
         let textObjTemp = {
