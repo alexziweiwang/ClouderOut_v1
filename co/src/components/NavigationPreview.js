@@ -40,7 +40,7 @@ export default function NavigationPreview ({
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
-      console.log("nav-preview: fetchProjResourceLists()"); //TODO test
+   //   console.log("nav-preview: fetchProjResourceLists()"); //TODO test
 
       if (username === "default-no-state username" || projName === "default-no-state projectName") {
         return;
@@ -102,10 +102,10 @@ export default function NavigationPreview ({
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-    useEffect(() => {
+    // useEffect(() => {
         if (firstTimeEnter === true) {
-                                        console.log("initial nav-preview: ", initialNavObj); //TODO test
-                                        console.log("Navigation Preview -- "); //TODO test
+                                        // console.log("initial nav-preview: ", initialNavObj); //TODO test
+                                        // console.log("Navigation Preview -- "); //TODO test
                                         
 
                                         
@@ -120,7 +120,6 @@ export default function NavigationPreview ({
                 currRow.push(num);
             }
             setSlSlotFrame(currRow);
-            console.log("initial slot-per-page: ", currRow); //TODO Test
 
             let initialChapterTitle = [];
             let k = 0;
@@ -133,8 +132,8 @@ export default function NavigationPreview ({
 
         }
 
-        let UILang = getUILanguage();
-        setLanguageCodeTextOption(UILang);
+        // let UILang = getUILanguage();
+        // setLanguageCodeTextOption(UILang);
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
@@ -157,58 +156,56 @@ export default function NavigationPreview ({
         }
 
 
-        let playerInfoObj = fetchPlayerInfoSets();
-        setRefDataPlayerAccount(playerInfoObj["userAccount"]);
-        setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+        // let playerInfoObj = fetchPlayerInfoSets();
+        // setRefDataPlayerAccount(playerInfoObj["userAccount"]);
+        // setRefDataPlayerProfile(playerInfoObj["playerProfile"])
 
-        let gameDataTemp = fetchCurrentGameData();
-        setRefGameDataList(gameDataTemp);
+        // let gameDataTemp = fetchCurrentGameData();
+        // setRefGameDataList(gameDataTemp);
 
-        if (isEditing === true) {
-            let objTemp = fetchNavObj();
-            setNavObj(objTemp);
-            if (objTemp != navObj) {
-                updateRenderCounter();
-            }
+        // if (isEditing === true) {
+        //     let objTemp = fetchNavObj();
+        //     setNavObj(objTemp);
+        //     if (objTemp != navObj) {
+        //         updateRenderCounter();
+        //     }
 
-// console.log("nav preview: ", objTemp); //TODO testing
 
-            setupPPTryingObjects(objTemp);
+        //     setupPPTryingObjects(objTemp);
             
             
-            if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
-                setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
-                let currRow = [];
-                let j = 0;
-                for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
-                    let num = j;
-                    currRow.push(num);
-                }
-                setSlSlotFrame(currRow);
-                console.log("initial slot-per-page: ", currRow); //TODO Test
+        //     if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
+        //         setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
+        //         let currRow = [];
+        //         let j = 0;
+        //         for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
+        //             let num = j;
+        //             currRow.push(num);
+        //         }
+        //         setSlSlotFrame(currRow);
 
-            }
-        }
+        //     }
+        // }
 
-        let tempPage= fetchPageName();
-        if (tempPage !== undefined && tempPage !== "") {
-            setPage(tempPage);
-        }
-
-
-        if (navObj["screenSize"] === "16:9(horizonal)"
-            || navObj["screenSize"] === "16:9(vertical)"
-            || navObj["screenSize"] === "4:3(horizonal)"
-            || navObj["screenSize"] === "4:3(vertical)"
-            ) {
-                let w = sizeLookupMap[navObj["screenSize"]][0];
-                let h = sizeLookupMap[navObj["screenSize"]][1];
-                setScreenWidth(w);
-                setScreenHeight(h);
-        }
+    //     let tempPage= fetchPageName();
+    //     if (tempPage !== undefined && tempPage !== "") {
+    //         setPage(tempPage);
+    //     }
 
 
-    });
+    //     if (navObj["screenSize"] === "16:9(horizonal)"
+    //         || navObj["screenSize"] === "16:9(vertical)"
+    //         || navObj["screenSize"] === "4:3(horizonal)"
+    //         || navObj["screenSize"] === "4:3(vertical)"
+    //         ) {
+    //             let w = sizeLookupMap[navObj["screenSize"]][0];
+    //             let h = sizeLookupMap[navObj["screenSize"]][1];
+    //             setScreenWidth(w);
+    //             setScreenHeight(h);
+    //     }
+
+
+    // });
 
     function setupPPTryingObjects(navObj) {
         let textObjTemp = {
@@ -354,7 +351,6 @@ export default function NavigationPreview ({
                                     document.getElementById(keyStr1).style.filter = "brightness(100%)";
 
 
-                                    console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
 
 
@@ -514,7 +510,6 @@ export default function NavigationPreview ({
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "brightness(100%)";
 
-                                    console.log("main-page clicked: ", item);
                                     updateCurrentPageName(pageNaming);
 
                                     let currentStandingObjTemp = {};
@@ -605,7 +600,7 @@ export default function NavigationPreview ({
                                 ()=>{
                                     document.getElementById(keyStr).style.filter = "brightness(100%)";
 
-                                    console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
+                                   // console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
                                     //TODO data update operation
 
 
@@ -839,8 +834,6 @@ export default function NavigationPreview ({
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "brightness(100%)";
 
-
-                                        console.log("story-page-title clicked: ", item);
                            
 
 
@@ -1161,7 +1154,7 @@ export default function NavigationPreview ({
                             let tempArr = refGameDataList.filter(e => e[0] === item["valueItemName"]);
                             if (tempArr.length > 0) {
                                 actualValue = tempArr[0][1].toString();
-                                // console.log("entire item = ", tempArr[0]);
+
                                 isValueFetched = true;
                             }
   
@@ -1375,7 +1368,6 @@ export default function NavigationPreview ({
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
 
 
-                                console.log("playerProfilePage-backButton");
                                 let nextPageName = "Main Page";
                                 if (page === "During Game" || page === "Game Progress Strategy") {
                                     nextPageName = "Story Page";

@@ -148,7 +148,7 @@ export default function GameMaker({username, projectName}) {
     /* fetch from cloud db */
     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
 
-                              console.log("game-maker, visuallist = : ", obj); //TODO
+                    //          console.log("game-maker, visuallist = : ", obj); //TODO
     setVisualList(obj.visual);
 
     return obj.visual;
@@ -600,9 +600,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   async function fetchGameDataFromCloud() { //TODO3
 
-    console.log("!!! This is for project: ", projectName);
+   // console.log("!!! This is for project: ", projectName);
     let project  = projectName;
-    console.log("checking2 on project ... [", project, "]");
+  //  console.log("checking2 on project ... [", project, "]");
     if (project === undefined || project === null || project === "" || project.trim() === "") {
       return;
     }
@@ -684,13 +684,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         triggerRefreshFetchCloudData();
-
-        let isLocal = true; //TODO temp
-
-                                          // loadPlayingGameData(isLocal); 
-                                          // loadTestPlayerProfile(isLocal); 
-                                          // loadTestPlayerAccount(isLocal); 
-                                          // loadTestPlayerSLRecords(isLocal);
 
         
         setFirstTimeEnter(false);
@@ -1164,7 +1157,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     // return gameDataList;
 
     //TODO refactor for new-emu-strategy
-                                      console.log("game-maker, passInCurrentGameDataList-func: returning ", testPlayerGameData);
+                            //          console.log("game-maker, passInCurrentGameDataList-func: returning ", testPlayerGameData);
 
 
 

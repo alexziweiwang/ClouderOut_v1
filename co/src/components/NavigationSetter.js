@@ -328,7 +328,7 @@ export default function NavigationSetter({initialNavObj,
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
-            console.log("Navigation Setter -- "); //TODO test
+            //console.log("Navigation Setter -- "); //TODO test
             fetchProjResourceLists();
             getGameDataDesignFromCloud(); //value-list: game-data
  
