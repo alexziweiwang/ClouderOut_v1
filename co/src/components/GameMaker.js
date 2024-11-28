@@ -84,6 +84,9 @@ export default function GameMaker({username, projectName}) {
 
 */
 
+  const [renderCounter, setRenderCounter] = useState(0);
+
+
   const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
 
@@ -155,7 +158,10 @@ export default function GameMaker({username, projectName}) {
   }
 
 
-
+  function updateRenderCounter() {
+    console.log("updateRenderCounter!");
+    setRenderCounter((renderCounter+1) % 100);
+  }
 
 
 //TODO ------------------------------------------------------ testing data area
@@ -750,16 +756,20 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function handleResourceManagerSaveChanges() {
     console.log("modal save changes!");
+    updateRenderCounter();
     //TODO update to cloud db
     setDisplayRmModal(false);
   }
 
   function handleGameDataManagerCancel() {
+    updateRenderCounter();
     setDisplayGdmBool(false);
 
   }
 
   function handleEmuManagerCancel() {
+    //triger re-render?
+    updateRenderCounter();
     setDisplayEmBool(false);
   }  
 
@@ -1032,6 +1042,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInPlayerProfile() {
+    console.log("passs-in player-profile: ", testPlayerProfile);
     return testPlayerProfile;
   }
 

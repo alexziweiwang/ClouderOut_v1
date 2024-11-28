@@ -614,17 +614,14 @@ return (<div className={modalStyleName}>
 
                             
                             </div>
-                            <button
-                                onClick={()=>{
-                                    saveAllChangesToCloud(); //TODO impl later
-                                }}
-                            
-                            >{saveToCloudText}</button>
+                        
+
 
 
 
 
                         </div>
+    
                 </div>}
 
 
@@ -634,7 +631,15 @@ return (<div className={modalStyleName}>
 {isForGameMaker === true && <>
                 {focusingPanelName === "2epp" && <div>
                 {/* "2.Emu Player Profile" */}
-                    <div>Emu-Player Profile for Testing</div>
+                    <div>Emu-Player Profile for Testing
+                        <br></br>                    
+                        <button
+                            onClick={()=>{
+                                saveAllChangesToCloud(); //TODO impl later
+                            }}
+                        >{saveToCloudText}</button>
+
+                    </div>
                     <div
                         style={{
                             "borderRadius": "0px",
@@ -742,13 +747,14 @@ return (<div className={modalStyleName}>
                                 <tr>
                                     <td>Icon</td>
                                     <td>
-                                        <div>
+                                        <div>   {epp2["iconPicName"]}<br></br>
+                                                
                                                 {(epp2["iconPicName"] !== undefined && epp2["iconPicName"] !== "") &&
                                                     <img 
                                                         className="iconPreview" 
                                                         src={visualMap[epp2["iconPicName"]]} 
-                                                        alt="preview icon"
-                                                    />}
+                                                        alt="chosen icon"
+                                                />}
                                         
                                         </div>
                                     </td>
