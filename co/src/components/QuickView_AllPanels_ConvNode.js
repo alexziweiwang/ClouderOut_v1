@@ -5,7 +5,6 @@ import langDictionary from './textDictionary';
 
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-import { GiSolarSystem } from 'react-icons/gi';
    
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
