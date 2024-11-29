@@ -3,23 +3,24 @@ import NavigationPreview from './NavigationPreview';
 import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 /* //TODO
-  This component is a View/"screen" of game-play (both testing-entire and play-in-practice).
+  This component is a View/"screen" *holder* of game-play (both testing-entire and play-in-practice).
 
-  Outside of this component, there should be an "outer" component that holds/handles the following:
+  keeps the following
 1. game-progress (which chapter, which node, which step/piece, etc.)
     TODO consider separate situation for with-sl and withour-sl, 
     TODO    also with optional "chapter lock" for new players-first time playing
-2. player data (from outer compo): in-game-play-data, profile, account, sl-records
+2. in-game-play-data
+3. player data: profile, account, sl-records
 
+    initialize/refresh every time when reopening this compo-window
  */
-export default function Viewer_Entire({isDisplay, 
-    makeNotDisplay, navigationObj, fetchNavigationObj,
-    initialChapterList, getChapterList,getUILanguage,
+export default function Viewer_Entire({
+    navigationObj, 
+    initialChapterList, getChapterList, getUILanguage,
    
-    isLocal,
-
     getPlayerGameData,
     updatePlayingGameData,
+    initialPlayerGameData,
 
     getPlayerProfile,
     updatePlayerProfile,
@@ -75,7 +76,7 @@ export default function Viewer_Entire({isDisplay,
         
 
 
-    const [playerGameData, setPlayerGameData] = useState({});
+    const [playerGameData, setPlayerGameData] = useState(initialPlayerGameData);
     const [playerProfile, setPlayerProfile] = useState({});
     const [playerAccount, setPlayerAccount] = useState({});
     const [playerSLRecords, setPlayerSLRecords] = useState({});
@@ -115,7 +116,17 @@ export default function Viewer_Entire({isDisplay,
 
     const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({});
 
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+
+        if (firstTimeEnter === true) {
+            initializeGameDataTracker();
+
+            //TODO
+            
+            setFirstTimeEnter(false);
+        }
+  
 
         if (navigationObj["screenSize"] === "16:9(horizonal)"
                 || navigationObj["screenSize"] === "16:9(vertical)"
@@ -134,13 +145,8 @@ export default function Viewer_Entire({isDisplay,
         let gameStatusProgressTemp = getCurrentGameProgress();
         setCurrentGameStatusProgress(gameStatusProgressTemp);
 
-    
-
         let chapterListTemp = getChapterList();
         setChapterList(chapterListTemp);
-
-        let gameDataTrackerTemp = getPlayerGameData(); //TODO refactoring
-        setPlayerGameData(gameDataTrackerTemp);
 
         let pp = getPlayerProfile();
         setPlayerProfile(pp);
@@ -151,6 +157,8 @@ export default function Viewer_Entire({isDisplay,
 
     });
 
+  
+
 
 
 
@@ -159,6 +167,28 @@ export default function Viewer_Entire({isDisplay,
     //     setPlayerGameData(data);
     // }
 
+    function initializeGameDataTracker() {
+                                                            console.log("viewer-entire... initializeGameDataTracker");
+        let objTemp = {};
+        Object.keys(initialPlayerGameData).map((currKey) => {
+            let item = initialPlayerGameData[currKey];
+            let currVal = item["current_value"];
+            let dataType = item["data_type"];
+            let defaultVal = item["default_value"];
+            let nameVal = item["name"];
+            
+            let objNewItem = {
+                "current_value": currVal,
+                "data_type": dataType,
+                "default_value": defaultVal,
+                "name": nameVal           
+            }
+            objTemp[nameVal] = objNewItem;
+        });
+
+        setPlayerGameData(objTemp);
+
+    }
 
 
     function passInNavObj() {
@@ -167,6 +197,10 @@ export default function Viewer_Entire({isDisplay,
 
     function notUsing() {
         console.log();
+    }
+
+    function passInUiLanguageOption() {
+        return languageCodeTextOption;
     }
 
     function passInNavPageName() {
@@ -283,7 +317,8 @@ nodeType={currentGameStatusProgress["nodeType"]} <br></br>
                 }}>
                     <NavigationPreview 
                         initialNavObj={navigationObj} 
-                        fetchNavObj={fetchNavigationObj} 
+                        fetchNavObj={passInNavObj} 
+
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 
 
@@ -291,13 +326,15 @@ nodeType={currentGameStatusProgress["nodeType"]} <br></br>
                         updateCurrentStanding={updateCurrentStanding}
 
                         isEditing={false}
+
                         initialGameDataRefData={playerGameData}
                         initialPlayerProfileRefData={playerProfile}
                         initialPlayerAccountRefData={playerAccount}
 
                         fetchPlayerInfoSets={passInPlayerInfoSets}
                         fetchCurrentGameData={passInCurrentGameDataList}
-                        getUILanguage={getUILanguage}  //TODO20 languageOption
+
+                        getUILanguage={passInUiLanguageOption}  //TODO20 languageOption
 
                     />
                                                                                 {/* //TODO16

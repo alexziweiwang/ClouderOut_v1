@@ -965,78 +965,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  // function loadPlayingGameData(isLocal) {                                          //TODO important
-  //   let gameDataTemp = {};
-
-  //   // for local test, make from game-data-design-list
-  //   if (isLocal === true) {
-  //     let tempList = gameDataDesignList;
-
-  //     if (tempList === -1) { //TODO5
-  //           const gdataTestResult = fetchGameDataFromCloud();
-  //           if (gdataTestResult !== undefined) {
-  //             {Object.keys(tempList).map((currKey) => {
-  //               gameDataTemp[currKey]["current_value"] = tempList[currKey]["default_value"];
-  //             })}
-  //           }
-  //     }
-
-  //   } else {
-  //     // for on-cloud test, fetch from cloud
-  //     //TODO gameDataTemp = ...
-
-  //   }
-  //                                                           console.log("load-gdata: ", gameDataTemp);
-  //   setTestPlayerGameData(gameDataTemp); // initialize Playing-Game-Data
-  //   return gameDataTemp;
-  // }
-
-  // function loadTestPlayerProfile(isLocal) { 
-  //   let playerProfileTemp = {};
-  //   if (isLocal === true) {
-  //     //use emulated test data
-
-  //     playerProfileTemp = testPlayerProfile;
-
-  //     //TODO later: player-account-related panel?
-  //   } else { //use cloud data
-
-  //   }
-
-  //   setTestPlayerProfile(playerProfileTemp);
-
-  // }
-
-  // function loadTestPlayerAccount(isLocal) {
-  //   let playerAccountDataTemp = {};
-  //   if (isLocal === true) {
-  //     //use emulated test data
-  //     //TODO
-
-  //     playerAccountDataTemp = testPlayerAccount;
-
-  //   } else {//use cloud data
-
-  //   }
-
-  //   setTestPlayerAccount(playerAccountDataTemp);
-
-  // }
-
-  // function loadTestPlayerSLRecords(isLocal) {
-  //   let playerSLRecordsTemp = {};
-  //   if (isLocal === true) {
-  //     //use emulated test data
-  //     //TODO
-
-  //     playerSLRecordsTemp = testPlayerSLRecords;  
-
-  //   } else {//use cloud data
-
-  //   }
-
-  // }
-  
   function passInPlayerGameData() { //TODO5
     return testPlayerGameData;
   }
@@ -1429,7 +1357,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         <button className="testEntire" onClick={()=>{setDisplayEntierGameViewer(false);}}>Stop Testing</button>
 
 
-  {/* top bar for optional displaying */}
+    {/* top bar for optional displaying */}
         <div style={{"marginBottom":" 10px", "userSelect": "none", "color": "#FFFFFF"}}>
             <input 
                 type="checkbox" 
@@ -1444,24 +1372,23 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                 }}
             >Show Game-Data Tracking Panel</label><br></br>
 
-            
         </div>
     
 
 
-  {/* entire-viewer-screen */}
+    {/* entire-viewer-screen */}
       <div>
       <Viewer_Entire
-          isDisplay={isDisplayEntireGameViewer}
           makeNotDisplay={closeEntireGameViewer}
+
           navigationObj={currentProjectNav}
-          fetchNavigationObj={passInNavObj}
+
           initialChapterList={chapterList}
           getChapterList={passInChapterList}
 
-          isLocal={true}
           getPlayerGameData={passInCurrentGameDataList}
           updatePlayingGameData={updatePlayingGameData}
+          initialPlayerGameData={testPlayerGameData}
 
           getPlayerProfile={passInPlayerProfile}
           updatePlayerProfile={updatePlayerProfile}
@@ -1488,7 +1415,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
 
-  {/* status table */}
+    {/* status table */}
       <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
               <thead>
                 <tr>
@@ -1516,7 +1443,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
 
-  {/* game data table panel  */}
+    {/* game data table panel  */}
       <div>
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
