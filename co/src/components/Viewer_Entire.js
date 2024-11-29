@@ -150,16 +150,9 @@ export default function Viewer_Entire({
         let chapterKeyTemp = getChapterKey();
         let nodeKeyTemp = getNodeKey();
         let pageNameTemp = getPageName();
-        // let progressObj = {
-        //     "pageStatus": pageNameTemp,
-        //     "chapterKey": chapterKeyTemp,
-        //     "nodeKey": nodeKeyTemp,
-        //     "nodeType": nodeTypeTemp
-        // }
-        // setCurrentGameStatusProgress(progressObj);
+        setupGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp);
 
-        
-/*
+
         let chapterListTemp = getChapterList();
         setChapterList(chapterListTemp);
 
@@ -168,12 +161,45 @@ export default function Viewer_Entire({
 
         let ua = getPlayerAccountSettings();
         setPlayerAccount(ua);
-*/
+
 
     });
 
   
+    function setupGameProgress(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal) {
+        let nodeTypeTemp = nodeTypeVal;
+        let chapterKeyTemp = chapterKeyVal;
+        let nodeKeyTemp = nodeKeyVal;
+        let pageNameTemp = pageNameVal;
 
+        let progressObj = currentGameStatusProgress;
+
+        if (nodeTypeTemp === progressObj["nodeType"]
+            && chapterKeyTemp === progressObj["chapterKey"]
+            && pageNameTemp === progressObj["pageStatus"]
+            && nodeKeyTemp !== progressObj["nodeKey"]
+        ) {
+            return;
+        } else {
+            if (nodeTypeTemp !== progressObj["nodeType"]) {
+                progressObj["nodeType"] = nodeTypeTemp;
+            }
+            if (chapterKeyTemp !== progressObj["chapterKey"]) {
+                progressObj["chapterKey"] = chapterKeyTemp;
+            }
+            if (pageNameTemp !== progressObj["pageStatus"]) {
+                progressObj["pageStatus"] = pageNameTemp;
+            }
+            if (nodeKeyTemp !== progressObj["nodeKey"]) {
+                progressObj["nodeKey"] = nodeKeyTemp;
+            }
+                                                    console.log("resetting currentGameStatusProgress!");
+            setCurrentGameStatusProgress(progressObj);
+        }
+
+      
+
+    }
 
 
 
