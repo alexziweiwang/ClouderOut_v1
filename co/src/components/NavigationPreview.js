@@ -137,6 +137,10 @@ export default function NavigationPreview ({
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
 
+
+
+
+
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
             let i = 0;
             let tempAudioMap = {};
@@ -156,6 +160,10 @@ export default function NavigationPreview ({
             }
             setVisualMap(tempVisualMap);
         }
+
+
+
+
 
 
         let playerInfoObj = fetchPlayerInfoSets();
@@ -187,10 +195,12 @@ export default function NavigationPreview ({
             }
         } 
 
+
         let tempPage= fetchPageName();
         if (tempPage !== undefined && tempPage !== "") {
             setPage(tempPage);
         }
+
 
 
         if (navObj["screenSize"] === "16:9(horizonal)"

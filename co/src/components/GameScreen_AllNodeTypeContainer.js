@@ -10,7 +10,7 @@ export default function GameScreen_AllNodeTypeContainer({
     getNodeType, 
     getChapterKey, 
     getNodeKey,
-    getCurrentGameDatTracker,
+    getCurrentGameDataTracker,
 
     username,
     projectname,
@@ -73,7 +73,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
 return (<div style={{"backgroundColor": "purple"}}>
-    ???
+    {currNodeType === "" && <div>
+        </div>}
 
 </div>);
 

@@ -31,7 +31,11 @@ export default function Viewer_Entire({
     getPlayerSlRecords, 
     updatePlayerSlRecords,
     
-    getCurrentGameProgress,
+    getNodeType, 
+    getChapterKey, 
+    getNodeKey,
+    getPageName,
+
     updateCurrentStanding,
 
     notifyPageStatus,
@@ -135,16 +139,27 @@ export default function Viewer_Entire({
         ) {
             let w = sizeLookupMap[navigationObj["screenSize"]][0];
             let h = sizeLookupMap[navigationObj["screenSize"]][1];
-            setScreenWidth(w); /* according to navigationObj's size */
-            setScreenHeight(h); /* according to navigationObj's size */
+            setScreenWidth(w); // according to navigationObj's size 
+            setScreenHeight(h); // according to navigationObj's size 
         }
 
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
 
-        let gameStatusProgressTemp = getCurrentGameProgress();
-        setCurrentGameStatusProgress(gameStatusProgressTemp);
+        let nodeTypeTemp = getNodeType();
+        let chapterKeyTemp = getChapterKey();
+        let nodeKeyTemp = getNodeKey();
+        let pageNameTemp = getPageName();
+        // let progressObj = {
+        //     "pageStatus": pageNameTemp,
+        //     "chapterKey": chapterKeyTemp,
+        //     "nodeKey": nodeKeyTemp,
+        //     "nodeType": nodeTypeTemp
+        // }
+        // setCurrentGameStatusProgress(progressObj);
 
+        
+/*
         let chapterListTemp = getChapterList();
         setChapterList(chapterListTemp);
 
@@ -153,7 +168,7 @@ export default function Viewer_Entire({
 
         let ua = getPlayerAccountSettings();
         setPlayerAccount(ua);
-
+*/
 
     });
 

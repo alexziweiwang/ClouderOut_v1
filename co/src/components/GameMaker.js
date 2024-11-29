@@ -970,7 +970,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInPlayerProfile() {
-    console.log("passs-in player-profile: ", testPlayerProfile);
+                          // console.log("passs-in player-profile: ", testPlayerProfile);
     return testPlayerProfile;
   }
 
@@ -1006,6 +1006,23 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     obj["nodeType"] = currTestingNodeType;
 
     return obj;
+
+  }
+
+  function passInNodeType() {
+    return currTestingNodeType;
+  }
+
+  function passInChapterKey() {
+    return currTestingChapterKey;
+  } 
+
+  function passInNodeKey() {
+    return currTestingNodeKey;
+  }
+
+  function passInPageName() {
+    return currTestingPageStatus;
   }
 
   function updateCurrentStanding(obj) {
@@ -1399,7 +1416,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           getPlayerSlRecords={passInPlayerSlRecords}
           updatePlayerSlRecords={updatePlayerSlRecords}
           
-          getCurrentGameProgress={passInCurrentGameProgress}
+
+          getNodeType={passInNodeType}
+          getChapterKey={passInChapterKey}
+          getNodeKey={passInNodeKey}
+          getPageName={passInPageName}
+
           updateCurrentStanding={updateCurrentStanding}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
