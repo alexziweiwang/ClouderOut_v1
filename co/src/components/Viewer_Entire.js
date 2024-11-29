@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
+import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 /* //TODO
   This component is a View/"screen" of game-play (both testing-entire and play-in-practice).
@@ -62,6 +63,8 @@ export default function Viewer_Entire({isDisplay,
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO
     const [screenHeight, setScreenHeight] = useState(450); //TODO
+
+
     const sizeLookupMap = { "16:9(horizonal)": [800, 450],
         "16:9(vertical)": [450, 800],
         "4:3(horizonal)": [800, 600],
@@ -118,8 +121,8 @@ export default function Viewer_Entire({isDisplay,
         ) {
             let w = sizeLookupMap[navigationObj["screenSize"]][0];
             let h = sizeLookupMap[navigationObj["screenSize"]][1];
-            setScreenWidth(w);
-            setScreenHeight(h);
+            setScreenWidth(w); /* according to navigationObj's size */
+            setScreenHeight(h); /* according to navigationObj's size */
         }
 
         let UILang = getUILanguage();
@@ -192,6 +195,21 @@ export default function Viewer_Entire({isDisplay,
         return playerGameData;
     }
 
+    function passInNodeType() {
+        return currentGameStatusProgress["nodeType"];
+    }
+
+    function passInNodeKey() {
+        return currentGameStatusProgress["nodeKey"];
+    }
+
+    function passInChapterKey() {
+        return currentGameStatusProgress["chapterKey"];
+    }
+
+
+                                          
+
 return(<>
 
 <div>
@@ -233,7 +251,12 @@ nodeKey={currentGameStatusProgress["nodeKey"]} <br></br>
 nodeType={currentGameStatusProgress["nodeType"]} <br></br>
                                           logic: if pageStatus is "During Game", according to nodeType, enter node-player
                                           <br></br>pass-in chapterKey and nodeKey...
-                                          
+                                          <GameScreen_AllNodeTypeContainer
+                                                getNodeType={passInNodeType}
+                                                getChapterKey={passInChapterKey} 
+                                                getNodeKey={passInNodeKey}
+                                                            
+                                          />
 
                                 
                     </div>
