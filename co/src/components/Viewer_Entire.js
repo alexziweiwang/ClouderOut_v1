@@ -34,6 +34,9 @@ export default function Viewer_Entire({isDisplay,
     updateCurrentStanding,
 
     notifyPageStatus,
+
+    username,
+    projectname
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -255,7 +258,11 @@ nodeType={currentGameStatusProgress["nodeType"]} <br></br>
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 
                                                 getNodeKey={passInNodeKey}
-                                                            
+                                                getCurrentGameDatTracker={getPlayerGameData}
+
+                                                username={username}
+                                                projectname={projectname}
+                                                uiLanguage={languageCodeTextOption}             
                                           />
 
                                 

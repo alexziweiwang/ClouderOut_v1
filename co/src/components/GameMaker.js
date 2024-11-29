@@ -1142,36 +1142,34 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInCurrentGameDataList() { // emu-data
-    // if (gameDataArray.length > 0) {
-    //   return gameDataArray;
-    // }
+  
 
-    // let gameDataTemp = gameDataDesignList;
-    // if (gameDataDesignList.size === 0) {
-    //   let tempMap = loadPlayingGameData(true);
-    //   gameDataTemp = tempMap;
-    // }
-    // let gameDataList = [];
+    //TODO for new-emu-strategy
+                                      console.log("game-maker, passInCurrentGameDataList-func: returning1 ", testPlayerGameData);
+    
+    let objTemp = {};
+    Object.keys(testPlayerGameData).map((currKey) => {
+      let item = testPlayerGameData[currKey];
+      let currVal = item["current_value"];
+      let dataType = item["data_type"];
+      let defaultVal = item["default_value"];
+      let nameVal = item["name"];
+      
+      let objNewItem = {
+          "current_value": currVal,
+          "data_type": dataType,
+          "default_value": defaultVal,
+          "name": nameVal           
+      }
 
+      objTemp[nameVal] = objNewItem;
 
-    // {Object.keys(gameDataTemp).map((currKey) => {
-    //   let pair = [];
-    //                           console.log("\t\t item = ", gameDataTemp[currKey]);
-    //   pair.push(gameDataTemp[currKey]["name"]);
-    //   pair.push(gameDataTemp[currKey]["default_value"]);
-    //   gameDataList.push(pair);
-    // })}
-    //             // console.log ("1passInCurrentGameDataList(): gameDataTemp = ", gameDataTemp); //TODO remove later
+    })
 
-    // setGameDataArray(gameDataList);
-    // return gameDataList;
-
-    //TODO refactor for new-emu-strategy
-                            //          console.log("game-maker, passInCurrentGameDataList-func: returning ", testPlayerGameData);
-
+                                    console.log("game-maker, passInCurrentGameDataList-func: returning2 ", objTemp);
 
 
-    return testPlayerGameData;
+    return objTemp;
 
   }
 
@@ -1481,7 +1479,9 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
  
           getUILanguage={passInUILanguage}
-          
+
+          username={username}
+          projectname={projectName}
 
 
       />
