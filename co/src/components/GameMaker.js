@@ -1071,7 +1071,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInCurrentGameProgress() {
-    //TODO7
     let obj = {};
     obj["pageStatus"] = currTestingPageStatus;
     obj["chapterKey"] = currTestingChapterKey;

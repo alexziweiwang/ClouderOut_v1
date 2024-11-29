@@ -107,7 +107,7 @@ export default function Viewer_Entire({isDisplay,
 
     const [chapterList, setChapterList] = useState(initialChapterList); 
 
-
+    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({});
 
     useEffect(() => {
 
@@ -124,6 +124,9 @@ export default function Viewer_Entire({isDisplay,
 
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
+
+        let gameStatusProgressTemp = getCurrentGameProgress();
+        setCurrentGameStatusProgress(gameStatusProgressTemp);
 
     
 
@@ -222,6 +225,14 @@ return(<>
                                                     //important: setup entry-gameData-set (if multiple) 
                                                     //important: return or to next chapter when reaching the "<chapter-key>_end" node
                                           */}
+
+<br></br>
+pageStatus={currentGameStatusProgress["pageStatus"]} <br></br>
+chapterKey={currentGameStatusProgress["chapterKey"]} <br></br>
+nodeKey={currentGameStatusProgress["nodeKey"]} <br></br>
+nodeType={currentGameStatusProgress["nodeType"]} <br></br>
+                                          logic: if pageStatus is "During Game", according to nodeType, enter node-player
+                                          <br></br>pass-in chapterKey and nodeKey...
 
                                 
                     </div>
