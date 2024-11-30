@@ -383,3 +383,5 @@
 - 2024-Nov-11: Consider and design emu-modal-window related
 
 - 2024-Nov-21: Reorganize test-game-data-tracker layers and structures
+
+- 2024-Nov-29: Consider and design comprehensive structures on viewing - node management
