@@ -165,10 +165,10 @@ export default function NavigationPreview ({
 
 
 
-
         let playerInfoObj = fetchPlayerInfoSets();
         setRefDataPlayerAccount(playerInfoObj["userAccount"]);
         setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+
 
         let gameDataTemp = fetchCurrentGameData();
         setRefGameDataList(gameDataTemp);
@@ -215,7 +215,7 @@ export default function NavigationPreview ({
         }
 
 
-    });
+    }); //-- useEffect --
 
     function setupPPTryingObjects(navObj) {
         let textObjTemp = {

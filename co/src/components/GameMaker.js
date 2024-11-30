@@ -1090,31 +1090,29 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   
 
     //TODO for new-emu-strategy
-                                      console.log("game-maker, passInCurrentGameDataList-func: returning1 ", testPlayerGameData);
-    
-    let objTemp = {};
-    Object.keys(testPlayerGameData).map((currKey) => {
-      let item = testPlayerGameData[currKey];
-      let currVal = item["current_value"];
-      let dataType = item["data_type"];
-      let defaultVal = item["default_value"];
-      let nameVal = item["name"];
+
+    // let objTemp = {}; //TODO too much rerendering
+    // Object.keys(testPlayerGameData).map((currKey) => {
+    //   let item = testPlayerGameData[currKey];
+    //   let currVal = item["current_value"];
+    //   let dataType = item["data_type"];
+    //   let defaultVal = item["default_value"];
+    //   let nameVal = item["name"];
       
-      let objNewItem = {
-          "current_value": currVal,
-          "data_type": dataType,
-          "default_value": defaultVal,
-          "name": nameVal           
-      }
+    //   let objNewItem = {
+    //       "current_value": currVal,
+    //       "data_type": dataType,
+    //       "default_value": defaultVal,
+    //       "name": nameVal           
+    //   }
 
-      objTemp[nameVal] = objNewItem;
+    //   objTemp[nameVal] = objNewItem;
 
-    })
-
-                                    console.log("game-maker, passInCurrentGameDataList-func: returning2 ", objTemp);
+    // })  //TODO too much rerendering
 
 
-    return objTemp;
+
+    return testPlayerGameData;
 
   }
 
