@@ -386,6 +386,8 @@
 
 - 2024-Nov-29: Consider and design comprehensive structures on viewing - node management
 - 2024-Nov-29: Consider in-game display-language strategies
+- 2024-Nov-29: Design confirm-window and UI strategies for story-page-status
+
 
 
 
