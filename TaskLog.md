@@ -385,3 +385,10 @@
 - 2024-Nov-21: Reorganize test-game-data-tracker layers and structures
 
 - 2024-Nov-29: Consider and design comprehensive structures on viewing - node management
+- 2024-Nov-29: Consider in-game display-language strategies
+
+
+
+
+
+
