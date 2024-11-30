@@ -1289,12 +1289,6 @@ export default function NavigationPreview ({
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 
-                
-                
-                
-                
-                
-                
                 "backgroundColor":  navObj["shopPage-isBackgroundShape"] === true ? `${navObj[ "shopPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
                 "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
@@ -1321,6 +1315,18 @@ export default function NavigationPreview ({
         </div>
         }
 
+        {page === "Quit Asking Window" && <div style={{"position": "relative",                 
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "borderRadius": "0px",
+                }}>
+
+                <div>
+                        "Quit Asking Window"
+                </div>
+
+    
+        </div>}
 
 
         {/* 

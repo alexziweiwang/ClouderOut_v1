@@ -953,6 +953,9 @@ export default function NavigationSetter({initialNavObj,
           <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText}</option>
           <option value="Shop Page" key="Shop Page">{shopPageText}</option>
           <option value="During Game" key="During Game">{duringGamePlayPageText}</option>
+          <option value="Quit Asking Window" key="Quit Asking Window">Quit-Asking Window</option> 
+                                                                                      {/* //TODO20 */}
+
       </select>
 
       <br></br><br></br>
@@ -5004,6 +5007,46 @@ export default function NavigationSetter({initialNavObj,
 
        </div>
        </div>}
+
+
+      {currentSettingPage === "Quit Asking Window" && <div>
+
+        <label>Window Width </label>
+        <input></input>
+        <br></br>
+        <label>Window Height </label>
+        <input></input>
+        <br></br>
+        <label>Window Close Button </label>
+            <select>
+                <option>Left</option>
+                <option>Right</option>
+            </select><br></br>
+        <label>Corner Radius </label>
+        <input></input>
+        <br></br>
+        <label>Window Position X </label>
+        <input></input>
+        <br></br>                      
+        <label>Window Position Y </label>
+        <input></input>
+        <br></br>
+        <label>Top Bar Color</label>
+        <input type="color"></input>
+        <br></br>
+        <label>Window Content</label>
+        <div className="indentOne">
+              <label>Rectangle Color</label><br></br>
+              <label>Picture Base</label>
+        </div>
+
+
+
+
+            
+         
+      </div>}
+
 
     <br></br>
 
