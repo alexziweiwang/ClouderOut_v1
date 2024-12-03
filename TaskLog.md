@@ -388,6 +388,7 @@
 - 2024-Nov-29: Consider in-game display-language strategies
 - 2024-Nov-29: Design confirm-window and UI strategies for story-page-status
 
+- 2024-Dec-02: Organize viewing elements and design entire-view-testing plan
 
 
 
