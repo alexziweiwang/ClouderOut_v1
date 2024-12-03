@@ -452,18 +452,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-bgPicName": "",
     "playerProfilePage-itemMap": [],
 
-    // "playerProfilePage-previewingTextObj": { //for previewing only  //TODO remove later
-    //   "isPreviewing": false,
-    //   "textContent": "",
-    //   "textItalic": false,
-
-    //   "textFontSize": 12,
-    //   "textFont": "serif",
-    //   "textColor": "#000000",
-    //   "posX": 30,
-    //   "posY": 50,
-    // }, //TODO remove later
-
     "playerProfilePage-previewingTextObj-isPreviewing": false,
     "playerProfilePage-previewingTextObj-textContent": "",
     "playerProfilePage-previewingTextObj-textItalic": false,
@@ -472,19 +460,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingTextObj-textColor": "#000000",
     "playerProfilePage-previewingTextObj-posX": 30,
     "playerProfilePage-previewingTextObj-posY": 50,
-
-
-    // "playerProfilePage-previewingValueObj": { //for previewing only  //TODO remove later
-    //   "isPreviewing": false,
-    //   "labelText": "",
-    //   "valueItemType": "Game Data",
-    //   "valueItemName": "",
-    //   "posX": 30,
-    //   "posY": 70,
-    //   "textFontSize": 12,
-    //   "textFont": "serif",
-    //   "textColor": "#000000",
-    // },  //TODO remove later
 
     "playerProfilePage-previewingValueObj-isPreviewing": false,
     "playerProfilePage-previewingValueObj-labelText": "",
@@ -496,33 +471,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-previewingValueObj-textFont": "serif",
     "playerProfilePage-previewingValueObj-textColor": "#000000",
 
-    // "playerProfilePage-previewingPicObj": { //for previewing only  //TODO remove later
-    //   "isPreviewing": false,
-    //   "posX": 50,
-    //   "posY": 50,
-    //   "picName": "",
-    //   "width": 200,
-    //   "height": 200,
-    // },  //TODO remove later
-
     "playerProfilePage-previewingPicObj-isPreviewing": false,
     "playerProfilePage-previewingPicObj-posX": 50,
     "playerProfilePage-previewingPicObj-posY": 50,
     "playerProfilePage-previewingPicObj-picName": "",
     "playerProfilePage-previewingPicObj-width": 200,
     "playerProfilePage-previewingPicObj-height": 200,
-
-    // "playerProfilePage-playerProfileNickNameItem": { //used in actual game   //TODO remove later
-    //   "adding": true,
-    //   "nicknameLabel": "",
-    //   "textContent": "",
-    //   "textItalic": false,
-    //   "textFontSize": 12,
-    //   "textFont": "serif",
-    //   "textColor": "#000000",
-    //   "posX": 30,
-    //   "posY": 50,
-    // },   //TODO remove later"
 
     "playerProfilePage-playerProfileNickNameItem-adding": true,
     "playerProfilePage-playerProfileNickNameItem-nicknameLabel": "",
@@ -533,15 +487,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "playerProfilePage-playerProfileNickNameItem-textColor": "#000000",
     "playerProfilePage-playerProfileNickNameItem-posX": 30,
     "playerProfilePage-playerProfileNickNameItem-posY": 50,
-
-    // "playerProfilePage-playerProfileIconPicItem": { //used in actual game   //TODO remove later
-    //   "adding": true,
-    //   "posX": 50,
-    //   "posY": 50,
-    //   "width": 200,
-    //   "height": 200,
-    //   "scale": 1
-    // },   //TODO remove later
 
     "playerProfilePage-playerProfileIconPicItem-adding": true,
     "playerProfilePage-playerProfileIconPicItem-posX": 50,
@@ -582,6 +527,28 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "backButton-picName": "",
     "backButton-displayText": "←",
     "backButton-fontSize": 15,
+
+    "outWindow-width": 200,
+    "outWindow-height": 90,
+    "outWindow-Btn-cornerRadius": 0,
+    "outWindow-Btn-color": "blue",
+    "outWindow-Btn-confirmingText": "confirm",
+    "outWindow-Btn-cancellingText": "cancel",
+    "outWindow-windowCornerRadius": 0,
+    "outWindow-posX": 10,
+    "outWindow-posY": 30,
+    "outWindow-isShape": false,
+    "outWindow-color": "pink",
+    "outWindow-picName": "",
+
+
+
+
+
+
+
+
+    
 
   }); //TODO now: default initial values
 

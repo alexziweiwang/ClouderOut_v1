@@ -5027,30 +5027,26 @@ export default function NavigationSetter({initialNavObj,
           max={screenHeight} min="1" step="1"
         ></input>    
         <br></br>
-        <label>Window Close Button</label>
+        <label>Window Button</label>
             <div className="indentOne">
-              <label>Placed in</label>
-              <select>
-                  <option>Left</option>
-                  <option>Right</option>
-              </select>
-              <br></br>
-              <label>Shape</label>
-              <select>
-                <option>Round</option>
-                <option>Rectangular</option>
-              </select>
-              <br></br>
-              <label>Button {cornerRadiusText}</label>
+              <label>Button Corner Radius</label>
               <input type="range"></input>
               <br></br>
               <label>Button Color</label>
               <input type="color"></input>
               <br></br>
-              <label></label>
+              <label>Button Text Color</label>
+              <input type="color"></input>
+              <br></br>
+              <label>Confirming Button Text</label>
+              <input></input>
+              <button>{updateText}</button><br></br>
+              <label>Cancelling Button Text</label>
+              <input></input>
+              <button>{updateText}</button>
             </div>
 
-        <label>{cornerRadiusText}</label>
+        <label>Window Corner Radius</label>
         <input type="range"
          min="0" max="20" step="1" 
         ></input>
@@ -5074,8 +5070,8 @@ export default function NavigationSetter({initialNavObj,
         <label>Window Content</label>
         <div className="indentOne">
               <input type="radio">
-              </input><br></br>
-              <label>{rectangleAndColorFilledText}</label>
+              </input>
+              <label>{rectangleAndColorFilledText}</label><br></br>
               <input type="color"></input>
               <label></label>
               
@@ -5083,8 +5079,8 @@ export default function NavigationSetter({initialNavObj,
 
 
               <input type="radio">
-              </input><br></br>
-              <label>{basePictureText}</label>
+              </input>
+              <label>{basePictureText}</label><br></br>
               <select>
                 <option>-- {selectResourceText} --</option>
 
