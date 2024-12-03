@@ -528,10 +528,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "backButton-displayText": "←",
     "backButton-fontSize": 15,
 
+    "outWindow-askContent": "Are you sure to quit the story?",
+
     "outWindow-width": 200,
     "outWindow-height": 90,
     "outWindow-Btn-cornerRadius": 0,
     "outWindow-Btn-color": "blue",
+    "outWindow-Btn-textColor": "#000000",
     "outWindow-Btn-confirmingText": "confirm",
     "outWindow-Btn-cancellingText": "cancel",
     "outWindow-windowCornerRadius": 0,

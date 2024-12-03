@@ -5010,6 +5010,20 @@ export default function NavigationSetter({initialNavObj,
 
 //TODO25
       {currentSettingPage === "Quit Asking Window" && <div>
+        <label>Question Content</label><br></br>
+        <textarea
+          onChange={(event)=>{
+            //TODO
+          }}
+          >
+          {currentProjectNav["outWindow-askContent"]}
+        </textarea>
+        <button
+          onClick={()=>[
+            //TODO
+          ]}
+        >{updateText}</button>
+        <br></br>
 
         <label>{widthText}</label>
         <input type="range"
@@ -5062,13 +5076,40 @@ export default function NavigationSetter({initialNavObj,
         <label>Window Button</label>
             <div className="indentOne">
               <label>Button Corner Radius</label>
-              <input type="range"></input>
+              <input type="range"
+                value={currentProjectNav["outWindow-Btn-cornerRadius"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-cornerRadius"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-cornerRadius": event.target.value});  
+                }} 
+              ></input>
               <br></br>
               <label>Button Color</label>
-              <input type="color"></input>
+              <input type="color"
+                  value={currentProjectNav["outWindow-Btn-color"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["outWindow-Btn-color"] = event.target.value;
+                    updateNavObj(tempObj); 
+        
+                    setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-color": event.target.value});  
+                  }} 
+              ></input>
               <br></br>
               <label>Button Text Color</label>
-              <input type="color"></input>
+              <input type="color"
+                  value={currentProjectNav["outWindow-Btn-textColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["outWindow-Btn-textColor"] = event.target.value;
+                    updateNavObj(tempObj); 
+        
+                    setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-textColor": event.target.value});  
+                  }} 
+              ></input>
               <br></br>
               <label>Confirming Button Text</label>
               <input></input>
