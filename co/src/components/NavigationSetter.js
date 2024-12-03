@@ -5095,22 +5095,64 @@ export default function NavigationSetter({initialNavObj,
         <label>Window Position X </label>
         <input type="range"
           max={screenWidth} min="1" step="1"
+          value={currentProjectNav["outWindow-posX"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-posX"] = event.target.value;
+            updateNavObj(tempObj); 
+ 
+            setCurrentProjectNav({...currentProjectNav, "outWindow-posX": event.target.value});  
+          }} 
         ></input>
         <input
           max={screenWidth} min="1" step="1"
+          value={currentProjectNav["outWindow-posX"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-posX"] = event.target.value;
+            updateNavObj(tempObj); 
+ 
+            setCurrentProjectNav({...currentProjectNav, "outWindow-posX": event.target.value});  
+          }} 
         ></input>
         <br></br>                      
         <label>Window Position Y </label>
         <input type="range"
           max={screenHeight} min="1" step="1"
+          value={currentProjectNav["outWindow-posY"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-posY"] = event.target.value;
+            updateNavObj(tempObj); 
+ 
+            setCurrentProjectNav({...currentProjectNav, "outWindow-posY": event.target.value});  
+          }} 
         ></input>
         <input
           max={screenHeight} min="1" step="1"
+          value={currentProjectNav["outWindow-posY"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-posY"] = event.target.value;
+            updateNavObj(tempObj); 
+ 
+            setCurrentProjectNav({...currentProjectNav, "outWindow-posY": event.target.value});  
+          }}
         ></input>
         <br></br>
-        <label>Window Content</label>
+        <label>Window Looking</label>
         <div className="indentOne">
-              <input type="radio">
+              <input type="radio"
+                value={currentProjectNav["outWindow-isShape"]}
+                checked={currentProjectNav["outWindow-isShape"]}
+                onChange={()=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-isShape"] = true;
+                  updateNavObj(tempObj); 
+       
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-isShape": true});  
+                }}
+              >
               </input>
               <label>{rectangleAndColorFilledText}</label><br></br>
               <input type="color"></input>
@@ -5119,7 +5161,17 @@ export default function NavigationSetter({initialNavObj,
               <br></br>
 
 
-              <input type="radio">
+              <input type="radio"
+                  value={currentProjectNav["outWindow-isShape"]}
+                  checked={!currentProjectNav["outWindow-isShape"]}
+                  onChange={()=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["outWindow-isShape"] = false;
+                    updateNavObj(tempObj); 
+        
+                    setCurrentProjectNav({...currentProjectNav, "outWindow-isShape": false});  
+                }}
+              >
               </input>
               <label>{basePictureText}</label><br></br>
               <select>
