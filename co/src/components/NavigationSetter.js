@@ -5012,10 +5012,20 @@ export default function NavigationSetter({initialNavObj,
       {currentSettingPage === "Quit Asking Window" && <div>
 
         <label>Window Width </label>
-        <input></input>
+        <input type="range"
+          max={screenWidth} min="1" step="1"
+        ></input>
+        <input
+          max={screenWidth} min="1" step="1"
+        ></input>        
         <br></br>
         <label>Window Height </label>
-        <input></input>
+        <input type="range"
+          max={screenHeight} min="1" step="1"
+        ></input>
+        <input
+          max={screenHeight} min="1" step="1"
+        ></input>    
         <br></br>
         <label>Window Close Button </label>
             <select>
@@ -5023,21 +5033,44 @@ export default function NavigationSetter({initialNavObj,
                 <option>Right</option>
             </select><br></br>
         <label>Corner Radius </label>
-        <input></input>
+        <input type="range"
+         min="0" max="20" step="1" 
+        ></input>
         <br></br>
         <label>Window Position X </label>
-        <input></input>
+        <input type="range"
+          max={screenWidth} min="1" step="1"
+        ></input>
+        <input
+          max={screenWidth} min="1" step="1"
+        ></input>
         <br></br>                      
         <label>Window Position Y </label>
-        <input></input>
-        <br></br>
-        <label>Top Bar Color</label>
-        <input type="color"></input>
+        <input type="range"
+          max={screenHeight} min="1" step="1"
+        ></input>
+        <input
+          max={screenHeight} min="1" step="1"
+        ></input>
         <br></br>
         <label>Window Content</label>
         <div className="indentOne">
-              <label>Rectangle Color</label><br></br>
-              <label>Picture Base</label>
+              <input type="radio">
+              </input><br></br>
+              <label>(Rectangle & Color)</label>
+              <input type="color"></input>
+              <label></label>
+              
+              <br></br>
+
+
+              <input type="radio">
+              </input><br></br>
+              <label>(Base Picture Text)</label>
+              <select>
+                <option>-- Select Resource --</option>
+
+              </select>
         </div>
 
 
