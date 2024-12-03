@@ -82,9 +82,9 @@ export default function NavigationSetter({initialNavObj,
         textDictItem. backGroundOfTheEntirePageText
         : textDictItemDefault. backGroundOfTheEntirePageText;
 
-    let rectangleAndColorFilled = textDictItem.rectangleAndColorFilled !== undefined ?
-        textDictItem.rectangleAndColorFilled
-        : textDictItemDefault.rectangleAndColorFilled;
+    let rectangleAndColorFilledText = textDictItem.rectangleAndColorFilledText !== undefined ?
+        textDictItem.rectangleAndColorFilledText
+        : textDictItemDefault.rectangleAndColorFilledText;
 
     let basePictureText = textDictItem.basePictureText !== undefined ?
         textDictItem.basePictureText
@@ -806,7 +806,7 @@ export default function NavigationSetter({initialNavObj,
                       updateNavObj(tempObj);       
 
                       setCurrentProjectNav({...currentProjectNav, "backButton-isShape": true});       
-                  }}>{rectangleAndColorFilled}</label>
+                  }}>{rectangleAndColorFilledText}</label>
                       <div className="indentOne">
                         <input type="color" value={currentProjectNav["backButton-shapeColor"]} onChange={(event)=>{
                             let tempObj = currentProjectNav;
@@ -1023,7 +1023,7 @@ export default function NavigationSetter({initialNavObj,
                             updateNavObj(tempObj);       
                             
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": true});    
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                             {
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -1171,7 +1171,7 @@ export default function NavigationSetter({initialNavObj,
                           updateNavObj(tempObj);       
                           
                           setCurrentProjectNav({...currentProjectNav, "saveloadPage-isSlotShape": true});              
-                                }}>{rectangleAndColorFilled} </label>
+                                }}>{rectangleAndColorFilledText} </label>
                             {
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -1383,7 +1383,7 @@ export default function NavigationSetter({initialNavObj,
                           //TODO test
 
                           setCurrentProjectNav({...currentProjectNav, "mainPage-isBackgroundShape": true});               
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                             {currentProjectNav["mainPage-isBackgroundShape"] &&
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -1702,7 +1702,7 @@ export default function NavigationSetter({initialNavObj,
 
                 setCurrentProjectNav({...currentProjectNav, "mainPage-isListItemShape": true});
                 
-              }}>{rectangleAndColorFilled} </label>
+              }}>{rectangleAndColorFilledText} </label>
               
                   {currentProjectNav["mainPage-isListItemShape"] &&
                       <div className="indentOne">
@@ -2042,7 +2042,7 @@ export default function NavigationSetter({initialNavObj,
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-story-isShape": true});             
                         
-                  }}>{rectangleAndColorFilled} </label>
+                  }}>{rectangleAndColorFilledText} </label>
                   
                       {
                           <div className="indentOne">
@@ -2292,7 +2292,7 @@ export default function NavigationSetter({initialNavObj,
                       setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-isShape": true});             
                           
               }}>
-              {rectangleAndColorFilled} </label>
+              {rectangleAndColorFilledText} </label>
               
                 {
                     <div className="indentOne">
@@ -2542,7 +2542,7 @@ export default function NavigationSetter({initialNavObj,
                       //TODO test
 
                       setCurrentProjectNav({...currentProjectNav, "mainPage-setting-isShape": true});  
-              }}>{rectangleAndColorFilled} </label>
+              }}>{rectangleAndColorFilledText} </label>
               
                 {
                     <div className="indentOne">
@@ -2786,7 +2786,7 @@ export default function NavigationSetter({initialNavObj,
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-shop-isShape": true});     
               }}>
-              {rectangleAndColorFilled} </label>
+              {rectangleAndColorFilledText} </label>
             
                 {
                     <div className="indentOne">
@@ -2871,7 +2871,7 @@ export default function NavigationSetter({initialNavObj,
 
                           setCurrentProjectNav({...currentProjectNav, "storyPage-isBackgroundShape": true});            
                       
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                            {/* {backGroundOfTheEntirePageText} */}
                             {<div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -2996,7 +2996,7 @@ export default function NavigationSetter({initialNavObj,
                     updateNavObj(tempObj);
 
                     setCurrentProjectNav({...currentProjectNav, "storyPage-isListItemShape": true});             
-              }}>{rectangleAndColorFilled} </label>
+              }}>{rectangleAndColorFilledText} </label>
                   {
                       <div className="indentOne">
                           <label>{backgroundColorText}: </label>
@@ -3232,7 +3232,7 @@ export default function NavigationSetter({initialNavObj,
 
                               setCurrentProjectNav({...currentProjectNav, "settingPage-isBackgroundShape": true});
       
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                             {
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -3311,7 +3311,7 @@ export default function NavigationSetter({initialNavObj,
 
                   setCurrentProjectNav({...currentProjectNav, "settingPage-isListItemShape": true});
                         
-                      }}>{rectangleAndColorFilled} </label>
+                      }}>{rectangleAndColorFilledText} </label>
                   {
                       <div className="indentOne">
                           <label>{backgroundColorText}: </label>
@@ -3643,7 +3643,7 @@ export default function NavigationSetter({initialNavObj,
                         
                         <label onClick={()=>{    
                                   
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                         {<div className="indentOne">
                             <input type="color"></input>
                             <label></label>
@@ -3696,7 +3696,7 @@ export default function NavigationSetter({initialNavObj,
                         
                         <label onClick={()=>{    
                                   
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                         {<div className="indentOne">
                             <input type="color"></input>
                             <label></label>
@@ -3904,7 +3904,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "playerProfilePage-isBackgroundShape": true});
                                  
                         }}
-                        >{rectangleAndColorFilled} </label>
+                        >{rectangleAndColorFilledText} </label>
                             {
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -4873,7 +4873,7 @@ export default function NavigationSetter({initialNavObj,
                             updateNavObj(tempObj); 
               
                             setCurrentProjectNav({...currentProjectNav, "gsdPage-isBackgroundShape": true});                                
-                        }}>{rectangleAndColorFilled} </label>
+                        }}>{rectangleAndColorFilledText} </label>
                             {
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -4957,7 +4957,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "shopPage-isBackgroundShape": true});  
                           
                         }}
-                        >{rectangleAndColorFilled} </label>
+                        >{rectangleAndColorFilledText} </label>
                             {
                                 <div className="indentOne">
                                     <label>{backgroundColorText}: </label>
@@ -5008,10 +5008,10 @@ export default function NavigationSetter({initialNavObj,
        </div>
        </div>}
 
-
+//TODO25
       {currentSettingPage === "Quit Asking Window" && <div>
 
-        <label>Window Width </label>
+        <label>{widthText}</label>
         <input type="range"
           max={screenWidth} min="1" step="1"
         ></input>
@@ -5019,7 +5019,7 @@ export default function NavigationSetter({initialNavObj,
           max={screenWidth} min="1" step="1"
         ></input>        
         <br></br>
-        <label>Window Height </label>
+        <label>{heightText}</label>
         <input type="range"
           max={screenHeight} min="1" step="1"
         ></input>
@@ -5027,12 +5027,30 @@ export default function NavigationSetter({initialNavObj,
           max={screenHeight} min="1" step="1"
         ></input>    
         <br></br>
-        <label>Window Close Button </label>
-            <select>
-                <option>Left</option>
-                <option>Right</option>
-            </select><br></br>
-        <label>Corner Radius </label>
+        <label>Window Close Button</label>
+            <div className="indentOne">
+              <label>Placed in</label>
+              <select>
+                  <option>Left</option>
+                  <option>Right</option>
+              </select>
+              <br></br>
+              <label>Shape</label>
+              <select>
+                <option>Round</option>
+                <option>Rectangular</option>
+              </select>
+              <br></br>
+              <label>Button {cornerRadiusText}</label>
+              <input type="range"></input>
+              <br></br>
+              <label>Button Color</label>
+              <input type="color"></input>
+              <br></br>
+              <label></label>
+            </div>
+
+        <label>{cornerRadiusText}</label>
         <input type="range"
          min="0" max="20" step="1" 
         ></input>
@@ -5057,7 +5075,7 @@ export default function NavigationSetter({initialNavObj,
         <div className="indentOne">
               <input type="radio">
               </input><br></br>
-              <label>(Rectangle & Color)</label>
+              <label>{rectangleAndColorFilledText}</label>
               <input type="color"></input>
               <label></label>
               
@@ -5066,18 +5084,14 @@ export default function NavigationSetter({initialNavObj,
 
               <input type="radio">
               </input><br></br>
-              <label>(Base Picture Text)</label>
+              <label>{basePictureText}</label>
               <select>
-                <option>-- Select Resource --</option>
+                <option>-- {selectResourceText} --</option>
 
               </select>
         </div>
 
 
-
-
-            
-         
       </div>}
 
 

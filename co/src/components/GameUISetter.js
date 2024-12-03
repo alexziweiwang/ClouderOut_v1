@@ -87,9 +87,9 @@ export default function GameUISetter({
         textDictItem.basePictureText
         : textDictItemDefault.basePictureText;
 
-    let rectangleAndColorFilled = textDictItem.rectangleAndColorFilled !== undefined ?
-        textDictItem.rectangleAndColorFilled
-        : textDictItemDefault.rectangleAndColorFilled;  
+    let rectangleAndColorFilledText = textDictItem.rectangleAndColorFilledText !== undefined ?
+        textDictItem.rectangleAndColorFilledText
+        : textDictItemDefault.rectangleAndColorFilledText;  
 
     let itemGapText = textDictItem.itemGapText !== undefined ?
         textDictItem.itemGapText
@@ -329,7 +329,7 @@ export default function GameUISetter({
         }}></input><label onClick={(event)=>{
                 setDefaultButtonObj({...defaultButtonObj,  "isShape": true});
                 
-                }}>{rectangleAndColorFilled} </label>
+                }}>{rectangleAndColorFilledText} </label>
             {defaultButtonObj["isShape"] && 
                 <div className="indentOne">
                     <label>{backgroundColorText}: </label>
@@ -560,7 +560,7 @@ export default function GameUISetter({
         }}></input><label>{txtFrameObj["transparency"]}</label> */}
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={txtFrameObj["isShape"]} onChange={()=>{
             setTxtFrameObj({...txtFrameObj, "isShape": true});    
-        }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>{rectangleAndColorFilled}: </label>
+        }}></input><label onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": true});}}>{rectangleAndColorFilledText}: </label>
     
         {txtFrameObj["isShape"] && <><input type="color" value={txtFrameObj["bgColor"]} onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "bgColor": event.target.value});    
@@ -966,7 +966,7 @@ export default function GameUISetter({
                 onClick={()=>{
                     setConvLogObj({...convLogObj, "closeButtonIsShape": true});
                 }}
-            >{rectangleAndColorFilled}</label>
+            >{rectangleAndColorFilledText}</label>
                 <input type="color" value={convLogObj["closeButtonShade"]}
                     onChange={(event)=>{
                         setConvLogObj({...convLogObj, "closeButtonShade": event.target.value});
@@ -1141,7 +1141,7 @@ export default function GameUISetter({
                     onClick={()=>{
                         setConvLogObj({...convLogObj, "bgpIsShape": true});
                     }}
-                >{rectangleAndColorFilled}</label>
+                >{rectangleAndColorFilledText}</label>
                 <input type="color" value={convLogObj["bgpShade"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj, "bgpShade": event.target.value});
                 }}></input>
@@ -1189,7 +1189,7 @@ export default function GameUISetter({
                             <label onClick={()=>{
                                     setConvLogObj({...convLogObj, "groupBgIsShape": true});
                             }}>
-                            {rectangleAndColorFilled}</label>
+                            {rectangleAndColorFilledText}</label>
                             
                             <input type="color" value={convLogObj["groupBgShade"]}
                                 onChange={(event)=>{
