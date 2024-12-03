@@ -5014,17 +5014,49 @@ export default function NavigationSetter({initialNavObj,
         <label>{widthText}</label>
         <input type="range"
           max={screenWidth} min="1" step="1"
+          value={currentProjectNav["outWindow-width"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-width"] = event.target.value;
+            updateNavObj(tempObj); 
+
+            setCurrentProjectNav({...currentProjectNav, "outWindow-width": event.target.value});  
+          }}
         ></input>
         <input
           max={screenWidth} min="1" step="1"
+          value={currentProjectNav["outWindow-width"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-width"] = event.target.value;
+            updateNavObj(tempObj); 
+
+            setCurrentProjectNav({...currentProjectNav, "outWindow-width": event.target.value});  
+          }}
         ></input>        
         <br></br>
         <label>{heightText}</label>
         <input type="range"
           max={screenHeight} min="1" step="1"
+          value={currentProjectNav["outWindow-height"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-height"] = event.target.value;
+            updateNavObj(tempObj); 
+
+            setCurrentProjectNav({...currentProjectNav, "outWindow-height": event.target.value});  
+          }} 
         ></input>
         <input
           max={screenHeight} min="1" step="1"
+          value={currentProjectNav["outWindow-height"]}
+          onChange={(event)=>{
+            let tempObj = currentProjectNav;
+            tempObj["outWindow-height"] = event.target.value;
+            updateNavObj(tempObj); 
+
+            setCurrentProjectNav({...currentProjectNav, "outWindow-height": event.target.value});  
+          }} 
         ></input>    
         <br></br>
         <label>Window Button</label>
@@ -5049,7 +5081,16 @@ export default function NavigationSetter({initialNavObj,
         <label>Window Corner Radius</label>
         <input type="range"
          min="0" max="20" step="1" 
+         value={currentProjectNav["outWindow-windowCornerRadius"]}
+         onChange={(event)=>{
+           let tempObj = currentProjectNav;
+           tempObj["outWindow-windowCornerRadius"] = event.target.value;
+           updateNavObj(tempObj); 
+
+           setCurrentProjectNav({...currentProjectNav, "outWindow-windowCornerRadius": event.target.value});  
+         }} 
         ></input>
+        <label>{currentProjectNav["outWindow-windowCornerRadius"]}</label>
         <br></br>
         <label>Window Position X </label>
         <input type="range"
