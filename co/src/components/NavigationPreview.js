@@ -61,6 +61,8 @@ export default function NavigationPreview ({
     const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
     const [refGameDataList, setRefGameDataList] = useState(initialGameDataRefData);
 
+    const [qWindowOpen, setQWindowOpen] = useState(false);
+
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
     const mainPagePictureVariableNames = [
@@ -1315,6 +1317,7 @@ export default function NavigationPreview ({
         </div>
         }
 
+        
         {page === "Quit Asking Window" && <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -1324,7 +1327,7 @@ export default function NavigationPreview ({
 
 
                 {/* window-div */}
-                <div
+                {(qWindowOpen === true || isEditing === true) && <div
                     style={{
                         "height": `${navObj["outWindow-height"]}px`,
                         "width": `${navObj["outWindow-width"]}px`,
@@ -1357,7 +1360,25 @@ export default function NavigationPreview ({
                                 onMouseUp={
                                     ()=>{
                                         document.getElementById("qWindowConfirmBtn").style.filter = "brightness(100%)";
-                                        //TODO close window and return to story-chapter-page (from during-game)
+                                        
+                                        
+                                        
+                                            //close window and return to story-chapter-page (from during-game)
+                                            let nextPageName = "Story Page";
+                                            let currentStandingObjTemp = {};
+                                            currentStandingObjTemp["pageStatus"] = nextPageName;
+                                            currentStandingObjTemp["chapterKey"] = "";
+                                            currentStandingObjTemp["nodeKey"] = "";
+                                            currentStandingObjTemp["nodeType"] = ""; 
+                                            updateCurrentStanding(currentStandingObjTemp);
+                                            
+                                            updateCurrentPageName(nextPageName);
+
+                                            if (isEditing === false) {
+                                                //close q-window
+                                                setQWindowOpen(false);
+                                            }
+                                        
                                 }}
 
                             >{navObj["outWindow-Btn-confirmingText"]}</button>
@@ -1375,14 +1396,20 @@ export default function NavigationPreview ({
                                 onMouseUp={
                                     ()=>{
                                         document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
-                                        //TODO close window and stay
+
+                                        //close q-window
+                                        if (isEditing === false) {
+                                            setQWindowOpen(false);
+                                        }
                                 }}
                             >{navObj["outWindow-Btn-cancellingText"]}</button>
                         </div>
-                </div>
+                </div>}{/* window-div */}
 {/* TODO25 */}
                        
         </div>}
+
+        
 
 
         {/* large frame for all elements */}
@@ -1426,7 +1453,11 @@ export default function NavigationPreview ({
 
 
                                 let nextPageName = "Main Page";
-                                if (page === "During Game" || page === "Game Progress Strategy") {
+                                if (page === "During Game") {
+                                    setQWindowOpen(true);
+                                    
+
+                                } else if (page === "Game Progress Strategy") {
                                     nextPageName = "Story Page";
                                     let currentStandingObjTemp = {};
                                     currentStandingObjTemp["pageStatus"] = "Story Page";
