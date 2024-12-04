@@ -1317,8 +1317,10 @@ export default function NavigationPreview ({
         </div>
         }
 
+        {page === "During Game" && <div style={{"position": "absolute"}}><br></br><br></br><br></br>(During Game)</div>}
+
         
-        {page === "Quit Asking Window" && <div style={{"position": "relative",                 
+        {(page === "Quit Asking Window" || qWindowOpen === true) && <div style={{"position": "absolute",             
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "borderRadius": "0px",
@@ -1374,11 +1376,9 @@ export default function NavigationPreview ({
                                             
                                             updateCurrentPageName(nextPageName);
 
-                                            if (isEditing === false) {
-                                                //close q-window
-                                                setQWindowOpen(false);
-                                            }
-                                        
+                                          
+                                            //close q-window
+                                            setQWindowOpen(false);
                                 }}
 
                             >{navObj["outWindow-Btn-confirmingText"]}</button>
@@ -1398,9 +1398,9 @@ export default function NavigationPreview ({
                                         document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
 
                                         //close q-window
-                                        if (isEditing === false) {
-                                            setQWindowOpen(false);
-                                        }
+                                     
+                                        setQWindowOpen(false);
+                                        
                                 }}
                             >{navObj["outWindow-Btn-cancellingText"]}</button>
                         </div>
@@ -1418,7 +1418,7 @@ export default function NavigationPreview ({
 
         }}>
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window") 
+                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false) 
                     || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)) 
                 && <div 
                     className="navigationButton"
@@ -1465,9 +1465,12 @@ export default function NavigationPreview ({
                                     currentStandingObjTemp["nodeKey"] = "";
                                     currentStandingObjTemp["nodeType"] = ""; 
                                     updateCurrentStanding(currentStandingObjTemp);
+                                    updateCurrentPageName(nextPageName);
+                                } else {
+                                    updateCurrentPageName(nextPageName);
                                 }
         
-                                updateCurrentPageName(nextPageName);
+                                
 
                                 
                             }
