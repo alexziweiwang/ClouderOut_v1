@@ -5097,6 +5097,7 @@ export default function NavigationSetter({initialNavObj,
                   setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-cornerRadius": event.target.value});  
                 }} 
               ></input>
+              <label>{currentProjectNav["outWindow-Btn-cornerRadius"]}</label>
               <br></br>
               <label>Button Color</label>
               <input type="color"
@@ -5109,6 +5110,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-color": event.target.value});  
                   }} 
               ></input>
+              <label>{currentProjectNav["outWindow-Btn-color"]}</label>
               <br></br>
               <label>Button Text Color</label>
               <input type="color"
@@ -5121,6 +5123,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-textColor": event.target.value});  
                   }} 
               ></input>
+              <label>{currentProjectNav["outWindow-Btn-textColor"]}</label>
               <br></br>
               <label>Confirming Button Text</label>
               <input
@@ -5238,8 +5241,17 @@ export default function NavigationSetter({initialNavObj,
               >
               </input>
               <label>{rectangleAndColorFilledText}</label><br></br>
-              <input type="color"></input>
-              <label></label>
+              <input type="color"
+                value={currentProjectNav["outWindow-color"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-color"] = event.target.value;
+                  updateNavObj(tempObj); 
+       
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-color": event.target.value});  
+                }}
+              ></input>
+              <label>{currentProjectNav["outWindow-color"]}</label>
               
               <br></br>
 
@@ -5257,9 +5269,21 @@ export default function NavigationSetter({initialNavObj,
               >
               </input>
               <label>{basePictureText}</label><br></br>
-              <select>
+              <select
+                value={currentProjectNav["outWindow-picName"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-picName"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-picName": event.target.value});  
+                }}
+              >
                 <option>-- {selectResourceText} --</option>
-
+                {visualList.map((item, index) => {
+                    let keyStr = "qwin-bgp-" + index + item["var"];
+                    return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                })}
               </select>
         </div>
 

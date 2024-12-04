@@ -1334,7 +1334,9 @@ export default function NavigationPreview ({
                         "height": `${navObj["outWindow-height"]}px`,
                         "width": `${navObj["outWindow-width"]}px`,
 
-                        "backgroundColor": "green",
+                        "backgroundColor": navObj["outWindow-isShape"] === true ? `${navObj["outWindow-color"]}` : "pink",
+                        "backgroundImage": navObj["outWindow-isShape"] === false ?
+                            `url('${visualMap[navObj["outWindow-picName"]]}')` : "",
                         "position": "absolute",
                         "top": `${navObj["outWindow-posY"]}px`,
                         "left": `${navObj["outWindow-posX"]}px`,
