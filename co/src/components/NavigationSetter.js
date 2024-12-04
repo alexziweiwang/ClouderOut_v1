@@ -324,6 +324,9 @@ export default function NavigationSetter({initialNavObj,
     const [gameDataDesignList, setGameDataDesignList] = useState(-1);                    /* Important */
 
     const [qWindowContentText, setQwindowContentText] = useState(initialNavObj["outWindow-askContent"]);
+    const [qWindowConfirmBtnText, setQwindowConfirmBtnText] = useState(initialNavObj["outWindow-Btn-confirmingText"]);
+    const [qWindowCancelBtnText, setQwindowCancelBtnText] = useState(initialNavObj["outWindow-Btn-cancellingText"]);
+
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
@@ -5120,11 +5123,42 @@ export default function NavigationSetter({initialNavObj,
               ></input>
               <br></br>
               <label>Confirming Button Text</label>
-              <input></input>
-              <button>{updateText}</button><br></br>
+              <input
+                value={qWindowConfirmBtnText}
+                onChange={(event)=>{
+                  setQwindowConfirmBtnText(event.target.value);
+                }}
+              ></input>
+              
+              <button
+                onClick={()=>{
+                  //qWindowConfirmBtnText
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-confirmingText"] = qWindowConfirmBtnText;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-confirmingText": qWindowConfirmBtnText});  
+                }}
+              >{updateText}</button><br></br>
+              
+              
               <label>Cancelling Button Text</label>
-              <input></input>
-              <button>{updateText}</button>
+              <input
+                value={qWindowCancelBtnText}
+                onChange={(event)=>{
+                  setQwindowCancelBtnText(event.target.value);
+                }}
+              ></input>
+              <button
+                onClick={()=>{
+                    //qWindowCancelBtnText
+                    let tempObj = currentProjectNav;
+                    tempObj["outWindow-Btn-cancellingText"] = qWindowCancelBtnText;
+                    updateNavObj(tempObj); 
+        
+                    setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-cancellingText": qWindowCancelBtnText}); 
+                }}
+              >{updateText}</button>
             </div>
 
         <label>Window Corner Radius</label>
