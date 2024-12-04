@@ -1319,8 +1319,11 @@ export default function NavigationPreview ({
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "borderRadius": "0px",
+                "backgroundColor": "rgba(78, 85, 96, 0.858)"
                 }}>
 
+
+                {/* window-div */}
                 <div
                     style={{
                         "height": `${navObj["outWindow-height"]}px`,
@@ -1338,32 +1341,49 @@ export default function NavigationPreview ({
                         {navObj["outWindow-askContent"]}
 
                         <div style={{
-                            "display": "flex"
+                            "display": "flex",                            
                         }}> 
-                            <button>cancelling button</button>
-                            <button>confirming button</button>
+                            <button
+                                id="qWindowConfirmBtn"
+                                style={{
+                                    "color": navObj["outWindow-Btn-textColor"],
+                                    "backgroundColor": navObj["outWindow-Btn-color"],
+                                }}
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("qWindowConfirmBtn").style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("qWindowConfirmBtn").style.filter = "brightness(100%)";
+                                        //TODO close window and return to story-chapter-page (from during-game)
+                                }}
 
+                            >{navObj["outWindow-Btn-confirmingText"]}</button>
+                            <button
+                                id="qWindowCancelBtn"
+                                style={{
+                                    "color": navObj["outWindow-Btn-textColor"],
+                                    "backgroundColor": navObj["outWindow-Btn-color"],
+                                }}
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("qWindowCancelBtn").style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
+                                        //TODO close window and stay
+                                }}
+                            >{navObj["outWindow-Btn-cancellingText"]}</button>
                         </div>
                 </div>
-
-    
+{/* TODO25 */}
+                       
         </div>}
 
-
-        {/* 
-        //TODO remove later
-        {page === "During Game" && 
-            
-        <div style={{"position": "relative",                 
-                "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,
-                "borderRadius": "0px",
-                }}>
-
-    
-        </div>
-     
-        } //TODO remove ltaer*/}
 
         {/* large frame for all elements */}
         <div style={{
@@ -1371,7 +1391,7 @@ export default function NavigationPreview ({
 
         }}>
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "Game Progress Strategy") 
+                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window") 
                     || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)) 
                 && <div 
                     className="navigationButton"
