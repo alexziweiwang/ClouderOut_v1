@@ -323,6 +323,8 @@ export default function NavigationSetter({initialNavObj,
 
     const [gameDataDesignList, setGameDataDesignList] = useState(-1);                    /* Important */
 
+    const [qWindowContentText, setQwindowContentText] = useState(initialNavObj["outWindow-askContent"]);
+
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -5010,20 +5012,26 @@ export default function NavigationSetter({initialNavObj,
 
 //TODO25
       {currentSettingPage === "Quit Asking Window" && <div>
-        <label>Question Content</label><br></br>
-        <textarea
-          onChange={(event)=>{
-            //TODO
-          }}
-          >
-          {currentProjectNav["outWindow-askContent"]}
-        </textarea>
-        <button
-          onClick={()=>[
-            //TODO
-          ]}
-        >{updateText}</button>
-        <br></br>
+        <label>Question Content</label>
+        <div className="indentOne">
+            <textarea
+              value={qWindowContentText}
+              onChange={(event)=>{
+                setQwindowContentText(event.target.value);
+              }}
+            >
+              {currentProjectNav["outWindow-askContent"]}
+            </textarea>
+            <button
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["outWindow-askContent"] = qWindowContentText;
+                updateNavObj(tempObj); 
+    
+                setCurrentProjectNav({...currentProjectNav, "outWindow-width": qWindowContentText});  
+              }}
+            >{updateText}</button>
+        </div>
 
         <label>{widthText}</label>
         <input type="range"

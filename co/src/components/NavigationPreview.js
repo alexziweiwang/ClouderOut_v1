@@ -1338,7 +1338,8 @@ export default function NavigationPreview ({
                         "position": "absolute",
                         "top": `${navObj["outWindow-posY"]}px`,
                         "left": `${navObj["outWindow-posX"]}px`,
-                        "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+                        "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
+
 
                         "overflow": "scroll"
                     }}
@@ -1353,7 +1354,10 @@ export default function NavigationPreview ({
                                 style={{
                                     "color": navObj["outWindow-Btn-textColor"],
                                     "backgroundColor": navObj["outWindow-Btn-color"],
+                                    "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
                                 }}
+
                                 onMouseDown={
                                     ()=>{
                                         document.getElementById("qWindowConfirmBtn").style.filter = "brightness(120%)";
@@ -1387,6 +1391,8 @@ export default function NavigationPreview ({
                                 style={{
                                     "color": navObj["outWindow-Btn-textColor"],
                                     "backgroundColor": navObj["outWindow-Btn-color"],
+                                    "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
                                 }}
                                 onMouseDown={
                                     ()=>{
@@ -1455,6 +1461,7 @@ export default function NavigationPreview ({
                                 let nextPageName = "Main Page";
                                 if (page === "During Game") {
                                     setQWindowOpen(true);
+                                    updateCurrentPageName("Quit Asking Window");
                                     
 
                                 } else if (page === "Game Progress Strategy") {
