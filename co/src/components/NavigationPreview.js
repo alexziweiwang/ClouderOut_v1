@@ -1321,8 +1321,29 @@ export default function NavigationPreview ({
                 "borderRadius": "0px",
                 }}>
 
-                <div>
-                        "Quit Asking Window"
+                <div
+                    style={{
+                        "height": `${navObj["outWindow-height"]}px`,
+                        "width": `${navObj["outWindow-width"]}px`,
+
+                        "backgroundColor": "green",
+                        "position": "absolute",
+                        "top": `${navObj["outWindow-posY"]}px`,
+                        "left": `${navObj["outWindow-posX"]}px`,
+                        "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
+                        "overflow": "scroll"
+                    }}
+                >
+                        {navObj["outWindow-askContent"]}
+
+                        <div style={{
+                            "display": "flex"
+                        }}> 
+                            <button>cancelling button</button>
+                            <button>confirming button</button>
+
+                        </div>
                 </div>
 
     
