@@ -327,6 +327,8 @@ pageStatus={currentGameStatusProgress["pageStatus"]} <br></br>
 chapterKey={currentGameStatusProgress["chapterKey"]} <br></br>
 nodeKey={currentGameStatusProgress["nodeKey"]} <br></br>
 nodeType={currentGameStatusProgress["nodeType"]} <br></br>
+
+
                                           logic: if pageStatus is "During Game", according to nodeType, enter node-player
                                           <br></br>pass-in chapterKey and nodeKey...
                                           <GameScreen_AllNodeTypeContainer

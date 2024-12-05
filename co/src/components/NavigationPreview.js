@@ -98,6 +98,8 @@ export default function NavigationPreview ({
     const [tryPPValue, setTryPPValue] = useState(-1);
     const [tryPPPic, setTryPPPic] = useState(-1);
 
+    const [userClickCancelQwindow, setUserClickCancelQwindow] = useState(false);
+
     
     function updateRenderCounter() {
         console.log("updateRenderCounter!");
@@ -199,10 +201,13 @@ export default function NavigationPreview ({
 
 
         let tempPage= fetchPageName();
-        if (tempPage !== undefined && tempPage !== "") {
+        
+        if (tempPage !== undefined && tempPage !== "" && tempPage !== "Quit Asking Window") {
             setPage(tempPage);
+            setUserClickCancelQwindow(false);
+        } else if (tempPage === "Quit Asking Window" && userClickCancelQwindow === false) {
+            setQWindowOpen(true);
         }
-
 
 
         if (navObj["screenSize"] === "16:9(horizonal)"
@@ -215,6 +220,9 @@ export default function NavigationPreview ({
                 setScreenWidth(w);
                 setScreenHeight(h);
         }
+
+
+
 
 
     }); //-- useEffect --
@@ -1317,19 +1325,21 @@ export default function NavigationPreview ({
         </div>
         }
 
+
         {page === "During Game" && <div style={{"position": "absolute"}}><br></br><br></br><br></br>(During Game)</div>}
 
-        
-        {(page === "Quit Asking Window" || qWindowOpen === true) && <div style={{"position": "absolute",             
+
+
+        {(qWindowOpen === true) && <div style={{"position": "absolute",             
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "borderRadius": "0px",
-                "backgroundColor": "rgba(78, 85, 96, 0.858)"
-                }}>
+                "border": "1px dotted #000000",
+        }}>
 
 
                 {/* window-div */}
-                {(qWindowOpen === true || isEditing === true) && <div
+                {<div
                     style={{
                         "height": `${navObj["outWindow-height"]}px`,
                         "width": `${navObj["outWindow-width"]}px`,
@@ -1423,6 +1433,9 @@ export default function NavigationPreview ({
                                         //close q-window
                                      
                                         setQWindowOpen(false);
+                                        setUserClickCancelQwindow(true);
+                                        updateCurrentPageName("During Game");
+
                                         
                                 }}
                             >{navObj["outWindow-Btn-cancellingText"]}</button>
