@@ -5162,7 +5162,48 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-cancellingText": qWindowCancelBtnText}); 
                 }}
               >{updateText}</button>
+
+
+              <br></br>
+              <label>Button Group PosX</label>
+              <input type="range"
+                value={currentProjectNav["outWindow-Btn-groupPosX"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-groupPosX"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
+                }}
+              ></input>
+              <input
+                value={currentProjectNav["outWindow-Btn-groupPosX"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-groupPosX"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
+                }}
+              ></input>
+
+              <br></br>
+              <label>Button Group PosY</label>
+              <input type="range"
+              ></input>
+              <input
+              ></input>
+
+              <br></br>
+              <label>Button Gap</label>
+              <input type="range"
+              ></input>
+              <input
+              ></input>
+
+
             </div>
+            {/* q-window button area */}
 
         <label>Window Corner Radius</label>
         <input type="range"
