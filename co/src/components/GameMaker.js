@@ -541,7 +541,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "outWindow-Btn-groupPosY": 10,
     "outWindow-Btn-horizontalCentred": false,
     "outWindow-Btn-veriticalCentred": false,
-    "outWindow-Btn-groupGap": 2,
 
     "outWindow-windowCornerRadius": 0,
     "outWindow-posX": 10,

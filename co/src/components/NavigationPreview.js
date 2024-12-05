@@ -1354,7 +1354,7 @@ export default function NavigationPreview ({
                             "display": "flex", 
                             "position": "absolute",
                             "left": `${navObj["outWindow-Btn-groupPosX"]}px`,    
-                            "top": `${navObj["outWindow-Btn-groupPosY"]}px`,                           
+                            "top": `${navObj["outWindow-Btn-groupPosY"]}px`,  
                        
                         }}> 
                             <button
@@ -1363,6 +1363,8 @@ export default function NavigationPreview ({
                                     "color": navObj["outWindow-Btn-textColor"],
                                     "backgroundColor": navObj["outWindow-Btn-color"],
                                     "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
+                                    "width": "71px",
 
                                 }}
 
@@ -1400,6 +1402,9 @@ export default function NavigationPreview ({
                                     "color": navObj["outWindow-Btn-textColor"],
                                     "backgroundColor": navObj["outWindow-Btn-color"],
                                     "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
+                                    "width": "71px",
+
 
                                 }}
                                 onMouseDown={
