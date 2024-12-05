@@ -1349,38 +1349,33 @@ export default function NavigationPreview ({
                     (q-window setup backboard)
         </div>}
 
+        
+        
+{/* q-window */}
+        {(qWindowOpen === true) && <div
+                style={{
+                        "height": `${navObj["outWindow-height"]}px`,
+                        "width": `${navObj["outWindow-width"]}px`,
 
-
-            
-
-                        {/* q-window */}
-                        {(qWindowOpen === true) && <div
-                            style={{
-                                "height": `${navObj["outWindow-height"]}px`,
-                                "width": `${navObj["outWindow-width"]}px`,
-
-                                "backgroundColor": navObj["outWindow-isShape"] === true ? `${navObj["outWindow-color"]}` : "pink",
-                                "backgroundImage": navObj["outWindow-isShape"] === false ?
+                        "backgroundColor": navObj["outWindow-isShape"] === true ? `${navObj["outWindow-color"]}` : "pink",
+                        "backgroundImage": navObj["outWindow-isShape"] === false ?
                                     `url('${visualMap[navObj["outWindow-picName"]]}')` : "",
-                                "position": "absolute",
-                                "top": `${navObj["outWindow-posY"]}px`,
-                                "left": `${navObj["outWindow-posX"]}px`,
-                                "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
+                        "position": "absolute",
+                        "top": navObj["outWindow-verticalCentred"] === false ? `${navObj["outWindow-posY"]}px` : `${((screenHeight - navObj["outWindow-height"]) / 2)}px`,
+                        "left": navObj["outWindow-horizontalCentred"] === false ? `${navObj["outWindow-posX"]}px` : `${((screenWidth - navObj["outWindow-width"]) / 2)}px`,
+                        "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
 
-
-                                "padding": "0px",
-                                "overflow": "scroll",
-                                "justifyContent": "center",                          
-
-                            }}
-                        >
-                                {navObj["outWindow-askContent"]}
+                        "padding": "0px",
+                        "overflow": "scroll",
+                        "justifyContent": "center",                          
+                    }}
+                >
+                        {navObj["outWindow-askContent"]}
 
                                 {/* button-group */}
                                 <div style={{
                                     "display": "flex", 
                                     "position": "absolute",
-                                    "backgroundColor": "green",  
                                     "left": "10%",
                                     "top": "50%"
                                     // TODO calculate later (According to window width, etc.)
@@ -1454,7 +1449,8 @@ export default function NavigationPreview ({
                                         }}
                                     >{navObj["outWindow-Btn-cancellingText"]}</button>
                                 </div>
-                        </div>}{/* q-window */}
+        </div>}
+{/* q-window */}
        
 
 

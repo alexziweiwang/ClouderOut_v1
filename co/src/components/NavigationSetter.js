@@ -968,8 +968,8 @@ export default function NavigationSetter({initialNavObj,
     <>
       <button>{saveChangesText}</button>
 
-<div style={{"border": "1px dotted #FFFFFF", "padding": "2px"}}>    
-      <br></br>
+<div style={{"border": "1px dotted #FFFFFF", "padding": "2px", "paddingTop": "7px", "paddingLeft": "5px"}}>    
+
     {currentSettingPage === "Game Progress Strategy" && <div>
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
@@ -5013,7 +5013,6 @@ export default function NavigationSetter({initialNavObj,
        </div>
        </div>}
 
-//TODO25
       {currentSettingPage === "Quit Asking Window" && <div>
         <label>Question Content</label>
         <div className="indentOne">
@@ -5263,46 +5262,46 @@ export default function NavigationSetter({initialNavObj,
               <label>Window, Vertical: </label>
               <div>
                   <input type="radio"
-                    value={currentProjectNav["outWindow-veriticalCentred"]}
-                    checked={currentProjectNav["outWindow-veriticalCentred"]}
+                    value={currentProjectNav["outWindow-verticalCentred"]}
+                    checked={currentProjectNav["outWindow-verticalCentred"]}
                     onClick={()=>{
                       let tempObj = currentProjectNav;
-                      tempObj["outWindow-veriticalCentred"] = true;
+                      tempObj["outWindow-verticalCentred"] = true;
                       updateNavObj(tempObj); 
           
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": true}); 
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-verticalCentred": true}); 
                     }}
                   ></input><label
                     onClick={()=>{
                       let tempObj = currentProjectNav;
-                      tempObj["outWindow-veriticalCentred"] = true;
+                      tempObj["outWindow-verticalCentred"] = true;
                       updateNavObj(tempObj); 
           
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": true}); 
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-verticalCentred": true}); 
                     }}
                   >Vertically Centred</label><br></br>
                   
                   <input type="radio"
-                      value={currentProjectNav["outWindow-veriticalCentred"]}
-                      checked={!currentProjectNav["outWindow-veriticalCentred"]}
+                      value={currentProjectNav["outWindow-verticalCentred"]}
+                      checked={!currentProjectNav["outWindow-verticalCentred"]}
                       onClick={()=>{
                         let tempObj = currentProjectNav;
-                        tempObj["outWindow-veriticalCentred"] = false;
+                        tempObj["outWindow-verticalCentred"] = false;
                         updateNavObj(tempObj); 
             
-                        setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": false}); 
+                        setCurrentProjectNav({...currentProjectNav, "outWindow-verticalCentred": false}); 
                       }}
                   ></input>
                   <label
                     onClick={()=>{
                       let tempObj = currentProjectNav;
-                      tempObj["outWindow-veriticalCentred"] = false;
+                      tempObj["outWindow-verticalCentred"] = false;
                       updateNavObj(tempObj); 
           
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": false}); 
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-verticalCentred": false}); 
                   }}
                   >Customized Position Y </label><br></br>
-                  {currentProjectNav["outWindow-veriticalCentred"] === false
+                  {currentProjectNav["outWindow-verticalCentred"] === false
                   && <div className="indentOne">
                            <input type="range"
                               min="0" max={screenHeight} step="1"
