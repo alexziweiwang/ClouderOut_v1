@@ -539,6 +539,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "outWindow-Btn-cancellingText": "cancel",
     "outWindow-Btn-groupPosX": 20,
     "outWindow-Btn-groupPosY": 10,
+    "outWindow-Btn-horizontalCentred": false,
+    "outWindow-Btn-veriticalCentred": false,
     "outWindow-Btn-groupGap": 2,
 
     "outWindow-windowCornerRadius": 0,

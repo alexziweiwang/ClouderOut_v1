@@ -5165,27 +5165,44 @@ export default function NavigationSetter({initialNavObj,
 
 
               <br></br>
-              <label>Button Group PosX</label>
-              <input type="range"
-                value={currentProjectNav["outWindow-Btn-groupPosX"]}
-                onChange={(event)=>{
-                  let tempObj = currentProjectNav;
-                  tempObj["outWindow-Btn-groupPosX"] = event.target.value;
-                  updateNavObj(tempObj); 
-      
-                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
-                }}
-              ></input>
-              <input
-                value={currentProjectNav["outWindow-Btn-groupPosX"]}
-                onChange={(event)=>{
-                  let tempObj = currentProjectNav;
-                  tempObj["outWindow-Btn-groupPosX"] = event.target.value;
-                  updateNavObj(tempObj); 
-      
-                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
-                }}
-              ></input>
+              <label>Button Group Position Settings</label><br></br>
+              
+              <label>Horizontal: </label>
+              <div>
+                  <input type="radio"
+                    value={currentProjectNav["outWindow-Btn-horizontalCentred"]}
+                    onChecked={currentProjectNav["outWindow-Btn-horizontalCentred"]}
+                    onClick={()=>{
+                      //currentProjectNav["outWindow-Btn-horizontalCentred"] to be true
+                    }}
+                  ></input><label>Horizontally Centred</label><br></br>
+                  
+                  <input type="radio"
+                  ></input>
+                  <label>Hozirontal, Customized Position X</label><br></br>
+                    <div className="indentOne">
+                        <input type="range"
+                          value={currentProjectNav["outWindow-Btn-groupPosX"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["outWindow-Btn-groupPosX"] = event.target.value;
+                            updateNavObj(tempObj); 
+                
+                            setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
+                          }}
+                        ></input>
+                        <input
+                          value={currentProjectNav["outWindow-Btn-groupPosX"]}
+                          onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["outWindow-Btn-groupPosX"] = event.target.value;
+                            updateNavObj(tempObj); 
+                
+                            setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
+                          }}
+                        ></input>
+                    </div>
+              </div>
 
               <br></br>
               <label>Button Group PosY</label>
@@ -5233,18 +5250,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
 
-              <br></br>
-              <label>Button Group Centering</label>
-              <br></br><label>Horizontal</label>
-                <select>
-                      <option>None</option>
-                      <option>Centred-Horizontal</option>
-                </select>
-              <br></br><label>Vertical</label>
-                <select>
-                      <option>None</option>
-                      <option>Centred-Vertical</option>
-                </select>
+
 
             </div>
             {/* q-window button area */}
