@@ -3056,7 +3056,7 @@ export default function NavigationSetter({initialNavObj,
               </>}
               <label>{itemWidthText}: </label>
               <input type="range"
-                max="560" min="1" step="1"
+                max={screenWidth} min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupWidth"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -3067,7 +3067,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <input type="number"
-                max="560" min="1" step="1"
+                max={screenWidth} min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupWidth"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -3080,6 +3080,7 @@ export default function NavigationSetter({initialNavObj,
               <br></br>
               <label>{itemHeightText}: </label>
               <input type="range"
+                max={screenHeight} min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupHeight"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -3090,6 +3091,7 @@ export default function NavigationSetter({initialNavObj,
                 }}
               ></input>
               <input type="number"
+                max={screenHeight} min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGroupHeight"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -3150,7 +3152,7 @@ export default function NavigationSetter({initialNavObj,
               <br></br>    
               <label>{itemGapText}: </label>  
               <input type="range"
-                max="20" min="1" step="1"
+                max="100" min="1" step="1"
                 value={currentProjectNav["storyPage-listItemGap"]}
                 onChange={(event)=>{
                   let tempObj = currentProjectNav;
@@ -5035,7 +5037,7 @@ export default function NavigationSetter({initialNavObj,
             >{updateText}</button>
         </div>
 
-        <label>{widthText}</label>
+        <label> {widthText}</label>
         <input type="range"
           max={screenWidth} min="1" step="1"
           value={currentProjectNav["outWindow-width"]}
@@ -5059,7 +5061,7 @@ export default function NavigationSetter({initialNavObj,
           }}
         ></input>        
         <br></br>
-        <label>{heightText}</label>
+        <label> {heightText}</label>
         <input type="range"
           max={screenHeight} min="1" step="1"
           value={currentProjectNav["outWindow-height"]}
@@ -5096,7 +5098,7 @@ export default function NavigationSetter({initialNavObj,
                   setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-cornerRadius": event.target.value});  
                 }} 
               ></input>
-              <label>{currentProjectNav["outWindow-Btn-cornerRadius"]}</label>
+              <label> {currentProjectNav["outWindow-Btn-cornerRadius"]}</label>
               <br></br>
               <label>Button Color </label>
               <input type="color"
@@ -5109,7 +5111,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-color": event.target.value});  
                   }} 
               ></input>
-              <label>{currentProjectNav["outWindow-Btn-color"]}</label>
+              <label> {currentProjectNav["outWindow-Btn-color"]}</label>
               <br></br>
               <label>Button Text Color </label>
               <input type="color"
@@ -5122,7 +5124,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-textColor": event.target.value});  
                   }} 
               ></input>
-              <label>{currentProjectNav["outWindow-Btn-textColor"]}</label>
+              <label> {currentProjectNav["outWindow-Btn-textColor"]}</label>
               <br></br>
               <label>Confirming Button Text </label>
               <input
@@ -5177,7 +5179,7 @@ export default function NavigationSetter({initialNavObj,
            setCurrentProjectNav({...currentProjectNav, "outWindow-windowCornerRadius": event.target.value});  
          }} 
         ></input>
-        <label>{currentProjectNav["outWindow-windowCornerRadius"]}</label>
+        <label> {currentProjectNav["outWindow-windowCornerRadius"]}</label>
         <br></br>
 
 
@@ -5331,10 +5333,6 @@ export default function NavigationSetter({initialNavObj,
 
 
 
-
-
-
-        {/* //TODO27 */}
         <br></br>
         <label>Window Looking</label>
         <div className="indentOne">
@@ -5350,7 +5348,15 @@ export default function NavigationSetter({initialNavObj,
                 }}
               >
               </input>
-              <label>{rectangleAndColorFilledText}</label><br></br>
+              <label
+                 onClick={()=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-isShape"] = true;
+                  updateNavObj(tempObj); 
+       
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-isShape": true});  
+                }}
+              > {rectangleAndColorFilledText}</label><br></br>
               <input type="color"
                 value={currentProjectNav["outWindow-color"]}
                 onChange={(event)=>{
@@ -5361,7 +5367,7 @@ export default function NavigationSetter({initialNavObj,
                   setCurrentProjectNav({...currentProjectNav, "outWindow-color": event.target.value});  
                 }}
               ></input>
-              <label>{currentProjectNav["outWindow-color"]}</label>
+              <label> {currentProjectNav["outWindow-color"]}</label>
               
               <br></br>
 
@@ -5378,7 +5384,15 @@ export default function NavigationSetter({initialNavObj,
                 }}
               >
               </input>
-              <label>{basePictureText}</label><br></br>
+              <label
+                  onClick={()=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["outWindow-isShape"] = false;
+                    updateNavObj(tempObj); 
+        
+                    setCurrentProjectNav({...currentProjectNav, "outWindow-isShape": false});  
+                  }}
+              > {basePictureText}</label><br></br>
               <select
                 value={currentProjectNav["outWindow-picName"]}
                 onChange={(event)=>{

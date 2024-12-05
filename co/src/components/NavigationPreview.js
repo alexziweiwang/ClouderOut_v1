@@ -778,53 +778,60 @@ export default function NavigationPreview ({
                     "overflow": "scroll",
                     "borderRadius": "0px",
                 }}>
-                    {navObj["isWithSL"] === true && <div
-                    id="loadGameEntry"
-                    className="navigationButton"
-                    style={{
-                        "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "#c0cfe2",
-                        "backgroundImage": navObj["storyPage-isListItemShape"] === false 
-                        ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
-                        
-                        "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
-                        "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
 
-                        "marginRight": `${navObj["storyPage-listItemGap"]}px`,
-                        "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
 
-                        "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
-                        "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
-                        "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+{/* ---------------------------------------------------- */}
+                    {/* implement later for sl-part */}
+                    {/* {navObj["isWithSL"] === true && <div
 
-                        "transition": "all 0.2s ease-out",
+                    
+                        id="loadGameEntry"
+                        className="navigationButton"
+                        style={{
+                            "backgroundColor": navObj["storyPage-isListItemShape"] ? navObj["storyPage-listItemShadeName"] : "#c0cfe2",
+                            "backgroundImage": navObj["storyPage-isListItemShape"] === false 
+                            ? `url('${visualMap[navObj["storyPage-listItemPicName"]]}')` : "",
+                            
+                            "width": `${navObj["storyPage-listItemGroupWidth"]}px`,
+                            "height": `${navObj["storyPage-listItemGroupHeight"]}px`,
 
-                        "justifyContent": "center",
-                        "alignItems": "center",
-                        "display": "flex",
-                        "borderRadius": "0px",
-                    }}
-                    onMouseDown={
-                        ()=>{
-                            document.getElementById("loadGameEntry").style.filter = "brightness(120%)";
+                            "marginRight": `${navObj["storyPage-listItemGap"]}px`,
+                            "marginBottom": `${navObj["storyPage-listItemGap"]}px`,
+
+                            "color": `${navObj["storyPage-listItemGroupFontColor"]}`,
+                            "fontSize": `${navObj["storyPage-listItemGroupFontSize"]}px`,
+                            "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
+                            "transition": "all 0.2s ease-out",
+
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "display": "flex",
+                            "borderRadius": "0px",
+                        }}
+                        onMouseDown={
+                            ()=>{
+                                document.getElementById("loadGameEntry").style.filter = "brightness(120%)";
+                            }
                         }
-                    }
-                    onMouseUp={
-                        ()=>{
-                            document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
-                            updateCurrentPageName("Game Progress Strategy");
+                        onMouseUp={
+                            ()=>{
+                                document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
+                                updateCurrentPageName("Game Progress Strategy");
 
-                            let currentStandingObjTemp = {};
-                            currentStandingObjTemp["pageStatus"] = "Game Progress Strategy";
-                            currentStandingObjTemp["chapterKey"] = "";
-                            currentStandingObjTemp["nodeKey"] = "";
-                            currentStandingObjTemp["nodeType"] = ""; 
-                            updateCurrentStanding(currentStandingObjTemp);
+                                let currentStandingObjTemp = {};
+                                currentStandingObjTemp["pageStatus"] = "Game Progress Strategy";
+                                currentStandingObjTemp["chapterKey"] = "";
+                                currentStandingObjTemp["nodeKey"] = "";
+                                currentStandingObjTemp["nodeType"] = ""; 
+                                updateCurrentStanding(currentStandingObjTemp);
+                            }
                         }
-                    }
                 >
                     load game from s/l
-                </div>}
-
+                </div>} */}
+                    {/* implement later for sl-part */}
+{/* ---------------------------------------------------- */}
 
                         {storyPageChapterTitles.map((item, index) => {
                             let keyStr = "storyPageSameplTitle" + index + (isEditing === true ? "__e" : "__ne");
@@ -1346,7 +1353,7 @@ export default function NavigationPreview ({
             "borderRadius": "0px",
             "border": "1px dotted #000000",
         }}>
-                    (q-window setup backboard)
+                    (quit-window setup page backboard)
         </div>}
 
         
