@@ -1343,13 +1343,19 @@ export default function NavigationPreview ({
                         "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
 
 
+                        "padding": "0px",
                         "overflow": "scroll"
                     }}
                 >
                         {navObj["outWindow-askContent"]}
 
+                        {/* button-group */}
                         <div style={{
-                            "display": "flex",                            
+                            "display": "flex", 
+                            "position": "absolute",
+                            "left": `${navObj["outWindow-Btn-groupPosX"]}px`,    
+                            "top": `${navObj["outWindow-Btn-groupPosY"]}px`,                           
+                       
                         }}> 
                             <button
                                 id="qWindowConfirmBtn"
