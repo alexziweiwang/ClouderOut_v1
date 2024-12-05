@@ -5190,17 +5190,61 @@ export default function NavigationSetter({initialNavObj,
               <br></br>
               <label>Button Group PosY</label>
               <input type="range"
+                value={currentProjectNav["outWindow-Btn-groupPosY"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-groupPosY"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosY": event.target.value}); 
+                }}
               ></input>
               <input
+                value={currentProjectNav["outWindow-Btn-groupPosY"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-groupPosY"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosY": event.target.value}); 
+                }}
               ></input>
 
               <br></br>
               <label>Button Gap</label>
               <input type="range"
+                value={currentProjectNav["outWindow-Btn-groupGap"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-groupGap"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupGap": event.target.value}); 
+                }}
               ></input>
               <input
+                value={currentProjectNav["outWindow-Btn-groupGap"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-Btn-groupGap"] = event.target.value;
+                  updateNavObj(tempObj); 
+      
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupGap": event.target.value}); 
+                }}
               ></input>
 
+              <br></br>
+              <label>Button Group Centering</label>
+              <br></br><label>Horizontal</label>
+                <select>
+                      <option>None</option>
+                      <option>Centred-Horizontal</option>
+                </select>
+              <br></br><label>Vertical</label>
+                <select>
+                      <option>None</option>
+                      <option>Centred-Vertical</option>
+                </select>
 
             </div>
             {/* q-window button area */}

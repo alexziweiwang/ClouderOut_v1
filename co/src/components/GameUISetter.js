@@ -123,9 +123,9 @@ export default function GameUISetter({
         textDictItem.borderColorText
         : textDictItemDefault.borderColorText;
 
-    let horizontallyCentreText = textDictItem.horizontallyCentreText !== undefined ?
-        textDictItem.horizontallyCentreText
-        : textDictItemDefault.horizontallyCentreText;
+    let horizontallyCentredText = textDictItem.horizontallyCentredText !== undefined ?
+        textDictItem.horizontallyCentredText
+        : textDictItemDefault.horizontallyCentredText;
 
 
 //TODO15
@@ -419,7 +419,7 @@ export default function GameUISetter({
                     } else {
                         setDefaultButtonObj({...defaultButtonObj,  "horizontalMid": !defaultButtonObj["horizontalMid"]});
                     }   
-                }}>{horizontallyCentreText}</label>
+                }}>{horizontallyCentredText}</label>
             </div>
         <br></br><label>{groupPositionYText}: </label><br></br>
             <div className="indentOne">
