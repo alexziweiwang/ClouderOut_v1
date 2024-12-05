@@ -84,6 +84,8 @@ export default function NavigationPreview ({
     const [slSlotFrame, setSlSlotFrame] = useState(0);
     const [slotPerPageLocal, setSlotPerPageLocal] = useState(initialNavObj["saveloadPage-slotPerPage"]);
 
+    const [qWindowSetup, setQwindowSetup] = useState(false);
+
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
     const [audioMapSize, setAudioMapSize] = useState(0);
@@ -200,13 +202,20 @@ export default function NavigationPreview ({
         } 
 
 
+        // Page Settings
         let tempPage= fetchPageName();
         
         if (tempPage !== undefined && tempPage !== "" && tempPage !== "Quit Asking Window") {
             setPage(tempPage);
             setUserClickCancelQwindow(false);
-        } else if (tempPage === "Quit Asking Window" && userClickCancelQwindow === false) {
-            setQWindowOpen(true);
+            setQwindowSetup(false);
+
+        } else if (tempPage === "Quit Asking Window") {
+            setPage("");
+            if (userClickCancelQwindow === false) {
+                setQWindowOpen(true);
+            }
+            setQwindowSetup(true);
         }
 
 
@@ -1328,124 +1337,125 @@ export default function NavigationPreview ({
 
         {page === "During Game" && <div style={{"position": "absolute"}}><br></br><br></br><br></br>(During Game)</div>}
 
-
-
-        {(qWindowOpen === true) && <div style={{"position": "absolute",             
-                "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,
-                "borderRadius": "0px",
-                "border": "1px dotted #000000",
+        {qWindowSetup === true 
+        && <div 
+        style={{
+            "position": "absolute",             
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "borderRadius": "0px",
+            "border": "1px dotted #000000",
         }}>
-
-
-                {/* window-div */}
-                {<div
-                    style={{
-                        "height": `${navObj["outWindow-height"]}px`,
-                        "width": `${navObj["outWindow-width"]}px`,
-
-                        "backgroundColor": navObj["outWindow-isShape"] === true ? `${navObj["outWindow-color"]}` : "pink",
-                        "backgroundImage": navObj["outWindow-isShape"] === false ?
-                            `url('${visualMap[navObj["outWindow-picName"]]}')` : "",
-                        "position": "absolute",
-                        "top": `${navObj["outWindow-posY"]}px`,
-                        "left": `${navObj["outWindow-posX"]}px`,
-                        "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
-
-
-                        "padding": "0px",
-                        "overflow": "scroll",
-                        "justifyContent": "center",                          
-
-                    }}
-                >
-                        {navObj["outWindow-askContent"]}
-
-                        {/* button-group */}
-                        <div style={{
-                            "display": "flex", 
-                            "position": "absolute",
-                            "backgroundColor": "green",  
-                            "left": "10%",
-                            "top": "50%"
-                            // TODO calculate later (According to window width, etc.)
-                        }}> 
-                            <button
-                                id="qWindowConfirmBtn"
-                                style={{
-                                    "color": navObj["outWindow-Btn-textColor"],
-                                    "backgroundColor": navObj["outWindow-Btn-color"],
-                                    "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
-
-                                    "width": "71px",
-                                    "marginRight": "10px"
-
-                                }}
-
-                                onMouseDown={
-                                    ()=>{
-                                        document.getElementById("qWindowConfirmBtn").style.filter = "brightness(120%)";
-                                    }
-                                }
-                                onMouseUp={
-                                    ()=>{
-                                        document.getElementById("qWindowConfirmBtn").style.filter = "brightness(100%)";
-                                        
-                                        
-                                        
-                                            //close window and return to story-chapter-page (from during-game)
-                                            let nextPageName = "Story Page";
-                                            let currentStandingObjTemp = {};
-                                            currentStandingObjTemp["pageStatus"] = nextPageName;
-                                            currentStandingObjTemp["chapterKey"] = "";
-                                            currentStandingObjTemp["nodeKey"] = "";
-                                            currentStandingObjTemp["nodeType"] = ""; 
-                                            updateCurrentStanding(currentStandingObjTemp);
-                                            
-                                            updateCurrentPageName(nextPageName);
-
-                                          
-                                            //close q-window
-                                            setQWindowOpen(false);
-                                }}
-
-                            >{navObj["outWindow-Btn-confirmingText"]}</button>
-                            <button
-                                id="qWindowCancelBtn"
-                                style={{
-                                    "color": navObj["outWindow-Btn-textColor"],
-                                    "backgroundColor": navObj["outWindow-Btn-color"],
-                                    "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
-
-                                    "width": "71px",
-
-
-                                }}
-                                onMouseDown={
-                                    ()=>{
-                                        document.getElementById("qWindowCancelBtn").style.filter = "brightness(120%)";
-                                    }
-                                }
-                                onMouseUp={
-                                    ()=>{
-                                        document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
-
-                                        //close q-window
-                                     
-                                        setQWindowOpen(false);
-                                        setUserClickCancelQwindow(true);
-                                        updateCurrentPageName("During Game");
-
-                                        
-                                }}
-                            >{navObj["outWindow-Btn-cancellingText"]}</button>
-                        </div>
-                </div>}{/* window-div */}
-{/* TODO25 */}
-                       
+                    (q-window setup backboard)
         </div>}
 
-        
+
+
+            
+
+                        {/* q-window */}
+                        {(qWindowOpen === true) && <div
+                            style={{
+                                "height": `${navObj["outWindow-height"]}px`,
+                                "width": `${navObj["outWindow-width"]}px`,
+
+                                "backgroundColor": navObj["outWindow-isShape"] === true ? `${navObj["outWindow-color"]}` : "pink",
+                                "backgroundImage": navObj["outWindow-isShape"] === false ?
+                                    `url('${visualMap[navObj["outWindow-picName"]]}')` : "",
+                                "position": "absolute",
+                                "top": `${navObj["outWindow-posY"]}px`,
+                                "left": `${navObj["outWindow-posX"]}px`,
+                                "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
+
+
+                                "padding": "0px",
+                                "overflow": "scroll",
+                                "justifyContent": "center",                          
+
+                            }}
+                        >
+                                {navObj["outWindow-askContent"]}
+
+                                {/* button-group */}
+                                <div style={{
+                                    "display": "flex", 
+                                    "position": "absolute",
+                                    "backgroundColor": "green",  
+                                    "left": "10%",
+                                    "top": "50%"
+                                    // TODO calculate later (According to window width, etc.)
+                                }}> 
+                                    <button
+                                        id="qWindowConfirmBtn"
+                                        style={{
+                                            "color": navObj["outWindow-Btn-textColor"],
+                                            "backgroundColor": navObj["outWindow-Btn-color"],
+                                            "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
+                                            "width": "71px",
+                                            "marginRight": "10px"
+
+                                        }}
+
+                                        onMouseDown={
+                                            ()=>{
+                                                document.getElementById("qWindowConfirmBtn").style.filter = "brightness(120%)";
+                                            }
+                                        }
+                                        onMouseUp={
+                                            ()=>{
+                                                document.getElementById("qWindowConfirmBtn").style.filter = "brightness(100%)";
+                                                
+                                                
+                                                
+                                                    //close window and return to story-chapter-page (from during-game)
+                                                    let nextPageName = "Story Page";
+                                                    let currentStandingObjTemp = {};
+                                                    currentStandingObjTemp["pageStatus"] = nextPageName;
+                                                    currentStandingObjTemp["chapterKey"] = "";
+                                                    currentStandingObjTemp["nodeKey"] = "";
+                                                    currentStandingObjTemp["nodeType"] = ""; 
+                                                    updateCurrentStanding(currentStandingObjTemp);
+                                                    
+                                                    updateCurrentPageName(nextPageName);
+
+                                                
+                                                    //close q-window
+                                                    setQWindowOpen(false);
+                                        }}
+
+                                    >{navObj["outWindow-Btn-confirmingText"]}</button>
+                                    <button
+                                        id="qWindowCancelBtn"
+                                        style={{
+                                            "color": navObj["outWindow-Btn-textColor"],
+                                            "backgroundColor": navObj["outWindow-Btn-color"],
+                                            "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
+
+                                            "width": "71px",
+
+
+                                        }}
+                                        onMouseDown={
+                                            ()=>{
+                                                document.getElementById("qWindowCancelBtn").style.filter = "brightness(120%)";
+                                            }
+                                        }
+                                        onMouseUp={
+                                            ()=>{
+                                                document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
+
+                                                //close q-window
+                                                setQWindowOpen(false);
+                                                setUserClickCancelQwindow(true);
+                                                updateCurrentPageName("During Game");
+
+                                                
+                                        }}
+                                    >{navObj["outWindow-Btn-cancellingText"]}</button>
+                                </div>
+                        </div>}{/* q-window */}
+       
 
 
         {/* large frame for all elements */}
