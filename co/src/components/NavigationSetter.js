@@ -5163,156 +5163,6 @@ export default function NavigationSetter({initialNavObj,
                 }}
               >{updateText}</button>
 
-
-              <br></br>
-              <label>Button Group Position Settings </label><br></br>
-               
-              <label>Horizontal: </label>
-              <div>
-                  <input type="radio"
-                    value={currentProjectNav["outWindow-Btn-horizontalCentred"]}
-                    checked={currentProjectNav["outWindow-Btn-horizontalCentred"]}
-                    onClick={()=>{
-                      let tempObj = currentProjectNav;
-                      tempObj["outWindow-Btn-horizontalCentred"] = true;
-                      updateNavObj(tempObj); 
-          
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-horizontalCentred": true}); 
-                    }}
-                  ></input><label
-                    onClick={()=>{
-                      let tempObj = currentProjectNav;
-                      tempObj["outWindow-Btn-horizontalCentred"] = true;
-                      updateNavObj(tempObj); 
-          
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-horizontalCentred": true}); 
-                    }}
-                  >Horizontally Centred</label><br></br>
-                  
-                  <input type="radio"
-                      value={currentProjectNav["outWindow-Btn-horizontalCentred"]}
-                      checked={!currentProjectNav["outWindow-Btn-horizontalCentred"]}
-                      onClick={()=>{
-                        let tempObj = currentProjectNav;
-                        tempObj["outWindow-Btn-horizontalCentred"] = false;
-                        updateNavObj(tempObj); 
-            
-                        setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-horizontalCentred": false}); 
-                      }}
-                  ></input>
-                  <label
-                    onClick={()=>{
-                      let tempObj = currentProjectNav;
-                      tempObj["outWindow-Btn-horizontalCentred"] = false;
-                      updateNavObj(tempObj); 
-          
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-horizontalCentred": false}); 
-                  }}
-                  >Customized Position X </label><br></br>
-                  {currentProjectNav["outWindow-Btn-horizontalCentred"] === false
-                  && <div className="indentOne">
-                            <input type="range"
-                              min="0" max={currentProjectNav["outWindow-width"]} step="1"
-                              value={currentProjectNav["outWindow-Btn-groupPosX"]}
-                              onChange={(event)=>{
-                                let tempObj = currentProjectNav;
-                                tempObj["outWindow-Btn-groupPosX"] = event.target.value;
-                                updateNavObj(tempObj); 
-                    
-                                setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
-                              }}
-                            ></input>
-                            <input
-                              min="0" max={currentProjectNav["outWindow-width"]} step="1"
-                              value={currentProjectNav["outWindow-Btn-groupPosX"]}
-                              onChange={(event)=>{
-                                let tempObj = currentProjectNav;
-                                tempObj["outWindow-Btn-groupPosX"] = event.target.value;
-                                updateNavObj(tempObj); 
-                    
-                                setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosX": event.target.value}); 
-                              }}
-                            ></input>
-                    </div>}
-
-              </div>
-
-
-
-
-              <label>Vertical: </label>
-              <div>
-                  <input type="radio"
-                    value={currentProjectNav["outWindow-Btn-veriticalCentred"]}
-                    checked={currentProjectNav["outWindow-Btn-veriticalCentred"]}
-                    onClick={()=>{
-                      let tempObj = currentProjectNav;
-                      tempObj["outWindow-Btn-veriticalCentred"] = true;
-                      updateNavObj(tempObj); 
-          
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-veriticalCentred": true}); 
-                    }}
-                  ></input><label
-                    onClick={()=>{
-                      let tempObj = currentProjectNav;
-                      tempObj["outWindow-Btn-veriticalCentred"] = true;
-                      updateNavObj(tempObj); 
-          
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-veriticalCentred": true}); 
-                    }}
-                  >Vertically Centred</label><br></br>
-                  
-                  <input type="radio"
-                      value={currentProjectNav["outWindow-Btn-veriticalCentred"]}
-                      checked={!currentProjectNav["outWindow-Btn-veriticalCentred"]}
-                      onClick={()=>{
-                        let tempObj = currentProjectNav;
-                        tempObj["outWindow-Btn-veriticalCentred"] = false;
-                        updateNavObj(tempObj); 
-            
-                        setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-veriticalCentred": false}); 
-                      }}
-                  ></input>
-                  <label
-                    onClick={()=>{
-                      let tempObj = currentProjectNav;
-                      tempObj["outWindow-Btn-veriticalCentred"] = false;
-                      updateNavObj(tempObj); 
-          
-                      setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-veriticalCentred": false}); 
-                  }}
-                  >Customized Position Y </label><br></br>
-                  {currentProjectNav["outWindow-Btn-veriticalCentred"] === false
-                  && <div className="indentOne">
-                            <input type="range"
-                              min="0" max={currentProjectNav["outWindow-height"]} step="1"
-                              value={currentProjectNav["outWindow-Btn-groupPosY"]}
-                              onChange={(event)=>{
-                                let tempObj = currentProjectNav;
-                                tempObj["outWindow-Btn-groupPosY"] = event.target.value;
-                                updateNavObj(tempObj); 
-                    
-                                setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosY": event.target.value}); 
-                              }}
-                            ></input>
-                            <input
-                              min="0" max={currentProjectNav["outWindow-height"]} step="1"
-                              value={currentProjectNav["outWindow-Btn-groupPosY"]}
-                              onChange={(event)=>{
-                                let tempObj = currentProjectNav;
-                                tempObj["outWindow-Btn-groupPosY"] = event.target.value;
-                                updateNavObj(tempObj); 
-                    
-                                setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-groupPosY": event.target.value}); 
-                              }}
-                            ></input>
-                    </div>}
-
-              </div>
-
-
-
-
             </div>
             {/* q-window button area */}
 
@@ -5330,53 +5180,162 @@ export default function NavigationSetter({initialNavObj,
         ></input>
         <label>{currentProjectNav["outWindow-windowCornerRadius"]}</label>
         <br></br>
-        <label>Window Position X </label>
-        <input type="range"
-          max={screenWidth} min="1" step="1"
-          value={currentProjectNav["outWindow-posX"]}
-          onChange={(event)=>{
-            let tempObj = currentProjectNav;
-            tempObj["outWindow-posX"] = event.target.value;
-            updateNavObj(tempObj); 
- 
-            setCurrentProjectNav({...currentProjectNav, "outWindow-posX": event.target.value});  
-          }} 
-        ></input>
-        <input
-          max={screenWidth} min="1" step="1"
-          value={currentProjectNav["outWindow-posX"]}
-          onChange={(event)=>{
-            let tempObj = currentProjectNav;
-            tempObj["outWindow-posX"] = event.target.value;
-            updateNavObj(tempObj); 
- 
-            setCurrentProjectNav({...currentProjectNav, "outWindow-posX": event.target.value});  
-          }} 
-        ></input>
-        <br></br>                      
-        <label>Window Position Y </label>
-        <input type="range"
-          max={screenHeight} min="1" step="1"
-          value={currentProjectNav["outWindow-posY"]}
-          onChange={(event)=>{
-            let tempObj = currentProjectNav;
-            tempObj["outWindow-posY"] = event.target.value;
-            updateNavObj(tempObj); 
- 
-            setCurrentProjectNav({...currentProjectNav, "outWindow-posY": event.target.value});  
-          }} 
-        ></input>
-        <input
-          max={screenHeight} min="1" step="1"
-          value={currentProjectNav["outWindow-posY"]}
-          onChange={(event)=>{
-            let tempObj = currentProjectNav;
-            tempObj["outWindow-posY"] = event.target.value;
-            updateNavObj(tempObj); 
- 
-            setCurrentProjectNav({...currentProjectNav, "outWindow-posY": event.target.value});  
-          }}
-        ></input>
+
+
+
+
+
+        {/* //TODO26 */}
+      
+        <label>Window, Horizontal: </label>
+              <div>
+                  <input type="radio"
+                    value={currentProjectNav["outWindow-horizontalCentred"]}
+                    checked={currentProjectNav["outWindow-horizontalCentred"]}
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["outWindow-horizontalCentred"] = true;
+                      updateNavObj(tempObj); 
+          
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-horizontalCentred": true}); 
+                    }}
+                  ></input><label
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["outWindow-horizontalCentred"] = true;
+                      updateNavObj(tempObj); 
+          
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-horizontalCentred": true}); 
+                    }}
+                  >Horizontally Centred</label><br></br>
+                  
+                  <input type="radio"
+                      value={currentProjectNav["outWindow-horizontalCentred"]}
+                      checked={!currentProjectNav["outWindow-horizontalCentred"]}
+                      onClick={()=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["outWindow-horizontalCentred"] = false;
+                        updateNavObj(tempObj); 
+            
+                        setCurrentProjectNav({...currentProjectNav, "outWindow-horizontalCentred": false}); 
+                      }}
+                  ></input>
+                  <label
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["outWindow-horizontalCentred"] = false;
+                      updateNavObj(tempObj); 
+          
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-horizontalCentred": false}); 
+                  }}
+                  >Customized Position X </label><br></br>
+                  {currentProjectNav["outWindow-horizontalCentred"] === false
+                  && <div className="indentOne">
+                            <input type="range"
+                              min="0" max={screenWidth} step="1"
+                              value={currentProjectNav["outWindow-posX"]}
+                              onChange={(event)=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["outWindow-posX"] = event.target.value;
+                                updateNavObj(tempObj); 
+                    
+                                setCurrentProjectNav({...currentProjectNav, "outWindow-posX": event.target.value}); 
+                              }}
+                            ></input>
+                            <input
+                              min="0" max={screenWidth} step="1"
+                              value={currentProjectNav["outWindow-posX"]}
+                              onChange={(event)=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["outWindow-posX"] = event.target.value;
+                                updateNavObj(tempObj); 
+                    
+                                setCurrentProjectNav({...currentProjectNav, "outWindow-posX": event.target.value}); 
+                              }}
+                            ></input>
+                    </div>}
+
+              </div>
+
+
+
+
+              <label>Window, Vertical: </label>
+              <div>
+                  <input type="radio"
+                    value={currentProjectNav["outWindow-veriticalCentred"]}
+                    checked={currentProjectNav["outWindow-veriticalCentred"]}
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["outWindow-veriticalCentred"] = true;
+                      updateNavObj(tempObj); 
+          
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": true}); 
+                    }}
+                  ></input><label
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["outWindow-veriticalCentred"] = true;
+                      updateNavObj(tempObj); 
+          
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": true}); 
+                    }}
+                  >Vertically Centred</label><br></br>
+                  
+                  <input type="radio"
+                      value={currentProjectNav["outWindow-veriticalCentred"]}
+                      checked={!currentProjectNav["outWindow-veriticalCentred"]}
+                      onClick={()=>{
+                        let tempObj = currentProjectNav;
+                        tempObj["outWindow-veriticalCentred"] = false;
+                        updateNavObj(tempObj); 
+            
+                        setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": false}); 
+                      }}
+                  ></input>
+                  <label
+                    onClick={()=>{
+                      let tempObj = currentProjectNav;
+                      tempObj["outWindow-veriticalCentred"] = false;
+                      updateNavObj(tempObj); 
+          
+                      setCurrentProjectNav({...currentProjectNav, "outWindow-veriticalCentred": false}); 
+                  }}
+                  >Customized Position Y </label><br></br>
+                  {currentProjectNav["outWindow-veriticalCentred"] === false
+                  && <div className="indentOne">
+                           <input type="range"
+                              min="0" max={screenHeight} step="1"
+                              value={currentProjectNav["outWindow-posY"]}
+                              onChange={(event)=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["outWindow-posY"] = event.target.value;
+                                updateNavObj(tempObj); 
+                    
+                                setCurrentProjectNav({...currentProjectNav, "outWindow-posY": event.target.value}); 
+                              }}
+                            ></input>
+                            <input
+                              min="0" max={screenHeight} step="1"
+                              value={currentProjectNav["outWindow-posY"]}
+                              onChange={(event)=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["outWindow-posY"] = event.target.value;
+                                updateNavObj(tempObj); 
+                    
+                                setCurrentProjectNav({...currentProjectNav, "outWindow-posY": event.target.value}); 
+                              }}
+                            ></input>
+                    </div>}
+
+              </div>
+
+
+
+
+
+
+        {/* //TODO27 */}
         <br></br>
         <label>Window Looking</label>
         <div className="indentOne">

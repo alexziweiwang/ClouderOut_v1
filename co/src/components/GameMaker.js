@@ -537,11 +537,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "outWindow-Btn-textColor": "orange",
     "outWindow-Btn-confirmingText": "confirm",
     "outWindow-Btn-cancellingText": "cancel",
-    "outWindow-Btn-groupPosX": 20,
-    "outWindow-Btn-groupPosY": 10,
     "outWindow-Btn-horizontalCentred": false,
     "outWindow-Btn-veriticalCentred": false,
 
+    "outWindow-horizontalCentred": false,
+    "outWindow-veriticalCentred": false,
     "outWindow-windowCornerRadius": 0,
     "outWindow-posX": 10,
     "outWindow-posY": 30,

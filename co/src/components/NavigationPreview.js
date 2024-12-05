@@ -1344,7 +1344,9 @@ export default function NavigationPreview ({
 
 
                         "padding": "0px",
-                        "overflow": "scroll"
+                        "overflow": "scroll",
+                        "justifyContent": "center",                          
+
                     }}
                 >
                         {navObj["outWindow-askContent"]}
@@ -1353,9 +1355,10 @@ export default function NavigationPreview ({
                         <div style={{
                             "display": "flex", 
                             "position": "absolute",
-                            "left": `${navObj["outWindow-Btn-groupPosX"]}px`,    
-                            "top": `${navObj["outWindow-Btn-groupPosY"]}px`,  
-                       
+                            "backgroundColor": "green",  
+                            "left": "10%",
+                            "top": "50%"
+                            // TODO calculate later (According to window width, etc.)
                         }}> 
                             <button
                                 id="qWindowConfirmBtn"
@@ -1365,6 +1368,7 @@ export default function NavigationPreview ({
                                     "borderRadius": `${navObj["outWindow-Btn-cornerRadius"]}px`,
 
                                     "width": "71px",
+                                    "marginRight": "10px"
 
                                 }}
 
