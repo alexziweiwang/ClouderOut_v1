@@ -5014,7 +5014,7 @@ export default function NavigationSetter({initialNavObj,
            <label>Product Item List</label><br></br>
            <div className="indentOne">
 
-                <label>Individual Item Width</label>
+                <label>Individual Item Width </label>
                 <input
                   type="range"
                   min="1" max={screenWidth} step="1"
@@ -5040,7 +5040,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>
 
-                <label>Individual Item Height</label>
+                <label>Individual Item Height </label>
                 <input
                   type="range"
                   min="1" max={screenHeight} step="1"
@@ -5066,7 +5066,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>       
 
-                <label>Individual Item Gap</label>
+                <label>Individual Item Gap </label>
                 <input type="range"
                  min="1" max="20" step="1"
                  value={currentProjectNav["shopPage-listItem-gap"]}
@@ -5091,33 +5091,86 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
 
                 <br></br>
-                <label>Item Corner Radius</label>
-                <input type="range"></input>
-                <input></input>
+                <label>Item Corner Radius </label>
+                <input type="range"
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["shopPage-listItem-cornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-cornerRadius"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
+                  }}                 
+                ></input>
+                <input
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["shopPage-listItem-cornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-cornerRadius"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
+                  }} 
+                ></input>
 
            </div>
 
            <label>Buying Confirm Window</label>
            <div className="indentOne">
-             <label>Width</label>
+             <label>Width </label>
              <input type="range"></input>
              <input></input>
              <br></br>
 
-             <label>Height</label>
+             <label>Height </label>
              <input type="range"></input>
              <input></input>
              <br></br>
 
-             <label>Text Color</label>
+             <label>Text Color </label>
              <input type="color"></input>
              <label></label>
              <br></br>
 
-             <label>Background Color</label>
-             <input type="color"></input>
-             <label></label>
+             <label>Background Color </label>
+             <input type="color"
+                value={currentProjectNav["shopPage-bConfWindow-bgColor"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["shopPage-bConfWindow-bgColor"] = event.target.value;
+                  updateNavObj(tempObj); 
+    
+                  setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-bgColor": event.target.value});  
+                }} 
+             ></input>
+             <label> {currentProjectNav["shopPage-bConfWindow-bgColor"]}</label>
              <br></br>
+
+             <label>Window Corner Radius </label>
+             <input type="range"
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["shopPage-bConfWindow-cornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-bConfWindow-cornerRadius"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-cornerRadius": event.target.value});  
+                  }} 
+             ></input>
+             <input
+                   min="0" max="50" step="1"
+                  value={currentProjectNav["shopPage-bConfWindow-cornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-bConfWindow-cornerRadius"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-cornerRadius": event.target.value});  
+                  }} 
+             ></input>
 
 
            </div>
