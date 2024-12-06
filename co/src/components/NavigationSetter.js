@@ -5016,6 +5016,7 @@ export default function NavigationSetter({initialNavObj,
 
                 <label>Individual Item Width</label>
                 <input
+                  type="range"
                   min="1" max={screenWidth} step="1"
                   value={currentProjectNav["shopPage-listItem-width"]}
                   onChange={(event)=>{
@@ -5041,6 +5042,7 @@ export default function NavigationSetter({initialNavObj,
 
                 <label>Individual Item Height</label>
                 <input
+                  type="range"
                   min="1" max={screenHeight} step="1"
                   value={currentProjectNav["shopPage-listItem-height"]}
                   onChange={(event)=>{
@@ -5065,23 +5067,45 @@ export default function NavigationSetter({initialNavObj,
                 <br></br>       
 
                 <label>Individual Item Gap</label>
-                <input></input>
-                <input></input>
-                <br></br>                    
+                <input type="range"
+                 min="1" max="20" step="1"
+                 value={currentProjectNav["shopPage-listItem-gap"]}
+                 onChange={(event)=>{
+                   let tempObj = currentProjectNav;
+                   tempObj["shopPage-listItem-gap"] = event.target.value;
+                   updateNavObj(tempObj); 
+     
+                   setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-gap": event.target.value});  
+                 }}  
+                ></input>
+                <input
+                  min="1" max="20" step="1"
+                  value={currentProjectNav["shopPage-listItem-gap"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-gap"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-gap": event.target.value});  
+                  }}  
+                ></input>
 
-
+                <br></br>
+                <label>Item Corner Radius</label>
+                <input type="range"></input>
+                <input></input>
 
            </div>
 
            <label>Buying Confirm Window</label>
            <div className="indentOne">
              <label>Width</label>
-             <input></input>
+             <input type="range"></input>
              <input></input>
              <br></br>
 
              <label>Height</label>
-             <input></input>
+             <input type="range"></input>
              <input></input>
              <br></br>
 
