@@ -5011,6 +5011,52 @@ export default function NavigationSetter({initialNavObj,
        
 
            TODO shop page content (in separate editor?)
+           <label>Product Item List</label><br></br>
+           <div className="indentOne">
+
+                <label>Individual Item Width</label>
+                <input></input>
+                <input></input>
+                <br></br>
+
+                <label>Individual Item Height</label>
+                <input></input>
+                <input></input>
+                <br></br>       
+
+                <label>Individual Item Gap</label>
+                <input></input>
+                <input></input>
+                <br></br>                    
+
+
+
+           </div>
+
+           <label>Buying Confirm Window</label>
+           <div className="indentOne">
+             <label>Width</label>
+             <input></input>
+             <input></input>
+             <br></br>
+
+             <label>Height</label>
+             <input></input>
+             <input></input>
+             <br></br>
+
+             <label>Text Color</label>
+             <input type="color"></input>
+             <label></label>
+             <br></br>
+
+             <label>Background Color</label>
+             <input type="color"></input>
+             <label></label>
+             <br></br>
+
+
+           </div>
 
        </div>
        </div>}

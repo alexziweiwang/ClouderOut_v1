@@ -501,6 +501,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-bgShadeName": "rgb(222, 222, 235)",
     "shopPage-bgPicName": "",
 
+
+
+
+
+    
+
     "storyPage-chapterListHorizontal": false,
     "storyPage-isBackgroundShape": false,
     "storyPage-bgShadeName": "rgb(222, 222, 235)",
@@ -529,7 +535,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "backButton-fontSize": 15,
 
     "outWindow-askContent": "Are you sure to quit the story?",
-
     "outWindow-width": 200,
     "outWindow-height": 90,
     "outWindow-Btn-cornerRadius": 0,
@@ -537,8 +542,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "outWindow-Btn-textColor": "#FFFFFF",
     "outWindow-Btn-confirmingText": "confirm",
     "outWindow-Btn-cancellingText": "cancel",
-
-
     "outWindow-horizontalCentred": true,
     "outWindow-verticalCentred": true,
     "outWindow-windowCornerRadius": 0,
