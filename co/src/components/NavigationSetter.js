@@ -5120,18 +5120,67 @@ export default function NavigationSetter({initialNavObj,
            <label>Buying Confirm Window</label>
            <div className="indentOne">
              <label>Width </label>
-             <input type="range"></input>
-             <input></input>
+             <input type="range"           
+              min="1" max={screenWidth} step="1"
+              value={currentProjectNav["shopPage-bConfWindow-width"]}
+              onChange={(event)=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-width"] = event.target.value;
+                updateNavObj(tempObj); 
+  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-width": event.target.value});  
+              }}
+             ></input>
+             <input
+              min="1" max={screenWidth} step="1"
+              value={currentProjectNav["shopPage-bConfWindow-width"]}
+              onChange={(event)=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-width"] = event.target.value;
+                updateNavObj(tempObj); 
+               
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-width": event.target.value});  
+              }}
+             ></input>
              <br></br>
 
              <label>Height </label>
-             <input type="range"></input>
-             <input></input>
+             <input type="range"
+                min="1" max={screenHeight} step="1"
+                value={currentProjectNav["shopPage-bConfWindow-height"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["shopPage-bConfWindow-height"] = event.target.value;
+                  updateNavObj(tempObj); 
+    
+                  setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-height": event.target.value});  
+                }}             
+             ></input>
+             <input
+                min="1" max={screenHeight} step="1"
+                value={currentProjectNav["shopPage-bConfWindow-height"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["shopPage-bConfWindow-height"] = event.target.value;
+                  updateNavObj(tempObj); 
+    
+                  setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-height": event.target.value});  
+                }}               
+             ></input>
              <br></br>
 
              <label>Text Color </label>
-             <input type="color"></input>
-             <label></label>
+             <input type="color"
+              value={currentProjectNav["shopPage-bConfWindow-textColor"]}
+              onChange={(event)=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-textColor"] = event.target.value;
+                updateNavObj(tempObj); 
+  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-textColor": event.target.value});  
+              }} 
+             ></input>
+             <label> {currentProjectNav["shopPage-bConfWindow-textColor"]}</label>
              <br></br>
 
              <label>Background Color </label>
