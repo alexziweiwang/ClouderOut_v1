@@ -1523,7 +1523,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupX"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
                     }
@@ -1536,7 +1535,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupX"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupX": event.target.value});
                     }}
@@ -1562,7 +1560,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupY"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupY": event.target.value});
                     }}               
@@ -1576,7 +1573,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemWidth"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupWidth": event.target.value});
                     }}               
@@ -1588,7 +1584,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemWidth"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupWidth": event.target.value});
                     }}               
@@ -1602,7 +1597,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupHeight"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupHeight": event.target.value});
                     }}               
@@ -1614,7 +1608,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupHeight"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupHeight": event.target.value});
                     }}               
@@ -1628,7 +1621,6 @@ export default function NavigationSetter({initialNavObj,
                   let tempObj = currentProjectNav;
                   tempObj["mainPage-listItemGap"] = event.target.value;
                   updateNavObj(tempObj);                  
-                  //TODO test
 
                   setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGap": event.target.value});
                   }}                  
@@ -1639,10 +1631,34 @@ export default function NavigationSetter({initialNavObj,
                   let tempObj = currentProjectNav;
                   tempObj["mainPage-listItemGap"] = event.target.value;
                   updateNavObj(tempObj);                  
-                  //TODO test
 
                   setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGap": event.target.value});
                   }}  
+                ></input>
+                <br></br>
+                <label>Item Corner Radius</label>
+                <input
+                  type="range"
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["mainPage-listItemGroupCornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupCornerRadius"] = event.target.value;
+                    updateNavObj(tempObj);                  
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupCornerRadius": event.target.value});             
+                  }}
+                ></input>
+                <input
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["mainPage-listItemGroupCornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupCornerRadius"] = event.target.value;
+                    updateNavObj(tempObj);                  
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupCornerRadius": event.target.value});             
+                  }}                
                 ></input>
                 <br></br>
                 <label>{fontColorText}:</label>
@@ -1652,7 +1668,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupFontColor"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
   
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontColor": event.target.value});             
                             
@@ -1668,7 +1683,6 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupFontSize"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontSize": event.target.value});             
                   }}
@@ -1680,13 +1694,35 @@ export default function NavigationSetter({initialNavObj,
                     let tempObj = currentProjectNav;
                     tempObj["mainPage-listItemGroupFontSize"] = event.target.value;
                     updateNavObj(tempObj);                  
-                    //TODO test
 
                     setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontSize": event.target.value});             
                   }}
                ></input>  
 
+                <br></br>
+
+           
+
+                <label>Text Font</label>
+                <select
+                  value={currentProjectNav["mainPage-listItemTextFont"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemTextFont"] = event.target.value;
+                    updateNavObj(tempObj);                  
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemTextFont": event.target.value});             
+                  }}
+                >
+                  <option value="serif" key="mainPageItem_serif">serif</option>
+                  <option value="sans-serif" key="mainPageItem_sans-serif">sans-serif</option>
+                  <option value="cursive" key="mainPageItem_cursive">cursive</option>
+  
+{/* //TODO29 */}
+                </select>
+
             <br></br>
+            <label>Item Background</label><br></br>
             <input type="radio" 
               value={currentProjectNav["mainPage-isListItemShape"]}
               checked={currentProjectNav["mainPage-isListItemShape"]}

@@ -360,6 +360,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "mainPage-listItemGap": 3,
     "mainPage-listItemGroupFontColor": "",
     "mainPage-listItemGroupFontSize": 10,
+    "mainPage-listItemGroupCornerRadius": 0, //TODO
+    "mainPage-listItemTextFont": "serif", //TODO
 
     "mainPage-story-isShape": false,
     "mainPage-story-shadeName": "#c0cfe2",
