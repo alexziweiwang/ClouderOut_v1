@@ -390,6 +390,7 @@
 
 - 2024-Dec-02: Organize viewing elements and design entire-view-testing plan
 
+- 2024-Dec-05: Design shop-page user-setting options
 
 
 
