@@ -1,0 +1,18 @@
+Shopping Item : "products"
+
+for game-creators, 
+products can only be created or hidden(off-stock)? 
+in-case any player bought but can't find it if deleted by game-creator...
+
+
+in nav-setter, should provide emu-product to show the UI;
+
+
+for actual product management, consider a separate component;
+    level should be similar to the player-account's security level and player-profile's changing frequency
+
+for data management aspect, make sure not allowing players' changing
+(consideration along with auth for accounts)
+one-way changing by code only
+
+
