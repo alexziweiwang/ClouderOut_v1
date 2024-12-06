@@ -5015,13 +5015,53 @@ export default function NavigationSetter({initialNavObj,
            <div className="indentOne">
 
                 <label>Individual Item Width</label>
-                <input></input>
-                <input></input>
+                <input
+                  min="1" max={screenWidth} step="1"
+                  value={currentProjectNav["shopPage-listItem-width"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-width"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-width": event.target.value});  
+                  }}
+                ></input>
+                <input
+                  min="1" max={screenWidth} step="1"
+                  value={currentProjectNav["shopPage-listItem-width"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-width"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-width": event.target.value});  
+                  }}                
+                ></input>
                 <br></br>
 
                 <label>Individual Item Height</label>
-                <input></input>
-                <input></input>
+                <input
+                  min="1" max={screenHeight} step="1"
+                  value={currentProjectNav["shopPage-listItem-height"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-height"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-height": event.target.value});  
+                  }}   
+                ></input>
+                <input
+                 min="1" max={screenHeight} step="1"
+                 value={currentProjectNav["shopPage-listItem-height"]}
+                 onChange={(event)=>{
+                   let tempObj = currentProjectNav;
+                   tempObj["shopPage-listItem-height"] = event.target.value;
+                   updateNavObj(tempObj); 
+     
+                   setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-height": event.target.value});  
+                 }}                  
+                ></input>
                 <br></br>       
 
                 <label>Individual Item Gap</label>
