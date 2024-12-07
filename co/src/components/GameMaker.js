@@ -1154,6 +1154,29 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       setDisplayEmBool(true);
   }
 
+  function passInShopItemInfo() {
+    //TODO emu-shop-items
+    let shopArr = [
+      {productName: "product1",
+       productPrice: 30,
+       acquired: false,
+       acquiredTimeStamp: "",
+      },
+      {productName: "product2",
+       productPrice: 50,
+       acquired: true,
+       acquiredTimeStamp: "",
+      },
+      {productName: "product3",
+       productPrice: 10,
+       acquired: false,
+       acquiredTimeStamp: "",
+      },
+    ]
+
+    return shopArr;
+    
+  }
 
 
   return (
@@ -1338,6 +1361,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
  
                   getUILanguage={passInUILanguage}
                   initialUILanguage={languageCodeTextOption}
+
+                  fetchShopItemInfo={passInShopItemInfo}
           
                   />
               </div>
@@ -1419,6 +1444,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
           username={username}
           projectname={projectName}
+
+          getShopItemInfo={passInShopItemInfo}
 
 
       />

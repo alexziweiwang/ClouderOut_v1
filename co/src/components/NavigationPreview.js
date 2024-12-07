@@ -24,6 +24,8 @@ export default function NavigationPreview ({
     getUILanguage,
     initialUILanguage,
 
+    fetchShopItemInfo,
+
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 

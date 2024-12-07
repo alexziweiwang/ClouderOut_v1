@@ -41,7 +41,9 @@ export default function Viewer_Entire({
     notifyPageStatus,
 
     username,
-    projectname
+    projectname,
+
+    getShopItemInfo
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -285,6 +287,11 @@ export default function Viewer_Entire({
         return currentGameStatusProgress["chapterKey"];
     }
 
+    function passInShopItemInfo() {
+        //TODO 
+        return getShopItemInfo();
+    }
+
 
                                           
 
@@ -379,6 +386,7 @@ nodeType={currentGameStatusProgress["nodeType"]} <br></br>
 
                         getUILanguage={passInUiLanguageOption}  //TODO20 languageOption
 
+                        fetchShopItemInfo={passInShopItemInfo}
                     />
                                                                                 {/* //TODO16
                     //updatePlayerProfile (by player input)
