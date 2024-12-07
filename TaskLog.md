@@ -393,6 +393,6 @@
 - 2024-Dec-05: Design shop-page user-setting options
 - 2024-Dec-05: Design player's shopping data structure 
 
-
+- 2024-Dec-06: Consider setting's 3-set data storing strategy
 
 
