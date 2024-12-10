@@ -5037,7 +5037,7 @@ export default function NavigationSetter({initialNavObj,
                             <>
                                 <select onChange={(event)=>{
                                 }}>                    
-                                    <option key="mpliDefault" value="">-- {selectResourceText} --</option>
+                                    <option key="shop-bgp-Default" value="">-- {selectResourceText} --</option>
                           
                                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
@@ -5050,6 +5050,71 @@ export default function NavigationSetter({initialNavObj,
            <br></br>
            <label>Product Item List</label><br></br>
            <div className="indentOne">
+                <label>Individual Item Shape</label>
+                <div className="indentOne">
+
+                  <input type="radio" 
+                        value={currentProjectNav["shopPage-listItem-isBackgroundShape"]}
+                        checked={currentProjectNav["shopPage-listItem-isBackgroundShape"]}
+                        onChange={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["shopPage-listItem-isBackgroundShape"] = true;
+                          updateNavObj(tempObj); 
+            
+                          setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-isBackgroundShape": true});  
+                          
+                        }}></input><label onClick={()=>{    
+                          let tempObj = currentProjectNav;
+                          tempObj["shopPage-listItem-isBackgroundShape"] = true;
+                          updateNavObj(tempObj); 
+            
+                          setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-isBackgroundShape": true});  
+                          
+                        }}
+                        >{rectangleAndColorFilledText} </label>
+                            {currentProjectNav["shopPage-listItem-isBackgroundShape"] && <div className="indentOne">
+                                    <label>{backgroundColorText}: </label>
+                                    <input type="color"
+                                    onChange={(event)=>{
+                                            let tempObj = currentProjectNav;
+                                            tempObj["shopPage-listItem-bgShadeName"] = event.target.value;
+                                            updateNavObj(tempObj); 
+                    
+                                            setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-bgShadeName": event.target.value}); 
+                                        }}></input>
+                                    <label></label>
+                            </div>}
+                            
+                        <br></br>
+                        <input type="radio"
+                          value={currentProjectNav["shopPage-listItem-isBackgroundShape"]}
+                          checked={!currentProjectNav["shopPage-listItem-isBackgroundShape"]}
+                          onChange={()=>{    
+                            let tempObj = currentProjectNav;
+                            tempObj["shopPage-listItem-isBackgroundShape"] = false;
+                            updateNavObj(tempObj); 
+              
+                            setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-isBackgroundShape": false});  
+                            
+                          }}></input><label onClick={()=>{    
+                            let tempObj = currentProjectNav;
+                            tempObj["shopPage-listItem-isBackgroundShape"] = false;
+                            updateNavObj(tempObj); 
+              
+                            setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-isBackgroundShape": false});  
+                            
+                          }}>{basePictureText} </label>
+                            {
+                            <>
+                                <select onChange={(event)=>{
+                                }}>                    
+                                    <option key="shop-list-item-bgp" value="">-- {selectResourceText} --</option>
+                          
+                                </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
+                        </>}
+
+
+                </div>
 
                 <label>Individual Item Width </label>
                 <input
