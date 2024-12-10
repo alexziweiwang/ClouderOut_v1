@@ -397,3 +397,10 @@
 
 - 2024-Dec-09: Consider player inventory design (per project)
 - 2024-Dec-09: Consider and design shop-player data-record strategy
+- 2024-Dec-09: Design chapter-lock mechanism
+
+
+
+
+
+
