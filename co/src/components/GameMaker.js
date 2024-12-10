@@ -1163,21 +1163,22 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   function passInShopItemInfo() {
     //TODO emu-shop-items
+
     let shopArr = [
       {productName: "product1",
        productPrice: 30,
        acquired: false,
-       acquiredTimeStamp: "",
+       acquiredTimeStamp: "timestamp1",
       },
       {productName: "product2",
        productPrice: 50,
        acquired: true,
-       acquiredTimeStamp: "",
+       acquiredTimeStamp: "timestamp2",
       },
       {productName: "product3",
        productPrice: 10,
        acquired: false,
-       acquiredTimeStamp: "",
+       acquiredTimeStamp: "timestamp3",
       },
     ]
 

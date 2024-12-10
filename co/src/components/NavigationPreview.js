@@ -39,6 +39,8 @@ export default function NavigationPreview ({
     
     const [renderCounter, setRenderCounter] = useState(0);
 
+    const [shopStock, setShopStock] = useState([]);
+
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
@@ -146,7 +148,13 @@ export default function NavigationPreview ({
         setLanguageCodeTextOption(UILang);
 
 
+        let shopItems = fetchShopItemInfo();
+        if (shopItems.length !== shopStock.length) {
+            setShopStock(shopItems);
+                //   console.log("shop-items = ", shopItems);
 
+        }
+       
 
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
@@ -1332,9 +1340,34 @@ export default function NavigationPreview ({
 
             <br></br>        
             this is Shop Page
-            <br></br>
+            <br></br>   
+                {shopStock.map((item, index) => {
+
+// "shopPage-isBackgroundShape": false,
+// "shopPage-bgShadeName": "rgb(222, 222, 235)",
+// "shopPage-bgPicName": "",
+// "shopPage-listItem-width": 90,
+// "shopPage-listItem-height": 30,
+// "shopPage-listItem-gap": 5,
+// "shopPage-listItem-cornerRadius": 0,
 
 
+                    return (<div>
+                        <div
+                            style={{
+                                "width": `${navObj["shopPage-listItem-width"]}px`,
+                                "height": `${navObj["shopPage-listItem-height"]}px`,
+                                "borderRadius": `${navObj["shopPage-listItem-cornerRadius"]}px`,
+                            }}
+                        >
+                        {item["productName"]}, {item["productPrice"]}, 
+                        {item["acquired"]},  {item["acquiredTimeStamp"]}
+                        </div>
+
+                    </div>);
+
+
+                })}
 
 
 
