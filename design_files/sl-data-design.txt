@@ -1,0 +1,7 @@
+
+each sl-slot:
+  creation timestamp [key?]
++ customized title
++ game progress (chapter + node-type + node + in-node-status(piece, etc.))
++ game data status object
++ backpack status object
