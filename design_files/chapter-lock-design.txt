@@ -1,0 +1,13 @@
+chapter lock
+
+* for non-sl system only?
+in the story-page layout, check if chapters were "unlocked", show the buttons according to "availability";
+at the end of a chapter, unlock the chapter-lock of next chapter?
+** other conditions to unlock a chapter?
+- inventory item
+- time-based
+- game-data based?
+
+
+hold a chapter-visit-counter (first-time or later), to make sure no "repeat game-data change" happens
+    where?
