@@ -146,7 +146,7 @@ export default function PieceSetter({
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [selectEditTextContent, setSelectEditTextContent] = useState(true);
+    const [selectEditTextContent, setSelectEditTextContent] = useState(allPieceData[pieceNum-1]["content"] === "" ? false : true);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
@@ -253,6 +253,10 @@ export default function PieceSetter({
             let receivedPieceNum = getCurrentPieceNum();
             setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
             setLookingPieceNumber(receivedPieceNum+1);
+        } else {
+            let boolVal = allPiece[pieceNum-1]["content"] == "";
+                                                console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
+            setSelectEditTextContent(!boolVal);
         }
 
 
@@ -266,7 +270,6 @@ export default function PieceSetter({
         
    
 
-        //TODO2 current: gameDataList, future: fetch updated game-data inside this component?
     });
 
     async function fetchGameDataListFromCloud() {
