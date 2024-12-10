@@ -395,4 +395,4 @@
 
 - 2024-Dec-06: Consider setting's 3-set data storing strategy
 
-
+- 2024-Dec-09: Consider player inventory design (per project)
