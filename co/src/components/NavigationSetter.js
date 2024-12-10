@@ -327,6 +327,7 @@ export default function NavigationSetter({initialNavObj,
     const [qWindowConfirmBtnText, setQwindowConfirmBtnText] = useState(initialNavObj["outWindow-Btn-confirmingText"]);
     const [qWindowCancelBtnText, setQwindowCancelBtnText] = useState(initialNavObj["outWindow-Btn-cancellingText"]);
 
+    const [progressWithSLinput, setProgressWithSLinput] = useState(initialNavObj["isWithSL"]);
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
@@ -974,40 +975,39 @@ export default function NavigationSetter({initialNavObj,
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
-              <input type="radio" checked={!currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
-                   let tempObj = currentProjectNav;
-                   tempObj["isWithSL"] = false;
-                   updateNavObj(tempObj);  
-
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
+              <input type="radio" checked={!progressWithSLinput} value={progressWithSLinput} 
+                onChange={()=>{
+                  setProgressWithSLinput(false)
                    }}></input>
                <label onClick={()=>{                   
-                   let tempObj = currentProjectNav;
-                   tempObj["isWithSL"] = false;
-                   updateNavObj(tempObj);  
-
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": false});
+                      setProgressWithSLinput(false)
                    }}>Without SaveLoad System</label>
 
               <br></br>
 
 
-               <input type="radio" checked={currentProjectNav["isWithSL"]} value={currentProjectNav["isWithSL"]} onChange={()=>{
-                   let tempObj = currentProjectNav;
-                   tempObj["isWithSL"] = true;
-                   updateNavObj(tempObj);
-
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
-
+               <input type="radio" checked={progressWithSLinput} value={progressWithSLinput} 
+                onChange={()=>{
+                  setProgressWithSLinput(true);
                    }}></input>
                <label onClick={()=>{
-                   let tempObj = currentProjectNav;
-                   tempObj["isWithSL"] = true;
-                   updateNavObj(tempObj);       
-                   
-                   setCurrentProjectNav({...currentProjectNav, "isWithSL": true});
+                  setProgressWithSLinput(true);
             }}>SaveLoad System</label>    
-                 {currentProjectNav["isWithSL"] && <>
+
+            <br></br>
+            <button
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["isWithSL"] = progressWithSLinput;
+                updateNavObj(tempObj);       
+                
+                setCurrentProjectNav({...currentProjectNav, "isWithSL": progressWithSLinput});
+              }}
+            >{updateText}</button>
+            <br></br><br></br>
+
+
+            {currentProjectNav["isWithSL"] && <>
      
               <div className="indentOne">
    
@@ -1046,13 +1046,13 @@ export default function NavigationSetter({initialNavObj,
                         <br></br><input type="radio"
                           value={currentProjectNav["saveloadPage-isBackgroundShape"]}
                           checked={!currentProjectNav["saveloadPage-isBackgroundShape"]}
-                          onChange={(event)=>{
+                          onChange={()=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-isBackgroundShape"] = false;
                             updateNavObj(tempObj);       
                             
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-isBackgroundShape": false});   
-                        }}></input><label onClick={(event)=>{
+                        }}></input><label onClick={()=>{
                             let tempObj = currentProjectNav;
                             tempObj["saveloadPage-isBackgroundShape"] = false;
                             updateNavObj(tempObj);       
