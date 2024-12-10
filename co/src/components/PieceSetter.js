@@ -146,7 +146,7 @@ export default function PieceSetter({
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [selectEditTextContent, setSelectEditTextContent] = useState(allPieceData[pieceNum-1]["content"] === "" ? false : true);
+    const [userSelectedTextContentToEdit, setUserSelectedTextContentToEdit] = useState(allPieceData[pieceNum-1]["content"] === "" ? false : true);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
@@ -256,7 +256,9 @@ export default function PieceSetter({
         } else {
             let boolVal = allPiece[pieceNum-1]["content"] == "";
                                                 console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
-            setSelectEditTextContent(!boolVal);
+            setUserSelectedTextContentToEdit(!boolVal);
+            setStndButtonDataTable(pieceAllDataLocal[pieceNum-1]["stnd_btn_arr"]);
+
         }
 
 
@@ -698,13 +700,13 @@ export default function PieceSetter({
 
 
             <input type="radio"
-                value={selectEditTextContent}
-                checked={selectEditTextContent}
+                value={userSelectedTextContentToEdit}
+                checked={userSelectedTextContentToEdit}
                 onChange={()=>{
-                    if (!selectEditTextContent === true) {
+                    if (!userSelectedTextContentToEdit === true) {
                         let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
                         if (response === true) {
-                            setSelectEditTextContent(true);
+                            setUserSelectedTextContentToEdit(true);
                             setTextContentInfoAdd(true);
                             setClickableAdd(false); 
                             handleStndBtnReset();
@@ -714,10 +716,10 @@ export default function PieceSetter({
                 }}
             ></input><label className="textNoSelect"
                 onClick={()=>{
-                    if (!selectEditTextContent === true) {
+                    if (!userSelectedTextContentToEdit === true) {
                         let response = window.confirm("Are you sure to switch to Text Content? (The settings for Clickables / Buttons will reset.)")
                         if (response === true) {
-                            setSelectEditTextContent(true);
+                            setUserSelectedTextContentToEdit(true);
                             setTextContentInfoAdd(true);
                             setClickableAdd(false); 
                             handleStndBtnReset();
@@ -731,13 +733,13 @@ export default function PieceSetter({
 
 
             <input type="radio"
-                value={selectEditTextContent}
-                checked={!selectEditTextContent}
+                value={userSelectedTextContentToEdit}
+                checked={!userSelectedTextContentToEdit}
                 onChange={()=>{
-                    if (selectEditTextContent === true) {
+                    if (userSelectedTextContentToEdit === true) {
                       //  let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
                       //  if (response === true) {
-                            setSelectEditTextContent(false);
+                            setUserSelectedTextContentToEdit(false);
                             setTextContentInfoAdd(false);
                             setClickableAdd(true);
                             handleTextContentReset();
@@ -748,10 +750,10 @@ export default function PieceSetter({
                 }}
             ></input><label className="textNoSelect"
                 onClick={()=>{
-                    if (!selectEditTextContent === false) {
+                    if (!userSelectedTextContentToEdit === false) {
                        // let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
                       //  if (response === true) {
-                            setSelectEditTextContent(false);
+                            setUserSelectedTextContentToEdit(false);
                             setTextContentInfoAdd(false);
                             setClickableAdd(true);
                             handleTextContentReset();
@@ -770,23 +772,23 @@ export default function PieceSetter({
 
             <br></br>
             <br></br>
-            {(textContentInfoAdd && selectEditTextContent) && <>
+            {(textContentInfoAdd && userSelectedTextContentToEdit) && <>
             <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText}  ︽</button>
             <br></br>
             </>
             }
             
-            {(!textContentInfoAdd && selectEditTextContent) && <>
+            {(!textContentInfoAdd && userSelectedTextContentToEdit) && <>
             <button className="collapseToggle" onClick={toggleContentInfoOption}>{textContentSettingText}  ︾
             </button>
             <br></br>
             </>}
 
-            {(!selectEditTextContent) && 
+            {(!userSelectedTextContentToEdit) && 
             <><button className="collapseToggleGrey">{textContentSettingText} - </button>
             <br></br></>}
 
-            {(textContentInfoAdd && selectEditTextContent) && 
+            {(textContentInfoAdd && userSelectedTextContentToEdit) && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText} </button>
                     
@@ -833,26 +835,28 @@ export default function PieceSetter({
             }
 
 
-            {(clickableAdd && !selectEditTextContent) && 
+            {(clickableAdd && !userSelectedTextContentToEdit) && 
             <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText}  ︽</button>
             <br></br>
             </>}
-            {(!clickableAdd && !selectEditTextContent) && 
+            {(!clickableAdd && !userSelectedTextContentToEdit) && 
             <><button className="collapseToggle" onClick={toggleclickableAddOption}>{clkbSettingText}  ︾</button>
             <br></br>
             </>}
 
 
-            {(selectEditTextContent) &&
+            {(userSelectedTextContentToEdit) &&
             <><button className="collapseToggleGrey">{clkbSettingText}  - </button>
             <br></br>
             </>}
 
-            {(clickableAdd && !selectEditTextContent) && 
+            {(clickableAdd && !userSelectedTextContentToEdit) && 
                 <div className="optionAreaSelected2">
            
                 <button className="buttonRight" onClick={() =>{
                     console.log("TODO reset...");
+                    //TODO
+                    
                     }}> {resetText} </button>
 
                     <div><label>Standard Button/Option Group</label>
