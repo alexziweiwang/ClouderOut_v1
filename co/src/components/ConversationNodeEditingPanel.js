@@ -289,6 +289,12 @@ export default function ConversationNodeEditingPanel() {
             goToProjectManagingPanel();
         }
 
+
+        window.onbeforeunload = () => {
+            return "show message";
+        }
+
+
         if (firstTimeEnter === true) {
             initializeUILang();
 
@@ -321,9 +327,13 @@ export default function ConversationNodeEditingPanel() {
 
 
     function goToGameMaker() {
-        let stateObj = {selected_project_name: state.projectName, username: state.userName};
-        navigate('/editorcontainer', { replace: true, state: stateObj });
 
+        let resp = window.confirm("Are you sure you saved all the changes?");
+
+        if (resp) {
+            let stateObj = {selected_project_name: state.projectName, username: state.userName};
+            navigate('/editorcontainer', { replace: true, state: stateObj });
+        }
 
     }
 

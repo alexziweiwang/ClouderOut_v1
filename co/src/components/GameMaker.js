@@ -669,6 +669,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
 
+    window.onbeforeunload = () => {
+      return "show message";
+    }
+
     if (firstTimeEnter === true) {
 
 
@@ -725,7 +729,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   function goToProjectManagingPanel() {
-    navigate('/projectmanagingpanel', { replace: true });
+    let resp = window.confirm("Are you sure you saved all the changes?");
+    if (resp) {
+      navigate('/projectmanagingpanel', { replace: true });
+    }
   }
 
 
