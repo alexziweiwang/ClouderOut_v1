@@ -1351,8 +1351,8 @@ export default function NavigationPreview ({
 // "shopPage-listItem-gap": 5,
 // "shopPage-listItem-cornerRadius": 0,
 
-
-                    return (<div>
+                    let keyStr = "shopItem - " + index;
+                    return (<div key={keyStr}>
                         <div
                             style={{
                                 "width": `${navObj["shopPage-listItem-width"]}px`,

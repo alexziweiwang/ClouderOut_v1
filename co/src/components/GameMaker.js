@@ -337,7 +337,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "screenSize": "16:9(horizonal)",
     "defaultCornerRadius": 0,
     
-    "isWithSL": true,
+    "isWithSL": false,
     "fontFamilyForAll": "serif",
 
     "mainPage-story": true,
@@ -502,6 +502,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-isBackgroundShape": false,
     "shopPage-bgShadeName": "rgb(222, 222, 235)",
     "shopPage-bgPicName": "",
+    "shopPage-listItem-isBackgroundShape": false,
+    "shopPage-listItem-bgShadeName": "rgb(222, 222, 235)",
+    "shopPage-listItem-bgPicName": "",
     "shopPage-listItem-width": 90,
     "shopPage-listItem-height": 30,
     "shopPage-listItem-gap": 5,
@@ -794,6 +797,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function updateCurrProjectNavObj(obj) {
     setCurrentProjectNav(obj);
+    updateRenderCounter();
   }
 
   function passInNavObj() {

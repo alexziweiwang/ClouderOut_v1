@@ -26,14 +26,6 @@ export default function Modal_EmuManager({
 //4.Save/Load slot (emu)
 
 
-    // let modalStyleName = "modalBackboard";
-
-    // if (isDisplay === true) {
-    //     modalStyleName = "displayBlock modalBackboard";
-    // } else {
-    //     modalStyleName = "displayNone modalBackboard";
-    // }
-
     let modalStyleName = "displayBlock modalBackboard"; //TODO temp, fixing
 
 
@@ -1048,6 +1040,15 @@ return (<div className={modalStyleName}>
                 {focusingPanelName === "4ess" && <div>
                 {/* "4.Emu SL slots" */}
 4
+
+                
+{/* Note: each sl-slot:
+  creation timestamp [key?]
++ customized title
++ game progress (chapter + node-type + node + in-node-status(piece, etc.))
++ game data status object
++ backpack status object */}
+
                 </div>}
 
 </>}
