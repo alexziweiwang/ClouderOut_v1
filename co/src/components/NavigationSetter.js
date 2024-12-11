@@ -5226,6 +5226,7 @@ export default function NavigationSetter({initialNavObj,
                 <br></br>
                 <label>List Group X</label>
                 <input type="range"
+                  min="0" max={screenWidth} step="1"
                   value={currentProjectNav["shopPage-listItem-groupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -5237,6 +5238,7 @@ export default function NavigationSetter({initialNavObj,
                 
                 ></input>
                 <input
+                  min="0" max={screenWidth} step="1"
                   value={currentProjectNav["shopPage-listItem-groupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -5251,6 +5253,7 @@ export default function NavigationSetter({initialNavObj,
 
                 <label>List Group Y</label>
                 <input type="range"
+                  min="0" max={screenHeight} step="1"
                   value={currentProjectNav["shopPage-listItem-groupY"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -5262,6 +5265,7 @@ export default function NavigationSetter({initialNavObj,
                 
                 ></input>
                 <input
+                  min="0" max={screenHeight} step="1"
                   value={currentProjectNav["shopPage-listItem-groupY"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;

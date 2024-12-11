@@ -1346,13 +1346,26 @@ export default function NavigationPreview ({
             this is Shop Page
             <br></br>   
 
-            <div
+            <div style={{
+                    "border": "1px dotted grey",
+                    "overflow": "scroll",
+
+                    "width": `${screenWidth * 0.75}px`,
+                    "height": `${screenHeight * 0.6}px`,
+                    "left": `${navObj[["shopPage-listItem-groupX"]]}px`,
+                    "top": `${navObj[["shopPage-listItem-groupY"]]}px`,
+                    "padding": "20px",
+            }}>
+
+
+                {/* list-item-group */}
+                <div
                 style={{
                     "position": "absolute",
                     "left": `${navObj[["shopPage-listItem-groupX"]]}px`,
                     "top": `${navObj[["shopPage-listItem-groupY"]]}px`,
-                    "display": "flex"
 
+                    "display": "flex",
                 }}
             >
                 {shopStock.map((item, index) => {
@@ -1395,7 +1408,7 @@ export default function NavigationPreview ({
                 })}
 
             </div>
-
+            </div>
 
             </div>
         
