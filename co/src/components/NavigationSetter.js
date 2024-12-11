@@ -5050,17 +5050,9 @@ export default function NavigationSetter({initialNavObj,
            <br></br>
            <label>Product Item List</label><br></br>
            <div className="indentOne">
-                      {/* "shopPage-listItem-groupX"
-                      "shopPage-listItem-groupY" */}
+        
 
-                <label>List Group X</label>
-                <input style="range"></input>
-                <input></input>
-                <br></br>
-                
-                <label>List Group Y</label>
-                <input style="range"></input>
-                <input></input>
+       
 
                 <br></br>
                 <label>Individual Item Shape</label>
@@ -5179,8 +5171,34 @@ export default function NavigationSetter({initialNavObj,
                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-height": event.target.value});  
                  }}                  
                 ></input>
-                <br></br>       
+                <br></br>  
 
+                    <br></br>
+                <label>Item Corner Radius </label>
+                <input type="range"
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["shopPage-listItem-cornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-cornerRadius"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
+                  }}                 
+                ></input>
+                <input
+                  min="0" max="50" step="1"
+                  value={currentProjectNav["shopPage-listItem-cornerRadius"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-cornerRadius"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
+                  }} 
+                ></input>     
+
+                <br></br>
                 <label>Individual Item Gap </label>
                 <input type="range"
                  min="1" max="300" step="1"
@@ -5206,28 +5224,53 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
 
                 <br></br>
-                <label>Item Corner Radius </label>
+                <label>List Group X</label>
                 <input type="range"
-                  min="0" max="50" step="1"
-                  value={currentProjectNav["shopPage-listItem-cornerRadius"]}
+                  value={currentProjectNav["shopPage-listItem-groupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
-                    tempObj["shopPage-listItem-cornerRadius"] = event.target.value;
+                    tempObj["shopPage-listItem-groupX"] = event.target.value;
                     updateNavObj(tempObj); 
       
-                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
-                  }}                 
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-groupX": event.target.value});  
+                  }}
+                
                 ></input>
                 <input
-                  min="0" max="50" step="1"
-                  value={currentProjectNav["shopPage-listItem-cornerRadius"]}
+                  value={currentProjectNav["shopPage-listItem-groupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
-                    tempObj["shopPage-listItem-cornerRadius"] = event.target.value;
+                    tempObj["shopPage-listItem-groupX"] = event.target.value;
                     updateNavObj(tempObj); 
       
-                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
-                  }} 
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-groupX": event.target.value});  
+                    
+                  }}
+                ></input>
+                <br></br>
+
+                <label>List Group Y</label>
+                <input type="range"
+                  value={currentProjectNav["shopPage-listItem-groupY"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-groupY"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-groupY": event.target.value});  
+                  }}
+                
+                ></input>
+                <input
+                  value={currentProjectNav["shopPage-listItem-groupY"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["shopPage-listItem-groupY"] = event.target.value;
+                    updateNavObj(tempObj); 
+      
+                    setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-groupY": event.target.value});  
+                    
+                  }}
                 ></input>
 
            </div>

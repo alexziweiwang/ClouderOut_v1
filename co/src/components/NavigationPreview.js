@@ -1318,9 +1318,10 @@ export default function NavigationPreview ({
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
             "backgroundColor": "rgb(222, 222, 235)",
-            "borderRadius": "0px",
+            "borderRadius": "0px"
         }}
         >
+            
         <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -1329,6 +1330,8 @@ export default function NavigationPreview ({
                 "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+
+                
                 
 
                 "position": "relative", 
@@ -1342,6 +1345,16 @@ export default function NavigationPreview ({
             <br></br>        
             this is Shop Page
             <br></br>   
+
+            <div
+                style={{
+                    "position": "absolute",
+                    "left": `${navObj[["shopPage-listItem-groupX"]]}px`,
+                    "top": `${navObj[["shopPage-listItem-groupY"]]}px`,
+                    "display": "flex"
+
+                }}
+            >
                 {shopStock.map((item, index) => {
 
 // "shopPage-isBackgroundShape": false,
@@ -1381,10 +1394,15 @@ export default function NavigationPreview ({
 
                 })}
 
-
+            </div>
 
 
             </div>
+        
+        
+        
+        
+        
         </div>
         }
 
