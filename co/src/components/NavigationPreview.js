@@ -1333,6 +1333,7 @@ export default function NavigationPreview ({
 
                 "position": "relative", 
                 "overflow": "scroll",
+                "display": "flex",
                 
                 }}>
 
@@ -1351,6 +1352,10 @@ export default function NavigationPreview ({
 // "shopPage-listItem-gap": 5,
 // "shopPage-listItem-cornerRadius": 0,
 
+
+// "shopPage-listItem-isBackgroundShape": false,
+// "shopPage-listItem-bgShadeName": "rgb(222, 222, 235)",
+// "shopPage-listItem-bgPicName": "",
                     let keyStr = "shopItem - " + index;
                     return (<div key={keyStr}>
                         <div
@@ -1358,6 +1363,13 @@ export default function NavigationPreview ({
                                 "width": `${navObj["shopPage-listItem-width"]}px`,
                                 "height": `${navObj["shopPage-listItem-height"]}px`,
                                 "borderRadius": `${navObj["shopPage-listItem-cornerRadius"]}px`,
+                                "backgroundColor":  navObj["shopPage-listItem-isBackgroundShape"] === true ? `${navObj[ "shopPage-listItem-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                                "backgroundImage": navObj["shopPage-listItem-isBackgroundShape"] === false 
+                                    ? `url('${visualMap[navObj["shopPage-listItem-bgPicName"]]}')` : "",
+                                "marginRight": `${navObj["shopPage-listItem-gap"]}px`,
+                                "marginBottom": `${navObj["shopPage-listItem-gap"]}px`,
+
+
                             }}
                         >
                         {item["productName"]}, {item["productPrice"]}, 

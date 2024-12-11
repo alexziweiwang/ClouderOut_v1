@@ -508,6 +508,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-listItem-width": 90,
     "shopPage-listItem-height": 30,
     "shopPage-listItem-gap": 5,
+    "shopPage-listItem-groupX": 200,
+    "shopPage-listItem-groupY": 30,
     "shopPage-listItem-cornerRadius": 0,
     "shopPage-bConfWindow-width": 150,
     "shopPage-bConfWindow-height": 90,

@@ -5050,6 +5050,19 @@ export default function NavigationSetter({initialNavObj,
            <br></br>
            <label>Product Item List</label><br></br>
            <div className="indentOne">
+                      {/* "shopPage-listItem-groupX"
+                      "shopPage-listItem-groupY" */}
+
+                <label>List Group X</label>
+                <input style="range"></input>
+                <input></input>
+                <br></br>
+                
+                <label>List Group Y</label>
+                <input style="range"></input>
+                <input></input>
+
+                <br></br>
                 <label>Individual Item Shape</label>
                 <div className="indentOne">
 
@@ -5170,7 +5183,7 @@ export default function NavigationSetter({initialNavObj,
 
                 <label>Individual Item Gap </label>
                 <input type="range"
-                 min="1" max="20" step="1"
+                 min="1" max="300" step="1"
                  value={currentProjectNav["shopPage-listItem-gap"]}
                  onChange={(event)=>{
                    let tempObj = currentProjectNav;
