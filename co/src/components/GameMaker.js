@@ -516,6 +516,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-bConfWindow-textColor": "#000000",
     "shopPage-bConfWindow-bgColor": "pink",
     "shopPage-bConfWindow-cornerRadius": 0,
+    "shopPage-bConfWindow-confirmText": "Confirm",    
+    "shopPage-bConfWindow-cancelText": "Cancel",    
 
 
 

@@ -331,6 +331,10 @@ export default function NavigationSetter({initialNavObj,
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
+    const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-bConfWindow-confirmText"]);
+    const [shopPageCancelInput, setShopPageCancelInput] = useState(initialNavObj["shopPage-bConfWindow-cancelText"]);
+
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -5372,7 +5376,7 @@ export default function NavigationSetter({initialNavObj,
                   }} 
              ></input>
              <input
-                   min="0" max="50" step="1"
+                  min="0" max="50" step="1"
                   value={currentProjectNav["shopPage-bConfWindow-cornerRadius"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -5383,6 +5387,45 @@ export default function NavigationSetter({initialNavObj,
                   }} 
              ></input>
 
+             <br></br>
+             <label>Confirming Text Display</label>
+
+             <input      
+              value={shopPageConfirmInput}
+              onChange={(event)=>{
+                setShopPageConfirmInput(event.target.value);
+              }}
+             ></input>
+             <button
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-confirmText"] = shopPageConfirmInput;
+                updateNavObj(tempObj); 
+  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-confirmText": shopPageConfirmInput});  
+              }} 
+             >{updateText}</button>
+
+
+             <br></br>
+             <label
+             
+             >Cancelling Text Display</label>
+             <input
+              value={shopPageCancelInput}
+              onChange={(event)=>{
+                setShopPageCancelInput(event.target.value);
+              }}
+             ></input>             
+             <button
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-cancelText"] = shopPageCancelInput;
+                updateNavObj(tempObj); 
+  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-cancelText": shopPageCancelInput});  
+              }}              
+             >{updateText}</button>      
 
            </div>
 
