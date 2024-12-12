@@ -5388,7 +5388,7 @@ export default function NavigationSetter({initialNavObj,
              ></input>
 
              <br></br>
-             <label>Confirming Text Display</label>
+             <label>Confirming Text Display </label>
 
              <input      
               value={shopPageConfirmInput}
@@ -5410,7 +5410,7 @@ export default function NavigationSetter({initialNavObj,
              <br></br>
              <label
              
-             >Cancelling Text Display</label>
+             >Cancelling Text Display </label>
              <input
               value={shopPageCancelInput}
               onChange={(event)=>{

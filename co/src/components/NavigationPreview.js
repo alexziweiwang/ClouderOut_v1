@@ -1370,19 +1370,10 @@ export default function NavigationPreview ({
             >
                 {shopStock.map((item, index) => {
 
-// "shopPage-isBackgroundShape": false,
-// "shopPage-bgShadeName": "rgb(222, 222, 235)",
-// "shopPage-bgPicName": "",
-// "shopPage-listItem-width": 90,
-// "shopPage-listItem-height": 30,
-// "shopPage-listItem-gap": 5,
-// "shopPage-listItem-cornerRadius": 0,
-
-
-// "shopPage-listItem-isBackgroundShape": false,
-// "shopPage-listItem-bgShadeName": "rgb(222, 222, 235)",
-// "shopPage-listItem-bgPicName": "",
                     let keyStr = "shopItem - " + index;
+                    let confirmId = keyStr + "confirm";
+                    let cancelId = keyStr + "cancel";
+
                     return (<div key={keyStr}>
                         <div
                             style={{
@@ -1399,7 +1390,53 @@ export default function NavigationPreview ({
                             }}
                         >
                         {item["productName"]}, {item["productPrice"]}, 
-                        {item["acquired"]},  {item["acquiredTimeStamp"]}
+                        {item["acquired"]},  {item["acquiredTimeStamp"]},
+                        <br></br>
+TODO30
+                                <div
+                                    style={{
+                                        "backgroundColor": "grey",
+
+                                    }}
+                                    id={confirmId}
+                                    onMouseDown={
+                                        ()=>{
+                                            document.getElementById(confirmId).style.filter = "brightness(120%)";
+                                         }
+                                    }
+                                    onMouseUp={
+                                        ()=>{
+                                            document.getElementById(confirmId).style.filter = "brightness(100%)";
+
+                                            //TODO
+
+
+                                        }
+                                    }
+                                >{navObj["shopPage-bConfWindow-confirmText"]}</div>
+                                
+                                <div
+                                    style={{
+                                        "backgroundColor": "grey",
+                                        
+                                    }}
+
+                                    id={cancelId}
+                                    onMouseDown={
+                                        ()=>{
+                                            document.getElementById(cancelId).style.filter = "brightness(120%)";
+                                         }
+                                    }
+                                    onMouseUp={
+                                        ()=>{
+                                            document.getElementById(cancelId).style.filter = "brightness(100%)";
+
+                                            //TODO
+                                            
+
+                                        }
+                                    }
+                                >{navObj["shopPage-bConfWindow-cancelText"]}</div>
                         </div>
 
                     </div>);
