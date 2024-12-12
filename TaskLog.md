@@ -399,7 +399,7 @@
 - 2024-Dec-09: Consider and design shop-player data-record strategy
 - 2024-Dec-09: Design chapter-lock mechanism
 
-
+- 2024-Dec-11: Design shop-item viewing&buying UI flow
 
 
 
