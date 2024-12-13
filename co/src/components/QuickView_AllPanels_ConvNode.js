@@ -193,41 +193,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         setInitGdtRecord(tempObj);
     }
 
- //   function reset_GameDataTracker() { //TODO: remove unusued later
-        // let gDataDesignMap = gameDataDesignMap;
-        // let trackerMap = {};
-        // {Object.keys(gDataDesignMap).map((currKey) => {
-        //     let name = gDataDesignMap[currKey]["name"];
-        //     let defaultVal = gDataDesignMap[currKey]["default_value"];
-        //     let dataType = gDataDesignMap[currKey]["data_type"];
-
-        //     let obj = {
-        //         "name": name,
-        //         "default_value": defaultVal,
-        //         "data_type": dataType,
-        //         "current_value": defaultVal
-        //     }
-        //     let keyStr = currKey;
-        //     trackerMap[keyStr] = obj;
-        // })}
-        
-        // setGameDataTracker(trackerMap);   //TODO: remove unusued later
-        // let mapTemp = {};
-        // {Object.keys(gameDataTracker).map((currKey) => {
-        //     let item = gameDataTracker[currKey];
-        //     let itemName = item["name"];
-        //     let newItem = {};
-    
-        //     newItem["name"] = itemName;
-        //     newItem["current_value"] = item["default_value"];
-        //     newItem["default_value"] = item["default_value"];
-        //     newItem["data_type"] = item["data_type"];
-            
-        //     mapTemp[itemName] = newItem;
-        // })} 
-        // setGameDataTracker(mapTemp);
-
-   // } //-- reset_GameDataTracker() -- //TODO: remove unusued later
 
 
     function updateCharPicArr() {
@@ -280,77 +245,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     function passInIsGameScreenClicked() {
         return clickOnGameScreen;
     }
-/*
-    function triggerToDirectNextPiece() {
- 
 
-            if (textStillTyping === true) {
-                // notify to finished immediately
-                if (autoMode === false) {
-                    setImmediateFinishSignal(true);
-                } else { // in auto-mode
-                    if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] 
-                        !== undefined) { //also when textStillTyping is false        
-                        setCurrPieceNum(currPieceNum+1);
-                        setImmediateFinishSignal(false);
-                    } 
-                }
-            } else if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] 
-                    !== undefined) { //also when textStillTyping is false
-    
-                setCurrPieceNum(currPieceNum+1);
-                setImmediateFinishSignal(false);
-            } 
-        
-    }
-
-    function passInCurrentPieceNum() {
-        return currPieceNum;
-    }
-
-    function passInDirectNextPieceBool() {
-        return directNextPieceBool;
-    }
-*/ //TODO: remove unusued later
-
-
-    // function resetViewingPiece() { //TODO: remove unusued later
-    //     //                                 console.log("---------");
-    //     //                                 console.log("before resetting = ", gameDataTracker);
-
-    //     setGameDataTracker(initGdtRecord); //TODO20
-    //     //                                 console.log("initial-gdt = ", initialEmuGameDataTracker);
-    //                                        console.log("initial-gdt2 = ", initGdtRecord);
-    //     //                                 console.log("---------");
-        
-    //                                        console.log("initialPieceNum = ", initialPieceNum);
-
-        
-    //     setCurrPieceNum(initialPieceNum); //TODO reset to given first-piece later
-    //     setResetSignal(true);
-    //     setClickOnGameScreen(false);
-
-    // }//TODO: remove unusued later
-
-    // function notifyFinished() {
-    //     setTextStillTyping(false);
-    // } 
-
-    // function notifyNotYet() {
-    //     setTextStillTyping(true);
-    // }
-
-    // function passInImmedaiteFinishSignal() {
-    //     return immediateFinishSignal;
-    // }
-
-    // function triggerAutoMode(val) {
-    //     setAutoMode(val);
-    // }
-
-    // function passInAutoModeStatus() {
-    //     return autoMode;
-    // }
 
     function changeGameDataTracker(ds, name, value) {
         let gmdtObj = ds;

@@ -9,7 +9,7 @@ export default function Modal_EmuManager({
     isDisplay,
     handleEmCancel,
     getUILanguage,
-    update1Gdt, update2Epp, update3Epa, update4Ess,
+    update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
     isForGameMaker,
     username,projName,
 
@@ -115,6 +115,7 @@ export default function Modal_EmuManager({
     const [epp2, setEpp2] = useState({});
     const [epa3, setEpa3] = useState({});
     const [ess4, setEss4] = useState({});
+    const [shp5, setShp5] = useState({});
 
     const [gdt1Dup, setGdt1Dup] = useState({});
     const [epp2Dup, setEpp2Dup] = useState({});
@@ -142,7 +143,8 @@ export default function Modal_EmuManager({
         "1gdt": "1.Game Data to Test",
         "2epp": "2.Emu Player Profile",
         "3epa": "3.Emu Player Account",
-        "4ess": "4.Emu SL slots"
+        "4ess": "4.Emu SL slots",
+        "5shp": "5.Emu Shop Product Items",
     }
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -329,6 +331,15 @@ export default function Modal_EmuManager({
 
                                             console.log("... ess4 prep: ", tempObj4); //TODO test
         setEss4(tempObj4);
+    }
+
+    function prepare5Shp() {
+        //"5shp"
+        let tempObj5 = {};
+        // VM func for shop-product-items
+
+
+        setShp5(tempObj5);
     }
 
 

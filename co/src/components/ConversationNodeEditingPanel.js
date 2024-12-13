@@ -556,7 +556,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
 
-    function getUserConfigFromEmuManager1Gdt(data1) {
+    function getUserConfigFromEmuManager1Gdt(data1) {  //recreate emu data object
         //update data1 to be the new Game-Data-Tracker
 
                                                 console.log("conv-node-editor, getUserConfigFromEmuManager1Gdt-func, from emu-manger, \ngdt = hp_001 current value is \n", 
@@ -594,7 +594,7 @@ export default function ConversationNodeEditingPanel() {
         setTestPlayerGameDataDup(tempObjDup);
     }
 
-    function resetPlayerProfileDataDup() {
+    function resetPlayerProfileDataDup() { //recreate emu data object
         let tempObjDup1 = {};
         let tempObjDup2 = {};
         {Object.keys(testPlayerGameData).map((currKey) => {
@@ -629,16 +629,19 @@ export default function ConversationNodeEditingPanel() {
     
     function getUserConfigFromEmuManager2Epp(data2) {
         //update data2 to be the new Emu-Player-Profile
+        //TODO  //recreate emu data object
         setTestPlayerProfile(data2);
     }
     
     function getUserConfigFromEmuManager3Epa(data3) {
         //update data3 to be the new Emu Player Account
+        //TODO  //recreate emu data object
         setTestPlayerAccount(data3);
     }
 
     function getUserConfigFromEmuManager4Ess(data4) {
         //TODO update data4 to be the new Emu SL slots
+         //TODO  //recreate emu data object
     }
 
 

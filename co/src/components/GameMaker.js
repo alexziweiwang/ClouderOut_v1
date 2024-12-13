@@ -589,11 +589,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
   const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
-
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
-
   const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                               //TODO important for holder-in-practice
-
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
       "playername": "playerA",
       "itemStatus": [{}, {}, {}]
@@ -1152,23 +1149,38 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   function getUserConfigFromEmuManager1Gdt(data1) {
     //update data1 to be the new Game-Data-Tracker
+    //TODO  //recreate emu data object
     setTestPlayerGameData(data1);
   }
 
   function getUserConfigFromEmuManager2Epp(data2) {
     //update data2 to be the new Emu-Player-Profile
+    //TODO  //recreate emu data object
+
     setTestPlayerProfile(data2);
   }
 
   function getUserConfigFromEmuManager3Epa(data3) {
     //update data3 to be the new Emu Player Account
+    //TODO  //recreate emu data object
+
     setTestPlayerAccount(data3);
   }
 
   function getUserConfigFromEmuManager4Ess(data4) {
     //TODO update data4 to be the new Emu SL slots
+    //TODO  //recreate emu data object
+    
     //TODO temp: not using
   }
+
+  function getUserConfigFromEmuManager5Shp(data5) {
+    //TODO update data5 to be emu-shop-product-list data
+    //TODO  //recreate emu data object
+    
+  }  
+
+
 
   function openEmuManager() {
       setDisplayEmBool(true);
