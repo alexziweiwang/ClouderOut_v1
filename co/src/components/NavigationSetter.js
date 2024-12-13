@@ -331,9 +331,9 @@ export default function NavigationSetter({initialNavObj,
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
-    const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-bConfWindow-confirmText"]);
+    const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-listItem-buyText"]);
     const [shopPageCancelInput, setShopPageCancelInput] = useState(initialNavObj["shopPage-bConfWindow-cancelText"]);
-    const [shopPageInfoInput, setShopPageInfoInput] = useState(initialNavObj["shopPage-bConfWindow-infoText"]);
+    const [shopPageInfoInput, setShopPageInfoInput] = useState(initialNavObj["shopPage-listItem-infoText"]);
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -5400,10 +5400,10 @@ export default function NavigationSetter({initialNavObj,
              <button
               onClick={()=>{
                 let tempObj = currentProjectNav;
-                tempObj["shopPage-bConfWindow-confirmText"] = shopPageConfirmInput;
+                tempObj["shopPage-listItem-buyText"] = shopPageConfirmInput;
                 updateNavObj(tempObj); 
   
-                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-confirmText": shopPageConfirmInput});  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-buyText": shopPageConfirmInput});  
               }} 
              >{updateText}</button>
 
@@ -5437,10 +5437,10 @@ export default function NavigationSetter({initialNavObj,
              <button
               onClick={()=>{
                 let tempObj = currentProjectNav;
-                tempObj["shopPage-bConfWindow-infoText"] = shopPageInfoInput;
+                tempObj["shopPage-listItem-infoText"] = shopPageInfoInput;
                 updateNavObj(tempObj); 
   
-                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-infoText": shopPageInfoInput});  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-infoText": shopPageInfoInput});  
               }}              
              >{updateText}</button>  
 

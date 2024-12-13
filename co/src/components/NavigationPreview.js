@@ -40,6 +40,9 @@ export default function NavigationPreview ({
     const [renderCounter, setRenderCounter] = useState(0);
 
     const [shopStock, setShopStock] = useState([]);
+    const [shopWindowOpen, setShopWindowOpen] = useState(false);
+    const [buyingItemObj, setBuyingItemObj] = useState({});
+
 
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
@@ -1322,7 +1325,8 @@ export default function NavigationPreview ({
         }}
         >
             
-        <div style={{"position": "relative",                 
+        {!shopWindowOpen &&
+            <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 
@@ -1330,9 +1334,6 @@ export default function NavigationPreview ({
                 "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
-
-                
-                
 
                 "position": "relative", 
                 "overflow": "scroll",
@@ -1346,6 +1347,7 @@ export default function NavigationPreview ({
             this is Shop Page
             <br></br>   
 
+            {/* product-area */}
             <div style={{
                     "border": "1px dotted grey",
                     "overflow": "scroll",
@@ -1372,7 +1374,7 @@ export default function NavigationPreview ({
 
                     let keyStr = "shopItem - " + index;
                     let confirmId = keyStr + "confirm";
-                    let cancelId = keyStr + "cancel";
+                    let infoId = keyStr + "info";
 
                     return (<div key={keyStr}>
                         <div
@@ -1392,7 +1394,7 @@ export default function NavigationPreview ({
                         {item["productName"]}, {item["productPrice"]}, 
                         {item["acquired"]},  {item["acquiredTimeStamp"]},
                         <br></br>
-TODO30
+
                                 <div
                                     style={{
                                         "backgroundColor": "grey",
@@ -1411,10 +1413,16 @@ TODO30
 
                                             //TODO
 
-
                                         }
                                     }
-                                >{navObj["shopPage-bConfWindow-confirmText"]}</div>
+                                    onClick={()=>{
+      
+                                        setShopWindowOpen(true);
+                                        setBuyingItemObj(shopStock[index]);
+
+                                                            console.log("attempting to buy ...", shopStock[index]);
+                                    }}
+                                >{navObj["shopPage-listItem-buyText"]}</div>
                                 
                                 <div
                                     style={{
@@ -1422,22 +1430,21 @@ TODO30
                                         "cursor": "pointer",
                                     }}
 
-                                    id={cancelId}
+                                    id={infoId}
                                     onMouseDown={
                                         ()=>{
-                                            document.getElementById(cancelId).style.filter = "brightness(120%)";
+                                            document.getElementById(infoId).style.filter = "brightness(120%)";
                                          }
                                     }
                                     onMouseUp={
                                         ()=>{
-                                            document.getElementById(cancelId).style.filter = "brightness(100%)";
+                                            document.getElementById(infoId).style.filter = "brightness(100%)";
 
                                             //TODO
                                             
-
                                         }
                                     }
-                                >{navObj["shopPage-bConfWindow-cancelText"]}</div>
+                                >{navObj["shopPage-listItem-infoText"]}</div>
                         </div>
 
                     </div>);
@@ -1445,17 +1452,71 @@ TODO30
 
                 })}
 
+
+
             </div>
             </div>
 
             </div>
-        
-        
-        
-        
-        
-        </div>
         }
+
+
+        {shopWindowOpen && 
+            <div style={{"position": "relative",                 
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            
+            "backgroundColor":  navObj["shopPage-isBackgroundShape"] === true ? `${navObj[ "shopPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+            "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
+                ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
+            "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+
+            "position": "relative", 
+            "overflow": "scroll",
+            "display": "flex",
+            
+            }}>
+
+            
+                ...???
+
+
+                <div>
+
+
+                <div    
+                        id="shopWindowCancelBtn"
+                        style={{
+                                        "backgroundColor": "grey",
+                                        "cursor": "pointer",
+                        }}
+
+                   
+                        onMouseDown={
+                            ()=>{
+                                document.getElementById("shopWindowCancelBtn").style.filter = "brightness(120%)";
+                            }
+                        }
+                        onMouseUp={
+                            ()=>{
+                                document.getElementById("shopWindowCancelBtn").style.filter = "brightness(100%)";
+
+                                //TODO
+                                            
+                            }
+                        }
+                >{navObj["shopPage-listItem-cancelText"]}</div>
+                        
+                </div>
+            
+            
+            
+            </div>}
+        
+        
+        
+        
+        </div>}
 
 
         {page === "During Game" && <div style={{"position": "absolute"}}><br></br><br></br><br></br>(During Game)</div>}
