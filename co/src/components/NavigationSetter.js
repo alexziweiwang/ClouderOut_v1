@@ -17,10 +17,8 @@ export default function NavigationSetter({initialNavObj,
   getUILanguage,
 
 }) {
-  //TODO1
 
-
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -5052,13 +5050,9 @@ export default function NavigationSetter({initialNavObj,
                   </div>
        
 
-           TODO shop page content (in separate editor?)
            <br></br>
            <label>Product Item List</label><br></br>
            <div className="indentOne">
-        
-
-       
 
                 <br></br>
                 <label>Individual Item Shape</label>

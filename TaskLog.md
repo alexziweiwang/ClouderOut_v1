@@ -401,6 +401,6 @@
 
 - 2024-Dec-11: Design shop-item viewing&buying UI flow
 
-
+- 2024-Dec-12: Design shop-list-area dynamic containing strategy
 
 
