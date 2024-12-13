@@ -1468,67 +1468,75 @@ export default function NavigationPreview ({
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
             
-            // "backgroundColor":  navObj["shopPage-isBackgroundShape"] === true ? `${navObj[ "shopPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-            // "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
-            //     ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
-            // "backgroundSize": `${screenWidth}px ${screenHeight}px`,
-            
-            "backgroundColor":  "orange", 
+            "backgroundColor":  "rgb(210, 210, 210)",  
+            "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+      
 
-
-
+            "borderRadius": "0px",
             "position": "relative", 
             "overflow": "scroll",
             "display": "flex",
             
             }}>
 
-            
-                {buyingItemObj !== "-" && 
-                <div>
-   
-                    {buyingItemObj["productName"]},<br></br>
-                    {buyingItemObj["productPrice"]},<br></br>
-                    {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
-                    {buyingItemObj["acquiredTimeStamp"]},<br></br>
-                    
-
-                </div>
-                }
-
-                {/* cancel button start */}
-                <div    
-                        id="shopWindowCancelBtn"
-                        style={{
-                            "backgroundColor": "grey",
-                            "cursor": "pointer",
-
-                            "left": "30%",
-                            "top": "30%",
-                            "position": "absolute",
-                        }}
-
-                   
-                        onMouseDown={
-                            ()=>{
-                                document.getElementById("shopWindowCancelBtn").style.filter = "brightness(120%)";
-                            }
-                        }
-                        onMouseUp={
-                            ()=>{
-                                document.getElementById("shopWindowCancelBtn").style.filter = "brightness(100%)";
-
-                                //TODO
-                                setShopWindowOpen(false);
-                                setBuyingItemObj("-");      
-                            }
-                        }
-                >{navObj["shopPage-bConfWindow-cancelText"]}
-                </div>
-                {/* cancel button ends */}
+                <div
+                    style={{
+                        "backgroundColor": navObj["shopPage-bConfWindow-bgColor"],
+                        "width": `${navObj["shopPage-bConfWindow-width"]}px`, 
+                        "height": `${navObj["shopPage-bConfWindow-height"]}px`, 
+                    }}
+                >
+                    {buyingItemObj !== "-" && 
+                    <div>
+    
+                        {buyingItemObj["productName"]},<br></br>
+                        {buyingItemObj["productPrice"]},<br></br>
+                        {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
+                        {buyingItemObj["acquiredTimeStamp"]},<br></br>
                         
-             
-            
+
+                    </div>
+                    }
+
+                    {/* cancel button start */}
+                    <div    
+                            id="shopWindowCancelBtn"
+                            style={{
+                                "backgroundColor": "grey",
+                                "cursor": "pointer",
+
+                                "left": "30%",
+                                "top": "30%",
+                                "position": "absolute",
+                            }}
+
+                    
+                            onMouseDown={
+                                ()=>{
+                                    document.getElementById("shopWindowCancelBtn").style.filter = "brightness(120%)";
+                                }
+                            }
+                            onMouseUp={
+                                ()=>{
+                                    document.getElementById("shopWindowCancelBtn").style.filter = "brightness(100%)";
+
+                                    //TODO
+                                    setShopWindowOpen(false);
+                                    setBuyingItemObj("-");      
+                                }
+                            }
+                    >{navObj["shopPage-bConfWindow-cancelText"]}
+                    </div>
+                    {/* cancel button ends */}
+                            
+
+                    <div>
+
+
+                        {navObj["shopPage-bConfWindow-confirmText"]}
+                    </div>
+                
+                </div>
             
             
             </div>}

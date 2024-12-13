@@ -331,9 +331,10 @@ export default function NavigationSetter({initialNavObj,
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
 
-    const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-listItem-buyText"]);
+    const [shopPageBuyInput, setShopPageBuyInput] = useState(initialNavObj["shopPage-listItem-buyText"]);
     const [shopPageCancelInput, setShopPageCancelInput] = useState(initialNavObj["shopPage-bConfWindow-cancelText"]);
     const [shopPageInfoInput, setShopPageInfoInput] = useState(initialNavObj["shopPage-listItem-infoText"]);
+    const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-bConfWindow-confirmText"]);
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -5389,21 +5390,21 @@ export default function NavigationSetter({initialNavObj,
              ></input>
 
              <br></br>
-             <label>Confirming Text Display </label>
+             <label>Buy Text Display </label>
 
              <input      
-              value={shopPageConfirmInput}
+              value={shopPageBuyInput}
               onChange={(event)=>{
-                setShopPageConfirmInput(event.target.value);
+                setShopPageBuyInput(event.target.value);
               }}
              ></input>
              <button
               onClick={()=>{
                 let tempObj = currentProjectNav;
-                tempObj["shopPage-listItem-buyText"] = shopPageConfirmInput;
+                tempObj["shopPage-listItem-buyText"] = shopPageBuyInput;
                 updateNavObj(tempObj); 
   
-                setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-buyText": shopPageConfirmInput});  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-buyText": shopPageBuyInput});  
               }} 
              >{updateText}</button>
 
@@ -5443,6 +5444,26 @@ export default function NavigationSetter({initialNavObj,
                 setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-infoText": shopPageInfoInput});  
               }}              
              >{updateText}</button>  
+
+
+             <br></br>
+             <label>Confirm Text Display </label>
+             <input
+              value={shopPageConfirmInput}
+              onChange={(event)=>{
+                setShopPageConfirmInput(event.target.value);
+              }}
+             ></input>             
+             <button
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-confirmText"] = shopPageConfirmInput;
+                updateNavObj(tempObj); 
+  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-confirmText": shopPageConfirmInput});  
+              }}              
+             >{updateText}</button>  
+
 
 
            </div>
