@@ -1326,8 +1326,8 @@ export default function NavigationPreview ({
         >
             
         {/* shopping-product page starts*/}
-        {!shopWindowOpen &&
-            <div style={{"position": "relative",                 
+            {/* {!shopWindowOpen && */}
+            {<div style={{                 
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 
@@ -1336,10 +1336,10 @@ export default function NavigationPreview ({
                     ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
 
-                "position": "relative", 
+                "position": "absolute", 
                 "overflow": "scroll",
                 "display": "flex",
-                
+
                 }}>
 
         
@@ -1388,7 +1388,6 @@ export default function NavigationPreview ({
                                     ? `url('${visualMap[navObj["shopPage-listItem-bgPicName"]]}')` : "",
                                 "marginRight": `${navObj["shopPage-listItem-gap"]}px`,
                                 "marginBottom": `${navObj["shopPage-listItem-gap"]}px`,
-
 
                             }}
                         >
@@ -1468,7 +1467,7 @@ export default function NavigationPreview ({
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
             
-            "backgroundColor":  "rgb(210, 210, 210)",  
+            "backgroundColor":  "rgba(78, 85, 96, 0.858)",  
             "backgroundSize": `${screenWidth}px ${screenHeight}px`,
       
 
@@ -1484,6 +1483,9 @@ export default function NavigationPreview ({
                         "backgroundColor": navObj["shopPage-bConfWindow-bgColor"],
                         "width": `${navObj["shopPage-bConfWindow-width"]}px`, 
                         "height": `${navObj["shopPage-bConfWindow-height"]}px`, 
+
+                        "color": `${navObj["shopPage-bConfWindow-textColor"]}`,
+
                     }}
                 >
                     {buyingItemObj !== "-" && 
@@ -1531,7 +1533,6 @@ export default function NavigationPreview ({
                             
 
                     <div>
-
 
                         {navObj["shopPage-bConfWindow-confirmText"]}
                     </div>

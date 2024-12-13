@@ -502,6 +502,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-isBackgroundShape": false,
     "shopPage-bgShadeName": "rgb(222, 222, 235)",
     "shopPage-bgPicName": "",
+    
     "shopPage-listItem-isBackgroundShape": false,
     "shopPage-listItem-bgShadeName": "rgb(222, 222, 235)",
     "shopPage-listItem-bgPicName": "",
@@ -1181,16 +1182,19 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
        productPrice: 30,
        acquired: false,
        acquiredTimeStamp: "timestamp1",
+       productInfo: "product1-description",
       },
       {productName: "product2",
        productPrice: 50,
        acquired: true,
        acquiredTimeStamp: "timestamp2",
+       productInfo: "product2-description",
       },
       {productName: "product3",
        productPrice: 10,
        acquired: false,
        acquiredTimeStamp: "timestamp3",
+       productInfo: "product3-description",
       },
     ]
 
