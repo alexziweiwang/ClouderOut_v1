@@ -41,7 +41,10 @@ export default function NavigationPreview ({
 
     const [shopStock, setShopStock] = useState([]);
     const [shopWindowOpen, setShopWindowOpen] = useState(false);
+    const [shopProductInfoWindowOpen, setShopProductInfoWindowOpen] = useState(false);
+
     const [buyingItemObj, setBuyingItemObj] = useState("-");
+    const [viewingShopItemObj, setViewingShopItemObj] = useState("-");
 
 
 
@@ -1409,15 +1412,10 @@ export default function NavigationPreview ({
                                     onMouseUp={
                                         ()=>{
                                             document.getElementById(confirmId).style.filter = "brightness(100%)";
-
-                                            //TODO
-
-                                        }
-                                    }
-                                    onClick={()=>{
+                                
       
-                                        setShopWindowOpen(true);
-                                        setBuyingItemObj(shopStock[index]);
+                                            setShopWindowOpen(true);
+                                            setBuyingItemObj(shopStock[index]);
 
                                                             console.log("attempting to buy ...", shopStock[index]);
                                     }}
@@ -1440,6 +1438,8 @@ export default function NavigationPreview ({
                                             document.getElementById(infoId).style.filter = "brightness(100%)";
 
                                             //TODO
+                                            setShopProductInfoWindowOpen(true);
+                                            setViewingShopItemObj(shopStock[index]);
                                             
                                         }
                                     }
@@ -1479,6 +1479,7 @@ export default function NavigationPreview ({
 
             }}>
 
+                {/* actual buying-window area */}
                 <div
                     style={{
                         "backgroundColor": navObj["shopPage-bConfWindow-bgColor"],
@@ -1486,11 +1487,10 @@ export default function NavigationPreview ({
                         "height": `${navObj["shopPage-bConfWindow-height"]}px`, 
 
                         "color": `${navObj["shopPage-bConfWindow-textColor"]}`,
-                        "display": "flex",
+                        
                         "left": "10%",
                         "top": "10%",
-                        "justifyContent": "center",
-
+                
                     }}
                 >
                     {buyingItemObj !== "-" && 
@@ -1503,12 +1503,18 @@ export default function NavigationPreview ({
                         </div>
 
 
-                             {/* cancel button starts */}
+                    </div>
+                    }
+
+                    
+                    {/* cancel button starts */}
                     <div    
                             id="shopWindowCancelBtn"
                             style={{
+                                "position": "relative",
                                 "backgroundColor": "grey",
                                 "cursor": "pointer",
+                                "bottom": "0%",
 
                             }}
 
@@ -1533,12 +1539,14 @@ export default function NavigationPreview ({
                             
 
 
-                    </div>
-                    }
-
-               
-
-                    <div>
+                    <div
+                        style={{
+                            "position": "relative",
+                            "backgroundColor": "grey",
+                            "cursor": "pointer",
+                            "bottom": "0%",
+                        }}
+                    >
 
                         {navObj["shopPage-bConfWindow-confirmText"]}
                     </div>
@@ -1550,7 +1558,69 @@ export default function NavigationPreview ({
         {/* shopping buying confirm page ends*/}
 
         
-        
+        {/* shop-product-info window starts */}
+        {shopProductInfoWindowOpen && 
+            <div style={{"position": "relative",                 
+                    "width": `${screenWidth}px`, 
+                    "height": `${screenHeight}px`,
+                    
+                    "backgroundColor":  "rgba(78, 85, 96, 0.858)",  
+                    "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+            
+
+                    "borderRadius": "0px",
+                    "position": "relative", 
+                    "overflow": "scroll",
+                    "display": "flex",
+                    "justifyContent": "center",
+                    "alignItems": "center",
+            }}> 
+                <div>
+
+                    <div>
+                        {viewingShopItemObj["productName"]}
+                        <br></br>
+                        {viewingShopItemObj["productInfo"]}
+
+             
+
+                    </div>
+
+
+                    {/* info-window-close starts */}
+                    <div    
+                            id="shopInfoWindowCloseButton"
+                            style={{
+                                "position": "relative",
+                                "backgroundColor": "grey",
+                                "cursor": "pointer",
+                                "bottom": "0%",
+
+                            }}
+
+                    
+                            onMouseDown={
+                                ()=>{
+                                    document.getElementById("shopInfoWindowCloseButton").style.filter = "brightness(120%)";
+                                }
+                            }
+                            onMouseUp={
+                                ()=>{
+                                    document.getElementById("shopInfoWindowCloseButton").style.filter = "brightness(100%)";
+
+                                    setShopProductInfoWindowOpen(false);
+                                }
+                            }
+                    >{navObj["shopPage-bConfWindow-cancelText"]}
+                    </div>
+                    {/* cancel button ends */}
+                            
+
+                </div>
+        </div>
+        }
+        {/* shop-product-info window ends */}
+
         
         </div>}
 
@@ -1683,6 +1753,7 @@ export default function NavigationPreview ({
                 {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false && page !== "Shop Page") 
                     || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)
                     || (page === "Shop Page" && !shopWindowOpen) 
+                    || (page === "Shop Page" && !shopProductInfoWindowOpen)
                     ) 
                 && <div 
                     className="navigationButton"

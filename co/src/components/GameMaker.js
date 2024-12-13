@@ -515,8 +515,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-listItem-buyText": "Buy",   
     "shopPage-listItem-infoText": "Info",
 
-    "shopPage-bConfWindow-width": 150,
-    "shopPage-bConfWindow-height": 90,
+    "shopPage-bConfWindow-width": 500,
+    "shopPage-bConfWindow-height": 200,
     "shopPage-bConfWindow-textColor": "#000000",
     "shopPage-bConfWindow-bgColor": "pink",
     "shopPage-bConfWindow-cornerRadius": 0,
