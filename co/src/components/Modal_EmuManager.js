@@ -1064,3 +1064,12 @@ return (<div className={modalStyleName}>
 </div>
 </div>);
 }
+
+
+// new naming of ds… 
+// (1)during-game-parameters (2)player per game info (3)account data (4)SL-data
+// 		for each SL-data, it contains one entire set of "during-game-parameters” and other aspects… 
+// 		for "player per game info”: player profile, player game-setting, player-inventory 
+// 		for “during-game-parameters”, contains backpack
+//      account data should be managed in separate website (instead of inside any game-project-playing)
+// (5)shop data... (seaprate, with higher level sec+auth), but data fetched and integrated into shop-page
