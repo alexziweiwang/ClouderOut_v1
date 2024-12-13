@@ -333,6 +333,7 @@ export default function NavigationSetter({initialNavObj,
 
     const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-bConfWindow-confirmText"]);
     const [shopPageCancelInput, setShopPageCancelInput] = useState(initialNavObj["shopPage-bConfWindow-cancelText"]);
+    const [shopPageInfoInput, setShopPageInfoInput] = useState(initialNavObj["shopPage-bConfWindow-infoText"]);
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -5408,9 +5409,7 @@ export default function NavigationSetter({initialNavObj,
 
 
              <br></br>
-             <label
-             
-             >Cancelling Text Display </label>
+             <label>Cancelling Text Display </label>
              <input
               value={shopPageCancelInput}
               onChange={(event)=>{
@@ -5425,7 +5424,26 @@ export default function NavigationSetter({initialNavObj,
   
                 setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-cancelText": shopPageCancelInput});  
               }}              
-             >{updateText}</button>      
+             >{updateText}</button>  
+
+             <br></br>  
+             <label>Info Text Display </label>
+             <input
+              value={shopPageInfoInput}
+              onChange={(event)=>{
+                setShopPageInfoInput(event.target.value);
+              }}
+             ></input>             
+             <button
+              onClick={()=>{
+                let tempObj = currentProjectNav;
+                tempObj["shopPage-bConfWindow-infoText"] = shopPageInfoInput;
+                updateNavObj(tempObj); 
+  
+                setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-infoText": shopPageInfoInput});  
+              }}              
+             >{updateText}</button>  
+
 
            </div>
 

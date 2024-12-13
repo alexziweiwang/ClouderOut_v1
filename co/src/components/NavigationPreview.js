@@ -1396,6 +1396,7 @@ TODO30
                                 <div
                                     style={{
                                         "backgroundColor": "grey",
+                                        "cursor": "pointer",
 
                                     }}
                                     id={confirmId}
@@ -1418,7 +1419,7 @@ TODO30
                                 <div
                                     style={{
                                         "backgroundColor": "grey",
-                                        
+                                        "cursor": "pointer",
                                     }}
 
                                     id={cancelId}

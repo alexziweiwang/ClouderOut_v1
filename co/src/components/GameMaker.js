@@ -518,6 +518,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     "shopPage-bConfWindow-cornerRadius": 0,
     "shopPage-bConfWindow-confirmText": "Confirm",    
     "shopPage-bConfWindow-cancelText": "Cancel",    
+    "shopPage-bConfWindow-infoText": "Info",    
 
 
 
