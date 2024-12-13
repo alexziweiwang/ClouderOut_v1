@@ -83,6 +83,29 @@ export async function fetchEmuData4Ess({projectName, currUser}) {
     return obj;
 }
 
+export async function fetchEmuData5Shp({projectName, currUser}) {
+    let obj = {};
+    if (projectName === "" || projectName === undefined) {
+        return;
+    }
+    const projectRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectSnap = await getDoc(projectRef);
+
+    if (!projectSnap.exists()) {
+        return;
+    }
+
+    obj = projectSnap.data().emu4sets.shp5; 
+    
+
+                                    console.log("model - fetchEmuData4Ess: ", obj);
+
+    return obj;
+}
+
+
+
+
 export async function updateAllSets({projectName, currUser, dataObj}) {
                                                         //console.log("model-updateAllSets-func:", dataObj); //TODO test
 

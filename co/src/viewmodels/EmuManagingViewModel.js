@@ -1,4 +1,4 @@
-import {fetchEmuData1Gdt, fetchEmuData2Epp, fetchEmuData3Epa, fetchEmuData4Ess, updateAllSets } from '../models/EmuManagingModel';
+import {fetchEmuData1Gdt, fetchEmuData2Epp, fetchEmuData3Epa, fetchEmuData4Ess, fetchEmuData5Shp, updateAllSets } from '../models/EmuManagingModel';
 
 
 export async function fetchEmuData1GdtVM({projectName, currUser}) {
@@ -19,6 +19,12 @@ export async function fetchEmuData3EpaVM({projectName, currUser}) {
 
 export async function fetchEmuData4EssVM({projectName, currUser}) {
     let res = await fetchEmuData4Ess({projectName, currUser});
+    return res;
+
+}
+
+export async function fetchEmuData5ShpVM({projectName, currUser}) {
+    let res = await fetchEmuData5Shp({projectName, currUser});
     return res;
 
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
-import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
+import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
@@ -333,9 +333,14 @@ export default function Modal_EmuManager({
         setEss4(tempObj4);
     }
 
-    function prepare5Shp() {
+    async function prepare5Shp() {
         //"5shp"
-        let tempObj5 = {};
+        let tempObj5 = await fetchEmuData5ShpVM({projectName: projName, currUser: username});
+        let objSize = Object.keys(tempObj5).length;
+        if (objSize === 0 || tempObj5 === undefined || tempObj5 === null) {
+            return;
+        }
+                                            console.log("... shp5 prep: ", tempObj5);
         // VM func for shop-product-items
 
 
