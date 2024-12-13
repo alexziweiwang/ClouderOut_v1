@@ -1350,13 +1350,14 @@ export default function NavigationPreview ({
 
             {/* product-area */}
             <div style={{
-                    "border": "1px dotted grey",
+                    "position": "absolute",
+                    "border": "1px dotted orange",
                     "overflow": "scroll",
 
-                    "width": `${screenWidth * 0.75}px`,
-                    "height": `${screenHeight * 0.6}px`,
-                    "left": `${navObj[["shopPage-listItem-groupX"]]}px`,
-                    "top": `${navObj[["shopPage-listItem-groupY"]]}px`,
+                    "width": "85%",
+                    "height": "70%",
+                    "left": "5%",
+                    "top": "5%",
                     "padding": "20px",
             }}>
 
@@ -1369,6 +1370,7 @@ export default function NavigationPreview ({
                     "top": `${navObj[["shopPage-listItem-groupY"]]}px`,
 
                     "display": "flex",
+                    
                 }}
             >
                 {shopStock.map((item, index) => {
