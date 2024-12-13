@@ -1327,7 +1327,8 @@ export default function NavigationPreview ({
             
         {/* shopping-product page starts*/}
             {/* {!shopWindowOpen && */}
-            {<div style={{                 
+            {<div style={{               
+                "position": "absolute",  
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 
@@ -1338,16 +1339,13 @@ export default function NavigationPreview ({
 
                 "position": "absolute", 
                 "overflow": "scroll",
-                "display": "flex",
 
+                "display": "flex",
+                "justifyContent": "center",
+                "alignItems": "center",
                 }}>
 
         
-
-            <br></br>        
-            this is Shop Page
-            <br></br>   
-
             {/* product-area */}
             <div style={{
                     "position": "absolute",
@@ -1356,9 +1354,6 @@ export default function NavigationPreview ({
 
                     "width": "85%",
                     "height": "70%",
-                    "left": "5%",
-                    "top": "5%",
-                    "padding": "20px",
             }}>
 
 
@@ -1370,7 +1365,6 @@ export default function NavigationPreview ({
                     "top": `${navObj[["shopPage-listItem-groupY"]]}px`,
 
                     "display": "flex",
-                    
                 }}
             >
                 {shopStock.map((item, index) => {
@@ -1390,6 +1384,9 @@ export default function NavigationPreview ({
                                     ? `url('${visualMap[navObj["shopPage-listItem-bgPicName"]]}')` : "",
                                 "marginRight": `${navObj["shopPage-listItem-gap"]}px`,
                                 "marginBottom": `${navObj["shopPage-listItem-gap"]}px`,
+
+
+                                "border": isEditing ? "1px dotted orange" : "none",
 
                             }}
                         >
@@ -1477,7 +1474,9 @@ export default function NavigationPreview ({
             "position": "relative", 
             "overflow": "scroll",
             "display": "flex",
-            
+            "justifyContent": "center",
+            "alignItems": "center",
+
             }}>
 
                 <div
@@ -1487,31 +1486,30 @@ export default function NavigationPreview ({
                         "height": `${navObj["shopPage-bConfWindow-height"]}px`, 
 
                         "color": `${navObj["shopPage-bConfWindow-textColor"]}`,
+                        "display": "flex",
+                        "left": "10%",
+                        "top": "10%",
+                        "justifyContent": "center",
 
                     }}
                 >
                     {buyingItemObj !== "-" && 
                     <div>
-    
-                        {buyingItemObj["productName"]},<br></br>
-                        {buyingItemObj["productPrice"]},<br></br>
-                        {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
-                        {buyingItemObj["acquiredTimeStamp"]},<br></br>
-                        
+                        <div>
+                                {buyingItemObj["productName"]},<br></br>
+                                {buyingItemObj["productPrice"]},<br></br>
+                                {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
+                                {buyingItemObj["acquiredTimeStamp"]},<br></br>
+                        </div>
 
-                    </div>
-                    }
 
-                    {/* cancel button start */}
+                             {/* cancel button starts */}
                     <div    
                             id="shopWindowCancelBtn"
                             style={{
                                 "backgroundColor": "grey",
                                 "cursor": "pointer",
 
-                                "left": "30%",
-                                "top": "30%",
-                                "position": "absolute",
                             }}
 
                     
@@ -1533,6 +1531,12 @@ export default function NavigationPreview ({
                     </div>
                     {/* cancel button ends */}
                             
+
+
+                    </div>
+                    }
+
+               
 
                     <div>
 
