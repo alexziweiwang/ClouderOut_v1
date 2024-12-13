@@ -41,7 +41,7 @@ export default function NavigationPreview ({
 
     const [shopStock, setShopStock] = useState([]);
     const [shopWindowOpen, setShopWindowOpen] = useState(false);
-    const [buyingItemObj, setBuyingItemObj] = useState({});
+    const [buyingItemObj, setBuyingItemObj] = useState("-");
 
 
 
@@ -1325,6 +1325,7 @@ export default function NavigationPreview ({
         }}
         >
             
+        {/* shopping-product page starts*/}
         {!shopWindowOpen &&
             <div style={{"position": "relative",                 
                 "width": `${screenWidth}px`, 
@@ -1459,17 +1460,22 @@ export default function NavigationPreview ({
 
             </div>
         }
+        {/* shopping-product page ends*/}
 
-
+        {/* shopping buying confirm page starts*/}
         {shopWindowOpen && 
             <div style={{"position": "relative",                 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
             
-            "backgroundColor":  navObj["shopPage-isBackgroundShape"] === true ? `${navObj[ "shopPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-            "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
-                ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
-            "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+            // "backgroundColor":  navObj["shopPage-isBackgroundShape"] === true ? `${navObj[ "shopPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+            // "backgroundImage": navObj["shopPage-isBackgroundShape"] === false 
+            //     ? `url('${visualMap[navObj["shopPage-bgPicName"]]}')` : "",
+            // "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+            
+            "backgroundColor":  "orange", 
+
+
 
             "position": "relative", 
             "overflow": "scroll",
@@ -1478,17 +1484,28 @@ export default function NavigationPreview ({
             }}>
 
             
-                ...???
-
-
+                {buyingItemObj !== "-" && 
                 <div>
+   
+                    {buyingItemObj["productName"]},<br></br>
+                    {buyingItemObj["productPrice"]},<br></br>
+                    {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
+                    {buyingItemObj["acquiredTimeStamp"]},<br></br>
+                    
 
+                </div>
+                }
 
+                {/* cancel button start */}
                 <div    
                         id="shopWindowCancelBtn"
                         style={{
-                                        "backgroundColor": "grey",
-                                        "cursor": "pointer",
+                            "backgroundColor": "grey",
+                            "cursor": "pointer",
+
+                            "left": "30%",
+                            "top": "30%",
+                            "position": "absolute",
                         }}
 
                    
@@ -1502,17 +1519,21 @@ export default function NavigationPreview ({
                                 document.getElementById("shopWindowCancelBtn").style.filter = "brightness(100%)";
 
                                 //TODO
-                                            
+                                setShopWindowOpen(false);
+                                setBuyingItemObj("-");      
                             }
                         }
-                >{navObj["shopPage-listItem-cancelText"]}</div>
-                        
+                >{navObj["shopPage-bConfWindow-cancelText"]}
                 </div>
+                {/* cancel button ends */}
+                        
+             
             
             
             
             </div>}
-        
+        {/* shopping buying confirm page ends*/}
+
         
         
         
@@ -1644,8 +1665,10 @@ export default function NavigationPreview ({
 
         }}>
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false) 
-                    || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)) 
+                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false && page !== "Shop Page") 
+                    || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)
+                    || (page === "Shop Page" && !shopWindowOpen) 
+                    ) 
                 && <div 
                     className="navigationButton"
                     id="backButton"
