@@ -1397,10 +1397,12 @@ export default function NavigationPreview ({
                         {item["acquired"]},  {item["acquiredTimeStamp"]},
                         <br></br>
 
+                                {/* buy-text-button */}
                                 <div
                                     style={{
                                         "backgroundColor": "grey",
                                         "cursor": "pointer",
+                                        "width": " 50%",
 
                                     }}
                                     id={confirmId}
@@ -1420,11 +1422,17 @@ export default function NavigationPreview ({
                                                             console.log("attempting to buy ...", shopStock[index]);
                                     }}
                                 >{navObj["shopPage-listItem-buyText"]}</div>
-                                
+                                {/* buy-text-button */}
+
+
+
+                                {/* info button */}
                                 <div
                                     style={{
                                         "backgroundColor": "grey",
                                         "cursor": "pointer",
+                                        "width": " 50%",
+
                                     }}
 
                                     id={infoId}
@@ -1444,6 +1452,7 @@ export default function NavigationPreview ({
                                         }
                                     }
                                 >{navObj["shopPage-listItem-infoText"]}</div>
+                                {/* info button */}
                         </div>
 
                     </div>);
@@ -1490,7 +1499,7 @@ export default function NavigationPreview ({
                         
                         "left": "10%",
                         "top": "10%",
-                
+
                     }}
                 >
                     {buyingItemObj !== "-" && 
@@ -1506,15 +1515,21 @@ export default function NavigationPreview ({
                     </div>
                     }
 
-                    
+                    <div
+                        style={{     "display": "flex",
+                        "justifyContent": "center",
+                        "alignItems": "end",}}
+                    >
                     {/* cancel button starts */}
-                    <div    
+                        <div    
                             id="shopWindowCancelBtn"
                             style={{
                                 "position": "relative",
                                 "backgroundColor": "grey",
                                 "cursor": "pointer",
                                 "bottom": "0%",
+
+                                "width": " 50%",
 
                             }}
 
@@ -1533,24 +1548,32 @@ export default function NavigationPreview ({
                                     setBuyingItemObj("-");      
                                 }
                             }
-                    >{navObj["shopPage-bConfWindow-cancelText"]}
-                    </div>
+                        >{navObj["shopPage-bConfWindow-cancelText"]}
+                        </div>
                     {/* cancel button ends */}
-                            
-
+                    </div>     
 
                     <div
-                        style={{
-                            "position": "relative",
-                            "backgroundColor": "grey",
-                            "cursor": "pointer",
-                            "bottom": "0%",
-                        }}
+                        style={{     "display": "flex",
+                        "justifyContent": "center",
+                        "alignItems": "end",}}
                     >
+                        <div
+                            style={{
+                                "position": "relative",
+                                "backgroundColor": "grey",
+                                "cursor": "pointer",
+                                "bottom": "0%",
 
-                        {navObj["shopPage-bConfWindow-confirmText"]}
-                    </div>
+                                "width": " 50%",
+
+                            }}
+                        >
+
+                            {navObj["shopPage-bConfWindow-confirmText"]}
+                        </div>
                 
+                    </div>
                 </div>
             
             
@@ -1586,35 +1609,42 @@ export default function NavigationPreview ({
 
                     </div>
 
+                    <br></br>
+                    <div
+                        style={{
+                            "display": "flex",
+                            "justifyContent": "center",
+                            "alignItems": "end"
+                        }}
+                    >
+                        {/* cancel button ends */}
+                        <div    
+                                id="shopInfoWindowCloseButton"
+                                style={{
+                                    "position": "relative",
+                                    "backgroundColor": "grey",
+                                    "cursor": "pointer",
+                                    "bottom": "0%",
+                                    "width": "30%",
+                                }}
 
-                    {/* info-window-close starts */}
-                    <div    
-                            id="shopInfoWindowCloseButton"
-                            style={{
-                                "position": "relative",
-                                "backgroundColor": "grey",
-                                "cursor": "pointer",
-                                "bottom": "0%",
-
-                            }}
-
-                    
-                            onMouseDown={
-                                ()=>{
-                                    document.getElementById("shopInfoWindowCloseButton").style.filter = "brightness(120%)";
+                        
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("shopInfoWindowCloseButton").style.filter = "brightness(120%)";
+                                    }
                                 }
-                            }
-                            onMouseUp={
-                                ()=>{
-                                    document.getElementById("shopInfoWindowCloseButton").style.filter = "brightness(100%)";
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("shopInfoWindowCloseButton").style.filter = "brightness(100%)";
 
-                                    setShopProductInfoWindowOpen(false);
+                                        setShopProductInfoWindowOpen(false);
+                                    }
                                 }
-                            }
-                    >{navObj["shopPage-bConfWindow-cancelText"]}
-                    </div>
-                    {/* cancel button ends */}
-                            
+                        >x
+                        </div>
+                        {/* cancel button ends */}
+                    </div>       
 
                 </div>
         </div>
