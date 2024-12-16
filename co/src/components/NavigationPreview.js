@@ -1752,9 +1752,10 @@ export default function NavigationPreview ({
                 {/* //TODO5 */}
                 {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false && page !== "Shop Page") 
                     || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)
-                    || (page === "Shop Page" && !shopWindowOpen) 
-                    || (page === "Shop Page" && !shopProductInfoWindowOpen)
+                    || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 
+
+
                 && <div 
                     className="navigationButton"
                     id="backButton"

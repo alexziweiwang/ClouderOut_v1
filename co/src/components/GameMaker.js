@@ -142,6 +142,7 @@ export default function GameMaker({username, projectName}) {
 
 
   const [visualList, setVisualList] = useState([]); 
+  
   async function fetchProjResourceLists() {
     if (username === "default-no-state username" || projectName === "default-no-state projectName") {
       return;
@@ -152,7 +153,13 @@ export default function GameMaker({username, projectName}) {
     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
 
                     //          console.log("game-maker, visuallist = : ", obj); //TODO
-    setVisualList(obj.visual);
+    
+    if (obj === undefined) {
+      return;
+    }
+
+
+                    setVisualList(obj.visual);
 
     return obj.visual;
   }
