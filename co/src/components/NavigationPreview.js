@@ -28,6 +28,7 @@ export default function NavigationPreview ({
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
+const tempFontSize = 12;
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState(initialUILanguage); //TODO16
 
@@ -1373,7 +1374,7 @@ export default function NavigationPreview ({
                 {shopStock.map((item, index) => {
 
                     let keyStr = "shopItem - " + index;
-                    let confirmId = keyStr + "confirm";
+                    let buyItemId = keyStr + "buying";
                     let infoId = keyStr + "info";
 
                     return (<div key={keyStr}>
@@ -1405,15 +1406,15 @@ export default function NavigationPreview ({
                                         "width": " 50%",
 
                                     }}
-                                    id={confirmId}
+                                    id={buyItemId}
                                     onMouseDown={
                                         ()=>{
-                                            document.getElementById(confirmId).style.filter = "brightness(120%)";
+                                            document.getElementById(buyItemId).style.filter = "brightness(120%)";
                                          }
                                     }
                                     onMouseUp={
                                         ()=>{
-                                            document.getElementById(confirmId).style.filter = "brightness(100%)";
+                                            document.getElementById(buyItemId).style.filter = "brightness(100%)";
                                 
       
                                             setShopWindowOpen(true);
@@ -1472,19 +1473,19 @@ export default function NavigationPreview ({
         {/* shopping buying confirm page starts*/}
         {shopWindowOpen && 
             <div style={{"position": "relative",                 
-            "width": `${screenWidth}px`, 
-            "height": `${screenHeight}px`,
-            
-            "backgroundColor":  "rgba(78, 85, 96, 0.858)",  
-            "backgroundSize": `${screenWidth}px ${screenHeight}px`,
-      
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                
+                "backgroundColor":  "rgba(78, 85, 96, 0.858)",  
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+        
 
-            "borderRadius": "0px",
-            "position": "relative", 
-            "overflow": "scroll",
-            "display": "flex",
-            "justifyContent": "center",
-            "alignItems": "center",
+                "borderRadius": "0px",
+                "position": "relative", 
+                "overflow": "scroll",
+                "display": "flex",
+                "justifyContent": "center",
+                "alignItems": "center",
 
             }}>
 
@@ -1502,22 +1503,9 @@ export default function NavigationPreview ({
 
                     }}
                 >
-                    {buyingItemObj !== "-" && 
-                    <div>
-                        <div>
-                                {buyingItemObj["productName"]},<br></br>
-                                {buyingItemObj["productPrice"]},<br></br>
-                                {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
-                                {buyingItemObj["acquiredTimeStamp"]},<br></br>
-                        </div>
-
-
-                    </div>
-                    }
-
-                    <div
+                  <div
                         style={{     "display": "flex",
-                        "justifyContent": "center",
+                        "justifyContent": "left",
                         "alignItems": "end",}}
                     >
                     {/* cancel button starts */}
@@ -1529,7 +1517,7 @@ export default function NavigationPreview ({
                                 "cursor": "pointer",
                                 "bottom": "0%",
 
-                                "width": " 50%",
+                                "width": `${navObj["shopPage-bConfWindow-cancelText"].length * tempFontSize}px `,
 
                             }}
 
@@ -1553,6 +1541,24 @@ export default function NavigationPreview ({
                     {/* cancel button ends */}
                     </div>     
 
+
+
+
+                    {buyingItemObj !== "-" && 
+                    <div>
+                        <div>
+                                {buyingItemObj["productName"]},<br></br>
+                                {buyingItemObj["productPrice"]},<br></br>
+                                {buyingItemObj["acquired"] === true ? "T" : "F"},<br></br>
+                                {buyingItemObj["acquiredTimeStamp"]},<br></br>
+                        </div>
+
+
+                    </div>
+                    }
+
+  
+
                     <div
                         style={{     "display": "flex",
                         "justifyContent": "center",
@@ -1565,7 +1571,7 @@ export default function NavigationPreview ({
                                 "cursor": "pointer",
                                 "bottom": "0%",
 
-                                "width": " 50%",
+                                "width": `${navObj["shopPage-bConfWindow-confirmText"].length * tempFontSize}px `,
 
                             }}
                         >
