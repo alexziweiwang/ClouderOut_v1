@@ -1353,7 +1353,7 @@ const tempFontSize = 12;
             {/* product-area */}
             <div style={{
                     "position": "absolute",
-                    "border": "1px dotted orange",
+                    "border": "1px dotted blue",
                     "overflow": "scroll",
 
                     "width": "85%",
@@ -1377,6 +1377,7 @@ const tempFontSize = 12;
                     let buyItemId = keyStr + "buying";
                     let infoId = keyStr + "info";
 
+                        // each product
                     return (<div key={keyStr}>
                         <div
                             style={{
@@ -1390,43 +1391,19 @@ const tempFontSize = 12;
                                 "marginBottom": `${navObj["shopPage-listItem-gap"]}px`,
 
 
-                                "border": isEditing ? "1px dotted orange" : "none",
-
+                                // "border": isEditing ? "1px dotted orange" : "none",
+                                "border": "1px dotted orange",
                             }}
                         >
-                        {item["productName"]}, {item["productPrice"]}, 
-                        {item["acquired"]},  {item["acquiredTimeStamp"]},
-                        <br></br>
-
-                                {/* buy-text-button */}
-                                <div
-                                    style={{
-                                        "backgroundColor": "grey",
-                                        "cursor": "pointer",
-                                        "width": " 50%",
-
-                                    }}
-                                    id={buyItemId}
-                                    onMouseDown={
-                                        ()=>{
-                                            document.getElementById(buyItemId).style.filter = "brightness(120%)";
-                                         }
-                                    }
-                                    onMouseUp={
-                                        ()=>{
-                                            document.getElementById(buyItemId).style.filter = "brightness(100%)";
-                                
-      
-                                            setShopWindowOpen(true);
-                                            setBuyingItemObj(shopStock[index]);
-
-                                                            console.log("attempting to buy ...", shopStock[index]);
-                                    }}
-                                >{navObj["shopPage-listItem-buyText"]}</div>
-                                {/* buy-text-button */}
 
 
-
+                        <div
+                            style={{
+                                "display": "flex",
+                                "justifyContent": "start",
+                                "alignItems": "center"
+                            }}
+                        >
                                 {/* info button */}
                                 <div
                                     style={{
@@ -1454,6 +1431,61 @@ const tempFontSize = 12;
                                     }
                                 >{navObj["shopPage-listItem-infoText"]}</div>
                                 {/* info button */}
+
+                            </div>
+
+                            {/* product name & price area */}
+                            <div>
+                                {item["productName"]} <br></br>
+                                {item["productPrice"]}
+                            </div>
+                            {/* product name & price area */}
+
+
+
+                        <br></br>
+                        <div
+                            style={{
+                                "display": "flex",
+                                "justifyContent": "center",
+                                "alignItems": "center"
+                            }}
+                        >
+                            {/* buying-button-area */}
+                                {/* buy-text-button */}
+                                {item["acquired"] === true && <div
+                                    style={{
+                                        "backgroundColor": "grey",
+                                        "cursor": "pointer",
+                                        "width": " 50%",
+
+                                    }}
+                                    id={buyItemId}
+                                    onMouseDown={
+                                        ()=>{
+                                            document.getElementById(buyItemId).style.filter = "brightness(120%)";
+                                         }
+                                    }
+                                    onMouseUp={
+                                        ()=>{
+                                            document.getElementById(buyItemId).style.filter = "brightness(100%)";
+                                
+      
+                                            setShopWindowOpen(true);
+                                            setBuyingItemObj(shopStock[index]);
+
+                                                            console.log("attempting to buy ...", shopStock[index]);
+                                    }}
+                                >{navObj["shopPage-listItem-buyText"]}</div>
+                                }
+                                {/* buy-text-button */}
+                        
+                                {item["acquired"] === false && <div>
+                                    (acquired)
+                                </div>}
+                        </div>
+
+
                         </div>
 
                     </div>);
@@ -1505,7 +1537,7 @@ const tempFontSize = 12;
                 >
                   <div
                         style={{     "display": "flex",
-                        "justifyContent": "left",
+                        "justifyContent": "right",
                         "alignItems": "end",}}
                     >
                     {/* cancel button starts */}
