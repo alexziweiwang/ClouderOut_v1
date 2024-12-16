@@ -1349,6 +1349,26 @@ const tempFontSize = 12;
                 "alignItems": "center",
                 }}>
 
+            {/* coin panel */}
+            {shopWindowOpen === false && <div
+                style={{
+                    "position": "absolute",
+                    "right": "2px",
+                    "top": "2px",
+                    "display": "flex",
+                    "justifyContent": "right",
+                    "alignItems": "center",
+
+                    "width": "200px",
+                    "border": "1px solid purple",
+                    "borderRadius": "0px",
+                }}
+            >   
+                <div>
+                    coin panel...
+                </div>
+            </div>}
+            {/* coin panel */}
         
             {/* product-area */}
             <div style={{
@@ -1359,6 +1379,7 @@ const tempFontSize = 12;
                     "width": "85%",
                     "height": "70%",
             }}>
+
 
 
                 {/* list-item-group */}
@@ -1504,7 +1525,8 @@ const tempFontSize = 12;
 
         {/* shopping buying confirm page starts*/}
         {shopWindowOpen && 
-            <div style={{"position": "relative",                 
+            <div style={{
+                "position": "relative",                 
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 
@@ -1635,6 +1657,8 @@ const tempFontSize = 12;
                     "display": "flex",
                     "justifyContent": "center",
                     "alignItems": "center",
+                    "color": "#FFFFFF",
+
             }}> 
                 <div>
 

@@ -1089,3 +1089,6 @@ return (<div className={modalStyleName}>
 // 		for “during-game-parameters”, contains backpack
 //      account data should be managed in separate website (instead of inside any game-project-playing)
 // (5)shop data... (seaprate, with higher level sec+auth), but data fetched and integrated into shop-page
+// coin-info, various financial-items info, per user(player) in per game
+//                every operations fetch from and updates to cloud db ...
+//                     log the purchases, also balance of in-game-coin, etc.
