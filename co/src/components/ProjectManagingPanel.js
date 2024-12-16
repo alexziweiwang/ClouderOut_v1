@@ -255,8 +255,9 @@ export default function ProjectManagerPanel() {
               >Revert a Deleted Project ...</label>
             </div>
 
-
-              <div className="trashedProjectArea" 
+        
+            
+              {<div className="trashedProjectArea" 
               
               
                 style={{
@@ -265,10 +266,12 @@ export default function ProjectManagerPanel() {
                     "justifyContent": "start", 
                 }}>
 
-                
+                  {trashedProjList.length == 0 && <div>
+                      <label>No deleted project.</label>
+                  </div>}                
 
-                  {trashedProjList && 
-                    <select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
+                  {trashedProjList.length > 0 && 
+                    <><select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
                       <option value="" key="">-- {trashedProjectSelectListDefaultText} --</option>
                       {
                         trashedProjList.map((item, index) => {
@@ -278,11 +281,17 @@ export default function ProjectManagerPanel() {
                         })
                       }
                     </select>
-                  }
+                  
 
-                  <button onClick={revertTrashedProject}>{revertProjectButtonText}</button>
+                  <button onClick={()=>{
+                    revertTrashedProject();
+                    
+                  }}>{revertProjectButtonText}</button></>}
+
+
                   
               </div>
+              }
         </div>
     </div>
     

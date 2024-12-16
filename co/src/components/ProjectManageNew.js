@@ -86,6 +86,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
         trashed: false,
       };
 
+      //TODO emu-data-sets
+
 
                                           console.log("Created project info: "); //TODO testing
                                           console.log(projectObj); //TODO testing
