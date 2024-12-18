@@ -403,4 +403,5 @@
 
 - 2024-Dec-12: Design shop-list-area dynamic containing strategy
 
+- 2024-Dec-17: Deisgn in-game coin system data structure
 
