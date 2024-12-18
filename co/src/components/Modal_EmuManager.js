@@ -135,6 +135,32 @@ export default function Modal_EmuManager({
 
     const [cloudUpdated, setCloudUpdated] = useState(false);
 
+    const [shopArr, setShopArr] = useState([
+        {productName: "product1",
+         productPrice: 30,
+         productInfo: "product1-description",
+        },
+        {productName: "product2",
+         productPrice: 50,
+         productInfo: "product2-description",
+        },
+        {productName: "product3",
+         productPrice: 10,
+         productInfo: "product3-description",
+        },
+        {productName: "product4",
+         productPrice: 30,
+         productInfo: "product4-description",
+        },
+        {productName: "product5",
+         productPrice: 50,
+         productInfo: "product5-description",
+        },
+        {productName: "product6",
+         productPrice: 10,
+         productInfo: "product6-description",
+        },
+      ]);
 
 //TODO20
     const [focusingPanelName, setFocusingPanelName] = useState("");
@@ -526,7 +552,7 @@ return (<div className={modalStyleName}>
                 {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
                 {/* "1.Game Data to Test" */}
                 {/* for Game-Maker and other Node-Level Editor */}
-                    <div>Game Data Value Setup for Testing</div>
+                        <br></br>
                         
                         <div 
                  
@@ -681,8 +707,7 @@ return (<div className={modalStyleName}>
 {isForGameMaker === true && <>
                 {focusingPanelName === "2epp" && <div>
                 {/* "2.Emu Player Profile" */}
-                    <div>Emu-Player Profile for Testing
-                    </div>
+                    <br></br>
                     <div
                         style={{
                             "borderRadius": "0px",
@@ -953,7 +978,7 @@ return (<div className={modalStyleName}>
                 
                 {focusingPanelName === "3epa" && <div>
                 {/* "3.Emu Player Account" */}
-                    <label>Emu-Player Account for Testing</label>
+                    <br></br>
                     <div
                         style={{
                             "borderRadius": "0px",
@@ -1072,7 +1097,7 @@ return (<div className={modalStyleName}>
 
                 {focusingPanelName === "4ess" && <div>
                 {/* "4.Emu SL slots" */}
-4
+4   SL slots settings
 
                 
 {/* Note: each sl-slot:
@@ -1088,7 +1113,49 @@ return (<div className={modalStyleName}>
 
 
                 {focusingPanelName ==="5shp" && <div>
-                    5 shop emu
+                    <div>
+                        Shop Emu Data
+                        <div  className="darkerGrey"
+                             style={{
+                                "borderRadius": "0px",
+                                "overflow": "scroll",
+                                "width": "622px",
+                                }}
+                            
+                        >
+                            <table>
+                            <thead>
+                                <tr>    
+                                    <th>Product Name</th>
+                                    <th>Product Price</th>
+                                    <th>Product Info</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                            {shopArr.map((item, index)=>{
+                                
+                                return (<tr>
+                                    <td>{item["productName"]}</td>
+                                    <td>{item["productPrice"]}</td>
+                                    <td>{item["productInfo"]}</td>
+                                </tr>)})}
+
+                            </tbody>
+
+                        </table>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        Player Purchase Emu Data
+
+                            "acquired": true/false,
+                            "acquiredTimeStamp": "timestamp1",
+                    </div>
+
+
                     
                 </div>}
 
