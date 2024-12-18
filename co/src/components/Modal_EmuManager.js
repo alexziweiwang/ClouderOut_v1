@@ -178,7 +178,7 @@ export default function Modal_EmuManager({
          acquiredTimeStamp: "timestamp2",
         },
         {productKey: "pdt3",
-         acquired: false,
+         acquired: true,
          acquiredTimeStamp: "timestamp3",
         },
         {productKey: "pdt4",
@@ -186,7 +186,7 @@ export default function Modal_EmuManager({
          acquiredTimeStamp: "timestamp4",
         },
         {productKey: "pdt5",
-         acquired: false,
+         acquired: true,
          acquiredTimeStamp: "timestamp5",
         },
         {productKey: "pdt6",
@@ -1152,7 +1152,7 @@ return (<div className={modalStyleName}>
                             style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "402px",
+                                "width": "498px",
                                 "height": "300px"
                             }}
                             
@@ -1163,16 +1163,29 @@ return (<div className={modalStyleName}>
                                     <th style={{"width": "110px"}}>Product Name</th>
                                     <th style={{"width": "70px"}}>Product Price</th>
                                     <th style={{"width": "200px"}}>Product Info</th>
+                                    <th style={{"width": "90px"}}>Test User Acquired? </th>
                                 </tr>
 
                             </thead>
                             <tbody>
                             {shopArr.map((item, index)=>{
+                                let testUserAcquired = false;
+                                let userRecordArr = userShopStatus.filter(e => item["productKey"] == e["productKey"]);
+                                if (userRecordArr.length > 0) {
+                                    if (userRecordArr[0]["acquired"] === true) {
+                                        testUserAcquired = true;
+                                    }
+                                }
+                                let testUserAcquiredStr = testUserAcquired === true ? "T" : "F";
                                 
                                 return (<tr style={{"height": "70px"}}>
                                     <td style={{"height": "auto"}}>{item["productName"]}</td>
                                     <td style={{"height": "auto"}}>{item["productPrice"]}</td>
                                     <td style={{"height": "auto"}}>{item["productInfo"]}</td>
+                                    <td>
+                                        {testUserAcquiredStr}
+                                    </td>
+
                                 </tr>)})}
 
                             </tbody>
@@ -1182,7 +1195,7 @@ return (<div className={modalStyleName}>
                         {(shopArr.length >= 4)
                             && <div style={{
                             "backgroundColor": "grey",
-                            "width": "402px",
+                            "width": "498px",
                             "height": "17px",
                             "borderRadius": "0px",
                         }}>
