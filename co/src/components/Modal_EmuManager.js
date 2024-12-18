@@ -136,30 +136,63 @@ export default function Modal_EmuManager({
     const [cloudUpdated, setCloudUpdated] = useState(false);
 
     const [shopArr, setShopArr] = useState([
-        {productName: "product1",
+        {productKey: "pdt1",
+         productName: "product1",
          productPrice: 30,
          productInfo: "product1-description",
         },
-        {productName: "product2",
+        {productKey: "pdt2",
+         productName: "product2",
          productPrice: 50,
          productInfo: "product2-description",
         },
-        {productName: "product3",
+        {productKey: "pdt3",
+         productName: "product3",
          productPrice: 10,
          productInfo: "product3-description",
         },
-        {productName: "product4",
+        {productKey: "pdt4",
+         productName: "product4",
          productPrice: 30,
          productInfo: "product4-description",
         },
-        {productName: "product5",
+        {productKey: "pdt5",
+         productName: "product5",
          productPrice: 50,
          productInfo: "product5-description",
         },
-        {productName: "product6",
+        {productKey: "pdt6",
+         productName: "product6",
          productPrice: 10,
          productInfo: "product6-description",
         },
+      ]);
+
+      const [userShopStatus, setUserShopStatus] = useState([
+        {productKey: "pdt1",
+         acquired: true,
+         acquiredTimeStamp: "timestamp1",
+        },
+        {productKey: "pdt2",
+         acquired: false,
+         acquiredTimeStamp: "timestamp2",
+        },
+        {productKey: "pdt3",
+         acquired: false,
+         acquiredTimeStamp: "timestamp3",
+        },
+        {productKey: "pdt4",
+         acquired: false,
+         acquiredTimeStamp: "timestamp4",
+        },
+        {productKey: "pdt5",
+         acquired: false,
+         acquiredTimeStamp: "timestamp5",
+        },
+        {productKey: "pdt6",
+         acquired: false,
+         acquiredTimeStamp: "timestamp6",
+        },          
       ]);
 
 //TODO20
@@ -1116,36 +1149,45 @@ return (<div className={modalStyleName}>
                     <div>
                         Shop Emu Data
                         <div  className="darkerGrey"
-                             style={{
+                            style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "622px",
-                                }}
+                                "width": "402px",
+                                "height": "300px"
+                            }}
                             
                         >
                             <table>
                             <thead>
                                 <tr>    
-                                    <th>Product Name</th>
-                                    <th>Product Price</th>
-                                    <th>Product Info</th>
+                                    <th style={{"width": "110px"}}>Product Name</th>
+                                    <th style={{"width": "70px"}}>Product Price</th>
+                                    <th style={{"width": "200px"}}>Product Info</th>
                                 </tr>
 
                             </thead>
                             <tbody>
                             {shopArr.map((item, index)=>{
                                 
-                                return (<tr>
-                                    <td>{item["productName"]}</td>
-                                    <td>{item["productPrice"]}</td>
-                                    <td>{item["productInfo"]}</td>
+                                return (<tr style={{"height": "70px"}}>
+                                    <td style={{"height": "auto"}}>{item["productName"]}</td>
+                                    <td style={{"height": "auto"}}>{item["productPrice"]}</td>
+                                    <td style={{"height": "auto"}}>{item["productInfo"]}</td>
                                 </tr>)})}
 
                             </tbody>
 
                         </table>
                         </div>
-
+                        {(shopArr.length >= 4)
+                            && <div style={{
+                            "backgroundColor": "grey",
+                            "width": "402px",
+                            "height": "17px",
+                            "borderRadius": "0px",
+                        }}>
+                        ... ...
+                        </div>}
                     </div>
 
                     <div>
