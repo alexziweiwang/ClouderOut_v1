@@ -438,7 +438,21 @@ return (<div className={modalStyleName}>
 
         <div className="modalContent">
 
-            <button className="cursor_pointer modalClose buttonRight50" 
+
+            <div
+                style={{"display": "flex", "left": "60%"}}
+            >                
+                <button
+                    className="cursor_pointer"
+                    style={{"position": "relative", "left": "30%"}}
+                    onClick={()=>{
+                        saveAllChangesToCloud(); //TODO impl later
+                    }}
+                >{saveToCloudText}</button>
+            
+
+            <button className="cursor_pointer modalClose" 
+                style={{"position": "relative", "left": "60%"}}
                 onClick={()=>{
                     setFocusingPanelName("");
                     if (cloudUpdated === false) {
@@ -452,7 +466,7 @@ return (<div className={modalStyleName}>
                     
                 }}
             >{closeText}</button>
-
+            </div>
 
 
             <div style={{
@@ -493,17 +507,20 @@ return (<div className={modalStyleName}>
                             setFocusingPanelName("4ess");
                         }}             
                     >4.Emu SL slots</button>
+                    <br></br>
+                    <button
+                        className={focusingPanelName === "5shp" ? "selectedTab" : ""}
+                        onClick={()=>{
+                            setFocusingPanelName("5shp");
+                        }}
+
+                    >
+                     5.Emy Shop Info
+                    </button>
 
 
 </div>}
 
-            <div>                
-                <button
-                    onClick={()=>{
-                        saveAllChangesToCloud(); //TODO impl later
-                    }}
-                >{saveToCloudText}</button>
-            </div>
 
 
                 {((isForGameMaker === true && focusingPanelName === "1gdt") || isForGameMaker === false) && <div>
@@ -1065,6 +1082,14 @@ return (<div className={modalStyleName}>
 + game data status object
 + backpack status object */}
 
+                </div>}
+
+
+
+
+                {focusingPanelName ==="5shp" && <div>
+                    5 shop emu
+                    
                 </div>}
 
 </>}
