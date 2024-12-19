@@ -195,7 +195,6 @@ export default function Modal_EmuManager({
         },          
       ]);
 
-    const [shopTableEditing, setShopTableEditing] = useState(false);
 
     const [editingShopEmuItemIndex, setEditingShopEmuItemIndex] = useState(-1);
     const [editingShopEmuItemName, setEditingShopEmuItemName] = useState("");
@@ -1168,7 +1167,7 @@ return (<div className={modalStyleName}>
                             style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "615px",
+                                "width": "675px",
                                 "height": "300px"
                             }}
                             
@@ -1195,51 +1194,83 @@ return (<div className={modalStyleName}>
                                 }
                                 let testUserAcquiredStr = testUserAcquired === true ? "T" : "F";
 
-//editingShopEmuItemIndex, setEditingShopEmuItemIndex
-//editingShopEmuItemName, setEditingShopEmuItemName
-//editingShopEmuItemPrice, setEditingShopEmuItemPrice
-//editingShopEmuItemInfo, setEditingShopEmuItemInfo
-//editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired
-             
                                 return (
-                                <>
-                                {!shopTableEditing && <tr style={{"height": "70px"}}>
+                                <tr style={{"height": "70px"}}>
                                     <td>{item["productKey"]}</td>
-                                    <td style={{"height": "auto"}}>{item["productName"]}</td>
-                                    <td style={{"height": "auto"}}>{item["productPrice"]}</td>
-                                    <td style={{"height": "auto"}}>{item["productInfo"]}</td>
-                                    <td>
-                                        {testUserAcquiredStr}
+                                    <td style={{"height": "auto"}}>{item["productName"]}
+                                        {editingShopEmuItemIndex === index && <input
+                                            onChange={(event)=>{
+                                                setEditingShopEmuItemName(event.target.value);
+                                            }}
+                                        ></input>}
                                     </td>
-
-                                </tr>}
-
-                                {shopTableEditing && <tr style={{"height": "70px"}}>
-                                    <td>{item["productKey"]}</td>
-                                    <td style={{"height": "auto"}}>
-                                        {item["productName"]}</td>
-                                    <td style={{"height": "auto"}}>
-                                        {item["productPrice"]}</td>
-                                    <td style={{"height": "auto"}}>
-                                        {item["productInfo"]}</td>
+                                    <td style={{"height": "auto"}}
+                                    >{item["productPrice"]}
+                                        {editingShopEmuItemIndex === index && <input
+                                            onChange={(event)=>{
+                                                setEditingShopEmuItemPrice(event.target.value);
+                                            }}
+                                        ></input>}
+                                    </td>
+                                    <td style={{"height": "auto"}}>{item["productInfo"]}
+                                        {editingShopEmuItemIndex === index && <input
+                                            onChange={(event)=>{
+                                                setEditingShopEmuItemInfo(event.target.value);
+                                            }}
+                                        ></input>}
+                                    </td>
                                     <td>
                                         {testUserAcquiredStr}
-                                    </td> 
+                                        {editingShopEmuItemIndex === index && <input
+                                            onChange={(event)=>{
+                                                setEditingShopEmuItemIsAcquired(event.target.value);
+                                            }}
+                                        ></input>}
+                                    </td>
+                                    <td>
+                                        {editingShopEmuItemIndex !== index && <button
+                                            onClick={()=>{
+                                                setEditingShopEmuItemIndex(index);
+                                            }}
+                                        >Edit</button>}
+                                        {editingShopEmuItemIndex === index && 
+                                        <>
+                                        <button
+                                            onClick={()=>{
+                                                setEditingShopEmuItemIndex(-1);
+                                            }}
+                                        >Cancel</button>
+                                        <br></br>
+                                        <button
+                                            onClick={()=>{
+                                                //TODO
 
-                                </tr>}
-                                </>
-                                
+                    //editingShopEmuItemIndex, setEditingShopEmuItemIndex
+                    //editingShopEmuItemName, setEditingShopEmuItemName
+                    //editingShopEmuItemPrice, setEditingShopEmuItemPrice
+                    //editingShopEmuItemInfo, setEditingShopEmuItemInfo
+                    //editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired
+                                                
+                                                setEditingShopEmuItemIndex(-1);
+
+                                            }}
+                                        >Update</button>
+                                        
+                                        
+                                        </>}
+                                    </td>
+                                </tr>
                                 
                                 )})}
 
                             </tbody>
-
                         </table>
+
                         </div>
                         {(shopArr.length >= 4)
                             && <div style={{
                             "backgroundColor": "grey",
-                            "width": "615px",
+                            "width": "675px",
                             "height": "17px",
                             "borderRadius": "0px",
                         }}>
@@ -1250,31 +1281,17 @@ return (<div className={modalStyleName}>
                     </div>
                     <br></br>
                     
-                    
-                    {!shopTableEditing && <>
-                    <button
-                        onClick={()=>{
-                            setShopTableEditing(true);
-                        }}
-                    >Edit</button>
-                    </>}
+           
 
 
-                    {shopTableEditing && <>
-                    <button
-                        onClick={()=>{
-                            setShopTableEditing(false);
-                        }}
-                    >Cancel</button>
-                    <br></br>
-                    <button
-                        onClick={()=>{
-                            //TODO
+                  
 
-                            setShopTableEditing(false);
-                        }}
-                    >Update</button>
-                    </>}
+//editingShopEmuItemIndex, setEditingShopEmuItemIndex
+//editingShopEmuItemName, setEditingShopEmuItemName
+//editingShopEmuItemPrice, setEditingShopEmuItemPrice
+//editingShopEmuItemInfo, setEditingShopEmuItemInfo
+//editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired
+                            
 
                 
                     
