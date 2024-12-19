@@ -1220,12 +1220,23 @@ return (<div className={modalStyleName}>
                                         ></input>}
                                     </td>
                                     <td>
-                                        {testUserAcquiredStr}
-                                        {editingShopEmuItemIndex === index && <input
+                                        {testUserAcquiredStr} <br></br>
+                                        {editingShopEmuItemIndex === index && 
+                                        <select 
                                             onChange={(event)=>{
-                                                setEditingShopEmuItemIsAcquired(event.target.value);
+                                                let val = event.target.value;
+                                                let boolVal = false;
+                                                if (val === "true") {
+                                                    boolVal = true;
+                                                }
+                                                setEditingShopEmuItemIsAcquired(boolVal);
                                             }}
-                                        ></input>}
+                                        >
+                                            <option key="shopEditItemDefaultNone" value="">--</option>
+                                            <option key="shopEditItemTrue" value="true">T</option>
+                                            <option key="shopEditItemFalse" value="false">F</option>
+
+                                        </select>}
                                     </td>
                                     <td>
                                         {editingShopEmuItemIndex !== index && <button
@@ -1244,6 +1255,17 @@ return (<div className={modalStyleName}>
                                         <button
                                             onClick={()=>{
                                                 //TODO
+                                                let tempShopArr = shopArr;
+                                                let tempUserShopStatus = userShopStatus;
+
+                                                shopArr[editingShopEmuItemIndex]["productName"] = editingShopEmuItemName;
+                                                shopArr[editingShopEmuItemIndex]["productPrice"] = editingShopEmuItemPrice;
+                                                shopArr[editingShopEmuItemIndex]["productInfo"] = editingShopEmuItemInfo;
+
+                                                tempUserShopStatus[editingShopEmuItemIndex]["acquired"] = editingShopEmuItemIsAcquired;
+
+                                                setShopArr(tempShopArr);
+                                                setUserShopStatus(tempUserShopStatus);
 
                     //editingShopEmuItemIndex, setEditingShopEmuItemIndex
                     //editingShopEmuItemName, setEditingShopEmuItemName
@@ -1278,23 +1300,7 @@ return (<div className={modalStyleName}>
                         </div>}
 
 
-                    </div>
-                    <br></br>
-                    
-           
-
-
-                  
-
-//editingShopEmuItemIndex, setEditingShopEmuItemIndex
-//editingShopEmuItemName, setEditingShopEmuItemName
-//editingShopEmuItemPrice, setEditingShopEmuItemPrice
-//editingShopEmuItemInfo, setEditingShopEmuItemInfo
-//editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired
-                            
-
-                
-                    
+                    </div>  
                 </div>}
 
 </>}
