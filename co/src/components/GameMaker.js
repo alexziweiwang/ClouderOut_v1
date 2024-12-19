@@ -1190,19 +1190,19 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     //TODO  //recreate emu data object
 
     let obj5 = data5;
+                              //console.log("game-maker recevied 5 shp = " , data5);
     if (obj5 === undefined) {
       return;
     }
 
-    let shopStock = obj5.shopStock;
-    if (shopStock === undefined) {
-      return;
-    }
+    let shopStock = obj5["shopStock"];
+    let playerPurchase = obj5["playerPurchaseStatus"];
 
-    let playerPurchase = obj5.emuPlayerShopStatusTemp;
-    if (playerPurchase === undefined) {
+    if (shopStock === undefined || playerPurchase === undefined) {
       return;
     }
+                              // console.log("game-maker recevied 5 shp - stock = " , shopStock);
+                              // console.log("game-maker recevied 5 shp - player-purchase = " , playerPurchase);
 
     setTestShopProducts(shopStock);
     setTestPlayerPurchaseStatus(playerPurchase);
@@ -1216,6 +1216,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInShopItemInfo() {
+    console.log("game-maker shop product info", testShopProducts);
     return testShopProducts;
   }
 

@@ -412,8 +412,8 @@ export default function Modal_EmuManager({
     async function prepare5Shp() {
         //"5shp"
         let tempObject5 = await fetchEmuData5ShpVM({projectName: projName, currUser: username});
-        let objSize = Object.keys(tempObject5).length;
-        if (objSize === 0 || tempObject5 === undefined || tempObject5 === null) {
+        if (tempObject5 === undefined || tempObject5 === null || Object.keys(tempObject5).length === 0) {
+
             let stockArrTemp = [
                 {productKey: "pdt1",
                 productName: "product1",
@@ -474,8 +474,8 @@ export default function Modal_EmuManager({
 
 
             tempObject5 = {
-                shopStock: stockArrTemp,
-                playerPurchaseStatus:  emuPlayerShopStatusTemp
+                "shopStock": stockArrTemp,
+                "playerPurchaseStatus":  emuPlayerShopStatusTemp
             }
 
         }
@@ -1264,7 +1264,11 @@ return (<div className={modalStyleName}>
                             <tbody>
                             {shp5["shopStock"].map((item, index)=>{
                                 let testUserAcquired = false;
-                                let userRecordArr = shp5["emuPlayerShopStatusTemp"].filter(e => item["productKey"] == e["productKey"]);
+                                if (shp5["playerPurchaseStatus"] === undefined || shp5["playerPurchaseStatus"].length === 0) {
+                                    return;
+                                }
+
+                                let userRecordArr = shp5["playerPurchaseStatus"].filter(e => item["productKey"] == e["productKey"]);
                                 if (userRecordArr.length > 0) {
                                     if (userRecordArr[0]["acquired"] === true) {
                                         testUserAcquired = true;
@@ -1328,7 +1332,7 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemPrice(shp5["shopStock"][index]["productPrice"]);
                                                 setEditingShopEmuItemInfo(shp5["shopStock"][index]["productInfo"]); 
 
-                                                setEditingShopEmuItemIsAcquired(shp5["emuPlayerShopStatusTemp"][index]["acquired"]);
+                                                setEditingShopEmuItemIsAcquired(shp5["playerPurchaseStatus"][index]["acquired"]);
 
                                                 setEditingShopEmuItemIndex(index);
                                             }}
@@ -1345,7 +1349,7 @@ return (<div className={modalStyleName}>
                                             onClick={()=>{
                                                 //TODO
                                                 let tempShopStock = shp5["shopStock"];
-                                                let tempUserShopStatus = shp5["emuPlayerShopStatusTemp"];
+                                                let tempUserShopStatus = shp5["playerPurchaseStatus"];
 
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productName"] = editingShopEmuItemName;
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productPrice"] = editingShopEmuItemPrice;
@@ -1355,7 +1359,7 @@ return (<div className={modalStyleName}>
 
                                                 setShp5({... shp5, 
                                                         "shopStock": tempShopStock, 
-                                                        "emuPlayerShopStatusTemp": tempUserShopStatus});
+                                                        "playerPurchaseStatus": tempUserShopStatus});
                                                         
 
                                                 //reset all

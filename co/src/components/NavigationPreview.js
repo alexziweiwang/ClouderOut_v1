@@ -156,11 +156,11 @@ const tempFontSize = 12;
 
 
         let shopItems = fetchShopItemInfo();
-        if (shopItems.length !== shopStock.length) {
-            setShopStock(shopItems);
-                //   console.log("shop-items = ", shopItems);
+    //     if (shopItems !== undefined && shopItems !== null && shopItems.length !== shopStock.length) {
+    //    //     setShopStock(shopItems);
+                   console.log("shop-items = ", shopItems);
 
-        }
+    //     }
        
 
 
