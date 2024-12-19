@@ -43,7 +43,9 @@ export default function Viewer_Entire({
     username,
     projectname,
 
-    getShopItemInfo
+    getShopItemInfo,
+    getPlayerPurchaseInfo
+    
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer

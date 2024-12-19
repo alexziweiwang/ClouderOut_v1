@@ -1409,6 +1409,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                   initialUILanguage={languageCodeTextOption}
 
                   fetchShopItemInfo={passInShopItemInfo}
+                  fetchPlayerPurchaseInfo={passInPlayerPurchaseStatus}
           
                   />
               </div>
@@ -1492,6 +1493,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           projectname={projectName}
 
           getShopItemInfo={passInShopItemInfo}
+          getPlayerPurchaseInfo={passInPlayerPurchaseStatus}
 
 
       />

@@ -25,6 +25,7 @@ export default function NavigationPreview ({
     initialUILanguage,
 
     fetchShopItemInfo,
+    fetchPlayerPurchaseInfo
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -41,6 +42,7 @@ const tempFontSize = 12;
     const [renderCounter, setRenderCounter] = useState(0);
 
     const [shopStock, setShopStock] = useState([]);
+    const [shopPlayerPurchaseInfo, setShopPlayerPurchaseInfo] = useState([]);
     const [shopWindowOpen, setShopWindowOpen] = useState(false);
     const [shopProductInfoWindowOpen, setShopProductInfoWindowOpen] = useState(false);
 
@@ -156,11 +158,18 @@ const tempFontSize = 12;
 
 
         let shopItems = fetchShopItemInfo();
-    //     if (shopItems !== undefined && shopItems !== null && shopItems.length !== shopStock.length) {
-    //    //     setShopStock(shopItems);
-                   console.log("shop-items = ", shopItems);
+        if (shopItems !== undefined && shopItems !== null && shopItems.length !== shopStock.length) {
+            setShopStock(shopItems);
 
-    //     }
+        }
+
+
+        let playerPurchaseTemp = fetchPlayerPurchaseInfo();
+        if (playerPurchaseTemp !== undefined && playerPurchaseTemp !== null && playerPurchaseTemp.length != shopPlayerPurchaseInfo.length) {
+            setShopPlayerPurchaseInfo(playerPurchaseTemp);
+
+        }
+        
        
 
 
@@ -1398,6 +1407,15 @@ const tempFontSize = 12;
                     let buyItemId = keyStr + "buying";
                     let infoId = keyStr + "info";
 
+                    let testUserAcquiredBool = false;
+                    let userRecordArr = shopPlayerPurchaseInfo.filter(e => item["productKey"] == e["productKey"]);
+                    if (userRecordArr.length > 0) {
+                        if (userRecordArr[0]["acquired"] === true) {
+                            testUserAcquiredBool = true;
+                        }
+                    }
+
+
                         // each product
                     return (<div key={keyStr}>
                         <div
@@ -1474,7 +1492,7 @@ const tempFontSize = 12;
                         >
                             {/* buying-button-area */}
                                 {/* buy-text-button */}
-                                {item["acquired"] === true && <div
+                                {testUserAcquiredBool === true && <div
                                     style={{
                                         "backgroundColor": "grey",
                                         "cursor": "pointer",
