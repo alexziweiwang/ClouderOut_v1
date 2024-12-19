@@ -195,6 +195,8 @@ export default function Modal_EmuManager({
         },          
       ]);
 
+    const [shopTableEditing, setShopTableEditing] = useState(false);
+
 //TODO20
     const [focusingPanelName, setFocusingPanelName] = useState("");
 
@@ -1146,8 +1148,14 @@ return (<div className={modalStyleName}>
 
 
                 {focusingPanelName ==="5shp" && <div>
-                    <div>
-                        Shop Emu Data
+                    <div 
+                        style={{
+                            "borderRadius": "0px",
+                            "overflow": "scroll",
+                            "paddingLeft": "23%"
+                        }}
+                    >
+                        <br></br>
                         <div  className="darkerGrey"
                             style={{
                                 "borderRadius": "0px",
@@ -1201,16 +1209,38 @@ return (<div className={modalStyleName}>
                         }}>
                         ... ...
                         </div>}
+
+
                     </div>
+                    <br></br>
+                    
+                    
+                    {shopTableEditing && <>
+                    <button
+                        onClick={()=>{
+                            setShopTableEditing(true);
+                        }}
+                    >Edit</button>
+                    </>}
 
-                    <div>
-                        Player Purchase Emu Data
 
-                            "acquired": true/false,
-                            "acquiredTimeStamp": "timestamp1",
-                    </div>
+                    {!shopTableEditing && <>
+                    <button
+                        onClick={()=>{
+                            setShopTableEditing(false);
+                        }}
+                    >Cancel</button>
+                    <br></br>
+                    <button
+                        onClick={()=>{
+                            //TODO
 
+                            setShopTableEditing(false);
+                        }}
+                    >Update</button>
+                    </>}
 
+                
                     
                 </div>}
 
