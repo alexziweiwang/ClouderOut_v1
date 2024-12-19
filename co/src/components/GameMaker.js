@@ -601,7 +601,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
       "playername": "playerA",
       "itemStatus": [{}, {}, {}]
-    });       
+    });
+    
+  const [testShopProducts, setTestShopProducts] = useState({});
+  const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
+
                                                             //TODO important for holder-in-practice
 //TODO ------------------------------------------------------ testing data area
 
@@ -1185,7 +1189,23 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     //TODO update data5 to be emu-shop-product-list data
     //TODO  //recreate emu data object
 
-    // setup shop-stock-info ...
+    let obj5 = data5;
+    if (obj5 === undefined) {
+      return;
+    }
+
+    let shopStock = obj5.shopStock;
+    if (shopStock === undefined) {
+      return;
+    }
+
+    let playerPurchase = obj5.emuPlayerShopStatusTemp;
+    if (playerPurchase === undefined) {
+      return;
+    }
+
+    setTestShopProducts(shopStock);
+    setTestPlayerPurchaseStatus(playerPurchase);
     
   }  
 
@@ -1196,49 +1216,11 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInShopItemInfo() {
-    //TODO emu-shop-items
+    return testShopProducts;
+  }
 
-    let shopArr = [
-      {productName: "product1",
-       productPrice: 30,
-       acquired: false,
-       acquiredTimeStamp: "timestamp1",
-       productInfo: "product1-description",
-      },
-      {productName: "product2",
-       productPrice: 50,
-       acquired: true,
-       acquiredTimeStamp: "timestamp2",
-       productInfo: "product2-description",
-      },
-      {productName: "product3",
-       productPrice: 10,
-       acquired: false,
-       acquiredTimeStamp: "timestamp3",
-       productInfo: "product3-description",
-      },
-      {productName: "product4",
-      productPrice: 30,
-      acquired: false,
-      acquiredTimeStamp: "timestamp4",
-        productInfo: "product4-description",
-      },
-      {productName: "product5",
-        productPrice: 50,
-        acquired: true,
-        acquiredTimeStamp: "timestamp5",
-        productInfo: "product5-description",
-      },
-      {productName: "product6",
-        productPrice: 10,
-        acquired: false,
-        acquiredTimeStamp: "timestamp6",
-        productInfo: "product6-description",
-      },
-    ]
-
-    return shopArr;
-    
+  function passInPlayerPurchaseStatus() {
+    return testPlayerPurchaseStatus; //TODO30
   }
 
 

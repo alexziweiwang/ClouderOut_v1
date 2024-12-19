@@ -1344,17 +1344,19 @@ return (<div className={modalStyleName}>
                                         <button
                                             onClick={()=>{
                                                 //TODO
-                                                let tempshp5["shopStock"] = shp5["shopStock"];
-                                                let tempshp5["emuPlayerShopStatusTemp"] = shp5["emuPlayerShopStatusTemp"];
+                                                let tempShopStock = shp5["shopStock"];
+                                                let tempUserShopStatus = shp5["emuPlayerShopStatusTemp"];
 
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productName"] = editingShopEmuItemName;
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productPrice"] = editingShopEmuItemPrice;
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productInfo"] = editingShopEmuItemInfo;
 
-                                                tempshp5["emuPlayerShopStatusTemp"][editingShopEmuItemIndex]["acquired"] = editingShopEmuItemIsAcquired;
+                                                tempUserShopStatus[editingShopEmuItemIndex]["acquired"] = editingShopEmuItemIsAcquired;
 
-                                                setshp5["shopStock"](tempshp5["shopStock"]);
-                                                setshp5["emuPlayerShopStatusTemp"](tempshp5["emuPlayerShopStatusTemp"]);
+                                                setShp5({... shp5, 
+                                                        "shopStock": tempShopStock, 
+                                                        "emuPlayerShopStatusTemp": tempUserShopStatus});
+                                                        
 
                                                 //reset all
                                                 setEditingShopEmuItemName("");
