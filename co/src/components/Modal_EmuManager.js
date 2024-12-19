@@ -302,6 +302,12 @@ export default function Modal_EmuManager({
     // } //TODO temp: not using
 
 
+    function update5ShpToOuterLayer() {
+        update5Shp(shp5);
+
+    }
+
+
     async function prepare1Gdt() {
 
         let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
@@ -399,20 +405,55 @@ export default function Modal_EmuManager({
 
                                             console.log("... ess4 prep: ", tempObj4); //TODO test
         setEss4(tempObj4);
+        update4Ess(tempObj4);
+
     }
 
     async function prepare5Shp() {
         //"5shp"
-        let tempObj5 = await fetchEmuData5ShpVM({projectName: projName, currUser: username});
-        let objSize = Object.keys(tempObj5).length;
-        if (objSize === 0 || tempObj5 === undefined || tempObj5 === null) {
-            return;
+        let tempArr5 = await fetchEmuData5ShpVM({projectName: projName, currUser: username});
+        let objSize = Object.keys(tempArr5).length;
+        if (objSize === 0 || tempArr5 === undefined || tempArr5 === null) {
+            tempArr5 = [
+                {productKey: "pdt1",
+                productName: "product1",
+                productPrice: 30,
+                productInfo: "product1-description",
+               },
+               {productKey: "pdt2",
+                productName: "product2",
+                productPrice: 50,
+                productInfo: "product2-description",
+               },
+               {productKey: "pdt3",
+                productName: "product3",
+                productPrice: 10,
+                productInfo: "product3-description",
+               },
+               {productKey: "pdt4",
+                productName: "product4",
+                productPrice: 30,
+                productInfo: "product4-description",
+               },
+               {productKey: "pdt5",
+                productName: "product5",
+                productPrice: 50,
+                productInfo: "product5-description",
+               },
+               {productKey: "pdt6",
+                productName: "product6",
+                productPrice: 10,
+                productInfo: "product6-description",
+               },
+            ];
         }
-                                            console.log("... shp5 prep: ", tempObj5);
+                                            console.log("... shp5 prep: ", tempArr5);
         // VM func for shop-product-items
 
 
-        setShp5(tempObj5);
+        setShp5(tempArr5);
+        update5Shp(tempArr5);
+
     }
 
 
@@ -427,6 +468,8 @@ export default function Modal_EmuManager({
             prepare2Epp();
             prepare3Epa();
             // prepare4Ess();                                   //TODO later
+            prepare5Shp();
+
             fetchVisualListFromCloud();
 
 
@@ -457,6 +500,8 @@ export default function Modal_EmuManager({
         update1GdtToOuterLayer(); 
         update2EppToOuterLayer(); 
         update3EpaToOuterLayer();
+        // update 4
+        update5ShpToOuterLayer();
 
         
 
@@ -467,6 +512,7 @@ export default function Modal_EmuManager({
         resObj["epp2"] = epp2;
         resObj["epa3"] = epa3;
         resObj["ess4"] = ess4;
+        resObj["5shp"] = shp5;
 
         await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
 
