@@ -1184,6 +1184,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   function getUserConfigFromEmuManager5Shp(data5) {
     //TODO update data5 to be emu-shop-product-list data
     //TODO  //recreate emu data object
+
+    // setup shop-stock-info ...
     
   }  
 
@@ -1661,6 +1663,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
               update2Epp={getUserConfigFromEmuManager2Epp}
               update3Epa={getUserConfigFromEmuManager3Epa}
               update4Ess={getUserConfigFromEmuManager4Ess}
+              update5Shp={getUserConfigFromEmuManager5Shp}
 
               getUILanguage={passInUILanguage}
               isForGameMaker={true}

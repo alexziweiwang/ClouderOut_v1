@@ -976,6 +976,7 @@ export default function ConversationNodeEditingPanel() {
                     update2Epp={notUsing}
                     update3Epa={notUsing}
                     update4Ess={notUsing}
+                    update5Shp={notUsing}
                     
                     getUILanguage={passInUILanguage}
                     isForGameMaker={false}
