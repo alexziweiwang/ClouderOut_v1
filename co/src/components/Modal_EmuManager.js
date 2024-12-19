@@ -197,6 +197,14 @@ export default function Modal_EmuManager({
 
     const [shopTableEditing, setShopTableEditing] = useState(false);
 
+    const [editingShopEmuItemIndex, setEditingShopEmuItemIndex] = useState(-1);
+    const [editingShopEmuItemName, setEditingShopEmuItemName] = useState("");
+    const [editingShopEmuItemPrice, setEditingShopEmuItemPrice] = useState("");
+    const [editingShopEmuItemInfo, setEditingShopEmuItemInfo] = useState("");
+    const [editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired] = useState("");
+
+
+
 //TODO20
     const [focusingPanelName, setFocusingPanelName] = useState("");
 
@@ -1152,7 +1160,7 @@ return (<div className={modalStyleName}>
                         style={{
                             "borderRadius": "0px",
                             "overflow": "scroll",
-                            "paddingLeft": "23%"
+                            "paddingLeft": "17%"
                         }}
                     >
                         <br></br>
@@ -1160,7 +1168,7 @@ return (<div className={modalStyleName}>
                             style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "498px",
+                                "width": "615px",
                                 "height": "300px"
                             }}
                             
@@ -1168,6 +1176,7 @@ return (<div className={modalStyleName}>
                             <table>
                             <thead>
                                 <tr>    
+                                    <th style={{"width": "110px"}}>Product Key</th>
                                     <th style={{"width": "110px"}}>Product Name</th>
                                     <th style={{"width": "70px"}}>Product Price</th>
                                     <th style={{"width": "200px"}}>Product Info</th>
@@ -1185,8 +1194,17 @@ return (<div className={modalStyleName}>
                                     }
                                 }
                                 let testUserAcquiredStr = testUserAcquired === true ? "T" : "F";
-                                
-                                return (<tr style={{"height": "70px"}}>
+
+//editingShopEmuItemIndex, setEditingShopEmuItemIndex
+//editingShopEmuItemName, setEditingShopEmuItemName
+//editingShopEmuItemPrice, setEditingShopEmuItemPrice
+//editingShopEmuItemInfo, setEditingShopEmuItemInfo
+//editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired
+             
+                                return (
+                                <>
+                                {!shopTableEditing && <tr style={{"height": "70px"}}>
+                                    <td>{item["productKey"]}</td>
                                     <td style={{"height": "auto"}}>{item["productName"]}</td>
                                     <td style={{"height": "auto"}}>{item["productPrice"]}</td>
                                     <td style={{"height": "auto"}}>{item["productInfo"]}</td>
@@ -1194,7 +1212,25 @@ return (<div className={modalStyleName}>
                                         {testUserAcquiredStr}
                                     </td>
 
-                                </tr>)})}
+                                </tr>}
+
+                                {shopTableEditing && <tr style={{"height": "70px"}}>
+                                    <td>{item["productKey"]}</td>
+                                    <td style={{"height": "auto"}}>
+                                        {item["productName"]}</td>
+                                    <td style={{"height": "auto"}}>
+                                        {item["productPrice"]}</td>
+                                    <td style={{"height": "auto"}}>
+                                        {item["productInfo"]}</td>
+                                    <td>
+                                        {testUserAcquiredStr}
+                                    </td> 
+
+                                </tr>}
+                                </>
+                                
+                                
+                                )})}
 
                             </tbody>
 
@@ -1203,7 +1239,7 @@ return (<div className={modalStyleName}>
                         {(shopArr.length >= 4)
                             && <div style={{
                             "backgroundColor": "grey",
-                            "width": "498px",
+                            "width": "615px",
                             "height": "17px",
                             "borderRadius": "0px",
                         }}>
@@ -1215,7 +1251,7 @@ return (<div className={modalStyleName}>
                     <br></br>
                     
                     
-                    {shopTableEditing && <>
+                    {!shopTableEditing && <>
                     <button
                         onClick={()=>{
                             setShopTableEditing(true);
@@ -1224,7 +1260,7 @@ return (<div className={modalStyleName}>
                     </>}
 
 
-                    {!shopTableEditing && <>
+                    {shopTableEditing && <>
                     <button
                         onClick={()=>{
                             setShopTableEditing(false);
