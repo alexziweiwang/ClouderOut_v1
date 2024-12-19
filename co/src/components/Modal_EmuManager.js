@@ -1192,28 +1192,32 @@ return (<div className={modalStyleName}>
                                         testUserAcquired = true;
                                     }
                                 }
-                                let testUserAcquiredStr = testUserAcquired === true ? "T" : "F";
+                                let testUserAcquiredStr = testUserAcquired === true ? "T" : (testUserAcquired === false ? "F" : "--");
 
                                 return (
                                 <tr style={{"height": "70px"}}>
                                     <td>{item["productKey"]}</td>
-                                    <td style={{"height": "auto"}}>{item["productName"]}
+                                    <td style={{"height": "auto"}}>{item["productName"]}<br></br>
                                         {editingShopEmuItemIndex === index && <input
+                                            style={{"width": "90px"}}
                                             onChange={(event)=>{
                                                 setEditingShopEmuItemName(event.target.value);
                                             }}
                                         ></input>}
                                     </td>
                                     <td style={{"height": "auto"}}
-                                    >{item["productPrice"]}
+                                    >{item["productPrice"]}<br></br>
                                         {editingShopEmuItemIndex === index && <input
+                                            type="number"
+                                            style={{"width": "50px"}}
                                             onChange={(event)=>{
                                                 setEditingShopEmuItemPrice(event.target.value);
                                             }}
                                         ></input>}
                                     </td>
-                                    <td style={{"height": "auto"}}>{item["productInfo"]}
+                                    <td style={{"height": "auto"}}>{item["productInfo"]}<br></br>
                                         {editingShopEmuItemIndex === index && <input
+                                            style={{"width": "90px"}}
                                             onChange={(event)=>{
                                                 setEditingShopEmuItemInfo(event.target.value);
                                             }}
@@ -1241,6 +1245,13 @@ return (<div className={modalStyleName}>
                                     <td>
                                         {editingShopEmuItemIndex !== index && <button
                                             onClick={()=>{
+          
+                                                setEditingShopEmuItemName(shopArr[index]["productName"]);
+                                                setEditingShopEmuItemPrice(shopArr[index]["productPrice"]);
+                                                setEditingShopEmuItemInfo(shopArr[index]["productInfo"]); 
+
+                                                setEditingShopEmuItemIsAcquired(userShopStatus[index]["acquired"]);
+
                                                 setEditingShopEmuItemIndex(index);
                                             }}
                                         >Edit</button>}
@@ -1267,12 +1278,14 @@ return (<div className={modalStyleName}>
                                                 setShopArr(tempShopArr);
                                                 setUserShopStatus(tempUserShopStatus);
 
-                    //editingShopEmuItemIndex, setEditingShopEmuItemIndex
-                    //editingShopEmuItemName, setEditingShopEmuItemName
-                    //editingShopEmuItemPrice, setEditingShopEmuItemPrice
-                    //editingShopEmuItemInfo, setEditingShopEmuItemInfo
-                    //editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired
-                                                
+                                                //reset all
+                                                setEditingShopEmuItemName("");
+                                                setEditingShopEmuItemPrice("");
+                                                setEditingShopEmuItemInfo(""); 
+
+                                                setEditingShopEmuItemIsAcquired("");
+
+
                                                 setEditingShopEmuItemIndex(-1);
 
                                             }}
