@@ -405,3 +405,15 @@
 
 - 2024-Dec-17: Deisgn in-game coin system data structure
 
+- 2024-Dec-20: Setup cloud db testing data for shop-emu-data
+
+
+
+
+
+
+
+
+
+
+
