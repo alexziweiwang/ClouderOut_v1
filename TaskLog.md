@@ -407,6 +407,7 @@
 
 - 2024-Dec-20: Setup cloud db testing data for shop-emu-data
 - 2024-Dec-20: Design data structure for different type of purcahse modes
+- 2024-Dec-20: Design data structure for emu-player-purchase data
 
 
 
