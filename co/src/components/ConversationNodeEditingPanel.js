@@ -103,7 +103,9 @@ export default function ConversationNodeEditingPanel() {
             textDictItem.updateText
             : textDictItemDefault.updateText;
 
-
+    const emuManagerText = textDictItem.emuManagerText !== undefined ?
+            textDictItem.emuManagerText
+            : textDictItemDefault.emuManagerText;
 
 //TODO5
     const [pieceDataStructure, setPieceDatastructure] = useState([
@@ -695,7 +697,7 @@ export default function ConversationNodeEditingPanel() {
                     <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
                     <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
                     <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
-                        Emu-Manager
+                        {emuManagerText}
                     </button>
 
                     

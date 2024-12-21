@@ -272,6 +272,10 @@ export default function NavigationSetter({initialNavObj,
         textDictItem.colorText
         : textDictItemDefault.colorText;
 
+    let productItemListText = textDictItem.productItemListText !== undefined ?
+        textDictItem.productItemListText
+        : textDictItemDefault.productItemListText;
+
 
 
 //TODO15
@@ -5051,7 +5055,7 @@ export default function NavigationSetter({initialNavObj,
        
 
            <br></br>
-           <label>Product Item List</label><br></br>
+           <label>{productItemListText}</label><br></br>
            <div className="indentOne">
 
                 <br></br>
@@ -5121,7 +5125,7 @@ export default function NavigationSetter({initialNavObj,
 
                 </div>
 
-                <label>Individual Item Width </label>
+                <label>{itemWidthText}</label>
                 <input
                   type="range"
                   min="1" max={screenWidth} step="1"
@@ -5147,7 +5151,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>
 
-                <label>Individual Item Height </label>
+                <label>{itemHeightText}</label>
                 <input
                   type="range"
                   min="1" max={screenHeight} step="1"

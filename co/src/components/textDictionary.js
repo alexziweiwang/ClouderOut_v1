@@ -190,14 +190,14 @@ const textDictionary = {
         selectOperationDefaultMaintain: "Select Operation (default: maintain)",
         nameText: "Name",
         currentValueText: "Current Text",
-
         itemNameText: "Item Name",
         itemContentText: "Item Content",
         operationText: "Operation",
         emuGameDataText: "Emu Game Data",
         emuPlayerProfile: "Emu Player Profile",
         emuPlayerAccount: "Emu Player Account",
-
+        emuManagerText: "Emu Data Manager",
+        productItemListText: "Product Item List",
 
 
 
@@ -260,10 +260,10 @@ const textDictionary = {
         chapterManagementText: "章节管理",
         newProjectButtonText: "新项目",
         myProjectsButtonText: "我的项目",
-        resourceManagerButtonText: "资源管理器",
+        resourceManagerButtonText: "资源-管理",
         contentChaptersTabText: "内容章节",
         menuNavigationsTabText: "菜单 & 导航栏",
-        gameDataManagerButtonText: "游戏数据管理器",
+        gameDataManagerButtonText: "游戏数据-管理",
         profileButtonText: "资料",
         accountButtonText: "帐户",
         logOutButtonText: "退出登录",
@@ -404,6 +404,10 @@ const textDictionary = {
         emuGameDataText: "模拟/测试用 游戏数据",
         emuPlayerProfile: "模拟/测试用 玩家资料",
         emuPlayerAccount: "模拟/测试用 玩家帐户",
+        emuManagerText: "模拟数据-管理",
+        productItemListText: "产品单项列表",
+
+
 
     },
     jp: {

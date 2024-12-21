@@ -67,6 +67,11 @@ export default function GameMaker({username, projectName}) {
         textDictItem.projectNameText
         : textDictItemDefault.projectNameText;
 
+
+  const emuManagerText = textDictItem.emuManagerText !== undefined ?
+        textDictItem.emuManagerText
+        : textDictItemDefault.emuManagerText;
+    
 //TODO15
 
 /* Important data structure in this level: Game-Maker
@@ -1254,7 +1259,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         <button className="rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
         <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
         <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
-          Emu-Manager
+          {emuManagerText}
         </button>
       
 
