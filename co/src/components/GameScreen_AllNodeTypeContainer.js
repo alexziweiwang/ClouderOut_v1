@@ -52,7 +52,7 @@ export default function GameScreen_AllNodeTypeContainer({
             setupScreenSizeByNodeKey(nodeKeyTemp);            
         }
 
-
+        //TODO screen-width and screen-height
 
         
 
@@ -75,10 +75,32 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
 
-return (<div style={{"backgroundColor": "purple"}}>
-    {currNodeType === "" && <div>
+return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
+    {currNodeType === "" && <div style={{"backgroundColor": "#000001", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+        curr-node-type is empty
+
         </div>}
 
+    {currNodeType === "*chapterStart*" && <div style={{"backgroundColor": "grey", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+    *chapterStart*
+        
+        </div>}
+
+
+
+    {currNodeType === "*chapterEnd*" && <div style={{"backgroundColor": "brown", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+        
+        </div>}
+
+        {currNodeType === "Conversation" && <div style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+    conversation-node
+        
+        </div>}
+
+        {currNodeType === "LogicSplitter" && <div style={{"backgroundColor": "green", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+        Logic Splitter
+        
+        </div>}        
 </div>);
 
 

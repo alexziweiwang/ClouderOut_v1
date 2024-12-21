@@ -307,7 +307,7 @@ return(<>
       
 
 
-{/* game-screen layer */}
+{/* game-screen (specific node) layer */}
                 {navPageStatus === "During Game" && 
                     <div style={{
                         "position": "absolute", 
@@ -318,10 +318,7 @@ return(<>
                         "height": `${screenHeight}px`,
                 
                     }}>
-                        !!! placeholder: game node (content+UI)
-                        <br></br>2
-                        <br></br>3
-                        <br></br>TODO: according to currNodeType, display the component
+
                                           {/*            //TODO15 
                                                     // updatePlayingGameData(data)
                                                     // updateCurrentStanding (track by nav-buttons & in-game changes: 
@@ -331,15 +328,6 @@ return(<>
                                                     //important: return or to next chapter when reaching the "<chapter-key>_end" node
                                           */}
 
-<br></br>
-pageStatus={currentGameStatusProgress["pageStatus"]} <br></br>
-chapterKey={currentGameStatusProgress["chapterKey"]} <br></br>
-nodeKey={currentGameStatusProgress["nodeKey"]} <br></br>
-nodeType={currentGameStatusProgress["nodeType"]} <br></br>
-
-
-                                          logic: if pageStatus is "During Game", according to nodeType, enter node-player
-                                          <br></br>pass-in chapterKey and nodeKey...
                                           <GameScreen_AllNodeTypeContainer
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 
@@ -389,6 +377,9 @@ nodeType={currentGameStatusProgress["nodeType"]} <br></br>
                         getUILanguage={passInUiLanguageOption}  //TODO20 languageOption
 
                         fetchShopItemInfo={passInShopItemInfo}
+                        fetchPlayerPurchaseInfo={getPlayerPurchaseInfo}
+
+
                     />
                                                                                 {/* //TODO16
                     //updatePlayerProfile (by player input)
