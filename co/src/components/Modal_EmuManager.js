@@ -448,8 +448,11 @@ export default function Modal_EmuManager({
     }
 
     async function prepare5Shp() {
-        //"5shp"
+        "5shp"
         let tempObject5 = await fetchEmuData5ShpVM({projectName: projName, currUser: username});
+               //                             console.log("!!!!! prepare-5shp: ", tempObject5);
+
+
         if (tempObject5 === undefined || tempObject5 === null || Object.keys(tempObject5).length === 0) {
 
             let stockArrTemp = [
@@ -457,32 +460,38 @@ export default function Modal_EmuManager({
                 productName: "product1",
                 productPrice: 30,
                 productInfo: "product1-description",
+                hidden: false,
                },
                {productKey: "pdt2",
                 productName: "product2",
                 productPrice: 50,
                 productInfo: "product2-description",
-               },
+                hidden: false,
+            },
                {productKey: "pdt3",
                 productName: "product3",
                 productPrice: 10,
                 productInfo: "product3-description",
-               },
+                hidden: false,
+            },
                {productKey: "pdt4",
                 productName: "product4",
                 productPrice: 30,
                 productInfo: "product4-description",
-               },
+                hidden: false,
+            },
                {productKey: "pdt5",
                 productName: "product5",
                 productPrice: 50,
                 productInfo: "product5-description",
-               },
+                hidden: false,
+            },
                {productKey: "pdt6",
                 productName: "product6",
                 productPrice: 10,
                 productInfo: "product6-description",
-               },
+                hidden: false,
+            },
             ];
 
             let emuPlayerShopStatusTemp = [  {productKey: "pdt1",
@@ -582,7 +591,7 @@ export default function Modal_EmuManager({
         resObj["epp2"] = epp2;
         resObj["epa3"] = epa3;
         resObj["ess4"] = ess4;
-        resObj["5shp"] = shp5;
+        resObj["shp5"] = shp5;
 
         await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
 
@@ -1283,7 +1292,7 @@ return (<div className={modalStyleName}>
                             style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "800px",
+                                "width": "1000px",
                                 "height": "300px"
                             }}
                             
@@ -1307,11 +1316,14 @@ return (<div className={modalStyleName}>
 
                                 return (
                                 <>
+                                {item["hidden"] == false && <>
                                 <tr>    
                                     <th style={{"width": "110px"}}>{productIDTextText}</th>
                                     <th style={{"width": "110px"}}>{productNameText}</th>
                                     <th style={{"width": "70px"}}>{productPriceText}</th>
                                     <th style={{"width": "200px"}}>{productInfoText}</th>
+                                    <th style={{"width": "90px"}}>In Stock?</th>
+
                                     <th style={{"width": "90px"}}>Test User Acquired? </th>
                                 </tr>
                                 
@@ -1342,6 +1354,17 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemInfo(event.target.value);
                                             }}
                                         ></input>}
+                                    </td>
+                                    <td>{item["hidden"] == true ? "F" : "T"}
+                                    
+                                    {editingShopEmuItemIndex === index && 
+                                        <button
+                                        
+                                        >{hideText}</button>
+                                        }
+                                        
+                                        
+                                    
                                     </td>
                                     <td>
                                         {testUserAcquiredStr} <br></br>
@@ -1382,10 +1405,13 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemIndex(index);
                                             }}
                                         >{editText}</button>
+
                                         <br></br>
-                                        <button>Hide</button>
-                                        <br></br>
-                                        <button>{deleteText}</button>
+                                        <button
+                                            onChange={()=>{
+                                                // delete with curr index
+                                            }}
+                                        >{deleteText}</button>
                                         
                                         </div>}
                                         {editingShopEmuItemIndex === index && 
@@ -1397,13 +1423,15 @@ return (<div className={modalStyleName}>
                            
                                         <button
                                             onClick={()=>{
-                                                //TODO
+
+                                                
                                                 let tempShopStock = shp5["shopStock"];
                                                 let tempUserShopStatus = shp5["playerPurchaseStatus"];
 
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productName"] = editingShopEmuItemName;
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productPrice"] = editingShopEmuItemPrice;
                                                 shp5["shopStock"][editingShopEmuItemIndex]["productInfo"] = editingShopEmuItemInfo;
+                                                //TODO add "hidden" setup
 
                                                 tempUserShopStatus[editingShopEmuItemIndex]["acquired"] = editingShopEmuItemIsAcquired;
 
@@ -1430,12 +1458,14 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemIndex(-1);
                                             }}
                                         >{cancelText}</button>
-                                        
-                                        
+
+                                       
                                         </div>}
                                     </td>
                                 </tr>
                                 <br></br>
+                                
+                                </>}
                                 </>
                                 
                                 )})}

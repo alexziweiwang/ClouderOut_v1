@@ -98,7 +98,7 @@ export async function fetchEmuData5Shp({projectName, currUser}) {
     obj = projectSnap.data().emu4sets.shp5; 
     
 
-                                    console.log("model - fetchEmuData4Ess: ", obj);
+                                    console.log("model - fetchEmuData5Shp: ", obj);
 
     return obj;
 }
