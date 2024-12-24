@@ -5059,7 +5059,7 @@ export default function NavigationSetter({initialNavObj,
            <div className="indentOne">
 
                 <br></br>
-                <label>Individual Item Shape</label>
+                <br></br><label>{listItemLookingText}: </label>
                 <div className="indentOne">
 
                   <input type="radio" 
@@ -5116,9 +5116,14 @@ export default function NavigationSetter({initialNavObj,
                             {
                             <>
                                 <select onChange={(event)=>{
+                                  //TODO navObj["shopPage-listItem-bgPicName"]
+
                                 }}>                    
                                     <option key="shop-list-item-bgp" value="">-- {selectResourceText} --</option>
-                          
+                                    {visualList.map((item, index) => {
+                                      let keyStr = "shop-product-" + index + item["var"];
+                                      return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
+                                    })}
                                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button><br></br><br></br>
                         </>}
 
@@ -5177,7 +5182,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>  
 
-                    <br></br>
+                    {/* <br></br>
                 <label>Item Corner Radius </label>
                 <input type="range"
                   min="0" max="50" step="1"
@@ -5200,10 +5205,9 @@ export default function NavigationSetter({initialNavObj,
       
                     setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-cornerRadius": event.target.value});  
                   }} 
-                ></input>     
+                ></input>      */}
 
-                <br></br>
-                <label>Individual Item Gap </label>
+                <label>{itemGapText} </label>
                 <input type="range"
                  min="1" max="300" step="1"
                  value={currentProjectNav["shopPage-listItem-gap"]}
@@ -5228,7 +5232,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
 
                 <br></br>
-                <label>List Group X</label>
+                <label>{groupPositionXText}</label>
                 <input type="range"
                   min="0" max={screenWidth} step="1"
                   value={currentProjectNav["shopPage-listItem-groupX"]}
@@ -5255,7 +5259,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>
 
-                <label>List Group Y</label>
+                <label>{groupPositionYText}</label>
                 <input type="range"
                   min="0" max={screenHeight} step="1"
                   value={currentProjectNav["shopPage-listItem-groupY"]}
@@ -5285,7 +5289,7 @@ export default function NavigationSetter({initialNavObj,
 
            <label>Buying Confirm Window</label>
            <div className="indentOne">
-             <label>Width </label>
+             <label>{widthText} </label>
              <input type="range"           
               min="1" max={screenWidth} step="1"
               value={currentProjectNav["shopPage-bConfWindow-width"]}
@@ -5310,7 +5314,7 @@ export default function NavigationSetter({initialNavObj,
              ></input>
              <br></br>
 
-             <label>Height </label>
+             <label>{heightText} </label>
              <input type="range"
                 min="1" max={screenHeight} step="1"
                 value={currentProjectNav["shopPage-bConfWindow-height"]}
@@ -5335,7 +5339,7 @@ export default function NavigationSetter({initialNavObj,
              ></input>
              <br></br>
 
-             <label>Text Color </label>
+             <label>{fontColorText} </label>
              <input type="color"
               value={currentProjectNav["shopPage-bConfWindow-textColor"]}
               onChange={(event)=>{
@@ -5349,7 +5353,7 @@ export default function NavigationSetter({initialNavObj,
              <label> {currentProjectNav["shopPage-bConfWindow-textColor"]}</label>
              <br></br>
 
-             <label>Background Color </label>
+             <label>{backgroundColorText} </label>
              <input type="color"
                 value={currentProjectNav["shopPage-bConfWindow-bgColor"]}
                 onChange={(event)=>{

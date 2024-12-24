@@ -1434,6 +1434,7 @@ const tempFontSize = 12;
 
                                 // "border": isEditing ? "1px dotted orange" : "none",
                                 "border": "1px dotted orange",
+                                "borderRadius": "0px"
                             }}
                         >
 
