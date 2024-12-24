@@ -409,7 +409,7 @@
 - 2024-Dec-20: Design data structure for different type of purcahse modes
 - 2024-Dec-20: Design data structure for emu-player-purchase data
 
-
+- 2024-Dec-23: Design chapter-entering-status checking-structure
 
 
 
