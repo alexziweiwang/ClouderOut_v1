@@ -624,6 +624,24 @@ export default function Modal_EmuManager({
                                     console.log("emu-mgr, resource -- visual map  = =", tempMap);
       }
 
+      function deleteShopProduct(index) {
+                
+        let tempShopStock = [];
+
+        let i = 0;
+        let len = shp5["shopStock"].length;
+
+        for(i = 0; i < len; i++) {
+            if (i !== index) {
+                tempShopStock.push(shp5["shopStock"][i]);
+            }
+        }
+
+        setShp5({... shp5, 
+                "shopStock": tempShopStock});
+                
+      }
+
 
 
 return (<div className={modalStyleName}>
@@ -1420,8 +1438,14 @@ return (<div className={modalStyleName}>
 
                                         <br></br>
                                         <button
-                                            onChange={()=>{
+                                            onClick={()=>{
                                                 // delete with curr index
+                                                let askStr = "Delete " + item["productName"] + " ?";
+                                                let resp = window.confirm(askStr);
+                                                if (resp) {
+                                                    deleteShopProduct(index);
+                                                }        
+
                                             }}
                                         >{deleteText}</button>
                                         
