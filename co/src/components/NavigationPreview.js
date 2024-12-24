@@ -1418,7 +1418,9 @@ const tempFontSize = 12;
 
                         // each product
                     return (<div key={keyStr}>
-                        <div
+                        
+                        
+                        {item["hidden"] == false && <div
                             style={{
                                 "width": `${navObj["shopPage-listItem-width"]}px`,
                                 "height": `${navObj["shopPage-listItem-height"]}px`,
@@ -1526,7 +1528,7 @@ const tempFontSize = 12;
 
 
                         </div>
-
+                        }
                     </div>);
 
 

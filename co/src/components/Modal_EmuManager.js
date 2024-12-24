@@ -238,6 +238,7 @@ export default function Modal_EmuManager({
     const [editingShopEmuItemName, setEditingShopEmuItemName] = useState("");
     const [editingShopEmuItemPrice, setEditingShopEmuItemPrice] = useState("");
     const [editingShopEmuItemInfo, setEditingShopEmuItemInfo] = useState("");
+    const [editingShopEmuItemIsHidden, setEditingShopEmuItemIsHidden] = useState(false);
     const [editingShopEmuItemIsAcquired, setEditingShopEmuItemIsAcquired] = useState("");
 
 
@@ -1316,7 +1317,7 @@ return (<div className={modalStyleName}>
 
                                 return (
                                 <>
-                                {item["hidden"] == false && <>
+                               
                                 <tr>    
                                     <th style={{"width": "110px"}}>{productIDTextText}</th>
                                     <th style={{"width": "110px"}}>{productNameText}</th>
@@ -1355,14 +1356,24 @@ return (<div className={modalStyleName}>
                                             }}
                                         ></input>}
                                     </td>
-                                    <td>{item["hidden"] == true ? "F" : "T"}
+                                    <td>
+                                        {editingShopEmuItemIndex !== index && 
+                                            <><label>{item["hidden"] == true ? "No (Hidden)" : "Yes" }</label>
+                                            <br></br></>}
                                     
-                                    {editingShopEmuItemIndex === index && 
-                                        <button
-                                        
-                                        >{hideText}</button>
-                                        }
-                                        
+                                        {(editingShopEmuItemIndex === index && editingShopEmuItemIsHidden === false) && 
+                                            <button
+                                                onClick={()=>{
+                                                    setEditingShopEmuItemIsHidden(true);
+                                                }}
+                                            >{hideText}</button>}
+
+                                        {(editingShopEmuItemIndex === index && editingShopEmuItemIsHidden === true) && 
+                                            <button
+                                                onClick={()=>{
+                                                    setEditingShopEmuItemIsHidden(false);
+                                                }}
+                                            >Put Back</button>}                                        
                                         
                                     
                                     </td>
@@ -1399,6 +1410,7 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemName(shp5["shopStock"][index]["productName"]);
                                                 setEditingShopEmuItemPrice(shp5["shopStock"][index]["productPrice"]);
                                                 setEditingShopEmuItemInfo(shp5["shopStock"][index]["productInfo"]); 
+                                                setEditingShopEmuItemIsHidden(shp5["shopStock"][index]["hidden"]);
 
                                                 setEditingShopEmuItemIsAcquired(shp5["playerPurchaseStatus"][index]["acquired"]);
 
@@ -1428,10 +1440,10 @@ return (<div className={modalStyleName}>
                                                 let tempShopStock = shp5["shopStock"];
                                                 let tempUserShopStatus = shp5["playerPurchaseStatus"];
 
-                                                shp5["shopStock"][editingShopEmuItemIndex]["productName"] = editingShopEmuItemName;
-                                                shp5["shopStock"][editingShopEmuItemIndex]["productPrice"] = editingShopEmuItemPrice;
-                                                shp5["shopStock"][editingShopEmuItemIndex]["productInfo"] = editingShopEmuItemInfo;
-                                                //TODO add "hidden" setup
+                                                tempShopStock[editingShopEmuItemIndex]["productName"] = editingShopEmuItemName;
+                                                tempShopStock[editingShopEmuItemIndex]["productPrice"] = editingShopEmuItemPrice;
+                                                tempShopStock[editingShopEmuItemIndex]["productInfo"] = editingShopEmuItemInfo;
+                                                tempShopStock[editingShopEmuItemIndex]["hidden"] = editingShopEmuItemIsHidden;
 
                                                 tempUserShopStatus[editingShopEmuItemIndex]["acquired"] = editingShopEmuItemIsAcquired;
 
@@ -1444,6 +1456,7 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemName("");
                                                 setEditingShopEmuItemPrice("");
                                                 setEditingShopEmuItemInfo(""); 
+                                                setEditingShopEmuItemIsHidden(false);
 
                                                 setEditingShopEmuItemIsAcquired("");
 
@@ -1465,7 +1478,7 @@ return (<div className={modalStyleName}>
                                 </tr>
                                 <br></br>
                                 
-                                </>}
+                              
                                 </>
                                 
                                 )})}
