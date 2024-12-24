@@ -210,7 +210,7 @@ export default function NodeManager({projectName, currUser,
    const [clickedNode, setClickedNode] = useState("");
    const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
    const [clickedNodeKey, setClickedNodeKey] = useState(""); //TODO using for new data structure
-   const [selectedNextNode, setSelectedNextNode] = useState("-");
+   const [selectedNextNode, setSelectedNextNode] = useState("");
    const [lscElseSelected, setLscElseSelected] = useState("");
    const [lscCurrSelected, setLscCurrSelected] = useState("");
 
@@ -1303,7 +1303,7 @@ export default function NodeManager({projectName, currUser,
                 }}
                   value={selectedNextNode}
                 >
-                  <option key="defaultNextNodeEmpty" value="-">-- {selectTheNextNodeText} --</option>
+                  <option key="defaultNextNodeEmpty" value="">-- {selectTheNextNodeText} --</option>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     
                             let item = nodeRelationshipMap[currKey];
@@ -1318,20 +1318,27 @@ export default function NodeManager({projectName, currUser,
                         })}
                 </select>
                 <button onClick={()=>{
-                    if (selectedNextNode !== "-") {
+                    if (selectedNextNode !== "") {
                       let tempMap = nodeRelationshipMap;
                       tempMap[clickedNodeKey].nextNode = selectedNextNode;
 
                       setNodeRelationshipMap(tempMap);
                       updateNodeLinkingsOnce(tempMap, gridBlocks);
 
-                      setSelectedNextNode("-");
+                      setSelectedNextNode("");
                       updateRenderCounter();
                     }
                 }}>{confirmText}</button>
                 <br></br>
                 
-                  <button
+                {(nodeRelationshipMap[clickedNodeKey]["nodeType"] !== "*chapterStart*" 
+                  && 
+                  ((nodeRelationshipMap[clickedNodeKey]["nodeType"] !== "LogicSplitter" && nodeRelationshipMap[clickedNodeKey]["nextNode"] !== "")
+                  || (nodeRelationshipMap[clickedNodeKey]["nodeType"] === "LogicSplitter" && (nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"].length > 1 || nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"][0][1] !== ""))
+                  )
+                )
+                &&  
+                <button
                   onClick={()=>{
 
                     let tempMap2 = nodeRelationshipMap;
@@ -1346,7 +1353,7 @@ export default function NodeManager({projectName, currUser,
 
                     let resp = window.confirm(confirmStr);
                     if (resp) {
-                      tempMap2[clickedNodeKey].nextNode = "-";
+                      tempMap2[clickedNodeKey].nextNode = "";
                       
                       setNodeRelationshipMap(tempMap2);
                       updateNodeLinkingsOnce(tempMap2, gridBlocks);
@@ -1355,7 +1362,7 @@ export default function NodeManager({projectName, currUser,
                     }
                     
                   }}
-                >{detachLinkingText}</button>
+                >{detachLinkingText}</button>}
              
 
 
@@ -1413,7 +1420,7 @@ export default function NodeManager({projectName, currUser,
                                 onChange={(event)=>{
                                   setLscElseSelected(event.target.value);
                                 }}>
-                                <option key="lscElse" value="-">-- Select --</option>
+                                <option key="lscElse" value="">-- Select --</option>
                                 {Object.keys(nodeRelationshipMap).map((currKey) => {                  
                                     let item = nodeRelationshipMap[currKey];
                                     if (item === undefined) {
