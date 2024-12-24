@@ -137,6 +137,15 @@ export default function Modal_EmuManager({
     const [epa3EditItemName, setEpa3EditItemName] = useState("");
     const [epa3Input, setEpa3Input] = useState("");
 
+    const [addEmuProductItem, setAddEmuProductItem] = useState(false);
+                                // product key, name, price, info
+
+    const [addingEProductKey, setAddingEProductKey] = useState("");
+    const [addingEProductName, setAddingEProductName] = useState("");
+    const [addingEProductPrice, setAddingEProductPrice] = useState("");
+    const [addingEProductInfo, setAddingEProductInfo] = useState("");
+
+
     const [cloudUpdated, setCloudUpdated] = useState(false);
 
 
@@ -1417,10 +1426,56 @@ return (<div className={modalStyleName}>
                     </div>
 
                         <br></br>
-                        <button>Add a New Emu-Product</button>
-                        <div>
-                            TODO new product creation area
-                        </div>
+                        <button
+                            onClick={()=>{
+                                setAddEmuProductItem(true);
+                            }}
+                        >Add a New Emu-Product</button>
+                        {addEmuProductItem && <div>
+                            <label>Product Key</label>
+                            <input
+                                onChange={(event)=>{
+                                    setAddingEProductKey(event.target.value);
+                                }}
+                            ></input>
+                            <br></br>
+                            <label>Product Name</label>
+                            <input
+                                onChange={(event)=>{
+                                    setAddingEProductName(event.target.value);
+                                }}
+                            ></input>
+                            <br></br>
+                            <label>Product Price</label>
+                            <input
+                                type="number"
+                                min="0" max="100000" step="1"
+                                onChange={(event)=>{
+                                    setAddingEProductPrice(event.target.value);
+                                }}
+                            ></input>
+                            <br></br>
+                            <label>Product Info</label>
+                            <input
+                                onChange={(event)=>{
+                                    setAddingEProductInfo(event.target.value);
+                                }}
+                            ></input>
+ 
+                            <br></br>
+                            <button
+                                onClick={()=>{
+                                    setAddEmuProductItem(false);
+                                }}                                  
+                            >Add</button>
+
+                            <br></br>
+                            <button
+                                onClick={()=>{
+                                    setAddEmuProductItem(false);
+                                }}                            
+                            >Cancel</button>
+                        </div>}
                 </div>}
 
 </>}
