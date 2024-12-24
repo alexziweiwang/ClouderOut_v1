@@ -204,6 +204,7 @@ const textDictionary = {
         productNameText: "Product Name",
         productPriceText: "Product Price",
         productInfoText: "Product Info",
+        hideText: "Hide",
 
 
 
@@ -418,6 +419,7 @@ const textDictionary = {
         productNameText: "商品名",
         productPriceText: "商品价格",
         productInfoText: "商品详情",
+        hideText: "隐藏",
 
 
     },

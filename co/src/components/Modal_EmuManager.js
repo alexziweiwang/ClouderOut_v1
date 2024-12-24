@@ -125,6 +125,14 @@ export default function Modal_EmuManager({
         textDictItem.productInfoText
         : textDictItemDefault.productInfoText;
 
+    const deleteText = textDictItem.deleteText !== undefined ?
+        textDictItem.deleteText
+        :  textDictItemDefault.deleteText;
+
+    const hideText = textDictItem.hideText !== undefined ?
+        textDictItem.hideText
+        : textDictItemDefault.hideText;
+
 
 //TODO15
 
@@ -1267,7 +1275,7 @@ return (<div className={modalStyleName}>
                         style={{
                             "borderRadius": "0px",
                             "overflow": "scroll",
-                            "paddingLeft": "15%"
+                            "paddingLeft": "6%"
                         }}
                     >
                         <br></br>
@@ -1275,22 +1283,13 @@ return (<div className={modalStyleName}>
                             style={{
                                 "borderRadius": "0px",
                                 "overflow": "scroll",
-                                "width": "675px",
+                                "width": "800px",
                                 "height": "300px"
                             }}
                             
                         >
                             <table>
-                            {/* <thead>
-                                <tr>    
-                                    <th style={{"width": "110px"}}>Product Key</th>
-                                    <th style={{"width": "110px"}}>Product Name</th>
-                                    <th style={{"width": "70px"}}>Product Price</th>
-                                    <th style={{"width": "200px"}}>Product Info</th>
-                                    <th style={{"width": "90px"}}>Test User Acquired? </th>
-                                </tr>
-
-                            </thead> */}
+                  
                             <tbody>
                             {shp5["shopStock"].map((item, index)=>{
                                 let testUserAcquired = false;
@@ -1364,7 +1363,14 @@ return (<div className={modalStyleName}>
                                         </select>}
                                     </td>
                                     <td>
-                                        {editingShopEmuItemIndex !== index && <button
+
+                                        {editingShopEmuItemIndex !== index && <div
+                                            style={{
+                                                "display": "flex"
+                                            }}
+                                        >
+          
+                                        <button
                                             onClick={()=>{
           
                                                 setEditingShopEmuItemName(shp5["shopStock"][index]["productName"]);
@@ -1375,15 +1381,20 @@ return (<div className={modalStyleName}>
 
                                                 setEditingShopEmuItemIndex(index);
                                             }}
-                                        >Edit</button>}
-                                        {editingShopEmuItemIndex === index && 
-                                        <>
-                                        <button
-                                            onClick={()=>{
-                                                setEditingShopEmuItemIndex(-1);
-                                            }}
-                                        >Cancel</button>
+                                        >{editText}</button>
                                         <br></br>
+                                        <button>Hide</button>
+                                        <br></br>
+                                        <button>{deleteText}</button>
+                                        
+                                        </div>}
+                                        {editingShopEmuItemIndex === index && 
+                                        <div
+                                            style={{
+                                                "display": "flex"
+                                            }}                                        
+                                        >
+                           
                                         <button
                                             onClick={()=>{
                                                 //TODO
@@ -1412,10 +1423,16 @@ return (<div className={modalStyleName}>
                                                 setEditingShopEmuItemIndex(-1);
 
                                             }}
-                                        >Update</button>
+                                        >{updateText}</button>
+                                        <br></br>
+                                        <button
+                                            onClick={()=>{
+                                                setEditingShopEmuItemIndex(-1);
+                                            }}
+                                        >{cancelText}</button>
                                         
                                         
-                                        </>}
+                                        </div>}
                                     </td>
                                 </tr>
                                 <br></br>
@@ -1430,7 +1447,7 @@ return (<div className={modalStyleName}>
                         {(shp5["shopStock"].length >= 4)
                             && <div style={{
                             "backgroundColor": "grey",
-                            "width": "675px",
+                            "width": "800px",
                             "height": "17px",
                             "borderRadius": "0px",
                         }}>
@@ -1449,21 +1466,21 @@ return (<div className={modalStyleName}>
                             }}
                         >Add a New Emu-Product</button>
                         {addEmuProductItem && <div>
-                            <label>Product Key</label>
+                            <label>{productIDTextText}</label>
                             <input
                                 onChange={(event)=>{
                                     setAddingEProductKey(event.target.value);
                                 }}
                             ></input>
                             <br></br>
-                            <label>Product Name</label>
+                            <label>{productNameText}</label>
                             <input
                                 onChange={(event)=>{
                                     setAddingEProductName(event.target.value);
                                 }}
                             ></input>
                             <br></br>
-                            <label>Product Price</label>
+                            <label>{productPriceText}</label>
                             <input
                                 type="number"
                                 min="0" max="100000" step="1"
@@ -1472,7 +1489,7 @@ return (<div className={modalStyleName}>
                                 }}
                             ></input>
                             <br></br>
-                            <label>Product Info</label>
+                            <label>{productInfoText}</label>
                             <input
                                 onChange={(event)=>{
                                     setAddingEProductInfo(event.target.value);
