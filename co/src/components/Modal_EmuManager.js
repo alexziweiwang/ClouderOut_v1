@@ -105,6 +105,10 @@ export default function Modal_EmuManager({
         textDictItem.emuPlayerAccount
         : textDictItemDefault.emuPlayerAccount;
 
+    const emuShopInfo = textDictItem.emuShopInfo !== undefined ?
+        textDictItem.emuShopInfo
+        : textDictItemDefault.emuShopInfo;
+
 //TODO15
 
 
@@ -661,7 +665,7 @@ return (<div className={modalStyleName}>
                         }}
 
                     >
-                     5.Emy Shop Info
+                     5.{emuShopInfo}
                     </button>
 
 
@@ -1237,7 +1241,7 @@ return (<div className={modalStyleName}>
                         style={{
                             "borderRadius": "0px",
                             "overflow": "scroll",
-                            "paddingLeft": "17%"
+                            "paddingLeft": "15%"
                         }}
                     >
                         <br></br>
@@ -1251,7 +1255,7 @@ return (<div className={modalStyleName}>
                             
                         >
                             <table>
-                            <thead>
+                            {/* <thead>
                                 <tr>    
                                     <th style={{"width": "110px"}}>Product Key</th>
                                     <th style={{"width": "110px"}}>Product Name</th>
@@ -1260,7 +1264,7 @@ return (<div className={modalStyleName}>
                                     <th style={{"width": "90px"}}>Test User Acquired? </th>
                                 </tr>
 
-                            </thead>
+                            </thead> */}
                             <tbody>
                             {shp5["shopStock"].map((item, index)=>{
                                 let testUserAcquired = false;
@@ -1277,6 +1281,15 @@ return (<div className={modalStyleName}>
                                 let testUserAcquiredStr = testUserAcquired === true ? "T" : (testUserAcquired === false ? "F" : "--");
 
                                 return (
+                                <>
+                                <tr>    
+                                    <th style={{"width": "110px"}}>Product Key</th>
+                                    <th style={{"width": "110px"}}>Product Name</th>
+                                    <th style={{"width": "70px"}}>Product Price</th>
+                                    <th style={{"width": "200px"}}>Product Info</th>
+                                    <th style={{"width": "90px"}}>Test User Acquired? </th>
+                                </tr>
+                                
                                 <tr style={{"height": "70px"}}>
                                     <td>{item["productKey"]}</td>
                                     <td style={{"height": "auto"}}>{item["productName"]}<br></br>
@@ -1379,12 +1392,14 @@ return (<div className={modalStyleName}>
                                         </>}
                                     </td>
                                 </tr>
+                                <br></br>
+                                </>
                                 
                                 )})}
-
+                              
                             </tbody>
                         </table>
-
+                       
                         </div>
                         {(shp5["shopStock"].length >= 4)
                             && <div style={{
@@ -1396,8 +1411,16 @@ return (<div className={modalStyleName}>
                         ... ...
                         </div>}
 
+                        
 
-                    </div>  
+
+                    </div>
+
+                        <br></br>
+                        <button>Add a New Emu-Product</button>
+                        <div>
+                            TODO new product creation area
+                        </div>
                 </div>}
 
 </>}

@@ -1480,7 +1480,7 @@ const tempFontSize = 12;
                             </div>
                             {/* product name & price area */}
 
-
+ 
 
                         <br></br>
                         <div
