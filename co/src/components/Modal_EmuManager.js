@@ -1287,7 +1287,7 @@ return (<div className={modalStyleName}>
                                         testUserAcquired = true;
                                     }
                                 }
-                                let testUserAcquiredStr = testUserAcquired === true ? "T" : (testUserAcquired === false ? "F" : "--");
+                                let testUserAcquiredStr = testUserAcquired === true ? "T" : "F";
 
                                 return (
                                 <>
@@ -1462,10 +1462,39 @@ return (<div className={modalStyleName}>
                                 }}
                             ></input>
  
-                            <br></br>
+
+                            <br></br><br></br>
                             <button
                                 onClick={()=>{
                                     setAddEmuProductItem(false);
+                            
+                                    //validate inputs before processing
+                                    if (addingEProductKey.length === 0) {
+                                            alert("Product Key should not be empty!");
+                                            return;
+                                    }
+                                    if (addingEProductName.length === 0) {
+                                            alert("Product Name should not be empty!");
+                                            return;
+                                    }
+
+
+                                    let item = {
+                                        "productKey": addingEProductKey,
+                                        "productName": addingEProductName,
+                                        "productPrice": addingEProductPrice,
+                                        "productInfo": addingEProductInfo,
+
+                                    };
+
+                                    let shopStockList = shp5["shopStock"];
+                                    shopStockList.push(item);
+
+
+                                    setShp5({...shp5, "shopStock": shopStockList});
+                                    
+                                    
+
                                 }}                                  
                             >Add</button>
 
