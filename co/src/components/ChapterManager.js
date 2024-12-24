@@ -48,9 +48,9 @@ export default function ChapterManager({
         textDictItem.chapterManagementText
         : textDictItemDefault.chapterManagementText;
 
-  let chapterUniqueIDNameText = textDictItem.chapterUniqueIDNameText !== undefined ?
-        textDictItem.chapterUniqueIDNameText
-        : textDictItemDefault.chapterUniqueIDNameText;
+  let chapterUniqueIDText = textDictItem.chapterUniqueIDText !== undefined ?
+        textDictItem.chapterUniqueIDText
+        : textDictItemDefault.chapterUniqueIDText;
 
   let chapterTitleText = textDictItem.chapterTitleText !== undefined ?
         textDictItem.chapterTitleText
@@ -273,7 +273,7 @@ export default function ChapterManager({
                         </li>
                         {selectedChptKey === item[0] && 
                           <>
-                            <label>{chapterUniqueIDNameText}: {item[0]}</label>
+                            <label>{chapterUniqueIDText}: {item[0]}</label>
                             <br></br>
                             <br></br>
 
@@ -338,7 +338,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                       </li>
                       {isAddNewChpater === true && 
                       <div>
-                        <label>{newWordText}{chapterUniqueIDNameText} ({unchangableOnceSubmittedText}): </label><br></br>
+                        <label>{newWordText}{chapterUniqueIDText} ({unchangableOnceSubmittedText}): </label><br></br>
                         <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
                         <br></br><br></br>
                         <label>{newWordText}{chapterTitleText} ({editableLaterText}): </label><br></br>

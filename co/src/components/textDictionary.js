@@ -81,7 +81,7 @@ const textDictionary = {
         addAnewConsequenceText: "Add a New Consequence",
         bgmSettingText: "Background Music Setting",
         chapterManagementText: "Chapter Management",
-        chapterUniqueIDNameText: "Chapter Unique-ID-Name",
+        chapterUniqueIDText: "Chapter Unique-ID-Name",
         chapterTitleText: "Chapter Title",
         newWordText: "New ",
         noteText: "Note",
@@ -91,7 +91,7 @@ const textDictionary = {
         renameText: "Rename ",
         emptyNotePlaceHolder: "(Empty Note)",
         noDeletedChapterText: "(No Deleted Chapter)",
-        nodeUniqueIDNameText: "Node Unique-ID-Name",
+        nodeUniqueIDText: "Node Unique-ID-Name",
         nodeTitleText: "Node Title",
         nextNodeTitleText: "Next Node Title",
         nodeTypeText: "Node Type",
@@ -199,9 +199,15 @@ const textDictionary = {
         emuManagerText: "Emu Data Manager",
         productItemListText: "Product Item List",
         emuShopInfo: "Emu Shop Info",
+        
+        productIDTextText: "Product ID",
+        productNameText: "Product Name",
+        productPriceText: "Product Price",
+        productInfoText: "Product Info",
 
 
 
+        //Test User Acquired?
 
 
 
@@ -289,7 +295,7 @@ const textDictionary = {
         addAnewConsequenceText: "添加一个新·调整效果",
         bgmSettingText: "背景音乐设置",
         chapterManagementText: "章节管理",
-        chapterUniqueIDNameText: "章节ID",
+        chapterUniqueIDText: "章节ID",
         chapterTitleText: "章节标题",
         newWordText: "新",
         noteText: "备注",
@@ -299,7 +305,7 @@ const textDictionary = {
         renameText: "重命名",
         emptyNotePlaceHolder: "(备注为空)",
         noDeletedChapterText: "(无被删除章节)",
-        nodeUniqueIDNameText: "节点ID",
+        nodeUniqueIDText: "节点ID",
         nodeTitleText: "节点标题",
         nextNodeTitleText: "下一节点标题",
         nodeTypeText: "节点类型",
@@ -398,7 +404,6 @@ const textDictionary = {
         selectOperationDefaultMaintain: "选择操作(默认: 保持)",
         nameText: "名称",
         currentValueText: "当前值",
-
         itemNameText: "单项名称",
         itemContentText: "单项内容",
         operationText: "操作",
@@ -409,6 +414,10 @@ const textDictionary = {
         productItemListText: "产品单项列表",
         emuShopInfo: "模拟/测试用 商店信息",
 
+        productIDTextText: "商品ID",
+        productNameText: "商品名",
+        productPriceText: "商品价格",
+        productInfoText: "商品详情",
 
 
     },

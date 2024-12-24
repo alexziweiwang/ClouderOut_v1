@@ -109,6 +109,23 @@ export default function Modal_EmuManager({
         textDictItem.emuShopInfo
         : textDictItemDefault.emuShopInfo;
 
+    const productIDTextText = textDictItem.productIDTextText !== undefined ?
+        textDictItem.productIDTextText
+        : textDictItemDefault.productIDTextText;
+
+    const productNameText = textDictItem.productNameText !== undefined ?
+        textDictItem.productNameText
+        : textDictItemDefault.productNameText;
+
+    const productPriceText = textDictItem.productPriceText !== undefined ?
+        textDictItem.productPriceText
+        : textDictItemDefault.productPriceText;
+
+    const productInfoText = textDictItem.productInfoText !== undefined ?
+        textDictItem.productInfoText
+        : textDictItemDefault.productInfoText;
+
+
 //TODO15
 
 
@@ -1292,10 +1309,10 @@ return (<div className={modalStyleName}>
                                 return (
                                 <>
                                 <tr>    
-                                    <th style={{"width": "110px"}}>Product Key</th>
-                                    <th style={{"width": "110px"}}>Product Name</th>
-                                    <th style={{"width": "70px"}}>Product Price</th>
-                                    <th style={{"width": "200px"}}>Product Info</th>
+                                    <th style={{"width": "110px"}}>{productIDTextText}</th>
+                                    <th style={{"width": "110px"}}>{productNameText}</th>
+                                    <th style={{"width": "70px"}}>{productPriceText}</th>
+                                    <th style={{"width": "200px"}}>{productInfoText}</th>
                                     <th style={{"width": "90px"}}>Test User Acquired? </th>
                                 </tr>
                                 

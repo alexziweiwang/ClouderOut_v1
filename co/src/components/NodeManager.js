@@ -104,9 +104,9 @@ export default function NodeManager({projectName, currUser,
     textDictItem.nextNodeTitleText
     : textDictItemDefault.nextNodeTitleText;
 
-  let nodeUniqueIDNameText = textDictItem.nodeUniqueIDNameText !== undefined ?
-    textDictItem.nodeUniqueIDNameText
-    : textDictItemDefault.nodeUniqueIDNameText;
+  let nodeUniqueIDText = textDictItem.nodeUniqueIDText !== undefined ?
+    textDictItem.nodeUniqueIDText
+    : textDictItemDefault.nodeUniqueIDText;
 
   let nodeTitleText = textDictItem.nodeTitleText !== undefined ? 
     textDictItem.nodeTitleText
@@ -1088,7 +1088,7 @@ export default function NodeManager({projectName, currUser,
           }}>{addANewNodeHereText}</label>
           {newGridActionCreate && <div className="section">
                
-              <label>{nodeUniqueIDNameText} & {titleText}: </label>
+              <label>{nodeUniqueIDText} & {titleText}: </label>
               <input 
                 className="setting_item"
                 type="text" value={createNewNodeName} 
@@ -1217,7 +1217,7 @@ export default function NodeManager({projectName, currUser,
                 
                               <p className="sectionHeader"> {nodeInfoText} </p>
 
-                                  <label>{nodeUniqueIDNameText}: </label>
+                                  <label>{nodeUniqueIDText}: </label>
                                     <div className="indentOne">
                                       {clickedNodeKey}
                                   </div>
