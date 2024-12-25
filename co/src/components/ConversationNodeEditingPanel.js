@@ -16,7 +16,6 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
 
-//TODO fetch navigation(all game type) data from cloud?
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures

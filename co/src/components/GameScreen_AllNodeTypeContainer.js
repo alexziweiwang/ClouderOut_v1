@@ -83,6 +83,7 @@ return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
 
     {currNodeType === "*chapterStart*" && <div style={{"backgroundColor": "grey", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
     *chapterStart*
+    chapter = {currChapterKey}, node-key = {currNodeKey}
         
         </div>}
 
