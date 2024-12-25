@@ -4,7 +4,7 @@ import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateD
 
 export async function convNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj}) {
     
-    const projectNodeRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterKey, "nodes", nodeKey);
+    const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
     const projectNodeSnap = await getDoc(projectNodeRef);
   
     if (!projectNodeSnap.exists()) {
@@ -16,9 +16,29 @@ export async function convNodeUpdateToCloud({project, username, chapterKey, node
       "nodeContent": dataObj
     });
     
-    //TODO
+    //TODO test
 
 
 
 }
 
+
+export async function convNodeFetchFromCloud({project, username, chapterKey, nodeKey}) {
+    
+  const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
+  const projectNodeSnap = await getDoc(projectNodeRef);
+
+  if (!projectNodeSnap.exists()) {
+    return;
+  }
+
+
+  let projectNodeData = [];
+  projectNodeData = projectNodeSnap.data().nodeContent; 
+
+    //TODO test
+
+  return projectNodeData;
+
+
+}
