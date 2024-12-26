@@ -1712,7 +1712,6 @@ export default function PieceSetter({
          */}
 
         <br></br>
-        <button>{saveText}</button>
 
         <br></br>
         <br></br>

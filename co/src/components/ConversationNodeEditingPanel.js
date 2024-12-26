@@ -16,6 +16,8 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
 
+import { convNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
+
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
@@ -105,8 +107,13 @@ export default function ConversationNodeEditingPanel() {
     const emuManagerText = textDictItem.emuManagerText !== undefined ?
             textDictItem.emuManagerText
             : textDictItemDefault.emuManagerText;
+    
+    const saveText = textDictItem.saveText !== undefined ?
+            textDictItem.saveText
+            : textDictItemDefault.saveText;
 
-//TODO5
+//TODO15
+
     const [pieceDataStructure, setPieceDatastructure] = useState([
             {"num": 1, "content": "", "displayTextFrame": false, "speaker_name": "", "bgp_source_varname": "", "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr", "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [{"buttonText": 'a', "conseq": [['hp_001', 'plus', '10', 'number']]}], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
             {"num": 2, "content": "b2000222222222222222222222222222222222 ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
@@ -298,6 +305,9 @@ export default function ConversationNodeEditingPanel() {
 
         if (firstTimeEnter === true) {
             initializeUILang();
+
+            //initialize piece-ds
+            initializePiecesFromCloud();
 
             setFirstTimeEnter(false);
         }
@@ -672,6 +682,20 @@ export default function ConversationNodeEditingPanel() {
 
 //TODO5
     } 
+
+    function saveAllToCloud() {
+        //TODO when clicked, call update-to-cloud func
+       // convNodeUpdateToCloudVM({project: "", username: "", chapterKey: "", nodeKey: "", dataObj: ""});
+
+
+
+    }
+
+    function initializePiecesFromCloud() {
+
+       // convNodeFetchFromCloudVM({project: "", username: "", chapterKey: "", nodeKey: ""});
+    } 
+
     
 
     return (
@@ -735,6 +759,10 @@ export default function ConversationNodeEditingPanel() {
                         {gameContentSetupText}</button>
                     <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
                         {gameUIsetupText}</button>
+
+                    <button
+                        onClick={()=>{saveAllToCloud();}}
+                    >{saveText}</button>
 
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
