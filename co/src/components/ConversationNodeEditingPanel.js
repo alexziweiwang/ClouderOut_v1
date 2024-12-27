@@ -113,9 +113,9 @@ export default function ConversationNodeEditingPanel() {
             textDictItem.emuManagerText
             : textDictItemDefault.emuManagerText;
     
-    const saveText = textDictItem.saveText !== undefined ?
-            textDictItem.saveText
-            : textDictItemDefault.saveText;
+    const saveToCloudText = textDictItem.saveToCloudText !== undefined ?
+            textDictItem.saveToCloudText
+            : textDictItemDefault.saveToCloudText;
 
 //TODO15
 
@@ -692,14 +692,9 @@ export default function ConversationNodeEditingPanel() {
         //TODO when clicked, call update-to-cloud func
         //pieceDataStructure
 
-        let testDs = [
-            {"num": 2, "content": "b2000222222222222222222222222222222222 ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 3, "content": "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 4, "content": "d4000!!!!!!! ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 5, "content": "e5000???????????????? ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}
-        ];
+        await convNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure}).then(alert("Saved to Cloud!"));
 
-        await convNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: testDs});
+
 //TODO29
 
 
@@ -769,14 +764,16 @@ export default function ConversationNodeEditingPanel() {
 
 
                 <div className="topParalBarRightPart" style={{"height": "45px"}}>
+
+                    <button
+                        onClick={()=>{saveAllToCloud();}}
+                    >{saveToCloudText}</button>
+
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
                         {gameContentSetupText}</button>
                     <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
                         {gameUIsetupText}</button>
 
-                    <button
-                        onClick={()=>{saveAllToCloud();}}
-                    >{saveText}</button>
 
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>

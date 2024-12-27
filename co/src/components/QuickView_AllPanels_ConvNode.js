@@ -294,7 +294,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     function buttonConsequenceByStatementEntireArray(pieceNum, item) {
         let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
-        let conseqArray = stndButtonThisButtonInfo[0]["conseq"];
+        
+        let conseqArray = stndButtonThisButtonInfo[0]["conseq"]; //TODO29 change conseq to map (previously array)
         if (conseqArray === undefined) {
                                                             console.log("2... conseqArray undefined.");
             return;
@@ -305,10 +306,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         let i = 0;
                                                     //        console.log("\nchange-by-stmt-arr: before - ", res);
         for (; i < len; i++) {
-            let name = conseqArray[i][0];
-            let action = conseqArray[i][1];
-            let newVal = conseqArray[i][2];
-            let type = conseqArray[i][3];
+            let name = conseqArray[i][0];  //TODO29 change conseq to map (previously array)
+            let action = conseqArray[i][1];  //TODO29 change conseq to map (previously array)
+            let newVal = conseqArray[i][2];  //TODO29 change conseq to map (previously array)
+            let type = conseqArray[i][3];  //TODO29 change conseq to map (previously array)
                                       //                      console.log("2calling change-by-stmt, ", conseqArray[i]);
             
             res = changeGameDataTrackerByStatement(res, name, action, newVal, type);

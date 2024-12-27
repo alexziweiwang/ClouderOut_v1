@@ -96,10 +96,6 @@ export default function PieceSetter({
     const bgmSettingText = textDictItem.bgmSettingText !== undefined ?
         textDictItem.bgmSettingText
         : textDictItemDefault.bgmSettingText;
-    
-    const saveText = textDictItem.saveText !== undefined ?
-        textDictItem.saveText
-        : textDictItemDefault.saveText;
 
     const collapseText = textDictItem.collapseText !== undefined ?
         textDictItem.collapseText
@@ -155,7 +151,9 @@ export default function PieceSetter({
     const [stndButtonSound, setStndButtonSound] = useState("default sound"); //TODO test
     const [stndButtonText, setStndButtonText] = useState(""); //TODO test
 
-    const [stndButtonConsequenceArray, setStndButtonConsequenceArray] = useState([]); //TODO refactor
+    const [stndButtonConsequenceArrayLocal, setstndButtonConsequenceArrayLocal] = useState([]); //TODO refactor
+    const [stndButtonConsequenceMap, setStndButtonConsequenceMap] = useState([]); //TODO refactor
+
     const [stndBtnConseqGDataItemSelected, setStndBtnConseqGDataItemSelected] = useState("");
     const [stndBtnConseqGDataTypeSelected, setStndBtnConseqGDataTypeSelected] = useState("");
     const [consequenceStndBtnIsPlus, setConsequenceStndBtnIsPlus] = useState("");
@@ -362,7 +360,9 @@ export default function PieceSetter({
         setStndButtonDataTable([]);
 
         setStndButtonText("");
-        setStndButtonConsequenceArray([]);
+        setstndButtonConsequenceArrayLocal([]);
+        setStndButtonConsequenceMap({});
+
         setDisplayStndButtonAdd(false);
         setStndBtnConseqGDataItemSelected("");
         setStndBtnConseqGDataTypeSelected("");
@@ -705,11 +705,31 @@ export default function PieceSetter({
     }
 
     function removeFromStndButtonConseqList(index) {
-        let tempConseq =stndButtonConsequenceArray.filter((item) =>(item !== stndButtonConsequenceArray[index]));
-        setStndButtonConsequenceArray(tempConseq);
+        let tempConseq =stndButtonConsequenceArrayLocal.filter((item) =>(item !== stndButtonConsequenceArrayLocal[index]));
+        setstndButtonConsequenceArrayLocal(tempConseq);
+    }
+
+    function putConseqArrToMap() {
+        // stndButtonConsequenceArrayLocal
+        //TODO30
+        let currMap = {};
+
+        stndButtonConsequenceArrayLocal.map((item, index) => {
+            let obj = {
+                "name": item[0],
+                "action": item[1],
+                "newVal": item[2],
+                "type": item[3]
+            }
+            currMap[index] = obj;
+        })
+
+        setStndButtonConsequenceMap(currMap);
+
     }
 
 
+//TODO0
   return (
       
     <div onClick={()=>{
@@ -919,7 +939,10 @@ export default function PieceSetter({
                             
                             <tbody>
                                 {stndButtonDataTable.map((item, index) => {  
-                                    let keyStr = "stndButtonTable-" + index;       
+                                    let keyStr = "stndButtonTable-" + index;  
+                                    
+                                    
+
                                     return (
                                         <tr key={keyStr}>
                                             <td>{index}</td>
@@ -979,7 +1002,7 @@ export default function PieceSetter({
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {stndButtonConsequenceArray.map((item, index) => {  
+                                    {stndButtonConsequenceArrayLocal.map((item, index) => {  
                                         let keyStr = "stndButton-" + index+ "-conseq-";  
                                     return (
                                         <tr className="clickableListItem3" key={keyStr}>
@@ -1121,8 +1144,8 @@ export default function PieceSetter({
 
                         obj.push(stndBtnConseqGDataTypeSelected); //TODO add data-type! //[3] "number", "boolean", "string"
                       
-                        /* push to stndButtonConsequenceArray */
-                        stndButtonConsequenceArray.push(obj);
+                        /* push to stndButtonConsequenceArrayLocal */
+                        stndButtonConsequenceArrayLocal.push(obj);
                         
                         setIsStndBtnAddNewConsq(false);
 
@@ -1140,8 +1163,11 @@ export default function PieceSetter({
                         let obj = {};
                         
                         obj.buttonText = stndButtonText;
-                        obj.conseq = stndButtonConsequenceArray; //TODO refactor for cloud-db
 
+
+                        putConseqArrToMap(); //TODO29
+                        //obj.conseq = stndButtonConsequenceArrayLocal; //TODO refactor for cloud-db, change to map ...
+                        obj.conseq = setStndButtonConsequenceMap;
                         
                         let tableTemp = stndButtonDataTable;
 
@@ -1164,7 +1190,7 @@ export default function PieceSetter({
                         setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": updatedMap});
 
                         setStndButtonText("");
-                        setStndButtonConsequenceArray([]);
+                        setstndButtonConsequenceArrayLocal([]);
                         setDisplayStndButtonAdd(false);
                         setStndBtnConseqGDataItemSelected("");
                         setStndBtnConseqGDataTypeSelected("");
