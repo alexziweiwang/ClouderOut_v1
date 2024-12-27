@@ -49,7 +49,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     const [bgpSource, setBgpSource] = useState("");
 
     const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
-    const [charaPicArr2, setCharaPicArr2] = useState(initialAllPieceData[0]["chp_arr"]);
+    const [charaPicArr2, setCharaPicArr2] = useState(initialAllPieceData.length > 0 ? initialAllPieceData[0]["chp_arr"] : []);
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
@@ -89,30 +89,32 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       setLanguageCodeTextOption(uiLangTemp);
 
       let allPieceContentTemp = getAllPieceContent();
-      if (allPieceContentTemp !== allPieceData) {
-        setAllPieceData(allPieceContentTemp);
-      }
-      
-      let currPieceNumTemp = getCurrentPieceNum();
-      if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
-        setCurrentPieceNum(currPieceNumTemp);
-        setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+      if (allPieceContentTemp.length > 0) {
+          if (allPieceContentTemp !== allPieceData) {
+            setAllPieceData(allPieceContentTemp);
+          }
+          
+          let currPieceNumTemp = getCurrentPieceNum();
+          if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+            setCurrentPieceNum(currPieceNumTemp);
+            setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+          }
+
+          if (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
+            allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0) {
+              setDirectNextPieceBool(false);
+          } else {
+              setDirectNextPieceBool(true);
+          }
+
+          setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]); 
+          
+          let isForward = (currPieceNumTemp > currentPieceNum);
+          updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
+          updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
+          updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
       }
 
-      if (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
-        allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0) {
-          setDirectNextPieceBool(false);
-      } else {
-          setDirectNextPieceBool(true);
-      }
-
-      setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]); 
-      
-      let isForward = (currPieceNumTemp > currentPieceNum);
-      updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
-      updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
-      updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
-      
 
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
@@ -283,7 +285,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             setIsClickedOnSetters(false);
           }}
         >       
-
+        {allPieceData.length > 0 && <>
             <div className="previewArea" 
               style={{"position": "relative", 
                       "height": `${screenHeight}px`, 
@@ -343,7 +345,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
               </div>}
               
-              {(currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
+              {(allPieceData.length > 0 && currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
               <GameUI_1TextFramePreview
                 isEditing={true}
                 dataObj={currentPiece} 
@@ -446,7 +448,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                 <br></br> at all points (pieces) of the game, the author can check game-data for that progress to keep track of everything in game
                 <br></br> toggle in preview-related component
             </p> */}
-
+        </>}
                
         </div>
     

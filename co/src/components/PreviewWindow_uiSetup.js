@@ -136,7 +136,10 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
                     "width": `${screenWidth}px`,
                 }}
             >
-              
+{initialAllPieceData.length > 0 && 
+<>
+
+
                 {<div 
                     style={{
                         "display": !isShowLogScreen ? "flex" : "none"
@@ -208,7 +211,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
 }
 
-
+</>}
             </div>
 
 
@@ -216,7 +219,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
             <br></br>
             <br></br>
 
-
+        
 
         </div>
     

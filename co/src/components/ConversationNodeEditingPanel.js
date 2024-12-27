@@ -119,12 +119,15 @@ export default function ConversationNodeEditingPanel() {
 
 //TODO15
 
-    const [pieceDataStructure, setPieceDatastructure] = useState([
-            {"num": 1, "content": "", "displayTextFrame": false, "speaker_name": "", "bgp_source_varname": "", "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr", "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [{"buttonText": 'a', "conseq": [['hp_001', 'plus', '10', 'number']]}], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 2, "content": "b2000222222222222222222222222222222222 ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 3, "content": "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 4, "content": "d4000!!!!!!! ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
-            {"num": 5, "content": "e5000???????????????? ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}
+    const [pieceDataStructure, setPieceDatastructure] = useState(
+        [
+
+            // {"num": 1, "content": "", "displayTextFrame": false, "speaker_name": "", "bgp_source_varname": "", "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr", "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [{"buttonText": 'a', "conseq": {'hp_001': {"name": "hp_001", "action": "plus", "newVal": "10", "type": "number"}}}], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
+            // {"num": 2, "content": "b2000222222222222222222222222222222222 ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
+            // {"num": 3, "content": "sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3-sample_content_3", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
+            // {"num": 4, "content": "d4000!!!!!!! ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
+            // {"num": 5, "content": "e5000???????????????? ...", "displayTextFrame": true, "speaker_name": "", "bgp_source_varname": "",  "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr",  "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}
+        
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
@@ -700,9 +703,17 @@ export default function ConversationNodeEditingPanel() {
 
     }
 
-    function initializePiecesFromCloud() {
+    async function initializePiecesFromCloud() {
 
-       // convNodeFetchFromCloudVM({project: "", username: "", chapterKey: "", nodeKey: ""});
+        let pieceObjTemp = await convNodeFetchFromCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey});
+        console.log("initialize piece data... ", pieceObjTemp);
+
+        if (pieceObjTemp === undefined || pieceObjTemp === null) {
+            return;
+        }
+
+        setPieceDatastructure(pieceObjTemp);
+
     } 
 
     
