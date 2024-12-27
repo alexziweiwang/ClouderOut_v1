@@ -205,7 +205,6 @@ export default function PieceSetter({
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "chp_action": allPieceData[pieceNum-1]["chp_action"], 
 
-        // "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], // TODO for cloud-db side, use map
         "stnd_btn_map": allPieceData[pieceNum-1]["stnd_btn_map"], // fetch/in side
 
         "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
@@ -283,19 +282,31 @@ export default function PieceSetter({
     });
 
     function stndBtnFromMapToArr(map1) {
-        let arr = [];
+        let arrTemp = [];
+        Object.keys(map1).map((currKey) => {
+            arrTemp.push(map1[currKey]);
+        })
 
-        // TODO from map1 to arr...
+        arrTemp.sort((a,b) => a.seq - b.seq);
 
-        setStndButtonDataTable(arr);
-        return arr;
+        setStndButtonDataTable(arrTemp);
+
+                                console.log("conversion -- from map = ", map1, " to Arr ... ", arrTemp);
+
+        return arrTemp;
     }
 
     function stndBtnFromArrToMap(arr) {
         let map1 = {};
 
+        arr.map((item, index)=>{
+            let obj = item;
+            obj["seq"] = index;
+            map1[index] = obj;
+        })
 
-        //TODO from arr to map1
+                                console.log("conversion -- from arr. ", arr, " to map = ", map1);
+
 
         return map1;
     }
@@ -1150,7 +1161,7 @@ export default function PieceSetter({
                         // console.log("current standard-button group: "); //TODO test
                         // console.log(tableTemp); //TODO test
 
-                        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": updatedMap});//TODO29 from "stnd_btn_arr"
+                        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": updatedMap});
 
                         setStndButtonText("");
                         setStndButtonConsequenceArray([]);
