@@ -295,25 +295,24 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     function buttonConsequenceByStatementEntireArray(pieceNum, item) {
         let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
         
-        let conseqArray = stndButtonThisButtonInfo[0]["conseq"]; //TODO29 change conseq to map (previously array)
-        if (conseqArray === undefined) {
-                                                            console.log("2... conseqArray undefined.");
+        let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
+        if (conseqMap === undefined) {
+                                                            console.log("2... conseqMap undefined.");
             return;
         }
-        let len = conseqArray.length;
-                                                          //  console.log("2conseqArray: ", conseqArray, ", len = ", len);
+                                                          //  console.log("2conseqMap: ", conseqMap, ", len = ", len);
         let res = gameDataTracker;
-        let i = 0;
                                                     //        console.log("\nchange-by-stmt-arr: before - ", res);
-        for (; i < len; i++) {
-            let name = conseqArray[i][0];  //TODO29 change conseq to map (previously array)
-            let action = conseqArray[i][1];  //TODO29 change conseq to map (previously array)
-            let newVal = conseqArray[i][2];  //TODO29 change conseq to map (previously array)
-            let type = conseqArray[i][3];  //TODO29 change conseq to map (previously array)
-                                      //                      console.log("2calling change-by-stmt, ", conseqArray[i]);
-            
+        Object.keys(conseqMap).map((currKey) => {
+
+            let name = conseqMap[currKey]["name"];  
+            let action = conseqMap[currKey]["action"];  
+            let newVal = conseqMap[currKey]["newVal"];  
+            let type = conseqMap[currKey]["type"];  
+                                                            console.log("2calling change-by-stmt, ", conseqMap[currKey]);
+                                  
             res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
-        }
+        });
 
                                                             console.log("\nchange-by-stmt-arr: after - ", res);
 

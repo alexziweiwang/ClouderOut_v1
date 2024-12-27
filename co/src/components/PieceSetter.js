@@ -710,8 +710,6 @@ export default function PieceSetter({
     }
 
     function putConseqArrToMap() {
-        // stndButtonConsequenceArrayLocal
-        //TODO30
         let currMap = {};
 
         stndButtonConsequenceArrayLocal.map((item, index) => {
@@ -721,11 +719,11 @@ export default function PieceSetter({
                 "newVal": item[2],
                 "type": item[3]
             }
-            currMap[index] = obj;
+            currMap["name"] = obj;
         })
 
         setStndButtonConsequenceMap(currMap);
-
+        return currMap;
     }
 
 
@@ -1160,20 +1158,19 @@ export default function PieceSetter({
                         if (stndButtonText === "") {
                             return;
                         }
-                        let obj = {};
-                        
-                        obj.buttonText = stndButtonText;
 
-
-                        putConseqArrToMap(); //TODO29
-                        //obj.conseq = stndButtonConsequenceArrayLocal; //TODO refactor for cloud-db, change to map ...
-                        obj.conseq = setStndButtonConsequenceMap;
-                        
                         let tableTemp = stndButtonDataTable;
 
 
+                        let obj = {};
+                        obj.buttonText = stndButtonText;
 
+                        let conseqMap = putConseqArrToMap(); //TODO29
+                        obj.conseq = conseqMap;
+                        
                         tableTemp.push(obj);
+
+                        
                         setStndButtonDataTable(tableTemp);
 
                         let tempObj = currentPieceDetail;
