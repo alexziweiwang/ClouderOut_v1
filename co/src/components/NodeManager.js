@@ -350,8 +350,12 @@ export default function NodeManager({projectName, currUser,
     if (currNodeType === "Card Game") {
       navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang } });
     } else if (currNodeType === "Conversation") {
-      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang } });
-    }
+      
+      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang, chapterKey} });
+    } 
+
+    
+    //TODO29
         //TODO later add conditions for board game and tower defense
   }
 

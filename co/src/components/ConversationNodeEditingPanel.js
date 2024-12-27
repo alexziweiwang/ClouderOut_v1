@@ -32,12 +32,17 @@ export default function ConversationNodeEditingPanel() {
     let projectName = "default-no-state projectname";
     let screenSizeInfo = "default-no-state screenSizeInfo";
     let editorUiLang = "default-no-state uiLang";
+    let chapterKey = "defualt-no-state chapterkey";
+    let nodeKey = "default-node-state nodekey";
     if (state != null) {
         nodeName = state.clickedNodeKey;
         uname = state.userName;
         projectName = state.selected_project_name;
         screenSizeInfo = state.screenSizeStr;
-        editorUiLang = state.uiLang;        
+        editorUiLang = state.uiLang;    
+        chapterKey = state.chapterKey;
+        nodeKey = state.clickedNodeKey;
+
     }
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -683,10 +688,10 @@ export default function ConversationNodeEditingPanel() {
 //TODO5
     } 
 
-    function saveAllToCloud() {
+    async function saveAllToCloud() {
         //TODO when clicked, call update-to-cloud func
-       // convNodeUpdateToCloudVM({project: "", username: "", chapterKey: "", nodeKey: "", dataObj: ""});
-
+        await convNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure});
+//TODO29
 
 
     }

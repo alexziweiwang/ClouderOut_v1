@@ -7,17 +7,19 @@ export async function convNodeUpdateToCloud({project, username, chapterKey, node
     const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
     const projectNodeSnap = await getDoc(projectNodeRef);
   
+                                  console.log("model-func-convNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey);
+
+
     if (!projectNodeSnap.exists()) {
       return;
     }
 
 
-    await updateDoc(projectRef, {
+    await updateDoc(projectNodeRef, {
       "nodeContent": dataObj
     });
     
     //TODO test
-
 
 
 }
