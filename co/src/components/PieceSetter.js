@@ -204,7 +204,10 @@ export default function PieceSetter({
         "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "chp_action": allPieceData[pieceNum-1]["chp_action"], 
-        "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], 
+
+        // "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], // TODO for cloud-db side, use map
+        "stnd_btn_map": allPieceData[pieceNum-1]["stnd_btn_map"], //
+
         "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
         "clkb_previewing": allPieceData[pieceNum-1]["clkb_previewing"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
@@ -260,7 +263,10 @@ export default function PieceSetter({
             let boolVal = allPiece[pieceNum-1]["content"] == "";
                                                 console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
             setUserSelectedTextContentToEdit(!boolVal);
-            setStndButtonDataTable(pieceAllDataLocal[pieceNum-1]["stnd_btn_arr"]);
+
+
+            setStndButtonDataTable(); //TODO29 refactor: from pieceAllDataLocal[pieceNum-1]["stnd_btn_map"] to build stnd_btn_arr -- then setStndButtonDataTable()
+            
 
         }
 
@@ -316,11 +322,17 @@ export default function PieceSetter({
     }
 
     function handleStndBtnReset() {
-        // stnd_btn_arr
-        let emptyArr = []
-        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": emptyArr});
+        // stnd_btn_arr //TODO29
+        // let emptyArr = []; //TODO29
+                                        // setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": emptyArr});
+        let emptyMap = {};
+        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": emptyMap});
+
         let tempObj = currentPieceDetail;
-        tempObj["stnd_btn_arr"] = emptyArr;
+                                        // tempObj["stnd_btn_arr"] = emptyArr;  //TODO29
+
+        tempObj["stnd_btn_map"] = emptyMap;
+
         updateToCaller(tempObj);
 
         setStndButtonDataTable([]);
@@ -429,8 +441,9 @@ export default function PieceSetter({
             //TODO temp
             setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber-2]);
          
-            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber-2]["stnd_btn_arr"]);
-            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber-2]["clkb_arr"]);
+            //TODO29 setStndButtonDataTable();
+                        //pieceAllDataLocal[lookingPieceNumber-2]["stnd_btn_arr"]
+
 
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
         } 
@@ -446,8 +459,10 @@ export default function PieceSetter({
             setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber]);
 
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
-            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
-            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["clkb_arr"]);
+            
+            //TODO29 setStndButtonDataTable();
+                //pieceAllDataLocal[lookingPieceNumber]["stnd_btn_arr"]
+
         } 
 
     }
@@ -656,10 +671,10 @@ export default function PieceSetter({
         let tempStndButtonTb = stndButtonDataTable.filter((item) =>(item !== stndButtonDataTable[index]));
         setStndButtonDataTable(tempStndButtonTb);
         let tempObj = currentPieceDetail;
-        tempObj["stnd_btn_arr"] = tempStndButtonTb;
+        tempObj["stnd_btn_arr"] = tempStndButtonTb; //TODO change to map
 
         updateToCaller(tempObj);
-        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tempStndButtonTb});
+        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tempStndButtonTb}); // TODO29 change to map
     }
 
     function removeFromStndButtonConseqList(index) {
@@ -1102,18 +1117,25 @@ export default function PieceSetter({
 
                         
                         let tableTemp = stndButtonDataTable;
+                        let tableMapTemp = {};
+
+
+
                         tableTemp.push(obj);
                         setStndButtonDataTable(tableTemp);
 
                         let tempObj = currentPieceDetail;
-                        tempObj["stnd_btn_arr"] = tableTemp;
+                        
+                        //tempObj["stnd_btn_map"] = tableMapTemp //TODO29 from "stnd_btn_arr"
+
+
                         updateToCaller(tempObj);
 
                         // console.log("current standard-button group: "); //TODO test
                         // console.log(tableTemp); //TODO test
 
-                        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tableTemp});
-                        
+                        // setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": tableMapTemp});//TODO29 from "stnd_btn_arr"
+
                 
                         setStndButtonText("");
                         setStndButtonConsequenceArray([]);

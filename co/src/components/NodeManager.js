@@ -548,7 +548,7 @@ export default function NodeManager({projectName, currUser,
             updatedArr.push(item);
           }
         }
-        tempNodeMap[nodeKey].spltLogicPairs = updatedArr;
+        tempNodeMap[nodeKey].spltLogicPairs = updatedArr; //TODO change to map
        
       } else {
         let nextNodeName = tempNodeMap[nodeKey].nextNode;
@@ -593,7 +593,7 @@ export default function NodeManager({projectName, currUser,
     //TODO update for grid-node-visualization
                         
     let tempNodeRelMap = nodeRelationshipMap;
-    tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr;
+    tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr; //TODO change to map
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
@@ -612,7 +612,7 @@ export default function NodeManager({projectName, currUser,
     }
 
     let tempNodeRelMap = nodeRelationshipMap;
-    tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempPairs;
+    tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempPairs; //TODO change to map
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
@@ -1640,7 +1640,7 @@ export default function NodeManager({projectName, currUser,
                       tempLogicPairs.push(currStmtArr);
 
                       let tempNodeRelMap = nodeRelationshipMap;
-                      tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs;
+                      tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs; //TODO change to map
 
                       setNodeRelationshipMap(tempNodeRelMap);
                       updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
