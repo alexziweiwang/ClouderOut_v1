@@ -411,7 +411,7 @@
 
 - 2024-Dec-23: Design chapter-entering-status checking-structure
 
-
+- 2024-Dec-26: Redesign and refactor ds for nested array issues
 
 
 

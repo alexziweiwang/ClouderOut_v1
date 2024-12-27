@@ -6,6 +6,8 @@ import { GiTrashCan } from "react-icons/gi";
 import { getProjectGameDataDesignVM, updateGameDataDesignVM} from '../viewmodels/GameDataViewModel';
 import langDictionary from './textDictionary';
 
+//TODO refactor: stnd_btn_arr
+
 
 export default function PieceSetter({
     pieceNum, assignPreviewIndex, 
@@ -152,7 +154,8 @@ export default function PieceSetter({
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
     const [stndButtonSound, setStndButtonSound] = useState("default sound"); //TODO test
     const [stndButtonText, setStndButtonText] = useState(""); //TODO test
-    const [stndButtonConsequenceArray, setStndButtonConsequenceArray] = useState([]);
+
+    const [stndButtonConsequenceArray, setStndButtonConsequenceArray] = useState([]); //TODO refactor
     const [stndBtnConseqGDataItemSelected, setStndBtnConseqGDataItemSelected] = useState("");
     const [stndBtnConseqGDataTypeSelected, setStndBtnConseqGDataTypeSelected] = useState("");
     const [consequenceStndBtnIsPlus, setConsequenceStndBtnIsPlus] = useState("");
@@ -1095,7 +1098,8 @@ export default function PieceSetter({
                         let obj = {};
                         
                         obj.buttonText = stndButtonText;
-                        obj.conseq = stndButtonConsequenceArray;
+                        obj.conseq = stndButtonConsequenceArray; //TODO refactor for cloud-db
+
                         
                         let tableTemp = stndButtonDataTable;
                         tableTemp.push(obj);

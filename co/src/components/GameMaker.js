@@ -20,6 +20,10 @@ import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/Proje
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
 
+
+//TODO refactor spltLogicPairs
+
+
 export default function GameMaker({username, projectName}) {
 
   
@@ -213,7 +217,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               nodeName: "C1-title", 
               row: 4, 
               col: 0, 
-              spltLogicPairs: [["else", "A1-key", "else"]], 
+              spltLogicPairs: [["else", "A1-key", "else"]],  //TODO refactor
               display: true, 
               nodeType:"LogicSplitter",
               notes: "",
@@ -283,7 +287,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
             nodeName: "C2-title", 
             row: 4, 
             col: 0, 
-            spltLogicPairs: [["else", "", "else"],], 
+            spltLogicPairs: [["else", "", "else"],],    //TODO refactor 
             display: true, 
             nodeType:"LogicSplitter",
             notes: "",

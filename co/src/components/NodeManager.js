@@ -354,7 +354,7 @@ export default function NodeManager({projectName, currUser,
       navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang, chapterKey} });
     } 
 
-    
+
     //TODO29
         //TODO later add conditions for board game and tower defense
   }
@@ -395,7 +395,7 @@ export default function NodeManager({projectName, currUser,
             screenSize: createdNewNodeScreenSize,
             row: clickedRow,
             col: clickedCol,
-            spltLogicPairs: [["else", "", "else"],],
+            spltLogicPairs: [["else", "", "else"],],                //TODO refactor
             display: true,     
           }; //TODO temp
         } else {
@@ -534,10 +534,10 @@ export default function NodeManager({projectName, currUser,
     tempGridBlocks[r][c] = "";
 
     // delete the parent-node's next-node
-    Object.keys(tempNodeMap).map((nodeKey) => {
+    Object.keys(tempNodeMap).map((nodeKey) => {             
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
         //traverse spltLogicPairs
-        let arr = tempNodeMap[nodeKey].spltLogicPairs;
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;                   //TODO refactor
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
@@ -1410,8 +1410,10 @@ export default function NodeManager({projectName, currUser,
                           );
                         
                       })}
+
+                      {/* //TODO refactor */}
                       <tr>
-                        <td>(All other cases / "Else")</td>
+                        <td>(All other cases / "Else")</td>         
                         <td>
                           {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
                             && 
