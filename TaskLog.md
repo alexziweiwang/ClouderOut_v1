@@ -413,6 +413,10 @@
 
 - 2024-Dec-26: Redesign and refactor ds for nested array issues
 
+- 2024-Dec-30: User-account considerations, decisions for backend
+
+
+
 
 
 
