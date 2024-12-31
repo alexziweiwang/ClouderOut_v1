@@ -537,7 +537,7 @@ export default function NodeManager({projectName, currUser,
     Object.keys(tempNodeMap).map((nodeKey) => {             
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
         //traverse spltLogicPairs
-        let arr = tempNodeMap[nodeKey].spltLogicPairs;                   //TODO refactor
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;                   //TODO refactor; remove this node from other's logic-chain(s)
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
@@ -1388,7 +1388,7 @@ export default function NodeManager({projectName, currUser,
                     <tbody>
                       
                       
-                      
+                      {/* //TODO31 */}
                       {nodeRelationshipMap[clickedNodeKey].spltLogicPairs
                       .map((item, index) => {       
                           if (item[0] === "else") {

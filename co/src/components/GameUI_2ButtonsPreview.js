@@ -141,66 +141,7 @@ const [visualMap, setVisualMap] = useState([]);
 
 
 
-        {/* //TODO refactor: move back-button to nav-UI system */}
-        {/* <div id="backButtonDivPreview" key="backButtonPreview"
-            style={backButtonUISettings["isShape"] === true ?{
-                "background": backButtonUISettings["bgColor"],
-
-                "width": `${backButtonUISettings["width"]}px`,
-                "height": `${backButtonUISettings["height"]}px`,
-                "color": backButtonUISettings["textColor"],
-                "borderRadius": `${backButtonUISettings["cornerRadius"]}px`,
-                "opacity": backButtonUISettings["transparency"],
-                "fontSize": `${backButtonUISettings["textSize"]}px`,
-
-                "position": "absolute",
-                "left": `${backButtonUISettings["posX"]}px`,
-                "top": `${backButtonUISettings["posY"]}px`,
-                "justifyContent": "center",
-                "alignItems": "center",                        
-                "display": "flex",
-                "border": `${backButtonUISettings["borderSize"]}px solid ${backButtonUISettings["borderColor"]}`,
-                "cursor": "pointer",
-                "userSelect": "none",
-                "transition": "all 0.2s ease-out"
-            } : {
-                "backgroundImage": `url('')`, //TODO improve later
-                "backgroundSize": `${backButtonUISettings["width"]}px ${backButtonUISettings["height"]}px`,
-                
-                "width": `${backButtonUISettings["width"]}px`,
-                "height": `${backButtonUISettings["height"]}px`,
-                "color": backButtonUISettings["textColor"],
-                "borderRadius": `${backButtonUISettings["cornerRadius"]}px`,
-                "opacity": backButtonUISettings["transparency"],
-                "fontSize": `${backButtonUISettings["textSize"]}px`,
-
-                "position": "absolute",
-                "left": `${backButtonUISettings["posX"]}px`,
-                "top": `${backButtonUISettings["posY"]}px`,
-                "justifyContent": "center",
-                "alignItems": "center",
-                "display": "flex",
-                "border": `${backButtonUISettings["borderSize"]}px solid ${backButtonUISettings["borderColor"]}`,
-                "cursor": "pointer",
-                "userSelect": "none",
-                "transition": "all 0.2s ease-out"
-            }}
-
-            onMouseDown={
-                ()=>{
-                    document.getElementById("backButtonDivPreview").style.filter = "brightness(150%)";
-                }
-                }
-            onMouseUp={
-                ()=>{
-                    document.getElementById("backButtonDivPreview").style.filter = "brightness(100%)";
-                }
-            }
-        >
-        {backButtonUISettings["buttonText"]}
-  
-    </div>
- */}
+    
 
     </div>
 
