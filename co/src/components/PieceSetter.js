@@ -246,6 +246,10 @@ export default function PieceSetter({
 
             fetchGameDataListFromCloud();
 
+            let receivedPieceNum = getCurrentPieceNum();
+            setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
+            setLookingPieceNumber(receivedPieceNum+1);
+
             setFirstTimeEnter(false);
         }
 
@@ -958,14 +962,17 @@ export default function PieceSetter({
                                         <tr key={keyStr}>
                                             <td>{index}</td>
                                             <td>{item["buttonText"]}</td>
-                                            <td><p>{item.conseq.map((elem, i) => {
+                                            {/* <td><p>{item.conseq.map((elem, i) => {
                                                 let keyStr = "stnd-button-" + index + "-";
                                                 let str = "[" + elem[0] + "] " + elem[1] + ": [" + elem[2] + "]";
                                                 
                                                 return (<label key={keyStr}>{str}<br></br></label>);
                                             })}
                                           
-                                            </p></td>
+                                            </p></td> */} //TODO29 refactor for map ds
+                                            
+                                            
+                                            
                                             <td>
                                                 <GiTrashCan 
                                                     className="cursor_pointer iconButtonSmall" 

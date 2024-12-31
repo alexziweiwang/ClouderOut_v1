@@ -39,6 +39,7 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
   projectNodeData = projectNodeSnap.data().nodeContent; 
 
     //TODO test
+          console.log("model-func fetch piece-data-from cloud ... res = ", projectNodeData);
 
   return projectNodeData;
 

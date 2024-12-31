@@ -5,5 +5,5 @@ export async function convNodeUpdateToCloudVM({project, username, chapterKey, no
 }
 
 export async function convNodeFetchFromCloudVM({project, username, chapterKey, nodeKey}) {
-    await convNodeFetchFromCloud({project, username, chapterKey, nodeKey});
+    return await convNodeFetchFromCloud({project, username, chapterKey, nodeKey});
 }
