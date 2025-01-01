@@ -1388,7 +1388,9 @@ export default function NodeManager({projectName, currUser,
                     <tbody>
                       
                       
-                      {/* //TODO31 */}
+                      {/* //TODO31 
+                      ['type[number]^hp_001^equal(pureValue)^0', 'D1-key', '[hp_001](type: number) \n equal- \n(value) 0']
+                      */}
                       {nodeRelationshipMap[clickedNodeKey].spltLogicPairs
                       .map((item, index) => {       
                           if (item[0] === "else") {
@@ -1507,7 +1509,8 @@ export default function NodeManager({projectName, currUser,
                           <br></br>
 
                           <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
-                          
+                          {/* //TODO31 conditional: if same type */}
+
                           <select onChange={(event)=>{
                               let selectedV2 = event.target.value;
 
@@ -1523,10 +1526,14 @@ export default function NodeManager({projectName, currUser,
                                   <option value="" key="">--Game Data--</option>
                                   
                             {Object.keys(gameDataLocal).map((key) => {
-                              return (
-                                    <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
-                                );
+                                let currItem2 = gameDataLocal[key];
+                                if (currItem2["data_type"] === "number" && currItem2["name"] !== logicSplitter_gameDataVar1) {
+                                    return (
+                                        <option value={gameDataLocal[key]["name"]} key={gameDataLocal[key]["name"]}>{key}</option>
+                                    );
+                                }
                               })}
+                              
                           </select>
                         {displayGameDataButton && <button onClick={()=>{displayGameDataPanel()}}> + </button>}
 
