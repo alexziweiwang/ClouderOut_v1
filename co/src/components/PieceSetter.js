@@ -1193,10 +1193,9 @@ export default function PieceSetter({
 
                         let tempObj = currentPieceDetail;
                         
-                        // let updatedMap = stndBtnFromArrToMap(tableTemp);
-                        // tempObj["stnd_btn_map"] = updatedMap;
+                                            // let updatedMap = stndBtnFromArrToMap(tableTemp);
+                                            // tempObj["stnd_btn_map"] = updatedMap;
                         tempObj["stnd_btn_arr"] = tableTemp;
-//TODO31
 
                         updateToCaller(tempObj);
 

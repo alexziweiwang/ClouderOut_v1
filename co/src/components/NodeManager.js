@@ -395,7 +395,7 @@ export default function NodeManager({projectName, currUser,
             screenSize: createdNewNodeScreenSize,
             row: clickedRow,
             col: clickedCol,
-            spltLogicPairs: [{"displayStmt": "else", "nextNode": "", "internalStmt":"else"},],  //TODO32 refactor
+            spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  //TODO32 test
             display: true,     
           }; //TODO temp
         } else {
@@ -537,13 +537,13 @@ export default function NodeManager({projectName, currUser,
     Object.keys(tempNodeMap).map((nodeKey) => {             
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
         //traverse spltLogicPairs
-        let arr = tempNodeMap[nodeKey].spltLogicPairs;                   //deleteNode2() //TODO32 refactor; remove this node from other's logic-chain(s)
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;                   //deleteNode2() //TODO32 test
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
         for(; i < len; i++) {
           let item = arr[i];
-          //{"displayStmt": "else", "nextNode": "", "internalStmt":"else"}
+          //{"internalStmt":"else", "nextNode": "", "displayStmt": "else"}
 
           if (item["nextNode"] !== clickedNodeKey) {
             //add to new array if not this to-be-deleted node
@@ -578,26 +578,26 @@ export default function NodeManager({projectName, currUser,
   }
 
   function updateTableCondt() {
-    let pairsArr = nodeRelationshipMap[clickedNodeKey].spltLogicPairs; //TODO32 updateTableCondt()
+    let pairsArr = nodeRelationshipMap[clickedNodeKey].spltLogicPairs; //TODO32 test updateTableCondt()
     if (pairsArr === undefined) {
       return;
     }
     let len = pairsArr.length;
     
       if (len === 0) {
-        //{"displayStmt": "else", "nextNode": lscElseSelected, "internalStmt":"else"}
-        let pairItem = {"displayStmt": "else", "nextNode": lscElseSelected, "internalStmt":"else"}; //TODO32 updateTableCondt() change this to an object
+        //{"internalStmt":"else", "nextNode": "", "displayStmt": "else"}
+        let pairItem = {"internalStmt":"else", "nextNode": "", "displayStmt": "else"}; //TODO32 test updateTableCondt() change this to an object
         pairsArr.push(pairItem);
       } else {
         pairsArr[0]["nextNode"] = lscElseSelected; // update the first element's target node
-        //TODO32 updateTableCondt() change by key 
+        //TODO32 test updateTableCondt()
       }
  
 
     //TODO update for grid-node-visualization
                         
     let tempNodeRelMap = nodeRelationshipMap;
-    tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr; //TODO32 updateTableCondt() change to map
+    tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr; //TODO32 test updateTableCondt()
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
@@ -611,7 +611,7 @@ export default function NodeManager({projectName, currUser,
     let len = nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length;
     for (; i < len; i++) {
       if (i !== index) {
-        tempPairs.push(nodeRelationshipMap[clickedNodeKey].spltLogicPairs[i]); //TODO32 each change to object
+        tempPairs.push(nodeRelationshipMap[clickedNodeKey].spltLogicPairs[i]); 
       }
     }
 
@@ -821,7 +821,7 @@ export default function NodeManager({projectName, currUser,
      
             nodeMap[currNodeKey].spltLogicPairs.map((item, itemIndex) => { //TODO32 update-node-linkings
                     
-                    if (item[1] !== "") {
+                    if (item["nextNode"] !== "") {
                         addOneNodeLinks(
                           nodeMap[item["nextNode"]].row, 
                           nodeMap[item["nextNode"]].col, 
@@ -1346,7 +1346,7 @@ export default function NodeManager({projectName, currUser,
                   || (nodeRelationshipMap[clickedNodeKey]["nodeType"] === "LogicSplitter" 
                       && 
                       (nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"].length > 1 
-                        || nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"][0]["nextNode"] !== "")) //TODO32 change to ["nextNode"] instead of [1] for obj
+                        || nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"][0]["nextNode"] !== "")) //TODO32
                   )/
                 )
                 &&  
@@ -1400,21 +1400,25 @@ export default function NodeManager({projectName, currUser,
                       {nodeRelationshipMap[clickedNodeKey].spltLogicPairs
                       .map((item, index) => {   
                         
-                        {/* //TODO31 
+                        {/* //TODO32 
                           each item looks like:
 
                             ['type[number]^hp_001^equal(pureValue)^0', 'D1-key', '[hp_001](type: number) \n equal- \n(value) 0']
-                        */}
+                            
+                            
+                            {"internalStmt":"else", "nextNode": "", "displayStmt": "else"}
+                        
+                          */}
  
 
-                          if (item[0] === "else") {
+                          if (item["internalStmt"] === "else") {
                             return;
                           }
                           let keyStr = "tableLogicSplitter" + item[1];
                           return (
                           <tr key={keyStr}>
-                              <td>{item[2]}</td>
-                              <td>{item[1]}</td>
+                              <td>{item["displayStmt"]}</td>
+                              <td>{item["nextNode"]}</td>
                               <td>
                                 <GiTrashCan onClick={()=>{
                                     deleteFromCondtTable(index);
@@ -1433,8 +1437,8 @@ export default function NodeManager({projectName, currUser,
                         <td>
                           {nodeRelationshipMap[clickedNodeKey].spltLogicPairs.length > 0 
                             && 
-                            <label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0][1]}
-                              {/* //TODO31 change to obj */}
+                            <label>{nodeRelationshipMap[clickedNodeKey].spltLogicPairs[0]["nextNode"]}
+                              {/* //TODO32 changed to obj */}
                             
                             </label>}
                         </td> 
@@ -1526,7 +1530,7 @@ export default function NodeManager({projectName, currUser,
                           <br></br>
 
                           <input type="radio" value={logicSplitterVar2IsGData} checked={logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToGameData();setLsGdataVar2("");}}/> Game Data Item: 
-                          {/* //TODO31 conditional: if same type */}
+                          {/* //TODO33 conditional: if same type */}
 
                           <select onChange={(event)=>{
                               let selectedV2 = event.target.value;
@@ -1657,8 +1661,9 @@ export default function NodeManager({projectName, currUser,
                       setLsV2IsGData(true);
                       setLscCurrSelected("");
       console.log("statement: ", stmtStr); // TODO test
-                    
-                      let currStmtArr = [stmtStr, lscCurrSelected, displayStr]; //TODO31 TODO32 change to obj!!!
+                    //{"internalStmt":stmtStr, "nextNode": lscCurrSelected, "displayStmt": displayStr}
+                      let currStmtArr = {"internalStmt": stmtStr, "nextNode": lscCurrSelected, "displayStmt": displayStr};
+                                          //previous: [stmtStr, lscCurrSelected, displayStr]; //TODO32 change to obj!!!
 
                       let tempLogicPairs = nodeRelationshipMap[clickedNodeKey].spltLogicPairs;
                       tempLogicPairs.push(currStmtArr);
