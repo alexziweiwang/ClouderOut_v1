@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 import { getChapterDataVM } from '../viewmodels/GameDataViewModel';
+
 import langDictionary from './textDictionary';
 
 
@@ -537,7 +538,7 @@ export default function NodeManager({projectName, currUser,
     Object.keys(tempNodeMap).map((nodeKey) => {             
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
         //traverse spltLogicPairs
-        let arr = tempNodeMap[nodeKey].spltLogicPairs;                   //deleteNode2() //TODO32 test
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;      //TODO32 test    deleteNode2()
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
@@ -918,6 +919,13 @@ export default function NodeManager({projectName, currUser,
     setStyleArrHook(styleArray);
   }
 
+  function saveNodeInfoToCloud() {
+    // TODO saves nodeRelationshipMap to cloud db...
+    //TODO35
+
+  }
+
+//TODO page content 
     return (      
         <div style={{"overflow": "scroll", "width": "100%", "height": "600px"}}>
 
@@ -1347,7 +1355,7 @@ export default function NodeManager({projectName, currUser,
                       && 
                       (nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"].length > 1 
                         || nodeRelationshipMap[clickedNodeKey]["spltLogicPairs"][0]["nextNode"] !== "")) //TODO32
-                  )/
+                  )
                 )
                 &&  
                 <button
@@ -1889,7 +1897,9 @@ export default function NodeManager({projectName, currUser,
     
         <button 
           className="setting_item"
-          onClick={() => console.log("saving settings of nodes...")}>
+          onClick={() => {
+            saveNodeInfoToCloud();
+          }}>
             {saveToMyProjectText}
         </button>
     
