@@ -294,6 +294,8 @@ export default function ConversationNodeEditingPanel() {
     const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
  
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
+    const [firstEnterButtonPressed, setFirstEnterButtonPressed] = useState(false);
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
@@ -723,11 +725,14 @@ export default function ConversationNodeEditingPanel() {
         <div>
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-                <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
+{firstEnterButtonPressed === true &&                
+<>
+<div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
                     <label>Project: {state.projectName}</label>
                     <br></br>
                     <label>Node: {state.clickedNodeKey}</label>
                 </div>
+
                 <div style={{"minWidth": "200px", "marginTop": "2px"}}>
                     <button className="button testEntire"
                         onClick={()=>{setIsDisplayQview(true);}}>
@@ -763,15 +768,18 @@ export default function ConversationNodeEditingPanel() {
                             </div>
                 </div>
 
-
+</>
+}
             </div>
 
-            {state!= undefined  &&<>
+{state!= undefined && firstEnterButtonPressed === true &&
+<>
             <div className="parallelFrame" style={{"marginTop": "-5px"}}>
                 <div className="topParalBarLeftPart">
 
               
                 </div>
+
 
 
                 <div className="topParalBarRightPart" style={{"height": "45px"}}>
@@ -800,9 +808,10 @@ export default function ConversationNodeEditingPanel() {
 
 
                 </div>
-               
+             
             </div>
-     
+
+{firstEnterButtonPressed === true &&
             <div 
                 className={isDisplayQview === true ? "noScrolling" : ""} 
                 style={{
@@ -874,7 +883,7 @@ export default function ConversationNodeEditingPanel() {
                             assignPieceNum={getSelectedPiece} 
                             assignPreviewIndex={getUpdatePreviewingIndex} 
                             updatePieceData={changePieceData} 
-                            getAllPieceData={fetchAllPieceData}
+                            getAllPieceData={passInAllPieceDataContent}
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}
@@ -953,6 +962,8 @@ export default function ConversationNodeEditingPanel() {
 
  
             </div>
+}
+
 
             <div
                 style={{
@@ -974,7 +985,7 @@ export default function ConversationNodeEditingPanel() {
             </div>
 
 
-            </>}
+        
 
             <div
                 style={{
@@ -1037,9 +1048,21 @@ export default function ConversationNodeEditingPanel() {
 
                 />
             </div>
-            
+    </>}            
 
         <br></br>
+
+
+{firstEnterButtonPressed === false && 
+                <div>
+
+
+                    <button onClick={()=>{
+                        setFirstEnterButtonPressed(true);
+                    }}>Load Editor</button>
+                </div>
+}
+
         </div>
     );
 }
