@@ -17,6 +17,8 @@ import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
+import { updateChapterToCloudDataVM } from '../viewmodels/ChapterInfoViewModel';
+
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
 
@@ -1238,7 +1240,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   function updateChapterNodeMappingsToCloud() {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
-//TODO35
+
 
     let i = 0;
     let len = 0;
@@ -1257,7 +1259,15 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       }
       gridMapTemp[currKey] = obj;
 
-    })
+    });
+
+//TODO35
+    updateChapterToCloudDataVM({
+        projectName: projectName, 
+        currUser: username,
+        chapterNodeMappingObj: chapterNodeMapAll, 
+        chapterNodeGridBlocks: gridMapTemp
+    });
 
 
 
@@ -1330,8 +1340,11 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
     <div>
+      <button onClick={()=>{updateChapterNodeMappingsToCloud();}}>Save To Cloud</button>
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
       <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
+    
+    
     </div>
     
     {showChapterMaker && <div className="parallelFrame sectionArea">

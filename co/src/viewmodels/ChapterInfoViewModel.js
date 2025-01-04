@@ -1,4 +1,4 @@
-import { fetchChapterData, updateChapterToCloudData } from '../models/fetchChapterData';
+import { fetchChapterData, updateChapterToCloudData } from '../models/ChapterInfoModel';
 
 
 export async function fetchChapterDataVM({projectName, currUser}) {

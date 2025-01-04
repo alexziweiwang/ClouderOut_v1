@@ -4,7 +4,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 export async function fetchChapterData({projectName, currUser}) {
 
 
-    const projectChapRef = doc(db, "user_projects", username, "projects", project);
+    const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
     const projectChapSnap = await getDoc(projectChapRef);
 
 
@@ -26,7 +26,7 @@ export async function fetchChapterData({projectName, currUser}) {
 export async function updateChapterToCloudData({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks}) {
 
     //TODO
-    const projectChapRef = doc(db, "user_projects", username, "projects", project);
+    const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
     const projectChapSnap = await getDoc(projectChapRef);
 
                                 console.log("model-func-updateChapterToCloudData-  ", chapterNodeMappingObj);
