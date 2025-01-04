@@ -347,9 +347,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
           ["","","","","","","","","",""],
           ["C2-key","","","B2-key","","","chp-key2_end","","",""]
-      ],
-    
-  }); //stores node-keys
+      ],  
+    }
+  ); //stores node-keys
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "16:9(horizonal)",
@@ -1238,8 +1238,29 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   function updateChapterNodeMappingsToCloud() {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
+//TODO35
 
-    
+    let i = 0;
+    let len = 0;
+
+    let gridMapTemp = {};
+
+    Object.keys(gridBlocksAll).map((currKey) => {
+      let currChapterGrid = gridBlocksAll[currKey]; // the 2d-array
+      len = currChapterGrid.length;
+      i = 0;
+      let obj = {};
+      while (i < len) {
+        obj[i] = currChapterGrid[i];
+
+        i++;
+      }
+      gridMapTemp[currKey] = obj;
+
+    })
+
+
+
   }
 
 
