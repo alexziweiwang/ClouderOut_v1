@@ -3,7 +3,6 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export async function fetchChapterData({projectName, currUser}) {
 
-    let dataObj = {};
 
     const projectChapRef = doc(db, "user_projects", username, "projects", project);
     const projectChapSnap = await getDoc(projectChapRef);
@@ -13,22 +12,24 @@ export async function fetchChapterData({projectName, currUser}) {
         return;
     }
 
-    dataObj = projectChapSnap.data().chapterInfo;
+    let chapterNodeMappingObj = {};
+    chapterNodeMappingObj = projectChapSnap.data().chapterNodeMapping;
+
+    // let chapterNodeGridBlocks = []; //TODO refactor nested-arr
 //TODO test
 
-    return dataObj;
+    return chapterNodeMappingObj;
 }
 
-export async function addNewChapterToCloudData({projectName, currUser, dataObj}) {
 
-}
 
-export async function updateChapterToCloudData({projectName, currUser, dataObj}) {
-//TODO
+export async function updateChapterToCloudData({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks}) {
+
+    //TODO
     const projectChapRef = doc(db, "user_projects", username, "projects", project);
     const projectChapSnap = await getDoc(projectChapRef);
 
-                                console.log("model-func-updateChapterToCloudData-  ", dataObj);
+                                console.log("model-func-updateChapterToCloudData-  ", chapterNodeMappingObj);
 
 
     if (!projectChapSnap.exists()) {
@@ -37,6 +38,9 @@ export async function updateChapterToCloudData({projectName, currUser, dataObj})
 
 
     await updateDoc(projectChapRef, {
-        "chapterInfo": dataObj
+        "chapterNodeMapping": chapterNodeMappingObj,
+        "chapterNodeGridBlocks": chapterNodeGridBlocks
     });
 }
+
+

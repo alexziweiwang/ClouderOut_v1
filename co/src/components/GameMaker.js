@@ -327,8 +327,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys
 
-  const [gridBlocksAll, setGridBlocksAll] = useState({
-      "chp-key1": [
+
+
+  //TODO refactor
+  const [gridBlocksAll, setGridBlocksAll] = useState(
+    {
+      "chp-key1": 
+      [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
         ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
@@ -1230,7 +1235,16 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return testPlayerPurchaseStatus; //TODO30
   }
 
+  function updateChapterNodeMappingsToCloud() {
+    //TODO transfer gridBlocksAll into non-nested array
+    //TODO send nodeMap
 
+    
+  }
+
+
+
+//TODO page content
   return (
   <div>
 <div>
