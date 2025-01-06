@@ -415,6 +415,11 @@
 
 - 2024-Dec-30: User-account considerations, decisions for backend
 
+- 2025-Jan-06: Consider editor-loading strategy for better UX
+
+
+
+
 
 
 
