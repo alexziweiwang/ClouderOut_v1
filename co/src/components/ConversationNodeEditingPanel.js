@@ -295,7 +295,7 @@ export default function ConversationNodeEditingPanel() {
  
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
-    const [firstEnterButtonPressed, setFirstEnterButtonPressed] = useState(false);
+    const [firstEnterButtonPressed, setFirstEnterButtonPressed] = useState(true);
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
@@ -319,8 +319,13 @@ export default function ConversationNodeEditingPanel() {
             //initialize piece-ds
             initializePiecesFromCloud();
 
+
+
             setFirstTimeEnter(false);
-        }
+        } 
+        
+
+
 
 //         console.log("index = ", previewingIndex ,"\ncurr piece info: ", pieceDataStructure[previewingIndex]["stnd_btn_arr"]);
 // //TODO1
@@ -401,10 +406,6 @@ export default function ConversationNodeEditingPanel() {
         console.log("!!! in editing-panel: changePieceData ...", updatedPieceData); //TODO test
         setPieceDatastructure(updatedPieceData);
         //TODO update to cloud
-    }
-
-    function fetchAllPieceData() {
-        return pieceDataStructure;
     }
 
     function getUpdatePreviewingIndex(index) {
@@ -832,7 +833,7 @@ export default function ConversationNodeEditingPanel() {
                             assignPreviewIndex={getUpdatePreviewingIndex} 
                             allPieceData={pieceDataStructure} 
                             updatePieceData={changePieceData} 
-                            getAllPieceData={fetchAllPieceData} 
+                            getAllPieceData={passInAllPieceDataContent} 
                             username={uname} 
                             projName={projectName} 
                             backToList={returnToList} 
@@ -1054,7 +1055,9 @@ export default function ConversationNodeEditingPanel() {
 
 
 {firstEnterButtonPressed === false && 
-                <div>
+                <div
+                
+                >
 
 
                     <button onClick={()=>{

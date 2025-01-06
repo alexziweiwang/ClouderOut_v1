@@ -88,12 +88,12 @@ export default function PieceManager({
 
     useEffect(() => {
         if (firstTimeEnter === true) {
-            const allPiece = getAllPieceData();
-
-            setPieceDataLocal(allPiece);
+           
             setFirstTimeEnter(false);
         }
+        const allPiece = getAllPieceData();
 
+        setPieceDataLocal(allPiece);
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
