@@ -12,12 +12,11 @@ import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
 import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
-import Panel_EntireView_PlayerInfo from './Panel_EntireView_PlayerInfo';
 
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
-import { updateChapterToCloudDataVM } from '../viewmodels/ChapterInfoViewModel';
+import { fetchChapterDataVM, updateChapterToCloudDataVM } from '../viewmodels/ChapterInfoViewModel';
 
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -137,7 +136,7 @@ export default function GameMaker({username, projectName}) {
       ["chp-key1", "testChapter1", "display", ""], 
       ["chp-key2", "testChapter2", "display", ""],
     ]); //TODO fetch from cloud db when entering game-maker
-
+//TODO36
 
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
   const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
@@ -1229,7 +1228,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
   function passInShopItemInfo() {
-    console.log("game-maker shop product info", testShopProducts);
+  //  console.log("game-maker shop product info", testShopProducts);
     return testShopProducts;
   }
 
@@ -1268,6 +1267,29 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         chapterNodeMappingObj: chapterNodeMapAll, 
         chapterNodeGridBlocks: gridMapTemp
     });
+
+
+
+
+
+  }
+
+  async function fetchChapterNodeMappingFromCloud() {
+
+    let data = await fetchChapterDataVM({   
+        projectName: projectName, 
+        currUser: username,
+    });
+
+    if (data === undefined || data === null) {
+      return;
+    }
+
+    
+    // data.chapterNodeMapping
+    // data,chapterNodeGridBlocks
+  
+
 
 
 

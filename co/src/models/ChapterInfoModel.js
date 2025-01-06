@@ -12,13 +12,17 @@ export async function fetchChapterData({projectName, currUser}) {
         return;
     }
 
-    let chapterNodeMappingObj = {};
-    chapterNodeMappingObj = projectChapSnap.data().chapterNodeMapping;
+    let chapterNodeMappingObj = projectChapSnap.data().chapterNodeMapping;
 
-    // let chapterNodeGridBlocks = []; //TODO refactor nested-arr
+    let chapterNodeGridBlocksArr = projectChapSnap.data().chapterNodeGridBlocks;
 //TODO test
 
-    return chapterNodeMappingObj;
+    let obj = {
+        "chapterNodeMapping": hapterNodeMappingObj,
+        "chapterNodeGridBlocks": chapterNodeGridBlocksArr
+    }
+
+    return obj;
 }
 
 
