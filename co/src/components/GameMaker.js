@@ -16,7 +16,9 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
-import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM } from '../viewmodels/ChapterInfoViewModel';
+import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,
+  fetchAllChapterListVM, updateChapterListToCloudVM,
+} from '../viewmodels/ChapterInfoViewModel';
 
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -1319,9 +1321,34 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   }
 
+  async function saveChapterListToCloud(chapterListInfo) {
+
+    //TODO convert the nested array into map
+    await updateChapterListToCloudVM(
+      {
+        projectName: projectName, 
+        currUser: username,
+        chapterListData: chapterListInfo
+      }
+    )
+
+  }
+
+  async function fetchChapterListFromCloud() {
+    let listTemp = await fetchAllChapterListVM(
+      {
+        projectName: projectName, 
+        currUser: username      
+      }      
+    );
+
+    //TODO convert map into nested array...
+
+  }
 
 
-//TODO page content
+
+//TODO90 page content
   return (
   <div>
 <div>
@@ -1410,6 +1437,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           updateLinkingNode={updateLinkingNodeFunc}
           
           getUILanguage={passInUILanguage}
+
+          updateDataToCloud={saveChapterListToCloud}
           
         />}
 

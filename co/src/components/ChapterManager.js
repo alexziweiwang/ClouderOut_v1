@@ -7,6 +7,7 @@ export default function ChapterManager({
   getChapterDataInfo,
   updateChosenChapterItem, updateLinkingNode,
   prepareForNewChapterMapping, 
+  updateDataToCloud,
 
   getUILanguage,
   }) {
@@ -250,6 +251,11 @@ export default function ChapterManager({
       <div style={{"height": "600px"}}>
         {isCollapse === false && 
         <div className="parallelFrame">
+          <button
+            onClick={()=>{
+              updateDataToCloud(chapterData);
+            }}
+          >Save to Cloud</button>
           <div className="listBar" style={{"overflow": "hidden"}}>
               <div className="chapterManagingArea"> 
                         <label>{chapterManagementText}: </label>
