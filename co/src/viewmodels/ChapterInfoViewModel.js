@@ -1,12 +1,16 @@
-import { fetchChapterData, updateChapterToCloudData } from '../models/ChapterInfoModel';
+import { fetchChapterNodesData, updateChapterNodesToCloudData,
+    fetchAllChapterList, updateChapterListToCloud,
+
+} from '../models/ChapterInfoModel';
 
 
-export async function fetchChapterDataVM({projectName, currUser}) {
+export async function fetchChapterNodesDataVM({projectName, currUser}) {
     
-    return await fetchChapterData({projectName, currUser});
+    return await fetchChapterNodesData({projectName, currUser});
 }
 
-export async function updateChapterToCloudDataVM({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks}) {
-    await updateChapterToCloudData({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks});
+export async function updateChapterNodesToCloudDataVM({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks}) {
+    await updateChapterNodesToCloudData({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks});
 
 }
+

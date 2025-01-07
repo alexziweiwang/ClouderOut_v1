@@ -16,7 +16,7 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
-import { fetchChapterDataVM, updateChapterToCloudDataVM } from '../viewmodels/ChapterInfoViewModel';
+import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM } from '../viewmodels/ChapterInfoViewModel';
 
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -1261,7 +1261,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     });
 
 //TODO35
-    updateChapterToCloudDataVM({
+    updateChapterNodesToCloudDataVM({
         projectName: projectName, 
         currUser: username,
         chapterNodeMappingObj: chapterNodeMapAll, 
@@ -1276,7 +1276,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   async function fetchChapterNodeMappingFromCloud() {
 
-    let data = await fetchChapterDataVM({   
+    let data = await fetchChapterNodesDataVM({   
         projectName: projectName, 
         currUser: username,
     });
