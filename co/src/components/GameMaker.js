@@ -1336,7 +1336,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
  
 
-
+    console.log("test func- saveChapterListToCloud()", chapterListMap);
 
     await updateChapterListToCloudVM(
       {
@@ -1356,12 +1356,16 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       }      
     );
 
-    
+    if (listTemp === undefined || listTemp === null) {
+      console.log("test func-fetchChapterListFromCloud(): ...data is invalid");
+      return;
+    }
+
+
     //convert map into nested array...
     let arrTemp = [];
     Object.keys(listTemp).map((chapterKey) => {   
       let currArr = [];
-      currArr.push(chapterKey);
       listTemp[chapterKey].map((item, index) => {
         currArr.push(item);
       });
@@ -1370,6 +1374,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     })
 
     //TODO test
+    console.log("test func-fetchChapterListFromCloud(): ", arrTemp);
     // setChapterList(arrTemp);
 
 
@@ -1468,7 +1473,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           
           getUILanguage={passInUILanguage}
 
-          updateDataToCloud={saveChapterListToCloud}
+          updateChapterListToCloud={saveChapterListToCloud}
+          fetchChapterListFromCloud={fetchChapterListFromCloud}
           
         />}
 
