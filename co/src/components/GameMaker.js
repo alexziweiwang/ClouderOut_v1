@@ -1323,12 +1323,26 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   async function saveChapterListToCloud(chapterListInfo) {
 
-    //TODO convert the nested array into map
+
+
+    //convert the nested array into map
+    let chapterListMap = {};
+    let i = 0;
+    let len = chapterListInfo.length;
+    while (i < len) {
+      chapterListMap[i] = chapterListInfo[i];
+      i++;
+    }
+
+ 
+
+
+
     await updateChapterListToCloudVM(
       {
         projectName: projectName, 
         currUser: username,
-        chapterListData: chapterListInfo
+        chapterListData: chapterListMap
       }
     )
 
@@ -1342,7 +1356,23 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       }      
     );
 
-    //TODO convert map into nested array...
+    
+    //convert map into nested array...
+    let arrTemp = [];
+    Object.keys(listTemp).map((chapterKey) => {   
+      let currArr = [];
+      currArr.push(chapterKey);
+      listTemp[chapterKey].map((item, index) => {
+        currArr.push(item);
+      });
+       
+      arrTemp.push(currArr);
+    })
+
+    //TODO test
+    // setChapterList(arrTemp);
+
+
 
   }
 
