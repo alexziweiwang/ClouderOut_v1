@@ -1287,30 +1287,34 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
   
     
-    //TODO setChapterNodeMapAll(data.chapterNodeMapping);
+                                        //  console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
 
     // make conversion of grid-blocks
-    let gridSize = Object.keys(data.chapterNodeGridBlocks).length;
     let j = 0;
+    let gridTempMap = {};
     let gridTempArr = [];
-    while (j < gridSize) {
-      gridTempArr.push(data.chapterNodeGridBlocks[j]);
+
+    Object.keys(data.chapterNodeGridBlocks).map((chapterKey) => {         
+      j = 0;
+      gridTempArr = [];
+      let chapterItem = data.chapterNodeGridBlocks[chapterKey];
+      let currChapArrLen = Object.keys(chapterItem).length;
+      while (j < currChapArrLen) {
+        gridTempArr.push(chapterItem[j]);
+        j++;
+      }
+      gridTempMap[chapterKey] = gridTempArr;
+    })    
 
 
-      j++;
-    }
 
     //TODO setGridBlocksAll(gridTempArr);
+    //TODO setChapterNodeMapAll(data.chapterNodeMapping);
 
 
-    console.log("!!! data.chapterNodeMapping = ", data.chapterNodeMapping);
+                                      //  console.log("!!! data.chapterNodeMapping = ", data.chapterNodeMapping);
 
-    console.log("!!! data.chapterNodeGridBlocks = ", gridTempArr);
-
-    // data.chapterNodeMapping
-    // data.chapterNodeGridBlocks
-  
-    
+                                      //  console.log("!!! after conversion ... GridBlocks = ", gridTempMap);
 
 
   }
