@@ -18,7 +18,7 @@ export async function fetchChapterData({projectName, currUser}) {
 //TODO test
 
     let obj = {
-        "chapterNodeMapping": hapterNodeMappingObj,
+        "chapterNodeMapping": chapterNodeMappingObj,
         "chapterNodeGridBlocks": chapterNodeGridBlocksArr
     }
 

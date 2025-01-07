@@ -1285,12 +1285,32 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       return;
     }
 
-    
-    // data.chapterNodeMapping
-    // data,chapterNodeGridBlocks
   
+    
+    //TODO setChapterNodeMapAll(data.chapterNodeMapping);
+
+    // make conversion of grid-blocks
+    let gridSize = Object.keys(data.chapterNodeGridBlocks).length;
+    let j = 0;
+    let gridTempArr = [];
+    while (j < gridSize) {
+      gridTempArr.push(data.chapterNodeGridBlocks[j]);
 
 
+      j++;
+    }
+
+    //TODO setGridBlocksAll(gridTempArr);
+
+
+    console.log("!!! data.chapterNodeMapping = ", data.chapterNodeMapping);
+
+    console.log("!!! data.chapterNodeGridBlocks = ", gridTempArr);
+
+    // data.chapterNodeMapping
+    // data.chapterNodeGridBlocks
+  
+    
 
 
   }
@@ -1362,6 +1382,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
     <div>
+      <button onClick={()=>{fetchChapterNodeMappingFromCloud();}}>Load From Cloud</button>
       <button onClick={()=>{updateChapterNodeMappingsToCloud();}}>Save To Cloud</button>
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
       <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
