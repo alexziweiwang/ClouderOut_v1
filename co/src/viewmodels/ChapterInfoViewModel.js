@@ -14,3 +14,10 @@ export async function updateChapterNodesToCloudDataVM({projectName, currUser, ch
 
 }
 
+export async function fetchAllChapterListVM({projectName, currUser}) {
+    return await fetchAllChapterList({projectName, currUser});
+}
+
+export async function updateChapterListToCloudVM({projectName, currUser, chapterListData}) {
+    await updateChapterListToCloud({projectName, currUser, chapterListData});
+}

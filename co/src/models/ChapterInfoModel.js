@@ -15,7 +15,6 @@ export async function fetchChapterNodesData({projectName, currUser}) {
     let chapterNodeMappingObj = projectChapSnap.data().chapterNodeMapping;
 
     let chapterNodeGridBlocksArr = projectChapSnap.data().chapterNodeGridBlocks;
-//TODO test
 
     let obj = {
         "chapterNodeMapping": chapterNodeMappingObj,
@@ -27,8 +26,22 @@ export async function fetchChapterNodesData({projectName, currUser}) {
 
 
 export async function fetchAllChapterList({projectName, currUser}) {
+    let list = [];
+    
+    
+    const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectChapSnap = await getDoc(projectChapRef);
 
-    //TODO
+
+    if (!projectChapSnap.exists()) {
+        return;
+    }
+    list = projectChapSnap.data().chapterList;
+
+
+    //TODO test
+
+    return list;
 }
 
 
@@ -54,8 +67,20 @@ export async function updateChapterNodesToCloudData({projectName, currUser, chap
 
 
 
+export async function updateChapterListToCloud({projectName, currUser, chapterListData}) {
+
+    const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const projectChapSnap = await getDoc(projectChapRef);
 
 
-export async function updateChapterListToCloud({projectName, currUser, chapterList}) {
-//TODO
+    if (!projectChapSnap.exists()) {
+        return;
+    }
+
+    await updateDoc(projectChapRef, {
+        "chapterList": chapterListData,
+    });
+
+//TODO test
+
 }
