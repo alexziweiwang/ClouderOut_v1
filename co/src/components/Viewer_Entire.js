@@ -327,11 +327,8 @@ return(<>
                         "backgroundColor": "orange", 
                         "top": "0px", 
                         "left": "0px",
-                        "width": `${screenWidth+10}px`, 
-                        "height": `${screenHeight+10}px`,
-                    }}
-                    onClick={()=>{
-                        console.log("viewer-entire game-screen-area clicked"); //TODO this works fine
+                        "width": `${screenWidth}px`, 
+                        "height": `${screenHeight}px`,
                     }}
                     >
 
@@ -370,7 +367,6 @@ return(<>
                     "position": "absolute", 
                     "top": "0px", 
                     "left": "0px",
-             
                     "backgroundColor": "purple",
                 }}>
                     <NavigationPreview 

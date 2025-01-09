@@ -30,6 +30,8 @@ export default function GameScreen_AllNodeTypeContainer({
     const [currChapterKey, setCurrChapterKey] = useState("");
     const [currChapterTitle, setCurrChapterTitle] = useState("");
 
+    const [holdingNextNode, setHoldingNextNode] = useState("");
+
     const [gameDataTracker, setGameDataTracker] = useState({});
 
     const [chapterNodeMapping, setChapterNodeMapping] = useState({});
@@ -40,6 +42,9 @@ export default function GameScreen_AllNodeTypeContainer({
  
         if (firstTimeEnter === true) {
             //TODO
+                                            console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER");
+            
+            
             setFirstTimeEnter(false);
         }
 
@@ -79,6 +84,48 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    function locateHoldingNextNode() {//TODO35
+        //TODO fetch next-node key if direct
+        //TODO do conditional-jump if logic-splitter
+
+        //currNodeType
+        //currNodeKey
+        //currChapterKey
+        //chapterNodeMapping
+                                   //             console.log("jump node! \nchapterNodeMapping = ", chapterNodeMapping);
+
+        let currChapterData = chapterNodeMapping[currChapterKey];
+                                    //            console.log("curr-chapter data = ", currChapterData);
+
+        let currNodeData = currChapterData[currNodeKey];
+                                                console.log("curr-node data = ", currNodeData);
+        
+        if (currNodeType !== "LogicSplitter") { // all other nodes
+            /*
+                col: 0
+                display: true
+                nextNode: "A1-key"
+                nodeName: "chapterStart1-title"
+                nodeType: "*chapterStart*"
+                notes: ""
+                row: 2
+                screenSize: "4:3(horizonal)"
+            */
+
+            let nextNodeKey = currNodeData["nextNode"];
+
+                                console.log("\tnext-node-key is ...", nextNodeKey);
+            setHoldingNextNode(nextNodeKey);
+
+
+        } else { //LogicSplitter
+            let nextNodeKey = "";
+
+            //TODO go through splitting-array for next-node-locating
+
+            //setHoldingNextNode(nextNodeKey);
+        }
+    }
 
 
 
@@ -86,15 +133,19 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
 
-return (<div style={{"backgroundColor": "blue", "borderRadius": "0px"}}
+
+return (<div 
+    style={{
+        "backgroundColor": "blue", 
+        "borderRadius": "0px",
+        "userSelect": "none",
+        "cursor": "pointer"
+    }}
     onClick={()=>{
-        console.log("game screen! game-screen-general-div. \nchapterNodeMapping = ", chapterNodeMapping);
+        locateHoldingNextNode();
     }}
 >
-    {currNodeType === "" && <div style={{"backgroundColor": "#000001", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-        curr-node-type is empty
 
-        </div>}
 
     {currNodeType === "*chapterStart*" && <div 
         style={{
@@ -102,10 +153,7 @@ return (<div style={{"backgroundColor": "blue", "borderRadius": "0px"}}
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`, 
-            "cursor": "pointer"}}
-        onClick={()=>{console.log("chapterStart-area clicked")}} //TODO 32
-
-    
+        }}
     
     >
     {/* *chapterStart*<br></br> */}
@@ -121,19 +169,24 @@ return (<div style={{"backgroundColor": "blue", "borderRadius": "0px"}}
     chapter = {currChapterKey}, node-key = {currNodeKey}        
         </div>}
 
-        {currNodeType === "Conversation" && <div style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+    {currNodeType === "Conversation" && <div style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
 
 
         
-        </div>}
+    </div>}
 
-        {currNodeType === "LogicSplitter" && <div style={{"backgroundColor": "green", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+    
+    {currNodeType === "LogicSplitter" && <div style={{"backgroundColor": "green", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
         Logic Splitter<br></br>
         chapter = {currChapterKey}, node-key = {currNodeKey}
         
-        </div>}        
+    </div>}
+
+
+
+
 </div>);
 
 
