@@ -36,7 +36,6 @@ export default function GameScreen_AllNodeTypeContainer({
 
     const [chapterNodeMapping, setChapterNodeMapping] = useState({});
 
-
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
  
@@ -44,29 +43,29 @@ export default function GameScreen_AllNodeTypeContainer({
             //TODO
                                             console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER");
             
-            
-            setFirstTimeEnter(false);
-        }
+                let nodeTypeTemp = getNodeType();
+                setCurrNodeType(nodeTypeTemp);
+
+                let chapterKeyTemp = getChapterKey();
+                setCurrChapterKey(chapterKeyTemp);
+
+                let nodeKeyTemp = getNodeKey();
+                if (nodeKeyTemp !== currNodeKey) {
+                    setCurrNodeKey(nodeKeyTemp);
+                    setupScreenSizeByNodeKey(nodeKeyTemp);            
+                }
+
+                let chapterTitleTemp = getChapterTitle();
+                setCurrChapterTitle(chapterTitleTemp);
+
+                let nodeMappingTemp = getCurrChapterAllNodeMapping();
+                setChapterNodeMapping(nodeMappingTemp);
+                setFirstTimeEnter(false);
+            }
 
         //TODO
 
-        let nodeTypeTemp = getNodeType();
-        setCurrNodeType(nodeTypeTemp);
-
-        let chapterKeyTemp = getChapterKey();
-        setCurrChapterKey(chapterKeyTemp);
-
-        let nodeKeyTemp = getNodeKey();
-        if (nodeKeyTemp !== currNodeKey) {
-            setCurrNodeKey(nodeKeyTemp);
-            setupScreenSizeByNodeKey(nodeKeyTemp);            
-        }
-
-        let chapterTitleTemp = getChapterTitle();
-        setCurrChapterTitle(chapterTitleTemp);
-
-        let nodeMappingTemp = getCurrChapterAllNodeMapping();
-        setChapterNodeMapping(nodeMappingTemp);
+       
 
         //TODO screen-width and screen-height
 
@@ -84,23 +83,19 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
-    function locateHoldingNextNode() {//TODO35
-        //TODO fetch next-node key if direct
+    function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
+        // fetch next-node key if direct
         //TODO do conditional-jump if logic-splitter
 
-        //currNodeType
-        //currNodeKey
-        //currChapterKey
-        //chapterNodeMapping
-                                   //             console.log("jump node! \nchapterNodeMapping = ", chapterNodeMapping);
+                                                  console.log("jump node! \nchapterNodeMapping = ", chapterNodeMapping);
 
-        let currChapterData = chapterNodeMapping[currChapterKey];
-                                    //            console.log("curr-chapter data = ", currChapterData);
+        let chapterDataTemp = chapterNodeMapping[currChapterKey];
+                                    //            console.log("curr-chapter data = ", chapterDataTemp);
 
-        let currNodeData = currChapterData[currNodeKey];
-                                                console.log("curr-node data = ", currNodeData);
+        let nodeDataTemp = chapterDataTemp[nodeKeyInfo];
+                                                console.log("curr-node data = ", nodeDataTemp);
         
-        if (currNodeType !== "LogicSplitter") { // all other nodes
+        if (nodeTypeInfo !== "LogicSplitter") { // all other nodes
             /*
                 col: 0
                 display: true
@@ -112,7 +107,7 @@ export default function GameScreen_AllNodeTypeContainer({
                 screenSize: "4:3(horizonal)"
             */
 
-            let nextNodeKey = currNodeData["nextNode"];
+            let nextNodeKey = nodeDataTemp["nextNode"];
 
                                 console.log("\tnext-node-key is ...", nextNodeKey);
             setHoldingNextNode(nextNodeKey);
@@ -125,6 +120,23 @@ export default function GameScreen_AllNodeTypeContainer({
 
             //setHoldingNextNode(nextNodeKey);
         }
+    }
+
+
+    function switchToNextNode() {
+
+        //TODO after receiving switch-signal
+        
+
+        // get nextNode's type
+        let upcomingNodeType = chapterNodeMapping[holdingNextNode]["nodeType"];
+
+        // set new holding-next
+        locateHoldingNextNode(holdingNextNode, upcomingNodeType);
+
+
+        setCurrNodeType(upcomingNodeType);
+        setCurrNodeKey(holdingNextNode)
     }
 
 
@@ -141,9 +153,6 @@ return (<div
         "userSelect": "none",
         "cursor": "pointer"
     }}
-    onClick={()=>{
-        locateHoldingNextNode();
-    }}
 >
 
 
@@ -154,7 +163,9 @@ return (<div
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`, 
         }}
-    
+        onClick={()=>{
+            locateHoldingNextNode(currNodeKey, currNodeType);
+        }}
     >
     {/* *chapterStart*<br></br> */}
     {currChapterTitle} <br></br>
