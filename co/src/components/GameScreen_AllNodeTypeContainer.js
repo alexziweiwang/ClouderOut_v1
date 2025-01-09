@@ -36,6 +36,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
     const [chapterNodeMapping, setChapterNodeMapping] = useState({});
 
+    const [jumpNodeSignal, setJumpNodeSignal] = useState(false);
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
  
@@ -61,10 +63,18 @@ export default function GameScreen_AllNodeTypeContainer({
                 let nodeMappingTemp = getCurrChapterAllNodeMapping();
                 setChapterNodeMapping(nodeMappingTemp);
                 setFirstTimeEnter(false);
+
+        } else {
+            if (jumpNodeSignal == true) {
+                switchToNextNode();
+
+                setJumpNodeSignal(false);
             }
+        }
 
         //TODO
 
+   
        
 
         //TODO screen-width and screen-height
@@ -127,9 +137,11 @@ export default function GameScreen_AllNodeTypeContainer({
 
         //TODO after receiving switch-signal
         
+        console.log("#chapterNodeMapping = ", chapterNodeMapping);
+        console.log("\t#holdingNextNode = ", holdingNextNode);
 
         // get nextNode's type
-        let upcomingNodeType = chapterNodeMapping[holdingNextNode]["nodeType"];
+        let upcomingNodeType = chapterNodeMapping[currChapterKey][holdingNextNode]["nodeType"];
 
         // set new holding-next
         locateHoldingNextNode(holdingNextNode, upcomingNodeType);
@@ -165,6 +177,7 @@ return (<div
         }}
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
+            setJumpNodeSignal(true);
         }}
     >
     {/* *chapterStart*<br></br> */}
