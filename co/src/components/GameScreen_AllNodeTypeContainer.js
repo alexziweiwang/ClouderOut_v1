@@ -129,7 +129,10 @@ export default function GameScreen_AllNodeTypeContainer({
 
         let nodeDataTemp = chapterDataTemp[nodeKeyInfo];
                                                 console.log("curr-node data = ", nodeDataTemp);
-        
+        if (nodeDataTemp === undefined || nodeDataTemp === null) {
+            return;
+        }
+
         if (nodeTypeInfo !== "LogicSplitter") { // all other nodes
             /*
                 col: 0
@@ -145,7 +148,14 @@ export default function GameScreen_AllNodeTypeContainer({
             let nextNodeKey = nodeDataTemp["nextNode"];
 
                                 console.log("\tnext-node-key is ...", nextNodeKey);
-            setHoldingNextNode(nextNodeKey);
+            if (nextNodeKey.length > 0) {
+                setHoldingNextNode(nextNodeKey);
+            } else {
+
+                //TODO show user-in-game-warning... and exit normally?
+                
+                console.log("no next-node!!");
+            }
 
 
         } else { //LogicSplitter
@@ -187,10 +197,20 @@ export default function GameScreen_AllNodeTypeContainer({
             if (item[0] === currChapterKey) {
                 //next chapter is the next key
                 if (i+1 < len) {
-                    let nextChapterKey = allChapterList[i+1];
-                    setCurrChapterKey(nextChapterKey);
-                    // TODO reset all node info
-                    
+                    let nextChapterItem = allChapterList[i+1];
+                    setCurrChapterKey(nextChapterItem[0]);
+                    setCurrChapterTitle(nextChapterItem[1]);
+
+                    // reset all node info
+                    let nextStartNodeKey = nextChapterItem[0] + "_start";
+                    setCurrNodeKey(nextStartNodeKey);
+                    setCurrNodeType("*chapterStart*");
+
+                    console.log("next chapter!! \n", nextChapterItem);
+                    break;
+                } else { 
+                    // TODO end of the entire game. ask if return ?
+
                 }
             }
 
@@ -242,7 +262,6 @@ return (<div
 
             //TODO switch to next chapter!
             switchToNextChapter();
-            setJumpNodeSignal(true);
         }}
     >
     *chapterEnd*<br></br>
