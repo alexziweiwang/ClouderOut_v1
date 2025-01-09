@@ -90,6 +90,8 @@ const tempFontSize = 12;
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
 
     const [storyPageChapterTitles, setStoryPageChapterTitles] = useState([]);
+    const [storyPageChapterKeyMapping, setStoryPageChapterKeyMapping] = useState([]);
+
 
     const [slCurrentSlotPage, setSlCurrentSlotPage] = useState(1);
 
@@ -143,11 +145,17 @@ const tempFontSize = 12;
             setSlSlotFrame(currRow);
 
             let initialChapterTitle = [];
+            let initialChapterKeyMapping = {};
             let k = 0;
             for(; k < chapterData.length; k++) {
-                initialChapterTitle.push(chapterData[k][1]);
+                let title = chapterData[k][1];
+                initialChapterTitle.push(title);
+         
+                initialChapterKeyMapping[title] = chapterData[k][0];
             }
             setStoryPageChapterTitles(initialChapterTitle);
+            setStoryPageChapterKeyMapping(initialChapterKeyMapping);
+
 
             setFirstTimeEnter(false);
 
@@ -902,9 +910,10 @@ const tempFontSize = 12;
                                         updateCurrentPageName("During Game");
 
                                         let currentStandingObjTemp = {};
+                                        let chapterKey = storyPageChapterKeyMapping[item];
                                         currentStandingObjTemp["pageStatus"] = "During Game";
-                                        currentStandingObjTemp["chapterKey"] = item;
-                                        currentStandingObjTemp["nodeKey"] = item + "_start"; //TODO default start-node's key ... if non-SL system
+                                        currentStandingObjTemp["chapterKey"] = chapterKey;
+                                        currentStandingObjTemp["nodeKey"] = chapterKey + "_start"; //TODO default start-node's key ... if non-SL system
                                         currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
                                         updateCurrentStanding(currentStandingObjTemp);
 
