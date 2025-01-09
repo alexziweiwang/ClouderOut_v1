@@ -320,7 +320,8 @@ const tempFontSize = 12;
             "position": "absolute",
             "userSelect": "none",
             "borderRadius": "0px",
-    }}>
+    }}
+    >
         {page === "Main Page" && 
 
         <div style={{
@@ -1751,7 +1752,9 @@ const tempFontSize = 12;
         </div>}
 
 
-        {page === "During Game" && <div style={{"position": "absolute"}}><br></br><br></br><br></br>(During Game)</div>}
+        {/* {page === "During Game" && <div style={{"position": "absolute", "backgroundColor": "purple"}}
+            onClick={()=>{console.log("clicking on nav-previewer...")}} //TODO 32
+        ><br></br><br></br><br></br>(During Game)</div>} */}
 
         {qWindowSetup === true 
         && <div 
@@ -1913,8 +1916,7 @@ const tempFontSize = 12;
                         onMouseUp={
                             ()=>{
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
-
-
+                                
                                 let nextPageName = "Main Page";
                                 if (page === "During Game") {
                                     setQWindowOpen(true);

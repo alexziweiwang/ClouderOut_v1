@@ -86,13 +86,28 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
 
-return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
+return (<div style={{"backgroundColor": "blue", "borderRadius": "0px"}}
+    onClick={()=>{
+        console.log("game screen! game-screen-general-div. \nchapterNodeMapping = ", chapterNodeMapping);
+    }}
+>
     {currNodeType === "" && <div style={{"backgroundColor": "#000001", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
         curr-node-type is empty
 
         </div>}
 
-    {currNodeType === "*chapterStart*" && <div style={{"backgroundColor": "grey", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+    {currNodeType === "*chapterStart*" && <div 
+        style={{
+            "backgroundColor": "green", 
+            "borderRadius": "0px", 
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`, 
+            "cursor": "pointer"}}
+        onClick={()=>{console.log("chapterStart-area clicked")}} //TODO 32
+
+    
+    
+    >
     {/* *chapterStart*<br></br> */}
     {currChapterTitle} <br></br>
     {/* chapter = {currChapterKey}, node-key = {currNodeKey} */}

@@ -1625,7 +1625,13 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
     {/* entire-viewer-screen */}
-      <div>
+      <div
+        style={{
+          "height": `${screenHeight+50}px`,
+        }}
+      >
+
+
       <Viewer_Entire
           makeNotDisplay={closeEntireGameViewer}
 

@@ -327,10 +327,13 @@ return(<>
                         "backgroundColor": "orange", 
                         "top": "0px", 
                         "left": "0px",
-                        "width": `${screenWidth}px`, 
-                        "height": `${screenHeight}px`,
-                
-                    }}>
+                        "width": `${screenWidth+10}px`, 
+                        "height": `${screenHeight+10}px`,
+                    }}
+                    onClick={()=>{
+                        console.log("viewer-entire game-screen-area clicked"); //TODO this works fine
+                    }}
+                    >
 
                                           {/*            //TODO15 
                                                     // updatePlayingGameData(data)
@@ -367,8 +370,8 @@ return(<>
                     "position": "absolute", 
                     "top": "0px", 
                     "left": "0px",
-                    "width": `${screenWidth}px`, 
-                    "height": `${screenHeight}px`,
+             
+                    "backgroundColor": "purple",
                 }}>
                     <NavigationPreview 
                         initialNavObj={navigationObj} 
