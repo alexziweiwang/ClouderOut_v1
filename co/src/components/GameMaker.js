@@ -1623,11 +1623,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         </div>
     
 
-
+<div style={{"display": "flex"}}>
     {/* entire-viewer-screen */}
       <div
         style={{
-          "height": `${screenHeight+50}px`,
+          "height": `${screenHeight+2}px`,
+          "width": `${screenWidth+2}px`,
         }}
       >
 
@@ -1716,6 +1717,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
             {(isDisplayEntireGameViewer && showGameDataPanel)
             && 
               <div style={{
+                "marginLeft": "-850px",
                 "height": `${screenHeight}px`, 
                 "overflow": "scroll", 
               }}>
@@ -1744,7 +1746,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 
           </div>
-      
+
+
+</div>
+
       </div>}
 {/*  Entire Viewing -- all parts  */}
 

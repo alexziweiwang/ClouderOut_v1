@@ -6,7 +6,7 @@ Keeps a set of creator's preferred configuration data of game-data
 export default function Panel_GameDataTest({
     localTest, initialGameDataStatus,
     getScreenHeight, getScreenWidth,
-    isQuickView, triggerClickOnGameDataPanel, 
+    isQuickView, 
     getIsGameScreenClicked,
     receiveGameDataObj,
     getResetSignal,
@@ -98,10 +98,7 @@ return (
                 "color": "#FFFFFF",
                 "marginLeft": (isQuickView === true) ? "60px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 
                 }}
-    onClick={()=>{
-        triggerClickOnGameDataPanel();
-    }}
-                
+    
                 
                 >
                 <label className="textNoSelect">Game Data Panel</label>
