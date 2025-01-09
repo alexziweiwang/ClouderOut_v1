@@ -13,6 +13,7 @@ export default function GameScreen_AllNodeTypeContainer({
     getChapterTitle,
     getCurrentGameDataTracker,
     getCurrChapterAllNodeMapping,
+    getAllChapterList,
 
     username,
     projectname,
@@ -35,6 +36,8 @@ export default function GameScreen_AllNodeTypeContainer({
     const [gameDataTracker, setGameDataTracker] = useState({});
 
     const [chapterNodeMapping, setChapterNodeMapping] = useState({});
+
+    const [allChapterList, setAllChapterList] = useState([]);
 
     const [jumpNodeSignal, setJumpNodeSignal] = useState(false);
 
@@ -62,6 +65,10 @@ export default function GameScreen_AllNodeTypeContainer({
 
                 let nodeMappingTemp = getCurrChapterAllNodeMapping();
                 setChapterNodeMapping(nodeMappingTemp);
+
+                let chapterListTemp = getAllChapterList();
+                initializeChapterArray(chapterListTemp);
+
                 setFirstTimeEnter(false);
 
         } else {
@@ -83,6 +90,24 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }); //-- useEffect --
 
+    function initializeChapterArray(list) {
+        let arr = [];
+            //    console.log("initializeChapterArray-func, input list = ", list);
+
+        let limit = Object.keys(list).length;
+        let i = 0;
+        while (i < limit) {
+            arr.push(list[i]);
+
+            i++;
+        }
+
+             //   console.log("after init .. arr is ", arr, " type is ", typeof(arr));
+
+        setAllChapterList(arr);
+
+    }
+
 
     function setupScreenSizeByNodeKey(nodeKeyName) {
         //TODO fetch from cloud for this node's size data...?
@@ -97,7 +122,7 @@ export default function GameScreen_AllNodeTypeContainer({
         // fetch next-node key if direct
         //TODO do conditional-jump if logic-splitter
 
-                                                  console.log("jump node! \nchapterNodeMapping = ", chapterNodeMapping);
+                                                  console.log("locateHoldingNextNode(jump node)! \nchapterNodeMapping = ", chapterNodeMapping);
 
         let chapterDataTemp = chapterNodeMapping[currChapterKey];
                                     //            console.log("curr-chapter data = ", chapterDataTemp);
@@ -151,6 +176,30 @@ export default function GameScreen_AllNodeTypeContainer({
         setCurrNodeKey(holdingNextNode)
     }
 
+    function switchToNextChapter() {
+        console.log("current chapter = ", currChapterKey);
+
+        let i = 0;
+        let len = allChapterList.length;
+        while (i < len) {
+            let item = allChapterList[i];
+                               console.log("allChapterList[i] = ", item);
+            if (item[0] === currChapterKey) {
+                //next chapter is the next key
+                if (i+1 < len) {
+                    let nextChapterKey = allChapterList[i+1];
+                    setCurrChapterKey(nextChapterKey);
+                    // TODO reset all node info
+                    
+                }
+            }
+
+            i++;
+        }
+
+
+    }
+
 
 
 
@@ -187,13 +236,29 @@ return (<div
     </div>}
 
 
+    {currNodeType === "*chapterEnd*" && 
+    <div style={{"backgroundColor": "brown", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
+        onClick={()=>{
 
-    {currNodeType === "*chapterEnd*" && <div style={{"backgroundColor": "brown", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+            //TODO switch to next chapter!
+            switchToNextChapter();
+            setJumpNodeSignal(true);
+        }}
+    >
     *chapterEnd*<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}        
         </div>}
 
-    {currNodeType === "Conversation" && <div style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
+    {currNodeType === "Conversation" && 
+    <div 
+        style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
+        onClick={()=>{
+            //--- works perfectly ok (without logic-splitter so far)---
+            locateHoldingNextNode(currNodeKey, currNodeType);
+            setJumpNodeSignal(true);
+            //--- works perfectly ok (without logic-splitter so far)---
+        }}
+    >
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
 

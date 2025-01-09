@@ -348,6 +348,7 @@ return(<>
                                                 getChapterTitle={passInChapterTitle}
                                                 getCurrentGameDatTracker={getPlayerGameData}
                                                 getCurrChapterAllNodeMapping={getCurrChapterAllNodeMapping}
+                                                getAllChapterList={getChapterList}
 
                                                 username={username}
                                                 projectname={projectname}
