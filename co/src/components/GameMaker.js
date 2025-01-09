@@ -1275,11 +1275,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         chapterNodeMappingObj: chapterNodeMapAll, 
         chapterNodeGridBlocks: gridMapTemp
     });
-
-
-
-
-
   }
 
   async function fetchChapterNodeMappingFromCloud() {
@@ -1325,6 +1320,10 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
                                       //  console.log("!!! after conversion ... GridBlocks = ", gridTempMap);
 
 
+  }
+
+  function passInChapterNodeMapping() {
+    return chapterNodeMapAll;
   }
 
   async function saveChapterListToCloud(chapterListInfo) {
@@ -1647,6 +1646,8 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
       
           getPlayerSlRecords={passInPlayerSlRecords}
           updatePlayerSlRecords={updatePlayerSlRecords}
+
+          getCurrChapterAllNodeMapping={passInChapterNodeMapping}
           
 
           getNodeType={passInNodeType}

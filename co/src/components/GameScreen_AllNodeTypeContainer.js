@@ -12,6 +12,7 @@ export default function GameScreen_AllNodeTypeContainer({
     getNodeKey,
     getChapterTitle,
     getCurrentGameDataTracker,
+    getCurrChapterAllNodeMapping,
 
     username,
     projectname,
@@ -30,6 +31,8 @@ export default function GameScreen_AllNodeTypeContainer({
     const [currChapterTitle, setCurrChapterTitle] = useState("");
 
     const [gameDataTracker, setGameDataTracker] = useState({});
+
+    const [chapterNodeMapping, setChapterNodeMapping] = useState({});
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -56,6 +59,9 @@ export default function GameScreen_AllNodeTypeContainer({
 
         let chapterTitleTemp = getChapterTitle();
         setCurrChapterTitle(chapterTitleTemp);
+
+        let nodeMappingTemp = getCurrChapterAllNodeMapping();
+        setChapterNodeMapping(nodeMappingTemp);
 
         //TODO screen-width and screen-height
 
@@ -87,9 +93,9 @@ return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
         </div>}
 
     {currNodeType === "*chapterStart*" && <div style={{"backgroundColor": "grey", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-    *chapterStart*<br></br>
-    title = {currChapterTitle} <br></br>
-    chapter = {currChapterKey}, node-key = {currNodeKey}
+    {/* *chapterStart*<br></br> */}
+    {currChapterTitle} <br></br>
+    {/* chapter = {currChapterKey}, node-key = {currNodeKey} */}
         
     </div>}
 
@@ -103,6 +109,7 @@ return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
         {currNodeType === "Conversation" && <div style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
+
 
         
         </div>}

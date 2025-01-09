@@ -30,6 +30,8 @@ export default function Viewer_Entire({
 
     getPlayerSlRecords, 
     updatePlayerSlRecords,
+
+    getCurrChapterAllNodeMapping,
     
     getNodeType, 
     getChapterKey, 
@@ -306,8 +308,7 @@ export default function Viewer_Entire({
 
     }
 
-
-                                          
+                                   
 
 return(<>
 
@@ -346,6 +347,7 @@ return(<>
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
                                                 getCurrentGameDatTracker={getPlayerGameData}
+                                                getCurrChapterAllNodeMapping={getCurrChapterAllNodeMapping}
 
                                                 username={username}
                                                 projectname={projectname}
