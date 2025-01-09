@@ -10,6 +10,7 @@ export default function GameScreen_AllNodeTypeContainer({
     getNodeType, 
     getChapterKey, 
     getNodeKey,
+    getChapterTitle,
     getCurrentGameDataTracker,
 
     username,
@@ -26,6 +27,7 @@ export default function GameScreen_AllNodeTypeContainer({
     const [currNodeType, setCurrNodeType] = useState("");
     const [currNodeKey, setCurrNodeKey] = useState("");
     const [currChapterKey, setCurrChapterKey] = useState("");
+    const [currChapterTitle, setCurrChapterTitle] = useState("");
 
     const [gameDataTracker, setGameDataTracker] = useState({});
 
@@ -51,6 +53,9 @@ export default function GameScreen_AllNodeTypeContainer({
             setCurrNodeKey(nodeKeyTemp);
             setupScreenSizeByNodeKey(nodeKeyTemp);            
         }
+
+        let chapterTitleTemp = getChapterTitle();
+        setCurrChapterTitle(chapterTitleTemp);
 
         //TODO screen-width and screen-height
 
@@ -83,9 +88,10 @@ return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
 
     {currNodeType === "*chapterStart*" && <div style={{"backgroundColor": "grey", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
     *chapterStart*<br></br>
+    title = {currChapterTitle} <br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
         
-        </div>}
+    </div>}
 
 
 

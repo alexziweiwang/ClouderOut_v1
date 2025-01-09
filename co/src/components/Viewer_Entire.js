@@ -35,6 +35,7 @@ export default function Viewer_Entire({
     getChapterKey, 
     getNodeKey,
     getPageName,
+    getChapterTitle,
 
     updateCurrentStanding,
 
@@ -154,7 +155,8 @@ export default function Viewer_Entire({
         let chapterKeyTemp = getChapterKey();
         let nodeKeyTemp = getNodeKey();
         let pageNameTemp = getPageName();
-        configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp);
+        let chapterTitleTemp = getChapterTitle();
+        configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp);
 
 
         let chapterListTemp = getChapterList();
@@ -170,11 +172,12 @@ export default function Viewer_Entire({
     });
 
   
-    function configureGameProgress(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal) {
+    function configureGameProgress(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal, chapterTitleVal) {
         let nodeTypeTemp = nodeTypeVal;
         let chapterKeyTemp = chapterKeyVal;
         let nodeKeyTemp = nodeKeyVal;
         let pageNameTemp = pageNameVal;
+        let chapterTitleTemp = chapterTitleVal;
 
         let progressObj = currentGameStatusProgress;
 
@@ -191,12 +194,16 @@ export default function Viewer_Entire({
             if (chapterKeyTemp !== progressObj["chapterKey"]) {
                 progressObj["chapterKey"] = chapterKeyTemp;
             }
+            if (chapterTitleTemp !== progressObj["chapterTitle"]) {
+                progressObj["chapterTitle"] = chapterTitleTemp;
+            }
             if (pageNameTemp !== progressObj["pageStatus"]) {
                 progressObj["pageStatus"] = pageNameTemp;
             }
             if (nodeKeyTemp !== progressObj["nodeKey"]) {
                 progressObj["nodeKey"] = nodeKeyTemp;
             }
+
                                                     console.log("resetting currentGameStatusProgress! progressObj = ", progressObj);
             setCurrentGameStatusProgress(progressObj);
         }
@@ -294,6 +301,11 @@ export default function Viewer_Entire({
         return getShopItemInfo();
     }
 
+    function passInChapterTitle() {
+        return currentGameStatusProgress["chapterTitle"];
+
+    }
+
 
                                           
 
@@ -332,6 +344,7 @@ return(<>
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 
                                                 getNodeKey={passInNodeKey}
+                                                getChapterTitle={passInChapterTitle}
                                                 getCurrentGameDatTracker={getPlayerGameData}
 
                                                 username={username}

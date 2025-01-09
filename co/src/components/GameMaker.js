@@ -129,6 +129,7 @@ export default function GameMaker({username, projectName}) {
   //TODO6
   const [currTestingPageStatus, setCurrTestingPageStatus] = useState("Main Page");
   const [currTestingChapterKey, setCurrTestingChapterKey] = useState("");
+  const [currTestingChapterTitle, setCurrTestingChapterTitle] = useState("");
 
   const [currTestingNodeKey, setCurrTestingNodeKey] = useState("");
   const [currTestingNodeType, setCurrTestingNodeType] = useState("");
@@ -1057,11 +1058,16 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return currTestingPageStatus;
   }
 
+  function passInChapterTitle() {
+    return currTestingChapterTitle;
+  }
+
   function updateCurrentStanding(obj) {
     setCurrTestingPageStatus(obj["pageStatus"]);
     setCurrTestingChapterKey(obj["chapterKey"]);
     setCurrTestingNodeKey(obj["nodeKey"]);
     setCurrTestingNodeType(obj["nodeType"]);
+    setCurrTestingChapterTitle(obj["chapterTitle"]);
   }
 
   
@@ -1647,6 +1653,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           getChapterKey={passInChapterKey}
           getNodeKey={passInNodeKey}
           getPageName={passInPageName}
+          getChapterTitle={passInChapterTitle}
 
           updateCurrentStanding={updateCurrentStanding}
 
