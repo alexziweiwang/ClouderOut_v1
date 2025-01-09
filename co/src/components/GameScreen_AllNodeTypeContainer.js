@@ -82,7 +82,7 @@ return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
         </div>}
 
     {currNodeType === "*chapterStart*" && <div style={{"backgroundColor": "grey", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-    *chapterStart*
+    *chapterStart*<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
         
         </div>}
@@ -90,16 +90,20 @@ return (<div style={{"backgroundColor": "purple", "borderRadius": "0px"}}>
 
 
     {currNodeType === "*chapterEnd*" && <div style={{"backgroundColor": "brown", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-        
+    *chapterEnd*<br></br>
+    chapter = {currChapterKey}, node-key = {currNodeKey}        
         </div>}
 
         {currNodeType === "Conversation" && <div style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-    conversation-node
+    conversation-node<br></br>
+    chapter = {currChapterKey}, node-key = {currNodeKey}
+
         
         </div>}
 
         {currNodeType === "LogicSplitter" && <div style={{"backgroundColor": "green", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-        Logic Splitter
+        Logic Splitter<br></br>
+        chapter = {currChapterKey}, node-key = {currNodeKey}
         
         </div>}        
 </div>);

@@ -154,7 +154,7 @@ export default function Viewer_Entire({
         let chapterKeyTemp = getChapterKey();
         let nodeKeyTemp = getNodeKey();
         let pageNameTemp = getPageName();
-        setupGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp);
+        configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp);
 
 
         let chapterListTemp = getChapterList();
@@ -170,7 +170,7 @@ export default function Viewer_Entire({
     });
 
   
-    function setupGameProgress(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal) {
+    function configureGameProgress(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal) {
         let nodeTypeTemp = nodeTypeVal;
         let chapterKeyTemp = chapterKeyVal;
         let nodeKeyTemp = nodeKeyVal;
@@ -197,7 +197,7 @@ export default function Viewer_Entire({
             if (nodeKeyTemp !== progressObj["nodeKey"]) {
                 progressObj["nodeKey"] = nodeKeyTemp;
             }
-                                                    console.log("resetting currentGameStatusProgress!");
+                                                    console.log("resetting currentGameStatusProgress! progressObj = ", progressObj);
             setCurrentGameStatusProgress(progressObj);
         }
 
