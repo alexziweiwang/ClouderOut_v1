@@ -293,6 +293,8 @@ export default function NodeManager({projectName, currUser,
             if (firstTimeEnter == false) {
               updateNodeLinkingsOnce(tempMap, gridTemp);
             }
+            setClickedNodeKey("");
+            setClickedNode2(-1);
           } 
 
 
