@@ -128,7 +128,7 @@ export default function PieceSetter({
     let name = "/gamenodeconvpiecedatasec";
 
     const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
-    const [gameDataListLocal, setGameDatListLocal] = useState(gameDataList);
+    const [gameDataListLocal, setGameDatListLocal] = useState(gameDataList === undefined ? {} : gameDataList);
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -151,7 +151,7 @@ export default function PieceSetter({
     const [stndButtonSound, setStndButtonSound] = useState("default sound"); //TODO test
     const [stndButtonText, setStndButtonText] = useState(""); //TODO test
 
-    const [stndButtonConsequenceArrayLocal, setstndButtonConsequenceArrayLocal] = useState([]); //TODO refactor
+    const [stndButtonConsequenceArrayLocal, setStndButtonConsequenceArrayLocal] = useState([]); //TODO refactor
     const [stndButtonConsequenceMap, setStndButtonConsequenceMap] = useState([]); //TODO refactor
 
     const [stndBtnConseqGDataItemSelected, setStndBtnConseqGDataItemSelected] = useState("");
@@ -185,7 +185,8 @@ export default function PieceSetter({
     const [pieceAllDataLocal, setPieceAllDataLocal] = useState(allPieceData);
 
     const [currentPieceDetail, setCurrentPieceDetail] = useState(
-        {"num": pieceNum, 
+        allPieceData.length > 0 ?
+        ({"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
         "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
@@ -220,9 +221,32 @@ export default function PieceSetter({
         "vl_volume": allPieceData[pieceNum-1]["vl_volume"],
 
         "vl_source_pair" : allPieceData[pieceNum-1]["vl_source_pair"], //TODO impl
-    }
+    }) : 
+        {
+        "num": 0, 
+        "content": "", 
+        "displayTextFrame": true, 
+        "speaker_name": "", 
+        "bgp_source_varname": "",  
+        "bgp_action": "maintainBgp", 
+        "bgp_pos_x": 0, 
+        "bgp_pos_y": 0, 
+        "bgp_width": 800, 
+        "bgp_height": 450, 
+        "chp_curr": ["", 0, 0, 60, 120, 1], 
+        "chp_arr": [], 
+        "chp_action": "maintainCharPicArr",  
+        "clkb_previewing": [], 
+        "clkb_arr": [], 
+        "stnd_btn_arr": [], 
+        "bgm_source_varname": "", 
+        "bgm_action": "maintainBgm", 
+        "bgm_loop": true, 
+        "bgm_volume": 100, 
+        "vl_source_varname": "", 
+        "vl_volume": 100
+    }, 
 
-     
 
     );
 
@@ -237,7 +261,7 @@ export default function PieceSetter({
      //   } else if (allPiece !== pieceAllDataLocal) {
             setPieceAllDataLocal(allPiece);  
     //    }
-                            console.log("useEffect ... pieceAllDataLocal is ", pieceAllDataLocal);
+                            console.log("piece-setter! *** useEffect ... pieceAllDataLocal is ", pieceAllDataLocal);
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
@@ -291,35 +315,37 @@ export default function PieceSetter({
 
     });
 
-    function stndBtnFromMapToArr(map1) {
-        let arrTemp = [];
-        Object.keys(map1).map((currKey) => {
-            arrTemp.push(map1[currKey]);
-        })
+    // function stndBtnFromMapToArr(map1) {
+    //     let arrTemp = [];
+    //     Object.keys(map1).
+    //map((currKey) => {
+    //         arrTemp.push(map1[currKey]);
+    //     })
 
-        arrTemp.sort((a,b) => a.seq - b.seq);
+    //     arrTemp.sort((a,b) => a.seq - b.seq);
 
-        setStndButtonDataTable(arrTemp);
+    //     setStndButtonDataTable(arrTemp);
 
-                                console.log("conversion -- from map = ", map1, " to Arr ... ", arrTemp);
+    //                             console.log("conversion -- from map = ", map1, " to Arr ... ", arrTemp);
 
-        return arrTemp;
-    }
+    //     return arrTemp;
+    // }
 
-    function stndBtnFromArrToMap(arr) {
-        let map1 = {};
+    // function stndBtnFromArrToMap(arr) {
+    //     let map1 = {};
 
-        arr.map((item, index)=>{
-            let obj = item;
-            obj["seq"] = index;
-            map1[index] = obj;
-        })
+    //     arr.
+    //map((item, index)=>{
+    //         let obj = item;
+    //         obj["seq"] = index;
+    //         map1[index] = obj;
+    //     })
 
-                                console.log("conversion -- from arr. ", arr, " to map = ", map1);
+    //                             console.log("conversion -- from arr. ", arr, " to map = ", map1);
 
 
-        return map1;
-    }
+    //     return map1;
+    // }
 
     async function fetchGameDataListFromCloud() {
         
@@ -328,7 +354,7 @@ export default function PieceSetter({
       
 //TODO20
 
-        console.log("piece-setter fetchGameDataListFromCloud-func: game-data obj/map = ", tempObj);
+        console.log("!! piece-setter fetchGameDataListFromCloud-func: game-data obj/map = ", tempObj);
         setGameDatListLocal(tempObj);
 
         
@@ -374,7 +400,7 @@ export default function PieceSetter({
         setStndButtonDataTable([]);
 
         setStndButtonText("");
-        setstndButtonConsequenceArrayLocal([]);
+        setStndButtonConsequenceArrayLocal([]);
         setStndButtonConsequenceMap({});
 
         setDisplayStndButtonAdd(false);
@@ -727,7 +753,7 @@ export default function PieceSetter({
 
     function removeFromStndButtonConseqList(index) {
         let tempConseq =stndButtonConsequenceArrayLocal.filter((item) =>(item !== stndButtonConsequenceArrayLocal[index]));
-        setstndButtonConsequenceArrayLocal(tempConseq);
+        setStndButtonConsequenceArrayLocal(tempConseq);
     }
 
     function putConseqArrToMap() {
@@ -960,19 +986,23 @@ export default function PieceSetter({
                                 {stndButtonDataTable.map((item, index) => {  
                                     let keyStr = "stndButtonTable-" + index;  
                                     
-                                    
+                                                console.log("stnd-button-table... item[conseq] = ", item["conseq"]);
 
                                     return (
                                         <tr key={keyStr}>
                                             <td>{index}</td>
                                             <td>{item["buttonText"]}</td>
+                                            
+                                            //TODO temp hidden
+                                            {/* {item["conseq"] !== undefined &&  
                                             <td>
-                                                {Object.keys(item["conseq"]).map((currKey)=>{
+                                                {Object.keys(item["conseq"]).
+                                                map((currKey)=>{
                                                     let elem = item["conseq"][currKey];
                                                     let str = "[" + elem["name"] + "], " + elem["action"] + " => [" + elem["newVal"] + "]";
                                                     return (<label key={keyStr}>{str}<br></br></label>);
                                                 })}
-                                            </td>
+                                            </td>} */} //TODO temp hidden
 
                                           
                                             <td>
@@ -1165,7 +1195,9 @@ export default function PieceSetter({
                         obj.push(stndBtnConseqGDataTypeSelected); //TODO add data-type! //[3] "number", "boolean", "string"
                       
                         /* push to stndButtonConsequenceArrayLocal */
-                        stndButtonConsequenceArrayLocal.push(obj);
+                        let arrTemp = stndButtonConsequenceArrayLocal;
+                        arrTemp.push(obj);
+                        setStndButtonConsequenceArrayLocal(arrTemp);
                         
                         setIsStndBtnAddNewConsq(false);
 
@@ -1211,7 +1243,7 @@ export default function PieceSetter({
 
 
                         setStndButtonText("");
-                        setstndButtonConsequenceArrayLocal([]);
+                        setStndButtonConsequenceArrayLocal([]);
                         setDisplayStndButtonAdd(false);
                         setStndBtnConseqGDataItemSelected("");
                         setStndBtnConseqGDataTypeSelected("");
@@ -1244,7 +1276,8 @@ export default function PieceSetter({
                         </tr>
                         </thead>
                         <tbody>
-                            {cstmClkbDataTable.map((item, index) => {
+                            {cstmClkbDataTable.
+                                map((item, index) => {
                                 let keyStr = "clickable-table-row-" + index + "-";
                                 return (<tr key={keyStr}>
                                     <td>{index}</td>
@@ -1329,7 +1362,8 @@ export default function PieceSetter({
                                 }>
                                     <option key="clck01" value=""> ︽- Select base-pic name -- </option>
 
-                                    {visualList.map((item, index) => {
+                                    {visualList.
+                                        map((item, index) => {
                                         let keyStr = "clickable-" + index + "-" + item["var"];
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);
                                     })}
@@ -1349,7 +1383,8 @@ export default function PieceSetter({
                                 </thead>
                                 <tbody>
 
-                                    {cstmClkbConsequenceArray.map((item, index) => {  
+                                    {cstmClkbConsequenceArray.
+                                        map((item, index) => {  
                                     //    console.log("2clickable: item = ", item);       
                                     return (
                                         <tr className="clickableListItem3">
@@ -1391,7 +1426,8 @@ export default function PieceSetter({
                             }} 
                             value={cstmClkbConseqGDataItemSelected}>
                         <option value="" key=""> ︽- Select Game Data Item --</option>
-                        {Object.keys(gameDataListLocal).map((currKey) => {
+                        {Object.keys(gameDataListLocal).
+                            map((currKey) => {
                             // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
                             let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
                             return (
@@ -1798,7 +1834,8 @@ export default function PieceSetter({
                     >
                         <option key="vl" value=""> ︽- Select voiceline name -- </option>
    
-                        {audioList.map((item, index) => {
+                        {audioList.
+                            map((item, index) => {
                             return (<option key={index} value={item["var"]}>{item["var"]}</option>);
                         })}
                     </select>

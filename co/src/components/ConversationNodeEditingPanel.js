@@ -119,7 +119,7 @@ export default function ConversationNodeEditingPanel() {
 
 //TODO15
 
-    const [pieceDataStructure, setPieceDatastructure] = useState(
+    const [pieceDataStructure, setPiecedataStructure] = useState(
         [
 
             // {"num": 1, "content": "", "displayTextFrame": false, "speaker_name": "", "bgp_source_varname": "", "bgp_action": "maintainBgp", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": 800, "bgp_height": 450, "chp_curr": ["", 0, 0, 60, 120, 1], "chp_arr": [], "chp_action": "maintainCharPicArr", "clkb_previewing": [], "clkb_arr": [], "stnd_btn_arr": [{"buttonText": 'a', "conseq": {'hp_001': {"name": "hp_001", "action": "plus", "newVal": "10", "type": "number"}}}], "bgm_source_varname": "", "bgm_action": "maintainBgm", "bgm_loop": true, "bgm_volume": 100, "vl_source_varname": "", "vl_volume": 100}, 
@@ -398,13 +398,13 @@ export default function ConversationNodeEditingPanel() {
         setPieceNumber(num);
         let tempArr = pieceDataStructure;
         tempArr.sort((a, b) => a.num - b.num);
-        setPieceDatastructure(tempArr);
+        setPiecedataStructure(tempArr);
         switchListEditor();
     }
 
     function changePieceData(updatedPieceData) {
         console.log("!!! in editing-panel: changePieceData ...", updatedPieceData); //TODO test
-        setPieceDatastructure(updatedPieceData);
+        setPiecedataStructure(updatedPieceData);
         //TODO update to cloud
     }
 
@@ -461,6 +461,7 @@ export default function ConversationNodeEditingPanel() {
         if (pieceDataStructure === undefined || pieceDataStructure === null) {
             return [];
         } else {
+                                    console.log("all-piece = ", pieceDataStructure);
             return pieceDataStructure;
         }
     }
@@ -715,13 +716,14 @@ export default function ConversationNodeEditingPanel() {
         let pieceObjTemp = await convNodeFetchFromCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey});
 
         if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
+            setPiecedataStructure([]);
             return;
         }
 
         console.log("initialize piece data... ", pieceObjTemp);
 
 
-        setPieceDatastructure(pieceObjTemp);
+        setPiecedataStructure(pieceObjTemp);
 
     } 
 

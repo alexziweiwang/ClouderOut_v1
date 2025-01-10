@@ -88,6 +88,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       let uiLangTemp = getUILanguage();
       setLanguageCodeTextOption(uiLangTemp);
 
+/* //TODO testing
       let allPieceContentTemp = getAllPieceContent();
       if (allPieceContentTemp !== undefined && allPieceContentTemp.length > 0) {
           if (allPieceContentTemp !== allPieceData) {
@@ -113,8 +114,10 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
+ 
+    
       }
-
+  */ //TODO testing
 
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
