@@ -245,7 +245,7 @@ const tempFontSize = 12;
             setQwindowSetup(false);
 
         } else if (tempPage === "Quit Asking Window") {
-            setPage("");
+          //  setPage("");
             if (userClickCancelQwindow === false) {
                 setQWindowOpen(true);
             }
@@ -1771,7 +1771,20 @@ const tempFontSize = 12;
         
         
 {/* q-window */}
-        {(qWindowOpen === true) && <div
+        {(qWindowOpen === true) && 
+        <div
+            style={{
+                "position": "absolute",             
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor": "rgba(189, 195, 199, 0.7)",
+                "borderRadius": "0px",
+            }}
+        > 
+        {/* TODO add backboard */}
+
+
+            <div
                 style={{
                         "height": `${navObj["outWindow-height"]}px`,
                         "width": `${navObj["outWindow-width"]}px`,
@@ -1863,13 +1876,15 @@ const tempFontSize = 12;
                                                 //close q-window
                                                 setQWindowOpen(false);
                                                 setUserClickCancelQwindow(true);
-                                                updateCurrentPageName("During Game");
+                                        //        updateCurrentPageName("During Game");
 
                                                 
                                         }}
                                     >{navObj["outWindow-Btn-cancellingText"]}</button>
                                 </div>
-        </div>}
+            </div>
+
+    </div>}
 {/* q-window */}
        
 
@@ -1920,7 +1935,7 @@ const tempFontSize = 12;
                                 let nextPageName = "Main Page";
                                 if (page === "During Game") {
                                     setQWindowOpen(true);
-                                    updateCurrentPageName("Quit Asking Window");
+                           //         updateCurrentPageName("Quit Asking Window");
                                     
 
                                 } else if (page === "Game Progress Strategy") {
