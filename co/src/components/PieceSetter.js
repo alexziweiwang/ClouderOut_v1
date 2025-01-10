@@ -232,8 +232,12 @@ export default function PieceSetter({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         const allPiece = getAllPieceData();
-        setPieceAllDataLocal(allPiece);  
-
+    //    if (allPiece === undefined || allPiece === null || allPiece.length === 0) {
+    //        setPieceAllDataLocal([]);  
+     //   } else if (allPiece !== pieceAllDataLocal) {
+            setPieceAllDataLocal(allPiece);  
+    //    }
+                            console.log("useEffect ... pieceAllDataLocal is ", pieceAllDataLocal);
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);

@@ -43,13 +43,13 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     const [currentPiece, setCurrentPiece] = useState({}); //TODO2 refactor for larger scope
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
-    const [allPieceData, setAllPieceData] = useState(initialAllPieceData);
+    const [allPieceData, setAllPieceData] = useState(initialAllPieceData === undefined ? [] : initialAllPieceData);
     
     const [bgmSource, setBgmSource] = useState("");
     const [bgpSource, setBgpSource] = useState("");
 
     const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
-    const [charaPicArr2, setCharaPicArr2] = useState(initialAllPieceData.length > 0 ? initialAllPieceData[0]["chp_arr"] : []);
+    const [charaPicArr2, setCharaPicArr2] = useState((initialAllPieceData !== undefined && initialAllPieceData.length > 0) ? initialAllPieceData[0]["chp_arr"] : []);
 
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
@@ -89,7 +89,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       setLanguageCodeTextOption(uiLangTemp);
 
       let allPieceContentTemp = getAllPieceContent();
-      if (allPieceContentTemp.length > 0) {
+      if (allPieceContentTemp !== undefined && allPieceContentTemp.length > 0) {
           if (allPieceContentTemp !== allPieceData) {
             setAllPieceData(allPieceContentTemp);
           }
@@ -100,8 +100,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
           }
 
-          if (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
-            allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0) {
+          if (allPieceContentTemp !== undefined && (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
+            allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0)) {
               setDirectNextPieceBool(false);
           } else {
               setDirectNextPieceBool(true);
@@ -285,7 +285,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             setIsClickedOnSetters(false);
           }}
         >       
-        {allPieceData.length > 0 && <>
+        {(allPieceData !== undefined && allPieceData.length > 0) && <>
             <div className="previewArea" 
               style={{"position": "relative", 
                       "height": `${screenHeight}px`, 
@@ -345,7 +345,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
               </div>}
               
-              {(allPieceData.length > 0 && currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
+              {(allPieceData !== undefined && allPieceData.length > 0 && currentPieceNum >= 0 && allPieceData[currentPieceNum].displayTextFrame === true) && 
               <GameUI_1TextFramePreview
                 isEditing={true}
                 dataObj={currentPiece} 

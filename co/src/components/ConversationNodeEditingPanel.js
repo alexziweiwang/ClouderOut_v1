@@ -458,7 +458,11 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function passInAllPieceDataContent() {
-        return pieceDataStructure;
+        if (pieceDataStructure === undefined || pieceDataStructure === null) {
+            return [];
+        } else {
+            return pieceDataStructure;
+        }
     }
 
     function passInCurrentPieceNum() {
@@ -709,11 +713,13 @@ export default function ConversationNodeEditingPanel() {
     async function initializePiecesFromCloud() {
 
         let pieceObjTemp = await convNodeFetchFromCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey});
-        console.log("initialize piece data... ", pieceObjTemp);
 
-        if (pieceObjTemp === undefined || pieceObjTemp === null) {
+        if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
             return;
         }
+
+        console.log("initialize piece data... ", pieceObjTemp);
+
 
         setPieceDatastructure(pieceObjTemp);
 

@@ -88,12 +88,15 @@ export default function PieceManager({
 
     useEffect(() => {
         if (firstTimeEnter === true) {
+            // if (allPieceData === undefined || allPieceData === null || allPieceData.length === 0) {
+            //     setPieceDataLocal([]);
+            // }
            
             setFirstTimeEnter(false);
         }
         const allPiece = getAllPieceData();
-
         setPieceDataLocal(allPiece);
+        
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
@@ -117,6 +120,11 @@ export default function PieceManager({
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
         setPieceDataLocal(pieceDataArr);
+
+        updatePieceData(pieceDataArr);
+
+        //TODO notify outside layer
+
     }
 
     function updateLocalDataToCloud() { //TODO cloud-related
@@ -294,7 +302,7 @@ export default function PieceManager({
 
         </tbody>
     </table>
-    <button onClick={createNewListItem}>{addNewRowText}</button>
+    <button onClick={()=>{createNewListItem();}}>{addNewRowText}</button>
     
         </div>
     );
