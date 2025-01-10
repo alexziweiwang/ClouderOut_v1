@@ -1498,9 +1498,9 @@ button:hover {
 .topBarTab {
     background-color: rgb(235, 242, 235);
     border-radius: 0px;
-    margin-bottom: -2px;
-    margin-top: 10px;
-    height: 45px;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    height: 29px;
     padding-left: 9px;
     padding-right: 9px;
     margin-left: 10px;
@@ -1510,24 +1510,24 @@ button:hover {
     color: grey;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+ 
 }
 
 .topBarTab:hover {
     background-color: rgb(197, 218, 197);
-    color:rgb(2, 2, 2);
     border-radius: 0px;
-    margin-bottom: -2px;
-    margin-top: 10px;
-    height: 45px;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    height: 29px;
     padding-left: 9px;
     padding-right: 9px;
     margin-left: 10px;
     margin-right: 10px;
-    border-radius: 2px;
     border-color: rgb(124, 129, 124);
     border-radius: 0px;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    color: #000000;
 }
 
 .topBarTabSelected {
@@ -1535,9 +1535,9 @@ button:hover {
     color: rgb(253, 253, 253);
     border: none;
     border-radius: 0px;
-    margin-bottom: -2px;
-    margin-top: 10px;
-    height: 45px;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    height: 29px;
     padding-left: 9px;
     padding-right: 9px;
     margin-left: 10px;
@@ -1549,16 +1549,16 @@ button:hover {
 
 .topBarTabSelected:hover {
     background-color: rgb(124, 129, 124);
+    color: rgb(253, 253, 253);
     border: none;
     border-radius: 0px;
-    margin-bottom: -2px;
-    margin-top: 10px;
-    height: 45px;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    height: 29px;
     padding-left: 9px;
     padding-right: 9px;
     margin-left: 10px;
     margin-right: 10px;
-    cursor: pointer;
     border-radius: 0px;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
