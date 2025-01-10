@@ -417,7 +417,7 @@
 
 - 2025-Jan-06: Consider editor-loading strategy for better UX
 
-
+- 2025-Jan-10: Design testing-project UI style and settings
 
 
 
