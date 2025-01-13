@@ -983,40 +983,53 @@ export default function PieceSetter({
                             </thead>
                             
                             <tbody>
+
+                                {/* TODO problematic here... */}
+                   {/*               
                                 {stndButtonDataTable.map((item, index) => {  
-                                    let keyStr = "stndButtonTable-" + index;  
-                                    
-                                                console.log("stnd-button-table... item[conseq] = ", item["conseq"]);
+                                   let keyStr = "stndButtonTable-" + index;  
+                                   let conseqItem = item["conseq"];
+                                   
+                                     if (item === undefined || item === null || conseqItem === undefined || conseqItem === null) {
+                                       return;
+                                   } else {
 
-                                    return (
-                                        <tr key={keyStr}>
-                                            <td>{index}</td>
-                                            <td>{item["buttonText"]}</td>
+                                   
+                                        
+                                        console.log("stnd-button-table... item[conseq] = ", item["conseq"]);
+
+                                        return (
+                                                <tr key={keyStr}>
+                                                    <td>{index}</td>
+                                                    <td>{item["buttonText"]}</td>
+                                                   
+                                                {item !== undefined && item["conseq"] !== undefined &&  
+                                                    <td>
+                                                        {Object.keys(item["conseq"]).map((currKey)=>{
+                                                            let elem = item["conseq"][currKey];
+                                                            let str = "[" + elem["name"] + "], " + elem["action"] + " => [" + elem["newVal"] + "]";
+                                                            return (<label key={keyStr}>{str}<br></br></label>);
+                                                        })}
+                                                    </td>
+                                                    } 
+
+                                                 
+                                                    <td>
+                                                        <GiTrashCan 
+                                                            className="cursor_pointer iconButtonSmall" 
+                                                            onClick={()=>{
+                                                                //TODO1 remove item of current index from stndButtonDataTable
+                                                                removeRowInStndButtonTable(index);
+                                                            }} />
+                                                    </td>
+                                                </tr>
                                             
-                                            //TODO temp hidden
-                                            {/* {item["conseq"] !== undefined &&  
-                                            <td>
-                                                {Object.keys(item["conseq"]).
-                                                map((currKey)=>{
-                                                    let elem = item["conseq"][currKey];
-                                                    let str = "[" + elem["name"] + "], " + elem["action"] + " => [" + elem["newVal"] + "]";
-                                                    return (<label key={keyStr}>{str}<br></br></label>);
-                                                })}
-                                            </td>} */} //TODO temp hidden
-
-                                          
-                                            <td>
-                                                <GiTrashCan 
-                                                    className="cursor_pointer iconButtonSmall" 
-                                                    onClick={()=>{
-                                                        //TODO1 remove item of current index from stndButtonDataTable
-                                                        removeRowInStndButtonTable(index);
-                                                    }} />
-                                            </td>
-                                        </tr>
+                                                );
                                     
-                                        );
-                                })}
+                                    }
+                                }
+                                )
+                            }  */}
                                 
                             </tbody>
                     
