@@ -788,11 +788,16 @@ export default function PieceSetter({
 //TODO0
   return (
       
-    <div onClick={()=>{
-        setIsClickedOnSetters(true);
-    }}>
+    <div 
+                                            // onClick={()=>{
+                                            //     setIsClickedOnSetters(true);
+                                            // }} //not using now.
+    >
 
-    <div className="pieceSetterArea userChoice">
+    <div className="pieceSetterArea userChoice"         
+        style={{
+            "userSelect": "none"
+        }}>
         <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
 
@@ -1312,7 +1317,7 @@ export default function PieceSetter({
 
                         </table>
                         {displayCstmClickableAdd === false && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}>Add a New Clickable</button>}
-                        {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> ︽- Collapse Adding New Clickable -- </button>}
+                        {displayCstmClickableAdd === true && <button onClick={()=>{setDisplayCstmClickableAdd(!displayCstmClickableAdd);}}> -- Collapse Adding New Clickable -- </button>}
                         {displayCstmClickableAdd=== true && <div className="purpleArea">
                             <label>Button Text:</label>
                             <input onChange={(event)=>{
@@ -1384,7 +1389,7 @@ export default function PieceSetter({
                                 <select value={cstmClkbPicVar} onChange={
                                     (event)=>{setCstmClkbPicVar(event.target.value);}
                                 }>
-                                    <option key="clck01" value=""> ︽- Select base-pic name -- </option>
+                                    <option key="clck01" value=""> -- Select base-pic name -- </option>
 
                                     {visualList.
                                         map((item, index) => {
@@ -1449,7 +1454,7 @@ export default function PieceSetter({
                                 // }
                             }} 
                             value={cstmClkbConseqGDataItemSelected}>
-                        <option value="" key=""> ︽- Select Game Data Item --</option>
+                        <option value="" key=""> -- Select Game Data Item --</option>
                         {Object.keys(gameDataListLocal).
                             map((currKey) => {
                             // format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'}
@@ -1512,7 +1517,7 @@ export default function PieceSetter({
                     <label>Operation: </label>
                     <label>TODO</label>
                     <select value={consequenceCstmClkbIsPlus} onChange={(event)=>{setConsequenceCstmClkbIsPlus(event.target.value);}}>
-                        <option value="" key=""> ︽- Select Operation -- </option>
+                        <option value="" key=""> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
@@ -1625,7 +1630,7 @@ export default function PieceSetter({
                     {currentSinglePieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
                         <label>Source:  </label>
                         <select value={currentSinglePieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
-                            <option key="bgp01" value=""> ︽- Select picture name -- </option>
+                            <option key="bgp01" value=""> -- Select picture name -- </option>
                             <option key="bgp_NoPic" value="">(no picture)</option>
                             {visualList.map((item, index) => {
                                 let keyStr = "bgp-" + index + item["var"];
@@ -1820,7 +1825,7 @@ export default function PieceSetter({
                         <select value={currentSinglePieceDetail["bgm_source_varname"]} onChange={(event)=>{
                                 setupBgmInfo(event);
                             }}>
-                            <option key="bgm01" value=""> ︽- Select music name -- </option>
+                            <option key="bgm01" value=""> -- Select music name -- </option>
 
                             {audioList.map((item, index) => {
                                 let keyStr = "bgmusic-" + index + item["var"];
@@ -1856,7 +1861,7 @@ export default function PieceSetter({
                     <select value={currentSinglePieceDetail["vl_source_varname"]}
                     onChange={(event)=>{setupVoicelineInfo(event);}}
                     >
-                        <option key="vl" value=""> ︽- Select voiceline name -- </option>
+                        <option key="vl" value=""> -- Select voiceline name -- </option>
    
                         {audioList.
                             map((item, index) => {

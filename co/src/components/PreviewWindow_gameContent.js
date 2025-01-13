@@ -79,6 +79,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
  
       if (firstTimeEnter === true) {
         fetchProjResourceLists();
+
         setFirstTimeEnter(false);
 
 console.log("preview-window game-content first-time entry, resource-list fetched."); //TODO test
@@ -87,8 +88,10 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
       let uiLangTemp = getUILanguage();
       setLanguageCodeTextOption(uiLangTemp);
+//TODO testing
 
-/* //TODO testing
+
+
       let allPieceContentTemp = getAllPieceContent();
       if (allPieceContentTemp !== undefined && allPieceContentTemp.length > 0) {
           if (allPieceContentTemp !== allPieceData) {
@@ -101,7 +104,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
           }
 
-          if (allPieceContentTemp !== undefined && (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
+          if (allPieceContentTemp !== undefined && allPieceContentTemp[currPieceNumTemp]["clkb_arr"] !== undefined && (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
             allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0)) {
               setDirectNextPieceBool(false);
           } else {
@@ -117,7 +120,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
  
     
       }
-  */ //TODO testing
+
+      //TODO testing
 
       let screenSizePair = getScreenSize();
       setScreenWidth(screenSizePair[0]);
