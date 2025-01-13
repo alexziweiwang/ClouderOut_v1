@@ -255,11 +255,11 @@ export default function PieceSetter({
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        const allPiece = getAllPieceData();
+    //    const allPiece = getAllPieceData();
     //    if (allPiece === undefined || allPiece === null || allPiece.length === 0) {
     //        setPieceAllDataLocal([]);  
      //   } else if (allPiece !== pieceAllDataLocal) {
-            setPieceAllDataLocal(allPiece);  
+ //           setPieceAllDataLocal(allPiece);  
     //    }
                             console.log("piece-setter! *** useEffect ... pieceAllDataLocal is ", pieceAllDataLocal);
 
@@ -274,33 +274,37 @@ export default function PieceSetter({
 
             fetchGameDataListFromCloud();
 
+            // const allPiece = getAllPieceData();
+            setPieceAllDataLocal(allPieceData);  
+
+
             let receivedPieceNum = getCurrentPieceNum();
-            setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
+            setCurrentPieceDetail(allPieceData[receivedPieceNum]);
             setLookingPieceNumber(receivedPieceNum+1);
+            setStndButtonDataTable(allPieceData[receivedPieceNum]["stnd_btn_arr"] === undefined ? [] : allPieceData[receivedPieceNum]["stnd_btn_arr"]);
 
             setFirstTimeEnter(false);
         }
 
         setCharPicDataTable(currentPieceDetail["chp_arr"]);
 
-        let isActionOnSetter = fetchClickedIsOnSetter();
-        if (isActionOnSetter === false) {
-            //fetch action from preview-screen
-            //TODO1: update viewing index/num
-            let receivedPieceNum = getCurrentPieceNum();
-            setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
-            setLookingPieceNumber(receivedPieceNum+1);
-        } else {
-            let boolVal = allPiece[pieceNum-1]["content"] == "";
-                                                console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
-            setUserSelectedTextContentToEdit(!boolVal);
+        // let isActionOnSetter = fetchClickedIsOnSetter();
+        // if (isActionOnSetter === false) {
+        //     //fetch action from preview-screen
+        //     //TODO1: update viewing index/num
+        //     let receivedPieceNum = getCurrentPieceNum();
+        //     setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
+        //     setLookingPieceNumber(receivedPieceNum+1);
+        // } else {
+  //          let boolVal = allPiece[pieceNum-1]["content"] == "";
+       //                                         console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
+   //         setUserSelectedTextContentToEdit(!boolVal);
 
 
   //          stndBtnFromMapToArr(pieceAllDataLocal[pieceNum-1]["stnd_btn_map"]);
-            setStndButtonDataTable(pieceAllDataLocal[pieceNum-1]["stnd_btn_arr"]);
 
 
-        }
+      //  }
 
 
         let isUdpateResource = fetchRmUpdatedSignal();
@@ -985,7 +989,7 @@ export default function PieceSetter({
                             <tbody>
 
                                 {/* TODO problematic here... */}
-                   {/*               
+                             
                                 {stndButtonDataTable.map((item, index) => {  
                                    let keyStr = "stndButtonTable-" + index;  
                                    let conseqItem = item["conseq"];
@@ -1029,7 +1033,7 @@ export default function PieceSetter({
                                     }
                                 }
                                 )
-                            }  */}
+                            } 
                                 
                             </tbody>
                     

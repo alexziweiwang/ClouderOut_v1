@@ -461,7 +461,7 @@ export default function ConversationNodeEditingPanel() {
         if (pieceDataStructure === undefined || pieceDataStructure === null) {
             return [];
         } else {
-                                    console.log("all-piece = ", pieceDataStructure);
+                          //          console.log("all-piece = ", pieceDataStructure);
             return pieceDataStructure;
         }
     }
