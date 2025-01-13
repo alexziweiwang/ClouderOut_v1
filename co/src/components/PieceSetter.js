@@ -182,9 +182,9 @@ export default function PieceSetter({
     const [isStndBtnAddNewConsq, setIsStndBtnAddNewConsq] = useState(false);
     const [isCstmClkbAddNewConsq, setIsCstmClkbAddNewConsq] = useState(false);
 
-    const [pieceAllDataLocal, setPieceAllDataLocal] = useState(allPieceData);
+    const [allPiecesDataLocal, setAllPiecesDataLocal] = useState(allPieceData);
 
-    const [currentPieceDetail, setCurrentPieceDetail] = useState(
+    const [currentSinglePieceDetail, setCurrentSinglePieceDetail] = useState(
         allPieceData.length > 0 ?
         ({"num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
@@ -257,11 +257,11 @@ export default function PieceSetter({
     useEffect(() => {
     //    const allPiece = getAllPieceData();
     //    if (allPiece === undefined || allPiece === null || allPiece.length === 0) {
-    //        setPieceAllDataLocal([]);  
-     //   } else if (allPiece !== pieceAllDataLocal) {
- //           setPieceAllDataLocal(allPiece);  
+    //        setAllPiecesDataLocal([]);  
+     //   } else if (allPiece !== allPiecesDataLocal) {
+ //           setAllPiecesDataLocal(allPiece);  
     //    }
-                            console.log("piece-setter! *** useEffect ... pieceAllDataLocal is ", pieceAllDataLocal);
+                            console.log("piece-setter! *** useEffect ... allPiecesDataLocal is ", allPiecesDataLocal);
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
@@ -275,33 +275,34 @@ export default function PieceSetter({
             fetchGameDataListFromCloud();
 
             // const allPiece = getAllPieceData();
-            setPieceAllDataLocal(allPieceData);  
+            setAllPiecesDataLocal(allPieceData);  
 
 
             let receivedPieceNum = getCurrentPieceNum();
-            setCurrentPieceDetail(allPieceData[receivedPieceNum]);
+            setCurrentSinglePieceDetail(allPieceData[receivedPieceNum]);
             setLookingPieceNumber(receivedPieceNum+1);
             setStndButtonDataTable(allPieceData[receivedPieceNum]["stnd_btn_arr"] === undefined ? [] : allPieceData[receivedPieceNum]["stnd_btn_arr"]);
 
             setFirstTimeEnter(false);
         }
 
-        setCharPicDataTable(currentPieceDetail["chp_arr"]);
+    //    setCharPicDataTable(currentSinglePieceDetail["chp_arr"]);
 
         // let isActionOnSetter = fetchClickedIsOnSetter();
         // if (isActionOnSetter === false) {
         //     //fetch action from preview-screen
         //     //TODO1: update viewing index/num
         //     let receivedPieceNum = getCurrentPieceNum();
-        //     setCurrentPieceDetail(pieceAllDataLocal[receivedPieceNum]);
+        //     setCurrentSinglePieceDetail(allPiecesDataLocal[receivedPieceNum]);
         //     setLookingPieceNumber(receivedPieceNum+1);
         // } else {
-  //          let boolVal = allPiece[pieceNum-1]["content"] == "";
-       //                                         console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
-   //         setUserSelectedTextContentToEdit(!boolVal);
+    //     let boolVal = currentSinglePieceDetail["content"] == "";
+    //    //                                         console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
+    //     setUserSelectedTextContentToEdit(!boolVal);
+    //     setCharPicDataTable(currentSinglePieceDetail["chp_arr"]);
 
 
-  //          stndBtnFromMapToArr(pieceAllDataLocal[pieceNum-1]["stnd_btn_map"]);
+  //          stndBtnFromMapToArr(allPiecesDataLocal[pieceNum-1]["stnd_btn_map"]);
 
 
       //  }
@@ -366,7 +367,7 @@ export default function PieceSetter({
     }
 
     function changeLoopingSetting() {
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["bgm_loop"] = !isLooping;
         updateToCaller(tempObj);
 
@@ -375,15 +376,15 @@ export default function PieceSetter({
 
     function handleTextContentEnter(event) {
         let contentStr = event.target.value;
-        setCurrentPieceDetail({...currentPieceDetail,  "content": contentStr});
-        let tempObj = currentPieceDetail;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "content": contentStr});
+        let tempObj = currentSinglePieceDetail;
         tempObj["content"] = contentStr;
         updateToCaller(tempObj);
     }
 
     function handleSpeakerNameEnter(event) {
-        setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": event.target.value});
-        let tempObj = currentPieceDetail;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "speaker_name": event.target.value});
+        let tempObj = currentSinglePieceDetail;
         tempObj["speaker_name"] = event.target.value;
 
         updateToCaller(tempObj);
@@ -393,10 +394,10 @@ export default function PieceSetter({
      
        // let emptyMap = {}; //TODO test later
         let emptyArr = []
-   //     setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": emptyMap, "stnd_btn_arr": emptyArr}); //TODO test later
-        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": emptyArr});
+   //     setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "stnd_btn_map": emptyMap, "stnd_btn_arr": emptyArr}); //TODO test later
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "stnd_btn_arr": emptyArr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
     //    tempObj["stnd_btn_map"] = emptyMap;
         tempObj["stnd_btn_arr"] = emptyArr;
         updateToCaller(tempObj);
@@ -415,8 +416,8 @@ export default function PieceSetter({
     }
 
     function handleTextContentReset() {
-        setCurrentPieceDetail({...currentPieceDetail,  "speaker_name": "", "content": ""});
-        let tempObj = currentPieceDetail;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "speaker_name": "", "content": ""});
+        let tempObj = currentSinglePieceDetail;
         tempObj["speaker_name"] = "";
         tempObj["content"] = "";
 
@@ -426,8 +427,8 @@ export default function PieceSetter({
 
     function handleBgpSwitchAction(event) {
 
-            setCurrentPieceDetail({...currentPieceDetail,  "bgp_action": event.target.value});
-            let tempObj = currentPieceDetail;
+            setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgp_action": event.target.value});
+            let tempObj = currentSinglePieceDetail;
             tempObj["bgp_action"] = event.target.value;
 
             updateToCaller(tempObj);   
@@ -435,8 +436,8 @@ export default function PieceSetter({
 
     function handleCharPicArrSwitchAction(event) {
 
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_action": event.target.value});
-        let tempObj = currentPieceDetail;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_action": event.target.value});
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_action"] = event.target.value;
 
         updateToCaller(tempObj);   
@@ -490,10 +491,10 @@ export default function PieceSetter({
     }
 
     function changeAddAnotherCharPicOption() {
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
         setAnotherCharPic(!anotherCharpic);
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = ["", 0, 0, 60, 120, 1];
         updateToCaller(tempObj);
 
@@ -507,13 +508,17 @@ export default function PieceSetter({
 
             //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
-            setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber-2]);
+            setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber-2]);
 
             
-          //  stndBtnFromMapToArr([pieceAllDataLocallookingPieceNumber-2]["stnd_btn_map"]); //TODO test later
 
-            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber-2]["stnd_btn_arr"]);
+            setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"]);
+            
+            let boolVal = allPiecesDataLocal[lookingPieceNumber-2]["content"] == "";
+            setUserSelectedTextContentToEdit(!boolVal);
+            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber-2]["chp_arr"]);
 
+             
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
         } 
 
@@ -521,16 +526,18 @@ export default function PieceSetter({
     }
 
     function jumpToNextpiece() {
-        if (lookingPieceNumber < pieceAllDataLocal.length) {
+        if (lookingPieceNumber < allPiecesDataLocal.length) {
             setLookingPieceNumber(lookingPieceNumber+1);
             //TODO change *all* form content here in display...
             
-            setCurrentPieceDetail(pieceAllDataLocal[lookingPieceNumber]);
+            setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber]);
 
-         //   stndBtnFromMapToArr(pieceAllDataLocal[lookingPieceNumber]["stnd_btn_map"]); //TODO test later
          
-            setStndButtonDataTable(pieceAllDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
+            setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
 
+            let boolVal = allPiecesDataLocal[lookingPieceNumber]["content"] == "";
+            setUserSelectedTextContentToEdit(!boolVal);
+            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber]["chp_arr"]);
 
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
         
@@ -545,10 +552,10 @@ export default function PieceSetter({
         let newPieceData = [];
 
         let i = 0;
-        console.log("before changing and updateing to caller..", pieceAllDataLocal); //TODO test
-        for (; i < pieceAllDataLocal.length; i++) {
+        console.log("before changing and updateing to caller..", allPiecesDataLocal); //TODO test
+        for (; i < allPiecesDataLocal.length; i++) {
             if (i+1 !== lookingPieceNumber) {
-                newPieceData.push(pieceAllDataLocal[i]);
+                newPieceData.push(allPiecesDataLocal[i]);
             } else {
                 
                 console.log("Saving...", obj); //TODO test
@@ -564,72 +571,72 @@ export default function PieceSetter({
             .filter((item) => (
                 item !== charPicDataTable[index]));
         setCharPicDataTable(tempCharPicDataTable);
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_arr"] = tempCharPicDataTable;
 
         updateToCaller(tempObj);
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_arr": tempCharPicDataTable});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_arr": tempCharPicDataTable});
     }
 
     function onChangeCharPicDataPosX(event) {
-        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         chp_curr_arr[1] = event.target.value;        
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = chp_curr_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataPosY(event) {
-        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         chp_curr_arr[2] = event.target.value;
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = chp_curr_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataW(event) {
-        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         chp_curr_arr[3] = event.target.value;
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = chp_curr_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataH(event) {
-        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         chp_curr_arr[4] = event.target.value;
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = chp_curr_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataScale(event) {
-        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         let val =  event.target.value;
         chp_curr_arr[5] = val;
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = chp_curr_arr;
         updateToCaller(tempObj);        
     }
 
     function onChangeCharPicDataVar(event) {
-        let chp_curr_arr = currentPieceDetail["chp_curr"];
+        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         //store selected variable name
         chp_curr_arr[0] = event.target.value;
         
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["chp_curr"] = chp_curr_arr;
         updateToCaller(tempObj);
     }
@@ -654,16 +661,16 @@ export default function PieceSetter({
         let varName = event.target.value;
         console.log("setupBgpInfo var = ", varName); //TODO test
              
-        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": varName});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgp_source_varname": varName});
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["bgp_source_varname"] = varName;
         updateToCaller(tempObj);
         
     }
 
     function resetBgpInfo() {
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["bgp_source_varname"] = "";
         tempObj["bgp_pos_x"] = "";
         tempObj["bgp_pos_y"] = "";
@@ -672,41 +679,41 @@ export default function PieceSetter({
         updateToCaller(tempObj);
 
 
-        setCurrentPieceDetail({...currentPieceDetail,  "bgp_source_varname": "", "bgp_pos_x": "", "bgp_pos_y": "", "bgp_width": "", "bgp_height": ""});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgp_source_varname": "", "bgp_pos_x": "", "bgp_pos_y": "", "bgp_width": "", "bgp_height": ""});
     }
     
 
     function setupDisplayTextFrame(boolVar) {
         let isDisplay = boolVar;
                                                             console.log("isDisplay???" , isDisplay); //TODO test
-        setCurrentPieceDetail({...currentPieceDetail,  "displayTextFrame": isDisplay});
-        let tempObj = currentPieceDetail;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "displayTextFrame": isDisplay});
+        let tempObj = currentSinglePieceDetail;
         tempObj["displayTextFrame"] = isDisplay;
         updateToCaller(tempObj);
 
     }
 
     function setupBgmInfo(event) {
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["bgm_source_varname"] = event.target.value;
         updateToCaller(tempObj);
 
-        setCurrentPieceDetail({...currentPieceDetail, "bgm_source_varname": event.target.value});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail, "bgm_source_varname": event.target.value});
     }
 
 
     function setupVoicelineInfo(event) {
         let varName = event.target.value;
         let urlArr = audioList.filter((e)=>(e["var"] === varName));
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
 
         if (urlArr.length == 0) {
             tempObj["vl_source_link"] = "default-none";
-            setCurrentPieceDetail({...currentPieceDetail, "vl_source_link": "default-none", "vl_source_varname": varName});
+            setCurrentSinglePieceDetail({...currentSinglePieceDetail, "vl_source_link": "default-none", "vl_source_varname": varName});
         } else {
             let url =  urlArr[0]["url"];
             tempObj["vl_source_link"] = url;
-            setCurrentPieceDetail({...currentPieceDetail, "vl_source_link": url, "vl_source_varname": varName});
+            setCurrentSinglePieceDetail({...currentSinglePieceDetail, "vl_source_link": url, "vl_source_varname": varName});
         }
         tempObj["vl_source_varname"] = varName;
 
@@ -715,7 +722,7 @@ export default function PieceSetter({
 
 
     function resetAddingCharPicRow() {
-        setCurrentPieceDetail({...currentPieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
     }
 
     function updatePreviewingCstmClkb(obj) {
@@ -731,11 +738,11 @@ export default function PieceSetter({
         tempClkbPreviewing.push(obj.picVar);
 
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
         tempObj["clkb_previewing"] = tempClkbPreviewing;
         updateToCaller(tempObj);
 
-        setCurrentPieceDetail({...currentPieceDetail,  "clkb_previewing": tempClkbPreviewing});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "clkb_previewing": tempClkbPreviewing});
     }
   
     function removeRowInStndButtonTable(index) {
@@ -744,14 +751,14 @@ export default function PieceSetter({
 
     //    let updatedMap = stndBtnFromArrToMap(tempStndButtonTb);
 
-        let tempObj = currentPieceDetail;
+        let tempObj = currentSinglePieceDetail;
      //   tempObj["stnd_btn_map"] = updatedMap; //TODO change to map
         tempObj["stnd_btn_arr"] = tempStndButtonTb;
         updateToCaller(tempObj);
 
 
-    //    setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": updatedMap, "stnd_btn_arr": tempStndButtonTb}); // TODO test later
-        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tempStndButtonTb}); // TODO test later
+    //    setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "stnd_btn_map": updatedMap, "stnd_btn_arr": tempStndButtonTb}); // TODO test later
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "stnd_btn_arr": tempStndButtonTb}); // TODO test later
 
     }
 
@@ -793,7 +800,7 @@ export default function PieceSetter({
             {(lookingPieceNumber > 1) &&
             <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>}
 
-            {(lookingPieceNumber < pieceAllDataLocal.length) &&
+            {(lookingPieceNumber < allPiecesDataLocal.length) &&
             <><br></br>
             <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>
             </>}         
@@ -912,17 +919,17 @@ export default function PieceSetter({
                     <br></br>
                     <div className="indentOne">
                         <textarea
-                            value={currentPieceDetail["content"]}
+                            value={currentSinglePieceDetail["content"]}
                             onChange={(event)=>{handleTextContentEnter(event);}}
                         >
-                        {currentPieceDetail["content"]}
+                        {currentSinglePieceDetail["content"]}
                         </textarea>
-                        <input type="checkbox" value={currentPieceDetail["displayTextFrame"]} 
-                        checked={currentPieceDetail["displayTextFrame"]} 
+                        <input type="checkbox" value={currentSinglePieceDetail["displayTextFrame"]} 
+                        checked={currentSinglePieceDetail["displayTextFrame"]} 
                         onChange={()=>{
-                            if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
+                            if (currentSinglePieceDetail["displayTextFrame"] === false) { // going to be true
                                 setupDisplayTextFrame(true);
-                            } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
+                            } else { //currentSinglePieceDetail["displayTextFrame"] === true, going to be false
                                 setupDisplayTextFrame(false);
                             }                
                         }}
@@ -931,9 +938,9 @@ export default function PieceSetter({
                         <label
                         style={{"userSelect": "none"}}
                         onClick={()=>{
-                            if (currentPieceDetail["displayTextFrame"] === false) { // going to be true
+                            if (currentSinglePieceDetail["displayTextFrame"] === false) { // going to be true
                                 setupDisplayTextFrame(true);
-                            } else { //currentPieceDetail["displayTextFrame"] === true, going to be false
+                            } else { //currentSinglePieceDetail["displayTextFrame"] === true, going to be false
                                 setupDisplayTextFrame(false);
                             }                   
                         }}
@@ -944,7 +951,7 @@ export default function PieceSetter({
                     <br></br>
                     <label>{speakerNameText}:  </label>
 
-                    <input value={currentPieceDetail["speaker_name"]} onChange={(event)=>{handleSpeakerNameEnter(event);}}></input>
+                    <input value={currentSinglePieceDetail["speaker_name"]} onChange={(event)=>{handleSpeakerNameEnter(event);}}></input>
                 </div>   
             }
 
@@ -1244,7 +1251,7 @@ export default function PieceSetter({
 
                         setStndButtonDataTable(tableTemp);
 
-                        let tempObj = currentPieceDetail;
+                        let tempObj = currentSinglePieceDetail;
                         
                                             // let updatedMap = stndBtnFromArrToMap(tableTemp);
                                             // tempObj["stnd_btn_map"] = updatedMap;
@@ -1255,8 +1262,8 @@ export default function PieceSetter({
                         // console.log("current standard-button group: "); //TODO test
                         // console.log(tableTemp); //TODO test
 
-                    //    setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_map": updatedMap, "stnd_btn_arr": tableTemp}); //TODO test later
-                        setCurrentPieceDetail({...currentPieceDetail,  "stnd_btn_arr": tableTemp});
+                    //    setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "stnd_btn_map": updatedMap, "stnd_btn_arr": tableTemp}); //TODO test later
+                        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "stnd_btn_arr": tableTemp});
 
 
                         setStndButtonText("");
@@ -1564,9 +1571,9 @@ export default function PieceSetter({
                         console.log("current sutom-clickable group: "); //TODO test
                         console.log(tableTemp); //TODO test
 
-                        setCurrentPieceDetail({...currentPieceDetail,  "cstm_clkb_arr": tableTemp});
+                        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "cstm_clkb_arr": tableTemp});
                         
-                        let tempObj = currentPieceDetail;
+                        let tempObj = currentSinglePieceDetail;
                         tempObj["cstm_clkb_arr"] = tableTemp;
                         updateToCaller(tempObj);
 
@@ -1605,7 +1612,7 @@ export default function PieceSetter({
                     <br></br>
                     <label>Operation: </label>
                     <select 
-                        value={currentPieceDetail["bgp_action"]}
+                        value={currentSinglePieceDetail["bgp_action"]}
                         onChange={(event)=>{
                             handleBgpSwitchAction(event);
                         }}
@@ -1615,9 +1622,9 @@ export default function PieceSetter({
                     </select>
 
 
-                    {currentPieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
+                    {currentSinglePieceDetail["bgp_action"] === "switchToNewBgp" && <div className="indentOne">
                         <label>Source:  </label>
-                        <select value={currentPieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
+                        <select value={currentSinglePieceDetail["bgp_source_varname"]} onChange={(event)=>{setupBgpInfo(event);}}>
                             <option key="bgp01" value=""> ︽- Select picture name -- </option>
                             <option key="bgp_NoPic" value="">(no picture)</option>
                             {visualList.map((item, index) => {
@@ -1640,7 +1647,7 @@ export default function PieceSetter({
                     <br></br>
                     <label>Operation:</label>
                     <select 
-                        value={currentPieceDetail["chp_action"]}
+                        value={currentSinglePieceDetail["chp_action"]}
                         onChange={(event)=>{
                             handleCharPicArrSwitchAction(event);
                         }}>
@@ -1649,7 +1656,7 @@ export default function PieceSetter({
                     </select>
                     <br></br>
 
-    {currentPieceDetail["chp_action"] === "changeCharPicArr"  && <div>
+    {currentSinglePieceDetail["chp_action"] === "changeCharPicArr"  && <div>
             <table style={{"width": " 500px"}}>
             <thead>        
                 <tr>
@@ -1673,7 +1680,7 @@ export default function PieceSetter({
                             <td>{item[3]}</td>
                             <td>{item[4]}</td>                    
                             <td>{item[5]}x</td>
-                                {(charPicDataTable.length > 0 && currentPieceDetail["chp_action"] === "changeCharPicArr") && 
+                                {(charPicDataTable.length > 0 && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") && 
                              <td>
                                 <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
                                     </td>
@@ -1687,7 +1694,7 @@ export default function PieceSetter({
             </table>
             <br></br>
             
-            {currentPieceDetail["chp_action"] === "changeCharPicArr" && <button onClick={()=>{
+            {currentSinglePieceDetail["chp_action"] === "changeCharPicArr" && <button onClick={()=>{
                 if (anotherCharpic === true) { // going to be false (closed)
                     resetAddingCharPicRow();
                 }
@@ -1695,12 +1702,12 @@ export default function PieceSetter({
             </button>}
     </div>}
 
-    {(anotherCharpic === true && currentPieceDetail["chp_action"] === "changeCharPicArr") &&
+    {(anotherCharpic === true && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") &&
     <>
         <br></br>
 
     <label>Source:  </label>
-    <select value={currentPieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
+    <select value={currentSinglePieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
         <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
@@ -1713,44 +1720,44 @@ export default function PieceSetter({
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
-        value={currentPieceDetail["chp_curr"][1]}
+        value={currentSinglePieceDetail["chp_curr"][1]}
         onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxX} value={currentPieceDetail["chp_curr"][1]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxX} value={currentSinglePieceDetail["chp_curr"][1]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={currentPieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={currentPieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={currentSinglePieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={currentSinglePieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={currentPieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={currentPieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={currentSinglePieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={currentSinglePieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={currentPieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={currentSinglePieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={currentSinglePieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
     <label>Scale: </label>
-    <input type="range" className="slider" min="1" max="10" step="1" value={currentPieceDetail["chp_curr"][5]}
+    <input type="range" className="slider" min="1" max="10" step="1" value={currentSinglePieceDetail["chp_curr"][5]}
         onChange={(event)=>{
             onChangeCharPicDataScale(event);
-        }}></input><label>{currentPieceDetail["chp_curr"][5]}x</label>
+        }}></input><label>{currentSinglePieceDetail["chp_curr"][5]}x</label>
 
     <br></br>
     <button onClick={()=>{
-        if (currentPieceDetail["chp_curr"][0] === "") {
+        if (currentSinglePieceDetail["chp_curr"][0] === "") {
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
             /* update to cloud db for this field: character-pic */
-            let tempTable = currentPieceDetail["chp_arr"];
-            tempTable.push(currentPieceDetail["chp_curr"]);
+            let tempTable = currentSinglePieceDetail["chp_arr"];
+            tempTable.push(currentSinglePieceDetail["chp_curr"]);
             setCharPicDataTable(tempTable);
 
-            let tempPieceDetail = currentPieceDetail;
+            let tempPieceDetail = currentSinglePieceDetail;
             tempPieceDetail["chp_arr"] = tempTable;
             tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, 1];
 
-            setCurrentPieceDetail({...currentPieceDetail,  
+            setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                 "chp_arr": tempTable, 
                 "chp_curr": ["", 0, 0, 60, 120, 1]
             });
@@ -1778,27 +1785,27 @@ export default function PieceSetter({
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{
-                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_loop": ""});
-                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_volume": ""});
-                        setCurrentPieceDetail({...currentPieceDetail,  "bgm_source_varname": ""});}}> {resetText} </button>
+                        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_loop": ""});
+                        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_volume": ""});
+                        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_source_varname": ""});}}> {resetText} </button>
                     <br></br>
                     <label>Operation: </label>
-                    <select value={currentPieceDetail["bgm_action"]}
+                    <select value={currentSinglePieceDetail["bgm_action"]}
                         onChange={(event)=>{
                             if (event.target.value === "naturalStopBgm") {
-                                let tempObj = currentPieceDetail;
+                                let tempObj = currentSinglePieceDetail;
                                 tempObj["bgm_loop"] = false;
                                 tempObj["bgm_action"] = event.target.value;
                                 updateToCaller(tempObj);
 
-                                setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value, "bgm_loop": false});
+                                setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_action": event.target.value, "bgm_loop": false});
                                 setIsLooping(false);
                             } else {
-                                let tempObj = currentPieceDetail;
+                                let tempObj = currentSinglePieceDetail;
                                 tempObj["bgm_action"] = event.target.value;
                                 updateToCaller(tempObj);
 
-                                setCurrentPieceDetail({...currentPieceDetail,  "bgm_action": event.target.value});
+                                setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_action": event.target.value});
                             }
                     }}>
                         <option key="maintainBgm" value="maintainBgm">-- {selectOperationDefaultMaintain}--</option>
@@ -1807,10 +1814,10 @@ export default function PieceSetter({
                         <option key="naturalStop" value="naturalStopBgm">naturally stop looping (after finish)</option>
                     </select>
 
-                    {currentPieceDetail["bgm_action"] === "startNewBgm" && <div className="indentOne">
+                    {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div className="indentOne">
                         <label>Source:  </label>
                         
-                        <select value={currentPieceDetail["bgm_source_varname"]} onChange={(event)=>{
+                        <select value={currentSinglePieceDetail["bgm_source_varname"]} onChange={(event)=>{
                                 setupBgmInfo(event);
                             }}>
                             <option key="bgm01" value=""> ︽- Select music name -- </option>
@@ -1822,7 +1829,7 @@ export default function PieceSetter({
                         </select>
                         <button onClick={() => {openRm()}}>{manageResourceText}</button>
                             
-                        {currentPieceDetail["bgm_action"] === "startNewBgm" && <div>
+                        {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
                             <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
                         </div>}
@@ -1843,10 +1850,10 @@ export default function PieceSetter({
 
             {voicelineAdd && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{setCurrentPieceDetail({...currentPieceDetail,  "vl_source_link": ""});setCurrentPieceDetail({...currentPieceDetail,  "vl_volume": ""});}}> reset </button>
+                    <button className="buttonRight" onClick={() =>{setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "vl_source_link": ""});setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "vl_volume": ""});}}> reset </button>
                     <br></br>
                     <label>Source:  </label>
-                    <select value={currentPieceDetail["vl_source_varname"]}
+                    <select value={currentSinglePieceDetail["vl_source_varname"]}
                     onChange={(event)=>{setupVoicelineInfo(event);}}
                     >
                         <option key="vl" value=""> ︽- Select voiceline name -- </option>
@@ -1874,7 +1881,7 @@ export default function PieceSetter({
             {(lookingPieceNumber > 1) &&
             <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>}
 
-            {(lookingPieceNumber < pieceAllDataLocal.length) &&
+            {(lookingPieceNumber < allPiecesDataLocal.length) &&
             <><br></br>
             <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>
             </>}         
