@@ -144,7 +144,7 @@ export default function PieceSetter({
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [userSelectedTextContentToEdit, setUserSelectedTextContentToEdit] = useState(allPieceData[pieceNum-1]["content"] === "" ? false : true);
+    const [userSelectedTextContentToEdit, setUserSelectedTextContentToEdit] = useState(((pieceNum-1) > 0 && allPieceData[pieceNum-1]["content"]) === "" ? false : true);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
@@ -512,11 +512,11 @@ export default function PieceSetter({
 
             
 
-            setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"]);
+            setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] : []);
             
-            let boolVal = allPiecesDataLocal[lookingPieceNumber-2]["content"] == "";
+            let boolVal = allPiecesDataLocal[lookingPieceNumber-2]["content"] !== undefined ? (allPiecesDataLocal[lookingPieceNumber-2]["content"] == "") : false;
             setUserSelectedTextContentToEdit(!boolVal);
-            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber-2]["chp_arr"]);
+            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber-2]["chp_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber-2]["chp_arr"] : []);
 
              
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
@@ -533,11 +533,11 @@ export default function PieceSetter({
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber]);
 
          
-            setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"]);
+            setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"] : []);
 
-            let boolVal = allPiecesDataLocal[lookingPieceNumber]["content"] == "";
+            let boolVal = allPiecesDataLocal[lookingPieceNumber]["content"] !== undefined ? (allPiecesDataLocal[lookingPieceNumber]["content"] == "") : false;
             setUserSelectedTextContentToEdit(!boolVal);
-            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber]["chp_arr"]);
+            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber]["chp_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber]["chp_arr"] : []);
 
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
         
