@@ -8,6 +8,6 @@ export async function convNodeFetchFromCloudVM({project, username, chapterKey, n
     return await convNodeFetchFromCloud({project, username, chapterKey, nodeKey});
 }
 
-export async function addNewNodeFoldersVM({project, username, chapterKey, nodeKeyList}) {
-    await addNewNodeFolders({project, username, chapterKey, nodeKeyList});
+export async function addNewNodeFoldersVM({project, username, nodeKeyList, chapterKeyList}) {
+    await addNewNodeFolderss({project, username, nodeKeyList, chapterKeyList});
 }

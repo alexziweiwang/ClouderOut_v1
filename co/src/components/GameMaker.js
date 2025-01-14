@@ -1277,15 +1277,21 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
     if (creatNodeSignal === true) {
         //TODO by signal, add a new document at nodes when creating
+        let chapterKeyList = [];
 
+        chapterList.map((item, index)=>{{
+          chapterKeyList.push(item[0]);
+        }})
+  
         await addNewNodeFoldersVM(
           { 
               projectName: projectName, 
               currUser: username,
-              chapterKey: chapterKey, 
-              nodeKeyList: createdNewNodeKeyList
+              nodeKeyList: createdNewNodeKeyList,
+              chapterKeyList: chapterKeyList
           }
         );
+        
 
         setCreatedNewNodeKeyList([]);
 

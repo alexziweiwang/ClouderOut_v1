@@ -50,15 +50,37 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
 
 
 
-export async function addNewNodeFolders({project, username, chapterKey, nodeKeyList}) {
+export async function addNewNodeFolders({project, username, nodeKeyList, chapterKeyList}) {
   //TODO
-  /*
-  each elem in nodeKeyList: 
-    {
-      "nodeKey": newNodeKey,
-      "chapKey": chapterKeyTemp
-    }
 
-  */
+
+
+  
+  chapterKeyList.map((currChapKey, index)=>{
+    let currChapList = nodeKeyList.filter(e => e["chapKey"] === currChapKey);
+    
+
+    // for each node in currChapList, call model-func
+    currChapList.map((item, i) => {
+        let currNode = item["nodeKey"];
+        //TODO batch adding
+       //{project, username, currNode, currChapKey}
+
+
+
+    });
+
+    /*
+    each elem in nodeKeyList: 
+        {
+        "nodeKey": newNodeKey,
+        "chapKey": chapterKeyTemp
+        }
+
+    */
+
+  });
+
+
 
 }
