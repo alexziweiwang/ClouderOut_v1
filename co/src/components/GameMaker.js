@@ -150,6 +150,9 @@ export default function GameMaker({username, projectName}) {
 
   const [currPageName, setCurrPageName] = useState("Main Page");
 
+  const [creatNodeSignal, setCreateNodeSignal] = useState(false);
+  const [createdNewNodeKeyList, setCreatedNewNodeKeyList] = useState([]);
+
 
   const [visualList, setVisualList] = useState([]); 
   
@@ -1271,7 +1274,12 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 //TODO35
 
 
-  //TODO by signal, add a new document at nodes when creating
+    if (creatNodeSignal === true) {
+        //TODO by signal, add a new document at nodes when creating
+  // createdNewNodeKeyList
+
+
+    }
 
     await updateChapterNodesToCloudDataVM({
         projectName: projectName, 
@@ -1281,6 +1289,15 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     });
 
     //TODO reset create-node-signal to false here
+    //creatNodeSignal, setCreateNodeSignal
+    setCreateNodeSignal(false);
+  }
+
+  function triggerCreatedNewNode(newNodeKey) {
+    setCreateNodeSignal(true);
+    let newNodeList = createdNewNodeKeyList;
+    newNodeList.push(newNodeKey);
+    setCreatedNewNodeKeyList(newNodeList);
   }
 
   async function fetchChapterNodeMappingFromCloud() {
@@ -1505,6 +1522,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
+          triggerCreatedNewNode={triggerCreatedNewNode}
            
           getUILanguage={passInUILanguage}
           
