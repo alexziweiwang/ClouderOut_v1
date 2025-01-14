@@ -1244,7 +1244,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     return testPlayerPurchaseStatus; //TODO30
   }
 
-  function updateChapterNodeMappingsToCloud() {
+  async function updateChapterNodeMappingsToCloud() {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
 
@@ -1269,12 +1269,18 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     });
 
 //TODO35
-    updateChapterNodesToCloudDataVM({
+
+
+  //TODO by signal, add a new document at nodes when creating
+
+    await updateChapterNodesToCloudDataVM({
         projectName: projectName, 
         currUser: username,
         chapterNodeMappingObj: chapterNodeMapAll, 
         chapterNodeGridBlocks: gridMapTemp
     });
+
+    //TODO reset create-node-signal to false here
   }
 
   async function fetchChapterNodeMappingFromCloud() {

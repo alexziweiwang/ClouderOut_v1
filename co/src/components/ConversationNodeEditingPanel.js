@@ -16,7 +16,7 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
 
-import { convNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
+import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 
 
 export default function ConversationNodeEditingPanel() {
@@ -701,7 +701,7 @@ export default function ConversationNodeEditingPanel() {
 
     async function saveAllToCloud() {
 
-        await convNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure})
+        await convSingleNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure})
             .then((res)=>{
                 if (res === "node-update-ok") {
                     alert("Saved to Cloud!")

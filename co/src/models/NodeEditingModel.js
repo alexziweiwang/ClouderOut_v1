@@ -2,12 +2,12 @@ import  {db} from '../GoogleCloudConnections';
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 
-export async function convNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj}) {
+export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj}) {
     
     const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
     const projectNodeSnap = await getDoc(projectNodeRef);
   
-                                  console.log("model-func-convNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey);
+                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey);
 
 
     if (!projectNodeSnap.exists()) {
