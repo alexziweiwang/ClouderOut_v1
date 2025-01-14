@@ -19,6 +19,7 @@ import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/Proje
 import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,
   fetchAllChapterListVM, updateChapterListToCloudVM,
 } from '../viewmodels/ChapterInfoViewModel';
+import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -1276,8 +1277,17 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
     if (creatNodeSignal === true) {
         //TODO by signal, add a new document at nodes when creating
-  // createdNewNodeKeyList
 
+        await addNewNodeFoldersVM(
+          { 
+              projectName: projectName, 
+              currUser: username,
+              chapterKey: chapterKey, 
+              nodeKeyList: createdNewNodeKeyList
+          }
+        );
+
+        setCreatedNewNodeKeyList([]);
 
     }
 
@@ -1293,10 +1303,14 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
     setCreateNodeSignal(false);
   }
 
-  function triggerCreatedNewNode(newNodeKey) {
+  function triggerCreatedNewNode(newNodeKey, chapterKeyTemp) {
     setCreateNodeSignal(true);
     let newNodeList = createdNewNodeKeyList;
-    newNodeList.push(newNodeKey);
+    let pair = {
+      "nodeKey": newNodeKey,
+      "chapKey": chapterKeyTemp
+    }
+    newNodeList.push(pair);
     setCreatedNewNodeKeyList(newNodeList);
   }
 

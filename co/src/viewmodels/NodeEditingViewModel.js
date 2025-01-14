@@ -1,4 +1,4 @@
-import { convSingleNodeUpdateToCloud, convNodeFetchFromCloud } from '../models/NodeEditingModel';
+import { convSingleNodeUpdateToCloud, convNodeFetchFromCloud, addNewNodeFolders } from '../models/NodeEditingModel';
 
 export async function convSingleNodeUpdateToCloudVM({project, username, chapterKey, nodeKey, dataObj}) {
     return await convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj});
@@ -6,4 +6,8 @@ export async function convSingleNodeUpdateToCloudVM({project, username, chapterK
 
 export async function convNodeFetchFromCloudVM({project, username, chapterKey, nodeKey}) {
     return await convNodeFetchFromCloud({project, username, chapterKey, nodeKey});
+}
+
+export async function addNewNodeFoldersVM({project, username, chapterKey, nodeKeyList}) {
+    await addNewNodeFolders({project, username, chapterKey, nodeKeyList});
 }

@@ -445,7 +445,7 @@ export default function NodeManager({projectName, currUser,
       console.log("warning: invalid empty node name"); //TODO test
     }
 
-    triggerCreatedNewNode(createNewNodeName);
+    triggerCreatedNewNode(createNewNodeName, chapterKey);
   }
 
 

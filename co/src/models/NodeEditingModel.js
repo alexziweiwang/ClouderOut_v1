@@ -47,3 +47,18 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
 
 
 }
+
+
+
+export async function addNewNodeFolders({project, username, chapterKey, nodeKeyList}) {
+  //TODO
+  /*
+  each elem in nodeKeyList: 
+    {
+      "nodeKey": newNodeKey,
+      "chapKey": chapterKeyTemp
+    }
+
+  */
+
+}
