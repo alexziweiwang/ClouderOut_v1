@@ -11,13 +11,15 @@ export async function convNodeUpdateToCloud({project, username, chapterKey, node
 
 
     if (!projectNodeSnap.exists()) {
-      return;
+      return "node-not-exist";
     }
 
 
     await updateDoc(projectNodeRef, {
       "nodeContent": dataObj
     });
+
+    return "node-update-ok";
     
     //TODO test
 

@@ -700,14 +700,18 @@ export default function ConversationNodeEditingPanel() {
     } 
 
     async function saveAllToCloud() {
-        //TODO when clicked, call update-to-cloud func
-        //pieceDataStructure
 
-        await convNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure}).then(alert("Saved to Cloud!"));
+        await convNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure})
+            .then((res)=>{
+                if (res === "node-update-ok") {
+                    alert("Saved to Cloud!")
+                } else {
+                    alert("Node not exist on cloud!");
+                }
 
+            }
 
-//TODO29
-
+        );
 
     }
 
