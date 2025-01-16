@@ -773,11 +773,15 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   async function goToProjectManagingPanel() {
+    if (currChapterKey !== "") {
+    //  await chapterChangingOrExiting();
+
+      await updateChapterNodeMappingsToCloud(); 
+      await saveNewlyCreatedNodeFolder();
+    }
+
     let resp = window.confirm("Are you sure you saved all the changes?");
     if (resp) {
-      if (currChapterKey !== "") {
-        await chapterChangingOrExiting();
-      }
       pureNavigateToProjectManagingPanel();
     }
   }
@@ -984,29 +988,36 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           await saveNewlyCreatedNodeFolder();
 
           await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
-    }
+      }
 
   }
 
   async function saveNewlyCreatedNodeFolder() {
-    if (createNodeSignal === true) {
-      //by signal, add a new document at /"nodes"
+                            console.log("func-step1-node-folders", createdNewNodeKeyList);
 
-      await addNewNodeFoldersVM(
-        { 
-            project: projectName,
-            username: username,
-            nodeKeyList: createdNewNodeKeyList, 
-            chapterKey: currChapterKey
-        }
-      );
-      //TODO36
+    if (createdNewNodeKeyList.length === 0) {
+      return;
+    }
 
-      setCreatedNewNodeKeyList([]);
+        if (createNodeSignal === true) {
+          //by signal, add a new document at /"nodes"
 
-      //reset create-node-signal to false here
-      setCreateNodeSignal(false);
-  }
+
+          await addNewNodeFoldersVM(
+            { 
+                project: projectName,
+                username: username,
+                nodeKeyList: createdNewNodeKeyList, 
+                chapterKey: currChapterKey
+            }
+          );
+          //TODO36
+
+          setCreatedNewNodeKeyList([]);
+
+          //reset create-node-signal to false here
+          setCreateNodeSignal(false);
+      }
   }
  
   async function switchChosenChapterItem(chapterKey) {
@@ -1014,7 +1025,6 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
                                             console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
         if (chapterKey !== "") {
-
           await chapterChangingOrExiting();
           setCurrChapterKey(chapterKey);
 
@@ -1302,7 +1312,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   async function updateChapterNodeMappingsToCloud() {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
-
+console.log("func-step2-all-node-mapping-grid", gridBlocksAll);
+console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
 
     let i = 0;
     let len = 0;
@@ -1465,7 +1476,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     
     <div className="returning_buttons">
       
-      <button className="button2" onClick={()=>{goToProjectManagingPanel();}}> ← </button>
+      <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
 
       <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
         <label>{projectNameText}: {projectName}</label>
