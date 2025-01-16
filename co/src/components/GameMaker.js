@@ -735,7 +735,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     if (projectName === "default-no-state projectname") {
       alert("No project selected. Returning to project selection page...");
-      goToProjectManagingPanel();
+      pureNavigateToProjectManagingPanel();
     }
 
     if (currChapterKey !== undefined && currChapterKey !== "") {
@@ -767,12 +767,21 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return ans;
   }
 
-  function goToProjectManagingPanel() {
+  function pureNavigateToProjectManagingPanel() {
+    navigate('/projectmanagingpanel', { replace: true });
+
+  }
+
+  async function goToProjectManagingPanel() {
     let resp = window.confirm("Are you sure you saved all the changes?");
     if (resp) {
-      navigate('/projectmanagingpanel', { replace: true });
+      if (currChapterKey !== "") {
+        await chapterChangingOrExiting();
+      }
+      pureNavigateToProjectManagingPanel();
     }
   }
+
 
 
   function updateChapterNodeData() {
@@ -964,7 +973,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   async function chapterChangingOrExiting() {
         //TODO ask if save to cloud?
       let answer = window.confirm("Save current chapter data to cloud?");
-      if (answer) {
+      if (answer && currChapterKey !== "") {
           //by createdNewNodeKeyList, update cloud-folders...
           //TODO37
 
@@ -992,13 +1001,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   }
  
-  function updateChosenChapterItem(chapterKey) {
+  async function switchChosenChapterItem(chapterKey) {
  
                                             console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
         if (chapterKey !== "") {
 
-          chapterChangingOrExiting();
+          await chapterChangingOrExiting();
           setCurrChapterKey(chapterKey);
 
         }
@@ -1522,7 +1531,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           getChapterDataInfo={passInChapterList}
           
           chosenChapter={currChapterKey} 
-          updateChosenChapterItem={updateChosenChapterItem} 
+          updateChosenChapterItem={switchChosenChapterItem} 
           
           updateChapterData={updateChapterList} 
           prepareForNewChapterMapping={prepareForNewChapterMapping}
