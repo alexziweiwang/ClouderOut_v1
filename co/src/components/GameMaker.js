@@ -981,28 +981,32 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           //by createdNewNodeKeyList, update cloud-folders...
           //TODO37
 
-          if (createNodeSignal === true) {
-              //by signal, add a new document at /"nodes"
-
-              await addNewNodeFoldersVM(
-                { 
-                    project: projectName,
-                    username: username,
-                    nodeKeyList: createdNewNodeKeyList, 
-                    chapterKey: currChapterKey
-                }
-              );
-              //TODO36
-
-              setCreatedNewNodeKeyList([]);
-
-              //reset create-node-signal to false here
-              setCreateNodeSignal(false);
-          }
+          await saveNewlyCreatedNodeFolder();
 
           await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
     }
 
+  }
+
+  async function saveNewlyCreatedNodeFolder() {
+    if (createNodeSignal === true) {
+      //by signal, add a new document at /"nodes"
+
+      await addNewNodeFoldersVM(
+        { 
+            project: projectName,
+            username: username,
+            nodeKeyList: createdNewNodeKeyList, 
+            chapterKey: currChapterKey
+        }
+      );
+      //TODO36
+
+      setCreatedNewNodeKeyList([]);
+
+      //reset create-node-signal to false here
+      setCreateNodeSignal(false);
+  }
   }
  
   async function switchChosenChapterItem(chapterKey) {
@@ -1520,7 +1524,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
     <div>
       <button onClick={()=>{fetchChapterNodeMappingFromCloud();}}>Load From Cloud</button>
-      <button onClick={()=>{updateChapterNodeMappingsToCloud();}}>Save To Cloud</button>
+      <button onClick={()=>{updateChapterNodeMappingsToCloud(); saveNewlyCreatedNodeFolder();}}>Save To Cloud</button>
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
       <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
     

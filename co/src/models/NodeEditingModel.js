@@ -51,7 +51,6 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
 
 
 export async function addNewNodeFolders({project, username, nodeKeyList, chapterKey}) {
-  //TODO
 
     const ref = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey);
     const snap = await getDoc(ref);
@@ -60,14 +59,12 @@ export async function addNewNodeFolders({project, username, nodeKeyList, chapter
       return;
     }
 
-   // for each node in currChapList, call model-func
     nodeKeyList.map(async (item, i) => {
         let currNode = item["nodeKey"];
-        if (item["chapKey"] === "chapterKey") {
 
-          //TODO add this doc
-          await addDoc(collection(ref, "nodes", currNode), {});
-          //await setDoc(doc(ref, "nodes", currNode), {});
+        if (item["chapKey"] === chapterKey) {
+          
+          await setDoc(doc(ref, "nodes", currNode), {});
         }
     });
 
