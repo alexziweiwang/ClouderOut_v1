@@ -971,9 +971,13 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   async function chapterChangingOrExiting() {
+    console.log("exiting chapter - ", currChapterKey);
         //TODO ask if save to cloud?
+      if (currChapterKey === "") {
+        return;
+      }
       let answer = window.confirm("Save current chapter data to cloud?");
-      if (answer && currChapterKey !== "") {
+      if (answer) {
           //by createdNewNodeKeyList, update cloud-folders...
           //TODO37
 
@@ -982,9 +986,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
               await addNewNodeFoldersVM(
                 { 
-                    projectName: projectName, 
-                    currUser: username,
-                    nodeKeyList: createdNewNodeKeyList,
+                    project: projectName,
+                    username: username,
+                    nodeKeyList: createdNewNodeKeyList, 
                     chapterKey: currChapterKey
                 }
               );
