@@ -151,7 +151,7 @@ export default function GameMaker({username, projectName}) {
 
   const [currPageName, setCurrPageName] = useState("Main Page");
 
-  const [createNodeSignal, setCreateNodeSignal] = useState(false);
+  const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false);
   const [createdNewNodeKeyList, setCreatedNewNodeKeyList] = useState([]);
 
 
@@ -778,17 +778,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   }
 
   async function goToProjectManagingPanel() {
-    if (currChapterKey !== "") {
-    //  await chapterChangingOrExiting();
 
-      await updateChapterNodeMappingsToCloud(); 
-      await saveNewlyCreatedNodeFolder();
+    let saveOrNot = window.confirm("Save all changes and exit?");
+    if (saveOrNot) {
+          if (currChapterKey !== "") {
+            await updateChapterNodeMappingsToCloud(); 
+            await saveNewlyCreatedNodeFolder();
+          }
     }
+    pureNavigateToProjectManagingPanel();
 
-    let resp = window.confirm("Are you sure you saved all the changes?");
-    if (resp) {
-      pureNavigateToProjectManagingPanel();
-    }
   }
 
 
@@ -991,14 +990,16 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       if (currChapterKey === "") {
         return;
       }
-      let answer = window.confirm("Save current chapter data to cloud?");
-      if (answer) {
-          //by createdNewNodeKeyList, update cloud-folders...
-          //TODO37
+      if (createNodeFolderSignal === true) {
+          let answer = window.confirm("Save current chapter data to cloud?");
+          if (answer) {
+              //by createdNewNodeKeyList, update cloud-folders...
+              //TODO37
 
-          await saveNewlyCreatedNodeFolder();
+              await saveNewlyCreatedNodeFolder();
 
-          await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
+              await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
+          }
       }
 
   }
@@ -1010,7 +1011,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       return;
     }
 
-        if (createNodeSignal === true) {
+    if (createNodeFolderSignal === true) {
           //by signal, add a new document at /"nodes"
 
 
@@ -1027,8 +1028,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           setCreatedNewNodeKeyList([]);
 
           //reset create-node-signal to false here
-          setCreateNodeSignal(false);
-      }
+          setCreateNodeFolderSignal(false);
+    }
+
   }
  
   async function switchChosenChapterItem(chapterKey) {
@@ -1358,7 +1360,7 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
   }
 
   function triggerCreatedNewNode(newNodeKey, chapterKeyTemp) {
-    setCreateNodeSignal(true);
+    setCreateNodeFolderSignal(true);
     let newNodeList = createdNewNodeKeyList;
     let pair = {
       "nodeKey": newNodeKey,

@@ -975,27 +975,33 @@ export default function NodeManager({projectName, currUser,
                       let liKey = "li" + currKey;
                       let crdCal = highlightGridByKey(currKey);
 
-                      return (<li 
-                          key={liKey} 
-                          className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
-                          style={{"marginBottom": "3px"}}
-                          onClick={()=>{
-                            
-                            if (clickedNode2 === crdCal) {
-                              setClickedNode2(-1); //cancel if already clicked on this node
-                            } else {
-                              setClickedNode2(crdCal);
+                      if (item["display"] === true) {
+                          return (
+                 
+                            <li 
+                                  key={liKey} 
+                                  className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
+                                  style={{"marginBottom": "3px"}}
+                                  onClick={()=>{
+                                    
+                                    if (clickedNode2 === crdCal) {
+                                      setClickedNode2(-1); //cancel if already clicked on this node
+                                    } else {
+                                      setClickedNode2(crdCal);
 
-                              // crdCal = ir * 10000 + ic;
-                              let ic = crdCal % 10000;
-                              let ir = (crdCal-ic) / 10000;
-                              let content = gridBlocks[ir][ic]; 
-                              setClickedNodeKey(content);
-                            } 
-                          }}
-                        >
-                          {currKey}: {item["nodeName"]}
-                        </li>);
+                                      // crdCal = ir * 10000 + ic;
+                                      let ic = crdCal % 10000;
+                                      let ir = (crdCal-ic) / 10000;
+                                      let content = gridBlocks[ir][ic]; 
+                                      setClickedNodeKey(content);
+                                    } 
+                                  }}
+                                >
+                                  {currKey}: {item["nodeName"]}
+                            </li>
+                        );
+                      }
+                      
 
                   })}
             </ul>
