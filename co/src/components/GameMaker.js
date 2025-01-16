@@ -188,6 +188,7 @@ export default function GameMaker({username, projectName}) {
 //TODO ------------------------------------------------------ testing data area
 
 const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
+ /*
   "chp-key1": {"chp-key1_start": {
               nodeName: "chapterStart1-title", 
               row: 2, 
@@ -328,7 +329,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           notes: "",
         },
 },
-
+*/
 })
 
   const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({});
@@ -340,7 +341,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   //TODO refactor
   const [gridBlocksAll, setGridBlocksAll] = useState(
     {
-      "chp-key1": 
+/* 
+     "chp-key1": 
       [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
@@ -356,8 +358,9 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           ["","","","","","","","","",""],
           ["C2-key","","","B2-key","","","chp-key2_end","","",""]
       ],  
-    }
-  ); //stores node-keys
+    
+    */
+    }); //stores node-keys
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "16:9(horizonal)",
@@ -733,6 +736,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
 
+
+
     if (projectName === "default-no-state projectname") {
       alert("No project selected. Returning to project selection page...");
       pureNavigateToProjectManagingPanel();
@@ -872,6 +877,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
   function triggerRefreshFetchCloudData() {
     fetchGameDataFromCloud();
     fetchProjResourceLists();
+    fetchChapterNodeMappingFromCloud();
   }
 
   // function resetRmUpdatedSignal() {
@@ -902,8 +908,12 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     return currChapterKey;
   }
 
-  function passInCurrentGridBlocks() {
-    let grid = currChapterKey !== "" ? gridBlocksAll[currChapterKey] : [];
+  function passInCurrentGridBlocks(givenChapterKey) {
+                                  console.log("\t\tpassing-in grid, ", givenChapterKey);
+                                  console.log(gridBlocksAll);
+
+
+    let grid = (givenChapterKey !== "" && gridBlocksAll[givenChapterKey] !== undefined) ? gridBlocksAll[givenChapterKey] : [];
     return grid;
   }
 
@@ -1391,13 +1401,13 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
 
 
 
-    //TODO setGridBlocksAll(gridTempArr);
-    //TODO setChapterNodeMapAll(data.chapterNodeMapping);
+    setGridBlocksAll(gridTempArr);
+    setChapterNodeMapAll(data.chapterNodeMapping);
 
 
-                                      //  console.log("!!! data.chapterNodeMapping = ", data.chapterNodeMapping);
+                                       console.log("!!! data.chapterNodeMapping = ", data.chapterNodeMapping);
 
-                                      //  console.log("!!! after conversion ... GridBlocks = ", gridTempMap);
+                                       console.log("!!! after conversion ... GridBlocks = ", gridTempMap);
 
 
   }

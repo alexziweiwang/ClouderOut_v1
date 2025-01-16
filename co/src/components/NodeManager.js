@@ -258,9 +258,9 @@ export default function NodeManager({projectName, currUser,
 
   
 
-      // console.log("Node Manager ........."); //TODO testing
-      // console.log(initialNodeMap); //TODO testing
-      // console.log(initialGridBlock); //TODO testing
+      console.log("Node Manager ........."); //TODO testing
+      console.log("nodemap = ", initialNodeMap); //TODO testing
+      console.log("grid = ", initialGridBlock); //TODO testing
       // console.log("local ds:"); //TODO testing
       // console.log(nodeRelationshipMap); //TODO testing
       // console.log(gridBlocks); //TODO testing
@@ -281,20 +281,14 @@ export default function NodeManager({projectName, currUser,
       //TODO fetch this chapter's all node data
           let chapterKeyTemp = getCurrChapterKey();
           if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
-            //TODO add alert for unsaved node-info? 
-            //TODO36 if saving new node (cloud-folder-creation), use clickedNodeKey and call VM-func
-            let answerStr = "Save the node changes?";
-
-
-
             
             let tempMap = getNodeMapOfChapter();
           
-            let gridTemp = getGridBlocks();
+            let gridTemp = getGridBlocks(chapterKeyTemp);
   
-                                            // console.log("::: getters...........");
-                                            // console.log(tempMap); //TODO testing
-                                            // console.log(gridTemp); //TODO testing
+                                            console.log("::: getters........... for chapter: ", chapterKeyTemp);
+                                            console.log("nodemap = ", tempMap); //TODO testing
+                                            console.log("grid = ", gridTemp); //TODO testing
                                           
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
