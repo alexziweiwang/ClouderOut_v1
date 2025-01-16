@@ -1277,21 +1277,16 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
     if (creatNodeSignal === true) {
         //TODO by signal, add a new document at nodes when creating
-        let chapterKeyList = [];
 
-        chapterList.map((item, index)=>{{
-          chapterKeyList.push(item[0]);
-        }})
-  
         await addNewNodeFoldersVM(
           { 
               projectName: projectName, 
               currUser: username,
               nodeKeyList: createdNewNodeKeyList,
-              chapterKeyList: chapterKeyList
+              chapterKey: currChapterKey
           }
         );
-        
+        //TODO36
 
         setCreatedNewNodeKeyList([]);
 
@@ -1430,6 +1425,13 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
 
+  async function saveCurrChapterNodeInfo() {
+    await updateChapterNodeMappingsToCloud();
+
+  }
+
+
+
 
 //TODO90 page content
   return (
@@ -1543,6 +1545,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
           triggerCreatedNewNode={triggerCreatedNewNode}
+          saveCurrChapterNodeInfo={saveCurrChapterNodeInfo}
            
           getUILanguage={passInUILanguage}
           

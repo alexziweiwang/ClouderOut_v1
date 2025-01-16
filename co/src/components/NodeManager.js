@@ -17,6 +17,7 @@ export default function NodeManager({projectName, currUser,
   displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
   loadChapterInfoFromCaller,
   triggerCreatedNewNode,
+  saveCurrChapterNodeInfo,
 
   getUILanguage,
 
@@ -282,7 +283,9 @@ export default function NodeManager({projectName, currUser,
           let chapterKeyTemp = getCurrChapterKey();
           if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
             //TODO add alert for unsaved node-info? 
-            //if saving new node (cloud-folder-creation), use clickedNodeKey and call VM-func
+            //TODO36 if saving new node (cloud-folder-creation), use clickedNodeKey and call VM-func
+            let answerStr = "Save the node changes?";
+
 
 
             
