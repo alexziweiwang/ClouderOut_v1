@@ -258,9 +258,9 @@ export default function NodeManager({projectName, currUser,
 
   
 
-      console.log("Node Manager ........."); //TODO testing
-      console.log("nodemap = ", initialNodeMap); //TODO testing
-      console.log("grid = ", initialGridBlock); //TODO testing
+      // console.log("Node Manager ........."); //TODO testing
+      // console.log("nodemap = ", initialNodeMap); //TODO testing
+      // console.log("grid = ", initialGridBlock); //TODO testing
       // console.log("local ds:"); //TODO testing
       // console.log(nodeRelationshipMap); //TODO testing
       // console.log(gridBlocks); //TODO testing
@@ -286,9 +286,9 @@ export default function NodeManager({projectName, currUser,
           
             let gridTemp = getGridBlocks(chapterKeyTemp);
   
-                                            console.log("::: getters........... for chapter: ", chapterKeyTemp);
-                                            console.log("nodemap = ", tempMap); //TODO testing
-                                            console.log("grid = ", gridTemp); //TODO testing
+                                            // console.log("::: getters........... for chapter: ", chapterKeyTemp);
+                                            // console.log("nodemap = ", tempMap); //TODO testing
+                                            // console.log("grid = ", gridTemp); //TODO testing
                                           
             setNodeRelationshipMap(tempMap);
             setGridBlocks(gridTemp);
@@ -309,7 +309,7 @@ export default function NodeManager({projectName, currUser,
             // console.log(nodeData);
       //      fetchGameDataFromCloud(); //TODO remove later
             updateNodeLinkingsOnce(initialNodeMap, initialGridBlock);
-            console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
+      //      console.log("\t\tFirst Enter - NodeManager: current user is ", currUser); //TODO testing
     
             setFirstTimeEnter(false);
           }

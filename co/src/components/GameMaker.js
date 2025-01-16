@@ -910,10 +910,11 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
   function passInCurrentGridBlocks(givenChapterKey) {
                                   console.log("\t\tpassing-in grid, ", givenChapterKey);
-                                  console.log(gridBlocksAll);
+                                  console.log("\t\t", gridBlocksAll);
 
 
     let grid = (givenChapterKey !== "" && gridBlocksAll[givenChapterKey] !== undefined) ? gridBlocksAll[givenChapterKey] : [];
+                                  console.log("\t\tfinally passing in: ", grid);
     return grid;
   }
 
@@ -1385,23 +1386,26 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
     // make conversion of grid-blocks
     let j = 0;
     let gridTempMap = {};
+    let gridChapterMap = {};
     let gridTempArr = [];
 
     Object.keys(data.chapterNodeGridBlocks).map((chapterKey) => {         
       j = 0;
-      gridTempArr = [];
-      let chapterItem = data.chapterNodeGridBlocks[chapterKey];
-      let currChapArrLen = Object.keys(chapterItem).length;
+      gridTempArr = []; // reset
+      let chapterBlockAllRows = data.chapterNodeGridBlocks[chapterKey];
+      let currChapArrLen = Object.keys(chapterBlockAllRows).length;
       while (j < currChapArrLen) {
-        gridTempArr.push(chapterItem[j]);
+        let currRow = chapterBlockAllRows[j];
+        gridTempArr.push(currRow);
         j++;
       }
       gridTempMap[chapterKey] = gridTempArr;
+      gridChapterMap[chapterKey] = gridTempArr;
     })    
 
 
 
-    setGridBlocksAll(gridTempArr);
+    setGridBlocksAll(gridChapterMap);
     setChapterNodeMapAll(data.chapterNodeMapping);
 
 
