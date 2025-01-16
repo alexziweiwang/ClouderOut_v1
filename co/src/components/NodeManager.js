@@ -17,7 +17,6 @@ export default function NodeManager({projectName, currUser,
   displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
   loadChapterInfoFromCaller,
   triggerCreatedNewNode,
-  saveCurrChapterNodeInfo,
 
   getUILanguage,
 

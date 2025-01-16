@@ -151,7 +151,7 @@ export default function GameMaker({username, projectName}) {
 
   const [currPageName, setCurrPageName] = useState("Main Page");
 
-  const [creatNodeSignal, setCreateNodeSignal] = useState(false);
+  const [createNodeSignal, setCreateNodeSignal] = useState(false);
   const [createdNewNodeKeyList, setCreatedNewNodeKeyList] = useState([]);
 
 
@@ -961,13 +961,47 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     setGridBlocksAll(gridBlocksAllTemp);
   }
 
+  async function chapterChangingOrExiting() {
+        //TODO ask if save to cloud?
+      let answer = window.confirm("Save current chapter data to cloud?");
+      if (answer) {
+          //by createdNewNodeKeyList, update cloud-folders...
+          //TODO37
+
+          if (createNodeSignal === true) {
+              //by signal, add a new document at /"nodes"
+
+              await addNewNodeFoldersVM(
+                { 
+                    projectName: projectName, 
+                    currUser: username,
+                    nodeKeyList: createdNewNodeKeyList,
+                    chapterKey: currChapterKey
+                }
+              );
+              //TODO36
+
+              setCreatedNewNodeKeyList([]);
+
+              //reset create-node-signal to false here
+              setCreateNodeSignal(false);
+          }
+
+          await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
+    }
+
+  }
+ 
   function updateChosenChapterItem(chapterKey) {
  
-console.log("clicked on chapter-key: ", chapterKey); //TODO testing
+                                            console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
-    if (chapterKey !== "") {
-      setCurrChapterKey(chapterKey);
-    }
+        if (chapterKey !== "") {
+
+          chapterChangingOrExiting();
+          setCurrChapterKey(chapterKey);
+
+        }
   } 
   
   function updateChapterList(chapterData) {
@@ -1274,24 +1308,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
 //TODO35
 
-
-    if (creatNodeSignal === true) {
-        //TODO by signal, add a new document at nodes when creating
-
-        await addNewNodeFoldersVM(
-          { 
-              projectName: projectName, 
-              currUser: username,
-              nodeKeyList: createdNewNodeKeyList,
-              chapterKey: currChapterKey
-          }
-        );
-        //TODO36
-
-        setCreatedNewNodeKeyList([]);
-
-    }
-
     await updateChapterNodesToCloudDataVM({
         projectName: projectName, 
         currUser: username,
@@ -1299,9 +1315,7 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
         chapterNodeGridBlocks: gridMapTemp
     });
 
-    //TODO reset create-node-signal to false here
-    //creatNodeSignal, setCreateNodeSignal
-    setCreateNodeSignal(false);
+
   }
 
   function triggerCreatedNewNode(newNodeKey, chapterKeyTemp) {
@@ -1425,12 +1439,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
   }
 
 
-  async function saveCurrChapterNodeInfo() {
-    await updateChapterNodeMappingsToCloud();
-
-  }
-
-
 
 
 //TODO90 page content
@@ -1545,7 +1553,6 @@ console.log("clicked on chapter-key: ", chapterKey); //TODO testing
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
           triggerCreatedNewNode={triggerCreatedNewNode}
-          saveCurrChapterNodeInfo={saveCurrChapterNodeInfo}
            
           getUILanguage={passInUILanguage}
           
