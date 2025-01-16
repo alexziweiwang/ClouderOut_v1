@@ -53,12 +53,22 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
 export async function addNewNodeFolders({project, username, nodeKeyList, chapterKeyList}) {
   //TODO
 
+    
+  let projectChapterRef;
+  let projectChapterSnap;
 
 
   
   chapterKeyList.map((currChapKey, index)=>{
     let currChapList = nodeKeyList.filter(e => e["chapKey"] === currChapKey);
-    
+
+    projectChapterRef = doc(db, "user_projects", username, "projects", project, "chapters", currChapKey);
+    projectChapterSnap = await getDoc(projectChapterRef);
+
+    if (!projectChapterSnap.exists()) {
+      return;
+    }
+
 
     // for each node in currChapList, call model-func
     currChapList.map((item, i) => {

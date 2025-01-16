@@ -280,7 +280,12 @@ export default function NodeManager({projectName, currUser,
 
       //TODO fetch this chapter's all node data
           let chapterKeyTemp = getCurrChapterKey();
-          if (chapterKeyTemp !== chapterKey) {
+          if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
+            //TODO add alert for unsaved node-info? 
+            //if saving new node (cloud-folder-creation), use clickedNodeKey and call VM-func
+
+
+            
             let tempMap = getNodeMapOfChapter();
           
             let gridTemp = getGridBlocks();
