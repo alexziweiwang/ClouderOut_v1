@@ -1,5 +1,5 @@
 import  {db} from '../GoogleCloudConnections';
-import { doc, getDoc, updateDoc } from "firebase/firestore"; 
+import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore"; 
 
 export async function fetchChapterNodesData({projectName, currUser}) {
 
@@ -94,10 +94,8 @@ export async function addNewChapterFolders({project, username, chapterKeyList}) 
     }
   
     chapterKeyList.map(async (item, i) => {
-      let currKey = item["chapterKey"];
   
-    
-      await setDoc(doc(ref, "chapters", currKey), {});
+      await setDoc(doc(ref, "chapters", item), {});
       
   });
   

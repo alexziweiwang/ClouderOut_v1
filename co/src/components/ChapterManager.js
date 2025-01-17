@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
 
+import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
+
 export default function ChapterManager({
   initialChapterData, updateChapterData, 
   getChapterDataInfo,
@@ -117,6 +119,8 @@ export default function ChapterManager({
   const [deletedLocalList, setDeletedLocalList] = useState([]);
   const [isRevertingChapter, setIsRevertingChapter] = useState(false);
 
+  const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
+
   const [chapterData, setChapterData] = useState(initialChapterData);
 
   useEffect(() => {
@@ -173,6 +177,8 @@ export default function ChapterManager({
     let tempChapterData = chapterData;
     let line = [newChapterKeyInput, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
     tempChapterData.push(line);
+
+    //add this to createdNewChapterList
 
     updateBothLocalAndOuterChapterData(tempChapterData);
 
@@ -248,6 +254,15 @@ export default function ChapterManager({
     updateLinkingNode("ending", nodename, chapterkey);
   }
 
+  async function addChapterFolders() {
+    //use createdNewChapterList
+    //TODO await addNewChapterFoldersVM
+
+
+    setCreatedNewChapterList([]);
+
+  }
+
     return (
       <div style={{"height": "600px"}}>
         {isCollapse === false && 
@@ -262,6 +277,9 @@ export default function ChapterManager({
           <button
             onClick={()=>{
               updateChapterListToCloud(chapterData);
+
+              //TODO21 if new local chapter...
+              addChapterFolders();
             }}
           >Save to Cloud</button>
               <div className="chapterManagingArea"> 
