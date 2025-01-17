@@ -419,6 +419,7 @@
 
 - 2025-Jan-10: Design testing-project UI style and settings
 
+- 2025-Jan-17: Design func-tests for game-maker level
 
 
 
