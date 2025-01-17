@@ -1006,7 +1006,7 @@ export default function NodeManager({projectName, currUser,
                   })}
             </ul>
           </div>  
-          <div
+          {/* <div
             style={{"height": "100px"}}
           >
             <button 
@@ -1016,7 +1016,7 @@ export default function NodeManager({projectName, currUser,
                 {enterEditorText}
             </button>
 
-          </div>
+          </div> */}
     </div>
 
           {<div style={{
@@ -1081,7 +1081,7 @@ export default function NodeManager({projectName, currUser,
                               {content !== "" && nodeRelationshipMap[content] !== undefined
                               && 
                                 <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
-                              {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Add New Node</label>}
+                              {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Put Node Here</label>}
                               {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                             
                       </div>
@@ -1232,7 +1232,8 @@ export default function NodeManager({projectName, currUser,
 
      
 
-                
+{/* node info and operation area */}
+
         {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
 
 

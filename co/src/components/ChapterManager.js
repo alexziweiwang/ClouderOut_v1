@@ -375,10 +375,13 @@ console.log("chapterData: ", chapterData); //TODO testing
                       </li>
                         {isRevertingChapter && <div>
                               {deletedLocalList.map((item, index) => {
-                                return (<label key={index}>{item[0]}, {item[1]} 
+                                return (
+                                  <><label key={index}>{item[0]}: {item[1]}</label> 
                                   <button onClick={()=>{revertChapter(item[0]);}}>
                                     {revertText}
-                                  </button ></label>);
+                                  </button >
+                                  
+                                  </>);
                               })}
 
                               {deletedLocalList.length === 0 && <label>{noDeletedChapterText}</label>}
