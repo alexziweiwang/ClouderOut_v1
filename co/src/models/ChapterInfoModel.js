@@ -84,3 +84,23 @@ export async function updateChapterListToCloud({projectName, currUser, chapterLi
 //TODO test
 
 }
+
+
+export async function addNewChapterFolders({project, username, chapterKeyList}) {
+    const ref = doc(db, "user_projects", username, "projects", project);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) {
+      return;
+    }
+  
+    chapterKeyList.map(async (item, i) => {
+      let currKey = item["chapterKey"];
+  
+    
+      await setDoc(doc(ref, "chapters", currKey), {});
+      
+  });
+  
+  }
+  
+  
