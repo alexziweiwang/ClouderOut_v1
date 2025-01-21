@@ -424,7 +424,7 @@
 
 
 - 2025-Jan-20: Improve node-viewing inside node-container
-
+- 2025-Jan-20: Design starting-node conditional strategy
 
 
 
