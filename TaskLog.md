@@ -425,6 +425,5 @@
 
 - 2025-Jan-20: Improve node-viewing inside node-container
 - 2025-Jan-20: Design starting-node conditional strategy
-
-
+- 2025-Jan-20: Consider conversational-node all-data(game content + nav ui) storing and passing strategies
 

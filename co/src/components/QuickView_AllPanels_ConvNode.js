@@ -398,7 +398,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                 <div  style={{"overflow": "scroll", "display": "flex"}}>
 
                 <GameScreen_QuickView_ConvNode
-                    
                     isDisplay={isDisplay} 
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
@@ -425,15 +424,14 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
                     getIsGameScreenClicked={passInIsGameScreenClicked}
 
-
                     notifyNewGameData={notifyNewGameData}
                     notifyAfterReset={notifyAfterReset}
 
                     receiveGameDataObj={passInGameDataFromScreen}
                     buttonConseqByStatement={changeGameDataTrackerByStatement}
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
-
                 />
+                
 
                 <Panel_GameDataTest
                        localTest={true}

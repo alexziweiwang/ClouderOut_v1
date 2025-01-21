@@ -2,8 +2,6 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
 
-import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
-
 export default function ChapterManager({projectName, currUser,
   initialChapterData, updateChapterData, 
   getChapterDataInfo,
@@ -11,7 +9,7 @@ export default function ChapterManager({projectName, currUser,
   prepareForNewChapterMapping, 
   updateChapterListToCloud,
   fetchChapterListFromCloud,
-  triggerCreatedNewChapters,
+  triggerCreatedNewChapter,
 
 
   getUILanguage,
@@ -181,9 +179,7 @@ export default function ChapterManager({projectName, currUser,
     tempChapterData.push(line);
 
     // add current chapter-key into created-key-list
-    let chpList = createdNewChapterList;
-    chpList.push(newChapterKeyInput);
-    setCreatedNewChapterList(chpList);
+    triggerCreatedNewChapter(newChapterKeyInput);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
 
@@ -261,18 +257,6 @@ export default function ChapterManager({projectName, currUser,
     updateLinkingNode("ending", nodename, chapterkey);
   }
 
-  async function createChapterFoldersToCloud() {
-
-    await addNewChapterFoldersVM({
-        project: projectName, 
-        username: currUser, 
-        chapterKeyList: createdNewChapterList
-    });
-
-
-    setCreatedNewChapterList([]);
-
-  }
 
     return (
       <div style={{"height": "600px"}}>
@@ -280,7 +264,7 @@ export default function ChapterManager({projectName, currUser,
         <div className="parallelFrame">
          
           <div className="listBar" style={{"overflow": "hidden"}}>
-          <button
+          {/* <button
             onClick={()=>{
               fetchChapterListFromCloud();
             }}
@@ -289,9 +273,8 @@ export default function ChapterManager({projectName, currUser,
             onClick={()=>{
               updateChapterListToCloud(chapterData);
 
-              createChapterFoldersToCloud();
             }}
-          >Save to Cloud</button>
+          >Save to Cloud</button> */}
               <div className="chapterManagingArea"> 
                         <label>{chapterManagementText}: </label>
                 

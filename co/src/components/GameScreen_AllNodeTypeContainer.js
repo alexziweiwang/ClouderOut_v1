@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 import langDictionary from './textDictionary';
 
-
-
+import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
+//TODO fetch-and-updte data for conv-node-game-screen
 
 
 export default function GameScreen_AllNodeTypeContainer({
@@ -212,7 +212,7 @@ export default function GameScreen_AllNodeTypeContainer({
                     // TODO end of the entire game. ask if return ?
                     //later: if SL-system, go to nav-to-SL hint
                     //later: if non-SL-system, go to story-page(chapter list page)?
-                    
+
 
                 }
             }
