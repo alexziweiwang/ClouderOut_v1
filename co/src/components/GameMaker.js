@@ -20,6 +20,7 @@ import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,
   fetchAllChapterListVM, updateChapterListToCloudVM,
 } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
+import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -153,7 +154,8 @@ export default function GameMaker({username, projectName}) {
 
   const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false);
   const [createdNewNodeKeyList, setCreatedNewNodeKeyList] = useState([]);
-
+  const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
+  const [createdChapterFolderSignal, setCreatedChapterFolderSignal] = useState(false);
 
   const [visualList, setVisualList] = useState([]); 
   
@@ -1001,6 +1003,22 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
               await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
           }
       }
+  }
+
+  async function editorExitingHandleChapterMgr() {
+      //save newly-created-chapter-folders
+      if (createdChapterFolderSignal === true) {
+
+          await addNewChapterFoldersVM({
+            project: projectName,
+            username: username,
+              chapterKeyList: createdNewChapterList
+          });
+      }
+  
+      setCreatedNewChapterList([]);
+
+      setCreatedChapterFolderSignal(false);
 
   }
 
@@ -1370,6 +1388,15 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
     setCreatedNewNodeKeyList(newNodeList);
   }
 
+  function triggerCreatedNewChapter(nodeChapterKey) {
+    //TODO39
+    let list = createdNewChapterList;
+    list.push(nodeChapterKey);
+    setCreatedNewChapterList(list);
+    setCreatedChapterFolderSignal(true);
+
+  }
+
   async function fetchChapterNodeMappingFromCloud() {
 
     let data = await fetchChapterNodesDataVM({   
@@ -1551,7 +1578,7 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
 
     <div>
       <button onClick={()=>{fetchChapterNodeMappingFromCloud();}}>Load From Cloud</button>
-      <button onClick={()=>{updateChapterNodeMappingsToCloud(); saveNewlyCreatedNodeFolder();}}>Save To Cloud</button>
+      <button onClick={()=>{updateChapterNodeMappingsToCloud(); saveNewlyCreatedNodeFolder(); editorExitingHandleChapterMgr();}}>Save To Cloud</button>
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
       <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
     
@@ -1579,6 +1606,7 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
 
           updateChapterListToCloud={saveChapterListToCloud}
           fetchChapterListFromCloud={fetchChapterListFromCloud}
+          triggerCreatedNewChapter={triggerCreatedNewChapter}
           
         />}
 

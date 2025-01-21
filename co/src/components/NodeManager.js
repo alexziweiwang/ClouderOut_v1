@@ -316,10 +316,10 @@ export default function NodeManager({projectName, currUser,
 
     });
 
-  async function getChapterDataFromCloud(chapter) {
-    return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
+  // async function getChapterDataFromCloud(chapter) {
+  //   return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
    
-  }
+  // }
 
   // function updateNodeDataActions(data) {
   //      setNodeData(data);

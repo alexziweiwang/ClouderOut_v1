@@ -11,6 +11,8 @@ export default function ChapterManager({projectName, currUser,
   prepareForNewChapterMapping, 
   updateChapterListToCloud,
   fetchChapterListFromCloud,
+  triggerCreatedNewChapters,
+
 
   getUILanguage,
   }) {
@@ -261,7 +263,11 @@ export default function ChapterManager({projectName, currUser,
 
   async function createChapterFoldersToCloud() {
 
-    await addNewChapterFoldersVM({project: projectName, username: currUser, chapterKeyList: createdNewChapterList});
+    await addNewChapterFoldersVM({
+        project: projectName, 
+        username: currUser, 
+        chapterKeyList: createdNewChapterList
+    });
 
 
     setCreatedNewChapterList([]);
