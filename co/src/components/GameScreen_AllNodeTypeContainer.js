@@ -210,6 +210,9 @@ export default function GameScreen_AllNodeTypeContainer({
                     break;
                 } else { 
                     // TODO end of the entire game. ask if return ?
+                    //later: if SL-system, go to nav-to-SL hint
+                    //later: if non-SL-system, go to story-page(chapter list page)?
+                    
 
                 }
             }
@@ -272,20 +275,25 @@ return (<div
     <div 
         style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
         onClick={()=>{
-            //--- works perfectly ok (without logic-splitter so far)---
+            //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
             locateHoldingNextNode(currNodeKey, currNodeType);
             setJumpNodeSignal(true);
-            //--- works perfectly ok (without logic-splitter so far)---
+            //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
         }}
     >
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
 
 
+    {/* //TODO39 conv-node-compo */}
+
+
         
     </div>}
 
     
+
+
     {currNodeType === "LogicSplitter" && <div style={{"backgroundColor": "green", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
         Logic Splitter<br></br>
         chapter = {currChapterKey}, node-key = {currNodeKey}

@@ -423,7 +423,7 @@
 - 2025-Jan-17: Design node-playing-viewer flow
 
 
-
+- 2025-Jan-20: Improve node-viewing inside node-container
 
 
 
