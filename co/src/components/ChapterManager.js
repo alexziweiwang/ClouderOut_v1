@@ -4,7 +4,7 @@ import langDictionary from './textDictionary';
 
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 
-export default function ChapterManager({
+export default function ChapterManager({projectName, currUser,
   initialChapterData, updateChapterData, 
   getChapterDataInfo,
   updateChosenChapterItem, updateLinkingNode,
@@ -178,7 +178,10 @@ export default function ChapterManager({
     let line = [newChapterKeyInput, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
     tempChapterData.push(line);
 
-    //add this to createdNewChapterList
+    // add current chapter-key into created-key-list
+    let chpList = createdNewChapterList;
+    chpList.push(newChapterKeyInput);
+    setCreatedNewChapterList(chpList);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
 
@@ -186,6 +189,8 @@ export default function ChapterManager({
 
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
+
+
   }
 
   function hideChapter(index) {
@@ -254,9 +259,9 @@ export default function ChapterManager({
     updateLinkingNode("ending", nodename, chapterkey);
   }
 
-  async function addChapterFolders() {
-    //use createdNewChapterList
-    //TODO await addNewChapterFoldersVM
+  async function createChapterFoldersToCloud() {
+
+    await addNewChapterFoldersVM({project: projectName, username: currUser, chapterKeyList: createdNewChapterList});
 
 
     setCreatedNewChapterList([]);
@@ -278,8 +283,7 @@ export default function ChapterManager({
             onClick={()=>{
               updateChapterListToCloud(chapterData);
 
-              //TODO21 if new local chapter...
-              addChapterFolders();
+              createChapterFoldersToCloud();
             }}
           >Save to Cloud</button>
               <div className="chapterManagingArea"> 

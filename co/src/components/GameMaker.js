@@ -1562,6 +1562,8 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
       
         {!isDisplayRmBool && 
         <ChapterManager 
+          currUser={username} 
+          projectName={projectName} 
           initialChapterData={chapterList} 
           getChapterDataInfo={passInChapterList}
           
