@@ -717,6 +717,7 @@ export default function GameMaker({username, projectName}) {
     window.onbeforeunload = () => {
       return "show message";
     }
+                  console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
 
     if (firstTimeEnter === true) {
 
@@ -788,8 +789,9 @@ export default function GameMaker({username, projectName}) {
             await updateChapterNodeMappingsToCloud(); 
             await saveNewlyCreatedNodeFolder();
           }
+
+          pureNavigateToProjectManagingPanel();
     }
-    pureNavigateToProjectManagingPanel();
 
   }
 
@@ -982,6 +984,7 @@ export default function GameMaker({username, projectName}) {
     nodeMapAllTemp[currChapterKey] = mapObj;
     setChapterNodeMapAll(nodeMapAllTemp);
     setNodeMapUpdatedSignal(true);
+                        console.log("node-mapping updated.");
   }
   
   function updateGridBlockOfChapter(gridArr) {
@@ -990,6 +993,7 @@ export default function GameMaker({username, projectName}) {
 
     setGridBlocksAll(gridBlocksAllTemp);
     setGridBlocksUpdatedSignal(true);
+                        console.log("grid-blocks updated.");
   }
 
   async function chapterChangingOrExiting() {
@@ -1029,7 +1033,6 @@ export default function GameMaker({username, projectName}) {
   }
 
   async function saveNewlyCreatedNodeFolder() {
-                            console.log("func-step1-node-folders", createdNewNodeKeyList);
 
     if (createdNewNodeKeyList.length === 0) {
       return;
@@ -1038,6 +1041,7 @@ export default function GameMaker({username, projectName}) {
     if (createNodeFolderSignal === true) {
           //by signal, add a new document at /"nodes"
 
+                          console.log("updating to cloud: func-step1-node-folders ", createdNewNodeKeyList);
 
           await addNewNodeFoldersVM(
             { 
@@ -1349,30 +1353,31 @@ export default function GameMaker({username, projectName}) {
   async function updateChapterNodeMappingsToCloud() {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
-console.log("func-step2-all-node-mapping-grid", gridBlocksAll);
-console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
-
-    let i = 0;
-    let len = 0;
-
-    let gridMapTemp = {};
-
-    Object.keys(gridBlocksAll).map((currKey) => {
-      let currChapterGrid = gridBlocksAll[currKey]; // the 2d-array
-      len = currChapterGrid.length;
-      i = 0;
-      let obj = {};
-      while (i < len) {
-        obj[i] = currChapterGrid[i];
-
-        i++;
-      }
-      gridMapTemp[currKey] = obj;
-
-    });
-
-//TODO35
     if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
+
+console.log("updating to cloud ... func-step2-all-node-mapping-grid", gridBlocksAll);
+console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
+
+
+        let i = 0;
+        let len = 0;
+
+        let gridMapTemp = {};
+
+        Object.keys(gridBlocksAll).map((currKey) => {
+          let currChapterGrid = gridBlocksAll[currKey]; // the 2d-array
+          len = currChapterGrid.length;
+          i = 0;
+          let obj = {};
+          while (i < len) {
+            obj[i] = currChapterGrid[i];
+
+            i++;
+          }
+          gridMapTemp[currKey] = obj;
+
+        });
+
         await updateChapterNodesToCloudDataVM({
             projectName: projectName, 
             currUser: username,
@@ -1381,14 +1386,12 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
         });      
         setNodeMapUpdatedSignal(false);
         setGridBlocksUpdatedSignal(false);
-        
-    } else {
-      alert("All contents are updated.");
+
     }
-
-
-
-
+    
+    
+    alert("All contents are updated.");
+    console.log("update-Chapter-Node-Mappings-To-Cloud!");
   }
 
   function triggerCreatedNewNode(newNodeKey, chapterKeyTemp) {

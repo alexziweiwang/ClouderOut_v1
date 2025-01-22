@@ -201,6 +201,9 @@ export default function NodeManager({projectName, currUser,
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap);
   const [gridBlocks, setGridBlocks] = useState(initialGridBlock); //stores node-keys
 
+  //TODO updating-signal
+  
+
   const [renderCounter, setRenderCounter] = useState(0);
  
   //TODO functionality design:
