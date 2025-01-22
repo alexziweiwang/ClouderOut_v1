@@ -17,6 +17,7 @@ export default function NodeManager({projectName, currUser,
   displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
   loadChapterInfoFromCaller,
   triggerCreatedNewNode,
+  triggerNodeMappingsChange,
 
   getUILanguage,
 
@@ -200,9 +201,11 @@ export default function NodeManager({projectName, currUser,
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap);
   const [gridBlocks, setGridBlocks] = useState(initialGridBlock); //stores node-keys
+  //TODO31
+  //triggerNodeMappingsChange
 
   //TODO updating-signal
-  
+
 
   const [renderCounter, setRenderCounter] = useState(0);
  
@@ -293,8 +296,8 @@ export default function NodeManager({projectName, currUser,
                                             // console.log("nodemap = ", tempMap); //TODO testing
                                             // console.log("grid = ", gridTemp); //TODO testing
                                           
-            setNodeRelationshipMap(tempMap);
-            setGridBlocks(gridTemp);
+            setNodeRelationshipMap(tempMap); //input-side
+            setGridBlocks(gridTemp); //input-side
             setChapterKey(chapterKeyTemp);
             if (firstTimeEnter == false) {
               updateNodeLinkingsOnce(tempMap, gridTemp);
@@ -433,6 +436,7 @@ export default function NodeManager({projectName, currUser,
         setGridBlocks(tempGrid);
         setNodeRelationshipMap(tempNodeMap);
         updateNodeLinkingsOnce(tempNodeMap, tempGrid);
+        triggerNodeMappingsChange(tempNodeMap, tempGrid);
 
 
         // reset the creation layout
@@ -509,6 +513,7 @@ export default function NodeManager({projectName, currUser,
 
     tempNodeData[clickedNodeKey].nodeName = tempNewName;
     setNodeRelationshipMap(tempNodeData);
+    triggerNodeMappingsChange(tempNpdeData, gridBlocks);
   
     setTempNewName("");
   }
@@ -522,6 +527,7 @@ export default function NodeManager({projectName, currUser,
 
     tempNodeData[clickedNodeKey].notes = tempNewNote;
     setNodeRelationshipMap(tempNodeData);
+    triggerNodeMappingsChange(tempNodeData, gridBlocks);
 
     setTempNewNote("");
   }
@@ -576,6 +582,7 @@ export default function NodeManager({projectName, currUser,
     setNodeRelationshipMap(tempNodeMap);
     setGridBlocks(tempGridBlocks);
     updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks);
+    triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
 
     //update both data structures to outer layer
     updateNodeMapOfChapter(tempNodeMap);
@@ -612,6 +619,7 @@ export default function NodeManager({projectName, currUser,
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
+    triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
 
   }
 
@@ -631,6 +639,7 @@ export default function NodeManager({projectName, currUser,
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
+    triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
 
     updateRenderCounter();
   }
@@ -1210,6 +1219,7 @@ export default function NodeManager({projectName, currUser,
                       setNodeRelationshipMap(nodeMapTemp);
                       setGridBlocks(gridBlocksTemp);
                       updateNodeLinkingsOnce(nodeMapTemp, gridBlocksTemp);
+                      triggerNodeMappingsChange(nodeMapTemp, gridBlocksTemp);
 
                       updateNodeMapOfChapter(nodeMapTemp);
                       updateGridBlockOfChapter(gridBlocksTemp);
@@ -1358,6 +1368,7 @@ export default function NodeManager({projectName, currUser,
 
                       setNodeRelationshipMap(tempMap);
                       updateNodeLinkingsOnce(tempMap, gridBlocks);
+                      triggerNodeMappingsChange(tempMap, gridBlocks);
 
                       setSelectedNextNode("");
                       updateRenderCounter();
@@ -1394,6 +1405,7 @@ export default function NodeManager({projectName, currUser,
                       
                       setNodeRelationshipMap(tempMap2);
                       updateNodeLinkingsOnce(tempMap2, gridBlocks);
+                      triggerNodeMappingsChange(tempMap2, gridBlocks);
 
                       updateRenderCounter();
                     }
@@ -1698,6 +1710,7 @@ export default function NodeManager({projectName, currUser,
 
                       setNodeRelationshipMap(tempNodeRelMap);
                       updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
+                      triggerNodeMappingsChange(tempNodeRelMap, gridBlocks);
 
       console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                       
@@ -1749,6 +1762,7 @@ export default function NodeManager({projectName, currUser,
                 setGridBlocks(tempGrid);
                 setNodeRelationshipMap(tempMap);
                 updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
+                triggerNodeMappingsChange(tempMap, tempGrid);
               }
               
             }}>←</button>
@@ -1776,6 +1790,7 @@ export default function NodeManager({projectName, currUser,
                 setGridBlocks(tempGrid);
                 setNodeRelationshipMap(tempMap);
                 updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
+                triggerNodeMappingsChange(tempMap, tempGrid);
               }
             }}>↑</button></div>
             <div><button
@@ -1801,6 +1816,7 @@ export default function NodeManager({projectName, currUser,
                   setGridBlocks(tempGrid);
                   setNodeRelationshipMap(tempMap);
                   updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
+                  triggerNodeMappingsChange(tempMap, tempGrid);
                 }
             }}>↓</button></div>
           </div>
@@ -1827,6 +1843,7 @@ export default function NodeManager({projectName, currUser,
                 setGridBlocks(tempGrid);
                 setNodeRelationshipMap(tempMap);
                 updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
+                triggerNodeMappingsChange(tempMap, tempGrid);
               }
             }}>→</button>            
           </div>

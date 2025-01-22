@@ -1526,6 +1526,14 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   }
 
+  function triggerNodeMappingsChange(nodeMapTemp, gridBlocksTemp) {
+    setGridBlocksAll(gridBlocksTemp);
+    setChapterNodeMapAll(nodeMapTemp);
+
+    setNodeMapUpdatedSignal(true);
+    setGridBlocksUpdatedSignal(true);
+  }
+
 
 
 
@@ -1644,6 +1652,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
           triggerCreatedNewNode={triggerCreatedNewNode}
+          triggerNodeMappingsChange={triggerNodeMappingsChange}
            
           getUILanguage={passInUILanguage}
           
