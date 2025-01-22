@@ -741,7 +741,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
 
 
     if (projectName === "default-no-state projectname") {
-      alert("No project selected. Returning to project selection page...");
+    //  alert("No project selected. Returning to project selection page...");
       pureNavigateToProjectManagingPanel();
     }
 

@@ -427,3 +427,10 @@
 - 2025-Jan-20: Design starting-node conditional strategy
 - 2025-Jan-20: Consider conversational-node all-data(game content + nav ui) storing and passing strategies
 
+- 2025-Jan-21: Design version-tracker for cloud-updating
+
+
+
+
+
+

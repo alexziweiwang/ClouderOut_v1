@@ -303,7 +303,7 @@ export default function ConversationNodeEditingPanel() {
     useEffect(() => {
     
         if (projectName === "default-no-state projectname") {
-            alert("No project selected. Returning to project selection page...");
+      //      alert("No project selected. Returning to project selection page...");
             goToProjectManagingPanel();
         }
 
