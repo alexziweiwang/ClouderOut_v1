@@ -189,8 +189,39 @@ export default function GameMaker({username, projectName}) {
 
 //TODO ------------------------------------------------------ testing data area
 
-const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
- /*
+  const [chapterNodeMapAll, setChapterNodeMapAll] = useState({});
+  const [gridBlocksAll, setGridBlocksAll] = useState({}); //stores node-keys
+
+  const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
+  const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
+
+ // const [currentChapterNodeMap, setCurrentChapterNodeMap] = useState({});           //--- not used ---
+ // const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys              //--- not used ---
+
+
+
+
+
+/*  sample of gridBlocksAll
+     "chp-key1": 
+      [
+        ["","","","","","","","","",""], 
+        ["","","","","","","","","",""],
+        ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
+        ["","","","","","","","","",""],
+        ["C1-key","","","B1-key","","","chp-key1_end","","",""]
+      ]
+    ,
+      "chp-key2": [
+          ["","","","","","","","","",""], 
+          ["","","","","","","","","",""],
+          ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
+          ["","","","","","","","","",""],
+          ["C2-key","","","B2-key","","","chp-key2_end","","",""]
+      ],  
+    
+    */
+/* sample of node-map-all
   "chp-key1": {"chp-key1_start": {
               nodeName: "chapterStart1-title", 
               row: 2, 
@@ -331,38 +362,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
           notes: "",
         },
 },
-*/
-})
-
-  const [currentChapterNodeMap, setcurrentChapterNodeMap] = useState({});
-
-  const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys
-
-
-
-  //TODO refactor
-  const [gridBlocksAll, setGridBlocksAll] = useState(
-    {
-/* 
-     "chp-key1": 
-      [
-        ["","","","","","","","","",""], 
-        ["","","","","","","","","",""],
-        ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
-        ["","","","","","","","","",""],
-        ["C1-key","","","B1-key","","","chp-key1_end","","",""]
-      ]
-    ,
-      "chp-key2": [
-          ["","","","","","","","","",""], 
-          ["","","","","","","","","",""],
-          ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
-          ["","","","","","","","","",""],
-          ["C2-key","","","B2-key","","","chp-key2_end","","",""]
-      ],  
-    
-    */
-    }); //stores node-keys
+*/   
+  
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "16:9(horizonal)",
@@ -745,10 +746,10 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       pureNavigateToProjectManagingPanel();
     }
 
-    if (currChapterKey !== undefined && currChapterKey !== "") {
-      setcurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
-      setGridBlocks(gridBlocksAll[currChapterKey]);
-    }
+    // if (currChapterKey !== undefined && currChapterKey !== "") {
+    //   setCurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
+    //   setGridBlocks(gridBlocksAll[currChapterKey]);
+    // }
 
     if (currentProjectNav["screenSize"] === "16:9(horizonal)") {
       setScreenHeight(450);
@@ -951,6 +952,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     nodeMapTemp[newKey] = obj;
 
     setChapterNodeMapAll(nodeMapTemp);
+    setNodeMapUpdatedSignal(true);
 
     //add all-grid-block
     let gridAllTemp = gridBlocksAll;
@@ -962,6 +964,8 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
       ["","","","","","","","","",""]
     ];
     setGridBlocksAll(gridAllTemp);
+    setGridBlocksUpdatedSignal(true);
+
 
   }
 
@@ -977,6 +981,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     let nodeMapAllTemp = chapterNodeMapAll;
     nodeMapAllTemp[currChapterKey] = mapObj;
     setChapterNodeMapAll(nodeMapAllTemp);
+    setNodeMapUpdatedSignal(true);
   }
   
   function updateGridBlockOfChapter(gridArr) {
@@ -984,6 +989,7 @@ const [chapterNodeMapAll, setChapterNodeMapAll] = useState({
     gridBlocksAllTemp[currChapterKey] = gridArr;
 
     setGridBlocksAll(gridBlocksAllTemp);
+    setGridBlocksUpdatedSignal(true);
   }
 
   async function chapterChangingOrExiting() {
@@ -1366,13 +1372,21 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
     });
 
 //TODO35
+    if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
+        await updateChapterNodesToCloudDataVM({
+            projectName: projectName, 
+            currUser: username,
+            chapterNodeMappingObj: chapterNodeMapAll, 
+            chapterNodeGridBlocks: gridMapTemp
+        });      
+        setNodeMapUpdatedSignal(false);
+        setGridBlocksUpdatedSignal(false);
+        
+    } else {
+      alert("All contents are updated.");
+    }
 
-    await updateChapterNodesToCloudDataVM({
-        projectName: projectName, 
-        currUser: username,
-        chapterNodeMappingObj: chapterNodeMapAll, 
-        chapterNodeGridBlocks: gridMapTemp
-    });
+
 
 
   }
@@ -1438,9 +1452,9 @@ console.log("func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
     setChapterNodeMapAll(data.chapterNodeMapping);
 
 
-                                       console.log("!!! data.chapterNodeMapping = ", data.chapterNodeMapping);
+                                       console.log("FromCloud !!! data.chapterNodeMapping = ", data.chapterNodeMapping);
 
-                                       console.log("!!! after conversion ... GridBlocks = ", gridTempMap);
+                                       console.log("FromCloud !!! after conversion ... GridBlocks = ", gridTempMap);
 
 
   }
