@@ -199,8 +199,8 @@ export default function NodeManager({projectName, currUser,
   const chStartName = "chapterStart-key";
   const chEndName = "chapterEnd-"+chapterKey;
 
-  const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap);
-  const [gridBlocks, setGridBlocks] = useState(initialGridBlock); //stores node-keys
+  const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap !== undefined ? initialNodeMap : {});
+  const [gridBlocks, setGridBlocks] = useState(initialGridBlock !== undefined ? initialGridBlock: []); //stores node-keys
   //TODO31
   //triggerNodeMappingsChange
 
@@ -264,12 +264,12 @@ export default function NodeManager({projectName, currUser,
 
   
 
-      // console.log("Node Manager ........."); //TODO testing
-      // console.log("nodemap = ", initialNodeMap); //TODO testing
-      // console.log("grid = ", initialGridBlock); //TODO testing
-      // console.log("local ds:"); //TODO testing
-      // console.log(nodeRelationshipMap); //TODO testing
-      // console.log(gridBlocks); //TODO testing
+      console.log("Node Manager ........."); //TODO testing
+      console.log("nodemap = ", initialNodeMap); //TODO testing
+      console.log("grid = ", initialGridBlock); //TODO testing
+      console.log("local ds:"); //TODO testing
+      console.log(nodeRelationshipMap); //TODO testing
+      console.log(gridBlocks); //TODO testing
 
       let UILang = getUILanguage();
       setLanguageCodeTextOption(UILang);
@@ -513,7 +513,7 @@ export default function NodeManager({projectName, currUser,
 
     tempNodeData[clickedNodeKey].nodeName = tempNewName;
     setNodeRelationshipMap(tempNodeData);
-    triggerNodeMappingsChange(tempNpdeData, gridBlocks);
+    triggerNodeMappingsChange(tempNodeData, gridBlocks);
   
     setTempNewName("");
   }
@@ -619,7 +619,7 @@ export default function NodeManager({projectName, currUser,
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
-    triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
+    triggerNodeMappingsChange(tempNodeRelMap, gridBlocks);
 
   }
 
@@ -639,7 +639,7 @@ export default function NodeManager({projectName, currUser,
 
     setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
-    triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
+    triggerNodeMappingsChange(tempNodeRelMap, gridBlocks);
 
     updateRenderCounter();
   }

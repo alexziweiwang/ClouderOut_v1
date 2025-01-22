@@ -363,6 +363,8 @@ export default function GameMaker({username, projectName}) {
         },
 },
 */   
+
+
   
 
   const [currentProjectNav, setCurrentProjectNav] = useState({
@@ -639,6 +641,173 @@ export default function GameMaker({username, projectName}) {
   const [gameDataDesignList, setGameDataDesignList] = useState({});
   const [gameDataArray, setGameDataArray] = useState([]);
 
+  function manuallyResetWithSampleData() {
+
+  setChapterNodeMapAll({
+    "chp-key1": {"chp-key1_start": {
+      nodeName: "chapterStart1-title", 
+      row: 2, 
+      col: 0, 
+      nextNode:"A1-key", 
+      display: true, 
+      nodeType:"*chapterStart*", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "A1-key": {
+      nodeName: "A1-title", 
+      row: 2, 
+      col: 1, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "B1-key": {
+      nodeName: "B1-title", 
+      row: 4, 
+      col: 3, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "C1-key": {
+      nodeName: "C1-title", 
+      row: 4, 
+      col: 0, 
+      spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  
+      display: true, 
+      nodeType:"LogicSplitter",
+      notes: "",
+  },
+  "D1-key": {
+      nodeName: "D1-title", 
+      row: 2, 
+      col: 4, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "E1-key": {
+      nodeName: "E1-title", 
+      row: 2, 
+      col: 5, 
+      nextNode: "chp-key1_end", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "chp-key1_end": {
+      nodeName: "chapterEnd1-title", 
+      row: 4, 
+      col: 6, 
+      nextNode: "", 
+      display: true, 
+      nodeType:"*chapterEnd*", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+},
+"chp-key2": {"chp-key2_start": {
+    nodeName: "chapterStart2-title", 
+    row: 2, 
+    col: 0, 
+    nextNode:"A2-key", 
+    display: true, 
+    nodeType:"*chapterStart*", 
+    screenSize:"4:3(horizonal)",
+    notes: "",
+},
+"A2-key": {
+    nodeName: "A2-title", 
+    row: 2, 
+    col: 1, 
+    nextNode:"", 
+    display: true, 
+    nodeType:"Conversation", 
+    screenSize:"4:3(horizonal)",
+    notes: "",
+},
+"B2-key": {
+    nodeName: "B2-title", 
+    row: 4, 
+    col: 3, 
+    nextNode:"", 
+    display: true, 
+    nodeType:"Conversation", 
+    screenSize:"4:3(horizonal)",
+    notes: "",
+},
+"C2-key": {
+    nodeName: "C2-title", 
+    row: 4, 
+    col: 0, 
+    spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],    //TODO refactor 
+    display: true, 
+    nodeType:"LogicSplitter",
+    notes: "",
+},
+"D2-key": {
+  nodeName: "D2-title", 
+  row: 2, 
+  col: 4, 
+  nextNode: "", 
+  display: true, 
+  nodeType:"Conversation", 
+  screenSize:"4:3(horizonal)",
+  notes: "",
+},
+"E2-key": {
+  nodeName: "E2-title", 
+  row: 2, 
+  col: 5, 
+  nextNode: "chp-key2_end", 
+  display: true, 
+  nodeType:"Conversation", 
+  screenSize:"4:3(horizonal)",
+  notes: "",
+},
+"chp-key2_end": {
+  nodeName: "chapterEnd2-title", 
+  row: 4, 
+  col: 6, 
+  nextNode:"", 
+  display: true, 
+  nodeType:"*chapterEnd*", 
+  screenSize:"4:3(horizonal)",
+  notes: "",
+},
+},
+  });
+  setGridBlocksAll({
+    "chp-key1": 
+    [
+      ["","","","","","","","","",""], 
+      ["","","","","","","","","",""],
+      ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
+      ["","","","","","","","","",""],
+      ["C1-key","","","B1-key","","","chp-key1_end","","",""]
+    ]
+  ,
+    "chp-key2": [
+        ["","","","","","","","","",""], 
+        ["","","","","","","","","",""],
+        ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
+        ["","","","","","","","","",""],
+        ["C2-key","","","B2-key","","","chp-key2_end","","",""]
+    ],  
+
+  }); //stores node-keys
+
+
+  }
+
   async function fetchGameDataFromCloud() { //TODO3
 
    // console.log("!!! This is for project: ", projectName);
@@ -717,7 +886,11 @@ export default function GameMaker({username, projectName}) {
     window.onbeforeunload = () => {
       return "show message";
     }
-                  console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
+                              console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
+                  
+                  
+                              console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
+
 
     if (firstTimeEnter === true) {
 
@@ -1526,9 +1699,15 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   }
 
-  function triggerNodeMappingsChange(nodeMapTemp, gridBlocksTemp) {
-    setGridBlocksAll(gridBlocksTemp);
-    setChapterNodeMapAll(nodeMapTemp);
+  function triggerNodeMappingsChange(nodeMapThisChapter, gridBlocksThisChapter) {
+    let gridAll = gridBlocksAll;
+    gridAll[currChapterKey] = gridBlocksThisChapter;
+
+    let nodeMapAll = chapterNodeMapAll;
+    nodeMapAll[currChapterKey] = nodeMapThisChapter;
+
+    setGridBlocksAll(gridAll);
+    setChapterNodeMapAll(nodeMapAll);
 
     setNodeMapUpdatedSignal(true);
     setGridBlocksUpdatedSignal(true);
@@ -1642,8 +1821,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           getNodeMapOfChapter={passInCurrentChapterNodeMap}
           getCurrChapterKey={passInCurrentChapterKey}
           getGridBlocks={passInCurrentGridBlocks}
-          initialNodeMap={currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {}}
-          initialGridBlock={currChapterKey !== "" ? gridBlocksAll[currChapterKey] : []}
+          initialNodeMap={(currChapterKey !== "" && chapterNodeMapAll[currChapterKey] !== undefined) ? chapterNodeMapAll[currChapterKey] : {}}
+          initialGridBlock={(currChapterKey !== "" && gridBlocksAll[currChapterKey] !== undefined) ? gridBlocksAll[currChapterKey] : []}
           updateNodeMapOfChapter={updateNodeMapOfChapter}
           updateGridBlockOfChapter={updateGridBlockOfChapter}
           getGameData={passInGameDataDesignList}
