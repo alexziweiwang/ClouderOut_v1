@@ -1776,6 +1776,10 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                         }}
                       ></input><label>TEST toggle: Use Cloud Data</label>
                       <label>Status: {developOnCloudData === true ? "true" : "false"}</label>
+                        <button
+                          style={{"backgroundColor": "pink"}}
+                          onClick={()=>{manuallyResetWithSampleData();}}
+                        >reset ds for chapters&nodes</button>
                     </div>
     {/*//TODO TESTING */}
 

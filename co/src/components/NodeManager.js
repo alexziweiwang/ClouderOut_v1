@@ -1333,7 +1333,9 @@ export default function NodeManager({projectName, currUser,
 
 
               {nodeRelationshipMap[clickedNodeKey] !== undefined
-              && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" && <div>
+              && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" 
+              && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*" 
+              && <div>
                 <p className="sectionHeader"> 
                 {nextNodeText} </p>
                 {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
@@ -1354,11 +1356,18 @@ export default function NodeManager({projectName, currUser,
                             if (item === undefined) {
                               return;
                             }
+                            let nodeType = item["nodeType"];
+                            let boolVal = true;
+                            if (nodeType === "*chapterStart*") {
+                              boolVal = false;
+                            }
                             
                             let opKey = "opnextnode-" + currKey;
-                            return (
-                              <option key={opKey} value={currKey}>{item["nodeName"]}</option>
-                            );
+                            if (nodeType !== "*chapterStart*") {
+                                return (
+                                  <option key={opKey} value={currKey}>{item["nodeName"]}</option>
+                                );
+                            }
                         })}
                 </select>
                 <button onClick={()=>{
