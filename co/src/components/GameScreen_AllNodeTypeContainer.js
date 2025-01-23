@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import langDictionary from './textDictionary';
 
-import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
+import GameScreen_InPracShell_ConvNode from './GameScreen_QuickView_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
 
@@ -40,6 +40,13 @@ export default function GameScreen_AllNodeTypeContainer({
     const [allChapterList, setAllChapterList] = useState([]);
 
     const [jumpNodeSignal, setJumpNodeSignal] = useState(false);
+
+    const[currGameDataTracker, setCurrGameDataTracker] = useState({});
+
+    const[visualList, setVisualList] = useState({});
+    const[audioList, setAudioList] = useState({});
+
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -283,6 +290,26 @@ return (<div
     >
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
+
+
+       <GameScreen_InPracShell_ConvNode
+       
+            nodeKey={currNodeKey}
+            
+            screenWidth={screenWidth}
+            screenHeight={screenHeight}
+                
+            uiLanguage={uiLanguage}
+            
+            username={username}
+            projectname={projectname}
+            
+            enteringEmuGameDataTracker={currGameDataTracker}
+
+            visualList={visualList}
+            audioList={audioList}
+       
+       />
 
 
     {/* //TODO39 conv-node-compo */}

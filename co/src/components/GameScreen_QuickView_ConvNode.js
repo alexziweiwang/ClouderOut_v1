@@ -5,13 +5,14 @@ import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 // includes conversational-node content+UI
-export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getResetSignal, getResetInfoSets, notifyAfterReset,
+export default function GameScreen_QuickView_ConvNode ({
+    initialPieceNum, 
+    getResetSignal, getResetInfoSets, notifyAfterReset,
     isDisplay, screenWidth, screenHeight, allPieceContent, 
     uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
     visualList, audioList, 
     buttonConsequenceByStatementEntireArray,
     
-
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
 
 }) { //temp: not holding game-data-tracker
@@ -240,11 +241,11 @@ export default function GameScreen_QuickView_ConvNode ({initialPieceNum, getRese
                         "width": `${screenWidth}px`,
                         "top": "0px"
                     }}
-                    // onClick={()=>{  //TODO test before removing!
-                    //     if (allPieceContent[currPieceNum]["stnd_btn_arr"].length === 0) {
-                    //         triggerClickOnGameScreen();
-                    //     }
-                    // }} //TODO test before removing!
+                                // onClick={()=>{  //TODO test before removing!
+                                //     if (allPieceContent[currPieceNum]["stnd_btn_arr"].length === 0) {
+                                //         triggerClickOnGameScreen();
+                                //     }
+                                // }} //TODO test before removing!
                     >
 
             {<div style={{

@@ -1,10 +1,9 @@
-export default function ({
+import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
-    allPieceContent,
-    uiData1_textframe,
-    uiData2_buttonOption,
-    uiData3_ConvNavigation,
-    uiData4_logPageSettings,
+
+export default function GameScreen_InPracShell_ConvNode ({
+
+    nodeKey,
     
     screenWidth,
     screenHeight,
@@ -19,8 +18,6 @@ export default function ({
     visualList,
     audioList,
 
-
-    buttonConsequenceByStatementEntireArray,
 }) {
 
     const initialPieceNum = 0;
@@ -130,7 +127,40 @@ return (<div>
 
 
 
+      <GameScreen_QuickView_ConvNode
+                    isDisplay={true} 
+                    screenWidth={screenWidth}
+                    screenHeight={screenHeight}
 
+                    initialPieceNum={0}
+                    allPieceContent={allPieceContent}
+                    
+                    uiData1_textframe={uiData1_textframe}
+                    uiData2_buttonOption={uiData2_buttonOption}
+                    uiData3_ConvNavigation={uiData3_ConvNavigation} 
+                    uiData4_logPageSettings={uiData4_logPageSettings}
+                    
+                    visualList={visualList} 
+                    audioList={audioList}
+
+                    gameData={gameDataTracker}
+                    getCurrPieceNum={passInCurrPieceNum}
+
+                    getResetSignal={passInResetSignal}
+                    getResetInfoSets={passInResetInfoSets}
+
+
+                    triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
+                    getIsGameScreenClicked={passInIsGameScreenClicked}
+
+                    notifyNewGameData={notifyNewGameData}
+                    notifyAfterReset={notifyAfterReset}
+
+                    receiveGameDataObj={passInGameDataFromScreen}
+                    buttonConseqByStatement={changeGameDataTrackerByStatement}
+                    buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
+                />
+                
 
 
 

@@ -416,7 +416,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     gameData={gameDataTracker}
                     getCurrPieceNum={passInCurrPieceNum}
 
-
                     getResetSignal={passInResetSignal}
                     getResetInfoSets={passInResetInfoSets}
 
