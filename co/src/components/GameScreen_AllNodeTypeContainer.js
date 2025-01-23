@@ -46,6 +46,8 @@ export default function GameScreen_AllNodeTypeContainer({
     const[visualList, setVisualList] = useState({});
     const[audioList, setAudioList] = useState({});
 
+    const[visualMap, setVisualMap] = useState({});
+    const[audioMap, setAudioMap] = useState({});
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -293,7 +295,7 @@ return (<div
 
 
        <GameScreen_InPracShell_ConvNode
-       
+            chapterKey={currChapterKey}
             nodeKey={currNodeKey}
             
             screenWidth={screenWidth}
@@ -306,8 +308,12 @@ return (<div
             
             enteringEmuGameDataTracker={currGameDataTracker}
 
-            visualList={visualList}
-            audioList={audioList}
+            visualList={visualList} //TODO empty so far
+            audioList={audioList} //TODO empty so far
+
+
+            visualMap={visualMap} //TODO empty so far
+            audioMap={audioMap} //TODO empty so far
        
        />
 

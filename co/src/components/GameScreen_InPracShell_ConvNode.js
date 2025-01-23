@@ -1,9 +1,9 @@
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
-
+import { fetchNodeData } from '../viewmodels/NodeDataInPlayViewModel';
 
 export default function GameScreen_InPracShell_ConvNode ({
-
+    chapterKey,
     nodeKey,
     
     screenWidth,
@@ -39,6 +39,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     const [bgpSource, setBgpSource] = useState("");
 
     const [allPieceContent, setAllPieceContent] = useState({});
+    const [allPieceUI, setAllPieceUI] = useState({});
 
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
@@ -49,6 +50,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     useEffect(() => {
  
         if (firstTimeEnter === true) {
+            initializeDataFromCloud();
 
             setFirstTimeEnter(false);
         }
@@ -56,6 +58,7 @@ export default function GameScreen_InPracShell_ConvNode ({
         updateCharPicArr();
         updateBgmSource();
         updateBgpSource();
+
         
 
         if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
@@ -84,6 +87,27 @@ export default function GameScreen_InPracShell_ConvNode ({
         }
 
     }); //-- useEffect --
+
+    async function initializeDataFromCloud() {
+      let obj = await fetchNodeData({
+          projectName: projectname, 
+          uname: username, 
+          chapterKey: chapterKey,
+          nodeKey: nodeKey
+      });
+
+      if (obj === undefined || obj === null) {
+        return;
+      }
+
+      
+      // setAllPieceContent(obj[nodeContent]); //TODO test later
+      // setAllPieceUI(obj[nodeUISettings]); //TODO test later
+      
+                          // obj[nodeContent] 
+                          // obj[nodeUISettings] 
+
+    }
 
 
     function updateCharPicArr() {
@@ -143,8 +167,8 @@ return (<div>
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     
-                    visualList={visualList} 
-                    audioList={audioList}
+                    visualList={visualList}  //TODO use map later?
+                    audioList={audioList}  //TODO use map later?
 
                     gameData={gameDataTracker}
                     getCurrPieceNum={passInCurrPieceNum}
