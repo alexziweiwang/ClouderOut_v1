@@ -158,6 +158,7 @@ export default function ConversationNodeEditingPanel() {
         "picPair": "" //TODO impl
 
     }); //TODO fetch from cloud-db
+
     const [gameUITextFrame, setGameUITextFrame] = useState({"width": 600,
     "height": 200,
     "positionX": 100,
@@ -182,6 +183,7 @@ export default function ConversationNodeEditingPanel() {
     "picPair": "" //TODO impl
 
 }); //TODO fetch from cloud-db
+
     const [gameUIBackButton, setGameUIBackButton] = useState({"width": 50,
     "height": 50,
     "cornerRadius": 0,
@@ -700,15 +702,37 @@ export default function ConversationNodeEditingPanel() {
     } 
 
     async function saveAllToCloud() {
+        let uiObj = {
+            defaultButton: gameUIDefaultButton,
+            textFrame: gameUITextFrame,
+            backButton: gameUIBackButton,
+            convNav: uiConvNav,
+            logPage: logPageUISettings
 
-        await convSingleNodeUpdateToCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey, dataObj: pieceDataStructure})
-            .then((res)=>{
+        }; 
+        //TODO31
+        //gameUIDefaultButton, gameUITextFrame, gameUIBackButton, uiConvNav, logPageUISettings
+
+
+
+
+        await convSingleNodeUpdateToCloudVM({
+            project: state.projectName, 
+            username: state.userName, 
+            chapterKey: chapterKey, 
+            nodeKey: nodeKey, 
+            dataObj: pieceDataStructure, 
+            uiDataObj: uiObj
+        })
+            
+            
+            
+        .then((res)=>{
                 if (res === "node-update-ok") {
                     alert("Saved to Cloud!")
                 } else {
                     alert("Node not exist on cloud!");
                 }
-
             }
 
         );
