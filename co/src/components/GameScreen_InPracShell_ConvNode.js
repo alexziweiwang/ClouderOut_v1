@@ -1,6 +1,7 @@
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 
+
 export default function GameScreen_InPracShell_ConvNode ({
 
     nodeKey,
@@ -36,6 +37,8 @@ export default function GameScreen_InPracShell_ConvNode ({
     
     const [bgmSource, setBgmSource] = useState("");
     const [bgpSource, setBgpSource] = useState("");
+
+    const [allPieceContent, setAllPieceContent] = useState({});
 
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
