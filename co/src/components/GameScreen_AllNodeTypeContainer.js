@@ -5,7 +5,7 @@ import langDictionary from './textDictionary';
 import GameScreen_InPracShell_ConvNode from './GameScreen_QuickView_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
-import { fetchNodeDataVM } from '../viewmodels/NodeDataInPlayViewModel';
+import { fetchNodeDataEachNodeVM } from '../viewmodels/NodeDataInPlayViewModel';
 
 
 export default function GameScreen_AllNodeTypeContainer({
@@ -13,6 +13,11 @@ export default function GameScreen_AllNodeTypeContainer({
     getChapterKey, 
     getNodeKey,
     getChapterTitle,
+    initialNodeType, 
+    initialChapterKey, 
+    initialNodeKey,
+    initialChapterTitle,
+
     getCurrentGameDataTracker,
     getCurrChapterAllNodeMapping,
     getAllChapterList,
@@ -28,10 +33,11 @@ export default function GameScreen_AllNodeTypeContainer({
     const [screenHeight, setScreenHeight] = useState(450); //TODO /* according to current node's size */
 
 
-    const [currNodeType, setCurrNodeType] = useState("");
-    const [currNodeKey, setCurrNodeKey] = useState("");
-    const [currChapterKey, setCurrChapterKey] = useState("");
-    const [currChapterTitle, setCurrChapterTitle] = useState("");
+    const [currNodeType, setCurrNodeType] = useState(initialNodeType);
+    const [currNodeKey, setCurrNodeKey] = useState(initialNodeKey);
+    const [currChapterKey, setCurrChapterKey] = useState(initialChapterKey);
+    const [currChapterTitle, setCurrChapterTitle] = useState(initialChapterTitle);
+
 
     const [holdingNextNode, setHoldingNextNode] = useState("");
 
@@ -63,24 +69,26 @@ export default function GameScreen_AllNodeTypeContainer({
         if (firstTimeEnter === true) {
             //TODO
                                             console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER");
-            
-                let nodeTypeTemp = getNodeType(); //entering-data only
-                setCurrNodeType(nodeTypeTemp); 
+                                        
+                                            // let nodeTypeTemp = getNodeType(); //entering-data only
+                                            // setCurrNodeType(nodeTypeTemp); 
 
-                let chapterKeyTemp = getChapterKey(); //entering-data only
-                setCurrChapterKey(chapterKeyTemp);
+                                            // let chapterKeyTemp = getChapterKey(); //entering-data only
+                                            // setCurrChapterKey(chapterKeyTemp);
 
-                let nodeKeyTemp = getNodeKey(); //entering-data only
-                if (nodeKeyTemp !== currNodeKey) {
-                    setCurrNodeKey(nodeKeyTemp);
-                    setupScreenSizeByNodeKey(nodeKeyTemp);            
-                }
+                                            // let nodeKeyTemp = getNodeKey(); //entering-data only
+                                            // if (nodeKeyTemp !== currNodeKey) {
+                                            //     setCurrNodeKey(nodeKeyTemp);
+                                            //     setupScreenSizeByNodeKey(nodeKeyTemp);            
+                                            // }
 
-                let chapterTitleTemp = getChapterTitle(); //entering-data only
-                setCurrChapterTitle(chapterTitleTemp);
+                                            // let chapterTitleTemp = getChapterTitle(); //entering-data only
+                                            // setCurrChapterTitle(chapterTitleTemp);
 
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
+                initializeAllNodeDataContainer(nodeMappingTemp);
+                                                                console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
                 initializeChapterArray(chapterListTemp);
@@ -156,6 +164,30 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    async function initializeAllNodeDataContainer(nodeMappingTemp) {
+        //TODO51 by node-list, pre-fetch node(s) data and store into allNodeDataContainer
+        let containerTemp = {};
+
+        Object.keys(nodeMappingTemp).map((chapterKey) => {
+            let currChapterAllNodes = nodeMappingTemp[chapterKey];
+            Object.keys(currChapterAllNodes).map((nodeKey) => {
+                let keyStr = chapterKey + "--" + nodeKey;
+                        //TODO fetch "nodes" folder from cloud
+
+                containerTemp[keyStr] = nodeMappingTemp[nodeKey];
+
+            });
+
+        
+        
+        });
+
+                console.log("initialized all-container: ", containerTemp);
+
+        setAllNodeDataContainer(containerTemp);
+
+    }
+
     async function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
 //allNodeDataContainer, setAllNodeDataContainer
         let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
@@ -163,9 +195,11 @@ export default function GameScreen_AllNodeTypeContainer({
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
                                                     console.log(" \t\t... already in map, ", allNodeDataContainer[keyStr]);
             return allNodeDataContainer[keyStr];
+
+
         } else {
             //cloud func
-            let dataObj = await fetchNodeDataVM({
+            let dataObj = await fetchNodeDataEachNodeVM({
                 projectName: projectname, 
                 uname: username, 
                 chapterKey: chapterKeyTemp, 
@@ -214,7 +248,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
                                 console.log("\tnext-node-key is ...", nextNodeKey);
 
-                                
+
             if (nextNodeKey.length > 0) {
                 setHoldingNextNode(nextNodeKey);
 
@@ -300,7 +334,7 @@ export default function GameScreen_AllNodeTypeContainer({
     async function getCurrNodeDataFromCloud() {
 
 
-        let obj = await fetchNodeDataVM({
+        let obj = await fetchNodeDataEachNodeVM({
             projectName: projectname, 
             uname: username, 
             chapterKey: currChapterKey, 

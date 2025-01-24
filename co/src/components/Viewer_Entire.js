@@ -308,8 +308,6 @@ export default function Viewer_Entire({
 
     }
 
-                                   
-
 return(<>
 
 <div>
@@ -346,6 +344,12 @@ return(<>
                                                 getChapterKey={passInChapterKey} 
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
+//TODO31
+                                                initialNodeType={currentGameStatusProgress["nodeType"]}
+                                                initialChapterKey={currentGameStatusProgress["chapterKey"]}
+                                                initialNodeKey={currentGameStatusProgress["nodeKey"]}
+                                                initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
+
                                                 getCurrentGameDatTracker={getPlayerGameData}
                                                 getCurrChapterAllNodeMapping={getCurrChapterAllNodeMapping}
                                                 getAllChapterList={getChapterList}

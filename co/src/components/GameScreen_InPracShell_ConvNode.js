@@ -86,7 +86,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     }); //-- useEffect --
 
     async function initializeDataFromCloud() {
-      let obj = await fetchNodeData({
+      let obj = await fetchNodeDataEachNode({
           projectName: projectname, 
           uname: username, 
           chapterKey: chapterKey,

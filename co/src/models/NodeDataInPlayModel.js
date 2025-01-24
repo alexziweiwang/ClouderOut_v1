@@ -2,7 +2,7 @@ import  {db} from '../GoogleCloudConnections';
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 
-export async function fetchNodeData({projectName, uname, chapterKey, nodeKey}) {
+export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nodeKey}) {
 
     let obj = {};
 
@@ -19,9 +19,16 @@ export async function fetchNodeData({projectName, uname, chapterKey, nodeKey}) {
     obj["nodeContent"] = nodeContentData;
     obj["nodeUISettings"] = nodeUIData;
 
-            console.log("\t\t\tfetchNodeData-func,   node all info = ", obj);
+            console.log("\t\t\tfetchNodeDataEachNode-func,   node all info = ", obj);
 
 
     return obj;
+
+}
+
+
+export async function fetchNodeDataEachChapter({projectName, uname, chapterKey}) {
+    
+
 
 }
