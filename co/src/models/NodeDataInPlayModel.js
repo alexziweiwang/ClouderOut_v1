@@ -1,3 +1,7 @@
+import  {db} from '../GoogleCloudConnections';
+import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
+
+
 export async function fetchNodeData({projectName, uname, chapterKey, nodeKey}) {
 
     let obj = {};
@@ -5,7 +9,6 @@ export async function fetchNodeData({projectName, uname, chapterKey, nodeKey}) {
     const projectNodeRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterKey, "nodes", nodeKey);
     const projectNodeSnap = await getDoc(projectNodeRef);
   
-                                  console.log("model-func-fetchNodeData-  ", dataObj, " for node - ", nodeKey);
     if (!projectNodeSnap.exists()) {
       return "node-not-exist";
     }
@@ -13,8 +16,8 @@ export async function fetchNodeData({projectName, uname, chapterKey, nodeKey}) {
     let nodeContentData = projectNodeSnap.data().nodeContent;
     let nodeUIData = projectNodeSnap.data().nodeUISettings;
 
-    obj[nodeContent] = nodeContentData;
-    obj[nodeUISettings] = nodeUIData;
+    obj["nodeContent"] = nodeContentData;
+    obj["nodeUISettings"] = nodeUIData;
 
             console.log("node all info = ", obj);
 

@@ -1,7 +1,7 @@
-import { fetchNodeData } from '../NodeDataInPlayModel';
+import { fetchNodeData } from '../models/NodeDataInPlayModel';
 
 
-export async function fetchNodeDataVM({projectName, uname, nodeKey}) {
+export async function fetchNodeDataVM({projectName, uname, chapterKey, nodeKey}) {
 
     await fetchNodeData({projectName, uname, chapterKey, nodeKey});
 

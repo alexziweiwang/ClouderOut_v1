@@ -5,6 +5,8 @@ import langDictionary from './textDictionary';
 import GameScreen_InPracShell_ConvNode from './GameScreen_QuickView_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
+import { fetchNodeDataVM } from '../viewmodels/NodeDataInPlayViewModel';
+
 
 export default function GameScreen_AllNodeTypeContainer({
     getNodeType, 
@@ -46,9 +48,10 @@ export default function GameScreen_AllNodeTypeContainer({
     const[visualList, setVisualList] = useState({});
     const[audioList, setAudioList] = useState({});
 
-    const[visualMap, setVisualMap] = useState({});
-    const[audioMap, setAudioMap] = useState({});
-
+    const [audioMap, setAudioMap] = useState({});
+    const [visualMap, setVisualMap] = useState({}); 
+    const [audioMapSize, setAudioMapSize] = useState(0);
+    const [visualMapSize, setVisualMapSize] = useState(0);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -77,6 +80,28 @@ export default function GameScreen_AllNodeTypeContainer({
 
                 let chapterListTemp = getAllChapterList();
                 initializeChapterArray(chapterListTemp);
+
+
+
+                if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+                    let i = 0;
+                    let tempAudioMap = {};
+                    setAudioMapSize(audioList.length);
+                    for (;i < audioList.length; i++) {
+                        let item = audioList[i];
+                        tempAudioMap[item["var"]] = item["url"];
+                    }
+                    setAudioMap(tempAudioMap);
+        
+                    i = 0;
+                    let tempVisualMap = {};
+                    setVisualMapSize(visualList.length);
+                    for (;i < visualList.length; i++) {
+                        let item = visualList[i];
+                        tempVisualMap[item["var"]] = item["url"];
+                    }
+                    setVisualMap(tempVisualMap);
+                }
 
                 setFirstTimeEnter(false);
 
@@ -232,6 +257,25 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    async function getCurrNodeDataFromCloud() {
+
+
+        let obj = await fetchNodeDataVM({
+            projectName: projectname, 
+            uname: username, 
+            chapterKey: currChapterKey, 
+            nodeKey: currNodeKey
+        });
+
+        if (obj === undefined || obj === null) {
+            return;
+        }
+
+        return obj;
+
+
+    }
+
 
 
 
@@ -293,10 +337,8 @@ return (<div
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
 
-
+    {/* //TODO51  */}
        <GameScreen_InPracShell_ConvNode
-            chapterKey={currChapterKey}
-            nodeKey={currNodeKey}
             
             screenWidth={screenWidth}
             screenHeight={screenHeight}
@@ -307,10 +349,6 @@ return (<div
             projectname={projectname}
             
             enteringEmuGameDataTracker={currGameDataTracker}
-
-            visualList={visualList} //TODO empty so far
-            audioList={audioList} //TODO empty so far
-
 
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far

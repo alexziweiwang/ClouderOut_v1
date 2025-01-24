@@ -1,11 +1,8 @@
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
-import { fetchNodeData } from '../viewmodels/NodeDataInPlayViewModel';
 
 export default function GameScreen_InPracShell_ConvNode ({
-    chapterKey,
-    nodeKey,
-    
+
     screenWidth,
     screenHeight,
         
@@ -16,8 +13,8 @@ export default function GameScreen_InPracShell_ConvNode ({
     
     enteringEmuGameDataTracker,
 
-    visualList,
-    audioList,
+    visualMap,
+    audioMap,
 
 }) {
 
@@ -153,7 +150,7 @@ export default function GameScreen_InPracShell_ConvNode ({
 return (<div>
 
 
-
+{/* //TODO51  */}
       <GameScreen_QuickView_ConvNode
                     isDisplay={true} 
                     screenWidth={screenWidth}
@@ -166,9 +163,7 @@ return (<div>
                     uiData2_buttonOption={uiData2_buttonOption}
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
-                    
-                    // visualList={visualList}  //TODO use map later?
-                    // audioList={audioList}  //TODO use map later?
+
                     visualMap={visualMap}
                     audioMap={audioMap}
 
