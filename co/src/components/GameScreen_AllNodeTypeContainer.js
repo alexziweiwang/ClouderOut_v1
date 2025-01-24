@@ -161,6 +161,7 @@ export default function GameScreen_AllNodeTypeContainer({
         let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
+                                                    console.log(" \t\t... already in map, ", allNodeDataContainer[keyStr]);
             return allNodeDataContainer[keyStr];
         } else {
             //cloud func
@@ -170,7 +171,12 @@ export default function GameScreen_AllNodeTypeContainer({
                 chapterKey: chapterKeyTemp, 
                 nodeKey: nodeKeyTemp
             });
+            let tempMap = allNodeDataContainer;
+            tempMap[keyStr] = dataObj;
+            setAllNodeDataContainer(tempMap);
 
+                                                    console.log(" \t\t... newly added to map, ", dataObj);
+  
             return dataObj;
 
         }
@@ -207,13 +213,16 @@ export default function GameScreen_AllNodeTypeContainer({
             let nextNodeKey = nodeDataTemp["nextNode"];
 
                                 console.log("\tnext-node-key is ...", nextNodeKey);
+
+                                
             if (nextNodeKey.length > 0) {
                 setHoldingNextNode(nextNodeKey);
+
             } else {
 
                 //TODO show user-in-game-warning... and exit normally?
                 
-                console.log("no next-node!!");
+                                                        console.log("no next-node!!");
             }
 
 
@@ -244,7 +253,11 @@ export default function GameScreen_AllNodeTypeContainer({
         setCurrNodeType(upcomingNodeType);
         setCurrNodeKey(holdingNextNode);
         //set upcoming-node's actual data
-        fetchOrFindNodeData(currChapterKey, holdingNextNode);
+        if (upcomingNodeType !== "*chapterStart*" && upcomingNodeType !== "*chapterEnd*") {
+            fetchOrFindNodeData(currChapterKey, holdingNextNode);
+        }
+
+
     }
 
     function walkToNextChapter() {
@@ -266,10 +279,6 @@ export default function GameScreen_AllNodeTypeContainer({
                     let nextStartNodeKey = nextChapterItem[0] + "_start";
                     setCurrNodeKey(nextStartNodeKey);
                     setCurrNodeType("*chapterStart*");
-
-                    //setup upcoming-node's actual data
-                    fetchOrFindNodeData(nextChapterItem[0], nextStartNodeKey);
-
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;

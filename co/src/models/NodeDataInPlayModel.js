@@ -19,7 +19,7 @@ export async function fetchNodeData({projectName, uname, chapterKey, nodeKey}) {
     obj["nodeContent"] = nodeContentData;
     obj["nodeUISettings"] = nodeUIData;
 
-            console.log("node all info = ", obj);
+            console.log("\t\t\tfetchNodeData-func,   node all info = ", obj);
 
 
     return obj;
