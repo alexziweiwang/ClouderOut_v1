@@ -10,8 +10,11 @@ export default function GameScreen_QuickView_ConvNode ({
     getResetSignal, getResetInfoSets, notifyAfterReset,
     isDisplay, screenWidth, screenHeight, allPieceContent, 
     uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
-    visualList, audioList, 
+    // visualList, audioList,  //TODO remove later
+
+    visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
+
     
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
 
@@ -31,10 +34,10 @@ export default function GameScreen_QuickView_ConvNode ({
         const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
         const [autoMode, setAutoMode] = useState(false);
     
-        const [audioMap, setAudioMap] = useState({});
-        const [visualMap, setVisualMap] = useState({}); 
-        const [audioMapSize, setAudioMapSize] = useState(0);
-        const [visualMapSize, setVisualMapSize] = useState(0);
+        // const [audioMap, setAudioMap] = useState({});
+        // const [visualMap, setVisualMap] = useState({}); 
+        // const [audioMapSize, setAudioMapSize] = useState(0);
+        // const [visualMapSize, setVisualMapSize] = useState(0);
         
         const [bgmSource, setBgmSource] = useState("");
         const [bgpSource, setBgpSource] = useState("");
@@ -84,27 +87,32 @@ export default function GameScreen_QuickView_ConvNode ({
             updateCharPicArr();
             updateBgmSource();
             updateBgpSource();
+      
             
+
+            //TODO remove later
+            // if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+            //     let i = 0;
+            //     let tempAudioMap = {};
+            //     setAudioMapSize(audioList.length);
+            //     for (;i < audioList.length; i++) {
+            //         let item = audioList[i];
+            //         tempAudioMap[item["var"]] = item["url"];
+            //     }
+            //     setAudioMap(tempAudioMap);
     
-            if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-                let i = 0;
-                let tempAudioMap = {};
-                setAudioMapSize(audioList.length);
-                for (;i < audioList.length; i++) {
-                    let item = audioList[i];
-                    tempAudioMap[item["var"]] = item["url"];
-                }
-                setAudioMap(tempAudioMap);
-    
-                i = 0;
-                let tempVisualMap = {};
-                setVisualMapSize(visualList.length);
-                for (;i < visualList.length; i++) {
-                    let item = visualList[i];
-                    tempVisualMap[item["var"]] = item["url"];
-                }
-                setVisualMap(tempVisualMap);
-            }
+            //     i = 0;
+            //     let tempVisualMap = {};
+            //     setVisualMapSize(visualList.length);
+            //     for (;i < visualList.length; i++) {
+            //         let item = visualList[i];
+            //         tempVisualMap[item["var"]] = item["url"];
+            //     }
+            //     setVisualMap(tempVisualMap);
+            // }
+            //TODO remove later
+
+
 
  
             if (allPieceContent[currPieceNum].displayTextFrame === false) {

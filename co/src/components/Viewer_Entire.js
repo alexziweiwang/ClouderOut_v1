@@ -118,7 +118,7 @@ export default function Viewer_Entire({
 //TODO settled/fixed data
 //resource maps (visual & audio) [settled once started]
 //node-inside-content: 
-            // conv-node: <GameScreen_QuickView_ConvNode/>
+            // conv-node:
             // card-game, or board-game, etc.
                
 

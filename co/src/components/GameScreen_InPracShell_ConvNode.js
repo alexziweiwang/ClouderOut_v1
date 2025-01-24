@@ -167,8 +167,10 @@ return (<div>
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     
-                    visualList={visualList}  //TODO use map later?
-                    audioList={audioList}  //TODO use map later?
+                    // visualList={visualList}  //TODO use map later?
+                    // audioList={audioList}  //TODO use map later?
+                    visualMap={visualMap}
+                    audioMap={audioMap}
 
                     gameData={gameDataTracker}
                     getCurrPieceNum={passInCurrPieceNum}
