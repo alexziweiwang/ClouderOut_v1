@@ -53,32 +53,36 @@ export default function GameScreen_AllNodeTypeContainer({
     const [audioMapSize, setAudioMapSize] = useState(0);
     const [visualMapSize, setVisualMapSize] = useState(0);
 
+
+    const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+
     useEffect(() => {
  
         if (firstTimeEnter === true) {
             //TODO
                                             console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER");
             
-                let nodeTypeTemp = getNodeType();
-                setCurrNodeType(nodeTypeTemp);
+                let nodeTypeTemp = getNodeType(); //entering-data only
+                setCurrNodeType(nodeTypeTemp); 
 
-                let chapterKeyTemp = getChapterKey();
+                let chapterKeyTemp = getChapterKey(); //entering-data only
                 setCurrChapterKey(chapterKeyTemp);
 
-                let nodeKeyTemp = getNodeKey();
+                let nodeKeyTemp = getNodeKey(); //entering-data only
                 if (nodeKeyTemp !== currNodeKey) {
                     setCurrNodeKey(nodeKeyTemp);
                     setupScreenSizeByNodeKey(nodeKeyTemp);            
                 }
 
-                let chapterTitleTemp = getChapterTitle();
+                let chapterTitleTemp = getChapterTitle(); //entering-data only
                 setCurrChapterTitle(chapterTitleTemp);
 
-                let nodeMappingTemp = getCurrChapterAllNodeMapping();
+                let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
 
-                let chapterListTemp = getAllChapterList();
+                let chapterListTemp = getAllChapterList(); //entering-data only
                 initializeChapterArray(chapterListTemp);
 
 
@@ -107,7 +111,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
         } else {
             if (jumpNodeSignal == true) {
-                switchToNextNode();
+                walkToNextNode();
 
                 setJumpNodeSignal(false);
             }
@@ -149,6 +153,27 @@ export default function GameScreen_AllNodeTypeContainer({
         //setScreenWidth
         //setScreenHeight
 
+
+    }
+
+    async function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
+//allNodeDataContainer, setAllNodeDataContainer
+        let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
+
+        if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
+            return allNodeDataContainer[keyStr];
+        } else {
+            //cloud func
+            let dataObj = await fetchNodeDataVM({
+                projectName: projectname, 
+                uname: username, 
+                chapterKey: chapterKeyTemp, 
+                nodeKey: nodeKeyTemp
+            });
+
+            return dataObj;
+
+        }
 
     }
 
@@ -202,7 +227,7 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
 
-    function switchToNextNode() {
+    function walkToNextNode() {
 
         //TODO after receiving switch-signal
         
@@ -217,10 +242,12 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
         setCurrNodeType(upcomingNodeType);
-        setCurrNodeKey(holdingNextNode)
+        setCurrNodeKey(holdingNextNode);
+        //set upcoming-node's actual data
+        fetchOrFindNodeData(currChapterKey, holdingNextNode);
     }
 
-    function switchToNextChapter() {
+    function walkToNextChapter() {
         console.log("current chapter = ", currChapterKey);
 
         let i = 0;
@@ -239,6 +266,10 @@ export default function GameScreen_AllNodeTypeContainer({
                     let nextStartNodeKey = nextChapterItem[0] + "_start";
                     setCurrNodeKey(nextStartNodeKey);
                     setCurrNodeType("*chapterStart*");
+
+                    //setup upcoming-node's actual data
+                    fetchOrFindNodeData(nextChapterItem[0], nextStartNodeKey);
+
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;
@@ -317,7 +348,7 @@ return (<div
         onClick={()=>{
 
             //TODO switch to next chapter!
-            switchToNextChapter();
+            walkToNextChapter();
         }}
     >
     *chapterEnd*<br></br>
@@ -338,7 +369,7 @@ return (<div
     chapter = {currChapterKey}, node-key = {currNodeKey}
 
     {/* //TODO51  */}
-       <GameScreen_InPracShell_ConvNode
+       {/* <GameScreen_InPracShell_ConvNode
             
             screenWidth={screenWidth}
             screenHeight={screenHeight}
@@ -353,7 +384,7 @@ return (<div
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far
        
-       />
+       /> */}
 
 
     {/* //TODO39 conv-node-compo */}
