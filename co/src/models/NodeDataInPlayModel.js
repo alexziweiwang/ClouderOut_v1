@@ -28,7 +28,18 @@ export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nod
 
 
 export async function fetchNodeDataEachChapter({projectName, uname, chapterKey}) {
-    
 
+    let dataMap = {};
 
+    const q = query(collection(db, "user_projects", uname, "projects", projectName, "chapters", chapterKey, "nodes"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+
+                                        console.log("\t\t\tid = ", doc.id, " ... data  = ", doc.data());
+            
+            dataMap[doc.id] = doc.data();
+
+    });
+
+    return dataMap;
 }
