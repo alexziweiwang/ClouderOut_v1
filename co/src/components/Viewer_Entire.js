@@ -42,6 +42,8 @@ export default function Viewer_Entire({
     updateCurrentStanding,
 
     notifyPageStatus,
+    triggerNodeChange,
+    triggerChapterChange,
 
     username,
     projectname,
@@ -314,16 +316,21 @@ export default function Viewer_Entire({
         temp["nodeType"] = nodeTypeName;
 
         setCurrentGameStatusProgress(temp);
+
+        triggerNodeChange(nodeKeyName, nodeTypeName);
     }
 
     function triggerChangeToCurrChapter(chapterKeyName, chapterTitleName) {
         let temp = currentGameStatusProgress;
-        temp["nodeKey"] = chapterKeyName + "_end"; //TODO
-        temp["nodeType"] = "*chapterEnd*";
+        temp["nodeKey"] = chapterKeyName + "_start"; //TODO
+        temp["nodeType"] = "*chapterStart*";
         temp["chapterKey"] = chapterKeyName;
         temp["chapterTitle"] = chapterTitleName;
 
         setCurrentGameStatusProgress(temp);
+
+        triggerChapterChange(chapterKeyName, chapterTitleName);
+
     }
     
 

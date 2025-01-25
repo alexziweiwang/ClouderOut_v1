@@ -1713,7 +1713,17 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setGridBlocksUpdatedSignal(true);
   }
 
+  function triggerNodeChange(nodeKeyName, nodeTypeName) {
+    setCurrTestingNodeKey(nodeKeyName);
+    setCurrTestingNodeType(nodeTypeName);
+  }
 
+  function triggerChapterChange(chapterKeyName, chapterTitleName) {
+    setCurrTestingNodeKey(chapterKeyName + "_start");
+    setCurrTestingNodeType("*chapterStart*");
+    setCurrTestingChapterKey(chapterKeyName);
+    setCurrTestingChapterTitle(chapterTitleName);
+  }
 
 
 //TODO90 page content
@@ -2012,6 +2022,10 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
           getShopItemInfo={passInShopItemInfo}
           getPlayerPurchaseInfo={passInPlayerPurchaseStatus}
+
+          triggerNodeChange={triggerNodeChange}
+          triggerChapterChange={triggerChapterChange }
+
 
 
       />
