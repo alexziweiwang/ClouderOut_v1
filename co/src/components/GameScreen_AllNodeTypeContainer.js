@@ -18,6 +18,9 @@ export default function GameScreen_AllNodeTypeContainer({
     initialNodeKey,
     initialChapterTitle,
 
+    triggerChangeToCurrNode,
+    triggerChangeToCurrChapter,
+
     getCurrentGameDataTracker,
     getCurrChapterAllNodeMapping,
     getAllChapterList,
@@ -139,7 +142,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
     function initializeChapterArray(list) {
         let arr = [];
-            //    console.log("initializeChapterArray-func, input list = ", list);
+                console.log("initializeChapterArray-func, input list = ", list);
 
         let limit = Object.keys(list).length;
         let i = 0;
@@ -308,6 +311,9 @@ export default function GameScreen_AllNodeTypeContainer({
             fetchOrFindNodeData(currChapterKey, holdingNextNode);
         }
 
+        //TODO52 update currentGameStatusProgress
+
+        triggerChangeToCurrNode(holdingNextNode, upcomingNodeType);
 
     }
 
@@ -330,6 +336,11 @@ export default function GameScreen_AllNodeTypeContainer({
                     let nextStartNodeKey = nextChapterItem[0] + "_start";
                     setCurrNodeKey(nextStartNodeKey);
                     setCurrNodeType("*chapterStart*");
+
+                    triggerChangeToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
+
+
+                    //TODO52 update currentGameStatusProgress
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;

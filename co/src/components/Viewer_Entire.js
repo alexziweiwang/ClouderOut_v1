@@ -308,6 +308,25 @@ export default function Viewer_Entire({
 
     }
 
+    function triggerChangeToCurrNode(nodeKeyName, nodeTypeName) {
+        let temp = currentGameStatusProgress;
+        temp["nodeKey"] = nodeKeyName;
+        temp["nodeType"] = nodeTypeName;
+
+        setCurrentGameStatusProgress(temp);
+    }
+
+    function triggerChangeToCurrChapter(chapterKeyName, chapterTitleName) {
+        let temp = currentGameStatusProgress;
+        temp["nodeKey"] = chapterKeyName + "_end"; //TODO
+        temp["nodeType"] = "*chapterEnd*";
+        temp["chapterKey"] = chapterKeyName;
+        temp["chapterTitle"] = chapterTitleName;
+
+        setCurrentGameStatusProgress(temp);
+    }
+    
+
 return(<>
 
 <div>
@@ -344,6 +363,10 @@ return(<>
                                                 getChapterKey={passInChapterKey} 
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
+
+                                                triggerChangeToCurrNode={triggerChangeToCurrNode}     
+                                                triggerChangeToCurrChapter={triggerChangeToCurrChapter}
+
 //TODO31
                                                 initialNodeType={currentGameStatusProgress["nodeType"]}
                                                 initialChapterKey={currentGameStatusProgress["chapterKey"]}
