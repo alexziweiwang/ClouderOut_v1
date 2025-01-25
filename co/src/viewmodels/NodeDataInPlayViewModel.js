@@ -10,6 +10,3 @@ export async function fetchNodeDataEachChapterVM({projectName, uname, chapterKey
     return await fetchNodeDataEachChapter({projectName, uname, chapterKey});
 }
 
-export async function fetchNodeDataEntireProjectVM({projectName, uname}) {
-    return await fetchNodeDataEntireProject({projectName, uname});
-}

@@ -5,7 +5,7 @@ import langDictionary from './textDictionary';
 import GameScreen_InPracShell_ConvNode from './GameScreen_QuickView_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
-import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntireProjectVM } from '../viewmodels/NodeDataInPlayViewModel';
+import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
 
 
 export default function GameScreen_AllNodeTypeContainer({
@@ -68,26 +68,27 @@ export default function GameScreen_AllNodeTypeContainer({
  
         if (firstTimeEnter === true) {
             //TODO
-                                            console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER");
+                                            console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
-                                            // let nodeTypeTemp = getNodeType(); //entering-data only
-                                            // setCurrNodeType(nodeTypeTemp); 
+                                            let nodeTypeTemp = getNodeType(); //entering-data only
+                                            setCurrNodeType(nodeTypeTemp); 
 
-                                            // let chapterKeyTemp = getChapterKey(); //entering-data only
-                                            // setCurrChapterKey(chapterKeyTemp);
+                                            let chapterKeyTemp = getChapterKey(); //entering-data only
+                                            setCurrChapterKey(chapterKeyTemp);
 
-                                            // let nodeKeyTemp = getNodeKey(); //entering-data only
-                                            // if (nodeKeyTemp !== currNodeKey) {
-                                            //     setCurrNodeKey(nodeKeyTemp);
-                                            //     setupScreenSizeByNodeKey(nodeKeyTemp);            
-                                            // }
+                                            let nodeKeyTemp = getNodeKey(); //entering-data only
+                                            if (nodeKeyTemp !== currNodeKey) {
+                                                setCurrNodeKey(nodeKeyTemp);
+                                                setupScreenSizeByNodeKey(nodeKeyTemp);            
+                                            }
 
-                                            // let chapterTitleTemp = getChapterTitle(); //entering-data only
-                                            // setCurrChapterTitle(chapterTitleTemp);
+                                            let chapterTitleTemp = getChapterTitle(); //entering-data only
+                                            setCurrChapterTitle(chapterTitleTemp);
 
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
-                initializeAllNodeDataContainer(nodeMappingTemp);
+                                                                console.log("use-effect, initial-chapter-key = ", initialChapterKey);
+                initializeAllNodeDataContainer(nodeMappingTemp, chapterKeyTemp);
                                                                 console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
@@ -164,34 +165,41 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
-    async function initializeAllNodeDataContainer(nodeMappingTemp) {
+    async function initializeAllNodeDataContainer(nodeMappingTemp, chapterKeyTemp) {
+        if (chapterKeyTemp.length === 0) {
+            return;
+        }
+
         //TODO51 by node-list, pre-fetch node(s) data and store into allNodeDataContainer
         let containerTemp = {};
-
-        let entireProjectData = await fetchNodeDataEntireProjectVM({
-            projectName: projectname, 
-            uname: username, 
-        })
-                                    console.log("?????? entireProjectData: ", entireProjectData);
+                                console.log("%%% chpterKey is [", chapterKeyTemp , "]");
 
 
-        Object.keys(entireProjectData).map((chapterKey) => {
-            let docCollection = entireProjectData[chapterKey];
+     //   Object.keys(nodeMappingTemp).map(async (chapterKey) => {
+ 
+            let docCollection = await fetchNodeDataEachChapterVM({
+                projectName: projectname, 
+                uname: username, 
+                chapterKey: chapterKeyTemp
+            });
 
-                                    console.log("%%% ", chapterKey, ": node-data by each chapter: ", docCollection);
+                                console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", docCollection);
+
 
             Object.keys(docCollection).map((nodeKey) => {
-               let keyStr = chapterKey + "--" + nodeKey;
+               let keyStr = chapterKeyTemp + "--" + nodeKey;
                containerTemp[keyStr] = docCollection[nodeKey];
 
             });
         
-        });
+     //   });
 
-                            console.log("!!!!! initialized all-container: ", containerTemp);
+
+                                console.log("!!!!! initialized all-container: ", containerTemp);
+
 
         setAllNodeDataContainer(containerTemp);
-     
+        
 
                         
 
