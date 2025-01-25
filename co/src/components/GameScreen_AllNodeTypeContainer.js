@@ -5,7 +5,7 @@ import langDictionary from './textDictionary';
 import GameScreen_InPracShell_ConvNode from './GameScreen_QuickView_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
-import { fetchNodeDataEachNodeVM } from '../viewmodels/NodeDataInPlayViewModel';
+import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntireProjectVM } from '../viewmodels/NodeDataInPlayViewModel';
 
 
 export default function GameScreen_AllNodeTypeContainer({
@@ -168,23 +168,32 @@ export default function GameScreen_AllNodeTypeContainer({
         //TODO51 by node-list, pre-fetch node(s) data and store into allNodeDataContainer
         let containerTemp = {};
 
-        Object.keys(nodeMappingTemp).map((chapterKey) => {
-            let currChapterAllNodes = nodeMappingTemp[chapterKey];
-            Object.keys(currChapterAllNodes).map((nodeKey) => {
-                let keyStr = chapterKey + "--" + nodeKey;
-                        //TODO fetch "nodes" folder from cloud
+        let entireProjectData = await fetchNodeDataEntireProjectVM({
+            projectName: projectname, 
+            uname: username, 
+        })
+                                    console.log("?????? entireProjectData: ", entireProjectData);
 
-                containerTemp[keyStr] = nodeMappingTemp[nodeKey];
+
+        Object.keys(entireProjectData).map((chapterKey) => {
+            let docCollection = entireProjectData[chapterKey];
+
+                                    console.log("%%% ", chapterKey, ": node-data by each chapter: ", docCollection);
+
+            Object.keys(docCollection).map((nodeKey) => {
+               let keyStr = chapterKey + "--" + nodeKey;
+               containerTemp[keyStr] = docCollection[nodeKey];
 
             });
-
-        
         
         });
 
-                console.log("initialized all-container: ", containerTemp);
+                            console.log("!!!!! initialized all-container: ", containerTemp);
 
         setAllNodeDataContainer(containerTemp);
+     
+
+                        
 
     }
 
@@ -330,26 +339,6 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     }
-
-    async function getCurrNodeDataFromCloud() {
-
-
-        let obj = await fetchNodeDataEachNodeVM({
-            projectName: projectname, 
-            uname: username, 
-            chapterKey: currChapterKey, 
-            nodeKey: currNodeKey
-        });
-
-        if (obj === undefined || obj === null) {
-            return;
-        }
-
-        return obj;
-
-
-    }
-
 
 
 

@@ -1,4 +1,4 @@
-import { fetchNodeDataEachNode, fetchNodeDataEachChapter } from '../models/NodeDataInPlayModel';
+import { fetchNodeDataEachNode, fetchNodeDataEachChapter, fetchNodeDataEntireProject } from '../models/NodeDataInPlayModel';
 
 
 export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, nodeKey}) {
@@ -8,4 +8,8 @@ export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, n
 
 export async function fetchNodeDataEachChapterVM({projectName, uname, chapterKey}) {
     return await fetchNodeDataEachChapter({projectName, uname, chapterKey});
+}
+
+export async function fetchNodeDataEntireProjectVM({projectName, uname}) {
+    return await fetchNodeDataEntireProject({projectName, uname});
 }
