@@ -977,7 +977,7 @@ const tempFontSize = 12;
 
                 "display": navObj["settingPage-entriesHorizontal"] === true ? "flex" : "",
                 "overflow": "scroll",
-                "border-radius": "0px",
+                "borderRadius": "0px",
             }}>
 
                         {settingsPageEntryNames.map((item, index) => {

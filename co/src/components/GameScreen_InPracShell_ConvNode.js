@@ -151,38 +151,41 @@ return (<div>
 
 
 {/* //TODO51  */}
-      <GameScreen_QuickView_ConvNode
-                    isDisplay={true} 
-                    screenWidth={screenWidth}
-                    screenHeight={screenHeight}
 
-                    initialPieceNum={0}
-                    allPieceContent={allPieceContent}
+{/* //TODO53: confirm all-data-tracking layer's position */}
+
+      <GameScreen_QuickView_ConvNode
+                    isDisplay={true}  //ok
+                    screenWidth={screenWidth}   //ok
+                    screenHeight={screenHeight}   //ok
+
+                    initialPieceNum={0}   //ok
+                    allPieceContent={allPieceContent} //TODO fetch
                     
-                    uiData1_textframe={uiData1_textframe}
-                    uiData2_buttonOption={uiData2_buttonOption}
-                    uiData3_ConvNavigation={uiData3_ConvNavigation} 
-                    uiData4_logPageSettings={uiData4_logPageSettings}
+                    uiData1_textframe={uiData1_textframe} //TODO fetch
+                    uiData2_buttonOption={uiData2_buttonOption} //TODO fetch
+                    uiData3_ConvNavigation={uiData3_ConvNavigation}  //TODO fetch
+                    uiData4_logPageSettings={uiData4_logPageSettings} //TODO fetch
 
                     visualMap={visualMap}
                     audioMap={audioMap}
 
-                    gameData={gameDataTracker}
-                    getCurrPieceNum={passInCurrPieceNum}
+                    gameData={gameDataTracker} //TODO fetch
+                    getCurrPieceNum={passInCurrPieceNum} //TODO
 
-                    getResetSignal={passInResetSignal}
-                    getResetInfoSets={passInResetInfoSets}
+                    getResetSignal={passInResetSignal} //TODO notUsing
+                    getResetInfoSets={passInResetInfoSets} //TODO notUsing
 
 
                     triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
                     getIsGameScreenClicked={passInIsGameScreenClicked}
 
-                    notifyNewGameData={notifyNewGameData}
-                    notifyAfterReset={notifyAfterReset}
+                    notifyNewGameData={notifyNewGameData} //TODO notUsing
+                    notifyAfterReset={notifyAfterReset} //TODO notUsing
 
-                    receiveGameDataObj={passInGameDataFromScreen}
-                    buttonConseqByStatement={changeGameDataTrackerByStatement}
-                    buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
+                    receiveGameDataObj={passInGameDataFromScreen}  //TODO 
+                    buttonConseqByStatement={changeGameDataTrackerByStatement}  //TODO 
+                    buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}  //TODO 
                 />
                 
 

@@ -71,27 +71,27 @@ export default function GameScreen_AllNodeTypeContainer({
  
         if (firstTimeEnter === true) {
             //TODO
-                                            console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
+                                                                console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
-                                            let nodeTypeTemp = getNodeType(); //entering-data only
-                                            setCurrNodeType(nodeTypeTemp); 
+                let nodeTypeTemp = getNodeType(); //entering-data only
+                setCurrNodeType(nodeTypeTemp); 
 
-                                            let chapterKeyTemp = getChapterKey(); //entering-data only
-                                            setCurrChapterKey(chapterKeyTemp);
+                let chapterKeyTemp = getChapterKey(); //entering-data only
+                setCurrChapterKey(chapterKeyTemp);
 
-                                            let nodeKeyTemp = getNodeKey(); //entering-data only
-                                            if (nodeKeyTemp !== currNodeKey) {
-                                                setCurrNodeKey(nodeKeyTemp);
-                                                setupScreenSizeByNodeKey(nodeKeyTemp);            
-                                            }
+                let nodeKeyTemp = getNodeKey(); //entering-data only
+                if (nodeKeyTemp !== currNodeKey) {
+                    setCurrNodeKey(nodeKeyTemp);
+                    setupScreenSizeByNodeKey(nodeKeyTemp);            
+                }
 
-                                            let chapterTitleTemp = getChapterTitle(); //entering-data only
-                                            setCurrChapterTitle(chapterTitleTemp);
+                let chapterTitleTemp = getChapterTitle(); //entering-data only
+                setCurrChapterTitle(chapterTitleTemp);
 
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
                                                                 console.log("use-effect, initial-chapter-key = ", initialChapterKey);
-                initializeAllNodeDataContainer(nodeMappingTemp, chapterKeyTemp);
+                initializeAllNodeDataContainer(chapterKeyTemp);
                                                                 console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
@@ -168,7 +168,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
-    async function initializeAllNodeDataContainer(nodeMappingTemp, chapterKeyTemp) {
+    async function initializeAllNodeDataContainer(chapterKeyTemp) {
         if (chapterKeyTemp.length === 0) {
             return;
         }
@@ -460,34 +460,3 @@ return (<div
 
 
 }
-
-/* for conversation-node
-<GameScreen_InPrac_ConvNode
-
-    initialPieceNum = 0
-    isDisplay = true
-
-    allPieceContent = {pieceDataStructure} // fetched from cloud
-    uiData1_textframe={gameUITextFrame}  // fetched from cloud
-    uiData2_buttonOption={gameUIDefaultButton}  // fetched from cloud
-    uiData3_ConvNavigation={uiConvNav}  // fetched from cloud
-    uiData4_logPageSettings={logPageUISettings} // fetched from cloud
-    
-    screenWidth={screenWidth} // fetched from cloud in setupScreenSizeByNodeKey-func
-    screenHeight={screenHeight} // fetched from cloud in setupScreenSizeByNodeKey-func
-        
-    uiLanguage={uiLanguage}
-    
-    username={usename}
-    projectname={projectname} 
-    
-    enteringEmuGameDataTracker={gameDataTracker}
-
-    visualList={} //should be from outer layers
-    audioList={} //should be from outer layers
-/>
-
-
-
-
-*/

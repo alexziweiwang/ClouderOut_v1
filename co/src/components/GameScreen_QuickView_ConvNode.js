@@ -8,9 +8,10 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 export default function GameScreen_QuickView_ConvNode ({
     initialPieceNum, 
     getResetSignal, getResetInfoSets, notifyAfterReset,
-    isDisplay, screenWidth, screenHeight, allPieceContent, 
+    isDisplay, screenWidth, screenHeight, 
+    
+    allPieceContent, 
     uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
-    // visualList, audioList,  //TODO remove later
 
     visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
