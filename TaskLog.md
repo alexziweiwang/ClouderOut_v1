@@ -429,7 +429,7 @@
 
 - 2025-Jan-21: Design version-tracker for cloud-updating
 
-
+- 2025-Jan-27: Design plan to optimize MVVM
 
 
 
