@@ -435,7 +435,7 @@ export default function GameScreen_AllNodeTypeContainer({
                     console.log("next chapter!! \n", nextChapterItem);
                     break;
                 } else { 
-                    // TODO end of the entire game. ask if return ?
+                    // TODO end of the entire game / spot of unfinished project end. ask if return ?
                     //later: if SL-system, go to nav-to-SL hint
                     //later: if non-SL-system, go to story-page(chapter list page)?
 

@@ -431,6 +431,6 @@
 
 - 2025-Jan-27: Design plan to optimize MVVM
 - 2025-Jan-27: Optimize MVP structure for ver.1
-
+- 2025-Jan-27: Research on sound effects
 
 
