@@ -281,12 +281,102 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
         } else { //LogicSplitter
-            let nextNodeKey = "";
 
-            //TODO go through splitting-array for next-node-locating
+            let logicArr = nodeDataTemp["spltLogicPairs"]
+            let resultKey = handleLogicSplitting(logicArr);
 
-            //setHoldingNextNode(nextNodeKey);
+            setHoldingNextNode(resultKey);
         }
+    }
+
+    function handleLogicSplitting(arr) {
+//TODO go through splitting-array for next-node-locating
+
+            //              spltLogicPairs: 
+            // [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],
+            
+            let len = arr.length;
+            let i = 0;
+            let stopBool = false;
+            let targetNode = "";
+
+            while (i < len && stopBool === false) {
+                let item = arr[i];
+                let stmt = item["internalStmt"];
+
+
+                // TODO36 handle stmt into the following:  
+                // TODO36                                  var1, action, isVar2GivenValue, var2, currTargetNodeKey
+
+                let var1 = ""; //TODO use stmt, game-data name
+                let action = ""; //TODO use stmt
+                let isVar2GivenValue = ""; //TODO use stmt
+                let var2 = ""; //TODO use stmt, game-data name or pure value
+
+                let currTargetNodeKey = ""; //TODO use stmt
+
+                let var1_value = ""; //TODO use game-data if applies
+                let var2_value = ""; //TODO
+
+
+                switch (action){
+                    case "==":
+                        if (var1_value == var2_value) {
+                            targetNode = currTargetNodeKey;
+                            stopBool = true;
+                        }
+                        break;
+
+                    case "!=":
+                        if (var1_value != var2_value) {
+                            targetNode = currTargetNodeKey;
+                            stopBool = true;
+                        }
+                        break;
+
+                    case ">":
+                        if (var1_value > var2_value) {
+                            targetNode = currTargetNodeKey;
+                            stopBool = true;
+                        }
+                        break;
+
+                    case ">=": 
+                        if (var1_value >= var2_value) {
+                            targetNode = currTargetNodeKey;
+                            stopBool = true;
+                        }
+                        break;
+
+                    case "<": 
+                        if (var1_value < var2_value) {
+                            targetNode = currTargetNodeKey;
+                            stopBool = true;
+                        }
+                        break;
+
+                    case "<=": 
+                        if (var1_value <= var2_value) {
+                            targetNode = currTargetNodeKey;
+                            stopBool = true;
+                        }
+                        break;
+
+                    default:
+                        continue; //not a standard "action", so ignore this
+                }
+            
+            
+                i++;
+
+
+            }
+   
+
+            return targetNode;
+
+
+
     }
 
 
