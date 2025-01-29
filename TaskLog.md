@@ -433,4 +433,4 @@
 - 2025-Jan-27: Optimize MVP structure for ver.1
 - 2025-Jan-27: Research on sound effects
 
-
+- 2025-Jan-28: Design in-game-setting data storing strategy
