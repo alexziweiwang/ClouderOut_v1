@@ -434,3 +434,11 @@
 - 2025-Jan-27: Research on sound effects
 
 - 2025-Jan-28: Design in-game-setting data storing strategy
+- 2025-Jan-28: Shop system separation strategy
+
+
+
+
+
+
+
