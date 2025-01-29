@@ -422,7 +422,6 @@
 - 2025-Jan-17: Design func-tests for game-maker level
 - 2025-Jan-17: Design node-playing-viewer flow
 
-
 - 2025-Jan-20: Improve node-viewing inside node-container
 - 2025-Jan-20: Design starting-node conditional strategy
 - 2025-Jan-20: Consider conversational-node all-data(game content + nav ui) storing and passing strategies
@@ -435,7 +434,7 @@
 
 - 2025-Jan-28: Design in-game-setting data storing strategy
 - 2025-Jan-28: Shop system separation strategy
-
+- 2025-Jan-28: Consider node-container data keeping(layer-based) strategy
 
 
 
