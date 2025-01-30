@@ -436,6 +436,7 @@
 - 2025-Jan-28: Shop system separation strategy
 - 2025-Jan-28: Consider node-container data keeping(layer-based) strategy
 
+- 2025-Jan-29: Consider text-frame stable test-alignment display strategy
 
 
 
