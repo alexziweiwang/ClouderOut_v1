@@ -304,26 +304,35 @@ export default function GameScreen_AllNodeTypeContainer({
             // [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],
             
             let len = arr.length;
-            let i = 0;
+            let i = len-1;
             let stopBool = false;
             let targetNode = "[default-none]";
 
                             console.log("handleLogicSplitting-func, arr = ", arr);
 
-            while (i < len && stopBool === false) {
+            while (i >= 0 && stopBool === false) {
                 let item = arr[i];
                 let stmt = item["internalStmt"];
+                                            console.log("\tinternal statement = ", stmt);
 
-                            console.log("\tinternal statement = ", stmt);
 
+                targetNode = item["nextNode"];
 
-                // TODO36 handle stmt into the following:  
+                if (stmt !== "else ") {
+  
+        // TODO36 handle stmt into the following:  
                 // TODO36                                  var1, action, isVar2GivenValue, var2, currTargetNodeKey
+//type[number]^hp_001^smaller(pureValue)^70
+                let stmtArr = stmt.split("^");
 
-                let var1 = ""; //TODO use stmt, game-data name
-                let action = ""; //TODO use stmt
-                let isVar2GivenValue = ""; //TODO use stmt
-                let var2 = ""; //TODO use stmt, game-data name or pure value
+
+                let var1 = stmtArr[1]; //TODO use stmt, game-data name
+
+                let actionChunk = stmtArr[2].split("(");
+                let action = actionChunk[0];
+
+                let isVar2GivenValue = actionChunk[1].includes("pureValue") ? true : false; //TODO use stmt
+                let var2 = stmtArr[3]; //TODO use stmt, game-data name or pure value
 
                 let currTargetNodeKey = ""; //TODO use stmt
                 
@@ -387,10 +396,14 @@ export default function GameScreen_AllNodeTypeContainer({
                 }
             
             
-                i++;
+                
 
+
+                }
+                i--;
 
             }
+            
    
 
             return targetNode;
@@ -496,7 +509,7 @@ return (<div
             "height": `${screenHeight}px`, 
         }}
         onClick={()=>{
-      
+            locateHoldingNextNode(currNodeKey, currNodeType);
             setJumpNodeSignal(true);
         }}
     >

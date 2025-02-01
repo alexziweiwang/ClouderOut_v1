@@ -380,7 +380,7 @@ return(<>
                                                 initialNodeKey={currentGameStatusProgress["nodeKey"]}
                                                 initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
 
-                                                getCurrentGameDatTracker={getPlayerGameData}
+                                                getCurrentGameDataTracker={getPlayerGameData}
                                                 getCurrChapterAllNodeMapping={getCurrChapterAllNodeMapping}
                                                 getAllChapterList={getChapterList}
 
