@@ -318,7 +318,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
                 targetNode = item["nextNode"];
 
-                if (stmt !== "else ") {
+                if (stmt !== "else") {
   
         // TODO36 handle stmt into the following:  
                 // TODO36                                  var1, action, isVar2GivenValue, var2, currTargetNodeKey
@@ -337,9 +337,11 @@ export default function GameScreen_AllNodeTypeContainer({
                 let currTargetNodeKey = ""; //TODO use stmt
                 
                 if (currGameDataTracker[var1] === undefined) {
+                    i--;
                     continue;
                 }
                 if (isVar2GivenValue === false && currGameDataTracker[var2] === undefined) {
+                    i--;
                     continue;
                 }
 
@@ -392,6 +394,7 @@ export default function GameScreen_AllNodeTypeContainer({
                         break;
 
                     default:
+                        i--;
                         continue; //not a standard "action", so ignore this
                 }
             
@@ -433,8 +436,15 @@ export default function GameScreen_AllNodeTypeContainer({
         setCurrNodeType(upcomingNodeType);
         setCurrNodeKey(holdingNextNode);
         //set upcoming-node's actual data
-        if (upcomingNodeType !== "*chapterStart*" && upcomingNodeType !== "*chapterEnd*") {
+        if (upcomingNodeType !== "*chapterStart*" 
+            && upcomingNodeType !== "*chapterEnd*"
+            && upcomingNodeType !== "LogicSplitter"
+        ) {
             fetchOrFindNodeData(currChapterKey, holdingNextNode);
+        }
+
+        if (upcomingNodeType === "LogicSplitter") {
+            console.log("game data = ", currGameDataTracker);
         }
 
         //TODO52 update currentGameStatusProgress
