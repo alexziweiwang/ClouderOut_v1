@@ -73,6 +73,9 @@ export default function GameScreen_AllNodeTypeContainer({
             //TODO
                                                                 console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
+                let gDataTemp = getCurrentGameDataTracker();
+                setCurrGameDataTracker(gDataTemp);
+
                 let nodeTypeTemp = getNodeType(); //entering-data only
                 setCurrNodeType(nodeTypeTemp); 
 
@@ -283,7 +286,12 @@ export default function GameScreen_AllNodeTypeContainer({
         } else { //LogicSplitter
 
             let logicArr = nodeDataTemp["spltLogicPairs"]
+                                    console.log("logic-arr = ", logicArr);
+
             let resultKey = handleLogicSplitting(logicArr);
+
+
+                                                        console.log("result = ", resultKey);
 
             setHoldingNextNode(resultKey);
         }
@@ -298,11 +306,15 @@ export default function GameScreen_AllNodeTypeContainer({
             let len = arr.length;
             let i = 0;
             let stopBool = false;
-            let targetNode = "";
+            let targetNode = "[default-none]";
+
+                            console.log("handleLogicSplitting-func, arr = ", arr);
 
             while (i < len && stopBool === false) {
                 let item = arr[i];
                 let stmt = item["internalStmt"];
+
+                            console.log("\tinternal statement = ", stmt);
 
 
                 // TODO36 handle stmt into the following:  
@@ -314,9 +326,17 @@ export default function GameScreen_AllNodeTypeContainer({
                 let var2 = ""; //TODO use stmt, game-data name or pure value
 
                 let currTargetNodeKey = ""; //TODO use stmt
+                
+                if (currGameDataTracker[var1] === undefined) {
+                    continue;
+                }
+                if (isVar2GivenValue === false && currGameDataTracker[var2] === undefined) {
+                    continue;
+                }
 
-                let var1_value = ""; //TODO use game-data if applies
-                let var2_value = ""; //TODO
+
+                let var1_value = currGameDataTracker[var1]; //TODO use game-data if applies
+                let var2_value = isVar2GivenValue ? var2 : currGameDataTracker[var2]; //TODO
 
 
                 switch (action){
@@ -386,6 +406,9 @@ export default function GameScreen_AllNodeTypeContainer({
         
         console.log("#chapterNodeMapping = ", chapterNodeMapping);
         console.log("\t#holdingNextNode = ", holdingNextNode);
+        if (chapterNodeMapping[currChapterKey][holdingNextNode] === undefined) {
+            return;
+        }
 
         // get nextNode's type
         let upcomingNodeType = chapterNodeMapping[currChapterKey][holdingNextNode]["nodeType"];
@@ -473,7 +496,7 @@ return (<div
             "height": `${screenHeight}px`, 
         }}
         onClick={()=>{
-            locateHoldingNextNode(currNodeKey, currNodeType);
+      
             setJumpNodeSignal(true);
         }}
     >
@@ -495,6 +518,20 @@ return (<div
     *chapterEnd*<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}        
         </div>}
+
+    {currNodeType === "LogicSplitter" && 
+    <div
+        style={{"backgroundColor": "orange", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
+        onClick={()=>{
+            locateHoldingNextNode(currNodeKey, currNodeType);
+            setJumpNodeSignal(true);            
+        }}
+    >
+            logic-splitter<br></br>
+            chapter = {currChapterKey}, node-key = {currNodeKey}
+   
+    </div>}
+
 
     {currNodeType === "Conversation" && 
     <div 
@@ -535,13 +572,6 @@ return (<div
     </div>}
 
     
-
-
-    {currNodeType === "LogicSplitter" && <div style={{"backgroundColor": "green", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}>
-        Logic Splitter<br></br>
-        chapter = {currChapterKey}, node-key = {currNodeKey}
-        
-    </div>}
 
 
 
