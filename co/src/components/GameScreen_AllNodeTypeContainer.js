@@ -216,7 +216,7 @@ export default function GameScreen_AllNodeTypeContainer({
         let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
-                                                    console.log(" \t\t... already in map, ", allNodeDataContainer[keyStr]);
+                                                    console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr]);
             return allNodeDataContainer[keyStr];
 
 
@@ -298,10 +298,7 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     function handleLogicSplitting(arr) {
-//TODO go through splitting-array for next-node-locating
-
-//TODO100
-
+            // example: 
             //              spltLogicPairs: 
             // [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],
             
@@ -582,8 +579,14 @@ return (<div
     conversation-node<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}
 
-    {/* //TODO51  */}
-       {/* <GameScreen_InPracShell_ConvNode
+    {/* //TODO100  */}
+    
+        <GameScreen_InPracShell_ConvNode
+            allPieceData={allNodeDataContainer[currNodeKey]["nodeContent"]}
+            nodeUIConvNav={allNodeDataContainer[currNodeKey]["nodeUISettings"]["convNav"]}
+            nodeUIDefaultButton={allNodeDataContainer[currNodeKey]["nodeUISettings"]["defaultButton"]}
+            nodeUILogPage={allNodeDataContainer[currNodeKey]["nodeUISettings"]["logPage"]}
+            nodeUITextFrame={allNodeDataContainer[currNodeKey]["nodeUISettings"]["textFrame"]}
             
             screenWidth={screenWidth}
             screenHeight={screenHeight}
@@ -598,7 +601,27 @@ return (<div
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far
        
-       /> */}
+       /> 
+
+{/*
+  allNodeDataContainer[currNodeKey]["nodeContent"]
+  allNodeDataContainer[currNodeKey]["nodeUISettings"][]
+
+
+      nodeContent  // array
+      nodeUISettings
+        -convNav
+        -defaultButton
+        -logPage
+        -textFrame
+
+       
+       
+       
+       
+       
+       
+       */}
 
 
     {/* //TODO39 conv-node-compo */}

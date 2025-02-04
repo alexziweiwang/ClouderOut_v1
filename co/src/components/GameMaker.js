@@ -886,10 +886,10 @@ export default function GameMaker({username, projectName}) {
     window.onbeforeunload = () => {
       return "show message";
     }
-                              console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
+               //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
                   
                   
-                              console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
+              //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
 
 
     if (firstTimeEnter === true) {

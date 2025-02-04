@@ -2,6 +2,12 @@ import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 
 export default function GameScreen_InPracShell_ConvNode ({
+  
+    allPieceData,
+    nodeUIConvNav,
+    nodeUIDefaultButton,
+    nodeUILogPage,
+    nodeUITextFrame,
 
     screenWidth,
     screenHeight,
