@@ -22,14 +22,17 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
 
 
         let currPieceNumTemp = getCurrentPieceNum();
-        setCurrentPieceNum(currPieceNumTemp);
-        setStndButtonTextArr(allPieceContent[currPieceNumTemp]["stnd_btn_arr"] 
-            !== undefined ? 
-                allPieceContent[currPieceNumTemp]["stnd_btn_arr"] 
-                : []);
+        if (currPieceNumTemp !== currentPieceNum) {
+            setCurrentPieceNum(currPieceNumTemp);
+            setStndButtonTextArr(allPieceContent[currPieceNumTemp]["stnd_btn_arr"] 
+                !== undefined ? 
+                    allPieceContent[currPieceNumTemp]["stnd_btn_arr"] 
+                    : []);            
+        }
+
     
 
-        setButtonPicUrl(visualMap[defaultBtnUISettings["picVar"]]);
+  //      setButtonPicUrl(visualMap[defaultBtnUISettings["picVar"]]); //TODO test later!
    
     });
 

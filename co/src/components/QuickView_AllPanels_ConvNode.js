@@ -423,8 +423,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     getResetInfoSets={passInResetInfoSets}
 
 
-                    triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
-                    getIsGameScreenClicked={passInIsGameScreenClicked}
+               //     triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */ //TODO test before removing
+               //     getIsGameScreenClicked={passInIsGameScreenClicked} //TODO test before removing
 
                     notifyNewGameData={notifyNewGameData}
                     notifyAfterReset={notifyAfterReset}

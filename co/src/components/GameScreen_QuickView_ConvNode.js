@@ -78,8 +78,8 @@ export default function GameScreen_QuickView_ConvNode ({
 
 
 
-            if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
-                allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
+            if ((allPieceContent[currPieceNum]["clkb_arr"] !== undefined && allPieceContent[currPieceNum]["clkb_arr"].length > 0) || 
+                (allPieceContent[currPieceNum]["stnd_btn_arr"] !== undefined && allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0)) {
                 setDirectNextPieceBool(false);
             } else {
                 setDirectNextPieceBool(true);
@@ -91,28 +91,6 @@ export default function GameScreen_QuickView_ConvNode ({
             updateBgpSource();
       
             
-
-            //TODO remove later
-            // if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-            //     let i = 0;
-            //     let tempAudioMap = {};
-            //     setAudioMapSize(audioList.length);
-            //     for (;i < audioList.length; i++) {
-            //         let item = audioList[i];
-            //         tempAudioMap[item["var"]] = item["url"];
-            //     }
-            //     setAudioMap(tempAudioMap);
-    
-            //     i = 0;
-            //     let tempVisualMap = {};
-            //     setVisualMapSize(visualList.length);
-            //     for (;i < visualList.length; i++) {
-            //         let item = visualList[i];
-            //         tempVisualMap[item["var"]] = item["url"];
-            //     }
-            //     setVisualMap(tempVisualMap);
-            // }
-            //TODO remove later
 
 
 
@@ -252,7 +230,7 @@ export default function GameScreen_QuickView_ConvNode ({
                         "top": "0px"
                     }}
                                 // onClick={()=>{  //TODO test before removing!
-                                //     if (allPieceContent[currPieceNum]["stnd_btn_arr"].length === 0) {
+                                //     if (allPieceContent[currPieceNum]["stnd_btn_arr"]. length === 0) {
                                 //         triggerClickOnGameScreen();
                                 //     }
                                 // }} //TODO test before removing!
