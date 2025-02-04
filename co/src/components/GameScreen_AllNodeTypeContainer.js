@@ -291,7 +291,7 @@ export default function GameScreen_AllNodeTypeContainer({
             let resultKey = handleLogicSplitting(logicArr);
 
 
-                                                        console.log("result = ", resultKey);
+                                                        console.log("end of locateHolding... l-splitter_result = ", resultKey);
 
             setHoldingNextNode(resultKey);
         }
@@ -299,6 +299,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
     function handleLogicSplitting(arr) {
 //TODO go through splitting-array for next-node-locating
+
+//TODO100
 
             //              spltLogicPairs: 
             // [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],
@@ -308,7 +310,7 @@ export default function GameScreen_AllNodeTypeContainer({
             let stopBool = false;
             let targetNode = "[default-none]";
 
-                            console.log("handleLogicSplitting-func, arr = ", arr);
+                            console.log("\t\t!!! handleLogicSplitting-func, arr = ", arr);
 
             while (i >= 0 && stopBool === false) {
                 let item = arr[i];
@@ -334,7 +336,7 @@ export default function GameScreen_AllNodeTypeContainer({
                 let isVar2GivenValue = actionChunk[1].includes("pureValue") ? true : false; //TODO use stmt
                 let var2 = stmtArr[3]; //TODO use stmt, game-data name or pure value
 
-                let currTargetNodeKey = ""; //TODO use stmt
+                let currTargetNodeKey = item["nextNode"]; //TODO use stmt
                 
                 if (currGameDataTracker[var1] === undefined) {
                     i--;
@@ -346,12 +348,14 @@ export default function GameScreen_AllNodeTypeContainer({
                 }
 
 
-                let var1_value = currGameDataTracker[var1]; //TODO use game-data if applies
+                let var1_value = currGameDataTracker[var1]["current_value"]; //TODO use game-data if applies
                 let var2_value = isVar2GivenValue ? var2 : currGameDataTracker[var2]; //TODO
 
+                                            console.log("\t\t\tvar1-value =  ", var1_value);
+                                            console.log("\t\t\tvar2-value =  ", var2_value);
 
                 switch (action){
-                    case "==":
+                    case "equal":
                         if (var1_value == var2_value) {
                             targetNode = currTargetNodeKey;
                             stopBool = true;
@@ -365,28 +369,28 @@ export default function GameScreen_AllNodeTypeContainer({
                         }
                         break;
 
-                    case ">":
+                    case "larger":
                         if (var1_value > var2_value) {
                             targetNode = currTargetNodeKey;
                             stopBool = true;
                         }
                         break;
 
-                    case ">=": 
+                    case "largerequal": 
                         if (var1_value >= var2_value) {
                             targetNode = currTargetNodeKey;
                             stopBool = true;
                         }
                         break;
 
-                    case "<": 
+                    case "smaller": 
                         if (var1_value < var2_value) {
                             targetNode = currTargetNodeKey;
                             stopBool = true;
                         }
                         break;
 
-                    case "<=": 
+                    case "smallerequal": 
                         if (var1_value <= var2_value) {
                             targetNode = currTargetNodeKey;
                             stopBool = true;
@@ -407,8 +411,6 @@ export default function GameScreen_AllNodeTypeContainer({
 
             }
             
-   
-
             return targetNode;
 
 
@@ -439,13 +441,24 @@ export default function GameScreen_AllNodeTypeContainer({
         if (upcomingNodeType !== "*chapterStart*" 
             && upcomingNodeType !== "*chapterEnd*"
             && upcomingNodeType !== "LogicSplitter"
-        ) {
+        ){ // game-content-nodes
             fetchOrFindNodeData(currChapterKey, holdingNextNode);
+        
+        } else if (upcomingNodeType === "LogicSplitter"
+            || upcomingNodeType === "*chapterEnd*"
+        
+        ) {
+            console.log("walkToNextNode - game data = ", currGameDataTracker);
+
+            //TODO for non-data nodes, does not display content?
         }
 
-        if (upcomingNodeType === "LogicSplitter") {
-            console.log("game data = ", currGameDataTracker);
+        if (upcomingNodeType === "*chapterStart*") {
+            //TODO if title-display is needed...
+
         }
+
+
 
         //TODO52 update currentGameStatusProgress
 
