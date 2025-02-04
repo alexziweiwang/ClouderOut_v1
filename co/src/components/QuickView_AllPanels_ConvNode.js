@@ -9,7 +9,7 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
-    uiData2_buttonOption, uiData3_ConvNavigation, 
+    uiData2_defaultButtonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
     getUILanguage,
     username, projName,
@@ -293,6 +293,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     function buttonConsequenceByStatementEntireArray(pieceNum, item) {
+
         let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
         
         let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
@@ -406,7 +407,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     allPieceContent={allPieceContent}
                     
                     uiData1_textframe={uiData1_textframe}
-                    uiData2_buttonOption={uiData2_buttonOption}
+                    uiData2_defaultButtonOption={uiData2_defaultButtonOption}
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     

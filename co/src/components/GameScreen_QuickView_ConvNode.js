@@ -10,8 +10,9 @@ export default function GameScreen_QuickView_ConvNode ({
     getResetSignal, getResetInfoSets, notifyAfterReset,
     isDisplay, screenWidth, screenHeight, 
     
+    gameData,
     allPieceContent, 
-    uiData1_textframe, uiData2_buttonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
+    uiData1_textframe, uiData2_defaultButtonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
 
     visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
@@ -326,7 +327,7 @@ export default function GameScreen_QuickView_ConvNode ({
                     visualMap={visualMap}
                     allPieceContent={allPieceContent} 
                     getCurrentPieceNum={passInCurrentPieceNum} 
-                    defaultBtnUISettings={uiData2_buttonOption} 
+                    defaultBtnUISettings={uiData2_defaultButtonOption} 
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
 
                 />

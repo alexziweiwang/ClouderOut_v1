@@ -1048,7 +1048,7 @@ export default function ConversationNodeEditingPanel() {
                     handleQViewCancel={handleqvCancel}
                     allPieceContent={pieceDataStructure}
                     uiData1_textframe={gameUITextFrame} 
-                    uiData2_buttonOption={gameUIDefaultButton} 
+                    uiData2_defaultButtonOption={gameUIDefaultButton} 
                     uiData3_ConvNavigation={uiConvNav} 
                     uiData4_logPageSettings={logPageUISettings}
                     screenWidth={screenWidth}

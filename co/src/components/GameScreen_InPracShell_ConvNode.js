@@ -2,7 +2,7 @@ import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 
 export default function GameScreen_InPracShell_ConvNode ({
-  
+
     allPieceData,
     nodeUIConvNav,
     nodeUIDefaultButton,
@@ -150,7 +150,21 @@ export default function GameScreen_InPracShell_ConvNode ({
           }
         
         } 
-    }    
+    } 
+
+    function notUsing() {
+      return "";
+    }
+    
+    function passInResetSignal() {
+      return false; // not resetting in-viewing-in-practice
+    }
+
+    function buttonConsequenceByStatementEntireArray() {
+      //TODO button-caused-change
+
+      //TODO (game data tracker kept in this layer? out-layer?)
+    }
 
 
 return (<div>
@@ -158,7 +172,18 @@ return (<div>
 
 {/* //TODO51  */}
 
-{/* //TODO53: confirm all-data-tracking layer's position */}
+{/* //TODO53: confirm all-data-tracking layer's position 
+
+   allPieceData,
+    nodeUIConvNav,
+    nodeUIDefaultButton,
+    nodeUILogPage,
+    nodeUITextFrame,
+
+
+
+
+*/}
 
       <GameScreen_QuickView_ConvNode
                     isDisplay={true}  //ok
@@ -166,31 +191,30 @@ return (<div>
                     screenHeight={screenHeight}   //ok
 
                     initialPieceNum={0}   //ok
-                    allPieceContent={allPieceContent} //TODO fetch
+                    allPieceContent={allPieceData}
                     
-                    uiData1_textframe={uiData1_textframe} //TODO fetch
-                    uiData2_buttonOption={uiData2_buttonOption} //TODO fetch
-                    uiData3_ConvNavigation={uiData3_ConvNavigation}  //TODO fetch
-                    uiData4_logPageSettings={uiData4_logPageSettings} //TODO fetch
+                    uiData1_textframe={nodeUITextFrame}
+                    uiData2_defaultButtonOption={nodeUIDefaultButton}
+                    uiData3_ConvNavigation={nodeUIConvNav}
+                    uiData4_logPageSettings={nodeUILogPage}
 
-                    visualMap={visualMap}
-                    audioMap={audioMap}
+                    visualMap={visualMap} //TODO empty so far
+                    audioMap={audioMap} //TODO empty so far
 
-                    gameData={gameDataTracker} //TODO fetch
-                    getCurrPieceNum={passInCurrPieceNum} //TODO
+                    gameData={enteringEmuGameDataTracker}
+                  //  getCurrPieceNum={passInCurrPieceNum} // hidden, remove
 
-                    getResetSignal={passInResetSignal} //TODO notUsing
-                    getResetInfoSets={passInResetInfoSets} //TODO notUsing
+                    getResetSignal={passInResetSignal} 
+                    getResetInfoSets={notUsing} 
 
+                  //  triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */ //TODO test before removing
+                  //  getIsGameScreenClicked={passInIsGameScreenClicked} //TODO test before removing
 
-                    triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */
-                    getIsGameScreenClicked={passInIsGameScreenClicked}
+                  //  notifyNewGameData={notUsing} //TODO notUsing
+                    notifyAfterReset={notUsing} //TODO notUsing
 
-                    notifyNewGameData={notifyNewGameData} //TODO notUsing
-                    notifyAfterReset={notifyAfterReset} //TODO notUsing
-
-                    receiveGameDataObj={passInGameDataFromScreen}  //TODO 
-                    buttonConseqByStatement={changeGameDataTrackerByStatement}  //TODO 
+                  //  receiveGameDataObj={passInGameDataFromScreen}   //TODO test before removing
+                  //  buttonConseqByStatement={changeGameDataTrackerByStatement}     //TODO test before removing
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}  //TODO 
                 />
                 
