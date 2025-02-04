@@ -44,7 +44,7 @@ export default function GameScreen_QuickView_ConvNode ({
         const [bgmSource, setBgmSource] = useState("");
         const [bgpSource, setBgpSource] = useState("");
     
-        const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
+        const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_arr"] : []);
 
         
 

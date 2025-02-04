@@ -64,6 +64,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
+    const [focusedNodeData, setFocusedNodeData] = useState({});
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -216,7 +217,9 @@ export default function GameScreen_AllNodeTypeContainer({
         let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
-                                                    console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr]);
+                                                    console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
+            setFocusedNodeData(allNodeDataContainer[keyStr])
+            
             return allNodeDataContainer[keyStr];
 
 
@@ -233,6 +236,8 @@ export default function GameScreen_AllNodeTypeContainer({
             setAllNodeDataContainer(tempMap);
 
                                                     console.log(" \t\t... newly added to map, ", dataObj);
+            
+            setFocusedNodeData(dataObj)
   
             return dataObj;
 
@@ -580,13 +585,14 @@ return (<div
     chapter = {currChapterKey}, node-key = {currNodeKey}
 
     {/* //TODO100  */}
-    
+
+        {focusedNodeData !== undefined && 
         <GameScreen_InPracShell_ConvNode
-            allPieceData={allNodeDataContainer[currNodeKey]["nodeContent"]}
-            nodeUIConvNav={allNodeDataContainer[currNodeKey]["nodeUISettings"]["convNav"]}
-            nodeUIDefaultButton={allNodeDataContainer[currNodeKey]["nodeUISettings"]["defaultButton"]}
-            nodeUILogPage={allNodeDataContainer[currNodeKey]["nodeUISettings"]["logPage"]}
-            nodeUITextFrame={allNodeDataContainer[currNodeKey]["nodeUISettings"]["textFrame"]}
+            allPieceData={focusedNodeData["nodeContent"]}
+            nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
+            nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
+            nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
+            nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
             
             screenWidth={screenWidth}
             screenHeight={screenHeight}
@@ -601,7 +607,7 @@ return (<div
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far
        
-       /> 
+       />} 
 
 {/*
   allNodeDataContainer[currNodeKey]["nodeContent"]

@@ -28,35 +28,37 @@ export default function GameScreen_InPracShell_ConvNode ({
     const isDisplay = true;
 
     const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
-    const [directNextPieceBool, setDirectNextPieceBool] = useState(true);
-    const [textStillTyping, setTextStillTyping] = useState(true);
-    const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
-    const [autoMode, setAutoMode] = useState(false);
+                            //  const [directNextPieceBool, setDirectNextPieceBool] = useState(true); //TODO test before removing
+                            //  const [textStillTyping, setTextStillTyping] = useState(true); //TODO test before removing
+                            //  const [immediateFinishSignal, setImmediateFinishSignal] = useState(false); //TODO test before removing
+                            //  const [autoMode, setAutoMode] = useState(false); //TODO test before removing
 
     const [audioMap, setAudioMap] = useState({});
     const [visualMap, setVisualMap] = useState({}); 
     const [audioMapSize, setAudioMapSize] = useState(0);
     const [visualMapSize, setVisualMapSize] = useState(0);
     
-    const [bgmSource, setBgmSource] = useState("");
-    const [bgpSource, setBgpSource] = useState("");
+                            // const [bgmSource, setBgmSource] = useState(""); //TODO test before removing
+                            // const [bgpSource, setBgpSource] = useState(""); //TODO test before removing
 
     const [allPieceContent, setAllPieceContent] = useState({});
-    const [allPieceUI, setAllPieceUI] = useState({});
+                            //  const [allPieceUI, setAllPieceUI] = useState({}); //TODO remove?
 
     const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
 
-    const [showConvLog, setShowConvLog] = useState(false);
+                            // const [showConvLog, setShowConvLog] = useState(false); //TODO test before removing
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
  
         if (firstTimeEnter === true) {
-            initializeDataFromCloud();
+                                                                      // initializeDataFromCloud(); //TODO remove
 
             setFirstTimeEnter(false);
         }
+
+                                    console.log("in-prac-shell, allPieceData = ", allPieceData);
 
         updateCharPicArr();
         updateBgmSource();
@@ -85,23 +87,25 @@ export default function GameScreen_InPracShell_ConvNode ({
         }
 
 
-        if (allPieceContent[currPieceNum].displayTextFrame === false) {
-            setTextStillTyping(false);
-        }
+        // if (allPieceContent[currPieceNum].displayTextFrame === false) {
+        //     setTextStillTyping(false);
+        // } //TODO test before removing
 
     }); //-- useEffect --
 
-    async function initializeDataFromCloud() {
-      let obj = await fetchNodeDataEachNode({
-          projectName: projectname, 
-          uname: username, 
-          chapterKey: chapterKey,
-          nodeKey: nodeKey
-      });
 
-      if (obj === undefined || obj === null) {
-        return;
-      }
+
+    //async function initializeDataFromCloud() { //TODO remove
+      // let obj = await fetchNodeDataEachNode({
+      //     projectName: projectname, 
+      //     uname: username, 
+      //     chapterKey: chapterKey,
+      //     nodeKey: nodeKey
+      // });
+
+      // if (obj === undefined || obj === null) {
+      //   return;
+      // }
 
       
       // setAllPieceContent(obj[nodeContent]); //TODO test later
@@ -110,7 +114,8 @@ export default function GameScreen_InPracShell_ConvNode ({
                           // obj[nodeContent] 
                           // obj[nodeUISettings] 
 
-    }
+    // } //TODO remove
+
 
 
     function updateCharPicArr() {
@@ -123,40 +128,42 @@ export default function GameScreen_InPracShell_ConvNode ({
           } 
     }
 
-    function updateBgmSource() {
-        if (currPieceNum < 0) {
-            return;
-          }
-          if (allPieceContent[currPieceNum]["bgm_action"] === "startNewBgm") {
-            if (allPieceContent[currPieceNum]["bgm_source_varname"] !== "") {
-              setBgmSource(audioMap[allPieceContent[currPieceNum]["bgm_source_varname"]]);
-            }
-          } else if (allPieceContent[currPieceNum]["bgm_action"] === "stopBgm") {
-            setBgmSource("");
-          } 
-          //TODO "naturalStopBgm" stop looping...
+    // function updateBgmSource() { //TODO test before removing
+    //     if (currPieceNum < 0) {
+    //         return;
+    //       }
+    //       if (allPieceContent[currPieceNum]["bgm_action"] === "startNewBgm") {
+    //         if (allPieceContent[currPieceNum]["bgm_source_varname"] !== "") {
+    //           setBgmSource(audioMap[allPieceContent[currPieceNum]["bgm_source_varname"]]);
+    //         }
+    //       } else if (allPieceContent[currPieceNum]["bgm_action"] === "stopBgm") {
+    //         setBgmSource("");
+    //       } 
+    //       //TODO "naturalStopBgm" stop looping...
 
-    }
+    // } //TODO test before removing
 
-    function updateBgpSource() {
-        if (currPieceNum < 0) {
-          return;
-        }
-        if (allPieceContent[currPieceNum]["bgp_action"] === "switchToNewBgp") {
-          if (allPieceContent[currPieceNum]["bgp_source_varname"] !== "") {
-            setBgpSource(visualMap[allPieceContent[currPieceNum]["bgp_source_varname"]]);
-          } else {
-            setBgpSource("");
-          }
+    // function updateBgpSource() { //TODO test before removing
+    //     if (currPieceNum < 0) {
+    //       return;
+    //     }
+    //     if (allPieceContent[currPieceNum]["bgp_action"] === "switchToNewBgp") {
+    //       if (allPieceContent[currPieceNum]["bgp_source_varname"] !== "") {
+    //         setBgpSource(visualMap[allPieceContent[currPieceNum]["bgp_source_varname"]]);
+    //       } else {
+    //         setBgpSource("");
+    //       }
         
-        } 
-    } 
+    //     } 
+    // }  //TODO test before removing
+
+
 
     function notUsing() {
       return "";
     }
     
-    function passInResetSignal() {
+    function passInFalseBoolVal() {
       return false; // not resetting in-viewing-in-practice
     }
 
@@ -174,15 +181,6 @@ return (<div>
 
 {/* //TODO53: confirm all-data-tracking layer's position 
 
-   allPieceData,
-    nodeUIConvNav,
-    nodeUIDefaultButton,
-    nodeUILogPage,
-    nodeUITextFrame,
-
-
-
-
 */}
 
       <GameScreen_QuickView_ConvNode
@@ -190,7 +188,7 @@ return (<div>
                     screenWidth={screenWidth}   //ok
                     screenHeight={screenHeight}   //ok
 
-                    initialPieceNum={0}   //ok
+                    initialPieceNum={initialPieceNum}   //ok
                     allPieceContent={allPieceData}
                     
                     uiData1_textframe={nodeUITextFrame}
@@ -204,7 +202,7 @@ return (<div>
                     gameData={enteringEmuGameDataTracker}
                   //  getCurrPieceNum={passInCurrPieceNum} // hidden, remove
 
-                    getResetSignal={passInResetSignal} 
+                    getResetSignal={passInFalseBoolVal} 
                     getResetInfoSets={notUsing} 
 
                   //  triggerClickOnGameScreen={triggerClickOnGameScreen} /* important */ //TODO test before removing
