@@ -12,7 +12,7 @@ export default function Panel_EntireView_PlayerInfo({
     updateProjectNavData
 }) {
 
-    const [screenHeight, setScreenHeight] = useState(450);
+    const [screenHeight, setScreenHeight] = useState(600);
     const [screenWidth, setScreenWidth] = useState(800); //TODO
 
     const [playerProfile, setPlayerProfile] = useState(-1);

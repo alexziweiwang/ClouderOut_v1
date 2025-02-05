@@ -37,7 +37,7 @@ const tempFontSize = 12;
     const projName = "project001"; //TODO testing
 
     const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(450);
+    const [screenHeight, setScreenHeight] = useState(600);
     
     const [renderCounter, setRenderCounter] = useState(0);
 

@@ -33,7 +33,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO /* according to current node's size */
-    const [screenHeight, setScreenHeight] = useState(450); //TODO /* according to current node's size */
+    const [screenHeight, setScreenHeight] = useState(600); //TODO /* according to current node's size */
 
 
     const [currNodeType, setCurrNodeType] = useState(initialNodeType);
@@ -529,7 +529,9 @@ return (<div
         "backgroundColor": "blue", 
         "borderRadius": "0px",
         "userSelect": "none",
-        "cursor": "pointer"
+        "cursor": "pointer",
+        "position": "relative",
+
     }}
 >
 
@@ -581,7 +583,13 @@ return (<div
 
     {currNodeType === "Conversation" && 
     <div 
-        style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
+        style={{
+            "backgroundColor": "blue", 
+            "borderRadius": "0px", 
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`,
+            "position": "absolute",
+        }}
         onClick={()=>{
             //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
           

@@ -102,6 +102,8 @@ export default function GameScreen_QuickView_ConvNode ({
                 setTextStillTyping(false);
             }
 
+                                    console.log("game-screen quick-view conv-node ... render once");
+
         });
     
     
@@ -230,18 +232,21 @@ export default function GameScreen_QuickView_ConvNode ({
 
 
     return (         
-        <div   
-                    style={{"position": "relative", 
-                        "height": `${screenHeight}px`, 
-                        "width": `${screenWidth}px`,
-                        "top": "0px"
-                    }}
+<div   
+style={{
+    "position": "relative", 
+    "height": `${screenHeight}px`, 
+    "width": `${screenWidth}px`,
+    "top": "0px",
+    "borderRadius": "0px"
+}}
                                 // onClick={()=>{  //TODO test before removing!
                                 //     if (allPieceContent[currPieceNum]["stnd_btn_arr"]. length === 0) {
                                 //         triggerClickOnGameScreen();
                                 //     }
                                 // }} //TODO test before removing!
-                    >
+>
+
 
             {<div style={{
                 "backgroundColor": "#000000",
@@ -249,7 +254,14 @@ export default function GameScreen_QuickView_ConvNode ({
                 `url(${bgpSource})` 
                     : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
-                "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
+                "position": "absolute", 
+                "top": "0px", 
+                "left": "0px", 
+                "height": `${screenHeight}px`, 
+                "width": `${screenWidth}px`,
+                "borderRadius": "0px"
+
+            }}
                 
                 onClick={()=>{
                     if (directNextPieceBool === true && showConvLog === false) {
@@ -283,7 +295,8 @@ export default function GameScreen_QuickView_ConvNode ({
             </div>}
 
     <div style={{
-    "display": !showConvLog ? "flex" : "none"
+        "display": !showConvLog ? "flex" : "none",
+        "position": "absolute", 
     }}>
 
             {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) &&                          

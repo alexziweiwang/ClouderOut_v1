@@ -79,7 +79,7 @@ export default function Viewer_Entire({
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO
-    const [screenHeight, setScreenHeight] = useState(450); //TODO
+    const [screenHeight, setScreenHeight] = useState(600); //TODO
 
 
     const sizeLookupMap = { "16:9(horizonal)": [800, 450],

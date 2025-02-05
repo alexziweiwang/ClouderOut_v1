@@ -239,13 +239,6 @@ return (<div>
                 />
                 
 
-
-
-
-
-???????????? in-prac-shell of conv-node
-
-
 </div>);
 
 }
