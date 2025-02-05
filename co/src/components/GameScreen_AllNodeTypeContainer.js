@@ -127,7 +127,12 @@ export default function GameScreen_AllNodeTypeContainer({
                 setFirstTimeEnter(false);
 
         } else {
-            if (jumpNodeSignal == true) {
+            if (currNodeType === "LogicSplitter") {
+                atLogicSplitterBehaviour();
+                walkToNextNode();
+                resetJumpNodeSignalToFalse();
+            
+            } else if (jumpNodeSignal == true) {
                 walkToNextNode();
 
                                                 // setJumpNodeSignal(false); //TODO remove later
@@ -421,7 +426,13 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
-    function allowNextNodeSignal() {
+    function atLogicSplitterBehaviour() {
+        locateHoldingNextNode(currNodeKey, currNodeType);
+        
+        markJumpNodeSignalTrue();   
+    }
+
+    function markNextNodeSignalTrue() {
         setWalkToNextNodeSignal(true);
     }
 
@@ -429,7 +440,7 @@ export default function GameScreen_AllNodeTypeContainer({
         setWalkToNextNodeSignal(false);
     }
 
-    function allowJumpNodeSignal() {
+    function markJumpNodeSignalTrue() {
         setJumpNodeSignal(true);
     }
 
@@ -552,12 +563,12 @@ return (<div
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "color": "orange"
+            "color": "pink"
         }}
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
                                                         //setJumpNodeSignal(true); //TODO remove later
-            allowJumpNodeSignal();
+            markJumpNodeSignalTrue();
         }}
     >
     {/* *chapterStart*<br></br> */}
@@ -573,7 +584,7 @@ return (<div
         "borderRadius": "0px", 
         "width": `${screenWidth}px`, 
         "height": `${screenHeight}px`,
-        "color": "orange"
+        "color": "pink"
     }}
         onClick={()=>{
 
@@ -587,7 +598,7 @@ return (<div
 
 
 
-    {currNodeType === "LogicSplitter" && 
+    {/* {currNodeType === "LogicSplitter" && 
     <div
         style={{
             "backgroundColor": "#000000", 
@@ -597,13 +608,11 @@ return (<div
         }}
 
         onClick={()=>{
-            locateHoldingNextNode(currNodeKey, currNodeType);
-                                //setJumpNodeSignal(true);    //TODO remove later
-            allowJumpNodeSignal();         
+            atLogicSplitterBehaviour();  
         }}
     >
-
-    </div>}
+//NOT USING -- logic-splitting happens in useEffect now...
+    </div>} */}
 
 
 
@@ -619,14 +628,13 @@ return (<div
         onClick={()=>{
             //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
           
-          //TODO100
           if (walkToNextNodeSignal === true) {
                 locateHoldingNextNode(currNodeKey, currNodeType); //TODO for game-data-referencing, only do locating at node's last move!
 
                     //TODO for in-practice-node-viewing, only walk to nextt node at node's last move!
-                allowJumpNodeSignal();
+                markJumpNodeSignalTrue();
 
-                
+
                                 //setJumpNodeSignal(true);  //TODO remove later
           }
 
@@ -643,7 +651,7 @@ return (<div
             nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
             nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
 
-            notifyNodeFinish={allowNextNodeSignal}
+            notifyNodeFinish={markNextNodeSignalTrue}
             
             screenWidth={screenWidth}
             screenHeight={screenHeight}
