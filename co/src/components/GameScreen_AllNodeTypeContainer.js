@@ -42,7 +42,8 @@ export default function GameScreen_AllNodeTypeContainer({
     const [currChapterTitle, setCurrChapterTitle] = useState(initialChapterTitle);
 
 
-    const [holdingNextNode, setHoldingNextNode] = useState("");
+    const [holdingNextNodeKey, setHoldingNextNodeKey] = useState("");
+    const [walkToNextNodeSignal, setWalkToNextNodeSignal] = useState(false);
 
     const [gameDataTracker, setGameDataTracker] = useState({});
 
@@ -278,7 +279,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
             if (nextNodeKey.length > 0) {
-                setHoldingNextNode(nextNodeKey);
+                setHoldingNextNodeKey(nextNodeKey);
 
             } else {
 
@@ -298,7 +299,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
                                                         console.log("end of locateHolding... l-splitter_result = ", resultKey);
 
-            setHoldingNextNode(resultKey);
+            setHoldingNextNodeKey(resultKey);
         }
     }
 
@@ -419,32 +420,40 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    function allowNextNodeSignal() {
+        setWalkToNextNodeSignal(true);
+    }
+
+    function resetNextNodeSignal() {
+        setWalkToNextNodeSignal(false);
+    }
+
 
     function walkToNextNode() {
 
         //TODO after receiving switch-signal
         
         console.log("#chapterNodeMapping = ", chapterNodeMapping);
-        console.log("\t#holdingNextNode = ", holdingNextNode);
-        if (chapterNodeMapping[currChapterKey][holdingNextNode] === undefined) {
+        console.log("\t#holdingNextNodeKey = ", holdingNextNodeKey);
+        if (chapterNodeMapping[currChapterKey][holdingNextNodeKey] === undefined) {
             return;
         }
 
         // get nextNode's type
-        let upcomingNodeType = chapterNodeMapping[currChapterKey][holdingNextNode]["nodeType"];
+        let upcomingNodeType = chapterNodeMapping[currChapterKey][holdingNextNodeKey]["nodeType"];
 
         // set new holding-next
-        locateHoldingNextNode(holdingNextNode, upcomingNodeType);
+        locateHoldingNextNode(holdingNextNodeKey, upcomingNodeType);
 
 
         setCurrNodeType(upcomingNodeType);
-        setCurrNodeKey(holdingNextNode);
+        setCurrNodeKey(holdingNextNodeKey);
         //set upcoming-node's actual data
         if (upcomingNodeType !== "*chapterStart*" 
             && upcomingNodeType !== "*chapterEnd*"
             && upcomingNodeType !== "LogicSplitter"
         ){ // game-content-nodes
-            fetchOrFindNodeData(currChapterKey, holdingNextNode);
+            fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
         
         } else if (upcomingNodeType === "LogicSplitter"
             || upcomingNodeType === "*chapterEnd*"
@@ -464,8 +473,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
         //TODO52 update currentGameStatusProgress
 
-        triggerChangeToCurrNode(holdingNextNode, upcomingNodeType);
-
+        triggerChangeToCurrNode(holdingNextNodeKey, upcomingNodeType);
     }
 
     function walkToNextChapter() {
@@ -576,23 +584,28 @@ return (<div
         style={{"backgroundColor": "blue", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
         onClick={()=>{
             //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
-            locateHoldingNextNode(currNodeKey, currNodeType);
-            setJumpNodeSignal(true);
+          
+          //TODO100
+          if (walkToNextNodeSignal === true) {
+                locateHoldingNextNode(currNodeKey, currNodeType); //TODO for game-data-referencing, only do locating at node's last move!
+                setJumpNodeSignal(true); //TODO for in-practice-node-viewing, only walk to nextt node at node's last move!
+                resetNextNodeSignal();
+          }
+
+
+
             //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
         }}
     >
-    conversation-node<br></br>
-    chapter = {currChapterKey}, node-key = {currNodeKey}
 
-    {/* //TODO100  */}
-
-        {focusedNodeData !== undefined && 
         <GameScreen_InPracShell_ConvNode
             allPieceData={focusedNodeData["nodeContent"]}
             nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
             nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
             nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
             nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
+
+            notifyNodeFinish={allowNextNodeSignal}
             
             screenWidth={screenWidth}
             screenHeight={screenHeight}
@@ -606,8 +619,7 @@ return (<div
 
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far
-       
-       />} 
+       />
 
 {/*
   allNodeDataContainer[currNodeKey]["nodeContent"]

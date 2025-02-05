@@ -13,6 +13,8 @@ export default function GameScreen_InPracShell_ConvNode ({
 
     screenWidth,
     screenHeight,
+
+    notifyNodeFinish,
         
     uiLanguage,
     
@@ -27,6 +29,8 @@ export default function GameScreen_InPracShell_ConvNode ({
 }) {
 
     const initialPieceNum = 0;
+    const nodePieceLimit = allPieceData !== undefined ? allPieceData.length : 0;
+
     const isDisplay = true;
     const [resetSignal, setResetSignal] = useState(false);
 
@@ -63,41 +67,47 @@ export default function GameScreen_InPracShell_ConvNode ({
 
                                     console.log("in-prac-shell, allPieceData = ", allPieceData);
 
-        // updateCharPicArr(); // done in conv-node-sub-layer
-        // updateBgmSource(); // done in conv-node-sub-layer
-        // updateBgpSource(); // done in conv-node-sub-layer
+/* 
+  
+        updateCharPicArr(); // done in conv-node-sub-layer
+        updateBgmSource(); // done in conv-node-sub-layer
+        updateBgpSource(); // done in conv-node-sub-layer
+/*
 
-        
+  /*      
  //TODO using the one from out-layer
-        // if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-        //     let i = 0;
-        //     let tempAudioMap = {};
-        //     setAudioMapSize(audioList.length);
-        //     for (;i < audioList.length; i++) {
-        //         let item = audioList[i];
-        //         tempAudioMap[item["var"]] = item["url"];
-        //     }
-        //     setAudioMap(tempAudioMap);
+        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+            let i = 0;
+            let tempAudioMap = {};
+            setAudioMapSize(audioList.length);
+            for (;i < audioList.length; i++) {
+                let item = audioList[i];
+                tempAudioMap[item["var"]] = item["url"];
+            }
+            setAudioMap(tempAudioMap);
 
-        //     i = 0;
-        //     let tempVisualMap = {};
-        //     setVisualMapSize(visualList.length);
-        //     for (;i < visualList.length; i++) {
-        //         let item = visualList[i];
-        //         tempVisualMap[item["var"]] = item["url"];
-        //     }
-        //     setVisualMap(tempVisualMap);
-        // }
- //TODO using the one from out-layer
+            i = 0;
+            let tempVisualMap = {};
+            setVisualMapSize(visualList.length);
+            for (;i < visualList.length; i++) {
+                let item = visualList[i];
+                tempVisualMap[item["var"]] = item["url"];
+            }
+            setVisualMap(tempVisualMap);
+        }
+ TODO using the one from out-layer
 
-        // if (allPieceContent[currPieceNum].displayTextFrame === false) {
-        //     setTextStillTyping(false);
-        // } //TODO test before removing
-
-    }); //-- useEffect --
-
+        if (allPieceContent[currPieceNum].displayTextFrame === false) {
+            setTextStillTyping(false);
+        } //TODO test before removing
+*/
 
 
+
+    }); //-- end of useEffect --
+
+
+/*
     //async function initializeDataFromCloud() { //TODO remove
       // let obj = await fetchNodeDataEachNode({
       //     projectName: projectname, 
@@ -160,7 +170,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     //     } 
     // }  //TODO test before removing
 
-
+    */
 
     function notUsing() {
       return "";
@@ -174,6 +184,11 @@ export default function GameScreen_InPracShell_ConvNode ({
       //TODO button-caused-change
 
       //TODO (game data tracker kept in this layer? out-layer?)
+    }
+
+    function receivedSignalOfPieceLimitReached() {
+      //TODO100
+      //TODO notify outer-layer... able to walk to next node there...
     }
 
 
@@ -195,6 +210,8 @@ return (<div>
 
                     initialPieceNum={initialPieceNum}   //ok
                     allPieceContent={allPieceData}
+
+                    notifyNodeFinish={notifyNodeFinish}
                     
                     uiData1_textframe={nodeUITextFrame}
                     uiData2_defaultButtonOption={nodeUIDefaultButton}

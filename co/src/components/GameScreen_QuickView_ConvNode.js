@@ -9,6 +9,8 @@ export default function GameScreen_QuickView_ConvNode ({
     initialPieceNum, 
     getResetSignal, getResetInfoSets, notifyAfterReset,
     isDisplay, screenWidth, screenHeight, 
+
+    notifyNodeFinish,
     
     gameData,
     allPieceContent, 
@@ -23,6 +25,7 @@ export default function GameScreen_QuickView_ConvNode ({
 }) { //temp: not holding game-data-tracker
 
         let modalStyleName = "modalBackboard"; 
+        const allPieceLimit = allPieceContent === undefined ? 0 : allPieceContent.length;
 
         if (isDisplay === true) {
             modalStyleName = "displayBlock modalBackboard";
@@ -166,6 +169,10 @@ export default function GameScreen_QuickView_ConvNode ({
                     setCurrPieceNum(currPieceNum+1);
                     setImmediateFinishSignal(false);
                 } 
+
+                if (currPieceNum+1 === allPieceLimit) {
+                    notifyNodeFinish();
+                }
             
         }
 
