@@ -366,9 +366,9 @@ export default function GameMaker({username, projectName}) {
 
 
   
-
+//TODO update to and fetch from cloud for this project !!!
   const [currentProjectNav, setCurrentProjectNav] = useState({
-    "screenSize": "16:9(horizonal)",
+    "screenSize": "4:3(horizonal)",
     "defaultCornerRadius": 0,
     
     "isWithSL": false,

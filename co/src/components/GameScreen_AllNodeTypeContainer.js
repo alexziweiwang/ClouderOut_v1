@@ -130,7 +130,8 @@ export default function GameScreen_AllNodeTypeContainer({
             if (jumpNodeSignal == true) {
                 walkToNextNode();
 
-                setJumpNodeSignal(false);
+                                                // setJumpNodeSignal(false); //TODO remove later
+                resetJumpNodeSignalToFalse();
             }
         }
 
@@ -428,6 +429,14 @@ export default function GameScreen_AllNodeTypeContainer({
         setWalkToNextNodeSignal(false);
     }
 
+    function allowJumpNodeSignal() {
+        setJumpNodeSignal(true);
+    }
+
+    function resetJumpNodeSignalToFalse() {
+        setJumpNodeSignal(false);
+    }
+
 
     function walkToNextNode() {
 
@@ -474,6 +483,7 @@ export default function GameScreen_AllNodeTypeContainer({
         //TODO52 update currentGameStatusProgress
 
         triggerChangeToCurrNode(holdingNextNodeKey, upcomingNodeType);
+        resetNextNodeSignal();
     }
 
     function walkToNextChapter() {
@@ -538,14 +548,16 @@ return (<div
 
     {currNodeType === "*chapterStart*" && <div 
         style={{
-            "backgroundColor": "green", 
+            "backgroundColor": "#000000", 
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
-            "height": `${screenHeight}px`, 
+            "height": `${screenHeight}px`,
+            "color": "orange"
         }}
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
-            setJumpNodeSignal(true);
+                                                        //setJumpNodeSignal(true); //TODO remove later
+            allowJumpNodeSignal();
         }}
     >
     {/* *chapterStart*<br></br> */}
@@ -556,7 +568,13 @@ return (<div
 
 
     {currNodeType === "*chapterEnd*" && 
-    <div style={{"backgroundColor": "brown", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
+    <div style={{
+        "backgroundColor": "#000000", 
+        "borderRadius": "0px", 
+        "width": `${screenWidth}px`, 
+        "height": `${screenHeight}px`,
+        "color": "orange"
+    }}
         onClick={()=>{
 
             //TODO switch to next chapter!
@@ -565,20 +583,28 @@ return (<div
     >
     *chapterEnd*<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}        
-        </div>}
+    </div>}
+
+
 
     {currNodeType === "LogicSplitter" && 
     <div
-        style={{"backgroundColor": "orange", "borderRadius": "0px", "width": `${screenWidth}px`, "height": `${screenHeight}px`}}
+        style={{
+            "backgroundColor": "#000000", 
+            "borderRadius": "0px", 
+            "width": `${screenWidth}px`, 
+            "height": `${screenHeight}px`
+        }}
+
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
-            setJumpNodeSignal(true);            
+                                //setJumpNodeSignal(true);    //TODO remove later
+            allowJumpNodeSignal();         
         }}
     >
-            logic-splitter<br></br>
-            chapter = {currChapterKey}, node-key = {currNodeKey}
-   
+
     </div>}
+
 
 
     {currNodeType === "Conversation" && 
@@ -596,8 +622,12 @@ return (<div
           //TODO100
           if (walkToNextNodeSignal === true) {
                 locateHoldingNextNode(currNodeKey, currNodeType); //TODO for game-data-referencing, only do locating at node's last move!
-                setJumpNodeSignal(true); //TODO for in-practice-node-viewing, only walk to nextt node at node's last move!
-                resetNextNodeSignal();
+
+                    //TODO for in-practice-node-viewing, only walk to nextt node at node's last move!
+                allowJumpNodeSignal();
+
+                
+                                //setJumpNodeSignal(true);  //TODO remove later
           }
 
 
