@@ -439,6 +439,8 @@
 - 2025-Jan-29: Consider text-frame stable test-alignment display strategy
 - 2025-Jan-29: Project-managing-panel, project list display strategy
 
+- 
 
+player-side-Viewer component-implementation-plan
 
 
