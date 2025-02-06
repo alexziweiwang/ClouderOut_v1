@@ -43,7 +43,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     const [holdingNextNodeKey, setHoldingNextNodeKey] = useState("");
-    const [walkToNextNodeSignal, setWalkToNextNodeSignal] = useState(false);
+    const [currentNodeFinishedSignal, setCurrentNodeFinishedSignal] = useState(false);
 
     const [gameDataTracker, setGameDataTracker] = useState({});
 
@@ -127,6 +127,7 @@ export default function GameScreen_AllNodeTypeContainer({
                 setFirstTimeEnter(false);
 
         } else {
+
             if (currNodeType === "LogicSplitter") {
                 atLogicSplitterBehaviour();
                 walkToNextNode();
@@ -137,8 +138,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
             } else if (jumpNodeSignal == true) { //game-content-node
                 walkToNextNode();
-
-                                                // setJumpNodeSignal(false); //TODO remove later
+                                                
                 resetJumpNodeSignalToFalse();
             }
         }
@@ -436,11 +436,11 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     function markNextNodeSignalTrue() {
-        setWalkToNextNodeSignal(true);
+        setCurrentNodeFinishedSignal(true);
     }
 
     function resetNextNodeSignal() {
-        setWalkToNextNodeSignal(false);
+        setCurrentNodeFinishedSignal(false);
     }
 
     function markJumpNodeSignalTrue() {
@@ -479,15 +479,16 @@ export default function GameScreen_AllNodeTypeContainer({
         ){ // game-content-nodes
             fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
         
-        } else if (upcomingNodeType === "*chapterStart*") {
-            //TODO if title-display is needed...
+        } 
+        // else if (upcomingNodeType === "*chapterStart*") {
+        //     //TODO if title-display is needed...
 
-        } else { //TODO can remove later
-            //upcomingNodeType === "LogicSplitter" || upcomingNodeType === "*chapterEnd*"
-            console.log("walkToNextNode - game data = ", currGameDataTracker);
-            //non-data nodes, does not display content
+        // } else { //TODO can remove later
+        //     //upcomingNodeType === "LogicSplitter" || upcomingNodeType === "*chapterEnd*"
+        //     console.log("walkToNextNode - game data = ", currGameDataTracker);
+        //     //non-data nodes, does not display content
 
-        }
+        // }
 
 
 
@@ -552,7 +553,6 @@ return (<div
         "userSelect": "none",
         "cursor": "pointer",
         "position": "relative",
-
     }}
 >
 
@@ -567,13 +567,11 @@ return (<div
         }}
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
-                                                        //setJumpNodeSignal(true); //TODO remove later
             markJumpNodeSignalTrue();
         }}
     >
-    {/* *chapterStart*<br></br> */}
-    {currChapterTitle} <br></br>
-    {/* chapter = {currChapterKey}, node-key = {currNodeKey} */}
+
+    {currChapterTitle} 
         
     </div>}
 
@@ -588,7 +586,7 @@ return (<div
         "height": `${screenHeight}px`,
         "color": "pink"
     }}
-        onClick={()=>{
+        o n C l i ck ={()=>{
 
             //TODO switch to next chapter!
             walkToNextChapter();
@@ -601,8 +599,8 @@ return (<div
     */}
 
 
-
-    {/* {currNodeType === "LogicSplitter" && 
+    {/* just for transition - no content for logic-splitter */}
+    {currNodeType === "LogicSplitter" && 
     <div
         style={{
             "backgroundColor": "#000000", 
@@ -610,13 +608,8 @@ return (<div
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`
         }}
-
-        onClick={()=>{
-            atLogicSplitterBehaviour();  
-        }}
     >
-//NOT USING -- logic-splitting happens in use_Effect now...
-    </div>} */}
+    </div>}
 
 
 
@@ -632,14 +625,11 @@ return (<div
         onClick={()=>{
             //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
           
-          if (walkToNextNodeSignal === true) {
+          if (currentNodeFinishedSignal === true) {
                 locateHoldingNextNode(currNodeKey, currNodeType); //TODO for game-data-referencing, only do locating at node's last move!
 
                     //TODO for in-practice-node-viewing, only walk to nextt node at node's last move!
                 markJumpNodeSignalTrue();
-
-
-                                //setJumpNodeSignal(true);  //TODO remove later
           }
 
 
