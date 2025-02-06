@@ -16,6 +16,8 @@ import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
 
+
+//TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 
 
@@ -332,7 +334,11 @@ export default function ConversationNodeEditingPanel() {
 //         console.log("index = ", previewingIndex ,"\ncurr piece info: ", pieceDataStructure[previewingIndex]["stnd_btn_arr"]);
 // //TODO1
     
-    });
+    }); // --- useEffect ends here ---
+
+
+
+
       
     function goToProjectManagingPanel() {
         navigate('/projectmanagingpanel', { replace: true });
@@ -396,6 +402,7 @@ export default function ConversationNodeEditingPanel() {
         setBrowseList(!browseList);
     }
 
+    //TODO21 refactor to VM
     function getSelectedPiece(num) {
         setPieceNumber(num);
         let tempArr = pieceDataStructure;
@@ -519,6 +526,8 @@ export default function ConversationNodeEditingPanel() {
         setUIConvNav(data);
     }
  
+
+    //TODO21 refactor to VM
     function passInScreenSize() {
         let pair = [];
         pair.push(screenWidth);
@@ -585,6 +594,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
 
+    //TODO21 refactor to VM
     function getUserConfigFromEmuManager1Gdt(data1) {  //recreate emu data object
         //update data1 to be the new Game-Data-Tracker
 
@@ -623,6 +633,8 @@ export default function ConversationNodeEditingPanel() {
         setTestPlayerGameDataDup(tempObjDup);
     }
 
+
+    //TODO21 refactor to VM
     function resetPlayerProfileDataDup() { //recreate emu data object
         let tempObjDup1 = {};
         let tempObjDup2 = {};
@@ -689,7 +701,7 @@ export default function ConversationNodeEditingPanel() {
         return;
     }
 
-    function resetQuickView () {
+    function resetQuickView () { 
         let arr = [];
         arr.push(previewingIndex);
 

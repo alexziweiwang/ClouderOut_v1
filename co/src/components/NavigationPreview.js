@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+
+//TODO20 cloud-func
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-//TODO get resource-list from outer layer?
+//TODO100 get resource-list from outer layer?
 export default function NavigationPreview ({
     initialNavObj, 
     fetchNavObj, 

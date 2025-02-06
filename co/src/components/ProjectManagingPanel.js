@@ -2,10 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
-import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './textDictionary';
+
+
+//TODO20 cloud-func
+import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
 
 
 export default function ProjectManagerPanel() {

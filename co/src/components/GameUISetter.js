@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import langDictionary from './textDictionary';
 
+//TODO20 cloud-func
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+
+
+//TODO20 cloud-func
 export default function GameUISetter({
     openRm, iniDefaultButtonObj, 
     iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,

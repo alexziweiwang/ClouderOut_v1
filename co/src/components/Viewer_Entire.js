@@ -15,7 +15,7 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
     initialize/refresh every time when reopening this compo-window
  */
 
-//TODO get resource-list from outer layer?
+//TODO100 get resource-list from outer layer?
 export default function Viewer_Entire({
     navigationObj, 
     initialChapterList, getChapterList, getUILanguage,

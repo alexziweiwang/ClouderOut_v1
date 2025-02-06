@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import langDictionary from './textDictionary';
+
+//TODO20 cloud-func
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-import langDictionary from './textDictionary';
+
 
 
 

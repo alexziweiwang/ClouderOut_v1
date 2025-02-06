@@ -5,6 +5,7 @@ import langDictionary from './textDictionary';
 import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
+//TODO20 cloud-func
 import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
 
 

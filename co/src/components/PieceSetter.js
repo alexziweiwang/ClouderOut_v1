@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { GiTrashCan } from "react-icons/gi";
-import { getProjectGameDataDesignVM, updateGameDataDesignVM} from '../viewmodels/GameDataViewModel';
 import langDictionary from './textDictionary';
+
+
+//TODO20 cloud-func
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import { getProjectGameDataDesignVM, updateGameDataDesignVM} from '../viewmodels/GameDataViewModel';
+
 
 //TODO refactor: stnd_btn_arr
 

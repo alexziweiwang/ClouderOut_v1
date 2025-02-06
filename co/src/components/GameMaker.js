@@ -13,6 +13,8 @@ import NavigationPreview from './NavigationPreview';
 import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
 
+
+//TODO20 cloud-func (marked)
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
@@ -21,6 +23,9 @@ import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,
 } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
+
+
+
 
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -1096,6 +1101,8 @@ export default function GameMaker({username, projectName}) {
     return grid;
   }
 
+
+  //TODO21 refactor to VM
   function prepareForNewChapterMapping(newKey) {
     
     //update all-node-map
@@ -1206,6 +1213,7 @@ export default function GameMaker({username, projectName}) {
 
   }
 
+  //TODO21 refactor to VM
   async function saveNewlyCreatedNodeFolder() {
 
     if (createdNewNodeKeyList.length === 0) {
@@ -1524,6 +1532,8 @@ export default function GameMaker({username, projectName}) {
     return testPlayerPurchaseStatus; //TODO30
   }
 
+
+  //TODO21 refactor to VM
   async function updateChapterNodeMappingsToCloud() {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
@@ -1568,6 +1578,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     console.log("update-Chapter-Node-Mappings-To-Cloud!");
   }
 
+
+  //TODO21 refactor to VM
   function triggerCreatedNewNode(newNodeKey, chapterKeyTemp) {
     setCreateNodeFolderSignal(true);
     let newNodeList = createdNewNodeKeyList;
@@ -1579,6 +1591,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setCreatedNewNodeKeyList(newNodeList);
   }
 
+
+
   function triggerCreatedNewChapter(nodeChapterKey) {
     //TODO39
     let list = createdNewChapterList;
@@ -1588,6 +1602,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   }
 
+
+  //TODO21 refactor to VM
   async function fetchChapterNodeMappingFromCloud() {
 
     let data = await fetchChapterNodesDataVM({   
@@ -1640,6 +1656,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     return chapterNodeMapAll;
   }
 
+
+  //TODO21 refactor to VM
   async function saveChapterListToCloud(chapterListInfo) {
 
 
@@ -1667,6 +1685,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   }
 
+
+  //TODO21 refactor to VM
   async function fetchChapterListFromCloud() {
     let listTemp = await fetchAllChapterListVM(
       {

@@ -1,9 +1,7 @@
 import * as React from 'react';
-import moment from "moment";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
-import { getChapterDataVM } from '../viewmodels/GameDataViewModel';
 
 
 import langDictionary from './textDictionary';
@@ -322,10 +320,7 @@ export default function NodeManager({projectName, currUser,
 
     });
 
-  // async function getChapterDataFromCloud(chapter) {
-  //   return await getChapterDataVM({projectName: projectName, uname: currUser, chapterName: chapter});
-   
-  // }
+
 
   // function updateNodeDataActions(data) {
   //      setNodeData(data);
