@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
+//TODO get resource-list from outer layer?
 export default function NavigationPreview ({
     initialNavObj, 
     fetchNavObj, 
@@ -9,7 +10,6 @@ export default function NavigationPreview ({
     fetchPageName, 
     updateCurrentPageName,
     updateCurrentStanding,
-
 
     chapterData, 
     isEditing,
@@ -54,7 +54,7 @@ const tempFontSize = 12;
     const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
     const [visualList, setVisualList] = useState([]); 
     async function fetchProjResourceLists() {
-   //   console.log("nav-preview: fetchProjResourceLists()"); //TODO test
+   //   console.log("nav-preview: fetch_Proj_Resource_Lists( )"); //TODO test
 
       if (username === "default-no-state username" || projName === "default-no-state projectName") {
         return;
@@ -132,7 +132,7 @@ const tempFontSize = 12;
                                         // console.log("initial nav-preview: ", initialNavObj); //TODO test
                                         // console.log("Navigation Preview -- "); //TODO test
                                                                  
-            fetchProjResourceLists();
+            fetchProjResourceLists(); //TODO refactor .. from outer layer ??
 
             let i = 0;
             let j = 0;

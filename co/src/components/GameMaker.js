@@ -158,7 +158,8 @@ export default function GameMaker({username, projectName}) {
   const [createdChapterFolderSignal, setCreatedChapterFolderSignal] = useState(false);
 
   const [visualList, setVisualList] = useState([]); 
-  
+  const [audioList, setAudioList] = useState([]); 
+
   async function fetchProjResourceLists() {
     if (username === "default-no-state username" || projectName === "default-no-state projectName") {
       return;
@@ -174,8 +175,8 @@ export default function GameMaker({username, projectName}) {
       return;
     }
 
-
-                    setVisualList(obj.visual);
+    setAudioList(obj.audio);                
+    setVisualList(obj.visual);
 
     return obj.visual;
   }

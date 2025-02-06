@@ -14,6 +14,8 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
     initialize/refresh every time when reopening this compo-window
  */
+
+//TODO get resource-list from outer layer?
 export default function Viewer_Entire({
     navigationObj, 
     initialChapterList, getChapterList, getUILanguage,
@@ -453,3 +455,16 @@ return(<>
 
 }
 
+// game-running... data parts needed from outer-layer:
+    // navigation-obj for the entire game
+    // chapter-list
+    // UI-language
+    // player-game-data
+    // player-profile
+    // player-account-settings
+    // chapter-all-node-mapping
+    // first node's node-type, chapter-key, node-key (tracking)
+    // current page-name, current chapter-title (tracking)
+    // (for the project-locating) user-name + project-name  (+ version code ??)
+    // shop-system-related
+    // resource(visual+audio) data ...
