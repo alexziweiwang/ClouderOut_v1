@@ -441,6 +441,7 @@
 
 - 2025-Feb-04: Player-side-Viewer component-implementation-plan
 
+- 2025-Feb-05: Research on Electron App and other frameworks for desktop-app-side 
 
 
 
