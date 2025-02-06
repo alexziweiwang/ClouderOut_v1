@@ -132,7 +132,10 @@ export default function GameScreen_AllNodeTypeContainer({
                 walkToNextNode();
                 resetJumpNodeSignalToFalse();
             
-            } else if (jumpNodeSignal == true) {
+            } else if (currNodeType === "*chapterEnd*") {
+                walkToNextChapter();
+
+            } else if (jumpNodeSignal == true) { //game-content-node
                 walkToNextNode();
 
                                                 // setJumpNodeSignal(false); //TODO remove later
@@ -468,6 +471,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
         setCurrNodeType(upcomingNodeType);
         setCurrNodeKey(holdingNextNodeKey);
+
         //set upcoming-node's actual data
         if (upcomingNodeType !== "*chapterStart*" 
             && upcomingNodeType !== "*chapterEnd*"
@@ -475,17 +479,13 @@ export default function GameScreen_AllNodeTypeContainer({
         ){ // game-content-nodes
             fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
         
-        } else if (upcomingNodeType === "LogicSplitter"
-            || upcomingNodeType === "*chapterEnd*"
-        
-        ) {
-            console.log("walkToNextNode - game data = ", currGameDataTracker);
-
-            //TODO for non-data nodes, does not display content?
-        }
-
-        if (upcomingNodeType === "*chapterStart*") {
+        } else if (upcomingNodeType === "*chapterStart*") {
             //TODO if title-display is needed...
+
+        } else { //TODO can remove later
+            //upcomingNodeType === "LogicSplitter" || upcomingNodeType === "*chapterEnd*"
+            console.log("walkToNextNode - game data = ", currGameDataTracker);
+            //non-data nodes, does not display content
 
         }
 
@@ -563,7 +563,7 @@ return (<div
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "color": "pink"
+            "color": "#FFFFFF"
         }}
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
@@ -578,6 +578,8 @@ return (<div
     </div>}
 
 
+    {/* 
+    //TODO can remove later, here for testing only
     {currNodeType === "*chapterEnd*" && 
     <div style={{
         "backgroundColor": "#000000", 
@@ -594,7 +596,9 @@ return (<div
     >
     *chapterEnd*<br></br>
     chapter = {currChapterKey}, node-key = {currNodeKey}        
-    </div>}
+    </div>} 
+    //TODO can remove later, here for testing only
+    */}
 
 
 
@@ -611,7 +615,7 @@ return (<div
             atLogicSplitterBehaviour();  
         }}
     >
-//NOT USING -- logic-splitting happens in useEffect now...
+//NOT USING -- logic-splitting happens in use_Effect now...
     </div>} */}
 
 
