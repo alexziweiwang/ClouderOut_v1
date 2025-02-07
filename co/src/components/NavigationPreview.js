@@ -27,7 +27,12 @@ export default function NavigationPreview ({
     initialUILanguage,
 
     fetchShopItemInfo,
-    fetchPlayerPurchaseInfo
+    fetchPlayerPurchaseInfo,
+
+    visualMap,
+    audioMap,
+
+//TODO22 dynamiclly getting resource-maps
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -103,10 +108,10 @@ const tempFontSize = 12;
 
     const [qWindowSetup, setQwindowSetup] = useState(false);
 
-    const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
-    const [visualMap, setVisualMap] = useState({}); 
-    const [audioMapSize, setAudioMapSize] = useState(0);
-    const [visualMapSize, setVisualMapSize] = useState(0);
+    // const [audioMap, setAudioMap] = useState({});  //TODO remove //TODO for bgm on each nav-page -- future feature
+    // const [visualMap, setVisualMap] = useState({});  //TODO remove
+    // const [audioMapSize, setAudioMapSize] = useState(0); //TODO remove
+    // const [visualMapSize, setVisualMapSize] = useState(0); //TODO remove
 
     const sizeLookupMap = { "16:9(horizonal)": [800, 450],
         "16:9(vertical)": [450, 800],
@@ -183,25 +188,25 @@ const tempFontSize = 12;
        
 
 
-        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-            let i = 0;
-            let tempAudioMap = {};
-            setAudioMapSize(audioList.length);
-            for (;i < audioList.length; i++) {
-                let item = audioList[i];
-                tempAudioMap[item["var"]] = item["url"];
-            }
-            setAudioMap(tempAudioMap);
+        // if (audioMapSize < audioList.length || visualMapSize < visualList.length) { //TODO remove, as outer-layer done this
+        //     let i = 0;
+        //     let tempAudioMap = {};
+        //     setAudioMapSize(audioList.length);
+        //     for (;i < audioList.length; i++) {
+        //         let item = audioList[i];
+        //         tempAudioMap[item["var"]] = item["url"];
+        //     }
+        //     setAudioMap(tempAudioMap);
 
-            i = 0;
-            let tempVisualMap = {};
-            setVisualMapSize(visualList.length);
-            for (;i < visualList.length; i++) {
-                let item = visualList[i];
-                tempVisualMap[item["var"]] = item["url"];
-            }
-            setVisualMap(tempVisualMap);
-        }
+        //     i = 0;
+        //     let tempVisualMap = {};
+        //     setVisualMapSize(visualList.length);
+        //     for (;i < visualList.length; i++) {
+        //         let item = visualList[i];
+        //         tempVisualMap[item["var"]] = item["url"];
+        //     }
+        //     setVisualMap(tempVisualMap);
+        // } //TODO remove, as outer-layer done this
 
 
 

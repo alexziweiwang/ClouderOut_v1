@@ -165,32 +165,71 @@ export default function GameMaker({username, projectName}) {
   const [visualList, setVisualList] = useState([]); 
   const [audioList, setAudioList] = useState([]); 
 
-  async function fetchProjResourceLists() {
-    if (username === "default-no-state username" || projectName === "default-no-state projectName") {
-      return;
+  const [visualMap, setVisualMap] = useState([]); 
+  const [audioMap, setAudioMap] = useState([]);
+
+
+    async function fetchProjResourceLists() {
+      if (username === "default-no-state username" || projectName === "default-no-state projectName") {
+        return;
+      }
+
+
+      /* fetch from cloud db */
+      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
+
+                      //          console.log("game-maker, visuallist = : ", obj); //TODO
+      
+      if (obj === undefined) {
+        return;
+      }
+
+      setAudioList(obj.audio);                
+      setVisualList(obj.visual);
+
+      initializeVisualMap(obj.visual);
+      initializeAudioMap(obj.audio);
+
+      return obj;
     }
 
 
-    /* fetch from cloud db */
-    const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
-
-                    //          console.log("game-maker, visuallist = : ", obj); //TODO
-    
-    if (obj === undefined) {
-      return;
+    function updateRenderCounter() {
+      console.log("updateRenderCounter!");
+      setRenderCounter((renderCounter+1) % 100);
     }
 
-    setAudioList(obj.audio);                
-    setVisualList(obj.visual);
+    function initializeVisualMap(visualList) {
+        let tempMap = {};
 
-    return obj.visual;
-  }
+        //TODO
+        let len = visualList.length;
+        let i = 0;
+        while (i < len) {
+            let item = visualList[i];
+            tempMap[item["var"]] = item["url"];
+            i++;
+        }
+                //   console.log("initialized visual map = ", tempMap); //TODO test
+
+        setVisualMap(tempMap);
+    }
 
 
-  function updateRenderCounter() {
-    console.log("updateRenderCounter!");
-    setRenderCounter((renderCounter+1) % 100);
-  }
+    function initializeAudioMap(audioList) {
+        let tempMap = {};
+
+        //TODO
+        let len = audioList.length;
+        let i = 0;
+        while (i < len) {
+            let item = audioList[i];
+            tempMap[item["var"]] = item["url"];
+            i++;
+        }
+                                  
+        setAudioMap(tempMap);
+    }
 
 
 //TODO ------------------------------------------------------ testing data area
@@ -1389,9 +1428,6 @@ export default function GameMaker({username, projectName}) {
     return obj;
   }
 
-  function passInPicResourceList() {
-      return visualList;
-  }
 
   const emptyValue = {};
 
@@ -1949,7 +1985,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                   fetchShopItemInfo={passInShopItemInfo}
                   fetchPlayerPurchaseInfo={passInPlayerPurchaseStatus}
-          
+                  
+                  visualMap={visualMap}
+                  audioMap={audioMap}
                   />
               </div>
           </div>
@@ -2048,6 +2086,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           triggerChapterChange={triggerChapterChange }
 
 
+          visualMap={visualMap}
+          audioMap={audioMap}
 
       />
 

@@ -51,7 +51,10 @@ export default function Viewer_Entire({
     projectname,
 
     getShopItemInfo,
-    getPlayerPurchaseInfo
+    getPlayerPurchaseInfo,
+
+    visualMap,
+    audioMap,
     
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
@@ -394,7 +397,10 @@ return( <>
 
                                                 username={username}
                                                 projectname={projectname}
-                                                uiLanguage={languageCodeTextOption}             
+                                                uiLanguage={languageCodeTextOption} 
+                                                
+                                                visualMap={visualMap}
+                                                audioMap={audioMap}
                                           />
 
                                 

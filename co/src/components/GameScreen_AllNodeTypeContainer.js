@@ -28,7 +28,11 @@ export default function GameScreen_AllNodeTypeContainer({
 
     username,
     projectname,
-    uiLanguage
+    uiLanguage,
+
+
+    visualMap,
+    audioMap,
 
 }) {
 
@@ -59,10 +63,10 @@ export default function GameScreen_AllNodeTypeContainer({
     const[visualList, setVisualList] = useState({});
     const[audioList, setAudioList] = useState({});
 
-    const [audioMap, setAudioMap] = useState({});
-    const [visualMap, setVisualMap] = useState({}); 
-    const [audioMapSize, setAudioMapSize] = useState(0);
-    const [visualMapSize, setVisualMapSize] = useState(0);
+                                                // const [audioMap, setAudioMap] = useState({});
+                                                // const [visualMap, setVisualMap] = useState({}); 
+                                                // const [audioMapSize, setAudioMapSize] = useState(0);
+                                                // const [visualMapSize, setVisualMapSize] = useState(0);
 
 
     const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
@@ -105,25 +109,25 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
 
-                if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-                    let i = 0;
-                    let tempAudioMap = {};
-                    setAudioMapSize(audioList.length);
-                    for (;i < audioList.length; i++) {
-                        let item = audioList[i];
-                        tempAudioMap[item["var"]] = item["url"];
-                    }
-                    setAudioMap(tempAudioMap);
-        
-                    i = 0;
-                    let tempVisualMap = {};
-                    setVisualMapSize(visualList.length);
-                    for (;i < visualList.length; i++) {
-                        let item = visualList[i];
-                        tempVisualMap[item["var"]] = item["url"];
-                    }
-                    setVisualMap(tempVisualMap);
-                }
+                                                    // if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
+                                                    //     let i = 0;
+                                                    //     let tempAudioMap = {};
+                                                    //     setAudioMapSize(audioList.length);
+                                                    //     for (;i < audioList.length; i++) {
+                                                    //         let item = audioList[i];
+                                                    //         tempAudioMap[item["var"]] = item["url"];
+                                                    //     }
+                                                    //     setAudioMap(tempAudioMap);
+                                            
+                                                    //     i = 0;
+                                                    //     let tempVisualMap = {};
+                                                    //     setVisualMapSize(visualList.length);
+                                                    //     for (;i < visualList.length; i++) {
+                                                    //         let item = visualList[i];
+                                                    //         tempVisualMap[item["var"]] = item["url"];
+                                                    //     }
+                                                    //     setVisualMap(tempVisualMap);
+                                                    // }
 
                 setFirstTimeEnter(false);
 
