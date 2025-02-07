@@ -17,10 +17,8 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 //TODO20 cloud-func (marked)
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { updateProjectUILangVM, fetchProjectUILangVM } from '../viewmodels/ProjectManagerViewModel';
-import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,
-  fetchAllChapterListVM, updateChapterListToCloudVM,
-} from '../viewmodels/ChapterInfoViewModel';
+import { updateProjectUILangVM, fetchProjectUILangVM, updateProjectNavigationSettingsVM } from '../viewmodels/ProjectManagerViewModel';
+import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,fetchAllChapterListVM, updateChapterListToCloudVM } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 
@@ -210,7 +208,7 @@ export default function GameMaker({username, projectName}) {
             tempMap[item["var"]] = item["url"];
             i++;
         }
-                //   console.log("initialized visual map = ", tempMap); //TODO test
+                                        console.log("initialized visual map = ", tempMap); //TODO test
 
         setVisualMap(tempMap);
     }
@@ -227,7 +225,8 @@ export default function GameMaker({username, projectName}) {
             tempMap[item["var"]] = item["url"];
             i++;
         }
-                                  
+                                        console.log("initialized audio map = ", tempMap); //TODO test
+        
         setAudioMap(tempMap);
     }
 
@@ -411,7 +410,7 @@ export default function GameMaker({username, projectName}) {
 
 
   
-//TODO update to and fetch from cloud for this project !!!
+//TODO23 update to and fetch from cloud for this project !!!
   const [currentProjectNav, setCurrentProjectNav] = useState({
     "screenSize": "4:3(horizonal)",
     "defaultCornerRadius": 0,
@@ -1692,6 +1691,17 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     return chapterNodeMapAll;
   }
 
+  async function updateProjectNavigationSettings() {
+    // TODO25 use current currentProjectNav...
+
+    await updateProjectNavigationSettingsVM({
+      projectName: projectName, 
+      currUser: username,
+      dataObj: currentProjectNav
+    });
+    
+  }
+
 
   //TODO21 refactor to VM
   async function saveChapterListToCloud(chapterListInfo) {
@@ -1852,8 +1862,17 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
 
     <div>
-      <button onClick={()=>{fetchChapterNodeMappingFromCloud();}}>Load From Cloud</button>
-      <button onClick={()=>{updateChapterNodeMappingsToCloud(); saveNewlyCreatedNodeFolder(); editorExitingHandleChapterMgr();}}>Save To Cloud</button>
+      <button onClick={()=>{
+        fetchChapterNodeMappingFromCloud();}}
+      >Load From Cloud</button>
+
+      <button onClick={()=>{
+        //TODO25 add navigation-UI-settings to cloud
+        updateChapterNodeMappingsToCloud(); 
+        saveNewlyCreatedNodeFolder(); 
+        editorExitingHandleChapterMgr();}}
+      >Save To Cloud</button>
+
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
       <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
     
@@ -1985,7 +2004,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                   fetchShopItemInfo={passInShopItemInfo}
                   fetchPlayerPurchaseInfo={passInPlayerPurchaseStatus}
-                  
+
                   visualMap={visualMap}
                   audioMap={audioMap}
                   />

@@ -107,3 +107,11 @@ export async function fetchProjectUILang({projectName, currUser}) {
 
   return projectData.ui_language;
 }
+
+export async function updateProjectNavigationSettings({projectName, currUser, dataObj}) {
+  //TODO: update nav-ui-settings from dataObj
+
+
+  
+
+}
