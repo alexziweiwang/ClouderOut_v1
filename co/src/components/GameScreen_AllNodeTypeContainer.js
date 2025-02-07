@@ -183,6 +183,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    //TODO21 refactor to VM
     async function initializeAllNodeDataContainer(chapterKeyTemp) {
         if (chapterKeyTemp.length === 0) {
             return;
@@ -223,12 +224,13 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    //TODO21 refactor to VM
     async function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
 //allNodeDataContainer, setAllNodeDataContainer
         let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
-                                                    console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
+                                                                console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
             setFocusedNodeData(allNodeDataContainer[keyStr])
             
             return allNodeDataContainer[keyStr];
@@ -256,6 +258,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
     }
 
+    //TODO21 refactor to VM
     function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
         // fetch next-node key if direct
         //TODO do conditional-jump if logic-splitter
@@ -313,6 +316,8 @@ export default function GameScreen_AllNodeTypeContainer({
         }
     }
 
+
+    //TODO21 refactor to VM
     function handleLogicSplitting(arr) {
             // example: 
             //              spltLogicPairs: 
@@ -414,22 +419,15 @@ export default function GameScreen_AllNodeTypeContainer({
                         i--;
                         continue; //not a standard "action", so ignore this
                 }
-            
-            
-                
-
-
                 }
                 i--;
 
             }
             
             return targetNode;
-
-
-
     }
 
+    //TODO21 refactor to VM
     function atLogicSplitterBehaviour() {
         locateHoldingNextNode(currNodeKey, currNodeType);
         
@@ -453,12 +451,10 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
 
+    //TODO21 refactor to VM 
     function walkToNextNode() {
-
-        //TODO after receiving switch-signal
-        
-        console.log("#chapterNodeMapping = ", chapterNodeMapping);
-        console.log("\t#holdingNextNodeKey = ", holdingNextNodeKey);
+                                                    console.log("#chapterNodeMapping = ", chapterNodeMapping);
+                                                    console.log("\t#holdingNextNodeKey = ", holdingNextNodeKey);
         if (chapterNodeMapping[currChapterKey][holdingNextNodeKey] === undefined) {
             return;
         }
@@ -481,24 +477,13 @@ export default function GameScreen_AllNodeTypeContainer({
             fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
         
         } 
-        // else if (upcomingNodeType === "*chapterStart*") {
-        //     //TODO if title-display is needed...
-
-        // } else { //TODO can remove later
-        //     //upcomingNodeType === "LogicSplitter" || upcomingNodeType === "*chapterEnd*"
-        //     console.log("walkToNextNode - game data = ", currGameDataTracker);
-        //     //non-data nodes, does not display content
-
-        // }
-
-
-
-        //TODO52 update currentGameStatusProgress
-
+    
         triggerChangeToCurrNode(holdingNextNodeKey, upcomingNodeType);
         resetNextNodeSignal();
     }
 
+
+    //TODO21 refactor to VM
     function walkToNextChapter() {
         console.log("current chapter = ", currChapterKey);
 
@@ -521,9 +506,6 @@ export default function GameScreen_AllNodeTypeContainer({
 
                     triggerChangeToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
 
-
-                    //TODO52 update currentGameStatusProgress
-
                     console.log("next chapter!! \n", nextChapterItem);
                     break;
                 } else { 
@@ -534,11 +516,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
                 }
             }
-
             i++;
         }
-
-
     }
 
 

@@ -39,11 +39,6 @@ export default function GameScreen_QuickView_ConvNode ({
         const [immediateFinishSignal, setImmediateFinishSignal] = useState(false);
         const [autoMode, setAutoMode] = useState(false);
     
-        // const [audioMap, setAudioMap] = useState({});
-        // const [visualMap, setVisualMap] = useState({}); 
-        // const [audioMapSize, setAudioMapSize] = useState(0);
-        // const [visualMapSize, setVisualMapSize] = useState(0);
-        
         const [bgmSource, setBgmSource] = useState("");
         const [bgpSource, setBgpSource] = useState("");
     
@@ -104,10 +99,10 @@ export default function GameScreen_QuickView_ConvNode ({
 
                                     console.log("game-screen quick-view conv-node ... render once");
 
-        });
+        }); // --- end of useEffect ---
     
     
-    
+        //TODO21 refactor to VM
         function updateCharPicArr() {
             if (currPieceNum < 0) {
                 return;
@@ -118,6 +113,7 @@ export default function GameScreen_QuickView_ConvNode ({
               } 
         }
     
+        //TODO21 refactor to VM
         function updateBgmSource() {
             if (currPieceNum < 0) {
                 return;
@@ -133,6 +129,7 @@ export default function GameScreen_QuickView_ConvNode ({
     
         }
     
+        //TODO21 refactor to VM
         function updateBgpSource() {
             if (currPieceNum < 0) {
               return;
@@ -147,13 +144,12 @@ export default function GameScreen_QuickView_ConvNode ({
             } 
         }    
     
-    
+   
+        //TODO21 refactor to VM
         function triggerToDirectNextPiece() {
      
             // console.log("going to next piece! ", allPieceContent[currPieceNum+1]); //TODO test
             // console.log("\t  textStillTyping? ", textStillTyping === true ? "True" : "False", ", currPieceNum+1 = ", currPieceNum+1); //TODO test
-
-
                 if (textStillTyping === true) {
                     // notify to finished immediately
                     if (autoMode === false) {
@@ -180,8 +176,6 @@ export default function GameScreen_QuickView_ConvNode ({
 
         function resetPlaying(arr) {
             setCurrPieceNum(arr[0]);
-            
-
         }
     
         function passInCurrentPieceNum() {

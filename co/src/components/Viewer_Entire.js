@@ -178,6 +178,7 @@ export default function Viewer_Entire({
     });
 
   
+    //TODO21 refactor to VM
     function configureGameProgress(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal, chapterTitleVal) {
         let nodeTypeTemp = nodeTypeVal;
         let chapterKeyTemp = chapterKeyVal;
@@ -221,10 +222,12 @@ export default function Viewer_Entire({
 
 
 
-    // function updateGameData(data) { // model's functionality     //TODO refactoring
-    //     setPlayerGameData(data);
-    // }
+                                                                // function updateGameData(data) { // model's functionality     //TODO refactoring
+                                                                //     setPlayerGameData(data);
+                                                                // }
 
+
+    //TODO21 refactor to VM
     function initializeGameDataTracker() {
                                                             console.log("viewer-entire... initializeGameDataTracker");
         let objTemp = {};
@@ -270,6 +273,8 @@ export default function Viewer_Entire({
         notifyPageStatus(pageName);// notify outer layer
     }
 
+    
+    //TODO21 refactor to VM
     function passInPlayerInfoSets() {
         let obj = {};
         let pp = getPlayerProfile();
@@ -302,16 +307,16 @@ export default function Viewer_Entire({
         return currentGameStatusProgress["chapterKey"];
     }
 
-    function passInShopItemInfo() {
-        //TODO 
-        return getShopItemInfo();
-    }
+    // function p assInShopItemInfo() { //TODO remove later
+    //     return g etShopItemInfo();
+    // } //TODO remove later
 
     function passInChapterTitle() {
         return currentGameStatusProgress["chapterTitle"];
 
     }
 
+    //TODO21 refactor to VM
     function triggerChangeToCurrNode(nodeKeyName, nodeTypeName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = nodeKeyName;
@@ -322,6 +327,7 @@ export default function Viewer_Entire({
         triggerNodeChange(nodeKeyName, nodeTypeName);
     }
 
+    //TODO21 refactor to VM
     function triggerChangeToCurrChapter(chapterKeyName, chapterTitleName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = chapterKeyName + "_start"; //TODO
@@ -336,7 +342,7 @@ export default function Viewer_Entire({
     }
     
 
-return(<>
+return( <>
 
 <div>
     <div>
@@ -427,7 +433,7 @@ return(<>
 
                         getUILanguage={passInUiLanguageOption}  //TODO20 languageOption
 
-                        fetchShopItemInfo={passInShopItemInfo}
+                        fetchShopItemInfo={getShopItemInfo}
                         fetchPlayerPurchaseInfo={getPlayerPurchaseInfo}
 
 
