@@ -443,6 +443,7 @@
 
 - 2025-Feb-05: Research on Electron App and other frameworks for desktop-app-side 
 
+- 2025-Feb-06: Consider and research - scalability of current ones
 
 
 
