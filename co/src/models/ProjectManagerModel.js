@@ -122,7 +122,18 @@ export async function updateProjectNavigationSettings({projectName, currUser, da
 
 export async function fetchProjectNavigationSettings({projectName, currUser}) {
   let dataObj = {};
-//TODO
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+  const projSnap = await getDoc(projRef);
+
+  if (!projSnap.exists()) {
+    return {};
+  }
+
+  if (projSnap.data() === undefined) {
+    return {};
+  }
+
+  dataObj = projSnap.data().nav_ui_settings;
 
   return dataObj;
 }

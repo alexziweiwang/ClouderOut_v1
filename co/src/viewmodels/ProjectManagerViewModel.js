@@ -2,7 +2,8 @@ import {fetchProjectList, revertProject,
     deleteProject, createProject, 
     initializeChaptersCollection, updateProjectUILang,
     fetchProjectUILang,
-    updateProjectNavigationSettings
+    updateProjectNavigationSettings,
+    fetchProjectNavigationSettings
 } from '../models/ProjectManagerModel';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
