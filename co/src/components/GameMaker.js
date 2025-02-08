@@ -412,6 +412,7 @@ export default function GameMaker({username, projectName}) {
   
 //TODO23 update to and fetch from cloud for this project !!!
   const [currentProjectNav, setCurrentProjectNav] = useState({
+    
   }); //TODO now: default initial values
 
 
@@ -1741,8 +1742,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
               
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
-                  initialNavObj={currentProjectNav} 
                   fetchNavObj={passInNavObj} 
+                  
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
 
@@ -1820,7 +1821,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       <Viewer_Entire
           makeNotDisplay={closeEntireGameViewer}
 
-          navigationObj={currentProjectNav}
+          fetchNavObj={passInNavObj} 
 
           initialChapterList={chapterList}
           getChapterList={passInChapterList}

@@ -17,7 +17,8 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 //TODO100 get resource-list from outer layer?
 export default function Viewer_Entire({
-    navigationObj, 
+    fetchNavObj, 
+
     initialChapterList, getChapterList, getUILanguage,
    
     getPlayerGameData,
@@ -145,17 +146,20 @@ export default function Viewer_Entire({
             setFirstTimeEnter(false);
         }
   
-
-        if (navigationObj["screenSize"] === "16:9(horizonal)"
+        let navigationObj = fetchNavObj();
+        if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) {
+                if (navigationObj["screenSize"] === "16:9(horizonal)"
                 || navigationObj["screenSize"] === "16:9(vertical)"
                 || navigationObj["screenSize"] === "4:3(horizonal)"
                 || navigationObj["screenSize"] === "4:3(vertical)"
-        ) {
-            let w = sizeLookupMap[navigationObj["screenSize"]][0];
-            let h = sizeLookupMap[navigationObj["screenSize"]][1];
-            setScreenWidth(w); // according to navigationObj's size 
-            setScreenHeight(h); // according to navigationObj's size 
+                ) {
+                    let w = sizeLookupMap[navigationObj["screenSize"]][0];
+                    let h = sizeLookupMap[navigationObj["screenSize"]][1];
+                    setScreenWidth(w); // according to navigationObj's size 
+                    setScreenHeight(h); // according to navigationObj's size 
+                }
         }
+
 
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
@@ -214,7 +218,10 @@ export default function Viewer_Entire({
                 progressObj["nodeKey"] = nodeKeyTemp;
             }
 
-                                                    console.log("resetting currentGameStatusProgress! progressObj = ", progressObj);
+                                         //           console.log("resetting currentGameStatusProgress! progressObj = ", progressObj);
+       
+       
+       
             setCurrentGameStatusProgress(progressObj);
         }
 
@@ -252,11 +259,6 @@ export default function Viewer_Entire({
 
         setPlayerGameData(objTemp);
 
-    }
-
-
-    function passInNavObj() {
-        return navigationObj;
     }
 
     function notUsing() {
@@ -410,7 +412,6 @@ return( <>
 
 
 
-
 {/* navigation layer */}
                 <div style={{
                     "position": "absolute", 
@@ -419,8 +420,7 @@ return( <>
                     "backgroundColor": "purple",
                 }}>
                     <NavigationPreview 
-                        initialNavObj={navigationObj} 
-                        fetchNavObj={passInNavObj} 
+                        fetchNavObj={fetchNavObj} 
 
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 

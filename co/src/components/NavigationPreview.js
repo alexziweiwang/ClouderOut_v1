@@ -6,7 +6,6 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 
 //TODO100 get resource-list from outer layer?
 export default function NavigationPreview ({
-    initialNavObj, 
     fetchNavObj, 
 
     fetchPageName, 
@@ -45,6 +44,8 @@ const tempFontSize = 12;
 
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+
+    const [editingSignal, setEditingSignal] = useState(true);
     
     const [renderCounter, setRenderCounter] = useState(0);
 
@@ -74,7 +75,7 @@ const tempFontSize = 12;
       setVisualList(obj.visual);
     }
 
-    const [navObj, setNavObj] = useState(initialNavObj);
+    const [navObj, setNavObj] = useState({});
     const [page, setPage] = useState("Main Page");
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
@@ -104,7 +105,7 @@ const tempFontSize = 12;
 
 
     const [slSlotFrame, setSlSlotFrame] = useState(0);
-    const [slotPerPageLocal, setSlotPerPageLocal] = useState(initialNavObj["saveloadPage-slotPerPage"]);
+    const [slotPerPageLocal, setSlotPerPageLocal] = useState(0); //initialNavObj["saveloadPage-slotPerPage"]
 
     const [qWindowSetup, setQwindowSetup] = useState(false);
 
@@ -141,11 +142,12 @@ const tempFontSize = 12;
                                                                  
             fetchProjResourceLists(); //TODO refactor .. from outer layer ??
 
+            let objTempFirst = fetchNavObj();
             let i = 0;
             let j = 0;
 
             let currRow = [];
-            for (; j < navObj["saveloadPage-slotPerPage"]; j++) {
+            for (; j < objTempFirst["saveloadPage-slotPerPage"]; j++) {
                 let num = j;
                 currRow.push(num);
             }
@@ -220,9 +222,10 @@ const tempFontSize = 12;
         let gameDataTemp = fetchCurrentGameData();
         setRefGameDataList(gameDataTemp);
 
-        if (isEditing === true) { 
+        if (editingSignal === true) { //      
             let objTemp = fetchNavObj();
-            if (objTemp != navObj) {
+            console.log();
+            if (Object.keys(objTemp).length !== Object.keys(navObj).length) {
                 setNavObj(objTemp);
    
                 setupPPTryingObjects(objTemp);//TODO too-many-rendering
@@ -239,6 +242,20 @@ const tempFontSize = 12;
                     setSlSlotFrame(currRow);
 
                 } 
+                if (objTemp["screenSize"] === "16:9(horizonal)"
+                || objTemp["screenSize"] === "16:9(vertical)"
+                || objTemp["screenSize"] === "4:3(horizonal)"
+                || objTemp["screenSize"] === "4:3(vertical)"
+                ) {
+                    let w = sizeLookupMap[objTemp["screenSize"]][0];
+                    let h = sizeLookupMap[objTemp["screenSize"]][1];
+                    setScreenWidth(w);
+                    setScreenHeight(h);
+            }
+            }
+
+            if (isEditing === false) {
+                setEditingSignal(false);
             }
         } 
 
@@ -260,16 +277,7 @@ const tempFontSize = 12;
         }
 
 
-        if (navObj["screenSize"] === "16:9(horizonal)"
-            || navObj["screenSize"] === "16:9(vertical)"
-            || navObj["screenSize"] === "4:3(horizonal)"
-            || navObj["screenSize"] === "4:3(vertical)"
-            ) {
-                let w = sizeLookupMap[navObj["screenSize"]][0];
-                let h = sizeLookupMap[navObj["screenSize"]][1];
-                setScreenWidth(w);
-                setScreenHeight(h);
-        }
+
 
 
 
@@ -329,6 +337,7 @@ const tempFontSize = 12;
             "borderRadius": "0px",
     }}
     >
+  
         {page === "Main Page" && 
 
         <div style={{
