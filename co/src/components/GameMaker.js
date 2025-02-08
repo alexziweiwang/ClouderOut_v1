@@ -17,7 +17,7 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 //TODO20 cloud-func (marked)
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { updateProjectUILangVM, fetchProjectUILangVM, updateProjectNavigationSettingsVM } from '../viewmodels/ProjectManagerViewModel';
+import { updateProjectUILangVM, fetchProjectUILangVM, updateProjectNavigationSettingsVM, fetchProjectNavigationSettingsVM } from '../viewmodels/ProjectManagerViewModel';
 import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,fetchAllChapterListVM, updateChapterListToCloudVM } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
@@ -1691,8 +1691,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     return chapterNodeMapAll;
   }
 
-  async function updateProjectNavigationSettings() {
-    // TODO25 use current currentProjectNav...
+  async function updateProjectNavigationSettingsToCloud() {
 
     await updateProjectNavigationSettingsVM({
       projectName: projectName, 
@@ -1700,6 +1699,16 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       dataObj: currentProjectNav
     });
     
+  }
+
+  async function fetchProjectNavigationSettingsFromCloud() {
+    //TODO25
+
+    let data = await fetchProjectNavigationSettingsVM({
+      projectName: projectName, 
+      currUser: username,
+    })
+    setCurrentProjectNav(data);
   }
 
 
@@ -1863,12 +1872,14 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
     <div>
       <button onClick={()=>{
-        fetchChapterNodeMappingFromCloud();}}
+        fetchProjectNavigationSettingsFromCloud();
+        fetchChapterNodeMappingFromCloud();
+        //TODO25
+      }}
       >Load From Cloud</button>
 
       <button onClick={()=>{
-        //TODO25 add navigation-UI-settings to cloud
-        updateProjectNavigationSettings();
+        updateProjectNavigationSettingsToCloud();
         updateChapterNodeMappingsToCloud(); 
         saveNewlyCreatedNodeFolder(); 
         editorExitingHandleChapterMgr();}}

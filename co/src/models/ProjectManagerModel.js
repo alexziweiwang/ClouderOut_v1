@@ -119,3 +119,10 @@ export async function updateProjectNavigationSettings({projectName, currUser, da
 
 
 }
+
+export async function fetchProjectNavigationSettings({projectName, currUser}) {
+  let dataObj = {};
+//TODO
+
+  return dataObj;
+}

@@ -53,3 +53,8 @@ export async function fetchProjectUILangVM({projectName, currUser}) {
 export async function updateProjectNavigationSettingsVM({projectName, currUser, dataObj}) {
     await updateProjectNavigationSettings({projectName, currUser, dataObj});
 }
+
+
+export async function fetchProjectNavigationSettingsVM({projectName, currUser}) {
+    return await fetchProjectNavigationSettings({projectName, currUser});
+}
