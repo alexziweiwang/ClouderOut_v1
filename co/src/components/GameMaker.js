@@ -1868,6 +1868,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
       <button onClick={()=>{
         //TODO25 add navigation-UI-settings to cloud
+        updateProjectNavigationSettings();
         updateChapterNodeMappingsToCloud(); 
         saveNewlyCreatedNodeFolder(); 
         editorExitingHandleChapterMgr();}}

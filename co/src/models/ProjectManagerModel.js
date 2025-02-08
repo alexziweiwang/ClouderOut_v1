@@ -110,8 +110,12 @@ export async function fetchProjectUILang({projectName, currUser}) {
 
 export async function updateProjectNavigationSettings({projectName, currUser, dataObj}) {
   //TODO: update nav-ui-settings from dataObj
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+
+  await updateDoc(projRef, 
+    {nav_ui_settings: dataObj
+  });
 
 
-  
 
 }
