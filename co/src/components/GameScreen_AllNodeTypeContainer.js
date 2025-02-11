@@ -239,8 +239,6 @@ export default function GameScreen_AllNodeTypeContainer({
 
     //TODO21 refactor to VM
     function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
-        // fetch next-node key if direct
-        //TODO do conditional-jump if logic-splitter
 
                                                   console.log("locateHoldingNextNode(jump node)! \nchapterNodeMapping = ", chapterNodeMapping);
 
@@ -319,21 +317,20 @@ export default function GameScreen_AllNodeTypeContainer({
 
                 if (stmt !== "else") {
   
-        // TODO36 handle stmt into the following:  
-                // TODO36                                  var1, action, isVar2GivenValue, var2, currTargetNodeKey
+                //                              var1, action, isVar2GivenValue, var2, currTargetNodeKey
 //type[number]^hp_001^smaller(pureValue)^70
                 let stmtArr = stmt.split("^");
 
 
-                let var1 = stmtArr[1]; //TODO use stmt, game-data name
+                let var1 = stmtArr[1]; 
 
                 let actionChunk = stmtArr[2].split("(");
                 let action = actionChunk[0];
 
-                let isVar2GivenValue = actionChunk[1].includes("pureValue") ? true : false; //TODO use stmt
-                let var2 = stmtArr[3]; //TODO use stmt, game-data name or pure value
+                let isVar2GivenValue = actionChunk[1].includes("pureValue") ? true : false; 
+                let var2 = stmtArr[3]; 
 
-                let currTargetNodeKey = item["nextNode"]; //TODO use stmt
+                let currTargetNodeKey = item["nextNode"]; 
                 
                 if (currGameDataTracker[var1] === undefined) {
                     i--;
@@ -632,16 +629,7 @@ return (<div
         -logPage
         -textFrame
 
-       
-       
-       
-       
-       
-       
        */}
-
-
-    {/* //TODO39 conv-node-compo */}
 
 
         

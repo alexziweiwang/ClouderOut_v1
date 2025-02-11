@@ -54,8 +54,8 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
     const [charaPicArr2, setCharaPicArr2] = useState((initialAllPieceData !== undefined && initialAllPieceData.length > 0) ? initialAllPieceData[0]["chp_arr"] : []);
 
-    const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
-    const [visualList, setVisualList] = useState([]); 
+    const [audioList, setAudioList] = useState([]); //TODO100 for bgm on each nav-page -- future feature
+    const [visualList, setVisualList] = useState([]); //TODO100
     
     async function fetchProjResourceLists() {
       if (username === "default-no-state username" || projName === "default-no-state projectName") {
@@ -81,7 +81,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
     useEffect(() => {
  
       if (firstTimeEnter === true) {
-        fetchProjResourceLists();
+        fetchProjResourceLists();  //TODO100 from out-layer?
 
         setFirstTimeEnter(false);
 

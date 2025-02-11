@@ -5,7 +5,7 @@ body {
 }
 
 div {
-    border-radius: 9px;
+    border-radius: 0px;
 }
 
 table {
@@ -52,7 +52,7 @@ td {
     cursor: pointer;
     text-decoration: none;
     margin: 6px;
-    border-radius: 5px;
+    border-radius: 0px;
     user-select: none;
 }
 
@@ -161,7 +161,7 @@ td {
     cursor: pointer;
     text-decoration: none;
     margin: 6px;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .plans {
@@ -172,7 +172,7 @@ td {
 
 .gameUISetterSectionTitle {
     background-color: #3D5A80;
-    border-radius: 5px;
+    border-radius: 0px;
     color: #FFFFFF;
     padding: 5px;
     cursor: pointer;
@@ -181,7 +181,7 @@ td {
 
 .gameUISetterSectionCollapse {
     background-color: #8598b1;
-    border-radius: 5px;
+    border-radius: 0px;
     color: #FFFFFF;
     padding: 5px;
     cursor: pointer;

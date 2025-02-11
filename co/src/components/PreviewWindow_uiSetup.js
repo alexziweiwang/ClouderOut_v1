@@ -31,7 +31,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
     const [audioList, setAudioList] = useState([]);
     const [visualList, setVisualList] = useState([]); 
     
-    const [audioMap, setAudioMap] = useState({}); //TODO ffuture feature
+    const [audioMap, setAudioMap] = useState({}); //TODO future feature
     const [visualMap, setVisualMap] = useState({}); 
   
     const [audioMapSize, setAudioMapSize] = useState(0);
@@ -46,7 +46,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
 
     useEffect(() => {
         if (firstTimeEnter === true) {
-            fetchProjResourceLists();
+            fetchProjResourceLists(); //TODO100 from out-layer?
             setFirstTimeEnter(false);
     
     console.log("preview-window ui-setup first-time entry, resource-list fetched."); //TODO test

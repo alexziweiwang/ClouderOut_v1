@@ -19,7 +19,7 @@ import uiLangMap from './uiLangMap';
 
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
-
+ //TODO100  fetchProjectResourceVarPairsVM ...
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
@@ -293,6 +293,16 @@ export default function ConversationNodeEditingPanel() {
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+
+    //TODO100
+    const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
+    const [visualMap, setVisualMap] = useState({}); 
+  
+    const [audioMapSize, setAudioMapSize] = useState(0);
+    const [visualMapSize, setVisualMapSize] = useState(0);
+
+
+
 
 
     const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */

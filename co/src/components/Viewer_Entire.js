@@ -15,7 +15,6 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
     initialize/refresh every time when reopening this compo-window
  */
 
-//TODO100 get resource-list from outer layer?
 export default function Viewer_Entire({
     fetchNavObj, 
 
@@ -374,7 +373,7 @@ return( <>
                     }}
                     >
 
-                                          {/*            //TODO15 
+                                          {/*      
                                                     // updatePlayingGameData(data)
                                                     // updateCurrentStanding (track by nav-buttons & in-game changes: 
                                                     //              page-status + chapter-key + node-type + node-key) 
@@ -446,7 +445,7 @@ return( <>
 
                         fetchShopItemInfo={getShopItemInfo}
                         fetchPlayerPurchaseInfo={getPlayerPurchaseInfo}
-                        
+
                         visualMap={visualMap}
                         audioMap={audioMap}
 
