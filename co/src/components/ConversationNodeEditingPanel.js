@@ -864,7 +864,8 @@ export default function ConversationNodeEditingPanel() {
                                                     // <PieceSetter> (changed to be pass-in-strategy)
                                                     // <ConvNodeUISetter> (changed to be pass-in-strategy)
 // <PreviewWindow_convNodeGameContent> [//TODO refactored, to test]
-// <PreviewWindow_convNodeUiSetup> +1
+// <PreviewWindow_convNodeUiSetup> [//TODO refactored, to test]
+
 // <QuickView_AllPanels_ConvNode> +1
 
 
@@ -1153,7 +1154,9 @@ export default function ConversationNodeEditingPanel() {
 
                     getUILanguage={passInUILanguage}
 
-            
+                    getVisualMap={passInVisualMap}
+                    getAudioMap={passInAudioMap}
+
                     username={state.userName}
                     projName={state.projectName}
                 />
@@ -1214,6 +1217,9 @@ export default function ConversationNodeEditingPanel() {
                     uiData4_logPageSettings={logPageUISettings}
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
+
+                    getAudioMap={passInAudioMap}
+                    getVisualMap={passInVisualMap}
         
                     getUILanguage={passInUILanguage}
                     username={state.userName} 

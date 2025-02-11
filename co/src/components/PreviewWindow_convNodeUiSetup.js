@@ -5,14 +5,13 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
-//TODO20 cloud-func
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-
 
 export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
     getLogPageUISettings,
     getBackButtonUISettings, getScreenSize, getUIConvNav, 
+
+    getVisualMap, getAudioMap,
 
     getUILanguage,
 
@@ -26,16 +25,10 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
     const [screenHeight, setScreenHeight] = useState(600);
 
     const initialPieceNum = getCurrentPieceNum();
-  
 
-    const [audioList, setAudioList] = useState([]);
-    const [visualList, setVisualList] = useState([]); 
-    
     const [audioMap, setAudioMap] = useState({}); //TODO future feature
     const [visualMap, setVisualMap] = useState({}); 
-  
-    const [audioMapSize, setAudioMapSize] = useState(0);
-    const [visualMapSize, setVisualMapSize] = useState(0);
+
 
     const placeHolder = -1;
     const enteredgetLogPageUISettings = getLogPageUISettings();
@@ -46,10 +39,11 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
 
     useEffect(() => {
         if (firstTimeEnter === true) {
-            fetchProjResourceLists(); //TODO100 from out-layer?
+
+                    
+
             setFirstTimeEnter(false);
     
-    console.log("preview-window ui-setup first-time entry, resource-list fetched."); //TODO test
         }
 
         let uiLangTemp = getUILanguage();
@@ -59,57 +53,17 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
         setScreenWidth(screenSizePair[0]);
         setScreenHeight(screenSizePair[1]);
 
+        let visMap = getVisualMap();
+        setVisualMap(visMap);
+        let auMap = getAudioMap();
+        setAudioMap(auMap);
+  
 
+    }); // --- end of useEffect ---
 
-
-
-        if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-            let i = 0;
-            let tempAudioMap = {};
-            setAudioMapSize(audioList.length);
-            for (;i < audioList.length; i++) {
-                let item = audioList[i];
-                tempAudioMap[item["var"]] = item["url"];
-            }
-            setAudioMap(tempAudioMap);
-
-            i = 0;
-            let tempVisualMap = {};
-            setVisualMapSize(visualList.length);
-            for (;i < visualList.length; i++) {
-                let item = visualList[i];
-                tempVisualMap[item["var"]] = item["url"];
-            }
-            setVisualMap(tempVisualMap);
-      }
-
-
-    });
-
-    async function fetchProjResourceLists() {
-        if (username === "default-no-state username" || projName === "default-no-state projectName") {
-          return;
-        }
-        
-        /* fetch from cloud db */
-        //TODO22
-        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
-        // console.log(obj); //TODO test
-        setAudioList(obj.audio);
-        setVisualList(obj.visual);
-    }
 
     function notUsing() {
         console.log();
-    }
-
-    function passInVisualMap() {
-        return visualMap;
-    }
-
-    function passInAudioMap() {
-        return audioMap;
     }
 
     function notUsing() {
@@ -158,8 +112,8 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
                             getBackButtonUISettings={getBackButtonUISettings}
                             getScreenSize={getScreenSize}     
                             triggerNextPiece={notUsing}
-                            passInAudioMap={passInAudioMap}
-                            passInVisualMap={passInVisualMap}
+                            getAudioMap={getAudioMap}
+                            getVisualMap={getVisualMap}
                         />
                     
                         <GameUI_1TextFramePreview
@@ -173,7 +127,7 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
                             getIsDirectNextPiece={notUsing}
                             triggerNextPiece={notUsing}
                             triggerAutoMode={notUsing}
-                            passInVisualMap={passInVisualMap}
+                            getVisualMap={getVisualMap}
                             getUIConvNav={getUIConvNav}
 
                         />
@@ -189,7 +143,7 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
                             getUIConvNav={getUIConvNav}
                             triggerAutoMode={notUsing}
                             isInGameView={false}
-                            passInVisualMap={passInVisualMap}
+                            getVisualMap={getVisualMap}
                             triggerLogOpen={triggerLogOpen}
                         />
                 </div>}
@@ -207,7 +161,7 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
                             isQuickView={false}
                             isSettingUI={true}
                             visualMap={visualMap}
-                            getVisualMap={passInVisualMap}
+                            getVisualMap={getVisualMap}
                             screenWidth={screenWidth}
                             screenHeight={screenHeight}
                         />

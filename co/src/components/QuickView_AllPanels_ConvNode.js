@@ -6,22 +6,19 @@ import langDictionary from './textDictionary';
 
 //TODO20 cloud-func
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
    
 
 export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_defaultButtonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
+    getVisualMap, getAudioMap,
     getUILanguage,
     username, projName,
     initialEmuGameDataTracker,
     resetViewing
 }) {
 
-
-    const [visualList, setVisualList] = useState([]); //TODO temp
-    const [audioList, setAudioList] = useState([]); //TODO temp
 
     const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
 
@@ -63,9 +60,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
 
     const [audioMap, setAudioMap] = useState({});
     const [visualMap, setVisualMap] = useState({}); 
-    const [audioMapSize, setAudioMapSize] = useState(0);
-    const [visualMapSize, setVisualMapSize] = useState(0);
-    
+
     const [bgmSource, setBgmSource] = useState("");
     const [bgpSource, setBgpSource] = useState("");
 
@@ -93,7 +88,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
  
         if (firstTimeEnter === true) {
 
-            initializeResourceLists();
 
             makeDupGdt();
 
@@ -117,6 +111,11 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         updateCharPicArr();
         updateBgmSource();
         updateBgpSource();
+
+        let auMap = getAudioMap();
+        setAudioMap(auMap);
+        let visMap = getVisualMap();
+        setVisualMap(visMap);
         
 
     });
@@ -126,52 +125,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         setRenderCounter((renderCounter+1) % 100);
     }
 
-    async function initializeResourceLists() {
-        //TODO22
-        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-
-        if (obj === undefined 
-            || obj === null 
-            || obj.audio === undefined 
-            || obj.visual === undefined
-            || obj.audio === null 
-            || obj.visual === null
-            ) {
-            return;
-        }
-
-        let audioListTemp = obj.audio;
-        let visualListTemp = obj.visual;
-
-        setAudioList(audioListTemp);
-        setVisualList(visualListTemp);
-
-
-        //set visualMap & audioMap?
-        if (audioMapSize < audioListTemp.length || visualMapSize < visualListTemp.length) {
-            let i = 0;
-            let tempAudioMap = {};
-            setAudioMapSize(audioListTemp.length);
-            for (;i < audioListTemp.length; i++) {
-                let item = audioListTemp[i];
-                tempAudioMap[item["var"]] = item["url"];
-            }
-            setAudioMap(tempAudioMap);
-
-            i = 0;
-            let tempVisualMap = {};
-            setVisualMapSize(visualListTemp.length);
-            for (;i < visualListTemp.length; i++) {
-                let item = visualListTemp[i];
-                tempVisualMap[item["var"]] = item["url"];
-            }
-            setVisualMap(tempVisualMap);
-        }
-
-
-
-
-    }
+  
 
     function makeDupGdt() {
         let tempObj = {};
@@ -413,8 +367,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
                     
-                    // visualList={visualList} 
-                    // audioList={audioList}
+                  
                     visualMap={visualMap}
                     audioMap={audioMap}
 
