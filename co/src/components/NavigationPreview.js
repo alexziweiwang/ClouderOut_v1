@@ -142,16 +142,19 @@ const tempFontSize = 12;
                                                                  
             fetchProjResourceLists(); //TODO refactor .. from outer layer ??
 
-            let objTempFirst = fetchNavObj();
-            let i = 0;
-            let j = 0;
+                        // let objTempFirst = fetchNavObj();
 
-            let currRow = [];
-            for (; j < objTempFirst["saveloadPage-slotPerPage"]; j++) {
-                let num = j;
-                currRow.push(num);
-            }
-            setSlSlotFrame(currRow);
+                        //                         console.log("\tnav-preview first render... nav-obj = ", objTempFirst);
+
+                        // let i = 0;
+                        // let j = 0;
+
+                        // let currRow = [];
+                        // for (; objTempFirst !== undefined && j < objTempFirst["saveloadPage-slotPerPage"]; j++) {
+                        //     let num = j;
+                        //     currRow.push(num);
+                        // }
+                        // setSlSlotFrame(currRow);
 
             let initialChapterTitle = [];
             let initialChapterKeyMapping = {};
@@ -187,30 +190,7 @@ const tempFontSize = 12;
 
         }
         
-       
-
-
-        // if (audioMapSize < audioList.length || visualMapSize < visualList.length) { //TODO remove, as outer-layer done this
-        //     let i = 0;
-        //     let tempAudioMap = {};
-        //     setAudioMapSize(audioList.length);
-        //     for (;i < audioList.length; i++) {
-        //         let item = audioList[i];
-        //         tempAudioMap[item["var"]] = item["url"];
-        //     }
-        //     setAudioMap(tempAudioMap);
-
-        //     i = 0;
-        //     let tempVisualMap = {};
-        //     setVisualMapSize(visualList.length);
-        //     for (;i < visualList.length; i++) {
-        //         let item = visualList[i];
-        //         tempVisualMap[item["var"]] = item["url"];
-        //     }
-        //     setVisualMap(tempVisualMap);
-        // } //TODO remove, as outer-layer done this
-
-
+ 
 
 
 
@@ -222,42 +202,45 @@ const tempFontSize = 12;
         let gameDataTemp = fetchCurrentGameData();
         setRefGameDataList(gameDataTemp);
 
-        if (editingSignal === true) { //      
-            let objTemp = fetchNavObj();
-            console.log();
-            if (Object.keys(objTemp).length !== Object.keys(navObj).length) {
-                setNavObj(objTemp);
-   
-                setupPPTryingObjects(objTemp);//TODO too-many-rendering
-           
-            
-                if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
-                    setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
-                    let currRow = [];
-                    let j = 0;
-                    for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
-                        let num = j;
-                        currRow.push(num);
-                    }
-                    setSlSlotFrame(currRow);
 
-                } 
+        let objTemp = fetchNavObj();
+                                        console.log("!!! nav-obj-temp = ", objTemp, "\n earlier navObj = ", navObj);
+        if (Object.keys(objTemp).length !== Object.keys(navObj).length || objTemp !== navObj) {
+   
+            setupPPTryingObjects(objTemp);                            //TODO too-many-rendering
+           
+
+                                if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
+                                    setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
+                                    let currRow = [];
+                                    let j = 0;
+                                    for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
+                                        let num = j;
+                                        currRow.push(num);
+                                    }
+                                    setSlSlotFrame(currRow);
+
+                               } 
+
+
                 if (objTemp["screenSize"] === "16:9(horizonal)"
                 || objTemp["screenSize"] === "16:9(vertical)"
                 || objTemp["screenSize"] === "4:3(horizonal)"
                 || objTemp["screenSize"] === "4:3(vertical)"
                 ) {
-                    let w = sizeLookupMap[objTemp["screenSize"]][0];
-                    let h = sizeLookupMap[objTemp["screenSize"]][1];
-                    setScreenWidth(w);
-                    setScreenHeight(h);
-            }
-            }
+                   let w = sizeLookupMap[objTemp["screenSize"]][0];
+                   let h = sizeLookupMap[objTemp["screenSize"]][1];
+                   setScreenWidth(w);
+                   setScreenHeight(h);
+                }
 
-            if (isEditing === false) {
-                setEditingSignal(false);
-            }
-        } 
+                setNavObj(objTemp);
+
+        }
+
+        // if (isEditing === false) {
+        //     setEditingSignal(false);
+        // } //TODO temp, revert later
 
 
         // Page Settings
@@ -283,41 +266,42 @@ const tempFontSize = 12;
 
 
 
-    }); //-- useEffect --
+    }); //-- end of useEffect --
 
-    function setupPPTryingObjects(navObj) {
+    function setupPPTryingObjects(navObjData) {
+
         let textObjTemp = {
-            "isPreviewing": navObj["playerProfilePage-previewingTextObj-isPreviewing"],
-            "textContent": navObj["playerProfilePage-previewingTextObj-textContent"],
-            "textItalic": navObj["playerProfilePage-previewingTextObj-textItalic"],
-            "textFontSize": navObj["playerProfilePage-previewingTextObj-textFontSize"],
-            "textFont": navObj["playerProfilePage-previewingTextObj-textFont"],
-            "textColor": navObj["playerProfilePage-previewingTextObj-textColor"],
-            "posX": navObj["playerProfilePage-previewingTextObj-posX"],
-            "posY": navObj["playerProfilePage-previewingTextObj-posY"],
+            "isPreviewing": navObjData["playerProfilePage-previewingTextObj-isPreviewing"],
+            "textContent": navObjData["playerProfilePage-previewingTextObj-textContent"],
+            "textItalic": navObjData["playerProfilePage-previewingTextObj-textItalic"],
+            "textFontSize": navObjData["playerProfilePage-previewingTextObj-textFontSize"],
+            "textFont": navObjData["playerProfilePage-previewingTextObj-textFont"],
+            "textColor": navObjData["playerProfilePage-previewingTextObj-textColor"],
+            "posX": navObjData["playerProfilePage-previewingTextObj-posX"],
+            "posY": navObjData["playerProfilePage-previewingTextObj-posY"],
         };
 
 
         let valObjTemp = {
-            "isPreviewing": navObj["playerProfilePage-previewingValueObj-isPreviewing"],
-            "labelText": navObj["playerProfilePage-previewingValueObj-labelText"],
-            "valueItemType": navObj["playerProfilePage-previewingValueObj-valueItemType"],
-            "valueItemName": navObj["playerProfilePage-previewingValueObj-valueItemName"],
-            "posX": navObj["playerProfilePage-previewingValueObj-posX"],
-            "posY": navObj["playerProfilePage-previewingValueObj-posY"],
-            "textFontSize": navObj["playerProfilePage-previewingValueObj-textFontSize"],
-            "textFont": navObj["playerProfilePage-previewingValueObj-textFont"],
-            "textColor": navObj["playerProfilePage-previewingValueObj-textColor"],
+            "isPreviewing": navObjData["playerProfilePage-previewingValueObj-isPreviewing"],
+            "labelText": navObjData["playerProfilePage-previewingValueObj-labelText"],
+            "valueItemType": navObjData["playerProfilePage-previewingValueObj-valueItemType"],
+            "valueItemName": navObjData["playerProfilePage-previewingValueObj-valueItemName"],
+            "posX": navObjData["playerProfilePage-previewingValueObj-posX"],
+            "posY": navObjData["playerProfilePage-previewingValueObj-posY"],
+            "textFontSize": navObjData["playerProfilePage-previewingValueObj-textFontSize"],
+            "textFont": navObjData["playerProfilePage-previewingValueObj-textFont"],
+            "textColor": navObjData["playerProfilePage-previewingValueObj-textColor"],
         };
 
 
         let picObjTemp = {
-            "isPreviewing": navObj["playerProfilePage-previewingPicObj-isPreviewing"],
-            "posX": navObj["playerProfilePage-previewingPicObj-posX"],
-            "posY": navObj["playerProfilePage-previewingPicObj-posY"],
-            "picName": navObj["playerProfilePage-previewingPicObj-picName"],
-            "width": navObj["playerProfilePage-previewingPicObj-width"],
-            "height": navObj["playerProfilePage-previewingPicObj-height"],
+            "isPreviewing": navObjData["playerProfilePage-previewingPicObj-isPreviewing"],
+            "posX": navObjData["playerProfilePage-previewingPicObj-posX"],
+            "posY": navObjData["playerProfilePage-previewingPicObj-posY"],
+            "picName": navObjData["playerProfilePage-previewingPicObj-picName"],
+            "width": navObjData["playerProfilePage-previewingPicObj-width"],
+            "height": navObjData["playerProfilePage-previewingPicObj-height"],
 
         };
 
@@ -329,9 +313,12 @@ const tempFontSize = 12;
     
 
     return (
+    <>
+
+    {(navObj !== undefined && Object.keys(navObj).length > 0) &&
     <div
         style={{
-            "fontFamily": `${navObj["fontFamilyForAll"]}`,
+         //   "fontFamily": `${navObj["fontFamilyForAll"]}`,
             "position": "absolute",
             "userSelect": "none",
             "borderRadius": "0px",
@@ -344,7 +331,9 @@ const tempFontSize = 12;
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
-                "backgroundImage": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
+            //    "backgroundImage": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
+            //TODO100 problem here -- improve robustness of resource-mapping ...
+
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
              
@@ -1986,5 +1975,12 @@ const tempFontSize = 12;
 
          
 
-    </div>);
+    </div>}
+    
+    
+    </>
+    );
+
+
+
 }

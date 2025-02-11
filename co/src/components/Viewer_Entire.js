@@ -147,6 +147,11 @@ export default function Viewer_Entire({
         }
   
         let navigationObj = fetchNavObj();
+
+
+                                            console.log("viewer-entire .. nav-obj = ", navigationObj);
+
+
         if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) {
                 if (navigationObj["screenSize"] === "16:9(horizonal)"
                 || navigationObj["screenSize"] === "16:9(vertical)"
@@ -443,12 +448,12 @@ return( <>
                         fetchPlayerPurchaseInfo={getPlayerPurchaseInfo}
 
 
-                    />
+                    /> 
                                                                                 {/* //TODO16
-                    //updatePlayerProfile (by player input)
+                    {/* //updatePlayerProfile (by player input)
                     //updatePlayerAccountSettings (by player input)
                     //updatePlayerSlRecords (by nav-buttons)
-                    //updateCurrentStanding (track by nav-buttons: page-status + chapter-key + node-type + node-key) */}
+                    //updateCurrentStanding (track by nav-buttons: page-status + chapter-key + node-type + node-key)  */}
 
                 </div>
         </div>

@@ -203,6 +203,7 @@ export default function GameMaker({username, projectName}) {
         //TODO
         let len = visualList.length;
         let i = 0;
+        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
         while (i < len) {
             let item = visualList[i];
             tempMap[item["var"]] = item["url"];
@@ -220,6 +221,7 @@ export default function GameMaker({username, projectName}) {
         //TODO
         let len = audioList.length;
         let i = 0;
+        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
         while (i < len) {
             let item = audioList[i];
             tempMap[item["var"]] = item["url"];
@@ -1743,7 +1745,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
                   fetchNavObj={passInNavObj} 
-                  
+
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
 
