@@ -653,20 +653,6 @@ export default function PieceSetter({
         updateToCaller(tempObj);
     }
 
-                                                // async function fetchProjResourceLists() {
-                                                //     console.log("piece-setter: fetchProjResourceLists-func"); //TODO test
-                                                //     if (username === "default-no-state username" || projName === "default-no-state projectName") {
-                                                //         return;
-                                                //     }
-                                                    
-                                                //     /* fetch from cloud db */
-                                                //     //TODO22
-                                                //     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-                                                //     // console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
-                                                //     // console.log(obj); //TODO test
-                                                //     setAudioList(obj.audio);
-                                                //     setVisualList(obj.visual);
-                                                // }
 
     function setupBgpInfo(event) {
 //TODO improve in future

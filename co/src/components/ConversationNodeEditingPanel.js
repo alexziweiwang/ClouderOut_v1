@@ -855,12 +855,13 @@ export default function ConversationNodeEditingPanel() {
 
     function notifyRmUpdated(data) {
  //TODO101 update the visual+audio maps here?
+ //          fetchProjectResourceVarPairsVM
  console.log("rm updated... (conv-node-editor) ",  data);
  //passInVisualMap()       passInAudioMap()
 
 //rm-mapping-required: 
 
-// <PieceSetter> +1
+                                                    // <PieceSetter> (changed to be pass-in-strategy)
 // <ConvNodeUISetter> +1
 // <PreviewWindow_convNodeGameContent> +1 
 // <PreviewWindow_convNodeUiSetup> +1
@@ -1050,6 +1051,9 @@ export default function ConversationNodeEditingPanel() {
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
 
+                            getAudioMap={passInAudioMap}
+                            getVisualMap={passInVisualMap}
+
                             getUILanguage={passInUILanguage}
                             username={state.userName} 
                             projName={state.projectName}    
@@ -1093,6 +1097,9 @@ export default function ConversationNodeEditingPanel() {
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
 
+                            getAudioMap={passInAudioMap}
+                            getVisualMap={passInVisualMap}
+                            
                             getUILanguage={passInUILanguage}
                             username={state.userName} 
                             projName={state.projectName}    

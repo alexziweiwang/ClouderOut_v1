@@ -7,7 +7,7 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 
 
 //TODO20 cloud-func
-export default function GameUISetter({
+export default function ConvNodeUISetter({
     openRm, iniDefaultButtonObj, 
     iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,
     updateIsDisplayDefaultButtonPreview, 
@@ -20,6 +20,9 @@ export default function GameUISetter({
     fetchGdmUpdatedSignal, 
     resetRmUpdatedSignal, 
     respondUpdatedRm,
+
+    getAudioMap,
+    getVisualMap,
 
     getUILanguage,
     username, projName,
@@ -143,7 +146,8 @@ export default function GameUISetter({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
-            fetchProjResourceLists();
+
+
             setFirstTimeEnter(false);
         }
 
@@ -159,68 +163,21 @@ export default function GameUISetter({
         updateConvNavSettings(convNav);
         updateConvLogUISettings(convLogObj);
 
-        let isUdpateResource = fetchRmUpdatedSignal();
-        if (isUdpateResource === true) {
-            fetchProjResourceLists();
-            respondUpdatedRm();
-        }
-     
+
+        let auMap = getAudioMap();
+        setAudioMap(auMap);
+        let visMap = getVisualMap();
+        setVisualMap(visMap);
+
+        console.log("...... conv-node-ui-setter, resource maps = ", auMap, "\n\t\t", visMap);
+
     });
 
 
     const [visualMap, setVisualMap] = useState([]); 
     const [audioMap, setAudioMap] = useState([]);
 
-    async function fetchProjResourceLists() {
-                   //                         console.log("piece-setter: fetchProjResourceLists()"); //TODO test
 
-        if (username === "default-no-state username" || projName === "default-no-state projectName") {
-                  //                          console.log("!!!state not ok"); //TODO test
-            return;
-        }
-
-        /* fetch from cloud db */
-        //TODO22       
-        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        
-        if (obj === undefined || obj === null) {
-            return;
-        }
-
-        initializeVisualMap(obj.visual);
-        initializeAudioMap(obj.audio)
-
-    }
-
-    function initializeVisualMap(visualList) {
-        let tempMap = {};
-
-        let len = visualList.length;
-        let i = 0;
-        while (i < len) {
-            let item = visualList[i];
-            tempMap[item["var"]] = item["url"];
-            i++;
-        }
-
-        setVisualMap(tempMap);
-    }
-
-
-    function initializeAudioMap(audioList) {
-        let tempMap = {};
-
-        //TODO
-        let len = audioList.length;
-        let i = 0;
-        while (i < len) {
-            let item = audioList[i];
-            tempMap[item["var"]] = item["url"];
-            i++;
-        }
-                                  
-        setAudioMap(tempMap);
-    }
 
     const [idvButtonBorderColor, setIdvButtonBorderColor] = useState("#000000");
     const [idvButtonBorderSize, setIdvButtonBorderSize] = useState("2");
@@ -349,8 +306,7 @@ export default function GameUISetter({
 
             {!defaultButtonObj["isShape"] && <>
                 <select value={defaultButtonObj["picVar"]} onChange={(event)=>{
-                        let keyStr = event.target.value;
-                        setDefaultButtonObj({...defaultButtonObj,  "picVar": keyStr}); 
+                        setDefaultButtonObj({...defaultButtonObj,  "picVar": event.target.value}); 
                 }}>                    
                     <option key="idvDefault" value="">-- {selectResourceText} --</option>
                     {Object.keys(visualMap).map((currKey) => {
@@ -571,9 +527,9 @@ export default function GameUISetter({
         
         <select value={txtFrameObj["picVar"]} onChange={(event)=>{
             if (event.target.value === "") {
-                setTxtFrameObj({...txtFrameObj, "picVar": visualMap[event.target.value]["var"]});    
+                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value});    
             } else {
-                setTxtFrameObj({...txtFrameObj, "picVar": visualMap[event.target.value]["var"]});    
+                setTxtFrameObj({...txtFrameObj, "picVar": event.target.value});    
             }
             }}>
                 <option key="tfvDefault" value="">-- {selectResourceText} --</option>
@@ -582,7 +538,7 @@ export default function GameUISetter({
                             let keyName = "tfvButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             return (
-                <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                <option value={currKey} key={keyName}>{currKey}</option>
                             );
                     })}
             </select>
@@ -734,7 +690,7 @@ export default function GameUISetter({
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "autoButton0" + currKey;
                                     return (
-                                        <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                        <option value={currKey} key={keyName}>{currKey}</option>
                                     );
                             })}
                         </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
@@ -768,7 +724,7 @@ export default function GameUISetter({
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "autoButton1" + currKey;
                                     return (
-                                        <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                        <option value={currKey} key={keyName}>{currKey}</option>
                                     );
                             })}
                         </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
@@ -825,7 +781,7 @@ export default function GameUISetter({
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "logButton" + currKey;
                             return (
-                                <option value={visualMap[currKey]["var"]} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                <option value={currKey} key={keyName}>{currKey}</option>
                             );
                     })}
                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
@@ -984,14 +940,14 @@ export default function GameUISetter({
                 >{basePictureText}</label>
                     <div className="indentOne">
                         <select value={visualMap[convLogObj["closeButtonPicName"]]} onChange={(event)=>{
-                                    setConvLogObj({...convLogObj,  "closeButtonPicName": visualMap[event.target.value]["var"]}); 
+                                    setConvLogObj({...convLogObj,  "closeButtonPicName": event.target.value}); 
                         }}>                    
                             <option key="convLogCloseBtnPic-default" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "convLogCloseBtnPic-" + currKey;
                                     /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                                     return (
-                                        <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                        <option value={currKey} key={keyName}>{currKey}</option>
                                     );
                             })}
                         </select>
@@ -1159,14 +1115,14 @@ export default function GameUISetter({
                 >{basePictureText}</label>
                 <div className="indentOne">
                         <select value={visualMap[convLogObj["bgpPicName"]]} onChange={(event)=>{
-                                    setConvLogObj({...convLogObj,  "bgpPicName": visualMap[event.target.value]["var"]}); 
+                                    setConvLogObj({...convLogObj,  "bgpPicName": event.target.value}); 
                         }}>                    
                             <option key="convLogBgp-default" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "convLogBgp-" + currKey;
                                     /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                                     return (
-                                        <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                        <option value={currKey} key={keyName}>{currKey}</option>
                                     );
                             })}
                         </select>
@@ -1212,15 +1168,16 @@ export default function GameUISetter({
                             >{basePictureText}</label>
                             <select value={visualMap[convLogObj["groupBgpName"]]}
                                 onChange={(event)=>{
-                                    setConvLogObj({...convLogObj,  "groupBgpName": visualMap[event.target.value]["var"]}); 
+                                    setConvLogObj({...convLogObj,  "groupBgpName": event.target.value}); 
                                 }}
                             >
                                 <option key="convLogGroupUnitBgp-default" value="">-- {selectResourceText} --</option>
                                 {Object.keys(visualMap).map((currKey) => {
                                         let keyName = "convLogGroupUnitBgp-" + currKey;
+                                        console.log("... vis-map key = ", currKey, "... value = ", visualMap[currKey]);
                                         /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                                         return (
-                                            <option value={currKey} key={keyName}>{visualMap[currKey]["var"]}</option>
+                                            <option value={currKey} key={keyName}>{currKey}</option>
                                         );
                                 })}
 
