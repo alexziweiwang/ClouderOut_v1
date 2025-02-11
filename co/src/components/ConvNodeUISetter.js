@@ -180,12 +180,10 @@ export default function GameUISetter({
         }
 
         /* fetch from cloud db */
+        //TODO22       
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-                                //            console.log("...state ok, resource-obj = ", obj); //TODO test
-
-
+        
         if (obj === undefined || obj === null) {
-                                      //          console.log("resource obj not ok"); //TODO test
             return;
         }
 
@@ -197,7 +195,6 @@ export default function GameUISetter({
     function initializeVisualMap(visualList) {
         let tempMap = {};
 
-        //TODO
         let len = visualList.length;
         let i = 0;
         while (i < len) {
@@ -205,7 +202,6 @@ export default function GameUISetter({
             tempMap[item["var"]] = item["url"];
             i++;
         }
-                 //   console.log("initialized visual map = ", tempMap); //TODO test
 
         setVisualMap(tempMap);
     }

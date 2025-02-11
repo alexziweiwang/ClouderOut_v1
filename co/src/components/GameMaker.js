@@ -171,6 +171,7 @@ export default function GameMaker({username, projectName}) {
 
 
       /* fetch from cloud db */
+      //TODO22
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
       
       if (obj === undefined) {
@@ -1547,13 +1548,20 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setCurrTestingChapterTitle(chapterTitleName);
   }
 
+
+  //TODO21 refactor to vm
   function notifyRmUpdated(data) {
     console.log("rm updated... (game-maker) ",  data);
  //TODO101 update the visual+audio maps here?
       //rm-mapping-required: 
-      // <NavigationSetter>, 
-      // <NavigationPreview>,  
-      // <Viewer_Entire>
+      // <NavigationSetter> +1
+      // <NavigationPreview> +1
+
+      
+        //audioList = data.audio
+        //visualList = data.visual
+
+
   }
 
 

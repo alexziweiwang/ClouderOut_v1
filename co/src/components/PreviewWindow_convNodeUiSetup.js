@@ -9,7 +9,7 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
+export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, getIsDisplayDefaultButton, getDefaultButtonUISettings, 
     getLogPageUISettings,
     getBackButtonUISettings, getScreenSize, getUIConvNav, 
@@ -92,6 +92,7 @@ export default function PreviewWindow_uiSetup({dataObj, initialAllPieceData, get
         }
         
         /* fetch from cloud db */
+        //TODO22
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
         // console.log(obj); //TODO test

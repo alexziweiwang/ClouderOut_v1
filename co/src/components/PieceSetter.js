@@ -7,7 +7,7 @@ import langDictionary from './textDictionary';
 
 //TODO20 cloud-func
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { getProjectGameDataDesignVM, updateGameDataDesignVM} from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 
 //TODO refactor: stnd_btn_arr
@@ -652,6 +652,7 @@ export default function PieceSetter({
         }
         
         /* fetch from cloud db */
+        //TODO22
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         // console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
         // console.log(obj); //TODO test

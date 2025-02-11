@@ -1,15 +1,14 @@
 import * as React from 'react';
+import styles from './webpage.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
 import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_EmuManager from './Modal_EmuManager';
-
-
-import PreviewWindow_gameContent from './PreviewWindow_gameContent';
-import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
+import PreviewWindow_convNodeGameContent from './PreviewWindow_convNodeGameContent';
+import PreviewWindow_convNodeUiSetup from './PreviewWindow_convNodeUiSetup';
 import QuickView_AllPanels_ConvNode from './QuickView_AllPanels_ConvNode';
-
 import PieceManager from './PieceManager';
 import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
@@ -19,7 +18,7 @@ import uiLangMap from './uiLangMap';
 
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
- //TODO100  fetchProjectResourceVarPairsVM ...
+import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
@@ -307,13 +306,13 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
  
-    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     const [firstEnterButtonPressed, setFirstEnterButtonPressed] = useState(true);
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
 
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
     
         if (projectName === "default-no-state projectname") {
@@ -329,6 +328,7 @@ export default function ConversationNodeEditingPanel() {
 
         if (firstTimeEnter === true) {
             initializeUILang();
+            fetchProjResourceLists();
 
             //initialize piece-ds
             initializePiecesFromCloud();
@@ -380,6 +380,66 @@ export default function ConversationNodeEditingPanel() {
         }
 
     }
+
+    async function fetchProjResourceLists() {
+
+        if (state.userName === "default-no-state username" || state.projectName === "default-no-state projectName") {
+            return;
+        }
+                                            console.log("fetchProjResourceLists-func...");
+
+
+        /* fetch from cloud db */
+        //TODO22       
+        const obj = await fetchProjectResourceVarPairsVM({
+            userName: state.userName, 
+            projectName: state.projectName
+        });
+
+        if (obj === undefined || obj === null) {
+            return;
+        }
+
+        initializeVisualMap(obj.visual);
+        initializeAudioMap(obj.audio)
+    }
+
+    function initializeVisualMap(visualList) {
+        let tempMap = {};
+
+        //TODO
+        let len = visualList.length;
+        let i = 0;
+        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+        tempMap[""] = '';
+        while (i < len) {
+            let item = visualList[i];
+            tempMap[item["var"]] = item["url"];
+            i++;
+        }
+                                        console.log("initialized visual map = ", tempMap); //TODO test
+
+        setVisualMap(tempMap);
+    }
+
+    function initializeAudioMap(audioList) {
+        let tempMap = {};
+
+        //TODO
+        let len = audioList.length;
+        let i = 0;
+        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+        tempMap[""] = '';
+        while (i < len) {
+            let item = audioList[i];
+            tempMap[item["var"]] = item["url"];
+            i++;
+        }
+                                        console.log("initialized audio map = ", tempMap); //TODO test
+        
+        setAudioMap(tempMap);
+    }
+
 
     function handleResourceManagerOpen() {
         setDisplayRmModal(true);
@@ -781,14 +841,22 @@ export default function ConversationNodeEditingPanel() {
  //TODO101 update the visual+audio maps here?
  console.log("rm updated... (conv-node-editor) ",  data);
 //rm-mapping-required: 
-// <PieceSetter>, 
-// <PreviewWindow_gameContent>, 
-// <PreviewWindow_uiSetup>, 
-// <QuickView_AllPanels_ConvNode>
+
+// <PieceSetter> +1
+// <ConvNodeUISetter> +1
+// <PreviewWindow_convNodeGameContent> +1 
+// <PreviewWindow_convNodeUiSetup> +1
+// <QuickView_AllPanels_ConvNode> +1
+
+
+        //audioList = data.audio
+        //visualList = data.visual
+
+
     }
 
     function loadFromCloud() {
-        //TODO101
+        fetchProjResourceLists();
     }
 
     
@@ -798,7 +866,7 @@ export default function ConversationNodeEditingPanel() {
 
         1. editor - <PieceSetter> or <ConvNodeUISetter>
         2. editor - <PieceManager> or <ConvNodeUISetter>
-        3. editor - <PreviewWindow_gameContent> or <PreviewWindow_uiSetup>
+        3. editor - <PreviewWindow_convNodeGameContent> or <PreviewWindow_convNodeUiSetup>
         4. modal_resource - <Modal_ResourceManagingWindow>
         5. modal_game_data_manager - <Modal_GameDataManager>
         6. modal_emu_manager - <Modal_EmuManager>
@@ -1015,7 +1083,7 @@ export default function ConversationNodeEditingPanel() {
 
                       
             {isDisplayGameContentPreview === true && 
-                <PreviewWindow_gameContent
+                <PreviewWindow_convNodeGameContent
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}
@@ -1039,7 +1107,7 @@ export default function ConversationNodeEditingPanel() {
 
 
             {isDisplayGameContentPreview === false && 
-                <PreviewWindow_uiSetup
+                <PreviewWindow_convNodeUiSetup
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}

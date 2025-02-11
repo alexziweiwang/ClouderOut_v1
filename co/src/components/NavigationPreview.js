@@ -27,7 +27,6 @@ export default function NavigationPreview ({
     visualMap,
     audioMap,
 
-//TODO22 dynamiclly getting resource-maps
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...

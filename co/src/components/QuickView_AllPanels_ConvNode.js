@@ -127,7 +127,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     async function initializeResourceLists() {
-
+        //TODO22
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
 
         if (obj === undefined 

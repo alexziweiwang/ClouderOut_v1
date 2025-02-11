@@ -384,6 +384,7 @@ export default function NavigationSetter({initialNavObj,
         return;
       }
 
+      //TODO22
       const obj = await fetchProjectResourceVarPairsVM({userName: userName, projectName: projName});
       console.log("new render- nav setter: obj from cloud (resource list):"); //TODO test
       console.log(obj); //TODO test

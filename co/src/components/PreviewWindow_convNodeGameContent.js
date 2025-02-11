@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import styles from './webpage.css';
 
 import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
@@ -12,7 +11,7 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-export default function PreviewWindow_gameContent({initialAllPieceData, getAllPieceContent, 
+export default function PreviewWindow_convNodeGameContent({initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, 
     getTextFrameUISettings, getIsDisplayDefaultButton, 
     getDefaultButtonUISettings, getBackButtonUISettings, 
@@ -63,6 +62,7 @@ export default function PreviewWindow_gameContent({initialAllPieceData, getAllPi
       }
       
       /* fetch from cloud db */
+      //TODO22
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
       // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
       // console.log(obj); //TODO test
