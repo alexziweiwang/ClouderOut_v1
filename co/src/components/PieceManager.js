@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import GameUISetter from './GameUISetter';
 import langDictionary from './textDictionary';
 
 

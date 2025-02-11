@@ -11,7 +11,7 @@ import PreviewWindow_uiSetup from './PreviewWindow_uiSetup';
 import QuickView_AllPanels_ConvNode from './QuickView_AllPanels_ConvNode';
 
 import PieceManager from './PieceManager';
-import GameUISetter from './GameUISetter';
+import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './textDictionary';
 import uiLangMap from './uiLangMap';
@@ -899,7 +899,7 @@ export default function ConversationNodeEditingPanel() {
                             projName={state.projectName}    
                         />}
                     {gameUISetterOpen === true && 
-                        <GameUISetter 
+                        <ConvNodeUISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}
@@ -940,7 +940,7 @@ export default function ConversationNodeEditingPanel() {
                             getUILanguage={passInUILanguage}
                         />}   
                     {gameUISetterOpen === true && 
-                        <GameUISetter 
+                        <ConvNodeUISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}

@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 
-//TODO20 cloud-func
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
-
-//TODO100 get resource-list from outer layer?
 export default function NavigationPreview ({
     fetchNavObj, 
 
@@ -57,24 +53,6 @@ const tempFontSize = 12;
     const [buyingItemObj, setBuyingItemObj] = useState("-");
     const [viewingShopItemObj, setViewingShopItemObj] = useState("-");
 
-
-
-    const [audioList, setAudioList] = useState([]); //TODO for bgm on each nav-page -- future feature
-    const [visualList, setVisualList] = useState([]); 
-    async function fetchProjResourceLists() {
-   //   console.log("nav-preview: fetch_Proj_Resource_Lists( )"); //TODO test
-
-      if (username === "default-no-state username" || projName === "default-no-state projectName") {
-        return;
-      }
-      /* fetch from cloud db */
-      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-                                                // console.log("new render- nav preview: obj from cloud (resource list):"); //TODO test
-                                                // console.log(obj); //TODO test
-      setAudioList(obj.audio);
-      setVisualList(obj.visual);
-    }
-
     const [navObj, setNavObj] = useState({});
     const [page, setPage] = useState("Main Page");
 
@@ -109,10 +87,7 @@ const tempFontSize = 12;
 
     const [qWindowSetup, setQwindowSetup] = useState(false);
 
-    // const [audioMap, setAudioMap] = useState({});  //TODO remove //TODO for bgm on each nav-page -- future feature
-    // const [visualMap, setVisualMap] = useState({});  //TODO remove
-    // const [audioMapSize, setAudioMapSize] = useState(0); //TODO remove
-    // const [visualMapSize, setVisualMapSize] = useState(0); //TODO remove
+
 
     const sizeLookupMap = { "16:9(horizonal)": [800, 450],
         "16:9(vertical)": [450, 800],
@@ -141,7 +116,6 @@ const tempFontSize = 12;
                                         // console.log("initial nav-preview: ", initialNavObj); //TODO test
                                         // console.log("Navigation Preview -- "); //TODO test
                                                                  
-            fetchProjResourceLists(); //TODO refactor .. from outer layer ??
 
                         // let objTempFirst = fetchNavObj();
 

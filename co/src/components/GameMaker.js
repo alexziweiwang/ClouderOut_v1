@@ -160,9 +160,6 @@ export default function GameMaker({username, projectName}) {
   const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
   const [createdChapterFolderSignal, setCreatedChapterFolderSignal] = useState(false);
 
-  const [visualList, setVisualList] = useState([]); 
-  const [audioList, setAudioList] = useState([]); 
-
   const [visualMap, setVisualMap] = useState([]); 
   const [audioMap, setAudioMap] = useState([]);
 
@@ -175,15 +172,11 @@ export default function GameMaker({username, projectName}) {
 
       /* fetch from cloud db */
       const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
-
-                      //          console.log("game-maker, visuallist = : ", obj); //TODO
       
       if (obj === undefined) {
         return;
       }
 
-      setAudioList(obj.audio);                
-      setVisualList(obj.visual);
 
       initializeVisualMap(obj.visual);
       initializeAudioMap(obj.audio);
