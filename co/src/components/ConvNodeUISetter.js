@@ -312,9 +312,12 @@ export default function ConvNodeUISetter({
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "defaultButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                            return (
-                                <option value={currKey} key={keyName}>{currKey}</option>
-                            );
+                            if (currKey.length > 0) {
+                                return (
+                                    <option value={currKey} key={keyName}>{currKey}</option>
+                                );
+                            }
+
                     })}
                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
          
@@ -537,9 +540,11 @@ export default function ConvNodeUISetter({
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "tfvButton" + currKey;
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                            return (
-                <option value={currKey} key={keyName}>{currKey}</option>
-                            );
+                            if (currKey.length > 0) {
+                                return (
+                                    <option value={currKey} key={keyName}>{currKey}</option>
+                                );
+                            }
                     })}
             </select>
         <button onClick={() => {openRm()}}>{manageResourceText}</button></>}
@@ -689,9 +694,11 @@ export default function ConvNodeUISetter({
                             <option key="autoDefault0" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "autoButton0" + currKey;
-                                    return (
-                                        <option value={currKey} key={keyName}>{currKey}</option>
-                                    );
+                                    if (currKey.length > 0) {
+                                        return (
+                                            <option value={currKey} key={keyName}>{currKey}</option>
+                                        );
+                                    }
                             })}
                         </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
                     <br></br>
@@ -723,9 +730,11 @@ export default function ConvNodeUISetter({
                             <option key="autoDefault1" value="">-- {selectResourceText} --</option>
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "autoButton1" + currKey;
-                                    return (
-                                        <option value={currKey} key={keyName}>{currKey}</option>
-                                    );
+                                    if (currKey.length > 0) {
+                                        return (
+                                            <option value={currKey} key={keyName}>{currKey}</option>
+                                        );
+                                    }
                             })}
                         </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
                     <br></br>
@@ -780,9 +789,11 @@ export default function ConvNodeUISetter({
                     <option key="logDefault" value="">-- {selectResourceText} --</option>
                     {Object.keys(visualMap).map((currKey) => {
                             let keyName = "logButton" + currKey;
-                            return (
-                                <option value={currKey} key={keyName}>{currKey}</option>
-                            );
+                            if (currKey.length > 0) {
+                                return (
+                                    <option value={currKey} key={keyName}>{currKey}</option>
+                                );
+                            }
                     })}
                 </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
             <br></br>
@@ -946,9 +957,11 @@ export default function ConvNodeUISetter({
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "convLogCloseBtnPic-" + currKey;
                                     /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                                    return (
-                                        <option value={currKey} key={keyName}>{currKey}</option>
-                                    );
+                                    if (currKey.length > 0) {
+                                        return (
+                                            <option value={currKey} key={keyName}>{currKey}</option>
+                                        );
+                                    }
                             })}
                         </select>
                         <button onClick={() => {openRm();}}>{manageResourceText}</button>
@@ -1121,9 +1134,11 @@ export default function ConvNodeUISetter({
                             {Object.keys(visualMap).map((currKey) => {
                                     let keyName = "convLogBgp-" + currKey;
                                     /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                                    return (
-                                        <option value={currKey} key={keyName}>{currKey}</option>
-                                    );
+                                    if (currKey.length > 0) {
+                                        return (
+                                            <option value={currKey} key={keyName}>{currKey}</option>
+                                        );
+                                    }
                             })}
                         </select>
                         <button onClick={() => {openRm();}}>{manageResourceText}</button>
@@ -1176,9 +1191,11 @@ export default function ConvNodeUISetter({
                                         let keyName = "convLogGroupUnitBgp-" + currKey;
                                         console.log("... vis-map key = ", currKey, "... value = ", visualMap[currKey]);
                                         /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
-                                        return (
-                                            <option value={currKey} key={keyName}>{currKey}</option>
-                                        );
+                                        if (currKey.length > 0) {
+                                            return (
+                                                <option value={currKey} key={keyName}>{currKey}</option>
+                                            );
+                                        }
                                 })}
 
                             </select>

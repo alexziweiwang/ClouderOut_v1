@@ -862,8 +862,8 @@ export default function ConversationNodeEditingPanel() {
 //rm-mapping-required: 
 
                                                     // <PieceSetter> (changed to be pass-in-strategy)
-// <ConvNodeUISetter> +1
-// <PreviewWindow_convNodeGameContent> +1 
+                                                    // <ConvNodeUISetter> (changed to be pass-in-strategy)
+// <PreviewWindow_convNodeGameContent> [//TODO refactored, to test]
 // <PreviewWindow_convNodeUiSetup> +1
 // <QuickView_AllPanels_ConvNode> +1
 
@@ -1099,7 +1099,7 @@ export default function ConversationNodeEditingPanel() {
 
                             getAudioMap={passInAudioMap}
                             getVisualMap={passInVisualMap}
-                            
+
                             getUILanguage={passInUILanguage}
                             username={state.userName} 
                             projName={state.projectName}    
@@ -1127,6 +1127,9 @@ export default function ConversationNodeEditingPanel() {
                     getUIConvNav={passInUIConvNav}
 
                     getUILanguage={passInUILanguage}
+
+                    getVisualMap={passInVisualMap}
+                    getAudioMap={passInAudioMap}
 
                     
                     username={state.userName}

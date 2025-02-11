@@ -7,9 +7,8 @@ import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 
-//TODO20 cloud-func
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
+//TODO102 test for visualMap and audioMap
 
 export default function PreviewWindow_convNodeGameContent({initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, 
@@ -17,6 +16,9 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     getDefaultButtonUISettings, getBackButtonUISettings, 
     getLogPageUISettings,
     getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav,
+
+    getVisualMap,
+    getAudioMap,
 
     getUILanguage,
 
@@ -53,35 +55,13 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
     const [charaPicArr2, setCharaPicArr2] = useState((initialAllPieceData !== undefined && initialAllPieceData.length > 0) ? initialAllPieceData[0]["chp_arr"] : []);
 
-    const [audioList, setAudioList] = useState([]); //TODO100 for bgm on each nav-page -- future feature
-    const [visualList, setVisualList] = useState([]); //TODO100
-    
-    async function fetchProjResourceLists() {
-      if (username === "default-no-state username" || projName === "default-no-state projectName") {
-        return;
-      }
-      
-      /* fetch from cloud db */
-      //TODO22
-      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-      // console.log("new render- piece preview: obj from cloud (resource list):"); //TODO test
-      // console.log(obj); //TODO test
-      setAudioList(obj.audio);
-      setVisualList(obj.visual);
-    }
-
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
-  
-    const [audioMapSize, setAudioMapSize] = useState(0);
-    const [visualMapSize, setVisualMapSize] = useState(0);
-
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
  
       if (firstTimeEnter === true) {
-        fetchProjResourceLists();  //TODO100 from out-layer?
 
         setFirstTimeEnter(false);
 
@@ -131,28 +111,13 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       setScreenHeight(screenSizePair[1]);
       
 
-      if (audioMapSize < audioList.length || visualMapSize < visualList.length) {
-            let i = 0;
-            let tempAudioMap = {};
-            setAudioMapSize(audioList.length);
-            for (;i < audioList.length; i++) {
-                let item = audioList[i];
-                tempAudioMap[item["var"]] = item["url"];
-            }
-            setAudioMap(tempAudioMap);
-
-            i = 0;
-            let tempVisualMap = {};
-            setVisualMapSize(visualList.length);
-            for (;i < visualList.length; i++) {
-                let item = visualList[i];
-                tempVisualMap[item["var"]] = item["url"];
-            }
-            setVisualMap(tempVisualMap);
-      }
+      let visMap = getVisualMap();
+      setVisualMap(visMap);
+      let auMap = getAudioMap();
+      setAudioMap(auMap);
 
 
-    });
+    }); // --- end of useEffect ---
 
     function updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward) {
       if (currentPieceNum < 0) {
@@ -265,16 +230,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       //TODO1
     }
  
-    function passInVisualMap() {
-      return visualMap;
-    }
-
-    function passInAudioMap() {
-      return audioMap;
-    }
-
-
-
     function triggerLogOpen() {
       setisShowLogScreen(true);
     }
@@ -367,7 +322,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                 getTextFrameUISettings={getTextFrameUISettings}
                 isInGameView={true}
                 triggerAutoMode={triggerAutoMode}
-                passInVisualMap={passInVisualMap}
+                getVisualMap={getVisualMap}
                 getUIConvNav={getUIConvNav}
 
               />}
@@ -382,8 +337,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                   getDefaultButtonUISettings={getDefaultButtonUISettings} 
                   getBackButtonUISettings={getBackButtonUISettings}
                   getScreenSize={getScreenSize}
-                  passInAudioMap={passInAudioMap}
-                  passInVisualMap={passInVisualMap}
+                  getAudioMap={getAudioMap}
+                  getVisualMap={getVisualMap}
               /> 
 
               <GameUI_3ConvNavPreview
@@ -396,7 +351,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                   getUIConvNav={getUIConvNav}
                   triggerAutoMode={triggerAutoMode}
                   isInGameView={true}
-                  passInVisualMap={passInVisualMap}
+                  getVisualMap={getVisualMap}
                   triggerLogOpen={triggerLogOpen}
               />
 
@@ -417,7 +372,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                             isQuickView={false}
                             isSettingUI={false}
                             visualMap={visualMap}
-                            getVisualMap={passInVisualMap}
+                            getVisualMap={getVisualMap}
                             screenWidth={screenWidth}
                             screenHeight={screenHeight}
                 />}
