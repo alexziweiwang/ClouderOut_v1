@@ -213,7 +213,7 @@ export default function Modal_ResourceManagingWindow ({
 
             let userResponse = window.confirm("Save to cloud?"); //TODO15 
             if (userResponse) {
-                console.log("saving to cloud...");
+                console.log("saving to cloud... info = ", info);
                 
                 setVarPairToCloud(info);
 //TODO save to cloud-db
@@ -445,10 +445,20 @@ export default function Modal_ResourceManagingWindow ({
                                 setClickedFileType("");
                     }}>{audioResourceText}</button>
 
-                    {/* <button className="buttonRight saveToCloud" 
-                        onClick={()=>{updateVarPairToCloud();}}>
-                            {saveToCloudText}
-                    </button> */}
+                    <button className="" 
+                        onClick={()=>{
+                            updateVarPairToCloud();
+
+                            let temp = {
+                                "audio": audioVarPairs,
+                                "visual": visualVarPairs
+                            }
+                            triggerRmUpdate(temp);
+                            //TODO101
+                        }}
+                    >
+                            {saveToCloudText}?
+                    </button>
                     <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
                             if (cloudUpdated === false) { //TODO15 
                                 let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");

@@ -1547,7 +1547,26 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setCurrTestingChapterTitle(chapterTitleName);
   }
 
+  function notifyRmUpdated(data) {
+    console.log("rm updated... (game-maker) ",  data);
+ //TODO101 update the visual+audio maps here?
+      //rm-mapping-required: 
+      // <NavigationSetter>, 
+      // <NavigationPreview>,  
+      // <Viewer_Entire>
+  }
 
+
+
+{/* //components
+      
+      1. editors - <ChapterManager> +  <NodeManager> 
+      2. editors - <NavigationSetter> + <NavigationPreview>
+      3. entire_view - <Viewer_Entire>
+      4. modal_resource_manager -  <Modal_ResourceManagingWindow>
+      5. modal_game_data_manager - <Modal_GameDataManager >
+      6. modal_emu_manager - <Modal_EmuManager>
+*/}   
 //TODO90 page content
   return (
   <div>
@@ -1637,7 +1656,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     </div>
     
     {showChapterMaker && <div className="parallelFrame sectionArea">
-      
+
         {!isDisplayRmBool && 
         <ChapterManager 
           currUser={username} 
@@ -1714,8 +1733,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           </div>
 
           <div className="parallelFrame">
-              
-              
+                     
               <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
@@ -1736,7 +1754,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           
                 />
               </div>
-              
+
+
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
                   fetchNavObj={passInNavObj} 
@@ -1773,8 +1792,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     </>
     }
    
-
-         
 
 
 
@@ -1814,6 +1831,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
         }}
       >
 
+         
 
       <Viewer_Entire
           makeNotDisplay={closeEntireGameViewer}
@@ -1963,10 +1981,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
 
 
-
-
-
-
 <div>
 
           
@@ -1980,7 +1994,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                 handleRmCancel={handleResourceManagerCancel} 
                 handleRmSaveChanges={handleResourceManagerSaveChanges}
                 refresh={triggerRefreshFetchCloudData}
-          
+                triggerRmUpdate={notifyRmUpdated}
+
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
 
                 username={username} 
@@ -1989,7 +2004,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
               />
           
           </div>
-         
+
+
           <div
             style={{
               "display": isDisplayGdmBool === false ? "none" : "flex",
@@ -2034,6 +2050,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 </div>
 
   </div>
+
 
   
     );

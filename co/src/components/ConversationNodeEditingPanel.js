@@ -777,7 +777,35 @@ export default function ConversationNodeEditingPanel() {
 
     } 
 
+    function notifyRmUpdated(data) {
+ //TODO101 update the visual+audio maps here?
+ console.log("rm updated... (conv-node-editor) ",  data);
+//rm-mapping-required: 
+// <PieceSetter>, 
+// <PreviewWindow_gameContent>, 
+// <PreviewWindow_uiSetup>, 
+// <QuickView_AllPanels_ConvNode>
+    }
+
+    function loadFromCloud() {
+        //TODO101
+    }
+
     
+          
+
+{/* components:
+
+        1. editor - <PieceSetter> or <ConvNodeUISetter>
+        2. editor - <PieceManager> or <ConvNodeUISetter>
+        3. editor - <PreviewWindow_gameContent> or <PreviewWindow_uiSetup>
+        4. modal_resource - <Modal_ResourceManagingWindow>
+        5. modal_game_data_manager - <Modal_GameDataManager>
+        6. modal_emu_manager - <Modal_EmuManager>
+        6. quick_view - <QuickView_AllPanels_ConvNode>
+
+*/}
+
 
     return (
 
@@ -842,7 +870,13 @@ export default function ConversationNodeEditingPanel() {
 
 
                 <div className="topParalBarRightPart" style={{"height": "45px"}}>
-
+                    <button
+                        onClick={()=>{
+                            loadFromCloud();
+                        }}
+                    >Load From Cloud
+                    {/* TODO12 button-text: use from dictionary */}
+                    </button>
                     <button
                         onClick={()=>{saveAllToCloud();}}
                     >{saveToCloudText}</button>
@@ -880,7 +914,7 @@ export default function ConversationNodeEditingPanel() {
                     "overflow": "scroll"
                 }}
             >
-            
+
             {browseList === false && 
                 <div
                     style={{"maxHeight": `${screenHeight+1}px`, "overflow": "scroll", "marginTop": "16px"}}
@@ -908,6 +942,8 @@ export default function ConversationNodeEditingPanel() {
                             username={state.userName} 
                             projName={state.projectName}    
                         />}
+  
+
                     {gameUISetterOpen === true && 
                         <ConvNodeUISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
@@ -949,6 +985,8 @@ export default function ConversationNodeEditingPanel() {
 
                             getUILanguage={passInUILanguage}
                         />}   
+
+
                     {gameUISetterOpen === true && 
                         <ConvNodeUISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
@@ -974,6 +1012,7 @@ export default function ConversationNodeEditingPanel() {
                 </div>
             }
 
+
                       
             {isDisplayGameContentPreview === true && 
                 <PreviewWindow_gameContent
@@ -997,6 +1036,8 @@ export default function ConversationNodeEditingPanel() {
                     username={state.userName}
                     projName={state.projectName}
                 />}
+
+
             {isDisplayGameContentPreview === false && 
                 <PreviewWindow_uiSetup
                     dataObj={pieceDataStructure[previewingIndex]} 
@@ -1035,16 +1076,15 @@ export default function ConversationNodeEditingPanel() {
                     handleRmCancel={handleResourceManagerCancel} 
                     handleRmSaveChanges={handleResourceManagerSaveChanges} 
                     refresh={triggerRefresh}
+                    triggerRmUpdate={notifyRmUpdated}
 
                     getUILanguage={passInUILanguage}    
                     username={state.userName} 
                     projName={state.projectName}                
-                    />
+                />
                                                                     {/* } */}
             </div>
 
-
-        
 
             <div
                 style={{
