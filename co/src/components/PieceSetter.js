@@ -6,7 +6,6 @@ import langDictionary from './textDictionary';
 
 
 //TODO20 cloud-func
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 
@@ -21,6 +20,9 @@ export default function PieceSetter({
     setIsClickedOnSetters, 
     fetchClickedIsOnSetter, getCurrentPieceNum, 
     fetchRmUpdatedSignal, respondUpdatedRm, 
+
+    getVisualList,
+    getAudioList,
 
     getUILanguage,
     username, projName,
@@ -272,7 +274,7 @@ export default function PieceSetter({
 
         if (firstTimeEnter === true) {
             /* initialization of project-resource-list in drop-down list */
-            fetchProjResourceLists();
+                                                                            // fetchProjResourceLists(); //TODO remove later
             // TODO fetch visualList and audioList from cloud-db to setup the local lists
             //TODO1: fetch game data for the first time
 
@@ -311,16 +313,22 @@ export default function PieceSetter({
 
       //  }
 
+                                                                    //TODO prev-strategy for resource-updating
+                                                                    // let isUdpateResource = fetch Rm UpdatedSignal(); 
+                                                                    // if (isUdpateResource === true) {
+                                                                    //     console.log("isUdpateResource???");
+                                                                    //     fetch Proj Resource Lists();
+                                                                    //     respondUpdatedRm();
+                                                                    // } //TODO prev-strategy for resource-updating
 
-        let isUdpateResource = fetchRmUpdatedSignal();
-        if (isUdpateResource === true) {
-            console.log("isUdpateResource???");
-            fetchProjResourceLists();
-            respondUpdatedRm();
-        }
+        let visList = getVisualList();
+        setVisualList(visList);
+        let auList = getAudioList();
+        setAudioList(auList);
+
+        console.log("\t\tin piece-setter... resource = ", visList, " ... \n\t\t\t", auList);
 
         
-   
 
     });
 
@@ -356,7 +364,7 @@ export default function PieceSetter({
     //     return map1;
     // }
 
-    async function fetchGameDataListFromCloud() {
+    async function fetchGameDataListFromCloud() { //TODO102... change this !!!
         
         let isUpdated = true;
         let tempObj = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
@@ -645,20 +653,20 @@ export default function PieceSetter({
         updateToCaller(tempObj);
     }
 
-    async function fetchProjResourceLists() {
-        console.log("piece-setter: fetchProjResourceLists-func"); //TODO test
-        if (username === "default-no-state username" || projName === "default-no-state projectName") {
-            return;
-        }
-        
-        /* fetch from cloud db */
-        //TODO22
-        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
-        // console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
-        // console.log(obj); //TODO test
-        setAudioList(obj.audio);
-        setVisualList(obj.visual);
-    }
+                                                // async function fetchProjResourceLists() {
+                                                //     console.log("piece-setter: fetchProjResourceLists-func"); //TODO test
+                                                //     if (username === "default-no-state username" || projName === "default-no-state projectName") {
+                                                //         return;
+                                                //     }
+                                                    
+                                                //     /* fetch from cloud db */
+                                                //     //TODO22
+                                                //     const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+                                                //     // console.log("new render- piece setter: obj from cloud (resource list):"); //TODO test
+                                                //     // console.log(obj); //TODO test
+                                                //     setAudioList(obj.audio);
+                                                //     setVisualList(obj.visual);
+                                                // }
 
     function setupBgpInfo(event) {
 //TODO improve in future
@@ -1396,7 +1404,7 @@ export default function PieceSetter({
                                 }>
                                     <option key="clck01" value=""> -- Select base-pic name -- </option>
 
-                                    {visualList.
+                                    {visual List.
                                         map((item, index) => {
                                         let keyStr = "clickable-" + index + "-" + item["var"];
                                         return (<option key={keyStr} value={item["var"]}>{item["var"]}</option>);

@@ -296,12 +296,10 @@ export default function ConversationNodeEditingPanel() {
     //TODO100
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
-  
-    const [audioMapSize, setAudioMapSize] = useState(0);
-    const [visualMapSize, setVisualMapSize] = useState(0);
 
 
-
+    const [audioList, setAudioList] = useState([]);
+    const [visualList, setVisualList] = useState([]); 
 
 
     const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
@@ -400,6 +398,9 @@ export default function ConversationNodeEditingPanel() {
             return;
         }
 
+        setAudioList(obj.audio);
+        setVisualList(obj.visual);
+
         initializeVisualMap(obj.visual);
         initializeAudioMap(obj.audio)
     }
@@ -440,6 +441,21 @@ export default function ConversationNodeEditingPanel() {
         setAudioMap(tempMap);
     }
 
+    function passInVisualMap() {
+        return visualMap;
+    }
+
+    function passInAudioMap() {
+        return audioMap;
+    }
+
+    function passInVisualList() {
+        return visualList;
+    }
+
+    function passInAudioList() {
+        return audioList;
+    }
 
     function handleResourceManagerOpen() {
         setDisplayRmModal(true);
@@ -840,6 +856,8 @@ export default function ConversationNodeEditingPanel() {
     function notifyRmUpdated(data) {
  //TODO101 update the visual+audio maps here?
  console.log("rm updated... (conv-node-editor) ",  data);
+ //passInVisualMap()       passInAudioMap()
+
 //rm-mapping-required: 
 
 // <PieceSetter> +1
@@ -1005,6 +1023,9 @@ export default function ConversationNodeEditingPanel() {
                             getCurrentPieceNum={passInCurrentPieceNum}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
+
+                            getVisualList={passInVisualList}
+                            getAudioList={passInAudioList}
 
                             getUILanguage={passInUILanguage}
                             username={state.userName} 
