@@ -204,6 +204,7 @@ export default function GameMaker({username, projectName}) {
         let len = visualList.length;
         let i = 0;
         tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+        tempMap[""] = '';
         while (i < len) {
             let item = visualList[i];
             tempMap[item["var"]] = item["url"];
@@ -222,6 +223,7 @@ export default function GameMaker({username, projectName}) {
         let len = audioList.length;
         let i = 0;
         tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+        tempMap[""] = '';
         while (i < len) {
             let item = audioList[i];
             tempMap[item["var"]] = item["url"];

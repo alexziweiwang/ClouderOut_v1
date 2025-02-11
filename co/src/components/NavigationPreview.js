@@ -134,6 +134,7 @@ const tempFontSize = 12;
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        console.log("nav-preview... visual map = ", visualMap);
 
 
         if (firstTimeEnter === true) {
@@ -331,8 +332,7 @@ const tempFontSize = 12;
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor": `${navObj["mainPage-bgShadeName"]}`, 
-            //    "backgroundImage": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
-            //TODO100 problem here -- improve robustness of resource-mapping ...
+                "backgroundImage": navObj["mainPage-isBackgroundShape"] === false ? `url('${visualMap[navObj[mainPagePictureVariableNames[0]]]}')` : "",
 
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 

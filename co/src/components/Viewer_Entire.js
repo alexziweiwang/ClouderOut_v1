@@ -446,7 +446,9 @@ return( <>
 
                         fetchShopItemInfo={getShopItemInfo}
                         fetchPlayerPurchaseInfo={getPlayerPurchaseInfo}
-
+                        
+                        visualMap={visualMap}
+                        audioMap={audioMap}
 
                     /> 
                                                                                 {/* //TODO16
