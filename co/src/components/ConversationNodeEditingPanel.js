@@ -863,10 +863,10 @@ export default function ConversationNodeEditingPanel() {
 
                                                     // <PieceSetter> (changed to be pass-in-strategy)
                                                     // <ConvNodeUISetter> (changed to be pass-in-strategy)
-// <PreviewWindow_convNodeGameContent> [//TODO refactored, to test]
-// <PreviewWindow_convNodeUiSetup> [//TODO refactored, to test]
+// <PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
+// <PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
 
-// <QuickView_AllPanels_ConvNode> [//TODO refactored, to test]
+// <QuickView_AllPanels_ConvNode> [//TODO105 refactored, to test]
 
 
         //audioList = data.audio
@@ -1059,6 +1059,7 @@ export default function ConversationNodeEditingPanel() {
                             username={state.userName} 
                             projName={state.projectName}    
                     />}
+ 
                 </div>
             }
 
@@ -1105,7 +1106,8 @@ export default function ConversationNodeEditingPanel() {
                             username={state.userName} 
                             projName={state.projectName}    
                         />}
-                
+      
+               
                 </div>
             }
 
@@ -1136,6 +1138,7 @@ export default function ConversationNodeEditingPanel() {
                     username={state.userName}
                     projName={state.projectName}
                 />}
+
 
 
             {isDisplayGameContentPreview === false && 

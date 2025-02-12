@@ -4,7 +4,7 @@ import ConvTextContent_preview from './ConvTextContent_preview';
 export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, 
     triggerNextPiece, triggerAutoMode, getUIConvNav,
-    passInVisualMap
+    getVisualMap
 }) {
     const typingSpeedBase = 100;
 
@@ -50,7 +50,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
             }
         }
 
-        let visualMapTemp = passInVisualMap();
+        let visualMapTemp = getVisualMap();
         setVisualMap(visualMapTemp);
 
 

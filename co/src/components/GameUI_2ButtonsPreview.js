@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, 
-    getScreenSize, triggerNextPiece, passInAudioMap, passInVisualMap
+    getScreenSize, triggerNextPiece, getAudioMap, getVisualMap
 }) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
@@ -39,13 +39,13 @@ const [visualMap, setVisualMap] = useState([]);
 
         }
 
-        let visualMapTemp = passInVisualMap();
+        let visualMapTemp = getVisualMap();
 
                                //             console.log("\t\t\tgame-ui-2-buttons-preview visualMap = ", visualMapTemp);
 
         setVisualMap(visualMapTemp);
 
-        let audioMapTemp = passInAudioMap();
+        let audioMapTemp = getAudioMap();
         setAudioMap(audioMapTemp);
 
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getScreenSize, triggerNextPiece, 
     triggerAutoMode, getUIConvNav, isInGameView,
-    passInAudioList, passInVisualMap,
+    passInAudioList, getVisualMap,
     triggerLogOpen
 }) {
 
@@ -62,7 +62,7 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
             setScreenHeight(screenSizePair[1]);
         }
 
-        let visualMapTemp = passInVisualMap();
+        let visualMapTemp = getVisualMap();
         setVisualMap(visualMapTemp);
 
     });
