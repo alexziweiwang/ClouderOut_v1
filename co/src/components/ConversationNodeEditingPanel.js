@@ -866,7 +866,7 @@ export default function ConversationNodeEditingPanel() {
 // <PreviewWindow_convNodeGameContent> [//TODO refactored, to test]
 // <PreviewWindow_convNodeUiSetup> [//TODO refactored, to test]
 
-// <QuickView_AllPanels_ConvNode> +1
+// <QuickView_AllPanels_ConvNode> [//TODO refactored, to test]
 
 
         //audioList = data.audio

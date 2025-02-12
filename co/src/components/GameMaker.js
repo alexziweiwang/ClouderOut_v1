@@ -1554,8 +1554,11 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     console.log("rm updated... (game-maker) ",  data);
  //TODO101 update the visual+audio maps here?
       //rm-mapping-required: 
-      // <NavigationSetter> +1
-      // <NavigationPreview> +1
+      // <NavigationSetter> [//TODO refactored, to test]
+
+
+
+      // <NavigationPreview> *** non-dynamic resource-maps so far...
 
       
         //audioList = data.audio

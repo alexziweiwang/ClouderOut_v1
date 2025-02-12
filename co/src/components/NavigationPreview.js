@@ -27,7 +27,6 @@ export default function NavigationPreview ({
     visualMap,
     audioMap,
 
-
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 const tempFontSize = 12;

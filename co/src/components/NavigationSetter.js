@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import langDictionary from './textDictionary';
 
 //TODO20 cloud-func
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
+
+import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
+//TODO103 refactor and remove later
 
 
 
@@ -18,6 +19,11 @@ export default function NavigationSetter({initialNavObj,
   fetchEmuPlayerProfile,
   openEmuManager,
   getUILanguage,
+
+
+  getVisualMap,
+  getAudioMap,
+
 
 }) {
 
@@ -342,11 +348,15 @@ export default function NavigationSetter({initialNavObj,
     const [shopPageConfirmInput, setShopPageConfirmInput] = useState(initialNavObj["shopPage-bConfWindow-confirmText"]);
 
 
+    const [audioMap, setAudioMap] = useState({});
+    const [visualMap, setVisualMap] = useState({}); 
+
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
             //console.log("Navigation Setter -- "); //TODO test
-            fetchProjResourceLists();
+
             getGameDataDesignFromCloud(); //value-list: game-data
  
 
@@ -369,6 +379,12 @@ export default function NavigationSetter({initialNavObj,
       let ppTemp = fetchEmuPlayerProfile();
       setEmuPlayerInfo(ppTemp);
 
+
+      let auMap = getAudioMap();
+      setAudioMap(auMap);
+      let visMap = getVisualMap();
+      setVisualMap(visMap);
+
     });
 
 
@@ -377,20 +393,6 @@ export default function NavigationSetter({initialNavObj,
 
     const [ppNicknameAreaExpand, setPpNicknameAreaExpand] = useState(false);
 
-    async function fetchProjResourceLists() {
-      console.log("nav-setter: fetchProjResourceLists()"); //TODO21 test
-      /* fetch from cloud db */
-      if (userName === "default-no-state username" || projName === "default-no-state projectName") {
-        return;
-      }
-
-      //TODO22
-      const obj = await fetchProjectResourceVarPairsVM({userName: userName, projectName: projName});
-      console.log("new render- nav setter: obj from cloud (resource list):"); //TODO test
-      console.log(obj); //TODO test
-      setAudioList(obj.audio);
-      setVisualList(obj.visual);
-    }
 
     function handleVisualRsrcSelectorSave(updatedList) {
       //TODO update visualList
@@ -912,7 +914,8 @@ export default function NavigationSetter({initialNavObj,
       <br></br>
       <button
         onClick={()=>{
-          fetchProjResourceLists();
+          //TODO101 fetch resource-maps again
+
           getGameDataDesignFromCloud();
           updateCurrentPageName("Main Page");
         }}
