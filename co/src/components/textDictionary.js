@@ -189,7 +189,7 @@ const textDictionary = {
         withTextFrameText: "Include Text-frame",
         selectOperationDefaultMaintain: "Select Operation (default: maintain)",
         nameText: "Name",
-        currentValueText: "Current Text",
+        currentValueText: "Current Value",
         itemNameText: "Item Name",
         itemContentText: "Item Content",
         operationText: "Operation",

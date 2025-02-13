@@ -94,7 +94,7 @@ export default function Viewer_Entire({
         
 
 
-    const [playerGameData, setPlayerGameData] = useState(initialPlayerGameData);
+    const [playerGameDataTracker, setPlayerGameDataTracker] = useState({});
     const [playerProfile, setPlayerProfile] = useState({});
     const [playerAccount, setPlayerAccount] = useState({});
     const [playerSLRecords, setPlayerSLRecords] = useState({});
@@ -138,17 +138,41 @@ export default function Viewer_Entire({
     useEffect(() => {
 
         if (firstTimeEnter === true) {
+                                                console.log("!!!!!!! viewer-entire: entered as first-time");
             initializeGameDataTracker();
 
-            //TODO
+
+
+
+            //TODO -------------------------------------------
+            //getPlayerGameData
+
+            let chapterListTemp = getChapterList();
+            setChapterList(chapterListTemp);
+    
+            let pp = getPlayerProfile();
+            setPlayerProfile(pp);
+    
+            let ua = getPlayerAccountSettings();
+            setPlayerAccount(ua);
+    
+            //TODO -------------------------------------------
+
+
+
             
+
+
+
+
+
             setFirstTimeEnter(false);
         }
   
         let navigationObj = fetchNavObj();
 
 
-                                            console.log("viewer-entire .. nav-obj = ", navigationObj);
+                                            // console.log("viewer-entire .. nav-obj = ", navigationObj);
 
 
         if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) {
@@ -175,15 +199,6 @@ export default function Viewer_Entire({
         let chapterTitleTemp = getChapterTitle();
         configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp);
 
-
-        let chapterListTemp = getChapterList();
-        setChapterList(chapterListTemp);
-
-        let pp = getPlayerProfile();
-        setPlayerProfile(pp);
-
-        let ua = getPlayerAccountSettings();
-        setPlayerAccount(ua);
 
 
     });
@@ -237,13 +252,18 @@ export default function Viewer_Entire({
 
 
                                                                 // function updateGameData(data) { // model's functionality     //TODO refactoring
-                                                                //     setPlayerGameData(data);
+                                                                //     setPlayerGameDataTracker(data);
                                                                 // }
 
 
     //TODO21 refactor to VM
     function initializeGameDataTracker() {
                                                             console.log("viewer-entire... initializeGameDataTracker");
+
+        //TODO105 if need to fetch from game-maker with the most fresh-ver.
+                                //getPlayerGameData()
+        //TODO
+
         let objTemp = {};
         Object.keys(initialPlayerGameData).map((currKey) => {
             let item = initialPlayerGameData[currKey];
@@ -261,7 +281,7 @@ export default function Viewer_Entire({
             objTemp[nameVal] = objNewItem;
         });
 
-        setPlayerGameData(objTemp);
+        setPlayerGameDataTracker(objTemp);
 
     }
 
@@ -301,7 +321,7 @@ export default function Viewer_Entire({
 
 
     function passInCurrentGameDataList() { //non-emu data
-        return playerGameData;
+        return playerGameDataTracker;
     }
 
     function passInNodeType() {
@@ -348,6 +368,10 @@ export default function Viewer_Entire({
 
         triggerChapterChange(chapterKeyName, chapterTitleName);
 
+    }
+
+    function passInViewerContainerGameDataTracker() {
+        return playerGameDataTracker;
     }
     
 
@@ -397,7 +421,7 @@ return( <>
                                                 initialNodeKey={currentGameStatusProgress["nodeKey"]}
                                                 initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
 
-                                                getCurrentGameDataTracker={getPlayerGameData}
+                                                getCurrentGameDataTracker={passInViewerContainerGameDataTracker}
                                                 getCurrChapterAllNodeMapping={getCurrChapterAllNodeMapping}
                                                 getAllChapterList={getChapterList}
 
@@ -434,12 +458,12 @@ return( <>
 
                         isEditing={false}
 
-                        initialGameDataRefData={playerGameData}
+                        initialGameDataRefData={playerGameDataTracker}
                         initialPlayerProfileRefData={playerProfile}
                         initialPlayerAccountRefData={playerAccount}
 
                         fetchPlayerInfoSets={passInPlayerInfoSets}
-                        fetchCurrentGameData={passInCurrentGameDataList}
+                        fetchCurrentGameData={passInViewerContainerGameDataTracker}
 
                         getUILanguage={passInUiLanguageOption}  //TODO20 languageOption
 

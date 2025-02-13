@@ -1522,6 +1522,14 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   }
 
+  function passInVisualMap() {
+    return visualMap;
+  }
+
+  function passInAudioMap() {
+    return audioMap;
+  }
+
   function triggerNodeMappingsChange(nodeMapThisChapter, gridBlocksThisChapter) {
     let gridAll = gridBlocksAll;
     gridAll[currChapterKey] = gridBlocksThisChapter;
@@ -1762,6 +1770,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                   fetchEmuPlayerProfile={passInPlayerProfile}
                    
                   getUILanguage={passInUILanguage}
+
+                  getVisualMap={passInVisualMap}
+                  getAudioMap={passInAudioMap}
           
                 />
               </div>

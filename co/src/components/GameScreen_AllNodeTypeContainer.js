@@ -50,8 +50,6 @@ export default function GameScreen_AllNodeTypeContainer({
     const [holdingNextNodeKey, setHoldingNextNodeKey] = useState("");
     const [currentNodeFinishedSignal, setCurrentNodeFinishedSignal] = useState(false);
 
-    const [gameDataTracker, setGameDataTracker] = useState({});
-
     const [chapterNodeMapping, setChapterNodeMapping] = useState({});
 
     const [allChapterList, setAllChapterList] = useState([]);
@@ -500,7 +498,7 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     function receiveUpdatedGameDataTracker(data) {
-        setGameDataTracker(data);
+        setCurrGameDataTracker(data);
     }
 
 
