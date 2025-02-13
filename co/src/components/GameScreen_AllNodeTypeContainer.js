@@ -72,11 +72,14 @@ export default function GameScreen_AllNodeTypeContainer({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
+        console.log("anct___game-data-tracker.. ", currGameDataTracker);
  
         if (firstTimeEnter === true) {
             //TODO
                                                                 console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
+
+
                 let gDataTemp = getCurrentGameDataTracker();
                 setCurrGameDataTracker(gDataTemp);
 
@@ -496,6 +499,10 @@ export default function GameScreen_AllNodeTypeContainer({
         }
     }
 
+    function receiveUpdatedGameDataTracker(data) {
+        setGameDataTracker(data);
+    }
+
 
 
 
@@ -612,6 +619,7 @@ return (<div
             projectname={projectname}
             
             enteringEmuGameDataTracker={currGameDataTracker}
+            updatedGameDataTracker={receiveUpdatedGameDataTracker}
 
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far

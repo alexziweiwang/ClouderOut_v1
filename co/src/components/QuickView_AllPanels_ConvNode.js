@@ -118,6 +118,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         setVisualMap(visMap);
         
 
+
+
     });
 
     function updateRenderCounter() {
@@ -211,6 +213,8 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return gmdtObj;
     }  
 
+    
+    //TODO21 refactor to VM
     function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TODO later
         //TODO check if valid
         if (ds[name] === undefined) {
@@ -248,6 +252,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         return res;
     }
 
+    //TODO21 refactor to VM
     function buttonConsequenceByStatementEntireArray(pieceNum, item) {
 
         let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);

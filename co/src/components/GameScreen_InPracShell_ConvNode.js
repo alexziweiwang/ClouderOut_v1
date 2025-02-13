@@ -22,6 +22,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     projectname,
     
     enteringEmuGameDataTracker,
+    updatedGameDataTracker,
 
     visualMap,
     audioMap,
@@ -59,7 +60,7 @@ export default function GameScreen_InPracShell_ConvNode ({
             setFirstTimeEnter(false);
         }
 
-                                    console.log("in-prac-shell, allPieceData = ", allPieceData);
+                                  //  console.log("in-prac-shell, allPieceData = ", allPieceData);
 
 /* 
                                                                               
@@ -81,37 +82,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     }); //-- end of useEffect --
 
 
-/*
-    // function updateBgmSource() { //TODO test before removing
-    //     if (currPieceNum < 0) {
-    //         return;
-    //       }
-    //       if (allPieceContent[currPieceNum]["bgm_action"] === "startNewBgm") {
-    //         if (allPieceContent[currPieceNum]["bgm_source_varname"] !== "") {
-    //           setBgmSource(audioMap[allPieceContent[currPieceNum]["bgm_source_varname"]]);
-    //         }
-    //       } else if (allPieceContent[currPieceNum]["bgm_action"] === "stopBgm") {
-    //         setBgmSource("");
-    //       } 
-    //       //TODO "naturalStopBgm" stop looping...
 
-    // } //TODO test before removing
-
-    // function updateBgpSource() { //TODO test before removing
-    //     if (currPieceNum < 0) {
-    //       return;
-    //     }
-    //     if (allPieceContent[currPieceNum]["bgp_action"] === "switchToNewBgp") {
-    //       if (allPieceContent[currPieceNum]["bgp_source_varname"] !== "") {
-    //         setBgpSource(visualMap[allPieceContent[currPieceNum]["bgp_source_varname"]]);
-    //       } else {
-    //         setBgpSource("");
-    //       }
-        
-    //     } 
-    // }  //TODO test before removing
-
-    */
 
     function notUsing() {
       return "";
@@ -121,10 +92,83 @@ export default function GameScreen_InPracShell_ConvNode ({
       return resetSignal;
   }
 
-    function buttonConsequenceByStatementEntireArray() {
-      //TODO button-caused-change
+    //TODO21 refactor to VM
+    function changeGameDataTracker(ds, name, value) {
+        let gmdtObj = ds;
+        gmdtObj[name].current_value = value;
+        
+                                                            // updatedGameDataTracker(gmdtObj);//TODO remove later
+        return gmdtObj;
+    }  
 
-      //TODO (game data tracker kept in this layer? out-layer?)
+
+    //TODO21 refactor to VM
+    function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TODO later
+        //TODO check if valid
+        if (ds[name] === undefined) {
+            return;
+        }
+        //TODO check if valid
+
+        let res = {};
+        
+        if (type === "boolean" || type === "string") {
+            // type - boolean 
+                // action is "becomes"
+            let boolVal = (newVal === "true" || newVal === true) ? true : false;
+            res = changeGameDataTracker(ds, name, boolVal);
+        } else if (type === "string") {
+            // type - string
+                // action is "becomes"
+                res = changeGameDataTracker(ds, name, newVal);
+        } else if (type === "number") {
+            // type - number
+            let currVal = ds[name]["current_value"];
+
+            let result = 0;
+            if (action === "plus") {
+                result = currVal - (-1 * newVal); //important, not directly adding
+                res = changeGameDataTracker(ds, name, result);
+            } else if (action === "minus") {   
+                result = currVal - newVal;
+                res = changeGameDataTracker(ds, name, result);
+            } else if (action === "becomes") {
+                res = changeGameDataTracker(ds, name, newVal);
+            }
+        }
+
+        return res;
+    }
+
+    //TODO21 refactor to VM
+    function buttonConsequenceByStatementEntireArray(pieceNum, item) {
+
+        let stndButtonThisButtonInfo = allPieceData[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
+        
+        let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
+        if (conseqMap === undefined) {
+                                                            console.log("2... conseqMap undefined.");
+            return;
+        }
+                                                          //  console.log("2conseqMap: ", conseqMap, ", len = ", len);
+        let res = enteringEmuGameDataTracker;
+                                                    //        console.log("\nchange-by-stmt-arr: before - ", res);
+        Object.keys(conseqMap).map((currKey) => {
+
+            let name = conseqMap[currKey]["name"];  
+            let action = conseqMap[currKey]["action"];  
+            let newVal = conseqMap[currKey]["newVal"];  
+            let type = conseqMap[currKey]["type"];  
+                                                            console.log("2calling change-by-stmt, ", conseqMap[currKey]);
+                                  
+            res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
+        });
+
+                                                            console.log("\nchange-by-stmt-arr: after - ", res);
+
+        updatedGameDataTracker(res);
+                                                    // updateRenderCounter()?
+        
     }
 
 

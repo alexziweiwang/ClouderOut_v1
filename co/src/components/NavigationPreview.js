@@ -107,7 +107,6 @@ const tempFontSize = 12;
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        console.log("nav-preview... visual map = ", visualMap);
 
 
         if (firstTimeEnter === true) {
@@ -177,7 +176,7 @@ const tempFontSize = 12;
 
 
         let objTemp = fetchNavObj();
-                                        console.log("!!! nav-obj-temp = ", objTemp, "\n earlier navObj = ", navObj);
+                
         if (Object.keys(objTemp).length !== Object.keys(navObj).length || objTemp !== navObj) {
    
             setupPPTryingObjects(objTemp);                            //TODO too-many-rendering
