@@ -1089,10 +1089,6 @@ export default function GameMaker({username, projectName}) {
     return testPlayerSLRecords;
   }
 
-  function updatePlayingGameData(data) {
-    setTestPlayerGameData(data);
-  }
-
   function updatePlayerProfile(data) {
     setTestPlayerProfile(data);
   }
@@ -1864,7 +1860,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           getChapterList={passInChapterList}
 
           getPlayerGameData={passInCurrentGameDataList}
-          updatePlayingGameData={updatePlayingGameData}
+  
           initialPlayerGameData={testPlayerGameData}
 
           getPlayerProfile={passInPlayerProfile}

@@ -259,10 +259,23 @@ export default function Modal_EmuManager({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     function update1GdtToOuterLayer() {
-        //gdt1
-        update1Gdt(gdt1);
+        let outputVer = makeDupGdt1(gdt1)
+        update1Gdt(outputVer);
     }
 
+
+    function update2EppToOuterLayer() {
+        let outputVer = makeDupEpp2(epp2);
+        update2Epp(outputVer);
+    }
+  
+    function update3EpaToOuterLayer() {
+        let outputVer = makeDupEpa3(epa3);
+        update3Epa(outputVer);
+    }
+    
+    
+    //TODO21 refactor to VM
     function makeDupGdt1(data1) {
         let tempObj = {};
         {Object.keys(data1).map((currKey) => {
@@ -280,18 +293,9 @@ export default function Modal_EmuManager({
             let keyStr = currKey;
             tempObj[keyStr] = obj;
         })} 
-
-                            console.log("making dup-gdt1... ", tempObj);
-
-        setGdt1Dup(tempObj);
         return tempObj;
-
     }
 
-    function update2EppToOuterLayer() {
-        //epp2
-        update2Epp(epp2);
-    }
 
     function makeDupEpp2(data2) {
         let pn = data2["playername"];
@@ -308,17 +312,9 @@ export default function Modal_EmuManager({
             "membership": mbsp,
         };
 
-                                console.log("making dup-epp2... ", tempObj);
-        setEpp2Dup(tempObj);
         return tempObj;
-
     }
 
-    function update3EpaToOuterLayer() {
-        //epa3
-
-        update3Epa(epa3);
-    }
 
     function makeDupEpa3(data3) {
         let pn = data3["playername"];
@@ -329,11 +325,7 @@ export default function Modal_EmuManager({
             "email": eml,            
         }
 
-
-                                    console.log("making dup-epa3... ", tempObj);
-        setEpa3Dup(tempObj);
         return tempObj;
-
     }
 
 
@@ -343,7 +335,9 @@ export default function Modal_EmuManager({
     // } //TODO temp: not using
 
 
-    function update5ShpToOuterLayer() {
+    function update5ShpToOuterLayer() { 
+        
+        //TODO300 make-dup first, and send only the dup-ver.
         update5Shp(shp5);
 
     }

@@ -15,25 +15,33 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
     initialize/refresh every time when reopening this compo-window
  */
 
+    
+//TODO200
+// procedure about game-data-tracker: 
+//           when entering this compo, all the non-dynamic data (game-data, player-profile, etc.) version fixed
+//           the only notification to outside is to display on the game-data-panel...
+//           after closed this compo, all the data-states reset, and next time new viewer-entire still fetches the emu-data
+//               that is, not saving anything for the emu-play!
+
+
 export default function Viewer_Entire({
     fetchNavObj, 
 
     initialChapterList, getChapterList, getUILanguage,
    
-    getPlayerGameData,
-    updatePlayingGameData,
+    getPlayerGameData, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     initialPlayerGameData,
 
-    getPlayerProfile,
+    getPlayerProfile, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     updatePlayerProfile,
 
-    getPlayerAccountSettings, 
+    getPlayerAccountSettings, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     updatePlayerAccountSettings,
 
     getPlayerSlRecords, 
     updatePlayerSlRecords,
 
-    getCurrChapterAllNodeMapping,
+    getCurrChapterAllNodeMapping, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     
     getNodeType, 
     getChapterKey, 
@@ -148,6 +156,7 @@ export default function Viewer_Entire({
             //getPlayerGameData
 
             let chapterListTemp = getChapterList();
+                                                    console.log("\tviewer-entire, chapter list = ", chapterListTemp);
             setChapterList(chapterListTemp);
     
             let pp = getPlayerProfile();
@@ -306,8 +315,8 @@ export default function Viewer_Entire({
     //TODO21 refactor to VM
     function passInPlayerInfoSets() {
         let obj = {};
-        let pp = getPlayerProfile();
-        let ua = getPlayerAccountSettings();
+        let pp = getPlayerProfile(); //TODO use data-ver of inside-viewer-entire
+        let ua = getPlayerAccountSettings(); //TODO use data-ver of inside-viewer-entire
     
         //TODO for testing only, pass-in test-data
         obj["playerProfile"] = pp;
@@ -373,6 +382,19 @@ export default function Viewer_Entire({
     function passInViewerContainerGameDataTracker() {
         return playerGameDataTracker;
     }
+
+
+    //TODO if anything in game-data-tracker changes... would notify outer layers?
+    function notifyOuterLayerDisplayGameDataTracker() { //TODO temp(before refactor-to-vm for functionalities)
+        conveyDisplayGameDataTracker(playerGameDataTracker);
+
+
+    }
+
+    //TODO21 refactor to VM
+    function conveyDisplayGameDataTracker(localData) {
+        //TODO 
+    }
     
 
 return( <>
@@ -398,7 +420,7 @@ return( <>
                     >
 
                                           {/*      
-                                                    // updatePlayingGameData(data)
+
                                                     // updateCurrentStanding (track by nav-buttons & in-game changes: 
                                                     //              page-status + chapter-key + node-type + node-key) 
 
