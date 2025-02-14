@@ -6,7 +6,7 @@ export default function NavigationPreview ({
 
     fetchPageName, 
     updateCurrentPageName,
-    updateCurrentStanding,
+    triggerUpdateCurrentStanding,
 
     chapterData, 
     isEditing,
@@ -400,7 +400,7 @@ const tempFontSize = 12;
                                     currentStandingObjTemp["chapterTitle"] = "";
                                     currentStandingObjTemp["nodeKey"] = "";
                                     currentStandingObjTemp["nodeType"] = ""; 
-                                    updateCurrentStanding(currentStandingObjTemp);
+                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                 }
                             }
@@ -559,7 +559,7 @@ const tempFontSize = 12;
                                     currentStandingObjTemp["chapterTitle"] = "";
                                     currentStandingObjTemp["nodeKey"] = "";
                                     currentStandingObjTemp["nodeType"] = ""; 
-                                    updateCurrentStanding(currentStandingObjTemp);
+                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
                                 }
                             }
                         >
@@ -838,7 +838,7 @@ const tempFontSize = 12;
                                 currentStandingObjTemp["chapterTitle"] = "";
                                 currentStandingObjTemp["nodeKey"] = "";
                                 currentStandingObjTemp["nodeType"] = ""; 
-                                updateCurrentStanding(currentStandingObjTemp);
+                                triggerUpdateCurrentStanding(currentStandingObjTemp);
                             }
                         }
                 >
@@ -896,7 +896,7 @@ const tempFontSize = 12;
                                         currentStandingObjTemp["chapterTitle"] = item;
                                         currentStandingObjTemp["nodeKey"] = chapterKey + "_start"; //TODO default start-node's key ... if non-SL system
                                         currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
-                                        updateCurrentStanding(currentStandingObjTemp);
+                                        triggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                     }
                                 }
@@ -1819,7 +1819,7 @@ const tempFontSize = 12;
                                                     currentStandingObjTemp["chapterTitle"] = "";
                                                     currentStandingObjTemp["nodeKey"] = "";
                                                     currentStandingObjTemp["nodeType"] = ""; 
-                                                    updateCurrentStanding(currentStandingObjTemp);
+                                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
                                                     
                                                     updateCurrentPageName(nextPageName);
 
@@ -1922,7 +1922,7 @@ const tempFontSize = 12;
                                     currentStandingObjTemp["chapterTitle"] = "";
                                     currentStandingObjTemp["nodeKey"] = "";
                                     currentStandingObjTemp["nodeType"] = ""; 
-                                    updateCurrentStanding(currentStandingObjTemp);
+                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
                                     updateCurrentPageName(nextPageName);
                                 } else {
                                     updateCurrentPageName(nextPageName);

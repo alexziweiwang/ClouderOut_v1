@@ -29,7 +29,6 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 export default function Viewer_Entire({
 
-    fetchNavObj, 
 
     initialNavObj,
     initialChapterList, 
@@ -44,14 +43,15 @@ export default function Viewer_Entire({
 
     initialCurrChapterAllNodeMapping,
 
+
+
     getNodeType, 
     getChapterKey, 
     getNodeKey,
     getPageName,
     getChapterTitle,
 
-
-    updateCurrentStanding, //game-progress related
+    triggerUpdateCurrentStanding, //game-progress related
     notifyPageStatus, //game-progress related
     triggerNodeWalk, //game-progress related
     triggerChapterWalk, //game-progress related
@@ -60,8 +60,8 @@ export default function Viewer_Entire({
     username,
     projectname,
 
-    getShopItemInfo,
-    getPlayerPurchaseInfo,
+    initialShopItemInfo,
+    initialPlayerPurchaseInfo,
 
     visualMap,
     audioMap,
@@ -122,7 +122,7 @@ export default function Viewer_Entire({
                                         // const [screenWidth, setScreenWidth] = useState(800); //TODO
                                         // const [screenHeight, setScreenHeight] = useState(600); //TODO
                                     
-                                                                // then in useEffect...
+                                                                // then in use Effect...
                                                                     //     if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) { //TODO change to non-dynamic?
 
                                                                             // if 
@@ -441,7 +441,18 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     function passInNavObj() {
         return initialNavObj;
     }
-    
+
+    function passInShopItemInfo() {
+        return initialShopItemInfo
+    }
+
+    function passInPlayerPurchaseInfo() {
+        return initialPlayerPurchaseInfo;
+    }
+
+
+
+
 
 return ( <>
 
@@ -467,7 +478,7 @@ return ( <>
 
                                           {/*      
 
-                                                    // updateCurrentStanding (track by nav-buttons & in-game changes: 
+                                                    // triggerUpdateCurrentStanding (track by nav-buttons & in-game changes: 
                                                     //              page-status + chapter-key + node-type + node-key) 
 
                                                     //important: setup entry-gameData-set (if multiple) 
@@ -522,7 +533,7 @@ return ( <>
                         fetchPageName={passInNavPageName} 
 
                         updateCurrentPageName={updateNavPageName}
-                        updateCurrentStanding={updateCurrentStanding}
+                        triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
 
                         isEditing={false}
 
@@ -535,8 +546,8 @@ return ( <>
 
                         getUILanguage={passInUiLanguageOption}  //TODO20 languageOption
 
-                        fetchShopItemInfo={getShopItemInfo}
-                        fetchPlayerPurchaseInfo={getPlayerPurchaseInfo}
+                        fetchShopItemInfo={passInShopItemInfo}
+                        fetchPlayerPurchaseInfo={passInPlayerPurchaseInfo}
 
                         visualMap={visualMap}
                         audioMap={audioMap}

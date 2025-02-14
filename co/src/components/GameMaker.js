@@ -1079,11 +1079,11 @@ export default function GameMaker({username, projectName}) {
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function passInPlayerGameData() { //TODO5
+  function passInPlayerGameData() {//used in panel-game-data
     return testPlayerGameData;
   }
 
-  function passInPlayerProfile() {
+  function passInPlayerProfile() { //used in Navigation-Setter 
     return testPlayerProfile;
   }
 
@@ -1096,15 +1096,15 @@ export default function GameMaker({username, projectName}) {
   }
 
 
-  function passInCurrentGameProgress() {
-    let obj = {};
-    obj["pageStatus"] = currTestingPageStatus;
-    obj["chapterKey"] = currTestingChapterKey;
-    obj["nodeKey"] = currTestingNodeKey;
-    obj["nodeType"] = currTestingNodeType;
+                                                                                // function passInCurrentGameProgress() {
+                                                                                //   let obj = {};
+                                                                                //   obj["pageStatus"] = currTestingPageStatus;
+                                                                                //   obj["chapterKey"] = currTestingChapterKey;
+                                                                                //   obj["nodeKey"] = currTestingNodeKey;
+                                                                                //   obj["nodeType"] = currTestingNodeType;
 
-    return obj;
-  }
+                                                                                //   return obj;
+                                                                                // }
 
   function passInNodeType() {
     return currTestingNodeType;
@@ -1126,7 +1126,7 @@ export default function GameMaker({username, projectName}) {
     return currTestingChapterTitle;
   }
 
-  function updateCurrentStanding(obj) { //fetch from sub-compo
+  function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
     setCurrTestingPageStatus(obj["pageStatus"]);
     setCurrTestingChapterKey(obj["chapterKey"]);
     setCurrTestingNodeKey(obj["nodeKey"]);
@@ -1778,7 +1778,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                   chapterData={chapterList} 
 
                   updateCurrentPageName={updateCurrPageName}
-                  updateCurrentStanding={updateCurrentStanding}
+                  triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
 
                   isEditing={true}
                   initialGameDataRefData={emptyValue}
@@ -1849,8 +1849,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
       <Viewer_Entire
 
-          fetchNavObj={passInNavObj} 
-
           initialNavObj={currentProjectNav}
 
           initialChapterList={chapterList}
@@ -1871,7 +1869,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           getPageName={passInPageName}
           getChapterTitle={passInChapterTitle}
 
-          updateCurrentStanding={updateCurrentStanding}
+          triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
 
           notifyPageStatus={receiveUpdateOnPageStatus}
 
@@ -1881,8 +1879,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           username={username}
           projectname={projectName}
 
-          getShopItemInfo={passInShopItemInfo}
-          getPlayerPurchaseInfo={passInPlayerPurchaseStatus}
+          initialShopItemInfo={testShopProducts}
+          initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
 
           triggerNodeWalk={triggerNodeWalk}
           triggerChapterWalk={triggerChapterWalk}
