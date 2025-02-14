@@ -15,7 +15,7 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
     initialize/refresh every time when reopening this compo-window
  */
 
-    
+
 //TODO200
 // procedure about game-data-tracker: 
 //           when entering this compo, all the non-dynamic data (game-data, player-profile, etc.) version fixed
@@ -23,11 +23,16 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 //           after closed this compo, all the data-states reset, and next time new viewer-entire still fetches the emu-data
 //               that is, not saving anything for the emu-play!
 
+//TODO
+// minds of game-progress (page name, node type, ...)
+// an outer-layer compo keeps these progress !!
 
 export default function Viewer_Entire({
     fetchNavObj, 
 
-    initialChapterList, getChapterList, getUILanguage,
+    initialChapterList, 
+    getChapterList, //TODO consider removing this and only use non-dynamic list?
+    getUILanguage,
    
     getPlayerGameData, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     initialPlayerGameData,
@@ -49,11 +54,12 @@ export default function Viewer_Entire({
     getPageName,
     getChapterTitle,
 
-    updateCurrentStanding,
 
-    notifyPageStatus,
-    triggerNodeChange,
-    triggerChapterChange,
+    updateCurrentStanding, //game-progress related
+    notifyPageStatus, //game-progress related
+    triggerNodeWalk, //game-progress related
+    triggerChapterWalk, //game-progress related
+
 
     username,
     projectname,
@@ -102,6 +108,11 @@ export default function Viewer_Entire({
         
 
 
+    const [chapterList, setChapterList] = useState(initialChapterList);  
+        //TODO change chapter-list to non-dynamic-data later - directly from outer-layer is ok
+
+
+
     const [playerGameDataTracker, setPlayerGameDataTracker] = useState({});
     const [playerProfile, setPlayerProfile] = useState({});
     const [playerAccount, setPlayerAccount] = useState({});
@@ -114,11 +125,19 @@ export default function Viewer_Entire({
     //consider topics about player authentication for game-in-practice
 
 
-    //TODO6
-    const [currChapterKey, setCurrChapterKey] = useState("");
+    
 
-    const [currNodeKey, setCurrNodeKey] = useState("");
-    const [currNodeType, setCurrNodeType] = useState(""); //TODO according to node-type, display the correct node's viewer?
+                                                                        //TODO remove later
+                                                                                            // const [currChapterKey, setCurrChapterKey] = useState("");
+                                                                                            // const [currNodeKey, setCurrNodeKey] = useState("");
+                                                                                            // const [currNodeType, setCurrNodeType] = useState("");
+                                                                        //TODO remove later
+
+
+
+
+
+
 
     //TODO (with "changing" during in-game actions)
     const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is tracked here (when "playing" starts)
@@ -138,9 +157,18 @@ export default function Viewer_Entire({
                
 
 
-    const [chapterList, setChapterList] = useState(initialChapterList); 
 
-    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({});
+
+
+
+    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({
+
+    }); // important - for game-progress
+
+
+
+
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -152,7 +180,7 @@ export default function Viewer_Entire({
 
 
 
-            //TODO -------------------------------------------
+                        //TODO -------------------------------------------
             //getPlayerGameData
 
             let chapterListTemp = getChapterList();
@@ -165,12 +193,13 @@ export default function Viewer_Entire({
             let ua = getPlayerAccountSettings();
             setPlayerAccount(ua);
     
-            //TODO -------------------------------------------
-
-
+                        //TODO -------------------------------------------
 
             
 
+            //initialize all game-progress-items
+            configureGameProgress("", "", "", "Main Page", "");             
+            //TODO test
 
 
 
@@ -201,14 +230,15 @@ export default function Viewer_Entire({
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
 
-        let nodeTypeTemp = getNodeType();
-        let chapterKeyTemp = getChapterKey();
-        let nodeKeyTemp = getNodeKey();
-        let pageNameTemp = getPageName();
-        let chapterTitleTemp = getChapterTitle();
-        configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp);
 
+        let nodeTypeTemp = getNodeType(); //important here!! dont move around
+        let chapterKeyTemp = getChapterKey(); //important here!! dont move around
+        let nodeKeyTemp = getNodeKey(); //important here!! dont move around
+        let pageNameTemp = getPageName(); //important here!! dont move around
+        let chapterTitleTemp = getChapterTitle(); //important here!! dont move around
+        configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp); //important here!! dont move around
 
+console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusProgress);
 
     });
 
@@ -355,18 +385,18 @@ export default function Viewer_Entire({
     }
 
     //TODO21 refactor to VM
-    function triggerChangeToCurrNode(nodeKeyName, nodeTypeName) {
+    function triggerWalkToCurrNode(nodeKeyName, nodeTypeName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = nodeKeyName;
         temp["nodeType"] = nodeTypeName;
 
         setCurrentGameStatusProgress(temp);
 
-        triggerNodeChange(nodeKeyName, nodeTypeName);
+        triggerNodeWalk(nodeKeyName, nodeTypeName);
     }
 
     //TODO21 refactor to VM
-    function triggerChangeToCurrChapter(chapterKeyName, chapterTitleName) {
+    function triggerWalkToCurrChapter(chapterKeyName, chapterTitleName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = chapterKeyName + "_start"; //TODO
         temp["nodeType"] = "*chapterStart*";
@@ -375,7 +405,7 @@ export default function Viewer_Entire({
 
         setCurrentGameStatusProgress(temp);
 
-        triggerChapterChange(chapterKeyName, chapterTitleName);
+        triggerChapterWalk(chapterKeyName, chapterTitleName);
 
     }
 
@@ -434,8 +464,8 @@ return( <>
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
 
-                                                triggerChangeToCurrNode={triggerChangeToCurrNode}     
-                                                triggerChangeToCurrChapter={triggerChangeToCurrChapter}
+                                                triggerWalkToCurrNode={triggerWalkToCurrNode}     
+                                                triggerWalkToCurrChapter={triggerWalkToCurrChapter}
 
 //TODO31
                                                 initialNodeType={currentGameStatusProgress["nodeType"]}

@@ -19,8 +19,8 @@ export default function GameScreen_AllNodeTypeContainer({
     initialNodeKey,
     initialChapterTitle,
 
-    triggerChangeToCurrNode,
-    triggerChangeToCurrChapter,
+    triggerWalkToCurrNode,
+    triggerWalkToCurrChapter,
 
     getCurrentGameDataTracker,
     getCurrChapterAllNodeMapping,
@@ -455,7 +455,7 @@ export default function GameScreen_AllNodeTypeContainer({
         
         } 
     
-        triggerChangeToCurrNode(holdingNextNodeKey, upcomingNodeType);
+        triggerWalkToCurrNode(holdingNextNodeKey, upcomingNodeType);
         resetNextNodeSignal();
     }
 
@@ -481,7 +481,7 @@ export default function GameScreen_AllNodeTypeContainer({
                     setCurrNodeKey(nextStartNodeKey);
                     setCurrNodeType("*chapterStart*");
 
-                    triggerChangeToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
+                    triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;

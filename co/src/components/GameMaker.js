@@ -108,7 +108,7 @@ export default function GameMaker({username, projectName}) {
   const [gameDataTracker, setGameDataTracker] = useState({}); //used during test-play
 
 
-  const [isDisplayEntireGameViewer, setDisplayEntierGameViewer] = useState(false);
+  const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
   
 /* // TODO game-maker task list
 2. logic organizer for game-node-relationship
@@ -865,7 +865,14 @@ export default function GameMaker({username, projectName}) {
   const [developOnCloudData, setDevelopOnCloudData] = useState(false);
 
   function closeEntireGameViewer() {
-    setDisplayEntierGameViewer(false);
+    // reset all game-progress
+    setCurrTestingPageStatus("Main Page");
+    setCurrTestingChapterKey("");
+    setCurrTestingChapterTitle("");
+    setCurrTestingNodeKey("");
+    setCurrTestingNodeType("");
+
+    setDisplayEntireGameViewer(false);
   }
 
   function passInCurrentChapterNodeMap() {
@@ -1540,12 +1547,14 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setGridBlocksUpdatedSignal(true);
   }
 
-  function triggerNodeChange(nodeKeyName, nodeTypeName) {
+
+
+  function triggerNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing
     setCurrTestingNodeKey(nodeKeyName);
     setCurrTestingNodeType(nodeTypeName);
   }
 
-  function triggerChapterChange(chapterKeyName, chapterTitleName) {
+  function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing
     setCurrTestingNodeKey(chapterKeyName + "_start");
     setCurrTestingNodeType("*chapterStart*");
     setCurrTestingChapterKey(chapterKeyName);
@@ -1602,7 +1611,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       >
         <button
           onClick={()=>{
-            setDisplayEntierGameViewer(true);
+            setDisplayEntireGameViewer(true);
           }}
           className="button testEntire"
         >Test ▶︎ </button>
@@ -1819,7 +1828,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
 <div className={modalStyleName} style={{"overflow": "scroll"}}>
 
-        <button className="testEntire" onClick={()=>{setDisplayEntierGameViewer(false);}}>Stop Testing</button>
+        <button className="testEntire" onClick={()=>{closeEntireGameViewer();}}>Stop Testing</button>
 
 
     {/* top bar for optional displaying */}
@@ -1852,7 +1861,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
          
 
       <Viewer_Entire
-          makeNotDisplay={closeEntireGameViewer}
 
           fetchNavObj={passInNavObj} 
 
@@ -1894,8 +1902,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           getShopItemInfo={passInShopItemInfo}
           getPlayerPurchaseInfo={passInPlayerPurchaseStatus}
 
-          triggerNodeChange={triggerNodeChange}
-          triggerChapterChange={triggerChapterChange }
+          triggerNodeWalk={triggerNodeWalk}
+          triggerChapterWalk={triggerChapterWalk}
 
 
           visualMap={visualMap}
