@@ -1126,7 +1126,7 @@ export default function GameMaker({username, projectName}) {
     return currTestingChapterTitle;
   }
 
-  function updateCurrentStanding(obj) {
+  function updateCurrentStanding(obj) { //fetch from sub-compo
     setCurrTestingPageStatus(obj["pageStatus"]);
     setCurrTestingChapterKey(obj["chapterKey"]);
     setCurrTestingNodeKey(obj["nodeKey"]);
@@ -1536,12 +1536,12 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
 
 
-  function triggerNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing
+  function triggerNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing //from sub-compo
     setCurrTestingNodeKey(nodeKeyName);
     setCurrTestingNodeType(nodeTypeName);
   }
 
-  function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing
+  function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
     setCurrTestingNodeKey(chapterKeyName + "_start");
     setCurrTestingNodeType("*chapterStart*");
     setCurrTestingChapterKey(chapterKeyName);
@@ -1852,7 +1852,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           fetchNavObj={passInNavObj} 
 
           initialNavObj={currentProjectNav}
-          
+
           initialChapterList={chapterList}
 
           

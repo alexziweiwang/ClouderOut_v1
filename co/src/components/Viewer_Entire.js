@@ -93,15 +93,54 @@ export default function Viewer_Entire({
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
-    const [screenWidth, setScreenWidth] = useState(800); //TODO
-    const [screenHeight, setScreenHeight] = useState(600); //TODO
-
-
     const sizeLookupMap = { "16:9(horizonal)": [800, 450],
         "16:9(vertical)": [450, 800],
         "4:3(horizonal)": [800, 600],
         "4:3(vertical)": [600, 800]};
         
+
+    const screenWidth = ((initialNavObj !== undefined && Object.keys(initialNavObj).length > 0) 
+            &&
+            (initialNavObj["screenSize"] === "16:9(horizonal)"
+                || initialNavObj["screenSize"] === "16:9(vertical)"
+                || initialNavObj["screenSize"] === "4:3(horizonal)"
+                || initialNavObj["screenSize"] === "4:3(vertical)")) 
+        ? sizeLookupMap[initialNavObj["screenSize"]][0] 
+        : 800;
+
+    const screenHeight = ((initialNavObj !== undefined && Object.keys(initialNavObj).length > 0) 
+            &&
+            (initialNavObj["screenSize"] === "16:9(horizonal)"
+                || initialNavObj["screenSize"] === "16:9(vertical)"
+                || initialNavObj["screenSize"] === "4:3(horizonal)"
+                || initialNavObj["screenSize"] === "4:3(vertical)")) 
+        ? sizeLookupMap[initialNavObj["screenSize"]][1] 
+        : 600;
+
+
+//prev-ver. //TODO remove after test
+                                        // const [screenWidth, setScreenWidth] = useState(800); //TODO
+                                        // const [screenHeight, setScreenHeight] = useState(600); //TODO
+                                    
+                                                                // then in useEffect...
+                                                                    //     if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) { //TODO change to non-dynamic?
+
+                                                                            // if 
+                                                                            // (navigationObj["screenSize"] === "16:9(horizonal)"
+                                                                            // || navigationObj["screenSize"] === "16:9(vertical)"
+                                                                            // || navigationObj["screenSize"] === "4:3(horizonal)"
+                                                                            // || navigationObj["screenSize"] === "4:3(vertical)"
+                                                                            // ) 
+                                                                    //{
+                                                                    //             let w = sizeLookupMap[navigationObj["screenSize"]][0];
+                                                                    //             let h = sizeLookupMap[navigationObj["screenSize"]][1];
+                                                                    //             setScreenWidth(w); // according to navigationObj's size 
+                                                                    //             setScreenHeight(h); // according to navigationObj's size 
+                                                                    //         }
+                                                                    // }
+//prev-ver. //TODO remove after test
+
+
 
 
     const [chapterList, setChapterList] = useState(initialChapterList);  
@@ -188,30 +227,11 @@ export default function Viewer_Entire({
 
             setFirstTimeEnter(false);
         }
-  
-        let navigationObj = fetchNavObj();
 
 
-                                            // console.log("viewer-entire .. nav-obj = ", navigationObj);
 
-
-        if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) { //TODO change to non-dynamic?
-            
-                if (navigationObj["screenSize"] === "16:9(horizonal)"
-                || navigationObj["screenSize"] === "16:9(vertical)"
-                || navigationObj["screenSize"] === "4:3(horizonal)"
-                || navigationObj["screenSize"] === "4:3(vertical)"
-                ) {
-                    let w = sizeLookupMap[navigationObj["screenSize"]][0];
-                    let h = sizeLookupMap[navigationObj["screenSize"]][1];
-                    setScreenWidth(w); // according to navigationObj's size 
-                    setScreenHeight(h); // according to navigationObj's size 
-                }
-        }
-
-
-        let UILang = getUILanguage();
-        setLanguageCodeTextOption(UILang);
+        let UILang = getUILanguage(); //TODO change later
+        setLanguageCodeTextOption(UILang); //TODO change later
 
 
         let nodeTypeTemp = getNodeType(); //important here!! dont move around
