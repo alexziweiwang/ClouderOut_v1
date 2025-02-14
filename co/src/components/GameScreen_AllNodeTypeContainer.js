@@ -227,8 +227,6 @@ export default function GameScreen_AllNodeTypeContainer({
             let tempMap = allNodeDataContainer;
             tempMap[keyStr] = dataObj;
             setAllNodeDataContainer(tempMap);
-
-                                                    console.log(" \t\t... newly added to map, ", dataObj);
             
             setFocusedNodeData(dataObj)
   

@@ -826,7 +826,7 @@ export default function GameMaker({username, projectName}) {
   function passInNavObj() {
     return currentProjectNav;
   }
-
+  
   function handleResourceManagerOpen() {
     setDisplayRmModal(true);
   }
@@ -1095,17 +1095,6 @@ export default function GameMaker({username, projectName}) {
     return testPlayerSLRecords;
   }
 
-  function updatePlayerProfile(data) { //fetch from sub-compo
-    setTestPlayerProfile(data);
-  }
-
-  function updatePlayerAccountSettings(data) { //fetch from sub-compo
-    setTestPlayerAccount(data);
-  }
-
-  function updatePlayerSlRecords(data) { //fetch from sub-compo
-    setTestPlayerSLRecords(data);
-  }
 
   function passInCurrentGameProgress() {
     let obj = {};
@@ -1862,26 +1851,17 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
           fetchNavObj={passInNavObj} 
 
+          initialNavObj={currentProjectNav}
+          
           initialChapterList={chapterList}
-          getChapterList={passInChapterList}
 
-          getPlayerGameData={passInCurrentGameDataList}
-  
+          
           initialPlayerGameData={testPlayerGameData}
-
-          getPlayerProfile={passInPlayerProfile}
-          updatePlayerProfile={updatePlayerProfile}
           initialPlayerProfile={testPlayerProfile}
-      
-          getPlayerAccountSettings={passInPlayerAccountInfo}
-          updatePlayerAccountSettings={updatePlayerAccountSettings}
           initialPlayerAccountSettings={testPlayerAccount}
       
-          getPlayerSlRecords={passInPlayerSlRecords}
-          updatePlayerSlRecords={updatePlayerSlRecords}
           initialPlayerSlRecords={testPlayerSLRecords}
 
-          getCurrChapterAllNodeMapping={passInChapterNodeMapping}
           initialCurrChapterAllNodeMapping={chapterNodeMapAll}
           
 

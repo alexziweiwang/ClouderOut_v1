@@ -28,28 +28,20 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 // an outer-layer compo keeps these progress !!
 
 export default function Viewer_Entire({
+
     fetchNavObj, 
 
+    initialNavObj,
     initialChapterList, 
-                                            // getChapterList, //TODO consider removing this and only use non-dynamic list?
-    getUILanguage,
+
+    getUILanguage, //TODO improve later to non-dynamic?
    
-                                            // getPlayerGameData, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
+
     initialPlayerGameData,
-
-    getPlayerProfile, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
-    updatePlayerProfile,
     initialPlayerProfile,
-
-    getPlayerAccountSettings, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
-    updatePlayerAccountSettings,
     initialPlayerAccountSettings,
-
-    getPlayerSlRecords, 
-    updatePlayerSlRecords,
     initialPlayerSlRecords, //TODO later
 
-                                            //getCurrChapterAllNodeMapping, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     initialCurrChapterAllNodeMapping,
 
     getNodeType, 
@@ -118,9 +110,11 @@ export default function Viewer_Entire({
 
 
     const [playerGameDataTracker, setPlayerGameDataTracker] = useState({});
-    const [playerProfile, setPlayerProfile] = useState(initialPlayerProfile);
+    const [playerProfile, setPlayerProfile] = useState(initialPlayerProfile); 
+                            //TODO later: "setPlayerProfile" for local-ver(curr-test only) if player did change in player-profile nav-page...
+
     const [playerAccount, setPlayerAccount] = useState({});
-    const [playerSLRecords, setPlayerSLRecords] = useState({});
+    const [playerSLRecords, setPlayerSLRecords] = useState({}); //TODO changes to sl-page...
 
 
     //TODO implementation plan:
@@ -184,22 +178,6 @@ export default function Viewer_Entire({
 
 
 
-                        //TODO -------------------------------------------
-                                                    //getPlayerGameData
-
-                                                    // let chapterListTemp = getChapterList();
-                                                    //                                         console.log("\tviewer-entire, chapter list = ", chapterListTemp);
-                                                    // setChapterList(chapterListTemp);
-                                            
-                                                    // let pp = getPlayerProfile();
-                                                    // setPlayerProfile(pp);
-                                            
-                                                    // let ua = getPlayerAccountSettings();
-                                                    // setPlayerAccount(ua);
-    
-                        //TODO -------------------------------------------
-
-            
 
             //initialize all game-progress-items
             configureGameProgress("", "", "", "Main Page", "");             
@@ -217,7 +195,8 @@ export default function Viewer_Entire({
                                             // console.log("viewer-entire .. nav-obj = ", navigationObj);
 
 
-        if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) {
+        if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) { //TODO change to non-dynamic?
+            
                 if (navigationObj["screenSize"] === "16:9(horizonal)"
                 || navigationObj["screenSize"] === "16:9(vertical)"
                 || navigationObj["screenSize"] === "4:3(horizonal)"
@@ -305,7 +284,7 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
                                                             console.log("viewer-entire... initializeGameDataTracker");
 
         //TODO105 if need to fetch from game-maker with the most fresh-ver.
-                                //getPlayerGameData()
+
         //TODO
 
         let objTemp = {};
@@ -438,9 +417,13 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     function passInChapterList() {
         return initialChapterList;
     }
+
+    function passInNavObj() {
+        return initialNavObj;
+    }
     
 
-return( <>
+return ( <>
 
 <div>
     <div>
@@ -513,7 +496,7 @@ return( <>
                     "backgroundColor": "purple",
                 }}>
                     <NavigationPreview 
-                        fetchNavObj={fetchNavObj} 
+                        fetchNavObj={passInNavObj} 
 
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 
@@ -540,10 +523,11 @@ return( <>
 
                     /> 
                                                                                 {/* //TODO16
-                    {/* //updatePlayerProfile (by player input)
-                    //updatePlayerAccountSettings (by player input)
-                    //updatePlayerSlRecords (by nav-buttons)
-                    //updateCurrentStanding (track by nav-buttons: page-status + chapter-key + node-type + node-key)  */}
+                    {/* 
+                    //update-PlayerProfile (by player input)
+                    //update-PlayerAccountSettings (by player input)
+                    //update-PlayerSlRecords (by nav-buttons)
+                    //update-CurrentStanding (track by nav-buttons: page-status + chapter-key + node-type + node-key)  */}
 
                 </div>
         </div>
