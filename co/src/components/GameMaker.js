@@ -1084,7 +1084,6 @@ export default function GameMaker({username, projectName}) {
   }
 
   function passInPlayerProfile() {
-                          // console.log("passs-in player-profile: ", testPlayerProfile);
     return testPlayerProfile;
   }
 
@@ -1096,15 +1095,15 @@ export default function GameMaker({username, projectName}) {
     return testPlayerSLRecords;
   }
 
-  function updatePlayerProfile(data) {
+  function updatePlayerProfile(data) { //fetch from sub-compo
     setTestPlayerProfile(data);
   }
 
-  function updatePlayerAccountSettings(data) {
+  function updatePlayerAccountSettings(data) { //fetch from sub-compo
     setTestPlayerAccount(data);
   }
 
-  function updatePlayerSlRecords(data) {
+  function updatePlayerSlRecords(data) { //fetch from sub-compo
     setTestPlayerSLRecords(data);
   }
 
@@ -1116,7 +1115,6 @@ export default function GameMaker({username, projectName}) {
     obj["nodeType"] = currTestingNodeType;
 
     return obj;
-
   }
 
   function passInNodeType() {
@@ -1151,7 +1149,7 @@ export default function GameMaker({username, projectName}) {
 
 
 
-  function receiveUpdateOnPageStatus(pageName) { //TODO important, needed in holder-in-practice
+  function receiveUpdateOnPageStatus(pageName) { //fetch from sub-compo //TODO important, needed in holder-in-practice 
     setCurrTestingPageStatus(pageName);
   }
 
@@ -1873,14 +1871,18 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
           getPlayerProfile={passInPlayerProfile}
           updatePlayerProfile={updatePlayerProfile}
+          initialPlayerProfile={testPlayerProfile}
       
           getPlayerAccountSettings={passInPlayerAccountInfo}
           updatePlayerAccountSettings={updatePlayerAccountSettings}
+          initialPlayerAccountSettings={testPlayerAccount}
       
           getPlayerSlRecords={passInPlayerSlRecords}
           updatePlayerSlRecords={updatePlayerSlRecords}
+          initialPlayerSlRecords={testPlayerSLRecords}
 
           getCurrChapterAllNodeMapping={passInChapterNodeMapping}
+          initialCurrChapterAllNodeMapping={chapterNodeMapAll}
           
 
           getNodeType={passInNodeType}

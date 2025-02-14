@@ -31,23 +31,27 @@ export default function Viewer_Entire({
     fetchNavObj, 
 
     initialChapterList, 
-    getChapterList, //TODO consider removing this and only use non-dynamic list?
+                                            // getChapterList, //TODO consider removing this and only use non-dynamic list?
     getUILanguage,
    
-    getPlayerGameData, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
+                                            // getPlayerGameData, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     initialPlayerGameData,
 
     getPlayerProfile, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     updatePlayerProfile,
+    initialPlayerProfile,
 
     getPlayerAccountSettings, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
     updatePlayerAccountSettings,
+    initialPlayerAccountSettings,
 
     getPlayerSlRecords, 
     updatePlayerSlRecords,
+    initialPlayerSlRecords, //TODO later
 
-    getCurrChapterAllNodeMapping, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
-    
+                                            //getCurrChapterAllNodeMapping, //TODO make chapter-all-nodes-mapping locally and pass in viewer-ver only
+    initialCurrChapterAllNodeMapping,
+
     getNodeType, 
     getChapterKey, 
     getNodeKey,
@@ -114,7 +118,7 @@ export default function Viewer_Entire({
 
 
     const [playerGameDataTracker, setPlayerGameDataTracker] = useState({});
-    const [playerProfile, setPlayerProfile] = useState({});
+    const [playerProfile, setPlayerProfile] = useState(initialPlayerProfile);
     const [playerAccount, setPlayerAccount] = useState({});
     const [playerSLRecords, setPlayerSLRecords] = useState({});
 
@@ -175,23 +179,23 @@ export default function Viewer_Entire({
 
         if (firstTimeEnter === true) {
                                                 console.log("!!!!!!! viewer-entire: entered as first-time");
-            initializeGameDataTracker();
+            initializeGameDataTracker(initialPlayerGameData);
 
 
 
 
                         //TODO -------------------------------------------
-            //getPlayerGameData
+                                                    //getPlayerGameData
 
-            let chapterListTemp = getChapterList();
-                                                    console.log("\tviewer-entire, chapter list = ", chapterListTemp);
-            setChapterList(chapterListTemp);
-    
-            let pp = getPlayerProfile();
-            setPlayerProfile(pp);
-    
-            let ua = getPlayerAccountSettings();
-            setPlayerAccount(ua);
+                                                    // let chapterListTemp = getChapterList();
+                                                    //                                         console.log("\tviewer-entire, chapter list = ", chapterListTemp);
+                                                    // setChapterList(chapterListTemp);
+                                            
+                                                    // let pp = getPlayerProfile();
+                                                    // setPlayerProfile(pp);
+                                            
+                                                    // let ua = getPlayerAccountSettings();
+                                                    // setPlayerAccount(ua);
     
                         //TODO -------------------------------------------
 
@@ -296,7 +300,8 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
 
 
     //TODO21 refactor to VM
-    function initializeGameDataTracker() {
+    
+    function initializeGameDataTracker(dataObj) {
                                                             console.log("viewer-entire... initializeGameDataTracker");
 
         //TODO105 if need to fetch from game-maker with the most fresh-ver.
@@ -304,8 +309,8 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         //TODO
 
         let objTemp = {};
-        Object.keys(initialPlayerGameData).map((currKey) => {
-            let item = initialPlayerGameData[currKey];
+        Object.keys(dataObj).map((currKey) => {
+            let item = dataObj[currKey];
             let currVal = item["current_value"];
             let dataType = item["data_type"];
             let defaultVal = item["default_value"];
@@ -345,8 +350,8 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     //TODO21 refactor to VM
     function passInPlayerInfoSets() {
         let obj = {};
-        let pp = getPlayerProfile(); //TODO use data-ver of inside-viewer-entire
-        let ua = getPlayerAccountSettings(); //TODO use data-ver of inside-viewer-entire
+        let pp = initialPlayerProfile;
+        let ua = initialPlayerAccountSettings;
     
         //TODO for testing only, pass-in test-data
         obj["playerProfile"] = pp;
@@ -425,6 +430,14 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     function conveyDisplayGameDataTracker(localData) {
         //TODO 
     }
+
+    function passInCurrChapterAllNodeMapping() {
+        return initialCurrChapterAllNodeMapping;
+    }
+
+    function passInChapterList() {
+        return initialChapterList;
+    }
     
 
 return( <>
@@ -474,8 +487,8 @@ return( <>
                                                 initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
 
                                                 getCurrentGameDataTracker={passInViewerContainerGameDataTracker}
-                                                getCurrChapterAllNodeMapping={getCurrChapterAllNodeMapping}
-                                                getAllChapterList={getChapterList}
+                                                getCurrChapterAllNodeMapping={passInCurrChapterAllNodeMapping}
+                                                getAllChapterList={passInChapterList}
 
                                                 username={username}
                                                 projectname={projectname}
