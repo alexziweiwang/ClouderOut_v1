@@ -941,7 +941,7 @@ export default function NodeManager({projectName, currUser,
 
 //TODO page content 
     return (      
-        <div style={{ "width": "100%", "height": "600px"}}>
+        <div style={{ "width": "100%"}}>
 
 
         {chapterKey!== "" && <div className="setting_area"> 
@@ -961,7 +961,7 @@ export default function NodeManager({projectName, currUser,
         {/* //TODO testing panel area */}
 
 
-<div style={{"display": "flex"}}> 
+<div style={{"display": "flex", "width": "77%"}}> 
 
 
 
@@ -1027,8 +1027,7 @@ export default function NodeManager({projectName, currUser,
     </div>
 
           {<div style={{
-             
-            "width": "1250px", 
+            "overflowX": "scroll",
             "position": "relative"}}>
 
 
@@ -1055,7 +1054,7 @@ export default function NodeManager({projectName, currUser,
                   let crd = ir * 10000 + ic;
                   let keyStr = "grid" + +ic+ "=" + content;
                   return (
-                    <div key={keyStr} className="parallelFrame gridNodeGroup">
+                    <div key={keyStr} className="parallelFrame gridNodeGroup textNoSelect">
                       <div 
                             style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
                             className={
