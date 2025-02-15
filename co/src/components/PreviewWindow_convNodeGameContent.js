@@ -268,7 +268,12 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                   `url(${bgpSource})` 
                     : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
-                "position": "absolute", "top": "0px", "left": "0px", "height": `${screenHeight}px`, "width": `${screenWidth}px`}}
+                "position": "absolute", 
+                "top": "0px", 
+                "left": "0px", 
+                "height": `${screenHeight}px`, 
+                "width": `${screenWidth}px`,
+              }}
                 
                 >
 

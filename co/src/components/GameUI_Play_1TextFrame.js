@@ -62,6 +62,7 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                 "opacity": txtFrameUISettings["transparency"],
                 "fontSize": `${txtFrameUISettings["textSize"]}px`,    
                 "userSelect": "none",
+
             } : {
                 "backgroundImage": bgpUrl === "" ? "" : `url('${bgpUrl}')`,       //TODO improve later
                 "backgroundSize": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
@@ -76,6 +77,7 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                 "opacity": txtFrameUISettings["transparency"],
                 "fontSize": `${txtFrameUISettings["textSize"]}px`, 
                 "userSelect": "none", 
+
             }}
         >
         
@@ -92,29 +94,34 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
 
     {currPieceNum >= 0 && 
             <div>
-            
+                {/* speaker name */}
                 {allPieceContent[currPieceNum].speaker_name !== "" && 
                     <div>
                         {allPieceContent[currPieceNum].speaker_name}<br></br>
-                    </div>}
+                    </div>
+                }
                 
-                <div 
-                className="wrappingFrame"
-                style={{
-                    "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
-                    "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
-                    "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
-                    "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
-                    "justifyContent": "left",
-                    "fontFamily": `${txtFrameUISettings["fontName"]}`,
-                }}
 
-                onClick={()=>{
-                    //TODO1 add "firstTap" for all-content showing on one piece
-                    if (isDirectNext === true) {
-                        triggerNextPieceFunc();
-                    }
-                }}
+                {/* text area */}
+                <div 
+                    className="wrappingFrame"
+                    style={{
+                        "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
+                        "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
+                        "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
+                        "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
+                        "justifyContent": "left",
+                        "fontFamily": `${txtFrameUISettings["fontName"]}`,
+                        "overflow": "hidden"
+
+                    }}
+
+                    onClick={()=>{
+                        //TODO1 add "firstTap" for all-content showing on one piece
+                        if (isDirectNext === true) {
+                            triggerNextPieceFunc();
+                        }
+                    }}
                 
                 >
            

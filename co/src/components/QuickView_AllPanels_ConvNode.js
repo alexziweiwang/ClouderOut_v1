@@ -332,7 +332,10 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     return ( <div className={modalStyleName}>
         <div className="modalArea">
 
-            <div style={{"width": "2000px", "marginLeft": "-90px"}}>
+            <div style={{
+                "width": "2000px", 
+                "marginLeft": "-90px",
+            }}>
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
                 <button 
@@ -363,6 +366,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                     isDisplay={isDisplay} 
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
+                    notifyNodeFinish={notUsing}
 
                     initialPieceNum={initialPieceNum}
                     allPieceContent={allPieceContent}

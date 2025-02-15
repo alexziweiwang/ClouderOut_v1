@@ -482,7 +482,8 @@ td {
     text-align: left;
     padding: 15px;
     flex: 1;
-    
+    overflow-y: scroll;
+
     white-space: nowrap;
 }
 
@@ -558,6 +559,7 @@ td {
 .pieceSetterArea {
     background-color: #293241;
     width: 550px;
+    overflow-y: scroll;
     
 }
 
@@ -1250,7 +1252,7 @@ td {
 }
 
 table {
-    overflow: audio;
+    overflow: auto;
 }
 
 button {

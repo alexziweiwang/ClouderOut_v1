@@ -81,6 +81,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 "opacity": txtFrameUISettings["transparency"],
                 "fontSize": `${txtFrameUISettings["textSize"]}px`,    
                 "userSelect": "none",
+
             } : {
                 "backgroundImage": bgpUrl === "" ? "" : `url('${bgpUrl}')`,       //TODO improve later
                 "backgroundSize": `${txtFrameUISettings["width"]}px ${txtFrameUISettings["height"]}px`,
@@ -95,40 +96,46 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                 "opacity": txtFrameUISettings["transparency"],
                 "fontSize": `${txtFrameUISettings["textSize"]}px`, 
                 "userSelect": "none", 
+
             }}
         >
-        
+
+
+      {/* text-area   */}
         <div style={{
             "position": "relative",
             "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
             "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
-            "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
-            "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
-            "border": isInGameView === true ? "none" : "2px solid #e99a2b",
-            "borderRadius": "0px"
+            "width" : `${txtFrameUISettings["TextContentArea-w"] - txtFrameUISettings["TextContentArea-x"]}px`,
+            "height" : `${txtFrameUISettings["TextContentArea-h"] - txtFrameUISettings["TextContentArea-y"]}px`,
+            "border": isInGameView === true ? "none" : "2px solid orange",
+            "borderRadius": "0px",
+            "overflow": "hidden"
+
         }}>
 
             {currentPieceNum >= 0 && 
             <div>
             
+                {/* speaker name (if applies) */}
                 {allPieceData[currentPieceNum].speaker_name !== "" && 
                     <div>
                         {allPieceData[currentPieceNum].speaker_name}<br></br>
-                    </div>}
+                    </div>
+                }
                 
                 <div 
-                className="wrappingFrame"
-                style={{
-                    "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
-                    "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
-                    "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
-                    "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
-                    "justifyContent": "left",
-                    "fontFamily": `${txtFrameUISettings["fontName"]}`,
-                }}             
+                    className="wrappingFrame"
+                    style={{
+                        "left": `${txtFrameUISettings["TextContentArea-x"]}px`,
+                        "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
+                        "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
+                        "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
+                        "justifyContent": "left",
+                        "fontFamily": `${txtFrameUISettings["fontName"]}`,
+                    }}             
                 >
            
-
                         {!isEditing && 
                         <div style={{
                             "fontFamily": `${txtFrameUISettings["fontName"]}`
