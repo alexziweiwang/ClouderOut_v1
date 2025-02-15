@@ -330,7 +330,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
     }
 
     return ( <div className={modalStyleName}>
-        <div className="modalArea">
+        <div className="modalArea  textNoSelect">
 
             <div style={{
                 "width": "2000px", 
@@ -356,7 +356,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                             setResetSignal(true);
                             setResetInfo(resArr);
                         }}
-                    > {resetText} </button> //TODO remove later
+                    > {resetText} </button>
             </div>
 
 

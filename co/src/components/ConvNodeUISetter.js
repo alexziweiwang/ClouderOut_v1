@@ -219,7 +219,7 @@ export default function ConvNodeUISetter({
 //TODO5
     return (
  
-    <div className="guiSettings" style={{"height": `${screenHeight}px`}}>
+    <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight}px`}}>
 
     <div className="gameUISetterSectionTitle"
         onClick={()=>{

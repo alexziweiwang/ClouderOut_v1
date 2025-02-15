@@ -280,7 +280,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
                   <div> 
             
-                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2 !== [] && visualMap[charaPicCurr2[0]] !== undefined && visualMap[charaPicCurr2[0]] !== "") && 
+                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2.length > 0 && visualMap[charaPicCurr2[0]] !== undefined && visualMap[charaPicCurr2[0]] !== "") && 
                           
                             <img style={{
                               "position": "absolute", 

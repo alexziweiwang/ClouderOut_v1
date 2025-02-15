@@ -793,12 +793,10 @@ export default function PieceSetter({
                                             // }} //not using now.
     >
 
-    <div className="pieceSetterArea userChoice"         
+    <div className="pieceSetterArea userChoice pieceEditingLeftArea"         
         style={{
-            "userSelect": "none",
-            "height": "600px"
-        }}>
-        <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
+            "userSelect": "none"
+        }}>        <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
 
         <div className="buttonRight90">

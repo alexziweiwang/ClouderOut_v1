@@ -897,7 +897,8 @@ export default function ConversationNodeEditingPanel() {
 
     return (
 
-        <div>
+        <div
+        >
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
 {firstEnterButtonPressed === true &&                
@@ -998,7 +999,7 @@ export default function ConversationNodeEditingPanel() {
                 style={{
                     "display": "flex",
                     "backgroundColor": "rgb(124, 129, 124)",
-                    "maxHeight": `${screenHeight+50}px`,
+                    "height": "652px"
                     
                 }}
             >
@@ -1014,8 +1015,8 @@ export default function ConversationNodeEditingPanel() {
                             allPieceData={pieceDataStructure} 
                             updatePieceData={changePieceData} 
                             getAllPieceData={passInAllPieceDataContent} 
-                            username={uname} 
-                            projName={projectName} 
+                            // username={uname} 
+                            // projName={projectName} 
                             backToList={returnToList} 
                             gameDataList={gameDataDesignList} 
                             openRm={handleResourceManagerOpen}

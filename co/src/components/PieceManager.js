@@ -219,7 +219,7 @@ export default function PieceManager({
     }
 
     return (
-        <div className="pieceManager" 
+        <div className="pieceManager pieceEditingLeftArea" 
             onClick={()=>{
                 setIsClickedOnSetters(true);
             }}

@@ -110,7 +110,6 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
             "height" : `${txtFrameUISettings["TextContentArea-h"] - txtFrameUISettings["TextContentArea-y"]}px`,
             "border": isInGameView === true ? "none" : "2px solid orange",
             "borderRadius": "0px",
-            "overflow": "hidden"
 
         }}>
 
@@ -123,7 +122,10 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         {allPieceData[currentPieceNum].speaker_name}<br></br>
                     </div>
                 }
-                
+
+
+
+                {/* text content area                 */}
                 <div 
                     className="wrappingFrame"
                     style={{
@@ -133,6 +135,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                         "justifyContent": "left",
                         "fontFamily": `${txtFrameUISettings["fontName"]}`,
+                        "overflow": "hidden"
+
                     }}             
                 >
            
