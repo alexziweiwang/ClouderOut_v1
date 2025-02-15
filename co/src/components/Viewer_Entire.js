@@ -51,7 +51,6 @@ export default function Viewer_Entire({
     getChapterTitle,
 
     triggerUpdateCurrentStanding, //game-progress related
-    notifyPageStatus, //game-progress related
     triggerNodeWalk, //game-progress related
     triggerChapterWalk, //game-progress related
 
@@ -337,9 +336,6 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     function updateNavPageName(pageName) {
         setNavPageStatus(pageName);        
 
-                                                //notifyPageStatus(pageName);// notify outer layer
-                                                //TODO100
-
         let obj = {};
         obj["pageStatus"] = pageName;
         obj["chapterKey"] = currentGameStatusProgress["chapterKey"];
@@ -465,6 +461,21 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
 
     }
 
+    function updateCurrentStandingViewerLocal(obj) {
+
+        // update local standing-obj
+        configureGameProgress(
+            obj["nodeType"], 
+            obj["chapterKey"], 
+            obj["nodeKey"], 
+            obj["pageStatus"], 
+            obj["chapterTitle"]
+        );
+
+        // send to outer-layer
+        triggerUpdateCurrentStanding(obj);
+    }
+
 
 
 
@@ -493,7 +504,7 @@ return ( <>
 
                                           {/*      
 
-                                                    // triggerUpdateCurrentStanding (track by nav-buttons & in-game changes: 
+                                                    // trigger_Update_CurrentStanding (track by nav-buttons & in-game changes: 
                                                     //              page-status + chapter-key + node-type + node-key) 
 
                                                     //important: setup entry-gameData-set (if multiple) 
@@ -548,7 +559,7 @@ return ( <>
                         fetchPageName={passInNavPageName} 
 
                         updateCurrentPageName={updateNavPageName}
-                        triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
+                        triggerUpdateCurrentStanding={updateCurrentStandingViewerLocal}
 
                         isEditing={false}
 
