@@ -902,7 +902,7 @@ export default function ConversationNodeEditingPanel() {
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
 {firstEnterButtonPressed === true &&                
 <>
-<div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
+<div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
                     <label>Project: {state.projectName}</label>
                     <br></br>
                     <label>Node: {state.clickedNodeKey}</label>
@@ -999,13 +999,13 @@ export default function ConversationNodeEditingPanel() {
                     "display": "flex",
                     "backgroundColor": "rgb(124, 129, 124)",
                     "maxHeight": `${screenHeight+50}px`,
-                    "overflow": "scroll"
+                    
                 }}
             >
 
             {browseList === false && 
                 <div
-                    style={{"maxHeight": `${screenHeight+1}px`, "overflow": "scroll", "marginTop": "16px"}}
+                    style={{"maxHeight": `${screenHeight+1}px`,  "marginTop": "16px"}}
                 >
                     {gameUISetterOpen === false && 
                         <PieceSetter 
@@ -1065,7 +1065,7 @@ export default function ConversationNodeEditingPanel() {
 
             {browseList === true &&
                 <div
-                    style={{"maxHeight": `${screenHeight+1}px`, "overflow": "scroll", "marginTop": "16px"}}
+                    style={{"maxHeight": `${screenHeight+1}px`,  "marginTop": "16px"}}
                 >        
                     {gameUISetterOpen === false && 
                         <PieceManager 

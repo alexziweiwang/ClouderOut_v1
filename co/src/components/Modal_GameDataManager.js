@@ -367,7 +367,7 @@ export default function Modal_GameDataManager ({
                 <div 
                     className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}
                     style={{
-                        "overflow": "scroll",
+                        
                         "marginTop": "10px",
                         "marginLeft": "20%",
                         "width": "900px",
@@ -446,7 +446,7 @@ export default function Modal_GameDataManager ({
             {displayNewVarArea && 
                 <div className="addNewGameDataArea"
                     style={{
-                        "overflow": "scroll",
+                        
                         "marginTop": "10px",
                         "marginLeft": "20%",
                         "width": "889px"

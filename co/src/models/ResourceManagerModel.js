@@ -1,4 +1,4 @@
-import  {db} from '../GoogleCloudConnections';
+import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { ref, uploadBytes, getStorage, getDownloadURL } from "firebase/storage";
  import { storage } from '../GoogleCloudConnections';
 import { doc, getDoc, getDocs, collection, query, where, updateDoc, deleteField  } from "firebase/firestore"; 

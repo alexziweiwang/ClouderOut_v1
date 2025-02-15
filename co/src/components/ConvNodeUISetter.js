@@ -424,7 +424,7 @@ export default function ConvNodeUISetter({
                         "cursor": "pointer",
                         "userSelect": "none",
                         "transition": "all 0.2s ease-out",
-                        "overflow": "scroll"
+                        
                     } : {
                         "backgroundImage": `url('${visualMap[defaultButtonObj["picVar"]]}')`, //TODO2 improve later
                         "backgroundSize": `${defaultButtonObj["widthMax"]}px ${defaultButtonObj["height"]}px`,
@@ -445,7 +445,7 @@ export default function ConvNodeUISetter({
                         "cursor": "pointer",
                         "userSelect": "none",
                         "transition": "all 0.2s ease-out",
-                        "overflow": "scroll"
+                        
                     }      
                 }
                 onMouseDown={

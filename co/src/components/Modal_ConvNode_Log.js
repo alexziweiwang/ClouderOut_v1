@@ -156,7 +156,7 @@ export default function Modal_ConvNode_Log({allPieceContent, initialPieceNum, ge
               "position": "absolute",
               "height": "90%",
               "width": "100%",  
-              "overflow": "scroll",
+              
               "display": "flex",
               "flexDirection": "column-reverse",
 

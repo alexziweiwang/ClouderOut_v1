@@ -941,7 +941,7 @@ export default function NodeManager({projectName, currUser,
 
 //TODO page content 
     return (      
-        <div style={{"overflow": "scroll", "width": "100%", "height": "600px"}}>
+        <div style={{ "width": "100%", "height": "600px"}}>
 
 
         {chapterKey!== "" && <div className="setting_area"> 
@@ -1018,7 +1018,7 @@ export default function NodeManager({projectName, currUser,
           >
             <button 
               className="setting_item"
-              style={{"height": "30px", "overflow": "scroll", "width": "100px"}}
+              style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{enterNodeEditor2();}}>
                 {enterEditorText}
             </button>
@@ -1027,7 +1027,7 @@ export default function NodeManager({projectName, currUser,
     </div>
 
           {<div style={{
-            "overflow": "scroll", 
+             
             "width": "1250px", 
             "position": "relative"}}>
 
@@ -1867,7 +1867,7 @@ export default function NodeManager({projectName, currUser,
  <div>
             <button 
               className="setting_item"
-              style={{"height": "30px", "overflow": "scroll", "width": "100px"}}
+              style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{enterNodeEditor2();}}>
                 {enterEditorText}
             </button>

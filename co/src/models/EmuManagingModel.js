@@ -1,4 +1,4 @@
-import  {db} from '../GoogleCloudConnections';
+import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, updateDoc } from "firebase/firestore"; 
 
 

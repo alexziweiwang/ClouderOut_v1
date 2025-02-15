@@ -427,7 +427,7 @@ export default function Modal_ResourceManagingWindow ({
         <div className="modalArea">
 
 
-            <div style={{"overflow": "scroll"}}>
+            <div style={{}}>
 
 
                 <div className="parallelFrame">
@@ -557,7 +557,7 @@ export default function Modal_ResourceManagingWindow ({
 
                 </div>
                 
-                <div className="areaBlue" style={{"overflow": "scroll"}}>
+                <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} removeFileFromAll={removeOneResource}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
                 
@@ -614,7 +614,7 @@ export default function Modal_ResourceManagingWindow ({
 
                 </div>
                 
-                <div className="areaBlue" style={{"overflow": "scroll"}}>
+                <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud}/>}
                 </div>

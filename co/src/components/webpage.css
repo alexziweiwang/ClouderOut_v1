@@ -133,7 +133,7 @@ td {
     border-radius: 0px;
     border: #FFFFFF solid 1px;
     margin-top: -1px;
-    overflow: scroll;
+    
     min-width: 220px;
 }
 
@@ -482,7 +482,7 @@ td {
     text-align: left;
     padding: 15px;
     flex: 1;
-    overflow: scroll;
+    
     white-space: nowrap;
 }
 
@@ -493,7 +493,7 @@ td {
     margin-left: 5px;
     background-color: #293241; 
     color: #f5f5f5;
-    overflow: scroll;
+    
 }
 /* rgb(230, 221, 205) */
 
@@ -506,7 +506,7 @@ td {
     text-align: left;
     padding: 15px;
     flex: 1;
-    overflow: scroll;
+    
     white-space: nowrap;
 }
 
@@ -533,7 +533,7 @@ td {
     margin-left: 10px;
     margin-right: 10px;
     white-space: nowrap;
-    overflow: scroll;
+    
     height: 650px;
 }
 
@@ -556,7 +556,7 @@ td {
 .pieceSetterArea {
     background-color: #293241;
     width: 550px;
-    overflow: scroll;
+    
 }
 
 .gameDataDisplayArea {
@@ -572,13 +572,13 @@ td {
 .dataArea {
     /* height: 95%; */
     background-color: rgb(201, 168, 188);
-    overflow: scroll;
+    
     border-radius: 0px;
 }
 
 .dataAreaShrink {
     background-color: rgb(201, 168, 188);
-    overflow: scroll;  
+      
 }
 
 .addNewGameDataArea {
@@ -599,7 +599,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
 }
 
 .clickableListItem:hover {
@@ -609,7 +609,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
 }
 
 .clickableListItem2 {
@@ -618,7 +618,7 @@ td {
     height: 25px;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     user-select: none;
 }
 
@@ -628,7 +628,7 @@ td {
     height: 25px;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     cursor: pointer;
     user-select: none;
 }
@@ -640,7 +640,7 @@ td {
     height: 25px;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     user-select: none;
 }
 
@@ -651,7 +651,7 @@ td {
     height: 25px;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     cursor: pointer;
     user-select: none;
 }
@@ -663,7 +663,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     outline: 1px solid rgb(123, 123, 123);
     cursor: pointer;
 }
@@ -676,7 +676,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     outline: 1px solid rgb(123, 123, 123);
     cursor: pointer;
 }
@@ -688,7 +688,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     outline: 1px solid rgb(123, 123, 123);
     cursor: pointer;
 }
@@ -701,7 +701,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
     outline: 1px solid rgb(123, 123, 123);
     cursor: pointer;
 }
@@ -713,7 +713,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 5px;
-    overflow: scroll;
+    
 }
 
 .clickableListItem3:hover {
@@ -723,7 +723,7 @@ td {
     width: 90%;
     text-align: left;
     padding-left: 15px;
-    overflow: scroll;
+    
 }
 
 li {
@@ -732,7 +732,7 @@ li {
 
 .areaNote1 {
     width: 30%;
-    overflow: scroll;
+    
     border-right: 2px solid rgb(0, 0, 0);
     background-color: rgb(167, 193, 184);
     border-radius: 0px;
@@ -740,7 +740,7 @@ li {
 
 .areaNote2 {
     width: 30%;
-    overflow: scroll;
+    
     border-right: 2px solid rgb(0, 0, 0);
     background-color: rgb(156, 140, 176);
     border-radius: 0px;
@@ -748,7 +748,7 @@ li {
 }
 
 .areaBlue {
-    overflow: scroll;
+    
     width:70%;
     height: 500px;
     padding: 3px;
@@ -808,7 +808,7 @@ th,td {
 }
 
 .projSelectionArea {
-    overflow: scroll;
+    overflow-y: scroll;
     border:rgb(7, 7, 7);
     background-color: rgb(247, 246, 244);
     width: 1420px;
@@ -883,12 +883,12 @@ th,td {
     cursor: pointer;
     color:rgb(7, 7, 7);
     width: 500px;
-    overflow: scroll;
+    
     user-select: none;
 }
 
 .scrollableArea {
-    overflow: scroll;
+    
 }
 
 .iconButton {
@@ -1219,14 +1219,14 @@ td {
     color:rgb(7, 7, 7);
     margin-left: 5px;
     margin-right: 5px;
-    overflow: scroll;
+    
     margin-top: 5px;
     max-height: 420px;
 }
 
 .rsrcListArea {
     color:rgb(7, 7, 7);
-    overflow: scroll;
+    
     margin-top: 0px;
     margin-bottom: 10px;
 }
@@ -1243,7 +1243,7 @@ td {
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 3px;
-    overflow: scroll;
+    
     margin-bottom: 10px;
 }
 
@@ -1403,16 +1403,18 @@ button:hover {
     margin-top: 5px;
     background-color: #98C1D9;
     width: 1000px;
-    overflow: scroll;
+    
     flex-shrink: initial;
-    height: 170px;
+    height: auto;
     width: 520px;
+
+    /* #98C1D9 */
 }
 
 .trashedProjectArea {
     padding: 10px;
     border-radius: 0px;
-    overflow: scroll;
+    
 }
 
 
@@ -1439,7 +1441,7 @@ button:hover {
 .listBar {
     background-color: rgb(228, 231, 237);
     border-radius: 0px;
-    overflow: scroll;
+    
     width: 270px;
 }
 
@@ -1602,7 +1604,7 @@ button:hover {
     background-color: rgb(237, 221, 223);
     border-radius: 0px;
     margin-top: 10px;
-    overflow: scroll;
+    
 }
 
 .chapterManagerSwitch {
@@ -1637,7 +1639,7 @@ button:hover {
 .resourcePreviewWindow {
     height: 620px;
     width: 800px;
-    overflow: scroll;
+    
 }
 
 .resourceVarPairWindow {
@@ -1646,9 +1648,9 @@ button:hover {
     color:rgb(7, 7, 7);
     margin-left: 5px;
     margin-right: 5px;
-    overflow: scroll;
+    
     margin-top: 5px;
-    overflow: scroll;
+    
 }
 
 
@@ -1687,7 +1689,7 @@ button:hover {
     margin: 5px;
     padding: 3px;
     height: 300px;
-    overflow: scroll;
+    
 }
 
 
@@ -1698,7 +1700,7 @@ button:hover {
     padding: 3px;
     height: 200px;
     width: 200px;
-    overflow: scroll;
+    
 }
 
 
@@ -1736,7 +1738,7 @@ button:hover {
 .gridNodeEmpty {
     background-color: #f4eff2;
     margin-top: 4px;
-    overflow: scroll;
+    
     text-align: center;
     cursor: pointer;
     user-select: none;
@@ -1746,7 +1748,7 @@ button:hover {
 .gridNodeEmpty:hover {
     background-color: #544c51;
     margin-top: 4px;
-    overflow: scroll;
+    
     text-align: center;
     cursor: pointer;
     user-select: none;
@@ -1757,7 +1759,7 @@ button:hover {
 .gridNodeOccupied {
     background-color: #dcc9d5;
     margin-top: 4px;
-    overflow: scroll;
+    
     text-align: center;
     display: flex;    
     justify-content: center;
@@ -1768,7 +1770,7 @@ button:hover {
 .gridNodeOccupied:hover {
     background-color: #dcc9d5;
     margin-top: 4px;
-    overflow: scroll;
+    
     text-align: center;
     display: flex;    
     justify-content: center;
@@ -1781,7 +1783,7 @@ button:hover {
 .gridNodeClicked {
     background-color: #99c0da;
     margin-top: 4px;
-    overflow: scroll;
+    
     text-align: center;
     cursor: pointer;
     display: flex;    
@@ -1802,7 +1804,7 @@ button:hover {
     text-wrap: balance;
     text-align: left;
     white-space: pre-wrap;
-    overflow: scroll;
+    
 }
 
 .navigationButton {

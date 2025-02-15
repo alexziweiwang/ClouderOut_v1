@@ -105,7 +105,7 @@ const [visualMap, setVisualMap] = useState([]);
                     "cursor": "pointer",
                     "userSelect": "none",
                     "transition": "all 0.2s ease-out",
-                    "overflow": "scroll"
+                    
                 }}
             onMouseDown={
                 ()=>{

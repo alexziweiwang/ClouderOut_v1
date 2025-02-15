@@ -103,7 +103,7 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
                     "cursor": "pointer",
                     "userSelect": "none",
                     "transition": "all 0.2s ease-out",
-                    "overflow": "scroll"
+                    
                 }}
             onMouseDown={
                 ()=>{

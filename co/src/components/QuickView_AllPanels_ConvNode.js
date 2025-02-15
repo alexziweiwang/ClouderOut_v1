@@ -357,7 +357,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
             </div>
 
 
-                <div  style={{"overflow": "scroll", "display": "flex"}}>
+                <div  style={{ "display": "flex"}}>
 
                 <GameScreen_QuickView_ConvNode
                     isDisplay={isDisplay} 

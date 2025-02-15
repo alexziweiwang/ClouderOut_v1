@@ -71,7 +71,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                             "cursor": "pointer",
                             "userSelect": "none",
                             "transition": "all 0.2s ease-out",
-                            "overflow": "scroll"
+                            
                         }}
                     onMouseDown={
                         ()=>{

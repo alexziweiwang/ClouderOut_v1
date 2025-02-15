@@ -740,14 +740,14 @@ return (<div className={modalStyleName}>
                  
                             style={{
                                 "borderRadius": "0px",
-                                "overflow": "scroll",
+                                
                                 "paddingLeft": "20%"
                             }}
                         >
                             <div  className="darkerGrey"
                              style={{
                                 "borderRadius": "0px",
-                                "overflow": "scroll",
+                                
                                 "width": "509px",
                                 }}
                             
@@ -787,9 +787,9 @@ return (<div className={modalStyleName}>
                                                 <td style={{"backgroundColor": ""}}>{currKey}</td>
                                                 <td>{item["data_type"]}</td>
                                                 <td>{defaultVal}</td>
-                                                <td style={{"width": "320px", "overflow": "scroll"}}>
+                                                <td style={{"width": "320px", }}>
                                                     <div style={{"display": "flex", "alignItems": "center"}}>
-                                                        <div style={{"width": "120px", "overflow": "scroll"}}>
+                                                        <div style={{"width": "120px", }}>
                                                            <label>{currentVal} </label>
                                                         </div>
                                                         
@@ -893,7 +893,7 @@ return (<div className={modalStyleName}>
                     <div
                         style={{
                             "borderRadius": "0px",
-                            "overflow": "scroll",
+                            
                             "paddingLeft": "12%"
                         }}
                     >
@@ -901,7 +901,7 @@ return (<div className={modalStyleName}>
                         <div  className="darkerGrey"
                              style={{
                                 "borderRadius": "0px",
-                                "overflow": "scroll",
+                                
                                 "width": "622px",
                                 }}
                             
@@ -1164,7 +1164,7 @@ return (<div className={modalStyleName}>
                     <div
                         style={{
                             "borderRadius": "0px",
-                            "overflow": "scroll",
+                            
                             "paddingLeft": "15%"
                         }}
                     >
@@ -1172,7 +1172,7 @@ return (<div className={modalStyleName}>
                         <div  className="darkerGrey"
                              style={{
                                 "borderRadius": "0px",
-                                "overflow": "scroll",
+                                
                                 "width": "613px",
                                 }}
                     >
@@ -1181,13 +1181,13 @@ return (<div className={modalStyleName}>
                         <table>
                             <thead>
                                 <tr>
-                                    <th style={{"width":"170px", "overflow": "scroll"}}>     
+                                    <th style={{"width":"170px", }}>     
                                         {itemNameText}
        </th>
-                                    <th style={{"width":"320px", "overflow": "scroll"}}>
+                                    <th style={{"width":"320px", }}>
                                         {itemContentText}
                                     </th>
-                                    <th style={{"width":"100px", "overflow": "scroll"}}>
+                                    <th style={{"width":"100px", }}>
                                         {operationText}
                                     </th>
                                 </tr>
@@ -1298,7 +1298,7 @@ return (<div className={modalStyleName}>
                     <div 
                         style={{
                             "borderRadius": "0px",
-                            "overflow": "scroll",
+                            
                             "paddingLeft": "6%"
                         }}
                     >
@@ -1306,7 +1306,7 @@ return (<div className={modalStyleName}>
                         <div  className="darkerGrey"
                             style={{
                                 "borderRadius": "0px",
-                                "overflow": "scroll",
+                                
                                 "width": "1000px",
                                 "height": "300px"
                             }}

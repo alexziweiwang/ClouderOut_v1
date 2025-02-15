@@ -609,7 +609,7 @@ const tempFontSize = 12;
                     "top": `${navObj["saveloadPage-groupPosY"]}px`,
                     "position": "absolute",
                     "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
-                    "overflow": "scroll",
+                    
                     "borderRadius": "0px",
                 }}>
                     {slSlotFrame.map((item, index) => {
@@ -775,7 +775,7 @@ const tempFontSize = 12;
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
                 "position": "relative", 
-                "overflow": "scroll",
+                
                 "borderRadius": "0px",
                 "borderRadius": "0px",
                 }}
@@ -788,7 +788,7 @@ const tempFontSize = 12;
                     "position": "absolute", 
 
                     "display": navObj["storyPage-chapterListHorizontal"] === true ? "flex" : "",
-                    "overflow": "scroll",
+                    
                     "borderRadius": "0px",
                 }}>
 
@@ -939,7 +939,7 @@ const tempFontSize = 12;
                 
 
                 "position": "relative", 
-                "overflow": "scroll",
+                
             
                 }}
 
@@ -952,7 +952,7 @@ const tempFontSize = 12;
                 "position": "absolute",
 
                 "display": navObj["settingPage-entriesHorizontal"] === true ? "flex" : "",
-                "overflow": "scroll",
+                
                 "borderRadius": "0px",
             }}>
 
@@ -1305,7 +1305,7 @@ const tempFontSize = 12;
                 
 
                 "position": "relative", 
-                "overflow": "scroll",
+                
             
                 }}                
             >
@@ -1341,7 +1341,7 @@ const tempFontSize = 12;
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
 
                 "position": "absolute", 
-                "overflow": "scroll",
+                
 
                 "display": "flex",
                 "justifyContent": "center",
@@ -1373,7 +1373,7 @@ const tempFontSize = 12;
             <div style={{
                     "position": "absolute",
                     "border": "1px dotted blue",
-                    "overflow": "scroll",
+                    
 
                     "width": "85%",
                     "height": "70%",
@@ -1547,7 +1547,7 @@ const tempFontSize = 12;
 
                 "borderRadius": "0px",
                 "position": "relative", 
-                "overflow": "scroll",
+                
                 "display": "flex",
                 "justifyContent": "center",
                 "alignItems": "center",
@@ -1664,7 +1664,7 @@ const tempFontSize = 12;
 
                     "borderRadius": "0px",
                     "position": "relative", 
-                    "overflow": "scroll",
+                    
                     "display": "flex",
                     "justifyContent": "center",
                     "alignItems": "center",
@@ -1774,7 +1774,7 @@ const tempFontSize = 12;
                         "borderRadius": `${navObj["outWindow-windowCornerRadius"]}px`,
 
                         "padding": "0px",
-                        "overflow": "scroll",
+                        
                         "justifyContent": "center",                          
                     }}
                 >

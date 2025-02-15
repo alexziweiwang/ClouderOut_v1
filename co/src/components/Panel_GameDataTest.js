@@ -93,7 +93,7 @@ return (
 <div 
     style={{
                 "width": `350px`, 
-                "overflow": "scroll", 
+                 
                 "backgroundColor": "#293241",
                 "color": "#FFFFFF",
                 "marginLeft": (isQuickView === true) ? "60px" : (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`, 

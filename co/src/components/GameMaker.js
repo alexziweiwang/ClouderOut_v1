@@ -1587,7 +1587,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       
       <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
 
-      <div style={{"width": "200px", "overflow": "scroll", "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
+      <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
         <label>{projectNameText}: {projectName}</label>
       
       </div>    
@@ -1813,7 +1813,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 {/*  Entire Viewing -- all parts  */}
     {isDisplayEntireGameViewer && 
 
-<div className={modalStyleName} style={{"overflow": "scroll"}}>
+<div className={modalStyleName} style={{}}>
 
         <button className="testEntire" onClick={()=>{closeEntireGameViewer();}}>Stop Testing</button>
 
@@ -1931,7 +1931,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
               <div style={{
                 "marginLeft": "-850px",
                 "height": `${screenHeight}px`, 
-                "overflow": "scroll", 
+                 
               }}>
 
                 <Panel_GameDataTest

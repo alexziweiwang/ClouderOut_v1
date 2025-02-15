@@ -77,7 +77,7 @@ return (
         "backgroundColor": "#98C1D9", 
         "position": "absolute", 
         "marginLeft": (screenWidth > screenHeight) ? `${screenWidth+230}px` : `${screenWidth+120}px`,
-        "overflow": "scroll"
+        
     }}
         
 
