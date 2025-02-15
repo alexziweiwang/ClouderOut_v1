@@ -33,8 +33,7 @@ export default function Viewer_Entire({
     initialNavObj,
     initialChapterList, 
 
-    getUILanguage, //TODO improve later to non-dynamic?
-   
+    uiLangOption,
 
     initialPlayerGameData,
     initialPlayerProfile,
@@ -91,7 +90,7 @@ export default function Viewer_Entire({
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+    const languageCodeTextOption = uiLangOption;
 
     const sizeLookupMap = { "16:9(horizonal)": [800, 450],
         "16:9(vertical)": [450, 800],
@@ -229,11 +228,6 @@ export default function Viewer_Entire({
         }
 
 
-
-        let UILang = getUILanguage(); //TODO change later
-        setLanguageCodeTextOption(UILang); //TODO change later
-
-
         let nodeTypeTemp = getNodeType(); //important here!! dont move around
         let chapterKeyTemp = getChapterKey(); //important here!! dont move around
         let nodeKeyTemp = getNodeKey(); //important here!! dont move around
@@ -342,7 +336,18 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
 
     function updateNavPageName(pageName) {
         setNavPageStatus(pageName);        
-        notifyPageStatus(pageName);// notify outer layer
+
+                                                //notifyPageStatus(pageName);// notify outer layer
+                                                //TODO100
+
+        let obj = {};
+        obj["pageStatus"] = pageName;
+        obj["chapterKey"] = currentGameStatusProgress["chapterKey"];
+        obj["nodeKey"] = currentGameStatusProgress["nodeKey"];
+        obj["nodeType"] = currentGameStatusProgress["nodeType"];
+        obj["chapterTitle"] = currentGameStatusProgress["chapterTitle"];
+
+        triggerUpdateCurrentStanding(obj);
     }
 
     
@@ -448,6 +453,16 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
 
     function passInPlayerPurchaseInfo() {
         return initialPlayerPurchaseInfo;
+    }
+
+    function nodeWalkViewerLocal(nodeKeyName, nodeTypeName) {
+//TODO100
+
+    }
+
+    function chapterWalkViewerLocal(chapterKeyName, chapterTitleName) {
+//TODO100
+
     }
 
 

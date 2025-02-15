@@ -898,6 +898,7 @@ export default function ConversationNodeEditingPanel() {
     return (
 
         <div
+            className="textNoSelect"
         >
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>

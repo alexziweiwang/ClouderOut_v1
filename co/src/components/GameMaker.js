@@ -1138,9 +1138,11 @@ export default function GameMaker({username, projectName}) {
 
 
 
-  function receiveUpdateOnPageStatus(pageName) { //fetch from sub-compo //TODO important, needed in holder-in-practice 
-    setCurrTestingPageStatus(pageName);
-  }
+                    // function receiveUpdateOnPageStatus(pageName) {
+                                                                              //fetch from sub-compo 
+                                                                              //TODO important, needed in holder-in-practice 
+                    //   setCurrTestingPageStatus(pageName);
+                    // }
 
   function updatePlayerInfoSets(playerProfileData, userAccountData) {
     
@@ -1580,7 +1582,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 */}   
 //TODO90 page content
   return (
-  <div>
+  <div className="textNoSelect">
 <div>
     
     <div className="returning_buttons">
@@ -1871,10 +1873,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
           triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
 
-          notifyPageStatus={receiveUpdateOnPageStatus}
-
  
-          getUILanguage={passInUILanguage}
+          uiLangOption={languageCodeTextOption}
 
           username={username}
           projectname={projectName}
