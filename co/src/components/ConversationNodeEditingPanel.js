@@ -1037,6 +1037,7 @@ export default function ConversationNodeEditingPanel() {
 
                             getVisualList={passInVisualList}
                             getAudioList={passInAudioList}
+                            getGameDataDesignList={passInGameDataDesignList}
 
                             getUILanguage={passInUILanguage}
                             username={state.userName} 

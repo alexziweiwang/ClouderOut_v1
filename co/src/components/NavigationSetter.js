@@ -910,8 +910,6 @@ export default function NavigationSetter({initialNavObj,
       <br></br>
       <button
         onClick={()=>{
-          //TODO101 fetch resource-maps again
-
           getGameDataDesignFromOuterLayer();
           
           updateCurrentPageName("Main Page");

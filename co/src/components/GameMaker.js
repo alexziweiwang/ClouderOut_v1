@@ -179,8 +179,8 @@ export default function GameMaker({username, projectName}) {
       }
 
 
-      initializeVisualMap(obj.visual);
-      initializeAudioMap(obj.audio);
+      resetVisualMapFromList(obj.visual);
+      resetAudioMapFromList(obj.audio);
 
       return obj;
     }
@@ -191,7 +191,7 @@ export default function GameMaker({username, projectName}) {
       setRenderCounter((renderCounter+1) % 100);
     }
 
-    function initializeVisualMap(visualList) {
+    function resetVisualMapFromList(visualList) {
         let tempMap = {};
 
         //TODO
@@ -210,7 +210,7 @@ export default function GameMaker({username, projectName}) {
     }
 
 
-    function initializeAudioMap(audioList) {
+    function resetAudioMapFromList(audioList) {
         let tempMap = {};
 
         //TODO
@@ -1576,9 +1576,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
       let audioListTemp = data.audio;
       let visualListTemp = data.visual;
-
-      setAudioList(audioListTemp);
-      setVisualList(visualListTemp);
 
       resetVisualMapFromList(visualListTemp);
       resetAudioMapFromList(audioListTemp); 

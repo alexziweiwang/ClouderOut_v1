@@ -5,10 +5,6 @@ import { GiTrashCan } from "react-icons/gi";
 import langDictionary from './textDictionary';
 
 
-//TODO20 cloud-func
-import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-
-
 //TODO refactor: stnd_btn_arr
 
 
@@ -23,6 +19,7 @@ export default function PieceSetter({
 
     getVisualList,
     getAudioList,
+    getGameDataDesignList,
 
     getUILanguage,
     username, projName,
@@ -278,7 +275,7 @@ export default function PieceSetter({
             // TODO fetch visualList and audioList from cloud-db to setup the local lists
             //TODO1: fetch game data for the first time
 
-            fetchGameDataListFromCloud();
+            getGameDataDesignListFromOuterLayer();
 
             // const allPiece = getAllPieceData();
             setAllPiecesDataLocal(allPieceData);  
@@ -364,18 +361,10 @@ export default function PieceSetter({
     //     return map1;
     // }
 
-    async function fetchGameDataListFromCloud() { //TODO102... change this !!!
-        
-        let isUpdated = true;
-        let tempObj = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
-      
-//TODO20
 
-        console.log("!! piece-setter fetchGameDataListFromCloud-func: game-data obj/map = ", tempObj);
+    function getGameDataDesignListFromOuterLayer() {
+        let tempObj = getGameDataDesignList();
         setGameDatListLocal(tempObj);
-
-        
-
     }
 
     function changeLoopingSetting() {

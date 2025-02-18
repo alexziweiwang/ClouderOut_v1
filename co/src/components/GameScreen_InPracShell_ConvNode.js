@@ -30,25 +30,6 @@ export default function GameScreen_InPracShell_ConvNode ({
 }) {
 
     const initialPieceNum = 0;
-    const nodePieceLimit = allPieceData !== undefined ? allPieceData.length : 0;
-
-    const isDisplay = true;
-    const [resetSignal, setResetSignal] = useState(false);
-
-    const [currPieceNum, setCurrPieceNum] = useState(initialPieceNum);
-                                                    //  const [directNextPieceBool, setDirectNextPieceBool] = useState(true); //TODO test before removing
-                                                    //  const [textStillTyping, setTextStillTyping] = useState(true); //TODO test before removing
-                                                    //  const [immediateFinishSignal, setImmediateFinishSignal] = useState(false); //TODO test before removing
-                                                    //  const [autoMode, setAutoMode] = useState(false); //TODO test before removing
-                                                    // const [bgmSource, setBgmSource] = useState(""); //TODO test before removing
-                                                    // const [bgpSource, setBgpSource] = useState(""); //TODO test before removing
-
-                                                    //  const [allPieceContent, setAllPieceContent] = useState({});
-                                                    //  const [allPieceUI, setAllPieceUI] = useState({}); //TODO remove?
-
-                                                    //   const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
-
-                                                    // const [showConvLog, setShowConvLog] = useState(false); //TODO test before removing
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
@@ -88,8 +69,8 @@ export default function GameScreen_InPracShell_ConvNode ({
       return "";
     }
     
-    function passInResetSignal() {        
-      return resetSignal;
+    function passInResetSignalFalse() {        
+      return false;
   }
 
     //TODO21 refactor to VM
@@ -184,12 +165,12 @@ return (<div>
 */}
 
       <GameScreen_QuickView_ConvNode
-                    isDisplay={true}  //ok
-                    screenWidth={screenWidth}   //ok
-                    screenHeight={screenHeight}   //ok
+                    isDisplay={true}  //ok (non-dynamic)
+                    screenWidth={screenWidth}   //ok (non-dynamic)
+                    screenHeight={screenHeight}   //ok (non-dynamic)
 
-                    initialPieceNum={initialPieceNum}   //ok
-                    allPieceContent={allPieceData}
+                    initialPieceNum={initialPieceNum}   //ok (non-dynamic)
+                    allPieceContent={allPieceData} // ok (non-dynamic)
 
                     notifyNodeFinish={notifyNodeFinish}
                     
@@ -202,19 +183,12 @@ return (<div>
                     audioMap={audioMap} //TODO empty so far
 
                     gameData={enteringEmuGameDataTracker}
-                                                                      //  getCurrPieceNum={passInCurrPieceNum} // hidden, remove
 
-                    getResetSignal={passInResetSignal} 
+                    getResetSignal={passInResetSignalFalse} 
                     getResetInfoSets={notUsing} 
 
-                                                                      //  triggerClickOnGameScreen={triggerClickOnGameScreen} // important //TODO test before removing
-                                                                      //  getIsGameScreenClicked={passInIsGameScreenClicked} //TODO test before removing
+                    notifyAfterReset={notUsing}
 
-                                                                      //  notifyNewGameData={notUsing} //TODO notUsing
-                    notifyAfterReset={notUsing} //TODO notUsing
-
-                                                                      //  receiveGameDataObj={passInGameDataFromScreen}   //TODO test before removing
-                                                                      //  buttonConseqByStatement={changeGameDataTrackerByStatement}     //TODO test before removing
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}  //TODO 
                 />
                 
