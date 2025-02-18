@@ -671,6 +671,7 @@ export default function GameMaker({username, projectName}) {
 
 
  
+  const [secondTimeEnter, setSecondTimeEnter] = useState(true);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -695,11 +696,24 @@ export default function GameMaker({username, projectName}) {
         
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         triggerRefreshFetchCloudData();
+
+
+        fetchChapterNodeMappingFromCloud();
         fetchProjectNavigationSettingsFromCloud();
         
-        setFirstTimeEnter(false);
-
         fetchUILangFromCLoud();
+
+        setFirstTimeEnter(false);
+    }
+
+    if (secondTimeEnter === true) {
+      //This area is for any "reset" procedure...
+      //  usually for modals -- resource-manager, game-data-manager, 
+
+                        console.log("!!! Second Enter - GameMaker: ");//TODO testing
+        triggerRefreshFetchCloudData();
+
+        setSecondTimeEnter(false);
     }
 
 
@@ -846,7 +860,6 @@ export default function GameMaker({username, projectName}) {
   function triggerRefreshFetchCloudData() {
     fetchGameDataFromCloud();
     fetchProjResourceLists();
-    fetchChapterNodeMappingFromCloud();
   }
 
   // function resetRmUpdatedSignal() {
@@ -1558,14 +1571,17 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       //rm-mapping-required: 
       // <NavigationSetter> [//TODO105 refactored, to test]
 
-
-
       // <NavigationPreview> *** non-dynamic resource-maps so far...
 
-      
-        //audioList = data.audio
-        //visualList = data.visual
 
+      let audioListTemp = data.audio;
+      let visualListTemp = data.visual;
+
+      setAudioList(audioListTemp);
+      setVisualList(visualListTemp);
+
+      resetVisualMapFromList(visualListTemp);
+      resetAudioMapFromList(audioListTemp);   
 
   }
 

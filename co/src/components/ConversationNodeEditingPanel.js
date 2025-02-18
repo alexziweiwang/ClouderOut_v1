@@ -401,11 +401,11 @@ export default function ConversationNodeEditingPanel() {
         setAudioList(obj.audio);
         setVisualList(obj.visual);
 
-        initializeVisualMap(obj.visual);
-        initializeAudioMap(obj.audio)
+        resetVisualMapFromList(obj.visual);
+        resetAudioMapFromList(obj.audio)
     }
 
-    function initializeVisualMap(visualList) {
+    function resetVisualMapFromList(visualList) {
         let tempMap = {};
 
         //TODO
@@ -423,7 +423,7 @@ export default function ConversationNodeEditingPanel() {
         setVisualMap(tempMap);
     }
 
-    function initializeAudioMap(audioList) {
+    function resetAudioMapFromList(audioList) {
         let tempMap = {};
 
         //TODO
@@ -855,7 +855,7 @@ export default function ConversationNodeEditingPanel() {
 
     function notifyRmUpdated(data) {
  //TODO101 update the visual+audio maps here?
- //          fetchProjectResourceVarPairsVM
+
  console.log("rm updated... (conv-node-editor) ",  data);
  //passInVisualMap()       passInAudioMap()
 
@@ -869,8 +869,15 @@ export default function ConversationNodeEditingPanel() {
 // <QuickView_AllPanels_ConvNode> [//TODO105 refactored, to test]
 
 
-        //audioList = data.audio
-        //visualList = data.visual
+        let audioListTemp = data.audio;
+        let visualListTemp = data.visual;
+
+        setAudioList(audioListTemp);
+        setVisualList(visualListTemp);
+
+        resetVisualMapFromList(visualListTemp);
+        resetAudioMapFromList(audioListTemp);   
+
 
 
     }
