@@ -1764,7 +1764,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                   initialNavObj={currentProjectNav} 
                   updateNavObj={updateCurrProjectNavObj} 
                   openRm={handleResourceManagerOpen} 
-                  updateCurrentPageName={updateCurrPageName} 
+                  triggerUpdateCurrPageName={updateCurrPageName} 
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
                   getScreenheight={passInScreenHeight}
@@ -1793,7 +1793,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
 
-                  updateCurrentPageName={updateCurrPageName}
+                  triggerUpdateCurrPageName={updateCurrPageName}
                   triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
 
                   isEditing={true}

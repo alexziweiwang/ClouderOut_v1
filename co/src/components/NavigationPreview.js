@@ -5,8 +5,8 @@ export default function NavigationPreview ({
     fetchNavObj, 
 
     fetchPageName, 
-    updateCurrentPageName,
-    triggerUpdateCurrentStanding,
+    triggerUpdateCurrPageName,
+    triggerUpdateCurrentStanding, //game-progress related, to outer-layer
 
     chapterData, 
     isEditing,
@@ -391,7 +391,7 @@ const tempFontSize = 12;
                                     document.getElementById(keyStr1).style.filter = "brightness(100%)";
 
 
-                                    updateCurrentPageName(pageNaming);
+                                    triggerUpdateCurrPageName(pageNaming);
 
 
                                     let currentStandingObjTemp = {};
@@ -551,7 +551,7 @@ const tempFontSize = 12;
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "brightness(100%)";
 
-                                    updateCurrentPageName(pageNaming);
+                                    triggerUpdateCurrPageName(pageNaming);
 
                                     let currentStandingObjTemp = {};
                                     currentStandingObjTemp["pageStatus"] = pageNaming;
@@ -830,7 +830,7 @@ const tempFontSize = 12;
                         onMouseUp={
                             ()=>{
                                 document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
-                                updateCurrentPageName("Game Progress Strategy");
+                                triggerUpdateCurrPageName("Game Progress Strategy");
 
                                 let currentStandingObjTemp = {};
                                 currentStandingObjTemp["pageStatus"] = "Game Progress Strategy";
@@ -887,7 +887,7 @@ const tempFontSize = 12;
                            
 
 
-                                        updateCurrentPageName("During Game");
+                                        triggerUpdateCurrPageName("During Game");
 
                                         let currentStandingObjTemp = {};
                                         let chapterKey = storyPageChapterKeyMapping[item];
@@ -1821,7 +1821,7 @@ const tempFontSize = 12;
                                                     currentStandingObjTemp["nodeType"] = ""; 
                                                     triggerUpdateCurrentStanding(currentStandingObjTemp);
                                                     
-                                                    updateCurrentPageName(nextPageName);
+                                                    triggerUpdateCurrPageName(nextPageName);
 
                                                 
                                                     //close q-window
@@ -1852,7 +1852,7 @@ const tempFontSize = 12;
                                                 //close q-window
                                                 setQWindowOpen(false);
                                                 setUserClickCancelQwindow(true);
-                                        //        updateCurrentPageName("During Game");
+                                        //        triggerUpdateCurrPageName("During Game");
 
                                                 
                                         }}
@@ -1911,7 +1911,7 @@ const tempFontSize = 12;
                                 let nextPageName = "Main Page";
                                 if (page === "During Game") {
                                     setQWindowOpen(true);
-                           //         updateCurrentPageName("Quit Asking Window");
+                           //         triggerUpdateCurrPageName("Quit Asking Window");
                                     
 
                                 } else if (page === "Game Progress Strategy") {
@@ -1923,9 +1923,9 @@ const tempFontSize = 12;
                                     currentStandingObjTemp["nodeKey"] = "";
                                     currentStandingObjTemp["nodeType"] = ""; 
                                     triggerUpdateCurrentStanding(currentStandingObjTemp);
-                                    updateCurrentPageName(nextPageName);
+                                    triggerUpdateCurrPageName(nextPageName);
                                 } else {
-                                    updateCurrentPageName(nextPageName);
+                                    triggerUpdateCurrPageName(nextPageName);
                                 }
         
                                 

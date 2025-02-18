@@ -7,7 +7,7 @@ import langDictionary from './textDictionary';
 
 export default function NavigationSetter({initialNavObj, 
   updateNavObj, openRm, 
-  updateCurrentPageName, fetchPageName,
+  triggerUpdateCurrPageName, fetchPageName,
   initialScreenHeight, getScreenheight,
   userName,
   projName,
@@ -912,7 +912,7 @@ export default function NavigationSetter({initialNavObj,
         onClick={()=>{
           getGameDataDesignFromOuterLayer();
           
-          updateCurrentPageName("Main Page");
+          triggerUpdateCurrPageName("Main Page");
         }}
       >{reloadSetterText}</button><br></br>
 
@@ -958,7 +958,7 @@ export default function NavigationSetter({initialNavObj,
       <select value={currentSettingPage}
         onChange={(event)=>{
           setCurrentSettingPage(event.target.value);
-          updateCurrentPageName(event.target.value);
+          triggerUpdateCurrPageName(event.target.value);
         }}>
           <option value="" key="defaultEmptyPage">-- {selectAPageName} --</option>
           <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option>

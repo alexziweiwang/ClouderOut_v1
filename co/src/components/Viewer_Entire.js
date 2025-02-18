@@ -50,9 +50,9 @@ export default function Viewer_Entire({
     getPageName,
     getChapterTitle,
 
-    triggerUpdateCurrentStanding, //game-progress related
-    triggerNodeWalk, //game-progress related
-    triggerChapterWalk, //game-progress related
+    triggerUpdateCurrentStanding, //game-progress related, to outer-layer
+    triggerNodeWalk, //game-progress related, to outer-layer
+    triggerChapterWalk, //game-progress related, to outer-layer
 
 
     username,
@@ -227,12 +227,17 @@ export default function Viewer_Entire({
         }
 
 
-        let nodeTypeTemp = getNodeType(); //important here!! dont move around
-        let chapterKeyTemp = getChapterKey(); //important here!! dont move around
-        let nodeKeyTemp = getNodeKey(); //important here!! dont move around
-        let pageNameTemp = getPageName(); //important here!! dont move around
-        let chapterTitleTemp = getChapterTitle(); //important here!! dont move around
-        configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp); //important here!! dont move around
+
+                                        //TODO test before removing...
+                                                // let nodeTypeTemp = getNodeType(); //important here!! dont move around
+                                                // let chapterKeyTemp = getChapterKey(); //important here!! dont move around
+                                                // let nodeKeyTemp = getNodeKey(); //important here!! dont move around
+                                                // let pageNameTemp = getPageName(); //important here!! dont move around
+                                                // let chapterTitleTemp = getChapterTitle(); //important here!! dont move around
+                                                // configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp); //important here!! dont move around
+                                        //TODO test before removing...
+
+
 
 console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusProgress);
 
@@ -294,7 +299,7 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     //TODO21 refactor to VM
     
     function initializeGameDataTracker(dataObj) {
-                                                            console.log("viewer-entire... initializeGameDataTracker");
+                                                            console.log("viewer-entire... initialize_GameDataTracker");
 
         //TODO105 if need to fetch from game-maker with the most fresh-ver.
 
@@ -390,7 +395,7 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     }
 
     //TODO21 refactor to VM
-    function triggerWalkToCurrNode(nodeKeyName, nodeTypeName) {
+    function triggerWalkToCurrNodeLocalViewer(nodeKeyName, nodeTypeName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = nodeKeyName;
         temp["nodeType"] = nodeTypeName;
@@ -401,7 +406,7 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     }
 
     //TODO21 refactor to VM
-    function triggerWalkToCurrChapter(chapterKeyName, chapterTitleName) {
+    function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = chapterKeyName + "_start"; //TODO
         temp["nodeType"] = "*chapterStart*";
@@ -411,7 +416,6 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         setCurrentGameStatusProgress(temp);
 
         triggerChapterWalk(chapterKeyName, chapterTitleName);
-
     }
 
     function passInViewerContainerGameDataTracker() {
@@ -507,8 +511,8 @@ return ( <>
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
 
-                                                triggerWalkToCurrNode={triggerWalkToCurrNode}     
-                                                triggerWalkToCurrChapter={triggerWalkToCurrChapter}
+                                                triggerWalkToCurrNode={triggerWalkToCurrNodeLocalViewer}     
+                                                triggerWalkToCurrChapter={triggerWalkToCurrChapterLocalViewer}
 
 //TODO31
                                                 initialNodeType={currentGameStatusProgress["nodeType"]}
@@ -548,7 +552,7 @@ return ( <>
                         chapterData={chapterList} 
                         fetchPageName={passInNavPageName} 
 
-                        updateCurrentPageName={updateNavPageName}
+                        triggerUpdateCurrPageName={updateNavPageName}
                         triggerUpdateCurrentStanding={updateCurrentStandingViewerLocal}
 
                         isEditing={false}
