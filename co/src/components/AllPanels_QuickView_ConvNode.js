@@ -4,7 +4,7 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import langDictionary from './textDictionary';
    
 
-export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQViewCancel, 
+export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
     uiData2_defaultButtonOption, uiData3_ConvNavigation, 
     uiData4_logPageSettings,
@@ -192,9 +192,6 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
         setClickOnGameScreen(true);
     }
 
-    function triggerClickOnGameDataPanel() {
-        //setClickOnGameScreen(false);
-    }
 
     function passInIsGameScreenClicked() {
         return clickOnGameScreen;
@@ -399,14 +396,7 @@ export default function QuickView_AllPanels_ConvNode ({initialPieceNum, handleQV
                        getScreenWidth={passInScreenWidth}
                        isQuickView={true}
 
-
-                       triggerClickOnGameDataPanel={triggerClickOnGameDataPanel}
-                       getIsGameScreenClicked={passInIsGameScreenClicked}
-
                        receiveGameDataObj={passInGameDataFromScreen}
-
-                       getResetSignal={passInResetSignal}
-                       notifyAfterReset={notifyAfterReset}
 
                        getUILanguage={getUILanguage}
                 />

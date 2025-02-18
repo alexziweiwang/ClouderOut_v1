@@ -8,7 +8,7 @@ import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_EmuManager from './Modal_EmuManager';
 import PreviewWindow_convNodeGameContent from './PreviewWindow_convNodeGameContent';
 import PreviewWindow_convNodeUiSetup from './PreviewWindow_convNodeUiSetup';
-import QuickView_AllPanels_ConvNode from './QuickView_AllPanels_ConvNode';
+import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
 import PieceManager from './PieceManager';
 import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
@@ -866,7 +866,7 @@ export default function ConversationNodeEditingPanel() {
 // <PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
 // <PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
 
-// <QuickView_AllPanels_ConvNode> [//TODO105 refactored, to test]
+// <AllPanels_QuickView_ConvNode> [//TODO105 refactored, to test]
 
 
         let audioListTemp = data.audio;
@@ -897,7 +897,7 @@ export default function ConversationNodeEditingPanel() {
         4. modal_resource - <Modal_ResourceManagingWindow>
         5. modal_game_data_manager - <Modal_GameDataManager>
         6. modal_emu_manager - <Modal_EmuManager>
-        6. quick_view - <QuickView_AllPanels_ConvNode>
+        6. quick_view - <AllPanels_QuickView_ConvNode>
 
 */}
 
@@ -1219,7 +1219,7 @@ export default function ConversationNodeEditingPanel() {
         
 
            
-            {isDisplayQview && <QuickView_AllPanels_ConvNode
+            {isDisplayQview && <AllPanels_QuickView_ConvNode
                     initialPieceNum={previewingIndex}
                     isDisplay={isDisplayQview}
                     handleQViewCancel={handleqvCancel}

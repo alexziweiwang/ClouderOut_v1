@@ -35,20 +35,12 @@ export default function Viewer_Entire({
 
     uiLangOption,
 
-    initialPlayerGameData,
+    initialPlayerGameDataTracker,
     initialPlayerProfile,
     initialPlayerAccountSettings,
     initialPlayerSlRecords, //TODO later
 
     initialCurrChapterAllNodeMapping,
-
-
-
-    getNodeType, 
-    getChapterKey, 
-    getNodeKey,
-    getPageName,
-    getChapterTitle,
 
     triggerUpdateCurrentStanding, //game-progress related, to outer-layer
     triggerNodeWalk, //game-progress related, to outer-layer
@@ -63,6 +55,17 @@ export default function Viewer_Entire({
 
     visualMap,
     audioMap,
+
+
+
+
+                                //TODO test before removing
+                                            // getNodeType, 
+                                            // getChapterKey, 
+                                            // getNodeKey,
+                                            // getPageName,
+                                            // getChapterTitle,
+                                //TODO test before removing
     
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
@@ -210,7 +213,7 @@ export default function Viewer_Entire({
 
         if (firstTimeEnter === true) {
                                                 console.log("!!!!!!! viewer-entire: entered as first-time");
-            initializeGameDataTracker(initialPlayerGameData);
+            initializeGameDataTracker(initialPlayerGameDataTracker);
 
 
 
@@ -484,7 +487,9 @@ return ( <>
       
 
 
-{/* game-screen (specific node) layer */}
+{/* 
+game-screen (specific node) layer */}
+
                 {navPageStatus === "During Game" && 
                     <div style={{
                         "position": "absolute", 
@@ -497,12 +502,7 @@ return ( <>
                     >
 
                                           {/*      
-
-                                                    // trigger_Update_CurrentStanding (track by nav-buttons & in-game changes: 
-                                                    //              page-status + chapter-key + node-type + node-key) 
-
                                                     //important: setup entry-gameData-set (if multiple) 
-                                                    //important: return or to next chapter when reaching the "<chapter-key>_end" node
                                           */}
 
                                           <GameScreen_AllNodeTypeContainer
@@ -536,7 +536,12 @@ return ( <>
                     </div>
                 }
 
+                {/* //TODO300 
+shop layer
+                future: shop content div...
+                (also able to change game-data-tracker) */}
 
+        
 
 
 {/* navigation layer */}
@@ -584,7 +589,7 @@ return ( <>
         </div>
 
 
-         
+ 
 
     </div>
 

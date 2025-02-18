@@ -414,7 +414,7 @@ export default function GameMaker({username, projectName}) {
   }); //TODO now: default initial values
 
 
-  const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
+  const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
   const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                               //TODO important for holder-in-practice
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
@@ -690,10 +690,7 @@ export default function GameMaker({username, projectName}) {
 
         console.log("!!! First Enter - GameMaker: ");//TODO testing
 
-        //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
-            //TODO setChapterList(); // from cloud-db
-        //TODO format: localChapterInfo = <chapter title, node-relationship-map>
-        
+    
         //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
         triggerRefreshFetchCloudData();
 
@@ -1092,8 +1089,8 @@ export default function GameMaker({username, projectName}) {
     return {"default": "impl for viewer_entire later"}; //TODO5 later
   }
 
-  function passInPlayerGameData() {//used in panel-game-data
-    return testPlayerGameData;
+  function passInPlayerGameDataTracker() {//used in panel-game-data
+    return testPlayerGameDataTracker;
   }
 
   function passInPlayerProfile() { //used in Navigation-Setter 
@@ -1206,8 +1203,8 @@ export default function GameMaker({username, projectName}) {
     //TODO for new-emu-strategy
 
     // let objTemp = {}; //TODO too much rerendering
-    // Object.keys(testPlayerGameData).map((currKey) => {
-    //   let item = testPlayerGameData[currKey];
+    // Object.keys(testPlayerGameDataTracker).map((currKey) => {
+    //   let item = testPlayerGameDataTracker[currKey];
     //   let currVal = item["current_value"];
     //   let dataType = item["data_type"];
     //   let defaultVal = item["default_value"];
@@ -1226,7 +1223,7 @@ export default function GameMaker({username, projectName}) {
 
 
 
-    return testPlayerGameData;
+    return testPlayerGameDataTracker;
 
   }
 
@@ -1257,7 +1254,7 @@ export default function GameMaker({username, projectName}) {
   function getUserConfigFromEmuManager1Gdt(data1) {
     //update data1 to be the new Game-Data-Tracker
     //TODO  //recreate emu data object
-    setTestPlayerGameData(data1);
+    setTestPlayerGameDataTracker(data1);
   }
 
   function getUserConfigFromEmuManager2Epp(data2) {
@@ -1393,6 +1390,13 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   //TODO21 refactor to VM
   async function fetchChapterNodeMappingFromCloud() {
+
+        //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
+            //TODO setChapterList(); // from cloud-db
+        //TODO format: localChapterInfo = <chapter title, node-relationship-map>
+        
+
+
 
     let data = await fetchChapterNodesDataVM({   
         projectName: projectName, 
@@ -1868,24 +1872,21 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           initialNavObj={currentProjectNav}
 
           initialChapterList={chapterList}
+          initialCurrChapterAllNodeMapping={chapterNodeMapAll}
 
-          
-          initialPlayerGameData={testPlayerGameData}
+          initialPlayerGameDataTracker={testPlayerGameDataTracker}
           initialPlayerProfile={testPlayerProfile}
           initialPlayerAccountSettings={testPlayerAccount}
       
           initialPlayerSlRecords={testPlayerSLRecords}
 
-          initialCurrChapterAllNodeMapping={chapterNodeMapAll}
-          
+        
+                                                          // getNodeType={passInNodeType}
+                                                          // getChapterKey={passInChapterKey}
+                                                          // getNodeKey={passInNodeKey}
+                                                          // getPageName={passInPageName}
+                                                          // getChapterTitle={passInChapterTitle}
 
-          getNodeType={passInNodeType}
-          getChapterKey={passInChapterKey}
-          getNodeKey={passInNodeKey}
-          getPageName={passInPageName}
-          getChapterTitle={passInChapterTitle}
-
-          triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
 
  
           uiLangOption={languageCodeTextOption}
@@ -1896,9 +1897,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           initialShopItemInfo={testShopProducts}
           initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
 
-          triggerNodeWalk={triggerNodeWalk}
-          triggerChapterWalk={triggerChapterWalk}
-
+          triggerNodeWalk={triggerNodeWalk} //update things to this layer
+          triggerChapterWalk={triggerChapterWalk} //update things to this layer
+          triggerUpdateCurrentStanding={triggerUpdateCurrentStanding} //update things to this layer
 
           visualMap={visualMap}
           audioMap={audioMap}
@@ -1956,13 +1957,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                        getScreenWidth={passInScreenWidth}
                        isQuickView={false}
 
-                       triggerClickOnGameDataPanel={notUsing}
-                       getIsGameScreenClicked={notUsing}
-
-                       receiveGameDataObj={passInPlayerGameData}
-
-                       getResetSignal={notUsingReturnFalse}
-                       notifyAfterReset={notUsing}
+                       receiveGameDataObj={passInPlayerGameDataTracker}
 
                        getUILanguage={passInUILanguage}
                 /> 

@@ -7,10 +7,9 @@ export default function Panel_GameDataTest({
     localTest, initialGameDataStatus,
     getScreenHeight, getScreenWidth,
     isQuickView, 
-    getIsGameScreenClicked,
+
     receiveGameDataObj,
-    getResetSignal,
-    notifyAfterReset,
+
     getUILanguage
 }) {
     
