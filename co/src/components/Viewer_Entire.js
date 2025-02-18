@@ -451,16 +451,6 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         return initialPlayerPurchaseInfo;
     }
 
-    function nodeWalkViewerLocal(nodeKeyName, nodeTypeName) {
-//TODO100
-
-    }
-
-    function chapterWalkViewerLocal(chapterKeyName, chapterTitleName) {
-//TODO100
-
-    }
-
     function updateCurrentStandingViewerLocal(obj) {
 
         // update local standing-obj

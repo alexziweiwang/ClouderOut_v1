@@ -4,10 +4,6 @@ import langDictionary from './textDictionary';
 //TODO20 cloud-func
 
 
-import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-//TODO103 refactor and remove later
-
-
 
 export default function NavigationSetter({initialNavObj, 
   updateNavObj, openRm, 
@@ -23,6 +19,8 @@ export default function NavigationSetter({initialNavObj,
 
   getVisualMap,
   getAudioMap,
+
+  getGameDataDesign
 
 
 }) {
@@ -357,7 +355,7 @@ export default function NavigationSetter({initialNavObj,
       if (firstTimeEnter === true) {
             //console.log("Navigation Setter -- "); //TODO test
 
-            getGameDataDesignFromCloud(); //value-list: game-data
+            getGameDataDesignFromOuterLayer(); //value-list: game-data
  
 
             //TODO value-list player-account 
@@ -406,14 +404,12 @@ export default function NavigationSetter({initialNavObj,
       setAudioList(updatedList);
     }
 
-    async function getGameDataDesignFromCloud() {
-      let isUpdated = true;
 
-      let gDataMap = {};
+    function getGameDataDesignFromOuterLayer() {
 
-      gDataMap = await getProjectGameDataDesignVM(({projectName: projName, uname: userName, mostUpdated: isUpdated}));
+      let gDataMap = getGameDataDesign();
       setGameDataDesignList(gDataMap);
-  }
+    }
 
 
     function changePPTryingTextItemTextContent(event) { 
@@ -916,7 +912,8 @@ export default function NavigationSetter({initialNavObj,
         onClick={()=>{
           //TODO101 fetch resource-maps again
 
-          getGameDataDesignFromCloud();
+          getGameDataDesignFromOuterLayer();
+          
           updateCurrentPageName("Main Page");
         }}
       >{reloadSetterText}</button><br></br>
@@ -4267,7 +4264,7 @@ export default function NavigationSetter({initialNavObj,
                       </select> 
                       <button
                         onClick={()=>{
-                          getGameDataDesignFromCloud();
+                          getGameDataDesignFromOuterLayer();
                           resetPlayerProfilePageAddingValueName();
                         }}
                       >Update Game Data</button>

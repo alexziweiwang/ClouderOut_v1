@@ -8,7 +8,6 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 
 
 export default function Modal_EmuManager({
-    isDisplay,
     handleEmCancel,
     getUILanguage,
     update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,

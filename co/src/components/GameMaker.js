@@ -671,7 +671,7 @@ export default function GameMaker({username, projectName}) {
 
 
  
-  const [secondTimeEnter, setSecondTimeEnter] = useState(true);
+                                  //const [secondTimeEnter, setSecondTimeEnter] = useState(true);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -706,15 +706,15 @@ export default function GameMaker({username, projectName}) {
         setFirstTimeEnter(false);
     }
 
-    if (secondTimeEnter === true) {
-      //This area is for any "reset" procedure...
-      //  usually for modals -- resource-manager, game-data-manager, 
+                                // if (secondTimeEnter === true) {
+                                //   //This area is for any "reset" procedure...
+                                //   //  usually for modals -- resource-manager, game-data-manager, 
 
-                        console.log("!!! Second Enter - GameMaker: ");//TODO testing
-        triggerRefreshFetchCloudData();
+                                //                     console.log("!!! Second Enter - GameMaker: ");//TODO testing
+                                //     triggerRefreshFetchCloudData();
 
-        setSecondTimeEnter(false);
-    }
+                                //     setSecondTimeEnter(false);
+                                // }
 
 
 
@@ -1567,7 +1567,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
   //TODO21 refactor to vm
   function notifyRmUpdated(data) {
     console.log("rm updated... (game-maker) ",  data);
- //TODO101 update the visual+audio maps here?
+ //TODO100 update the visual+audio maps here?
       //rm-mapping-required: 
       // <NavigationSetter> [//TODO105 refactored, to test]
 
@@ -1581,8 +1581,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       setVisualList(visualListTemp);
 
       resetVisualMapFromList(visualListTemp);
-      resetAudioMapFromList(audioListTemp);   
-
+      resetAudioMapFromList(audioListTemp); 
   }
 
 
@@ -1783,6 +1782,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                   getVisualMap={passInVisualMap}
                   getAudioMap={passInAudioMap}
+
+                  getGameDataDesign={passInGameDataDesignList}
           
                 />
               </div>
