@@ -358,6 +358,16 @@ style={{
 
             />}
 
+            <audio 
+                src={bgmSource} 
+                autoPlay="autoPlay" 
+                controls 
+                loop={allPieceContent[currPieceNum]["bgm_loop"]}
+                style={{
+                    "height": "30px",
+                    "display": "none",
+                }}
+            /> 
 
 
             </div>

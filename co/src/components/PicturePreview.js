@@ -1,6 +1,6 @@
 export default function PicturePreview ({urlList, selectedUrl, removeFileFromAll}) {
     return (
-        <div className="rsrcPrevArea">
+        <div className="rsrcPrevArea" style={{"overflow": "scroll"}}>
             {urlList.map((item, index) => {
                 return(
                 <div key={index} style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}>

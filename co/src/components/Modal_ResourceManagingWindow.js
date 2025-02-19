@@ -523,9 +523,28 @@ export default function Modal_ResourceManagingWindow ({
                         onChange={(event)=>{setFileSelected(event.target.files[0]);}}
                     />}
                     {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
-                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
-                    {uploadConfirm === false && <button onClick={()=>{submitFile("visual", fileSelected); setUploadConfirm(true);}}> {confirmText} </button>}
-                    {uploadConfirm === true && <button onClick={()=>{submitFile("visual", fileSelected); setFileSelected(""); setUploadConfirm(false);}}> {submitText} </button>}
+                    
+                    {uploadConfirm === true && <button 
+                        onClick={()=>{
+                            setFileSelected(""); 
+                            setUploadConfirm(false);
+                        }}
+                    >{cancelText}</button>}
+                    
+                    {uploadConfirm === false && <button 
+                        onClick={()=>{
+                            submitFile("visual", fileSelected); 
+                            setUploadConfirm(true);
+                        }}
+                    > {confirmText} </button>}
+                    
+                    {uploadConfirm === true && <button 
+                        onClick={()=>{
+                            submitFile("visual", fileSelected); 
+                            setFileSelected(""); 
+                            setUploadConfirm(false);
+                        }}
+                    > {submitText} </button>}
                 </div>}
                 
                 <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(false);}}></input>  <label onClick={()=>{setIsSourceByUpload(false);}}>From Google Drive</label>
