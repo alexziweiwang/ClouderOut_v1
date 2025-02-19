@@ -468,6 +468,7 @@ export default function Modal_ResourceManagingWindow ({
                                 }
                             }
                             handleRmCancel();
+                            setClickedFileUrl("");
                             setCloudUpdated(false); //TODO15 
                         
                         
@@ -556,7 +557,9 @@ export default function Modal_ResourceManagingWindow ({
                 </div>
 
                 </div>
-                
+
+{/* visual resource-previewing area */}
+
                 <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} removeFileFromAll={removeOneResource}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
@@ -576,44 +579,48 @@ export default function Modal_ResourceManagingWindow ({
                 {!isTabVisual && 
                 <div className="rmTypeAreaA"> 
                 <div className="modalContent parallelFrame">
+{/* audio resource-selecting area */}
             
                 <div className="areaNote2">
-                <button className="loadResourceBtn" onClick={fetchRmFileList}> 
-                    {loadResourceListText}
-                </button>
-               
-                <br></br>
-                <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value); changeAuFilter(event.target.value);}}>
-                        <option value="curr" key="currAu">{inThisProjectText}</option>
-                        <option value="all" key="allAu">{allResourcesText}</option>
-                        <option value="not" key="notAu">{notInThisProjectText}</option>
-                </select>
+                    <button className="loadResourceBtn" onClick={fetchRmFileList}> 
+                        {loadResourceListText}
+                    </button>
+                    
+                    <br></br>
+                    <select value={audioListFilter} onChange={(event)=>{setAudioListFilter(event.target.value); changeAuFilter(event.target.value);}}>
+                            <option value="curr" key="currAu">{inThisProjectText}</option>
+                            <option value="all" key="allAu">{allResourcesText}</option>
+                            <option value="not" key="notAu">{notInThisProjectText}</option>
+                    </select>
                 
-                {audioListFilteredList.length > 0&& <div className="rsrcListArea">
-                    <ul>
-                        {audioListFilteredList.map((item, index) => (
-                        <li className="clickableListItem6" key={index} onClick={()=>{
-                                                            console.log("rmWindow --list clicked.", cloudFileList[index]["filename"]); //TODO 
-                            itemClicked(item);
-                        
-                        }}>{item["filename"]}</li>
-                        ))}
-                    </ul>
-                </div>}
-                <div className="uploadArea"> New File Upload <br></br>
-                    {uploadConfirm === false &&  <input 
-                        type="file"
-                        accept=".wav,.mp3,.aac,.m4a"
-                        onChange={(event)=>{setFileSelected(event.target.files[0]);}}
-                        /> }
-                    {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
-                    {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
-                    {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
-                    {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
-                </div>
+                    {audioListFilteredList.length > 0&& <div className="rsrcListArea">
+                        <ul>
+                            {audioListFilteredList.map((item, index) => (
+                            <li className="clickableListItem6" key={index} onClick={()=>{
+                                                                console.log("rmWindow --list clicked.", cloudFileList[index]["filename"]); //TODO 
+                                itemClicked(item);
+                            
+                            }}>{item["filename"]}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    }
+                    <div className="uploadArea"> New File Upload <br></br>
+                        {uploadConfirm === false &&  <input 
+                            type="file"
+                            accept=".wav,.mp3,.aac,.m4a"
+                            onChange={(event)=>{setFileSelected(event.target.files[0]);}}
+                            /> }
+                        {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
+                        {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
+                        {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
+                        {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
+                    </div>
 
                 </div>
                 
+
+{/* audio resource-previewing area */}
                 <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
                     {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud}/>}

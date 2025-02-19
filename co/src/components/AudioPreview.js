@@ -6,9 +6,14 @@ export default function AudioPreview ({urlList, selectedUrl}) {
                 return(
                     <div key={index} style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}>
                         <label>{item["filename"]}</label><br></br><br></br>
-                        <audio 
-                            src={item["fileurl"]} 
-                            controls />
+                        
+                        
+                        {selectedUrl.length > 0 &&
+                            <audio 
+                                src={item["fileurl"]} 
+                                controls 
+                            />
+                        }
                     
                     </div>);
             }
