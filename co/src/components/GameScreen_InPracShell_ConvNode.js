@@ -27,10 +27,11 @@ export default function GameScreen_InPracShell_ConvNode ({
     visualMap,
     audioMap,
 
+    mutedViewOption
+
 }) {
 
     const initialPieceNum = 0;
-
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
@@ -190,6 +191,8 @@ return (<div>
                     notifyAfterReset={notUsing}
 
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}  //TODO 
+                    isViewMuted={mutedViewOption}
+
                 />
                 
 

@@ -18,6 +18,7 @@ export default function GameScreen_QuickView_ConvNode ({
 
     visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
+    isViewMuted
 
     
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
@@ -363,11 +364,12 @@ style={{
                 autoPlay="autoPlay" 
                 controls 
                 loop={allPieceContent[currPieceNum]["bgm_loop"]}
+                muted={isViewMuted}
                 style={{
                     "height": "30px",
                     "display": "none",
                 }}
-            /> 
+            />
 
 
             </div>

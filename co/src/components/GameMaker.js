@@ -110,6 +110,9 @@ export default function GameMaker({username, projectName}) {
 
   const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
   
+  const [mutedViewOption, setMutedViewOption] = useState(false);
+
+
 /* // TODO game-maker task list
 2. logic organizer for game-node-relationship
 3. preview and test for node play-flow (progress: 35%)
@@ -236,6 +239,7 @@ export default function GameMaker({username, projectName}) {
 
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
+
 
  // const [currentChapterNodeMap, setCurrentChapterNodeMap] = useState({});           //--- not used ---
  // const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys              //--- not used ---
@@ -1836,7 +1840,16 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 <div className={modalStyleName} style={{}}>
 
         <button className="testEntire" onClick={()=>{closeEntireGameViewer();}}>Stop Testing</button>
+        <button
+          className="testEntire" 
+          onClick={()=>{
+              setMutedViewOption(!mutedViewOption);
+          }}
+        >
+          {mutedViewOption === true && <label>Unmute</label>}
+          {mutedViewOption === false && <label>Mute</label>}
 
+        </button>
 
     {/* top bar for optional displaying */}
         <div style={{"marginBottom":" 10px", "userSelect": "none", "color": "#FFFFFF"}}>
@@ -1903,6 +1916,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
           visualMap={visualMap}
           audioMap={audioMap}
+          mutedViewOption={mutedViewOption}
 
       />
 

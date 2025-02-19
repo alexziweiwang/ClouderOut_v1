@@ -23,9 +23,9 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 //           after closed this compo, all the data-states reset, and next time new viewer-entire still fetches the emu-data
 //               that is, not saving anything for the emu-play!
 
-//TODO
-// minds of game-progress (page name, node type, ...)
-// an outer-layer compo keeps these progress !!
+
+//TODO100 each nav-page would provide option of bgm?? (maintain or start-new)
+
 
 export default function Viewer_Entire({
 
@@ -55,7 +55,7 @@ export default function Viewer_Entire({
 
     visualMap,
     audioMap,
-
+    mutedViewOption
 
 
 
@@ -98,8 +98,7 @@ export default function Viewer_Entire({
         "16:9(vertical)": [450, 800],
         "4:3(horizonal)": [800, 600],
         "4:3(vertical)": [600, 800]};
-        
-
+    
     const screenWidth = ((initialNavObj !== undefined && Object.keys(initialNavObj).length > 0) 
             &&
             (initialNavObj["screenSize"] === "16:9(horizonal)"
@@ -530,6 +529,7 @@ game-screen (specific node) layer */}
                                                 
                                                 visualMap={visualMap}
                                                 audioMap={audioMap}
+                                                mutedViewOption={mutedViewOption}
                                           />
 
                                 

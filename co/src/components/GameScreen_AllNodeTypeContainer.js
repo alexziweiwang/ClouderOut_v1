@@ -33,6 +33,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
     visualMap,
     audioMap,
+    mutedViewOption
 
 }) {
 
@@ -619,6 +620,8 @@ return (<div
 
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far
+            mutedViewOption={mutedViewOption}
+
        />
 
 {/*

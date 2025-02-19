@@ -78,6 +78,8 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
 
     const [clickOnGameScreen, setClickOnGameScreen] = useState(false);
 
+    const [mutedViewOption, setMutedViewOption] = useState(false);
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
@@ -316,8 +318,6 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
 
     }
 
-
-
     function notUsing() {
         return "notUsing";
     }
@@ -331,13 +331,14 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
             }}>
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
-                <button 
-                    className="cursor_pointer modalClose" 
-                    onClick={()=>{
-                        setGameDataTracker(initGdtRecord)
-                        handleQViewCancel();
-                        
-                    }}> {closeText} </button>
+                    <button 
+                        className="cursor_pointer modalClose" 
+                        onClick={()=>{
+                            setGameDataTracker(initGdtRecord)
+                            handleQViewCancel();
+                            
+                        }}> {closeText} 
+                    </button>
                     
                     <button 
                         className="cursor_pointer modalClose" 
@@ -350,6 +351,17 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                             setResetInfo(resArr);
                         }}
                     > {resetText} </button>
+
+                    <button
+                        className="cursor_pointer modalClose" 
+                        onClick={()=>{
+                            setMutedViewOption(!mutedViewOption);
+                        }}
+                    >
+                        {mutedViewOption === true && <label>Unmute</label>}
+                        {mutedViewOption === false && <label>Mute</label>}
+
+                    </button>
             </div>
 
 
@@ -385,6 +397,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                     receiveGameDataObj={passInGameDataFromScreen}
                     buttonConseqByStatement={changeGameDataTrackerByStatement}
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
+                    isViewMuted={mutedViewOption}
                 />
                 
 
@@ -402,6 +415,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                 />
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
          
+
                 </div>
 
 
