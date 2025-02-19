@@ -445,8 +445,7 @@
 
 - 2025-Feb-06: Consider and research - scalability of current ones
 
-
-
+- 2025-Feb-18: Plan testing-project resource topics for material preparation
 
 
 
