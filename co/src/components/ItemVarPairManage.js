@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 
-export default function ItemVarPairManage ({varPairInfo, selectedUrl, storeNewVarPairDataFunction, fileType, saveToCloudFunc}) {
+export default function ItemVarPairManage ({
+    varPairInfo, selectedUrl, storeNewVarPairDataFunction, fileType, 
+    saveToCloudFunc}) {
+
     const displayPart = varPairInfo.filter(elem => elem["url"] === selectedUrl);
     const displayItem = displayPart[0];
     let isInVarPair = false;
@@ -30,9 +33,6 @@ export default function ItemVarPairManage ({varPairInfo, selectedUrl, storeNewVa
                 storeNewVarPairDataFunction("edit", selectedUrl, inputContent, fileType);}}
             >Update</button>}
 
-            <button className="buttonRight" onClick={()=>{
-                saveToCloudFunc();
-            }}> Save Changes to Cloud </button>
         </div>
     );
 }

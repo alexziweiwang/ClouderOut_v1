@@ -106,7 +106,6 @@ export default function Modal_ResourceManagingWindow ({
 
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
-
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -119,7 +118,18 @@ export default function Modal_ResourceManagingWindow ({
         setLanguageCodeTextOption(UILang);
     });
 
+    function markDataChanged() {
+        setCloudUpdated(true)  // when add, delete, edit
+//TODO100
+    }
+
+    function resetDataUpdatedFalse() {
+        setCloudUpdated(false);
+    }
+
     function storeNewVarPairDataFuncGen(type, url, givenContent, fileType) {
+        markDataChanged();
+
         if (type === "delete") {
             let updatePartArr = [];
             let object = {};
@@ -155,9 +165,9 @@ export default function Modal_ResourceManagingWindow ({
                 alert("Changes saved to cloud!");
             } //TODO15 
 
-        } else {
+        } else { // not delete (add or edit)
             if (givenContent.length === 0) {
-                console.log("empty input in storeNewVarPairDataFuncGen(), direct return");//TODO 
+                console.log("empty input in store_NewVarPairData_FuncGen(), direct return");//TODO 
                 return;
             }
             let updatePart = "";
@@ -216,10 +226,7 @@ export default function Modal_ResourceManagingWindow ({
                 console.log("saving to cloud... info = ", info);
                 
                 setVarPairToCloud(info);
-//TODO save to cloud-db
-
-                alert("Changes saved to cloud!");
-            } //TODO15 
+            }
         }
 
 
@@ -232,7 +239,7 @@ export default function Modal_ResourceManagingWindow ({
             await storeProjectResourceVarPairsToCloudVM(varPairToCloud);
             setVarPairToCloud("default");
         }
-        setCloudUpdated(true); //TODO15 
+        resetDataUpdatedFalse();
 
     }
 
@@ -455,13 +462,13 @@ export default function Modal_ResourceManagingWindow ({
                                 "visual": visualVarPairs
                             }
                             triggerRmUpdate(temp);
-        
+                            resetDataUpdatedFalse();
                         }}
                     >
                             {saveToCloudText}?
                     </button>
                     <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
-                            if (cloudUpdated === false) { //TODO15 
+                            if (cloudUpdated === true) { //TODO15 
                                 let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
                                 if (!resp) {
                                     return;
@@ -469,7 +476,7 @@ export default function Modal_ResourceManagingWindow ({
                             }
                             handleRmCancel();
                             setClickedFileUrl("");
-                            setCloudUpdated(false); //TODO15 
+                            resetDataUpdatedFalse(); //TODO15 
                         
                         
                         }}>
@@ -561,8 +568,19 @@ export default function Modal_ResourceManagingWindow ({
 {/* visual resource-previewing area */}
 
                 <div className="areaBlue" style={{}}>
-                    {clickedFileUrl !== "" && <PicturePreview className="paddings" urlList={visualListFilteredList} selectedUrl={clickedFileUrl} removeFileFromAll={removeOneResource}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={visualVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="visual" saveToCloudFunc={updateVarPairToCloud}/>}
+                    {clickedFileUrl !== "" && 
+                        <PicturePreview className="paddings" 
+                            urlList={visualListFilteredList} 
+                            selectedUrl={clickedFileUrl} 
+                            removeFileFromAll={removeOneResource}/>}
+                    {clickedFileUrl !== "" && 
+                        <ItemVarPairManage className="paddings" 
+                            varPairInfo={visualVarPairs} 
+                            selectedUrl={clickedFileUrl} 
+                            storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} 
+                            fileType="visual" 
+                            saveToCloudFunc={updateVarPairToCloud}
+                        />}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
                         className="picResource" 
