@@ -26,6 +26,7 @@ export default function NavigationPreview ({
 
     visualMap,
     audioMap,
+    provideGameSettingObjFromSubCompo
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -59,6 +60,20 @@ const tempFontSize = 12;
     const [refGameDataList, setRefGameDataList] = useState(initialGameDataRefData);
 
     const [qWindowOpen, setQWindowOpen] = useState(false);
+                            // 0.settingPage-playSpeed
+                            // 1.settingPage-bgmVol
+                            // 2.settingPage-seVol
+    const gameSettingOptionLookUp = {
+        0: "settingPage-playSpeed",
+        1: "settingPage-bgmVol",
+        2: "settingPage-seVol"
+    };
+
+    const [gameSettingsParametersObj, setGameSettingsParametersObj] = useState({
+        "settingPage-playSpeed" : 3,
+        "settingPage-bgmVol": 90,
+        "settingPage-seVol": 90
+    });
 
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
@@ -282,9 +297,17 @@ const tempFontSize = 12;
         setTryPPPic(picObjTemp);
 
     }
+
+    function getgameSettingsParametersObj() {
+        return gameSettingsParametersObj;
+    }
+
+    function providegameSettingsParametersObj() {
+        //TODO107
+    }
     
 
-    return (
+return (
     <>
 
     {(navObj !== undefined && Object.keys(navObj).length > 0) &&
@@ -968,6 +991,7 @@ const tempFontSize = 12;
                             } else {
                                 optionName = "settingDefault" + index;
                             }
+
         
                             if (navObj[item] === true) {
                                 
@@ -1019,9 +1043,12 @@ const tempFontSize = 12;
                                         <div
                                         >
                                             <input type="range"
-                                                
-                                                onChange={()=>{
-                                                    //TODO update to player-gameSettings?
+                                                value={gameSettingsParametersObj[optionName]}
+                                                onChange={(event)=>{
+                                                    let temp = gameSettingsParametersObj;
+                                                    let barName = gameSettingOptionLookUp[index];
+                                                    temp[barName] = event.target.value;
+                                                    setGameSettingsParametersObj(temp);
                                                 }}
                                                 style={{
                                                     "accentColor": navObj["settingPage-sliderColor"],

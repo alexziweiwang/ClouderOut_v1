@@ -1589,6 +1589,12 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       resetAudioMapFromList(audioListTemp); 
   }
 
+  function getGameSettingObjFromSubCompo() {
+    //get the actual-game-settings from sub-compo ...
+    //TODO107
+    //saves data-structure here, and pass-in to playing-related-compo
+  }
+
 
 
 {/* //components
@@ -1821,6 +1827,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                   visualMap={visualMap}
                   audioMap={audioMap}
+                  provideGameSettingObjFromSubCompo={getGameSettingObjFromSubCompo}
                   />
               </div>
           </div>

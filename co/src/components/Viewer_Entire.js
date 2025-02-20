@@ -472,6 +472,12 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         triggerUpdateCurrentStanding(obj);
     }
 
+    function getGameSettingObjFromSubCompo() {
+        //get the actual-game-settings from sub-compo ...
+        //TODO107
+    //saves data-structure here, and pass-in to playing-related-compo
+
+    }
 
 
 
@@ -576,6 +582,7 @@ shop layer
 
                         visualMap={visualMap}
                         audioMap={audioMap}
+                        provideGameSettingObjFromSubCompo={getGameSettingObjFromSubCompo}
 
                     /> 
                                                                                 {/* //TODO16
