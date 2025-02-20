@@ -1834,7 +1834,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                   visualMap={visualMap}
                   audioMap={audioMap}
-                  getGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompo}
+                  sendOutGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompo}
                   />
               </div>
           </div>

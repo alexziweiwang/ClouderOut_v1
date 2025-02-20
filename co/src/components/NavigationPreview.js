@@ -26,7 +26,7 @@ export default function NavigationPreview ({
 
     visualMap,
     audioMap,
-    getGameSettingScaleObjFromSubCompo
+    sendOutGameSettingScaleObjFromSubCompo
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -63,17 +63,23 @@ const tempFontSize = 12;
                             // 0.settingPage-playSpeed
                             // 1.settingPage-bgmVol
                             // 2.settingPage-seVol
-    const gameSettingOptionLookUp = {
-        0: "settingPage-playSpeed",
-        1: "settingPage-bgmVol",
-        2: "settingPage-seVol"
-    };
+    
+    const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
 
-    const [gameSettingsParametersObj, setGameSettingsParametersObj] = useState({
-        "settingPage-playSpeed" : 3,
-        "settingPage-bgmVol": 90,
-        "settingPage-seVol": 90
-    });
+    const [gsPlaySpeed, setGsPlaySpeed] = useState(3);
+    const [gsBgmVol, setGsBgmVol] = useState(90);
+    const [gsSeVol, setGsSeVol] = useState(90);
+
+    const [gameSettingsParametersObj, setGameSettingsParametersObj] = useState(
+        { //Temp default values 
+            //TODO107 later: fetch from emu-manager...
+            "settingPage-playSpeed" : gsPlaySpeed,
+            "settingPage-bgmVol": gsBgmVol,
+            "settingPage-seVol": gsSeVol
+        }
+        );
+
+
 
 
     const mainPageEntryNames = ["mainPage-story", "mainPage-playerProfile", "mainPage-setting", "mainPage-shop"];
@@ -86,7 +92,6 @@ const tempFontSize = 12;
         "mainPage-shop-picName"             //5
     ]; 
 
-    const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
 
     const [storyPageChapterTitles, setStoryPageChapterTitles] = useState([]);
     const [storyPageChapterKeyMapping, setStoryPageChapterKeyMapping] = useState([]);
@@ -298,9 +303,11 @@ const tempFontSize = 12;
 
     }
 
-    function sendOutgameSettingsParametersObj(data) {
+    function sendOutGameSettingsParametersObj(data) {
         //TODO107
-        getGameSettingScaleObjFromSubCompo(data);
+        console.log("sendOut_gameSettingsParameters_Obj...  temp = ", data);
+
+        sendOutGameSettingScaleObjFromSubCompo(data);
     }
     
 
@@ -976,33 +983,33 @@ return (
                 "borderRadius": "0px",
             }}>
 
-                        {settingsPageEntryNames.map((item, index) => {
-                            let optionName = "settingsDefault";
-                            
-                            if (index === 0) {
-                                optionName = navObj["settingPage-playSpeed"];
-                            } else if (index === 1) {
-                                optionName = navObj["settingPage-bgmVol"];
-                            } else if (index === 2) {
-                                optionName = navObj["settingPage-seVol"];
-                            } else {
-                                optionName = "settingDefault" + index;
-                            }
 
+{/* settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"]; */}
+
+                        {settingsPageEntryNames.map((item, index) => {
         
                             if (navObj[item] === true) {
                                 
                                     let title = "";
+                                    let barMax = 100;
+                                    let barMin = 0;
+                                    
+                                    let displayGsOptionValue = "?";
                                     if (item === "settingPage-playSpeed") {
                                         title = navObj["settingPage-playSpeedName"];
+                                        displayGsOptionValue = gsPlaySpeed;
+                                        barMax = 5;
+                                        barMin = 1;
                                     } else if (item === "settingPage-bgmVol") {
                                         title = navObj["settingPage-bgmVolName"];
+                                        displayGsOptionValue = gsBgmVol;
                                     } else if (item === "settingPage-seVol") {
                                         title = navObj["settingPage-seVolName"];
-                                    }
+                                        displayGsOptionValue = gsSeVol;
+                                    }             
 
-
-                                   let keyStr3 = "settingItem" + index + (isEditing === true ? "__e" : "__ne");
+                                    let keyStr3 = "settingItem" + index + (isEditing === true ? "__e" : "__ne");
+                   
 
                                     return (
                                     <div
@@ -1033,20 +1040,33 @@ return (
                                       
                                     >
                                         <div style={{"height": "30px",}}>
-                                            <label style={{"height": "20px"}}>{title} [{keyStr3}]</label>
-                                            <label>(value)</label>
+                                            <label style={{"height": "20px"}}>{title}</label>
+                                            <label>{displayGsOptionValue}</label>
                                         </div>
 
                                         <div
                                         >
                                             <input type="range"
-                                                value={gameSettingsParametersObj[optionName]}
+                                                value={displayGsOptionValue}
+                                                max={barMax}
+                                                min={barMin}
                                                 onChange={(event)=>{
+                                                    let val = event.target.value;
                                                     let temp = gameSettingsParametersObj;
-                                                    let barName = gameSettingOptionLookUp[index];
-                                                    temp[barName] = event.target.value;
+                                                    temp[item] = val;
                                                     setGameSettingsParametersObj(temp);
-                                                    sendOutgameSettingsParametersObj(temp);
+
+                    
+                                                    if (item === "settingPage-playSpeed") {
+                                                        setGsPlaySpeed(val);
+                                                    } else if (item === "settingPage-bgmVol") {
+                                                        setGsBgmVol(val);
+                                                    } else if (item === "settingPage-seVol") {
+                                                        setGsSeVol(val);
+                                                    }
+
+                                                    sendOutGameSettingsParametersObj(temp);               
+
                                                 }}
                                                 style={{
                                                     "accentColor": navObj["settingPage-sliderColor"],
@@ -1934,6 +1954,12 @@ return (
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
                                 
                                 let nextPageName = "Main Page";
+                                if (page === "Settings Page") {
+                                    //TODO107 save the current set of game-settings-obj to outlayer...
+                                    console.log("returning from settings-page, saving current values = ", gameSettingsParametersObj);
+                                }
+
+
                                 if (page === "During Game") {
                                     setQWindowOpen(true);
                            //         triggerUpdateCurrPageName("Quit Asking Window");

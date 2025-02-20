@@ -589,7 +589,7 @@ shop layer
 
                         visualMap={visualMap}
                         audioMap={audioMap}
-                        getGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompoViewer}
+                        sendOutGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompoViewer}
 
                     /> 
                                                                                 {/* //TODO16
