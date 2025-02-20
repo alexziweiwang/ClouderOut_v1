@@ -176,7 +176,10 @@ export default function PlayWindow({getCurrentPieceIndex, allPieces, getTextFram
 
             </div>
                   {(bgmSource !== undefined) && 
-                      <audio src={bgmSource} controls/> // actual game-playing
+                      <audio 
+                      src={bgmSource} 
+                      controls
+                    /> // actual game-playing
                   }
          
         </div>

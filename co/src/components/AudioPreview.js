@@ -1,5 +1,6 @@
 export default function AudioPreview ({urlList, selectedUrl}) {
     
+
     return (
         <div className="rsrcPrevArea">
             {urlList.map((item, index) => {

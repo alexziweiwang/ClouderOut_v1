@@ -24,6 +24,7 @@ export default function GameScreen_QuickView_ConvNode ({
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
 
 }) { //temp: not holding game-data-tracker
+        const audioPlayerId = "audio-player";
 
         let modalStyleName = "modalBackboard"; 
         const allPieceLimit = allPieceContent === undefined ? 0 : allPieceContent.length;
@@ -224,7 +225,12 @@ export default function GameScreen_QuickView_ConvNode ({
         function passInVisualMap() {
             return visualMap;
         }
-
+        
+        //TODO105
+        function changeBgmVolume(volumeValue) {
+            let audioElem = document.getElementById(audioPlayerId);
+            audioElem.volume = volumeValue;
+        }
 
     return (         
 <div   
@@ -359,7 +365,9 @@ style={{
 
             />}
 
+//TODO105
             <audio 
+                id={audioPlayerId}
                 src={bgmSource} 
                 autoPlay="autoPlay" 
                 controls 

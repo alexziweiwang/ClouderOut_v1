@@ -26,7 +26,8 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     
   
   }) {
-  
+    const audioPlayerId = "audio-player";
+
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
     const [screenWidth, setScreenWidth] = useState(800);
@@ -243,6 +244,12 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       console.log();
     }
 
+//TODO105
+    function changeBgmVolume(volumeValue) {
+      let audioElem = document.getElementById(audioPlayerId);
+      audioElem.volume = volumeValue;
+    }
+
     return (
     
         <div className="previewWindow"  
@@ -387,13 +394,14 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             </div>
    
             {(bgmSource !== undefined) && 
-                      // <audio src={bgmSource} controls loop={allPieceData[currentPieceNum]["bgm_loop"]}/> //TODO actual game-playing
                 <div style={{"marginTop": "2px"}}>
+//TODO105
                 <audio 
                   src={bgmSource} 
                   autoPlay="autoPlay" 
                   controls loop={allPieceData[currentPieceNum]["bgm_loop"]}
                   style={{"height": "30px"}}
+                  id={audioPlayerId}
                 /> 
                   {/* //TODO previewing/testing */}
                 </div>
