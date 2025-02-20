@@ -116,6 +116,8 @@ export default function Viewer_Entire({
                 || initialNavObj["screenSize"] === "4:3(vertical)")) 
         ? sizeLookupMap[initialNavObj["screenSize"]][1] 
         : 600;
+    
+    const [gameSettingsScaleObjViewer, setGameSettingsScaleObjViewer] = useState({});
 
 
 //prev-ver. //TODO remove after test
@@ -472,11 +474,16 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         triggerUpdateCurrentStanding(obj);
     }
 
-    function getGameSettingObjFromSubCompo() {
+    function getGameSettingScaleObjFromSubCompoViewer(data) {
         //get the actual-game-settings from sub-compo ...
         //TODO107
     //saves data-structure here, and pass-in to playing-related-compo
+        setGameSettingsScaleObjViewer(data);
 
+    }
+
+    function passInGameSettingsScaleObjViewer() {
+        return gameSettingsScaleObjViewer;
     }
 
 
@@ -582,7 +589,7 @@ shop layer
 
                         visualMap={visualMap}
                         audioMap={audioMap}
-                        provideGameSettingObjFromSubCompo={getGameSettingObjFromSubCompo}
+                        getGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompoViewer}
 
                     /> 
                                                                                 {/* //TODO16

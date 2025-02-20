@@ -26,7 +26,7 @@ export default function NavigationPreview ({
 
     visualMap,
     audioMap,
-    provideGameSettingObjFromSubCompo
+    getGameSettingScaleObjFromSubCompo
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -298,12 +298,9 @@ const tempFontSize = 12;
 
     }
 
-    function getgameSettingsParametersObj() {
-        return gameSettingsParametersObj;
-    }
-
-    function providegameSettingsParametersObj() {
+    function sendOutgameSettingsParametersObj(data) {
         //TODO107
+        getGameSettingScaleObjFromSubCompo(data);
     }
     
 
@@ -1049,6 +1046,7 @@ return (
                                                     let barName = gameSettingOptionLookUp[index];
                                                     temp[barName] = event.target.value;
                                                     setGameSettingsParametersObj(temp);
+                                                    sendOutgameSettingsParametersObj(temp);
                                                 }}
                                                 style={{
                                                     "accentColor": navObj["settingPage-sliderColor"],

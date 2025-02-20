@@ -417,6 +417,7 @@ export default function GameMaker({username, projectName}) {
     
   }); //TODO now: default initial values
 
+  const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
 
   const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
@@ -1589,10 +1590,16 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       resetAudioMapFromList(audioListTemp); 
   }
 
-  function getGameSettingObjFromSubCompo() {
+  function getGameSettingScaleObjFromSubCompo(data) {
     //get the actual-game-settings from sub-compo ...
     //TODO107
     //saves data-structure here, and pass-in to playing-related-compo
+    setGameSettingsScaleObj(data);
+
+  }
+
+  function passIngameSettingsScaleObj() {
+    return gameSettingsScaleObj;
   }
 
 
@@ -1827,7 +1834,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                   visualMap={visualMap}
                   audioMap={audioMap}
-                  provideGameSettingObjFromSubCompo={getGameSettingObjFromSubCompo}
+                  getGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompo}
                   />
               </div>
           </div>
