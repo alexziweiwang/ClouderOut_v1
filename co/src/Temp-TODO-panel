@@ -1,0 +1,26 @@
+
+
+
+* compo - < GameScreen_QuickView_ConvNode > add parameter of "volumeReq"
+* compo - <PreviewWindow_convNodeGameContent> add parameter of "volumeReq"
+
+parent-compo that uses < GameScreen_QuickView_ConvNode > :
+            < AllPanels_QuickView_ConvNode >
+            < GameScreen_InPracShell_ConvNode >
+    and outer-layer
+            < GameScreen_AllNodeTypeContainer >
+    and outer-layer
+            < Viewer_Entire >
+    and outer-layer
+            < GameMaker >
+
+parent-compo that uses < PreviewWindow_convNodeGameContent > :
+            < ConversationNodeEditingPanel
+
+
+* places to decide volumes:
+        - nav-setting page for all-audio-files
+        - when adding bgm/sound-effect in piece-setter 
+    TODO-check piece-data for audio-file parts about info-inclusion
+
+

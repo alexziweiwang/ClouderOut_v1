@@ -225,8 +225,8 @@ export default function GameScreen_QuickView_ConvNode ({
         function passInVisualMap() {
             return visualMap;
         }
-        
-        //TODO105
+
+        //TODO106
         function changeBgmVolume(volumeValue) {
             let audioElem = document.getElementById(audioPlayerId);
             audioElem.volume = volumeValue;
@@ -365,7 +365,7 @@ style={{
 
             />}
 
-//TODO105
+//TODO106
             <audio 
                 id={audioPlayerId}
                 src={bgmSource} 

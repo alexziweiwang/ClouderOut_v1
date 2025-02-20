@@ -244,7 +244,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       console.log();
     }
 
-//TODO105
+//TODO106
     function changeBgmVolume(volumeValue) {
       let audioElem = document.getElementById(audioPlayerId);
       audioElem.volume = volumeValue;
@@ -395,7 +395,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
    
             {(bgmSource !== undefined) && 
                 <div style={{"marginTop": "2px"}}>
-//TODO105
+//TODO106
                 <audio 
                   src={bgmSource} 
                   autoPlay="autoPlay" 
