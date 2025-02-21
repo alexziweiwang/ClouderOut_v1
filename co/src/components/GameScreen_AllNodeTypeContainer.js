@@ -72,7 +72,7 @@ export default function GameScreen_AllNodeTypeContainer({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
-        console.log("anct___game-data-tracker.. ", currGameDataTracker);
+        console.log("### game-screen-all-node-type-container...\n\tanct___game-data-tracker.. ", currGameDataTracker);
  
         if (firstTimeEnter === true) {
             //TODO
@@ -570,6 +570,7 @@ return (<div
             "height": `${screenHeight}px`
         }}
     >
+
     </div>}
 
 
@@ -598,6 +599,7 @@ return (<div
             //--- works perfectly ok with temp conv-area (without logic-splitter so far)---
         }}
     >
+        {/* //TODO change to bgm for each node's piece... */}
 
         <GameScreen_InPracShell_ConvNode
             allPieceData={focusedNodeData["nodeContent"]}
@@ -622,6 +624,7 @@ return (<div
             visualMap={visualMap} //TODO empty so far
             audioMap={audioMap} //TODO empty so far
             mutedViewOption={mutedViewOption}
+            fetchGameSettings={fetchGameSettings}
 
        />
 

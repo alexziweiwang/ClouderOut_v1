@@ -18,7 +18,9 @@ export default function GameScreen_QuickView_ConvNode ({
 
     visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
-    isViewMuted
+    isViewMuted,
+    fetchGameSettings
+
 
     
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two

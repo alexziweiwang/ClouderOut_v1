@@ -322,6 +322,17 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
         return "notUsing";
     }
 
+    function passInDefulatGameSettings() {
+
+        let defaultObj = {            
+            "settingPage-playSpeed" : gsPlaySpeed,
+            "settingPage-bgmVol": gsBgmVol,
+            "settingPage-seVol": gsSeVol
+        };
+
+        return defaultObj;
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea  textNoSelect">
 
@@ -398,6 +409,8 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                     buttonConseqByStatement={changeGameDataTrackerByStatement}
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
                     isViewMuted={mutedViewOption}
+                    fetchGameSettings={passInDefulatGameSettings}
+
                 />
                 
 
