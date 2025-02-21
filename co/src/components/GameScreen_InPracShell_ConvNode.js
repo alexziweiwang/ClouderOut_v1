@@ -193,7 +193,7 @@ return (<div>
 
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}  //TODO 
                     isViewMuted={mutedViewOption}
-                    fetchGameSettings={fetchGameSettings}
+                    fetchGameSettingsForPlaying={fetchGameSettings}
                 />
                 
 

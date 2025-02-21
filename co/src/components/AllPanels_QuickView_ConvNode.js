@@ -325,9 +325,9 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
     function passInDefulatGameSettings() {
 
         let defaultObj = {            
-            "settingPage-playSpeed" : gsPlaySpeed,
-            "settingPage-bgmVol": gsBgmVol,
-            "settingPage-seVol": gsSeVol
+            "settingPage-playSpeed" : 3,
+            "settingPage-bgmVol": 90,
+            "settingPage-seVol": 90
         };
 
         return defaultObj;
@@ -409,7 +409,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                     buttonConseqByStatement={changeGameDataTrackerByStatement}
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
                     isViewMuted={mutedViewOption}
-                    fetchGameSettings={passInDefulatGameSettings}
+                    fetchGameSettingsForPlaying={passInDefulatGameSettings}
 
                 />
                 

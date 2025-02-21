@@ -19,7 +19,7 @@ export default function GameScreen_QuickView_ConvNode ({
     visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
     isViewMuted,
-    fetchGameSettings
+    fetchGameSettingsForPlaying
 
 
     
@@ -48,7 +48,13 @@ export default function GameScreen_QuickView_ConvNode ({
     
         const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_arr"] : []);
 
-        
+        const [gameSettingScaleObj, setGameSettingScaleObj] = useState();
+//gameSettingScaleObj["settingPage-playSpeed"]
+//gameSettingScaleObj["settingPage-bgmVol"]
+//gameSettingScaleObj["settingPage-seVol"]
+
+
+
 
 // const [gameScreenClickedStatus, setGameScreenClickedStatus] = useState(false); //TODO temp remove, test before removing
 
@@ -63,6 +69,11 @@ export default function GameScreen_QuickView_ConvNode ({
                 setFirstTimeEnter(false);
             }
 
+            let bgmVolScale = gameSettingScaleObj["settingPage-bgmVol"] / 100;
+            let currBgmBol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
+            let resVol = bgmVolScale * currBgmBol;
+            changeBgmVolume(resVol);
+
             let resetSignal = getResetSignal();
             if (resetSignal === true) {
                 let info = getResetInfoSets();
@@ -71,6 +82,9 @@ export default function GameScreen_QuickView_ConvNode ({
 
                 notifyAfterReset();
             }
+            
+            let scaleObj = fetchGameSettingsForPlaying();
+            setGameSettingScaleObj(scaleObj);
     
             // let clickStatus = getIsGameScreenClicked();
             // if (clickStatus === true) {
@@ -310,7 +324,12 @@ style={{
                     txtFrameUISettings={uiData1_textframe}
                     getIsDirectNextPiece={passInDirectNextPieceBool}
                     triggerNextPieceFunc={triggerToDirectNextPiece} 
-                    speedLevel={uiData3_ConvNavigation["textDisplaySpeed"]}
+                    
+                    
+                    speedLevel={gameSettingScaleObj["settingPage-playSpeed"] !== undefined ? gameSettingScaleObj["settingPage-playSpeed"] : uiData3_ConvNavigation["textDisplaySpeed"]}
+                    // TODO109 eventual speed
+
+
                     notifyFinished={notifyFinished}
                     notifyNotYet={notifyNotYet}
                     getInImmedaiteFinishSignal={passInImmedaiteFinishSignal}
