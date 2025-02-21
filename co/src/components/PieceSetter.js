@@ -23,6 +23,8 @@ export default function PieceSetter({
 
     getUILanguage,
     username, projName,
+    sendOutBgmVol,
+
 
 }) {
 
@@ -1827,8 +1829,36 @@ export default function PieceSetter({
                         </div>}
                         <br></br>
                         <label>Volume:         </label>
-                        <label>TODO</label>
-                        <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
+                        <input type="range" min="0" max="100" step="1" defaultValue="100"
+                            value={currentSinglePieceDetail["bgm_volume"]}
+                            onChange={(event)=>{
+                                let val = event.target.value;
+
+                                sendOutBgmVol(val); //TODO107 send-out to editor and preview compo
+
+                                let tempObj = currentSinglePieceDetail;
+                                tempObj["bgm_volume"] = val;
+                                updateToCaller(tempObj);
+
+                                setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_volume": val});
+                            }}
+                        ></input>
+                        <input type="number" min="0" max="100" step="1" defaultValue="100"
+                            value={currentSinglePieceDetail["bgm_volume"]}
+                            onChange={(event)=>{
+                                let val = event.target.value;
+                                
+                                sendOutBgmVol(val); //TODO107 send-out to editor and preview compo
+
+                                let tempObj = currentSinglePieceDetail;
+                                tempObj["bgm_volume"] = val;
+                                updateToCaller(tempObj);
+
+                                setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_volume": val});
+                            }}                        
+                        
+                        ></input>
+
                         </div>}
                 </div>}
                 

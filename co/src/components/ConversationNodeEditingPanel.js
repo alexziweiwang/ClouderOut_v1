@@ -61,6 +61,8 @@ export default function ConversationNodeEditingPanel() {
         "4:3(vertical)": [600, 800]
     };
 
+    const [currBgmVol, setCurrBgmVol] = useState(90);
+
 
     const [isActionOnSetter, setIsActionOnSetter] = useState(true);
 
@@ -886,6 +888,18 @@ export default function ConversationNodeEditingPanel() {
         fetchProjResourceLists();
     }
 
+
+
+    
+//TODO107
+    function receiveBgmVol(value) {
+        setCurrBgmVol(value);
+
+    }
+
+    function passInBgmVol() {
+        return currBgmVol;
+    }
     
           
 
@@ -1041,7 +1055,8 @@ export default function ConversationNodeEditingPanel() {
 
                             getUILanguage={passInUILanguage}
                             username={state.userName} 
-                            projName={state.projectName}    
+                            projName={state.projectName} 
+                            sendOutBgmVol={receiveBgmVol}   
                         />}
   
 
@@ -1143,6 +1158,10 @@ export default function ConversationNodeEditingPanel() {
 
                     getVisualMap={passInVisualMap}
                     getAudioMap={passInAudioMap}
+                    //TODO receive bgm-volume
+
+                                            //TODO later: se-volume
+                                            //TODO later: voiceline-volume
 
                     
                     username={state.userName}
