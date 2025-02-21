@@ -33,7 +33,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
     visualMap,
     audioMap,
-    mutedViewOption
+    mutedViewOption,
+    fetchGameSettings
 
 }) {
 
@@ -504,7 +505,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
 
-
+//TODO109 fetchGameSettings()
 
 return (<div 
     style={{

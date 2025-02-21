@@ -117,8 +117,9 @@ export default function Viewer_Entire({
         ? sizeLookupMap[initialNavObj["screenSize"]][1] 
         : 600;
     
-    const [gameSettingsScaleObjViewer, setGameSettingsScaleObjViewer] = useState({});
 
+    const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
+    //TODO109
 
 //prev-ver. //TODO remove after test
                                         // const [screenWidth, setScreenWidth] = useState(800); //TODO
@@ -478,12 +479,12 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         //get the actual-game-settings from sub-compo ...
         //TODO107
     //saves data-structure here, and pass-in to playing-related-compo
-        setGameSettingsScaleObjViewer(data);
+        setGameSettingsScaleObj(data);
 
     }
 
-    function passInGameSettingsScaleObjViewer() {
-        return gameSettingsScaleObjViewer;
+    function passInGameSettingsScaleObj() {
+        return gameSettingsScaleObj;
     }
 
 
@@ -543,6 +544,7 @@ game-screen (specific node) layer */}
                                                 visualMap={visualMap}
                                                 audioMap={audioMap}
                                                 mutedViewOption={mutedViewOption}
+                                                fetchGameSettings={passInGameSettingsScaleObj}
                                           />
 
                                 
