@@ -447,6 +447,7 @@
 
 - 2025-Feb-18: Plan testing-project resource topics for material preparation
 
+- 2025-Feb-20: Design strategy for game-creator(user)'s options to adjust audio-file volumes in dev
 
 
 
