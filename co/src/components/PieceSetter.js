@@ -27,6 +27,7 @@ export default function PieceSetter({
 
 
 }) {
+    const audioPlayerId = "audio-player";
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -258,6 +259,8 @@ export default function PieceSetter({
     const [audioList, setAudioList] = useState([]);
     const [visualList, setVisualList] = useState([]); 
 
+    const [setterPreviewBgmSource, setSetterPreviewBgmSource] = useState("");
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
     //    const allPiece = getAllPieceData();
@@ -291,26 +294,6 @@ export default function PieceSetter({
             setFirstTimeEnter(false);
         }
 
-    //    setCharPicDataTable(currentSinglePieceDetail["chp_arr"]);
-
-        // let isActionOnSetter = fetchClickedIsOnSetter();
-        // if (isActionOnSetter === false) {
-        //     //fetch action from preview-screen
-        //     //TODO1: update viewing index/num
-        //     let receivedPieceNum = getCurrentPieceNum();
-        //     setCurrentSinglePieceDetail(allPiecesDataLocal[receivedPieceNum]);
-        //     setLookingPieceNumber(receivedPieceNum+1);
-        // } else {
-    //     let boolVal = currentSinglePieceDetail["content"] == "";
-    //    //                                         console.log("!!! now on piece num = ", pieceNum-1, " empty content? " , boolVal);
-    //     setUserSelectedTextContentToEdit(!boolVal);
-    //     setCharPicDataTable(currentSinglePieceDetail["chp_arr"]);
-
-
-  //          stndBtnFromMapToArr(allPiecesDataLocal[pieceNum-1]["stnd_btn_map"]);
-
-
-      //  }
 
                                                                     //TODO prev-strategy for resource-updating
                                                                     // let isUdpateResource = fetch Rm UpdatedSignal(); 
@@ -684,9 +667,17 @@ export default function PieceSetter({
     }
 
     function setupBgmInfo(event) {
+        let val = event.target.value
         let tempObj = currentSinglePieceDetail;
-        tempObj["bgm_source_varname"] = event.target.value;
+        tempObj["bgm_source_varname"] = val;
         updateToCaller(tempObj);
+
+        let filteredAudioList = audioList.filter(e => e["var"] == val);
+        if (filteredAudioList.length > 0) {
+            let chosenElement = filteredAudioList[0];
+            setSetterPreviewBgmSource(chosenElement["url"]);
+        }
+
 
         setCurrentSinglePieceDetail({...currentSinglePieceDetail, "bgm_source_varname": event.target.value});
     }
@@ -1822,6 +1813,19 @@ export default function PieceSetter({
                             })}
                         </select>
                         <button onClick={() => {openRm()}}>{manageResourceText}</button>
+             
+                        <audio
+                            id={audioPlayerId}
+                            src={setterPreviewBgmSource} 
+                            autoPlay="autoPlay" 
+                            loop={isLooping}
+                            style={{
+                                "height": "30px",
+                            }}  
+                        
+                        />
+                        {/* //TODO107: play, pause, mute, volume control */}
+           
                             
                         {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
@@ -1858,6 +1862,8 @@ export default function PieceSetter({
                             }}                        
                         
                         ></input>
+
+    
 
                         </div>}
                 </div>}

@@ -26,7 +26,6 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     
   
   }) {
-    const audioPlayerId = "audio-player";
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -244,11 +243,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       console.log();
     }
 
-//TODO106
-    function changeBgmVolume(volumeValue) {
-      let audioElem = document.getElementById(audioPlayerId);
-      audioElem.volume = volumeValue;
-    }
 
     return (
     
@@ -393,20 +387,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
             </div>
    
-                                              {/* {(bgmSource !== undefined) && 
-                                                  <div style={{"marginTop": "2px"}}>
-                                  //TODO106
-                                                  <audio 
-                                                    src={bgmSource} 
-                                                    autoPlay="autoPlay" 
-                                                    controls loop={allPieceData[currentPieceNum]["bgm_loop"]}
-                                                    style={{"height": "30px"}}
-                                                    id={audioPlayerId}
-                                                  /> 
-                                                  </div>
-                                              } */}
-                  {/* //TODO previewing/testing */}
-
 
             {/* <p className="plans">
             This is conversation-node editing panel
