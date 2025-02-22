@@ -28,6 +28,7 @@ export default function PieceSetter({
 
 }) {
     const audioPlayerId = "audio-player";
+    let audioElem = document.getElementById(audioPlayerId);
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -260,6 +261,9 @@ export default function PieceSetter({
     const [visualList, setVisualList] = useState([]); 
 
     const [setterPreviewBgmSource, setSetterPreviewBgmSource] = useState("");
+    const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(false);
+
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -672,14 +676,21 @@ export default function PieceSetter({
         tempObj["bgm_source_varname"] = val;
         updateToCaller(tempObj);
 
-        let filteredAudioList = audioList.filter(e => e["var"] == val);
-        if (filteredAudioList.length > 0) {
-            let chosenElement = filteredAudioList[0];
-            setSetterPreviewBgmSource(chosenElement["url"]);
-        }
+        let urlTemp = resourceVarToUrl(audioList, val);
+        setSetterPreviewBgmSource(urlTemp);
 
 
         setCurrentSinglePieceDetail({...currentSinglePieceDetail, "bgm_source_varname": event.target.value});
+    }
+
+    //TODO21 refactor to VM
+    function resourceVarToUrl(list, varName) {
+        let filteredList = list.filter(e => e["var"] == varName);
+        if (filteredList.length > 0) {
+            return filteredList[0]["url"];
+        } else {
+            return "";
+        }
     }
 
 
@@ -1824,13 +1835,25 @@ export default function PieceSetter({
                             }}  
                         
                         />
-                        {/* //TODO107: play, pause, mute, volume control */}
-           
-                            
-                        {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
-                            <label>Loop:  </label>
-                            <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
-                        </div>}
+                        <div className="indentOne">
+                            <label>Previewing music: </label>
+                            {setterPreviewBgmPause === false && <button
+                                onClick={()=>{
+                                    setSetterPreviewBgmPause(true);
+                                    audioElem.pause();
+
+                                }}
+                            >Pause</button>}
+                            {setterPreviewBgmPause === true && <button
+                                onClick={()=>{
+                                    setSetterPreviewBgmPause(false);
+                                    audioElem.play();
+                                }}
+                            >Play</button>}
+
+                        </div>
+        
+
                         <br></br>
                         <label>Volume:         </label>
                         <input type="range" min="0" max="100" step="1" defaultValue="100"
@@ -1863,7 +1886,14 @@ export default function PieceSetter({
                         
                         ></input>
 
-    
+                  
+
+
+                        {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
+                            <label>Loop:  </label>
+                            <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
+                        </div>}
+                        <br></br>
 
                         </div>}
                 </div>}

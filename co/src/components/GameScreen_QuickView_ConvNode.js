@@ -27,6 +27,7 @@ export default function GameScreen_QuickView_ConvNode ({
 
 }) { //temp: not holding game-data-tracker
         const audioPlayerId = "audio-player";
+        let audioElem = document.getElementById(audioPlayerId);
 
         let modalStyleName = "modalBackboard"; 
         const allPieceLimit = allPieceContent === undefined ? 0 : allPieceContent.length;
@@ -252,7 +253,6 @@ export default function GameScreen_QuickView_ConvNode ({
 
         //TODO106
         function changeBgmVolume(volumeValue) {
-            let audioElem = document.getElementById(audioPlayerId);
             audioElem.volume = volumeValue;
         }
 
