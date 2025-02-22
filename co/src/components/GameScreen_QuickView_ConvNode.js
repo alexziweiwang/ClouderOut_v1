@@ -48,7 +48,7 @@ export default function GameScreen_QuickView_ConvNode ({
     
         const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_arr"] : []);
 
-        const [gameSettingScaleObj, setGameSettingScaleObj] = useState();
+        const [gameSettingScaleObj, setGameSettingScaleObj] = useState(-1);
 //gameSettingScaleObj["settingPage-playSpeed"]
 //gameSettingScaleObj["settingPage-bgmVol"]
 //gameSettingScaleObj["settingPage-seVol"]
@@ -69,7 +69,7 @@ export default function GameScreen_QuickView_ConvNode ({
                 setFirstTimeEnter(false);
             }
 
-            let bgmVolScale = gameSettingScaleObj["settingPage-bgmVol"] / 100;
+            let bgmVolScale =gameSettingScaleObj !== -1 ? gameSettingScaleObj["settingPage-bgmVol"] / 100 : 1;
             let currBgmBol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
             let resVol = bgmVolScale * currBgmBol;
             changeBgmVolume(resVol);
@@ -84,7 +84,15 @@ export default function GameScreen_QuickView_ConvNode ({
             }
             
             let scaleObj = fetchGameSettingsForPlaying();
-            setGameSettingScaleObj(scaleObj);
+            console.log("scaleObj = ", scaleObj);
+            if (
+            gameSettingScaleObj["settingPage-playSpeed"] !== scaleObj["settingPage-playSpeed"]
+            && gameSettingScaleObj["settingPage-bgmVol"] !== scaleObj["settingPage-bgmVol"]
+            && gameSettingScaleObj["settingPage-seVol"] !== scaleObj["settingPage-seVol"]
+            ) {
+                setGameSettingScaleObj(scaleObj);
+
+            }
     
             // let clickStatus = getIsGameScreenClicked();
             // if (clickStatus === true) {

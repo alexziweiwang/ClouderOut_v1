@@ -393,19 +393,19 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
             </div>
    
-            {(bgmSource !== undefined) && 
-                <div style={{"marginTop": "2px"}}>
-//TODO106
-                <audio 
-                  src={bgmSource} 
-                  autoPlay="autoPlay" 
-                  controls loop={allPieceData[currentPieceNum]["bgm_loop"]}
-                  style={{"height": "30px"}}
-                  id={audioPlayerId}
-                /> 
+                                              {/* {(bgmSource !== undefined) && 
+                                                  <div style={{"marginTop": "2px"}}>
+                                  //TODO106
+                                                  <audio 
+                                                    src={bgmSource} 
+                                                    autoPlay="autoPlay" 
+                                                    controls loop={allPieceData[currentPieceNum]["bgm_loop"]}
+                                                    style={{"height": "30px"}}
+                                                    id={audioPlayerId}
+                                                  /> 
+                                                  </div>
+                                              } */}
                   {/* //TODO previewing/testing */}
-                </div>
-            }
 
 
             {/* <p className="plans">
