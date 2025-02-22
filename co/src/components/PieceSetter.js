@@ -261,7 +261,7 @@ export default function PieceSetter({
     const [visualList, setVisualList] = useState([]); 
 
     const [setterPreviewBgmSource, setSetterPreviewBgmSource] = useState("");
-    const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(true);
+    const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(false);
 
 
 
@@ -273,7 +273,7 @@ export default function PieceSetter({
      //   } else if (allPiece !== allPiecesDataLocal) {
  //           setAllPiecesDataLocal(allPiece);  
     //    }
-                            console.log("piece-setter! *** useEffect ... allPiecesDataLocal is ", allPiecesDataLocal);
+                            console.log("piece-setter render once! \n\t*** useEffect ... allPiecesDataLocal is ", allPiecesDataLocal);
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
@@ -295,11 +295,17 @@ export default function PieceSetter({
             setLookingPieceNumber(receivedPieceNum+1);
             setStndButtonDataTable(allPieceData[receivedPieceNum]["stnd_btn_arr"] === undefined ? [] : allPieceData[receivedPieceNum]["stnd_btn_arr"]);
             
+   
+
+
+
 
             setFirstTimeEnter(false);
         }
+        let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-1]["bgm_source_varname"]);
+        setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
-console.log("bgm now is ...", setterPreviewBgmSource);
+        console.log("0bgm now is ...", bgmSourceUrlTemp);
 
                                                                     //TODO prev-strategy for resource-updating
                                                                     // let isUdpateResource = fetch Rm UpdatedSignal(); 
@@ -503,8 +509,8 @@ console.log("bgm now is ...", setterPreviewBgmSource);
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber-2]);
 
             
-            let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-2]["bgm_source_varname"]);
-            setSetterPreviewBgmSource(bgmSourceUrlTemp);
+            // let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-2]["bgm_source_varname"]);
+            // setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
             setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] : []);
             
@@ -525,8 +531,9 @@ console.log("bgm now is ...", setterPreviewBgmSource);
             //TODO change *all* form content here in display...
             
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber]);
-            let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber]["bgm_source_varname"]);
-            setSetterPreviewBgmSource(bgmSourceUrlTemp);
+            
+            // let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber]["bgm_source_varname"]);
+            // setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
          
             setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"] : []);
