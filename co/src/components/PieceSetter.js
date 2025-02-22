@@ -261,7 +261,7 @@ export default function PieceSetter({
     const [visualList, setVisualList] = useState([]); 
 
     const [setterPreviewBgmSource, setSetterPreviewBgmSource] = useState("");
-    const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(false);
+    const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(true);
 
 
 
@@ -294,10 +294,12 @@ export default function PieceSetter({
             setCurrentSinglePieceDetail(allPieceData[receivedPieceNum]);
             setLookingPieceNumber(receivedPieceNum+1);
             setStndButtonDataTable(allPieceData[receivedPieceNum]["stnd_btn_arr"] === undefined ? [] : allPieceData[receivedPieceNum]["stnd_btn_arr"]);
+            
 
             setFirstTimeEnter(false);
         }
 
+console.log("bgm now is ...", setterPreviewBgmSource);
 
                                                                     //TODO prev-strategy for resource-updating
                                                                     // let isUdpateResource = fetch Rm UpdatedSignal(); 
@@ -501,6 +503,8 @@ export default function PieceSetter({
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber-2]);
 
             
+            let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-2]["bgm_source_varname"]);
+            setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
             setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] : []);
             
@@ -521,6 +525,8 @@ export default function PieceSetter({
             //TODO change *all* form content here in display...
             
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber]);
+            let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber]["bgm_source_varname"]);
+            setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
          
             setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber]["stnd_btn_arr"] : []);
@@ -678,7 +684,6 @@ export default function PieceSetter({
 
         let urlTemp = resourceVarToUrl(audioList, val);
         setSetterPreviewBgmSource(urlTemp);
-
 
         setCurrentSinglePieceDetail({...currentSinglePieceDetail, "bgm_source_varname": event.target.value});
     }
@@ -1810,10 +1815,11 @@ export default function PieceSetter({
                         <option key="naturalStop" value="naturalStopBgm">naturally stop looping (after finish)</option>
                     </select>
 
-                    {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div className="indentOne">
+                    {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
                         <label>Source:  </label>
                         
-                        <select value={currentSinglePieceDetail["bgm_source_varname"]} onChange={(event)=>{
+                        <select value={currentSinglePieceDetail["bgm_source_varname"]} 
+                            onChange={(event)=>{
                                 setupBgmInfo(event);
                             }}>
                             <option key="bgm01" value=""> -- Select music name -- </option>
@@ -1825,18 +1831,22 @@ export default function PieceSetter({
                         </select>
                         <button onClick={() => {openRm()}}>{manageResourceText}</button>
              
-                        <audio
-                            id={audioPlayerId}
-                            src={setterPreviewBgmSource} 
-                            autoPlay="autoPlay" 
-                            loop={isLooping}
-                            style={{
-                                "height": "30px",
-                            }}  
-                        
-                        />
+                        <br></br>
+                        <label>Preview Music</label>
+
                         <div className="indentOne">
-                            <label>Previewing music: </label>
+                                      
+                            <audio
+                                id={audioPlayerId}
+                                src={setterPreviewBgmSource} 
+                                autoPlay="autoPlay" 
+                                loop={isLooping}
+                                style={{
+                                    "height": "30px",
+                                }}  
+                        
+                            />
+                            <br></br>
                             {setterPreviewBgmPause === false && <button
                                 onClick={()=>{
                                     setSetterPreviewBgmPause(true);
@@ -1846,6 +1856,9 @@ export default function PieceSetter({
                             >Pause</button>}
                             {setterPreviewBgmPause === true && <button
                                 onClick={()=>{
+                                    if (audioElem.src === undefined || audioElem.src === null || audioElem.src.length == 0) {
+                                        audioElem.src = setterPreviewBgmSource;
+                                    }
                                     setSetterPreviewBgmPause(false);
                                     audioElem.play();
                                 }}
@@ -1856,7 +1869,7 @@ export default function PieceSetter({
 
                         <br></br>
                         <label>Volume:         </label>
-                        <input type="range" min="0" max="100" step="1" defaultValue="100"
+                        <input type="range" min="0" max="100" step="1"
                             value={currentSinglePieceDetail["bgm_volume"]}
                             onChange={(event)=>{
                                 let val = event.target.value;
@@ -1870,7 +1883,7 @@ export default function PieceSetter({
                                 setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_volume": val});
                             }}
                         ></input>
-                        <input type="number" min="0" max="100" step="1" defaultValue="100"
+                        <input type="number" min="0" max="100" step="1"
                             value={currentSinglePieceDetail["bgm_volume"]}
                             onChange={(event)=>{
                                 let val = event.target.value;
@@ -1925,7 +1938,7 @@ export default function PieceSetter({
                     <br></br>
                     <label>Volume:         </label>
                     <label>TODO</label>
-                    <input type="number" min="0" max="200" step="1" defaultValue="100"></input>
+                    <input type="number" min="0" max="200" step="1"></input>
                 </div>}
          */}
 
