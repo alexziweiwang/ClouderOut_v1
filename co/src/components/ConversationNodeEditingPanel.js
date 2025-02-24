@@ -1102,6 +1102,7 @@ export default function ConversationNodeEditingPanel() {
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
                             getCurrentPieceNum={passInCurrentPieceNum}
+                            getScreenSize={passInScreenSize}
 
                             getUILanguage={passInUILanguage}
                         />}   

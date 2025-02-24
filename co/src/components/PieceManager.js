@@ -7,12 +7,15 @@ export default function PieceManager({
     allPieceData, assignPieceNum, assignPreviewIndex, 
     updatePieceData, getAllPieceData, 
     setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum,
+    getScreenSize,
 
     getUILanguage,
     
 }) {
-    const screenWidth = 800;
-    const screenHeight =450;
+    const [screenWidth, setScreenWidth] = useState(800);
+    const [screenHeight, setScreenHeight] = useState(600);
+
+
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
 
@@ -74,6 +77,8 @@ export default function PieceManager({
         textDictItem.operationsText
         :textDictItemDefault.operationsText;
     
+    
+    const [renderCounter, setRenderCounter] = useState(0);
 
         
     const [pieceDataLocal, setPieceDataLocal] = useState(allPieceData);
@@ -93,7 +98,9 @@ export default function PieceManager({
            
             setFirstTimeEnter(false);
         }
+
         const allPiece = getAllPieceData();
+                                        console.log("pm __ got allPiece = ", allPiece);
         setPieceDataLocal(allPiece);
         
 
@@ -108,7 +115,16 @@ export default function PieceManager({
             doHighlightItem(receivedPieceIndex+1); //TODO1 testing
 
         }
+
+        //TODO getScreenSize and update both w and h
+        
     });
+
+ 
+    function updateRenderCounter() {
+        console.log("updateRenderCounter!");
+        setRenderCounter((renderCounter+1) % 100);
+    }
 
       
     function createNewListItem() {
@@ -130,7 +146,7 @@ export default function PieceManager({
         console.log("TODO: saving to cloud via VM func ... ", pieceDataLocal);
     }
  
-    function moveItemUpRow(index, content) {
+    function moveItemUpRow(index, content) { //TODO111
         /* switch current item with the previous (smaller) item */
         if (index >= 1) {
             const tempArr = [...pieceDataLocal];
@@ -140,13 +156,14 @@ export default function PieceManager({
             itemCurr["num"] = index;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(index);   
+            setHighlightedPiece(index); 
+            updateRenderCounter();  
         } else {
             return;
         }
     }
 
-    function moveItemDownRow(index, content) {
+    function moveItemDownRow(index, content) { //TODO111
         /* switch current item with the next (larger) item */
         if (index < pieceDataLocal.length - 1) {
             const tempArr = [...pieceDataLocal];
@@ -156,7 +173,8 @@ export default function PieceManager({
             itemCurr["num"] = index+2;
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(index+2);    
+            setHighlightedPiece(index+2);  
+            updateRenderCounter();  
         } else {
             return;
         }
