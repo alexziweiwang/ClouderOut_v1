@@ -449,5 +449,5 @@
 
 - 2025-Feb-20: Design strategy for game-creator(user)'s options to adjust audio-file volumes in dev
 
-
+- 2025-Feb-24: Research on devops plans
 
