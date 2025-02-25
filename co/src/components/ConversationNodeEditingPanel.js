@@ -1037,8 +1037,6 @@ export default function ConversationNodeEditingPanel() {
                             allPieceData={pieceDataStructure} 
                             updatePieceData={changePieceData} 
                             getAllPieceData={passInAllPieceDataContent} 
-                            // username={uname} 
-                            // projName={projectName} 
                             backToList={returnToList} 
                             gameDataList={gameDataDesignList} 
                             openRm={handleResourceManagerOpen}

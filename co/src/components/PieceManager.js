@@ -17,6 +17,22 @@ export default function PieceManager({
 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+    
+    const newEmptyPieceTemplate = {
+        "num": -1, 
+        "content": "", 
+        "speaker_name": "", 
+        "bgp_pos_x": 0, 
+        "bgp_pos_y": 0, 
+        "bgp_width": {screenWidth}, 
+        "bgp_height": {screenHeight}, 
+        "chp_arr": [], 
+        "btn_arr": [], 
+        "bgm_loop": true, 
+        "bgm_volume": 100, 
+        "vl_source_link": "", 
+        "vl_volume": 100
+    }; 
 
 
     let name = "/piecemanager";
@@ -129,7 +145,10 @@ export default function PieceManager({
     function createNewListItem() {
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
-        const item = {"num": number, "content": "", "speaker_name": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": {screenWidth}, "bgp_height": {screenHeight}, "chp_arr": [], "btn_arr": [], "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
+        
+        const item = newEmptyPieceTemplate;
+        item["num"] = number;
+          
         let pieceDataArr = pieceDataLocal;
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
@@ -140,6 +159,33 @@ export default function PieceManager({
         //TODO notify outside layer
 
     }
+
+    function insertNewListItem(preIndex) {
+        const number = preIndex+1;
+        setCurrentPieceNum(number);
+
+        const item = newEmptyPieceTemplate;
+        item["num"] = number+1;
+
+        let pieceDataArr = [];
+        let j = 0;
+        for (; j < number; j++) {
+            pieceDataArr.push(pieceDataLocal[j]);
+        }
+              
+        pieceDataArr.push(item);
+
+        for (; j < pieceDataLocal.length; j++) {
+            const piece = {...pieceDataLocal[j],  "num": j+2};
+            pieceDataArr.push(piece);
+        }
+
+        pieceDataArr.sort((a, b) => a.num - b.num);
+        setPieceDataLocal(pieceDataArr);
+
+        updatePieceData(pieceDataArr);
+    }
+
 
     function updateLocalDataToCloud() { //TODO cloud-related
         console.log("TODO: saving to cloud via VM func ... ", pieceDataLocal);
@@ -159,6 +205,7 @@ export default function PieceManager({
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
 
+            updatePieceData(tempArr);
 
             updateRenderCounter();  
 
@@ -179,6 +226,7 @@ export default function PieceManager({
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
 
+            updatePieceData(tempArr);
 
             updateRenderCounter();  
         }
@@ -197,6 +245,11 @@ export default function PieceManager({
         pieceDataArr.push(item);
         pieceDataArr.sort((a, b) => a.num - b.num);
         setPieceDataLocal(pieceDataArr);
+
+        //TODO111 make it inserted to the immediate-next piece?
+        
+
+        updatePieceData(pieceDataArr);
     }
 
     function deletePiece(index) {
@@ -216,29 +269,15 @@ export default function PieceManager({
 
         console.log("updated allPieceData: ", newDataLocal);
         setPieceDataLocal(newDataLocal);
+
+        updatePieceData(newDataLocal);
+
     }
 
-    function insertNewListItem(preIndex) {
-        const number = preIndex+1;
-        setCurrentPieceNum(number);
-        let pieceDataArr = [];
-        let j = 0;
-        for (; j < number; j++) {
-            pieceDataArr.push(pieceDataLocal[j]);
-        }
-    
-        for (; j < pieceDataLocal.length; j++) {
-            const piece = {...pieceDataLocal[j],  "num": j+2};
-            pieceDataArr.push(piece);
-        }
+   
 
-        const item = {"num": number+1, "content": "", "speaker_name": "", "bgp_pos_x": 0, "bgp_pos_y": 0, "bgp_width": {screenWidth}, "bgp_height": {screenHeight}, "chp_arr": [], "btn_arr": [], "bgm_loop": true, "bgm_volume": 100, "vl_source_link": "", "vl_volume": 100}; 
-      
-        pieceDataArr.push(item);
 
-        pieceDataArr.sort((a, b) => a.num - b.num);
-        setPieceDataLocal(pieceDataArr);
-    }
+
 
     return (
         <div className="pieceManager pieceEditingLeftArea" 
@@ -291,8 +330,8 @@ export default function PieceManager({
                         <br></br>
                         <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>{moveDownText}</button>
                         <br></br>
-                        <button onClick={()=>{duplicatePiece(index);updatePieceData(pieceDataLocal);}}>{duplicateText}</button>
-                        <button onClick={()=>{insertNewListItem(index);updatePieceData(pieceDataLocal);}}>{insertText}</button> 
+                        <button onClick={()=>{duplicatePiece(index);}}>{duplicateText}</button>
+                        <button onClick={()=>{insertNewListItem(index);}}>{insertText}</button> 
                     </div>
                     
                     </td>}
@@ -304,7 +343,6 @@ export default function PieceManager({
                             let respondGiven = window.confirm(content);
                             if (respondGiven) {
                                 deletePiece(index);
-                                updatePieceData(pieceDataLocal);
                             }       
                         }}
                         >{deleteText}</button>
