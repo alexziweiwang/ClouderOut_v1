@@ -114,7 +114,7 @@ export default function PieceManager({
         }
 
         const allPiece = getAllPieceData();
-                                        console.log("pm __ got allPiece = ", allPiece);
+                                        console.log("pm __ got allPiece (from conv-editor-layer) = ", allPiece);
         allPiece.sort((a, b) => a.num - b.num);
         setPieceDataLocal(allPiece);
         
@@ -142,7 +142,7 @@ export default function PieceManager({
     }
 
       
-    function createNewListItem() {
+    function appendNewPiece() {
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
         
@@ -157,12 +157,12 @@ export default function PieceManager({
         updatePieceData(pieceDataArr);
 
         //TODO notify outside layer
-
     }
 
-    function insertNewListItem(preIndex) {
+    function insertNewPiece(preIndex) {
+
         const number = preIndex+1;
-        setCurrentPieceNum(number);
+        //setCurrentPieceNum(number);
 
         const item = newEmptyPieceTemplate;
         item["num"] = number+1;
@@ -176,7 +176,9 @@ export default function PieceManager({
         pieceDataArr.push(item);
 
         for (; j < pieceDataLocal.length; j++) {
-            const piece = {...pieceDataLocal[j],  "num": j+2};
+            const piece = pieceDataLocal[j];
+            piece["num"] = piece["num"]+1;
+            
             pieceDataArr.push(piece);
         }
 
@@ -186,10 +188,6 @@ export default function PieceManager({
         updatePieceData(pieceDataArr);
     }
 
-
-    function updateLocalDataToCloud() { //TODO cloud-related
-        console.log("TODO: saving to cloud via VM func ... ", pieceDataLocal);
-    }
  
     function moveItemUpRow(index, content) { //TODO111
         /* switch current item with the previous (smaller) item */
@@ -247,7 +245,7 @@ export default function PieceManager({
         setPieceDataLocal(pieceDataArr);
 
         //TODO111 make it inserted to the immediate-next piece?
-        
+
 
         updatePieceData(pieceDataArr);
     }
@@ -285,8 +283,6 @@ export default function PieceManager({
                 setIsClickedOnSetters(true);
             }}
         >
-            <button onClick={updateLocalDataToCloud}>{saveToCloudText}</button>
-            <br></br><br></br><br></br>
                  
             <table className="pieceTable">
         <thead>
@@ -309,8 +305,7 @@ export default function PieceManager({
                             ? "tableItemSelected" : "tableItem"} onClick={()=>{
                         doHighlightItem(item["num"]);   
                         assignPreviewIndex(index); //TODO1 check
-                        console.log("table row clicked: ", index, "; ", item["num"] );//TODO1 test
-                        updatePieceData(pieceDataLocal);}}>
+                        }}>
                     <td>
                         <button onClick={()=>{
                             assignPreviewIndex(index); //TODO1 check
@@ -331,7 +326,7 @@ export default function PieceManager({
                         <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>{moveDownText}</button>
                         <br></br>
                         <button onClick={()=>{duplicatePiece(index);}}>{duplicateText}</button>
-                        <button onClick={()=>{insertNewListItem(index);}}>{insertText}</button> 
+                        <button onClick={()=>{insertNewPiece(index);}}>{insertText}</button> 
                     </div>
                     
                     </td>}
@@ -353,7 +348,7 @@ export default function PieceManager({
 
         </tbody>
     </table>
-    <button onClick={()=>{createNewListItem();}}>{addNewRowText}</button>
+    <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>
     
         </div>
     );
