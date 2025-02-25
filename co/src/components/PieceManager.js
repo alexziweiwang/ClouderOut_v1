@@ -88,8 +88,6 @@ export default function PieceManager({
     const [highlightedPiece, setHighlightedPiece] = useState("");
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
-    const [isManage, setIsManage] = useState(false);
-
     useEffect(() => {
         if (firstTimeEnter === true) {
             // if (allPieceData === undefined || allPieceData === null || allPieceData.length === 0) {
@@ -101,6 +99,7 @@ export default function PieceManager({
 
         const allPiece = getAllPieceData();
                                         console.log("pm __ got allPiece = ", allPiece);
+        allPiece.sort((a, b) => a.num - b.num);
         setPieceDataLocal(allPiece);
         
 
@@ -154,12 +153,15 @@ export default function PieceManager({
             itemPrev["num"] = index+1;
             let itemCurr = tempArr[index];
             itemCurr["num"] = index;
+
+            setHighlightedPiece(index); 
+
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(index); 
+
+
             updateRenderCounter();  
-        } else {
-            return;
+
         }
     }
 
@@ -171,12 +173,14 @@ export default function PieceManager({
             itemNext["num"] = index+1;
             let itemCurr = tempArr[index];
             itemCurr["num"] = index+2;
+
+            setHighlightedPiece(index+2);  
+
             tempArr.sort((a, b) => a.num - b.num);
             setPieceDataLocal(tempArr);
-            setHighlightedPiece(index+2);  
+
+
             updateRenderCounter();  
-        } else {
-            return;
         }
     }
 
@@ -244,23 +248,15 @@ export default function PieceManager({
         >
             <button onClick={updateLocalDataToCloud}>{saveToCloudText}</button>
             <br></br><br></br><br></br>
-            {isManage === false && <button onClick={()=>{setIsManage(!isManage);}}>
-                    {manageModeText}
-            </button>} 
-
-            {isManage === true && <button onClick={()=>{setIsManage(!isManage);}}>
-                    {viewModeText}
-            </button>}             
+                 
             <table className="pieceTable">
         <thead>
             <tr>
             <th style={{"width": "50px"}}>{enterEditorText}</th>
             <th style={{"width": "30px"}}>#</th>
             <th className="contentGrid">{contentsText}</th>
-            {isManage === true && 
-                <th style={{"width": "90px"}}>{operationsText}</th>}
-            {isManage === true &&   
-                <th style={{"width": "60px"}}></th>}
+            {<th style={{"width": "90px"}}>{operationsText}</th>}
+            {<th style={{"width": "60px"}}></th>}
             </tr>
         </thead>
         <tbody>
@@ -289,7 +285,7 @@ export default function PieceManager({
                     {item["content"]}
                     
                     </td>
-                    {isManage === true &&  <td>
+                    {<td>
                     <div>
                         <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>{moveUpText}</button>
                         <br></br>
@@ -300,7 +296,7 @@ export default function PieceManager({
                     </div>
                     
                     </td>}
-                    {isManage === true && <td>
+                    {<td>
                         <button 
                         
                         onClick={()=>{
