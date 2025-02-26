@@ -186,8 +186,32 @@ export default function PieceManager({
         setPieceDataLocal(pieceDataArr);
 
         updatePieceData(pieceDataArr);
+
+        return pieceDataArr;
     }
 
+    function duplicatePiece(index) {
+        let tempArr = insertNewPiece(index);
+        
+        let pieceDataArr = tempArr;
+        pieceDataArr[index+1] = makeDupPiece(pieceDataArr, index, index+1);
+        pieceDataArr[index+1]["num"] = pieceDataLocal[index]["num"]+1;
+
+        setPieceDataLocal(pieceDataArr);
+
+        updatePieceData(pieceDataArr);
+    }
+
+    function makeDupPiece(arr, sourceIndex, targetIndex) {
+        let sourceObj = arr[sourceIndex];
+        //arr[targetIndex]
+        Object.keys(sourceObj).map((currKey) => {
+            let val = sourceObj[currKey];
+            arr[targetIndex][currKey] = val;
+        });
+
+        return arr[targetIndex];
+    }
  
     function moveItemUpRow(index, content) { //TODO111
         /* switch current item with the previous (smaller) item */
@@ -232,22 +256,6 @@ export default function PieceManager({
 
     function doHighlightItem(num) {
         setHighlightedPiece(num);                 
-    }
-
-    function duplicatePiece(index) {
-        console.log("duplicate, content = ", pieceDataLocal[index]);
-        const number = pieceDataLocal.length+1;
-        setCurrentPieceNum(number);
-        const item = {... pieceDataLocal[index],  "num": number};
-        let pieceDataArr = pieceDataLocal;
-        pieceDataArr.push(item);
-        pieceDataArr.sort((a, b) => a.num - b.num);
-        setPieceDataLocal(pieceDataArr);
-
-        //TODO111 make it inserted to the immediate-next piece?
-
-
-        updatePieceData(pieceDataArr);
     }
 
     function deletePiece(index) {
