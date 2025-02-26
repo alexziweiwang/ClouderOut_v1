@@ -453,3 +453,5 @@
 
 - 2025-Feb-25: Analyze and improve designs of local and cloud import/export strategies
 - 2025-Feb-25: Research on details of Electron steps
+
+- 2025-Feb-26: Consider modules of app-flow structures (project-content & resource & playing-progress-status) for various plans
