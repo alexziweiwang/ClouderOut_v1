@@ -224,7 +224,6 @@ td {
     margin-left: 5px;
     padding: 10px;
 
-    width: 95%;
 }
 
 .setting_item {
@@ -965,6 +964,7 @@ td {
     background-color: #c4c3c7;
     margin-top: -3px;
     border-radius: 0px;
+    width: 100%;
 }
 
 .panelTab {
