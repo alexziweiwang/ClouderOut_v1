@@ -746,7 +746,6 @@ return (<div className={modalStyleName}>
                             <div  className="darkerGrey"
                              style={{
                                 "borderRadius": "0px",
-                                
                                 "width": "509px",
                                 }}
                             
@@ -1296,17 +1295,16 @@ return (<div className={modalStyleName}>
                 {focusingPanelName ==="5shp" && <div>
                     <div 
                         style={{
-                            "borderRadius": "0px",
-                            
-                            "paddingLeft": "6%"
+                            "borderRadius": "0px",                            
                         }}
                     >
                         <br></br>
                         <div  className="darkerGrey"
                             style={{
                                 "borderRadius": "0px",
-                                
-                                "width": "1000px",
+                                "overflowY": "scroll",
+
+                                "width": "897px",
                                 "height": "300px"
                             }}
                             

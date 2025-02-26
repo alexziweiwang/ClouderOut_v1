@@ -786,6 +786,22 @@ li {
     margin-top: -18px;
 }
 
+.unclickableButton {
+    cursor: none;
+    color: #544c51;
+    color: #7b787a;
+    background-color: rgb(172, 186, 186);
+}
+
+.unclickableButton:hover {
+    cursor: default;
+    color: #7b787a;
+    background-color: rgb(172, 186, 186);
+    font-size: 16px;
+    border-radius: 0px;
+    border: none;
+}
+
 .cursor_pointer {
     cursor: pointer;
 }

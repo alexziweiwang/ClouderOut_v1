@@ -806,12 +806,23 @@ export default function PieceSetter({
 
         <div className="buttonRight90">
             {(lookingPieceNumber > 1) &&
-            <button onClick={()=>{jumpToPrevPiece();}} className="pairGroup"> ↑ </button>}
+                <button onClick={()=>{
+                    jumpToPrevPiece();
+                }} className="pairGroup"> ↑ </button>}
+            {(lookingPieceNumber === 1) &&
+                <button className="pairGroup unclickableButton"> ↑ </button>}
 
             {(lookingPieceNumber < allPiecesDataLocal.length) &&
             <><br></br>
-            <button onClick={()=>{jumpToNextpiece();}} className="pairGroup"> ↓ </button>
-            </>}         
+            <button onClick={()=>{
+                jumpToNextpiece();    
+            }} className="pairGroup"> ↓ </button>
+            </>}    
+            {(lookingPieceNumber >= allPiecesDataLocal.length) &&
+            <><br></br>
+            <button className="pairGroup unclickableButton"> ↓ </button>
+            </>}              
+
         </div>
 
 
