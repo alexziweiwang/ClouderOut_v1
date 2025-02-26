@@ -941,7 +941,9 @@ export default function NodeManager({projectName, currUser,
 
 //TODO page content 
     return (      
-        <div>
+        <div style={{
+          "width": "1000px"
+        }}>
 
 
         {chapterKey!== "" && <div className="setting_area"> 
@@ -961,7 +963,7 @@ export default function NodeManager({projectName, currUser,
         {/* //TODO testing panel area */}
 
 
-<div style={{"display": "flex", "width": "77%"}}> 
+<div style={{"display": "flex"}}> 
 
 
 
@@ -1033,7 +1035,8 @@ export default function NodeManager({projectName, currUser,
     {/* node-map-all-elements */}
     {<div style={{
             "overflowX": "scroll",
-            "position": "relative"}}>
+            "position": "relative",
+      }}>
 
 
 
@@ -1050,10 +1053,18 @@ export default function NodeManager({projectName, currUser,
 
           
           {/* Node-grid-blocks */}
-          <div>
+          <div style={{
+                  "width": "1000px"
+                }}>
           {gridBlocks.map((rowItem, ir) => {
             let rowKeyStr = "grid" + ir;
-              return (<div key={rowKeyStr} className="parallelFrame gridRow">
+              return (<div key={rowKeyStr} 
+                className="parallelFrame gridRow"
+                style={{
+                  "width": "1000px"
+                }}
+                
+                >
                     {rowItem.map((col,ic) => {
                       let content = gridBlocks[ir][ic];
             
@@ -1256,11 +1267,13 @@ export default function NodeManager({projectName, currUser,
 
 {/* node info and operation area */}
 
-        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div>
+        {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div style={{
+                  "width": "1000px"
+                }}>
 
 
 <div style={{"display": "flex"}}>
-    <div style={{"width": "900px"}}> 
+    <div style={{"width": "1000px"}}> 
     {/* node-info-area */}
         
                   
@@ -1338,7 +1351,7 @@ export default function NodeManager({projectName, currUser,
 
 
 {/* Next-Node setting section */}
-    <div style={{"flex": "1", "marginLeft": "20px"}}>
+    <div style={{"flex": "1", "marginLeft": "20px", "width": "700px"}}>
 
 
               {nodeRelationshipMap[clickedNodeKey] !== undefined

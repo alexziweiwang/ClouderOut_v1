@@ -223,6 +223,7 @@ td {
     text-align: left;
     margin-left: 5px;
     padding: 10px;
+    width: 100%;
 
 }
 
@@ -1727,7 +1728,6 @@ button:hover {
 }
 
 .gridRow {
-    width: 1250px;
     height: 62px; 
     border-radius: 0px;
     padding-left: 10px;
