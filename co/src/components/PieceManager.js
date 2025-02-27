@@ -213,7 +213,7 @@ export default function PieceManager({
         return arr[targetIndex];
     }
  
-    function moveItemUpRow(index, content) { //TODO111
+    function moveItemUpRow(index) { //TODO111
         /* switch current item with the previous (smaller) item */
         if (index >= 1) {
             const tempArr = [...pieceDataLocal];
@@ -234,7 +234,7 @@ export default function PieceManager({
         }
     }
 
-    function moveItemDownRow(index, content) { //TODO111
+    function moveItemDownRow(index) { //TODO111
         /* switch current item with the next (larger) item */
         if (index < pieceDataLocal.length - 1) {
             const tempArr = [...pieceDataLocal];
@@ -259,7 +259,7 @@ export default function PieceManager({
     }
 
     function deletePiece(index) {
-        console.log("deleting item...", pieceDataLocal[index]);
+                                    console.log("deleting item...", pieceDataLocal[index]);
 
         let newDataLocal = [];
         let j = 0;
@@ -273,11 +273,19 @@ export default function PieceManager({
             newDataLocal.push(piece);
         }
 
-        console.log("updated allPieceData: ", newDataLocal);
+                                    console.log("deleted. updated allPieceData: ", newDataLocal);
         setPieceDataLocal(newDataLocal);
+        setNonClickced();
 
         updatePieceData(newDataLocal);
 
+    }
+
+    function setNonClickced() {
+        setHighlightedPiece(1);
+        assignPreviewIndex(0);
+                                    console.log("\t\t\treset: make preview the first piece.")
+//TODO111
     }
 
    
@@ -310,28 +318,46 @@ export default function PieceManager({
                     <tr key={index} className={
                         
                         (highlightedPiece === item["num"])      
-                            ? "tableItemSelected" : "tableItem"} onClick={()=>{
-                        doHighlightItem(item["num"]);   
-                        assignPreviewIndex(index); //TODO1 check
-                        }}>
-                    <td>
+                            ? "tableItemSelected" : "tableItem"} 
+                        >
+                    <td
+                        onClick={()=>{
+                            doHighlightItem(item["num"]);   
+                            assignPreviewIndex(index); //TODO1 check
+                        }}
+                    >
                         <button onClick={()=>{
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
                             assignPieceNum(item["num"]);}}>{editText}</button>
                     </td>
-                    <td>{item["num"]}</td>
-                    <td className="contentGrid">
+                    <td
+                        onClick={()=>{
+                            doHighlightItem(item["num"]);   
+                            assignPreviewIndex(index); //TODO1 check
+                        }}
+                    >{item["num"]}</td>
+                    <td className="contentGrid"
+                        onClick={()=>{
+                            doHighlightItem(item["num"]);   
+                            assignPreviewIndex(index); //TODO1 check
+                        }}
+                    >
                         {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
                     
                     </td>
-                    {<td>
+                    {<td
+                        onClick={()=>{
+                            doHighlightItem(item["num"]);   
+                            assignPreviewIndex(index); //TODO1 check
+                        }}                    
+                    >
                     <div>
-                        <button onClick={()=>{moveItemUpRow(index, item["content"]);}}>{moveUpText}</button>
+                        <button onClick={()=>{moveItemUpRow(index);}}>{moveUpText}</button>
                         <br></br>
-                        <button onClick={()=>{moveItemDownRow(index, item["content"]);}}>{moveDownText}</button>
+                        <button onClick={()=>{moveItemDownRow(index);}}>{moveDownText}</button>
                         <br></br>
                         <button onClick={()=>{duplicatePiece(index);}}>{duplicateText}</button>
                         <button onClick={()=>{insertNewPiece(index);}}>{insertText}</button> 
