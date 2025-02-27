@@ -7,7 +7,7 @@ import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 
 //TODO20 cloud-func
 import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
-//TODO100 check efficiency
+//TODO115 collection of cloud-related
 
 export default function GameScreen_AllNodeTypeContainer({
     getNodeType, 

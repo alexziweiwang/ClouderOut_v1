@@ -905,13 +905,13 @@ export default function ConversationNodeEditingPanel() {
 
 {/* components:
 
-        1. editor - <PieceSetter> or <ConvNodeUISetter>
-        2. editor - <PieceManager> or <ConvNodeUISetter>
-        3. editor - <PreviewWindow_convNodeGameContent> or <PreviewWindow_convNodeUiSetup>
-        4. modal_resource - <Modal_ResourceManagingWindow>
-        5. modal_game_data_manager - <Modal_GameDataManager>
-        6. modal_emu_manager - <Modal_EmuManager>
-        6. quick_view - <AllPanels_QuickView_ConvNode>
+        1. editor- [PieceSetter> or <ConvNodeUISetter>
+        2. editor- [PieceManager> or <ConvNodeUISetter>
+        3. editor- [PreviewWindow_convNodeGameContent> or <PreviewWindow_convNodeUiSetup>
+        4. modal_resource- [Modal_ResourceManagingWindow>
+        5. modal_game_data_manager- [Modal_GameDataManager>
+        6. modal_emu_manager- [Modal_EmuManager>
+        6. quick_view- [AllPanels_QuickView_ConvNode>
 
 */}
 

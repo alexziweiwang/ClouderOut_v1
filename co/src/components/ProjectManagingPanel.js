@@ -9,6 +9,7 @@ import langDictionary from './textDictionary';
 
 //TODO20 cloud-func
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
+//TODO115 collection of cloud-related
 
 
 export default function ProjectManagerPanel() {

@@ -22,7 +22,8 @@ import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,fetchAllChapte
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 
-
+import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
+//TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 
 import langDictionary from './textDictionary';
@@ -1591,12 +1592,12 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
 {/* //components
       
-      1. editors - <ChapterManager> +  <NodeManager> 
-      2. editors - <NavigationSetter> + <NavigationPreview>
-      3. entire_view - <Viewer_Entire>
-      4. modal_resource_manager -  <Modal_ResourceManagingWindow>
-      5. modal_game_data_manager - <Modal_GameDataManager >
-      6. modal_emu_manager - <Modal_EmuManager>
+      1. editors - [ChapterManager> +  <NodeManager> 
+      2. editors - [NavigationSetter> + <NavigationPreview>
+      3. entire_view - [Viewer_Entire>
+      4. modal_resource_manager - [Modal_ResourceManagingWindow>
+      5. modal_game_data_manager - [Modal_GameDataManager >
+      6. modal_emu_manager - [Modal_EmuManager>
 */}   
 //TODO90 page content
   return (

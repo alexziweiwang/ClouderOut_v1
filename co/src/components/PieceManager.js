@@ -303,7 +303,7 @@ export default function PieceManager({
             <table className="pieceTable">
         <thead>
             <tr>
-            <th style={{"width": "50px"}}>{enterEditorText}</th>
+            <th style={{"width": "50px"}}>Editor</th>
             <th style={{"width": "30px"}}>#</th>
             <th className="contentGrid">{contentsText}</th>
             {<th style={{"width": "90px"}}>{operationsText}</th>}
