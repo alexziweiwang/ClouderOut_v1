@@ -455,3 +455,4 @@
 - 2025-Feb-25: Research on details of Electron steps
 
 - 2025-Feb-26: Consider modules of app-flow structures (project-content & resource & playing-progress-status) for various plans
+- 2025-Feb-26: Design long-text content piece input strategy for better UX
