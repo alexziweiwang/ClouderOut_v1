@@ -24,7 +24,8 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
 
     username, projName,
 
-    getDisplayScreen
+    getDisplayScreen,
+    getPmEditingPreviewPiece
     
   
   }) {
@@ -86,6 +87,13 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
 console.log("preview-window game-content first-time entry, resource-list fetched."); //TODO test
       }
 
+      let isDisplayTemp = getDisplayScreen();
+      setDisplayScreen(isDisplayTemp);
+      //TODO200 for pm-previewing-piece, apply to all elements?
+
+      //getPmEditingPreviewPiece()
+
+
 
       let uiLangTemp = getUILanguage();
       setLanguageCodeTextOption(uiLangTemp);
@@ -122,8 +130,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
- 
-    
       }
 
       //TODO testing
@@ -275,13 +281,30 @@ console.log("preview-window game-content first-time entry, resource-list fetched
         >       
         {(allPieceData !== undefined && allPieceData.length > 0) && <>
             <div className="previewArea" 
-              style={{"position": "relative", 
-                      "height": `${screenHeight}px`, 
-                      "width": `${screenWidth}px`
+              style={{
+                  "position": "relative", 
+                  "height": `${screenHeight}px`, 
+                  "width": `${screenWidth}px`
               }}>
+{isDisplayScreen === false && 
+<div
+  style={{
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center",
+  }}
+>
+  <label
+    style={{
+      "fontSize": "30px",
+    }}
+  >
+    Editing on Piece Manager ...
+  </label>
+  
+</div>}
 
-
-{currentPieceNum !== -2 && <div style={{
+{isDisplayScreen === true && <div style={{
   "display": !isShowLogScreen ? "flex" : "none"
 }}>
 

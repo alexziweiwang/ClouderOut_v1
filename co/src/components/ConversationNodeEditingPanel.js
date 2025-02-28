@@ -61,6 +61,22 @@ export default function ConversationNodeEditingPanel() {
         "4:3(vertical)": [600, 800]
     };
 
+    const newEmptyPieceTemplate = {
+        "num": -1, 
+        "content": "", 
+        "speaker_name": "", 
+        "bgp_pos_x": 0, 
+        "bgp_pos_y": 0, 
+        "bgp_width": "800px", 
+        "bgp_height": "600px", 
+        "chp_arr": [], 
+        "btn_arr": [], 
+        "bgm_loop": true, 
+        "bgm_volume": 100, 
+        "vl_source_link": "", 
+        "vl_volume": 100
+    }; 
+
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -281,6 +297,7 @@ export default function ConversationNodeEditingPanel() {
     const [previewingIndex, setPreviewingIndex] = useState(0);
 //TODO200
     const [isDisplayPreviewScreen, setDisplayPreviewScreen] = useState(true);
+    const [editingPmPreviewPiece, setEditingPmPreviewPiece] = useState(newEmptyPieceTemplate);
 
     const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
 
@@ -921,6 +938,14 @@ export default function ConversationNodeEditingPanel() {
         setDisplayPreviewScreen(true);
     }
 
+    function getPmEditingPiece(piece) {
+        setEditingPmPreviewPiece(piece);
+    }
+
+    function passInPmEditingPreviewPiece() {
+        return editingPmPreviewPiece;
+    }
+
 
           
 
@@ -1126,6 +1151,7 @@ export default function ConversationNodeEditingPanel() {
                             getUILanguage={passInUILanguage}
                             triggerPreviewScreenOff={triggerPreviewScreenOff}
                             triggerPreviewScreenOn={triggerPreviewScreenOn}
+                            sendPmEditingPiece={getPmEditingPiece}
                         />}   
 
 
@@ -1163,6 +1189,7 @@ export default function ConversationNodeEditingPanel() {
             {isDisplayGameContentPreview === true && 
                 <PreviewWindow_convNodeGameContent
                     getDisplayScreen={passInDisplayPreviewScreen}
+                    getPmEditingPreviewPiece={passInPmEditingPreviewPiece}
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}

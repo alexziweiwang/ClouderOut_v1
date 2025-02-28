@@ -11,7 +11,7 @@ export default function PieceManager({
     
     triggerPreviewScreenOff,
     triggerPreviewScreenOn,
-
+    sendPmEditingPiece,
 
     getUILanguage,
     
@@ -400,15 +400,25 @@ export default function PieceManager({
                     <input
                         value={chosenEditingSpeaker}
                         onChange={(event)=>{
-                            setChosenEditingSpeaker(event.target.value);
+                            let val = event.target.value;
+                            setChosenEditingSpeaker(val);
                             triggerPreviewScreenOff();
+
+                            let tempPiece = pieceDataLocal[index];
+                            tempPiece["speaker_name"] = val;
+                            sendPmEditingPiece(tempPiece);
                         }}
                     ></input>
                     <textarea
                         value={chosenEditingContent}
                         onChange={(event)=>{  
-                            setChosenEditingContent(event.target.value);
+                            let val = event.target.value;
+                            setChosenEditingContent(val);
                             triggerPreviewScreenOff();
+
+                            let tempPiece = pieceDataLocal[index];
+                            tempPiece["content"] = val;
+                            sendPmEditingPiece(tempPiece);
                         }}
                     >
                     </textarea>
@@ -424,7 +434,6 @@ export default function PieceManager({
                             //TODO115 change this piece's content and speaker with chosenEditingContent and chosenEditingSpeaker
                             changePieceContentSpeaker(index);
                             triggerPreviewScreenOn();
-
                         }}
                     >Change</button>
                     
