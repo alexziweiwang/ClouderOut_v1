@@ -44,17 +44,6 @@ export default function PieceManager({
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
 
-    let saveToCloudText = textDictItem.saveToCloudText !== undefined ?
-        textDictItem.saveToCloudText
-        : textDictItemDefault.saveToCloudText;
-    
-    let manageModeText = textDictItem.manageModeText !== undefined ?
-        textDictItem.manageModeText
-        : textDictItemDefault.manageModeText;
-    
-    let viewModeText = textDictItem.viewModeText !== undefined ?
-        textDictItem.viewModeText
-        : textDictItemDefault.viewModeText;
 
     let editText = textDictItem.editText !== undefined ?
         textDictItem.editText
@@ -123,7 +112,7 @@ export default function PieceManager({
         }
 
         const allPiece = getAllPieceData();
-                                        console.log("pm __ got allPiece (from conv-editor-layer) = ", allPiece);
+                    //                    console.log("pm __ got allPiece (from conv-editor-layer) = ", allPiece);
         allPiece.sort((a, b) => a.num - b.num);
         setPieceDataLocal(allPiece);
         
@@ -381,6 +370,9 @@ export default function PieceManager({
                             if (chosenEditingPiece !== -1) {
                                 setChosenEditingPiece(-1);
                             } else {
+                                doHighlightItem(item["num"]);   
+                                assignPreviewIndex(index);
+
                                 setChosenEditingPiece((index+1));
                                 
                                 setChosenEditingContent(item["content"]);

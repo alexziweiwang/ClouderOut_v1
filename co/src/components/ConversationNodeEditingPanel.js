@@ -296,7 +296,7 @@ export default function ConversationNodeEditingPanel() {
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
 //TODO200
-    const [isDisplayPreviewScreen, setDisplayPreviewScreen] = useState(true);
+    const [isDisplayNonPmTemp, setDisplayNonPmTemp] = useState(true);
     const [editingPmPreviewPiece, setEditingPmPreviewPiece] = useState(newEmptyPieceTemplate);
 
     const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
@@ -522,7 +522,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function changePieceData(updatedPieceData) {
-        console.log("!!! in editing-panel: changePieceData ...", updatedPieceData); //TODO test
+       // console.log("!!! in editing-panel: changePieceData ...", updatedPieceData); //TODO test
         setPiecedataStructure(updatedPieceData);
         //TODO update to cloud
     }
@@ -927,15 +927,15 @@ export default function ConversationNodeEditingPanel() {
     }
     
     function passInDisplayPreviewScreen() {
-        return isDisplayPreviewScreen;
+        return isDisplayNonPmTemp;
     }
 
     function triggerPreviewScreenOff() {
-        setDisplayPreviewScreen(false);
+        setDisplayNonPmTemp(false);
     }
 
     function triggerPreviewScreenOn() {
-        setDisplayPreviewScreen(true);
+        setDisplayNonPmTemp(true);
     }
 
     function getPmEditingPiece(piece) {
@@ -1188,7 +1188,7 @@ export default function ConversationNodeEditingPanel() {
                       
             {isDisplayGameContentPreview === true && 
                 <PreviewWindow_convNodeGameContent
-                    getDisplayScreen={passInDisplayPreviewScreen}
+                    getDisplayNonPmTemp={passInDisplayPreviewScreen}
                     getPmEditingPreviewPiece={passInPmEditingPreviewPiece}
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}

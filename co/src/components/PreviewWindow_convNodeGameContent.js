@@ -24,13 +24,14 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
 
     username, projName,
 
-    getDisplayScreen,
+    getDisplayNonPmTemp,
     getPmEditingPreviewPiece
     
   
   }) {
 
-    const [isDisplayScreen, setDisplayScreen] = useState(true);
+    const [isNonPmTempPiece, setIsNonPmTempPiece] = useState(true);
+    const [pmPreItem, setPmPreItem] = useState({});
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -87,32 +88,26 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
 console.log("preview-window game-content first-time entry, resource-list fetched."); //TODO test
       }
 
-      let isDisplayTemp = getDisplayScreen();
-      setDisplayScreen(isDisplayTemp);
+      let isDisplayNonPmTemp = getDisplayNonPmTemp();
+      setIsNonPmTempPiece(isDisplayNonPmTemp);
       //TODO200 for pm-previewing-piece, apply to all elements?
-
-      //getPmEditingPreviewPiece()
-
-
 
       let uiLangTemp = getUILanguage();
       setLanguageCodeTextOption(uiLangTemp);
 //TODO testing
 
 
-
       let allPieceContentTemp = getAllPieceContent();
       if (allPieceContentTemp !== undefined && allPieceContentTemp.length > 0) {
+
+          
+          let currPieceNumTemp = getCurrentPieceNum();
+          
           if (allPieceContentTemp !== allPieceData) {
             setAllPieceData(allPieceContentTemp);
           }
-          
-          let currPieceNumTemp = getCurrentPieceNum();
-          if (currPieceNumTemp === -2) {
-            setCurrentPieceNum(-2);
-            setCurrentPiece(newEmptyPieceTemplate);
 
-          } else if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+          if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
             setCurrentPieceNum(currPieceNumTemp);
             setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
           }
@@ -130,7 +125,9 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
-      }
+      } 
+        
+
 
       //TODO testing
 
@@ -286,25 +283,11 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                   "height": `${screenHeight}px`, 
                   "width": `${screenWidth}px`
               }}>
-{isDisplayScreen === false && 
-<div
-  style={{
-    "display": "flex",
-    "justifyContent": "center",
-    "alignItems": "center",
-  }}
->
-  <label
-    style={{
-      "fontSize": "30px",
-    }}
-  >
-    Editing on Piece Manager ...
-  </label>
-  
-</div>}
 
-{isDisplayScreen === true && <div style={{
+
+
+{
+<div style={{
   "display": !isShowLogScreen ? "flex" : "none"
 }}>
 
@@ -377,6 +360,11 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                 getUIConvNav={getUIConvNav}
 
               />}
+
+             
+
+
+
 
               <GameUI_2ButtonsPreview 
                   isSettingUpUI={false}

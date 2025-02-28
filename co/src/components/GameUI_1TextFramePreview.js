@@ -28,15 +28,19 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
 
     useEffect(() => {
         let allPieceContentTemp = getAllPieceContent();
+
+        let currPieceNumTemp = getCurrentPieceNum();
+
+
         if (allPieceContentTemp !== allPieceData) {
-          setAllPieceData(allPieceContentTemp);
+            setAllPieceData(allPieceContentTemp);
+            setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
         }
         
-        let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
-          setCurrentPieceNum(currPieceNumTemp);
-          setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
-        }
+            setCurrentPieceNum(currPieceNumTemp);
+            setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
+        } 
 
         let txtFrameUISettingsTemp = getTextFrameUISettings();
         if (txtFrameUISettingsTemp !== txtFrameUISettings) {
