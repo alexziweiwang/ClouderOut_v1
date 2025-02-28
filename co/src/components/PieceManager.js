@@ -105,6 +105,7 @@ export default function PieceManager({
 
     const [chosenEditingPiece, setChosenEditingPiece] = useState(-1);
     const [chosenEditingContent, setChosenEditingContent] = useState("");
+    const [chosenEditingSpeaker, setChosenEditingSpeaker] = useState("");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -292,6 +293,24 @@ export default function PieceManager({
 //TODO111
     }
 
+    function resetChosenEditingPiece() {
+        setChosenEditingPiece(-1);
+        setChosenEditingContent("");
+        setChosenEditingSpeaker("");        
+    }
+
+    function changePieceContentSpeaker(index) {
+        let pieceDataArr = pieceDataLocal;
+        pieceDataArr[index]["content"] = chosenEditingContent;
+        pieceDataArr[index]["speaker_name"] = chosenEditingSpeaker;
+
+
+        resetChosenEditingPiece();
+        setPieceDataLocal(pieceDataArr);
+
+        updatePieceData(pieceDataArr);
+    }
+
    
 
 
@@ -347,8 +366,10 @@ export default function PieceManager({
         {/* content-grid */}
                     <td className="contentGrid"
                         onClick={()=>{
-                            doHighlightItem(item["num"]);   
-                            assignPreviewIndex(index); //TODO1 check
+                            if (chosenEditingPiece !== (index+1)) {
+                                doHighlightItem(item["num"]);   
+                                assignPreviewIndex(index); //TODO1 check
+                            }
                         }}
                     >
                     <button
@@ -357,21 +378,54 @@ export default function PieceManager({
                                 setChosenEditingPiece(-1);
                             } else {
                                 setChosenEditingPiece((index+1));
+                                
                                 setChosenEditingContent(item["content"]);
+                                setChosenEditingSpeaker(item["speaker_name"]);
                             }
+                            setNonClickced();
+                            
                         }}
                     >{editText}</button><br></br>
 
-                    {!(chosenEditingPiece === (index+1))
-                    && <label>  {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
+                    {!(chosenEditingPiece === (index+1)) && 
+                    <label>  {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
                     </label>}  
                     
                     {(chosenEditingPiece === (index+1)) && 
+                    <>
+                    <input
+                        value={chosenEditingSpeaker}
+                        onChange={(event)=>{
+                            setNonClickced();
+                            setChosenEditingSpeaker(event.target.value);
+                        }}
+                    ></input>
                     <textarea
-                   
+                        value={chosenEditingContent}
+                        onChange={(event)=>{
+                            setNonClickced();
+                            setChosenEditingContent(event.target.value);
+                        }}
                     >
-                    </textarea>}
+                    </textarea>
+                    
+                    <br></br>
+                    <button
+                        onClick={()=>{
+                            resetChosenEditingPiece();
+                        }}
+                    >Cancel</button>
+                    <button
+                        onClick={()=>{
+                            //TODO115 change this piece's content and speaker with chosenEditingContent and chosenEditingSpeaker
+                            changePieceContentSpeaker(index);
+                            doHighlightItem(item["num"]);   
+                            assignPreviewIndex(index); //TODO1 check
+                        }}
+                    >Change</button>
+                    
+                    </>}
 
                     </td>
 
