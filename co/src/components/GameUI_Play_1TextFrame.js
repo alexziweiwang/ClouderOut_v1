@@ -89,6 +89,7 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
             "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
             "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
             "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
+            "fontFamily": `${txtFrameUISettings["fontName"]}`,
             "border": "none",
             "borderRadius": "0px"
         }}>
@@ -113,7 +114,6 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                         "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                         "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                         "justifyContent": "left",
-                        "fontFamily": `${txtFrameUISettings["fontName"]}`,
                         "overflow": "hidden"
 
                     }}

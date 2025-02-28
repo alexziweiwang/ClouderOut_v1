@@ -108,6 +108,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
             "top" : `${txtFrameUISettings["TextContentArea-y"]}px`,
             "width" : `${txtFrameUISettings["TextContentArea-w"] - txtFrameUISettings["TextContentArea-x"]}px`,
             "height" : `${txtFrameUISettings["TextContentArea-h"] - txtFrameUISettings["TextContentArea-y"]}px`,
+            "fontFamily": `${txtFrameUISettings["fontName"]}`,
             "border": isInGameView === true ? "none" : "2px solid orange",
             "borderRadius": "0px",
 
@@ -134,7 +135,6 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                         "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                         "justifyContent": "left",
-                        "fontFamily": `${txtFrameUISettings["fontName"]}`,
                         "overflow": "hidden"
 
                     }}             

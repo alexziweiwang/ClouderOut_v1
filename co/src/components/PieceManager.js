@@ -102,6 +102,10 @@ export default function PieceManager({
     const [currentPieceNum, setCurrentPieceNum] = useState(0); //TODO temp
     const [previewPieceNum, setPreviewPieceNum] = useState(0);
     const [highlightedPiece, setHighlightedPiece] = useState("");
+
+    const [chosenEditingPiece, setChosenEditingPiece] = useState(-1);
+    const [chosenEditingContent, setChosenEditingContent] = useState("");
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
@@ -303,7 +307,7 @@ export default function PieceManager({
             <table className="pieceTable">
         <thead>
             <tr>
-            <th style={{"width": "50px"}}>Editor</th>
+            <th style={{"width": "70px"}}>Editor</th>
             <th style={{"width": "30px"}}>#</th>
             <th className="contentGrid">{contentsText}</th>
             {<th style={{"width": "90px"}}>{operationsText}</th>}
@@ -330,7 +334,7 @@ export default function PieceManager({
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
-                            assignPieceNum(item["num"]);}}>{editText}</button>
+                            assignPieceNum(item["num"]);}}>Details</button>
                     </td>
                     <td
                         onClick={()=>{
@@ -338,16 +342,40 @@ export default function PieceManager({
                             assignPreviewIndex(index); //TODO1 check
                         }}
                     >{item["num"]}</td>
+
+
+        {/* content-grid */}
                     <td className="contentGrid"
                         onClick={()=>{
                             doHighlightItem(item["num"]);   
                             assignPreviewIndex(index); //TODO1 check
                         }}
                     >
-                        {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
+                    <button
+                        onClick={()=>{
+                            if (chosenEditingPiece !== -1) {
+                                setChosenEditingPiece(-1);
+                            } else {
+                                setChosenEditingPiece((index+1));
+                                setChosenEditingContent(item["content"]);
+                            }
+                        }}
+                    >{editText}</button><br></br>
+
+                    {!(chosenEditingPiece === (index+1))
+                    && <label>  {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
+                    </label>}  
                     
+                    {(chosenEditingPiece === (index+1)) && 
+                    <textarea
+                   
+                    >
+                    </textarea>}
+
                     </td>
+
+
                     {<td
                         onClick={()=>{
                             doHighlightItem(item["num"]);   
