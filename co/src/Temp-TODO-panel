@@ -8,7 +8,7 @@ TODO:
 
 
 * compo - < GameScreen_QuickView_ConvNode > add parameter of "volumeReq"
-* compo - <PreviewWindow_convNodeGameContent> add parameter of "volumeReq"
+* compo - < PreviewWindow_convNodeGameContent> add parameter of "volumeReq"
 
 parent-compo that uses < GameScreen_QuickView_ConvNode > :
             < AllPanels_QuickView_ConvNode >

@@ -61,25 +61,6 @@ export default function ConversationNodeEditingPanel() {
         "4:3(vertical)": [600, 800]
     };
 
-    const [currBgmVol, setCurrBgmVol] = useState(90);
-
-
-    const [isActionOnSetter, setIsActionOnSetter] = useState(true);
-
-    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
-    const [needCloudGameData, setNeedCloudGameData] = useState(true);
-
-    const [isDisplayRmBool, setDisplayRmModal] = useState(false);
-    const [isDisplayQview, setIsDisplayQview] = useState(false);
-    const [isDisplayEmBool, setDisplayEmBool] = useState(false);
-
-
-    const [browseList, setBrowseList] = useState(true);
-    const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
-    const [previewingIndex, setPreviewingIndex] = useState(0);
-    const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
-
-    const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -283,6 +264,30 @@ export default function ConversationNodeEditingPanel() {
 
     });
 
+    const [currBgmVol, setCurrBgmVol] = useState(90);
+
+    const [isActionOnSetter, setIsActionOnSetter] = useState(true);
+
+    const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
+    const [needCloudGameData, setNeedCloudGameData] = useState(true);
+
+    const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+    const [isDisplayQview, setIsDisplayQview] = useState(false);
+    const [isDisplayEmBool, setDisplayEmBool] = useState(false);
+
+
+    const [browseList, setBrowseList] = useState(true);
+    const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
+    const [previewingIndex, setPreviewingIndex] = useState(0);
+//TODO200
+    const [isDisplayPreviewScreen, setDisplayPreviewScreen] = useState(true);
+
+    const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
+
+    const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
+
+
+
 
     const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
     const [testPlayerGameDataDup, setTestPlayerGameDataDup] = useState({});   //TODO important for holder-in-practice
@@ -341,7 +346,7 @@ export default function ConversationNodeEditingPanel() {
 
 
 
-//         console.log("index = ", previewingIndex ,"\ncurr piece info: ", pieceDataStructure[previewingIndex]["stnd_btn_arr"]);
+//         console.log("index = ", previewingIndex ,"\ncurr piece info: ", pieceDataStructure[ previewingIndex ]["stnd_btn_arr"]);
 // //TODO1
     
     }); // --- useEffect ends here ---
@@ -508,6 +513,7 @@ export default function ConversationNodeEditingPanel() {
     function getUpdatePreviewingIndex(index) {
         console.log("conv-edit-panel, getUpdatePreviewingIndex:" , index); 
         setPreviewingIndex(index);
+
     }
 
     function returnToList() {
@@ -654,8 +660,10 @@ export default function ConversationNodeEditingPanel() {
         let len = pieceDataStructure.length;
         if (currentIndex + 1 < len) {
             setPreviewingIndex(currentIndex+1);
+    
         } else {
             setPreviewingIndex(len-1);
+
         }
     }
 
@@ -865,10 +873,10 @@ export default function ConversationNodeEditingPanel() {
 
                                                     // <PieceSetter> (changed to be pass-in-strategy)
                                                     // <ConvNodeUISetter> (changed to be pass-in-strategy)
-// <PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
-// <PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
+// < PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
+// < PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
 
-// <AllPanels_QuickView_ConvNode> [//TODO105 refactored, to test]
+// < AllPanels_QuickView_ConvNode> [//TODO105 refactored, to test]
 
 
         let audioListTemp = data.audio;
@@ -901,6 +909,19 @@ export default function ConversationNodeEditingPanel() {
         return currBgmVol;
     }
     
+    function passInDisplayPreviewScreen() {
+        return isDisplayPreviewScreen;
+    }
+
+    function triggerPreviewScreenOff() {
+        setDisplayPreviewScreen(false);
+    }
+
+    function triggerPreviewScreenOn() {
+        setDisplayPreviewScreen(true);
+    }
+
+
           
 
 {/* components:
@@ -1103,6 +1124,8 @@ export default function ConversationNodeEditingPanel() {
                             getScreenSize={passInScreenSize}
 
                             getUILanguage={passInUILanguage}
+                            triggerPreviewScreenOff={triggerPreviewScreenOff}
+                            triggerPreviewScreenOn={triggerPreviewScreenOn}
                         />}   
 
 
@@ -1139,6 +1162,7 @@ export default function ConversationNodeEditingPanel() {
                       
             {isDisplayGameContentPreview === true && 
                 <PreviewWindow_convNodeGameContent
+                    getDisplayScreen={passInDisplayPreviewScreen}
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
                     getAllPieceContent={passInAllPieceDataContent}

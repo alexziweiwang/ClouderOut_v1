@@ -8,6 +8,10 @@ export default function PieceManager({
     updatePieceData, getAllPieceData, 
     setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum,
     getScreenSize,
+    
+    triggerPreviewScreenOff,
+    triggerPreviewScreenOn,
+
 
     getUILanguage,
     
@@ -382,7 +386,6 @@ export default function PieceManager({
                                 setChosenEditingContent(item["content"]);
                                 setChosenEditingSpeaker(item["speaker_name"]);
                             }
-                            setNonClickced();
                             
                         }}
                     >{editText}</button><br></br>
@@ -397,15 +400,15 @@ export default function PieceManager({
                     <input
                         value={chosenEditingSpeaker}
                         onChange={(event)=>{
-                            setNonClickced();
                             setChosenEditingSpeaker(event.target.value);
+                            triggerPreviewScreenOff();
                         }}
                     ></input>
                     <textarea
                         value={chosenEditingContent}
-                        onChange={(event)=>{
-                            setNonClickced();
+                        onChange={(event)=>{  
                             setChosenEditingContent(event.target.value);
+                            triggerPreviewScreenOff();
                         }}
                     >
                     </textarea>
@@ -420,8 +423,8 @@ export default function PieceManager({
                         onClick={()=>{
                             //TODO115 change this piece's content and speaker with chosenEditingContent and chosenEditingSpeaker
                             changePieceContentSpeaker(index);
-                            doHighlightItem(item["num"]);   
-                            assignPreviewIndex(index); //TODO1 check
+                            triggerPreviewScreenOn();
+
                         }}
                     >Change</button>
                     

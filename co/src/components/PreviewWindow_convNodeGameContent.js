@@ -23,9 +23,13 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     getUILanguage,
 
     username, projName,
+
+    getDisplayScreen
     
   
   }) {
+
+    const [isDisplayScreen, setDisplayScreen] = useState(true);
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -37,7 +41,21 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
     const enteredgetLogPageUISettings = getLogPageUISettings();
 
-
+    const newEmptyPieceTemplate = {
+      "num": -1, 
+      "content": "", 
+      "speaker_name": "", 
+      "bgp_pos_x": 0, 
+      "bgp_pos_y": 0, 
+      "bgp_width": {screenWidth}, 
+      "bgp_height": {screenHeight}, 
+      "chp_arr": [], 
+      "btn_arr": [], 
+      "bgm_loop": true, 
+      "bgm_volume": 100, 
+      "vl_source_link": "", 
+      "vl_volume": 100
+    }; 
     // console.log("re-rendering @preview window"); //TODO test temp
 
     let name = "/previewwindow";
@@ -82,7 +100,11 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           }
           
           let currPieceNumTemp = getCurrentPieceNum();
-          if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
+          if (currPieceNumTemp === -2) {
+            setCurrentPieceNum(-2);
+            setCurrentPiece(newEmptyPieceTemplate);
+
+          } else if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
             setCurrentPieceNum(currPieceNumTemp);
             setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
           }
@@ -259,7 +281,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
               }}>
 
 
-<div style={{
+{currentPieceNum !== -2 && <div style={{
   "display": !isShowLogScreen ? "flex" : "none"
 }}>
 
@@ -361,7 +383,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                   triggerLogOpen={triggerLogOpen}
               />
 
-</div>
+</div>}
 
 
 
@@ -385,7 +407,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
 
 
-            </div>
+</div>
    
 
             {/* <p className="plans">
