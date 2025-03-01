@@ -13,7 +13,6 @@ export default function PieceManager({
     triggerPreviewScreenOn,
     sendPmEditingPiece,
 
-
     triggerPmQuickEditModeOn,
     triggerPmQuickEditModeOff,
     
@@ -317,6 +316,8 @@ export default function PieceManager({
         updatePieceData(pieceDataArr);
     }
 
+
+
    
 
 
@@ -397,10 +398,9 @@ export default function PieceManager({
                         onClick={()=>{
                             setQuickEditModeOn(true);
                             triggerPmQuickEditModeOn();
-
                         }}
                     >
-                        {editText}
+                        Group Edit
                     </button><br></br>
                  
                     <label>  
@@ -411,9 +411,28 @@ export default function PieceManager({
 
                     {quickEditModeOn === true &&
                         <>
-                            <input></input>
+                            <input
+                                defaultValue={item["speaker_name"]}
+                                onChange={(event)=>{
+                                    
+                                    let val = event.target.value;
+
+                                    let pieceArrTemp = pieceDataLocal;
+                                    pieceArrTemp[index]["speaker_name"] = val;
+                                    setPieceDataLocal(pieceArrTemp);
+                                }}
+                            ></input>
                             <br></br>
-                            <textarea></textarea>
+                            <textarea
+                                defaultValue={item["content"]}
+                                onChange={(event)=>{
+                                    let val = event.target.value;
+
+                                    let pieceArrTemp = pieceDataLocal;
+                                    pieceArrTemp[index]["content"] = val;
+                                    setPieceDataLocal(pieceArrTemp);
+                                }}                            
+                            ></textarea>
                         </>
                     }
 
@@ -457,32 +476,22 @@ export default function PieceManager({
 
         </tbody>
     </table>
-    {quickEditModeOn === false &&
+    {
     <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>}
 
     {quickEditModeOn === true && 
     <div>
-        <button
-            onClick={()=>{
-                let ans = window.confirm("Are you sure to discard the changes?")
-                if (ans) {
-                    setQuickEditModeOn(false);
-                    triggerPmQuickEditModeOff();
-                }
-
-
-            }}
-        >Cancel</button>
-
+        <br></br><br></br><br></br>
         <button
             onClick={()=>{
                 setQuickEditModeOn(false);
                 triggerPmQuickEditModeOff();
 
-                //TODO200 update changes to piece-data
+                //TODO200 update changes to piece-data -- apply array of content and array of speaker_name into actual piece-data ...
+
 
             }}
-        >Update</button>
+        >Finish</button>
 
     </div>}
     
