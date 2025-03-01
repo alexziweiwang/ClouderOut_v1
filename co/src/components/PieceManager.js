@@ -365,71 +365,12 @@ export default function PieceManager({
                             }
                         }}
                     >
-                    <button
-                        onClick={()=>{
-                            if (chosenEditingPiece !== -1) {
-                                setChosenEditingPiece(-1);
-                            } else {
-                                doHighlightItem(item["num"]);   
-                                assignPreviewIndex(index);
+                  
 
-                                setChosenEditingPiece((index+1));
-                                
-                                setChosenEditingContent(item["content"]);
-                                setChosenEditingSpeaker(item["speaker_name"]);
-                            }
-                            
-                        }}
-                    >{editText}</button><br></br>
-
-                    {!(chosenEditingPiece === (index+1)) && 
+                     
                     <label>  {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
-                    </label>}  
-                    
-                    {(chosenEditingPiece === (index+1)) && 
-                    <>
-                    <input
-                        value={chosenEditingSpeaker}
-                        onChange={(event)=>{
-                            let val = event.target.value;
-                            setChosenEditingSpeaker(val);
-                            triggerPreviewScreenOff();
-
-                            let tempPiece = pieceDataLocal[index];
-                            tempPiece["speaker_name"] = val;
-                            sendPmEditingPiece(tempPiece);
-                        }}
-                    ></input>
-                    <textarea
-                        value={chosenEditingContent}
-                        onChange={(event)=>{  
-                            let val = event.target.value;
-                            setChosenEditingContent(val);
-                            triggerPreviewScreenOff();
-
-                            let tempPiece = pieceDataLocal[index];
-                            tempPiece["content"] = val;
-                            sendPmEditingPiece(tempPiece);
-                        }}
-                    >
-                    </textarea>
-                    
-                    <br></br>
-                    <button
-                        onClick={()=>{
-                            resetChosenEditingPiece();
-                        }}
-                    >Cancel</button>
-                    <button
-                        onClick={()=>{
-                            //TODO115 change this piece's content and speaker with chosenEditingContent and chosenEditingSpeaker
-                            changePieceContentSpeaker(index);
-                            triggerPreviewScreenOn();
-                        }}
-                    >Change</button>
-                    
-                    </>}
+                    </label>
 
                     </td>
 

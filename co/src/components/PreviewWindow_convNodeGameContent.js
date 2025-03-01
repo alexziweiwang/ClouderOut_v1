@@ -31,7 +31,6 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
   }) {
 
     const [isNonPmTempPiece, setIsNonPmTempPiece] = useState(true);
-    const [pmPreItem, setPmPreItem] = useState({});
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -286,7 +285,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
 
 
-{
+{isNonPmTempPiece === true && 
 <div style={{
   "display": !isShowLogScreen ? "flex" : "none"
 }}>

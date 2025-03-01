@@ -456,3 +456,14 @@
 
 - 2025-Feb-26: Consider modules of app-flow structures (project-content & resource & playing-progress-status) for various plans
 - 2025-Feb-26: Design long-text content piece input strategy for better UX
+
+- 2025-Feb-28: Deisng better UX for group-editing for conv-node-pieces
+
+
+
+
+
+
+
+
+
