@@ -15,6 +15,8 @@ export default function PieceManager({
 
 
     triggerPmQuickEditModeOn,
+    triggerPmQuickEditModeOff,
+    
     getUILanguage,
     
 }) {
@@ -115,6 +117,8 @@ export default function PieceManager({
             setFirstTimeEnter(false);
         }
 
+
+
         const allPiece = getAllPieceData();
                     //                    console.log("pm __ got allPiece (from conv-editor-layer) = ", allPiece);
         allPiece.sort((a, b) => a.num - b.num);
@@ -135,6 +139,11 @@ export default function PieceManager({
 
         //TODO getScreenSize and update both w and h
         
+        
+        
+        if (quickEditModeOn === true) {
+            setHighlightedPiece("");
+        }
     });
 
  
@@ -382,7 +391,9 @@ export default function PieceManager({
                         }}
                     >
                     
-                    {quickEditModeOn === false && <button
+                    {quickEditModeOn === false && 
+                    <>
+                    <button
                         onClick={()=>{
                             setQuickEditModeOn(true);
                             triggerPmQuickEditModeOn();
@@ -390,12 +401,21 @@ export default function PieceManager({
                         }}
                     >
                         {editText}
-                    </button>}
-
-                     
-                    <label>  {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
+                    </button><br></br>
+                 
+                    <label>  
+                        {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
                     </label>
+                    </>}
+
+                    {quickEditModeOn === true &&
+                        <>
+                            <input></input>
+                            <br></br>
+                            <textarea></textarea>
+                        </>
+                    }
 
 
                     </td>
@@ -409,7 +429,7 @@ export default function PieceManager({
                             }
                         }}                    
                     >
-                    {quickEditModeOn === false &&<div>
+                    {quickEditModeOn === false && <div>
                         <button onClick={()=>{moveItemUpRow(index);}}>{moveUpText}</button>
                         <br></br>
                         <button onClick={()=>{moveItemDownRow(index);}}>{moveDownText}</button>
@@ -437,7 +457,34 @@ export default function PieceManager({
 
         </tbody>
     </table>
-    <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>
+    {quickEditModeOn === false &&
+    <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>}
+
+    {quickEditModeOn === true && 
+    <div>
+        <button
+            onClick={()=>{
+                let ans = window.confirm("Are you sure to discard the changes?")
+                if (ans) {
+                    setQuickEditModeOn(false);
+                    triggerPmQuickEditModeOff();
+                }
+
+
+            }}
+        >Cancel</button>
+
+        <button
+            onClick={()=>{
+                setQuickEditModeOn(false);
+                triggerPmQuickEditModeOff();
+
+                //TODO200 update changes to piece-data
+
+            }}
+        >Update</button>
+
+    </div>}
     
         </div>
     );

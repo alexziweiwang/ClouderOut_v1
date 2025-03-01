@@ -1168,6 +1168,8 @@ export default function ConversationNodeEditingPanel() {
                             sendPmEditingPiece={getPmEditingPiece}
 
                             triggerPmQuickEditModeOn={triggerPmQuickEditModeOn}
+                            triggerPmQuickEditModeOff={triggerPmQuickEditModeOff}
+
                         />}   
 
 
