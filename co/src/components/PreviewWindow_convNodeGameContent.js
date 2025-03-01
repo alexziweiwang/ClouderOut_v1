@@ -55,8 +55,9 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
       "bgm_loop": true, 
       "bgm_volume": 100, 
       "vl_source_link": "", 
-      "vl_volume": 100
-    }; 
+      "vl_volume": 100,
+      "displayTextFrame": true
+    };  
     // console.log("re-rendering @preview window"); //TODO test temp
 
     let name = "/previewwindow";

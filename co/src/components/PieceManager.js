@@ -22,7 +22,8 @@ export default function PieceManager({
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
 
-    const [quickEditModeOn, setQuickEditModeOn] = useState(false);
+    const [groupEditModeOn, setGroupEditModeOn] = useState(false);
+    const [groupMoving, setGroupMoving] = useState(false);
 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -40,7 +41,8 @@ export default function PieceManager({
         "bgm_loop": true, 
         "bgm_volume": 100, 
         "vl_source_link": "", 
-        "vl_volume": 100
+        "vl_volume": 100,
+        "displayTextFrame": true
     }; 
 
 
@@ -140,7 +142,7 @@ export default function PieceManager({
         
         
         
-        if (quickEditModeOn === true) {
+        if (groupEditModeOn === true) {
             setHighlightedPiece("");
         }
     });
@@ -324,20 +326,20 @@ export default function PieceManager({
 
 
     return (
-        <div className={quickEditModeOn === false ? "pieceManager pieceEditingLeftArea" : "pieceManagerQuickGroup pieceManagerQuickEdit"}
+        <div className={groupEditModeOn === false ? "pieceManager pieceEditingLeftArea" : "pieceManagerQuickGroup pieceManagerQuickEdit"}
             onClick={()=>{
                 setIsClickedOnSetters(true);
             }}
         >
                  
-            <table className={quickEditModeOn === false ? "pieceTable" : "pieceTableQuickGroup"}>
+            <table className={groupEditModeOn === false ? "pieceTable" : "pieceTableQuickGroup"}>
         <thead>
             <tr>
             <th style={{"width": "70px"}}>Editor</th>
             <th style={{"width": "30px"}}>#</th>
             <th 
             
-            className={quickEditModeOn === false ? "contentGrid" : "contentGridQuickGroup"}
+            className={groupEditModeOn === false ? "contentGrid" : "contentGridQuickGroup"}
             
             >{contentsText}</th>
             {<th style={{"width": "90px"}}>{operationsText}</th>}
@@ -357,14 +359,14 @@ export default function PieceManager({
                     
                     <td
                         onClick={()=>{
-                            if (quickEditModeOn === false) {
+                            if (groupEditModeOn === false) {
                                 doHighlightItem(item["num"]);   
                                 assignPreviewIndex(index); //TODO1 check
                             }
 
                         }}
                     >
-                        {quickEditModeOn === false && <button onClick={()=>{
+                        {groupEditModeOn === false && <button onClick={()=>{
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
@@ -372,7 +374,7 @@ export default function PieceManager({
                     </td>
                     <td
                         onClick={()=>{
-                            if (quickEditModeOn === false) {
+                            if (groupEditModeOn === false) {
                                 doHighlightItem(item["num"]);   
                                 assignPreviewIndex(index); //TODO1 check
                             }
@@ -384,7 +386,7 @@ export default function PieceManager({
                     <td className="contentGrid"
                         onClick={()=>{
                             if (chosenEditingPiece !== (index+1)) {
-                                if (quickEditModeOn === false) {
+                                if (groupEditModeOn === false) {
                                     doHighlightItem(item["num"]);   
                                     assignPreviewIndex(index); //TODO1 check
                                 }
@@ -392,16 +394,25 @@ export default function PieceManager({
                         }}
                     >
                     
-                    {quickEditModeOn === false && 
+                    {(groupEditModeOn === false || groupMoving === true) && 
                     <>
                     <button
                         onClick={()=>{
-                            setQuickEditModeOn(true);
-                            triggerPmQuickEditModeOn();
+                            if (groupEditModeOn === false) {
+                                setGroupEditModeOn(true);
+                                triggerPmQuickEditModeOn();
+                            }
+                            if (groupMoving === true) {
+                                setGroupMoving(false);
+                            }
+
                         }}
                     >
                         Group Edit
-                    </button><br></br>
+                    </button>
+                    
+                    
+                    <br></br>
                  
                     <label>  
                         {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
@@ -409,7 +420,7 @@ export default function PieceManager({
                     </label>
                     </>}
 
-                    {quickEditModeOn === true &&
+                    {(groupEditModeOn === true && groupMoving === false) &&
                         <>
                             <input
                                 defaultValue={item["speaker_name"]}
@@ -442,29 +453,31 @@ export default function PieceManager({
         {/* operation grid */}
                      <td
                         onClick={()=>{
-                            if (quickEditModeOn === false) {
+                            if (groupEditModeOn === false) {
                                 doHighlightItem(item["num"]);   
                                 assignPreviewIndex(index); //TODO1 check
                             }
                         }}                    
                     >
-                    {quickEditModeOn === false && <div>
-                        <button onClick={()=>{moveItemUpRow(index);}}>{moveUpText}</button>
+                    {
+                    <div>
+                        <button onClick={()=>{setGroupMoving(true);moveItemUpRow(index);}}>{moveUpText}</button>
                         <br></br>
-                        <button onClick={()=>{moveItemDownRow(index);}}>{moveDownText}</button>
+                        <button onClick={()=>{setGroupMoving(true);moveItemDownRow(index);}}>{moveDownText}</button>
                         <br></br>
-                        <button onClick={()=>{duplicatePiece(index);}}>{duplicateText}</button>
-                        <button onClick={()=>{insertNewPiece(index);}}>{insertText}</button> 
+                        <button onClick={()=>{setGroupMoving(true);duplicatePiece(index);}}>{duplicateText}</button>
+                        <button onClick={()=>{setGroupMoving(true);insertNewPiece(index);}}>{insertText}</button> 
                     </div>}
                     
                     </td>
                     <td>
-                        {quickEditModeOn === false && <button 
+                        {<button 
                         
                         onClick={()=>{
                             let content = "Are you sure to delete this node: " + item["num"] + ":" + item["content"] + "?";
                             let respondGiven = window.confirm(content);
                             if (respondGiven) {
+                                setGroupMoving(true);
                                 deletePiece(index);
                             }       
                         }}
@@ -479,12 +492,12 @@ export default function PieceManager({
     {
     <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>}
 
-    {quickEditModeOn === true && 
+    {groupEditModeOn === true && 
     <div>
         <br></br><br></br><br></br>
         <button
             onClick={()=>{
-                setQuickEditModeOn(false);
+                setGroupEditModeOn(false);
                 triggerPmQuickEditModeOff();
 
                 //TODO200 update changes to piece-data -- apply array of content and array of speaker_name into actual piece-data ...

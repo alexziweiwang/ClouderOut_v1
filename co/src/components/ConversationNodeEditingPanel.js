@@ -74,7 +74,8 @@ export default function ConversationNodeEditingPanel() {
         "bgm_loop": true, 
         "bgm_volume": 100, 
         "vl_source_link": "", 
-        "vl_volume": 100
+        "vl_volume": 100,
+        "displayTextFrame": true
     }; 
 
 
