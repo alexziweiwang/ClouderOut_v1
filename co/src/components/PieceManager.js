@@ -13,11 +13,15 @@ export default function PieceManager({
     triggerPreviewScreenOn,
     sendPmEditingPiece,
 
+
+    triggerPmQuickEditModeOn,
     getUILanguage,
     
 }) {
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
+
+    const [quickEditModeOn, setQuickEditModeOn] = useState(false);
 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -310,18 +314,22 @@ export default function PieceManager({
 
 
     return (
-        <div className="pieceManager pieceEditingLeftArea" 
+        <div className={quickEditModeOn === false ? "pieceManager pieceEditingLeftArea" : "pieceManagerQuickGroup pieceManagerQuickEdit"}
             onClick={()=>{
                 setIsClickedOnSetters(true);
             }}
         >
                  
-            <table className="pieceTable">
+            <table className={quickEditModeOn === false ? "pieceTable" : "pieceTableQuickGroup"}>
         <thead>
             <tr>
             <th style={{"width": "70px"}}>Editor</th>
             <th style={{"width": "30px"}}>#</th>
-            <th className="contentGrid">{contentsText}</th>
+            <th 
+            
+            className={quickEditModeOn === false ? "contentGrid" : "contentGridQuickGroup"}
+            
+            >{contentsText}</th>
             {<th style={{"width": "90px"}}>{operationsText}</th>}
             {<th style={{"width": "60px"}}></th>}
             </tr>
@@ -336,22 +344,28 @@ export default function PieceManager({
                         (highlightedPiece === item["num"])      
                             ? "tableItemSelected" : "tableItem"} 
                         >
+                    
                     <td
                         onClick={()=>{
-                            doHighlightItem(item["num"]);   
-                            assignPreviewIndex(index); //TODO1 check
+                            if (quickEditModeOn === false) {
+                                doHighlightItem(item["num"]);   
+                                assignPreviewIndex(index); //TODO1 check
+                            }
+
                         }}
                     >
-                        <button onClick={()=>{
+                        {quickEditModeOn === false && <button onClick={()=>{
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
-                            assignPieceNum(item["num"]);}}>Details</button>
+                            assignPieceNum(item["num"]);}}>Details</button>}
                     </td>
                     <td
                         onClick={()=>{
-                            doHighlightItem(item["num"]);   
-                            assignPreviewIndex(index); //TODO1 check
+                            if (quickEditModeOn === false) {
+                                doHighlightItem(item["num"]);   
+                                assignPreviewIndex(index); //TODO1 check
+                            }
                         }}
                     >{item["num"]}</td>
 
@@ -360,39 +374,53 @@ export default function PieceManager({
                     <td className="contentGrid"
                         onClick={()=>{
                             if (chosenEditingPiece !== (index+1)) {
-                                doHighlightItem(item["num"]);   
-                                assignPreviewIndex(index); //TODO1 check
+                                if (quickEditModeOn === false) {
+                                    doHighlightItem(item["num"]);   
+                                    assignPreviewIndex(index); //TODO1 check
+                                }
                             }
                         }}
                     >
-                  
+                    
+                    {quickEditModeOn === false && <button
+                        onClick={()=>{
+                            setQuickEditModeOn(true);
+                            triggerPmQuickEditModeOn();
+
+                        }}
+                    >
+                        {editText}
+                    </button>}
 
                      
                     <label>  {item["speaker_name"]}{(item["speaker_name"] === "") ? "" : ":"}{(item["speaker_name"] !== "") && <br></br>}
                     {item["content"]}
                     </label>
 
+
                     </td>
 
-
-                    {<td
+        {/* operation grid */}
+                     <td
                         onClick={()=>{
-                            doHighlightItem(item["num"]);   
-                            assignPreviewIndex(index); //TODO1 check
+                            if (quickEditModeOn === false) {
+                                doHighlightItem(item["num"]);   
+                                assignPreviewIndex(index); //TODO1 check
+                            }
                         }}                    
                     >
-                    <div>
+                    {quickEditModeOn === false &&<div>
                         <button onClick={()=>{moveItemUpRow(index);}}>{moveUpText}</button>
                         <br></br>
                         <button onClick={()=>{moveItemDownRow(index);}}>{moveDownText}</button>
                         <br></br>
                         <button onClick={()=>{duplicatePiece(index);}}>{duplicateText}</button>
                         <button onClick={()=>{insertNewPiece(index);}}>{insertText}</button> 
-                    </div>
+                    </div>}
                     
-                    </td>}
-                    {<td>
-                        <button 
+                    </td>
+                    <td>
+                        {quickEditModeOn === false && <button 
                         
                         onClick={()=>{
                             let content = "Are you sure to delete this node: " + item["num"] + ":" + item["content"] + "?";
@@ -401,8 +429,8 @@ export default function PieceManager({
                                 deletePiece(index);
                             }       
                         }}
-                        >{deleteText}</button>
-                    </td>}
+                        >{deleteText}</button>}
+                    </td>
                 </tr>
                 );
             })} 

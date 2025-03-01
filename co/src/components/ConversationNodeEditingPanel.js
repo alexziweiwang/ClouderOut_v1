@@ -303,6 +303,7 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameUISetterOpen, setGameUISetterOpen] = useState(false);
 
+    const [pmQuickEditModeOn, setPmQuickEditModeOn] = useState(false);
 
 
 
@@ -946,6 +947,14 @@ export default function ConversationNodeEditingPanel() {
         return editingPmPreviewPiece;
     }
 
+    function triggerPmQuickEditModeOn() {
+        setPmQuickEditModeOn(true);
+    }
+
+    function triggerPmQuickEditModeOff() {
+        setPmQuickEditModeOn(false);
+    }
+
 
           
 
@@ -1072,6 +1081,8 @@ export default function ConversationNodeEditingPanel() {
                 }}
             >
 
+
+{/* editor-left-part */}
             {browseList === false && 
                 <div
                     style={{"maxHeight": `${screenHeight+1}px`,  "marginTop": "16px"}}
@@ -1132,10 +1143,13 @@ export default function ConversationNodeEditingPanel() {
                 </div>
             }
 
+{/* editor-left-part */}
             {browseList === true &&
                 <div
                     style={{"maxHeight": `${screenHeight+1}px`,  "marginTop": "16px"}}
                 >        
+
+
                     {gameUISetterOpen === false && 
                         <PieceManager 
                             allPieceData={pieceDataStructure} 
@@ -1152,6 +1166,8 @@ export default function ConversationNodeEditingPanel() {
                             triggerPreviewScreenOff={triggerPreviewScreenOff}
                             triggerPreviewScreenOn={triggerPreviewScreenOn}
                             sendPmEditingPiece={getPmEditingPiece}
+
+                            triggerPmQuickEditModeOn={triggerPmQuickEditModeOn}
                         />}   
 
 
@@ -1185,8 +1201,8 @@ export default function ConversationNodeEditingPanel() {
             }
 
 
-                      
-            {isDisplayGameContentPreview === true && 
+{/* editor-right-part                       */}
+            {(isDisplayGameContentPreview === true && pmQuickEditModeOn === false) && 
                 <PreviewWindow_convNodeGameContent
                     getDisplayNonPmTemp={passInDisplayPreviewScreen}
                     getPmEditingPreviewPiece={passInPmEditingPreviewPiece}
@@ -1219,8 +1235,8 @@ export default function ConversationNodeEditingPanel() {
                 />}
 
 
-
-            {isDisplayGameContentPreview === false && 
+{/* editor-right-part */}
+            {(isDisplayGameContentPreview === false && pmQuickEditModeOn === false) && 
                 <PreviewWindow_convNodeUiSetup
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
