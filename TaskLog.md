@@ -459,7 +459,7 @@
 
 - 2025-Feb-28: Deisng better UX for group-editing for conv-node-pieces
 
-
+- 2025-Mar-03: Design resource-managing-toggle for parallel-storage of audio/visual materials
 
 
 
