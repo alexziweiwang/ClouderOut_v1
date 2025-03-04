@@ -34,7 +34,9 @@ export default function GameScreen_AllNodeTypeContainer({
     visualMap,
     audioMap,
     mutedViewOption,
-    fetchGameSettings
+    fetchGameSettings,
+
+    getAllNodesDataContainer
 
 }) {
 

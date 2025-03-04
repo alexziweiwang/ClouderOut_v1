@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
 import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
+
+
 /* //TODO
   This component is a View/"screen" *holder* of game-play (both testing-entire and play-in-practice).
 
@@ -55,7 +57,10 @@ export default function Viewer_Entire({
 
     visualMap,
     audioMap,
-    mutedViewOption
+    mutedViewOption,
+
+
+    allNodesContainer
 
 
 
@@ -117,7 +122,6 @@ export default function Viewer_Entire({
         ? sizeLookupMap[initialNavObj["screenSize"]][1] 
         : 600;
     
-
     const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
     //TODO109
 
@@ -488,6 +492,12 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     }
 
 
+    function passInAllNodesContainer() {
+        return allNodesContainer;
+    }
+
+    
+
 
 
 return ( <>
@@ -545,6 +555,8 @@ game-screen (specific node) layer */}
                                                 audioMap={audioMap}
                                                 mutedViewOption={mutedViewOption}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
+                                          
+                                                getAllNodesDataContainer={passInAllNodesContainer}
                                           />
 
                                 

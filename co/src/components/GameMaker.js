@@ -167,6 +167,8 @@ export default function GameMaker({username, projectName}) {
   const [visualMap, setVisualMap] = useState([]); 
   const [audioMap, setAudioMap] = useState([]);
 
+  const [allNodesContainer, setAllNodesContainer] = useState([]); //TODO200
+
 
     async function fetchProjResourceLists() {
       if (username === "default-no-state username" || projectName === "default-no-state projectName") {
@@ -1590,6 +1592,15 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
   }
 
 
+  function fetchAllNodesContainerFromCloud() {
+    //setAllNodesContainer()
+    //fetch node-detailed-contents... for all chapters and all nodes?
+
+    //TODO200
+  
+  }
+
+
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
@@ -1917,6 +1928,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           visualMap={visualMap}
           audioMap={audioMap}
           mutedViewOption={mutedViewOption}
+
+          allNodesContainer={allNodesContainer}
 
       />
 
