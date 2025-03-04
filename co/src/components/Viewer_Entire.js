@@ -60,7 +60,9 @@ export default function Viewer_Entire({
     mutedViewOption,
 
 
-    allNodesContainer
+   // allNodesContainer,
+    getAllNodesContainer,
+    getEachChapterNodeDetails,
 
 
 
@@ -124,6 +126,8 @@ export default function Viewer_Entire({
     
     const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
     //TODO109
+
+    const [allNodesContainer, setAllNodesContainer] = useState([]); //TODO200
 
 //prev-ver. //TODO remove after test
                                         // const [screenWidth, setScreenWidth] = useState(800); //TODO
@@ -221,9 +225,8 @@ export default function Viewer_Entire({
                                                 console.log("!!!!!!! viewer-entire: entered as first-time");
             initializeGameDataTracker(initialPlayerGameDataTracker);
 
-
-
-
+                               
+    
 
             //initialize all game-progress-items
             configureGameProgress("", "", "", "Main Page", "");             
@@ -234,6 +237,11 @@ export default function Viewer_Entire({
 
             setFirstTimeEnter(false);
         }
+
+        
+        let anc = getAllNodesContainer();
+        setAllNodesContainer(anc);
+                                            console.log("\t\t*** allNodesContainer = ", anc);
 
 
 

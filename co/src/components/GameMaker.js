@@ -22,7 +22,7 @@ import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,fetchAllChapte
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 
-import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
+import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntireProjectVM } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 
@@ -1591,13 +1591,50 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       resetAudioMapFromList(audioListTemp); 
   }
 
+  function fromNodeMapToChapterNodeKeyDs() {
+    //TODO200
 
-  function fetchAllNodesContainerFromCloud() {
-    //setAllNodesContainer()
-    //fetch node-detailed-contents... for all chapters and all nodes?
+    let chapNodeKeyDs = {};
+
+    Object.keys(chapterNodeMapAll).map((chapKey) => {
+      let nodeKeyMap = chapterNodeMapAll[chapKey];
+      let nodeKeyArr = [];
+      Object.keys(nodeKeyMap).map((nodeKey) => {
+        nodeKeyArr.push(nodeKey);
+      });
+
+      chapNodeKeyDs[chapKey] = nodeKeyArr
+    });
+
+    console.log("\t\t\t chapNodeKeyDs = ", chapNodeKeyDs);
+    return chapNodeKeyDs;
+  }
+
+  async function fetchAllNodesContainerFromCloud() {
+
+    console.log("...fetchAllNodesContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
+
+
+    let chapNodeDs = fromNodeMapToChapterNodeKeyDs();
+    console.log("...fetchAllNodesContainerFromCloud - chapNodeKeyDs = ", chapNodeDs);
+
+
+    // let data = await fetchNodeDataEntireProjectVM({
+    //   uname: username, 
+    //   projectName: projectName
+    // });
+
+    // if (data !== undefined) {
+    //   setAllNodesContainer(data);
+    // }
+    
 
     //TODO200
   
+  }
+
+  function passInAllNodesContainer() {
+    return allNodesContainer;
   }
 
 
@@ -1630,6 +1667,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       >
         <button
           onClick={()=>{
+            fetchAllNodesContainerFromCloud();
+
             setDisplayEntireGameViewer(true);
           }}
           className="button testEntire"
@@ -1925,6 +1964,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           mutedViewOption={mutedViewOption}
 
           allNodesContainer={allNodesContainer}
+          getAllNodesContainer={passInAllNodesContainer}
 
       />
 
