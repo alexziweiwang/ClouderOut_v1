@@ -1611,22 +1611,26 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
   }
 
   async function fetchAllNodesContainerFromCloud() {
+    //TODO201 strategy: load chapter data for each chapter (optional)?
+     
 
-    console.log("...fetchAllNodesContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
-
-
-    let chapNodeDs = fromNodeMapToChapterNodeKeyDs();
-    console.log("...fetchAllNodesContainerFromCloud - chapNodeKeyDs = ", chapNodeDs);
+    // console.log("...fetchAllNodesContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
 
 
-    // let data = await fetchNodeDataEntireProjectVM({
-    //   uname: username, 
-    //   projectName: projectName
-    // });
+    // let chapNodeKeyDs = fromNodeMapToChapterNodeKeyDs();
+    // console.log("...fetchAllNodesContainerFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
 
-    // if (data !== undefined) {
-    //   setAllNodesContainer(data);
-    // }
+
+    let data = await fetchNodeDataEntireProjectVM({
+      uname: username, 
+      projectName: projectName
+    });
+
+    if (data !== undefined) {
+      setAllNodesContainer(data);
+    }
+
+    console.log("fetchAllNodesContainerFromCloud, data = ", data);
     
 
     //TODO200

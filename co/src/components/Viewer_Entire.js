@@ -62,8 +62,6 @@ export default function Viewer_Entire({
 
    // allNodesContainer,
     getAllNodesContainer,
-    getEachChapterNodeDetails,
-
 
 
                                 //TODO test before removing
@@ -241,7 +239,7 @@ export default function Viewer_Entire({
         
         let anc = getAllNodesContainer();
         setAllNodesContainer(anc);
-                                            console.log("\t\t*** allNodesContainer = ", anc);
+                                            console.log("\t\t*** Viewer-Entire: allNodesContainer = ", anc);
 
 
 
