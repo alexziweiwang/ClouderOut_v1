@@ -1905,12 +1905,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
           initialPlayerSlRecords={testPlayerSLRecords}
 
         
-                                                          // getNodeType={passInNodeType}
-                                                          // getChapterKey={passInChapterKey}
-                                                          // getNodeKey={passInNodeKey}
-                                                          // getPageName={passInPageName}
-                                                          // getChapterTitle={passInChapterTitle}
-
+                                      
 
  
           uiLangOption={languageCodeTextOption}
