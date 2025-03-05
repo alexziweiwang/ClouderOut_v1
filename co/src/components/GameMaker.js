@@ -1612,7 +1612,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   async function fetchAllNodesContainerFromCloud() {
     //TODO201 strategy: load chapter data for each chapter (optional)?
-     
+
 
     // console.log("...fetchAllNodesContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
 
@@ -1641,6 +1641,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     return allNodesContainer;
   }
 
+  function passInFalseBool() {
+    return false;
+  }
 
 {/* //components
       
@@ -1875,6 +1878,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                   visualMap={visualMap}
                   audioMap={audioMap}
                   sendOutGameSettingScaleObjFromSubCompo={notUsing}
+
+                  getOpenSettingSignal={passInFalseBool}
+
                   />
               </div>
           </div>

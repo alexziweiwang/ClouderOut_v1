@@ -213,7 +213,7 @@ export default function Viewer_Entire({
 
 
 
-
+    const [isOpenSettingsPage, setOpenSettingsPage] = useState(false);
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -503,6 +503,10 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         return allNodesContainer;
     }
 
+    function passInOpenSettingsPage() {
+        return isOpenSettingsPage;
+    }
+
     
 
 
@@ -615,6 +619,7 @@ shop layer
                         audioMap={audioMap}
                         sendOutGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompoViewer}
 
+                        getOpenSettingSignal={passInOpenSettingsPage}
                     /> 
 
 //TODO300 add nav-preview's game-setting option: modal on and off...

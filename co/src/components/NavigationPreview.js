@@ -26,7 +26,10 @@ export default function NavigationPreview ({
 
     visualMap,
     audioMap,
-    sendOutGameSettingScaleObjFromSubCompo
+    sendOutGameSettingScaleObjFromSubCompo,
+
+
+    getOpenSettingSignal
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -125,6 +128,9 @@ const tempFontSize = 12;
     }
 
 
+    const [isOpenSettingsPage, setOpenSettingsPage] = useState(false);
+//TODo301
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
@@ -164,6 +170,9 @@ const tempFontSize = 12;
             setFirstTimeEnter(false);
 
         }
+
+        let gameSettingWinOpenBool = getOpenSettingSignal();
+        setOpenSettingsPage(gameSettingWinOpenBool);
 
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
@@ -945,7 +954,9 @@ return (
         </div>
         }
 
-        {page === "Settings Page" && 
+        {(page === "Settings Page" || isOpenSettingsPage === true)
+        
+        && 
     
         <div style={{
             "width": `${screenWidth}px`, 
