@@ -461,7 +461,7 @@
 
 - 2025-Mar-03: Design resource-managing-toggle for parallel-storage of audio/visual materials
 
-
+- 2025-Mar-04: Consider strategy of viewing-node-detail fetching mode
 
 
 
