@@ -1956,7 +1956,9 @@ return (
                                 let nextPageName = "Main Page";
                                 if (page === "Settings Page") {
                                     //TODO107 save the current set of game-settings-obj to outlayer...
-                                    console.log("returning from settings-page, saving current values = ", gameSettingsParametersObj);
+                                    console.log("at nav-preview... returning from settings-page, saving current values = ", gameSettingsParametersObj);
+
+
                                 }
 
 

@@ -71,8 +71,11 @@ export default function GameScreen_QuickView_ConvNode ({
             }
 
             let bgmVolScale =gameSettingScaleObj !== -1 ? gameSettingScaleObj["settingPage-bgmVol"] / 100 : 1;
-            let currBgmBol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
-            let resVol = bgmVolScale * currBgmBol;
+            let currBgmVol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
+            let resVol = bgmVolScale * currBgmVol;
+
+            console.log("qv_conv_node: vol...  bgmVolScale = ", bgmVolScale, ",     currBgmVol = ", currBgmVol, "      resVol = ", resVol);
+
             changeBgmVolume(resVol);
 
             let resetSignal = getResetSignal();
@@ -395,6 +398,11 @@ style={{
                 screenHeight={screenHeight}
 
             />}
+
+
+
+        
+
 
 //TODO106
             <audio 

@@ -489,6 +489,7 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         //get the actual-game-settings from sub-compo ...
         //TODO107
     //saves data-structure here, and pass-in to playing-related-compo
+                            console.log("get_GameSettingScaleObjFromSubCompoViewer: ", data);
         setGameSettingsScaleObj(data);
 
     }
@@ -563,7 +564,10 @@ game-screen (specific node) layer */}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
                                           
                                                 getAllNodesDataContainer={passInAllNodesContainer}
-                                          />
+
+//TODO300 add nav-preview's game-setting toggle: modal on and off...
+
+                                />
 
                                 
                     </div>
@@ -612,7 +616,12 @@ shop layer
                         sendOutGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompoViewer}
 
                     /> 
-                                                                                {/* //TODO16
+
+//TODO300 add nav-preview's game-setting option: modal on and off...
+                    
+                    
+                    
+                                                                {/* //TODO16
                     {/* 
                     //update-PlayerProfile (by player input)
                     //update-PlayerAccountSettings (by player input)
