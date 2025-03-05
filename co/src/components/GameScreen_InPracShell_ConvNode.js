@@ -28,7 +28,9 @@ export default function GameScreen_InPracShell_ConvNode ({
     audioMap,
 
     mutedViewOption,
-    fetchGameSettings
+    fetchGameSettings,
+
+    openSettingPage
 
 }) {
 
@@ -194,6 +196,8 @@ return (<div>
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}  //TODO 
                     isViewMuted={mutedViewOption}
                     fetchGameSettingsForPlaying={fetchGameSettings}
+
+                    openSettingPage={openSettingPage}
                 />
                 
 

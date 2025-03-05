@@ -507,6 +507,10 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         return isOpenSettingsPage;
     }
 
+    function setOpenSettingsPageSignalTrue() {
+        setOpenSettingsPage(true);
+    }
+
     
 
 
@@ -568,6 +572,8 @@ game-screen (specific node) layer */}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
                                           
                                                 getAllNodesDataContainer={passInAllNodesContainer}
+
+                                                openSettingPage={setOpenSettingsPageSignalTrue}
 
 //TODO300 add nav-preview's game-setting toggle: modal on and off...
 

@@ -36,7 +36,8 @@ export default function GameScreen_AllNodeTypeContainer({
     mutedViewOption,
     fetchGameSettings,
 
-    getAllNodesDataContainer
+    getAllNodesDataContainer,
+    openSettingPage,
 
 }) {
 
@@ -627,6 +628,8 @@ return (<div
             audioMap={audioMap} //TODO empty so far
             mutedViewOption={mutedViewOption}
             fetchGameSettings={fetchGameSettings}
+
+            openSettingPage={openSettingPage}
 
        />
 

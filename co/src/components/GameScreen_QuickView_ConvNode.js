@@ -19,7 +19,10 @@ export default function GameScreen_QuickView_ConvNode ({
     visualMap, audioMap,
     buttonConsequenceByStatementEntireArray,
     isViewMuted,
-    fetchGameSettingsForPlaying
+    fetchGameSettingsForPlaying,
+
+
+    openSettingPage
 
 
     
@@ -375,6 +378,7 @@ style={{
                     uiConvNav={uiData3_ConvNavigation}
                     visualMap={visualMap}
                     audioMap={audioMap}
+                    openSettingPageFunc={openSettingPage}
                 />
             
             }
