@@ -189,6 +189,7 @@ export default function ConvNodeUISetter({
     const [auto1DisplayText, setAuto1DisplayText] = useState("Auto");
     const [logDisplayText, setLogDisplayText] = useState("Log");
     const [logCloseDisplayText, setLogCloseDisplayText] = useState("Close");
+    const [setupDisplayText, setSetupDisplayText] = useState("Setup");
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
@@ -821,6 +822,65 @@ export default function ConvNodeUISetter({
                     setConvNav({...convNav,  "buttonLogFontItalic": !val});
                 }}
             ></input><em>Italic</em>
+
+        </div>
+
+        <br></br><br></br>
+        <label>Setup Page Button:</label>
+        <div className="indentOne">
+        <label>Font Color: </label>
+            <br></br><input type="color" value={convNav["buttonSetupShade"]} onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonSetupShade": event.target.value});
+            }}></input>
+            <label> {convNav["buttonSetupShade"]}</label> 
+    
+            <br></br>
+            <label>{basePictureText}: </label>
+            
+            <select value={convNav["buttonSetupPicName"]} onChange={(event)=>{
+                setConvNav({...convNav, "buttonSetupPicName": event.target.value});
+            }}>                    
+                    <option key="setupDefault" value="">-- {selectResourceText} --</option>
+                    {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "setupButton" + currKey;
+                            if (currKey.length > 0) {
+                                return (
+                                    <option value={currKey} key={keyName}>{currKey}</option>
+                                );
+                            }
+                    })}
+                </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
+            <br></br>
+            <input value={setupDisplayText}
+                        onChange={(event)=>{
+                            setSetupDisplayText(event.target.value);
+                        }}
+                    ></input>
+                    <button onClick={()=>{
+                        setConvNav({...convNav,  "buttonSetupDisplayText": setupDisplayText});     
+                    }}>{updateText}</button>
+            <br></br>
+            <label>Font:</label>
+            <select 
+                value={convNav["buttonSetupFontName"]}
+                onChange={(event)=>{
+                    setConvNav({...convNav,  "buttonSetupFontName": event.target.value});
+            }}>
+                <option value="serif" key="setupBtn_serif">serif</option>
+                <option value="sans-serif" key="setupBtn_sans-serif">sans-serif</option>
+                <option value="cursive" key="setupBtn_cursive">cursive</option>
+            </select>
+            <br></br>
+            <input type="checkbox" 
+                value={convNav["buttonSetupFontItalic"]} 
+                checked={convNav["buttonSetupFontItalic"]}
+                onChange={()=>{
+                    let val = convNav["buttonSetupFontItalic"];
+                    setConvNav({...convNav,  "buttonSetupFontItalic": !val});
+                }}
+            ></input><em>Italic</em>
+
+
 
         </div>
       
