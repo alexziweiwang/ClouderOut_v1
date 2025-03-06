@@ -225,6 +225,18 @@ export default function ConversationNodeEditingPanel() {
         "buttonLogFontName": "serif",
         "buttonLogFontItalic": false,
 
+
+//TODO200 add elem-impl in setter```
+        "buttonSetupIsTextFont": true,
+        "buttonSetupShade": "#bf8da5",
+        "buttonSetupPicName":  "",
+        "buttonSetupShade": "#4a54a1",
+        "buttonSetupPicName": "",
+        "buttonSetupFontName": "serif",
+        "buttonSetupFontItalic": false,
+//TODO200 add elem-impl in setter...
+
+
         "textDisplaySpeed": 2,
 
         "groupX": 0,

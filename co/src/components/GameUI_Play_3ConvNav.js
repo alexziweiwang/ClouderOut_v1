@@ -217,6 +217,9 @@ return (<div style={{
                 </div>}
 
 {/* //TODO300 add "settings" button, with openSettingPageFunc */}
+{/* //TODO300 in nav-preview: when setting-page open in "during game" status, handle back-button behaviour */}
+
+
             </div>
 
 

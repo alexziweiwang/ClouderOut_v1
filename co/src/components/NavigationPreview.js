@@ -1926,6 +1926,8 @@ return (
             "borderRadius": "0px",
 
         }}>
+
+            {/* back-button         back button */}
                 {/* //TODO5 */}
                 {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false && page !== "Shop Page") 
                     || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)
@@ -1972,12 +1974,16 @@ return (
 
                                 }
 
-
+//TODO201
                                 if (page === "During Game") {
-                                    setQWindowOpen(true);
-                           //         triggerUpdateCurrPageName("Quit Asking Window");
-                                    
+                                    if (isOpenSettingsPage === true) { // during game, quitting settings-page only
+                                        setOpenSettingsPage(false);
 
+                                    } else { // during game, settings-page not opened => regular quitting game
+
+                                        setQWindowOpen(true);
+                                    }
+                                    
                                 } else if (page === "Game Progress Strategy") {
                                     nextPageName = "Story Page";
                                     let currentStandingObjTemp = {};
