@@ -4,7 +4,11 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
     getCurrentPieceNum, getScreenSize, triggerNextPiece, 
     triggerAutoMode, getUIConvNav, isInGameView,
     passInAudioList, getVisualMap,
-    triggerLogOpen
+    triggerLogOpen,
+
+    //TODO200 func to trigger setup-page-open...
+
+    
 }) {
 
 
@@ -24,6 +28,9 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
     const [auto0ButtonPicUrl, setAuto0ButtonPicUrl] = useState("");
     const [auto1ButtonPicUrl, setAuto1ButtonPicUrl] = useState("");
     const [logButtonPicUrl, setLogButtonPicUrl] = useState("");
+    const [setupButtonPicUrl, setSetupButtonPicUrl] = useState("");
+    
+    
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -50,7 +57,9 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
                 setUiConvNav(uiConvNavTemp);
                 setAuto0ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName0"]]);
                 setAuto1ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName1"]]);
-                setLogButtonPicUrl(visualMap[uiConvNavTemp["buttonLogPicName"]])
+                setLogButtonPicUrl(visualMap[uiConvNavTemp["buttonLogPicName"]]);
+                setSetupButtonPicUrl(visualMap[uiConvNavTemp["buttonSetupPicName"]]);
+
             }
 
         }
@@ -247,6 +256,51 @@ return (<div style={{
                         {uiConvNav["buttonLogFontItalic"] && <em>{uiConvNav["buttonLogDisplayText"]}</em>}
                  
                 </div>}
+
+                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
+                    id="play-UI-3-setup"
+                    style={{
+                        "marginRight": "50px",
+                        "color": uiConvNav["buttonSetupShade"],
+                        "backgroundImage": `url('${setupButtonPicUrl}')`,
+
+                        "fontFamily": `${uiConvNav["buttonSetupFontName"]}`,
+                        "fontStyle:": "italic",
+
+                        "width": `${uiConvNav["groupWidth"]}px`,
+                        "height": `${uiConvNav["groupHeight"]}px`,
+                        "borderRadius": `${uiConvNav["cornerRadius"]}px`,
+
+                        "userSelect": "none",
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "alignItems": "center",
+                    }}
+                    onClick={()=>{
+                        //trigger setup-screen
+                       //TODO200
+                    }}
+
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("play-UI-3-setup").style.filter = "brightness(150%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("play-UI-3-setup").style.filter = "brightness(100%)";
+                        }
+                    }
+                >
+                   
+                        {!uiConvNav["buttonSetupFontItalic"] && <label>
+                                {uiConvNav["buttonSetupDisplayText"]}
+                            </label>}
+                    
+                        {uiConvNav["buttonSetupFontItalic"] && <em>{uiConvNav["buttonSetupDisplayText"]}</em>}
+                 
+                </div>}
+
 
 
             </div>

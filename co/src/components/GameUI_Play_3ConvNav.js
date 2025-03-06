@@ -22,6 +22,8 @@ export default function GameUI_Play_3ConvNav({
     const auto0ButtonPicUrl = visualMap[uiConvNav["buttonAutoPicName0"]];
     const auto1ButtonPicUrl = visualMap[uiConvNav["buttonAutoPicName1"]];
     const logButtonPicUrl = visualMap[uiConvNav["buttonLogPicName"]];
+    const setupButtonPicUrl = visualMap[uiConvNav["buttonSetupPicName"]];
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -65,6 +67,8 @@ return (<div style={{
         "position": "absolute",
     }}
 >
+
+    {/* auto-button on */}
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     id="play-UI-3-autoOn"
                     style={{
@@ -120,7 +124,7 @@ return (<div style={{
                 </div>
                 }
 
-
+    {/* auto-button off */}
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     id="play-UI-3-autoOff"
                     style={{
@@ -171,7 +175,7 @@ return (<div style={{
                 }
 
 
-
+    {/* log-button */}
                 {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
                     id="play-UI-3-log"
                     style={{
@@ -215,6 +219,53 @@ return (<div style={{
                         {uiConvNav["buttonLogFontItalic"] && <em>{uiConvNav["buttonLogDisplayText"]}</em>}
                  
                 </div>}
+
+    {/* setup-button */}
+                {(uiConvNav !== -1 && uiConvNav !== undefined) && <div
+                    id="play-UI-3-setup"
+                    style={{
+                        "marginRight": "50px",
+                        "color": uiConvNav["buttonSetupShade"],
+                        "backgroundImage": `url('${setupButtonPicUrl}')`,
+
+                        "fontFamily": `${uiConvNav["buttonSetupFontName"]}`,
+                        "fontStyle:": "italic",
+
+                        "width": `${uiConvNav["groupWidth"]}px`,
+                        "height": `${uiConvNav["groupHeight"]}px`,
+                        "borderRadius": `${uiConvNav["cornerRadius"]}px`,
+
+                        "userSelect": "none",
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "alignItems": "center",
+                    }}
+                    onClick={()=>{
+                        //trigger setup-screen
+                       //TODO200
+                    }}
+
+                    onMouseDown={
+                        ()=>{
+                            document.getElementById("play-UI-3-setup").style.filter = "brightness(150%)";
+                        }
+                    }
+                    onMouseUp={
+                        ()=>{
+                            document.getElementById("play-UI-3-setup").style.filter = "brightness(100%)";
+                        }
+                    }
+                >
+                   
+                        {!uiConvNav["buttonSetupFontItalic"] && <label>
+                                {uiConvNav["buttonSetupDisplayText"]}
+                            </label>}
+                    
+                        {uiConvNav["buttonSetupFontItalic"] && <em>{uiConvNav["buttonSetupDisplayText"]}</em>}
+                 
+                </div>}
+
+
 
 {/* //TODO300 add "settings" button, with openSettingPageFunc */}
 {/* //TODO300 in nav-preview: when setting-page open in "during game" status, handle back-button behaviour */}
