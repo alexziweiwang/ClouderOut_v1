@@ -243,6 +243,7 @@ return (<div style={{
                     onClick={()=>{
                         //trigger setup-screen
                        //TODO200
+                       openSettingPageFunc();
                     }}
 
                     onMouseDown={

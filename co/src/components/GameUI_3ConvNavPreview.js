@@ -6,9 +6,6 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
     passInAudioList, getVisualMap,
     triggerLogOpen,
 
-    //TODO200 func to trigger setup-page-open...
-
-    
 }) {
 
 
@@ -277,8 +274,9 @@ return (<div style={{
                         "alignItems": "center",
                     }}
                     onClick={()=>{
-                        //trigger setup-screen
-                       //TODO200
+                        
+                       //TODO200 pop hint window ...
+                       
                     }}
 
                     onMouseDown={

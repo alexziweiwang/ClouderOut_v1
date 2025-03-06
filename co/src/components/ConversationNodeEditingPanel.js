@@ -216,6 +216,8 @@ export default function ConversationNodeEditingPanel() {
         "buttonAutoDisplayText0": "Auto-off",
         "buttonAutoDisplayText1": "Auto-on",
         "buttonLogDisplayText": "Log",
+        "buttonSetupDisplayText": "Settings",
+
 
         "buttonLogIsTextFont": true,
         "buttonLogShade": "#bf8da5",
@@ -968,6 +970,12 @@ export default function ConversationNodeEditingPanel() {
         setPmQuickEditModeOn(false);
     }
 
+    function openSettingPage() {
+        //TODO200 emulated in conv-editor-layer: provide options to adjust game-settings...
+        console.log("emulated in conv-editor-layer: provide options to adjust game-settings...");
+    
+    }
+
 
           
 
@@ -1339,6 +1347,7 @@ export default function ConversationNodeEditingPanel() {
                     projName={state.projectName} 
                     initialEmuGameDataTracker={testPlayerGameDataDup}
                     resetViewing={resetQuickView}
+                    openSettingPage={openSettingPage}
             />}
             
 

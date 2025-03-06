@@ -1967,17 +1967,18 @@ return (
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
                                 
                                 let nextPageName = "Main Page";
-                                if (page === "Settings Page") {
-                                    //TODO107 save the current set of game-settings-obj to outlayer...
-                                    console.log("at nav-preview... returning from settings-page, saving current values = ", gameSettingsParametersObj);
+                    
+
+//TODO201 display settings-page returning...
+console.log(" back button pressed ... page is ", page);
 
 
-                                }
-
-//TODO201
                                 if (page === "During Game") {
+console.log("\t setup-page bool is ", isOpenSettingsPage);
+
                                     if (isOpenSettingsPage === true) { // during game, quitting settings-page only
                                         setOpenSettingsPage(false);
+                                        
 
                                     } else { // during game, settings-page not opened => regular quitting game
 

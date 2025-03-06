@@ -12,7 +12,8 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
     getUILanguage,
     username, projName,
     initialEmuGameDataTracker,
-    resetViewing
+    resetViewing,
+    openSettingPage
 }) {
 
 
@@ -410,6 +411,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                     buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
                     isViewMuted={mutedViewOption}
                     fetchGameSettingsForPlaying={passInDefulatGameSettings}
+                    openSettingPage={openSettingPage}
 
                 />
                 

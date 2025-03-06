@@ -575,7 +575,6 @@ game-screen (specific node) layer */}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
 
-//TODO300 add nav-preview's game-setting toggle: modal on and off...
 
                                 />
 
@@ -628,7 +627,6 @@ shop layer
                         getOpenSettingSignal={passInOpenSettingsPage}
                     /> 
 
-//TODO300 add nav-preview's game-setting option: modal on and off...
                     
                     
                     

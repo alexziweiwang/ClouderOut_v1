@@ -189,7 +189,7 @@ export default function ConvNodeUISetter({
     const [auto1DisplayText, setAuto1DisplayText] = useState("Auto");
     const [logDisplayText, setLogDisplayText] = useState("Log");
     const [logCloseDisplayText, setLogCloseDisplayText] = useState("Close");
-    const [setupDisplayText, setSetupDisplayText] = useState("Setup");
+    const [setupDisplayText, setSetupDisplayText] = useState("Settings");
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
