@@ -29,7 +29,8 @@ export default function NavigationPreview ({
     sendOutGameSettingScaleObjFromSubCompo,
 
 
-    getOpenSettingSignal
+    getOpenSettingSignal,
+    closeSettingsPage,
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -1978,7 +1979,7 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
 
                                     if (isOpenSettingsPage === true) { // during game, quitting settings-page only
                                         setOpenSettingsPage(false);
-                                        
+                                        closeSettingsPage();
 
                                     } else { // during game, settings-page not opened => regular quitting game
 

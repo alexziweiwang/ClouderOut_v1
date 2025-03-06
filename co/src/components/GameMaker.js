@@ -1880,6 +1880,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
                   sendOutGameSettingScaleObjFromSubCompo={notUsing}
 
                   getOpenSettingSignal={passInFalseBool}
+                  closeSettingsPage={notUsing} 
+                  //TODO later: change to page-changing func for nav-setter
 
                   />
               </div>

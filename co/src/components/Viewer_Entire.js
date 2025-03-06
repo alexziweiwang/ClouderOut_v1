@@ -511,6 +511,9 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         setOpenSettingsPage(true);
     }
 
+    function setOpenSettingsPageSignalFalse() {
+        setOpenSettingsPage(false);
+    }
     
 
 
@@ -625,6 +628,7 @@ shop layer
                         sendOutGameSettingScaleObjFromSubCompo={getGameSettingScaleObjFromSubCompoViewer}
 
                         getOpenSettingSignal={passInOpenSettingsPage}
+                        closeSettingsPage={setOpenSettingsPageSignalFalse}
                     /> 
 
                     
