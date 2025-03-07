@@ -23,7 +23,9 @@ export default function GameScreen_QuickView_ConvNode ({
     fetchGameSettingsForPlaying,
 
 
-    openSettingPage
+    openSettingPage,
+
+    sendOutGameSettings
 
 
     
@@ -160,6 +162,8 @@ export default function GameScreen_QuickView_ConvNode ({
                 setBgmSource("");
               } 
               //TODO "naturalStopBgm" stop looping...
+
+              //TODO200 sendOutGameSettings(sourceTemp, loopOptionTemp, singleVolumeTemp)
     
         }
     

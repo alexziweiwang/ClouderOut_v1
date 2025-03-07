@@ -323,6 +323,10 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
         return "notUsing";
     }
 
+    function notUsingThreeParam(a1, a2, a3) {
+        return "notUsingThreeParam";
+    }
+
     function passInDefulatGameSettings() {
 
         let defaultObj = {            
@@ -413,6 +417,8 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                     isViewMuted={mutedViewOption}
                     fetchGameSettingsForPlaying={passInDefulatGameSettings}
                     openSettingPage={openSettingPage}
+                    
+                    sendOutGameSettings={notUsingThreeParam}
 
                 />
                 

@@ -39,6 +39,8 @@ export default function GameScreen_AllNodeTypeContainer({
     getAllNodesDataContainer,
     openSettingPage,
 
+    sendOutGameSettings,
+
 }) {
 
 
@@ -630,6 +632,7 @@ return (<div
             fetchGameSettings={fetchGameSettings}
 
             openSettingPage={openSettingPage}
+            sendOutGameSettings={sendOutGameSettings}
 
        />
 

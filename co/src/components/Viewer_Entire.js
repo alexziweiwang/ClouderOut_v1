@@ -125,6 +125,9 @@ export default function Viewer_Entire({
         : 600;
     
     const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
+    //"settingPage-playSpeed"
+    //"settingPage-bgmVol"
+    //"settingPage-seVol"
     //TODO109
 
     const [bgmSource, setBgmSource] = useState("");
@@ -132,7 +135,8 @@ export default function Viewer_Entire({
     //TODO200 fetch loop-option
     //TODO200 fetch bgm-single-volume info
     const [bgmLoopOption, setBgmLoopOption] = useState(true);
-    const [bgmVolume, setBgmVolume] = useState(90);
+    const [bgmSingleVolume, setBgmSingleVolume] = useState(90);
+
 
 
 
@@ -276,6 +280,19 @@ export default function Viewer_Entire({
         } else {
             console.log("\t\t 200 volume not changed");
         }
+    }
+
+    function getGameSettingsFromSubCompo(sourceTemp, loopOptionTemp, singleVolumeTemp) {
+
+        let bgmVolScale = gameSettingsScaleObj["settingPage-bgmVol"] / 100;
+        let currBgmVol = singleVolumeTemp/ 100;
+        let resVol = bgmVolScale * currBgmVol;
+
+        changeBgmVolume(resVol);
+        
+        setBgmSource(sourceTemp)
+        setBgmLoopOption(loopOptionTemp)
+        setBgmSingleVolume(singleVolumeTemp)
     }
 
   
@@ -599,7 +616,7 @@ game-screen (specific node) layer */}
                                                 getAllNodesDataContainer={passInAllNodesContainer}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
-
+                                                sendOutGameSettings={getGameSettingsFromSubCompo}
 
                                 />
 
@@ -670,7 +687,7 @@ shop layer
                     src={bgmSource} 
                     autoPlay="autoPlay" 
                     controls 
-                    loop={allPieceContent[currPieceNum]["bgm_loop"]}
+                    loop={bgmLoopOption}
                     style={{
                         "display": "none",
                     }}

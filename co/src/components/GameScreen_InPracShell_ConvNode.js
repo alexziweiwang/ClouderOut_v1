@@ -30,7 +30,10 @@ export default function GameScreen_InPracShell_ConvNode ({
     mutedViewOption,
     fetchGameSettings,
 
-    openSettingPage
+    openSettingPage,
+
+
+    sendOutGameSettings
 
 }) {
 
@@ -199,6 +202,8 @@ return (<div>
                     fetchGameSettingsForPlaying={fetchGameSettings}
 
                     openSettingPage={openSettingPage}
+
+                    sendOutGameSettings={sendOutGameSettings}
                 />
                 
 
