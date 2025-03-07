@@ -169,6 +169,7 @@ return (<div>
 */}
 
       <GameScreen_QuickView_ConvNode
+                    isPreview={false}
                     isDisplay={true}  //ok (non-dynamic)
                     screenWidth={screenWidth}   //ok (non-dynamic)
                     screenHeight={screenHeight}   //ok (non-dynamic)

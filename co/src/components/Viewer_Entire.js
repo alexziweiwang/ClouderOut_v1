@@ -96,6 +96,8 @@ export default function Viewer_Entire({
 //TODO: for emu, allow the author to setup entering status (game-data) for [each] try of view-testing
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 
+    const audioPlayerId = "audio-player";
+    let [audioElem, setAudioElem] = useState(document.getElementById(audioPlayerId));
 
     const languageCodeTextOption = uiLangOption;
 
@@ -124,6 +126,15 @@ export default function Viewer_Entire({
     
     const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
     //TODO109
+
+    const [bgmSource, setBgmSource] = useState("");
+    //TODO200 set-bgm in this compo !!
+    //TODO200 fetch loop-option
+    //TODO200 fetch bgm-single-volume info
+    const [bgmLoopOption, setBgmLoopOption] = useState(true);
+    const [bgmVolume, setBgmVolume] = useState(90);
+
+
 
     const [allNodesContainer, setAllNodesContainer] = useState([]); //TODO200
 
@@ -254,9 +265,18 @@ export default function Viewer_Entire({
 
 
 
-console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusProgress);
+//console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusProgress);
 
     });
+
+    function changeBgmVolume(volumeValue) {
+        if (audioElem !== null && audioElem !== undefined) {
+            console.log("\t\t 200 volume changed! ", volumeValue);
+            audioElem.volume = volumeValue;
+        } else {
+            console.log("\t\t 200 volume not changed");
+        }
+    }
 
   
     //TODO21 refactor to VM
@@ -489,7 +509,7 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
         //get the actual-game-settings from sub-compo ...
         //TODO107
     //saves data-structure here, and pass-in to playing-related-compo
-                            console.log("get_GameSettingScaleObjFromSubCompoViewer: ", data);
+                            console.log("\t\t\t\t\t\tviewer-entire ... get_GameSettingScaleObjFromSubCompoViewer: ", data);
         setGameSettingsScaleObj(data);
 
     }
@@ -514,6 +534,8 @@ console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusP
     function setOpenSettingsPageSignalFalse() {
         setOpenSettingsPage(false);
     }
+
+    
     
 
 
@@ -642,6 +664,17 @@ shop layer
                     //update-CurrentStanding (track by nav-buttons: page-status + chapter-key + node-type + node-key)  */}
 
                 </div>
+
+                <audio 
+                    id={audioPlayerId}
+                    src={bgmSource} 
+                    autoPlay="autoPlay" 
+                    controls 
+                    loop={allPieceContent[currPieceNum]["bgm_loop"]}
+                    style={{
+                        "display": "none",
+                    }}
+                />
         </div>
 
 

@@ -6,6 +6,7 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 // includes conversational-node content+UI
 export default function GameScreen_QuickView_ConvNode ({
+    isPreview,
     initialPieceNum, 
     getResetSignal, getResetInfoSets, notifyAfterReset,
     isDisplay, screenWidth, screenHeight, 
@@ -73,13 +74,7 @@ export default function GameScreen_QuickView_ConvNode ({
                 setFirstTimeEnter(false);
             }
 
-            let bgmVolScale =gameSettingScaleObj !== -1 ? gameSettingScaleObj["settingPage-bgmVol"] / 100 : 1;
-            let currBgmVol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
-            let resVol = bgmVolScale * currBgmVol;
-
-            console.log("qv_conv_node: vol...  bgmVolScale = ", bgmVolScale, ",     currBgmVol = ", currBgmVol, "      resVol = ", resVol);
-
-            changeBgmVolume(resVol);
+ 
 
             let resetSignal = getResetSignal();
             if (resetSignal === true) {
@@ -90,15 +85,21 @@ export default function GameScreen_QuickView_ConvNode ({
                 notifyAfterReset();
             }
             
-            let scaleObj = fetchGameSettingsForPlaying();
-            console.log("scaleObj = ", scaleObj);
+            let scaleObjTemp = fetchGameSettingsForPlaying();
+            console.log("qv-conv :      scaleObj = ", scaleObjTemp);
             if (
-            gameSettingScaleObj["settingPage-playSpeed"] !== scaleObj["settingPage-playSpeed"]
-            && gameSettingScaleObj["settingPage-bgmVol"] !== scaleObj["settingPage-bgmVol"]
-            && gameSettingScaleObj["settingPage-seVol"] !== scaleObj["settingPage-seVol"]
+            gameSettingScaleObj["settingPage-playSpeed"] !== scaleObjTemp["settingPage-playSpeed"]
+            && gameSettingScaleObj["settingPage-bgmVol"] !== scaleObjTemp["settingPage-bgmVol"]
+            && gameSettingScaleObj["settingPage-seVol"] !== scaleObjTemp["settingPage-seVol"]
             ) {
-                setGameSettingScaleObj(scaleObj);
-
+                setGameSettingScaleObj(scaleObjTemp);
+                let bgmVolScale = gameSettingScaleObj !== -1 ? scaleObjTemp["settingPage-bgmVol"] / 100 : 1;
+                let currBgmVol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
+                let resVol = bgmVolScale * currBgmVol;
+    
+                console.log("!!! qv_conv_node: vol...  bgmVolScale = ", bgmVolScale, ",     currBgmVol = ", currBgmVol, "      resVol = ", resVol);
+    
+                changeBgmVolume(resVol);
             }
     
             // let clickStatus = getIsGameScreenClicked();
@@ -260,7 +261,11 @@ export default function GameScreen_QuickView_ConvNode ({
         //TODO106
         function changeBgmVolume(volumeValue) {
             if (audioElem !== null && audioElem !== undefined) {
+                console.log("\t\t 200 volume changed! ", volumeValue);
                 audioElem.volume = volumeValue;
+            } else {
+                console.log("\t\t 200 volume not changed");
+
             }
         }
 
@@ -409,7 +414,11 @@ style={{
 
 
 //TODO106
-            <audio 
+{/* //layer of conversation-node (textframe, buttons, conv-navigation (auto, log, settings button-group), log-page) */}
+            {
+            isPreview 
+            &&
+                <audio 
                 id={audioPlayerId}
                 src={bgmSource} 
                 autoPlay="autoPlay" 
@@ -420,7 +429,7 @@ style={{
                     "height": "30px",
                     "display": "none",
                 }}
-            />
+            />}
 
 
             </div>

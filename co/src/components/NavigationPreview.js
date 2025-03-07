@@ -315,7 +315,7 @@ const tempFontSize = 12;
 
     function sendOutGameSettingsParametersObj(data) {
         //TODO107
-        console.log("sendOut_gameSettingsParameters_Obj...  temp = ", data);
+        console.log("\t\t\t\t\t\tsendOut_gameSettingsParameters_Obj...  temp = ", data);
 
         sendOutGameSettingScaleObjFromSubCompo(data);
     }

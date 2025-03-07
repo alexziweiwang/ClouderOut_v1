@@ -380,6 +380,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                 <div  style={{ "display": "flex"}}>
 
                 <GameScreen_QuickView_ConvNode
+                    isPreview={true}
                     isDisplay={isDisplay} 
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
