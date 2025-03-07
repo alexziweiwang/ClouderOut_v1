@@ -463,7 +463,7 @@
 
 - 2025-Mar-04: Consider strategy of viewing-node-detail fetching mode
 
-
+- 2025-Mar-07: Research Electron local-file storage related
 
 
 
