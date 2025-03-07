@@ -70,9 +70,12 @@ const tempFontSize = 12;
     
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
 
-    const [gsPlaySpeed, setGsPlaySpeed] = useState(3);
-    const [gsBgmVol, setGsBgmVol] = useState(90);
-    const [gsSeVol, setGsSeVol] = useState(90);
+
+    const [gsPlaySpeed, setGsPlaySpeed] = useState(3); //TODO200 fetch current-value from player's profile
+    const [gsBgmVol, setGsBgmVol] = useState(90); //TODO200 fetch current-value from player's profile
+    const [gsSeVol, setGsSeVol] = useState(90); //TODO200 fetch current-value from player's profile
+
+
 
     const [gameSettingsParametersObj, setGameSettingsParametersObj] = useState(
         { //Temp default values 
@@ -199,6 +202,12 @@ const tempFontSize = 12;
         let playerInfoObj = fetchPlayerInfoSets();
         setRefDataPlayerAccount(playerInfoObj["userAccount"]);
         setRefDataPlayerProfile(playerInfoObj["playerProfile"])
+
+
+        //TODO200 fetch player's specific settings for settings-page 
+        //setGsPlaySpeed()
+        //setGsBgmVol()
+        //setGsSeVol()
 
 
         let gameDataTemp = fetchCurrentGameData();

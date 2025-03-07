@@ -151,7 +151,7 @@ export default function PieceSetter({
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
-    const [userSelectedTextContentToEdit, setUserSelectedTextContentToEdit] = useState(((pieceNum-1) > 0 && allPieceData[pieceNum-1]["content"]) === "" ? false : true);
+    const [userSelectedTextContentToEdit, setUserSelectedTextContentToEdit] = useState(((pieceNum-1) >= 0 && allPieceData[pieceNum-1]["content"]) === "" ? false : true);
 
     const [displayStndButtonAdd, setDisplayStndButtonAdd] = useState(false);
     const [stndButtonDataTable, setStndButtonDataTable] = useState([]);
@@ -821,7 +821,8 @@ export default function PieceSetter({
             {(lookingPieceNumber >= allPiecesDataLocal.length) &&
             <><br></br>
             <button className="pairGroup unclickableButton"> ↓ </button>
-            </>}              
+            </>}
+                         
 
         </div>
 
@@ -891,14 +892,14 @@ export default function PieceSetter({
             ></input><label className="textNoSelect"
                 onClick={()=>{
                     if (!userSelectedTextContentToEdit === false) {
-                       // let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
-                      //  if (response === true) {
+                       let response = window.confirm("Are you sure to switch to Clickables / Buttons? (The settings for Text Content will reset.)")
+                       if (response === true) {
                             setUserSelectedTextContentToEdit(false);
                             setTextContentInfoAdd(false);
                             setClickableAdd(true);
                             handleTextContentReset();
                             setupDisplayTextFrame(false);
-                    //    }
+                       }
                     }
                 }}
             >Clickables / Buttons</label><br></br>
@@ -1849,23 +1850,21 @@ export default function PieceSetter({
                         </select>
                         <button onClick={() => {openRm()}}>{manageResourceText}</button>
              
-                        <br></br>
-                        <label>Preview Music</label>
+                        <label>Preview Music</label>  
 
                         <div className="indentOne">
-                                      
+
                             <audio
                                 id={audioPlayerId}
                                 src={setterPreviewBgmSource} 
-                                autoPlay="autoPlay" 
                                 loop={isLooping}
                                 style={{
                                     "height": "30px",
                                 }}  
-                        
+                                controls
                             />
-                            <br></br>
-                            {setterPreviewBgmPause === false && <button
+       
+                            {/* {setterPreviewBgmPause === false && <button
                                 onClick={()=>{
                                     setSetterPreviewBgmPause(true);
                                     audioElem.pause();
@@ -1880,11 +1879,12 @@ export default function PieceSetter({
                                     setSetterPreviewBgmPause(false);
                                     audioElem.play();
                                 }}
-                            >Play</button>}
+                            >Play</button>} */}
 
                         </div>
         
-{/* 
+{/* //not used in current design -- simplified
+
                         <br></br>
                         <label>Volume:         </label>
                         <input type="range" min="0" max="100" step="1"
@@ -1915,13 +1915,17 @@ export default function PieceSetter({
                                 setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_volume": val});
                             }}                        
                         
-                        ></input> */}
+                        ></input> 
+//not used in current design -- simplified                        
+                        */}
 
                         {/* {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
                             <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
                         </div>}
-                        <br></br> */}
+                        <br></br> 
+//not used in current design -- simplified
+                        */}
 
                         </div>}
                 </div>}

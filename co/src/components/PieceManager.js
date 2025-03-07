@@ -370,7 +370,7 @@ export default function PieceManager({
                             assignPreviewIndex(index); //TODO1 check
                             console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
-                            assignPieceNum(item["num"]);}}>Details</button>}
+                            assignPieceNum(item["num"]);}}>Enter Editor</button>}
                     </td>
                     <td
                         onClick={()=>{
