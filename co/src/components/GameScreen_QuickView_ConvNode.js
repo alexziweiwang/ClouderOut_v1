@@ -25,7 +25,7 @@ export default function GameScreen_QuickView_ConvNode ({
 
     openSettingPage,
 
-    sendOutGameSettings
+    sendOutBgmSettings
 
 
     
@@ -51,6 +51,9 @@ export default function GameScreen_QuickView_ConvNode ({
         const [autoMode, setAutoMode] = useState(false);
     
         const [bgmSource, setBgmSource] = useState("");
+        const [bgmVol, setBgmVol] = useState(90);
+        const [bgmLoopOption, setBgmLoopOption] = useState(true);
+        
         const [bgpSource, setBgpSource] = useState("");
     
         const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_arr"] : []);
@@ -95,13 +98,13 @@ export default function GameScreen_QuickView_ConvNode ({
             && gameSettingScaleObj["settingPage-seVol"] !== scaleObjTemp["settingPage-seVol"]
             ) {
                 setGameSettingScaleObj(scaleObjTemp);
-                let bgmVolScale = gameSettingScaleObj !== -1 ? scaleObjTemp["settingPage-bgmVol"] / 100 : 1;
-                let currBgmVol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
-                let resVol = bgmVolScale * currBgmVol;
+                // let bgmVolScale = gameSettingScaleObj !== -1 ? scaleObjTemp["settingPage-bgmVol"] / 100 : 1;
+                // let currBgmVol = allPieceContent[currPieceNum]["bgm_volume"] / 100;
+                // let resVol = bgmVolScale * currBgmVol;
     
-                console.log("!!! qv_conv_node: vol...  bgmVolScale = ", bgmVolScale, ",     currBgmVol = ", currBgmVol, "      resVol = ", resVol);
+                // console.log("!!! qv_conv_node: vol...  bgmVolScale = ", bgmVolScale, ",     currBgmVol = ", currBgmVol, "      resVol = ", resVol);
     
-                changeBgmVolume(resVol);
+                // changeBgmVolume(resVol);
             }
     
             // let clickStatus = getIsGameScreenClicked();
@@ -133,7 +136,8 @@ export default function GameScreen_QuickView_ConvNode ({
                 setTextStillTyping(false);
             }
 
-                    //                console.log("game-screen quick-view conv-node ... render once");
+
+console.log("game-screen quick-view conv-node ... render once");
 
         }); // --- end of useEffect ---
     
@@ -157,13 +161,32 @@ export default function GameScreen_QuickView_ConvNode ({
               if (allPieceContent[currPieceNum]["bgm_action"] === "startNewBgm") {
                 if (allPieceContent[currPieceNum]["bgm_source_varname"] !== "") {
                   setBgmSource(audioMap[allPieceContent[currPieceNum]["bgm_source_varname"]]);
+                  setBgmVol(allPieceContent[currPieceNum]["bgm_volume"]);
+                  setBgmLoopOption(allPieceContent[currPieceNum]["bgm_loop"])
+
+                  sendOutBgmSettings(
+                    audioMap[allPieceContent[currPieceNum]["bgm_source_varname"]], 
+                    allPieceContent[currPieceNum]["bgm_loop"], 
+                    allPieceContent[currPieceNum]["bgm_volume"]
+                  );
                 }
               } else if (allPieceContent[currPieceNum]["bgm_action"] === "stopBgm") {
                 setBgmSource("");
-              } 
+                setBgmVol(90);
+                setBgmLoopOption(true);
+
+              } else { // maintain
+                sendOutBgmSettings(
+                    bgmSource, 
+                    bgmLoopOption, 
+                    bgmVol
+                );
+              }
               //TODO "naturalStopBgm" stop looping...
 
-              //TODO200 sendOutGameSettings(sourceTemp, loopOptionTemp, singleVolumeTemp)
+       
+
+            
     
         }
     
@@ -263,15 +286,15 @@ export default function GameScreen_QuickView_ConvNode ({
         }
 
         //TODO106
-        function changeBgmVolume(volumeValue) {
-            if (audioElem !== null && audioElem !== undefined) {
-                console.log("\t\t 200 volume changed! ", volumeValue);
-                audioElem.volume = volumeValue;
-            } else {
-                console.log("\t\t 200 volume not changed");
+        // function changeBgmVolume(volumeValue) {
+        //     if (audioElem !== null && audioElem !== undefined) {
+        //         console.log("\t\t 200 volume changed! ", volumeValue);
+        //         audioElem.volume = volumeValue;
+        //     } else {
+        //         console.log("\t\t 200 volume not changed");
 
-            }
-        }
+        //     }
+        // }
 
     return (         
 <div   

@@ -418,7 +418,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
                     fetchGameSettingsForPlaying={passInDefulatGameSettings}
                     openSettingPage={openSettingPage}
                     
-                    sendOutGameSettings={notUsingThreeParam}
+                    sendOutBgmSettings={notUsingThreeParam}
 
                 />
                 

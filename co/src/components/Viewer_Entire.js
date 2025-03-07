@@ -18,7 +18,6 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
  */
 
 
-//TODO200
 // procedure about game-data-tracker: 
 //           when entering this compo, all the non-dynamic data (game-data, player-profile, etc.) version fixed
 //           the only notification to outside is to display on the game-data-panel...
@@ -131,12 +130,8 @@ export default function Viewer_Entire({
     //TODO109
 
     const [bgmSource, setBgmSource] = useState("");
-    //TODO200 set-bgm in this compo !!
-    //TODO200 fetch loop-option
-    //TODO200 fetch bgm-single-volume info
     const [bgmLoopOption, setBgmLoopOption] = useState(true);
     const [bgmSingleVolume, setBgmSingleVolume] = useState(90);
-
 
 
 
@@ -233,6 +228,7 @@ export default function Viewer_Entire({
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        setAudioElem(document.getElementById(audioPlayerId));
 
         if (firstTimeEnter === true) {
                                                 console.log("!!!!!!! viewer-entire: entered as first-time");
@@ -275,21 +271,22 @@ export default function Viewer_Entire({
 
     function changeBgmVolume(volumeValue) {
         if (audioElem !== null && audioElem !== undefined) {
-            console.log("\t\t 200 volume changed! ", volumeValue);
+            console.log("\t\t 300 volume changed! ", volumeValue);
             audioElem.volume = volumeValue;
+            
         } else {
-            console.log("\t\t 200 volume not changed");
+            console.log("\t\t 300 volume not changed");
         }
     }
 
-    function getGameSettingsFromSubCompo(sourceTemp, loopOptionTemp, singleVolumeTemp) {
+    function getBgmSettingsFromSubCompo(sourceTemp, loopOptionTemp, singleVolumeTemp) {
+                                    // console.log(
+                                    // "viewer-entire!!! ",
+                                    // "fetched from subcompo:  bgm\n sourceTemp = ", sourceTemp,
+                                    // ", loopOptionTemp = " ,loopOptionTemp , 
+                                    // ",  singleVolumeTemp = ", singleVolumeTemp
+                                    // ); //TODO test
 
-        let bgmVolScale = gameSettingsScaleObj["settingPage-bgmVol"] / 100;
-        let currBgmVol = singleVolumeTemp/ 100;
-        let resVol = bgmVolScale * currBgmVol;
-
-        changeBgmVolume(resVol);
-        
         setBgmSource(sourceTemp)
         setBgmLoopOption(loopOptionTemp)
         setBgmSingleVolume(singleVolumeTemp)
@@ -523,10 +520,12 @@ export default function Viewer_Entire({
     }
 
     function getGameSettingScaleObjFromSubCompoViewer(data) {
-        //get the actual-game-settings from sub-compo ...
-        //TODO107
-    //saves data-structure here, and pass-in to playing-related-compo
-                            console.log("\t\t\t\t\t\tviewer-entire ... get_GameSettingScaleObjFromSubCompoViewer: ", data);
+
+        let bgmVolScale = parseFloat(data["settingPage-bgmVol"]).toFixed(2) / 100;
+
+        changeBgmVolume(bgmVolScale);
+        
+        
         setGameSettingsScaleObj(data);
 
     }
@@ -616,7 +615,7 @@ game-screen (specific node) layer */}
                                                 getAllNodesDataContainer={passInAllNodesContainer}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
-                                                sendOutGameSettings={getGameSettingsFromSubCompo}
+                                                sendOutBgmSettings={getBgmSettingsFromSubCompo}
 
                                 />
 

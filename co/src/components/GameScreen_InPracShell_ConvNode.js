@@ -33,7 +33,7 @@ export default function GameScreen_InPracShell_ConvNode ({
     openSettingPage,
 
 
-    sendOutGameSettings
+    sendOutBgmSettings
 
 }) {
 
@@ -203,7 +203,7 @@ return (<div>
 
                     openSettingPage={openSettingPage}
 
-                    sendOutGameSettings={sendOutGameSettings}
+                    sendOutBgmSettings={sendOutBgmSettings}
                 />
                 
 
