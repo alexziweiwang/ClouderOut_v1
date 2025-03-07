@@ -465,4 +465,4 @@
 
 - 2025-Mar-07: Research Electron local-file storage related
 - 2025-Mar-07: Research local-file format and handling for the app
-
+- 2025-Mar-07: Research Capacitor related for mobile app's side
