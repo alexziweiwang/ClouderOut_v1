@@ -336,7 +336,7 @@ export default function Modal_EmuManager({
 
     function update5ShpToOuterLayer() { 
         
-        //TODO300 make-dup first, and send only the dup-ver.
+        //TODO500 make-dup first, and send only the dup-ver.
         update5Shp(shp5);
 
     }
@@ -598,7 +598,7 @@ export default function Modal_EmuManager({
     }
 
     async function fetchVisualListFromCloud() {
-        //TODO22
+        //TODO300     
         const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
         if (obj === undefined || obj === null) {
             return;

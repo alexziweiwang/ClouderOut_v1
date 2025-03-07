@@ -623,7 +623,7 @@ game-screen (specific node) layer */}
                     </div>
                 }
 
-                {/* //TODO300 
+                {/* //TODO100 
 shop layer
                 future: shop content div...
                 (also able to change game-data-tracker) */}

@@ -204,7 +204,7 @@ const tempFontSize = 12;
         setRefDataPlayerProfile(playerInfoObj["playerProfile"])
 
 
-        //TODO200 fetch player's specific settings for settings-page 
+        //TODO200 fetch player's specific settings for settings-page with from-out-layer's func
         //setGsPlaySpeed()
         //setGsBgmVol()
         //setGsSeVol()

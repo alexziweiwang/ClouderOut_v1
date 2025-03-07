@@ -90,8 +90,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
       let isDisplayNonPmTemp = getDisplayNonPmTemp();
       setIsNonPmTempPiece(isDisplayNonPmTemp);
-      //TODO200 for pm-previewing-piece, apply to all elements?
 
+      
       let uiLangTemp = getUILanguage();
       setLanguageCodeTextOption(uiLangTemp);
 //TODO testing

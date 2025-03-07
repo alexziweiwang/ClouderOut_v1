@@ -274,9 +274,7 @@ return (<div style={{
                         "alignItems": "center",
                     }}
                     onClick={()=>{
-                        
-                       //TODO200 pop hint window ...
-                       
+                        window.alert("This button pops the \"Settings Page\" during an actual game-play.");                       
                     }}
 
                     onMouseDown={

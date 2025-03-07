@@ -241,8 +241,7 @@ return (<div style={{
                         "alignItems": "center",
                     }}
                     onClick={()=>{
-                        //trigger setup-screen
-                       //TODO200
+
                        openSettingPageFunc();
                     }}
 
@@ -265,12 +264,6 @@ return (<div style={{
                         {uiConvNav["buttonSetupFontItalic"] && <em>{uiConvNav["buttonSetupDisplayText"]}</em>}
                  
                 </div>}
-
-
-
-{/* //TODO300 add "settings" button, with openSettingPageFunc */}
-{/* //TODO300 in nav-preview: when setting-page open in "during game" status, handle back-button behaviour */}
-
 
             </div>
 

@@ -499,10 +499,6 @@ export default function PieceManager({
             onClick={()=>{
                 setGroupEditModeOn(false);
                 triggerPmQuickEditModeOff();
-
-                //TODO200 update changes to piece-data -- apply array of content and array of speaker_name into actual piece-data ...
-
-
             }}
         >Finish</button>
 

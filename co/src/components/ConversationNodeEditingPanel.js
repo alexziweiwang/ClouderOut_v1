@@ -228,7 +228,6 @@ export default function ConversationNodeEditingPanel() {
         "buttonLogFontItalic": false,
 
 
-//TODO200 add elem-impl in setter```
         "buttonSetupIsTextFont": true,
         "buttonSetupShade": "#bf8da5",
         "buttonSetupPicName":  "",
@@ -236,7 +235,6 @@ export default function ConversationNodeEditingPanel() {
         "buttonSetupPicName": "",
         "buttonSetupFontName": "serif",
         "buttonSetupFontItalic": false,
-//TODO200 add elem-impl in setter...
 
 
         "textDisplaySpeed": 2,
@@ -310,7 +308,7 @@ export default function ConversationNodeEditingPanel() {
     const [browseList, setBrowseList] = useState(true);
     const [pieceNumber, setPieceNumber] = useState(1); //TODO: this would be the current/"counter of" piece to fetch from db/ds
     const [previewingIndex, setPreviewingIndex] = useState(0);
-//TODO200
+
     const [isDisplayNonPmTemp, setDisplayNonPmTemp] = useState(true);
     const [editingPmPreviewPiece, setEditingPmPreviewPiece] = useState(newEmptyPieceTemplate);
 
@@ -428,7 +426,7 @@ export default function ConversationNodeEditingPanel() {
 
 
         /* fetch from cloud db */
-        //TODO22       
+        //TODO300     
         const obj = await fetchProjectResourceVarPairsVM({
             userName: state.userName, 
             projectName: state.projectName
@@ -971,9 +969,7 @@ export default function ConversationNodeEditingPanel() {
     }
 
     function openSettingPage() {
-        //TODO200 emulated in conv-editor-layer: provide options to adjust game-settings...
-        console.log("emulated in conv-editor-layer: provide options to adjust game-settings...");
-    
+        window.alert("This button pops the \"Settings Page\" during an actual game-play.");
     }
 
 
