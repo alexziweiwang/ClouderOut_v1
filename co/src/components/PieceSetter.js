@@ -1884,7 +1884,7 @@ export default function PieceSetter({
 
                         </div>
         
-
+{/* 
                         <br></br>
                         <label>Volume:         </label>
                         <input type="range" min="0" max="100" step="1"
@@ -1915,16 +1915,13 @@ export default function PieceSetter({
                                 setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "bgm_volume": val});
                             }}                        
                         
-                        ></input>
+                        ></input> */}
 
-                  
-
-
-                        {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
+                        {/* {currentSinglePieceDetail["bgm_action"] === "startNewBgm" && <div>
                             <label>Loop:  </label>
                             <input type="checkbox" checked={isLooping} onChange={()=>{changeLoopingSetting()}}/>
                         </div>}
-                        <br></br>
+                        <br></br> */}
 
                         </div>}
                 </div>}

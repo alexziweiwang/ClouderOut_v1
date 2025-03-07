@@ -287,9 +287,9 @@ export default function Viewer_Entire({
                                     // ",  singleVolumeTemp = ", singleVolumeTemp
                                     // ); //TODO test
 
-        setBgmSource(sourceTemp)
-        setBgmLoopOption(loopOptionTemp)
-        setBgmSingleVolume(singleVolumeTemp)
+        setBgmSource(sourceTemp);
+        setBgmLoopOption(loopOptionTemp);
+       // setBgmSingleVolume(singleVolumeTemp)
     }
 
   

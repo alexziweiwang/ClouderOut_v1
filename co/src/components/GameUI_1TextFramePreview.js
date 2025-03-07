@@ -27,6 +27,8 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
     const [visualMap, setVisualMap] = useState([]); 
 
     useEffect(() => {
+
+
         let allPieceContentTemp = getAllPieceContent();
 
         let currPieceNumTemp = getCurrentPieceNum();

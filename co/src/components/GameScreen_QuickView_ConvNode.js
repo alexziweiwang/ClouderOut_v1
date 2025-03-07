@@ -175,6 +175,9 @@ console.log("game-screen quick-view conv-node ... render once");
                 setBgmVol(90);
                 setBgmLoopOption(true);
 
+              } else if (allPieceContent[currPieceNum]["bgm_action"] ===  "naturalStopBgm") {
+           
+                setBgmLoopOption(false);
               } else { // maintain
                 sendOutBgmSettings(
                     bgmSource, 
@@ -450,7 +453,7 @@ style={{
                 src={bgmSource} 
                 autoPlay="autoPlay" 
                 controls 
-                loop={allPieceContent[currPieceNum]["bgm_loop"]}
+                loop={bgmLoopOption}
                 muted={isViewMuted}
                 style={{
                     "height": "30px",

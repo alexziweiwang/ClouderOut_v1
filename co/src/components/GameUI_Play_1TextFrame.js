@@ -32,7 +32,7 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        console.log("#. game-ui-play-1_textframe...   speed = ", speedLevel);
+        console.log("### game-ui-play-1_textframe...   speed = ", speedLevel);
 
         if (firstTimeEnter === true) {
     
