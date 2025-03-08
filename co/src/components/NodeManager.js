@@ -1053,6 +1053,9 @@ export default function NodeManager({projectName, currUser,
 
           
           {/* Node-grid-blocks */}
+          
+                                                  {/* //TODO300 more flexible grid-adding ... */}
+
           <div style={{
                   "width": "1000px"
                 }}>

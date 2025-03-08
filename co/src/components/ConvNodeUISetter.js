@@ -670,6 +670,7 @@ export default function ConvNodeUISetter({
         {!openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) ︾</label>}
         {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) ︽</label>}
     </div>
+    {/* TODO300 font size */}
 {openAutoLogSection && <div>
     <div className="indentOne">
         <label>Auto Toggle:</label>
