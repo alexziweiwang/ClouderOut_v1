@@ -17,7 +17,7 @@ import uiLangMap from './uiLangMap';
 
 
 //TODO20 cloud-func (marked)
-import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM } from '../viewmodels/NodeEditingViewModel';
+import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM, convNodeAllDetailsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ConversationNodeEditingPanel() {
@@ -840,15 +840,7 @@ export default function ConversationNodeEditingPanel() {
 //TODO5
     } 
 
-    async function fetchAllUiSettingsFromCloud() { //TODO200
-    //setGameUIDefaultButton()
-    //setGameUITextFrame()
-    //setGameUIBackButton()
-    //setUIConvNav()
-    //setLogPageUISettings()
 
-
-    }
 
     async function saveAllToCloud() {
         let uiObj = {
@@ -890,32 +882,36 @@ export default function ConversationNodeEditingPanel() {
 
     async function initializePiecesFromCloud() {
 
-        let pieceObjTemp = await convNodeFetchFromCloudVM({
+        let pieceObjTemp = await convNodeAllDetailsFromCloudVM({
             project: state.projectName, 
             username: state.userName, 
             chapterKey: chapterKey, 
             nodeKey: nodeKey
         });
 
+
         if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
             setPiecedataStructure([]);
             return;
         }
 
-        console.log("initialize piece data... ", pieceObjTemp);
+                                console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);
 
+        let nodeContentTemp = pieceObjTemp.nodeContent;
+        setPiecedataStructure(nodeContentTemp);
 
-        setPiecedataStructure(pieceObjTemp);
+        let nodeUITemp = pieceObjTemp.nodeUISettings;
 
-        //TODO200... also fetch ui-settings here?
-
+        if (nodeUITemp !== undefined) {
+            setGameUIDefaultButton(nodeUITemp.defaultButton !== undefined ? nodeUITemp.defaultButton : {})
+            setGameUITextFrame(nodeUITemp.textFrame !== undefined ? nodeUITemp.textFrame : {})
+            setGameUIBackButton(nodeUITemp.backButton !== undefined ? nodeUITemp.backButton : {})
+            setUIConvNav(nodeUITemp.convNav !== undefined ? nodeUITemp.convNav : {})
+            setLogPageUISettings(nodeUITemp.logPage !== undefined ? nodeUITemp.logPage: {})
+        }
 
     } 
 
-    async function getAllOfNodeDetails() {
-
-
-    }
 
     function notifyRmUpdated(data) {
  //TODO100 update the visual+audio maps here?

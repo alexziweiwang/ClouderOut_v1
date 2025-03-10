@@ -47,7 +47,7 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
   return projectNodeData;
 }
 
-export async function convNodeDetailAllFromCloud({project, username, chapterKey, nodeKey}) {
+export async function convNodeAllDetailsFromCloud({project, username, chapterKey, nodeKey}) {
     //TODO500
   const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
   const projectNodeSnap = await getDoc(projectNodeRef);
