@@ -132,7 +132,7 @@ export default function ConversationNodeEditingPanel() {
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
-    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //TODO fetch frmo cloud-db
+    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //fetch from cloud-db
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
         "widthMin": 300,
         "widthMax": 370,
@@ -158,7 +158,7 @@ export default function ConversationNodeEditingPanel() {
 
         "picPair": "" //TODO impl
 
-    }); //TODO fetch from cloud-db
+    }); //fetch from cloud-db
 
     const [gameUITextFrame, setGameUITextFrame] = useState({"width": 600,
     "height": 200,
@@ -183,7 +183,7 @@ export default function ConversationNodeEditingPanel() {
 
     "picPair": "" //TODO impl
 
-}); //TODO fetch from cloud-db
+}); //fetch from cloud-db
 
     const [gameUIBackButton, setGameUIBackButton] = useState({"width": 50,
     "height": 50,
@@ -203,8 +203,8 @@ export default function ConversationNodeEditingPanel() {
 
     "picPair": "" //TODO impl
     
-}); //TODO fetch from cloud-db
-
+}); //fetch from cloud-db
+  
     const [uiConvNav, setUIConvNav] = useState({
         "buttonAutoIsTextFont": true,
         "buttonAutoShade0": "#bf8da5",
@@ -840,6 +840,16 @@ export default function ConversationNodeEditingPanel() {
 //TODO5
     } 
 
+    async function fetchAllUiSettingsFromCloud() { //TODO200
+    //setGameUIDefaultButton()
+    //setGameUITextFrame()
+    //setGameUIBackButton()
+    //setUIConvNav()
+    //setLogPageUISettings()
+
+
+    }
+
     async function saveAllToCloud() {
         let uiObj = {
             defaultButton: gameUIDefaultButton,
@@ -880,7 +890,12 @@ export default function ConversationNodeEditingPanel() {
 
     async function initializePiecesFromCloud() {
 
-        let pieceObjTemp = await convNodeFetchFromCloudVM({project: state.projectName, username: state.userName, chapterKey: chapterKey, nodeKey: nodeKey});
+        let pieceObjTemp = await convNodeFetchFromCloudVM({
+            project: state.projectName, 
+            username: state.userName, 
+            chapterKey: chapterKey, 
+            nodeKey: nodeKey
+        });
 
         if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
             setPiecedataStructure([]);
@@ -892,7 +907,15 @@ export default function ConversationNodeEditingPanel() {
 
         setPiecedataStructure(pieceObjTemp);
 
+        //TODO200... also fetch ui-settings here?
+
+
     } 
+
+    async function getAllOfNodeDetails() {
+
+
+    }
 
     function notifyRmUpdated(data) {
  //TODO100 update the visual+audio maps here?

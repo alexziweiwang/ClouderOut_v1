@@ -47,6 +47,24 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
   return projectNodeData;
 }
 
+export async function convNodeDetailAllFromCloud({project, username, chapterKey, nodeKey}) {
+    //TODO500
+  const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
+  const projectNodeSnap = await getDoc(projectNodeRef);
+
+  if (!projectNodeSnap.exists()) {
+    return;
+  }
+
+
+  let bothObj = [];
+  bothObj = projectNodeSnap.data(); 
+
+    //TODO test
+
+  return bothObj;
+}
+
 
 
 export async function addNewNodeFolders({project, username, nodeKeyList, chapterKey}) {
