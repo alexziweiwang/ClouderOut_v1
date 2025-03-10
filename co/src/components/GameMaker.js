@@ -955,6 +955,9 @@ export default function GameMaker({username, projectName}) {
       ["","","","","","","","","",""],
       ["","","","","","","","","",""]
     ];
+    //TODO200 flexible grid-scales
+
+
     setGridBlocksAll(gridAllTemp);
     setGridBlocksUpdatedSignal(true);
 
@@ -1393,6 +1396,32 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
   }
 
+  function convertNodeMapToGridBlocks(nodeMapTemp) {
+
+
+//TODO200 change ways to initialize grid blocks             
+    let gridEntireTemp = [];
+
+    // make conversion(format of stored grid blocks) of grid-blocks
+    let j = 0;
+    let gridTempMap = {};
+    let gridTempArr = [];
+
+    Object.keys(nodeMapTemp).map((chapterKey) => {         
+    //TODO get the max + 10 count of columns (horizontal)
+    //TODO get the max count of rows (vertical)      
+    })    
+
+    //TODO draw grid with the height and width above
+
+
+    //TODO add according to the nodeMapTemp's actual content for all node's positions
+
+
+
+    return gridEntireTemp;
+  }
+
 
   //TODO21 refactor to VM
   async function fetchChapterNodeMappingFromCloud() {
@@ -1416,30 +1445,27 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
   
     
                                         //  console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
-
-    // make conversion of grid-blocks
-    let j = 0;
-    let gridTempMap = {};
     let gridChapterMap = {};
-    let gridTempArr = [];
 
-    Object.keys(data.chapterNodeGridBlocks).map((chapterKey) => {         
-      j = 0;
-      gridTempArr = []; // reset
-      let chapterBlockAllRows = data.chapterNodeGridBlocks[chapterKey];
-      let currChapArrLen = Object.keys(chapterBlockAllRows).length;
-      while (j < currChapArrLen) {
-        let currRow = chapterBlockAllRows[j];
-        gridTempArr.push(currRow);
-        j++;
-      }
-      gridTempMap[chapterKey] = gridTempArr;
-      gridChapterMap[chapterKey] = gridTempArr;
-    })    
+
+
+//TODO...............
+    gridChapterMap = convertNodeMapToGridBlocks(data.chapterNodeMapping);
+    
+//TODO...............
+
+//TODO20 refactored func
+
 
 
 
     setGridBlocksAll(gridChapterMap);
+
+
+
+
+
+
     setChapterNodeMapAll(data.chapterNodeMapping);
 
 
