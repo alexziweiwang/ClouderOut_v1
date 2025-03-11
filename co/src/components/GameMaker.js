@@ -1437,7 +1437,7 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
       for(; w < rowMax; w++) {
         let createdRow = [];
         for(q = 0; q < colMax; q++) {
-          createdRow.push(0);
+          createdRow.push("");
         }
         maxGrid.push(createdRow);
       }

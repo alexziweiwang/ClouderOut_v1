@@ -466,17 +466,6 @@ export default function NodeManager({projectName, currUser,
     setLsV2IsGData(false);
   }
 
-  // async function displayGameDataFunc() { //TODO changed; remove later
-  //   setDisplayGameDataButton(false);
-
-  //   if (needCloudGameData === true) {
-  //     await fetchGameDataFromCloud();
-  //   } else {
-  //     console.log("*from local* game-data: using existing data"); 
-  //   }
-  //   setDisplayGameDataWindow(!displayGameDataWindow);
-  //   setDisplayGameDataButton(true);
-  // }
 
   function changeGameScreenSize(event) {
     const input = event.target.value;
@@ -1028,7 +1017,7 @@ export default function NodeManager({projectName, currUser,
           </div> */}
     </div>
 
-{/* parallel-shell */}
+{/* parallel-shell (node-map and scrolling-hint-bar)*/}
 <div style={{"display": "flex", "overflowX": "scroll"}}>
 
 
@@ -1773,7 +1762,7 @@ export default function NodeManager({projectName, currUser,
 
 <div>
 {clickedNode2 !== -1 && <div className="parallelFrame">
-{/* node-moving */}
+{/* node-moving move */}
           <div>
             <button
               onClick={()=>{
