@@ -1406,17 +1406,68 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     let j = 0;
     let gridTempMap = {};
     let gridTempArr = [];
+console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
+    let rowMax = 0;
+    let colMax = 0;
 
-    Object.keys(nodeMapTemp).map((chapterKey) => {         
-    //TODO get the max + 10 count of columns (horizontal)
-    //TODO get the max count of rows (vertical)      
-    })    
+    Object.keys(nodeMapTemp).map((chapterKey) => {  
+      let currChapter = nodeMapTemp[chapterKey];
+        console.log("nodeMapTemp[chapterKey] = ", nodeMapTemp[chapterKey]);
 
+      Object.keys(currChapter).map((nodeKeyTemp) => {  
+        let currNode = currChapter[nodeKeyTemp];
+        console.log("\tcurrChapter[nodeKeyTemp] = ", currChapter[nodeKeyTemp]);
+        let currRow = currNode["row"];
+        if (currRow > rowMax) {
+          rowMax = currRow;
+        }
+        let currCol = currNode["col"];
+        if (currCol > colMax) {
+          colMax = currCol;
+        }
+      });
+
+      colMax = colMax + 10;
+      rowMax = rowMax + 1;
+
+
+      let w = 0;
+      let q = 0;
+      let maxGrid = [];
+      for(; w < rowMax; w++) {
+        let createdRow = [];
+        for(q = 0; q < colMax; q++) {
+          createdRow.push(0);
+        }
+        maxGrid.push(createdRow);
+      }
+
+      Object.keys(currChapter).map((nodeKeyTemp) => {  
+        let currNode = currChapter[nodeKeyTemp];
+        let currRow = currNode["row"];
+        let currCol = currNode["col"];
+
+        console.log("r = ", currRow, " ... col = ", currCol, " ....... node = ", nodeKeyTemp);
+      
+        maxGrid[currRow][currCol] = nodeKeyTemp;
+      });
+      gridEntireTemp[chapterKey] = maxGrid;
+
+
+    });   
+    
+
+
+//rowMax, colMax
     //TODO draw grid with the height and width above
+  
+
+    //now maxGrid is an ideal empty grid to be filled
+
+ 
 
 
     //TODO add according to the nodeMapTemp's actual content for all node's positions
-
 
 
     return gridEntireTemp;
@@ -1471,7 +1522,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
                                        console.log("FromCloud !!! data.chapterNodeMapping = ", data.chapterNodeMapping);
 
-                                       console.log("FromCloud !!! after conversion ... GridBlocks = ", gridTempMap);
+                                       console.log("FromCloud !!! after conversion ... GridBlocks = ", gridChapterMap);
 
 
   }
