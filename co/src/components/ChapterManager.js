@@ -414,13 +414,20 @@ console.log("chapterData: ", chapterData); //TODO testing
                 </div>
 
                   <div>
-                    <button className="shrinkTab" onClick={()=>{setIsCollapse(true);}}>︽</button>
+                    <button className="shrinkTab" onClick={()=>{
+                      setIsCollapse(true);
+                      sendOutIsCollapsed(true);
+                      }}>︽</button>
                   </div>     
+
         </div>
         }
 
 
-        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{setIsCollapse(false);}}>
+        {isCollapse === true && <button className="chapterManagerSwitch" onClick={()=>{
+              setIsCollapse(false);
+              sendOutIsCollapsed(false);
+        }}>
           {chapterManagementText}
           </button>}
 

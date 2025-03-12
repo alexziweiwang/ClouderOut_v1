@@ -1429,7 +1429,7 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
       });
 
       colMax = colMax + 10;
-      rowMax = rowMax + 1;
+      rowMax = rowMax + 2;
 
 
       let w = 0;

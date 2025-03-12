@@ -938,11 +938,16 @@ export default function NodeManager({projectName, currUser,
 //TODO page content 
     return (      
         <div style={{
-          "width": "100%"
+          "width": (isChapMgrCollapsed === false) ? "100%" : "85%"
         }}>
 
 
-        {chapterKey!== "" && <div className="setting_area"> 
+        {chapterKey!== "" && <div className="setting_area" 
+        style={{
+          "width": "90%"    
+        }}
+        
+        > 
       
 
         {/* //TODO testing panel area */}
@@ -1028,8 +1033,8 @@ export default function NodeManager({projectName, currUser,
 <div style={{
     "display": "flex", 
     "overflowX": "scroll",
-    "width": "700px",
-    "backgroundColor": "orange"
+    "width": (isChapMgrCollapsed === false) ? "700px" : "1500px",
+    // "backgroundColor": "orange"
 }}>
 
 
@@ -1037,8 +1042,8 @@ export default function NodeManager({projectName, currUser,
     {<div style={{
             "overflowX": "scroll",
             "position": "relative",
-            "width": "700px",
-            "backgroundColor": "purple"
+            "width": "100%",
+            // "backgroundColor": "purple"
 
       }}>
 
@@ -1062,14 +1067,14 @@ export default function NodeManager({projectName, currUser,
                                                   {/* "width": (isChapMgrCollapsed === false) ? "700px" : "1500px" */}
 
           <div style={{
-                  "width": "500px"
+
                 }}>
           {gridBlocks.map((rowItem, ir) => {
             let rowKeyStr = "grid" + ir;
               return (<div key={rowKeyStr} 
                 className="parallelFrame gridRow"
                 style={{
-                  "width": "500px"
+                  "width": "810px"
                 }}
                 
                 >
@@ -1139,7 +1144,14 @@ export default function NodeManager({projectName, currUser,
 
 
     {/* scrollable-implication bar */}
-    {/* <div style={{"backgroundColor": "grey", "fontSize": "25px", "width": "35px", "display": "flex", "justifyContent": "center", "alignItems": "center"}}> <label>⇉</label> </div> */}
+    <div style={{
+      "backgroundColor": "grey", 
+      "fontSize": "25px", 
+      "width": "35px", 
+      "display": "flex", 
+      "justifyContent": "center", 
+      "alignItems": "center"
+    }}> <label>⇉</label> </div>
 
 
 </div>
@@ -1562,7 +1574,7 @@ export default function NodeManager({projectName, currUser,
                   }}>{addNewConditionTargetText}</button>
                   {displayAddNewTargetCondt && <div>
 
-                    <div className="areaFrame" style={{"width": "420px"}}>
+                    <div className="areaFrame" style={{"width": "720px"}}>
                       <label>If</label><br></br>
                       
                       <div>
