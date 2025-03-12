@@ -469,3 +469,7 @@
 - 2025-Mar-07: Organize ver.1 features
 
 - 2025-Mar-11: Design testing-project plot
+- 2025-Mar-11: Design switching tab UI for piece-managing/group-editing for better UX
+
+
+
