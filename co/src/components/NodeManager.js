@@ -16,6 +16,7 @@ export default function NodeManager({projectName, currUser,
   loadChapterInfoFromCaller,
   triggerCreatedNewNode,
   triggerNodeMappingsChange,
+  getChapMgrCollapsed,
 
   getUILanguage,
 
@@ -30,6 +31,9 @@ export default function NodeManager({projectName, currUser,
   const horizontalOffset = 3;
   const nodeGap = 10;
   
+
+  const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false);
+
   const [chapterKey, setChapterKey] = useState(initialChapterKey);
 
   const [newGridActionCreate, setNewGridActionCreate] = useState(true);
@@ -271,6 +275,9 @@ export default function NodeManager({projectName, currUser,
 
       let UILang = getUILanguage();
       setLanguageCodeTextOption(UILang);
+
+      let chapMgrClps = getChapMgrCollapsed();
+      setChapMgrCollapsed(chapMgrClps);
   
 
       let gameDataTemp = getGameData();
@@ -931,7 +938,7 @@ export default function NodeManager({projectName, currUser,
 //TODO page content 
     return (      
         <div style={{
-          "width": "1000px"
+          "width": "100%"
         }}>
 
 
@@ -1018,13 +1025,21 @@ export default function NodeManager({projectName, currUser,
     </div>
 
 {/* parallel-shell (node-map and scrolling-hint-bar)*/}
-<div style={{"display": "flex", "overflowX": "scroll"}}>
+<div style={{
+    "display": "flex", 
+    "overflowX": "scroll",
+    "width": "700px",
+    "backgroundColor": "orange"
+}}>
 
 
     {/* node-map-all-elements */}
     {<div style={{
             "overflowX": "scroll",
             "position": "relative",
+            "width": "700px",
+            "backgroundColor": "purple"
+
       }}>
 
 
@@ -1044,16 +1059,17 @@ export default function NodeManager({projectName, currUser,
           {/* Node-grid-blocks */}
           
                                                   {/* //TODO300 more flexible grid-adding ... */}
+                                                  {/* "width": (isChapMgrCollapsed === false) ? "700px" : "1500px" */}
 
           <div style={{
-                  "width": "1000px"
+                  "width": "500px"
                 }}>
           {gridBlocks.map((rowItem, ir) => {
             let rowKeyStr = "grid" + ir;
               return (<div key={rowKeyStr} 
                 className="parallelFrame gridRow"
                 style={{
-                  "width": "1000px"
+                  "width": "500px"
                 }}
                 
                 >
@@ -1123,7 +1139,7 @@ export default function NodeManager({projectName, currUser,
 
 
     {/* scrollable-implication bar */}
-    <div style={{"backgroundColor": "grey", "fontSize": "25px", "width": "35px", "display": "flex", "justifyContent": "center", "alignItems": "center"}}> <label>⇉</label> </div>
+    {/* <div style={{"backgroundColor": "grey", "fontSize": "25px", "width": "35px", "display": "flex", "justifyContent": "center", "alignItems": "center"}}> <label>⇉</label> </div> */}
 
 
 </div>
@@ -1260,12 +1276,12 @@ export default function NodeManager({projectName, currUser,
 {/* node info and operation area */}
 
         {(clickedNode2 !== -1 && clickedNodeKey !== "") && <div style={{
-                  "width": "1000px"
+                  "width": "2000px"
                 }}>
 
 
 <div style={{"display": "flex"}}>
-    <div style={{"width": "1000px"}}> 
+    <div style={{"width": "700px"}}> 
     {/* node-info-area */}
         
                   

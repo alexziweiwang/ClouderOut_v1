@@ -10,7 +10,7 @@ export default function ChapterManager({projectName, currUser,
   updateChapterListToCloud,
   fetchChapterListFromCloud,
   triggerCreatedNewChapter,
-
+  sendOutIsCollapsed,
 
   getUILanguage,
   }) {

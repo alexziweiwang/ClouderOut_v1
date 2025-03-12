@@ -413,6 +413,7 @@ export default function GameMaker({username, projectName}) {
 },
 */   
 
+  const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false);
 
   
 //TODO23 update to and fetch from cloud for this project !!!
@@ -1722,6 +1723,16 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
     return false;
   }
 
+  function getChapMgrCollapsed(val) {
+    //TODO201
+
+    setChapMgrCollapsed(val);
+  }
+
+  function passInChapMgrCollapsed() {
+    return isChapMgrCollapsed;
+  }
+
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
@@ -1843,6 +1854,7 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
           updateChapterListToCloud={saveChapterListToCloud}
           fetchChapterListFromCloud={fetchChapterListFromCloud}
           triggerCreatedNewChapter={triggerCreatedNewChapter}
+          sendOutIsCollapsed={getChapMgrCollapsed}
           
         />}
 
@@ -1864,6 +1876,8 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
           resetGdmUpdateSignal={resetGdmUpdateSignal}
           triggerCreatedNewNode={triggerCreatedNewNode}
           triggerNodeMappingsChange={triggerNodeMappingsChange}
+
+          getChapMgrCollapsed={passInChapMgrCollapsed}
            
           getUILanguage={passInUILanguage}
           
