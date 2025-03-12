@@ -467,3 +467,5 @@
 - 2025-Mar-07: Research local-file format and handling for the app
 - 2025-Mar-07: Research Capacitor related for mobile app's side
 - 2025-Mar-07: Organize ver.1 features
+
+- 2025-Mar-11: Design testing-project plot
