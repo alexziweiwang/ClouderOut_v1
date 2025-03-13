@@ -360,9 +360,19 @@ export default function NodeManager({projectName, currUser,
 
     let uiLang = languageCodeTextOption;
 
-    console.log("enter editor2:", clickedNodeKey, projectName, userName, uiLang);
+    console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
     if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang } });
+      navigate('/cardgamenode', { replace: true, 
+        state: 
+        { 
+          clickedNodeKey, 
+          projectName, 
+          userName, 
+          screenSizeStr, 
+          uiLang, 
+          chapterKey
+        } 
+        });
     } else if (currNodeType === "Conversation") {
       
       navigate('/conversationnode', { replace: true, 

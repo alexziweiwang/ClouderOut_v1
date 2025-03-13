@@ -1118,11 +1118,13 @@ export default function ConversationNodeEditingPanel() {
 
 
 {/* editor-left-part */}
-            {browseList === false && 
-                <div
+            
+            <div
                     style={{"maxHeight": `${screenHeight+1}px`,  "marginTop": "16px"}}
-                >
-                    {gameUISetterOpen === false && 
+            >
+                {gameUISetterOpen === false &&
+                <>
+                    {(browseList === false) && 
                         <PieceSetter 
                             pieceNum={previewingIndex+1} 
                             assignPreviewIndex={getUpdatePreviewingIndex} 
@@ -1148,9 +1150,34 @@ export default function ConversationNodeEditingPanel() {
                             projName={state.projectName} 
                             sendOutBgmVol={receiveBgmVol}   
                         />}
-  
+                
+                    {(browseList === true) && 
+                        <PieceManager 
+                            allPieceData={pieceDataStructure} 
+                            assignPieceNum={getSelectedPiece} 
+                            assignPreviewIndex={getUpdatePreviewingIndex} 
+                            updatePieceData={changePieceData} 
+                            getAllPieceData={passInAllPieceDataContent}
+                            setIsClickedOnSetters={setIsActionOnSetter}
+                            fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
+                            getCurrentPieceNum={passInCurrentPieceNum}
+                            getScreenSize={passInScreenSize}
 
-                    {gameUISetterOpen === true && 
+                            getUILanguage={passInUILanguage}
+                            triggerPreviewScreenOff={triggerPreviewScreenOff}
+                            triggerPreviewScreenOn={triggerPreviewScreenOn}
+                            sendPmEditingPiece={getPmEditingPiece}
+
+                            triggerPmQuickEditModeOn={triggerPmQuickEditModeOn}
+                            triggerPmQuickEditModeOff={triggerPmQuickEditModeOff}
+
+                    />}  
+                
+                </>}
+
+                                                                        {/* {(gameUISetterOpen === true && browseList === false) &&  //TODO remove later*/}
+                {(gameUISetterOpen === true) && 
+
                         <ConvNodeUISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
                             iniTxtFrameObj={gameUITextFrame} 
@@ -1174,72 +1201,16 @@ export default function ConversationNodeEditingPanel() {
                             username={state.userName} 
                             projName={state.projectName}    
                     />}
- 
-                </div>
-            }
+                 
+            </div> 
 
-{/* editor-left-part */}
-            {browseList === true &&
-                <div
-                    style={{"maxHeight": `${screenHeight+1}px`,  "marginTop": "16px"}}
-                >        
-
-
-                    {gameUISetterOpen === false && 
-                        <PieceManager 
-                            allPieceData={pieceDataStructure} 
-                            assignPieceNum={getSelectedPiece} 
-                            assignPreviewIndex={getUpdatePreviewingIndex} 
-                            updatePieceData={changePieceData} 
-                            getAllPieceData={passInAllPieceDataContent}
-                            setIsClickedOnSetters={setIsActionOnSetter}
-                            fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
-                            getCurrentPieceNum={passInCurrentPieceNum}
-                            getScreenSize={passInScreenSize}
-
-                            getUILanguage={passInUILanguage}
-                            triggerPreviewScreenOff={triggerPreviewScreenOff}
-                            triggerPreviewScreenOn={triggerPreviewScreenOn}
-                            sendPmEditingPiece={getPmEditingPiece}
-
-                            triggerPmQuickEditModeOn={triggerPmQuickEditModeOn}
-                            triggerPmQuickEditModeOff={triggerPmQuickEditModeOff}
-
-                        />}   
-
-
-                    {gameUISetterOpen === true && 
-                        <ConvNodeUISetter 
-                            iniDefaultButtonObj={gameUIDefaultButton} 
-                            iniTxtFrameObj={gameUITextFrame} 
-                            iniMenuButtonObj={gameUIBackButton}
-                            iniConvNavObj={uiConvNav}
-                            iniCovLogObj={logPageUISettings}
-                            openRm={handleResourceManagerOpen} 
-                            updateTextFrameUISettings={updateTextFrameUISettings} 
-                            updateDefaultButtonSettings={updateDefaultButtonUISettings} 
-                            updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
-                            updateBackButtonSettings={updateBackButtonUISettings}
-                            updateConvNavSettings={updateConvNavSettings}
-                            updateConvLogUISettings={updateConvLogUISettings}
-                            fetchRmUpdatedSignal={passInRmUpdatedSignal}
-                            respondUpdatedRm={resetRmUpdatedSignal}
-
-                            getAudioMap={passInAudioMap}
-                            getVisualMap={passInVisualMap}
-
-                            getUILanguage={passInUILanguage}
-                            username={state.userName} 
-                            projName={state.projectName}    
-                        />}
-      
-               
-                </div>
-            }
 
 
 {/* editor-right-part                       */}
-            {(isDisplayGameContentPreview === true && pmQuickEditModeOn === false) && 
+{pmQuickEditModeOn === false && <>
+
+    {/* game-content-preview screen */}
+            {(isDisplayGameContentPreview === true) && 
                 <PreviewWindow_convNodeGameContent
                     getDisplayNonPmTemp={passInDisplayPreviewScreen}
                     getPmEditingPreviewPiece={passInPmEditingPreviewPiece}
@@ -1269,11 +1240,11 @@ export default function ConversationNodeEditingPanel() {
                     
                     username={state.userName}
                     projName={state.projectName}
-                />}
+                />
+            }
 
-
-{/* editor-right-part */}
-            {(isDisplayGameContentPreview === false && pmQuickEditModeOn === false) && 
+    {/* ui-setup-preview screen */}
+            {(isDisplayGameContentPreview === false) && 
                 <PreviewWindow_convNodeUiSetup
                     dataObj={pieceDataStructure[previewingIndex]} 
                     initialAllPieceData={pieceDataStructure}
@@ -1296,12 +1267,13 @@ export default function ConversationNodeEditingPanel() {
                     projName={state.projectName}
                 />
             }
+</>}
 
  
             </div>
 }
 
-
+{/* resource-manager modal */}
             <div
                 style={{
                     "display": isDisplayRmBool === true ? "flex" : "none"
@@ -1323,6 +1295,8 @@ export default function ConversationNodeEditingPanel() {
             </div>
 
 
+
+{/* game-data-manager modal */}
             <div
                 style={{
                     "display": displayGameDataWindow === true ? "flex" : "none"
@@ -1338,9 +1312,35 @@ export default function ConversationNodeEditingPanel() {
                     projName={state.projectName}    
                 />   
             </div>
-        
 
-           
+
+{/* emu-manager modal */}
+            <div
+                style={{
+                "display": isDisplayEmBool === false ? "none" : "flex",
+                }}
+            >
+                <Modal_EmuManager
+                    handleEmCancel={handleEmuManagerCancel}
+
+                    update1Gdt={getUserConfigFromEmuManager1Gdt}
+                    update2Epp={notUsing}
+                    update3Epa={notUsing}
+                    update4Ess={notUsing}
+                    update5Shp={notUsing}
+                    
+                    getUILanguage={passInUILanguage}
+                    isForGameMaker={false}
+
+                    username={state.userName} 
+                    projName={state.projectName}  
+
+                />
+            </div>
+    
+            
+
+{/* *** quick-view modal ***  */}
             {isDisplayQview && <AllPanels_QuickView_ConvNode
                     initialPieceNum={previewingIndex}
                     isDisplay={isDisplayQview}
@@ -1365,35 +1365,13 @@ export default function ConversationNodeEditingPanel() {
             />}
             
 
-
-            <div
-                style={{
-                "display": isDisplayEmBool === false ? "none" : "flex",
-                }}
-            >
-                <Modal_EmuManager
-                    handleEmCancel={handleEmuManagerCancel}
-
-                    update1Gdt={getUserConfigFromEmuManager1Gdt}
-                    update2Epp={notUsing}
-                    update3Epa={notUsing}
-                    update4Ess={notUsing}
-                    update5Shp={notUsing}
-                    
-                    getUILanguage={passInUILanguage}
-                    isForGameMaker={false}
-
-                    username={state.userName} 
-                    projName={state.projectName}  
-
-                />
-            </div>
+    
     </>}            
 
         <br></br>
 
 
-{firstEnterButtonPressed === false && 
+{/* {firstEnterButtonPressed === false && 
                 <div
                 
                 >
@@ -1403,7 +1381,7 @@ export default function ConversationNodeEditingPanel() {
                         setFirstEnterButtonPressed(true);
                     }}>Load Editor</button>
                 </div>
-}
+} */}
 
         </div>
     );
