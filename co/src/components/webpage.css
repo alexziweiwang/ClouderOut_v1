@@ -48,7 +48,7 @@ td {
 }
 
 .pieceTableQuickGroup {
-    width: 1399px
+    width: 1299px
 }
 
 .pieceEditingLeftArea {
@@ -59,7 +59,6 @@ td {
 
 .pieceManagerQuickEdit {
     height: 600px; 
-    /* width: 750px;    */
     overflow: scroll;    
 }
 

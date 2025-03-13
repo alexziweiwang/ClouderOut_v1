@@ -326,20 +326,26 @@ export default function PieceManager({
 
 
     return (
-        <div className={groupEditModeOn === false ? "pieceManager pieceEditingLeftArea" : "pieceManagerQuickGroup pieceManagerQuickEdit"}
+        <div 
+            className={groupEditModeOn === false ? 
+                "pieceManager pieceEditingLeftArea" 
+                : "pieceManagerQuickGroup pieceManagerQuickEdit parallelFrame"}
             onClick={()=>{
                 setIsClickedOnSetters(true);
             }}
         >
         
         {groupEditModeOn === true && 
-            <><div>
+            <>
+            <div>
+
                 <button
                     onClick={()=>{
                         setGroupEditModeOn(false);
                         triggerPmQuickEditModeOff();
                     }}
                 >Finish</button>
+                
 
             </div>
 
@@ -348,7 +354,20 @@ export default function PieceManager({
             </>
         }
 
-         
+    <div>   
+        <div>
+            {groupEditModeOn === false && <button 
+                className="buttonRight80"
+                onClick={()=>{
+                    setGroupEditModeOn(true);
+                    triggerPmQuickEditModeOn();
+                }}    
+            >
+                Group Edit
+            </button>}
+            
+        </div>
+        <br></br>
             <table className={groupEditModeOn === false ? "pieceTable" : "pieceTableQuickGroup"}>
         <thead>
             <tr>
@@ -422,7 +441,6 @@ export default function PieceManager({
                             if (groupMoving === true) {
                                 setGroupMoving(false);
                             }
-
                         }}
                     >
                         Group Edit
@@ -514,24 +532,9 @@ export default function PieceManager({
     <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>
     }
 
-    {groupEditModeOn === true && 
-        <>
-            <br></br><br></br><br></br>
+    </div>
 
-            <div>
-                <button
-                    onClick={()=>{
-                        setGroupEditModeOn(false);
-                        triggerPmQuickEditModeOff();
-                    }}
-                >Finish</button>
-
-            </div>
-
-
-        </>
-    }
-
+ 
     
         </div>
     );
