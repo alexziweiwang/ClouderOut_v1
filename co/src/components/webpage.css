@@ -916,11 +916,16 @@ th,td {
 }
 
 .tableItem:hover {
-    background-color: rgb(231, 222, 237);
+    background-color: rgb(173, 170, 179); 
     cursor: pointer;
-    color:rgb(7, 7, 7);
+    color: #FFFFFF;    
     width: 500px;
     user-select: none;
+
+
+
+
+    /* background-color: rgb(239, 236, 245);  */
 }
 
 
@@ -931,6 +936,19 @@ th,td {
     width: 500px;
     
     user-select: none;
+}
+
+
+.tableEditorGrid {
+    background-color: rgb(235, 232, 227);
+    cursor: pointer;
+    color:rgb(7, 7, 7);
+}
+
+.tableEditorGrid:hover {
+    background-color: rgb(66, 67, 69);
+    cursor: pointer;
+    color: #FFFFFF;    
 }
 
 .scrollableArea {

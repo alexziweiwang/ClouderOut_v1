@@ -329,7 +329,7 @@ export default function PieceManager({
         <div 
             className={groupEditModeOn === false ? 
                 "pieceManager pieceEditingLeftArea" 
-                : "pieceManagerQuickGroup pieceManagerQuickEdit parallelFrame"}
+                : "pieceManagerQuickGroup pieceManagerQuickEdit"}
             onClick={()=>{
                 setIsClickedOnSetters(true);
             }}
@@ -344,13 +344,13 @@ export default function PieceManager({
                         setGroupEditModeOn(false);
                         triggerPmQuickEditModeOff();
                     }}
-                >Finish</button>
-                
+                > ⇇
+                </button>
+               {/* back button  */}
 
             </div>
 
-            <br></br><br></br>
-
+   
             </>
         }
 
@@ -363,7 +363,7 @@ export default function PieceManager({
                     triggerPmQuickEditModeOn();
                 }}    
             >
-                Group Edit
+                Group Edit ⇉
             </button>}
             
         </div>
@@ -371,7 +371,7 @@ export default function PieceManager({
             <table className={groupEditModeOn === false ? "pieceTable" : "pieceTableQuickGroup"}>
         <thead>
             <tr>
-            <th style={{"width": "70px"}}>Editor</th>
+            {groupEditModeOn === false && <th style={{"width": "70px"}}>Editor</th>}
             <th style={{"width": "30px"}}>#</th>
             <th 
             
@@ -393,21 +393,26 @@ export default function PieceManager({
                             ? "tableItemSelected" : "tableItem"} 
                         >
                     
-                    <td
+                    {groupEditModeOn === false && <td
+                        className="tableEditorGrid"
                         onClick={()=>{
-                            if (groupEditModeOn === false) {
-                                doHighlightItem(item["num"]);   
-                                assignPreviewIndex(index); //TODO1 check
-                            }
+
+                            doHighlightItem(item["num"]);   
+                            assignPreviewIndex(index); //TODO1 check
+                            
+                       
+                            assignPieceNum(item["num"]); 
 
                         }}
                     >
-                        {groupEditModeOn === false && <button onClick={()=>{
-                            assignPreviewIndex(index); //TODO1 check
-                            console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
+                        {/* <button onClick={()=>{
+                            // assignPreviewIndex(index); //TODO1 check
+                            // console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
 
-                            assignPieceNum(item["num"]);}}>Enter Editor</button>}
-                    </td>
+                            // assignPieceNum(item["num"]);
+                        }}>Enter Editor</button> */}
+                        Enter Editor
+                    </td>}
                     <td
                         onClick={()=>{
                             if (groupEditModeOn === false) {
@@ -434,16 +439,18 @@ export default function PieceManager({
                     <>
                     <button
                         onClick={()=>{
-                            if (groupEditModeOn === false) {
+                            if (groupEditModeOn === false) { //enter group-edit-mode
                                 setGroupEditModeOn(true);
                                 triggerPmQuickEditModeOn();
                             }
-                            if (groupMoving === true) {
+                            if (groupMoving === true) { //allow editing on the text-area
                                 setGroupMoving(false);
                             }
                         }}
                     >
-                        Group Edit
+                        {groupEditModeOn === false && <label>Group Edit</label>}
+                        {groupEditModeOn === true && <label>Edit</label>}
+
                     </button>
                     
                     
@@ -531,6 +538,25 @@ export default function PieceManager({
     {
     <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>
     }
+        
+        {groupEditModeOn === true && 
+            <>
+            <div>
+                <br></br><br></br><br></br>
+                <button
+                    onClick={()=>{
+                        setGroupEditModeOn(false);
+                        triggerPmQuickEditModeOff();
+                    }}
+                > ⇇
+                </button>
+               {/* back button  */}
+
+            </div>
+
+   
+            </>
+        }
 
     </div>
 
