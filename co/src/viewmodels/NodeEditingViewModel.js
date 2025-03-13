@@ -13,5 +13,5 @@ export async function addNewNodeFoldersVM({project, username, nodeKeyList, chapt
 }
 
 export async function convNodeAllDetailsFromCloudVM({project, username, chapterKey, nodeKey}) {
-    await convNodeAllDetailsFromCloud({project, username, chapterKey, nodeKey});
+    return await convNodeAllDetailsFromCloud({project, username, chapterKey, nodeKey});
 }

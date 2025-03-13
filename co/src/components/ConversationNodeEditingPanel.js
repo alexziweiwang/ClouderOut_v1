@@ -28,21 +28,21 @@ export default function ConversationNodeEditingPanel() {
 
     const navigate = useNavigate();
     const {state} = useLocation();
-    let nodeName = "";
-    let uname = "default-no-state username";
+    let userName = "default-no-state username";
     let projectName = "default-no-state projectname";
-    let screenSizeInfo = "default-no-state screenSizeInfo";
+    let screenSizeStr = "default-no-state screenSizeInfo";
     let editorUiLang = "default-no-state uiLang";
     let chapterKey = "defualt-no-state chapterkey";
-    let nodeKey = "default-node-state nodekey";
+    let clickedNodeKey = "default-node-state nodekey";
+
+
     if (state != null) {
-        nodeName = state.clickedNodeKey;
-        uname = state.userName;
-        projectName = state.selected_project_name;
-        screenSizeInfo = state.screenSizeStr;
-        editorUiLang = state.uiLang;    
+        userName = state.userName;
+        projectName = state.projectName;
+        screenSizeStr = state.screenSizeStr;
+        editorUiLang = state.editorUiLang;    
         chapterKey = state.chapterKey;
-        nodeKey = state.clickedNodeKey;
+        clickedNodeKey = state.clickedNodeKey;
 
     }
 
@@ -403,6 +403,8 @@ export default function ConversationNodeEditingPanel() {
                                 console.log("!!initializeUILang(): ", uiLangFromOuterCompo);
         }
 
+ 
+
     }
 
 
@@ -416,6 +418,7 @@ export default function ConversationNodeEditingPanel() {
         }
 
     }
+
 
     async function fetchProjResourceLists() {
 
@@ -674,7 +677,7 @@ export default function ConversationNodeEditingPanel() {
     // function updateGDataDesignToCloud(gameDataLatest) {
 
     //     let project = "";
-    //     project  = state.selected_project_name;
+    //     project  = state.projectName;
     //     if (project === "" || project === undefined || project.trim() === "") {
     //         return;
     //     }
@@ -682,7 +685,7 @@ export default function ConversationNodeEditingPanel() {
     //     updateGameDataDesignVM({projectName: project, uname: currUser, gameData: gameDataLatest});
     
     // } //TODO remove
-
+ 
 
     function triggerToDirectNextFunc() {
         //from preview window: make pieceNum to be the next for PieceSetter and PieceManager...
@@ -855,19 +858,14 @@ export default function ConversationNodeEditingPanel() {
         //gameUIDefaultButton, gameUITextFrame, gameUIBackButton, uiConvNav, logPageUISettings
 
 
-
-
         await convSingleNodeUpdateToCloudVM({
             project: state.projectName, 
             username: state.userName, 
-            chapterKey: chapterKey, 
-            nodeKey: nodeKey, 
+            chapterKey: state.chapterKey, 
+            nodeKey: state.clickedNodeKey, 
             dataObj: pieceDataStructure, 
             uiDataObj: uiObj
-        })
-            
-            
-            
+        })            
         .then((res)=>{
                 if (res === "node-update-ok") {
                     alert("Saved to Cloud!")
@@ -885,13 +883,14 @@ export default function ConversationNodeEditingPanel() {
         let pieceObjTemp = await convNodeAllDetailsFromCloudVM({
             project: state.projectName, 
             username: state.userName, 
-            chapterKey: chapterKey, 
-            nodeKey: nodeKey
+            chapterKey: state.chapterKey, 
+            nodeKey: state.clickedNodeKey
         });
 
 
         if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
             setPiecedataStructure([]);
+            console.log("......................");
             return;
         }
 

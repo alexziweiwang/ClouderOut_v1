@@ -365,7 +365,17 @@ export default function NodeManager({projectName, currUser,
       navigate('/cardgamenode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang } });
     } else if (currNodeType === "Conversation") {
       
-      navigate('/conversationnode', { replace: true, state: { clickedNodeKey, projectName, userName, screenSizeStr, uiLang, chapterKey} });
+      navigate('/conversationnode', { replace: true, 
+        state: 
+        { 
+          clickedNodeKey, 
+          projectName, 
+          userName, 
+          screenSizeStr, 
+          uiLang, 
+          chapterKey
+        } 
+        });
     } 
 
 
