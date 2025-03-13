@@ -939,6 +939,9 @@ export default function PieceSetter({
                     <br></br>
                     <div className="indentOne">
                         <textarea
+                            wrap="off"
+                            maxlength="160"
+                            rows="4" cols="36"
                             value={currentSinglePieceDetail["content"]}
                             onChange={(event)=>{handleTextContentEnter(event);}}
                         >

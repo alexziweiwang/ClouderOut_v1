@@ -475,12 +475,11 @@ export default function PieceManager({
                                     setPieceDataLocal(pieceArrTemp);
                                 }}
                             ></input>
-                            <br></br>
+                            <br></br><br></br>
                             <textarea
-                                style={{
-                                    "width": "750px",
-                                    "height": "50px"
-                                }}
+                                wrap="off"
+                                maxlength="160"
+                                rows="10" cols="36"
                                 defaultValue={item["content"]}
                                 onChange={(event)=>{
                                     let val = event.target.value;
@@ -490,9 +489,12 @@ export default function PieceManager({
                                     setPieceDataLocal(pieceArrTemp);
                                 }}                            
                             ></textarea>
+                            <br></br><br></br>
+
+
+                            
                         </>
                     }
-
 
                     </td>
 

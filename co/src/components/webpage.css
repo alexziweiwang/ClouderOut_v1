@@ -18,6 +18,10 @@ td {
     white-space: pre-wrap;
 }
 
+textarea {
+    resize: none;
+}
+
 .w300 {
     width: 300px
 }
@@ -1864,11 +1868,8 @@ button:hover {
 }
 
 .wrappingFrame {
-    word-wrap: break-word;
-    text-wrap: balance;
-    text-align: left;
-    white-space: pre-wrap;
-    
+    white-space: pre-wrap; /* !important */    
+    text-align: left; /* !important */    
 }
 
 .navigationButton {

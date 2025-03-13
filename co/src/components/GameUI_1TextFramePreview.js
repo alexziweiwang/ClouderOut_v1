@@ -150,7 +150,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         <div style={{
                             "fontFamily": `${txtFrameUISettings["fontName"]}`
                         }}>
-                        <label>(Testing for speed only): </label>
+                        {/* <label>(Testing for speed only): </label> */}
                         <ConvTextContent_preview 
                             initialAllPieceData={initialAllPieceData}
                             initialPieceNum={currentPieceNum}
