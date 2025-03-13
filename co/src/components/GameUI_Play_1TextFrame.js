@@ -114,7 +114,9 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                         "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                         "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                         "justifyContent": "left",
-                        "overflow": "hidden"
+                        "overflow": "hidden",
+                        "white-space": "pre",
+
 
                     }}
 

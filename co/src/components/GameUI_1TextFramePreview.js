@@ -141,14 +141,15 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         "height" : `${txtFrameUISettings["TextContentArea-h"]}px`,
                         "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                         "justifyContent": "left",
-                        "overflow": "hidden"
+                        "overflow": "hidden",
+                        "white-space": "pre",
 
                     }}             
                 >
            
                         {!isEditing && 
                         <div style={{
-                            "fontFamily": `${txtFrameUISettings["fontName"]}`
+                            "fontFamily": `${txtFrameUISettings["fontName"]}`,                         
                         }}>
                         {/* <label>(Testing for speed only): </label> */}
                         <ConvTextContent_preview 
