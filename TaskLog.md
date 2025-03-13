@@ -472,4 +472,11 @@
 - 2025-Mar-11: Design switching tab UI for piece-managing/group-editing for better UX
 - 2025-Mar-11: Design testing-project scale and structure
 
+- 2025-Mar-12: Design testing-project plot2
+
+
+
+
+
+
 
