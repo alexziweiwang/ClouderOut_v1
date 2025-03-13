@@ -331,7 +331,24 @@ export default function PieceManager({
                 setIsClickedOnSetters(true);
             }}
         >
-                 
+        
+        {groupEditModeOn === true && 
+            <><div>
+                <button
+                    onClick={()=>{
+                        setGroupEditModeOn(false);
+                        triggerPmQuickEditModeOff();
+                    }}
+                >Finish</button>
+
+            </div>
+
+            <br></br><br></br>
+
+            </>
+        }
+
+         
             <table className={groupEditModeOn === false ? "pieceTable" : "pieceTableQuickGroup"}>
         <thead>
             <tr>
@@ -435,6 +452,10 @@ export default function PieceManager({
                             ></input>
                             <br></br>
                             <textarea
+                                style={{
+                                    "width": "750px",
+                                    "height": "50px"
+                                }}
                                 defaultValue={item["content"]}
                                 onChange={(event)=>{
                                     let val = event.target.value;
@@ -490,19 +511,27 @@ export default function PieceManager({
         </tbody>
     </table>
     {
-    <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>}
+    <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>
+    }
 
     {groupEditModeOn === true && 
-    <div>
-        <br></br><br></br><br></br>
-        <button
-            onClick={()=>{
-                setGroupEditModeOn(false);
-                triggerPmQuickEditModeOff();
-            }}
-        >Finish</button>
+        <>
+            <br></br><br></br><br></br>
 
-    </div>}
+            <div>
+                <button
+                    onClick={()=>{
+                        setGroupEditModeOn(false);
+                        triggerPmQuickEditModeOff();
+                    }}
+                >Finish</button>
+
+            </div>
+
+
+        </>
+    }
+
     
         </div>
     );

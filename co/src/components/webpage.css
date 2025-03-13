@@ -48,7 +48,7 @@ td {
 }
 
 .pieceTableQuickGroup {
-    width: 1500px
+    width: 1399px
 }
 
 .pieceEditingLeftArea {
@@ -59,7 +59,7 @@ td {
 
 .pieceManagerQuickEdit {
     height: 600px; 
-    width: 950px;   
+    /* width: 750px;    */
     overflow: scroll;    
 }
 
@@ -532,7 +532,7 @@ td {
 .pieceManagerQuickGroup {
     background-color: #293241;
     color: #f5f5f5;
-    width: 1520px;
+    width: 1399px;
     margin-left: 5px;
     justify-content: flex-start;
     text-align: left;

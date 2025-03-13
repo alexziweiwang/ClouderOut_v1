@@ -984,6 +984,7 @@ export default function ConversationNodeEditingPanel() {
 
     function triggerPmQuickEditModeOff() {
         setPmQuickEditModeOn(false);
+
     }
 
     function openSettingPage() {
@@ -1082,9 +1083,18 @@ export default function ConversationNodeEditingPanel() {
                         onClick={()=>{saveAllToCloud();}}
                     >{saveToCloudText}</button>
 
-                    <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(true); setGameUISetterOpen(false);}}>
+                    <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{
+                        setIsDisplayGameContentPreview(true); 
+                        setGameUISetterOpen(false);
+                    }}>
                         {gameContentSetupText}</button>
-                    <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{setIsDisplayGameContentPreview(false); setGameUISetterOpen(true);}}>
+
+
+                    <button className={isDisplayGameContentPreview === false? "topBarTabSelected": "topBarTab"} onClick={()=>{
+                        setIsDisplayGameContentPreview(false); 
+                        setGameUISetterOpen(true);
+                        setPmQuickEditModeOn(false);
+                    }}>
                         {gameUIsetupText}</button>
 
 
