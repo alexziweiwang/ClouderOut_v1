@@ -48,7 +48,7 @@ export default function GameScreen_InPracShell_ConvNode ({
             setFirstTimeEnter(false);
         }
 
-                                  //  console.log("in-prac-shell, allPieceData = ", allPieceData);
+                                   console.log("in-prac-shell, allPieceData = ", allPieceData);
 
 /* 
                                                                               

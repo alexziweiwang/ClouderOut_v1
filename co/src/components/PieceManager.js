@@ -170,7 +170,7 @@ export default function PieceManager({
 
         updatePieceData(pieceDataArr);
 
-        //TODO notify outside layer
+                                                        //TODO notify outside layer
     }
 
     function insertNewPiece(preIndex) {

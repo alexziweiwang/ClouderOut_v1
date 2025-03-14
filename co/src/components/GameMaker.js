@@ -1384,6 +1384,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     }
     newNodeList.push(pair);
     setCreatedNewNodeKeyList(newNodeList);
+    
+    //TODO500 TO-DEBUG!   add initial data for the blank node!!    *important
+
   }
 
 

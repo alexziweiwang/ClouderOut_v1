@@ -142,7 +142,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
                         "width" : `${txtFrameUISettings["TextContentArea-w"]}px`,
                         "justifyContent": "left",
                         "overflow": "hidden",
-                        "white-space": "pre",
+                        "whiteSpace": "pre",
 
                     }}             
                 >

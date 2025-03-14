@@ -250,7 +250,7 @@ export default function Viewer_Entire({
         
         let anc = getAllNodesContainer();
         setAllNodesContainer(anc);
-                                            console.log("\t\t*** Viewer-Entire: allNodesContainer = ", anc);
+                                     //       console.log("\t\t*** Viewer-Entire: allNodesContainer = ", anc);
 
 
 
