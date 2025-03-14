@@ -393,15 +393,11 @@ export default function PieceSetter({
             (element) => {
                 if (element.length > 36) {
                     boolVal = true;
-                }
-                
+                }          
             }
         );
 
         return boolVal;
-
-
-
     }
 
     function handleSpeakerNameEnter(event) {
@@ -972,7 +968,7 @@ export default function PieceSetter({
                             }}
                             onBlur={()=>{
                                 if (hintTextAreaOverflow === true) {
-                                    alert("Please adjust content -- per line too long");
+                                    alert("Please adjust content -- one or multiple line(s) too long");
                                 }
                             }}
                         >

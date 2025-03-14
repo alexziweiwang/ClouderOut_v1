@@ -107,6 +107,8 @@ export default function PieceManager({
     const [chosenEditingContent, setChosenEditingContent] = useState("");
     const [chosenEditingSpeaker, setChosenEditingSpeaker] = useState("");
 
+    const [hintTextAreaOverflow, setHintTextAreaOverflow] = useState(false);
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
@@ -319,9 +321,19 @@ export default function PieceManager({
     }
 
 
+    function checkRowLengthOverflow(content) {
+        let boolVal = false;
+        let arr = content.match(/[^\r\n]+/g);
+        arr.forEach(
+            (element) => {
+                if (element.length > 36) {
+                    boolVal = true;
+                }          
+            }
+        );
 
-   
-
+        return boolVal;
+    }
 
 
 
@@ -478,7 +490,7 @@ export default function PieceManager({
                             <br></br><br></br>
                             <textarea
                                 wrap="off"
-                                maxlength="160"
+                                maxLength="160"
                                 rows="10" cols="36"
                                 defaultValue={item["content"]}
                                 onChange={(event)=>{
@@ -487,6 +499,14 @@ export default function PieceManager({
                                     let pieceArrTemp = pieceDataLocal;
                                     pieceArrTemp[index]["content"] = val;
                                     setPieceDataLocal(pieceArrTemp);
+
+                                    let isLineTooLong = checkRowLengthOverflow(val);
+                                    setHintTextAreaOverflow(isLineTooLong);
+                                }}
+                                onBlur={()=>{
+                                    if (hintTextAreaOverflow === true) {
+                                        alert("Please adjust content -- one or multiple line(s) too long");
+                                    }
                                 }}                            
                             ></textarea>
                             <br></br><br></br>
