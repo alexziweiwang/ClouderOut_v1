@@ -477,7 +477,9 @@
 - 2025-Mar-13: Design testing-project plot3
 - 2025-Mar-13: Design testing-project data and mechanism
 
-- 2025-Mar-14:  Design testing-project plot4
+- 2025-Mar-14: Design testing-project plot4
+- 2025-Mar-14: Research on fade in/out visual effect details
+
 
 
 
