@@ -139,6 +139,8 @@ export default function PieceSetter({
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
+    const [hintTextAreaOverflow, setHintTextAreaOverflow] = useState(false);
+
     const [bgpicAdd, setBgPicAdd] = useState(true);
     const [charPicAdd, setCharPicAdd] = useState(true);
     const [textContentInfoAdd, setTextContentInfoAdd] = useState(true);
@@ -374,10 +376,32 @@ export default function PieceSetter({
 
     function handleTextContentEnter(event) {
         let contentStr = event.target.value;
+        let checkRes = checkRowLengthOverflow(contentStr);
+        setHintTextAreaOverflow(checkRes);
+
+        
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "content": contentStr});
         let tempObj = currentSinglePieceDetail;
         tempObj["content"] = contentStr;
         updateToCaller(tempObj);
+    }
+
+    function checkRowLengthOverflow(content) {
+        let boolVal = false;
+        let arr = content.match(/[^\r\n]+/g);
+        arr.forEach(
+            (element) => {
+                if (element.length > 36) {
+                    boolVal = true;
+                }
+                
+            }
+        );
+
+        return boolVal;
+
+
+
     }
 
     function handleSpeakerNameEnter(event) {
@@ -940,10 +964,17 @@ export default function PieceSetter({
                     <div className="indentOne">
                         <textarea
                             wrap="off"
-                            maxlength="160"
+                            maxLength="160"
                             rows="4" cols="36"
                             value={currentSinglePieceDetail["content"]}
-                            onChange={(event)=>{handleTextContentEnter(event);}}
+                            onChange={(event)=>{
+                                handleTextContentEnter(event);
+                            }}
+                            onBlur={()=>{
+                                if (hintTextAreaOverflow === true) {
+                                    alert("Please adjust content -- per line too long");
+                                }
+                            }}
                         >
                         {currentSinglePieceDetail["content"]}
                         </textarea>
