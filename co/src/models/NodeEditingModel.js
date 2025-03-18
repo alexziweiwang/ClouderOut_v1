@@ -78,7 +78,7 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
 
     //TODO group func       group-func
 
-    nodeKeyList.map(async (item, i) => {
+    nodeList.map(async (item, i) => {
         let currNode = item["nodeKey"];
 
         if (item["chapKey"] === chapterKey) {

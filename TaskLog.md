@@ -480,7 +480,7 @@
 - 2025-Mar-14: Design testing-project plot4
 - 2025-Mar-14: Research on fade in/out visual effect details
 
-
+- 2025-Mar-17: Research on Three.js for consideration
 
 
 
