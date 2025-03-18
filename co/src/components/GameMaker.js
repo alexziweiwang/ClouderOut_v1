@@ -147,7 +147,7 @@ export default function GameMaker({username, projectName}) {
   const [currPageName, setCurrPageName] = useState("Main Page");
 
   const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false);
-  const [createdNewNodeKeyList, setCreatedNewNodeKeyList] = useState([]);
+  const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]);
   const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
   const [createdChapterFolderSignal, setCreatedChapterFolderSignal] = useState(false);
 
@@ -846,7 +846,7 @@ export default function GameMaker({username, projectName}) {
       if (createNodeFolderSignal === true) {
           let answer = window.confirm("Save current chapter data to cloud?");
           if (answer) {
-              //by createdNewNodeKeyList, update cloud-folders...
+              //by createdNewNodeWaitlist, update cloud-folders...
               //TODO37
 
               await saveNewlyCreatedNodeFolder();
@@ -875,27 +875,28 @@ export default function GameMaker({username, projectName}) {
 
   //TODO21 refactor to VM
   async function saveNewlyCreatedNodeFolder() {
+//TODO600
 
-    if (createdNewNodeKeyList.length === 0) {
+    if (createdNewNodeWaitlist.length === 0) {
       return;
     }
 
     if (createNodeFolderSignal === true) {
           //by signal, add a new document at /"nodes"
 
-                          console.log("updating to cloud: func-step1-node-folders ", createdNewNodeKeyList);
+                          console.log("updating to cloud: func-step1-node-folders ", createdNewNodeWaitlist);
 
           await addNewNodeFoldersVM(
             { 
                 project: projectName,
                 username: username,
-                nodeKeyList: createdNewNodeKeyList, 
+                nodeList: createdNewNodeWaitlist, 
                 chapterKey: currChapterKey
             }
           );
           //TODO36
 
-          setCreatedNewNodeKeyList([]);
+          setCreatedNewNodeWaitlist([]);
 
           //reset create-node-signal to false here
           setCreateNodeFolderSignal(false);
@@ -1224,28 +1225,38 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
   //TODO21 refactor to VM
   function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
     setCreateNodeFolderSignal(true);
-    let newNodeList = createdNewNodeKeyList;
-    let pair = {
+    let newNodeList = createdNewNodeWaitlist;
+    let infoObj = {
       "nodeKey": newNodeKey,
-      "chapKey": chapterKeyTemp
+      "chapKey": chapterKeyTemp,
+      "nodeType": nodeTypeTemp,
     }
-    newNodeList.push(pair);
-    setCreatedNewNodeKeyList(newNodeList);
-    
-    //TODO500 TO-DEBUG!   add initial data for the blank node!!    *important
 
-    //TODO according to type, add new-node template?
-    //TODO add this node-obj into project-chapter-nodes on cloud
 
     let nodeObj = {};
 
     if (nodeTypeTemp === "Conversation") {
-      nodeObj = emptyConversationNodeTemplate;
+      nodeObj["nodeContent"] = emptyConversationNodeTemplate;
+
       //TODO add conv-ui obj
 
     }
 
+    infoObj["detailObj"] = nodeObj;
 
+
+
+
+
+
+    newNodeList.push(infoObj);
+    setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
+    
+
+    //TODO500 TO-DEBUG!   add initial data for the blank node!!    *important
+
+    //TODO according to type, add new-node template?
+    //TODO add this node-obj into project-chapter-nodes on cloud
 
   }
 
