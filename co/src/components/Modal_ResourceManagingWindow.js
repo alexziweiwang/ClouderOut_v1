@@ -8,7 +8,7 @@ import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM }
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh,

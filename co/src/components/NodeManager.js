@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 
 
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 
 export default function NodeManager({projectName, currUser, 

@@ -26,7 +26,7 @@ import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntir
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 
 
@@ -1239,6 +1239,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       nodeObj["nodeContent"] = emptyConversationNodeTemplate;
 
       //TODO add conv-ui obj
+      //"nodeUISettings"
 
     }
 
@@ -1253,7 +1254,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
     
 
-    //TODO500 TO-DEBUG!   add initial data for the blank node!!    *important
+    //TODO600 TO-DEBUG!   add initial data for the blank node!!    *important
 
     //TODO according to type, add new-node template?
     //TODO add this node-obj into project-chapter-nodes on cloud

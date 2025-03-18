@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import langDictionary from './textDictionary';
-
+import langDictionary from './_textDictionary';
+import newEmptyPieceTemplate from './_dataStructure_DefaultObjects';
 
 export default function PieceManager({
     allPieceData, assignPieceNum, assignPreviewIndex, 
@@ -28,24 +28,7 @@ export default function PieceManager({
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
     
-    const newEmptyPieceTemplate = {
-        "num": -1, 
-        "content": "", 
-        "speaker_name": "", 
-        "bgp_pos_x": 0, 
-        "bgp_pos_y": 0, 
-        "bgp_width": {screenWidth}, 
-        "bgp_height": {screenHeight}, 
-        "chp_arr": [], 
-        "stnd_btn_arr": [], 
-        "clkb_arr": [],
-        "bgm_loop": true, 
-        "bgm_volume": 100, 
-        "vl_source_link": "", 
-        "vl_volume": 100,
-        "displayTextFrame": true
-    }; 
-
+  
 
     let name = "/piecemanager";
 

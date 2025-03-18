@@ -84,7 +84,7 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
         if (item["chapKey"] === chapterKey) {
           
           await setDoc(doc(ref, "nodes", currNode), {});
-          //TODO500 add node-details as well!!
+          //TODO600 add node-details as well!!
 
         }
     });

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 import Panel_GameDataTest from './Panel_GameDataTest';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
    
 
 export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQViewCancel, 

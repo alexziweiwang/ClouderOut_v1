@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen

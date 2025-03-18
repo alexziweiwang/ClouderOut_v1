@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 
 //TODO20 cloud-func

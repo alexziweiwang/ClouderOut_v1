@@ -6,6 +6,7 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
+import newEmptyPieceTemplate from './_dataStructure_DefaultObjects';
 
 
 //TODO102 test for visualMap and audioMap
@@ -42,23 +43,6 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     const [isShowLogScreen, setisShowLogScreen] = useState(false);
     const enteredgetLogPageUISettings = getLogPageUISettings();
 
-    const newEmptyPieceTemplate = {
-      "num": -1, 
-      "content": "", 
-      "speaker_name": "", 
-      "bgp_pos_x": 0, 
-      "bgp_pos_y": 0, 
-      "bgp_width": {screenWidth}, 
-      "bgp_height": {screenHeight}, 
-      "chp_arr": [], 
-      "stnd_btn_arr": [], 
-      "clkb_arr": [],
-      "bgm_loop": true, 
-      "bgm_volume": 100, 
-      "vl_source_link": "", 
-      "vl_volume": 100,
-      "displayTextFrame": true
-    };  
     // console.log("re-rendering @preview window"); //TODO test temp
 
     let name = "/previewwindow";

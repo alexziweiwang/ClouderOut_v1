@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import ProjectManageNew from './ProjectManageNew';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.

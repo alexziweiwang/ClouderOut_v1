@@ -1,4 +1,4 @@
-const textDictionary = {
+const _textDictionary = {
     en: {
         updateText: "Update",
         saveText: "Save",
@@ -430,4 +430,4 @@ const textDictionary = {
 }
 
 
-export default textDictionary;
+export default _textDictionary;

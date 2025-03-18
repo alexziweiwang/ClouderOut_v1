@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigate} from 'react-router-dom';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 export default function Sidebar({compName, username}) {
     console.log("sidebar, compName:", compName);

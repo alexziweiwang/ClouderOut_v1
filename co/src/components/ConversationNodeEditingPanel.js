@@ -12,9 +12,9 @@ import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
 import PieceManager from './PieceManager';
 import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
-
+import newEmptyPieceTemplate from './_dataStructure_DefaultObjects';
 
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM, convNodeAllDetailsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
@@ -61,23 +61,6 @@ export default function ConversationNodeEditingPanel() {
         "4:3(vertical)": [600, 800]
     };
 
-    const newEmptyPieceTemplate = {
-        "num": -1, 
-        "content": "", 
-        "speaker_name": "", 
-        "bgp_pos_x": 0, 
-        "bgp_pos_y": 0, 
-        "bgp_width": "800px", 
-        "bgp_height": "600px", 
-        "chp_arr": [], 
-        "stnd_btn_arr": [], 
-        "clkb_arr": [],
-        "bgm_loop": true, 
-        "bgm_volume": 100, 
-        "vl_source_link": "", 
-        "vl_volume": 100,
-        "displayTextFrame": true
-    }; 
 
 
     let textDictItem = langDictionary[languageCodeTextOption];

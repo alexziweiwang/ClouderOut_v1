@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import langDictionary from './textDictionary';
+import langDictionary from './_textDictionary';
 
 
 //TODO20 cloud-func
