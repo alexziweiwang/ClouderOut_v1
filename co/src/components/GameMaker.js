@@ -95,7 +95,7 @@ export default function GameMaker({username, projectName}) {
     fetch from cloud when first entering Game-Maker
     for visualization on node-manager component; more for the game-maker (not game-viewer)
   -hook currentProjectNav: UI-settings for navigation-system of the [entire game]
-  -TODO: chapter and node brief intro?
+  -chapter and node brief intro
 
 */
 
@@ -114,19 +114,6 @@ export default function GameMaker({username, projectName}) {
   const [mutedViewOption, setMutedViewOption] = useState(false);
 
 
-/* // TODO game-maker task list
-2. logic organizer for game-node-relationship
-3. preview and test for node play-flow (progress: 35%)
-4. testing data for some nodes on cloud-db
-*/
-
-
-/* // TODO game-node visualization task list, dont items removed
-4. optimization of paths: non-overlapping, line to path
-7. optimization on node positions when generated
-9. game node brief info display and options (hover and click)
-
-*/
 
 
   /* variable area */
@@ -244,6 +231,27 @@ export default function GameMaker({username, projectName}) {
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
 
 
+  const emptyConversationNodeTemplate = {
+    "num": -1, 
+    "content": "", 
+    "speaker_name": "", 
+    "bgp_pos_x": 0, 
+    "bgp_pos_y": 0, 
+    "bgp_width": {screenWidth}, 
+    "bgp_height": {screenHeight}, 
+    "chp_arr": [], 
+    "stnd_btn_arr": [], 
+    "clkb_arr": [],
+    "bgm_loop": true, 
+    "bgm_volume": 100, 
+    "vl_source_link": "", 
+    "vl_volume": 100,
+    "displayTextFrame": true
+  };  
+
+  //TODO501 node-ui template...
+
+
  // const [currentChapterNodeMap, setCurrentChapterNodeMap] = useState({});           //--- not used ---
  // const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys              //--- not used ---
 
@@ -251,167 +259,6 @@ export default function GameMaker({username, projectName}) {
 
 
 
-/*  sample of gridBlocksAll
-     "chp-key1": 
-      [
-        ["","","","","","","","","",""], 
-        ["","","","","","","","","",""],
-        ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
-        ["","","","","","","","","",""],
-        ["C1-key","","","B1-key","","","chp-key1_end","","",""]
-      ]
-    ,
-      "chp-key2": [
-          ["","","","","","","","","",""], 
-          ["","","","","","","","","",""],
-          ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
-          ["","","","","","","","","",""],
-          ["C2-key","","","B2-key","","","chp-key2_end","","",""]
-      ],  
-    
-    */
-/* sample of node-map-all
-  "chp-key1": {"chp-key1_start": {
-              nodeName: "chapterStart1-title", 
-              row: 2, 
-              col: 0, 
-              nextNode:"A1-key", 
-              display: true, 
-              nodeType:"*chapterStart*", 
-              screenSize:"4:3(horizonal)",
-              notes: "",
-          },
-          "A1-key": {
-              nodeName: "A1-title", 
-              row: 2, 
-              col: 1, 
-              nextNode:"", 
-              display: true, 
-              nodeType:"Conversation", 
-              screenSize:"4:3(horizonal)",
-              notes: "",
-          },
-          "B1-key": {
-              nodeName: "B1-title", 
-              row: 4, 
-              col: 3, 
-              nextNode:"", 
-              display: true, 
-              nodeType:"Conversation", 
-              screenSize:"4:3(horizonal)",
-              notes: "",
-          },
-          "C1-key": {
-              nodeName: "C1-title", 
-              row: 4, 
-              col: 0, 
-              spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  
-              display: true, 
-              nodeType:"LogicSplitter",
-              notes: "",
-          },
-          "D1-key": {
-              nodeName: "D1-title", 
-              row: 2, 
-              col: 4, 
-              nextNode:"", 
-              display: true, 
-              nodeType:"Conversation", 
-              screenSize:"4:3(horizonal)",
-              notes: "",
-          },
-          "E1-key": {
-              nodeName: "E1-title", 
-              row: 2, 
-              col: 5, 
-              nextNode: "chp-key1_end", 
-              display: true, 
-              nodeType:"Conversation", 
-              screenSize:"4:3(horizonal)",
-              notes: "",
-          },
-          "chp-key1_end": {
-              nodeName: "chapterEnd1-title", 
-              row: 4, 
-              col: 6, 
-              nextNode: "", 
-              display: true, 
-              nodeType:"*chapterEnd*", 
-              screenSize:"4:3(horizonal)",
-              notes: "",
-          },
-  },
-  "chp-key2": {"chp-key2_start": {
-            nodeName: "chapterStart2-title", 
-            row: 2, 
-            col: 0, 
-            nextNode:"A2-key", 
-            display: true, 
-            nodeType:"*chapterStart*", 
-            screenSize:"4:3(horizonal)",
-            notes: "",
-        },
-        "A2-key": {
-            nodeName: "A2-title", 
-            row: 2, 
-            col: 1, 
-            nextNode:"", 
-            display: true, 
-            nodeType:"Conversation", 
-            screenSize:"4:3(horizonal)",
-            notes: "",
-        },
-        "B2-key": {
-            nodeName: "B2-title", 
-            row: 4, 
-            col: 3, 
-            nextNode:"", 
-            display: true, 
-            nodeType:"Conversation", 
-            screenSize:"4:3(horizonal)",
-            notes: "",
-        },
-        "C2-key": {
-            nodeName: "C2-title", 
-            row: 4, 
-            col: 0, 
-            spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],    //TODO refactor 
-            display: true, 
-            nodeType:"LogicSplitter",
-            notes: "",
-        },
-        "D2-key": {
-          nodeName: "D2-title", 
-          row: 2, 
-          col: 4, 
-          nextNode: "", 
-          display: true, 
-          nodeType:"Conversation", 
-          screenSize:"4:3(horizonal)",
-          notes: "",
-        },
-        "E2-key": {
-          nodeName: "E2-title", 
-          row: 2, 
-          col: 5, 
-          nextNode: "chp-key2_end", 
-          display: true, 
-          nodeType:"Conversation", 
-          screenSize:"4:3(horizonal)",
-          notes: "",
-        },
-        "chp-key2_end": {
-          nodeName: "chapterEnd2-title", 
-          row: 4, 
-          col: 6, 
-          nextNode:"", 
-          display: true, 
-          nodeType:"*chapterEnd*", 
-          screenSize:"4:3(horizonal)",
-          notes: "",
-        },
-},
-*/   
 
   const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false);
 
@@ -1375,7 +1222,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
 
   //TODO21 refactor to VM
-  function triggerCreatedNewNode(newNodeKey, chapterKeyTemp) {
+  function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
     setCreateNodeFolderSignal(true);
     let newNodeList = createdNewNodeKeyList;
     let pair = {
@@ -1386,6 +1233,19 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     setCreatedNewNodeKeyList(newNodeList);
     
     //TODO500 TO-DEBUG!   add initial data for the blank node!!    *important
+
+    //TODO according to type, add new-node template?
+    //TODO add this node-obj into project-chapter-nodes on cloud
+
+    let nodeObj = {};
+
+    if (nodeTypeTemp === "Conversation") {
+      nodeObj = emptyConversationNodeTemplate;
+      //TODO add conv-ui obj
+
+    }
+
+
 
   }
 
@@ -2476,3 +2336,166 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
     "outWindow-color": "pink",
     "outWindow-picName": "",
   */  
+
+
+    /*  sample of gridBlocksAll
+     "chp-key1": 
+      [
+        ["","","","","","","","","",""], 
+        ["","","","","","","","","",""],
+        ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
+        ["","","","","","","","","",""],
+        ["C1-key","","","B1-key","","","chp-key1_end","","",""]
+      ]
+    ,
+      "chp-key2": [
+          ["","","","","","","","","",""], 
+          ["","","","","","","","","",""],
+          ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
+          ["","","","","","","","","",""],
+          ["C2-key","","","B2-key","","","chp-key2_end","","",""]
+      ],  
+    
+    */
+/* sample of node-map-all
+  "chp-key1": {"chp-key1_start": {
+              nodeName: "chapterStart1-title", 
+              row: 2, 
+              col: 0, 
+              nextNode:"A1-key", 
+              display: true, 
+              nodeType:"*chapterStart*", 
+              screenSize:"4:3(horizonal)",
+              notes: "",
+          },
+          "A1-key": {
+              nodeName: "A1-title", 
+              row: 2, 
+              col: 1, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"4:3(horizonal)",
+              notes: "",
+          },
+          "B1-key": {
+              nodeName: "B1-title", 
+              row: 4, 
+              col: 3, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"4:3(horizonal)",
+              notes: "",
+          },
+          "C1-key": {
+              nodeName: "C1-title", 
+              row: 4, 
+              col: 0, 
+              spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  
+              display: true, 
+              nodeType:"LogicSplitter",
+              notes: "",
+          },
+          "D1-key": {
+              nodeName: "D1-title", 
+              row: 2, 
+              col: 4, 
+              nextNode:"", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"4:3(horizonal)",
+              notes: "",
+          },
+          "E1-key": {
+              nodeName: "E1-title", 
+              row: 2, 
+              col: 5, 
+              nextNode: "chp-key1_end", 
+              display: true, 
+              nodeType:"Conversation", 
+              screenSize:"4:3(horizonal)",
+              notes: "",
+          },
+          "chp-key1_end": {
+              nodeName: "chapterEnd1-title", 
+              row: 4, 
+              col: 6, 
+              nextNode: "", 
+              display: true, 
+              nodeType:"*chapterEnd*", 
+              screenSize:"4:3(horizonal)",
+              notes: "",
+          },
+  },
+  "chp-key2": {"chp-key2_start": {
+            nodeName: "chapterStart2-title", 
+            row: 2, 
+            col: 0, 
+            nextNode:"A2-key", 
+            display: true, 
+            nodeType:"*chapterStart*", 
+            screenSize:"4:3(horizonal)",
+            notes: "",
+        },
+        "A2-key": {
+            nodeName: "A2-title", 
+            row: 2, 
+            col: 1, 
+            nextNode:"", 
+            display: true, 
+            nodeType:"Conversation", 
+            screenSize:"4:3(horizonal)",
+            notes: "",
+        },
+        "B2-key": {
+            nodeName: "B2-title", 
+            row: 4, 
+            col: 3, 
+            nextNode:"", 
+            display: true, 
+            nodeType:"Conversation", 
+            screenSize:"4:3(horizonal)",
+            notes: "",
+        },
+        "C2-key": {
+            nodeName: "C2-title", 
+            row: 4, 
+            col: 0, 
+            spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],    //TODO refactor 
+            display: true, 
+            nodeType:"LogicSplitter",
+            notes: "",
+        },
+        "D2-key": {
+          nodeName: "D2-title", 
+          row: 2, 
+          col: 4, 
+          nextNode: "", 
+          display: true, 
+          nodeType:"Conversation", 
+          screenSize:"4:3(horizonal)",
+          notes: "",
+        },
+        "E2-key": {
+          nodeName: "E2-title", 
+          row: 2, 
+          col: 5, 
+          nextNode: "chp-key2_end", 
+          display: true, 
+          nodeType:"Conversation", 
+          screenSize:"4:3(horizonal)",
+          notes: "",
+        },
+        "chp-key2_end": {
+          nodeName: "chapterEnd2-title", 
+          row: 4, 
+          col: 6, 
+          nextNode:"", 
+          display: true, 
+          nodeType:"*chapterEnd*", 
+          screenSize:"4:3(horizonal)",
+          notes: "",
+        },
+},
+*/   
