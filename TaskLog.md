@@ -482,6 +482,7 @@
 
 - 2025-Mar-17: Research on Three.js for consideration
 
+- 2025-Mar-18: Design testing-project art materials plan
 
 
 
