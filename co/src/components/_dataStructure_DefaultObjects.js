@@ -1,11 +1,11 @@
-const sizeLookupMap = { 
+export const sizeLookupMap = { 
     "16:9(horizonal)": [800, 450],
     "16:9(vertical)": [450, 800],
     "4:3(horizonal)": [800, 600],
     "4:3(vertical)": [600, 800]
 };
 
-const gameUIDefaultButton  = {
+export const gameUIDefaultButton  = {
     "widthMin": 300,
     "widthMax": 370,
     "height": 20,
@@ -32,7 +32,7 @@ const gameUIDefaultButton  = {
 
 }; 
 
-const gameUITextFrame = {"width": 600,
+export const gameUITextFrame = {"width": 600,
     "height": 200,
     "positionX": 100,
     "positionY": 360,
@@ -57,7 +57,7 @@ const gameUITextFrame = {"width": 600,
 
 }; 
 
-const gameUIBackButton = {
+export const gameUIBackButton = {
     "width": 50,
     "height": 50,
     "cornerRadius": 0,
@@ -78,7 +78,7 @@ const gameUIBackButton = {
 
 }; 
 
-const uiConvNav = {
+export const uiConvNav = {
     "buttonAutoIsTextFont": true,
     "buttonAutoShade0": "#bf8da5",
     "buttonAutoPicName0": "",
@@ -121,7 +121,7 @@ const uiConvNav = {
 
 };
 
-const logPageUISettings = {
+export const logPageUISettings = {
     "closeButtonIsShape": false,
     "closeButtonShade": "",
     "closeButtonPicName": "",
@@ -166,7 +166,7 @@ const logPageUISettings = {
 
 };
 
-let uiObj = {
+export const emptyConvNodeUiAllTemplate = {
     defaultButton: gameUIDefaultButton,
     textFrame: gameUITextFrame,
     backButton: gameUIBackButton,
@@ -176,7 +176,7 @@ let uiObj = {
 }; 
 
 
-const newEmptyPieceTemplate = {
+export const newEmptyPieceTemplate = {
     "num": -1, 
     "content": "", 
     "speaker_name": "", 
@@ -195,7 +195,7 @@ const newEmptyPieceTemplate = {
 }; 
 
 
-const emptyConversationNodeTemplate = {
+export const emptyConversationNodeTemplate = {
     "num": -1, 
     "content": "", 
     "speaker_name": "", 
@@ -211,19 +211,5 @@ const emptyConversationNodeTemplate = {
     "vl_source_link": "", 
     "vl_volume": 100,
     "displayTextFrame": true
-};  
+}
 
-
-export default gameUIDefaultButton;
-export default gameUITextFrame;
-export default gameUIBackButton;
-export default uiConvNav;
-export default logPageUISettings;
-
-export default uiObj;
-
-export default newEmptyPieceTemplate;
-
-export default emptyConversationNodeTemplate;
-
-export default sizeLookupMap;

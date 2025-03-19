@@ -28,7 +28,7 @@ import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntir
 
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
-
+import { emptyConversationNodeTemplate, emptyConvNodeUiAllTemplate } from './_dataStructure_DefaultObjects';
 
 export default function GameMaker({username, projectName}) {
 
@@ -230,24 +230,6 @@ export default function GameMaker({username, projectName}) {
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
 
-
-  const emptyConversationNodeTemplate = {
-    "num": -1, 
-    "content": "", 
-    "speaker_name": "", 
-    "bgp_pos_x": 0, 
-    "bgp_pos_y": 0, 
-    "bgp_width": {screenWidth}, 
-    "bgp_height": {screenHeight}, 
-    "chp_arr": [], 
-    "stnd_btn_arr": [], 
-    "clkb_arr": [],
-    "bgm_loop": true, 
-    "bgm_volume": 100, 
-    "vl_source_link": "", 
-    "vl_volume": 100,
-    "displayTextFrame": true
-  };  
 
   //TODO501 node-ui template...
 
@@ -617,7 +599,7 @@ export default function GameMaker({username, projectName}) {
     if (saveOrNot) {
           if (currChapterKey !== "") {
             await updateChapterNodeMappingsToCloud(); 
-            await saveNewlyCreatedNodeFolder();
+            await saveToCloudNewlyCreatedNodeFolder();
           }
 
           pureNavigateToProjectManagingPanel();
@@ -849,7 +831,7 @@ export default function GameMaker({username, projectName}) {
               //by createdNewNodeWaitlist, update cloud-folders...
               //TODO37
 
-              await saveNewlyCreatedNodeFolder();
+              await saveToCloudNewlyCreatedNodeFolder();
 
               await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
           }
@@ -874,7 +856,7 @@ export default function GameMaker({username, projectName}) {
   }
 
   //TODO21 refactor to VM
-  async function saveNewlyCreatedNodeFolder() {
+  async function saveToCloudNewlyCreatedNodeFolder() {
 //TODO600
 
     if (createdNewNodeWaitlist.length === 0) {
@@ -885,7 +867,7 @@ export default function GameMaker({username, projectName}) {
           //by signal, add a new document at /"nodes"
 
                           console.log("updating to cloud: func-step1-node-folders ", createdNewNodeWaitlist);
-
+//TODO600
           await addNewNodeFoldersVM(
             { 
                 project: projectName,
@@ -1237,27 +1219,16 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
     if (nodeTypeTemp === "Conversation") {
       nodeObj["nodeContent"] = emptyConversationNodeTemplate;
-
+      nodeObj["nodeUISettings"] = emptyConvNodeUiAllTemplate;
       //TODO add conv-ui obj
-      //"nodeUISettings"
 
     }
 
     infoObj["detailObj"] = nodeObj;
 
 
-
-
-
-
     newNodeList.push(infoObj);
     setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
-    
-
-    //TODO600 TO-DEBUG!   add initial data for the blank node!!    *important
-
-    //TODO according to type, add new-node template?
-    //TODO add this node-obj into project-chapter-nodes on cloud
 
   }
 
@@ -1697,7 +1668,7 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
       <button onClick={()=>{
         updateProjectNavigationSettingsToCloud();
         updateChapterNodeMappingsToCloud(); 
-        saveNewlyCreatedNodeFolder(); 
+        saveToCloudNewlyCreatedNodeFolder(); 
         editorExitingHandleChapterMgr();}}
       >Save To Cloud</button>
 
@@ -1732,6 +1703,8 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
           sendOutIsCollapsed={getChapMgrCollapsed}
           
         />}
+
+//TODO600 -- for newly created-node(s) that are not saved on cloud --- how to handle if user attempts to enter editor for it?
 
         <NodeManager 
           currUser={username} 

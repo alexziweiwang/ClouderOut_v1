@@ -14,7 +14,7 @@ import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
-import newEmptyPieceTemplate from './_dataStructure_DefaultObjects';
+import { newEmptyPieceTemplate } from './_dataStructure_DefaultObjects';
 
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM, convNodeAllDetailsFromCloudVM } from '../viewmodels/NodeEditingViewModel';

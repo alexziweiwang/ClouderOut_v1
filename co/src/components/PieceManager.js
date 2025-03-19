@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
-import newEmptyPieceTemplate from './_dataStructure_DefaultObjects';
+import { newEmptyPieceTemplate } from './_dataStructure_DefaultObjects';
 
 export default function PieceManager({
     allPieceData, assignPieceNum, assignPreviewIndex, 

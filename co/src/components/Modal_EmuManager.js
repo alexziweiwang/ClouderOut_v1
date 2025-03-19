@@ -328,6 +328,20 @@ export default function Modal_EmuManager({
     }
 
 
+
+    function makeDupShp5(data) {
+        //TODO200 make-dup first, and send only the dup-ver.
+        let tempObj = {
+
+        };
+
+
+        return tempObj;
+        
+
+    }
+
+
     // function update4EssToOuterLayer(data4) {
     //     //ess4
     //     update4Ess(data4);
@@ -336,9 +350,8 @@ export default function Modal_EmuManager({
 
     function update5ShpToOuterLayer() { 
         
-        //TODO500 make-dup first, and send only the dup-ver.
-        update5Shp(shp5);
-
+        let outputVer = makeDupShp5(shp5);
+        update5Shp(outputVer);
     }
 
 

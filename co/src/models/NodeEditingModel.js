@@ -48,7 +48,6 @@ export async function convNodeFetchFromCloud({project, username, chapterKey, nod
 }
 
 export async function convNodeAllDetailsFromCloud({project, username, chapterKey, nodeKey}) {
-    //TODO500
   const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
   const projectNodeSnap = await getDoc(projectNodeRef);
 
@@ -76,15 +75,18 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
       return;
     }
 
-    //TODO group func       group-func
-
+                        //TODO group func       group-func
     nodeList.map(async (item, i) => {
-        let currNode = item["nodeKey"];
+        let currNodeKey = item["nodeKey"];
 
         if (item["chapKey"] === chapterKey) {
-          
-          await setDoc(doc(ref, "nodes", currNode), {});
-          //TODO600 add node-details as well!!
+          console.log();
+
+          await setDoc(
+            doc(ref, "nodes", currNodeKey), 
+            item["detailObj"]
+          );
+          //TODO600 test!!
 
         }
     });

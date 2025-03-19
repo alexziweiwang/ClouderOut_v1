@@ -6,8 +6,6 @@ import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
-import newEmptyPieceTemplate from './_dataStructure_DefaultObjects';
-
 
 //TODO102 test for visualMap and audioMap
 
