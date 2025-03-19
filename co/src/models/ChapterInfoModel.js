@@ -14,11 +14,9 @@ export async function fetchChapterNodesData({projectName, currUser}) {
 
     let chapterNodeMappingObj = projectChapSnap.data().chapterNodeMapping;
 
-    let chapterNodeGridBlocksArr = projectChapSnap.data().chapterNodeGridBlocks;
 
     let obj = {
         "chapterNodeMapping": chapterNodeMappingObj,
-        "chapterNodeGridBlocks": chapterNodeGridBlocksArr
     }
 
     return obj;
@@ -61,7 +59,6 @@ export async function updateChapterNodesToCloudData({projectName, currUser, chap
 
     await updateDoc(projectChapRef, {
         "chapterNodeMapping": chapterNodeMappingObj,
-        "chapterNodeGridBlocks": chapterNodeGridBlocks
     });
 }
 

@@ -1192,8 +1192,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
         await updateChapterNodesToCloudDataVM({
             projectName: projectName, 
             currUser: username,
-            chapterNodeMappingObj: chapterNodeMapAll, 
-            chapterNodeGridBlocks: gridMapTemp
+            chapterNodeMappingObj: chapterNodeMapAll
         });      
         setNodeMapUpdatedSignal(false);
         setGridBlocksUpdatedSignal(false);
@@ -1678,14 +1677,20 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
 
     <div>
       <button onClick={()=>{
-
-        loadEverythingFromCloud();
+        let ans = window.confirm("Are you sure to load from cloud and cover the project on local?");
+        if (ans) {
+          loadEverythingFromCloud();
+        }
+        
       }}
       >Load From Cloud</button>
 
       <button onClick={()=>{
+        let ans = window.confirm("Are you sure to save and cover the project on cloud?");
+        if (ans) {
+          saveEverythingToCloud();
+        }
 
-        saveEverythingToCloud();
       }}
       >Save To Cloud</button>
 
@@ -1720,8 +1725,6 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
           sendOutIsCollapsed={getChapMgrCollapsed}
           
         />}
-
-//TODO600 -- for newly created-node(s) that are not saved on cloud --- how to handle if user attempts to enter editor for it?
 
         <NodeManager 
           currUser={username} 
