@@ -28,26 +28,8 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 }
 
 
-export async function convNodeFetchFromCloud({project, username, chapterKey, nodeKey}) {
-    
-  const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
-  const projectNodeSnap = await getDoc(projectNodeRef);
 
-  if (!projectNodeSnap.exists()) {
-    return;
-  }
-
-
-  let projectNodeData = [];
-  projectNodeData = projectNodeSnap.data().nodeContent; 
-
-    //TODO test
-          console.log("model-func fetch piece-data-from cloud ... res = ", projectNodeData);
-
-  return projectNodeData;
-}
-
-export async function convNodeAllDetailsFromCloud({project, username, chapterKey, nodeKey}) {
+export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
   const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
   const projectNodeSnap = await getDoc(projectNodeRef);
 

@@ -17,7 +17,7 @@ import uiLangMap from './uiLangMap';
 import { newEmptyPieceTemplate } from './_dataStructure_DefaultObjects';
 
 //TODO20 cloud-func (marked)
-import { convSingleNodeUpdateToCloudVM, convNodeFetchFromCloudVM, convNodeAllDetailsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
+import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 
 export default function ConversationNodeEditingPanel() {
@@ -413,7 +413,7 @@ export default function ConversationNodeEditingPanel() {
 
 
         /* fetch from cloud db */
-        //TODO300     
+        //TODO500     
         const obj = await fetchProjectResourceVarPairsVM({
             userName: state.userName, 
             projectName: state.projectName
@@ -864,7 +864,7 @@ export default function ConversationNodeEditingPanel() {
 
     async function initializePiecesFromCloud() {
 
-        let pieceObjTemp = await convNodeAllDetailsFromCloudVM({
+        let pieceObjTemp = await convNodeBothPartsFromCloudVM({
             project: state.projectName, 
             username: state.userName, 
             chapterKey: state.chapterKey, 
@@ -927,6 +927,7 @@ export default function ConversationNodeEditingPanel() {
 
     function loadFromCloud() {
         fetchProjResourceLists();
+        //TODO200 load all-piece-content from cloud??
     }
 
 
