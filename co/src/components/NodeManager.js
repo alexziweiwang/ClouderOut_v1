@@ -19,6 +19,9 @@ export default function NodeManager({projectName, currUser,
   getChapMgrCollapsed,
 
   getUILanguage,
+  getCreatedNewNodeWaitListPending,
+  triggerSaveToCloud
+
 
 }) {
 
@@ -1935,7 +1938,20 @@ export default function NodeManager({projectName, currUser,
             <button 
               className="setting_item"
               style={{"height": "30px",  "width": "100px"}}
-              onClick={()=>{enterNodeEditor2();}}>
+              onClick={()=>{
+                let listPending = getCreatedNewNodeWaitListPending();
+                if (listPending === false) {
+                  enterNodeEditor2();
+                } else {
+                  let ans = window.confirm("Save project and enter?");
+                  if (ans) {
+                    triggerSaveToCloud();
+
+                    enterNodeEditor2();
+                  }
+                }
+                
+              }}>
                 {enterEditorText}
             </button>
         

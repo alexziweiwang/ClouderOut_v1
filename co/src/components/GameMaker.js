@@ -148,6 +148,7 @@ export default function GameMaker({username, projectName}) {
 
   const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false);
   const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]);
+  const [createdNewNodeWaitListPending, setCreatedNewNodeWaitListPending] = useState(false);
   const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
   const [createdChapterFolderSignal, setCreatedChapterFolderSignal] = useState(false);
 
@@ -879,6 +880,7 @@ export default function GameMaker({username, projectName}) {
           //TODO36
 
           setCreatedNewNodeWaitlist([]);
+          setCreatedNewNodeWaitListPending(false);
 
           //reset create-node-signal to false here
           setCreateNodeFolderSignal(false);
@@ -1229,6 +1231,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
     newNodeList.push(infoObj);
     setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
+    setCreatedNewNodeWaitListPending(true);
 
   }
 
@@ -1579,6 +1582,21 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
     return isChapMgrCollapsed;
   }
 
+  function passInCreatedNewNodeWaitListPending() {
+    return createdNewNodeWaitListPending;
+  }
+
+  function loadEverythingFromCloud() {
+    fetchProjectNavigationSettingsFromCloud();
+    fetchChapterNodeMappingFromCloud();          
+  }
+
+  function saveEverythingToCloud() {
+    updateProjectNavigationSettingsToCloud();
+    updateChapterNodeMappingsToCloud(); 
+    saveToCloudNewlyCreatedNodeFolder(); 
+    editorExitingHandleChapterMgr();
+  }
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
@@ -1660,16 +1678,15 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
 
     <div>
       <button onClick={()=>{
-        fetchProjectNavigationSettingsFromCloud();
-        fetchChapterNodeMappingFromCloud();
+
+        loadEverythingFromCloud();
       }}
       >Load From Cloud</button>
 
       <button onClick={()=>{
-        updateProjectNavigationSettingsToCloud();
-        updateChapterNodeMappingsToCloud(); 
-        saveToCloudNewlyCreatedNodeFolder(); 
-        editorExitingHandleChapterMgr();}}
+
+        saveEverythingToCloud();
+      }}
       >Save To Cloud</button>
 
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
@@ -1728,7 +1745,10 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
           getChapMgrCollapsed={passInChapMgrCollapsed}
            
           getUILanguage={passInUILanguage}
-          
+
+          getCreatedNewNodeWaitListPending={passInCreatedNewNodeWaitListPending}
+          triggerSaveToCloud={saveEverythingToCloud}
+          //TODO500
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 
