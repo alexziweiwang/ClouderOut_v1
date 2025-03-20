@@ -348,10 +348,8 @@ export default function ConversationNodeEditingPanel() {
 
         if (firstTimeEnter === true) {
             initializeUILang();
-            fetchProjResourceLists();
 
-            //initialize piece-ds
-            initializePiecesFromCloud();
+            loadFromCloud();
 
 
 
@@ -862,7 +860,7 @@ export default function ConversationNodeEditingPanel() {
 
     }
 
-    async function initializePiecesFromCloud() {
+    async function initializeNodeBothPartsFromCloud() {
 
         let pieceObjTemp = await convNodeBothPartsFromCloudVM({
             project: state.projectName, 
@@ -925,9 +923,10 @@ export default function ConversationNodeEditingPanel() {
 
     }
 
-    function loadFromCloud() {
+    function loadFromCloud() { //resource & pieces
         fetchProjResourceLists();
-        //TODO200 load all-piece-content from cloud??
+        initializeNodeBothPartsFromCloud();
+
     }
 
 

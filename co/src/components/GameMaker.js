@@ -777,19 +777,10 @@ export default function GameMaker({username, projectName}) {
     setChapterNodeMapAll(nodeMapTemp);
     setNodeMapUpdatedSignal(true);
 
-    //add all-grid-block
-    let gridAllTemp = gridBlocksAll;
-    gridAllTemp[newKey] = [
-      ["","","","","","","","","",""], 
-      ["","","","","","","","","",""],
-      [chapterStartKeyStr,"","","","", chapterEndKeyStr,"","","",""], 
-      ["","","","","","","","","",""],
-      ["","","","","","","","","",""]
-    ];
-    //TODO200 flexible grid-scales
-
-
+    //add all-grid-block with conversion of node-map to node-grid
+    let gridAllTemp = convertNodeMapToGridBlocks(nodeMapTemp);
     setGridBlocksAll(gridAllTemp);
+
     setGridBlocksUpdatedSignal(true);
 
 
@@ -1246,9 +1237,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
   }
 
   function convertNodeMapToGridBlocks(nodeMapTemp) {
+    
+    // make grid-blocks from node-map
 
-
-//TODO200 change ways to initialize grid blocks             
     let gridEntireTemp = [];
 
     // make conversion(format of stored grid blocks) of grid-blocks
