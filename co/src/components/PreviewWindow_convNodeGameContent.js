@@ -294,14 +294,14 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
                   <div> 
             {/* //TODO500 refactor */}
-                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2.length > 0 && visualMap[charaPicCurr2[0]] !== undefined && visualMap[charaPicCurr2[0]] !== "") && 
+                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2.length > 0 && visualMap[charaPicCurr2["picVar"]] !== undefined && visualMap[charaPicCurr2["picVar"]] !== "") && 
                           
                             <img style={{
                               "position": "absolute", 
-                              "top": `${charaPicCurr2[2]}px`, "left": `${charaPicCurr2[1]}px`,
-                              "width": `${charaPicCurr2[3] * charaPicCurr2[5]}px`, "height": `${charaPicCurr2[4] * charaPicCurr2[5]}px`,
+                              "top": `${charaPicCurr2["posY"]}px`, "left": `${charaPicCurr2["posX"]}px`,
+                              "width": `${charaPicCurr2["width"] * charaPicCurr2["scale"]}px`, "height": `${charaPicCurr2["height"] * charaPicCurr2["scale"]}px`,
                             }}
-                              src={visualMap[charaPicCurr2[0]]}
+                              src={visualMap[charaPicCurr2["picVar"]]}
                               
                               alt="currently character-picture that's being added"
                             />
@@ -314,13 +314,13 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                       let keyStr = "charPic-" + index;
                       return (
                         <div key={keyStr}>
-                          {(visualMap[item[0]] !== undefined && visualMap[item[0]] !== "") && 
+                          {(visualMap[item["picVar"]] !== undefined && visualMap[item["picVar"]] !== "") && 
                           <img style={{
                               "position": "absolute", 
-                              "top": `${item[2]}px`, "left": `${item[1]}px`,
-                              "width": `${item[3] * item[5]}px`, "height": `${item[4] * item[5]}px`,
+                              "top": `${item["posY"]}px`, "left": `${item["posX"]}px`,
+                              "width": `${item["width"] * item["scale"]}px`, "height": `${item["height"] * item["scale"]}px`,
                               }}
-                            src={visualMap[item[0]]}
+                            src={visualMap[item["picVar"]]}
                             alt={altStr}
             
                           />}

@@ -242,7 +242,7 @@ export default function PieceSetter({
         "bgp_pos_y": 0, 
         "bgp_width": 800, 
         "bgp_height": 450, 
-        "chp_curr": ["", 0, 0, 60, 120, 1], 
+        "chp_curr": characterPictureCurrTemplate, 
         "chp_arr": [], 
         "chp_action": "maintainCharPicArr",  
         "clkb_previewing": [], 
@@ -749,7 +749,7 @@ export default function PieceSetter({
 
 
     function resetAddingCharPicRow() {
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": characterPictureCurrTemplate});
     }
 
     function updatePreviewingCstmClkb(obj) {
@@ -1724,6 +1724,7 @@ export default function PieceSetter({
             </thead>
             <tbody>
                 {charPicDataTable.map((item, index) => {
+                    console.log("charPicDataTable - item = ", item);
 
                     let keyStr = "charPicDataTable-" + index;
                     return (
@@ -1812,11 +1813,11 @@ export default function PieceSetter({
 
             let tempPieceDetail = currentSinglePieceDetail;
             tempPieceDetail["chp_arr"] = tempTable;
-            tempPieceDetail["chp_curr"] = characterPictureCurrTemplate;
+            tempPieceDetail["chp_curr"] = currentSinglePieceDetail["chp_curr"];
 
             setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                 "chp_arr": tempTable, 
-                "chp_curr": characterPictureCurrTemplate
+                "chp_curr": currentSinglePieceDetail["chp_curr"]
             });
             
             updateToCaller(tempPieceDetail); //TODO test
