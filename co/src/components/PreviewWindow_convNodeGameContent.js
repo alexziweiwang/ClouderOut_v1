@@ -293,7 +293,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
 
                   <div> 
-            
+            {/* //TODO500 refactor */}
                     {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2.length > 0 && visualMap[charaPicCurr2[0]] !== undefined && visualMap[charaPicCurr2[0]] !== "") && 
                           
                             <img style={{
@@ -306,6 +306,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                               alt="currently character-picture that's being added"
                             />
                     }
+            {/* //TODO500 refactor */}
+
 
                     {charaPicArr2 !== undefined && charaPicArr2.map((item, index) => {
                       let altStr = index+"already added character picture";

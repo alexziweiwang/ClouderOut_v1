@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 import langDictionary from './_textDictionary';
-
+import { characterPictureCurrTemplate } from './_dataStructure_DefaultObjects';
 
 //TODO refactor: stnd_btn_arr
 
@@ -509,11 +509,13 @@ export default function PieceSetter({
     }
 
     function changeAddAnotherCharPicOption() {
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": ["", 0, 0, 60, 120, 1]});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
+            characterPictureCurrTemplate
+        });
         setAnotherCharPic(!anotherCharpic);
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = ["", 0, 0, 60, 120, 1];
+        tempObj["chp_curr"] = characterPictureCurrTemplate;
         updateToCaller(tempObj);
 
     }
@@ -601,9 +603,10 @@ export default function PieceSetter({
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_arr": tempCharPicDataTable});
     }
 
+
     function onChangeCharPicDataPosX(event) {
         let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr[1] = event.target.value;        
+        chp_curr_arr["posX"] = event.target.value;        
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentSinglePieceDetail;
@@ -613,7 +616,7 @@ export default function PieceSetter({
 
     function onChangeCharPicDataPosY(event) {
         let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr[2] = event.target.value;
+        chp_curr_arr["posY"] = event.target.value;
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentSinglePieceDetail;
@@ -623,7 +626,7 @@ export default function PieceSetter({
 
     function onChangeCharPicDataW(event) {
         let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr[3] = event.target.value;
+        chp_curr_arr["width"] = event.target.value;
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentSinglePieceDetail;
@@ -633,7 +636,7 @@ export default function PieceSetter({
 
     function onChangeCharPicDataH(event) {
         let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr[4] = event.target.value;
+        chp_curr_arr["height"] = event.target.value;
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentSinglePieceDetail;
@@ -644,7 +647,7 @@ export default function PieceSetter({
     function onChangeCharPicDataScale(event) {
         let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         let val =  event.target.value;
-        chp_curr_arr[5] = val;
+        chp_curr_arr["scale"] = val;
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
         let tempObj = currentSinglePieceDetail;
@@ -655,7 +658,7 @@ export default function PieceSetter({
     function onChangeCharPicDataVar(event) {
         let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
         //store selected variable name
-        chp_curr_arr[0] = event.target.value;
+        chp_curr_arr["picVar"] = event.target.value;
         
         setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
 
@@ -1721,18 +1724,17 @@ export default function PieceSetter({
             </thead>
             <tbody>
                 {charPicDataTable.map((item, index) => {
-                    //TODO500  change to object structure
 
-                    
                     let keyStr = "charPicDataTable-" + index;
                     return (
                         <tr key={keyStr}>
-                            {charPicDataTable.length > 0 && <td>{item[0]}</td>}
-                            <td>{item[1]}</td>
-                            <td>{item[2]}</td>
-                            <td>{item[3]}</td>
-                            <td>{item[4]}</td>                    
-                            <td>{item[5]}x</td>
+                            {charPicDataTable.length > 0 && 
+                            <td>{item["picVar"]}</td>}
+                            <td>{item["posX"]}</td>
+                            <td>{item["posY"]}</td>
+                            <td>{item["width"]}</td>
+                            <td>{item["height"]}</td>                    
+                            <td>{item["scale"]}x</td>
                                 {(charPicDataTable.length > 0 && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") && 
                              <td>
                                 <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
@@ -1760,7 +1762,7 @@ export default function PieceSetter({
         <br></br>
 
     <label>Source:  </label>
-    <select value={currentSinglePieceDetail["chp_curr"][0]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
+    <select value={currentSinglePieceDetail["chp_curr"]["picVar"]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
         <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
@@ -1773,31 +1775,33 @@ export default function PieceSetter({
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
-        value={currentSinglePieceDetail["chp_curr"][1]}
+        value={currentSinglePieceDetail["chp_curr"]["posX"]}
         onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxX} value={currentSinglePieceDetail["chp_curr"][1]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxX} value={currentSinglePieceDetail["chp_curr"]["posX"]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={currentSinglePieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={currentSinglePieceDetail["chp_curr"][2]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={currentSinglePieceDetail["chp_curr"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={currentSinglePieceDetail["chp_curr"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={currentSinglePieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={currentSinglePieceDetail["chp_curr"][3]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={currentSinglePieceDetail["chp_curr"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={currentSinglePieceDetail["chp_curr"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={currentSinglePieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={currentSinglePieceDetail["chp_curr"][4]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={currentSinglePieceDetail["chp_curr"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={currentSinglePieceDetail["chp_curr"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
     <label>Scale: </label>
-    <input type="range" className="slider" min="1" max="10" step="1" value={currentSinglePieceDetail["chp_curr"][5]}
+    <input type="range" className="slider" min="1" max="10" step="1" value={currentSinglePieceDetail["chp_curr"]["scale"]}
         onChange={(event)=>{
             onChangeCharPicDataScale(event);
-        }}></input><label>{currentSinglePieceDetail["chp_curr"][5]}x</label>
+        }}></input><label>{currentSinglePieceDetail["chp_curr"]["scale"]}x</label>
 
     <br></br>
-    <button onClick={()=>{
-        if (currentSinglePieceDetail["chp_curr"][0] === "") {
+    <button 
+    onClick={()=>{
+
+        if (currentSinglePieceDetail["chp_curr"]["picVar"] === "") {
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
@@ -1808,11 +1812,11 @@ export default function PieceSetter({
 
             let tempPieceDetail = currentSinglePieceDetail;
             tempPieceDetail["chp_arr"] = tempTable;
-            tempPieceDetail["chp_curr"] = ["", 0, 0, 60, 120, 1];
+            tempPieceDetail["chp_curr"] = characterPictureCurrTemplate;
 
             setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                 "chp_arr": tempTable, 
-                "chp_curr": ["", 0, 0, 60, 120, 1]
+                "chp_curr": characterPictureCurrTemplate
             });
             
             updateToCaller(tempPieceDetail); //TODO test

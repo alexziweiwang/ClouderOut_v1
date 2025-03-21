@@ -213,3 +213,11 @@ export const emptyConversationNodeTemplate = {
     "displayTextFrame": true
 }
 
+export const characterPictureCurrTemplate = {
+    "picVar": "",
+    "posX": 0,
+    "posY": 0,
+    "width": 60,
+    "height": 120,
+    "scale": 1  
+}
