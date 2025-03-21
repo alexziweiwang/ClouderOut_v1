@@ -61,8 +61,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
     const [bgmSource, setBgmSource] = useState("");
     const [bgpSource, setBgpSource] = useState("");
 
-    const [charaPicArr2, setCharaPicArr2] = useState(allPieceContent[0]["chp_arr"]);
-
+//TODO
 
 
     const [gameDataTracker, setGameDataTracker] = useState(initialEmuGameDataTracker); //used during test-play
@@ -108,7 +107,6 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
         setLanguageCodeTextOption(UILang);
 
       
-        updateCharPicArr();
         updateBgmSource();
         updateBgpSource();
 
@@ -152,16 +150,6 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
     }
 
 
-
-    function updateCharPicArr() {
-        if (currPieceNum < 0) {
-            return;
-          }
-          
-          if (allPieceContent[currPieceNum]["chp_action"] === "changeCharPicArr") {     
-            setCharaPicArr2(allPieceContent[currPieceNum]["chp_arr"]);  
-          } 
-    }
 
     function updateBgmSource() {
         if (currPieceNum < 0) {

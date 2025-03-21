@@ -57,6 +57,8 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
 
     const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
     const [charaPicArr2, setCharaPicArr2] = useState((initialAllPieceData !== undefined && initialAllPieceData.length > 0) ? initialAllPieceData[0]["chp_arr"] : []);
+//TODO500 refactor structure
+
 
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 

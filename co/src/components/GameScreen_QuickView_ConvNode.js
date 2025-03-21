@@ -57,6 +57,8 @@ export default function GameScreen_QuickView_ConvNode ({
         const [bgpSource, setBgpSource] = useState("");
     
         const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_arr"] : []);
+//TODO500 refactor structure
+
 
         const [gameSettingScaleObj, setGameSettingScaleObj] = useState(-1);
 //gameSettingScaleObj["settingPage-playSpeed"]

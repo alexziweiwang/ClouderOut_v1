@@ -1721,6 +1721,9 @@ export default function PieceSetter({
             </thead>
             <tbody>
                 {charPicDataTable.map((item, index) => {
+                    //TODO500  change to object structure
+
+                    
                     let keyStr = "charPicDataTable-" + index;
                     return (
                         <tr key={keyStr}>
