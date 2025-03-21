@@ -490,3 +490,10 @@
 
 - 2025-Mar-20: Design testing-project plot 6
 - 2025-Mar-20: Design testing-project character plan 2
+- 2025-Mar-20: Consider position-changing visual effect strategy
+
+
+
+
+
+
