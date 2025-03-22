@@ -1246,11 +1246,14 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     let j = 0;
     let gridTempMap = {};
     let gridTempArr = [];
-console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
+console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     let rowMax = 0;
     let colMax = 0;
 
     Object.keys(nodeMapTemp).map((chapterKey) => {  
+      rowMax = 0;
+      colMax = 0; //reset for each chapter
+
       let currChapter = nodeMapTemp[chapterKey];
         console.log("nodeMapTemp[chapterKey] = ", nodeMapTemp[chapterKey]);
 
@@ -1267,7 +1270,7 @@ console.log("convertNodeMapToGridBlocks with ", nodeMapTemp);
         }
       });
 
-      colMax = colMax + 10;
+      colMax = colMax + 5;
       rowMax = rowMax + 2;
 
 
