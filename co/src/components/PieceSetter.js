@@ -322,8 +322,9 @@ export default function PieceSetter({
         let auList = getAudioList();
         setAudioList(auList);
 
-        console.log("\t\tin piece-setter... resource = ", visList, " ... \n\t\t\t", auList);
+        //console.log("\t\tin piece-setter... resource = ", visList, " ... \n\t\t\t", auList);
 
+        console.log("currentSinglePieceDetail = ", currentSinglePieceDetail);
         
 
     });
