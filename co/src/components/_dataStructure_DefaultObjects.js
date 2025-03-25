@@ -196,7 +196,7 @@ export const newEmptyPieceTemplate = {
 
 
 export const emptyConversationNodeTemplate = {
-    "num": -1, 
+    "num": 1, 
     "content": "", 
     "speaker_name": "", 
     "bgp_pos_x": 0, 
