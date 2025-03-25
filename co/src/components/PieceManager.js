@@ -107,7 +107,7 @@ export default function PieceManager({
 
 
         const allPiece = getAllPieceData();
-                    //                    console.log("pm __ got allPiece (from conv-editor-layer) = ", allPiece);
+                                        console.log("pm __ got allPiece (from conv-editor-layer) = ", allPiece);
         allPiece.sort((a, b) => a.num - b.num);
         setPieceDataLocal(allPiece);
         

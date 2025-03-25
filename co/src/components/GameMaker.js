@@ -1210,9 +1210,10 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     let nodeObj = {};
 
     if (nodeTypeTemp === "Conversation") {
-      nodeObj["nodeContent"] = emptyConversationNodeTemplate;
+      let convNodeArr = [];
+      convNodeArr.push(emptyConversationNodeTemplate);
+      nodeObj["nodeContent"] = convNodeArr;
       nodeObj["nodeUISettings"] = emptyConvNodeUiAllTemplate;
-      //TODO add conv-ui obj
 
     }
 

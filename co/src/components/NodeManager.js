@@ -310,8 +310,8 @@ export default function NodeManager({projectName, currUser,
             if (firstTimeEnter == false) {
               updateNodeLinkingsOnce(tempMap, gridTemp);
             }
-            setClickedNodeKey("");
-            setClickedNode2(-1);
+            setClickedNodeKey(""); //reset when switching chapters
+            setClickedNode2(-1); //reset when switching chapters
           } 
 
 
@@ -468,7 +468,7 @@ export default function NodeManager({projectName, currUser,
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
         setCreatedNewNodeScreenSize("4:3(horizonal)");
-        setClickedNode2(-1);
+        setClickedNode2(-1); //create new node --> unclick any node on vis-map
       } else {
         console.log("2Invalid node name: duplicate"); //TODO test
 
@@ -1017,9 +1017,12 @@ export default function NodeManager({projectName, currUser,
                                   style={{"marginBottom": "3px"}}
                                   onClick={()=>{
                                     
-                                    if (clickedNode2 === crdCal) {
+                                    if (clickedNode2 === crdCal) { //when already clicked (some node selected)
+
                                       setClickedNode2(-1); //cancel if already clicked on this node
                                     } else {
+                                      // when all nodes unselected
+                                 
                                       setClickedNode2(crdCal);
 
                                       // crdCal = ir * 10000 + ic;
@@ -1027,6 +1030,8 @@ export default function NodeManager({projectName, currUser,
                                       let ir = (crdCal-ic) / 10000;
                                       let content = gridBlocks[ir][ic]; 
                                       setClickedNodeKey(content);
+                                     
+
                                     } 
                                   }}
                                 >
@@ -1946,7 +1951,7 @@ export default function NodeManager({projectName, currUser,
                   let ans = window.confirm("Save project and enter?");
                   if (ans) {
                     triggerSaveToCloud();
-
+//TODO500
                     enterNodeEditor2();
                   }
                 }
