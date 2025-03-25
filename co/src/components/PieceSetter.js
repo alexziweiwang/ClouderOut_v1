@@ -135,7 +135,7 @@ export default function PieceSetter({
     let name = "/gamenodeconvpiecedatasec";
 
     const [displayGameDataButton, setDisplayGameDataButton] = useState(true);
-    const [gameDataListLocal, setGameDatListLocal] = useState(gameDataList === undefined ? {} : gameDataList);
+    const [gameDataListLocal, setGameDataListLocal] = useState(gameDataList === undefined ? {} : gameDataList);
 
     const [lookingPieceNumber, setLookingPieceNumber] = useState(pieceNum);
 
@@ -364,7 +364,11 @@ export default function PieceSetter({
 
     function getGameDataDesignListFromOuterLayer() {
         let tempObj = getGameDataDesignList();
-        setGameDatListLocal(tempObj);
+        setGameDataListLocal(tempObj);
+        
+        
+                                                        console.log("piece-setter. getGameDataDesignListFromOuterLayer : ", tempObj);
+
     }
 
     function changeLoopingSetting() {

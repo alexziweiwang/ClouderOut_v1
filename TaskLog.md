@@ -498,3 +498,8 @@
 
 - 2025-Mar-24: Design testing-project plot8
 - 2025-Mar-24: Redesign app-flow for all screen-size settings
+- 2025-Mar-24: Research on shaking visual effect strategy
+
+
+
+
