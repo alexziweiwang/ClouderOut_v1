@@ -110,7 +110,12 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
-      } 
+      } else {
+
+          //TODO change ...
+          setCharaPicCurr2(allPieceContentTemp[currentPieceNum]["chp_curr"]); 
+
+      }
         
 
 

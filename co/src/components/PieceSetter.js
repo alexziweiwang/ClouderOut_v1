@@ -1791,6 +1791,10 @@ export default function PieceSetter({
             </button>}
     </div>}
 
+
+
+
+{/* new-character-picture adding area */}
     {(anotherCharpic === true && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") &&
     <>
         <br></br>
