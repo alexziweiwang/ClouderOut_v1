@@ -204,6 +204,7 @@ export const emptyConversationNodeTemplate = {
     "bgp_width": 800, 
     "bgp_height": 600, 
     "chp_arr": [], 
+    "chp_curr": [],
     "stnd_btn_arr": [], 
     "clkb_arr": [],
     "bgm_loop": true, 

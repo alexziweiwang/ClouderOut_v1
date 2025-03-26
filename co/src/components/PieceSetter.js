@@ -1737,13 +1737,15 @@ export default function PieceSetter({
             <table style={{"width": " 500px"}}>
             <thead>        
                 <tr>
-                    <th>Source</th>
-                    <th>X</th>
-                    <th>Y</th>
-                    <th>Width</th>
-                    <th>Height</th>
-                    <th>Scale</th>
-                    <th>Fading-in</th>
+                    <th style={{"width": "30px"}}>Source</th>
+                    <th style={{"width": "20px"}}>X</th>
+                    <th style={{"width": "20px"}}>Y</th>
+                    <th style={{"width": "20px"}}>W</th>
+                    <th style={{"width": "20px"}}>H</th>
+                    <th style={{"width": "20px"}}>Scale</th>
+                    <th style={{"width": "30px"}}>Fade In</th>
+                    <th style={{"width": "30px"}}>Move</th>
+                    <th style={{"width": "30px"}}>Delete</th>
 {/* //TODO500 */}
 
 
@@ -1763,6 +1765,9 @@ export default function PieceSetter({
                             <td>{item["width"]}</td>
                             <td>{item["height"]}</td>                    
                             <td>{item["scale"]}x</td>
+                            <td>(true or false TODO)</td>
+                            <td>(true or false TODO)</td>
+
                                 {(charPicDataTable.length > 0 && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") && 
                              <td>
                                 <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
