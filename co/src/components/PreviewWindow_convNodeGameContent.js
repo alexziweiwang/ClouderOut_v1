@@ -87,6 +87,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
           
           let currPieceNumTemp = getCurrentPieceNum();
+
+        console.log("*1 currPieceNumTemp = ", currPieceNumTemp);
           
           if (allPieceContentTemp !== allPieceData) {
             setAllPieceData(allPieceContentTemp);
@@ -111,6 +113,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
       } else {
+        console.log("*2 currentPieceNum = ", currentPieceNum);
+        console.log(" *** ",allPieceContentTemp);
 
           //TODO change ...
           setCharaPicCurr2(allPieceContentTemp[currentPieceNum]["chp_curr"]); 
@@ -299,7 +303,17 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
                   <div> 
             {/* //TODO500 refactor */}
-                    {(charaPicCurr2 !== undefined && charaPicCurr2 !== -1 && charaPicCurr2.length > 0 && visualMap[charaPicCurr2["picVar"]] !== undefined && visualMap[charaPicCurr2["picVar"]] !== "") && 
+                    {(charaPicCurr2 !== undefined 
+                    && charaPicCurr2 !== -1 
+                    && charaPicCurr2.length > 0 
+                    && visualMap[charaPicCurr2["picVar"]] !== undefined 
+                    && visualMap[charaPicCurr2["picVar"]] !== ""
+                    && Object.keys(charaPicCurr2).length > 0
+                    
+                    ) 
+                    
+                    
+                      && 
                           
                             <img style={{
                               "position": "absolute", 

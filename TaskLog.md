@@ -501,5 +501,10 @@
 - 2025-Mar-24: Research on shaking visual effect strategy
 
 - 2025-Mar-25: Design testing-project plot 9 + initial drafting
+- 2025-Mar-25: Debug and redesign piece-setter character-pic related
+
+
+
+
 
 
