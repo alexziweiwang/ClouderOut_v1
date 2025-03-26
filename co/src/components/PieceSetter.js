@@ -1691,8 +1691,27 @@ export default function PieceSetter({
                             })}
 
                         </select>
-                        <button onClick={() => {openRm()}}>{manageResourceText}</button>   
+                        <button onClick={() => {openRm()}}>{manageResourceText}</button>  
+
+{/* //TODO500 */}
+                        <br></br>  
+                        <label>This one Fading in: </label>
+                        <select>
+                            <option>No (default)</option>
+                            <option>Yes</option>
+                        </select>
+
+                        <br></br>
+
+                        <label>Previous Fading Out: </label>
+                        <select>
+                            <option>No (default)</option>
+                            <option>Yes</option>
+                        </select>
+
                     </div>}
+                            
+                
                 </div>}
 
             {!charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText}  ︾</button>}
@@ -1719,11 +1738,14 @@ export default function PieceSetter({
             <thead>        
                 <tr>
                     <th>Source</th>
-                    <th>Position x</th>
-                    <th>Position y</th>
+                    <th>X</th>
+                    <th>Y</th>
                     <th>Width</th>
                     <th>Height</th>
                     <th>Scale</th>
+                    <th>Fading-in</th>
+{/* //TODO500 */}
+
 
                 </tr>
             </thead>
@@ -1746,6 +1768,7 @@ export default function PieceSetter({
                                 <GiTrashCan onClick={()=>{removeRowInCharPicTable(index);}}  className="iconButtonSmall"/>
                                     </td>
                                 }
+
                           
                         </tr>
                     );
@@ -1768,7 +1791,12 @@ export default function PieceSetter({
         <br></br>
 
     <label>Source:  </label>
-    <select value={currentSinglePieceDetail["chp_curr"]["picVar"]} onChange={(event)=>{onChangeCharPicDataVar(event);}}>
+    {/* //TODO500 */}
+    <select 
+        value={currentSinglePieceDetail["chp_curr"]["picVar"]} 
+        onChange={(event)=>{onChangeCharPicDataVar(event);}}
+    
+    >
         <option key="charp01" value=""> -- Select picture name -- </option>
 
         {visualList.map((item, index) => {
