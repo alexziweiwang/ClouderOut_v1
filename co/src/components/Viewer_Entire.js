@@ -43,9 +43,9 @@ export default function Viewer_Entire({
 
     initialCurrChapterAllNodeMapping,
 
-    triggerUpdateCurrentStanding, //game-progress related, to outer-layer
-    triggerNodeWalk, //game-progress related, to outer-layer
-    triggerChapterWalk, //game-progress related, to outer-layer
+    triggerUpdateCurrentStanding, //game-progress related, send to outer-layer
+    triggerNodeWalk, //game-progress related, send to outer-layer
+    triggerChapterWalk, //game-progress related, send to outer-layer
 
 
     username,

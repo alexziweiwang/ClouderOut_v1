@@ -500,6 +500,6 @@
 - 2025-Mar-24: Redesign app-flow for all screen-size settings
 - 2025-Mar-24: Research on shaking visual effect strategy
 
-
+- 2025-Mar-25: Design testing-project plot 9 + initial drafting
 
 
