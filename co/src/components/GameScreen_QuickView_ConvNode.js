@@ -56,7 +56,7 @@ export default function GameScreen_QuickView_ConvNode ({
         
         const [bgpSource, setBgpSource] = useState("");
     
-        const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_arr"] : []);
+        const [charaPicArr2, setCharaPicArr2] = useState((allPieceContent !== undefined && allPieceContent.length > 0) ? allPieceContent[0]["chp_map"] : []);
 //TODO500 refactor structure
 
 
@@ -151,7 +151,7 @@ console.log("game-screen quick-view conv-node ... render once");
               }
               
               if (allPieceContent[currPieceNum]["chp_action"] === "changeCharPicArr") {     
-                setCharaPicArr2(allPieceContent[currPieceNum]["chp_arr"]);  
+                setCharaPicArr2(allPieceContent[currPieceNum]["chp_map"]);  
               } 
         }
     

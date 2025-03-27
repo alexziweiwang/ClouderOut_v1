@@ -56,7 +56,7 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     const [bgpSource, setBgpSource] = useState("");
 
     const [charaPicCurr2, setCharaPicCurr2] = useState(-1);
-    const [charaPicArr2, setCharaPicArr2] = useState((initialAllPieceData !== undefined && initialAllPieceData.length > 0) ? initialAllPieceData[0]["chp_arr"] : []);
+    const [charaPicArr2, setCharaPicArr2] = useState((initialAllPieceData !== undefined && initialAllPieceData.length > 0) ? initialAllPieceData[0]["chp_map"] : []);
 //TODO500 refactor structure
 
 
@@ -168,9 +168,9 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       }
       
       if (allPieceContentTemp[currPieceNumTemp]["chp_action"] === "changeCharPicArr") { 
-        console.log("chara-pic-arr CHANGED!!!: ", allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
+        console.log("chara-pic-arr CHANGED!!!: ", allPieceContentTemp[currPieceNumTemp]["chp_map"]);  
 
-        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
+        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_map"]);  
       } else if (!isForward && allPieceContentTemp[currPieceNumTemp]["chp_action"] === "maintainCharPicArr") {
         //TODO1 fetch nearest chp-arr
         let charArrTemp = findNearestCharaArr(currPieceNumTemp);
@@ -217,7 +217,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       let i = currNum-1;
       for(; i >= 0; i--) {
         if (allPieceData[i]["chp_action"] === "changeCharPicArr") {
-          return allPieceData[i]["chp_arr"];  
+          return allPieceData[i]["chp_map"];  
         }
       }
     }

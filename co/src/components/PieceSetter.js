@@ -209,7 +209,7 @@ export default function PieceSetter({
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
         "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
 
-        "chp_arr": allPieceData[pieceNum-1]["chp_arr"], 
+        "chp_map": allPieceData[pieceNum-1]["chp_map"], 
         "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
         "chp_action": allPieceData[pieceNum-1]["chp_action"], 
 
@@ -243,7 +243,7 @@ export default function PieceSetter({
         "bgp_width": 800, 
         "bgp_height": 450, 
         "chp_curr": characterPictureCurrTemplate, 
-        "chp_arr": [], 
+        "chp_map": [], 
         "chp_action": "maintainCharPicArr",  
         "clkb_previewing": [], 
         "clkb_arr": [], 
@@ -543,7 +543,20 @@ export default function PieceSetter({
             
             let boolVal = allPiecesDataLocal[lookingPieceNumber-2]["content"] !== undefined ? (allPiecesDataLocal[lookingPieceNumber-2]["content"] == "") : false;
             setUserSelectedTextContentToEdit(!boolVal);
-            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber-2]["chp_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber-2]["chp_arr"] : []);
+            
+
+
+            let charMapTemp = allPiecesDataLocal[lookingPieceNumber-2]["chp_map"];
+            let charArr = [];
+            Object.keys(charMapTemp).map((currKey) => {
+                charArr.push(charMapTemp[currKey]);
+            })
+
+            setCharPicDataTable(
+                charMapTemp !== undefined 
+                ? charArr 
+                : []
+            );
 
              
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
@@ -567,7 +580,19 @@ export default function PieceSetter({
 
             let boolVal = allPiecesDataLocal[lookingPieceNumber]["content"] !== undefined ? (allPiecesDataLocal[lookingPieceNumber]["content"] == "") : false;
             setUserSelectedTextContentToEdit(!boolVal);
-            setCharPicDataTable(allPiecesDataLocal[lookingPieceNumber]["chp_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber]["chp_arr"] : []);
+            
+            //TODO500
+            let charMapTemp = allPiecesDataLocal[lookingPieceNumber]["chp_map"];
+
+            let charArr = [];
+            Object.keys(charMapTemp).map((currKey) => {
+                charArr.push(charMapTemp[currKey]);
+            })
+
+            setCharPicDataTable(
+                charArr !== undefined 
+                ? charArr 
+                : []);
 
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
         
@@ -602,10 +627,10 @@ export default function PieceSetter({
                 item !== charPicDataTable[index]));
         setCharPicDataTable(tempCharPicDataTable);
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_arr"] = tempCharPicDataTable;
+        tempObj["chp_map"] = tempCharPicDataTable;
 
         updateToCaller(tempObj);
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_arr": tempCharPicDataTable});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_map": tempCharPicDataTable});
     }
 
 
@@ -1752,7 +1777,7 @@ export default function PieceSetter({
                 </tr>
             </thead>
             <tbody>
-                {currentSinglePieceDetail["chp_arr"].map((item, index) => {
+                {charPicDataTable.map((item, index) => {
                     console.log("charPicDataTable - item = ", item);
 
                     let keyStr = "charPicDataTable-" + index;
@@ -1842,23 +1867,34 @@ export default function PieceSetter({
 
     <br></br>
     <button 
-    onClick={()=>{
+    onClick={()=>{ // confirm add to character-pic-list
 
         if (currentSinglePieceDetail["chp_curr"]["picVar"] === "") {
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
             /* update to cloud db for this field: character-pic */
-            let tempTable = currentSinglePieceDetail["chp_arr"];
+            let tempTable = charPicDataTable;
+            
+            
             tempTable.push(currentSinglePieceDetail["chp_curr"]);
+             //TODO500 change from ref-
+
             setCharPicDataTable(tempTable);
 
             let tempPieceDetail = currentSinglePieceDetail;
-            tempPieceDetail["chp_arr"] = tempTable;
+
+            let tempTableMap = {};
+            tempTable.map((item, index) => {
+                tempTableMap[index] = item;
+            });
+            tempPieceDetail["chp_map"] = tempTableMap;
+
+
             tempPieceDetail["chp_curr"] = currentSinglePieceDetail["chp_curr"];
 
             setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
-                "chp_arr": tempTable, 
+                "chp_map": tempTableMap, 
                 "chp_curr": currentSinglePieceDetail["chp_curr"]
             });
             
