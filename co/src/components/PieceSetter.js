@@ -1752,7 +1752,7 @@ export default function PieceSetter({
                 </tr>
             </thead>
             <tbody>
-                {charPicDataTable.map((item, index) => {
+                {currentSinglePieceDetail["chp_arr"].map((item, index) => {
                     console.log("charPicDataTable - item = ", item);
 
                     let keyStr = "charPicDataTable-" + index;

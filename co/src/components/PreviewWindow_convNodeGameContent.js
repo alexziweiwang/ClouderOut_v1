@@ -106,7 +106,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
               setDirectNextPieceBool(true);
           }
 
-          setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]); 
+      //    setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]); 
+       //   console.log(" *** ", allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
           
           let isForward = (currPieceNumTemp > currentPieceNum);
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
@@ -167,7 +168,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       }
       
       if (allPieceContentTemp[currPieceNumTemp]["chp_action"] === "changeCharPicArr") { 
-        console.log("chara-pic-arr CHANGED!!!");  
+        console.log("chara-pic-arr CHANGED!!!: ", allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
 
         setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_arr"]);  
       } else if (!isForward && allPieceContentTemp[currPieceNumTemp]["chp_action"] === "maintainCharPicArr") {
@@ -328,24 +329,31 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             {/* //TODO500 refactor */}
 
 
-                    {charaPicArr2 !== undefined && charaPicArr2.map((item, index) => {
-                      let altStr = index+"already added character picture";
-                      let keyStr = "charPic-" + index;
-                      return (
-                        <div key={keyStr}>
-                          {(visualMap[item["picVar"]] !== undefined && visualMap[item["picVar"]] !== "") && 
-                          <img style={{
-                              "position": "absolute", 
-                              "top": `${item["posY"]}px`, "left": `${item["posX"]}px`,
-                              "width": `${item["width"] * item["scale"]}px`, "height": `${item["height"] * item["scale"]}px`,
-                              }}
-                            src={visualMap[item["picVar"]]}
-                            alt={altStr}
-            
-                          />}
-                        </div>
-                      );
-                    })}
+                    {charaPicArr2 !== undefined && 
+                      Object.keys(charaPicArr2).map((index) => {
+                      
+                        let item = charaPicArr2[index];
+
+                        let altStr = index+"already added character picture";
+                        let keyStr = "charPic-" + index;
+                        return (
+                          <div key={keyStr}>
+                            {(visualMap[item["picVar"]] !== undefined && visualMap[item["picVar"]] !== "") && 
+                            <img style={{
+                                "position": "absolute", 
+                                "top": `${item["posY"]}px`, "left": `${item["posX"]}px`,
+                                "width": `${item["width"] * item["scale"]}px`, "height": `${item["height"] * item["scale"]}px`,
+                                }}
+                              src={visualMap[item["picVar"]]}
+                              alt={altStr}
+              
+                            />}
+                          </div>
+                        );
+
+                      })
+
+                    }
                   </div>
 
               </div>}
