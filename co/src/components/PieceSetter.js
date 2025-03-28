@@ -684,46 +684,70 @@ export default function PieceSetter({
     }
 
     function onChangeCharPicDataW(event) {
-        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        chp_preview_arr["width"] = event.target.value;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
+        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        // chp_preview_arr["width"] = event.target.value;
+        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = chp_preview_arr;
-        updateToCaller(tempObj);
+        // let tempObj = currentSinglePieceDetail;
+        // tempObj["chp_preview"] = chp_preview_arr;
+        // updateToCaller(tempObj);
+
+        let objTemp = charaPreviewing;
+        objTemp["width"] = event.target.value;
+        setCharaPreviewing(objTemp);
+        //TODO500 notify outer-layer
+
     }
 
     function onChangeCharPicDataH(event) {
-        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        chp_preview_arr["height"] = event.target.value;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
+        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        // chp_preview_arr["height"] = event.target.value;
+        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = chp_preview_arr;
-        updateToCaller(tempObj);
+        // let tempObj = currentSinglePieceDetail;
+        // tempObj["chp_preview"] = chp_preview_arr;
+        // updateToCaller(tempObj);
+
+        let objTemp = charaPreviewing;
+        objTemp["height"] = event.target.value;
+        setCharaPreviewing(objTemp);
+        //TODO500 notify outer-layer
+
     }
 
     function onChangeCharPicDataScale(event) {
-        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        let val =  event.target.value;
-        chp_preview_arr["scale"] = val;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
+        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        // let val =  event.target.value;
+        // chp_preview_arr["scale"] = val;
+        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = chp_preview_arr;
-        updateToCaller(tempObj);        
+        // let tempObj = currentSinglePieceDetail;
+        // tempObj["chp_preview"] = chp_preview_arr;
+        // updateToCaller(tempObj);        
+
+        let objTemp = charaPreviewing;
+        objTemp["scale"] = event.target.value;
+        setCharaPreviewing(objTemp);
+        //TODO500 notify outer-layer
+
     }
 
     function onChangeCharPicDataVar(event) {
-        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        //store selected variable name
-        chp_preview_arr["picVar"] = event.target.value;
+        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        // //store selected variable name
+        // chp_preview_arr["picVar"] = event.target.value;
         
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
+        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = chp_preview_arr;
-        updateToCaller(tempObj);
+        // let tempObj = currentSinglePieceDetail;
+        // tempObj["chp_preview"] = chp_preview_arr;
+        // updateToCaller(tempObj);
+
+        let objTemp = charaPreviewing;
+        objTemp["picVar"] = event.target.value;
+        setCharaPreviewing(objTemp);
+        //TODO500 notify outer-layer
+
     }
 
 
@@ -808,7 +832,19 @@ export default function PieceSetter({
 
 
     function resetAddingCharPicRow() {
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": characterPictureCurrTemplate});
+                                                        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": characterPictureCurrTemplate});
+
+        let previewObj = {};
+        previewObj["picVar"] = characterPictureCurrTemplate["picVar"]
+        previewObj["posX"] = characterPictureCurrTemplate["posX"]
+        previewObj["posY"] = characterPictureCurrTemplate["posY"]
+        previewObj["width"] = characterPictureCurrTemplate["width"]
+        previewObj["height"] = characterPictureCurrTemplate["height"]
+        previewObj["scale"] = characterPictureCurrTemplate["scale"]
+        
+
+        setCharaPreviewing(previewObj);
+
     }
 
     function updatePreviewingCstmClkb(obj) {
