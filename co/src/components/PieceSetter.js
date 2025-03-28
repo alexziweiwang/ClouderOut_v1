@@ -210,7 +210,7 @@ export default function PieceSetter({
         "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
 
         "chp_map": allPieceData[pieceNum-1]["chp_map"], 
-        "chp_curr": allPieceData[pieceNum-1]["chp_curr"],
+        "chp_preview": allPieceData[pieceNum-1]["chp_preview"],
         "chp_action": allPieceData[pieceNum-1]["chp_action"], 
 
       //  "stnd_btn_map": allPieceData[pieceNum-1]["stnd_btn_map"], // fetch/in side
@@ -242,7 +242,7 @@ export default function PieceSetter({
         "bgp_pos_y": 0, 
         "bgp_width": 800, 
         "bgp_height": 450, 
-        "chp_curr": characterPictureCurrTemplate, 
+        "chp_preview": characterPictureCurrTemplate, 
         "chp_map": [], 
         "chp_action": "maintainCharPicArr",  
         "clkb_previewing": [], 
@@ -520,7 +520,7 @@ export default function PieceSetter({
         setAnotherCharPic(!anotherCharpic);
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = characterPictureCurrTemplate;
+        tempObj["chp_preview"] = characterPictureCurrTemplate;
         updateToCaller(tempObj);
 
     }
@@ -635,65 +635,65 @@ export default function PieceSetter({
 
 
     function onChangeCharPicDataPosX(event) {
-        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr["posX"] = event.target.value;        
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
+        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        chp_preview_arr["posX"] = event.target.value;        
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = chp_curr_arr;
+        tempObj["chp_preview"] = chp_preview_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataPosY(event) {
-        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr["posY"] = event.target.value;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
+        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        chp_preview_arr["posY"] = event.target.value;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = chp_curr_arr;
+        tempObj["chp_preview"] = chp_preview_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataW(event) {
-        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr["width"] = event.target.value;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
+        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        chp_preview_arr["width"] = event.target.value;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = chp_curr_arr;
+        tempObj["chp_preview"] = chp_preview_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataH(event) {
-        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
-        chp_curr_arr["height"] = event.target.value;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
+        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        chp_preview_arr["height"] = event.target.value;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = chp_curr_arr;
+        tempObj["chp_preview"] = chp_preview_arr;
         updateToCaller(tempObj);
     }
 
     function onChangeCharPicDataScale(event) {
-        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
+        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
         let val =  event.target.value;
-        chp_curr_arr["scale"] = val;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
+        chp_preview_arr["scale"] = val;
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = chp_curr_arr;
+        tempObj["chp_preview"] = chp_preview_arr;
         updateToCaller(tempObj);        
     }
 
     function onChangeCharPicDataVar(event) {
-        let chp_curr_arr = currentSinglePieceDetail["chp_curr"];
+        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
         //store selected variable name
-        chp_curr_arr["picVar"] = event.target.value;
+        chp_preview_arr["picVar"] = event.target.value;
         
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": chp_curr_arr});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
         let tempObj = currentSinglePieceDetail;
-        tempObj["chp_curr"] = chp_curr_arr;
+        tempObj["chp_preview"] = chp_preview_arr;
         updateToCaller(tempObj);
     }
 
@@ -779,7 +779,7 @@ export default function PieceSetter({
 
 
     function resetAddingCharPicRow() {
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_curr": characterPictureCurrTemplate});
+        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": characterPictureCurrTemplate});
     }
 
     function updatePreviewingCstmClkb(obj) {
@@ -1778,7 +1778,7 @@ export default function PieceSetter({
             </thead>
             <tbody>
                 {charPicDataTable.map((item, index) => {
-                    console.log("charPicDataTable - item = ", item);
+                    console.log("!!! charPicDataTable - item = ", item);
 
                     let keyStr = "charPicDataTable-" + index;
                     return (
@@ -1827,9 +1827,9 @@ export default function PieceSetter({
     <label>Source:  </label>
     {/* //TODO500 */}
     <select 
-        value={currentSinglePieceDetail["chp_curr"]["picVar"]} 
+        value={currentSinglePieceDetail["chp_preview"]["picVar"]} 
         onChange={(event)=>{onChangeCharPicDataVar(event);}}
-    
+
     >
         <option key="charp01" value=""> -- Select picture name -- </option>
 
@@ -1843,33 +1843,33 @@ export default function PieceSetter({
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
-        value={currentSinglePieceDetail["chp_curr"]["posX"]}
+        value={currentSinglePieceDetail["chp_preview"]["posX"]}
         onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxX} value={currentSinglePieceDetail["chp_curr"]["posX"]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxX} value={currentSinglePieceDetail["chp_preview"]["posX"]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={currentSinglePieceDetail["chp_curr"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={currentSinglePieceDetail["chp_curr"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={currentSinglePieceDetail["chp_preview"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={currentSinglePieceDetail["chp_preview"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={currentSinglePieceDetail["chp_curr"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={currentSinglePieceDetail["chp_curr"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={currentSinglePieceDetail["chp_preview"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={currentSinglePieceDetail["chp_preview"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={currentSinglePieceDetail["chp_curr"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={currentSinglePieceDetail["chp_curr"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={currentSinglePieceDetail["chp_preview"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={currentSinglePieceDetail["chp_preview"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
     <label>Scale: </label>
-    <input type="range" className="slider" min="1" max="10" step="1" value={currentSinglePieceDetail["chp_curr"]["scale"]}
+    <input type="range" className="slider" min="1" max="10" step="1" value={currentSinglePieceDetail["chp_preview"]["scale"]}
         onChange={(event)=>{
             onChangeCharPicDataScale(event);
-        }}></input><label>{currentSinglePieceDetail["chp_curr"]["scale"]}x</label>
+        }}></input><label>{currentSinglePieceDetail["chp_preview"]["scale"]}x</label>
 
     <br></br>
     <button 
     onClick={()=>{ // confirm add to character-pic-list
 
-        if (currentSinglePieceDetail["chp_curr"]["picVar"] === "") {
+        if (currentSinglePieceDetail["chp_preview"]["picVar"] === "") {
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
@@ -1877,7 +1877,7 @@ export default function PieceSetter({
             let tempTable = charPicDataTable;
             
             
-            tempTable.push(currentSinglePieceDetail["chp_curr"]);
+            tempTable.push(currentSinglePieceDetail["chp_preview"]);
              //TODO500 change from ref-
 
             setCharPicDataTable(tempTable);
@@ -1891,11 +1891,11 @@ export default function PieceSetter({
             tempPieceDetail["chp_map"] = tempTableMap;
 
 
-            tempPieceDetail["chp_curr"] = currentSinglePieceDetail["chp_curr"];
+            tempPieceDetail["chp_preview"] = currentSinglePieceDetail["chp_preview"];
 
             setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                 "chp_map": tempTableMap, 
-                "chp_curr": currentSinglePieceDetail["chp_curr"]
+                "chp_preview": currentSinglePieceDetail["chp_preview"]
             });
             
             updateToCaller(tempPieceDetail); //TODO test

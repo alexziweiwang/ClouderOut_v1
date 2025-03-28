@@ -106,8 +106,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
               setDirectNextPieceBool(true);
           }
 
-      //    setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_curr"]); 
-       //   console.log(" *** ", allPieceContentTemp[currPieceNumTemp]["chp_curr"]);
+      //    setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_preview"]); 
+       //   console.log(" *** ", allPieceContentTemp[currPieceNumTemp]["chp_preview"]);
           
           let isForward = (currPieceNumTemp > currentPieceNum);
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
@@ -118,7 +118,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
         console.log(" *** ", currentPiece);
 
           //TODO change ...
-          setCharaPicCurr2(currentPiece["chp_curr"]); 
+          setCharaPicCurr2(currentPiece["chp_preview"]); 
 
       }
         

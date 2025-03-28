@@ -194,6 +194,14 @@ export const newEmptyPieceTemplate = {
     "displayTextFrame": true
 }; 
 
+export const characterPictureCurrTemplate = {
+    "picVar": "",
+    "posX": 0,
+    "posY": 0,
+    "width": 60,
+    "height": 120,
+    "scale": 1  
+}
 
 export const emptyConversationNodeTemplate = {
     "num": 1, 
@@ -204,7 +212,7 @@ export const emptyConversationNodeTemplate = {
     "bgp_width": 800, 
     "bgp_height": 600, 
     "chp_map": [], 
-    "chp_curr": [],
+    "chp_preview": characterPictureCurrTemplate,
     "stnd_btn_arr": [], 
     "clkb_arr": [],
     "bgm_loop": true, 
@@ -212,13 +220,4 @@ export const emptyConversationNodeTemplate = {
     "vl_source_link": "", 
     "vl_volume": 100,
     "displayTextFrame": true
-}
-
-export const characterPictureCurrTemplate = {
-    "picVar": "",
-    "posX": 0,
-    "posY": 0,
-    "width": 60,
-    "height": 120,
-    "scale": 1  
 }
