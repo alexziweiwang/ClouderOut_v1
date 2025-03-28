@@ -210,7 +210,6 @@ export default function PieceSetter({
         "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
 
         "chp_map": allPieceData[pieceNum-1]["chp_map"], 
-        "chp_preview": allPieceData[pieceNum-1]["chp_preview"],
         "chp_action": allPieceData[pieceNum-1]["chp_action"], 
 
       //  "stnd_btn_map": allPieceData[pieceNum-1]["stnd_btn_map"], // fetch/in side
@@ -242,7 +241,6 @@ export default function PieceSetter({
         "bgp_pos_y": 0, 
         "bgp_width": 800, 
         "bgp_height": 450, 
-        "chp_preview": characterPictureCurrTemplate, 
         "chp_map": [], 
         "chp_action": "maintainCharPicArr",  
         "clkb_previewing": [], 
@@ -264,6 +262,8 @@ export default function PieceSetter({
 
     const [setterPreviewBgmSource, setSetterPreviewBgmSource] = useState("");
     const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(false);
+
+    const [charaPreviewing, setCharaPreviewing] = useState(characterPictureCurrTemplate);
 
 
 
@@ -513,15 +513,30 @@ export default function PieceSetter({
         setVoicelineAdd(true);
     }
 
-    function changeAddAnotherCharPicOption() {
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
-            characterPictureCurrTemplate
-        });
+    function changeAddAnotherCharPicOption() { 
+                                                                    // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
+                                                                    //     characterPictureCurrTemplate
+                                                                    // });
         setAnotherCharPic(!anotherCharpic);
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = characterPictureCurrTemplate;
-        updateToCaller(tempObj);
+                                                                    // let tempObj = currentSinglePieceDetail;
+                                                                    // tempObj["chp_ preview"] = characterPictureCurrTemplate;
+                                                                    // updateToCaller(tempObj);
+        
+        let previewObj = {};
+        previewObj["picVar"] = characterPictureCurrTemplate["picVar"]
+        previewObj["posX"] = characterPictureCurrTemplate["posX"]
+        previewObj["posY"] = characterPictureCurrTemplate["posY"]
+        previewObj["width"] = characterPictureCurrTemplate["width"]
+        previewObj["height"] = characterPictureCurrTemplate["height"]
+        previewObj["scale"] = characterPictureCurrTemplate["scale"]
+        
+
+        setCharaPreviewing(previewObj);
+
+
+        //TODO500
+        //TODO notify outer-layer!!!
 
     }
 
@@ -635,23 +650,37 @@ export default function PieceSetter({
 
 
     function onChangeCharPicDataPosX(event) {
-        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        chp_preview_arr["posX"] = event.target.value;        
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
+        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        // chp_preview_arr["posX"] = event.target.value;        
+        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = chp_preview_arr;
-        updateToCaller(tempObj);
+        // let tempObj = currentSinglePieceDetail;
+        // tempObj["chp_preview"] = chp_preview_arr;
+        // updateToCaller(tempObj);
+        
+
+
+        let objTemp = charaPreviewing;
+        objTemp["posX"] = event.target.value;
+        setCharaPreviewing(objTemp);
+        //TODO500 notify outer-layer
+
     }
 
     function onChangeCharPicDataPosY(event) {
-        let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        chp_preview_arr["posY"] = event.target.value;
-        setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
+        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
+        // chp_preview_arr["posY"] = event.target.value;
+        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
 
-        let tempObj = currentSinglePieceDetail;
-        tempObj["chp_preview"] = chp_preview_arr;
-        updateToCaller(tempObj);
+        // let tempObj = currentSinglePieceDetail;
+        // tempObj["chp_preview"] = chp_preview_arr;
+        // updateToCaller(tempObj);
+
+        let objTemp = charaPreviewing;
+        objTemp["posY"] = event.target.value;
+        setCharaPreviewing(objTemp);
+        //TODO500 notify outer-layer
+
     }
 
     function onChangeCharPicDataW(event) {
@@ -1718,7 +1747,7 @@ export default function PieceSetter({
                         </select>
                         <button onClick={() => {openRm()}}>{manageResourceText}</button>  
 
-{/* //TODO500 */}
+{/* //TODO600 */}
                         <br></br>  
                         <label>This one Fading in: </label>
                         <select>
@@ -1758,7 +1787,10 @@ export default function PieceSetter({
                     </select>
                     <br></br>
 
-    {currentSinglePieceDetail["chp_action"] === "changeCharPicArr"  && <div>
+
+                    {/* currentSinglePieceDetail["chp_action"] === "changeCharPicArr" */}
+            {true  && 
+            <div>
             <table style={{"width": " 500px"}}>
             <thead>        
                 <tr>
@@ -1820,12 +1852,11 @@ export default function PieceSetter({
 
 
 {/* new-character-picture adding area */}
-    {(anotherCharpic === true && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") &&
+    {/* {(anotherCharpic === true && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") &&
     <>
         <br></br>
 
     <label>Source:  </label>
-    {/* //TODO500 */}
     <select 
         value={currentSinglePieceDetail["chp_preview"]["picVar"]} 
         onChange={(event)=>{onChangeCharPicDataVar(event);}}
@@ -1873,7 +1904,7 @@ export default function PieceSetter({
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
-            /* update to cloud db for this field: character-pic */
+            // update to cloud db for this field: character-pic 
             let tempTable = charPicDataTable;
             
             
@@ -1906,9 +1937,12 @@ export default function PieceSetter({
 
     }}>
         {confirmAddText}
-    </button>        {/* //TODO later */}
+    </button>       
     
-    </>}
+</>}
+ */}
+
+{/* END of :     new-character-picture adding area */}
 
             
             
