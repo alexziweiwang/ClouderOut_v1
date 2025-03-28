@@ -1888,13 +1888,13 @@ export default function PieceSetter({
 
 
 {/* new-character-picture adding area */}
-    {/* {(anotherCharpic === true && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") &&
+     {(anotherCharpic === true && currentSinglePieceDetail["chp_action"] === "changeCharPicArr") &&
     <>
         <br></br>
 
     <label>Source:  </label>
     <select 
-        value={currentSinglePieceDetail["chp_preview"]["picVar"]} 
+        value={charaPreviewing["picVar"]} 
         onChange={(event)=>{onChangeCharPicDataVar(event);}}
 
     >
@@ -1910,33 +1910,33 @@ export default function PieceSetter({
     <br></br>
     <label>Position x:      </label>
     <input type="number" min="0" max={positionMaxX} step="1" 
-        value={currentSinglePieceDetail["chp_preview"]["posX"]}
+        value={charaPreviewing["posX"]}
         onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxX} value={currentSinglePieceDetail["chp_preview"]["posX"]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxX} value={charaPreviewing["posX"]} onChange={(event)=>{onChangeCharPicDataPosX(event);}}></input>
     <br></br>
     <label>Position y:      </label>
-    <input type="number" min="0" max={positionMaxY} step="1" value={currentSinglePieceDetail["chp_preview"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
-    <input className="slider" type="range" min="0" max={positionMaxY} value={currentSinglePieceDetail["chp_preview"]["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input type="number" min="0" max={positionMaxY} step="1" value={charaPreviewing["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
+    <input className="slider" type="range" min="0" max={positionMaxY} value={charaPreviewing["posY"]} onChange={(event)=>{onChangeCharPicDataPosY(event);}}></input>
     <br></br>
     <label>Width:         </label>
-    <input type="number" min="0" max={widthMax} step="1" value={currentSinglePieceDetail["chp_preview"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
-    <input className="slider" type="range" min="0" max={widthMax} value={currentSinglePieceDetail["chp_preview"]["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input type="number" min="0" max={widthMax} step="1" value={charaPreviewing["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
+    <input className="slider" type="range" min="0" max={widthMax} value={charaPreviewing["width"]} onChange={(event)=>{onChangeCharPicDataW(event);}}></input>
     <br></br>
     <label>Height:        </label>
-    <input type="number" min="0" max={heightMax} step="1" value={currentSinglePieceDetail["chp_preview"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
-    <input className="slider" type="range" min="0" max={heightMax} value={currentSinglePieceDetail["chp_preview"]["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input type="number" min="0" max={heightMax} step="1" value={charaPreviewing["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
+    <input className="slider" type="range" min="0" max={heightMax} value={charaPreviewing["height"]} onChange={(event)=>{onChangeCharPicDataH(event);}}></input>
     <br></br>
     <label>Scale: </label>
-    <input type="range" className="slider" min="1" max="10" step="1" value={currentSinglePieceDetail["chp_preview"]["scale"]}
+    <input type="range" className="slider" min="1" max="10" step="1" value={charaPreviewing["scale"]}
         onChange={(event)=>{
             onChangeCharPicDataScale(event);
-        }}></input><label>{currentSinglePieceDetail["chp_preview"]["scale"]}x</label>
+        }}></input><label>{charaPreviewing["scale"]}x</label>
 
     <br></br>
     <button 
     onClick={()=>{ // confirm add to character-pic-list
 
-        if (currentSinglePieceDetail["chp_preview"]["picVar"] === "") {
+        if (charaPreviewing["picVar"] === "") {
             console.log("warning: variable cannot be empty"); //TODO warning popping
 
         } else {
@@ -1944,8 +1944,8 @@ export default function PieceSetter({
             let tempTable = charPicDataTable;
             
             
-            tempTable.push(currentSinglePieceDetail["chp_preview"]);
-             //TODO500 change from ref-
+            tempTable.push(charaPreviewing);
+             //TODO600 change from ref-
 
             setCharPicDataTable(tempTable);
 
@@ -1958,11 +1958,11 @@ export default function PieceSetter({
             tempPieceDetail["chp_map"] = tempTableMap;
 
 
-            tempPieceDetail["chp_preview"] = currentSinglePieceDetail["chp_preview"];
+            tempPieceDetail["chp_preview"] = charaPreviewing;
 
             setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                 "chp_map": tempTableMap, 
-                "chp_preview": currentSinglePieceDetail["chp_preview"]
+                "chp_preview": charaPreviewing
             });
             
             updateToCaller(tempPieceDetail); //TODO test
@@ -1976,7 +1976,7 @@ export default function PieceSetter({
     </button>       
     
 </>}
- */}
+
 
 {/* END of :     new-character-picture adding area */}
 
