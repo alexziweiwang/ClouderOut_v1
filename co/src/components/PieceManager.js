@@ -144,7 +144,11 @@ export default function PieceManager({
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
         
-        const item = newEmptyPieceTemplate;
+        const item = {};
+        Object.keys(newEmptyPieceTemplate).map((currKey) => {
+            item[currKey] = newEmptyPieceTemplate[currKey];
+        });
+
         item["num"] = number;
           
         let pieceDataArr = pieceDataLocal;
@@ -162,7 +166,10 @@ export default function PieceManager({
         const number = preIndex+1;
         //setCurrentPieceNum(number);
 
-        const item = newEmptyPieceTemplate;
+        const item = {};
+        Object.keys(newEmptyPieceTemplate).map((currKey) => {
+            item[currKey] = newEmptyPieceTemplate[currKey];
+        });
         item["num"] = number+1;
 
         let pieceDataArr = [];
@@ -526,7 +533,7 @@ export default function PieceManager({
                         {<button 
                         
                         onClick={()=>{
-                            let content = "Are you sure to delete this node: " + item["num"] + ":" + item["content"] + "?";
+                            let content = "Are you sure to delete this piece: " + item["num"] + ":" + item["content"] + "?";
                             let respondGiven = window.confirm(content);
                             if (respondGiven) {
                                 setGroupMoving(true);

@@ -1942,7 +1942,7 @@ export default function PieceSetter({
         } else {
             // update to cloud db for this field: character-pic 
             let tempTable = charPicDataTable;
-            
+            let tempArrItem = [];
             
             tempTable.push(charaPreviewing);
              //TODO600 change from ref-
