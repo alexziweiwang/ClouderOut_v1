@@ -263,8 +263,7 @@ export default function PieceSetter({
     const [setterPreviewBgmSource, setSetterPreviewBgmSource] = useState("");
     const [setterPreviewBgmPause, setSetterPreviewBgmPause] = useState(false);
 
-    const [charaPreviewing, setCharaPreviewing] = useState(characterPictureCurrTemplate);
-
+    const [charaPreviewing, setCharaPreviewing] = useState({});
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -297,7 +296,12 @@ export default function PieceSetter({
             setLookingPieceNumber(receivedPieceNum+1);
             setStndButtonDataTable(allPieceData[receivedPieceNum]["stnd_btn_arr"] === undefined ? [] : allPieceData[receivedPieceNum]["stnd_btn_arr"]);
             
-   
+            
+            const item = {};
+            Object.keys(characterPictureCurrTemplate).map((currKey) => {
+                item[currKey] = characterPictureCurrTemplate[currKey];
+            });
+            setCharaPreviewing(item);
 
 
 
@@ -524,13 +528,9 @@ export default function PieceSetter({
                                                                     // updateToCaller(tempObj);
         
         let previewObj = {};
-        previewObj["picVar"] = characterPictureCurrTemplate["picVar"]
-        previewObj["posX"] = characterPictureCurrTemplate["posX"]
-        previewObj["posY"] = characterPictureCurrTemplate["posY"]
-        previewObj["width"] = characterPictureCurrTemplate["width"]
-        previewObj["height"] = characterPictureCurrTemplate["height"]
-        previewObj["scale"] = characterPictureCurrTemplate["scale"]
-        
+        Object.keys(characterPictureCurrTemplate).map((currKey) => {
+            previewObj[currKey] = characterPictureCurrTemplate[currKey];
+        });
 
         setCharaPreviewing(previewObj);
 
@@ -835,15 +835,12 @@ export default function PieceSetter({
                                                         // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": characterPictureCurrTemplate});
 
         let previewObj = {};
-        previewObj["picVar"] = characterPictureCurrTemplate["picVar"]
-        previewObj["posX"] = characterPictureCurrTemplate["posX"]
-        previewObj["posY"] = characterPictureCurrTemplate["posY"]
-        previewObj["width"] = characterPictureCurrTemplate["width"]
-        previewObj["height"] = characterPictureCurrTemplate["height"]
-        previewObj["scale"] = characterPictureCurrTemplate["scale"]
-        
+        Object.keys(characterPictureCurrTemplate).map((currKey) => {
+            previewObj[currKey] = characterPictureCurrTemplate[currKey];
+        });
 
         setCharaPreviewing(previewObj);
+
 
     }
 

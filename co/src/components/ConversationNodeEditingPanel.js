@@ -294,7 +294,7 @@ export default function ConversationNodeEditingPanel() {
     const [previewingIndex, setPreviewingIndex] = useState(0);
 
     const [isDisplayNonPmTemp, setDisplayNonPmTemp] = useState(true);
-    const [editingPmPreviewPiece, setEditingPmPreviewPiece] = useState(newEmptyPieceTemplate);
+    const [editingPmPreviewPiece, setEditingPmPreviewPiece] = useState({});
 
     const [isDisplayGameContentPreview, setIsDisplayGameContentPreview] = useState(true);
 
@@ -350,6 +350,13 @@ export default function ConversationNodeEditingPanel() {
             initializeUILang();
 
             loadFromCloud();
+
+
+            const item = {};
+            Object.keys(newEmptyPieceTemplate).map((currKey) => {
+                item[currKey] = newEmptyPieceTemplate[currKey];
+            });
+            setEditingPmPreviewPiece(item);
 
 
 
