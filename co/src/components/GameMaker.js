@@ -1212,9 +1212,28 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     if (nodeTypeTemp === "Conversation") {
       let convNodeArr = [];
       
-      convNodeArr.push(emptyConversationNodeTemplate);
+      const contentItem = {};
+      Object.keys(emptyConversationNodeTemplate).map((currKey) => {
+        contentItem[currKey] = emptyConversationNodeTemplate[currKey];
+      });
+      convNodeArr.push(contentItem);
+      
       nodeObj["nodeContent"] = convNodeArr;
-      nodeObj["nodeUISettings"] = emptyConvNodeUiAllTemplate;
+
+
+      const uiItem = {};
+      Object.keys(emptyConvNodeUiAllTemplate).map((currKey) => {
+          let insideObj = emptyConvNodeUiAllTemplate[currKey]; //read
+
+          let insideWrite = {};
+
+          Object.keys(insideObj).map((insideKey)=>{
+              insideWrite[insideKey] = insideObj[insideKey];
+          })
+
+          uiItem[currKey] = insideWrite;
+      });      
+      nodeObj["nodeUISettings"] = uiItem;
 
     }
 

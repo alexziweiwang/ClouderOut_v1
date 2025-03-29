@@ -172,7 +172,6 @@ export const emptyConvNodeUiAllTemplate = {
     backButton: gameUIBackButton,
     convNav: uiConvNav,
     logPage: logPageUISettings
-
 }; 
 
 
@@ -212,7 +211,14 @@ export const emptyConversationNodeTemplate = {
     "bgp_width": 800, 
     "bgp_height": 600, 
     "chp_map": [], 
-    "chp_preview": characterPictureCurrTemplate,
+    "chp_preview": {
+        "picVar": "",
+        "posX": 0,
+        "posY": 0,
+        "width": 60,
+        "height": 120,
+        "scale": 1  
+    },
     "stnd_btn_arr": [], 
     "clkb_arr": [],
     "bgm_loop": true, 
