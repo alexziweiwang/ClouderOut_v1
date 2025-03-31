@@ -117,6 +117,8 @@ export default function ConversationNodeEditingPanel() {
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
 
     const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //fetch from cloud-db
+
+//TODO600
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
         "widthMin": 300,
         "widthMax": 370,
