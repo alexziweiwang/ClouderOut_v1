@@ -297,10 +297,7 @@ export default function PieceSetter({
             setStndButtonDataTable(allPieceData[receivedPieceNum]["stnd_btn_arr"] === undefined ? [] : allPieceData[receivedPieceNum]["stnd_btn_arr"]);
             
             
-            const item = {};
-            Object.keys(characterPictureCurrTemplate).map((currKey) => {
-                item[currKey] = characterPictureCurrTemplate[currKey];
-            });
+            const item = initializeCharaPreviewingFromTemplate();
             setCharaPreviewing(item);
 
 
@@ -311,7 +308,7 @@ export default function PieceSetter({
         let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-1]["bgm_source_varname"]);
         setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
-        console.log("0bgm now is ...", bgmSourceUrlTemp);
+     //   console.log("0bgm now is ...", bgmSourceUrlTemp);
 
                                                                     //TODO prev-strategy for resource-updating
                                                                     // let isUdpateResource = fetch Rm UpdatedSignal(); 
@@ -328,8 +325,10 @@ export default function PieceSetter({
 
         //console.log("\t\tin piece-setter... resource = ", visList, " ... \n\t\t\t", auList);
 
-        console.log("currentSinglePieceDetail = ", currentSinglePieceDetail);
+       // console.log("currentSinglePieceDetail = ", currentSinglePieceDetail);
         
+        console.log("piece-setter - charPicDataTable = ", charPicDataTable);
+
 
     });
 
@@ -517,6 +516,17 @@ export default function PieceSetter({
         setVoicelineAdd(true);
     }
 
+    function initializeCharaPreviewingFromTemplate() {
+        const item = {};
+        Object.keys(characterPictureCurrTemplate).map((currKey) => {
+            item[currKey] = characterPictureCurrTemplate[currKey];
+        });
+
+        return item;
+    }
+
+
+
     function changeAddAnotherCharPicOption() { 
                                                                     // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                                                                     //     characterPictureCurrTemplate
@@ -535,8 +545,7 @@ export default function PieceSetter({
         setCharaPreviewing(previewObj);
 
 
-        //TODO500
-        //TODO notify outer-layer!!!
+        //TODO500 notify outer-layer!!!
 
     }
 
@@ -596,9 +605,7 @@ export default function PieceSetter({
             let boolVal = allPiecesDataLocal[lookingPieceNumber]["content"] !== undefined ? (allPiecesDataLocal[lookingPieceNumber]["content"] == "") : false;
             setUserSelectedTextContentToEdit(!boolVal);
             
-            //TODO500
             let charMapTemp = allPiecesDataLocal[lookingPieceNumber]["chp_map"];
-
             let charArr = [];
             Object.keys(charMapTemp).map((currKey) => {
                 charArr.push(charMapTemp[currKey]);
@@ -650,16 +657,7 @@ export default function PieceSetter({
 
 
     function onChangeCharPicDataPosX(event) {
-        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        // chp_preview_arr["posX"] = event.target.value;        
-        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
-
-        // let tempObj = currentSinglePieceDetail;
-        // tempObj["chp_preview"] = chp_preview_arr;
-        // updateToCaller(tempObj);
-        
-
-
+ 
         let objTemp = charaPreviewing;
         objTemp["posX"] = event.target.value;
         setCharaPreviewing(objTemp);
@@ -668,13 +666,6 @@ export default function PieceSetter({
     }
 
     function onChangeCharPicDataPosY(event) {
-        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        // chp_preview_arr["posY"] = event.target.value;
-        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
-
-        // let tempObj = currentSinglePieceDetail;
-        // tempObj["chp_preview"] = chp_preview_arr;
-        // updateToCaller(tempObj);
 
         let objTemp = charaPreviewing;
         objTemp["posY"] = event.target.value;
@@ -684,13 +675,6 @@ export default function PieceSetter({
     }
 
     function onChangeCharPicDataW(event) {
-        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        // chp_preview_arr["width"] = event.target.value;
-        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
-
-        // let tempObj = currentSinglePieceDetail;
-        // tempObj["chp_preview"] = chp_preview_arr;
-        // updateToCaller(tempObj);
 
         let objTemp = charaPreviewing;
         objTemp["width"] = event.target.value;
@@ -700,13 +684,6 @@ export default function PieceSetter({
     }
 
     function onChangeCharPicDataH(event) {
-        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        // chp_preview_arr["height"] = event.target.value;
-        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
-
-        // let tempObj = currentSinglePieceDetail;
-        // tempObj["chp_preview"] = chp_preview_arr;
-        // updateToCaller(tempObj);
 
         let objTemp = charaPreviewing;
         objTemp["height"] = event.target.value;
@@ -715,15 +692,7 @@ export default function PieceSetter({
 
     }
 
-    function onChangeCharPicDataScale(event) {
-        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        // let val =  event.target.value;
-        // chp_preview_arr["scale"] = val;
-        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
-
-        // let tempObj = currentSinglePieceDetail;
-        // tempObj["chp_preview"] = chp_preview_arr;
-        // updateToCaller(tempObj);        
+    function onChangeCharPicDataScale(event) {     
 
         let objTemp = charaPreviewing;
         objTemp["scale"] = event.target.value;
@@ -733,15 +702,6 @@ export default function PieceSetter({
     }
 
     function onChangeCharPicDataVar(event) {
-        // let chp_preview_arr = currentSinglePieceDetail["chp_preview"];
-        // //store selected variable name
-        // chp_preview_arr["picVar"] = event.target.value;
-        
-        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": chp_preview_arr});
-
-        // let tempObj = currentSinglePieceDetail;
-        // tempObj["chp_preview"] = chp_preview_arr;
-        // updateToCaller(tempObj);
 
         let objTemp = charaPreviewing;
         objTemp["picVar"] = event.target.value;
@@ -832,16 +792,8 @@ export default function PieceSetter({
 
 
     function resetAddingCharPicRow() {
-                                                        // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  "chp_preview": characterPictureCurrTemplate});
-
-        let previewObj = {};
-        Object.keys(characterPictureCurrTemplate).map((currKey) => {
-            previewObj[currKey] = characterPictureCurrTemplate[currKey];
-        });
-
+        let previewObj = initializeCharaPreviewingFromTemplate();
         setCharaPreviewing(previewObj);
-
-
     }
 
     function updatePreviewingCstmClkb(obj) {
@@ -1939,9 +1891,13 @@ export default function PieceSetter({
         } else {
             // update to cloud db for this field: character-pic 
             let tempTable = charPicDataTable;
-            let tempArrItem = [];
-            
-            tempTable.push(charaPreviewing);
+            let tempArrPreviewing = {};
+            //TODO700
+            Object.keys(charaPreviewing).map((currKey) => {
+                tempArrPreviewing[currKey] = charaPreviewing[currKey];            
+            });
+
+            tempTable.push(tempArrPreviewing);
              //TODO600 change from ref-
 
             setCharPicDataTable(tempTable);
@@ -1955,11 +1911,11 @@ export default function PieceSetter({
             tempPieceDetail["chp_map"] = tempTableMap;
 
 
-            tempPieceDetail["chp_preview"] = charaPreviewing;
+            tempPieceDetail["chp_preview"] = tempArrPreviewing;
 
             setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
                 "chp_map": tempTableMap, 
-                "chp_preview": charaPreviewing
+                "chp_preview": tempArrPreviewing
             });
             
             updateToCaller(tempPieceDetail); //TODO test
