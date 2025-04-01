@@ -107,24 +107,20 @@ console.log("preview-window game-content first-time entry, resource-list fetched
           } else {
               setDirectNextPieceBool(true);
           }
-
-      //    setCharaPicCurr2(allPieceContentTemp[currPieceNumTemp]["chp_preview"]); 
-       //   console.log(" *** ", allPieceContentTemp[currPieceNumTemp]["chp_preview"]);
-          
+     
           let isForward = (currPieceNumTemp > currentPieceNum);
           updateCharPicArr(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgmSource(allPieceContentTemp, currPieceNumTemp, isForward);
           updateBgpSource(allPieceContentTemp, currPieceNumTemp, isForward);
-      } else {
-        console.log("*2 currentPiece = ", currentPiece);
-        console.log(" *** ", currentPiece);
-
-          //TODO change ...
-
       }
         
       let charaPicPreviewingTemp = getCharaPicPrvw();
+      console.log("\tpreview-screen.. chara-pic-temp is : ", charaPicPreviewingTemp);
       setCharaPicCurr2(charaPicPreviewingTemp);
+
+      if (charaPicPreviewingTemp !== -1) {
+        console.log("visualMap[charaPicCurr2[",  charaPicPreviewingTemp["picVar"] ,  "] = ", visualMap[charaPicCurr2["picVar"]]);
+      }
 
 
       //TODO testing
@@ -138,6 +134,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       setVisualMap(visMap);
       let auMap = getAudioMap();
       setAudioMap(auMap);
+
+      console.log("previewing22222: visual-map = ", visMap);
 
 
     }); // --- end of useEffect ---
@@ -306,29 +304,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
 
                   <div> 
-            {/* //TODO500 refactor */}
-                    {(charaPicCurr2 !== undefined 
-                    && charaPicCurr2 !== -1 
-                    && charaPicCurr2.length > 0 
-                    && visualMap[charaPicCurr2["picVar"]] !== undefined 
-                    && visualMap[charaPicCurr2["picVar"]] !== ""
-                    && Object.keys(charaPicCurr2).length > 0
-                    
-                    ) 
-                    
-                    
-                      && 
-                          
-                            <img style={{
-                              "position": "absolute", 
-                              "top": `${charaPicCurr2["posY"]}px`, "left": `${charaPicCurr2["posX"]}px`,
-                              "width": `${charaPicCurr2["width"] * charaPicCurr2["scale"]}px`, "height": `${charaPicCurr2["height"] * charaPicCurr2["scale"]}px`,
-                            }}
-                              src={visualMap[charaPicCurr2["picVar"]]}
-                              
-                              alt="currently character-picture that's being added"
-                            />
-                    }
+       
             {/* //TODO500 refactor */}
 
 
@@ -356,6 +332,28 @@ console.log("preview-window game-content first-time entry, resource-list fetched
 
                       })
 
+                    }
+
+
+                         {/* //TODO500 refactor */}
+                         {(charaPicCurr2 !== undefined 
+                            && charaPicCurr2 !== -1 
+                            && visualMap[charaPicCurr2["picVar"]] !== undefined
+                            && Object.keys(charaPicCurr2).length > 0
+                    ) 
+                    
+                    
+                      && 
+                          
+                            <img style={{
+                              "position": "absolute", 
+                              "top": `${charaPicCurr2["posY"]}px`, "left": `${charaPicCurr2["posX"]}px`,
+                              "width": `${charaPicCurr2["width"] * charaPicCurr2["scale"]}px`, "height": `${charaPicCurr2["height"] * charaPicCurr2["scale"]}px`,
+                            }}
+                              src={visualMap[charaPicCurr2["picVar"]]}
+                              
+                              alt="currently character-picture that's being added"
+                            />
                     }
                   </div>
 

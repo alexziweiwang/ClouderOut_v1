@@ -535,7 +535,6 @@ export default function PieceSetter({
 
                                                          
         let previewObj = initializeCharaPreviewingFromTemplate();
-
         setCharaPreviewing(previewObj);
 
 
@@ -692,9 +691,11 @@ export default function PieceSetter({
 
     function onChangeCharPicDataPosX(event) {
  
+
+        setCharaPreviewing({...charaPreviewing, "posX": event.target.value});
+
         let objTemp = charaPreviewing;
         objTemp["posX"] = event.target.value;
-        setCharaPreviewing(objTemp);
 
         //TODO500 notify outer-layer
         sendOutPrvwCharaPic(objTemp);
@@ -703,9 +704,10 @@ export default function PieceSetter({
 
     function onChangeCharPicDataPosY(event) {
 
+        setCharaPreviewing({...charaPreviewing, "posY": event.target.value});
+
         let objTemp = charaPreviewing;
         objTemp["posY"] = event.target.value;
-        setCharaPreviewing(objTemp);
 
         //TODO500 notify outer-layer
         sendOutPrvwCharaPic(objTemp);
@@ -714,9 +716,10 @@ export default function PieceSetter({
 
     function onChangeCharPicDataW(event) {
 
+        setCharaPreviewing({...charaPreviewing, "width": event.target.value});
+
         let objTemp = charaPreviewing;
         objTemp["width"] = event.target.value;
-        setCharaPreviewing(objTemp);
 
         //TODO500 notify outer-layer
         sendOutPrvwCharaPic(objTemp);
@@ -725,9 +728,10 @@ export default function PieceSetter({
 
     function onChangeCharPicDataH(event) {
 
+        setCharaPreviewing({...charaPreviewing, "height": event.target.value});
+
         let objTemp = charaPreviewing;
         objTemp["height"] = event.target.value;
-        setCharaPreviewing(objTemp);
 
         //TODO500 notify outer-layer
         sendOutPrvwCharaPic(objTemp);
@@ -736,9 +740,10 @@ export default function PieceSetter({
 
     function onChangeCharPicDataScale(event) {     
 
+        setCharaPreviewing({...charaPreviewing, "scale": event.target.value});
+
         let objTemp = charaPreviewing;
         objTemp["scale"] = event.target.value;
-        setCharaPreviewing(objTemp);
 
         //TODO500 notify outer-layer
         sendOutPrvwCharaPic(objTemp);
@@ -747,9 +752,10 @@ export default function PieceSetter({
 
     function onChangeCharPicDataVar(event) {
 
+        setCharaPreviewing({...charaPreviewing, "picVar": event.target.value});
+
         let objTemp = charaPreviewing;
         objTemp["picVar"] = event.target.value;
-        setCharaPreviewing(objTemp);
 
         //TODO500 notify outer-layer
         sendOutPrvwCharaPic(objTemp);
@@ -1841,7 +1847,7 @@ export default function PieceSetter({
             </thead>
             <tbody>
                 {charPicDataTable.map((item, index) => {
-                    console.log("!!! charPicDataTable - item = ", item);
+               //     console.log("!!! charPicDataTable - item = ", item);
 
                     let keyStr = "charPicDataTable-" + index;
                     return (
