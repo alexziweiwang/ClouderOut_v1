@@ -24,7 +24,9 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
     username, projName,
 
     getDisplayNonPmTemp,
-    getPmEditingPreviewPiece
+    getPmEditingPreviewPiece,
+
+    getCharaPicPrvw
     
   
   }) {
@@ -118,10 +120,11 @@ console.log("preview-window game-content first-time entry, resource-list fetched
         console.log(" *** ", currentPiece);
 
           //TODO change ...
-          setCharaPicCurr2(currentPiece["chp_preview"]); 
 
       }
         
+      let charaPicPreviewingTemp = getCharaPicPrvw();
+      setCharaPicCurr2(charaPicPreviewingTemp);
 
 
       //TODO testing

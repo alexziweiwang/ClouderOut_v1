@@ -25,6 +25,8 @@ export default function PieceSetter({
     username, projName,
     sendOutBgmVol,
 
+    sendOutPrvwCharaPic
+
 
 }) {
     const audioPlayerId = "audio-player";
@@ -537,7 +539,10 @@ export default function PieceSetter({
         setCharaPreviewing(previewObj);
 
 
+
         //TODO500 notify outer-layer!!!
+        sendOutPrvwCharaPic(previewObj);
+
 
     }
 
@@ -611,6 +616,8 @@ export default function PieceSetter({
 
              
             assignPreviewIndex(lookingPieceNumber-2); // TODO note : number = index+1, index = num-1
+            sendOutPrvwCharaPic(-1);
+
         } 
 
 
@@ -644,7 +651,7 @@ export default function PieceSetter({
                 : []);
 
             assignPreviewIndex(lookingPieceNumber); // TODO note : number = index+1, index = num-1
-        
+            sendOutPrvwCharaPic(-1);
         } 
 
     }
@@ -688,7 +695,9 @@ export default function PieceSetter({
         let objTemp = charaPreviewing;
         objTemp["posX"] = event.target.value;
         setCharaPreviewing(objTemp);
+
         //TODO500 notify outer-layer
+        sendOutPrvwCharaPic(objTemp);
 
     }
 
@@ -697,7 +706,9 @@ export default function PieceSetter({
         let objTemp = charaPreviewing;
         objTemp["posY"] = event.target.value;
         setCharaPreviewing(objTemp);
+
         //TODO500 notify outer-layer
+        sendOutPrvwCharaPic(objTemp);
 
     }
 
@@ -706,7 +717,9 @@ export default function PieceSetter({
         let objTemp = charaPreviewing;
         objTemp["width"] = event.target.value;
         setCharaPreviewing(objTemp);
+
         //TODO500 notify outer-layer
+        sendOutPrvwCharaPic(objTemp);
 
     }
 
@@ -715,7 +728,9 @@ export default function PieceSetter({
         let objTemp = charaPreviewing;
         objTemp["height"] = event.target.value;
         setCharaPreviewing(objTemp);
+
         //TODO500 notify outer-layer
+        sendOutPrvwCharaPic(objTemp);
 
     }
 
@@ -724,7 +739,9 @@ export default function PieceSetter({
         let objTemp = charaPreviewing;
         objTemp["scale"] = event.target.value;
         setCharaPreviewing(objTemp);
+
         //TODO500 notify outer-layer
+        sendOutPrvwCharaPic(objTemp);
 
     }
 
@@ -733,7 +750,9 @@ export default function PieceSetter({
         let objTemp = charaPreviewing;
         objTemp["picVar"] = event.target.value;
         setCharaPreviewing(objTemp);
+
         //TODO500 notify outer-layer
+        sendOutPrvwCharaPic(objTemp);
 
     }
 

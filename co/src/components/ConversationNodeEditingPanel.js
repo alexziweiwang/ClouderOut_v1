@@ -328,6 +328,8 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
  
+    const [charaPicPrvw, setCharaPicPrvw] = useState(-1);
+
 
     const [firstEnterButtonPressed, setFirstEnterButtonPressed] = useState(true);
     
@@ -911,8 +913,8 @@ export default function ConversationNodeEditingPanel() {
 
 //rm-mapping-required: 
 
-                                                    // <PieceSetter> (changed to be pass-in-strategy)
-                                                    // <ConvNodeUISetter> (changed to be pass-in-strategy)
+                                                    // <Piece_Setter> (changed to be pass-in-strategy)
+                                                    // <ConvNodeUI_Setter> (changed to be pass-in-strategy)
 // < PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
 // < PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
 
@@ -982,6 +984,15 @@ export default function ConversationNodeEditingPanel() {
 
     function openSettingPage() {
         window.alert("This button pops the \"Settings Page\" during an actual game-play.");
+    }
+
+    function getPrvwCharaPicFromSubCompo(data) {
+        setCharaPicPrvw(data);
+
+    }
+
+    function passInCharaPicPrvw() {
+        return charaPicPrvw;
     }
 
 
@@ -1138,8 +1149,10 @@ export default function ConversationNodeEditingPanel() {
                             gameDataList={gameDataDesignList} 
                             openRm={handleResourceManagerOpen}
                             openGameDataManager={handleModal_GameDataManagerOpen}
+
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
+
                             getCurrentPieceNum={passInCurrentPieceNum}
                             fetchRmUpdatedSignal={passInRmUpdatedSignal}
                             respondUpdatedRm={resetRmUpdatedSignal}
@@ -1152,6 +1165,8 @@ export default function ConversationNodeEditingPanel() {
                             username={state.userName} 
                             projName={state.projectName} 
                             sendOutBgmVol={receiveBgmVol}   
+
+                            sendOutPrvwCharaPic={getPrvwCharaPicFromSubCompo}
                         />}
                 
                     {(browseList === true) && 
@@ -1236,6 +1251,8 @@ export default function ConversationNodeEditingPanel() {
                     getVisualMap={passInVisualMap}
                     getAudioMap={passInAudioMap}
                     //TODO receive bgm-volume
+
+                    getCharaPicPrvw={passInCharaPicPrvw}
 
                                             //TODO later: se-volume
                                             //TODO later: voiceline-volume
