@@ -528,25 +528,52 @@ export default function PieceSetter({
 
 
     function changeAddAnotherCharPicOption() { 
-                                                                    // setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
-                                                                    //     characterPictureCurrTemplate
-                                                                    // });
+                             
         setAnotherCharPic(!anotherCharpic);
 
-                                                                    // let tempObj = currentSinglePieceDetail;
-                                                                    // tempObj["chp_ preview"] = characterPictureCurrTemplate;
-                                                                    // updateToCaller(tempObj);
-        
-        let previewObj = {};
-        Object.keys(characterPictureCurrTemplate).map((currKey) => {
-            previewObj[currKey] = characterPictureCurrTemplate[currKey];
-        });
+                                                         
+        let previewObj = initializeCharaPreviewingFromTemplate();
 
         setCharaPreviewing(previewObj);
 
 
         //TODO500 notify outer-layer!!!
 
+    }
+
+    function confirmAddingAnotherCharPicToTable() {
+        //TODO700
+           // update to cloud db for this field: character-pic 
+           let tempTable = charPicDataTable;
+
+           let tempArrPreviewing = {};
+           Object.keys(charaPreviewing).map((currKey) => {
+               tempArrPreviewing[currKey] = charaPreviewing[currKey];            
+           });
+
+           tempTable.push(tempArrPreviewing);
+           setCharPicDataTable(tempTable);
+
+
+           let tempPieceDetail = currentSinglePieceDetail;
+
+           let tempTableMap = {};
+           tempTable.map((item, index) => {
+               tempTableMap[index] = item;
+           });
+
+
+           tempPieceDetail["chp_map"] = tempTableMap;
+           tempPieceDetail["chp_preview"] = tempArrPreviewing;
+
+           setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
+               "chp_map": tempTableMap, 
+               "chp_preview": tempArrPreviewing
+           });
+           
+           updateToCaller(tempPieceDetail); //TODO test
+
+           changeAddAnotherCharPicOption();
     }
 
 
@@ -1825,12 +1852,21 @@ export default function PieceSetter({
             </table>
             <br></br>
             
-            {currentSinglePieceDetail["chp_action"] === "changeCharPicArr" && <button onClick={()=>{
-                if (anotherCharpic === true) { // going to be false (closed)
-                    resetAddingCharPicRow();
-                }
-                changeAddAnotherCharPicOption();}}>{addAnewCharPicText}
-            </button>}
+            {currentSinglePieceDetail["chp_action"] === "changeCharPicArr" && 
+            <>
+                <button onClick={()=>{
+                        if (anotherCharpic === true) { // going to be false (closed)
+                            //cancelling
+                            resetAddingCharPicRow();
+                        }
+                        changeAddAnotherCharPicOption();
+                    }}
+                >
+                    {anotherCharpic === true ? "Cancel" : addAnewCharPicText}
+                </button>
+            
+            </>}
+
     </div>}
 
 
@@ -1890,37 +1926,8 @@ export default function PieceSetter({
 
         } else {
             // update to cloud db for this field: character-pic 
-            let tempTable = charPicDataTable;
-            let tempArrPreviewing = {};
-            //TODO700
-            Object.keys(charaPreviewing).map((currKey) => {
-                tempArrPreviewing[currKey] = charaPreviewing[currKey];            
-            });
+            confirmAddingAnotherCharPicToTable();
 
-            tempTable.push(tempArrPreviewing);
-             //TODO600 change from ref-
-
-            setCharPicDataTable(tempTable);
-
-            let tempPieceDetail = currentSinglePieceDetail;
-
-            let tempTableMap = {};
-            tempTable.map((item, index) => {
-                tempTableMap[index] = item;
-            });
-            tempPieceDetail["chp_map"] = tempTableMap;
-
-
-            tempPieceDetail["chp_preview"] = tempArrPreviewing;
-
-            setCurrentSinglePieceDetail({...currentSinglePieceDetail,  
-                "chp_map": tempTableMap, 
-                "chp_preview": tempArrPreviewing
-            });
-            
-            updateToCaller(tempPieceDetail); //TODO test
-
-            changeAddAnotherCharPicOption();
         }
     
 
