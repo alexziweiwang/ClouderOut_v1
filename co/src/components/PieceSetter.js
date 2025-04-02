@@ -1710,7 +1710,7 @@ export default function PieceSetter({
                         
                         setIsCstmClkbAddNewConsq(false);
 
-                    }}>Add</button>
+                    }}>Add</button> 
                     </div>}
                     </div>
                     <br></br>
