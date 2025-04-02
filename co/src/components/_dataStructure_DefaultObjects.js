@@ -186,30 +186,21 @@ export const characterPictureCurrTemplate = {
 //TODO700
 export const emptyConvNodeSinglePieceTemplate = {
     "num": 1, 
+    "isContentNotClkb": true,
     "content": "", 
     "speaker_name": "", 
     "bgp_pos_x": 0, 
     "bgp_pos_y": 0, 
     "bgp_width": 800, 
     "bgp_height": 600, 
+    "bgp_source_varname": "",
     "chp_map": [], 
-    "chp_preview": {
-        "picVar": "",
-        "posX": 0,
-        "posY": 0,
-        "width": 60,
-        "height": 120,
-        "scale": 1  
-    },
     "stnd_btn_arr": [], 
-    "clkb_arr": [],
     "bgm_loop": true, 
-    "bgm_volume": 100, 
-    "vl_source_link": "", 
-    "vl_volume": 100,
+    "bgm_source_varname": "",
     "displayTextFrame": true,
     "bgp_action": "maintainBgp", 
     "chp_action": "maintainCharPicArr",
     "bgm_action": "maintainBgm", 
-    "vl_action": "maintainVl",
+
 }
