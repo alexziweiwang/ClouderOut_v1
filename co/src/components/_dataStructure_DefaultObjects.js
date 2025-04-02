@@ -174,25 +174,6 @@ export const emptyConvNodeUiAllTemplate = {
     logPage: logPageUISettings
 }; 
 
-
-export const newEmptyPieceTemplate = {
-    "num": -1, 
-    "content": "", 
-    "speaker_name": "", 
-    "bgp_pos_x": 0, 
-    "bgp_pos_y": 0, 
-    "bgp_width": "800px", 
-    "bgp_height": "600px", 
-    "chp_map": [], 
-    "stnd_btn_arr": [], 
-    "clkb_arr": [],
-    "bgm_loop": true, 
-    "bgm_volume": 100, 
-    "vl_source_link": "", 
-    "vl_volume": 100,
-    "displayTextFrame": true
-}; 
-
 export const characterPictureCurrTemplate = {
     "picVar": "",
     "posX": 0,
@@ -202,7 +183,8 @@ export const characterPictureCurrTemplate = {
     "scale": 1  
 }
 
-export const emptyConversationNodeTemplate = {
+//TODO700
+export const emptyConvNodeSinglePieceTemplate = {
     "num": 1, 
     "content": "", 
     "speaker_name": "", 
@@ -225,5 +207,9 @@ export const emptyConversationNodeTemplate = {
     "bgm_volume": 100, 
     "vl_source_link": "", 
     "vl_volume": 100,
-    "displayTextFrame": true
+    "displayTextFrame": true,
+    "bgp_action": "maintainBgp", 
+    "chp_action": "maintainCharPicArr",
+    "bgm_action": "maintainBgm", 
+    "vl_action": "maintainVl",
 }

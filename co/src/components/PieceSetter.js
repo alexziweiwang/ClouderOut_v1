@@ -151,7 +151,7 @@ export default function PieceSetter({
     const [voicelineAdd, setVoicelineAdd] = useState(true);
     const [rmSelectorOpen, setRmSelectorOpen] = useState(false);
     const [isLooping, setIsLooping] = useState(true);
-    const [anotherCharpic, setAnotherCharPic] = useState(false);
+    const [anotherCharpic, setAnotherCharPicOpen] = useState(false);
 
     const [charPicDataTable, setCharPicDataTable] = useState([]);
 
@@ -195,34 +195,27 @@ export default function PieceSetter({
 
     const [allPiecesDataLocal, setAllPiecesDataLocal] = useState(allPieceData);
 
+
+    //TODO700
     const [currentSinglePieceDetail, setCurrentSinglePieceDetail] = useState(
         allPieceData.length > 0 ?
-        ({"num": pieceNum, 
+        ({
+        "num": pieceNum, 
         "content": allPieceData[pieceNum-1]["content"], 
         "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
         "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
         "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
-
         "bgp_source_pair" : allPieceData[pieceNum-1]["bgp_source_pair"], //TODO impl
-
         "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
         "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
         "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
         "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
         "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
-
         "chp_map": allPieceData[pieceNum-1]["chp_map"], 
         "chp_action": allPieceData[pieceNum-1]["chp_action"], 
-
-      //  "stnd_btn_map": allPieceData[pieceNum-1]["stnd_btn_map"], // fetch/in side
         "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], // fetch/in side
-
-
         "clkb_arr": allPieceData[pieceNum-1]["clkb_arr"], 
-        "clkb_previewing": allPieceData[pieceNum-1]["clkb_previewing"], 
         "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
-        
-        "bgm_source_pair" : allPieceData[pieceNum-1]["bgm_source_pair"], //TODO impl
 
         "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
         "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
@@ -230,7 +223,6 @@ export default function PieceSetter({
         "vl_source_link": allPieceData[pieceNum-1]["vl_source_link"], 
         "vl_volume": allPieceData[pieceNum-1]["vl_volume"],
 
-        "vl_source_pair" : allPieceData[pieceNum-1]["vl_source_pair"], //TODO impl
     }) : 
         {
         "num": 0, 
@@ -531,23 +523,26 @@ export default function PieceSetter({
 
     function changeAddAnotherCharPicOption() { 
                              
-        setAnotherCharPic(!anotherCharpic);
-
-                                                         
-        let previewObj = initializeCharaPreviewingFromTemplate();
-        setCharaPreviewing(previewObj);
+        if (anotherCharpic === true) { // now true (open)
+            setAnotherCharPicOpen(false); // to collapse the "add-new" panel
+            sendOutPrvwCharaPic(-1); // not previewing anything
 
 
+        } else { //anotherCharpic now false(closed) -> to expand the "add-new" panel
+            setAnotherCharPicOpen(true);
+                                                   
+            let previewObj = initializeCharaPreviewingFromTemplate();
+            setCharaPreviewing(previewObj);
 
-        //TODO500 notify outer-layer!!!
-        sendOutPrvwCharaPic(previewObj);
-
+            //TODO500 notify outer-layer!!!
+            sendOutPrvwCharaPic(previewObj);
+        }
 
     }
 
     function confirmAddingAnotherCharPicToTable() {
-        //TODO700
-           // update to cloud db for this field: character-pic 
+
+            // update to cloud db for this field: character-pic 
            let tempTable = charPicDataTable;
 
            let tempArrPreviewing = {};
@@ -589,6 +584,7 @@ export default function PieceSetter({
             //TODO: fetch "lookingPieceNumber-2"'s data            
             //TODO temp
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber-2]);
+            console.log("\t\tjump-prev -> ", allPiecesDataLocal[lookingPieceNumber-2]);
 
             
             // let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-2]["bgm_source_varname"]);
@@ -628,7 +624,8 @@ export default function PieceSetter({
             //TODO change *all* form content here in display...
             
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber]);
-            
+            console.log("\t\tjump-prev -> ", allPiecesDataLocal[lookingPieceNumber]);
+
             // let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber]["bgm_source_varname"]);
             // setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
@@ -912,15 +909,19 @@ export default function PieceSetter({
   return (
       
     <div 
-                                            // onClick={()=>{
-                                            //     setIsClickedOnSetters(true);
-                                            // }} //not using now.
     >
+
+
 
     <div className="pieceSetterArea userChoice pieceEditingLeftArea"         
         style={{
             "userSelect": "none"
-        }}>        <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
+        }}>        
+        
+
+{/* piece-changing panel starts here */}
+
+        <button onClick={()=>{backToList();}}>← {listText}</button><br></br>
         <br></br>
 
         <div className="buttonRight90">
@@ -953,12 +954,12 @@ export default function PieceSetter({
         </div>
         <br></br>
         <br></br>
+{/* piece-changing panel end here */}
 
             <label>Piece: {lookingPieceNumber}</label>
             <br></br>
 
-
-
+    {/* selection1-text_content */}
             <input type="radio"
                 value={userSelectedTextContentToEdit}
                 checked={userSelectedTextContentToEdit}
@@ -992,6 +993,7 @@ export default function PieceSetter({
             </div>
 
 
+    {/* selection2-clickables/buttons */}
             <input type="radio"
                 value={userSelectedTextContentToEdit}
                 checked={!userSelectedTextContentToEdit}
@@ -1048,9 +1050,14 @@ export default function PieceSetter({
             <><button className="collapseToggleGrey">{textContentSettingText} - </button>
             <br></br></>}
 
+
+            {/* text-content edit area */}
             {(textContentInfoAdd && userSelectedTextContentToEdit) && 
                 <div className="optionAreaSelected2">
-                    <button className="buttonRight" onClick={() =>{handleTextContentReset()}}> {resetText} </button>
+                    <button className="buttonRight" 
+                        onClick={() =>{handleTextContentReset()}}> 
+                            {resetText} 
+                    </button>
                     
                     <br></br>
 
@@ -1120,6 +1127,9 @@ export default function PieceSetter({
             <br></br>
             </>}
 
+
+
+            {/* button/clickables edit area */}
             {(clickableAdd && !userSelectedTextContentToEdit) && 
                 <div className="optionAreaSelected2">
            
@@ -1129,6 +1139,7 @@ export default function PieceSetter({
                     
                     }}> {resetText} </button>
 
+                    {/* sub-section: standard-button */}
                     <div><label>Standard Button/Option Group</label>
                         <div className="indentOne">
 
@@ -1754,6 +1765,8 @@ export default function PieceSetter({
             && <button className="collapseToggle" onClick={toggleBgPicOption}>{bgpSettingText}  ︽</button>}
             <br></br>
 
+
+            {/* background picture edit area */}
             {bgpicAdd && 
                 <div className="optionAreaSelected2">
 
@@ -1809,11 +1822,13 @@ export default function PieceSetter({
             {charPicAdd && <button className="collapseToggle" onClick={toggleCharPicOption}>{charPicSettingText}  ︽</button>}
             <br></br>
 
+
+            {/* character picture(s) edit area */}
             {charPicAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{console.log("TODO reset...")}}> {resetText} </button>
                     <br></br>
-                    <label>Operation:</label>
+                    <label>Operation: </label>
                     <select 
                         value={currentSinglePieceDetail["chp_action"]}
                         onChange={(event)=>{
@@ -1880,10 +1895,6 @@ export default function PieceSetter({
             {currentSinglePieceDetail["chp_action"] === "changeCharPicArr" && 
             <>
                 <button onClick={()=>{
-                        if (anotherCharpic === true) { // going to be false (closed)
-                            //cancelling
-                            resetAddingCharPicRow();
-                        }
                         changeAddAnotherCharPicOption();
                     }}
                 >
@@ -1973,6 +1984,7 @@ export default function PieceSetter({
             {bgMusicAdd && <button className="collapseToggle" onClick={toggleBgMusicAddOption}>{bgmSettingText}  ︽</button>}
             <br></br>
 
+            {/* background music edit area */}
             {bgMusicAdd && 
                 <div className="optionAreaSelected2">
                     <button className="buttonRight" onClick={() =>{
@@ -2138,6 +2150,8 @@ export default function PieceSetter({
         <br></br>
         <br></br>
 
+
+    {/* bottom changing panel starts here */}
         <div className="buttonRight90">
             {(lookingPieceNumber > 1) &&
                 <button onClick={()=>{
@@ -2165,6 +2179,9 @@ export default function PieceSetter({
             <button onClick={()=>{collapseAllOptions()}}> {collapseAllText} </button>
             <button onClick={()=>{expandAllOptions()}}> {expandAllText} </button>
         </div>
+
+    {/* bottom changing panel ends here */}
+
   </div>
 
   </div>

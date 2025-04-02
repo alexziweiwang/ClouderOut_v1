@@ -135,7 +135,7 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       let auMap = getAudioMap();
       setAudioMap(auMap);
 
-      console.log("previewing22222: visual-map = ", visMap);
+      // console.log("previewing22222: visual-map = ", visMap);
 
 
     }); // --- end of useEffect ---
@@ -171,7 +171,8 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       if (allPieceContentTemp[currPieceNumTemp]["chp_action"] === "changeCharPicArr") { 
         console.log("chara-pic-arr CHANGED!!!: ", allPieceContentTemp[currPieceNumTemp]["chp_map"]);  
 
-        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_map"]);  
+        setCharaPicArr2(allPieceContentTemp[currPieceNumTemp]["chp_map"]); 
+        
       } else if (!isForward && allPieceContentTemp[currPieceNumTemp]["chp_action"] === "maintainCharPicArr") {
         //TODO1 fetch nearest chp-arr
         let charArrTemp = findNearestCharaArr(currPieceNumTemp);

@@ -14,7 +14,7 @@ import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
-import { newEmptyPieceTemplate } from './_dataStructure_DefaultObjects';
+import { emptyConvNodeSinglePieceTemplate } from './_dataStructure_DefaultObjects';
 
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
@@ -357,8 +357,8 @@ export default function ConversationNodeEditingPanel() {
 
 
             const item = {};
-            Object.keys(newEmptyPieceTemplate).map((currKey) => {
-                item[currKey] = newEmptyPieceTemplate[currKey];
+            Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+                item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
             });
             setEditingPmPreviewPiece(item);
 

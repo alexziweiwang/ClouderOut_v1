@@ -28,7 +28,7 @@ import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntir
 
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
-import { emptyConversationNodeTemplate, emptyConvNodeUiAllTemplate } from './_dataStructure_DefaultObjects';
+import { emptyConvNodeSinglePieceTemplate, emptyConvNodeUiAllTemplate } from './_dataStructure_DefaultObjects';
 
 export default function GameMaker({username, projectName}) {
 
@@ -1213,8 +1213,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       let convNodeArr = [];
       
       const contentItem = {};
-      Object.keys(emptyConversationNodeTemplate).map((currKey) => {
-        contentItem[currKey] = emptyConversationNodeTemplate[currKey];
+      Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+        contentItem[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
       });
       convNodeArr.push(contentItem);
       

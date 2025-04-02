@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
-import { newEmptyPieceTemplate } from './_dataStructure_DefaultObjects';
+import { emptyConvNodeSinglePieceTemplate } from './_dataStructure_DefaultObjects';
 
 export default function PieceManager({
     allPieceData, assignPieceNum, assignPreviewIndex, 
@@ -145,8 +145,8 @@ export default function PieceManager({
         setCurrentPieceNum(number);
         
         const item = {};
-        Object.keys(newEmptyPieceTemplate).map((currKey) => {
-            item[currKey] = newEmptyPieceTemplate[currKey];
+        Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+            item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
         });
 
         item["num"] = number;
@@ -167,8 +167,8 @@ export default function PieceManager({
         //setCurrentPieceNum(number);
 
         const item = {};
-        Object.keys(newEmptyPieceTemplate).map((currKey) => {
-            item[currKey] = newEmptyPieceTemplate[currKey];
+        Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+            item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
         });
         item["num"] = number+1;
 
