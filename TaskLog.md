@@ -515,7 +515,7 @@
 
 - 2025-Apr-01: Organize piece-setter ver.1 var-list for improvement
 - 2025-Apr-01: Design testing-project plot 12
-
+- 2025-Apr-01: Reorganize data-flow for conv-node
 
 
 
