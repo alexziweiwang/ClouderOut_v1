@@ -77,13 +77,9 @@ export default function GameScreen_QuickView_ConvNode ({
         useEffect(() => {
 
 
-            console.log("gs_qv_cn -- ", allPieceLimit);
+            console.log("gs_qv_cn -- allPieceLimit === 0 = ", allPieceLimit);
 
 
-
-            if (allPieceLimit === 0) {
-                notifyNodeFinish();
-            }
          
             if (firstTimeEnter === true) {
 
@@ -126,8 +122,9 @@ export default function GameScreen_QuickView_ConvNode ({
 
 
 
-            if ((allPieceContent[currPieceNum]["clkb_arr"] !== undefined && allPieceContent[currPieceNum]["clkb_arr"].length > 0) || 
-                (allPieceContent[currPieceNum]["stnd_btn_arr"] !== undefined && allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0)) {
+            if ((allPieceContent[currPieceNum]["stnd_btn_arr"] !== undefined && allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0)
+            ) {
+                                                // TODO LATER: || (allPieceContent[currPieceNum]["clkb_arr"] !== undefined && allPieceContent[currPieceNum]["clkb_arr"].length > 0) 
                 setDirectNextPieceBool(false);
             } else {
                 setDirectNextPieceBool(true);
@@ -143,8 +140,11 @@ export default function GameScreen_QuickView_ConvNode ({
 
 
  
-            if (allPieceContent.length > 0 && allPieceContent[currPieceNum] !== undefined && allPieceContent[currPieceNum].displayTextFrame === false) {
-                setTextStillTyping(false);
+            if (allPieceContent.length > 0 
+                && allPieceContent[currPieceNum] !== undefined 
+                && allPieceContent[currPieceNum].displayTextFrame === false) {
+
+                    setTextStillTyping(false);
             }
 
 
@@ -312,7 +312,7 @@ console.log("game-screen quick-view conv-node ... render once");
 
     return (   
 <>      
-{allPieceContent.length > 0 && 
+{allPieceContent.length > 0 &&
 <div   
 style={{
     "position": "relative", 
@@ -380,8 +380,11 @@ style={{
         "position": "absolute", 
     }}>
 
-            {(currPieceNum >= 0 && allPieceContent[currPieceNum].displayTextFrame === true) &&                          
-                <GameUI_Play_1TextFrame
+            {(allPieceContent.length > 0 
+                    && currPieceNum >= 0 
+                    && allPieceContent[currPieceNum] !== undefined 
+                    && allPieceContent[currPieceNum].displayTextFrame === true) 
+            && <GameUI_Play_1TextFrame
                     initialPieceNum={initialPieceNum}
                     allPieceContent={allPieceContent}
                     getCurrentPieceNum={passInCurrentPieceNum}

@@ -918,7 +918,7 @@ export default function ConversationNodeEditingPanel() {
 // < PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
 // < PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
 
-// < AllPanels_QuickView_ConvNode> [//TODO105 refactored, to test]
+// < AllPanels_QuickView_ConvNode > [//TODO105 refactored, to test]
 
 
         let audioListTemp = data.audio;
@@ -1028,7 +1028,9 @@ export default function ConversationNodeEditingPanel() {
 
                 <div style={{"minWidth": "200px", "marginTop": "2px"}}>
                     <button className="button testEntire"
-                        onClick={()=>{setIsDisplayQview(true);}}>
+                        onClick={()=>{
+                            setIsDisplayQview(true);
+                            }}>
                             {quickGameViewText}
                     </button>                    
                 </div>
@@ -1361,7 +1363,10 @@ export default function ConversationNodeEditingPanel() {
             
 
 {/* *** quick-view modal ***  */}
-            {isDisplayQview && <AllPanels_QuickView_ConvNode
+{/* TODO700 testing */}
+
+            {isDisplayQview && 
+            <AllPanels_QuickView_ConvNode
                     initialPieceNum={previewingIndex}
                     isDisplay={isDisplayQview}
                     handleQViewCancel={handleqvCancel}

@@ -101,8 +101,19 @@ console.log("preview-window game-content first-time entry, resource-list fetched
             setCurrentPiece(allPieceContentTemp[currPieceNumTemp]);
           }
 
-          if (allPieceContentTemp !== undefined && allPieceContentTemp[currPieceNumTemp]["clkb_arr"] !== undefined && (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
+          if (allPieceContentTemp !== undefined 
+            && (
             allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0)) {
+
+              //TODO LATER
+            //   allPieceContentTemp !== undefined 
+            // && allPieceContentTemp[currPieceNumTemp]["clkb_arr"] !== undefined 
+            // && (allPieceContentTemp[currPieceNumTemp]["clkb_arr"].length > 0 || 
+            // allPieceContentTemp[currPieceNumTemp]["stnd_btn_arr"].length > 0)
+
+
+
+
               setDirectNextPieceBool(false);
           } else {
               setDirectNextPieceBool(true);

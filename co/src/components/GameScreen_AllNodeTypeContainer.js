@@ -458,8 +458,12 @@ export default function GameScreen_AllNodeTypeContainer({
             && upcomingNodeType !== "*chapterEnd*"
             && upcomingNodeType !== "LogicSplitter"
         ){ // game-content-nodes
+
             fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
+
         //TODO700
+
+        
         } 
     
         triggerWalkToCurrNode(holdingNextNodeKey, upcomingNodeType);

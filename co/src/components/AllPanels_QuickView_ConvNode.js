@@ -96,10 +96,12 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
 
         console.log("all-panels-QuickView: ", allPieceContent, " with piece-num: ", currPieceNum);
 
-        if (allPieceContent[currPieceNum]["clkb_arr"].length > 0 || 
-            allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0) {
+        if (allPieceContent[currPieceNum]["isContentNotClkb"] === false) {
+                                                                
             setDirectNextPieceBool(false);
-        } else {
+
+        } else { //content only, no clicking interaction
+
             setDirectNextPieceBool(true);
         }
 
