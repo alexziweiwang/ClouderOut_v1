@@ -155,7 +155,7 @@ export default function GameMaker({username, projectName}) {
   const [visualMap, setVisualMap] = useState([]); 
   const [audioMap, setAudioMap] = useState([]);
 
-  const [allNodesContainer, setAllNodesContainer] = useState([]); //TODO200
+  const [currChapterContainer, setCurrChapterContainer] = useState([]); //TODO200
 
 
     async function fetchProjResourceLists() {
@@ -1551,15 +1551,20 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     return chapNodeKeyDs;
   }
 
-  async function fetchAllNodesContainerFromCloud() {
+  async function fetchcurrChapterContainerFromCloud() {
     //TODO201 strategy: load chapter data for each chapter (optional)?
 
 
-    // console.log("...fetchAllNodesContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
+    // console.log("...fetchcurrChapterContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
 
 
     // let chapNodeKeyDs = fromNodeMapToChapterNodeKeyDs();
-    // console.log("...fetchAllNodesContainerFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
+    // console.log("...fetchcurrChapterContainerFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
+
+
+//TODO700 important!
+
+
 
 
     let data = await fetchNodeDataEntireProjectVM({
@@ -1568,18 +1573,18 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     });
 
     if (data !== undefined) {
-      setAllNodesContainer(data);
+      setCurrChapterContainer(data);
     }
 
-    console.log("fetchAllNodesContainerFromCloud, data = ", data);
+    console.log("fetchcurrChapterContainerFromCloud, data = ", data);
     
 
     //TODO100
   
   }
 
-  function passInAllNodesContainer() {
-    return allNodesContainer;
+  function passInCurrChapterContainer() {
+    return currChapterContainer;
   }
 
   function passInFalseBool() {
@@ -1640,7 +1645,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
       >
         <button
           onClick={()=>{
-            fetchAllNodesContainerFromCloud();
+            fetchcurrChapterContainerFromCloud();
 
             setDisplayEntireGameViewer(true);
           }}
@@ -1952,8 +1957,8 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
           audioMap={audioMap}
           mutedViewOption={mutedViewOption}
 
-          allNodesContainer={allNodesContainer}
-          getAllNodesContainer={passInAllNodesContainer}
+          currChapterContainer={currChapterContainer}
+          getCurrChapterContainer={passInCurrChapterContainer}
 
       />
 

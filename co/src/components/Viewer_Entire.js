@@ -59,18 +59,9 @@ export default function Viewer_Entire({
     mutedViewOption,
 
 
-   // allNodesContainer,
-    getAllNodesContainer,
+    getCurrChapterContainer,
 
 
-                                //TODO test before removing
-                                            // getNodeType, 
-                                            // getChapterKey, 
-                                            // getNodeKey,
-                                            // getPageName,
-                                            // getChapterTitle,
-                                //TODO test before removing
-    
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -137,30 +128,6 @@ export default function Viewer_Entire({
 
     const [allNodesContainer, setAllNodesContainer] = useState([]); //TODO200
 
-//prev-ver. //TODO remove after test
-                                        // const [screenWidth, setScreenWidth] = useState(800); //TODO
-                                        // const [screenHeight, setScreenHeight] = useState(600); //TODO
-                                    
-                                                                // then in use Effect...
-                                                                    //     if (navigationObj !== undefined && Object.keys(navigationObj).length > 0) { //TODO change to non-dynamic?
-
-                                                                            // if 
-                                                                            // (navigationObj["screenSize"] === "16:9(horizonal)"
-                                                                            // || navigationObj["screenSize"] === "16:9(vertical)"
-                                                                            // || navigationObj["screenSize"] === "4:3(horizonal)"
-                                                                            // || navigationObj["screenSize"] === "4:3(vertical)"
-                                                                            // ) 
-                                                                    //{
-                                                                    //             let w = sizeLookupMap[navigationObj["screenSize"]][0];
-                                                                    //             let h = sizeLookupMap[navigationObj["screenSize"]][1];
-                                                                    //             setScreenWidth(w); // according to navigationObj's size 
-                                                                    //             setScreenHeight(h); // according to navigationObj's size 
-                                                                    //         }
-                                                                    // }
-//prev-ver. //TODO remove after test
-
-
-
 
     const [chapterList, setChapterList] = useState(initialChapterList);  
         //TODO change chapter-list to non-dynamic-data later - directly from outer-layer is ok
@@ -183,14 +150,7 @@ export default function Viewer_Entire({
 
     
 
-                                                                        //TODO remove later
-                                                                                            // const [currChapterKey, setCurrChapterKey] = useState("");
-                                                                                            // const [currNodeKey, setCurrNodeKey] = useState("");
-                                                                                            // const [currNodeType, setCurrNodeType] = useState("");
-                                                                        //TODO remove later
-
-
-
+              
 
 
 
@@ -218,7 +178,6 @@ export default function Viewer_Entire({
 
 
     const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({
-
     }); // important - for game-progress
 
 
@@ -248,20 +207,11 @@ export default function Viewer_Entire({
         }
 
         
-        let anc = getAllNodesContainer();
+        let anc = getCurrChapterContainer();
         setAllNodesContainer(anc);
-                                     //       console.log("\t\t*** Viewer-Entire: allNodesContainer = ", anc);
+                                           console.log("\t\t*** Viewer-Entire: allNodesContainer = ", anc);
 
 
-
-                                        //TODO test before removing...
-                                                // let nodeTypeTemp = getNodeType(); //important here!! dont move around
-                                                // let chapterKeyTemp = getChapterKey(); //important here!! dont move around
-                                                // let nodeKeyTemp = getNodeKey(); //important here!! dont move around
-                                                // let pageNameTemp = getPageName(); //important here!! dont move around
-                                                // let chapterTitleTemp = getChapterTitle(); //important here!! dont move around
-                                                // configureGameProgress(nodeTypeTemp, chapterKeyTemp, nodeKeyTemp, pageNameTemp, chapterTitleTemp); //important here!! dont move around
-                                        //TODO test before removing...
 
 
 
@@ -612,7 +562,7 @@ game-screen (specific node) layer */}
                                                 mutedViewOption={mutedViewOption}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
                                           
-                                                getAllNodesDataContainer={passInAllNodesContainer}
+                                                getCurrChapterDataContainer={passInAllNodesContainer}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}

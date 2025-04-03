@@ -36,7 +36,7 @@ export default function GameScreen_AllNodeTypeContainer({
     mutedViewOption,
     fetchGameSettings,
 
-    getAllNodesDataContainer,
+    getCurrChapterDataContainer,
     openSettingPage,
 
     sendOutBgmSettings,
