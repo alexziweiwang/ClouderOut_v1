@@ -1611,6 +1611,9 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
   }
 
   function saveEverythingToCloud() {
+    //TODO900!! issue: newly-created conv-node not containing first-piece if created locally only
+
+
     updateProjectNavigationSettingsToCloud();
     updateChapterNodeMappingsToCloud(); 
     saveToCloudNewlyCreatedNodeFolder(); 

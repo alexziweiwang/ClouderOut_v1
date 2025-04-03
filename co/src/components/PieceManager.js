@@ -264,26 +264,32 @@ export default function PieceManager({
     }
 
     function deletePiece(index) {
-                                    console.log("deleting item...", pieceDataLocal[index]);
+       
 
-        let newDataLocal = [];
-        let j = 0;
-        for (; j < index; j++) {
-            newDataLocal.push(pieceDataLocal[j]);
-        }
 
-        let i = index;
-        for (; i < (pieceDataLocal.length - 1); i++) {
-            const piece = {...pieceDataLocal[i+1],  "num": i+1};
-            newDataLocal.push(piece);
-        }
+       
+            console.log("deleting item...", pieceDataLocal[index]);
 
-                                    console.log("deleted. updated allPieceData: ", newDataLocal);
-        setPieceDataLocal(newDataLocal);
-        setNonClickced();
-
-        updatePieceData(newDataLocal);
-
+            let newDataLocal = [];
+            let j = 0;
+            for (; j < index; j++) {
+                newDataLocal.push(pieceDataLocal[j]);
+            }
+    
+            let i = index;
+            for (; i < (pieceDataLocal.length - 1); i++) {
+                const piece = {...pieceDataLocal[i+1],  "num": i+1};
+                newDataLocal.push(piece);
+            }
+    
+                                        console.log("deleted. updated allPieceData: ", newDataLocal);
+            setPieceDataLocal(newDataLocal);
+            setNonClickced();
+    
+            updatePieceData(newDataLocal);
+    
+        
+       
     }
 
     function setNonClickced() {
@@ -533,12 +539,17 @@ export default function PieceManager({
                         {<button 
                         
                         onClick={()=>{
-                            let content = "Are you sure to delete this piece: " + item["num"] + ":" + item["content"] + "?";
-                            let respondGiven = window.confirm(content);
-                            if (respondGiven) {
-                                setGroupMoving(true);
-                                deletePiece(index);
-                            }       
+                            if (pieceDataLocal.length <= 1) {
+                                alert("Node can not be empty!");
+                            } else {
+                                let content = "Are you sure to delete this piece: " + item["num"] + ":" + item["content"] + "?";
+                                let respondGiven = window.confirm(content);
+                                if (respondGiven) {
+                                    setGroupMoving(true);
+                                    deletePiece(index);
+                                }   
+                            }
+    
                         }}
                         >{deleteText}</button>}
                     </td>
