@@ -517,7 +517,7 @@
 - 2025-Apr-01: Design testing-project plot 12
 - 2025-Apr-01: Reorganize data-flow for conv-node
 
-
+- 2025-Apr-02: Design testing-project visual
 
 
 
