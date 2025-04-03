@@ -37,7 +37,7 @@ export default function GameScreen_QuickView_ConvNode ({
 
         let modalStyleName = "modalBackboard"; 
         const allPieceLimit = allPieceContent === undefined ? 0 : allPieceContent.length;
-
+    
         if (isDisplay === true) {
             modalStyleName = "displayBlock modalBackboard";
         } else {
@@ -75,7 +75,16 @@ export default function GameScreen_QuickView_ConvNode ({
     
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
         useEffect(() => {
-     
+
+
+            console.log("gs_qv_cn -- ", allPieceLimit);
+
+
+
+            if (allPieceLimit === 0) {
+                notifyNodeFinish();
+            }
+         
             if (firstTimeEnter === true) {
 
                 setFirstTimeEnter(false);
@@ -134,7 +143,7 @@ export default function GameScreen_QuickView_ConvNode ({
 
 
  
-            if (allPieceContent[currPieceNum].displayTextFrame === false) {
+            if (allPieceContent.length > 0 && allPieceContent[currPieceNum] !== undefined && allPieceContent[currPieceNum].displayTextFrame === false) {
                 setTextStillTyping(false);
             }
 
@@ -301,7 +310,9 @@ console.log("game-screen quick-view conv-node ... render once");
         //     }
         // }
 
-    return (         
+    return (   
+<>      
+{allPieceContent.length > 0 && 
 <div   
 style={{
     "position": "relative", 
@@ -464,8 +475,10 @@ style={{
             />}
 
 
-            </div>
+</div>}
 
+
+</>
     );
 
 

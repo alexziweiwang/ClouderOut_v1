@@ -218,6 +218,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
                                                                 console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
+      
+
             setFocusedNodeData(allNodeDataContainer[keyStr])
             
             return allNodeDataContainer[keyStr];
@@ -457,7 +459,7 @@ export default function GameScreen_AllNodeTypeContainer({
             && upcomingNodeType !== "LogicSplitter"
         ){ // game-content-nodes
             fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
-        
+        //TODO700
         } 
     
         triggerWalkToCurrNode(holdingNextNodeKey, upcomingNodeType);
