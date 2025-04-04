@@ -13,12 +13,19 @@ export default function NodeManager({projectName, currUser,
   initialNodeMap, initialGridBlock,
   updateNodeMapOfChapter, updateGridBlockOfChapter,
   displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
+
   loadChapterInfoFromCaller,
+
   triggerCreatedNewNode,
+  
+  //TODO900 add "triggerDeletedNode"?
+
   triggerNodeMappingsChange,
+
   getChapMgrCollapsed,
 
   getUILanguage,
+
   getCreatedNewNodeWaitListPending,
   triggerSaveToCloud
 
@@ -602,6 +609,10 @@ export default function NodeManager({projectName, currUser,
     updateNodeMapOfChapter(tempNodeMap);
     updateGridBlockOfChapter(tempGridBlocks);
     //TODO updateNodeLinkingsOnce(nodeRelationshipMap, gridBlocks);
+
+
+    //TODO900 update to cloud!
+
   }
 
   function updateRenderCounter() {
@@ -1944,17 +1955,17 @@ export default function NodeManager({projectName, currUser,
               className="setting_item"
               style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{
-                let listPending = getCreatedNewNodeWaitListPending();
-                if (listPending === false) {
-                  enterNodeEditor2();
-                } else {
-                  let ans = window.confirm("Save project and enter?");
-                  if (ans) {
-                    triggerSaveToCloud();
+            //    let listPending = getCreatedNewNodeWaitListPending();
+            //    if (listPending === false) {
+            //      enterNodeEditor2();
+            //    } else {
+          //        let ans = window.confirm("Save project and enter?");
+           //       if (ans) {
+               //     triggerSaveToCloud();
 //TODO500
                     enterNodeEditor2();
-                  }
-                }
+           //       }
+            //    }
                 
               }}>
                 {enterEditorText}

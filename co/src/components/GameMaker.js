@@ -1216,7 +1216,10 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
       Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
         contentItem[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
       });
+
       convNodeArr.push(contentItem);
+
+      console.log("new conv-node created!!", contentItem, "\n" ,convNodeArr);
       
       nodeObj["nodeContent"] = convNodeArr;
 
@@ -1243,6 +1246,10 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
     newNodeList.push(infoObj);
     setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
     setCreatedNewNodeWaitListPending(true);
+
+
+    //TODO900 save to cloud!!! -- directly for this render
+    saveEverythingToCloud();
 
   }
 
@@ -1611,8 +1618,6 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
   }
 
   function saveEverythingToCloud() {
-    //TODO900!! issue: newly-created conv-node not containing first-piece if created locally only
-
 
     updateProjectNavigationSettingsToCloud();
     updateChapterNodeMappingsToCloud(); 
