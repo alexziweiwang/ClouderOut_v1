@@ -1317,10 +1317,12 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
         let currNode = currChapter[nodeKeyTemp];
         let currRow = currNode["row"];
         let currCol = currNode["col"];
-
-        console.log("r = ", currRow, " ... col = ", currCol, " ....... node = ", nodeKeyTemp);
+        if (currNode["display"] === true) { // only for undeleted nodes
+          console.log("r = ", currRow, " ... col = ", currCol, " ....... node = ", nodeKeyTemp);
       
-        maxGrid[currRow][currCol] = nodeKeyTemp;
+          maxGrid[currRow][currCol] = nodeKeyTemp;
+        }
+
       });
       gridEntireTemp[chapterKey] = maxGrid;
 
