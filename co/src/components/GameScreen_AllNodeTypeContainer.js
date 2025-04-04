@@ -9,6 +9,16 @@ import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO115 collection of cloud-related
 
+
+
+//TODO700 get chapter-list
+//TODO according to chapter-key, fetch one chapter of data
+//TODO redo when walking to another chapter??
+
+
+
+
+
 export default function GameScreen_AllNodeTypeContainer({
     getNodeType, 
     getChapterKey, 
@@ -83,7 +93,6 @@ export default function GameScreen_AllNodeTypeContainer({
             //TODO
                                                                 console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
-
 
                 let gDataTemp = getCurrentGameDataTracker();
                 setCurrGameDataTracker(gDataTemp);
@@ -214,6 +223,8 @@ export default function GameScreen_AllNodeTypeContainer({
     //TODO21 refactor to VM
     async function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
 //allNodeDataContainer, setAllNodeDataContainer
+//getCurrChapterDataContainer!!!
+
         let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
@@ -463,7 +474,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
         //TODO700
 
-        
+
         } 
     
         triggerWalkToCurrNode(holdingNextNodeKey, upcomingNodeType);

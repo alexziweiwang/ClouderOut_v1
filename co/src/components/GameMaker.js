@@ -1521,6 +1521,10 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     setCurrTestingNodeType("*chapterStart*");
     setCurrTestingChapterKey(chapterKeyName);
     setCurrTestingChapterTitle(chapterTitleName);
+
+    //TODO700 fetch chapter-data here??
+
+
   }
 
 
@@ -1560,37 +1564,37 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     return chapNodeKeyDs;
   }
 
-  async function fetchcurrChapterContainerFromCloud() {
-    //TODO201 strategy: load chapter data for each chapter (optional)?
+//   async function fetchcurrChapterContainerFromCloud() {
+//     //TODO201 strategy: load chapter data for each chapter (optional)?
 
 
-    // console.log("...fetchcurrChapterContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
+//     // console.log("...fetchcurrChapterContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
 
 
-    // let chapNodeKeyDs = fromNodeMapToChapterNodeKeyDs();
-    // console.log("...fetchcurrChapterContainerFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
+//     // let chapNodeKeyDs = fromNodeMapToChapterNodeKeyDs();
+//     // console.log("...fetchcurrChapterContainerFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
 
 
-//TODO700 important!
+// //TODO700 important!
 
 
 
 
-    let data = await fetchNodeDataEntireProjectVM({
-      uname: username, 
-      projectName: projectName
-    });
+//     let data = await fetchNodeDataEntireProjectVM({
+//       uname: username, 
+//       projectName: projectName
+//     });
 
-    if (data !== undefined) {
-      setCurrChapterContainer(data);
-    }
+//     if (data !== undefined) {
+//       setCurrChapterContainer(data);
+//     }
 
-    console.log("fetchcurrChapterContainerFromCloud, data = ", data);
+//     console.log("fetchcurrChapterContainerFromCloud, data = ", data);
     
 
-    //TODO100
+//     //TODO100
   
-  }
+//   }
 
   function passInCurrChapterContainer() {
     return currChapterContainer;
@@ -1655,7 +1659,8 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
       >
         <button
           onClick={()=>{
-            fetchcurrChapterContainerFromCloud();
+            //fetchcurrChapterContainerFromCloud();
+            //TODO700: fetch the very first chapter's data?
 
             setDisplayEntireGameViewer(true);
           }}

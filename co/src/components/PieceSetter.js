@@ -196,7 +196,7 @@ export default function PieceSetter({
     const [allPiecesDataLocal, setAllPiecesDataLocal] = useState(allPieceData);
 
 
-    //TODO700
+    //TODO200
     const [currentSinglePieceDetail, setCurrentSinglePieceDetail] = useState(
         allPieceData.length > 0 ?
         ({

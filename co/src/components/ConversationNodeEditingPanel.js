@@ -146,6 +146,7 @@ export default function ConversationNodeEditingPanel() {
 
     }); //fetch from cloud-db
 
+//TODO600
     const [gameUITextFrame, setGameUITextFrame] = useState({"width": 600,
     "height": 200,
     "positionX": 100,
@@ -171,6 +172,8 @@ export default function ConversationNodeEditingPanel() {
 
 }); //fetch from cloud-db
 
+
+//TODO600
     const [gameUIBackButton, setGameUIBackButton] = useState({"width": 50,
     "height": 50,
     "cornerRadius": 0,
@@ -191,7 +194,8 @@ export default function ConversationNodeEditingPanel() {
     
 }); //fetch from cloud-db
   
-    const [uiConvNav, setUIConvNav] = useState({
+//TODO600
+const [uiConvNav, setUIConvNav] = useState({
         "buttonAutoIsTextFont": true,
         "buttonAutoShade0": "#bf8da5",
         "buttonAutoPicName0": "",
@@ -234,6 +238,8 @@ export default function ConversationNodeEditingPanel() {
 
     });
 
+
+//TODO600
     const [logPageUISettings, setLogPageUISettings] = useState({
         "closeButtonIsShape": false,
         "closeButtonShade": "",
