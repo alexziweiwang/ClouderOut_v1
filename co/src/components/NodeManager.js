@@ -303,7 +303,7 @@ export default function NodeManager({projectName, currUser,
           let chapterKeyTemp = getCurrChapterKey();
           if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
             
-            let tempMap = getNodeMapOfChapter();
+            let tempMap = getNodeMapOfChapter(); //TODO900
           
             let gridTemp = getGridBlocks(chapterKeyTemp);
   
@@ -601,8 +601,11 @@ export default function NodeManager({projectName, currUser,
 
     /* update all node-mappings */
     setNodeRelationshipMap(tempNodeMap);
-    setGridBlocks(tempGridBlocks);
+    
+    setGridBlocks(tempGridBlocks); //TODO900 test !!!
+
     updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks);
+    
     triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
 
     //update both data structures to outer layer
