@@ -600,7 +600,7 @@ export default function GameMaker({username, projectName}) {
     if (saveOrNot) {
           if (currChapterKey !== "") {
             await updateChapterNodeMappingsToCloud(); 
-            await saveToCloudNewlyCreatedNodeFolder();
+            await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
           }
 
           pureNavigateToProjectManagingPanel();
@@ -823,7 +823,7 @@ export default function GameMaker({username, projectName}) {
               //by createdNewNodeWaitlist, update cloud-folders...
               //TODO37
 
-              await saveToCloudNewlyCreatedNodeFolder();
+              await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
 
               await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
           }
@@ -848,7 +848,7 @@ export default function GameMaker({username, projectName}) {
   }
 
   //TODO21 refactor to VM
-  async function saveToCloudNewlyCreatedNodeFolder() {
+  async function saveToCloudNewlyCreatedNodeFolder(waitlist) {
 //TODO600
 
     if (createdNewNodeWaitlist.length === 0) {
@@ -864,7 +864,7 @@ export default function GameMaker({username, projectName}) {
             { 
                 project: projectName,
                 username: username,
-                nodeList: createdNewNodeWaitlist, 
+                nodeList: waitlist, 
                 chapterKey: currChapterKey
             }
           );
@@ -1245,11 +1245,20 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
     newNodeList.push(infoObj);
     setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
-    setCreatedNewNodeWaitListPending(true);
+  //  setCreatedNewNodeWaitListPending(true);
+
+    //TODO put "newNodeList" into action -- update immediately
+
+    //TODO save to cloud!!! -- directly for this render
+
+    updateChapterNodeMappingsToCloud(); //TODO900
+    saveToCloudNewlyCreatedNodeFolder(newNodeList); 
+    
+    
+    //add this new-node into node-map!
+    //then also update the node-grid-blocks
 
 
-    //TODO900 save to cloud!!! -- directly for this render
-    saveEverythingToCloud();
 
   }
 
@@ -1627,7 +1636,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
     updateProjectNavigationSettingsToCloud();
     updateChapterNodeMappingsToCloud(); 
-    saveToCloudNewlyCreatedNodeFolder(); 
+    saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist); 
     editorExitingHandleChapterMgr();
   }
 {/* //components

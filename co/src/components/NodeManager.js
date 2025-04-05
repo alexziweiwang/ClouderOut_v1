@@ -94,12 +94,10 @@ export default function NodeManager({projectName, currUser,
     textDictItem.saveToMyProjectText
     : textDictItemDefault.saveToMyProjectText;
 
-
   let listOfNodesText = textDictItem.listOfNodesText !== undefined ? 
     textDictItem.listOfNodesText
     : textDictItemDefault.listOfNodesText;
     
-
   let nodeInfoText = textDictItem.nodeInfoText !== undefined ?
     textDictItem.nodeInfoText
     : textDictItemDefault.nodeInfoText;
@@ -197,32 +195,27 @@ export default function NodeManager({projectName, currUser,
     : textDictItemDefault.pleaseSelectOrSetupChaptersInChapterMngText;
 
 
-    //TODO12
-
 
 //TODO important note: node data is operated in this component (and level).
-//TODO node-data from and to cloud db: later the specific node-editing page might need screen-size fixing, this can be through cloud
 
   let nodeWidth = 152;
   let nodeHeight = 52;
 
 
-  //TODO node data from cloud: fetch by username + project_name + chapter_key  
-  const chStartName = "chapterStart-key";
-  const chEndName = "chapterEnd-"+chapterKey;
+  //node data from cloud: fetch by username + project_name + chapter_key  
+                // chStartName = "chapterStart-key";
+                // chEndName = "chapterEnd-"+chapterKey;
 
   const [nodeRelationshipMap, setNodeRelationshipMap] = useState(initialNodeMap !== undefined ? initialNodeMap : {});
   const [gridBlocks, setGridBlocks] = useState(initialGridBlock !== undefined ? initialGridBlock: []); //stores node-keys
-  //TODO31
-  //triggerNodeMappingsChange
 
   //TODO updating-signal
 
 
   const [renderCounter, setRenderCounter] = useState(0);
  
-  //TODO functionality design:
-  //TODO1 always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
+  //functionality design:
+  //always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
 
 
    /* variable area */
@@ -239,6 +232,7 @@ export default function NodeManager({projectName, currUser,
    const [createNewNodeName, setCreateNewNodeName] = useState('');
    const [createNewNodeGameType, setCreateNewNodeGameType] = useState("");
    const [createdNewNodeScreenSize, setCreatedNewNodeScreenSize] = useState("16:9(horizonal)");
+   
    const [deletingNodeName, setDeletingNodeName] = useState("");
    const [isLinkNewNode, setIsLinkNewNode] = useState(false);
    const [needCloudGameData, setNeedCloudGameData] = useState(true);
