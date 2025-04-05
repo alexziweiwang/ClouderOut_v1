@@ -599,7 +599,7 @@ export default function GameMaker({username, projectName}) {
     let saveOrNot = window.confirm("Save all changes and exit?");
     if (saveOrNot) {
           if (currChapterKey !== "") {
-            await updateChapterNodeMappingsToCloud(); 
+            await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
             await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
           }
 
@@ -825,7 +825,7 @@ export default function GameMaker({username, projectName}) {
 
               await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
 
-              await updateChapterNodeMappingsToCloud(); //TODO later: check same ver., if different then update
+              await updateChapterNodeMappingsToCloud(chapterNodeMapAll); //TODO later: check same ver., if different then update
           }
       }
   }
@@ -1152,13 +1152,13 @@ export default function GameMaker({username, projectName}) {
 
 
   //TODO21 refactor to VM
-  async function updateChapterNodeMappingsToCloud() {
+  async function updateChapterNodeMappingsToCloud(nodeMap) {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
     if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
 
 console.log("updating to cloud ... func-step2-all-node-mapping-grid", gridBlocksAll);
-console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapterNodeMapAll);
+console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap);
 
 
         let i = 0;
@@ -1183,7 +1183,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
         await updateChapterNodesToCloudDataVM({
             projectName: projectName, 
             currUser: username,
-            chapterNodeMappingObj: chapterNodeMapAll
+            chapterNodeMappingObj: nodeMap
         });      
         setNodeMapUpdatedSignal(false);
         setGridBlocksUpdatedSignal(false);
@@ -1251,7 +1251,12 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", chapter
 
     //TODO save to cloud!!! -- directly for this render
 
-    updateChapterNodeMappingsToCloud(); //TODO900
+//TODO900 nodemapping update!!
+//chapterNodeMapAll
+
+
+
+
     saveToCloudNewlyCreatedNodeFolder(newNodeList); 
     
     
@@ -1516,6 +1521,9 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
     setNodeMapUpdatedSignal(true);
     setGridBlocksUpdatedSignal(true);
+
+    return nodeMapAll;
+
   }
 
 
@@ -1635,7 +1643,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
   function saveEverythingToCloud() {
 
     updateProjectNavigationSettingsToCloud();
-    updateChapterNodeMappingsToCloud(); 
+    updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
     saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist); 
     editorExitingHandleChapterMgr();
   }

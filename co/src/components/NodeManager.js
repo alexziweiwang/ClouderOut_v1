@@ -458,6 +458,10 @@ export default function NodeManager({projectName, currUser,
         gridBlocks[clickedRow][clickedCol] = createNewNodeName;
         
 
+        // update node being
+        triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+
+
         /* update all node-mappings */
         setGridBlocks(tempGrid);
         setNodeRelationshipMap(tempNodeMap);
@@ -465,21 +469,24 @@ export default function NodeManager({projectName, currUser,
         triggerNodeMappingsChange(tempNodeMap, tempGrid);
 
 
+
         // reset the creation layout
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
         setCreatedNewNodeScreenSize("4:3(horizonal)");
         setClickedNode2(-1); //create new node --> unclick any node on vis-map
+
+
       } else {
         console.log("2Invalid node name: duplicate"); //TODO test
 
       }
+
  
     } else {
       console.log("warning: invalid empty node name"); //TODO test
     }
 
-    triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
   }
 
 
