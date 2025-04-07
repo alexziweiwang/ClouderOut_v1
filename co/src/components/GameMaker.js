@@ -826,6 +826,8 @@ export default function GameMaker({username, projectName}) {
               await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
 
               await updateChapterNodeMappingsToCloud(chapterNodeMapAll); //TODO later: check same ver., if different then update
+          
+              await saveEverythingToCloud();
           }
       }
   }
@@ -1197,7 +1199,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
   //TODO21 refactor to VM
-  function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
+  async function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
     setCreateNodeFolderSignal(true);
     let newNodeList = createdNewNodeWaitlist;
     let infoObj = {
@@ -1257,7 +1259,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
 
-    saveToCloudNewlyCreatedNodeFolder(newNodeList); 
+    await saveToCloudNewlyCreatedNodeFolder(newNodeList); 
     
     
     //add this new-node into node-map!
@@ -1640,10 +1642,10 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     fetchChapterNodeMappingFromCloud();          
   }
 
-  function saveEverythingToCloud() {
+  async function saveEverythingToCloud() {
 
     updateProjectNavigationSettingsToCloud();
-    updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
+    await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
     saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist); 
     editorExitingHandleChapterMgr();
   }

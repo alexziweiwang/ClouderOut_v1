@@ -352,10 +352,14 @@ export default function NodeManager({projectName, currUser,
 
   }
 
-  function enterNodeEditor2() {
+  function enterNodeEditor2() { 
     if (nodeRelationshipMap[clickedNodeKey] === undefined) {
       return;
     }
+
+
+    //TODO outer-layer(game-maker) chapterChangingOrExiting
+
 
     let currNodeType = nodeRelationshipMap[clickedNodeKey].nodeType;
     let userName = currUser;
@@ -365,6 +369,7 @@ export default function NodeManager({projectName, currUser,
     let uiLang = languageCodeTextOption;
 
     console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
+    
     if (currNodeType === "Card Game") {
       navigate('/cardgamenode', { replace: true, 
         state: 
@@ -409,6 +414,7 @@ export default function NodeManager({projectName, currUser,
   // } //TODO remove later
 
   function addNewNode2() { //TODO for new data structure
+
     let tempNodeMap = nodeRelationshipMap;
     if (createNewNodeGameType === "") {
       console.log("Game type is required.") //TODO test
