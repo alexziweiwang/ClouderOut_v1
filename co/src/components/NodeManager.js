@@ -27,7 +27,10 @@ export default function NodeManager({projectName, currUser,
   getUILanguage,
 
   getCreatedNewNodeWaitListPending,
-  triggerSaveToCloud
+  triggerSaveToCloud,
+
+
+  chapterChangingOrExiting
 
 
 }) {
@@ -369,7 +372,7 @@ export default function NodeManager({projectName, currUser,
     let uiLang = languageCodeTextOption;
 
     console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
-    
+
     if (currNodeType === "Card Game") {
       navigate('/cardgamenode', { replace: true, 
         state: 
@@ -1973,6 +1976,7 @@ export default function NodeManager({projectName, currUser,
            //       if (ans) {
                //     triggerSaveToCloud();
 //TODO500
+                    chapterChangingOrExiting();
                     enterNodeEditor2();
            //       }
             //    }

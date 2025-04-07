@@ -600,7 +600,7 @@ export default function GameMaker({username, projectName}) {
     if (saveOrNot) {
           if (currChapterKey !== "") {
             await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
-            await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
+            await saveToCloudNewNodeList(createdNewNodeWaitlist);
           }
 
           pureNavigateToProjectManagingPanel();
@@ -823,7 +823,7 @@ export default function GameMaker({username, projectName}) {
               //by createdNewNodeWaitlist, update cloud-folders...
               //TODO37
 
-              await saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist);
+              await saveToCloudNewNodeList(createdNewNodeWaitlist);
 
               await updateChapterNodeMappingsToCloud(chapterNodeMapAll); //TODO later: check same ver., if different then update
           
@@ -837,8 +837,8 @@ export default function GameMaker({username, projectName}) {
       if (createdChapterFolderSignal === true) {
 
           await addNewChapterFoldersVM({
-            project: projectName,
-            username: username,
+              project: projectName,
+              username: username,
               chapterKeyList: createdNewChapterList
           });
       }
@@ -850,7 +850,7 @@ export default function GameMaker({username, projectName}) {
   }
 
   //TODO21 refactor to VM
-  async function saveToCloudNewlyCreatedNodeFolder(waitlist) {
+  async function saveToCloudNewNodeList(waitlist) {
 //TODO600
 
     if (createdNewNodeWaitlist.length === 0) {
@@ -860,7 +860,7 @@ export default function GameMaker({username, projectName}) {
     if (createNodeFolderSignal === true) {
           //by signal, add a new document at /"nodes"
 
-                          console.log("updating to cloud: func-step1-node-folders ", createdNewNodeWaitlist);
+                          console.log("updating to cloud: func-step1-node-folders node-waitlist = ", createdNewNodeWaitlist);
 //TODO600
           await addNewNodeFoldersVM(
             { 
@@ -1255,11 +1255,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 //TODO900 nodemapping update!!
 //chapterNodeMapAll
-
-
-
-
-    await saveToCloudNewlyCreatedNodeFolder(newNodeList); 
     
     
     //add this new-node into node-map!
@@ -1642,12 +1637,12 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     fetchChapterNodeMappingFromCloud();          
   }
 
-  async function saveEverythingToCloud() {
+  async function saveEverythingToCloud() { 
 
-    updateProjectNavigationSettingsToCloud();
+    await updateProjectNavigationSettingsToCloud();
     await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
-    saveToCloudNewlyCreatedNodeFolder(createdNewNodeWaitlist); 
-    editorExitingHandleChapterMgr();
+    await saveToCloudNewNodeList(createdNewNodeWaitlist); 
+    await editorExitingHandleChapterMgr(); //if chapter-list updated
   }
 {/* //components
       
@@ -1805,6 +1800,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
           getCreatedNewNodeWaitListPending={passInCreatedNewNodeWaitListPending}
           triggerSaveToCloud={saveEverythingToCloud}
+          chapterChangingOrExiting={chapterChangingOrExiting}
           //TODO500
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
