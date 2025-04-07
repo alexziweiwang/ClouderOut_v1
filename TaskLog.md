@@ -527,7 +527,7 @@
 - 2025-Apr-04: Design testing-project data mechanism
 - 2025-Apr-04: Design node-manager improvement list
 
-
+- 2025-Apr-07: Design testing-project plot 14
 
 
 
