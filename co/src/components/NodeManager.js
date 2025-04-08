@@ -18,8 +18,6 @@ export default function NodeManager({projectName, currUser,
 
   triggerCreatedNewNode,
   
-  //TODO900 add "triggerDeletedNode"?
-
   triggerNodeMappingsChange,
 
   getChapMgrCollapsed,
@@ -301,7 +299,7 @@ export default function NodeManager({projectName, currUser,
           let chapterKeyTemp = getCurrChapterKey();
           if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
             
-            let tempMap = getNodeMapOfChapter(); //TODO900
+            let tempMap = getNodeMapOfChapter();
           
             let gridTemp = getGridBlocks(chapterKeyTemp);
   
@@ -613,7 +611,7 @@ export default function NodeManager({projectName, currUser,
     /* update all node-mappings */
     setNodeRelationshipMap(tempNodeMap);
     
-    setGridBlocks(tempGridBlocks); //TODO900 test !!!
+    setGridBlocks(tempGridBlocks);
 
     updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks);
     
@@ -624,8 +622,6 @@ export default function NodeManager({projectName, currUser,
     updateGridBlockOfChapter(tempGridBlocks);
 
     triggerNodeDeleted();
-    //TODO900 update to cloud!
-
   }
 
   function updateRenderCounter() {

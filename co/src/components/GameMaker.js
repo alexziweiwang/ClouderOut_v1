@@ -818,20 +818,24 @@ export default function GameMaker({username, projectName}) {
         return;
       }
 
+     
       
-      if (createNodeFolderSignal === true || nodeMgrDelSignal === true) { //TODO for deleted node situation?
+      if (createNodeFolderSignal === true 
+        || nodeMgrDelSignal === true
+        || nodeMapUpdatedSignal === true
+        || gridBlocksUpdatedSignal === true
+      ) { 
           let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
           if (answer) {
               //by createdNewNodeWaitlist, update cloud-folders...
-         
 
-          //    await saveToCloudNewNodeList(createdNewNodeWaitlist);
-
-          //    await updateChapterNodeMappingsToCloud(chapterNodeMapAll); //TODO later: check same ver., if different then update
-          
-              await saveEverythingToCloud();
-
+              await saveEverythingToCloud(); // will reset createNodeFolderSignal
               setNodeMgrDelSignal(false);
+
+          } else {
+              setNodeMapUpdatedSignal(false);
+              setGridBlocksUpdatedSignal(false);
+
           }
       }
       
@@ -1254,20 +1258,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
     newNodeList.push(infoObj);
     setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
-  //  setCreatedNewNodeWaitListPending(true);
-
-    //TODO put "newNodeList" into action -- update immediately
-
-    //TODO save to cloud!!! -- directly for this render
-
-//TODO900 nodemapping update!!
-//chapterNodeMapAll
-    
-    
-    //add this new-node into node-map!
-    //then also update the node-grid-blocks
-
-
+    setCreatedNewNodeWaitListPending(true);
 
   }
 
