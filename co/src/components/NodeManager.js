@@ -30,7 +30,8 @@ export default function NodeManager({projectName, currUser,
   triggerSaveToCloud,
 
 
-  chapterChangingOrExiting
+  chapterChangingOrExiting,
+  triggerNodeDeleted
 
 
 }) {
@@ -621,9 +622,8 @@ export default function NodeManager({projectName, currUser,
     //update both data structures to outer layer
     updateNodeMapOfChapter(tempNodeMap);
     updateGridBlockOfChapter(tempGridBlocks);
-    //TODO updateNodeLinkingsOnce(nodeRelationshipMap, gridBlocks);
 
-
+    triggerNodeDeleted();
     //TODO900 update to cloud!
 
   }
@@ -1968,19 +1968,9 @@ export default function NodeManager({projectName, currUser,
               className="setting_item"
               style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{
-            //    let listPending = getCreatedNewNodeWaitListPending();
-            //    if (listPending === false) {
-            //      enterNodeEditor2();
-            //    } else {
-          //        let ans = window.confirm("Save project and enter?");
-           //       if (ans) {
-               //     triggerSaveToCloud();
-//TODO500
+          
                     chapterChangingOrExiting();
                     enterNodeEditor2();
-           //       }
-            //    }
-                
               }}>
                 {enterEditorText}
             </button>

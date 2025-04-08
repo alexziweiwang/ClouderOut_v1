@@ -244,7 +244,7 @@ export default function GameMaker({username, projectName}) {
 
 
   const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false);
-
+  const [nodeMgrDelSignal, setNodeMgrDelSignal] = useState(false);
   
 //TODO23 update to and fetch from cloud for this project !!!
   const [currentProjectNav, setCurrentProjectNav] = useState({
@@ -812,24 +812,31 @@ export default function GameMaker({username, projectName}) {
   }
 
   async function chapterChangingOrExiting() {
-    console.log("exiting chapter - ", currChapterKey);
-        //TODO ask if save to cloud?
+                                          console.log("exiting chapter - ", currChapterKey);
+        
       if (currChapterKey === "") {
         return;
       }
-      if (createNodeFolderSignal === true) {
-          let answer = window.confirm("Save current chapter data to cloud?");
+
+      
+      if (createNodeFolderSignal === true || nodeMgrDelSignal === true) { //TODO for deleted node situation?
+          let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
           if (answer) {
               //by createdNewNodeWaitlist, update cloud-folders...
-              //TODO37
+         
 
-              await saveToCloudNewNodeList(createdNewNodeWaitlist);
+          //    await saveToCloudNewNodeList(createdNewNodeWaitlist);
 
-              await updateChapterNodeMappingsToCloud(chapterNodeMapAll); //TODO later: check same ver., if different then update
+          //    await updateChapterNodeMappingsToCloud(chapterNodeMapAll); //TODO later: check same ver., if different then update
           
               await saveEverythingToCloud();
+
+              setNodeMgrDelSignal(false);
           }
       }
+      
+      
+
   }
 
   async function editorExitingHandleChapterMgr() {
@@ -1194,7 +1201,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     
     
     alert("All contents are updated.");
-    console.log("update-Chapter-Node-Mappings-To-Cloud!");
+
   }
 
 
@@ -1644,6 +1651,10 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     await saveToCloudNewNodeList(createdNewNodeWaitlist); 
     await editorExitingHandleChapterMgr(); //if chapter-list updated
   }
+
+  function triggerNodeDeleted() {
+    setNodeMgrDelSignal(true);
+  }
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
@@ -1801,6 +1812,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
           getCreatedNewNodeWaitListPending={passInCreatedNewNodeWaitListPending}
           triggerSaveToCloud={saveEverythingToCloud}
           chapterChangingOrExiting={chapterChangingOrExiting}
+          triggerNodeDeleted={triggerNodeDeleted}
           //TODO500
         />
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
