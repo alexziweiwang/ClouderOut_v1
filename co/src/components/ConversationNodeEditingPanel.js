@@ -14,7 +14,7 @@ import ConvNodeUISetter from './ConvNodeUISetter';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
-import { emptyConvNodeSinglePieceTemplate } from './_dataStructure_DefaultObjects';
+import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
 
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
@@ -120,55 +120,54 @@ export default function ConversationNodeEditingPanel() {
 
 //TODO600
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
-        "widthMin": 300,
-        "widthMax": 370,
-        "height": 20,
-        "cornerRadius": 0,
-        "transparency": 0.9,
-        "isShape": true,
-        "bgColor": "#a8d1d6",
-        "picVar": "",
-        "textColor": "#000000",
-        "margin": 5,
-        "justifyContent": "start",
-        "alignItems": "center",
-        "border": "2px solid #000000",
-        "textSize": 15,
-        "groupX": 200,
-        "groupY": 100,
-        "horizontalMid": false,
-        "verticalMid": false,
+        "widthMin": gameUIDefaultButtonTemplate["widthMin"],
+        "widthMax": gameUIDefaultButtonTemplate["widthMax"],
+        "height": gameUIDefaultButtonTemplate["height"],
+        "cornerRadius": gameUIDefaultButtonTemplate["cornerRadius"],
+        "transparency": gameUIDefaultButtonTemplate["transparency"],
+        "isShape": gameUIDefaultButtonTemplate["isShape"],
+        "bgColor": gameUIDefaultButtonTemplate["bgColor"],
+        "picVar": gameUIDefaultButtonTemplate["picVar"],
+        "textColor": gameUIDefaultButtonTemplate["textColor"],
+        "margin": gameUIDefaultButtonTemplate["margin"],
+        "justifyContent": gameUIDefaultButtonTemplate["justifyContent"],
+        "alignItems": gameUIDefaultButtonTemplate["alignItems"],
+        "border": gameUIDefaultButtonTemplate["border"],
+        "textSize": gameUIDefaultButtonTemplate["textSize"],
+        "groupX": gameUIDefaultButtonTemplate["groupX"],
+        "groupY": gameUIDefaultButtonTemplate["groupY"],
+        "horizontalMid": gameUIDefaultButtonTemplate["horizontalMid"],
+        "verticalMid": gameUIDefaultButtonTemplate["verticalMid"],
 
-        "fontName": "serif",
-        "isFontItalic": false,
+        "fontName": gameUIDefaultButtonTemplate["fontName"],
+        "isFontItalic": gameUIDefaultButtonTemplate["isFontItalic"],
 
-        "picPair": "" //TODO impl
 
     }); //fetch from cloud-db
 
 //TODO600
-    const [gameUITextFrame, setGameUITextFrame] = useState({"width": 600,
-    "height": 200,
-    "positionX": 100,
-    "positionY": 360,
-    "cornerRadius": 0,
-    "transparency": 0.7,
-    "isShape": true,
-    "bgColor": "#a8d1d6",
-    "picVar": "",
-    "fontName": "serif",
-    "textSize": 30,
-    "textColor": "#000000",
-    "justifyContent": "start",
-    "alignItems": "start",
-    "border": "2px solid #000000",
-    "horizontalMid": false,
-    "TextContentArea-x": 10,
-    "TextContentArea-y": 10,
-    "TextContentArea-w": 580,
-    "TextContentArea-h": 180,
+    const [gameUITextFrame, setGameUITextFrame] = useState({
+        "width": gameUITextFrameTemplate["width"],
+        "height": gameUITextFrameTemplate["height"],
+        "positionX": gameUITextFrameTemplate["positionX"],
+        "positionY": gameUITextFrameTemplate["positionY"],
+        "cornerRadius": gameUITextFrameTemplate["cornerRadius"],
+        "transparency": gameUITextFrameTemplate["transparency"],
+        "isShape": gameUITextFrameTemplate["isShape"],
+        "bgColor": gameUITextFrameTemplate["bgColor"],
+        "picVar": gameUITextFrameTemplate["picVar"],
+        "fontName": gameUITextFrameTemplate["fontName"],
+        "textSize": gameUITextFrameTemplate["textSize"],
+        "textColor": gameUITextFrameTemplate["textColor"],
+        "justifyContent": gameUITextFrameTemplate["justifyContent"],
+        "alignItems": gameUITextFrameTemplate["alignItems"],
+        "border": gameUITextFrameTemplate["border"],
+        "horizontalMid": gameUITextFrameTemplate["horizontalMid"],
+        "TextContentArea-x": gameUITextFrameTemplate["TextContentArea-x"],
+        "TextContentArea-y": gameUITextFrameTemplate["TextContentArea-y"],
+        "TextContentArea-w": gameUITextFrameTemplate["TextContentArea-w"],
+        "TextContentArea-h": gameUITextFrameTemplate["TextContentArea-h"],
 
-    "picPair": "" //TODO impl
 
 }); //fetch from cloud-db
 
@@ -1369,7 +1368,6 @@ const [uiConvNav, setUIConvNav] = useState({
             
 
 {/* *** quick-view modal ***  */}
-{/* TODO700 testing */}
 
             {isDisplayQview && 
             <AllPanels_QuickView_ConvNode

@@ -5,7 +5,7 @@ export const sizeLookupMap = {
     "4:3(vertical)": [600, 800]
 };
 
-export const gameUIDefaultButton  = {
+export const gameUIDefaultButtonTemplate  = {
     "widthMin": 300,
     "widthMax": 370,
     "height": 20,
@@ -28,11 +28,9 @@ export const gameUIDefaultButton  = {
     "fontName": "serif",
     "isFontItalic": false,
 
-    "picPair": "" //TODO impl
-
 }; 
 
-export const gameUITextFrame = {"width": 600,
+export const gameUITextFrameTemplate = {"width": 600,
     "height": 200,
     "positionX": 100,
     "positionY": 360,
@@ -53,11 +51,9 @@ export const gameUITextFrame = {"width": 600,
     "TextContentArea-w": 580,
     "TextContentArea-h": 180,
 
-    "picPair": "" //TODO impl
-
 }; 
 
-export const gameUIBackButton = {
+export const gameUIBackButtonTemplate = {
     "width": 50,
     "height": 50,
     "cornerRadius": 0,
@@ -78,7 +74,7 @@ export const gameUIBackButton = {
 
 }; 
 
-export const uiConvNav = {
+export const uiConvNavTemplate = {
     "buttonAutoIsTextFont": true,
     "buttonAutoShade0": "#bf8da5",
     "buttonAutoPicName0": "",
@@ -121,7 +117,7 @@ export const uiConvNav = {
 
 };
 
-export const logPageUISettings = {
+export const logPageUISettingsTemplate = {
     "closeButtonIsShape": false,
     "closeButtonShade": "",
     "closeButtonPicName": "",
@@ -167,11 +163,11 @@ export const logPageUISettings = {
 };
 
 export const emptyConvNodeUiAllTemplate = {
-    defaultButton: gameUIDefaultButton,
-    textFrame: gameUITextFrame,
-    backButton: gameUIBackButton,
-    convNav: uiConvNav,
-    logPage: logPageUISettings
+    defaultButton: gameUIDefaultButtonTemplate,
+    textFrame: gameUITextFrameTemplate,
+    backButton: gameUIBackButtonTemplate,
+    convNav: uiConvNavTemplate,
+    logPage: logPageUISettingsTemplate
 }; 
 
 export const characterPictureCurrTemplate = {
@@ -183,7 +179,7 @@ export const characterPictureCurrTemplate = {
     "scale": 1  
 }
 
-//TODO700
+
 export const emptyConvNodeSinglePieceTemplate = {
     "num": 1, 
     "isContentNotClkb": true,
