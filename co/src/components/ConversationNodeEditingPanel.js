@@ -173,67 +173,67 @@ export default function ConversationNodeEditingPanel() {
 
 
 //TODO600
-    const [gameUIBackButton, setGameUIBackButton] = useState({"width": 50,
-    "height": 50,
-    "cornerRadius": 0,
-    "transparency": 0.9,
-    "isShape": false,
-    "bgColor": "#a8d1d6",
-    "picVar": "",
-    "textColor": "blue",
-    "buttonText": "←",
-    "textSize": 15,
-    "borderColor": "blue",
-    "borderSize": 2,
-    "posX": 0,
-    "posY": 0,
-    "fontName": "serif",
+    const [gameUIBackButton, setGameUIBackButton] = useState({
+        "width": gameUIBackButtonTemplate["width"],
+        "height": gameUIBackButtonTemplate["height"],
+        "cornerRadius": gameUIBackButtonTemplate["cornerRadius"],
+        "transparency": gameUIBackButtonTemplate["transparency"],
+        "isShape": gameUIBackButtonTemplate["isShape"],
+        "bgColor": gameUIBackButtonTemplate["bgColor"],
+        "picVar": gameUIBackButtonTemplate["picVar"],
+        "textColor": gameUIBackButtonTemplate["textColor"],
+        "buttonText": gameUIBackButtonTemplate["buttonText"],
+        "textSize": gameUIBackButtonTemplate["textSize"],
+        "borderColor": gameUIBackButtonTemplate["borderColor"],
+        "borderSize": gameUIBackButtonTemplate["borderSize"],
+        "posX": gameUIBackButtonTemplate["posX"],
+        "posY": gameUIBackButtonTemplate["posY"],
+        "fontName": gameUIBackButtonTemplate["fontName"],
 
-    "picPair": "" //TODO impl
     
 }); //fetch from cloud-db
   
 //TODO600
 const [uiConvNav, setUIConvNav] = useState({
-        "buttonAutoIsTextFont": true,
-        "buttonAutoShade0": "#bf8da5",
-        "buttonAutoPicName0": "",
-        "buttonAutoShade1": "#4a54a1",
-        "buttonAutoPicName1": "",
-        "buttonAutoFontName": "serif",
-        "buttonAutoFontItalic": false,
-        "buttonAutoDisplayText0": "Auto-off",
-        "buttonAutoDisplayText1": "Auto-on",
-        "buttonLogDisplayText": "Log",
-        "buttonSetupDisplayText": "Settings",
+        "buttonAutoIsTextFont": uiConvNavTemplate["buttonAutoIsTextFont"],
+        "buttonAutoShade0": uiConvNavTemplate["buttonAutoShade0"],
+        "buttonAutoPicName0": uiConvNavTemplate["buttonAutoPicName0"],
+        "buttonAutoShade1": uiConvNavTemplate["buttonAutoShade1"],
+        "buttonAutoPicName1": uiConvNavTemplate["buttonAutoPicName1"],
+        "buttonAutoFontName": uiConvNavTemplate["buttonAutoFontName"],
+        "buttonAutoFontItalic": uiConvNavTemplate["buttonAutoFontItalic"],
+        "buttonAutoDisplayText0": uiConvNavTemplate["buttonAutoDisplayText0"],
+        "buttonAutoDisplayText1": uiConvNavTemplate["buttonAutoDisplayText1"],
+        "buttonLogDisplayText": uiConvNavTemplate["buttonLogDisplayText"],
+        "buttonSetupDisplayText": uiConvNavTemplate["buttonSetupDisplayText"],
 
 
-        "buttonLogIsTextFont": true,
-        "buttonLogShade": "#bf8da5",
-        "buttonLogPicName":  "",
-        "buttonLogShade": "#4a54a1",
-        "buttonLogPicName": "",
-        "buttonLogFontName": "serif",
-        "buttonLogFontItalic": false,
+        "buttonLogIsTextFont": uiConvNavTemplate["buttonLogIsTextFont"],
+        "buttonLogShade": uiConvNavTemplate["buttonLogShade"],
+        "buttonLogPicName":  uiConvNavTemplate["buttonLogPicName"],
+        "buttonLogShade": uiConvNavTemplate["buttonLogShade"],
+        "buttonLogPicName": uiConvNavTemplate["buttonLogPicName"],
+        "buttonLogFontName": uiConvNavTemplate["buttonLogFontName"],
+        "buttonLogFontItalic": uiConvNavTemplate["buttonLogFontItalic"],
 
 
-        "buttonSetupIsTextFont": true,
-        "buttonSetupShade": "#bf8da5",
-        "buttonSetupPicName":  "",
-        "buttonSetupShade": "#4a54a1",
-        "buttonSetupPicName": "",
-        "buttonSetupFontName": "serif",
-        "buttonSetupFontItalic": false,
+        "buttonSetupIsTextFont": uiConvNavTemplate["buttonSetupIsTextFont"],
+        "buttonSetupShade": uiConvNavTemplate["buttonSetupShade"],
+        "buttonSetupPicName":  uiConvNavTemplate["buttonSetupPicName"],
+        "buttonSetupShade": uiConvNavTemplate["buttonSetupShade"],
+        "buttonSetupPicName": uiConvNavTemplate["buttonSetupPicName"],
+        "buttonSetupFontName": uiConvNavTemplate["buttonSetupFontName"],
+        "buttonSetupFontItalic": uiConvNavTemplate["buttonSetupFontItalic"],
 
 
-        "textDisplaySpeed": 2,
+        "textDisplaySpeed": uiConvNavTemplate["textDisplaySpeed"],
 
-        "groupX": 0,
-        "groupY": 0,
-        "groupWidth": 100,
-        "groupHeight": 30,
+        "groupX": uiConvNavTemplate["groupX"],
+        "groupY": uiConvNavTemplate["groupY"],
+        "groupWidth": uiConvNavTemplate["groupWidth"],
+        "groupHeight": uiConvNavTemplate["groupHeight"],
 
-        "cornerRadius": 0,
+        "cornerRadius": uiConvNavTemplate["cornerRadius"],
 
     });
 

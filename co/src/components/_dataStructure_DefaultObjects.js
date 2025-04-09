@@ -70,8 +70,6 @@ export const gameUIBackButtonTemplate = {
     "posY": 0,
     "fontName": "serif",
 
-    "picPair": "" //TODO impl
-
 }; 
 
 export const uiConvNavTemplate = {
