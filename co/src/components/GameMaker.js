@@ -1264,12 +1264,23 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
 
-  function triggerCreatedNewChapter(nodeChapterKey) {
+  async function triggerCreatedNewChapter(nodeChapterKey) {
     //TODO39
     let list = createdNewChapterList;
     list.push(nodeChapterKey);
-    setCreatedNewChapterList(list);
-    setCreatedChapterFolderSignal(true);
+    //setCreatedNewChapterList(list);
+    //setCreatedChapterFolderSignal(true);
+
+    //TODO900 update to cloud immediately
+
+    await addNewChapterFoldersVM({
+      project: projectName,
+      username: username,
+      chapterKeyList: list
+    });
+
+    
+
 
   }
 
@@ -1360,7 +1371,6 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
   async function fetchChapterNodeMappingFromCloud() {
 
         //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
-            //TODO setChapterList(); // from cloud-db
         //TODO format: localChapterInfo = <chapter title, node-relationship-map>
         
 
@@ -1473,7 +1483,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
     if (listTemp === undefined || listTemp === null) {
       console.log("test func-fetchChapterListFromCloud(): ...data is invalid");
-      return;
+      return [];
     }
 
 
@@ -1490,9 +1500,10 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
     //TODO test
     console.log("test func-fetchChapterListFromCloud(): ", arrTemp);
-    // setChapterList(arrTemp);
 
+    setChapterList(arrTemp);
 
+    return arrTemp;
 
   }
 

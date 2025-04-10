@@ -123,9 +123,18 @@ export default function ChapterManager({projectName, currUser,
 
   const [chapterData, setChapterData] = useState(initialChapterData);
 
+  const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
-    let chapterListTemp = getChapterDataInfo();
-    setChapterData(chapterListTemp);
+    if (firstTimeEnter === true) {
+      fetchChapterListFromCloud(); //TODO900 use this
+   
+      setFirstTimeEnter(false);
+    } 
+      let chapterListTemp = getChapterDataInfo();
+      console.log("chp-mgr = ", chapterListTemp);
+      setChapterData(chapterListTemp);
+    
+
 
     let UILang = getUILanguage();
     setLanguageCodeTextOption(UILang);
@@ -181,6 +190,8 @@ export default function ChapterManager({projectName, currUser,
     // add current chapter-key into created-key-list
     triggerCreatedNewChapter(newChapterKeyInput);
 
+    updateChapterListToCloud(tempChapterData);
+
     updateBothLocalAndOuterChapterData(tempChapterData);
 
     prepareForNewChapterMapping(newChapterKeyInput);
@@ -188,6 +199,7 @@ export default function ChapterManager({projectName, currUser,
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
 
+    fetchChapterListFromCloud();
 
   }
 
