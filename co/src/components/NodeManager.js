@@ -1133,13 +1133,19 @@ export default function NodeManager({projectName, currUser,
                       let keyStr = "grid" + +ic+ "=" + content;
                       return (
                         <div key={keyStr} className="parallelFrame gridNodeGroup textNoSelect">
+                          
+                          
                           <div 
                                 style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
                                 className={
-                                  crd === clickedNode2 ? "gridNodeClicked" : (content === "" ? "gridNodeEmpty" : "gridNodeOccupied")}
+                                  crd === clickedNode2 
+                                  ? "gridNodeClicked" 
+                                  : (content === "" 
+                                            ? "gridNodeEmpty" 
+                                            : "gridNodeOccupied")
+                                }
                                   
-                                onClick={()=>{       
-                          
+                                onClick={()=>{
                                   if (crd === clickedNode2) { //cancel if already clicked
                                     setClickedNode2(-1);
                                   } else {//setup clicked node
@@ -1164,7 +1170,14 @@ export default function NodeManager({projectName, currUser,
                                 >
                                   {content !== "" && nodeRelationshipMap[content] !== undefined
                                   && 
-                                    <label className="cursor_pointer">{nodeRelationshipMap[content].nodeName}</label>}
+                                    <label className="cursor_pointer">
+                                      {nodeRelationshipMap[content].nodeType === "LogicSplitter" ? "*" : ""}
+                                      
+                                      {nodeRelationshipMap[content].nodeName}
+                                      
+                                      {nodeRelationshipMap[content].nodeType === "LogicSplitter" ? "*" : ""}
+
+                                    </label>}
                                   {(content === "" && crd !== clickedNode2) && <label className="cursor_pointer" style={{"color": "#eee8ec"}}>+<br></br>Put Node Here</label>}
                                   {(content === "" && crd === clickedNode2) && <label className="cursor_pointer" > Adding ... </label>}
                                 
@@ -1246,7 +1259,7 @@ export default function NodeManager({projectName, currUser,
                   </select>
               <br></br></>}
               <button 
-                className="setting_item buttonRight"
+                className="setting_item buttonRight80"
                 onClick={()=>{
                                                        //    addNewNode(); //TODO remove later
                   addNewNode2();
@@ -1255,6 +1268,8 @@ export default function NodeManager({projectName, currUser,
                   }}>
                   {createText}
               </button>
+
+              <br></br><br></br>
               <button
                 onClick={()=>{
                   setAddNewNodeAreaDisplay(false);
@@ -1317,6 +1332,13 @@ export default function NodeManager({projectName, currUser,
 
                     }
                   }}>{revertText}</button>
+
+                  <br></br><br></br>
+                  <button
+                    onClick={()=>{
+                      setAddNewNodeAreaDisplay(false);
+                      setClickedNode2(-1);}}
+                  >{cancelText}</button>
 
           </div>
           }
