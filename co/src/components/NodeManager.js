@@ -1136,7 +1136,13 @@ export default function NodeManager({projectName, currUser,
                           
                           
                           <div 
-                                style={{"width": `${nodeWidth}px`, "height": `${nodeHeight}px`}}
+                                style={{
+                                  "width": `${nodeWidth}px`, 
+                                  "height": `${nodeHeight}px`,
+                                  "borderRadius": (content !== "" && nodeRelationshipMap[content] !== undefined && nodeRelationshipMap[content].nodeType === "LogicSplitter") ? "100px" : "0px",
+                                
+                                }}
+
                                 className={
                                   crd === clickedNode2 
                                   ? "gridNodeClicked" 

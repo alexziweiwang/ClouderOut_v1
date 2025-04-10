@@ -118,7 +118,7 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //fetch from cloud-db
 
-//TODO600
+
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
         "widthMin": gameUIDefaultButtonTemplate["widthMin"],
         "widthMax": gameUIDefaultButtonTemplate["widthMax"],
@@ -240,47 +240,47 @@ const [uiConvNav, setUIConvNav] = useState({
 
 //TODO600
     const [logPageUISettings, setLogPageUISettings] = useState({
-        "closeButtonIsShape": false,
-        "closeButtonShade": "",
-        "closeButtonPicName": "",
-        "closeButtonPositionX": 3, 
-        "closeButtonPositionY": 3, 
-        "closeButtonWidth": 50,
-        "closeButtonHeight": 30, 
-        "closeButtonCornerRadius": 0, 
-        "closeButtonBorderSize": 1,
-        "closeButtonBorderColor": "grey",  
-        "closeButtonText": "Close",
-        "closeButtonTextColor": "#000000",
-        "closeButtonFontName": "serif",
+        "closeButtonIsShape": logPageUISettingsTemplate["closeButtonIsShape"],
+        "closeButtonShade": logPageUISettingsTemplate["closeButtonShade"],
+        "closeButtonPicName": logPageUISettingsTemplate["closeButtonPicName"],
+        "closeButtonPositionX": logPageUISettingsTemplate["closeButtonPositionX"],
+        "closeButtonPositionY": logPageUISettingsTemplate["closeButtonPositionY"],
+        "closeButtonWidth": logPageUISettingsTemplate["closeButtonWidth"],
+        "closeButtonHeight": logPageUISettingsTemplate["closeButtonHeight"],
+        "closeButtonCornerRadius": logPageUISettingsTemplate["closeButtonCornerRadius"],
+        "closeButtonBorderSize": logPageUISettingsTemplate["closeButtonBorderSize"],
+        "closeButtonBorderColor": logPageUISettingsTemplate["closeButtonBorderColor"],
+        "closeButtonText": logPageUISettingsTemplate["closeButtonText"],
+        "closeButtonTextColor": logPageUISettingsTemplate["closeButtonTextColor"],
+        "closeButtonFontName": logPageUISettingsTemplate["closeButtonFontName"],
 
-        "bgpIsShape": false,
-        "bgpShade": "",
-        "bgpPicName": "",
+        "bgpIsShape": logPageUISettingsTemplate["bgpIsShape"],
+        "bgpShade": logPageUISettingsTemplate["bgpShade"],
+        "bgpPicName": logPageUISettingsTemplate["bgpPicName"],
 
-        "groupPosX": 50,
-        "groupPosY": 50,
-        "groupWidth": 699,
+        "groupPosX": logPageUISettingsTemplate["groupPosX"],
+        "groupPosY": logPageUISettingsTemplate["groupPosY"],
+        "groupWidth": logPageUISettingsTemplate["groupWidth"],
 
-        "groupItemGap": 10, 
+        "groupItemGap": logPageUISettingsTemplate["groupItemGap"],
 
-        "groupBgIsShape": false,
-        "groupBgShade": "",
-        "groupBgpName": "",  
+        "groupBgIsShape": logPageUISettingsTemplate["groupBgIsShape"],
+        "groupBgShade": logPageUISettingsTemplate["groupBgShade"],
+        "groupBgpName": logPageUISettingsTemplate["groupBgpName"],
         
-        "groupUnitCornerRadius": 0,
+        "groupUnitCornerRadius": logPageUISettingsTemplate["groupUnitCornerRadius"],
 
-        "contentTextShade": "",
-        "contentTextSize": 20,
-        "contentTextFont": "",
-        "contentPosX": 10,
-        "contentPosY": 10,
+        "contentTextShade": logPageUISettingsTemplate["contentTextShade"],
+        "contentTextSize": logPageUISettingsTemplate["contentTextSize"],
+        "contentTextFont": logPageUISettingsTemplate["contentTextFont"],
+        "contentPosX": logPageUISettingsTemplate["contentPosX"],
+        "contentPosY": logPageUISettingsTemplate["contentPosY"],
 
-        "speakerTextShade": "",
-        "speakerTextSize": 20,
-        "speakerTextFont": "",
-        "speakerPosX": 10,
-        "speakerPosY": 10,
+        "speakerTextShade": logPageUISettingsTemplate["speakerTextShade"],
+        "speakerTextSize": logPageUISettingsTemplate["speakerTextSize"],
+        "speakerTextFont": logPageUISettingsTemplate["speakerTextFont"],
+        "speakerPosX": logPageUISettingsTemplate["speakerPosX"],
+        "speakerPosY": logPageUISettingsTemplate["speakerPosY"],
 
     });
 
