@@ -1253,6 +1253,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
       chapterKey: chapterInfo[0]
     });
 
+    //TODO900 update node-mapping and grid-blocks?
+    
+
   }
 
   function convertNodeMapToGridBlocks(nodeMapTemp) {
