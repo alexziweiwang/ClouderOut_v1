@@ -20,7 +20,6 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 import { updateProjectUILangVM, fetchProjectUILangVM, updateProjectNavigationSettingsVM, fetchProjectNavigationSettingsVM } from '../viewmodels/ProjectManagerViewModel';
 import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM, fetchAllChapterListVM, updateChapterListToCloudVM, addNewOneChapterFolderVM } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
-import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 
 import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntireProjectVM } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
@@ -149,8 +148,6 @@ export default function GameMaker({username, projectName}) {
   const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false);
   const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]);
   const [createdNewNodeWaitListPending, setCreatedNewNodeWaitListPending] = useState(false);
-  const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
-  const [createdChapterFolderSignal, setCreatedChapterFolderSignal] = useState(false);
 
   const [visualMap, setVisualMap] = useState([]); 
   const [audioMap, setAudioMap] = useState([]);
@@ -843,22 +840,6 @@ export default function GameMaker({username, projectName}) {
 
   }
 
-  async function editorExitingHandleChapterMgr() {
-      //save newly-created-chapter-folders
-      if (createdChapterFolderSignal === true) {
-
-          await addNewChapterFoldersVM({
-              project: projectName,
-              username: username,
-              chapterKeyList: createdNewChapterList
-          });
-      }
-  
-      setCreatedNewChapterList([]);
-
-      setCreatedChapterFolderSignal(false);
-
-  }
 
   //TODO21 refactor to VM
   async function saveToCloudNewNodeList(waitlist) {
@@ -1264,23 +1245,13 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
 
-  async function triggerCreatedNewChapter(nodeChapterKey) {
-    //TODO39
-    let list = createdNewChapterList;
-    list.push(nodeChapterKey);
-    //setCreatedNewChapterList(list);
-    //setCreatedChapterFolderSignal(true);
+  async function triggerCreatedNewChapter(chapterInfo) {
 
-    //TODO900 update to cloud immediately
-
-    await addNewChapterFoldersVM({
+    await addNewOneChapterFolderVM({
       project: projectName,
       username: username,
-      chapterKeyList: list
+      chapterKey: chapterInfo[0]
     });
-
-    
-
 
   }
 
@@ -1651,7 +1622,6 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     await updateProjectNavigationSettingsToCloud();
     await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
     await saveToCloudNewNodeList(createdNewNodeWaitlist); 
-    await editorExitingHandleChapterMgr(); //if chapter-list updated
   }
 
   function triggerNodeDeleted() {

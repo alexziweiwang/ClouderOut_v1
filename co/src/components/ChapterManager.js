@@ -188,7 +188,7 @@ export default function ChapterManager({projectName, currUser,
     tempChapterData.push(line);
 
     // add current chapter-key into created-key-list
-    triggerCreatedNewChapter(newChapterKeyInput);
+    triggerCreatedNewChapter(line);
 
     updateChapterListToCloud(tempChapterData);
 
