@@ -166,7 +166,7 @@ export default function ChapterManager({projectName, currUser,
   }
 
 
-  function addNewChapterItem() {
+  async function addNewChapterItem() {
     //1. not allowing empty chapter key or chapter title
     if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
       alert("Can not have empty chapter key or empty chapter title");
@@ -194,7 +194,7 @@ export default function ChapterManager({projectName, currUser,
 
     updateBothLocalAndOuterChapterData(tempChapterData);
 
-    prepareForNewChapterMapping(newChapterKeyInput);
+    await prepareForNewChapterMapping(newChapterKeyInput);
 
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");

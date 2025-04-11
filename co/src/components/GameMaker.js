@@ -740,7 +740,7 @@ export default function GameMaker({username, projectName}) {
 
 
   //TODO21 refactor to VM
-  function prepareForNewChapterMapping(newKey) {
+  async function prepareForNewChapterMapping(newKey) {
     
     //update all-node-map
     let nodeMapTemp = chapterNodeMapAll;
@@ -780,7 +780,8 @@ export default function GameMaker({username, projectName}) {
 
     setGridBlocksUpdatedSignal(true);
 
-
+    //update to cloud
+    await updateChapterNodeMappingsToCloud(nodeMapTemp); 
   }
 
   function passInScreenHeight() {
@@ -1149,7 +1150,7 @@ export default function GameMaker({username, projectName}) {
   async function updateChapterNodeMappingsToCloud(nodeMap) {
     //TODO transfer gridBlocksAll into non-nested array
     //TODO send nodeMap
-    if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
+  //  if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
 
 console.log("updating to cloud ... func-step2-all-node-mapping-grid", gridBlocksAll);
 console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap);
@@ -1182,7 +1183,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
         setNodeMapUpdatedSignal(false);
         setGridBlocksUpdatedSignal(false);
 
-    }
+   // }
     
     
     alert("All contents are updated.");
@@ -1252,9 +1253,6 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
       username: username,
       chapterKey: chapterInfo[0]
     });
-
-    //TODO900 update node-mapping and grid-blocks?
-    
 
   }
 
