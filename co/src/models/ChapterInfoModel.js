@@ -94,8 +94,29 @@ export async function addNewChapterFolders({project, username, chapterKeyList}) 
   
       await setDoc(doc(ref, "chapters", item), {});
       
-  });
+    });
+
+
+}
+
+export async function addNewOneChapterFolder({project, username, chapterKey}) {
+    const ref = doc(db, "user_projects", username, "projects", project);
+
+    const snap = await getDoc(ref);
+    if (!snap.exists()) {
+      return;
+    }
+
+    await setDoc(doc(ref, "chapters", chapterKey), {});
+
+
+    await setDoc(
+        doc(ref, "chapters", chapterKey, "nodes", "placeholder"), 
+        {}
+    );
   
-  }
+
+}
+
   
   

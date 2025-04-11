@@ -10,7 +10,7 @@ export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nod
     const projectNodeSnap = await getDoc(projectNodeRef);
   
     if (!projectNodeSnap.exists()) {
-      return "node-not-exist";
+      return {"node-not-exist": "node-not-exist"};
     }
 
     let nodeContentData = projectNodeSnap.data().nodeContent;

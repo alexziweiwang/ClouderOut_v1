@@ -18,7 +18,7 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { updateProjectUILangVM, fetchProjectUILangVM, updateProjectNavigationSettingsVM, fetchProjectNavigationSettingsVM } from '../viewmodels/ProjectManagerViewModel';
-import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM,fetchAllChapterListVM, updateChapterListToCloudVM } from '../viewmodels/ChapterInfoViewModel';
+import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM, fetchAllChapterListVM, updateChapterListToCloudVM, addNewOneChapterFolderVM } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { addNewChapterFoldersVM } from '../viewmodels/ChapterInfoViewModel';
 

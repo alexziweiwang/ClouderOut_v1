@@ -1,6 +1,7 @@
 import { fetchChapterNodesData, updateChapterNodesToCloudData,
     fetchAllChapterList, updateChapterListToCloud,
     addNewChapterFolders,
+    addNewOneChapterFolder
     
 } from '../models/ChapterInfoModel';
 
@@ -25,4 +26,8 @@ export async function updateChapterListToCloudVM({projectName, currUser, chapter
 
 export async function addNewChapterFoldersVM({project, username, chapterKeyList}) {
     await addNewChapterFolders({project, username, chapterKeyList});
+}
+
+export async function addNewOneChapterFolderVM({project, username, chapterKey}) {
+    await addNewOneChapterFolder({project, username, chapterKey});
 }
