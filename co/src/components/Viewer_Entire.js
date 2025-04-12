@@ -41,7 +41,7 @@ export default function Viewer_Entire({
     initialPlayerAccountSettings,
     initialPlayerSlRecords, //TODO later
 
-    initialCurrChapterAllNodeMapping,
+    initialCurrChapterAllNodeMapping, //single chapter
 
     triggerUpdateCurrentStanding, //game-progress related, send to outer-layer
     triggerNodeWalk, //game-progress related, send to outer-layer
@@ -59,7 +59,7 @@ export default function Viewer_Entire({
     mutedViewOption,
 
 
-    getCurrChapterContainer,
+    getCurrChapterContent,
 
 
     
@@ -126,7 +126,7 @@ export default function Viewer_Entire({
 
 
 
-    const [allNodesContainer, setAllNodesContainer] = useState([]); //TODO200
+    const [currChapterNodesContainer, setCurrChapterNodesContainer] = useState([]); //TODO200
 
 
     const [chapterList, setChapterList] = useState(initialChapterList);  
@@ -207,9 +207,9 @@ export default function Viewer_Entire({
         }
 
         
-        let anc = getCurrChapterContainer();
-        setAllNodesContainer(anc);
-                                           console.log("\t\t*** Viewer-Entire: allNodesContainer = ", anc);
+        let anc = getCurrChapterContent();
+        setCurrChapterNodesContainer(anc);
+                                           console.log("\t\t*** Viewer-Entire: currChapterNodesContainer = ", anc);
 
 
 
@@ -414,7 +414,10 @@ export default function Viewer_Entire({
 
         setCurrentGameStatusProgress(temp);
 
-        triggerChapterWalk(chapterKeyName, chapterTitleName);
+        let chpContent = triggerChapterWalk(chapterKeyName, chapterTitleName);
+        //TODO900 fetch chapter-content?
+        setCurrChapterNodesContainer(chpContent);
+
     }
 
     function passInViewerContainerGameDataTracker() {
@@ -485,8 +488,8 @@ export default function Viewer_Entire({
     }
 
 
-    function passInAllNodesContainer() {
-        return allNodesContainer;
+    function passIncurrChapterNodesContainer() {
+        return currChapterNodesContainer;
     }
 
     function passInOpenSettingsPage() {
@@ -562,7 +565,7 @@ game-screen (specific node) layer */}
                                                 mutedViewOption={mutedViewOption}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
                                           
-                                                getCurrChapterDataContainer={passInAllNodesContainer}
+                                                getCurrChapterDataContainer={passIncurrChapterNodesContainer}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}

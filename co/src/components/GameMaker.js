@@ -147,7 +147,7 @@ export default function GameMaker({username, projectName}) {
   const [visualMap, setVisualMap] = useState([]); 
   const [audioMap, setAudioMap] = useState([]);
 
-  const [currChapterContainer, setCurrChapterContainer] = useState([]); //TODO200
+  const [currChapterContent, setCurrChapterContent] = useState([]); //TODO200
 
 
     async function fetchProjResourceLists() {
@@ -1526,7 +1526,11 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
     //TODO700 fetch chapter-data here??
 
+    //fetch content for chapterKeyName, then update the following:
+    
 
+    // setCurrChapterContent();
+    //return for CurrChapterNodesContainer;
   }
 
 
@@ -1566,15 +1570,15 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     return chapNodeKeyDs;
   }
 
-//   async function fetchcurrChapterContainerFromCloud() {
+//   async function fetchcurrChapterContentFromCloud() {
 //     //TODO201 strategy: load chapter data for each chapter (optional)?
 
 
-//     // console.log("...fetchcurrChapterContainerFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
+//     // console.log("...fetchcurrChapterContentFromCloud - chapterNodeMapAll = ", chapterNodeMapAll);
 
 
 //     // let chapNodeKeyDs = fromNodeMapToChapterNodeKeyDs();
-//     // console.log("...fetchcurrChapterContainerFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
+//     // console.log("...fetchcurrChapterContentFromCloud - chapNodeKeyDs = ", chapNodeKeyDs);
 
 
 // //TODO700 important!
@@ -1588,18 +1592,18 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 //     });
 
 //     if (data !== undefined) {
-//       setCurrChapterContainer(data);
+//       setCurrChapterContent(data);
 //     }
 
-//     console.log("fetchcurrChapterContainerFromCloud, data = ", data);
+//     console.log("fetchcurrChapterContentFromCloud, data = ", data);
     
 
 //     //TODO100
   
 //   }
 
-  function passInCurrChapterContainer() {
-    return currChapterContainer;
+  function passInCurrChapterContent() {
+    return currChapterContent;
   }
 
   function passInFalseBool() {
@@ -1664,7 +1668,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
       >
         <button
           onClick={()=>{
-            //fetchcurrChapterContainerFromCloud();
+            //fetchcurrChapterContentFromCloud();
             //TODO700: fetch the very first chapter's data?
 
             setDisplayEntireGameViewer(true);
@@ -1979,8 +1983,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
           audioMap={audioMap}
           mutedViewOption={mutedViewOption}
 
-          currChapterContainer={currChapterContainer}
-          getCurrChapterContainer={passInCurrChapterContainer}
+          getCurrChapterContent={passInCurrChapterContent}
 
       />
 
