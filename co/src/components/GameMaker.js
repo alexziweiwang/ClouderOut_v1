@@ -440,7 +440,10 @@ export default function GameMaker({username, projectName}) {
     const isUpdated = true;
     
     
-    const gdataTestResult = await getProjectGameDataDesignVM({projectName: project, uname: username, mostUpdated: isUpdated});
+    const gdataTestResult = await getProjectGameDataDesignVM({
+      projectName: project, 
+      uname: username, 
+      mostUpdated: isUpdated});
     if (gdataTestResult === undefined) {
       console.log("Error: no game_data in this project...");
       return;
@@ -1518,19 +1521,29 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     setCurrTestingNodeType(nodeTypeName);
   }
 
-  function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
+  async function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
     setCurrTestingNodeKey(chapterKeyName + "_start");
     setCurrTestingNodeType("*chapterStart*");
     setCurrTestingChapterKey(chapterKeyName);
     setCurrTestingChapterTitle(chapterTitleName);
 
-    //TODO700 fetch chapter-data here??
+    //TODO900 fetch chapter-data here?? TODO-test!
 
-    //fetch content for chapterKeyName, then update the following:
-    
+    //fetch content: use chapterKeyName, then update the following:
+    let chapterContentTemp = await fetchNodeDataEachChapterVM(
+      {
+        projectName: projectName, 
+        uname: username, 
+        chapterKey: chapterKeyName
+      }
+    );
 
-    // setCurrChapterContent();
-    //return for CurrChapterNodesContainer;
+
+
+    setCurrChapterContent(chapterContentTemp);
+    return chapterContentTemp;
+
+
   }
 
 

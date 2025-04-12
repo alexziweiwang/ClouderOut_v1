@@ -483,7 +483,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     //TODO21 refactor to VM
-    function walkToNextChapter() {
+    async function walkToNextChapter() {
         console.log("current chapter = ", currChapterKey);
 
         let i = 0;
@@ -503,7 +503,7 @@ export default function GameScreen_AllNodeTypeContainer({
                     setCurrNodeKey(nextStartNodeKey);
                     setCurrNodeType("*chapterStart*");
 
-                    triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
+                    await triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;

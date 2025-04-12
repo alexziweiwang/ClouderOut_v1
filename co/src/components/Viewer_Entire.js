@@ -405,7 +405,7 @@ export default function Viewer_Entire({
     }
 
     //TODO21 refactor to VM
-    function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
+    async function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = chapterKeyName + "_start"; //TODO
         temp["nodeType"] = "*chapterStart*";
@@ -414,7 +414,7 @@ export default function Viewer_Entire({
 
         setCurrentGameStatusProgress(temp);
 
-        let chpContent = triggerChapterWalk(chapterKeyName, chapterTitleName);
+        let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName);
         //TODO900 fetch chapter-content?
         setCurrChapterNodesContainer(chpContent);
 
