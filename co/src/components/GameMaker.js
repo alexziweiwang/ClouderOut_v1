@@ -129,12 +129,7 @@ export default function GameMaker({username, projectName}) {
   const [currTestingNodeKey, setCurrTestingNodeKey] = useState("");
   const [currTestingNodeType, setCurrTestingNodeType] = useState("");
 
-  const [chapterList, setChapterList] = useState(
-    [
-      ["chp-key1", "testChapter1", "display", ""], 
-      ["chp-key2", "testChapter2", "display", ""],
-    ]); //TODO fetch from cloud db when entering game-maker
-//TODO36
+  const [chapterList, setChapterList] = useState([]);
 
   const [isDisplayRmBool, setDisplayRmModal] = useState(false);
   const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
@@ -813,7 +808,9 @@ export default function GameMaker({username, projectName}) {
                                           console.log("exiting chapter - ", currChapterKey);
         
       if (currChapterKey === "") {
-        return;
+
+                            console.log("no");
+        return "no";
       }
 
      
@@ -823,18 +820,28 @@ export default function GameMaker({username, projectName}) {
         || nodeMapUpdatedSignal === true
         || gridBlocksUpdatedSignal === true
       ) { 
+
           let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
           if (answer) {
               //by createdNewNodeWaitlist, update cloud-folders...
 
               await saveEverythingToCloud(); // will reset createNodeFolderSignal
               setNodeMgrDelSignal(false);
+                             console.log("yes. wait-and-enter");
+              return "wait-and-enter";
 
           } else {
               setNodeMapUpdatedSignal(false);
               setGridBlocksUpdatedSignal(false);
 
+                              console.log("no");
+              return "no";
           }
+
+      } else {
+                              console.log("immediate-enter");
+        return "immediate-enter";
+
       }
       
       

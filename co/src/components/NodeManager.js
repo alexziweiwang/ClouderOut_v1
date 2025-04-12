@@ -356,6 +356,7 @@ export default function NodeManager({projectName, currUser,
 
   function enterNodeEditor2() { 
     if (nodeRelationshipMap[clickedNodeKey] === undefined) {
+                    console.log("Not found in node-map");
       return;
     }
 
@@ -1993,8 +1994,17 @@ export default function NodeManager({projectName, currUser,
               style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{
           
-                    chapterChangingOrExiting();
-                    enterNodeEditor2();
+                    chapterChangingOrExiting().then((ans) => {
+                        console.log("node-manager, enter-ans", ans);
+                        if (ans === "wait-and-enter" || ans === "immediate-enter") {
+                          enterNodeEditor2();
+    
+                        }
+                      }
+                    );
+                    
+                    
+                    
               }}>
                 {enterEditorText}
             </button>
