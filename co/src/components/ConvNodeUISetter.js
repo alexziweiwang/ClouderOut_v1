@@ -25,6 +25,9 @@ export default function ConvNodeUISetter({
     
 }) {
 
+//TODO900 feature: "use prev-nodes", list and load the ui-setting of that node
+
+
 
     const screenWidth = 800;
     const screenHeight = 600;
@@ -213,11 +216,39 @@ export default function ConvNodeUISetter({
     const [openLogPageSection, setOpenLogPageSection] = useState(false);
 
 
+    function collapseAllSections() {
+        setOpenDefaultButtonSection(false);
+        setOpenTextFrameSection(false);
+        setOpenAutoLogSection(false);
+        setOpenLogPageSection(false);
+    }
+
+    function expandAllSections() {
+        setOpenDefaultButtonSection(true);
+        setOpenTextFrameSection(true);
+        setOpenAutoLogSection(true);
+        setOpenLogPageSection(true);        
+    }
+
 //TODO5
     return (
- 
-    <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight}px`}}>
+ <div>
+     <div style={{"marginBottom": "5px"}}>
+        <button onClick={()=>{
+            collapseAllSections();
+        }}>collapse all</button>
+        <button onClick={()=>{
+            expandAllSections()
+        }}>expand all</button>
 
+    </div>
+    
+    <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight-57}px`}}>
+
+
+
+    
+    
     <div className="gameUISetterSectionTitle"
         onClick={()=>{
             setOpenDefaultButtonSection(!openDefaultButtonSection);
@@ -1426,12 +1457,14 @@ export default function ConvNodeUISetter({
         </div>
     }
     </div>
-  
-   
+    
+    
+    </div>
 
-    <br></br><button>{saveText}</button>
+
+
+
 </div>
-
 );
 
 
