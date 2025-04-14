@@ -219,7 +219,13 @@ export default function ConvNodeUISetter({
     const [openAutoLogSection, setOpenAutoLogSection] = useState(false);
     const [openLogPageSection, setOpenLogPageSection] = useState(false);
 
-    const [planSavingOpen, setPlanSavingOpen] = useState(false);
+    const [cloudPlanOpen, setCloudPlanOpen] = useState(false);
+
+    const [addingPlanName, setAddingPlanName] = useState("");
+
+    const [currentlyEditedUiPlan, setCurrentlyEditedUiPlan] = useState(-1);
+
+    const [viewingUiPlan, setViewingUiPlan] = useState(-1);
 
     function collapseAllSections() {
         setOpenDefaultButtonSection(false);
@@ -239,11 +245,18 @@ export default function ConvNodeUISetter({
         //TODO
     }
 
+    function closePlanSection() {
+        setCloudPlanOpen(false);
+        setAddingPlanName("");
+        setCurrentlyEditedUiPlan(-1);
+        
+    }
+
 //TODO5
     return (
  <div>
 
-     {planSavingOpen === false &&<div style={{"marginBottom": "5px"}}>
+     {cloudPlanOpen === false &&<div style={{"marginBottom": "5px"}}>
         
          
         <button onClick={()=>{
@@ -254,25 +267,70 @@ export default function ConvNodeUISetter({
         }}>Expand All</button>
 
         <button onClick={()=>{
-            setPlanSavingOpen(true);
+            setCloudPlanOpen(true);
+            
+            
+            //TODO save currently-editing-ui-plan !!
+            // let allObj = {
+            //     "defaultButton": TODO
+            //     "textFrame": TODO
+            //     "backButton": TODO
+            //     "convNav": TODO
+            //     "logPage": TODO
+            // }
+            // setCurrentlyEditedUiPlan(allObj);
+
         }}
-        >Save Plan ..</button>
+        >Cloud Plan(s)</button>
 
     </div>}
 
-    {planSavingOpen === true &&
+    {cloudPlanOpen === true &&
     <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight-57}px`}}>
 
 {/* TODO */}
+        Current Plans:<br></br>
+        <div>
 
-        <button onClick={()=>{setPlanSavingOpen(false);}} className="buttonRight80">{cancelText}</button>
+            {/* TODO load list of ui-plans here 
+            -click and preview list item;
+                setViewingUiPlan ( <clicked plan> )
+
+            -option of reset to currently-editing-ui-plan 
+                reset(cancel clicking on cloud-plans) ==> setViewingUiPlan(currentlyEditedUiPlan);
+
+
+            */}
+
+
+
+        </div>
+
+
+        <label>Save this plan to cloud</label>
+        <div className="indentOne">
+            <label>Plan Name: </label>
+            <input></input>
+
+            <br></br>
+            <button
+                onClick={()=>{
+//use addingPlanName
+
+                }}
+            >{saveText}</button>
+        </div>
+       
+
+
+        <button onClick={()=>{closePlanSection();}} className="buttonRight80">{cancelText}</button>
 
     </div>
     }
     
 
 
-    {planSavingOpen === false &&
+    {cloudPlanOpen === false &&
     <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight-57}px`}}>
 
 
