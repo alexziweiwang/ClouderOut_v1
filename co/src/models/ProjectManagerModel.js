@@ -137,3 +137,32 @@ export async function fetchProjectNavigationSettings({projectName, currUser}) {
 
   return dataObj;
 }
+
+export async function saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType}) {
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+
+  if (nodeType === "Conversation") {
+    await updateDoc(projRef, 
+      {convNodeUiPlanMap: updatedAllPlans
+    });
+  }
+
+}
+
+export async function fetchConvNodeUiAllPlans({projectName, currUser, nodeType}) {
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+  const projSnap = await getDoc(projRef);
+
+  if (!projSnap.exists()) {
+    return -1;
+  }
+
+  let dataObj = {};
+  if (nodeType === "Conversation") {
+    dataObj = projSnap.data().convNodeUiPlanMap;
+  }
+
+  return dataObj;
+
+
+}
