@@ -133,6 +133,10 @@ export default function ConvNodeUISetter({
         textDictItem.horizontallyCentredText
         : textDictItemDefault.horizontallyCentredText;
 
+    let cancelText = textDictItem.cancelText !== undefined ?
+        textDictItem.cancelText
+        : textDictItemDefault.cancelText;
+
 
 //TODO15
 
@@ -215,6 +219,7 @@ export default function ConvNodeUISetter({
     const [openAutoLogSection, setOpenAutoLogSection] = useState(false);
     const [openLogPageSection, setOpenLogPageSection] = useState(false);
 
+    const [planSavingOpen, setPlanSavingOpen] = useState(false);
 
     function collapseAllSections() {
         setOpenDefaultButtonSection(false);
@@ -230,19 +235,44 @@ export default function ConvNodeUISetter({
         setOpenLogPageSection(true);        
     }
 
+    function savePlanToCloud() {
+        //TODO
+    }
+
 //TODO5
     return (
  <div>
-     <div style={{"marginBottom": "5px"}}>
+
+     {planSavingOpen === false &&<div style={{"marginBottom": "5px"}}>
+        
+         
         <button onClick={()=>{
             collapseAllSections();
-        }}>collapse all</button>
+        }}>Collapse All</button>
         <button onClick={()=>{
             expandAllSections()
-        }}>expand all</button>
+        }}>Expand All</button>
+
+        <button onClick={()=>{
+            setPlanSavingOpen(true);
+        }}
+        >Save Plan ..</button>
+
+    </div>}
+
+    {planSavingOpen === true &&
+    <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight-57}px`}}>
+
+{/* TODO */}
+
+        <button onClick={()=>{setPlanSavingOpen(false);}} className="buttonRight80">{cancelText}</button>
 
     </div>
+    }
     
+
+
+    {planSavingOpen === false &&
     <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight-57}px`}}>
 
 
@@ -1459,8 +1489,8 @@ export default function ConvNodeUISetter({
     </div>
     
     
-    </div>
-
+    </div>}
+    
 
 
 
