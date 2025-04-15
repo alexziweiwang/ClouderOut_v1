@@ -24,11 +24,10 @@ export default function ConvNodeUISetter({
     username, projName,
 
     updateConvNodeUiPlanToCloud,
-    fetchConvNodeUiPlansFromCloud
+    fetchConvNodeUiPlansFromCloud,
+    convUiHoverPreviewPlans
     
 }) {
-
-//TODO900 feature: "use prev-nodes", list and load the ui-setting of that node
 
 
 
@@ -211,8 +210,6 @@ export default function ConvNodeUISetter({
 
     const [txtFrameObj, setTxtFrameObj] = useState(iniTxtFrameObj);
 
-
-
     const [igMenuBtnObj, setIgMenuBtnObj] = useState(iniMenuButtonObj);
 
     const [convLogObj, setConvLogObj] = useState(iniCovLogObj);
@@ -253,6 +250,24 @@ export default function ConvNodeUISetter({
         //TODO
     }
 
+    function openPlanSection() {
+        setCloudPlanOpen(true);
+
+        let obj = {
+            "defaultButton": defaultButtonObj,
+            "textFrame": txtFrameObj,
+            "backButton": igMenuBtnObj,
+            "convNav": convNav,
+            "logPage": convLogObj
+        }
+
+        setCurrentlyEditedUiPlan(obj);
+        setAddingPlanName("");
+
+        console.log("current plan is ... ", obj); 
+
+    }
+
     function closePlanSection() {
         setCloudPlanOpen(false);
         setAddingPlanName("");
@@ -260,9 +275,21 @@ export default function ConvNodeUISetter({
         
     }
 
+    function updateCurrentUiObj(obj) {
+
+        setConvNav(obj.convNav);       
+        setTxtFrameObj(obj.textFrame);        
+        setIgMenuBtnObj(obj.backButton);         
+        setConvLogObj(obj.logPage);
+        setDefaultButtonObj(obj.defaultButton);
+
+    }
+
     async function fetchUiPlanListLocal() {
         let uiPlansTemp = await fetchConvNodeUiPlansFromCloud();
         setUiPlanMap(uiPlansTemp);
+
+        console.log("fetched from cloud... ui plans are: ", uiPlansTemp );
     }
 
 //TODO5
@@ -280,8 +307,8 @@ export default function ConvNodeUISetter({
         }}>Expand All</button>
 
         <button onClick={()=>{
-            setCloudPlanOpen(true);
             
+            openPlanSection();
             
             //TODO save currently-editing-ui-plan !!
             // let allObj = {
@@ -315,30 +342,42 @@ export default function ConvNodeUISetter({
                 <ul>
                     {Object.keys(uiPlanMap).map((currKey) => {
                         let item = uiPlanMap[currKey];
+                        let keyStr = "ui-plan-" + currKey;
 
                     
                         return (
                             <li
+                                key={keyStr}
+                                className="clickableListItem2"
                                 onMouseEnter={()=>{
+                                    console.log("hovered!!", currKey, "\n", item);
                                     //clicked on this ui-plan: preview this plan, or cancel previewing this plan
 
                                     setViewingUiPlan(item);
                                     //TODO900 trigger to notify outlayer
+                                    convUiHoverPreviewPlans(item);
 
                                 }}
 
                                 onMouseOut={()=>{
                                     setViewingUiPlan(currentlyEditedUiPlan)
-                                        //TODO900 trigger to notify outlayer
+                                    //TODO900 trigger to notify outlayer
+                                    convUiHoverPreviewPlans(currentlyEditedUiPlan);
 
                                 }}
 
                                 onClick={()=>{
                                     //TODO900 set editing-plan to this one!! ask for confirmation
-
+                                    let askStr = "Are you sure to load this plan and discard the current UI-settings?";
+                                    let ans = window.confirm(askStr);
+                                    if (ans) {
+                                        setCurrentlyEditedUiPlan(item);
+                                        convUiHoverPreviewPlans(item);
+                                        updateCurrentUiObj(item);
+                                    }
                                 }}
                             >
-
+                                {currKey}
                             </li>
                         )
                     })}
@@ -352,17 +391,24 @@ export default function ConvNodeUISetter({
         <label>Save this plan to cloud</label>
         <div className="indentOne">
             <label>Plan Name: </label>
-            <input></input>
+            <input
+                value={addingPlanName}
+                onChange={(event)=>{setAddingPlanName(event.target.value)}}
+            ></input>
 
             <br></br>
             <button
                 onClick={()=>{
-                    if (viewingCloudPlanSelected === false) {
-//use addingPlanName and currentlyEditedUiPlan
-                        
-                    } else {
-                        alert("This plan is already on cloud!");
+//TODO900      use addingPlanName and currentlyEditedUiPlan
+                    let uiMapTemp = uiPlanMap;
+                    if (uiPlanMap === -1) {
+                        uiMapTemp = {};
                     }
+                    uiMapTemp[addingPlanName] = currentlyEditedUiPlan;
+
+                    updateConvNodeUiPlanToCloud(uiMapTemp); //notify outer-layer
+
+                    setUiPlanMap(uiMapTemp); // update for local ds
                 }}
             >{saveText}</button>
         </div>

@@ -83,7 +83,7 @@ const [visualMap, setVisualMap] = useState([]);
             let currId = "defaultButtonDivPreviewWindow" + index;
             return (
             <div id={currId} key={index} style={{   
-                    "background": defaultBtnUISettings["bgColor"],
+                    "backgroundColor": defaultBtnUISettings["bgColor"],
                     "backgroundImage": defaultBtnUISettings["isShape"] === true ? "" 
                         : `url('${visualMap[defaultBtnUISettings["picVar"]]}')`,
                     "backgroundSize": `${defaultBtnUISettings["widthMax"]}px ${defaultBtnUISettings["height"]}px`,

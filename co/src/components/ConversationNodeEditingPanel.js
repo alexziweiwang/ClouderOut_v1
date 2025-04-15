@@ -1003,10 +1003,10 @@ const [uiConvNav, setUIConvNav] = useState({
 
     async function updateConvNodeUiPlanToCloud(allPlansMap) {
         await saveConvNodeUiPlanVM({
-        projectName: projectName, 
-        currUser: userName, 
-        updatedAllPlans: allPlansMap, 
-        nodeType: "Conversation"
+            projectName: projectName, 
+            currUser: userName, 
+            updatedAllPlans: allPlansMap, 
+            nodeType: "Conversation"
         });
     }
 
@@ -1022,6 +1022,31 @@ const [uiConvNav, setUIConvNav] = useState({
         }
 
         return obj;
+    }
+
+    function convUiHoverPreviewPlans(item) {
+        //TODO900
+
+        setGameUITextFrame(item.textFrame);
+        setGameUIDefaultButton(item.defaultButton);
+        setGameUIBackButton(item.backButton);
+        setUIConvNav(item.convNav);
+        setLogPageUISettings(item.logPage);
+
+        
+        // "defaultButton"
+        // "textFrame"
+        // "backButton"
+        // "convNav"
+        // "logPage"
+
+
+        //gameUITextFrame
+        //gameUIDefaultButton
+        //gameUIBackButton
+        //logPageUISettings
+        //uiConvNav
+
     }
 
 
@@ -1252,6 +1277,7 @@ const [uiConvNav, setUIConvNav] = useState({
                             
                             updateConvNodeUiPlanToCloud={updateConvNodeUiPlanToCloud}
                             fetchConvNodeUiPlansFromCloud={fetchConvNodeUiPlansFromCloud}
+                            convUiHoverPreviewPlans={convUiHoverPreviewPlans}
 
                     />}
                  

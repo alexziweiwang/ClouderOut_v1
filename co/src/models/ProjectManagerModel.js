@@ -141,9 +141,12 @@ export async function fetchProjectNavigationSettings({projectName, currUser}) {
 export async function saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
+
+  console.log("cloud func saving conv-node-ui plan: ", updatedAllPlans);
+
   if (nodeType === "Conversation") {
     await updateDoc(projRef, 
-      {convNodeUiPlanMap: updatedAllPlans
+      {"convNodeUiPlanMap": updatedAllPlans
     });
   }
 

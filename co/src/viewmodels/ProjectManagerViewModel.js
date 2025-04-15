@@ -67,5 +67,5 @@ export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPla
 }
 
 export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType}) {
-    await fetchConvNodeUiAllPlans({projectName, currUser, nodeType});
+    return await fetchConvNodeUiAllPlans({projectName, currUser, nodeType});
 }

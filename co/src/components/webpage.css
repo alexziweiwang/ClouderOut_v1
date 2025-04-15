@@ -648,6 +648,7 @@ textarea {
 
 .clickableListItem2 {
     background-color: rgb(221, 220, 223);
+    color: #000000;
     margin: 1px;
     height: 25px;
     text-align: left;
