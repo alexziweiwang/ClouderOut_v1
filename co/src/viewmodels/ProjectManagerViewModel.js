@@ -3,7 +3,9 @@ import {fetchProjectList, revertProject,
     initializeChaptersCollection, updateProjectUILang,
     fetchProjectUILang,
     updateProjectNavigationSettings,
-    fetchProjectNavigationSettings
+    fetchProjectNavigationSettings,
+    saveConvNodeUiPlan,
+    fetchConvNodeUiAllPlans
 } from '../models/ProjectManagerModel';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
@@ -58,4 +60,12 @@ export async function updateProjectNavigationSettingsVM({projectName, currUser, 
 
 export async function fetchProjectNavigationSettingsVM({projectName, currUser}) {
     return await fetchProjectNavigationSettings({projectName, currUser});
+}
+
+export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPlans, nodeType}) {
+    await saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType});
+}
+
+export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType}) {
+    await fetchConvNodeUiAllPlans({projectName, currUser, nodeType});
 }

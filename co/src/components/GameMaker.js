@@ -15,13 +15,39 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 
 
 //TODO20 cloud-func (marked)
-import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM } from '../viewmodels/GameDataViewModel';
+import { 
+  getProjectGameDataDesignVM, 
+  updateGameDataDesignVM, 
+  getChapterDataVM 
+} from '../viewmodels/GameDataViewModel';
+
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { updateProjectUILangVM, fetchProjectUILangVM, updateProjectNavigationSettingsVM, fetchProjectNavigationSettingsVM } from '../viewmodels/ProjectManagerViewModel';
-import { fetchChapterNodesDataVM, updateChapterNodesToCloudDataVM, fetchAllChapterListVM, updateChapterListToCloudVM, addNewOneChapterFolderVM } from '../viewmodels/ChapterInfoViewModel';
+
+import { 
+  updateProjectUILangVM, 
+  fetchProjectUILangVM, 
+  updateProjectNavigationSettingsVM, 
+  fetchProjectNavigationSettingsVM,
+  saveConvNodeUiPlanVM,
+  fetchConvNodeUiAllPlansVM
+} from '../viewmodels/ProjectManagerViewModel';
+
+import { 
+  fetchChapterNodesDataVM, 
+  updateChapterNodesToCloudDataVM, 
+  fetchAllChapterListVM, 
+  updateChapterListToCloudVM, 
+  addNewOneChapterFolderVM 
+} from '../viewmodels/ChapterInfoViewModel';
+
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
-import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM, fetchNodeDataEntireProjectVM } from '../viewmodels/NodeDataInPlayViewModel';
+
+import { 
+  fetchNodeDataEachNodeVM, 
+  fetchNodeDataEachChapterVM, 
+  fetchNodeDataEntireProjectVM 
+} from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 
@@ -222,7 +248,6 @@ export default function GameMaker({username, projectName}) {
 
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
-
 
   //TODO501 node-ui template...
 
@@ -509,7 +534,10 @@ export default function GameMaker({username, projectName}) {
   useEffect(() => {
 
     window.onbeforeunload = () => {
-      return "show message";
+      if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
+        return "show message";
+      }
+      
     }
                //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
                   
@@ -1652,6 +1680,16 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
   function triggerNodeDeleted() {
     setNodeMgrDelSignal(true);
   }
+
+  async function updateConvNodeUiPlanToCloud() {
+    //saveConvNodeUiPlanVM({projectName, currUser, updatedAllPlans, "Conversation"})
+  }
+
+  async function fetchConvNodeUiPlansFromCloud() {
+    //fetchConvNodeUiAllPlansVM({projectName, currUser, "Conversation"})
+  }
+
+
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
