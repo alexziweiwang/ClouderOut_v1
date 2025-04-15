@@ -1023,19 +1023,75 @@ export default function NodeManager({projectName, currUser,
                 {listOfNodesText}:<br></br>
           
             <ul style={{"width": "320px", "marginLeft": "-25px"}}>
-                  {Object.keys(nodeRelationshipMap).map((currKey) => {
+
+
+
+
+            {Object.keys(nodeRelationshipMap).map((currKey) => {
+
+            let item = nodeRelationshipMap[currKey];
+            let liKey = "li" + currKey;
+            let crdCal = highlightGridByKey(currKey);
+
+            if (item["display"] === true
+              && item["nodeType"] === "*chapterStart*"        
+            ) {
+                return (
+
+                  <li 
+                        key={liKey} 
+                        className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
+                        style={{
+                          "marginBottom": "3px", 
+                          "overflow": "scroll"
+                        }}
+                        onClick={()=>{
+                          
+                          if (clickedNode2 === crdCal) { //when already clicked (some node selected)
+
+                            setClickedNode2(-1); //cancel if already clicked on this node
+                          } else {
+                            // when all nodes unselected
+                      
+                            setClickedNode2(crdCal);
+
+                            // crdCal = ir * 10000 + ic;
+                            let ic = crdCal % 10000;
+                            let ir = (crdCal-ic) / 10000;
+                            let content = gridBlocks[ir][ic]; 
+                            setClickedNodeKey(content);
+                          
+
+                          } 
+                        }}
+                      >
+                        Chapter Start
+                  </li>
+              );
+            }
+
+
+            })}
+
+            {Object.keys(nodeRelationshipMap).map((currKey) => {
 
                       let item = nodeRelationshipMap[currKey];
                       let liKey = "li" + currKey;
                       let crdCal = highlightGridByKey(currKey);
 
-                      if (item["display"] === true) {
+                      if (item["display"] === true
+                        && item["nodeType"] !== "*chapterStart*"        
+                        && item["nodeType"] !== "*chapterEnd*"                                
+                      ) {
                           return (
                  
                             <li 
                                   key={liKey} 
                                   className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
-                                  style={{"marginBottom": "3px"}}
+                                  style={{
+                                    "marginBottom": "3px", 
+                                    "overflow": "scroll"
+                                  }}
                                   onClick={()=>{
                                     
                                     if (clickedNode2 === crdCal) { //when already clicked (some node selected)
@@ -1062,7 +1118,55 @@ export default function NodeManager({projectName, currUser,
                       }
                       
 
-                  })}
+                  })}              
+            
+                {Object.keys(nodeRelationshipMap).map((currKey) => {
+
+                let item = nodeRelationshipMap[currKey];
+                let liKey = "li" + currKey;
+                let crdCal = highlightGridByKey(currKey);
+
+                if (item["display"] === true
+                  && item["nodeType"] === "*chapterEnd*"                                
+                ) {
+                    return (
+
+                      <li 
+                            key={liKey} 
+                            className={(clickedNode2 === crdCal) ? "clickableListItem2Clicked": "clickableListItem2"}
+                            style={{
+                              "marginBottom": "3px", 
+                              "overflow": "scroll"
+                            }}
+                            onClick={()=>{
+                              
+                              if (clickedNode2 === crdCal) { //when already clicked (some node selected)
+
+                                setClickedNode2(-1); //cancel if already clicked on this node
+                              } else {
+                                // when all nodes unselected
+                          
+                                setClickedNode2(crdCal);
+
+                                // crdCal = ir * 10000 + ic;
+                                let ic = crdCal % 10000;
+                                let ir = (crdCal-ic) / 10000;
+                                let content = gridBlocks[ir][ic]; 
+                                setClickedNodeKey(content);
+                              
+
+                              } 
+                            }}
+                          >
+                            Chapter End
+                      </li>
+                  );
+                }
+
+
+})}
+
+
             </ul>
           </div>  
           {/* <div
@@ -1140,7 +1244,12 @@ export default function NodeManager({projectName, currUser,
                                 style={{
                                   "width": `${nodeWidth}px`, 
                                   "height": `${nodeHeight}px`,
-                                  "borderRadius": (content !== "" && nodeRelationshipMap[content] !== undefined && nodeRelationshipMap[content].nodeType === "LogicSplitter") ? "100px" : "0px",
+                                  "borderRadius": 
+                                      (content !== "" && nodeRelationshipMap[content] !== undefined 
+                                      && 
+                                      nodeRelationshipMap[content].nodeType === "LogicSplitter") 
+                                    ? "100px" 
+                                    : "0px",
                                 
                                 }}
 
@@ -1149,7 +1258,12 @@ export default function NodeManager({projectName, currUser,
                                   ? "gridNodeClicked" 
                                   : (content === "" 
                                             ? "gridNodeEmpty" 
-                                            : "gridNodeOccupied")
+                                            : ((nodeRelationshipMap[content].nodeType !== "*chapterStart*" && nodeRelationshipMap[content].nodeType !== "*chapterEnd*")
+                                              ?
+                                              "gridNodeOccupied"
+                                              : "gridStartEnd"
+                                            )
+                                  )
                                 }
                                   
                                 onClick={()=>{

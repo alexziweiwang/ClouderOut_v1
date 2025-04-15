@@ -743,10 +743,10 @@ export default function GameMaker({username, projectName}) {
     //update all-node-map
     let nodeMapTemp = chapterNodeMapAll;
     let chapterStartKeyStr = "chapterStart-key-" + newKey;
-    let chapterStartTitleStr = "chapterStart-title-" + newKey;
+    let chapterStartTitleStr = "Chapter Start"
 
     let chapterEndKeyStr = "chapterEnd-key-" + newKey;
-    let chapterEndTitleStr = "chapterEnd-title-" + newKey;
+    let chapterEndTitleStr = "Chapter End";
 
     let obj = {};
     obj[chapterStartKeyStr] = {

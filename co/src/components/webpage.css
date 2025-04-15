@@ -1845,8 +1845,33 @@ button:hover {
     align-items: center; 
     cursor: pointer;
     border: 1px solid rgb(158, 157, 157);
-
 }
+
+.gridStartEnd {
+    background-color: rgb(0, 0, 0);
+    color: #FFFFFF;
+    margin-top: 4px;
+    
+    text-align: center;
+    display: flex;    
+    justify-content: center;
+    align-items: center; 
+    border: 1px solid rgb(158, 157, 157);    
+}
+
+
+.gridStartEnd:hover {
+    background-color: rgb(0, 0, 0);
+    color: #FFFFFF;
+    margin-top: 4px;
+    
+    text-align: center;
+    display: flex;    
+    justify-content: center;
+    align-items: center; 
+    border: 1px solid rgb(158, 157, 157);
+}
+
 
 .gridNodeClicked {
     background-color: #99c0da;
