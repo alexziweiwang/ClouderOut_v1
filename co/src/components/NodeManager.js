@@ -2110,9 +2110,11 @@ export default function NodeManager({projectName, currUser,
           
                     chapterChangingOrExiting().then((ans) => {
                         console.log("node-manager, enter-ans", ans);
+                        if (ans === "wait-and-enter") {
+                          updateRenderCounter();
+                        }
                         if (ans === "wait-and-enter" || ans === "immediate-enter") {
                           enterNodeEditor2();
-    
                         }
                       }
                     );
