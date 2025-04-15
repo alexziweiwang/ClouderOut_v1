@@ -19,6 +19,7 @@ import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITe
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+import {   saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
@@ -1000,6 +1001,29 @@ const [uiConvNav, setUIConvNav] = useState({
         return charaPicPrvw;
     }
 
+    async function updateConvNodeUiPlanToCloud(allPlansMap) {
+        await saveConvNodeUiPlanVM({
+        projectName: projectName, 
+        currUser: userName, 
+        updatedAllPlans: allPlansMap, 
+        nodeType: "Conversation"
+        });
+    }
+
+    async function fetchConvNodeUiPlansFromCloud() {
+        let obj = await fetchConvNodeUiAllPlansVM({
+        projectName: projectName, 
+        currUser: userName, 
+        nodeType: "Conversation"
+        });
+
+        if (obj === undefined) {
+        return -1;
+        }
+
+        return obj;
+    }
+
 
           
 
@@ -1224,7 +1248,11 @@ const [uiConvNav, setUIConvNav] = useState({
 
                             getUILanguage={passInUILanguage}
                             username={state.userName} 
-                            projName={state.projectName}    
+                            projName={state.projectName}   
+                            
+                            updateConvNodeUiPlanToCloud={updateConvNodeUiPlanToCloud}
+                            fetchConvNodeUiPlansFromCloud={fetchConvNodeUiPlansFromCloud}
+
                     />}
                  
             </div> 

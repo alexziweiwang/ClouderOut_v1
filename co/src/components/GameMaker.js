@@ -28,8 +28,6 @@ import {
   fetchProjectUILangVM, 
   updateProjectNavigationSettingsVM, 
   fetchProjectNavigationSettingsVM,
-  saveConvNodeUiPlanVM,
-  fetchConvNodeUiAllPlansVM
 } from '../viewmodels/ProjectManagerViewModel';
 
 import { 
@@ -1679,14 +1677,6 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
   function triggerNodeDeleted() {
     setNodeMgrDelSignal(true);
-  }
-
-  async function updateConvNodeUiPlanToCloud() {
-    //saveConvNodeUiPlanVM({projectName, currUser, updatedAllPlans, "Conversation"})
-  }
-
-  async function fetchConvNodeUiPlansFromCloud() {
-    //fetchConvNodeUiAllPlansVM({projectName, currUser, "Conversation"})
   }
 
 

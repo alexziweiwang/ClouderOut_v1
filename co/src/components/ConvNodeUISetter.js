@@ -22,6 +22,9 @@ export default function ConvNodeUISetter({
 
     getUILanguage,
     username, projName,
+
+    updateConvNodeUiPlanToCloud,
+    fetchConvNodeUiPlansFromCloud
     
 }) {
 
@@ -226,6 +229,11 @@ export default function ConvNodeUISetter({
     const [currentlyEditedUiPlan, setCurrentlyEditedUiPlan] = useState(-1);
 
     const [viewingUiPlan, setViewingUiPlan] = useState(-1);
+    const [viewingCloudPlanSelected, setViewingCloudPlanSelected] = useState(false);
+
+
+    const [uiPlanMap, setUiPlanMap] = useState(-1);
+
 
     function collapseAllSections() {
         setOpenDefaultButtonSection(false);
@@ -250,6 +258,11 @@ export default function ConvNodeUISetter({
         setAddingPlanName("");
         setCurrentlyEditedUiPlan(-1);
         
+    }
+
+    async function fetchUiPlanListLocal() {
+        let uiPlansTemp = await fetchConvNodeUiPlansFromCloud();
+        setUiPlanMap(uiPlansTemp);
     }
 
 //TODO5
@@ -291,18 +304,47 @@ export default function ConvNodeUISetter({
 {/* TODO */}
         Current Plans:<br></br>
         <div>
+            <button
+                onClick={()=>{
+                    fetchUiPlanListLocal();
+                }}
+            >Load List</button>
 
-            {/* TODO load list of ui-plans here 
-            -click and preview list item;
-                setViewingUiPlan ( <clicked plan> )
+            <div >
+                {uiPlanMap !== -1 &&
+                <ul>
+                    {Object.keys(uiPlanMap).map((currKey) => {
+                        let item = uiPlanMap[currKey];
 
-            -option of reset to currently-editing-ui-plan 
-                reset(cancel clicking on cloud-plans) ==> setViewingUiPlan(currentlyEditedUiPlan);
+                    
+                        return (
+                            <li
+                                onMouseEnter={()=>{
+                                    //clicked on this ui-plan: preview this plan, or cancel previewing this plan
 
+                                    setViewingUiPlan(item);
+                                    //TODO900 trigger to notify outlayer
 
-            */}
+                                }}
 
+                                onMouseOut={()=>{
+                                    setViewingUiPlan(currentlyEditedUiPlan)
+                                        //TODO900 trigger to notify outlayer
 
+                                }}
+
+                                onClick={()=>{
+                                    //TODO900 set editing-plan to this one!! ask for confirmation
+
+                                }}
+                            >
+
+                            </li>
+                        )
+                    })}
+                    
+                </ul>}
+            </div>
 
         </div>
 
@@ -315,8 +357,12 @@ export default function ConvNodeUISetter({
             <br></br>
             <button
                 onClick={()=>{
-//use addingPlanName
-
+                    if (viewingCloudPlanSelected === false) {
+//use addingPlanName and currentlyEditedUiPlan
+                        
+                    } else {
+                        alert("This plan is already on cloud!");
+                    }
                 }}
             >{saveText}</button>
         </div>
