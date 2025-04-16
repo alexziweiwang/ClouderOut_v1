@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
+import { GiTrashCan } from "react-icons/gi";
 
 
 export default function ConvNodeUISetter({
@@ -135,9 +136,9 @@ export default function ConvNodeUISetter({
         textDictItem.horizontallyCentredText
         : textDictItemDefault.horizontallyCentredText;
 
-    let cancelText = textDictItem.cancelText !== undefined ?
-        textDictItem.cancelText
-        : textDictItemDefault.cancelText;
+    let returnGameMakerButtonText = textDictItem.returnGameMakerButtonText !== undefined ?
+        textDictItem.returnGameMakerButtonText
+        : textDictItemDefault.returnGameMakerButtonText;
 
 
 //TODO15
@@ -327,10 +328,13 @@ export default function ConvNodeUISetter({
 
     {cloudPlanOpen === true &&
     <div className="guiSettings pieceEditingLeftArea" style={{"height": `${screenHeight-57}px`}}>
+        <button onClick={()=>{closePlanSection();}}>{returnGameMakerButtonText}</button>
 
 {/* TODO */}
-        Current Plans:<br></br>
+        <br></br><br></br>
+        
         <div>
+        Current Plans:    
             <button
                 onClick={()=>{
                     fetchUiPlanListLocal();
@@ -339,55 +343,84 @@ export default function ConvNodeUISetter({
 
             <div >
                 {uiPlanMap !== -1 &&
-                <ul>
+                <table>
                     {Object.keys(uiPlanMap).map((currKey) => {
                         let item = uiPlanMap[currKey];
                         let keyStr = "ui-plan-" + currKey;
 
                     
                         return (
-                            <li
+                            <tr
+                                style={{"marginBottom": "5px"}}
                                 key={keyStr}
-                                className="clickableListItem2"
-                                onMouseEnter={()=>{
-                                    console.log("hovered!!", currKey, "\n", item);
-                                    //clicked on this ui-plan: preview this plan, or cancel previewing this plan
-
-                                    setViewingUiPlan(item);
-                                    //TODO900 trigger to notify outlayer
-                                    convUiHoverPreviewPlans(item);
-
-                                }}
-
-                                onMouseOut={()=>{
-                                    setViewingUiPlan(currentlyEditedUiPlan)
-                                    //TODO900 trigger to notify outlayer
-                                    convUiHoverPreviewPlans(currentlyEditedUiPlan);
-
-                                }}
-
-                                onClick={()=>{
-                                    //TODO900 set editing-plan to this one!! ask for confirmation
-                                    let askStr = "Are you sure to load this plan and discard the current UI-settings?";
-                                    let ans = window.confirm(askStr);
-                                    if (ans) {
-                                        setCurrentlyEditedUiPlan(item);
-                                        convUiHoverPreviewPlans(item);
-                                        updateCurrentUiObj(item);
-                                    }
-                                }}
+                      
                             >
-                                {currKey}
-                            </li>
+                                <td
+                                        className="cursor_pointer tableItem"  
+                                        onMouseEnter={()=>{
+                                            console.log("hovered!!", currKey, "\n", item);
+                                            //clicked on this ui-plan: preview this plan, or cancel previewing this plan
+        
+                                            setViewingUiPlan(item);
+                                            //TODO900 trigger to notify outlayer
+                                            convUiHoverPreviewPlans(item);
+                                            updateCurrentUiObj(item);
+        
+                                        }}
+        
+                                        onMouseOut={()=>{
+                                            setViewingUiPlan(currentlyEditedUiPlan)
+                                            //TODO900 trigger to notify outlayer
+                                            convUiHoverPreviewPlans(currentlyEditedUiPlan);
+                                            updateCurrentUiObj(currentlyEditedUiPlan);
+        
+                                        }}
+        
+                                        onClick={()=>{
+                                            //TODO900 set editing-plan to this one!! ask for confirmation
+                                            let askStr = "Are you sure to load this plan and discard the current UI-settings?";
+                                            let ans = window.confirm(askStr);
+                                            if (ans) {
+                                                setCurrentlyEditedUiPlan(item);
+                                                convUiHoverPreviewPlans(item);
+                                                updateCurrentUiObj(item);
+                                            }
+                                        }}
+                                >
+                                    {currKey}
+                                </td>
+                                
+                                <td>
+                                    <GiTrashCan onClick={()=>{
+
+                                        let askStr = "Are you sure to delete this plan?";
+                                        let ans = window.confirm(askStr);
+                                        if (ans) {
+                                            //TODO900
+                                            let uiMapTemp = uiPlanMap;
+                                            delete uiMapTemp[currKey];
+
+                                            updateConvNodeUiPlanToCloud(uiMapTemp); //notify outer-layer
+
+                                            setUiPlanMap(uiMapTemp); // update for local ds
+                        
+                                            fetchUiPlanListLocal();
+
+                                        }
+
+                                    }}  
+                                        className="iconButtonSmall"/>
+                                </td>
+                            </tr>
                         )
                     })}
                     
-                </ul>}
+                </table>}
             </div>
 
         </div>
 
-
+        <br></br>
         <label>Save this plan to cloud</label>
         <div className="indentOne">
             <label>Plan Name: </label>
@@ -409,13 +442,14 @@ export default function ConvNodeUISetter({
                     updateConvNodeUiPlanToCloud(uiMapTemp); //notify outer-layer
 
                     setUiPlanMap(uiMapTemp); // update for local ds
+
+                    fetchUiPlanListLocal();
                 }}
             >{saveText}</button>
         </div>
        
 
 
-        <button onClick={()=>{closePlanSection();}} className="buttonRight80">{cancelText}</button>
 
     </div>
     }

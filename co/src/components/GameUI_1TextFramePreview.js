@@ -115,7 +115,7 @@ export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData
             "width" : `${txtFrameUISettings["TextContentArea-w"] - txtFrameUISettings["TextContentArea-x"]}px`,
             "height" : `${txtFrameUISettings["TextContentArea-h"] - txtFrameUISettings["TextContentArea-y"]}px`,
             "fontFamily": `${txtFrameUISettings["fontName"]}`,
-            "border": isInGameView === true ? "none" : "2px solid orange",
+            // "border": isInGameView === true ? "none" : "2px dotted red",
             "borderRadius": "0px",
 
         }}>
