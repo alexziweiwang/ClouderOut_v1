@@ -1540,6 +1540,9 @@ export default function NodeManager({projectName, currUser,
                             <button onClick={()=>{setTempNewNote("");}}>{cancelText}</button>
                             <button onClick={()=>{updateNodeWithNewNote();}}>{updateText}</button>
                           </div>
+                          {(nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*" && nodeRelationshipMap[clickedNodeKey].nodeType !=="*chapterEnd*") 
+                          && 
+                          <>
                           <br></br>
                           <br></br>
                           <label>{deleteSText}{nodeText}: </label>
@@ -1554,6 +1557,7 @@ export default function NodeManager({projectName, currUser,
                                 }
                               }}>{deleteText}</button>
                           </div>
+                          </>}
                       </div>
                
               </div>   

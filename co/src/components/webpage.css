@@ -1849,28 +1849,29 @@ button:hover {
 }
 
 .gridStartEnd {
-    background-color: rgb(0, 0, 0);
-    color: #FFFFFF;
+    background-color: rgb(198, 198, 198);
+    color: #353535;
     margin-top: 4px;
     
     text-align: center;
     display: flex;    
     justify-content: center;
     align-items: center; 
-    border: 1px solid rgb(158, 157, 157);    
+    border: 1px solid rgb(55, 55, 55);    
 }
 
 
 .gridStartEnd:hover {
-    background-color: rgb(0, 0, 0);
-    color: #FFFFFF;
+    background-color: rgb(198, 198, 198);
+    color: #353535;
     margin-top: 4px;
     
     text-align: center;
     display: flex;    
     justify-content: center;
     align-items: center; 
-    border: 1px solid rgb(158, 157, 157);
+    border: 1px solid rgb(55, 55, 55);    
+    cursor: pointer;
 }
 
 
