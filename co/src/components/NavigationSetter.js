@@ -831,7 +831,14 @@ export default function NavigationSetter({initialNavObj,
 
                             setCurrentProjectNav({...currentProjectNav, "backButton-shapeColor": event.target.value});    
                         }}></input>
-                        <label> {currentProjectNav["backButton-shapeColor"]}</label>
+                        <label>  </label>
+                        <input value={currentProjectNav["backButton-shapeColor"]} onChange={(event)=>{
+                            let tempObj = currentProjectNav;
+                            tempObj["backButton-shapeColor"] = event.target.value;
+                            updateNavObj(tempObj);       
+
+                            setCurrentProjectNav({...currentProjectNav, "backButton-shapeColor": event.target.value});    
+                        }}></input>
                       </div>
                   <input type="radio"
                     value={currentProjectNav["backButton-isShape"]}
@@ -1050,7 +1057,15 @@ export default function NavigationSetter({initialNavObj,
                                       
                                       setCurrentProjectNav({...currentProjectNav, "saveloadPage-bgShadeName": event.target.value});    
                                         }}></input>
-                                    <label className="textCanSelect"> {currentProjectNav["saveloadPage-bgShadeName"]}</label>
+                                        <label>  </label>
+                                    <input
+                                    onChange={(event)=>{
+                                      let tempObj = currentProjectNav;
+                                      tempObj["saveloadPage-bgShadeName"] = event.target.value;
+                                      updateNavObj(tempObj);       
+                                      
+                                      setCurrentProjectNav({...currentProjectNav, "saveloadPage-bgShadeName": event.target.value});    
+                                        }}></input>                                        
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -1199,7 +1214,16 @@ export default function NavigationSetter({initialNavObj,
                                       setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotShadeName": event.target.value});                         
                                       
                                     }}></input>
-                                    <label className="textCanSelect"> {currentProjectNav["saveloadPage-slotShadeName"]}</label>
+                                    <label>  </label>
+                                    <input
+                                    onChange={(event)=>{
+                                      let tempObj = currentProjectNav;
+                                      tempObj["saveloadPage-slotShadeName"] = event.target.value;
+                                      updateNavObj(tempObj);       
+                                      
+                                      setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotShadeName": event.target.value});                         
+                                      
+                                    }}></input>                                    
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -1413,7 +1437,18 @@ export default function NavigationSetter({initialNavObj,
                                         setCurrentProjectNav({...currentProjectNav, "mainPage-bgShadeName": event.target.value});               
                                         
                                         }}></input>
-                                    <label className="textCanSelect"> {currentProjectNav["mainPage-bgShadeName"]}</label>
+                                      <label>  </label>
+                                    <input
+                                      value={currentProjectNav["mainPage-bgShadeName"]}
+                                      onChange={(event)=>{
+                                        let tempObj = currentProjectNav;
+                                        tempObj["mainPage-bgShadeName"] = event.target.value;
+                                        updateNavObj(tempObj);
+                                        //TODO test
+
+                                        setCurrentProjectNav({...currentProjectNav, "mainPage-bgShadeName": event.target.value});               
+                                        
+                                        }}></input>
                                 </div>}
                             
                         <br></br>
@@ -1672,7 +1707,7 @@ export default function NavigationSetter({initialNavObj,
                 ></input>
                 <br></br>
                 <label>{fontColorText}:</label>
-                 <input type="color" 
+                <input type="color" 
                   value={currentProjectNav["mainPage-listItemGroupFontColor"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -1683,7 +1718,18 @@ export default function NavigationSetter({initialNavObj,
                             
                   }}
                  ></input>
-                 <label> {currentProjectNav["mainPage-listItemGroupFontColor"]}</label>
+                 <label>  </label>
+                 <input
+                  value={currentProjectNav["mainPage-listItemGroupFontColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-listItemGroupFontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+  
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-listItemGroupFontColor": event.target.value});             
+                            
+                  }}
+                 ></input>
                <br></br>
                 {fontSizeText}:
                 <input type="range"
@@ -1769,7 +1815,18 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShadeName": event.target.value});
                                 
                               }}></input>
-                          <label className="textCanSelect"> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                          <input
+                          value={currentProjectNav["mainPage-listItemShadeName"]}
+                          onChange={(event)=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["mainPage-listItemShadeName"] = event.target.value;
+                                updateNavObj(tempObj);                  
+                                //TODO test
+                
+                                setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShadeName": event.target.value});
+                                
+                              }}></input>
+
                       </div>}
                   
               <br></br><input type="radio"
@@ -2044,7 +2101,19 @@ export default function NavigationSetter({initialNavObj,
                             
                   }}
                  ></input>
-                 <label> {currentProjectNav["mainPage-story-fontColor"]}</label>
+                 <label>  </label>
+                 <input
+                  value={currentProjectNav["mainPage-story-fontColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-story-fontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+  
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-story-fontColor": event.target.value});             
+                            
+                  }}
+                 ></input>
                <br></br>
            {fontSizeText}:
                 <input type="range"
@@ -2109,7 +2178,18 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "mainPage-story-shadeName": event.target.value});             
                                              
                                   }}></input>
-                              <label className="textCanSelect"> {currentProjectNav[ "mainPage-story-shadeName"]}</label>
+                          <label>  </label>
+                          <input
+                              value={currentProjectNav["mainPage-story-shadeName"]}
+                              onChange={(event)=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["mainPage-story-shadeName"] = event.target.value;
+                                updateNavObj(tempObj);                  
+                                //TODO test
+            
+                                setCurrentProjectNav({...currentProjectNav, "mainPage-story-shadeName": event.target.value});             
+                                             
+                                  }}></input>                                  
                           </div>}
                       
                   <br></br><input type="radio"
@@ -2292,7 +2372,19 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontColor": event.target.value});             
                   }}                   
                 ></input>
-                <label> {currentProjectNav["mainPage-playerProfile-fontColor"]}</label>
+                <label>  </label>  
+                <input
+                  value={currentProjectNav["mainPage-playerProfile-fontColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-playerProfile-fontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-fontColor": event.target.value});             
+                  }}                   
+                ></input>
+
                <br></br>
            {fontSizeText}:
               <input type="range"
@@ -2359,7 +2451,19 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-shadeName": event.target.value});             
                                                    
                             }}></input>
-                        <label className="textCanSelect"> {currentProjectNav["mainPage-playerProfile-shadeName"]}</label>
+                        <label>  </label>
+                        <input
+                          value={currentProjectNav["mainPage-playerProfile-shadeName"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-playerProfile-shadeName"] = event.target.value;
+                          updateNavObj(tempObj);                  
+                          //TODO test
+    
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-shadeName": event.target.value});             
+                                                   
+                            }}></input>
+
                     </div>}
                 
             <br></br><input type="radio"
@@ -2546,7 +2650,17 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "mainPage-setting-fontColor": event.target.value});             
                   }}
                  ></input>
-                 <label> {currentProjectNav["mainPage-setting-fontColor"]}</label>
+                <input
+                  value={currentProjectNav["mainPage-setting-fontColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["mainPage-setting-fontColor"] = event.target.value;
+                    updateNavObj(tempObj);                  
+                    //TODO test
+
+                    setCurrentProjectNav({...currentProjectNav, "mainPage-setting-fontColor": event.target.value});             
+                  }}
+                 ></input>
                <br></br>
            {fontSizeText}:
                 <input type="range"
@@ -2608,7 +2722,17 @@ export default function NavigationSetter({initialNavObj,
     
                           setCurrentProjectNav({...currentProjectNav, "mainPage-setting-shadeName": event.target.value});                           
                             }}></input>
-                        <label className="textCanSelect"> {currentProjectNav["mainPage-setting-shadeName"]}</label>
+                        <label>  </label>
+                        <input
+                        value={currentProjectNav["mainPage-setting-shadeName"]}
+                        onChange={(event)=>{
+                          let tempObj = currentProjectNav;
+                          tempObj["mainPage-setting-shadeName"] = event.target.value;
+                          updateNavObj(tempObj);                  
+                          //TODO test
+    
+                          setCurrentProjectNav({...currentProjectNav, "mainPage-setting-shadeName": event.target.value});                           
+                            }}></input>                            
                     </div>}
                 
             <br></br><input type="radio"

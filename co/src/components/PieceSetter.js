@@ -1526,7 +1526,7 @@ export default function PieceSetter({
                             ></input><label onClick={()=>{setCstmIsShape(true);}}>Rectangle & Color Filled </label>
                                 {cstmClkbIsShape && <><br></br><input type="color" value={cstmClkbBgColor}
                                     onChange={(event)=>{setCstmClkbBgColor(event.target.value);}}></input>
-                                    <label className="textCanSelect">{cstmClkbBgColor}</label></>}
+                                    </>}
                             <br></br>
                             <input type="radio" value={cstmClkbIsShape} checked={!cstmClkbIsShape}
                                 onChange={()=>{setCstmIsShape(false);}}
