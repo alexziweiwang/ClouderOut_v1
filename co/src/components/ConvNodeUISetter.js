@@ -487,7 +487,7 @@ export default function ConvNodeUISetter({
         <input type="range" value={defaultButtonObj["cornerRadius"]} min="0" max="20" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "cornerRadius": event.target.value});}}></input><label>{defaultButtonObj["cornerRadius"]}</label>
         {/* <br></br><label>Transparency: </label><input type="range" value={defaultButtonObj["transparency"]} min="0" max="1" step="0.1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "transparency": event.target.value});}}></input><label>{defaultButtonObj["transparency"]}</label> */}
         <br></br><label>{fontSizeText}: </label><input type="range" value={defaultButtonObj["textSize"]}  min="0" max="90" step="1" onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textSize": event.target.value});}}></input><label> {defaultButtonObj["textSize"]} px</label>
-        <br></br><label>{fontColorText}: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label> {defaultButtonObj["textColor"]}</label>
+        <br></br><label>{fontColorText}: </label><input type="color" value={defaultButtonObj["textColor"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "textColor": event.target.value});}}></input><label className="textCanSelect"> {defaultButtonObj["textColor"]}</label>
         <br></br><label>Text Horizontal Alignment: </label>
             <select value={defaultButtonObj["justifyContent"]} onChange={(event)=>{setDefaultButtonObj({...defaultButtonObj,  "justifyContent": event.target.value});}}>
                 <option value="center" key="defaultButtonTextAlignCenter">Center</option>
@@ -514,7 +514,7 @@ export default function ConvNodeUISetter({
                         setIdvButtonBorderColor(event.target.value);
                         let temp = idvButtonBorderSize + "px solid " + event.target.value;
                         setDefaultButtonObj({...defaultButtonObj,  "border": temp});
-                    }}></input><label> {idvButtonBorderColor}</label>
+                    }}></input><label className="textCanSelect"> {idvButtonBorderColor}</label>
         <br></br><label>{borderSizeText}: </label>
                     <input type="range" value={idvButtonBorderSize} min="0" max="3" step="1" onChange={(event)=>{
                         setIdvButtonBorderSize(event.target.value);
@@ -536,7 +536,7 @@ export default function ConvNodeUISetter({
                     onChange={(event)=>{
                         setDefaultButtonObj({...defaultButtonObj,  "bgColor": event.target.value});
                        
-                        }}></input><label> {defaultButtonObj["bgColor"]}</label>
+                        }}></input><label className="textCanSelect"> {defaultButtonObj["bgColor"]}</label>
                 </div>}
             
         <br></br><input type="radio" value={defaultButtonObj["isShape"]} checked={!defaultButtonObj["isShape"]} onChange={(event)=>{
@@ -765,7 +765,7 @@ export default function ConvNodeUISetter({
     
         {txtFrameObj["isShape"] && <><input type="color" value={txtFrameObj["bgColor"]} onChange={(event)=>{
             setTxtFrameObj({...txtFrameObj, "bgColor": event.target.value});    
-            }}></input><label>{txtFrameObj["bgColor"]}</label></>}
+            }}></input><label className="textCanSelect">{txtFrameObj["bgColor"]}</label></>}
     <br></br><input type="radio" value={txtFrameObj["isShape"]} checked={!txtFrameObj["isShape"]} onChange={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}></input><label 
     onClick={()=>{setTxtFrameObj({...txtFrameObj, "isShape": false});}}>{basePictureText} </label>
         {!txtFrameObj["isShape"] && <>
@@ -808,7 +808,7 @@ export default function ConvNodeUISetter({
     }}></input><input type="number" value={txtFrameObj["textSize"]} min="0" max="32" step="1" onChange={(event)=>{setTxtFrameObj({...txtFrameObj, "textSize": event.target.value});}}></input>
     <br></br><label>{fontColorText}: </label><input type="color" value={txtFrameObj["textColor"]} onChange={(event)=>{
         setTxtFrameObj({...txtFrameObj, "textColor": event.target.value});            
-    }}></input><label> {txtFrameObj["textColor"]}</label>
+    }}></input><label className="textCanSelect"> {txtFrameObj["textColor"]}</label>
     <br></br>Text Content Area:
     <div className="indentOne">
     <input type="radio" value={txtFrameContentAreaCentered} checked={txtFrameContentAreaCentered} onChange={()=>{setTxtFrameContentAreaCentered(!txtFrameContentAreaCentered);}}>
@@ -926,7 +926,7 @@ export default function ConvNodeUISetter({
                     <br></br><input type="color" value={convNav["buttonAutoShade0"]} onChange={(event)=>{
                                 setConvNav({...convNav,  "buttonAutoShade0": event.target.value});
                     }}></input>
-                    <label> {convNav["buttonAutoShade0"]}</label>
+                    <label className="textCanSelect"> {convNav["buttonAutoShade0"]}</label>
 
                     <br></br>
                 <label>{basePictureText}: </label>
@@ -963,7 +963,7 @@ export default function ConvNodeUISetter({
                     <br></br><input type="color" value={convNav["buttonAutoShade1"]} onChange={(event)=>{
                                 setConvNav({...convNav,  "buttonAutoShade1": event.target.value});
                     }}></input>
-                    <label> {convNav["buttonAutoShade1"]}</label>
+                    <label className="textCanSelect"> {convNav["buttonAutoShade1"]}</label>
 
                     <br></br>
                     <label>{basePictureText}: </label>
@@ -1021,7 +1021,7 @@ export default function ConvNodeUISetter({
             <br></br><input type="color" value={convNav["buttonLogShade"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonLogShade": event.target.value});
             }}></input>
-            <label> {convNav["buttonLogShade"]}</label> 
+            <label className="textCanSelect"> {convNav["buttonLogShade"]}</label> 
     
             <br></br>
             <label>{basePictureText}: </label>
@@ -1078,7 +1078,7 @@ export default function ConvNodeUISetter({
             <br></br><input type="color" value={convNav["buttonSetupShade"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonSetupShade": event.target.value});
             }}></input>
-            <label> {convNav["buttonSetupShade"]}</label> 
+            <label className="textCanSelect"> {convNav["buttonSetupShade"]}</label> 
     
             <br></br>
             <label>{basePictureText}: </label>
@@ -1241,6 +1241,7 @@ export default function ConvNodeUISetter({
                         setConvLogObj({...convLogObj, "closeButtonShade": event.target.value});
                     }}
                 ></input>
+                <label className="textCanSelect"> {convLogObj["closeButtonShade"]} </label>
                 <br></br>
                 <input type="radio" value={convLogObj["closeButtonIsShape"]} checked={!convLogObj["closeButtonIsShape"]}
                     onChange={()=>{
@@ -1361,6 +1362,7 @@ export default function ConvNodeUISetter({
                         }}
                     
                     ></input>
+                    <label className="textCanSelect"> {convLogObj["closeButtonBorderColor"]} </label>
 
                 <br></br>
                 <label>{buttonTextText}: </label>
@@ -1380,6 +1382,7 @@ export default function ConvNodeUISetter({
                         setConvLogObj({...convLogObj, "closeButtonTextColor": event.target.value});
                     }}
                 ></input>
+                <label className="textCanSelect"> {convLogObj["closeButtonTextColor"]} </label>
                 <br></br>
                 <label>Button Font: </label>
                 <select value={convLogObj["closeButtonFontName"]}
@@ -1416,6 +1419,7 @@ export default function ConvNodeUISetter({
                 <input type="color" value={convLogObj["bgpShade"]} onChange={(event)=>{
                         setConvLogObj({...convLogObj, "bgpShade": event.target.value});
                 }}></input>
+                <label className="textCanSelect"> {convLogObj["bpgShade"]} </label>
                 <br></br>
                 <input type="radio"
                     value={convLogObj["bgpIsShape"]}
@@ -1470,6 +1474,7 @@ export default function ConvNodeUISetter({
 
                                 }}
                             ></input>
+                            <label className="textCanSelect"> {convLogObj["groupBgShade"]} </label>
 
 
                             <br></br>
@@ -1580,6 +1585,7 @@ export default function ConvNodeUISetter({
                         setConvLogObj({...convLogObj, "contentTextShade": event.target.value});
                     }}
                 ></input>
+                <label className="textCanSelect"> {convLogObj["contentTextShade"]} </label>
                 <br></br>Content {fontSizeText}: 
                 <input type="range" value={convLogObj["contentTextSize"]} onChange={(event)=>{
                     setConvLogObj({...convLogObj, "contentTextSize": event.target.value});
@@ -1625,6 +1631,7 @@ export default function ConvNodeUISetter({
                         setConvLogObj({...convLogObj, "speakerTextShade": event.target.value});
                     }}
                 ></input>
+                <label className="textCanSelect"> {convLogObj["speakerTextShade"]} </label>
 
                 <br></br>Speaker Text Size
                 <input type="range" value={convLogObj["speakerTextSize"]} onChange={(event)=>{
