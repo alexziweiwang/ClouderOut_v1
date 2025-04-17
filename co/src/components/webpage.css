@@ -34,6 +34,11 @@ textarea {
     user-select: none;
 }
 
+.textCanSelect {
+    user-select: text;
+    cursor: text;
+}
+
 .noScrolling {
     overflow: hidden;
     height: 100%

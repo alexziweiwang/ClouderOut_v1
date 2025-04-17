@@ -1050,7 +1050,7 @@ export default function NavigationSetter({initialNavObj,
                                       
                                       setCurrentProjectNav({...currentProjectNav, "saveloadPage-bgShadeName": event.target.value});    
                                         }}></input>
-                                    <label> {currentProjectNav["saveloadPage-bgShadeName"]}</label>
+                                    <label className="textCanSelect"> {currentProjectNav["saveloadPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -1199,7 +1199,7 @@ export default function NavigationSetter({initialNavObj,
                                       setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotShadeName": event.target.value});                         
                                       
                                     }}></input>
-                                    <label> {currentProjectNav["saveloadPage-slotShadeName"]}</label>
+                                    <label className="textCanSelect"> {currentProjectNav["saveloadPage-slotShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -1413,7 +1413,7 @@ export default function NavigationSetter({initialNavObj,
                                         setCurrentProjectNav({...currentProjectNav, "mainPage-bgShadeName": event.target.value});               
                                         
                                         }}></input>
-                                    <label> {currentProjectNav["mainPage-bgShadeName"]}</label>
+                                    <label className="textCanSelect"> {currentProjectNav["mainPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br>
@@ -1769,7 +1769,7 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShadeName": event.target.value});
                                 
                               }}></input>
-                          <label> {currentProjectNav["mainPage-listItemShadeName"]}</label>
+                          <label className="textCanSelect"> {currentProjectNav["mainPage-listItemShadeName"]}</label>
                       </div>}
                   
               <br></br><input type="radio"
@@ -2109,7 +2109,7 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "mainPage-story-shadeName": event.target.value});             
                                              
                                   }}></input>
-                              <label> {currentProjectNav[ "mainPage-story-shadeName"]}</label>
+                              <label className="textCanSelect"> {currentProjectNav[ "mainPage-story-shadeName"]}</label>
                           </div>}
                       
                   <br></br><input type="radio"
@@ -2359,7 +2359,7 @@ export default function NavigationSetter({initialNavObj,
                           setCurrentProjectNav({...currentProjectNav, "mainPage-playerProfile-shadeName": event.target.value});             
                                                    
                             }}></input>
-                        <label> {currentProjectNav["mainPage-playerProfile-shadeName"]}</label>
+                        <label className="textCanSelect"> {currentProjectNav["mainPage-playerProfile-shadeName"]}</label>
                     </div>}
                 
             <br></br><input type="radio"
@@ -2608,7 +2608,7 @@ export default function NavigationSetter({initialNavObj,
     
                           setCurrentProjectNav({...currentProjectNav, "mainPage-setting-shadeName": event.target.value});                           
                             }}></input>
-                        <label> {currentProjectNav["mainPage-setting-shadeName"]}</label>
+                        <label className="textCanSelect"> {currentProjectNav["mainPage-setting-shadeName"]}</label>
                     </div>}
                 
             <br></br><input type="radio"
@@ -2852,7 +2852,7 @@ export default function NavigationSetter({initialNavObj,
         
                             setCurrentProjectNav({...currentProjectNav, "mainPage-shop-shadeName": event.target.value});                          
                             }}></input>
-                        <label> {currentProjectNav["mainPage-shop-shadeName"]}</label>
+                        <label className="textCanSelect"> {currentProjectNav["mainPage-shop-shadeName"]}</label>
                     </div>}
                 
             <br></br><input type="radio"
@@ -2937,7 +2937,7 @@ export default function NavigationSetter({initialNavObj,
                                           setCurrentProjectNav({...currentProjectNav, "storyPage-bgShadeName": event.target.value});            
                                           
                                       }}></input>
-                                    <label></label>
+                                    <label className="textCanSelect">{currentProjectNav["storyPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -3060,7 +3060,7 @@ export default function NavigationSetter({initialNavObj,
         
                             setCurrentProjectNav({...currentProjectNav, "storyPage-listItemShadeName": event.target.value}); 
                               }}></input>
-                          <label> {currentProjectNav["storyPage-listItemShadeName"]}</label>
+                          <label className="textCanSelect"> {currentProjectNav["storyPage-listItemShadeName"]}</label>
                       </div>}
                   
               <br></br><input type="radio"
@@ -3299,7 +3299,7 @@ export default function NavigationSetter({initialNavObj,
                                       setCurrentProjectNav({...currentProjectNav, "settingPage-bgShadeName": event.target.value});
 
                                         }}></input>
-                                    <label> {currentProjectNav["settingPage-bgShadeName"]}</label>
+                                    <label className="textCanSelect"> {currentProjectNav["settingPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -3377,7 +3377,7 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "settingPage-listItemShadeName": event.target.value});
                 
                             }}></input>
-                          <label></label>
+                          <label className="textCanSelect"> {currentProjectNav["settingPage-listItemShadeName"]} </label>
                       </div>}
                   
               <br></br><input type="radio"
@@ -3970,7 +3970,7 @@ export default function NavigationSetter({initialNavObj,
                 
                                           setCurrentProjectNav({...currentProjectNav, "playerProfilePage-bgShadeName": event.target.value});      
                                     }}></input>
-                                    <label></label>
+                                    <label className="textCanSelect"> {currentProjectNav["playerProfilePage-bgShadeName"]} </label>
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -4938,7 +4938,7 @@ export default function NavigationSetter({initialNavObj,
                         
                                       setCurrentProjectNav({...currentProjectNav, "gsdPage-bgShadeName": event.target.value});      
                                         }}></input>
-                                    <label> {currentProjectNav["gsdPage-bgShadeName"]}</label>
+                                    <label className="textCanSelect"> {currentProjectNav["gsdPage-bgShadeName"]}</label>
                                 </div>}
                             
                         <input type="radio"
@@ -5022,7 +5022,7 @@ export default function NavigationSetter({initialNavObj,
                     
                                             setCurrentProjectNav({...currentProjectNav, "shopPage-bgShadeName": event.target.value}); 
                                         }}></input>
-                                    <label></label>
+                                    <label className="textCanSelect"> {currentProjectNav["shopPage-bgShadeName"]} </label>
                                 </div>}
                             
                         <br></br><input type="radio"
@@ -5093,7 +5093,7 @@ export default function NavigationSetter({initialNavObj,
                     
                                             setCurrentProjectNav({...currentProjectNav, "shopPage-listItem-bgShadeName": event.target.value}); 
                                         }}></input>
-                                    <label></label>
+                                    <label className="textCanSelect"> {currentProjectNav["shopPage-listItem-bgShadeName"]} </label>
                             </div>}
                             
                         <br></br>
@@ -5366,7 +5366,7 @@ export default function NavigationSetter({initialNavObj,
                   setCurrentProjectNav({...currentProjectNav, "shopPage-bConfWindow-bgColor": event.target.value});  
                 }} 
              ></input>
-             <label> {currentProjectNav["shopPage-bConfWindow-bgColor"]}</label>
+             <label className="textCanSelect"> {currentProjectNav["shopPage-bConfWindow-bgColor"]}</label>
              <br></br>
 
              <label>Window Corner Radius </label>
