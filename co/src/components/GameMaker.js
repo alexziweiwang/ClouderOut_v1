@@ -1961,23 +1961,6 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
           {mutedViewOption === false && <label>Mute</label>}
 
         </button>
-
-    {/* top bar for optional displaying */}
-        <div style={{"marginBottom":" 10px", "userSelect": "none", "color": "#FFFFFF"}}>
-            <input 
-                type="checkbox" 
-                value={showGameDataPanel}
-                checked={showGameDataPanel}
-                onChange={()=>{
-                    setShowGameDataPanel(!showGameDataPanel);
-                }}
-            ></input><label
-                onClick={()=>{
-                    setShowGameDataPanel(!showGameDataPanel);
-                }}
-            >Show Game-Data Tracking Panel</label><br></br>
-
-        </div>
     
 
 <div style={{"display": "flex"}}>
@@ -2060,6 +2043,8 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
     {/* game data table panel  */}
       <div>
+           
+        
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}

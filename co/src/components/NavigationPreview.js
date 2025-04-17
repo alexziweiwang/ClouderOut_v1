@@ -401,7 +401,8 @@ return (
                                     "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
                                     "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
-                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+                                    "borderRadius": `${navObj["mainPage-listItemGroupCornerRadius"]}px`,
+                                    "fontFamily": `${navObj["mainPage-listItemTextFont"]}`,
                                     
                                     "justifyContent": "center",
                                     "alignItems": "center",
@@ -417,7 +418,8 @@ return (
                                     "height": `${navObj["mainPage-listItemGroupHeight"]}px`,
                                     "color": `${navObj["mainPage-listItemGroupFontColor"]}`,
                                     "fontSize": `${navObj["mainPage-listItemGroupFontSize"]}px`,
-                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+                                    "borderRadius": `${navObj["mainPage-listItemGroupCornerRadius"]}px`,
+                                    "fontFamily": `${navObj["mainPage-listItemTextFont"]}`,
 
                                     "justifyContent": "center",
                                     "alignItems": "center",
