@@ -1489,7 +1489,8 @@ export default function NodeManager({projectName, currUser,
         
                   
 <div style={{"display": "flex"}}> 
-
+{(nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*" && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*")                  
+&&
               <div style={{"flex": "1"}}>
                 
                               <p className="sectionHeader"> {nodeInfoText} </p>
@@ -1522,8 +1523,8 @@ export default function NodeManager({projectName, currUser,
                                     <label>{nodeRelationshipMap[clickedNodeKey].screenSize}</label>
                                   </div>
                                 </>}
-                         
-
+{(nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*" && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*")                  
+&& <>
                           <p className="sectionHeader"> {nodeOperationsText} </p>
                   
 
@@ -1559,9 +1560,9 @@ export default function NodeManager({projectName, currUser,
                           </div>
                           </>}
                       </div>
-               
+</>}      
               </div>   
-
+}
 
 
 
