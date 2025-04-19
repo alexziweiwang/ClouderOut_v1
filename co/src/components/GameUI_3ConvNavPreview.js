@@ -104,6 +104,8 @@ return (<div style={{
                         "justifyContent": "center",
                         "alignItems": "center",
 
+                        "textShadow": "#FFFFFF 1px 1px 11px",
+
                     }}
                     onClick={()=>{
                         //switch auto-status
@@ -155,6 +157,7 @@ return (<div style={{
                         "height": `${uiConvNav["groupHeight"]}px`,
                         "borderRadius": `${uiConvNav["cornerRadius"]}px`,
 
+                        "textShadow": "#FFFFFF 1px 1px 11px",
 
                         "userSelect": "none",
                         "display": autoOn === true ? "flex" : "none",
@@ -216,6 +219,8 @@ return (<div style={{
                         "height": `${uiConvNav["groupHeight"]}px`,
                         "borderRadius": `${uiConvNav["cornerRadius"]}px`,
 
+                        "textShadow": "#FFFFFF 1px 1px 11px",
+
                         "userSelect": "none",
                         "display": "flex",
                         "justifyContent": "center",
@@ -267,6 +272,8 @@ return (<div style={{
                         "width": `${uiConvNav["groupWidth"]}px`,
                         "height": `${uiConvNav["groupHeight"]}px`,
                         "borderRadius": `${uiConvNav["cornerRadius"]}px`,
+
+                        "textShadow": "#FFFFFF 1px 1px 11px",
 
                         "userSelect": "none",
                         "display": "flex",
