@@ -1815,6 +1815,7 @@ export default function NavigationSetter({initialNavObj,
                                 setCurrentProjectNav({...currentProjectNav, "mainPage-listItemShadeName": event.target.value});
                                 
                               }}></input>
+                          <label>  </label>
                           <input
                           value={currentProjectNav["mainPage-listItemShadeName"]}
                           onChange={(event)=>{
@@ -2650,6 +2651,7 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "mainPage-setting-fontColor": event.target.value});             
                   }}
                  ></input>
+                <label>  </label>
                 <input
                   value={currentProjectNav["mainPage-setting-fontColor"]}
                   onChange={(event)=>{
@@ -5890,7 +5892,18 @@ export default function NavigationSetter({initialNavObj,
                     setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-textColor": event.target.value});  
                   }} 
               ></input>
-              <label> {currentProjectNav["outWindow-Btn-textColor"]}</label>
+              <label>  </label>
+              <input
+                  value={currentProjectNav["outWindow-Btn-textColor"]}
+                  onChange={(event)=>{
+                    let tempObj = currentProjectNav;
+                    tempObj["outWindow-Btn-textColor"] = event.target.value;
+                    updateNavObj(tempObj); 
+        
+                    setCurrentProjectNav({...currentProjectNav, "outWindow-Btn-textColor": event.target.value});  
+                  }} 
+              ></input>              
+              
               <br></br>
               <label>Confirming Button Text </label>
               <input
@@ -6133,8 +6146,19 @@ export default function NavigationSetter({initialNavObj,
                   setCurrentProjectNav({...currentProjectNav, "outWindow-color": event.target.value});  
                 }}
               ></input>
-              <label> {currentProjectNav["outWindow-color"]}</label>
-              
+              <label>  </label>
+              <input
+                value={currentProjectNav["outWindow-color"]}
+                onChange={(event)=>{
+                  let tempObj = currentProjectNav;
+                  tempObj["outWindow-color"] = event.target.value;
+                  updateNavObj(tempObj); 
+       
+                  setCurrentProjectNav({...currentProjectNav, "outWindow-color": event.target.value});  
+                }}
+              ></input>
+
+
               <br></br>
 
 
