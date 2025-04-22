@@ -210,7 +210,14 @@ export default function Viewer_Entire({
                 console.log("node mapping = ", initialCurrChapterAllNodeMapping);
                 let currChapterAllNodes = initialCurrChapterAllNodeMapping[firstChapterKey];
                 //TODO900 change node-start and node-end key names when chapter being created...
-                
+                                                            // chapterStartKeyStr = "chapterStart";
+                                                            // chapterStartTitleStr = "Chapter Start"
+                                                        //nodeType:"*chapterStart*", 
+
+
+                                                            // chapterEndKeyStr = "chapterEnd";
+                                                            // chapterEndTitleStr = "Chapter End";
+                                                        //nodeType:"*chapterEnd*", 
 
                 //triggerWalkToCurrNodeLocalViewer(nodeKeyName, nodeTypeName)
 

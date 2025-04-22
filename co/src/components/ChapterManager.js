@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
-export default function ChapterManager({projectName, currUser,
+export default function ChapterManager({
   initialChapterData, updateChapterData, 
   getChapterDataInfo,
   updateChosenChapterItem, updateLinkingNode,
@@ -143,7 +143,8 @@ export default function ChapterManager({projectName, currUser,
     
   });
   
-  function updateBothLocalAndOuterChapterData(tempChapterData) {
+  function updateBothLocalAndOuterChapterData(tempChapterData) { //TODO900
+    console.log("updateBothLocalAndOuterChapterData: ", tempChapterData);
     updateChapterData(tempChapterData);
     setChapterData(tempChapterData);
   }
@@ -216,6 +217,9 @@ export default function ChapterManager({projectName, currUser,
       tempChapterData[index][2] = "delete";
 
       updateBothLocalAndOuterChapterData(tempChapterData);
+
+
+//TODO900 cloud related issue
 
       setSelectedChpt("");
     }
