@@ -194,7 +194,28 @@ export default function Viewer_Entire({
             initializeGameDataTracker(initialPlayerGameDataTracker);
 
                                
-    
+            //chapterList[0]
+            if (chapterList.length > 0) {
+                let firstChapterInfo = chapterList[0];
+                                        console.log("FIRST CHAPTER = ", firstChapterInfo);
+                let firstChapterKey = firstChapterInfo[0];
+                let firstChapterTitle = firstChapterInfo[1];
+
+                let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle);                            
+                setCurrChapterNodesContainer(chpContent);
+
+
+                //TODO by node-mapping & start-node, get the very first node's name and type
+                //initialCurrChapterAllNodeMapping
+                console.log("node mapping = ", initialCurrChapterAllNodeMapping);
+                let currChapterAllNodes = initialCurrChapterAllNodeMapping[firstChapterKey];
+                //TODO900 change node-start and node-end key names when chapter being created...
+                
+
+                //triggerWalkToCurrNodeLocalViewer(nodeKeyName, nodeTypeName)
+
+
+            }
 
             //initialize all game-progress-items
             configureGameProgress("", "", "", "Main Page", "");             
@@ -418,7 +439,7 @@ export default function Viewer_Entire({
 
         let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName);
 
-        
+
         //TODO900 fetch chapter-content?
                                 console.log("view-entire level - triggerWalkToCurrChapterLocalViewer called... chpContent = ", chpContent);
 
