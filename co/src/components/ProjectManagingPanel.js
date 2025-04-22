@@ -6,6 +6,8 @@ import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './_textDictionary';
 
+//TODO700 feature: latest edited project ... (create or save)
+
 
 //TODO20 cloud-func
 import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';

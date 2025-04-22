@@ -277,7 +277,8 @@ export default function GameMaker({username, projectName}) {
   const [testShopProducts, setTestShopProducts] = useState({});
   const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
 
-                                                            //TODO important for holder-in-practice
+  const [allChaptersContents, setAllChaptersContents] = useState({});
+                                                           //TODO important for holder-in-practice
 //TODO ------------------------------------------------------ testing data area
 
     const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
@@ -1553,23 +1554,39 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     setCurrTestingChapterKey(chapterKeyName);
     setCurrTestingChapterTitle(chapterTitleName);
 
-    //TODO900 fetch chapter-data here?? TODO-test!
+    let chapterContentTemp = {};
 
-    //fetch content: use chapterKeyName, then update the following:
-    let chapterContentTemp = await fetchNodeDataEachChapterVM(
-      {
-        projectName: projectName, 
-        uname: username, 
-        chapterKey: chapterKeyName
-      }
-    );
+    if (allChaptersContents[chapterKeyName] === undefined
+      || allChaptersContents[chapterKeyName] === null
+    
+      ) {//TODO LATER: also if map length zero
+
+
+        //fetch content: use chapterKeyName, then update the following:
+        chapterContentTemp = await fetchNodeDataEachChapterVM(
+          {
+            projectName: projectName, 
+            uname: username, 
+            chapterKey: chapterKeyName
+          }
+        );
+  
+        let tempAllChpMap = allChaptersContents;
+        tempAllChpMap[chapterKeyName] = chapterContentTemp
+        setAllChaptersContents(tempAllChpMap);
+        
+    } else {
+
+      chapterContentTemp = allChaptersContents[chapterKeyName];
+    }
+
+    //TODO900
+//allChaptersContents, setAllChaptersContents
 
 
 
     setCurrChapterContent(chapterContentTemp);
     return chapterContentTemp;
-
-
   }
 
 

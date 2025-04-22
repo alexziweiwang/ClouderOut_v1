@@ -126,13 +126,14 @@ export default function ChapterManager({projectName, currUser,
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
     if (firstTimeEnter === true) {
-      fetchChapterListFromCloud(); //TODO900 use this
+      fetchChapterListFromCloud(); //TODO500 use this
    
       setFirstTimeEnter(false);
     } 
-      let chapterListTemp = getChapterDataInfo();
-      console.log("chp-mgr = ", chapterListTemp);
-      setChapterData(chapterListTemp);
+
+    let chapterListTemp = getChapterDataInfo(); // current-version(not necessarily newest from cloud)
+    console.log("chp-mgr = ", chapterListTemp);
+    setChapterData(chapterListTemp);
     
 
 

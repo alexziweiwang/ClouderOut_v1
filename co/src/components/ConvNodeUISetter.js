@@ -362,7 +362,7 @@ export default function ConvNodeUISetter({
                                             //clicked on this ui-plan: preview this plan, or cancel previewing this plan
         
                                             setViewingUiPlan(item);
-                                            //TODO900 trigger to notify outlayer
+                                 
                                             convUiHoverPreviewPlans(item);
                                             updateCurrentUiObj(item);
         
@@ -370,14 +370,13 @@ export default function ConvNodeUISetter({
         
                                         onMouseOut={()=>{
                                             setViewingUiPlan(currentlyEditedUiPlan)
-                                            //TODO900 trigger to notify outlayer
+                                      
                                             convUiHoverPreviewPlans(currentlyEditedUiPlan);
                                             updateCurrentUiObj(currentlyEditedUiPlan);
         
                                         }}
         
                                         onClick={()=>{
-                                            //TODO900 set editing-plan to this one!! ask for confirmation
                                             let askStr = "Are you sure to load this plan and discard the current UI-settings?";
                                             let ans = window.confirm(askStr);
                                             if (ans) {
@@ -396,7 +395,7 @@ export default function ConvNodeUISetter({
                                         let askStr = "Are you sure to delete this plan?";
                                         let ans = window.confirm(askStr);
                                         if (ans) {
-                                            //TODO900
+                                      
                                             let uiMapTemp = uiPlanMap;
                                             delete uiMapTemp[currKey];
 
@@ -432,7 +431,7 @@ export default function ConvNodeUISetter({
             <br></br>
             <button
                 onClick={()=>{
-//TODO900      use addingPlanName and currentlyEditedUiPlan
+                                
                     let uiMapTemp = uiPlanMap;
                     if (uiPlanMap === -1) {
                         uiMapTemp = {};

@@ -406,6 +406,8 @@ export default function Viewer_Entire({
 
     //TODO21 refactor to VM
     async function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
+
+
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = chapterKeyName + "_start"; //TODO
         temp["nodeType"] = "*chapterStart*";
@@ -415,7 +417,11 @@ export default function Viewer_Entire({
         setCurrentGameStatusProgress(temp);
 
         let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName);
+
+        
         //TODO900 fetch chapter-content?
+                                console.log("view-entire level - triggerWalkToCurrChapterLocalViewer called... chpContent = ", chpContent);
+
         setCurrChapterNodesContainer(chpContent);
 
     }
@@ -423,7 +429,6 @@ export default function Viewer_Entire({
     function passInViewerContainerGameDataTracker() {
         return playerGameDataTracker;
     }
-
 
     //TODO if anything in game-data-tracker changes... would notify outer layers?
     function notifyOuterLayerDisplayGameDataTracker() { //TODO temp(before refactor-to-vm for functionalities)
