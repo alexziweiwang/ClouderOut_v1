@@ -125,26 +125,30 @@ export default function ChapterManager({
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
+    if (firstTimeEnter === true) {
+      fetchChapterListFromCloud(); //TODO500 use this
+      
 
+      setFirstTimeEnter(false);
+    } 
 
     let chapterListTemp = getChapterDataInfo(); // current-version(not necessarily newest from cloud)
-          //            console.log("chp-mgr, chapter list  = ", chapterListTemp);
+                      console.log("chp-mgr, chapter list  = ", chapterListTemp);
     setChapterData(chapterListTemp);
+
+    if (chapterListTemp != chapterData) {
+      makeDeletedList(chapterListTemp);
+    } 
     
 
     let UILang = getUILanguage();
     setLanguageCodeTextOption(UILang);
 
-    if (firstTimeEnter === true) {
-      fetchChapterListFromCloud(); //TODO500 use this
-      
-      makeDeletedList(chapterListTemp);
 
-      setFirstTimeEnter(false);
-    }     
   });
 
   function makeDeletedList(chapterInfo) {
+console.log("make deleted list: before = ", chapterInfo);
 
     let i = 0;
     let tempList = [];
@@ -154,6 +158,7 @@ export default function ChapterManager({
       }
 
     }
+  console.log("make deleted list: after = ", tempList);
 
     setDeletedLocalList(tempList);    
 
@@ -218,7 +223,8 @@ export default function ChapterManager({
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
 
-    fetchChapterListFromCloud();
+    let newListTemp = await fetchChapterListFromCloud();
+    setChapterData(newListTemp);
 
   }
 
@@ -303,17 +309,7 @@ export default function ChapterManager({
         <div className="parallelFrame">
          
           <div className="listBar" style={{"overflow": "hidden"}}>
-          {/* <button
-            onClick={()=>{
-              fetchChapterListFromCloud();
-            }}
-          >Load from Cloud</button>
-          <button
-            onClick={()=>{
-              updateChapterListToCloud(chapterData);
-
-            }}
-          >Save to Cloud</button> */}
+         
               <div className="chapterManagingArea"> 
                         <label>{chapterManagementText}: </label>
                 
@@ -328,7 +324,8 @@ export default function ChapterManager({
                       let divKey = "div"+index;
                       return (
                       <div key={divKey}>
-                      {hide === "display" && <>
+                      {hide === "display" && 
+                      <>
                         <li key={index}
                             className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
                             onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
@@ -426,13 +423,15 @@ console.log("chapterData: ", chapterData); //TODO testing
                       </li>
                         {isRevertingChapter && <div>
                               {deletedLocalList.map((item, index) => {
+                                let divKey = "deletedListItem" + index;
                                 return (
-                                  <><label key={index}>{item[0]}: {item[1]}</label> 
+                                  <div key={divKey}>
+                                  <label key={index}>{item[0]}: {item[1]}</label> 
                                   <button onClick={()=>{revertChapter(item[0]);}}>
                                     {revertText}
                                   </button >
                                   
-                                  </>);
+                                  </div>);
                               })}
 
                               {deletedLocalList.length === 0 && <label>{noDeletedChapterText}</label>}
