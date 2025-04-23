@@ -125,23 +125,39 @@ export default function ChapterManager({
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
-    if (firstTimeEnter === true) {
-      fetchChapterListFromCloud(); //TODO500 use this
-   
-      setFirstTimeEnter(false);
-    } 
+
 
     let chapterListTemp = getChapterDataInfo(); // current-version(not necessarily newest from cloud)
-    console.log("chp-mgr = ", chapterListTemp);
+          //            console.log("chp-mgr, chapter list  = ", chapterListTemp);
     setChapterData(chapterListTemp);
     
-
 
     let UILang = getUILanguage();
     setLanguageCodeTextOption(UILang);
 
-    
+    if (firstTimeEnter === true) {
+      fetchChapterListFromCloud(); //TODO500 use this
+      
+      makeDeletedList(chapterListTemp);
+
+      setFirstTimeEnter(false);
+    }     
   });
+
+  function makeDeletedList(chapterInfo) {
+
+    let i = 0;
+    let tempList = [];
+    for (; i < chapterInfo.length; i++) {
+      if (chapterInfo[i][2] === "delete") {
+        tempList.push(chapterInfo[i]);
+      }
+
+    }
+
+    setDeletedLocalList(tempList);    
+
+  }
   
   function updateBothLocalAndOuterChapterData(tempChapterData) { //TODO900
     console.log("updateBothLocalAndOuterChapterData: ", tempChapterData);
@@ -195,6 +211,7 @@ export default function ChapterManager({
     updateChapterListToCloud(tempChapterData);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
+    makeDeletedList(tempChapterData);
 
     await prepareForNewChapterMapping(newChapterKeyInput);
 
@@ -211,7 +228,7 @@ export default function ChapterManager({
     if (response) {
       let deleteListTemp = deletedLocalList;
       deleteListTemp.push(chapterData[index]);
-      setDeletedLocalList(deleteListTemp);
+                                //setDeletedLocalList(deleteListTemp); //TODO900
   
       let tempChapterData = chapterData;
       tempChapterData[index][2] = "delete";
@@ -220,6 +237,7 @@ export default function ChapterManager({
 
       updateBothLocalAndOuterChapterData(tempChapterData);
 
+      makeDeletedList(tempChapterData);
 
 
 //TODO900 cloud related issue
@@ -255,7 +273,7 @@ export default function ChapterManager({
     }
 
     // update deletedLocalList
-    setDeletedLocalList(tempDeletedLocalList);
+                                    //setDeletedLocalList(tempDeletedLocalList); //TODO900
 
     updateBothLocalAndOuterChapterData(tempChapterData);
     updateChapterListToCloud(tempChapterData);
@@ -393,7 +411,8 @@ console.log("chapterData: ", chapterData); //TODO testing
                         <label>{noteText}:</label><br></br>
                         <input></input>
                         <br></br><br></br>
-                        <button onClick={()=>{addNewChapterItem();}}>{addText}</button>
+                        <button onClick={()=>{addNewChapterItem();}}>
+                          {addText}</button>
                       </div>}
                         
                       <br></br><br></br>
