@@ -216,7 +216,10 @@ export default function ChapterManager({
       let tempChapterData = chapterData;
       tempChapterData[index][2] = "delete";
 
+      updateChapterListToCloud(tempChapterData);
+
       updateBothLocalAndOuterChapterData(tempChapterData);
+
 
 
 //TODO900 cloud related issue
@@ -255,6 +258,7 @@ export default function ChapterManager({
     setDeletedLocalList(tempDeletedLocalList);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
+    updateChapterListToCloud(tempChapterData);
 
     setIsRevertingChapter(false);
 

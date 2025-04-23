@@ -922,7 +922,7 @@ export default function GameMaker({username, projectName}) {
         }
   } 
   
-  function updateChapterList(chapterData) {
+  function updateChapterList(chapterData) { // game-maker local
     
     setChapterList(chapterData);
   }
