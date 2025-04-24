@@ -234,7 +234,6 @@ console.log("make deleted list: before = ", chapterInfo);
     if (response) {
       let deleteListTemp = deletedLocalList;
       deleteListTemp.push(chapterData[index]);
-                                //setDeletedLocalList(deleteListTemp); //TODO900
   
       let tempChapterData = chapterData;
       tempChapterData[index][2] = "delete";
@@ -244,9 +243,6 @@ console.log("make deleted list: before = ", chapterInfo);
       updateBothLocalAndOuterChapterData(tempChapterData);
 
       makeDeletedList(tempChapterData);
-
-
-//TODO900 cloud related issue
 
       setSelectedChpt("");
     }
@@ -279,7 +275,7 @@ console.log("make deleted list: before = ", chapterInfo);
     }
 
     // update deletedLocalList
-                                    //setDeletedLocalList(tempDeletedLocalList); //TODO900
+    setDeletedLocalList(tempDeletedLocalList);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
     updateChapterListToCloud(tempChapterData);
@@ -442,7 +438,13 @@ console.log("chapterData: ", chapterData); //TODO testing
                                   >
 
                                       <td
-                                        style={{"border": "none", "overflow": "scroll", "width": "10px", "backgroundColor": "grey"}}
+                                        style={{
+                                          "border": "none", 
+                                          "overflow": "scroll", 
+                                          "width": "5px", 
+                                          "backgroundColor": "grey",
+                                          "padding": "5px"
+                                        }}
                                       >
                                           <label key={index}>{item[0]}</label>
                                           <br></br>
