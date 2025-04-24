@@ -421,21 +421,60 @@ console.log("chapterData: ", chapterData); //TODO testing
                         }}>
                         {revertDeletedChapterText}
                       </li>
-                        {isRevertingChapter && <div>
+
+                        <div>
+                        
+                          
+                        {isRevertingChapter && 
+                        <div
+                            style={{"overflow": "scroll"}}
+                        >
+                        <table
+                        
+                            style={{"border": "none"}}
+                        >
+                       
                               {deletedLocalList.map((item, index) => {
                                 let divKey = "deletedListItem" + index;
                                 return (
-                                  <div key={divKey}>
-                                  <label key={index}>{item[0]}: {item[1]}</label> 
-                                  <button onClick={()=>{revertChapter(item[0]);}}>
-                                    {revertText}
-                                  </button >
+                                  <tr 
+                                      key={divKey}
+                                  >
+
+                                      <td
+                                        style={{"border": "none", "overflow": "scroll", "width": "10px", "backgroundColor": "grey"}}
+                                      >
+                                          <label key={index}>{item[0]}</label>
+                                          <br></br>
+                                          <label>{item[1]}</label> 
+                                      </td>
+
+                                      <td
+                                        style={{"border": "none", "overflow": "scroll", "width": "20px"}}
+
+                                      >
+                                          <button 
+                                              
+                                              onClick={()=>{revertChapter(item[0]);}}
+                                          >
+                                                {revertText}
+                                          </button>
+                                      </td>
+                                 
                                   
-                                  </div>);
+                                  </tr>);
                               })}
 
                               {deletedLocalList.length === 0 && <label>{noDeletedChapterText}</label>}
-                        </div>}
+                        
+                        </table>
+                        </div>
+                        }
+                        
+
+
+
+                        </div>
 
 {/* //TODO plan */}
 
