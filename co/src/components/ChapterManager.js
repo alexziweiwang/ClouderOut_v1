@@ -164,8 +164,8 @@ console.log("make deleted list: before = ", chapterInfo);
 
   }
   
-  function updateBothLocalAndOuterChapterData(tempChapterData) { //TODO900
-    console.log("updateBothLocalAndOuterChapterData: ", tempChapterData);
+  function updateBothLocalAndOuterChapterData(tempChapterData) {
+                        console.log("updateBothLocalAndOuterChapterData (not cloud): ", tempChapterData);
     updateChapterData(tempChapterData);
     setChapterData(tempChapterData);
   }
@@ -189,25 +189,31 @@ console.log("make deleted list: before = ", chapterInfo);
   }
 
 
-  async function addNewChapterItem() {
+  async function addNewChapterItem() { //add a new chapter - important
+    let userInputChpKey = newChapterKeyInput;
+
     //1. not allowing empty chapter key or chapter title
-    if (newChapterKeyInput.length < 1 || newChapterTitleInput.length < 1) {
-      alert("Can not have empty chapter key or empty chapter title");
+    if (userInputChpKey.length < 1 || newChapterTitleInput.length < 1) {
+      alert("Can not have blank chapter unique-ID or empty chapter title");
       return;
     }
+
+    userInputChpKey = userInputChpKey.replace(/ /g,"_");
+    //replace spaces in the key-string
+
 
     //2. not allowing duplicate chapter key
     let i = 0;
     for (; i < chapterData.length; i++) {
       let tempKey = chapterData[i][0];
-      if (newChapterKeyInput === tempKey) {
-        alert("Can not use duplicate chapter key.");
+      if (userInputChpKey === tempKey) {
+        alert("Can not use duplicate chapter unique-ID.");
         return;
       }
     }
 
     let tempChapterData = chapterData;
-    let line = [newChapterKeyInput, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
+    let line = [userInputChpKey, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
     tempChapterData.push(line);
 
     // add current chapter-key into created-key-list
@@ -218,7 +224,7 @@ console.log("make deleted list: before = ", chapterInfo);
     updateBothLocalAndOuterChapterData(tempChapterData);
     makeDeletedList(tempChapterData);
 
-    await prepareForNewChapterMapping(newChapterKeyInput);
+    await prepareForNewChapterMapping(userInputChpKey);
 
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
@@ -395,10 +401,21 @@ console.log("chapterData: ", chapterData); //TODO testing
                       {isAddNewChpater === true && 
                       <div>
                         <label>{newWordText}{chapterUniqueIDText} ({unchangableOnceSubmittedText}): </label><br></br>
-                        <input value={newChapterKeyInput} onChange={(event)=>{setNewChapterKeyInput(event.target.value);}}></input>
+                        <input value={newChapterKeyInput} onChange={(event)=>{
+                          setNewChapterKeyInput(event.target.value);
+                        }}></input>
                         <br></br><br></br>
                         <label>{newWordText}{chapterTitleText} ({editableLaterText}): </label><br></br>
-                        <input value={newChapterTitleInput} onChange={(event)=>{setNewChapterTitleInput(event.target.value);}}></input>
+                        <input value={newChapterTitleInput} 
+                          onChange={(event)=>{
+                            setNewChapterTitleInput(event.target.value);
+                          }}
+                          onFocus={()=>{
+                            if (newChapterTitleInput.length === 0) {
+                              setNewChapterTitleInput(newChapterKeyInput);
+                            }
+                          }}
+                        ></input>
                         <br></br><br></br>
 
                         <label>{noteText}:</label><br></br>
