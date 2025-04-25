@@ -8,24 +8,24 @@ export const sizeLookupMap = {
 export const gameUIDefaultButtonTemplate  = {
     "widthMin": 300,
     "widthMax": 370,
-    "height": 20,
-    "cornerRadius": 0,
+    "height": 39,
+    "cornerRadius": 9,
     "transparency": 0.9,
     "isShape": true,
-    "bgColor": "#a8d1d6",
+    "bgColor": "#eead81",
     "picVar": "",
     "textColor": "#000000",
     "margin": 5,
     "justifyContent": "start",
     "alignItems": "center",
-    "border": "2px solid #000000",
-    "textSize": 15,
-    "groupX": 200,
+    "border": "0px solid #d1d1d1",
+    "textSize": 21,
+    "groupX": 179.5,
     "groupY": 100,
-    "horizontalMid": false,
+    "horizontalMid": true,
     "verticalMid": false,
 
-    "fontName": "serif",
+    "fontName": "cursive",
     "isFontItalic": false,
 
 }; 
@@ -33,11 +33,11 @@ export const gameUIDefaultButtonTemplate  = {
 export const gameUITextFrameTemplate = {"width": 600,
     "height": 200,
     "positionX": 100,
-    "positionY": 360,
-    "cornerRadius": 0,
+    "positionY": 341,
+    "cornerRadius": 36,
     "transparency": 0.7,
     "isShape": true,
-    "bgColor": "#a8d1d6",
+    "bgColor": "#d1d1d1",
     "picVar": "",
     "fontName": "serif",
     "textSize": 30,
@@ -46,10 +46,11 @@ export const gameUITextFrameTemplate = {"width": 600,
     "alignItems": "start",
     "border": "2px solid #000000",
     "horizontalMid": false,
-    "TextContentArea-x": 10,
+    "TextContentArea-x": 39,
     "TextContentArea-y": 10,
-    "TextContentArea-w": 580,
+    "TextContentArea-w": 520,
     "TextContentArea-h": 180,
+    "width": 600
 
 }; 
 
@@ -74,9 +75,9 @@ export const gameUIBackButtonTemplate = {
 
 export const uiConvNavTemplate = {
     "buttonAutoIsTextFont": true,
-    "buttonAutoShade0": "#bf8da5",
+    "buttonAutoShade0": "#b3b3b3",
     "buttonAutoPicName0": "",
-    "buttonAutoShade1": "#4a54a1",
+    "buttonAutoShade1": "#cb9a9a",
     "buttonAutoPicName1": "",
     "buttonAutoFontName": "serif",
     "buttonAutoFontItalic": false,
@@ -87,27 +88,25 @@ export const uiConvNavTemplate = {
 
 
     "buttonLogIsTextFont": true,
-    "buttonLogShade": "#bf8da5",
     "buttonLogPicName":  "",
-    "buttonLogShade": "#4a54a1",
+    "buttonLogShade": "#b3b3b3",
     "buttonLogPicName": "",
     "buttonLogFontName": "serif",
     "buttonLogFontItalic": false,
 
 
     "buttonSetupIsTextFont": true,
-    "buttonSetupShade": "#bf8da5",
     "buttonSetupPicName":  "",
-    "buttonSetupShade": "#4a54a1",
+    "buttonSetupShade": "#b3b3b3",
     "buttonSetupPicName": "",
     "buttonSetupFontName": "serif",
     "buttonSetupFontItalic": false,
 
 
-    "textDisplaySpeed": 2,
+    "textDisplaySpeed": 3,
 
-    "groupX": 0,
-    "groupY": 0,
+    "groupX": 437,
+    "groupY": 309,
     "groupWidth": 100,
     "groupHeight": 30,
 
@@ -116,7 +115,7 @@ export const uiConvNavTemplate = {
 };
 
 export const logPageUISettingsTemplate = {
-    "closeButtonIsShape": false,
+    "closeButtonIsShape": true,
     "closeButtonShade": "",
     "closeButtonPicName": "",
     "closeButtonPositionX": 3, 
@@ -124,14 +123,14 @@ export const logPageUISettingsTemplate = {
     "closeButtonWidth": 50,
     "closeButtonHeight": 30, 
     "closeButtonCornerRadius": 0, 
-    "closeButtonBorderSize": 1,
+    "closeButtonBorderSize": 0,
     "closeButtonBorderColor": "grey",  
     "closeButtonText": "Close",
     "closeButtonTextColor": "#000000",
-    "closeButtonFontName": "serif",
+    "closeButtonFontName": "cursive",
 
-    "bgpIsShape": false,
-    "bgpShade": "",
+    "bgpIsShape": true,
+    "bgpShade": "#eddfce",
     "bgpPicName": "",
 
     "groupPosX": 50,
@@ -141,20 +140,20 @@ export const logPageUISettingsTemplate = {
     "groupItemGap": 10, 
 
     "groupBgIsShape": false,
-    "groupBgShade": "",
+    "groupBgShade": "#ededed",
     "groupBgpName": "",  
     
-    "groupUnitCornerRadius": 0,
+    "groupUnitCornerRadius": 18,
 
     "contentTextShade": "",
-    "contentTextSize": 20,
-    "contentTextFont": "",
+    "contentTextSize": 26,
+    "contentTextFont": "serif",
     "contentPosX": 10,
     "contentPosY": 10,
 
     "speakerTextShade": "",
     "speakerTextSize": 20,
-    "speakerTextFont": "",
+    "speakerTextFont": "cursive",
     "speakerPosX": 10,
     "speakerPosY": 10,
 

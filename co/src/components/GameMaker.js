@@ -289,7 +289,8 @@ export default function GameMaker({username, projectName}) {
   function manuallyResetWithSampleData() {
 
   setChapterNodeMapAll({
-    "chp-key1": {"chp-key1_start": {
+    "chp-key1": {
+  "chapterStart": {
       nodeName: "chapterStart1-title", 
       row: 2, 
       col: 0, 
@@ -342,13 +343,13 @@ export default function GameMaker({username, projectName}) {
       nodeName: "E1-title", 
       row: 2, 
       col: 5, 
-      nextNode: "chp-key1_end", 
+      nextNode: "chapterEnd", 
       display: true, 
       nodeType:"Conversation", 
       screenSize:"4:3(horizonal)",
       notes: "",
   },
-  "chp-key1_end": {
+  "chapterEnd": {
       nodeName: "chapterEnd1-title", 
       row: 4, 
       col: 6, 
@@ -359,7 +360,8 @@ export default function GameMaker({username, projectName}) {
       notes: "",
   },
 },
-"chp-key2": {"chp-key2_start": {
+"chp-key2": {
+"chapterStart": {
     nodeName: "chapterStart2-title", 
     row: 2, 
     col: 0, 
@@ -412,13 +414,13 @@ export default function GameMaker({username, projectName}) {
   nodeName: "E2-title", 
   row: 2, 
   col: 5, 
-  nextNode: "chp-key2_end", 
+  nextNode: "chapterEnd", 
   display: true, 
   nodeType:"Conversation", 
   screenSize:"4:3(horizonal)",
   notes: "",
 },
-"chp-key2_end": {
+"chapterEnd": {
   nodeName: "chapterEnd2-title", 
   row: 4, 
   col: 6, 
@@ -435,17 +437,17 @@ export default function GameMaker({username, projectName}) {
     [
       ["","","","","","","","","",""], 
       ["","","","","","","","","",""],
-      ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
+      ["chapterStart","A1-key","","","D1-key","E1-key","","","",""], 
       ["","","","","","","","","",""],
-      ["C1-key","","","B1-key","","","chp-key1_end","","",""]
+      ["C1-key","","","B1-key","","","chapterEnd","","",""]
     ]
   ,
     "chp-key2": [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
-        ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
+        ["chapterStart","A2-key","","","D2-key","E2-key","","","",""], 
         ["","","","","","","","","",""],
-        ["C2-key","","","B2-key","","","chp-key2_end","","",""]
+        ["C2-key","","","B2-key","","","chapterEnd","","",""]
     ],  
 
   }); //stores node-keys
@@ -1569,7 +1571,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
   }
 
   async function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
-    setCurrTestingNodeKey(chapterKeyName + "_start");
+    setCurrTestingNodeKey("chapterStart");
     setCurrTestingNodeType("*chapterStart*");
     setCurrTestingChapterKey(chapterKeyName);
     setCurrTestingChapterTitle(chapterTitleName);
@@ -2461,22 +2463,22 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
       [
         ["","","","","","","","","",""], 
         ["","","","","","","","","",""],
-        ["chp-key1_start","A1-key","","","D1-key","E1-key","","","",""], 
+        ["chapterStart","A1-key","","","D1-key","E1-key","","","",""], 
         ["","","","","","","","","",""],
-        ["C1-key","","","B1-key","","","chp-key1_end","","",""]
+        ["C1-key","","","B1-key","","","chapterEnd","","",""]
       ]
     ,
       "chp-key2": [
           ["","","","","","","","","",""], 
           ["","","","","","","","","",""],
-          ["chp-key2_start","A2-key","","","D2-key","E2-key","","","",""], 
+          ["chapterStart","A2-key","","","D2-key","E2-key","","","",""], 
           ["","","","","","","","","",""],
-          ["C2-key","","","B2-key","","","chp-key2_end","","",""]
+          ["C2-key","","","B2-key","","","chapterEnd","","",""]
       ],  
     
     */
 /* sample of node-map-all
-  "chp-key1": {"chp-key1_start": {
+  "chp-key1": {"chapterStart": {
               nodeName: "chapterStart1-title", 
               row: 2, 
               col: 0, 
@@ -2529,13 +2531,13 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
               nodeName: "E1-title", 
               row: 2, 
               col: 5, 
-              nextNode: "chp-key1_end", 
+              nextNode: "chapterEnd", 
               display: true, 
               nodeType:"Conversation", 
               screenSize:"4:3(horizonal)",
               notes: "",
           },
-          "chp-key1_end": {
+          "chapterEnd": {
               nodeName: "chapterEnd1-title", 
               row: 4, 
               col: 6, 
@@ -2546,7 +2548,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
               notes: "",
           },
   },
-  "chp-key2": {"chp-key2_start": {
+  "chp-key2": {"chapterStart": {
             nodeName: "chapterStart2-title", 
             row: 2, 
             col: 0, 
@@ -2599,13 +2601,13 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
           nodeName: "E2-title", 
           row: 2, 
           col: 5, 
-          nextNode: "chp-key2_end", 
+          nextNode: "chapterEnd", 
           display: true, 
           nodeType:"Conversation", 
           screenSize:"4:3(horizonal)",
           notes: "",
         },
-        "chp-key2_end": {
+        "chapterEnd": {
           nodeName: "chapterEnd2-title", 
           row: 4, 
           col: 6, 

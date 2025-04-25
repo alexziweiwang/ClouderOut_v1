@@ -126,7 +126,7 @@ export default function Viewer_Entire({
 
 
 
-    const [currChapterNodesContainer, setCurrChapterNodesContainer] = useState([]); //TODO200
+    const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState([]); //TODO200
 
 
     const [chapterList, setChapterList] = useState(initialChapterList);  
@@ -196,18 +196,28 @@ export default function Viewer_Entire({
                                
             //chapterList[0]
             if (chapterList.length > 0) {
+                                                console.log("\t\tchapter-list not empty");
+
+
                 let firstChapterInfo = chapterList[0];
+
                                         console.log("FIRST CHAPTER = ", firstChapterInfo);
+
                 let firstChapterKey = firstChapterInfo[0];
                 let firstChapterTitle = firstChapterInfo[1];
 
                 let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle);                            
-                setCurrChapterNodesContainer(chpContent);
+                setCurrChapterAllNodesContent(chpContent);
+
+                                        console.log("\t\tentering this chapter: ", chpContent);
+
 
 
                 //TODO by node-mapping & start-node, get the very first node's name and type
                 //initialCurrChapterAllNodeMapping
-                console.log("node mapping = ", initialCurrChapterAllNodeMapping);
+                                        console.log("\t\tnode mapping = ", initialCurrChapterAllNodeMapping);
+
+                
                 let currChapterAllNodes = initialCurrChapterAllNodeMapping[firstChapterKey];
                 //TODO900 change node-start and node-end key names when chapter being created...
                                                             // chapterStartKeyStr = "chapterStart";
@@ -219,7 +229,7 @@ export default function Viewer_Entire({
                                                             // chapterEndTitleStr = "Chapter End";
                                                         //nodeType:"*chapterEnd*", 
 
-                //triggerWalkToCurrNodeLocalViewer(nodeKeyName, nodeTypeName)
+                triggerWalkToCurrNodeLocalViewer("chapterStart", "*chapterStart*")
 
 
             }
@@ -236,8 +246,8 @@ export default function Viewer_Entire({
 
         
         let anc = getCurrChapterContent();
-        setCurrChapterNodesContainer(anc);
-                                           console.log("\t\t*** Viewer-Entire: currChapterNodesContainer = ", anc);
+        setCurrChapterAllNodesContent(anc);
+                                           console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc);
 
 
 
@@ -450,7 +460,7 @@ export default function Viewer_Entire({
         //TODO900 fetch chapter-content?
                                 console.log("view-entire level - triggerWalkToCurrChapterLocalViewer called... chpContent = ", chpContent);
 
-        setCurrChapterNodesContainer(chpContent);
+        setCurrChapterAllNodesContent(chpContent);
 
     }
 
@@ -521,8 +531,8 @@ export default function Viewer_Entire({
     }
 
 
-    function passIncurrChapterNodesContainer() {
-        return currChapterNodesContainer;
+    function passIncurrChapterAllNodesContent() {
+        return currChapterAllNodesContent;
     }
 
     function passInOpenSettingsPage() {
@@ -598,7 +608,7 @@ game-screen (specific node) layer */}
                                                 mutedViewOption={mutedViewOption}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
                                           
-                                                getCurrChapterDataContainer={passIncurrChapterNodesContainer}
+                                                getCurrChapterDataContainer={passIncurrChapterAllNodesContent}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}
