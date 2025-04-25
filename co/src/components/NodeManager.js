@@ -216,9 +216,6 @@ export default function NodeManager({projectName, currUser,
 
   const [renderCounter, setRenderCounter] = useState(0);
  
-  //functionality design:
-  //always create default "chapterStart" and "chapterEnd" node, named as "chapterStart-[chapterKey]" and "chapterEnd-[chapterKey]"
-
 
    /* variable area */
    const navigate = useNavigate();

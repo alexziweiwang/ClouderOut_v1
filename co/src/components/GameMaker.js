@@ -766,7 +766,6 @@ export default function GameMaker({username, projectName}) {
 
   //TODO21 refactor to VM
   async function prepareForNewChapterMapping(newKey) {
-    
     //update all-node-map
     let nodeMapTemp = chapterNodeMapAll;
     let chapterStartKeyStr = "chapterStart";
@@ -1549,6 +1548,26 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     setCurrTestingNodeType(nodeTypeName);
   }
 
+  async function getCurrChpNodeDataFromCloud(givenChapterKey) {
+//TODO900
+      let chapterContentTemp = await fetchNodeDataEachChapterVM(
+        {
+          projectName: projectName, 
+          uname: username, 
+          chapterKey: givenChapterKey
+        }
+      );
+
+      if (chapterContentTemp !== undefined) {
+
+        return chapterContentTemp;
+      } else {
+
+        return {};
+      }
+
+  }
+
   async function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
     setCurrTestingNodeKey(chapterKeyName + "_start");
     setCurrTestingNodeType("*chapterStart*");
@@ -1564,13 +1583,15 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 
 
         //fetch content: use chapterKeyName, then update the following:
-        chapterContentTemp = await fetchNodeDataEachChapterVM(
-          {
-            projectName: projectName, 
-            uname: username, 
-            chapterKey: chapterKeyName
-          }
-        );
+        chapterContentTemp = await getCurrChpNodeDataFromCloud(chapterKeyName);  
+
+                                      // fetchNodeDataEachChapterVM(
+                                      //   {
+                                      //     projectName: projectName, 
+                                      //     uname: username, 
+                                      //     chapterKey: chapterKeyName
+                                      //   }
+                                      // );
   
         let tempAllChpMap = allChaptersContents;
         tempAllChpMap[chapterKeyName] = chapterContentTemp
@@ -1649,7 +1670,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
 //     });
 
 //     if (data !== undefined) {
-//       setCurrChapterContent(data);
+//       set CurrChapterContent(data);
 //     }
 
 //     console.log("fetchcurrChapterContentFromCloud, data = ", data);

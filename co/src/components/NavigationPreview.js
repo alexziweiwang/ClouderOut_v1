@@ -942,7 +942,7 @@ return (
                                         currentStandingObjTemp["pageStatus"] = "During Game";
                                         currentStandingObjTemp["chapterKey"] = chapterKey;
                                         currentStandingObjTemp["chapterTitle"] = item;
-                                        currentStandingObjTemp["nodeKey"] = chapterKey + "_start"; //TODO default start-node's key ... if non-SL system
+                                        currentStandingObjTemp["nodeKey"] = "chapterStart";  //TODO1000
                                         currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
                                         triggerUpdateCurrentStanding(currentStandingObjTemp);
 

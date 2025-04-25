@@ -499,7 +499,8 @@ export default function GameScreen_AllNodeTypeContainer({
                     setCurrChapterTitle(nextChapterItem[1]);
 
                     // reset all node info
-                    let nextStartNodeKey = nextChapterItem[0] + "_start";
+                    let nextStartNodeKey = "chapterStart"; //TODO1000    //"chapterStart"      "chapterEnd"
+
                     setCurrNodeKey(nextStartNodeKey);
                     setCurrNodeType("*chapterStart*");
 

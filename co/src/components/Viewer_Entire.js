@@ -437,7 +437,7 @@ export default function Viewer_Entire({
 
 
         let temp = currentGameStatusProgress;
-        temp["nodeKey"] = chapterKeyName + "_start"; //TODO
+        temp["nodeKey"] = "chapterStart"; //TODO1000
         temp["nodeType"] = "*chapterStart*";
         temp["chapterKey"] = chapterKeyName;
         temp["chapterTitle"] = chapterTitleName;
