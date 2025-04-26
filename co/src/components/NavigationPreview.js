@@ -381,8 +381,9 @@ return (
                         optionName = navObj["mainPage-setting-name"];
                         pageNaming = "Settings Page";
                     } else if (index === 3) {
-                        optionName = navObj["mainPage-shop-name"];
-                        pageNaming = "Shop Page";
+                        // optionName = navObj["mainPage-shop-name"];
+                        // pageNaming = "Shop Page";
+                        return;
                     }
 
                     if (navObj[item] === true) {
@@ -438,6 +439,9 @@ return (
                                 ()=>{
                                     document.getElementById(keyStr1).style.filter = "brightness(100%)";
 
+                                    if (pageNaming === "Shop Page") {
+                                        return;
+                                    } //TODO900 for ver.1 (no shop for now)
 
                                     triggerUpdateCurrPageName(pageNaming);
 
@@ -1386,8 +1390,9 @@ return (
      
         }
   
-        {page === "Shop Page" && 
-    
+        {/* {page === "Shop Page" &&  */}
+        {false && 
+
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
