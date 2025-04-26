@@ -109,7 +109,7 @@ export default function Modal_GameDataManager ({
     
     useEffect(() => {
         if (firstTimeEnter === true) {
-                                            console.log("GameDataManager-ModalWindow: First Enter!");
+             //                               console.log("GameDataManager-ModalWindow: First Enter!");
 
             initialization();
             setFirstTimeEnter(false);
@@ -137,7 +137,7 @@ export default function Modal_GameDataManager ({
 
         let objSize = Object.keys(tempGameDataDesign).length;
         setGdmMapSize(objSize);
-                                    console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
+            //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
                                     
 
         setUsingGameDataDesign(tempGameDataDesign);

@@ -269,12 +269,12 @@ export default function NodeManager({projectName, currUser,
 
   
 
-      console.log("Node Manager ........."); //TODO testing
-      console.log("nodemap = ", initialNodeMap); //TODO testing
-      console.log("grid = ", initialGridBlock); //TODO testing
-      console.log("local ds:"); //TODO testing
-      console.log(nodeRelationshipMap); //TODO testing
-      console.log(gridBlocks); //TODO testing
+      // console.log("Node Manager ........."); //TODO testing
+      // console.log("nodemap = ", initialNodeMap); //TODO testing
+      // console.log("grid = ", initialGridBlock); //TODO testing
+      // console.log("local ds:"); //TODO testing
+      // console.log(nodeRelationshipMap); //TODO testing
+      // console.log(gridBlocks); //TODO testing
 
       let UILang = getUILanguage();
       setLanguageCodeTextOption(UILang);

@@ -190,18 +190,18 @@ export default function Viewer_Entire({
         setAudioElem(document.getElementById(audioPlayerId));
 
         if (firstTimeEnter === true) {
-                                                console.log("!!!!!!! viewer-entire: entered as first-time");
+                                                console.log("!!!!!!! viewer-entire: entered as first-time"); //for each test-run
+            
+            
             initializeGameDataTracker(initialPlayerGameDataTracker);
 
                                
             //chapterList[0]
             if (chapterList.length > 0) {
-                                                console.log("\t\tchapter-list not empty");
 
 
                 let firstChapterInfo = chapterList[0];
 
-                                        console.log("FIRST CHAPTER = ", firstChapterInfo);
 
                 let firstChapterKey = firstChapterInfo[0];
                 let firstChapterTitle = firstChapterInfo[1];
@@ -209,13 +209,13 @@ export default function Viewer_Entire({
                 let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle);                            
                 setCurrChapterAllNodesContent(chpContent);
 
-                                        console.log("\t\tentering this chapter: ", chpContent);
+                console.log("\t\tchapter-list not empty, FIRST CHAPTER = ", firstChapterInfo, "\t\tentering this chapter: ", chpContent, "\t\tnode mapping = ", initialCurrChapterAllNodeMapping);
+
 
 
 
                 //TODO by node-mapping & start-node, get the very first node's name and type
                 //initialCurrChapterAllNodeMapping
-                                        console.log("\t\tnode mapping = ", initialCurrChapterAllNodeMapping);
 
                 
                 let currChapterAllNodes = initialCurrChapterAllNodeMapping[firstChapterKey];
@@ -247,7 +247,7 @@ export default function Viewer_Entire({
         
         let anc = getCurrChapterContent();
         setCurrChapterAllNodesContent(anc);
-                                           console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc);
+                                  //         console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc);
 
 
 
@@ -336,7 +336,7 @@ export default function Viewer_Entire({
     //TODO21 refactor to VM
     
     function initializeGameDataTracker(dataObj) {
-                                                            console.log("viewer-entire... initialize_GameDataTracker");
+                                      //                      console.log("viewer-entire... initialize_GameDataTracker");
 
         //TODO105 if need to fetch from game-maker with the most fresh-ver.
 

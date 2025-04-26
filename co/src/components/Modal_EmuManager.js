@@ -422,7 +422,9 @@ export default function Modal_EmuManager({
                                           // console.log("\t\t--fetched from cloud."); //TODO test
                                             }
 
-                                                    console.log("... gdt1 prep: ", tempObj1); //TODO test
+  //                                                  console.log("... gdt1 prep: ", tempObj1); //TODO test
+
+  
         setGdt1(tempObj1);
         update1Gdt(tempObj1);
         
@@ -445,7 +447,7 @@ export default function Modal_EmuManager({
                 "membership": 1,
             };
         }
-                                                console.log("... epp2 prep: ", tempObj2); //TODO test
+   //                                             console.log("... epp2 prep: ", tempObj2); //TODO test
 
         setEpp2(tempObj2);
         update2Epp(tempObj2);
@@ -462,7 +464,7 @@ export default function Modal_EmuManager({
             }
         }
 
-                                            console.log("... epa3 prep: ", tempObj3); //TODO test
+    //                                        console.log("... epa3 prep: ", tempObj3); //TODO test
 
         setEpa3(tempObj3);
         update3Epa(tempObj3);
@@ -478,7 +480,7 @@ export default function Modal_EmuManager({
             return;
         }
 
-                                            console.log("... ess4 prep: ", tempObj4); //TODO test
+    //                                        console.log("... ess4 prep: ", tempObj4); //TODO test
         setEss4(tempObj4);
         update4Ess(tempObj4);
 
@@ -563,7 +565,7 @@ export default function Modal_EmuManager({
             }
 
         }
-                                            console.log("... shp5 prep: ", tempObject5);
+      //                                      console.log("... shp5 prep: ", tempObject5);
         // VM func for shop-product-items
 
 
@@ -593,7 +595,7 @@ export default function Modal_EmuManager({
             update2EppToOuterLayer(); 
             update3EpaToOuterLayer();
 
-                                                console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
+                                //                console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
             setFirstTimeEnter(false);
         }
 
@@ -645,7 +647,7 @@ export default function Modal_EmuManager({
             return;
         }
 
-        console.log("fetched obj = ", obj.visual);
+   //     console.log("fetched obj = ", obj.visual);
 
         let tempMap = {};
         let resVis = obj.visual;
@@ -657,7 +659,7 @@ export default function Modal_EmuManager({
 
         setVisualMap(tempMap);
 
-                                    console.log("emu-mgr, resource -- visual map  = =", tempMap);
+                   //                 console.log("emu-mgr, resource -- visual map  = =", tempMap);
       }
 
       function deleteShopProduct(index) {

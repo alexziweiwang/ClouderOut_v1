@@ -87,10 +87,13 @@ export default function GameScreen_AllNodeTypeContainer({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
-        console.log("### game-screen-all-node-type-container...\n\tanct___game-data-tracker.. ", currGameDataTracker);
+     //   console.log("### game-screen-all-node-type-container...\n\tanct___game-data-tracker.. ", currGameDataTracker);
  
         if (firstTimeEnter === true) {
             //TODO
+            console.log("...................................");
+            console.log("...................................");
+            console.log("...................................");
                                                                 console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
 
@@ -259,7 +262,7 @@ export default function GameScreen_AllNodeTypeContainer({
     //TODO21 refactor to VM
     function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
 
-                                                  console.log("locateHoldingNextNode(jump node)! \nchapterNodeMapping = ", chapterNodeMapping);
+                                                  console.log("\n\n\n\n\n\nlocateHoldingNextNode(jump node)! \nchapterNodeMapping = ", chapterNodeMapping);
 
         let chapterDataTemp = chapterNodeMapping[currChapterKey];
                                     //            console.log("curr-chapter data = ", chapterDataTemp);
@@ -284,7 +287,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
             let nextNodeKey = nodeDataTemp["nextNode"];
 
-                                console.log("\tnext-node-key is ...", nextNodeKey);
+                                console.log("\tnon-ls: next-node-key is ...", nextNodeKey);
 
 
             if (nextNodeKey.length > 0) {
@@ -294,14 +297,14 @@ export default function GameScreen_AllNodeTypeContainer({
 
                 //TODO show user-in-game-warning... and exit normally?
                 
-                                                        console.log("no next-node!!");
+                                                        console.log("\tnon-ls: no next-node!!");
             }
 
 
         } else { //LogicSplitter
 
             let logicArr = nodeDataTemp["spltLogicPairs"]
-                                    console.log("logic-arr = ", logicArr);
+                                                        console.log("logic-arr = ", logicArr);
 
             let resultKey = handleLogicSplitting(logicArr);
 
@@ -310,6 +313,8 @@ export default function GameScreen_AllNodeTypeContainer({
 
             setHoldingNextNodeKey(resultKey);
         }
+
+        console.log("\n\n\n\n\n\n");
     }
 
 
@@ -493,6 +498,12 @@ export default function GameScreen_AllNodeTypeContainer({
                                console.log("allChapterList[i] = ", item);
             if (item[0] === currChapterKey) {
                 //next chapter is the next key
+
+                if (i+1 === len) {
+                    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlast chapter")
+                    return;
+                }
+
                 if (i+1 < len) {
 
                                                     console.log("\t\t more chapters to go");
@@ -516,7 +527,7 @@ export default function GameScreen_AllNodeTypeContainer({
                     // TODO end of the entire game / spot of unfinished project end. ask if return ?
                     //later: if SL-system, go to nav-to-SL hint
                     //later: if non-SL-system, go to story-page(chapter list page)?
-
+                                                                                                console.log("flag1");
 
                 }
             }
@@ -534,7 +545,9 @@ export default function GameScreen_AllNodeTypeContainer({
 
 //TODO109 fetchGameSettings()
 
-return (<div 
+return (
+
+<div 
     style={{
         "backgroundColor": "blue", 
         "borderRadius": "0px",
@@ -547,7 +560,7 @@ return (<div
 
     {currNodeType === "*chapterStart*" && <div 
         style={{
-            "backgroundColor": "#000000", 
+            "backgroundColor": "purple", 
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
@@ -559,7 +572,7 @@ return (<div
         }}
     >
 
-    {currChapterTitle} 
+    {/* {currChapterTitle}  */}
         
     </div>}
 

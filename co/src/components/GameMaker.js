@@ -214,7 +214,7 @@ export default function GameMaker({username, projectName}) {
             tempMap[item["var"]] = item["url"];
             i++;
         }
-                                        console.log("initialized visual map = ", tempMap); //TODO test
+                 //                       console.log("initialized visual map = ", tempMap); //TODO test
 
         setVisualMap(tempMap);
     }
@@ -233,8 +233,10 @@ export default function GameMaker({username, projectName}) {
             tempMap[item["var"]] = item["url"];
             i++;
         }
-                                        console.log("initialized audio map = ", tempMap); //TODO test
+
+              //                          console.log("initialized audio map = ", tempMap); //TODO test
         
+
         setAudioMap(tempMap);
     }
 
@@ -1305,7 +1307,9 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     let j = 0;
     let gridTempMap = {};
     let gridTempArr = [];
-console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
+
+                                                      // console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
+
     let rowMax = 0;
     let colMax = 0;
 
@@ -1314,11 +1318,11 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
       colMax = 0; //reset for each chapter
 
       let currChapter = nodeMapTemp[chapterKey];
-        console.log("nodeMapTemp[chapterKey] = ", nodeMapTemp[chapterKey]);
+                                                    //    console.log("nodeMapTemp[chapterKey] = ", nodeMapTemp[chapterKey]);
 
       Object.keys(currChapter).map((nodeKeyTemp) => {  
         let currNode = currChapter[nodeKeyTemp];
-        console.log("\tcurrChapter[nodeKeyTemp] = ", currChapter[nodeKeyTemp]);
+                                                    //     console.log("\tcurrChapter[nodeKeyTemp] = ", currChapter[nodeKeyTemp]);
         let currRow = currNode["row"];
         if (currRow > rowMax) {
           rowMax = currRow;
@@ -1349,7 +1353,7 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
         let currRow = currNode["row"];
         let currCol = currNode["col"];
         if (currNode["display"] === true) { // only for undeleted nodes
-          console.log("r = ", currRow, " ... col = ", currCol, " ....... node = ", nodeKeyTemp);
+                            //    console.log("r = ", currRow, " ... col = ", currCol, " ....... node = ", nodeKeyTemp);
       
           maxGrid[currRow][currCol] = nodeKeyTemp;
         }
@@ -1423,9 +1427,9 @@ console.log("convertNodeMap-To-GridBlocks with ", nodeMapTemp);
     setChapterNodeMapAll(data.chapterNodeMapping);
 
 
-                                       console.log("FromCloud !!! data.chapterNodeMapping = ", data.chapterNodeMapping);
+                      //                 console.log("FromCloud !!! data.chapterNodeMapping = ", data.chapterNodeMapping);
 
-                                       console.log("FromCloud !!! after conversion ... GridBlocks = ", gridChapterMap);
+                   //                    console.log("FromCloud !!! after conversion ... GridBlocks = ", gridChapterMap);
 
 
   }

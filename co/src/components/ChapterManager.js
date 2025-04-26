@@ -133,7 +133,7 @@ export default function ChapterManager({
     } 
 
     let chapterListTemp = getChapterDataInfo(); // current-version(not necessarily newest from cloud)
-                      console.log("chp-mgr, chapter list  = ", chapterListTemp);
+                   //   console.log("chp-mgr, chapter list  = ", chapterListTemp);
     setChapterData(chapterListTemp);
 
     if (chapterListTemp != chapterData) {
@@ -148,7 +148,7 @@ export default function ChapterManager({
   });
 
   function makeDeletedList(chapterInfo) {
-console.log("make deleted list: before = ", chapterInfo);
+//console.log("make deleted list: before = ", chapterInfo);
 
     let i = 0;
     let tempList = [];
@@ -158,7 +158,7 @@ console.log("make deleted list: before = ", chapterInfo);
       }
 
     }
-  console.log("make deleted list: after = ", tempList);
+//console.log("make deleted list: after = ", tempList);
 
     setDeletedLocalList(tempList);    
 
