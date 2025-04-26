@@ -484,7 +484,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
     //TODO21 refactor to VM
     async function walkToNextChapter() {
-        console.log("current chapter = ", currChapterKey);
+        console.log("walk-chapter:     current chapter = ", currChapterKey);
 
         let i = 0;
         let len = allChapterList.length;
@@ -494,6 +494,10 @@ export default function GameScreen_AllNodeTypeContainer({
             if (item[0] === currChapterKey) {
                 //next chapter is the next key
                 if (i+1 < len) {
+
+                                                    console.log("\t\t more chapters to go");
+
+
                     let nextChapterItem = allChapterList[i+1];
                     setCurrChapterKey(nextChapterItem[0]);
                     setCurrChapterTitle(nextChapterItem[1]);
