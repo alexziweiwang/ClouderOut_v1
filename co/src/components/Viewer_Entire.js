@@ -206,7 +206,9 @@ export default function Viewer_Entire({
                 let firstChapterKey = firstChapterInfo[0];
                 let firstChapterTitle = firstChapterInfo[1];
 
-                let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle);                            
+                let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle); // cloud related (outer layer)
+                
+                
                 setCurrChapterAllNodesContent(chpContent);
 
                 console.log("\t\tchapter-list not empty, FIRST CHAPTER = ", firstChapterInfo, "\t\tentering this chapter: ", chpContent, "\t\tnode mapping = ", initialCurrChapterAllNodeMapping);
@@ -445,6 +447,7 @@ export default function Viewer_Entire({
     //TODO21 refactor to VM
     async function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
 
+//TODO1000
 
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = "chapterStart"; //TODO1000
@@ -454,7 +457,7 @@ export default function Viewer_Entire({
 
         setCurrentGameStatusProgress(temp);
 
-        let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName);
+        let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName); // cloud related (outer layer)
 
 
         //TODO900 fetch chapter-content?

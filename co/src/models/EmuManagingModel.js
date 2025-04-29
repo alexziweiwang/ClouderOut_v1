@@ -18,7 +18,7 @@ export async function fetchEmuData1Gdt({projectName, currUser}) {
 
     obj = projectSnap.data().emu4sets.gdt1; 
 
-                            console.log("model - fetchEmuData1Gdt", obj); //TODO test
+            //                console.log("model - fetchEmuData1Gdt", obj); //TODO test
 
     return obj;
 
@@ -39,7 +39,7 @@ export async function fetchEmuData2Epp({projectName, currUser}) {
 
     obj = projectSnap.data().emu4sets.epp2; 
 
-                            console.log("model - fetchEmuData2Epp", obj); //TODO test
+           //                 console.log("model - fetchEmuData2Epp", obj); //TODO test
 
     return obj;
 }
@@ -58,7 +58,7 @@ export async function fetchEmuData3Epa({projectName, currUser}) {
 
     obj = projectSnap.data().emu4sets.epa3; 
 
-                                        console.log("model - fetchEmuData3Epa: ", obj);
+           //                             console.log("model - fetchEmuData3Epa: ", obj);
 
 
     return obj;
@@ -78,7 +78,7 @@ export async function fetchEmuData4Ess({projectName, currUser}) {
 
     obj = projectSnap.data().emu4sets.ess4; 
 
-                                    console.log("model - fetchEmuData4Ess: ", obj);
+            //                        console.log("model - fetchEmuData4Ess: ", obj);
 
     return obj;
 }
@@ -98,7 +98,7 @@ export async function fetchEmuData5Shp({projectName, currUser}) {
     obj = projectSnap.data().emu4sets.shp5; 
     
 
-                                    console.log("model - fetchEmuData5Shp: ", obj);
+            //                        console.log("model - fetchEmuData5Shp: ", obj);
 
     return obj;
 }

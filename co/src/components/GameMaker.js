@@ -1575,10 +1575,20 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
   }
 
   async function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
+    // as a container outside of viewer-entire, here it uses cloud functions and ds-container for all-chapters' data
+
+
+
+    // --- update displayed info ---
     setCurrTestingNodeKey("chapterStart");
     setCurrTestingNodeType("*chapterStart*");
     setCurrTestingChapterKey(chapterKeyName);
     setCurrTestingChapterTitle(chapterTitleName);
+
+
+
+    
+    // --- data-fetching as outer-layer container of viewer-entire ---
 
     let chapterContentTemp = {};
 
@@ -1587,31 +1597,24 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     
       ) {//TODO LATER: also if map length zero
 
+console.log("\t\t\t fetched from cloud ");
+
 
         //fetch content: use chapterKeyName, then update the following:
         chapterContentTemp = await getCurrChpNodeDataFromCloud(chapterKeyName);  
-
-                                      // fetchNodeDataEachChapterVM(
-                                      //   {
-                                      //     projectName: projectName, 
-                                      //     uname: username, 
-                                      //     chapterKey: chapterKeyName
-                                      //   }
-                                      // );
   
         let tempAllChpMap = allChaptersContents;
         tempAllChpMap[chapterKeyName] = chapterContentTemp
         setAllChaptersContents(tempAllChpMap);
-        
+
+                                      console.log("game-maker, \nupdated all-chapter-contents = ", tempAllChpMap);
+
+                                      //allChaptersContents, setAllChaptersContents
     } else {
+console.log("\t\t\t fetched from local ds ");
 
       chapterContentTemp = allChaptersContents[chapterKeyName];
     }
-
-    //TODO900
-//allChaptersContents, setAllChaptersContents
-
-
 
     setCurrChapterContent(chapterContentTemp);
     return chapterContentTemp;
