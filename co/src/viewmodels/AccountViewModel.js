@@ -1,4 +1,4 @@
-import { getProjectInfo, getUserDefaultUILang, updateUserDefaultUILang } from '../models/AccountModel';
+import { getProjectInfo, getUserDefaultUILang, updateUserDefaultUILang, userSignUp } from '../models/AccountModel';
 
 
 /**
@@ -27,4 +27,8 @@ export async function getUserDefaultUILangVM({uname}) {
 
 export async function updateUserDefaultUILangVM({uname, newUILang}) {
     await updateUserDefaultUILang({uname, newUILang});
+}
+
+export async function userSignUpVM({auth, email, password}) {
+    await userSignUp({auth, email, password});    
 }

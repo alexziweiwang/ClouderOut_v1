@@ -49,3 +49,12 @@ export async function updateUserDefaultUILang({uname, newUILang}) {
 
 
 }
+
+export async function userSignUp({auth, email, password}) {
+//TODO1000
+
+
+
+  return;
+}
+

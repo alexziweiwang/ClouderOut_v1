@@ -45,6 +45,12 @@ export default function Sidebar({compName, username}) {
         navigate('/profilepage',  { replace: true, state: { username } });
     }
 
+    function goToLogOutPage() {
+        //TODO log out here...
+        console.log("log out pressed");
+    }
+    
+
 
     return (
     <>
@@ -62,7 +68,7 @@ export default function Sidebar({compName, username}) {
         <br></br>
         <br></br>
 
-        <button className="sidebar_options sidebar_options1" onClick={() => {console.log("log out pressed")}}>{logOutButtonText}</button>
+        <button className="sidebar_options sidebar_options1" onClick={() => {goToLogOutPage()}}>{logOutButtonText}</button>
 
         </div>
     }
