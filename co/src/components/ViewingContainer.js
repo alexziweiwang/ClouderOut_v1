@@ -1,10 +1,16 @@
 import Viewer_Entire from './Viewer_Entire';
 
+import { 
+    fetchChapterNodeMappingVM, 
+    fetchAllChapterListVM, 
+} from '../viewmodels/ChapterInfoViewModel';
+
 //the outer-shell of viewer_entire for in-pracitce playing of a game-project
 export default function ViewingContainer({username, projectName}) {
 
 
     //TODO fetch project navigation-ui settings [game-side]
+
 
     //TODO fetch project chapter list [game-side]
 
@@ -17,16 +23,34 @@ export default function ViewingContainer({username, projectName}) {
     //TODO fetch UI-language option -- TODO900 design+
 
 
-    //TODO function triggerNodeWalk (not doing anything)
+    
     //TODO function triggerChapterWalk (fetch project-data from cloud) [game-side]
-    //TODO function triggerUpdateCurrentStanding (not doing anything)
+    
 
     //TODO fetch visual-map & audio-map
 
 //TODO hold "all chater contents" at this layer, and pass-in viewer-entire when needed
 
+    function getAllChapterNodeMapping() {
+        let data = await fetchChapterNodeMappingVM({   
+            projectName: projectName, 
+            currUser: username,
+        });
+    
+        if (data === undefined || data === null) {
+          return;
+        }
+    
+              
+        let gridChapterMap = convertNodeMapToGridBlocks(data.chapterNodeMapping);
+      
+    }
 
-
+    function notUsing() {
+    //function triggerUpdateCurrentStanding (not doing anything)
+    //function triggerNodeWalk (not doing anything)
+        return "";
+    }
 
 
 
@@ -59,9 +83,9 @@ export default function ViewingContainer({username, projectName}) {
                     initialShopItemInfo={testShopProducts}
                     initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
 
-                    triggerNodeWalk={triggerNodeWalk} //update things to this layer
+                    triggerNodeWalk={notUsing} //update things to this layer
                     triggerChapterWalk={triggerChapterWalk} //update things to this layer
-                    triggerUpdateCurrentStanding={triggerUpdateCurrentStanding} //update things to this layer
+                    triggerUpdateCurrentStanding={notUsing} //update things to this layer
 
                     visualMap={visualMap}
                     audioMap={audioMap}

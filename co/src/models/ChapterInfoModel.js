@@ -1,7 +1,7 @@
 import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore"; 
 
-export async function fetchChapterNodesData({projectName, currUser}) {
+export async function fetchChapterNodeMapping({projectName, currUser}) {
 
 
     const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);

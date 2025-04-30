@@ -31,7 +31,7 @@ import {
 } from '../viewmodels/ProjectManagerViewModel';
 
 import { 
-  fetchChapterNodesDataVM, 
+  fetchChapterNodeMappingVM, 
   updateChapterNodesToCloudDataVM, 
   fetchAllChapterListVM, 
   updateChapterListToCloudVM, 
@@ -1391,7 +1391,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
 
-    let data = await fetchChapterNodesDataVM({   
+    let data = await fetchChapterNodeMappingVM({   
         projectName: projectName, 
         currUser: username,
     });
@@ -1587,7 +1587,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
 
-    
+
     // --- data-fetching as outer-layer container of viewer-entire ---
 
     let chapterContentTemp = {};
@@ -2088,7 +2088,6 @@ console.log("\t\t\t fetched from local ds ");
       </div>
 
 
-
     {/* game data table panel  */}
       <div>
            
@@ -2096,7 +2095,12 @@ console.log("\t\t\t fetched from local ds ");
             {/* game data info */}
             {/* screenWidth > screenHeight means horizontal game-screen */}
             {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {(isDisplayEntireGameViewer && showGameDataPanel)
+            {/* {(isDisplayEntireGameViewer && showGameDataPanel) */}
+            {/* {isDisplayEntireGameViewer */}
+            {/* //TODO700 recover this later */}
+
+            {false
+           
             && 
               <div style={{
                 "marginLeft": "-850px",
