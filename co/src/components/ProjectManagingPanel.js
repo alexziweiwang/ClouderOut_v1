@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import { GiTrashCan } from "react-icons/gi";
@@ -19,8 +19,11 @@ export default function ProjectManagerPanel() {
 
     const compoPathName = "/projectmanagingpanel";
 
-    const username = "user002"; //TODO test
-    
+    const {state} = useLocation();
+    let username = "default-no-state-username";
+    if (state !== null) {
+        username = state.uname;
+    } 
     
     const navigate = useNavigate();
 

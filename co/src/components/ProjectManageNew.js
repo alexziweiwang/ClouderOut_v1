@@ -89,8 +89,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
         trashed: false,
       };
 
-      //TODO emu-data-sets
-
+      //TODO900 emu-data-sets
+//TODO900 screen size
 
                                           console.log("Created project info: "); //TODO testing
                                           console.log(projectObj); //TODO testing

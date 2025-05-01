@@ -11,7 +11,9 @@ Dashboard is for each specific user, and users setup their profile, projects and
 */
 export default function Dashboard() {
     let name = "/dashboard";
+    
     const uname = "user002";
+
     const navigate = useNavigate();
 
     let languageCodeTextOption = 'en';
