@@ -1,10 +1,15 @@
-import { userSignUpVM } from '../viewmodels/AccountViewModel';
+import { userSignUpVM, userLogInVM } from '../viewmodels/AccountViewModel';
 
 export default function UserNotLoggedInPage() {
 //sign up or log in here...
 
     async function newUserSignUp() {
-        //TODO userSignUpVM({email, password})
+        //TODO await userSignUpVM({email, password})
+    }
+
+    async function existingUserLogIn() {
+
+        //TODO await userLogInVM({email, password})
     }
 
 }

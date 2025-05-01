@@ -1,6 +1,6 @@
 import  { db, auth } from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, updateDoc } from "firebase/firestore"; 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 /**
  * Get project data by username.
@@ -72,3 +72,19 @@ export async function userSignUp({email, password}) {
   return;
 }
 
+export async function userLogIn({email, password}) {
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    
+    const user = userCredential.user;
+                                            //TODO1000 test
+
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+              console.log("log in error: ", errorCode, " \n", errorMessage);
+
+  });
+}
