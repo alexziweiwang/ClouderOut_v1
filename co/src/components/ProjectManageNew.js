@@ -7,11 +7,10 @@ import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManage
 //TODO115 collection of cloud-related
 
 
-export default function ProjectManageNew({cancelAction, showCancelButton, isPart, triggerCreationSubmit}) {
+export default function ProjectManageNew({cancelAction, showCancelButton, isPart, triggerCreationSubmit, username}) {
     const navigate = useNavigate();
 
     const name = "/projectmanagenew";
-    const username = "user002"; //TODO test
 
     const [addedNewProjName, setAddedNewProjName] = useState(""); //TODO testing
     const [projDedscription, setProjDescription] = useState("");

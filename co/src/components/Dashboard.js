@@ -87,6 +87,7 @@ export default function Dashboard() {
           showCancelButton={true}
           isPart={false}
           triggerCreationSubmit={returnToDashboard}
+          username={uname}
       />
 }
   </div>

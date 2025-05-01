@@ -161,6 +161,7 @@ export default function ProjectManagerPanel() {
                 showCancelButton={false}
                 isPart={true}
                 triggerCreationSubmit={triggerCreationSubmit}
+                username={username}
               />
             </div>
 

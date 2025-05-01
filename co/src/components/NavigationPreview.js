@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 
 export default function NavigationPreview ({
+  
     fetchNavObj, 
 
     fetchPageName, 
@@ -38,8 +39,6 @@ const tempFontSize = 12;
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState(initialUILanguage); //TODO16
 
-    const username = "user002"; //TODO testing
-    const projName = "project001"; //TODO testing
 
     const [screenWidth, setScreenWidth] = useState(800);
     const [screenHeight, setScreenHeight] = useState(600);
