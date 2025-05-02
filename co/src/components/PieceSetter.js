@@ -1354,10 +1354,8 @@ export default function PieceSetter({
                             //TODO1000 not adding if conse-arr length is 0
 
 
-
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = [];
-                       
                         if (stndBtnConseqGDataItemSelected === "" || stndBtnConseqBecomeAmount === "") {
                             return;
                         }
@@ -1371,20 +1369,18 @@ export default function PieceSetter({
                                 obj.push(consequenceStndBtnIsPlus);
                             }
                         } else { // direct assign value 
-                            
                             obj.push("becomes");
                         }
                         
                         obj.push(stndBtnConseqBecomeAmount); //TODO
-
                         obj.push(stndBtnConseqGDataTypeSelected); //TODO add data-type! //[3] "number", "boolean", "string"
                       
                         /* push to stndButtonConsequenceArrayLocal */
                         let arrTemp = stndButtonConsequenceArrayLocal;
                         arrTemp.push(obj);
                         setStndButtonConsequenceArrayLocal(arrTemp);
-                        
                         setIsStndBtnAddNewConsq(false);
+
 
 
                     }}>{addText}</button>

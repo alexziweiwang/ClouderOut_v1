@@ -6,7 +6,7 @@ import {
 } from '../viewmodels/ChapterInfoViewModel';
 
 //the outer-shell of viewer_entire for in-pracitce playing of a game-project
-export default function InPrac_ViewingContainer({username, projectName}) {
+export default function IdvdWin_ViewingContainer({username, projectName}) {
 
 
     //TODO fetch project navigation-ui settings [game-side]
