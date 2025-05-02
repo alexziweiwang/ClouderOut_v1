@@ -1269,6 +1269,7 @@ export default function PieceSetter({
                             }} 
                             value={stndBtnConseqGDataItemSelected}>
                         <option value="" key="defaultGameDataItem"> -- Select Game Data Item --</option>
+                        {/* //TODO1000 */}
                         {Object.keys(gameDataListLocal).map((currKey) => {
                             /* format: {name: <name>, default_value: <value>, data_type: 'number'/'boolean'/'string'} */
                             let keyStr = "gameData" + gameDataListLocal[currKey]["name"];
@@ -1347,6 +1348,10 @@ export default function PieceSetter({
 
                     <button className="buttonRight"
                         onClick={()=>{
+                            //TODO1000 not adding if conse-arr length is 0
+
+
+
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)
                         let obj = [];
                        

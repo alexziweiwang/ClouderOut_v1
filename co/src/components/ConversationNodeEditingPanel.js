@@ -120,31 +120,16 @@ export default function ConversationNodeEditingPanel() {
     const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //fetch from cloud-db
 
 
-    const [gameUIDefaultButton, setGameUIDefaultButton] = useState({
-        "widthMin": gameUIDefaultButtonTemplate["widthMin"],
-        "widthMax": gameUIDefaultButtonTemplate["widthMax"],
-        "height": gameUIDefaultButtonTemplate["height"],
-        "cornerRadius": gameUIDefaultButtonTemplate["cornerRadius"],
-        "transparency": gameUIDefaultButtonTemplate["transparency"],
-        "isShape": gameUIDefaultButtonTemplate["isShape"],
-        "bgColor": gameUIDefaultButtonTemplate["bgColor"],
-        "picVar": gameUIDefaultButtonTemplate["picVar"],
-        "textColor": gameUIDefaultButtonTemplate["textColor"],
-        "margin": gameUIDefaultButtonTemplate["margin"],
-        "justifyContent": gameUIDefaultButtonTemplate["justifyContent"],
-        "alignItems": gameUIDefaultButtonTemplate["alignItems"],
-        "border": gameUIDefaultButtonTemplate["border"],
-        "textSize": gameUIDefaultButtonTemplate["textSize"],
-        "groupX": gameUIDefaultButtonTemplate["groupX"],
-        "groupY": gameUIDefaultButtonTemplate["groupY"],
-        "horizontalMid": gameUIDefaultButtonTemplate["horizontalMid"],
-        "verticalMid": gameUIDefaultButtonTemplate["verticalMid"],
 
-        "fontName": gameUIDefaultButtonTemplate["fontName"],
-        "isFontItalic": gameUIDefaultButtonTemplate["isFontItalic"],
+    let gameUIDefaultButtonLocal = {};
+    Object.keys(gameUIDefaultButtonTemplate).map((currKey) => {
+        gameUIDefaultButtonLocal[currKey] = gameUIDefaultButtonTemplate[currKey];
+    });
+    const [gameUIDefaultButton, setGameUIDefaultButton] = useState(
+        gameUIDefaultButtonLocal
+    ); 
+//TODO30
 
-
-    }); //fetch from cloud-db
 
 //TODO600
     const [gameUITextFrame, setGameUITextFrame] = useState({
@@ -1467,3 +1452,35 @@ const [uiConvNav, setUIConvNav] = useState({
         </div>
     );
 }
+
+
+
+
+
+
+
+
+   //gameUIDefaultButton =
+        // {
+        //     "widthMin": gameUIDefaultButtonTemplate["widthMin"],
+        //     "widthMax": gameUIDefaultButtonTemplate["widthMax"],
+        //     "height": gameUIDefaultButtonTemplate["height"],
+        //     "cornerRadius": gameUIDefaultButtonTemplate["cornerRadius"],
+        //     "transparency": gameUIDefaultButtonTemplate["transparency"],
+        //     "isShape": gameUIDefaultButtonTemplate["isShape"],
+        //     "bgColor": gameUIDefaultButtonTemplate["bgColor"],
+        //     "picVar": gameUIDefaultButtonTemplate["picVar"],
+        //     "textColor": gameUIDefaultButtonTemplate["textColor"],
+        //     "margin": gameUIDefaultButtonTemplate["margin"],
+        //     "justifyContent": gameUIDefaultButtonTemplate["justifyContent"],
+        //     "alignItems": gameUIDefaultButtonTemplate["alignItems"],
+        //     "border": gameUIDefaultButtonTemplate["border"],
+        //     "textSize": gameUIDefaultButtonTemplate["textSize"],
+        //     "groupX": gameUIDefaultButtonTemplate["groupX"],
+        //     "groupY": gameUIDefaultButtonTemplate["groupY"],
+        //     "horizontalMid": gameUIDefaultButtonTemplate["horizontalMid"],
+        //     "verticalMid": gameUIDefaultButtonTemplate["verticalMid"],
+
+        //     "fontName": gameUIDefaultButtonTemplate["fontName"],
+        //     "isFontItalic": gameUIDefaultButtonTemplate["isFontItalic"],
+        // }
