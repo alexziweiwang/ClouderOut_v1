@@ -19,8 +19,10 @@ import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITe
 //TODO20 cloud-func (marked)
 import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import {   saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
-
+import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
+import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
+  
+  
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
  
@@ -301,6 +303,16 @@ export default function ConversationNodeEditingPanel() {
             navigate('/editorcontainer', { replace: true, state: stateObj });
         }
 
+    }
+
+    async function fetchGameDataDesignList() { //TODO1000
+        let gddList = await getProjectGameDataDesignVM({
+            projectName: state.projectName, 
+            uname: state.userName
+        });
+
+
+        setGameDataDesignList(gddList);
     }
 
 
@@ -828,6 +840,8 @@ export default function ConversationNodeEditingPanel() {
     function loadFromCloud() { //resource & pieces
         fetchProjResourceLists();
         initializeNodeBothPartsFromCloud();
+        
+        fetchGameDataDesignList();
 
     }
 

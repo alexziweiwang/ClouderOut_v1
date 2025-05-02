@@ -292,6 +292,9 @@ export default function PieceSetter({
 
             setFirstTimeEnter(false);
         }
+
+        getGameDataDesignListFromOuterLayer();
+
         let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-1]["bgm_source_varname"]);
         setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
@@ -357,7 +360,7 @@ export default function PieceSetter({
         setGameDataListLocal(tempObj);
         
         
-                                                        console.log("piece-setter. getGameDataDesignListFromOuterLayer : ", tempObj);
+                                                        console.log("!!! piece-setter. getGameDataDesignListFromOuterLayer : ", tempObj);
 
     }
 
