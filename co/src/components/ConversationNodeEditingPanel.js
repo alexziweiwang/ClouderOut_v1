@@ -119,7 +119,7 @@ export default function ConversationNodeEditingPanel() {
 
     const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //fetch from cloud-db
 
-
+//TODO600 test start --- 
 
     let gameUIDefaultButtonLocal = {};
     Object.keys(gameUIDefaultButtonTemplate).map((currKey) => {
@@ -129,6 +129,7 @@ export default function ConversationNodeEditingPanel() {
         gameUIDefaultButtonLocal
     ); 
 
+
     let gameUITextFrameLocal = {};
     Object.keys(gameUITextFrameTemplate).map((currKey) => {
         gameUITextFrameLocal[currKey] = gameUITextFrameTemplate[currKey];
@@ -136,6 +137,7 @@ export default function ConversationNodeEditingPanel() {
     const [gameUITextFrame, setGameUITextFrame] = useState(
         gameUITextFrameLocal
     ); 
+  
     
     let gameUIBackButtonLocal = {};
     Object.keys(gameUIBackButtonTemplate).map((currKey) => {
@@ -146,103 +148,27 @@ export default function ConversationNodeEditingPanel() {
     );
   
 
-
-
-
-
-//TODO30
-
-
-//TODO600
-const [uiConvNav, setUIConvNav] = useState({
-        "buttonAutoIsTextFont": uiConvNavTemplate["buttonAutoIsTextFont"],
-        "buttonAutoShade0": uiConvNavTemplate["buttonAutoShade0"],
-        "buttonAutoPicName0": uiConvNavTemplate["buttonAutoPicName0"],
-        "buttonAutoShade1": uiConvNavTemplate["buttonAutoShade1"],
-        "buttonAutoPicName1": uiConvNavTemplate["buttonAutoPicName1"],
-        "buttonAutoFontName": uiConvNavTemplate["buttonAutoFontName"],
-        "buttonAutoFontItalic": uiConvNavTemplate["buttonAutoFontItalic"],
-        "buttonAutoDisplayText0": uiConvNavTemplate["buttonAutoDisplayText0"],
-        "buttonAutoDisplayText1": uiConvNavTemplate["buttonAutoDisplayText1"],
-        "buttonLogDisplayText": uiConvNavTemplate["buttonLogDisplayText"],
-        "buttonSetupDisplayText": uiConvNavTemplate["buttonSetupDisplayText"],
-
-
-        "buttonLogIsTextFont": uiConvNavTemplate["buttonLogIsTextFont"],
-        "buttonLogShade": uiConvNavTemplate["buttonLogShade"],
-        "buttonLogPicName":  uiConvNavTemplate["buttonLogPicName"],
-        "buttonLogShade": uiConvNavTemplate["buttonLogShade"],
-        "buttonLogPicName": uiConvNavTemplate["buttonLogPicName"],
-        "buttonLogFontName": uiConvNavTemplate["buttonLogFontName"],
-        "buttonLogFontItalic": uiConvNavTemplate["buttonLogFontItalic"],
-
-
-        "buttonSetupIsTextFont": uiConvNavTemplate["buttonSetupIsTextFont"],
-        "buttonSetupShade": uiConvNavTemplate["buttonSetupShade"],
-        "buttonSetupPicName":  uiConvNavTemplate["buttonSetupPicName"],
-        "buttonSetupShade": uiConvNavTemplate["buttonSetupShade"],
-        "buttonSetupPicName": uiConvNavTemplate["buttonSetupPicName"],
-        "buttonSetupFontName": uiConvNavTemplate["buttonSetupFontName"],
-        "buttonSetupFontItalic": uiConvNavTemplate["buttonSetupFontItalic"],
-
-
-        "textDisplaySpeed": uiConvNavTemplate["textDisplaySpeed"],
-
-        "groupX": uiConvNavTemplate["groupX"],
-        "groupY": uiConvNavTemplate["groupY"],
-        "groupWidth": uiConvNavTemplate["groupWidth"],
-        "groupHeight": uiConvNavTemplate["groupHeight"],
-
-        "cornerRadius": uiConvNavTemplate["cornerRadius"],
-
+    let uiConvNavLocal = {};
+    Object.keys(uiConvNavTemplate).map((currKey) => {
+        uiConvNavLocal[currKey] = uiConvNavTemplate[currKey];
     });
+    const [uiConvNav, setUIConvNav] = useState(
+        uiConvNavLocal
+    );
 
 
-//TODO600
-    const [logPageUISettings, setLogPageUISettings] = useState({
-        "closeButtonIsShape": logPageUISettingsTemplate["closeButtonIsShape"],
-        "closeButtonShade": logPageUISettingsTemplate["closeButtonShade"],
-        "closeButtonPicName": logPageUISettingsTemplate["closeButtonPicName"],
-        "closeButtonPositionX": logPageUISettingsTemplate["closeButtonPositionX"],
-        "closeButtonPositionY": logPageUISettingsTemplate["closeButtonPositionY"],
-        "closeButtonWidth": logPageUISettingsTemplate["closeButtonWidth"],
-        "closeButtonHeight": logPageUISettingsTemplate["closeButtonHeight"],
-        "closeButtonCornerRadius": logPageUISettingsTemplate["closeButtonCornerRadius"],
-        "closeButtonBorderSize": logPageUISettingsTemplate["closeButtonBorderSize"],
-        "closeButtonBorderColor": logPageUISettingsTemplate["closeButtonBorderColor"],
-        "closeButtonText": logPageUISettingsTemplate["closeButtonText"],
-        "closeButtonTextColor": logPageUISettingsTemplate["closeButtonTextColor"],
-        "closeButtonFontName": logPageUISettingsTemplate["closeButtonFontName"],
+    let logPageUISettingsLocal = {};
+    Object.keys(logPageUISettingsTemplate).map((currKey) => {
+        logPageUISettingsLocal[currKey] = logPageUISettingsTemplate[currKey];
+    });  
 
-        "bgpIsShape": logPageUISettingsTemplate["bgpIsShape"],
-        "bgpShade": logPageUISettingsTemplate["bgpShade"],
-        "bgpPicName": logPageUISettingsTemplate["bgpPicName"],
+    const [logPageUISettings, setLogPageUISettings] = useState(
+        logPageUISettingsLocal
+    );
 
-        "groupPosX": logPageUISettingsTemplate["groupPosX"],
-        "groupPosY": logPageUISettingsTemplate["groupPosY"],
-        "groupWidth": logPageUISettingsTemplate["groupWidth"],
+//TODO600 test end --- 
 
-        "groupItemGap": logPageUISettingsTemplate["groupItemGap"],
 
-        "groupBgIsShape": logPageUISettingsTemplate["groupBgIsShape"],
-        "groupBgShade": logPageUISettingsTemplate["groupBgShade"],
-        "groupBgpName": logPageUISettingsTemplate["groupBgpName"],
-        
-        "groupUnitCornerRadius": logPageUISettingsTemplate["groupUnitCornerRadius"],
-
-        "contentTextShade": logPageUISettingsTemplate["contentTextShade"],
-        "contentTextSize": logPageUISettingsTemplate["contentTextSize"],
-        "contentTextFont": logPageUISettingsTemplate["contentTextFont"],
-        "contentPosX": logPageUISettingsTemplate["contentPosX"],
-        "contentPosY": logPageUISettingsTemplate["contentPosY"],
-
-        "speakerTextShade": logPageUISettingsTemplate["speakerTextShade"],
-        "speakerTextSize": logPageUISettingsTemplate["speakerTextSize"],
-        "speakerTextFont": logPageUISettingsTemplate["speakerTextFont"],
-        "speakerPosX": logPageUISettingsTemplate["speakerPosX"],
-        "speakerPosY": logPageUISettingsTemplate["speakerPosY"],
-
-    });
 
     const [currBgmVol, setCurrBgmVol] = useState(90);
 
@@ -1502,3 +1428,89 @@ const [uiConvNav, setUIConvNav] = useState({
         // "posY": gameUIBackButtonTemplate["posY"],
         // "fontName": gameUIBackButtonTemplate["fontName"],
         // }
+
+ //uiConvNav
+    // {
+    //     "buttonAutoIsTextFont": uiConvNavTemplate["buttonAutoIsTextFont"],
+    //     "buttonAutoShade0": uiConvNavTemplate["buttonAutoShade0"],
+    //     "buttonAutoPicName0": uiConvNavTemplate["buttonAutoPicName0"],
+    //     "buttonAutoShade1": uiConvNavTemplate["buttonAutoShade1"],
+    //     "buttonAutoPicName1": uiConvNavTemplate["buttonAutoPicName1"],
+    //     "buttonAutoFontName": uiConvNavTemplate["buttonAutoFontName"],
+    //     "buttonAutoFontItalic": uiConvNavTemplate["buttonAutoFontItalic"],
+    //     "buttonAutoDisplayText0": uiConvNavTemplate["buttonAutoDisplayText0"],
+    //     "buttonAutoDisplayText1": uiConvNavTemplate["buttonAutoDisplayText1"],
+    //     "buttonLogDisplayText": uiConvNavTemplate["buttonLogDisplayText"],
+    //     "buttonSetupDisplayText": uiConvNavTemplate["buttonSetupDisplayText"],
+
+    //     "buttonLogIsTextFont": uiConvNavTemplate["buttonLogIsTextFont"],
+    //     "buttonLogShade": uiConvNavTemplate["buttonLogShade"],
+    //     "buttonLogPicName":  uiConvNavTemplate["buttonLogPicName"],
+    //     "buttonLogShade": uiConvNavTemplate["buttonLogShade"],
+    //     "buttonLogPicName": uiConvNavTemplate["buttonLogPicName"],
+    //     "buttonLogFontName": uiConvNavTemplate["buttonLogFontName"],
+    //     "buttonLogFontItalic": uiConvNavTemplate["buttonLogFontItalic"],
+
+    //     "buttonSetupIsTextFont": uiConvNavTemplate["buttonSetupIsTextFont"],
+    //     "buttonSetupShade": uiConvNavTemplate["buttonSetupShade"],
+    //     "buttonSetupPicName":  uiConvNavTemplate["buttonSetupPicName"],
+    //     "buttonSetupShade": uiConvNavTemplate["buttonSetupShade"],
+    //     "buttonSetupPicName": uiConvNavTemplate["buttonSetupPicName"],
+    //     "buttonSetupFontName": uiConvNavTemplate["buttonSetupFontName"],
+    //     "buttonSetupFontItalic": uiConvNavTemplate["buttonSetupFontItalic"],
+
+    //     "textDisplaySpeed": uiConvNavTemplate["textDisplaySpeed"],
+
+    //     "groupX": uiConvNavTemplate["groupX"],
+    //     "groupY": uiConvNavTemplate["groupY"],
+    //     "groupWidth": uiConvNavTemplate["groupWidth"],
+    //     "groupHeight": uiConvNavTemplate["groupHeight"],
+
+    //     "cornerRadius": uiConvNavTemplate["cornerRadius"],
+    // }        
+
+
+ //logPageUISettings
+    //     {
+    //     "closeButtonIsShape": logPageUISettingsTemplate["closeButtonIsShape"],
+    //     "closeButtonShade": logPageUISettingsTemplate["closeButtonShade"],
+    //     "closeButtonPicName": logPageUISettingsTemplate["closeButtonPicName"],
+    //     "closeButtonPositionX": logPageUISettingsTemplate["closeButtonPositionX"],
+    //     "closeButtonPositionY": logPageUISettingsTemplate["closeButtonPositionY"],
+    //     "closeButtonWidth": logPageUISettingsTemplate["closeButtonWidth"],
+    //     "closeButtonHeight": logPageUISettingsTemplate["closeButtonHeight"],
+    //     "closeButtonCornerRadius": logPageUISettingsTemplate["closeButtonCornerRadius"],
+    //     "closeButtonBorderSize": logPageUISettingsTemplate["closeButtonBorderSize"],
+    //     "closeButtonBorderColor": logPageUISettingsTemplate["closeButtonBorderColor"],
+    //     "closeButtonText": logPageUISettingsTemplate["closeButtonText"],
+    //     "closeButtonTextColor": logPageUISettingsTemplate["closeButtonTextColor"],
+    //     "closeButtonFontName": logPageUISettingsTemplate["closeButtonFontName"],
+
+    //     "bgpIsShape": logPageUISettingsTemplate["bgpIsShape"],
+    //     "bgpShade": logPageUISettingsTemplate["bgpShade"],
+    //     "bgpPicName": logPageUISettingsTemplate["bgpPicName"],
+
+    //     "groupPosX": logPageUISettingsTemplate["groupPosX"],
+    //     "groupPosY": logPageUISettingsTemplate["groupPosY"],
+    //     "groupWidth": logPageUISettingsTemplate["groupWidth"],
+
+    //     "groupItemGap": logPageUISettingsTemplate["groupItemGap"],
+
+    //     "groupBgIsShape": logPageUISettingsTemplate["groupBgIsShape"],
+    //     "groupBgShade": logPageUISettingsTemplate["groupBgShade"],
+    //     "groupBgpName": logPageUISettingsTemplate["groupBgpName"],
+        
+    //     "groupUnitCornerRadius": logPageUISettingsTemplate["groupUnitCornerRadius"],
+
+    //     "contentTextShade": logPageUISettingsTemplate["contentTextShade"],
+    //     "contentTextSize": logPageUISettingsTemplate["contentTextSize"],
+    //     "contentTextFont": logPageUISettingsTemplate["contentTextFont"],
+    //     "contentPosX": logPageUISettingsTemplate["contentPosX"],
+    //     "contentPosY": logPageUISettingsTemplate["contentPosY"],
+
+    //     "speakerTextShade": logPageUISettingsTemplate["speakerTextShade"],
+    //     "speakerTextSize": logPageUISettingsTemplate["speakerTextSize"],
+    //     "speakerTextFont": logPageUISettingsTemplate["speakerTextFont"],
+    //     "speakerPosX": logPageUISettingsTemplate["speakerPosX"],
+    //     "speakerPosY": logPageUISettingsTemplate["speakerPosY"],
+    // }    
