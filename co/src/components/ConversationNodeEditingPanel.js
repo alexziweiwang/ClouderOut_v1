@@ -128,57 +128,31 @@ export default function ConversationNodeEditingPanel() {
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState(
         gameUIDefaultButtonLocal
     ); 
+
+    let gameUITextFrameLocal = {};
+    Object.keys(gameUITextFrameTemplate).map((currKey) => {
+        gameUITextFrameLocal[currKey] = gameUITextFrameTemplate[currKey];
+    });
+    const [gameUITextFrame, setGameUITextFrame] = useState(
+        gameUITextFrameLocal
+    ); 
+    
+    let gameUIBackButtonLocal = {};
+    Object.keys(gameUIBackButtonTemplate).map((currKey) => {
+        gameUIBackButtonLocal[currKey] = gameUIBackButtonTemplate[currKey];
+    });
+    const [gameUIBackButton, setGameUIBackButton] = useState(
+        gameUIBackButtonLocal
+    );
+  
+
+
+
+
+
 //TODO30
 
 
-//TODO600
-    const [gameUITextFrame, setGameUITextFrame] = useState({
-        "width": gameUITextFrameTemplate["width"],
-        "height": gameUITextFrameTemplate["height"],
-        "positionX": gameUITextFrameTemplate["positionX"],
-        "positionY": gameUITextFrameTemplate["positionY"],
-        "cornerRadius": gameUITextFrameTemplate["cornerRadius"],
-        "transparency": gameUITextFrameTemplate["transparency"],
-        "isShape": gameUITextFrameTemplate["isShape"],
-        "bgColor": gameUITextFrameTemplate["bgColor"],
-        "picVar": gameUITextFrameTemplate["picVar"],
-        "fontName": gameUITextFrameTemplate["fontName"],
-        "textSize": gameUITextFrameTemplate["textSize"],
-        "textColor": gameUITextFrameTemplate["textColor"],
-        "justifyContent": gameUITextFrameTemplate["justifyContent"],
-        "alignItems": gameUITextFrameTemplate["alignItems"],
-        "border": gameUITextFrameTemplate["border"],
-        "horizontalMid": gameUITextFrameTemplate["horizontalMid"],
-        "TextContentArea-x": gameUITextFrameTemplate["TextContentArea-x"],
-        "TextContentArea-y": gameUITextFrameTemplate["TextContentArea-y"],
-        "TextContentArea-w": gameUITextFrameTemplate["TextContentArea-w"],
-        "TextContentArea-h": gameUITextFrameTemplate["TextContentArea-h"],
-
-
-}); //fetch from cloud-db
-
-
-//TODO600
-    const [gameUIBackButton, setGameUIBackButton] = useState({
-        "width": gameUIBackButtonTemplate["width"],
-        "height": gameUIBackButtonTemplate["height"],
-        "cornerRadius": gameUIBackButtonTemplate["cornerRadius"],
-        "transparency": gameUIBackButtonTemplate["transparency"],
-        "isShape": gameUIBackButtonTemplate["isShape"],
-        "bgColor": gameUIBackButtonTemplate["bgColor"],
-        "picVar": gameUIBackButtonTemplate["picVar"],
-        "textColor": gameUIBackButtonTemplate["textColor"],
-        "buttonText": gameUIBackButtonTemplate["buttonText"],
-        "textSize": gameUIBackButtonTemplate["textSize"],
-        "borderColor": gameUIBackButtonTemplate["borderColor"],
-        "borderSize": gameUIBackButtonTemplate["borderSize"],
-        "posX": gameUIBackButtonTemplate["posX"],
-        "posY": gameUIBackButtonTemplate["posY"],
-        "fontName": gameUIBackButtonTemplate["fontName"],
-
-    
-}); //fetch from cloud-db
-  
 //TODO600
 const [uiConvNav, setUIConvNav] = useState({
         "buttonAutoIsTextFont": uiConvNavTemplate["buttonAutoIsTextFont"],
@@ -1460,7 +1434,7 @@ const [uiConvNav, setUIConvNav] = useState({
 
 
 
-   //gameUIDefaultButton =
+    //gameUIDefaultButton =
         // {
         //     "widthMin": gameUIDefaultButtonTemplate["widthMin"],
         //     "widthMax": gameUIDefaultButtonTemplate["widthMax"],
@@ -1483,4 +1457,48 @@ const [uiConvNav, setUIConvNav] = useState({
 
         //     "fontName": gameUIDefaultButtonTemplate["fontName"],
         //     "isFontItalic": gameUIDefaultButtonTemplate["isFontItalic"],
+        // }
+
+
+    //gameUITextFrame
+        // {
+        // "width": gameUITextFrameTemplate["width"],
+        // "height": gameUITextFrameTemplate["height"],
+        // "positionX": gameUITextFrameTemplate["positionX"],
+        // "positionY": gameUITextFrameTemplate["positionY"],
+        // "cornerRadius": gameUITextFrameTemplate["cornerRadius"],
+        // "transparency": gameUITextFrameTemplate["transparency"],
+        // "isShape": gameUITextFrameTemplate["isShape"],
+        // "bgColor": gameUITextFrameTemplate["bgColor"],
+        // "picVar": gameUITextFrameTemplate["picVar"],
+        // "fontName": gameUITextFrameTemplate["fontName"],
+        // "textSize": gameUITextFrameTemplate["textSize"],
+        // "textColor": gameUITextFrameTemplate["textColor"],
+        // "justifyContent": gameUITextFrameTemplate["justifyContent"],
+        // "alignItems": gameUITextFrameTemplate["alignItems"],
+        // "border": gameUITextFrameTemplate["border"],
+        // "horizontalMid": gameUITextFrameTemplate["horizontalMid"],
+        // "TextContentArea-x": gameUITextFrameTemplate["TextContentArea-x"],
+        // "TextContentArea-y": gameUITextFrameTemplate["TextContentArea-y"],
+        // "TextContentArea-w": gameUITextFrameTemplate["TextContentArea-w"],
+        // "TextContentArea-h": gameUITextFrameTemplate["TextContentArea-h"],
+        // }        
+
+  //gameUIBackButton
+        // {
+        // "width": gameUIBackButtonTemplate["width"],
+        // "height": gameUIBackButtonTemplate["height"],
+        // "cornerRadius": gameUIBackButtonTemplate["cornerRadius"],
+        // "transparency": gameUIBackButtonTemplate["transparency"],
+        // "isShape": gameUIBackButtonTemplate["isShape"],
+        // "bgColor": gameUIBackButtonTemplate["bgColor"],
+        // "picVar": gameUIBackButtonTemplate["picVar"],
+        // "textColor": gameUIBackButtonTemplate["textColor"],
+        // "buttonText": gameUIBackButtonTemplate["buttonText"],
+        // "textSize": gameUIBackButtonTemplate["textSize"],
+        // "borderColor": gameUIBackButtonTemplate["borderColor"],
+        // "borderSize": gameUIBackButtonTemplate["borderSize"],
+        // "posX": gameUIBackButtonTemplate["posX"],
+        // "posY": gameUIBackButtonTemplate["posY"],
+        // "fontName": gameUIBackButtonTemplate["fontName"],
         // }
