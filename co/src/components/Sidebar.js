@@ -48,8 +48,10 @@ export default function Sidebar({compName, username}) {
     function goToLogOutPage() {
         //TODO log out here...
         console.log("log out pressed");
+
+        // "/notloggedin"
     }
-    
+
 
 
     return (

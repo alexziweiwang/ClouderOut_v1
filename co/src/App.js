@@ -10,6 +10,7 @@ import AccountPage from './components/AccountPage';
 import CardGameNodeEditingPanel from './components/CardGameNodeEditingPanel';
 import ProfilePage from './components/ProfilePage';
 import Container_GameEditor_Outer from './components/Container_GameEditor_Outer';
+import UserNotLoggedInPage from './components/UserNotLoggedInPage';
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
         <Route path="/accountpage" element={<AccountPage/>} />
         <Route path="/profilepage" element={<ProfilePage/>} />
         <Route path="/editorcontainer" element={<Container_GameEditor_Outer/>} />
+        <Route path="/notloggedin" element={<UserNotLoggedInPage/>}/>
+
 
       </Routes>     
     </div>
