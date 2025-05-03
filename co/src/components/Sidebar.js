@@ -34,7 +34,8 @@ export default function Sidebar({compName, username}) {
     }
 
     function backToDashboard() {
-        navigate('/dashboard', { replace: true });
+        navigate('/dashboard', { replace: true, state: { username } }); 
+
     }
 
     function goToAccountPage() {
@@ -48,8 +49,9 @@ export default function Sidebar({compName, username}) {
     function goToLogOutPage() {
         //TODO log out here...
         console.log("log out pressed");
+        
+        navigate('/notloggedin',  { replace: true });
 
-        // "/notloggedin"
     }
 
 
@@ -95,8 +97,7 @@ export default function Sidebar({compName, username}) {
         </div>
     }
 
-  
-
+ 
 
     </>
     );

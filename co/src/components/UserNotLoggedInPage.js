@@ -1,9 +1,13 @@
 import { userSignUpVM, userLogInVM } from '../viewmodels/AccountViewModel';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function UserNotLoggedInPage() {
 //sign up or log in here...
 
-    
+    const [providedUsernameInput, setProvidedUserNameInput] = useState("");
+
+    const navigate = useNavigate();
 
     async function newUserSignUp() {
         //TODO await userSignUpVM({email, password})
@@ -12,6 +16,16 @@ export default function UserNotLoggedInPage() {
     async function existingUserLogIn() {
 
         //TODO await userLogInVM({email, password})
+        //username for login
+
+        //if login successful
+        //goToUserDashboard(username)
+    }
+
+    function goToUserDashboard(username) {
+        //only if login successful
+        navigate('/dashboard', { replace: true, state: { username } }); //
+
     }
 
 
