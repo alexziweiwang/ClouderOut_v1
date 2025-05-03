@@ -48,18 +48,21 @@ export default function Sidebar({compName, username}) {
 
     function goToLogOutPage() {
         //TODO log out here...
-        console.log("log out pressed");
-        
-        navigate('/notloggedin',  { replace: true });
-
+        let ans = window.confirm("Are you sure to log out?");
+        if (ans) {
+            navigate('/notloggedin',  { replace: true });
+        }
     }
 
 
 
     return (
     <>
+    
     {(compName === "/dashboard") && 
-    <div className="sidebar1" > Welcome, {username}!
+    <div className="sidebar1" > 
+    Welcome, {username}!
+
         <div> 
             <button className="sidebar_options sidebar_options1" onClick={()=>{goToProfilePage()}}>{profileButtonText}</button>
             <button className="sidebar_options sidebar_options1" onClick={()=>{goToAccountPage()}}>{accountButtonText}</button>
@@ -79,6 +82,8 @@ export default function Sidebar({compName, username}) {
 
     {(compName === "/accountpage" || compName === "/profilepage") && 
     <div className="sidebar1" >
+        Welcome, {username}!
+
         <div> 
             
             <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText}</button>
@@ -90,6 +95,8 @@ export default function Sidebar({compName, username}) {
 
     {(compName === "/projectmanagingpanel") && 
     <div className="sidebar1" >
+            Welcome, {username}!
+
         <div> 
             <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>←</button>
         </div>

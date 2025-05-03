@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function UserNotLoggedInPage() {
 //sign up or log in here...
+    const [isCreateAccountPanel, setIsCreateAccountPanel] = useState(false);
 
     const [providedUsernameInput, setProvidedUserNameInput] = useState("");
 
@@ -32,7 +33,7 @@ export default function UserNotLoggedInPage() {
     return (
         <div>
 
-            <div>
+            {isCreateAccountPanel === true && <div>
                 Sign Up
                 <div>
                     <label>email: </label>
@@ -49,10 +50,13 @@ export default function UserNotLoggedInPage() {
                             //TODO
                         }}
                     >create user</button>
-                </div>
-            </div>
 
-            <div>
+                    <br></br><br></br>
+                    <label onClick={()=>{setIsCreateAccountPanel(false);}}>Have an account? Log in!</label>
+                </div>
+            </div>}
+
+            {isCreateAccountPanel === false && <div>
                 Log In
                 <div>
                 <label>email: </label>
@@ -69,9 +73,13 @@ export default function UserNotLoggedInPage() {
                             //TODO
                         }}
                     >log in</button>
+
+
+                    <br></br><br></br>
+                    <label onClick={()=>{setIsCreateAccountPanel(true);}}>New user? Create an account!</label>
                 </div>
 
-            </div>
+            </div>}
         </div>
     )
 
