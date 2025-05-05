@@ -21,8 +21,12 @@ import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-  
-  
+ 
+//TODO1000 username by auth
+
+
+
+
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
  

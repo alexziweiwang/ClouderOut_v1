@@ -35,15 +35,37 @@ export default function UserNotLoggedInPage() {
 
             {isCreateAccountPanel === true && <div>
                 Sign Up
-                <div>
-                    <label>email: </label>
-                    <input
-                    
-                    ></input>
+                <div           
+                    style={{
+                        "marginTop": "5%",
+                        "marginLeft": "30%", 
+                    }}
+                >
+                    <table
+                    className="noBorder"
+                    >
+                        <tr>
+                            <td className="noBorder">
+                                <label>email: </label>
+                            </td>
+                            <td className="noBorder">
+                                <input></input>
+                            </td>
+                        </tr>
 
-                    <label>password: </label>
-                    <input
-                    ></input>
+                        <tr>
+                            <td className="noBorder">
+                                <label>password: </label>
+                            </td>
+                            <td className="noBorder">
+                                <input></input>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
+
+                
 
                     <button
                         onClick={()=>{
@@ -52,21 +74,46 @@ export default function UserNotLoggedInPage() {
                     >create user</button>
 
                     <br></br><br></br>
-                    <label onClick={()=>{setIsCreateAccountPanel(false);}}>Have an account? Log in!</label>
+                    <label 
+                        className="clickableLink"
+                        onClick={()=>{setIsCreateAccountPanel(false);}}
+                    >
+                        Have an account? Log in!
+                    </label>
+
                 </div>
             </div>}
 
-            {isCreateAccountPanel === false && <div>
+            {isCreateAccountPanel === false && 
+            <div>
                 Log In
-                <div>
-                <label>email: </label>
-                    <input
-                    
-                    ></input>
+                <div
+                    style={{
+                        "marginTop": "5%",
+                        "marginLeft": "30%", 
+                    }}
+                >
+                <table
+                    className="noBorder"
+                    >
+                        <tr>
+                            <td className="noBorder">
+                                <label>email: </label>
+                            </td>
+                            <td className="noBorder">
+                                <input></input>
+                            </td>
+                        </tr>
 
-                    <label>password: </label>
-                    <input
-                    ></input>
+                        <tr>
+                            <td className="noBorder">
+                                <label>password: </label>
+                            </td>
+                            <td className="noBorder">
+                                <input></input>
+                            </td>
+                        </tr>
+                    </table>
 
                     <button
                         onClick={()=>{
@@ -74,9 +121,15 @@ export default function UserNotLoggedInPage() {
                         }}
                     >log in</button>
 
+                    
 
                     <br></br><br></br>
-                    <label onClick={()=>{setIsCreateAccountPanel(true);}}>New user? Create an account!</label>
+                    <label 
+                        className="clickableLink"
+                        onClick={()=>{setIsCreateAccountPanel(true);}}
+                    >
+                        New user? Create an account!
+                    </label>
                 </div>
 
             </div>}

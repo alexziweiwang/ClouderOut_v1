@@ -48,6 +48,10 @@ import {
 } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
+//TODO1000 username by auth
+
+
+
 
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
