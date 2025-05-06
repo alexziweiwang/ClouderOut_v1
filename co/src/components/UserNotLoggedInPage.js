@@ -24,24 +24,30 @@ export default function UserNotLoggedInPage() {
         //     }   
         // );
 
-        let msg = await userSignUpVM(
+        await userSignUpVM(
                 {
                     email: providedEmailInput, 
                     password: providedPasswordInput,
                     setFunc: setSignUpErrorStr,
-                    succInfoFunc: popSignUpSuccInfo
+                    succInfoFunc: signUpSuccActions
                 }   
         );    
    
-console.log("page msg = ", msg);
 
 
-        if (msg === "ok") {
-            alert("Account created!");
-        } 
     }
 
-    function popSignUpSuccInfo() {
+    function resetAllInputs() {
+        setProvidedUsernameInput("");
+        setProvidedPasswordInput("");
+        setProvidedEmailInput("");
+        setSignUpErrorStr("");
+    }
+
+    function signUpSuccActions() {
+        resetAllInputs();
+        setIsCreateAccountPanel(false);
+
         alert("Account created!");
     }
 
@@ -109,10 +115,19 @@ console.log("page msg = ", msg);
                                     onChange={(event)=>{setProvidedPasswordInput(event.target.value);}}
                                 ></input>
                             </td>
-                            <td className="noBorder"style={{"width": "500px", "color": "red"}}>
-                                {signUpErrorStr === "Password should be at least 6 characters." 
-                                &&
-                                <label>{signUpErrorStr}</label>}
+                            <td className="noBorder" style={{"width": "500px"}}>
+                                
+                                <label 
+                                style=
+                                {{
+                                    "color": (signUpErrorStr === "Password should be at least 6 characters." 
+                                    ?  "red" 
+                                    : "#000000")
+                                }}
+                                >
+                                Password should be at least 6 characters.
+                                </label>
+                                
                             </td>
                         </tr>
                         
