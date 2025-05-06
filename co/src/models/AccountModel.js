@@ -51,24 +51,28 @@ export async function updateUserDefaultUILang({uname, newUILang}) {
 
 }
 
-export async function userSignUp({email, password}) {
-
+export async function userSignUp({email, password, setFunc, succInfoFunc}) {
+  let errorCode = "ok";
   createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
 
                                         //TODO1000 test
+                                        console.log("user created successfully!!    ", user.email);
 
-    console.log("signed up user: ", user.email);
-
+    setFunc("");  
+    succInfoFunc();                                  
+    return "ok";
   })
   .catch((error) => {
-    const errorCode = error.code;
-
-    return errorCode;
+    errorCode = error.code;
+                          console.log("sign up error: [", errorCode, "]\n", typeof(errorCode));
+    if (errorCode.includes("weak-password")) {
+      setFunc("Password should be at least 6 characters.");
+    } else if (errorCode.includes("email-already-in-use")) {
+      setFunc("Email already in use.");
+    } 
   });
-
-  return;
 }
 
 export async function userLogIn({email, password}) {

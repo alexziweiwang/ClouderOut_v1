@@ -11,17 +11,38 @@ export default function UserNotLoggedInPage() {
     const [providedPasswordInput, setProvidedPasswordInput] = useState("");
     const [providedEmailInput, setProvidedEmailInput] = useState("");
 
+    const [signUpErrorStr, setSignUpErrorStr] = useState("");
+
     const navigate = useNavigate();
 
     async function newUserSignUp() {
         //TODO 
-        await userSignUpVM(
-            {
-                email: providedEmailInput, 
-                password: providedPasswordInput
-            }   
-        );
+        // let msg = await userSignUpVM(
+        //     {
+        //         email: providedEmailInput, 
+        //         password: providedPasswordInput
+        //     }   
+        // );
 
+        let msg = await userSignUpVM(
+                {
+                    email: providedEmailInput, 
+                    password: providedPasswordInput,
+                    setFunc: setSignUpErrorStr,
+                    succInfoFunc: popSignUpSuccInfo
+                }   
+        );    
+   
+console.log("page msg = ", msg);
+
+
+        if (msg === "ok") {
+            alert("Account created!");
+        } 
+    }
+
+    function popSignUpSuccInfo() {
+        alert("Account created!");
     }
 
     async function existingUserLogIn() {
@@ -60,25 +81,38 @@ export default function UserNotLoggedInPage() {
                     >
                         <tbody>
                         <tr>
-                            <td className="noBorder">
+                            <td className="noBorder" style={{"width": "200px"}}>
                                 <label>email: </label>
                             </td>
-                            <td className="noBorder">
+                            <td className="noBorder" style={{"width": "205px"}}>
                                 <input
+                                    style={{"width": "200px"}}
                                     onChange={(event)=>{setProvidedEmailInput(event.target.value);}}
                                 ></input>
+                            </td>
+                            <td className="noBorder" 
+                                style={{"width": "500px", "color": "red"}}>
+                                {signUpErrorStr === "Email already in use." 
+                                &&
+                                <label>{signUpErrorStr}</label>}
                             </td>
                         </tr>
 
                         <tr>
-                            <td className="noBorder">
+                            <td className="noBorder" style={{"width": "205px"}}>
                                 <label>password: </label>
                             </td>
-                            <td className="noBorder">
+                            <td className="noBorder" style={{"width": "200px"}}>
                                 <input 
+                                    style={{"width": "200px"}}
                                     type="password"
                                     onChange={(event)=>{setProvidedPasswordInput(event.target.value);}}
                                 ></input>
+                            </td>
+                            <td className="noBorder"style={{"width": "500px", "color": "red"}}>
+                                {signUpErrorStr === "Password should be at least 6 characters." 
+                                &&
+                                <label>{signUpErrorStr}</label>}
                             </td>
                         </tr>
                         
@@ -88,6 +122,7 @@ export default function UserNotLoggedInPage() {
                             </td>
                             <td className="noBorder">
                                 <input
+                                    style={{"width": "200px"}}
                                     onChange={(event)=>{setProvidedUsernameInput(event.target.value);}}
                                 ></input>
                             </td>
