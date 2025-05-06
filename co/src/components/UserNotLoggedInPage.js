@@ -2,21 +2,35 @@ import { userSignUpVM, userLogInVM } from '../viewmodels/AccountViewModel';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+
 export default function UserNotLoggedInPage() {
 //sign up or log in here...
     const [isCreateAccountPanel, setIsCreateAccountPanel] = useState(false);
 
-    const [providedUsernameInput, setProvidedUserNameInput] = useState("");
+    const [providedUsernameInput, setProvidedUsernameInput] = useState("");
+    const [providedPasswordInput, setProvidedPasswordInput] = useState("");
+    const [providedEmailInput, setProvidedEmailInput] = useState("");
 
     const navigate = useNavigate();
 
     async function newUserSignUp() {
-        //TODO await userSignUpVM({email, password})
+        //TODO 
+        await userSignUpVM(
+            {
+                email: providedEmailInput, 
+                password: providedPasswordInput
+            }   
+        );
+
     }
 
     async function existingUserLogIn() {
 
-        //TODO await userLogInVM({email, password})
+        //TODO 
+        await userLogInVM({
+            email: providedEmailInput, 
+            password: providedPasswordInput
+        });
         //username for login
 
         //if login successful
@@ -44,12 +58,15 @@ export default function UserNotLoggedInPage() {
                     <table
                     className="noBorder"
                     >
+                        <tbody>
                         <tr>
                             <td className="noBorder">
                                 <label>email: </label>
                             </td>
                             <td className="noBorder">
-                                <input></input>
+                                <input
+                                    onChange={(event)=>{setProvidedEmailInput(event.target.value);}}
+                                ></input>
                             </td>
                         </tr>
 
@@ -58,9 +75,25 @@ export default function UserNotLoggedInPage() {
                                 <label>password: </label>
                             </td>
                             <td className="noBorder">
-                                <input></input>
+                                <input 
+                                    type="password"
+                                    onChange={(event)=>{setProvidedPasswordInput(event.target.value);}}
+                                ></input>
                             </td>
                         </tr>
+                        
+                        <tr>
+                            <td className="noBorder">
+                                <label>username: </label>
+                            </td>
+                            <td className="noBorder">
+                                <input
+                                    onChange={(event)=>{setProvidedUsernameInput(event.target.value);}}
+                                ></input>
+                            </td>
+                        </tr>
+
+                        </tbody>
                     </table>
                     
                     
@@ -69,7 +102,7 @@ export default function UserNotLoggedInPage() {
 
                     <button
                         onClick={()=>{
-                            //TODO
+                            newUserSignUp();
                         }}
                     >create user</button>
 
@@ -96,12 +129,16 @@ export default function UserNotLoggedInPage() {
                 <table
                     className="noBorder"
                     >
+
+                    <tbody>
                         <tr>
                             <td className="noBorder">
                                 <label>email: </label>
                             </td>
                             <td className="noBorder">
-                                <input></input>
+                                <input
+                                    onChange={(event)=>{setProvidedEmailInput(event.target.value);}}
+                                ></input>
                             </td>
                         </tr>
 
@@ -110,14 +147,19 @@ export default function UserNotLoggedInPage() {
                                 <label>password: </label>
                             </td>
                             <td className="noBorder">
-                                <input></input>
+                                <input 
+                                    type="password"
+                                    onChange={(event)=>{setProvidedPasswordInput(event.target.value);}}
+                                ></input>
                             </td>
                         </tr>
+
+                        </tbody>
                     </table>
 
                     <button
                         onClick={()=>{
-                            //TODO
+                            existingUserLogIn();
                         }}
                     >log in</button>
 
@@ -130,6 +172,7 @@ export default function UserNotLoggedInPage() {
                     >
                         New user? Create an account!
                     </label>
+
                 </div>
 
             </div>}

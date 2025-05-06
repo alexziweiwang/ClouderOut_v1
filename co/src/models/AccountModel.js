@@ -59,14 +59,13 @@ export async function userSignUp({email, password}) {
 
                                         //TODO1000 test
 
+    console.log("signed up user: ", user.email);
 
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
 
-                console.log("sign up error: ", errorCode, " \n", errorMessage);
-
+    return errorCode;
   });
 
   return;
@@ -78,13 +77,14 @@ export async function userLogIn({email, password}) {
     
     const user = userCredential.user;
                                             //TODO1000 test
-
+    console.log("logged in user: ", user.email);
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
 
-              console.log("log in error: ", errorCode, " \n", errorMessage);
-
+    return errorCode;
   });
+
+  return 0;
+
 }

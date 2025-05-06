@@ -30,7 +30,14 @@ export async function updateUserDefaultUILangVM({uname, newUILang}) {
 }
 
 export async function userSignUpVM({email, password}) {
-    await userSignUp({email, password});    
+    if (password.length < 6) {
+        return "weak-password";
+    } else {
+        await userSignUp({email, password});    
+
+        alert("Account created!");
+
+    }
 }
 
 export async function userLogInVM({email, password}) {
