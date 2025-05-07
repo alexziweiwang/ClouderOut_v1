@@ -31,7 +31,10 @@ export default function UserNotLoggedInPage() {
                     setFunc: setSignUpErrorStr,
                     succInfoFunc: signUpSuccActions
                 }   
-        );    
+        );
+
+        
+        //providedUsernameInput
    
 
 

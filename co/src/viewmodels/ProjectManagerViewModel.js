@@ -5,7 +5,8 @@ import {fetchProjectList, revertProject,
     updateProjectNavigationSettings,
     fetchProjectNavigationSettings,
     saveConvNodeUiPlan,
-    fetchConvNodeUiAllPlans
+    fetchConvNodeUiAllPlans,
+    addNewAccountFolder
 } from '../models/ProjectManagerModel';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
@@ -68,4 +69,10 @@ export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPla
 
 export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType}) {
     return await fetchConvNodeUiAllPlans({projectName, currUser, nodeType});
+}
+
+export async function addNewAccountFolderVM({username}) {
+    //TODO1000 valid username
+    
+    return await addNewAccountFolder({username});
 }
