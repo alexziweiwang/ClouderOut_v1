@@ -34,7 +34,13 @@ export default function UserNotLoggedInPage() {
         );
 
         
-        //providedUsernameInput
+        
+        let userId = convertEmailAddr(providedEmailInput);
+
+        
+        //TODO1000 user-id creation
+                //providedUsernameInput
+
    
 
 
@@ -59,7 +65,8 @@ export default function UserNotLoggedInPage() {
         //TODO 
         await userLogInVM({
             email: providedEmailInput, 
-            password: providedPasswordInput
+            password: providedPasswordInput,
+            loggedInFunc: loggedInActions
         });
         //username for login
 
@@ -67,7 +74,22 @@ export default function UserNotLoggedInPage() {
         //goToUserDashboard(username)
     }
 
+    function convertEmailAddr(emailStr) {
+        let str = emailStr.replace("@", "_");
+        str = str.replace(/\./g, "_");
+
+        return str;
+    }
+
+    function loggedInActions(username) {
+
+
+        goToUserDashboard(username);
+    }
+
     function goToUserDashboard(username) {
+
+
         //only if login successful
         navigate('/dashboard', { replace: true, state: { username } }); //
 
@@ -76,6 +98,7 @@ export default function UserNotLoggedInPage() {
 
     return (
         <div>
+
 
             {isCreateAccountPanel === true && <div>
                 Sign Up

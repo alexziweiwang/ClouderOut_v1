@@ -34,6 +34,6 @@ export async function userSignUpVM({email, password, setFunc, succInfoFunc}) {
     return msg;
 }
 
-export async function userLogInVM({email, password}) {
-    await userLogIn({email, password});
+export async function userLogInVM({email, password, loggedInFunc}) {
+    await userLogIn({email, password, loggedInFunc});
 }

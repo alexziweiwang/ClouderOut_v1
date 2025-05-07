@@ -75,13 +75,17 @@ export async function userSignUp({email, password, setFunc, succInfoFunc}) {
   });
 }
 
-export async function userLogIn({email, password}) {
+export async function userLogIn({email, password, loggedInFunc}) {
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     
     const user = userCredential.user;
                                             //TODO1000 test
     console.log("logged in user: ", user.email);
+
+    loggedInFunc(user.email);
+
+
   })
   .catch((error) => {
     const errorCode = error.code;
