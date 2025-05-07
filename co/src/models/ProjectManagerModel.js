@@ -170,28 +170,21 @@ export async function fetchConvNodeUiAllPlans({projectName, currUser, nodeType})
 
 }
 
-export async function addNewAccountFolder({username}) {
+export async function addNewAccountFolder({userId, username}) {
+                  //Note: userId is the email-address that converted to string with "_"
 
-          console.log("creating folder for new account - {", username, "}");
+                
 
+      await setDoc(
+        doc(db, "user_projects", userId), 
+        {
+          "default_ui_language": "en",
+          "filename_records": [],
+          "filenames": [],
+          "introduction": "",
+          "username": username
 
-  //TODO1000 create a folder for this username
-  
-  const ref = doc(db);
-  const snap = await getDoc(ref);
-  if (!snap.exists()) {
-    return;
-  }
+        });
 
-  await setDoc(doc(ref, "user_projects", username), 
-    {
-      "default_ui_language": "en",
-      "filename_records": [],
-      "filenames": [],
-      "introduction": "",
-      "username": username
-
-    });
-    //TODO1000 default user properties in the obj
 
 }
