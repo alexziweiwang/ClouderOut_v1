@@ -2,7 +2,7 @@ import * as React from 'react';
 import Sidebar from './Sidebar';
 import { useLocation } from 'react-router-dom';
 
-
+//TODO1010
 export default function AccountPage({}) {
 
     let name = "/accountpage";
@@ -14,10 +14,18 @@ export default function AccountPage({}) {
     } 
     console.log("account page - username = ", username);
 
+    function passInUsername() {
+      return state.username; //TODO1030
+    }
+
 
     return (
   <div className="page">
-    <Sidebar compName = {name}/>
+    <Sidebar 
+      compName = {name}
+      username={state.username}
+      getUsername={passInUsername}
+    />
 
     <div className="dashboard_content">
         <div style={{"textAlign": "left", "padding": "10px"}}>

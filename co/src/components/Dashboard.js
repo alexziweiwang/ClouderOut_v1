@@ -45,9 +45,19 @@ export default function Dashboard() {
       setShowNewProjCreationPage(false);
     }
 
+    function passInUsername() {
+      return uname; //TODO1030
+    }
+
     return (
   <div className="page">
-    {!showNewProjCreationPage && <Sidebar compName={name} username={uname}/>}
+    {!showNewProjCreationPage && 
+      <Sidebar 
+      compName={name} 
+      username={uname}
+      getUsername={passInUsername}
+
+      />}
 
     
     {!showNewProjCreationPage && <div className="dashboard_content">

@@ -141,11 +141,20 @@ export default function ProjectManagerPanel() {
       setCurrentProjectAction("selectProject");
     }
 
-    
+    function passInUsername() {
+      return username; //TODO1030
+    }
+
     let name = "/projectmanagingpanel";
+    
+    
     return (
     <div style={{"display": "flex"}}>    
-      <Sidebar compName = {name}/>
+      <Sidebar 
+      compName = {name}
+      username={username}
+      getUsername={passInUsername}      
+      />
 
       <div className="dashboard_content">
   

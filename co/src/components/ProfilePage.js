@@ -44,10 +44,21 @@ export default function ProfilePage({}) {
         setProfile(profile);
     }
 
+    function passInUsername() {
+        return username; //TODO1030
+    }
+
     return (
   <div className="page">
     
-    <Sidebar compName = {name}/>
+    <Sidebar 
+    compName = {name}
+    username={username}
+    getUsername={passInUsername}
+
+    
+    
+    />
 
     <div className="dashboard_content" style={{"padding": "10px"}}>
         <div className="profilePage">

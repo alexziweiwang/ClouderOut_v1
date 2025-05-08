@@ -6,7 +6,6 @@ export default function ProjectManageEdit() {
 
     return (
         <>
-        <Sidebar compName = {name}/>
 
         <p> this is 2 project manage edit !! </p>
         </>
