@@ -1,6 +1,6 @@
 import  { db, auth } from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, updateDoc } from "firebase/firestore"; 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 /**
  * Get project data by username.
@@ -94,5 +94,16 @@ export async function userLogIn({email, password, loggedInFunc}) {
   });
 
   return 0;
+
+}
+
+export async function userLogOut() {
+  signOut(auth).then(() => {
+    return "logged out.";
+  }).catch((error) => {
+    let msg = "log-out error: " + error;
+    return msg;
+  });
+
 
 }

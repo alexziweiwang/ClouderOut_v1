@@ -7,15 +7,17 @@ export function getAuthFirebase() {
         if (user) {
        
             const uid = user.uid;
-
+            const email = user.email;
 
                             console.log("firebase-auth-getter ... uid = ", uid, "\n",user.email);
           
-        
+            return email
         } else {
-          return "not-logged-in";
+
+          return "_";
         }
-      });
+
+    });
 
 
 }

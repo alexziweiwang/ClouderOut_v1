@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import langDictionary from './_textDictionary';
 
+
 export default function Sidebar({compName, username, getUsername}) {
     console.log("sidebar, compName:", compName);
     const navigate = useNavigate();

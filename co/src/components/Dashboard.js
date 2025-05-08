@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './_textDictionary';
-import { getAuthFirebase } from '../authtools/firebaseAuthGetter';
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
@@ -41,14 +41,28 @@ export default function Dashboard() {
  
         if (firstTimeEnter === true) {
 
-            let usernameAuth = getAuthFirebase();
-                        console.log("dashboard ... getAuthFirebase = ", usernameAuth);
+            let userEmailTemp = getAuthFirebase();
+                        console.log("dashboard ... getAuthFirebase = ", userEmailTemp);
 
+            if (userEmailTemp !== "_") {
+              //TODO is logged in -- can enter actual dashboard
+              console.log("username = ", userEmailTemp);
+
+            } else {
+              // not-logged-in -- go back to log-in/sign-up page
+              goToNotLoggedInPage();
+
+            }
 
             setFirstTimeEnter(false);
         }
 
     });
+
+    function goToNotLoggedInPage() {
+      navigate('/notloggedin', { replace: true });
+
+    }
 
     function goToProjectManagingPanel() {
       navigate('/projectmanagingpanel', { replace: true, state: { uname } });
