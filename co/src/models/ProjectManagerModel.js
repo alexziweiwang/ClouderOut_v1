@@ -49,7 +49,7 @@ const q = query(collection(docRef, "projects")); // new version
  * @param {*} currUser username
  * @returns void
  */
-export async function revertProject(projectToRevert, currUser) {
+export async function revertProject({projectToRevert, currUser}) {
     const projRef = doc(db, "user_projects", currUser, "projects", projectToRevert);
 
     await updateDoc(projRef, {trashed: false});  
@@ -62,7 +62,7 @@ export async function revertProject(projectToRevert, currUser) {
  * @param {*} currUser username
  * @returns void
  */
-export async function deleteProject(projectToDelete, currUser) {
+export async function deleteProject({projectToDelete, currUser}) {
 
   const projRef = doc(db, "user_projects", currUser, "projects", projectToDelete);
 
@@ -70,7 +70,7 @@ export async function deleteProject(projectToDelete, currUser) {
   
 }
 
-export async function createProject(currUser, projectName, projectObj) {
+export async function createProject({currUser, projectName, projectObj}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
   let projObjTemp = projectObj;

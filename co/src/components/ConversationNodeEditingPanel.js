@@ -303,16 +303,19 @@ export default function ConversationNodeEditingPanel() {
         let resp = window.confirm("Are you sure you saved all the changes?");
 
         if (resp) {
-            let stateObj = {selected_project_name: state.projectName, username: state.userName};
+            let stateObj = {
+                selected_project_name: state.projectName, 
+                username: state.userName
+            };
             navigate('/editorcontainer', { replace: true, state: stateObj });
         }
 
     }
 
-    async function fetchGameDataDesignList() { //TODO1000
+    async function fetchGameDataDesignList() { 
         let gddList = await getProjectGameDataDesignVM({
             projectName: state.projectName, 
-            uname: state.userName
+            uname: state.userName              //TODO1020
         });
 
 
@@ -331,7 +334,7 @@ export default function ConversationNodeEditingPanel() {
         /* fetch from cloud db */
         //TODO500     
         const obj = await fetchProjectResourceVarPairsVM({
-            userName: state.userName, 
+            userName: state.userName,               //TODO1020
             projectName: state.projectName
         });
 
@@ -760,7 +763,7 @@ export default function ConversationNodeEditingPanel() {
 
         await convSingleNodeUpdateToCloudVM({
             project: state.projectName, 
-            username: state.userName, 
+            username: state.userName,                //TODO1020
             chapterKey: state.chapterKey, 
             nodeKey: state.clickedNodeKey, 
             dataObj: pieceDataStructure, 
@@ -782,7 +785,7 @@ export default function ConversationNodeEditingPanel() {
 
         let pieceObjTemp = await convNodeBothPartsFromCloudVM({
             project: state.projectName, 
-            username: state.userName, 
+            username: state.userName,                //TODO1020
             chapterKey: state.chapterKey, 
             nodeKey: state.clickedNodeKey
         });
@@ -907,7 +910,7 @@ export default function ConversationNodeEditingPanel() {
     async function updateConvNodeUiPlanToCloud(allPlansMap) {
         await saveConvNodeUiPlanVM({
             projectName: projectName, 
-            currUser: userName, 
+            currUser: userName,                //TODO1020
             updatedAllPlans: allPlansMap, 
             nodeType: "Conversation"
         });
@@ -916,7 +919,7 @@ export default function ConversationNodeEditingPanel() {
     async function fetchConvNodeUiPlansFromCloud() {
         let obj = await fetchConvNodeUiAllPlansVM({
         projectName: projectName, 
-        currUser: userName, 
+        currUser: userName,                //TODO1020
         nodeType: "Conversation"
         });
 

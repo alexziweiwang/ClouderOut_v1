@@ -2,7 +2,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-//TODO1010
 import { userSignUpVM, userLogInVM } from '../viewmodels/AccountViewModel';
 import { addNewAccountFolderVM } from '../viewmodels/ProjectManagerViewModel';
 

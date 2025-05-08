@@ -10,7 +10,7 @@ import langDictionary from './_textDictionary';
 
 
 //TODO20 cloud-func
-import {fetchProjectListVM, revertProjectVM, deleteProjectVM} from '../viewmodels/ProjectManagerViewModel';
+import {fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
 //TODO115 collection of cloud-related
 
 //TODO1010 username by auth
@@ -79,7 +79,7 @@ export default function ProjectManagerPanel() {
     }
 
     async function loadProjectListFromCloud() {
-      const groupList = await fetchProjectListVM(username); 
+      const groupList = await fetchProjectListVM(username);      //TODO1030
 
       setProjList(groupList.untrashed);
       setTrashedProjList(groupList.trashed);
@@ -103,7 +103,12 @@ export default function ProjectManagerPanel() {
     }
 
     async function revertTrashedProject() {
-      await revertProjectVM(selectedTrashedProj, username);
+      await revertProjectVM(
+        {
+          projectToRevert: selectedTrashedProj, 
+          currUser: username
+        });
+
       setSelectedTrashedProj("");
       loadProjectListFromCloud();
     }
@@ -116,7 +121,13 @@ export default function ProjectManagerPanel() {
     }
 
     async function deleteProject() {
-      await deleteProjectVM(selected_project_name, username);
+      await deleteProjectVM( 
+        { 
+          projectToDelete: selected_project_name, 
+          currUser: username
+        }
+      );
+      
       setProjectName("");
       loadProjectListFromCloud();
     }

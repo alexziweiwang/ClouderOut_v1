@@ -29,7 +29,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     });
 
     async function loadProjectListFromCloud() {
-      const groupList = await fetchProjectListVM(username); 
+      const groupList = await fetchProjectListVM(username);
       setProjList(groupList.untrashed);
     }
 
@@ -39,19 +39,19 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       setAddedNewProjName(str);
     }
     
-    function createNewProjectLocal() {
+    async function createNewProjectLocal() {
         if (addedNewProjName === "") {
           alert("Project Name can not be empty!");
           return;
         }
-        createNewProjectToCloud();
+        await createNewProjectToCloud();
   
     }
 
  
 
     /* Create and setup the default set for a new project */
-    function createNewProjectToCloud() {
+    async function createNewProjectToCloud() {
       // TODO gather list:
       /* project name: addedNewProjName
       project description: projDedscription
@@ -73,7 +73,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       }
       
  
-      //TODO: author name default: current username, then allow adding others
+      //TODO: author name default: current user-name, then allow adding others
       
 
       const empty_game_data = {};
@@ -129,7 +129,13 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       let alertStr = "Project " + addedNewProjName + " Created!";
       alert(alertStr);
 
-      createProjectVM(username, addedNewProjName, projectObj);
+      await createProjectVM(
+        {
+          currUser: username, 
+          projectName: addedNewProjName, 
+          projectObj: projectObj
+        }
+      );
       triggerCreationSubmit();
   
       clearForm();
