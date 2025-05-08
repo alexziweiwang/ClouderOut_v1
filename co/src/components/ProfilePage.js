@@ -52,12 +52,9 @@ export default function ProfilePage({}) {
   <div className="page">
     
     <Sidebar 
-    compName = {name}
-    username={username}
-    getUsername={passInUsername}
-
-    
-    
+        compName = {name}
+        username={username}
+        getUsername={passInUsername}
     />
 
     <div className="dashboard_content" style={{"padding": "10px"}}>

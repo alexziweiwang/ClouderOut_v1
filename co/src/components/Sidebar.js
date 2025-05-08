@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import langDictionary from './_textDictionary';
 
@@ -6,6 +7,7 @@ export default function Sidebar({compName, username, getUsername}) {
     console.log("sidebar, compName:", compName);
     const navigate = useNavigate();
 
+    const [displayingUsername, setDisplayingName] = useState("");
 
     let languageCodeTextOption = 'en';
 
@@ -28,6 +30,11 @@ export default function Sidebar({compName, username, getUsername}) {
             textDictItem.dashBoardButtonText
             : textDictItemDefault.dashBoardButtonText;
     
+    useEffect(() => {
+        let unameTemp = getUsername();
+        setDisplayingName(unameTemp);
+    });
+
 
     function goToProjectManagingPanel() {
         navigate('/projectmanagingpanel', { replace: true, state: { username } });
@@ -61,7 +68,7 @@ export default function Sidebar({compName, username, getUsername}) {
     
     {(compName === "/dashboard") && 
     <div className="sidebar1" > 
-    Welcome, {username}!
+    Welcome, [{displayingUsername}]
 
         <div> 
             <button className="sidebar_options sidebar_options1" onClick={()=>{goToProfilePage()}}>{profileButtonText}</button>
@@ -82,7 +89,7 @@ export default function Sidebar({compName, username, getUsername}) {
 
     {(compName === "/accountpage" || compName === "/profilepage") && 
     <div className="sidebar1" >
-        Welcome, {username}!
+    Welcome, [{displayingUsername}]
 
         <div> 
             
@@ -95,7 +102,7 @@ export default function Sidebar({compName, username, getUsername}) {
 
     {(compName === "/projectmanagingpanel") && 
     <div className="sidebar1" >
-            Welcome, {username}!
+    Welcome, [{displayingUsername}]
 
         <div> 
             <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>←</button>

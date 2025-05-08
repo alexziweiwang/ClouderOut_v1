@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './_textDictionary';
+import { getAuthFirebase } from '../authtools/firebaseAuthGetter';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
@@ -32,6 +33,23 @@ export default function Dashboard() {
 
     const [showNewProjCreationPage, setShowNewProjCreationPage] = useState(false);
 
+
+
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
+    useEffect(() => {
+ 
+        if (firstTimeEnter === true) {
+
+            let usernameAuth = getAuthFirebase();
+                        console.log("dashboard ... getAuthFirebase = ", usernameAuth);
+
+
+            setFirstTimeEnter(false);
+        }
+
+    });
+
     function goToProjectManagingPanel() {
       navigate('/projectmanagingpanel', { replace: true, state: { uname } });
     }
@@ -53,9 +71,9 @@ export default function Dashboard() {
   <div className="page">
     {!showNewProjCreationPage && 
       <Sidebar 
-      compName={name} 
-      username={uname}
-      getUsername={passInUsername}
+        compName={name} 
+        username={uname}
+        getUsername={passInUsername}
 
       />}
 
