@@ -38,21 +38,15 @@ export default function Dashboard() {
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
+
+
+        let userEmailTemp = getAuthFirebase(goToNotLoggedInPage);
+        console.log("dashboard ... getAuthFirebase = ", userEmailTemp);
+
  
         if (firstTimeEnter === true) {
 
-            let userEmailTemp = getAuthFirebase();
-                        console.log("dashboard ... getAuthFirebase = ", userEmailTemp);
-
-            if (userEmailTemp !== "_") {
-              //TODO is logged in -- can enter actual dashboard
-              console.log("username = ", userEmailTemp);
-
-            } else {
-              // not-logged-in -- go back to log-in/sign-up page
-              goToNotLoggedInPage();
-
-            }
+          
 
             setFirstTimeEnter(false);
         }
