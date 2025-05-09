@@ -49,6 +49,7 @@ import {
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 //TODO1010 username by auth
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
@@ -535,7 +536,7 @@ export default function GameMaker({username, projectName}) {
 
 
  
-                                  //const [secondTimeEnter, setSecondTimeEnter] = useState(true);
+  const [authEmailName, setAuthEmailName] = useState("_");
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -551,6 +552,16 @@ export default function GameMaker({username, projectName}) {
                   
               //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
 
+    getAuthFirebase(
+        {
+            goToNotLoggedInPageFunc: goToNotLoggedInPage,
+            sendOutEmailName: setAuthEmailName
+        
+        }
+    );
+                
+              console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
+        
 
     if (firstTimeEnter === true) {
 
@@ -606,6 +617,13 @@ export default function GameMaker({username, projectName}) {
 
 
   });
+
+
+  function goToNotLoggedInPage() {
+    navigate('/notloggedin', { replace: true });
+
+  }
+
 
   function firstSetupUILanguage() {
     return fetchUILangFromCLoud()

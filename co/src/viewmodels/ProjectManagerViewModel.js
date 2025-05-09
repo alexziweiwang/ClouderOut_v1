@@ -13,6 +13,11 @@ import {fetchProjectList, revertProject,
 export async function fetchProjectListVM(currUser) {
     
     const res = await fetchProjectList(currUser);
+    
+    if (res === undefined) {
+        return;
+    }
+
     //"res" contains both "untrashed" and "trashed" proj-names
     let resUntrashedArr = [];
     let resTrashedArr = [];
