@@ -1,11 +1,17 @@
 import * as React from 'react';
 import Sidebar from './Sidebar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 //TODO1010
 export default function AccountPage({}) {
 
     let name = "/accountpage";
+
+    const navigate = useNavigate();
+
 
     const {state} = useLocation();
     let username = "default-no-state-username";
@@ -14,9 +20,39 @@ export default function AccountPage({}) {
     } 
     console.log("account page - username = ", username);
 
+    //TODO1050 add temp-status for retur nvalue of get-auth?
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
+    useEffect(() => {
+
+
+        let userEmailTemp = getAuthFirebase(
+          {
+            goToNotLoggedInPageFunc: goToNotLoggedInPage
+          }
+          );
+          
+        console.log("account-page ... getAuthFirebase = ", userEmailTemp);
+
+ 
+        if (firstTimeEnter === true) {
+
+          
+
+            setFirstTimeEnter(false);
+        }
+
+    });
+
     function passInUsername() {
       return state.username; //TODO1030
     }
+
+    function goToNotLoggedInPage() {
+      navigate('/notloggedin', { replace: true });
+
+    }
+
 
 
     return (

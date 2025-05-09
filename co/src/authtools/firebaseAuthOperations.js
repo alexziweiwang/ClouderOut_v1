@@ -1,7 +1,7 @@
 import { auth } from '../GoogleCloudConnections';
 import { onAuthStateChanged } from "firebase/auth";
 
-export function getAuthFirebase(goToNotLoggedInPage) {
+export function getAuthFirebase({goToNotLoggedInPageFunc}) {
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -14,7 +14,7 @@ export function getAuthFirebase(goToNotLoggedInPage) {
             return email;
         } else {
 console.log("not loggedin");
-              goToNotLoggedInPage();
+              goToNotLoggedInPageFunc();
               return "_";
         }
 

@@ -34,13 +34,19 @@ export default function Dashboard() {
     const [showNewProjCreationPage, setShowNewProjCreationPage] = useState(false);
 
 
+    //TODO1050 add temp-status for retur nvalue of get-auth?
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
 
-        let userEmailTemp = getAuthFirebase(goToNotLoggedInPage);
+        let userEmailTemp = getAuthFirebase(
+          {
+            goToNotLoggedInPageFunc: goToNotLoggedInPage
+          }
+          );
+
         console.log("dashboard ... getAuthFirebase = ", userEmailTemp);
 
  
