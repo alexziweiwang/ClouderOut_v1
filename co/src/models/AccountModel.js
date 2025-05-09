@@ -99,6 +99,10 @@ export async function userLogIn({email, password, loggedInFunc}) {
 
 export async function userLogOut() {
   signOut(auth).then(() => {
+
+                  console.log("user log out action confirmed!");
+
+
     return "logged out.";
   }).catch((error) => {
     let msg = "log-out error: " + error;

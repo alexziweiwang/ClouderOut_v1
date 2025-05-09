@@ -14,6 +14,7 @@ import {fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmode
 //TODO115 collection of cloud-related
 
 //TODO1010 username by auth
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
@@ -59,6 +60,10 @@ export default function ProjectManagerPanel() {
 
     const [currentProjectAction, setCurrentProjectAction] = useState("selectProject"); //"createProject", "selectProject", "revertProject"
 
+
+
+    const [authEmailName, setAuthEmailName] = useState("_");
+    
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
       if (firstTimeEnter === true) {
@@ -66,8 +71,28 @@ export default function ProjectManagerPanel() {
 
         setFirstTimeEnter(false);
       }
+
+
+
+
+      getAuthFirebase(
+        {
+          goToNotLoggedInPageFunc: goToNotLoggedInPage,
+          sendOutEmailName: setAuthEmailName
+
+        }
+        );
+        
+      console.log("project manager--\t\tauthEmamilName", authEmailName);
+
+
     }, [firstTimeEnter]);
   
+
+    function goToNotLoggedInPage() {
+      navigate('/notloggedin', { replace: true });
+
+    }
 
     function goToGameMaker() {
       if (selected_project_name === "") {
