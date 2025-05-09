@@ -35,21 +35,24 @@ export default function Dashboard() {
 
 
     //TODO1050 add temp-status for retur nvalue of get-auth?
-
+    const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
 
-        let userEmailTemp = getAuthFirebase(
-          {
-            goToNotLoggedInPageFunc: goToNotLoggedInPage
-          }
-          );
 
-        console.log("dashboard ... getAuthFirebase = ", userEmailTemp);
+      getAuthFirebase(
+        {
+          goToNotLoggedInPageFunc: goToNotLoggedInPage,
+          sendOutEmailName: setAuthEmailName
 
- 
+        }
+        );
+        
+      console.log("dashboard--\t\tauthEmamilName", authEmailName);
+
+
         if (firstTimeEnter === true) {
 
           

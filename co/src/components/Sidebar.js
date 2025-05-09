@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import langDictionary from './_textDictionary';
 
+import { userLogOutVM } from '../viewmodels/AccountViewModel';
 
 export default function Sidebar({compName, username, getUsername}) {
-    console.log("sidebar, compName:", compName);
+  //  console.log("sidebar, compName:", compName);
     const navigate = useNavigate();
 
     const [displayingUsername, setDisplayingName] = useState("");
@@ -54,8 +55,11 @@ export default function Sidebar({compName, username, getUsername}) {
         navigate('/profilepage',  { replace: true, state: { username } });
     }
 
-    function goToLogOutPage() {
+    async function goToLogOutPage() {
         //TODO log out here...
+
+        await userLogOutVM();
+
         let ans = window.confirm("Are you sure to log out?");
         if (ans) {
             navigate('/notloggedin',  { replace: true });

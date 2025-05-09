@@ -18,21 +18,24 @@ export default function AccountPage({}) {
     if (state !== null) {
         username = state.username;
     } 
-    console.log("account page - username = ", username);
 
     //TODO1050 add temp-status for retur nvalue of get-auth?
+    const [authEmailName, setAuthEmailName] = useState("_");
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
 
-        let userEmailTemp = getAuthFirebase(
+        getAuthFirebase(
           {
-            goToNotLoggedInPageFunc: goToNotLoggedInPage
+            goToNotLoggedInPageFunc: goToNotLoggedInPage,
+            sendOutEmailName: setAuthEmailName
+
           }
           );
           
-        console.log("account-page ... getAuthFirebase = ", userEmailTemp);
+        console.log("acount page--\t\tauthEmamilName", authEmailName);
 
  
         if (firstTimeEnter === true) {
