@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-import { userSignUpVM, userLogInVM } from '../viewmodels/AccountViewModel';
+import { userSignUpVM, userLogInVM, userLogOutVM } from '../viewmodels/AccountViewModel';
 import { addNewAccountFolderVM } from '../viewmodels/ProjectManagerViewModel';
 
 
@@ -19,13 +19,7 @@ export default function UserNotLoggedInPage() {
     const navigate = useNavigate();
 
     async function newUserSignUp() {
-        //TODO 
-        // let msg = await userSignUpVM(
-        //     {
-        //         email: providedEmailInput, 
-        //         password: providedPasswordInput
-        //     }   
-        // );
+        await userLogOutVM();
 
         await userSignUpVM(
                 {
@@ -65,6 +59,8 @@ export default function UserNotLoggedInPage() {
     }
 
     async function existingUserLogIn() {
+
+        await userLogOutVM();
 
         //TODO 
         await userLogInVM({

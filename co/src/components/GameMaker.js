@@ -50,6 +50,7 @@ import {
 
 //TODO1010 username by auth
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+import { userLogOutVM } from '../viewmodels/AccountViewModel';
 
 
 
@@ -541,11 +542,14 @@ export default function GameMaker({username, projectName}) {
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
 
+
+//TODO1030
     window.onbeforeunload = () => {
       if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
         return "show message";
       }
-      
+      userLogOutVM();
+
     }
                //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
                   

@@ -4,8 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
-
 //TODO1010
+
+
 export default function AccountPage({}) {
 
     let name = "/accountpage";

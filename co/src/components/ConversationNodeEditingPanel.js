@@ -23,6 +23,8 @@ import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/P
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
  
 //TODO1010 username by auth
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+import { userLogOutVM } from '../viewmodels/AccountViewModel';
 
 
 
@@ -233,16 +235,32 @@ export default function ConversationNodeEditingPanel() {
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
 
+    const [authEmailName, setAuthEmailName] = useState("_");
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        getAuthFirebase(
+            {
+              goToNotLoggedInPageFunc: goToNotLoggedInPage,
+              sendOutEmailName: setAuthEmailName
     
-        if (projectName === "default-no-state projectname") {
+            }
+        );
+        console.log("conv-node-editor --\t\tauthEmamilName", authEmailName);
+            
+        
+        if (projectName === null || projectName === "default-no-state projectname") {
       //      alert("No project selected. Returning to project selection page...");
             goToProjectManagingPanel();
         }
 
+ 
+    
 
+//TODO1030
         window.onbeforeunload = () => {
+            userLogOutVM();
+
             return "show message";
         }
 
@@ -274,6 +292,10 @@ export default function ConversationNodeEditingPanel() {
 
 
 
+    function goToNotLoggedInPage() {
+        navigate('/notloggedin', { replace: true });
+  
+    }
 
       
     function goToProjectManagingPanel() {

@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 
 import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './_textDictionary';
+
+
+//TODO1010 username by auth
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 /* Dashboard
@@ -14,7 +17,6 @@ export default function Dashboard() {
     let name = "/dashboard";
 
     const uname = "user002";
-//TODO1010 username by auth
 
     const navigate = useNavigate();
 
@@ -48,7 +50,7 @@ export default function Dashboard() {
           sendOutEmailName: setAuthEmailName
 
         }
-        );
+      );
         
       console.log("dashboard--\t\tauthEmamilName", authEmailName);
 
