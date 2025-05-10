@@ -173,7 +173,9 @@ export async function fetchConvNodeUiAllPlans({projectName, currUser, nodeType})
 export async function addNewAccountFolder({userId, username}) {
                   //Note: userId is the email-address that converted to string with "_"
 
-                
+                                console.log("add-new-account-folders for: [", username, "]");
+
+
 
       await setDoc(
         doc(db, "user_projects", userId), 
@@ -186,8 +188,14 @@ export async function addNewAccountFolder({userId, username}) {
 
         });
 
-        
-//TODO1060 create "projects" folder for this user!!
-  
 
+      let proj_folder_placeholder = "placeholder";
+      await setDoc(
+        doc(db, "user_projects", userId, 'projects', proj_folder_placeholder), 
+        {}
+      );
+        
+
+     
+      //TODO1060 test
 }

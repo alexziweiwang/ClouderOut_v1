@@ -113,9 +113,16 @@ export default function ProjectManagerPanel() {
 
     async function loadProjectListFromCloud() {
       const groupList = await fetchProjectListVM(authEmailName);      //TODO1030
+      
+      if (groupList === undefined || groupList.length === 0) {
+        setProjList([]);
+        setTrashedProjList([]);
+      } else {
+        setProjList(groupList.untrashed);
+        setTrashedProjList(groupList.trashed);
+      }
 
-      setProjList(groupList.untrashed);
-      setTrashedProjList(groupList.trashed);
+
     }
 
     function handleProjectSelectionChange(event) {

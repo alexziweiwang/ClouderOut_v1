@@ -1,9 +1,11 @@
 
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { userSignUpVM, userLogInVM, userLogOutVM } from '../viewmodels/AccountViewModel';
 import { addNewAccountFolderVM } from '../viewmodels/ProjectManagerViewModel';
+
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 export default function UserNotLoggedInPage() {
@@ -18,8 +20,32 @@ export default function UserNotLoggedInPage() {
 
     const navigate = useNavigate();
 
+    
+    const [authEmailName, setAuthEmailName] = useState("_");
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    useEffect(() => {
+        if (firstTimeEnter === true) {
+            userLogOutVM();
+            setFirstTimeEnter(false);
+        }
+
+        getAuthFirebase(
+            {
+              goToNotLoggedInPageFunc: notUsing,
+              sendOutEmailName: setAuthEmailName
+    
+            }
+        );
+        console.log("not-logged-in-page --\t\tauthEmamilName", authEmailName);
+    
+    });
+
+    function notUsing() {
+        return;
+    }
+
     async function newUserSignUp() {
-        await userLogOutVM();
 
         await userSignUpVM(
                 {
@@ -59,8 +85,6 @@ export default function UserNotLoggedInPage() {
     }
 
     async function existingUserLogIn() {
-
-        await userLogOutVM();
 
         //TODO 
         await userLogInVM({
