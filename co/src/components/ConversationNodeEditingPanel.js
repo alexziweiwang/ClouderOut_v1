@@ -259,7 +259,6 @@ export default function ConversationNodeEditingPanel() {
 
 //TODO1030
         window.onbeforeunload = () => {
-            userLogOutVM();
 
             return "show message";
         }

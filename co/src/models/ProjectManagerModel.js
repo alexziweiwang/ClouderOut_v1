@@ -186,5 +186,8 @@ export async function addNewAccountFolder({userId, username}) {
 
         });
 
+        
+//TODO1060 create "projects" folder for this user!!
+  
 
 }

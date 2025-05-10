@@ -162,6 +162,10 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
 
   const ref = doc(db, "user_projects", userName, "projects", projectName);
   
+  if (ref === undefined) {
+    return;
+  }
+
   let visualListSnap = await getDoc(ref, "proj_resource_visual");
   if (visualListSnap === undefined) {
                                                         console.log("~~visualListSnap undefined");

@@ -545,11 +545,7 @@ export default function GameMaker({username, projectName}) {
 
 //TODO1030
     window.onbeforeunload = () => {
-      if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
-        return "show message";
-      }
-      userLogOutVM();
-
+      return "show message";
     }
                //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
                   

@@ -14,11 +14,13 @@ import {fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmode
 //TODO115 collection of cloud-related
 
 //TODO1010 username by auth
+//TODO1050 did replace with the auth-email-name
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
 export default function ProjectManagerPanel() {
+
     let languageCodeTextOption = 'en';
 
     const compoPathName = "/projectmanagingpanel";
@@ -99,12 +101,18 @@ export default function ProjectManagerPanel() {
         return;
       }
 
-      navigate('/editorcontainer', { replace: true, state: { selected_project_name, username } });
+      navigate('/editorcontainer', { 
+        replace: true, 
+        state: { 
+          selected_project_name: selected_project_name, 
+          username: authEmailName 
+        
+        } });
 
     }
 
     async function loadProjectListFromCloud() {
-      const groupList = await fetchProjectListVM(username);      //TODO1030
+      const groupList = await fetchProjectListVM(authEmailName);      //TODO1030
 
       setProjList(groupList.untrashed);
       setTrashedProjList(groupList.trashed);
@@ -131,7 +139,7 @@ export default function ProjectManagerPanel() {
       await revertProjectVM(
         {
           projectToRevert: selectedTrashedProj, 
-          currUser: username
+          currUser: authEmailName
         });
 
       setSelectedTrashedProj("");
@@ -149,7 +157,7 @@ export default function ProjectManagerPanel() {
       await deleteProjectVM( 
         { 
           projectToDelete: selected_project_name, 
-          currUser: username
+          currUser: authEmailName
         }
       );
       
@@ -166,8 +174,8 @@ export default function ProjectManagerPanel() {
       setCurrentProjectAction("selectProject");
     }
 
-    function passInUsername() {
-      return username; //TODO1030
+    function passInEmailUsername() {
+      return authEmailName; //TODO1030
     }
 
     let name = "/projectmanagingpanel";
@@ -178,7 +186,7 @@ export default function ProjectManagerPanel() {
       <Sidebar 
       compName = {name}
       username={username}
-      getUsername={passInUsername}      
+      getUsername={passInEmailUsername}      
       />
 
       <div className="dashboard_content">
@@ -212,7 +220,7 @@ export default function ProjectManagerPanel() {
                 showCancelButton={false}
                 isPart={true}
                 triggerCreationSubmit={triggerCreationSubmit}
-                username={username}
+                username={authEmailName}
               />
             </div>
 

@@ -29,7 +29,7 @@ export async function fetchProjectListVM(currUser) {
         }
     });
 
-    const group = {untrashed: resUntrashedArr, trashed: resTrashedArr};
+    const group = {"untrashed": resUntrashedArr, "trashed": resTrashedArr};
 
     return group;
 

@@ -18,7 +18,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAddedAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
-    const [projList, setProjList] = useState(false); 
+    const [projList, setProjList] = useState([]); 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
@@ -30,7 +30,11 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
 
     async function loadProjectListFromCloud() {
       const groupList = await fetchProjectListVM(username);
-      setProjList(groupList.untrashed);
+      if (groupList === undefined || groupList.length === 0) {
+        setProjList([]);
+      } else {
+        setProjList(groupList.untrashed);
+      }
     }
 
     function changeProjNameInput(event) {
