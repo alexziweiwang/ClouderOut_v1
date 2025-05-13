@@ -29,6 +29,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     });
 
     async function loadProjectListFromCloud() {
+  
       const groupList = await fetchProjectListVM(username);
       if (groupList === undefined || groupList.length === 0) {
         setProjList([]);

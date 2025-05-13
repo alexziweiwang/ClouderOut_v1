@@ -8,15 +8,13 @@ import langDictionary from './_textDictionary';
 
 
 //TODO1010 username by auth
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+import { getAuthFirebase, convertEmailAddr } from '../authtools/firebaseAuthOperations';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
 */
 export default function Dashboard() {
     let name = "/dashboard";
-
-    const uname = "user002";
 
     const navigate = useNavigate();
 
@@ -37,22 +35,21 @@ export default function Dashboard() {
 
 
     //TODO1050 add temp-status for retur nvalue of get-auth?
-    const [authEmailName, setAuthEmailName] = useState("_");
+    const [authRawEmail, setAuthRawEmail] = useState("_");
+    const [authEmailString, setAuthEmailString] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
-
-
       getAuthFirebase(
         {
           goToNotLoggedInPageFunc: goToNotLoggedInPage,
-          sendOutEmailName: setAuthEmailName
+          sendOutEmailName: receiveChangeOfAuthRawEmail
 
         }
       );
         
-      console.log("dashboard--\t\tauthEmamilName", authEmailName);
+      console.log("dashboard--\t\tauthEmamilName", authRawEmail);
 
 
         if (firstTimeEnter === true) {
@@ -64,17 +61,28 @@ export default function Dashboard() {
 
     });
 
+
+    function receiveChangeOfAuthRawEmail(emailAddr) {
+
+      //load from cloud for project list  //TODO9000
+      setAuthRawEmail(emailAddr);
+
+      let emailStringTemp = convertEmailAddr(emailAddr);
+      setAuthEmailString(emailStringTemp);
+
+    }
+  
+
     function goToNotLoggedInPage() {
       navigate('/notloggedin', { replace: true });
 
     }
 
     function goToProjectManagingPanel() {
-      navigate('/projectmanagingpanel', { replace: true, state: { uname } });
+      navigate('/projectmanagingpanel', { replace: true, state: { "uname": authEmailString } });
     }
 
     function projectManageNew() {
-      // navigate('/projectmanagenew', { replace: true, state: { uname } }); //TODO remove later
       setShowNewProjCreationPage(true);
     }
 
@@ -83,7 +91,7 @@ export default function Dashboard() {
     }
 
     function passInUsername() {
-      return uname; //TODO1030
+      return authEmailString; //TODO1030
     }
 
     return (
@@ -91,7 +99,7 @@ export default function Dashboard() {
     {!showNewProjCreationPage && 
       <Sidebar 
         compName={name} 
-        username={uname}
+        username={authEmailString}
         getUsername={passInUsername}
 
       />}
@@ -137,7 +145,7 @@ export default function Dashboard() {
           showCancelButton={true}
           isPart={false}
           triggerCreationSubmit={returnToDashboard}
-          username={uname}
+          username={authEmailString}
       />
 }
   </div>

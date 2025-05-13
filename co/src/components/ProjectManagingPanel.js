@@ -86,20 +86,21 @@ export default function ProjectManagerPanel() {
 
     }, [firstTimeEnter]);
 
-    function receiveChangeOfAuthRawEmail(emailAddr) {
-      if (firstTimeEnter === true) {
-        loadProjectListFromCloud(emailAddr);
-        setFirstTimeEnter(false);
+    async function receiveChangeOfAuthRawEmail(emailAddrRaw) {
+    
+      setAuthRawEmail(emailAddrRaw);
 
-      }
-
-
-      //load from cloud for project list  //TODO9000
-      setAuthRawEmail(emailAddr);
-
-      let emailStringTemp = convertEmailAddr(emailAddr);
+      let emailStringTemp = convertEmailAddr(emailAddrRaw);
       setAuthEmailString(emailStringTemp);
 
+      if (emailStringTemp === "_") {
+        console.log("empty username(email-string)");
+        return;
+
+      } else {
+        await loadProjectListFromCloud(emailStringTemp);
+      }  
+  
     }
   
 
@@ -124,18 +125,21 @@ export default function ProjectManagerPanel() {
     }
 
     async function loadProjectListFromCloud(emailAddr) {
-      const groupList = await fetchProjectListVM(emailAddr);      //TODO1030
+     
+        const groupList = await fetchProjectListVM(emailAddr);
       
-      console.log("group-list = ", groupList);
+        console.log("load_ProjectList_FromCloud, group-list for ", emailAddr , " = ", groupList);
+  
+  
+        if (groupList === undefined || groupList.length === 0) {
+          setProjList([]);
+          setTrashedProjList([]);
+        } else {
+          setProjList(groupList.untrashed);
+          setTrashedProjList(groupList.trashed);
+        }
+      
 
-
-      if (groupList === undefined || groupList.length === 0) {
-        setProjList([]);
-        setTrashedProjList([]);
-      } else {
-        setProjList(groupList.untrashed);
-        setTrashedProjList(groupList.trashed);
-      }
 
 
     }
@@ -161,11 +165,11 @@ export default function ProjectManagerPanel() {
       await revertProjectVM(
         {
           projectToRevert: selectedTrashedProj, 
-          currUser: authRawEmail
+          currUser: authEmailString
         });
 
       setSelectedTrashedProj("");
-      loadProjectListFromCloud(authRawEmail);
+      loadProjectListFromCloud(authEmailString);
     }
 
     function handleDeleteProject() {
@@ -179,12 +183,12 @@ export default function ProjectManagerPanel() {
       await deleteProjectVM( 
         { 
           projectToDelete: selected_project_name, 
-          currUser: authRawEmail
+          currUser: authEmailString
         }
       );
       
       setProjectName("");
-      loadProjectListFromCloud(authRawEmail);
+      loadProjectListFromCloud(authEmailString);
     }
 
     function notUsing() {
@@ -192,12 +196,12 @@ export default function ProjectManagerPanel() {
     }
 
     function triggerCreationSubmit() {
-      loadProjectListFromCloud(authRawEmail);
+      loadProjectListFromCloud(authEmailString);
       setCurrentProjectAction("selectProject");
     }
 
     function passInEmailUsername() {
-      return authRawEmail; //TODO1030
+      return authEmailString; //TODO1030
     }
 
     let name = "/projectmanagingpanel";

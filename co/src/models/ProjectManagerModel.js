@@ -21,13 +21,17 @@ function createProject(currUser, projectName, projectObj)
  */
 export async function fetchProjectList(currUser) {
 
-                          console.log("*from cloud*: model - fetch project list ...", currUser);
+                          console.log("*from cloud*: model-func - fetch project list ...", currUser);
   
   const docRef = doc(db, "user_projects", currUser);
  
   const docSnap = await getDoc(docRef);
 
   if (!docSnap.exists()) {
+
+    console.log("\t\t??? !docSnap.exists()");
+
+
     return;
   }
 
