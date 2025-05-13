@@ -1,13 +1,21 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 //TODO20 cloud-func
 import { getProjectInfoVM } from '../viewmodels/AccountViewModel';
 //TODO115 collection of cloud-related
 
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+
+
 export default function ProfilePage({}) {
+
+
+    let name = "/profilepage";
+
+    const navigate = useNavigate();
 
     const {state} = useLocation();
     let username = "default-no-state-username";
@@ -15,15 +23,29 @@ export default function ProfilePage({}) {
         username = state.username;
     }
 
-    let name = "/profilepage";
-
     let profile = [];
     const [profileInfo, setProfile] = useState({});
     const [profileEditInput, setProfileEditInput] = useState("");
+    
+    
+    const [authEmailName, setAuthEmailName] = useState("_");
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
-
-
     useEffect(() => {
+
+
+        getAuthFirebase(
+            {
+              goToNotLoggedInPageFunc: goToNotLoggedInPage,
+              sendOutEmailName: setAuthEmailName
+  
+            }
+          );
+            
+        console.log("profile page--\t\tauthEmamilName", authEmailName);
+  
+
+
         if (firstTimeEnter === true) {
             const profile = getProfile();
             console.log("profile from cloud:", profile); //TODO test
@@ -48,6 +70,14 @@ export default function ProfilePage({}) {
         return username; //TODO1030
     }
 
+
+    function goToNotLoggedInPage() {
+        navigate('/notloggedin', { replace: true });
+  
+    }
+
+
+    
     return (
   <div className="page">
     
