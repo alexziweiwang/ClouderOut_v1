@@ -27,3 +27,11 @@ export function getAuthFirebase({goToNotLoggedInPageFunc, sendOutEmailName}) {
 
 
 }
+
+
+export function convertEmailAddr(emailStr) {
+    let str = emailStr.replace("@", "_");
+    str = str.replace(/\./g, "_");
+
+    return str;
+}

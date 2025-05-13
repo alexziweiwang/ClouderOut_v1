@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { userSignUpVM, userLogInVM, userLogOutVM } from '../viewmodels/AccountViewModel';
 import { addNewAccountFolderVM } from '../viewmodels/ProjectManagerViewModel';
 
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+import { getAuthFirebase, convertEmailAddr } from '../authtools/firebaseAuthOperations';
 
 
 export default function UserNotLoggedInPage() {
@@ -98,13 +98,6 @@ export default function UserNotLoggedInPage() {
         //goToUserDashboard(username)
     }
 
-    function convertEmailAddr(emailStr) {
-        let str = emailStr.replace("@", "_");
-        str = str.replace(/\./g, "_");
-
-        return str;
-    }
-
     function loggedInActions(username) {
 
 
@@ -117,6 +110,11 @@ export default function UserNotLoggedInPage() {
         //only if login successful
         navigate('/dashboard', { replace: true, state: { username } }); //
 
+    }
+
+    function switchPanel() {
+        setIsCreateAccountPanel(!isCreateAccountPanel);
+        userLogOutVM();
     }
 
 
@@ -198,7 +196,7 @@ export default function UserNotLoggedInPage() {
                     <br></br><br></br>
                     <label 
                         className="clickableLink"
-                        onClick={()=>{setIsCreateAccountPanel(false);}}
+                        onClick={()=>{switchPanel();}}
                     >
                         Have an account? Log in!
                     </label>
@@ -257,7 +255,7 @@ export default function UserNotLoggedInPage() {
                     <br></br><br></br>
                     <label 
                         className="clickableLink"
-                        onClick={()=>{setIsCreateAccountPanel(true);}}
+                        onClick={()=>{switchPanel();}}
                     >
                         New user? Create an account!
                     </label>

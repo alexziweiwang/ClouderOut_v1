@@ -15,7 +15,7 @@ import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmod
 
 //TODO1010 username by auth
 //TODO1050 did replace with the auth-email-name
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+import { convertEmailAddr, getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
@@ -64,31 +64,43 @@ export default function ProjectManagerPanel() {
 
 
 
-    const [authEmailName, setAuthEmailName] = useState("_");
+    const [authRawEmail, setAuthRawEmail] = useState("_");
+    const [authEmailString, setAuthEmailString] = useState("_");
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-      if (firstTimeEnter === true) {
-        loadProjectListFromCloud();
-
-        setFirstTimeEnter(false);
-      }
-
+  
 
 
 
       getAuthFirebase(
         {
           goToNotLoggedInPageFunc: goToNotLoggedInPage,
-          sendOutEmailName: setAuthEmailName
+          sendOutEmailName: receiveChangeOfAuthRawEmail
 
         }
       );
         
-      console.log("project manager--\t\tauthEmamilName is [", authEmailName, "]");
+      console.log("project managing panel page --\t\tauthEmamilName is [", authRawEmail, "]");
 
 
     }, [firstTimeEnter]);
+
+    function receiveChangeOfAuthRawEmail(emailAddr) {
+      if (firstTimeEnter === true) {
+        loadProjectListFromCloud(emailAddr);
+        setFirstTimeEnter(false);
+
+      }
+
+
+      //load from cloud for project list  //TODO9000
+      setAuthRawEmail(emailAddr);
+
+      let emailStringTemp = convertEmailAddr(emailAddr);
+      setAuthEmailString(emailStringTemp);
+
+    }
   
 
     function goToNotLoggedInPage() {
@@ -105,14 +117,14 @@ export default function ProjectManagerPanel() {
         replace: true, 
         state: { 
           selected_project_name: selected_project_name, 
-          username: authEmailName 
+          username: authRawEmail 
         
         } });
 
     }
 
-    async function loadProjectListFromCloud() {
-      const groupList = await fetchProjectListVM(authEmailName);      //TODO1030
+    async function loadProjectListFromCloud(emailAddr) {
+      const groupList = await fetchProjectListVM(emailAddr);      //TODO1030
       
       console.log("group-list = ", groupList);
 
@@ -149,11 +161,11 @@ export default function ProjectManagerPanel() {
       await revertProjectVM(
         {
           projectToRevert: selectedTrashedProj, 
-          currUser: authEmailName
+          currUser: authRawEmail
         });
 
       setSelectedTrashedProj("");
-      loadProjectListFromCloud();
+      loadProjectListFromCloud(authRawEmail);
     }
 
     function handleDeleteProject() {
@@ -167,12 +179,12 @@ export default function ProjectManagerPanel() {
       await deleteProjectVM( 
         { 
           projectToDelete: selected_project_name, 
-          currUser: authEmailName
+          currUser: authRawEmail
         }
       );
       
       setProjectName("");
-      loadProjectListFromCloud();
+      loadProjectListFromCloud(authRawEmail);
     }
 
     function notUsing() {
@@ -180,12 +192,12 @@ export default function ProjectManagerPanel() {
     }
 
     function triggerCreationSubmit() {
-      loadProjectListFromCloud();
+      loadProjectListFromCloud(authRawEmail);
       setCurrentProjectAction("selectProject");
     }
 
     function passInEmailUsername() {
-      return authEmailName; //TODO1030
+      return authRawEmail; //TODO1030
     }
 
     let name = "/projectmanagingpanel";
@@ -230,7 +242,7 @@ export default function ProjectManagerPanel() {
                 showCancelButton={false}
                 isPart={true}
                 triggerCreationSubmit={triggerCreationSubmit}
-                username={authEmailName}
+                username={authEmailString}
               />
             </div>
 
