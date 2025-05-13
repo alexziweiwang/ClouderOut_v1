@@ -15,6 +15,7 @@ export async function fetchProjectListVM(currUser) {
     const res = await fetchProjectList(currUser);
     
     if (res === undefined) {
+        console.log("returned from model-func... undefined res for project-list");
         return;
     }
 

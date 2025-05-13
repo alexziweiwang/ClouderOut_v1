@@ -180,18 +180,7 @@ export default function UserNotLoggedInPage() {
                                 
                             </td>
                         </tr>
-                        
-                        <tr>
-                            <td className="noBorder">
-                                <label>username: </label>
-                            </td>
-                            <td className="noBorder">
-                                <input
-                                    style={{"width": "200px"}}
-                                    onChange={(event)=>{setProvidedUsernameInput(event.target.value);}}
-                                ></input>
-                            </td>
-                        </tr>
+                  
 
                         </tbody>
                     </table>

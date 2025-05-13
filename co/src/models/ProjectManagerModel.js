@@ -21,7 +21,7 @@ function createProject(currUser, projectName, projectObj)
  */
 export async function fetchProjectList(currUser) {
 
-                          console.log("*from cloud*: model - fetch project list ...");
+                          console.log("*from cloud*: model - fetch project list ...", currUser);
   
   const docRef = doc(db, "user_projects", currUser);
  
@@ -189,7 +189,7 @@ export async function addNewAccountFolder({userId, username}) {
         });
 
 
-      let proj_folder_placeholder = "placeholder";
+      let proj_folder_placeholder = "placeholder123456789___###___###___##";
       await setDoc(
         doc(db, "user_projects", userId, 'projects', proj_folder_placeholder), 
         {}

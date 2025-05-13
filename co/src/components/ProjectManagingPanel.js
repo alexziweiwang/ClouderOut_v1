@@ -10,7 +10,7 @@ import langDictionary from './_textDictionary';
 
 
 //TODO20 cloud-func
-import {fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
+import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
 //TODO115 collection of cloud-related
 
 //TODO1010 username by auth
@@ -83,9 +83,9 @@ export default function ProjectManagerPanel() {
           sendOutEmailName: setAuthEmailName
 
         }
-        );
+      );
         
-      console.log("project manager--\t\tauthEmamilName", authEmailName);
+      console.log("project manager--\t\tauthEmamilName is [", authEmailName, "]");
 
 
     }, [firstTimeEnter]);
@@ -114,6 +114,9 @@ export default function ProjectManagerPanel() {
     async function loadProjectListFromCloud() {
       const groupList = await fetchProjectListVM(authEmailName);      //TODO1030
       
+      console.log("group-list = ", groupList);
+
+
       if (groupList === undefined || groupList.length === 0) {
         setProjList([]);
         setTrashedProjList([]);

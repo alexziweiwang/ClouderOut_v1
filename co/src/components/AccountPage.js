@@ -34,7 +34,7 @@ export default function AccountPage({}) {
             sendOutEmailName: setAuthEmailName
 
           }
-          );
+        );
           
         console.log("acount page--\t\tauthEmamilName", authEmailName);
 

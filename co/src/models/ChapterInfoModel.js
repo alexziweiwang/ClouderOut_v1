@@ -110,7 +110,7 @@ export async function addNewOneChapterFolder({project, username, chapterKey}) {
     await setDoc(doc(ref, "chapters", chapterKey), {})
     .then(
         await setDoc(
-            doc(ref, "chapters", chapterKey, "nodes", "placeholder"), 
+            doc(ref, "chapters", chapterKey, "nodes", "placeholder123456789___###___###___##"), 
             {}
         )
     ); //works ok
