@@ -77,16 +77,16 @@ export async function deleteProject({projectToDelete, currUser}) {
 export async function createProject({currUser, projectName, projectObj}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
-  let projObjTemp = projectObj;
-  projObjTemp = {...projObjTemp, ui_language: 'en'}; //default editor-UI-language
+  // let projObjTemp = projectObj;
+  // projObjTemp = {...projObjTemp, ui_language: 'en'}; //default editor-UI-language
 
-  await setDoc(projRef, projObjTemp);
+  await setDoc(projRef, projectObj);
 
 
   const placeholder = "chapter0";
-  await setDoc(projRef, projObjTemp).then(() => {
+  await setDoc(projRef, projectObj).then(() => {
     setDoc(doc(db, "user_projects", currUser, "projects", projectName, "chapters", placeholder), 
-    {})
+    projectObj)
   }).catch((e) => {
     console.log(e)
   })

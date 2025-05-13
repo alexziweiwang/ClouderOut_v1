@@ -433,3 +433,6 @@ export const emptyConvNodeSinglePieceTemplate = {
     "bgm_action": "maintainBgm", 
 
 }
+
+
+//TODO2000 emu4sets sub-object templates adding!!

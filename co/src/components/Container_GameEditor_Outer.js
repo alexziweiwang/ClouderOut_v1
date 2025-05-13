@@ -15,18 +15,17 @@ export default function Container_GameEditor_Outer() {
 
     const {state} = useLocation();
     let projectName = "default-no-state projectname"; //TODO testing
-    let username = "default-no-state username";
   
+
+    
     if (state !== null) {
       projectName = state.selected_project_name;
-      username = state.username;
     }
 
 return (<div>
 
     <GameMaker
         projectName={projectName}
-        username={username}
     
     />
 

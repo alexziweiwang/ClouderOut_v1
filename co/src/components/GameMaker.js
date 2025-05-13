@@ -14,6 +14,8 @@ import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
 
 
+//TODO2000 username updating for auth
+
 //TODO20 cloud-func (marked)
 import { 
   getProjectGameDataDesignVM, 
@@ -59,7 +61,7 @@ import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 import { emptyConvNodeSinglePieceTemplate, emptyConvNodeUiAllTemplate } from './_dataStructure_DefaultObjects';
 
-export default function GameMaker({username, projectName}) {
+export default function GameMaker({projectName}) {
 
   
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
@@ -181,14 +183,17 @@ export default function GameMaker({username, projectName}) {
 
 
     async function fetchProjResourceLists() {
-      if (username === "default-no-state username" || projectName === "default-no-state projectName") {
+      if (projectName === "default-no-state projectName") {
         return;
       }
 
 
       /* fetch from cloud db */
       //TODO500     
-      const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projectName});
+      const obj = await fetchProjectResourceVarPairsVM({
+        userName: username, 
+        projectName: projectName
+      });
       
       if (obj === undefined) {
         return;
@@ -478,6 +483,7 @@ export default function GameMaker({username, projectName}) {
       projectName: project, 
       uname: username, 
       mostUpdated: isUpdated});
+      
     if (gdataTestResult === undefined) {
       console.log("Error: no game_data in this project...");
       return;
@@ -502,7 +508,11 @@ export default function GameMaker({username, projectName}) {
     if (project.trim() === "") {
       return;
     }
-    updateGameDataDesignVM({projectName: project, uname: username, gameData: gameDataLatest});
+    updateGameDataDesignVM({
+      projectName: project, 
+      uname: username, 
+      gameData: gameDataLatest
+    });
 
     //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
     setGdmUpdatedSignal(true);
@@ -520,7 +530,11 @@ export default function GameMaker({username, projectName}) {
   }
 
   async function getChapterDataFromCloud(chapter) {
-    return await getChapterDataVM({projectName: projectName, uname: username, chapterName: chapter});
+    return await getChapterDataVM({
+      projectName: projectName, 
+      uname: username, 
+      chapterName: chapter
+    });
    
   }
 
@@ -630,8 +644,11 @@ export default function GameMaker({username, projectName}) {
   }
 
   async function fetchUILangFromCLoud() {
-    let obj= {projectName: projectName, currUser: username}
-    let ans = await fetchProjectUILangVM(obj); //TODO21
+
+    let ans = await fetchProjectUILangVM({
+      projectName: projectName, 
+      currUser: username
+    }); //TODO21
 
     setLanguageCodeTextOption(ans);
     return ans;
@@ -1137,8 +1154,11 @@ export default function GameMaker({username, projectName}) {
     if (resp) {
       setLanguageCodeTextOption(val);
 
-      let obj= {projectName: projectName, currUser: username, selectedUILang: val};
-      await updateProjectUILangVM(obj);
+      await updateProjectUILangVM({
+        projectName: projectName, 
+        currUser: username, 
+        selectedUILang: val
+      });
     }
   }
 

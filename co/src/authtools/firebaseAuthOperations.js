@@ -9,6 +9,8 @@ export function getAuthFirebase({goToNotLoggedInPageFunc, sendOutEmailName}) {
             const uid = user.uid;
             const email = user.email;
 
+//TODO2000 convert raw-email to email-string here?
+
             sendOutEmailName(email);
 
 
