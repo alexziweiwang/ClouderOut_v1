@@ -434,5 +434,30 @@ export const emptyConvNodeSinglePieceTemplate = {
 
 }
 
+export const gdt1Template = {
+    "name": "",
+    "default_value": "",
+    "data_type": "",
+    "current_value": ""
+}
+
+export const epp2Template = {
+    "playername": "",
+    "userTitle": "",
+    "iconPicName": "",
+    "level": 1,
+    "membership": "",
+}
+
+export const epa3Template = {
+    "playername": "",
+    "email": "",      
+}
+
+export const shp5Template = {
+    "shopStock": [],
+    "playerPurchaseStatus":  []
+}
+
 
 //TODO2000 emu4sets sub-object templates adding!!

@@ -337,6 +337,7 @@ export default function Modal_EmuManager({
             "playerPurchaseStatus":  []
         };
 
+//TODO900 fix later
 
         data["shopStock"].map((item, index) => {
             tempObj["shopStock"]["productKey"] = item["productKey"];
