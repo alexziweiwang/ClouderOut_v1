@@ -1984,8 +1984,12 @@ console.log("\t\t\t fetched from local ds ");
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
                   getScreenheight={passInScreenHeight}
+
                   userName={authEmailName} 
                   projName={projectName} 
+
+                  getUsername={passInAuthEmailName}
+
 
                   intialEmuPlayerProfile={testPlayerProfile}
                   openEmuManager={openEmuManager}
@@ -2098,6 +2102,7 @@ console.log("\t\t\t fetched from local ds ");
 
           username={authEmailName}
           projectname={projectName}
+          getUsername={passInAuthEmailName}
 
           initialShopItemInfo={testShopProducts}
           initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
@@ -2229,6 +2234,9 @@ console.log("\t\t\t fetched from local ds ");
 
                 username={authEmailName} 
                 projName={projectName}   
+
+                getUsername={passInAuthEmailName}
+
             
               />
           
@@ -2247,8 +2255,11 @@ console.log("\t\t\t fetched from local ds ");
                 resetNeedCloudData={markNextNeedCloudGameData} 
 
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
-                username={authEmailName} 
+
                 projName={projectName}  
+
+                getUsername={passInAuthEmailName}
+
               />
 
           </div>

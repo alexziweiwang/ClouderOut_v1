@@ -11,6 +11,9 @@ export default function NavigationSetter({initialNavObj,
   initialScreenHeight, getScreenheight,
   userName,
   projName,
+  getUsername, //TODO2000
+
+
   intialEmuPlayerProfile,
   fetchEmuPlayerProfile,
   openEmuManager,

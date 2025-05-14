@@ -50,6 +50,8 @@ export default function Viewer_Entire({
 
     username,
     projectname,
+    getUsername, //TODO2000
+
 
     initialShopItemInfo,
     initialPlayerPurchaseInfo,

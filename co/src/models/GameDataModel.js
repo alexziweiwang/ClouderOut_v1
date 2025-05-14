@@ -10,17 +10,17 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc} from "fireba
  * @returns specific project data of the user
  */
 export async function getProjectGameDataDesign({projectName, uname}) {
-  if (projectName === "" || projectName === undefined) {
-    return;
+  if (projectName === "" || projectName === undefined || projectName === "_") {
+    return {};
   }
   const projectRef = doc(db, "user_projects", uname, "projects", projectName);
   const projectSnap = await getDoc(projectRef);
 
   if (!projectSnap.exists()) {
-    return;
+    return {};
   }
 
-  let projectData = [];
+  let projectData = {};
   projectData = projectSnap.data().game_data; 
 
   return projectData;

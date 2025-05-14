@@ -15,6 +15,8 @@ export default function Modal_ResourceManagingWindow ({
     getUILanguage,
     username, projName,
 
+    getUsername //TODO2000
+
 }) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 

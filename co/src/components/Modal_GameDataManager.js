@@ -16,7 +16,10 @@ export default function Modal_GameDataManager ({
 
         getUILanguage,
 
-        username, projName,
+        projName,
+
+        getUsername //TODO2000
+
     }) {
 
 
@@ -103,15 +106,19 @@ export default function Modal_GameDataManager ({
 
 
 
-
+    const [username, setUsername] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     useEffect(() => {
-        if (firstTimeEnter === true) {
-             //                               console.log("GameDataManager-ModalWindow: First Enter!");
 
-            initialization();
+
+        if (username === "_" && firstTimeEnter === true) {
+            let unameTemp = getUsername();
+            initialization(unameTemp);
+
+                         //                               console.log("GameDataManager-ModalWindow: First Enter!");
+
             setFirstTimeEnter(false);
         }
         let UILang = getUILanguage();
@@ -131,16 +138,27 @@ export default function Modal_GameDataManager ({
 
     const [gdmMapSize, setGdmMapSize] = useState(0);
 
-    async function initialization() {
+    async function initialization(usernameTemp) {
         let isUpdated = true;
-        let tempGameDataDesign = await getProjectGameDataDesignVM({projectName: projName, uname: username, mostUpdated: isUpdated});
+        let tempGameDataDesign = await getProjectGameDataDesignVM({
+            projectName: projName, 
+            uname: usernameTemp, 
+            mostUpdated: isUpdated});
 
-        let objSize = Object.keys(tempGameDataDesign).length;
-        setGdmMapSize(objSize);
-            //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
+        if (tempGameDataDesign === null || tempGameDataDesign === undefined) {
+
+            let objSize = Object.keys(tempGameDataDesign).length;
+            setGdmMapSize(objSize);
+                //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
                                     
+            setUsingGameDataDesign(tempGameDataDesign);
 
-        setUsingGameDataDesign(tempGameDataDesign);
+        } else {
+            setGdmMapSize(0);
+            setUsingGameDataDesign({});
+
+        }
+
     }
 
     function showNewVarForm() {
