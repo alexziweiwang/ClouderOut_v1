@@ -561,42 +561,45 @@ export default function GameMaker({projectName}) {
 
 
 //TODO1030
-    window.onbeforeunload = () => {
-      return "show message";
-    }
-               //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
-                  
-                  
-              //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
-
-    getAuthFirebase(
-        {
-            goToNotLoggedInPageFunc: goToNotLoggedInPage,
-            sendOutEmailName: setAuthEmailName
-        
+        window.onbeforeunload = () => {
+          return "show message";
         }
-    );
-                
-              console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
+                  //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
+                      
+                      
+                  //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
+
+        getAuthFirebase(
+            {
+                goToNotLoggedInPageFunc: goToNotLoggedInPage,
+                sendOutEmailName: setAuthEmailName
+            
+            }
+        );
+                    
+                  console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
+            
+
+        if (firstTimeEnter === true) {
+
+
+            console.log("!!! First Enter - GameMaker: ");//TODO testing
+
         
-
-    if (firstTimeEnter === true) {
-
-
-        console.log("!!! First Enter - GameMaker: ");//TODO testing
-
-    
-        //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
-        triggerRefreshFetchCloudData();
+            //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
+            /*
+            triggerRefreshFetchCloudData();
 
 
-        fetchChapterNodeMappingFromCloud();
-        fetchProjectNavigationSettingsFromCloud();
-        
-        fetchUILangFromCLoud();
+            fetchChapterNodeMappingFromCloud();
+            fetchProjectNavigationSettingsFromCloud();
+            
+            fetchUILangFromCLoud();
 
-        setFirstTimeEnter(false);
-    }
+            */
+
+            setFirstTimeEnter(false);
+        }
 
                                 // if (secondTimeEnter === true) {
                                 //   //This area is for any "reset" procedure...
@@ -613,24 +616,24 @@ export default function GameMaker({projectName}) {
 
 
 
-    if (projectName === "default-no-state projectname") {
-    //  alert("No project selected. Returning to project selection page...");
-      pureNavigateToProjectManagingPanel();
-    }
+        if (projectName === "default-no-state projectname") {
+        //  alert("No project selected. Returning to project selection page...");
+          pureNavigateToProjectManagingPanel();
+        }
 
-    // if (currChapterKey !== undefined && currChapterKey !== "") {
-    //   setCurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
-    //   setGridBlocks(gridBlocksAll[currChapterKey]);
-    // }
+        // if (currChapterKey !== undefined && currChapterKey !== "") {
+        //   setCurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
+        //   setGridBlocks(gridBlocksAll[currChapterKey]);
+        // }
 
-    if (currentProjectNav["screenSize"] === "16:9(horizonal)") {
-      setScreenHeight(450);
-    } else if (currentProjectNav["screenSize"] === "16:9(vertical)" 
-      || currentProjectNav["screenSize"] === "4:3(vertical)") {
-      setScreenHeight(800);
-    } else if (currentProjectNav["screenSize"] === "4:3(horizonal)") {
-      setScreenHeight(600);
-    }
+        if (currentProjectNav["screenSize"] === "16:9(horizonal)") {
+          setScreenHeight(450);
+        } else if (currentProjectNav["screenSize"] === "16:9(vertical)" 
+          || currentProjectNav["screenSize"] === "4:3(vertical)") {
+          setScreenHeight(800);
+        } else if (currentProjectNav["screenSize"] === "4:3(horizonal)") {
+          setScreenHeight(600);
+        }
 
 
   });
@@ -1543,27 +1546,31 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
     if (listTemp === undefined || listTemp === null) {
       console.log("test func-fetchChapterListFromCloud(): ...data is invalid");
+      setChapterList([]);
       return [];
+    } else {
+      //convert map into nested array...
+      let arrTemp = [];
+      Object.keys(listTemp).map((chapterKey) => {   
+        let currArr = [];
+        listTemp[chapterKey].map((item, index) => {
+          currArr.push(item);
+        });
+          
+        arrTemp.push(currArr);
+      })
+
+      //TODO test
+      console.log("test func-fetchChapterListFromCloud(): ", arrTemp);
+
+      setChapterList(arrTemp);
+
+      return arrTemp;
+
     }
 
 
-    //convert map into nested array...
-    let arrTemp = [];
-    Object.keys(listTemp).map((chapterKey) => {   
-      let currArr = [];
-      listTemp[chapterKey].map((item, index) => {
-        currArr.push(item);
-      });
-       
-      arrTemp.push(currArr);
-    })
-
-    //TODO test
-    console.log("test func-fetchChapterListFromCloud(): ", arrTemp);
-
-    setChapterList(arrTemp);
-
-    return arrTemp;
+   
 
   }
 
@@ -1773,6 +1780,9 @@ console.log("\t\t\t fetched from local ds ");
   }
 
 
+  function passInAuthEmailName() {
+    return authEmailName;
+  }
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
@@ -2261,8 +2271,9 @@ console.log("\t\t\t fetched from local ds ");
               getUILanguage={passInUILanguage}
               isForGameMaker={true}
 
-              username={authEmailName} 
               projName={projectName}  
+
+              getUsername={passInAuthEmailName}
 
             />
           </div>

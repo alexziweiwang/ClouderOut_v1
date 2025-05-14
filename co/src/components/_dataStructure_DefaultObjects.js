@@ -454,6 +454,9 @@ export const epa3Template = {
     "email": "",      
 }
 
+export const ess4Template = {
+}
+
 export const shp5Template = {
     "shopStock": [],
     "playerPurchaseStatus":  []

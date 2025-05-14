@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 //TODO20 cloud-func
 import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
-import { projectNavUiTemplate } from './_dataStructure_DefaultObjects';
+import { projectNavUiTemplate, gdt1Template, epp2Template, epa3Template, ess4Template, shp5Template } from './_dataStructure_DefaultObjects';
 
 //TODO115 collection of cloud-related
 
@@ -87,6 +87,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       const empty_chapter_list = {};
       const empty_chapter_node_mapping = {};
       const empty_node_ui_plan = {};
+
       const empty_emu_4sets = {
         "gdt1": {},
         "epp2": {},
@@ -94,6 +95,18 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
         "ess4": {},
         "shp5": {}
       };
+      Object.keys(gdt1Template).map((currKey) => {
+        empty_emu_4sets["gdt1"][currKey] = gdt1Template[currKey];
+      })
+
+      Object.keys(epp2Template).map((currKey) => {
+        empty_emu_4sets["epp2"][currKey] = epp2Template[currKey];
+      })
+
+      Object.keys(epa3Template).map((currKey) => {
+        empty_emu_4sets["epa3"][currKey] = epa3Template[currKey];
+      })
+      
 
 
       let empty_nav_ui_settings = {};

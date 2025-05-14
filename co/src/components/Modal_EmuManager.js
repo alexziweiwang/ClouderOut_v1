@@ -12,7 +12,8 @@ export default function Modal_EmuManager({
     getUILanguage,
     update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
     isForGameMaker,
-    username,projName,
+    projName,
+    getUsername
 
 }) {
 //allows user to setup emu-data for testing
@@ -138,7 +139,8 @@ export default function Modal_EmuManager({
 //TODO15
 
 
-    
+    const [username, setUsername] = useState("_");    
+
     const [visualMap, setVisualMap] = useState({});
 
     const [gdt1, setGdt1] = useState({});
@@ -582,23 +584,52 @@ export default function Modal_EmuManager({
                                     // console.log("\t\tinfo: username,projName", username , "and" ,projName);
 
         
-        if (firstTimeEnter === true) {
+      //  if (firstTimeEnter === true) {
+       //     console.log("\t\tfirst time in emu-manager... username = ", username, "... projectname = ", projName);
+            
+            // prepare1Gdt();
+            // prepare2Epp();
+            // prepare3Epa();
+            // // prepare4Ess();                                   //TODO later
+            // prepare5Shp();
+
+            // fetchVisualListFromCloud();
+
+
+            // update1GdtToOuterLayer(); 
+            // update2EppToOuterLayer(); 
+            // update3EpaToOuterLayer();
+
+            //                     //                console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
+    //    }
+
+        let uname = getUsername();
+     
+        if (uname !== "_" && firstTimeEnter === true) {
+            setUsername(uname);
+
+
+            console.log("\t\t........ username = ", username, "... projectname = ", projName);
+    
             prepare1Gdt();
             prepare2Epp();
             prepare3Epa();
             // prepare4Ess();                                   //TODO later
             prepare5Shp();
-
+    
             fetchVisualListFromCloud();
-
-
+    
+    
             update1GdtToOuterLayer(); 
             update2EppToOuterLayer(); 
             update3EpaToOuterLayer();
 
-                                //                console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
             setFirstTimeEnter(false);
+
         }
+
+
+           
 
 
 
