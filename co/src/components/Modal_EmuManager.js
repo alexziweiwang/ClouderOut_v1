@@ -389,14 +389,19 @@ export default function Modal_EmuManager({
     async function prepare1Gdt() {
 
         let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
-        let objSize = Object.keys(tempObj1).length;
+        
+        let objSize = 0;
+        if (tempObj1 !== undefined) {
+            objSize = Object.keys(tempObj1).length;
+        } 
 
         if (objSize === 0 || tempObj1 === undefined || tempObj1 === null) {
-            // create from game-data-design-list
+            // no emu-data for game-data -->      create from game-data-design-list
 
             let isUpdated = true;
             let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
                                     console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
+                                    
             if (gDataDesignMap === null || gDataDesignMap === undefined) {
                 return;
             }

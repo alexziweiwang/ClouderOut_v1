@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
 
-export default function Modal_ConvNode_Log({allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
-    triggerLogPageClose, getAllPieceContent, isQuickView, getLogPageUISettings, getIsDisplay,
+export default function Modal_ConvNode_Log({
+    allPieceContent, initialPieceNum, getCurrPieceNum, logPageUISettings, 
+    triggerLogPageClose, getAllPieceContent, isQuickView, getLogPageUISettings, 
+    getIsDisplay,
     visualMap, getVisualMap, screenWidth, screenHeight,
     isSettingUI
   }) {

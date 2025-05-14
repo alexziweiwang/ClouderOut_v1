@@ -48,7 +48,6 @@ export default function Viewer_Entire({
     triggerChapterWalk, //game-progress related, send to outer-layer
 
 
-    username,
     projectname,
     getUsername, //TODO2000
 

@@ -112,14 +112,18 @@ export default function Modal_GameDataManager ({
     
     useEffect(() => {
 
+        if (username === "_") {
 
-        if (username === "_" && firstTimeEnter === true) {
+     //   if (username === "_" && firstTimeEnter === true) {
             let unameTemp = getUsername();
-            initialization(unameTemp);
+            if (unameTemp !== "_") {
+                initialization(unameTemp);
 
-                         //                               console.log("GameDataManager-ModalWindow: First Enter!");
-
-            setFirstTimeEnter(false);
+                //                               console.log("GameDataManager-ModalWindow: First Enter!");
+                setUsername(unameTemp);
+            }
+            
+            // setFirstTimeEnter(false);
         }
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);

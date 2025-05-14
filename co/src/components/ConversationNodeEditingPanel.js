@@ -975,6 +975,10 @@ export default function ConversationNodeEditingPanel() {
 
     }
 
+    function passInUsername() {
+        return authEmailName;
+    }
+
 
           
 
@@ -1295,8 +1299,9 @@ export default function ConversationNodeEditingPanel() {
                     triggerRmUpdate={notifyRmUpdated}
 
                     getUILanguage={passInUILanguage}    
-                    username={state.userName} 
-                    projName={state.projectName}                
+
+                    projName={state.projectName}  
+                    getUsername={passInUsername}
                 />
                                                                     {/* } */}
             </div>
@@ -1315,7 +1320,8 @@ export default function ConversationNodeEditingPanel() {
                     resetNeedCloudData={markNextNeedCloudGameData} 
 
                     getUILanguage={passInUILanguage}
-                    username={state.userName} 
+
+                    getUsername={passInUsername}
                     projName={state.projectName}    
                 />   
             </div>
@@ -1339,7 +1345,7 @@ export default function ConversationNodeEditingPanel() {
                     getUILanguage={passInUILanguage}
                     isForGameMaker={false}
 
-                    username={state.userName} 
+                    getUsername={passInUsername}
                     projName={state.projectName}  
 
                 />

@@ -9,7 +9,7 @@ export default function NavigationSetter({initialNavObj,
   updateNavObj, openRm, 
   triggerUpdateCurrPageName, fetchPageName,
   initialScreenHeight, getScreenheight,
-  userName,
+
   projName,
   getUsername, //TODO2000
 

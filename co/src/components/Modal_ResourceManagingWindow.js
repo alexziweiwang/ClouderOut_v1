@@ -13,7 +13,7 @@ import langDictionary from './_textDictionary';
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh,
     getUILanguage,
-    username, projName,
+    projName,
 
     getUsername //TODO2000
 
@@ -108,14 +108,32 @@ export default function Modal_ResourceManagingWindow ({
 
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
+
+    const [username, setUsername] = useState("_");
+
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
                                         console.log("ResourceManager-ModalWindow: First Enter!");
-            fetchRmFileList();
-            fetchProjResourceVarPairLists();
+
+   
+
+
             setFirstTimeEnter(false);
         }
+
+        let unameTemp = getUsername();
+
+        if (unameTemp !== "_") {
+            fetchRmFileList(unameTemp);
+            fetchProjResourceVarPairLists(unameTemp); //TODO2000
+
+
+            setUsername(unameTemp);
+        }
+
+
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
     });
@@ -245,10 +263,10 @@ export default function Modal_ResourceManagingWindow ({
 
     }
 
-    async function fetchProjResourceVarPairLists() {
+    async function fetchProjResourceVarPairLists(usernameTemp) {
         /* fetch from cloud db */
         //TODO500     
-        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+        const obj = await fetchProjectResourceVarPairsVM({userName: usernameTemp, projectName: projName});
         
                                     //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
 
@@ -287,27 +305,29 @@ export default function Modal_ResourceManagingWindow ({
         setClickedFileType(item["filetype"]);
     }
 
-    async function updateUploadedFileRecords(username, fileName, type) {
+    async function updateUploadedFileRecords(fileName, type) {
         let url = await fetchUrlByFilenameVM({fullFilename: fileName});
                                             console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
         if (url === undefined || url === "") {
                                             console.log("\trmWindow -- Error: empty url"); //TODO test
             return;
         }
+
+
         await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
  
-        await fetchRmFileList();
+        await fetchRmFileList(username);
     }
 
     async function updateGoogleDriveFileRecords(type, addedFileName) {
         await addToRmFileListVM({uname: username, filetitle: addedFileName, fileUrl: googleDriveFileDisplayLink, fileType: type});
         
-        await fetchRmFileList();
+        await fetchRmFileList(username);
     }
 
-    async function fetchRmFileList() { //TODO temp debugging
+    async function fetchRmFileList(authUsername) { //TODO temp debugging
 
-        const fileList = await getRmFileListVM({uname: username});
+        const fileList = await getRmFileListVM({uname: authUsername});
         if (fileList === undefined || fileList === null) {
             return;
         }
@@ -414,7 +434,7 @@ export default function Modal_ResourceManagingWindow ({
         let userResponse = window.confirm("Are you sure to delete this resource from all projects?");
         if (userResponse) {
             await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
-            await fetchRmFileList();
+            await fetchRmFileList(username);
             //update resource's var-pair list
             let emptyObj = {};
             storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);

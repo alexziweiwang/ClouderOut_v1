@@ -2232,9 +2232,7 @@ console.log("\t\t\t fetched from local ds ");
 
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
 
-                username={authEmailName} 
                 projName={projectName}   
-
                 getUsername={passInAuthEmailName}
 
             
@@ -2257,7 +2255,6 @@ console.log("\t\t\t fetched from local ds ");
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
 
                 projName={projectName}  
-
                 getUsername={passInAuthEmailName}
 
               />
@@ -2283,7 +2280,6 @@ console.log("\t\t\t fetched from local ds ");
               isForGameMaker={true}
 
               projName={projectName}  
-
               getUsername={passInAuthEmailName}
 
             />
