@@ -458,6 +458,3 @@ export const shp5Template = {
     "shopStock": [],
     "playerPurchaseStatus":  []
 }
-
-
-//TODO2000 emu4sets sub-object templates adding!!

@@ -191,7 +191,7 @@ export default function GameMaker({projectName}) {
       /* fetch from cloud db */
       //TODO500     
       const obj = await fetchProjectResourceVarPairsVM({
-        userName: username, 
+        userName: authEmailName, 
         projectName: projectName
       });
       
@@ -481,15 +481,18 @@ export default function GameMaker({projectName}) {
     
     const gdataTestResult = await getProjectGameDataDesignVM({
       projectName: project, 
-      uname: username, 
+      uname: authEmailName, 
       mostUpdated: isUpdated});
       
     if (gdataTestResult === undefined) {
-      console.log("Error: no game_data in this project...");
-      return;
+      console.log("no game_data in this project...");
+      let gdataTestResult = [];
+      setGameDataDesignList(gdataTestResult);
+    } else {
+             console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
+      setGameDataDesignList(gdataTestResult);      
     }
-              console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-    setGameDataDesignList(gdataTestResult);
+ 
     return gdataTestResult;
 
   }
@@ -510,7 +513,7 @@ export default function GameMaker({projectName}) {
     }
     updateGameDataDesignVM({
       projectName: project, 
-      uname: username, 
+      uname: authEmailName, 
       gameData: gameDataLatest
     });
 
@@ -532,7 +535,7 @@ export default function GameMaker({projectName}) {
   async function getChapterDataFromCloud(chapter) {
     return await getChapterDataVM({
       projectName: projectName, 
-      uname: username, 
+      uname: authEmailName, 
       chapterName: chapter
     });
    
@@ -647,7 +650,7 @@ export default function GameMaker({projectName}) {
 
     let ans = await fetchProjectUILangVM({
       projectName: projectName, 
-      currUser: username
+      currUser: authEmailName
     }); //TODO21
 
     setLanguageCodeTextOption(ans);
@@ -937,7 +940,7 @@ export default function GameMaker({projectName}) {
           await addNewNodeFoldersVM(
             { 
                 project: projectName,
-                username: username,
+                username: authEmailName,
                 nodeList: waitlist, 
                 chapterKey: currChapterKey
             }
@@ -1156,7 +1159,7 @@ export default function GameMaker({projectName}) {
 
       await updateProjectUILangVM({
         projectName: projectName, 
-        currUser: username, 
+        currUser: authEmailName, 
         selectedUILang: val
       });
     }
@@ -1260,7 +1263,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
         await updateChapterNodesToCloudDataVM({
             projectName: projectName, 
-            currUser: username,
+            currUser: authEmailName,
             chapterNodeMappingObj: nodeMap
         });      
         setNodeMapUpdatedSignal(false);
@@ -1333,7 +1336,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
     await addNewOneChapterFolderVM({
       project: projectName,
-      username: username,
+      username: authEmailName,
       chapterKey: chapterInfo[0]
     });
 
@@ -1435,7 +1438,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
     let data = await fetchChapterNodeMappingVM({   
         projectName: projectName, 
-        currUser: username,
+        currUser: authEmailName,
     });
 
     if (data === undefined || data === null) {
@@ -1484,7 +1487,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
     await updateProjectNavigationSettingsVM({
       projectName: projectName, 
-      currUser: username,
+      currUser: authEmailName,
       dataObj: currentProjectNav
     });
     
@@ -1494,7 +1497,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
     let data = await fetchProjectNavigationSettingsVM({
       projectName: projectName, 
-      currUser: username,
+      currUser: authEmailName,
     })
     setCurrentProjectNav(data);
   }
@@ -1521,7 +1524,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     await updateChapterListToCloudVM(
       {
         projectName: projectName, 
-        currUser: username,
+        currUser: authEmailName,
         chapterListData: chapterListMap
       }
     )
@@ -1534,7 +1537,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     let listTemp = await fetchAllChapterListVM(
       {
         projectName: projectName, 
-        currUser: username      
+        currUser: authEmailName 
       }      
     );
 
@@ -1601,7 +1604,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
       let chapterContentTemp = await fetchNodeDataEachChapterVM(
         {
           projectName: projectName, 
-          uname: username, 
+          uname: authEmailName, 
           chapterKey: givenChapterKey
         }
       );
@@ -1716,7 +1719,7 @@ console.log("\t\t\t fetched from local ds ");
 
 
 //     let data = await fetchNodeDataEntireProjectVM({
-//       uname: username, 
+//       uname: authEmailName, 
 //       projectName: projectName
 //     });
 
@@ -1879,7 +1882,7 @@ console.log("\t\t\t fetched from local ds ");
 
         {!isDisplayRmBool && 
         <ChapterManager 
-          currUser={username} 
+          currUser={authEmailName} 
           projectName={projectName} 
           initialChapterData={chapterList} 
           getChapterDataInfo={passInChapterList}
@@ -1902,7 +1905,7 @@ console.log("\t\t\t fetched from local ds ");
         />}
 
         <NodeManager 
-          currUser={username} 
+          currUser={authEmailName} 
           projectName={projectName} 
           initialChapterKey={currChapterKey}
           getNodeMapOfChapter={passInCurrentChapterNodeMap}
@@ -1971,7 +1974,7 @@ console.log("\t\t\t fetched from local ds ");
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
                   getScreenheight={passInScreenHeight}
-                  userName={username} 
+                  userName={authEmailName} 
                   projName={projectName} 
 
                   intialEmuPlayerProfile={testPlayerProfile}
@@ -2083,7 +2086,7 @@ console.log("\t\t\t fetched from local ds ");
  
           uiLangOption={languageCodeTextOption}
 
-          username={username}
+          username={authEmailName}
           projectname={projectName}
 
           initialShopItemInfo={testShopProducts}
@@ -2214,7 +2217,7 @@ console.log("\t\t\t fetched from local ds ");
 
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
 
-                username={username} 
+                username={authEmailName} 
                 projName={projectName}   
             
               />
@@ -2234,7 +2237,7 @@ console.log("\t\t\t fetched from local ds ");
                 resetNeedCloudData={markNextNeedCloudGameData} 
 
                 getUILanguage={passInUILanguage}  //TODO20 languageOption
-                username={username} 
+                username={authEmailName} 
                 projName={projectName}  
               />
 
@@ -2258,7 +2261,7 @@ console.log("\t\t\t fetched from local ds ");
               getUILanguage={passInUILanguage}
               isForGameMaker={true}
 
-              username={username} 
+              username={authEmailName} 
               projName={projectName}  
 
             />
