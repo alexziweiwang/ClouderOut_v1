@@ -14,7 +14,6 @@ fetchUrlByFilename({fullFilename}) // fetch url by filename, in storage
 fetchProjectResourceVarPairs({userName, projectName}) // fetch var-pair lists
 storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-pair lists
 
-
 */
 
 
@@ -35,6 +34,7 @@ export async function submitFile({file, uname, filename}) {
       return;
     } else {
       const storageRef = ref(storage, `rm001test/${filename}`);
+//TODO900
 
       uploadBytes(storageRef, file);
 
@@ -228,10 +228,3 @@ export async function storeProjectResourceVarPairsToCloud({userName, projectName
 
 }
 
-export async function deleteUploadedFile({username, filename}) {
-  // for direct-uploaded file
-  // in both storage and db, delete the specified file or file-record
-
-  await removeFromRmFileList();
-
-}

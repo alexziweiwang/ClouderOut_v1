@@ -2,6 +2,8 @@ import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 
+
+//fetch node-data by node-key
 export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nodeKey}) {
 
     let obj = {};
@@ -26,7 +28,7 @@ export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nod
 
 }
 
-
+//fetch all-node-data by entire chapter
 export async function fetchNodeDataEachChapter({projectName, uname, chapterKey}) {
 
     let dataMap = {};
@@ -45,9 +47,4 @@ export async function fetchNodeDataEachChapter({projectName, uname, chapterKey})
     return dataMap;
 }
 
-export async function fetchNodeDataEntireProject({projectName, uname}) {
-    let allNodeData = {};
-//todo200
-    return allNodeData;
-}
 

@@ -22,7 +22,6 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import { 
   getProjectGameDataDesignVM, 
   updateGameDataDesignVM, 
-  getChapterDataVM 
 } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { 
@@ -44,7 +43,6 @@ import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { 
   fetchNodeDataEachNodeVM, 
   fetchNodeDataEachChapterVM, 
-  fetchNodeDataEntireProjectVM 
 } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
@@ -527,15 +525,6 @@ export default function GameMaker({projectName}) {
 
   function resetGdmUpdateSignal() {
     setGdmUpdatedSignal(false);
-  }
-
-  async function getChapterDataFromCloud(chapter) {
-    return await getChapterDataVM({
-      projectName: projectName, 
-      uname: authEmailName, 
-      chapterName: chapter
-    });
-   
   }
 
   function passInGameDataDesignList() {
@@ -1722,17 +1711,6 @@ console.log("\t\t\t fetched from local ds ");
 
 
 
-//     let data = await fetchNodeDataEntireProjectVM({
-//       uname: authEmailName, 
-//       projectName: projectName
-//     });
-
-//     if (data !== undefined) {
-//       set CurrChapterContent(data);
-//     }
-
-//     console.log("fetchcurrChapterContentFromCloud, data = ", data);
-    
 
 //     //TODO100
   

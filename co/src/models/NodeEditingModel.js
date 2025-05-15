@@ -1,7 +1,7 @@
 import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
-
+//update node-content + node-ui-settings
 export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj}) {
     
     const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
@@ -28,7 +28,7 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 }
 
 
-
+//get both node-content and node-ui-settings
 export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
   const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
   const projectNodeSnap = await getDoc(projectNodeRef);
@@ -47,7 +47,7 @@ export async function convNodeBothPartsFromCloud({project, username, chapterKey,
 }
 
 
-
+//for locally-added nodes, add these to cloud?  //TODOtest later
 export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
 
     const ref = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey);

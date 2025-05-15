@@ -47,24 +47,3 @@ export async function updateGameDataDesign({projectName, uname, gameData}) {
   });
 }
 
-export async function getChapterData({projectName, uname, chapterName}) {
-  //TODO fetch chapter data in the specified project of that user
-  
-  if (projectName === "" || projectName === undefined) {
-    return;
-  }
-
-              //TODO later: need to add"chapter_name" after creating a new chapter
-  const chapterRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterName);
-  const chapterSnap = await getDoc(chapterRef);
-  if (!chapterSnap.exists()) {
-                                  console.log("chapter-key does not exist..."); //TODO test
-    return;
-  }
-
-  let projectData = chapterSnap.data();
- 
-                                  console.log("game-data-model(cloud): getChapterData", projectData); //TODO test
-
-  return projectData;
-}

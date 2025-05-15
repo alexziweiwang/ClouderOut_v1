@@ -22,7 +22,6 @@ export async function fetchChapterNodeMapping({projectName, currUser}) {
     return obj;
 }
 
-
 export async function fetchAllChapterList({projectName, currUser}) {
     let list = [];
     
@@ -42,7 +41,7 @@ export async function fetchAllChapterList({projectName, currUser}) {
     return list;
 }
 
-
+//updates chapter's node-mapping
 export async function updateChapterNodesToCloudData({projectName, currUser, chapterNodeMappingObj, chapterNodeGridBlocks}) {
 
     //TODO
@@ -62,8 +61,6 @@ export async function updateChapterNodesToCloudData({projectName, currUser, chap
     });
 }
 
-
-
 export async function updateChapterListToCloud({projectName, currUser, chapterListData}) {
 
     const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
@@ -81,7 +78,6 @@ export async function updateChapterListToCloud({projectName, currUser, chapterLi
 //TODO test
 
 }
-
 
 export async function addNewChapterFolders({project, username, chapterKeyList}) {
     const ref = doc(db, "user_projects", username, "projects", project);

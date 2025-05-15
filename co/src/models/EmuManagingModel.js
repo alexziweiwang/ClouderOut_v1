@@ -103,9 +103,6 @@ export async function fetchEmuData5Shp({projectName, currUser}) {
     return obj;
 }
 
-
-
-
 export async function updateAllSets({projectName, currUser, dataObj}) {
                                                         //console.log("model-updateAllSets-func:", dataObj); //TODO test
 

@@ -9,6 +9,14 @@ function fetchProjectList(currUser
 function revertProject(projectToRevert, currUser)
 function deleteProject(projectToDelete, currUser)
 function createProject(currUser, projectName, projectObj)
+function updateProjectUILang({projectName, currUser, selectedUILang})
+function fetchProjectUILang({projectName, currUser})
+function updateProjectNavigationSettings({projectName, currUser, dataObj})
+fetchProjectNavigationSettings({projectName, currUser})
+function saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType})
+function fetchConvNodeUiAllPlans({projectName, currUser, nodeType})
+function addNewAccountFolder({userId, username})
+
 
 */
 
@@ -20,7 +28,7 @@ function createProject(currUser, projectName, projectObj)
  * @returns list of project names
  */
 export async function fetchProjectList(currUser) {
-
+//firebase
                           console.log("*from cloud*: model-func - fetch project list ...", currUser);
   
   const docRef = doc(db, "user_projects", currUser);
@@ -46,6 +54,8 @@ const q = query(collection(docRef, "projects")); // new version
   return projectArr;
 }
 
+
+
 /**
  * Revert deleted proejct to using
  * 
@@ -54,6 +64,7 @@ const q = query(collection(docRef, "projects")); // new version
  * @returns void
  */
 export async function revertProject({projectToRevert, currUser}) {
+//firebase  
     const projRef = doc(db, "user_projects", currUser, "projects", projectToRevert);
 
     await updateDoc(projRef, {trashed: false});  
@@ -67,13 +78,15 @@ export async function revertProject({projectToRevert, currUser}) {
  * @returns void
  */
 export async function deleteProject({projectToDelete, currUser}) {
-
+//firebase
   const projRef = doc(db, "user_projects", currUser, "projects", projectToDelete);
 
   await updateDoc(projRef, {trashed: true});
   
 }
 
+
+//firebase
 export async function createProject({currUser, projectName, projectObj}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
@@ -92,13 +105,15 @@ export async function createProject({currUser, projectName, projectObj}) {
   })
 }
 
-
+//firebase
 export async function updateProjectUILang({projectName, currUser, selectedUILang}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
   await updateDoc(projRef, {ui_language: selectedUILang});
 }
 
+
+//firebase
 export async function fetchProjectUILang({projectName, currUser}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
   const projSnap = await getDoc(projRef);
@@ -112,6 +127,8 @@ export async function fetchProjectUILang({projectName, currUser}) {
   return projectData.ui_language;
 }
 
+
+//firebase
 export async function updateProjectNavigationSettings({projectName, currUser, dataObj}) {
   //TODO: update nav-ui-settings from dataObj
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
@@ -124,6 +141,7 @@ export async function updateProjectNavigationSettings({projectName, currUser, da
 
 }
 
+//firebase
 export async function fetchProjectNavigationSettings({projectName, currUser}) {
   let dataObj = {};
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
@@ -142,6 +160,8 @@ export async function fetchProjectNavigationSettings({projectName, currUser}) {
   return dataObj;
 }
 
+
+//firebase
 export async function saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
 
@@ -156,6 +176,7 @@ export async function saveConvNodeUiPlan({projectName, currUser, updatedAllPlans
 
 }
 
+//firebase
 export async function fetchConvNodeUiAllPlans({projectName, currUser, nodeType}) {
   const projRef = doc(db, "user_projects", currUser, "projects", projectName);
   const projSnap = await getDoc(projRef);
@@ -174,10 +195,12 @@ export async function fetchConvNodeUiAllPlans({projectName, currUser, nodeType})
 
 }
 
+
+//firebase
 export async function addNewAccountFolder({userId, username}) {
                   //Note: userId is the email-address that converted to string with "_"
 
-                                console.log("add-new-account-folders for: [", username, "]");
+                                console.log("_firebase_   add-new-account-folders for: [", username, "]");
 
 
 

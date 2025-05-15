@@ -3,7 +3,7 @@ import langDictionary from './_textDictionary';
 
 
 //TODO20 cloud-func
-import { getProjectGameDataDesignVM, updateGameDataDesignVM, getChapterDataVM  } from '../viewmodels/GameDataViewModel';
+import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 
 
