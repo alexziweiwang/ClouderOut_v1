@@ -16,22 +16,21 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 
 //TODO1000 test for: user_name updating for auth
 
-//TODO20 cloud-func (marked)
+
+
+//TODO1090 cloud-db related
 import { 
   getProjectGameDataDesignVM, 
   updateGameDataDesignVM, 
   getChapterDataVM 
 } from '../viewmodels/GameDataViewModel';
-
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-
 import { 
   updateProjectUILangVM, 
   fetchProjectUILangVM, 
   updateProjectNavigationSettingsVM, 
   fetchProjectNavigationSettingsVM,
 } from '../viewmodels/ProjectManagerViewModel';
-
 import { 
   fetchChapterNodeMappingVM, 
   updateChapterNodesToCloudDataVM, 
@@ -39,7 +38,6 @@ import {
   updateChapterListToCloudVM, 
   addNewOneChapterFolderVM 
 } from '../viewmodels/ChapterInfoViewModel';
-
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
 
@@ -2093,10 +2091,6 @@ console.log("\t\t\t fetched from local ds ");
       
           initialPlayerSlRecords={testPlayerSLRecords}
 
-        
-                                      
-
- 
           uiLangOption={languageCodeTextOption}
 
           username={authEmailName}

@@ -9,9 +9,10 @@ import langDictionary from './_textDictionary';
 //TODO700 feature: latest edited project ... (create or save)
 
 
-//TODO20 cloud-func
+//TODO1090 cloud-db related
 import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
-//TODO115 collection of cloud-related
+//TODO1090 collection of cloud-related
+
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
-//TODO20 cloud-func
+//TODO1090 cloud-db related
 import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';

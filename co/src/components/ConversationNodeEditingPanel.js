@@ -16,12 +16,15 @@ import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
 
-//TODO20 cloud-func (marked)
+//TODO1090 cloud-db related
 import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
  
+
+
+
 //TODO1010 username by auth
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 import { userLogOutVM } from '../viewmodels/AccountViewModel';

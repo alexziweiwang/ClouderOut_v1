@@ -3,7 +3,8 @@ import Sidebar from './Sidebar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-//TODO20 cloud-func
+//TODO1090 cloud-db related
+
 import { getProjectInfoVM } from '../viewmodels/AccountViewModel';
 //TODO115 collection of cloud-related
 
