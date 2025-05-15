@@ -13,9 +13,7 @@ import langDictionary from './_textDictionary';
 import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
 //TODO115 collection of cloud-related
 
-//TODO1010 username by auth
-//TODO1050 did replace with the auth-email-name
-import { convertEmailAddr, getAuthFirebase } from '../authtools/firebaseAuthOperations';
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
@@ -64,8 +62,7 @@ export default function ProjectManagerPanel() {
 
 
 
-    const [authRawEmail, setAuthRawEmail] = useState("_");
-    const [authEmailString, setAuthEmailString] = useState("_");
+    const [authEmailName, setAuthEmailName] = useState("_");
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -76,29 +73,27 @@ export default function ProjectManagerPanel() {
       getAuthFirebase(
         {
           goToNotLoggedInPageFunc: goToNotLoggedInPage,
-          sendOutEmailName: receiveChangeOfAuthRawEmail
+          sendOutEmailName: receiveChangeOfAuthEmailName
 
         }
       );
         
-      console.log("project managing panel page --\t\tauthEmamilName is [", authRawEmail, "]");
+      console.log("project managing panel page --\t\tauthEmamilName is [", authEmailName, "]");
 
 
     }, [firstTimeEnter]);
 
-    async function receiveChangeOfAuthRawEmail(emailAddrRaw) {
+    async function receiveChangeOfAuthEmailName(emailAddrStr) {
     
-      setAuthRawEmail(emailAddrRaw);
+      setAuthEmailName(emailAddrStr);
 
-      let emailStringTemp = convertEmailAddr(emailAddrRaw);
-      setAuthEmailString(emailStringTemp);
 
-      if (emailStringTemp === "_") {
+      if (emailAddrStr === "_") {
         console.log("empty username(email-string)");
         return;
 
       } else {
-        await loadProjectListFromCloud(emailStringTemp);
+        await loadProjectListFromCloud(emailAddrStr);
       }  
   
     }
@@ -118,7 +113,7 @@ export default function ProjectManagerPanel() {
         replace: true, 
         state: { 
           selected_project_name: selected_project_name, 
-          username: authRawEmail 
+          username: authEmailName 
         
         } });
 
@@ -165,11 +160,11 @@ export default function ProjectManagerPanel() {
       await revertProjectVM(
         {
           projectToRevert: selectedTrashedProj, 
-          currUser: authEmailString
+          currUser: authEmailName
         });
 
       setSelectedTrashedProj("");
-      loadProjectListFromCloud(authEmailString);
+      loadProjectListFromCloud(authEmailName);
     }
 
     function handleDeleteProject() {
@@ -183,12 +178,12 @@ export default function ProjectManagerPanel() {
       await deleteProjectVM( 
         { 
           projectToDelete: selected_project_name, 
-          currUser: authEmailString
+          currUser: authEmailName
         }
       );
       
       setProjectName("");
-      loadProjectListFromCloud(authEmailString);
+      loadProjectListFromCloud(authEmailName);
     }
 
     function notUsing() {
@@ -196,12 +191,12 @@ export default function ProjectManagerPanel() {
     }
 
     function triggerCreationSubmit() {
-      loadProjectListFromCloud(authEmailString);
+      loadProjectListFromCloud(authEmailName);
       setCurrentProjectAction("selectProject");
     }
 
     function passInEmailUsername() {
-      return authEmailString; //TODO1030
+      return authEmailName; //TODO1030
     }
 
     let name = "/projectmanagingpanel";
@@ -246,7 +241,7 @@ export default function ProjectManagerPanel() {
                 showCancelButton={false}
                 isPart={true}
                 triggerCreationSubmit={triggerCreationSubmit}
-                username={authEmailString}
+                username={authEmailName}
               />
             </div>
 

@@ -49,7 +49,7 @@ export default function Viewer_Entire({
 
 
     projectname,
-    getUsername, //TODO2000
+    username,
 
 
     initialShopItemInfo,

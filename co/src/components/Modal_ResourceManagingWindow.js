@@ -15,7 +15,7 @@ export default function Modal_ResourceManagingWindow ({
     getUILanguage,
     projName,
 
-    getUsername //TODO2000
+    getUsername //TODO1000 test
 
 }) {
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
@@ -127,7 +127,7 @@ export default function Modal_ResourceManagingWindow ({
 
         if (unameTemp !== "_") {
             fetchRmFileList(unameTemp);
-            fetchProjResourceVarPairLists(unameTemp); //TODO2000
+            fetchProjResourceVarPairLists(unameTemp);
 
 
             setUsername(unameTemp);

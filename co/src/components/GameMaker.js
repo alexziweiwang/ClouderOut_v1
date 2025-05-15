@@ -14,7 +14,7 @@ import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
 
 
-//TODO2000 username updating for auth
+//TODO1000 test for: user_name updating for auth
 
 //TODO20 cloud-func (marked)
 import { 
@@ -50,7 +50,6 @@ import {
 } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
-//TODO1010 username by auth
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 import { userLogOutVM } from '../viewmodels/AccountViewModel';
 

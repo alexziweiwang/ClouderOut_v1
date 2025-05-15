@@ -18,7 +18,7 @@ export default function Modal_GameDataManager ({
 
         projName,
 
-        getUsername //TODO2000
+        getUsername //TODO1000 test
 
     }) {
 
@@ -122,7 +122,7 @@ export default function Modal_GameDataManager ({
                 //                               console.log("GameDataManager-ModalWindow: First Enter!");
                 setUsername(unameTemp);
             }
-            
+
             // setFirstTimeEnter(false);
         }
         let UILang = getUILanguage();
