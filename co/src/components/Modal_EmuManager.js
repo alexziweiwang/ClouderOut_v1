@@ -401,7 +401,7 @@ export default function Modal_EmuManager({
             let isUpdated = true;
             let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
                                     console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
-                                    
+
             if (gDataDesignMap === null || gDataDesignMap === undefined) {
                 return;
             }
@@ -443,7 +443,12 @@ export default function Modal_EmuManager({
     async function prepare2Epp() {
         // if local is not ready, from cloud
         let tempObj2 = await fetchEmuData2EppVM({projectName: projName, currUser: username});
-        let objSize = Object.keys(tempObj2).length;
+
+        let objSize = 0;
+        if (tempObj2 !== undefined) {
+            objSize = Object.keys(tempObj2).length;
+        } 
+
         if (objSize === 0 || tempObj2 === undefined || tempObj2 === null) {
             // initialize
 
@@ -451,7 +456,7 @@ export default function Modal_EmuManager({
                 "playername": "playerA",
                 "userTitle": "title1",
                 "iconPicName": "",
-                "level": 2,
+                "level": 1,
                 "membership": 1,
             };
         }
@@ -464,7 +469,13 @@ export default function Modal_EmuManager({
     async function prepare3Epa() {
         // if local is not ready, from cloud
         let tempObj3 = await fetchEmuData3EpaVM({projectName: projName, currUser: username});
-        let objSize = Object.keys(tempObj3).length;
+
+
+        let objSize = 0;
+        if (tempObj3 !== undefined) {
+            objSize = Object.keys(tempObj3).length;
+        } 
+
         if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
             tempObj3 = {
                 "playername": "playerA",
@@ -688,11 +699,14 @@ export default function Modal_EmuManager({
 
         let tempMap = {};
         let resVis = obj.visual;
-        resVis.map((item, index) => {  
-            let varName = item["var"];
-            let urlName = item["url"];
-            tempMap[varName] = urlName;
-        });
+        if (resVis !== undefined && resVis !== null) {
+            resVis.map((item, index) => {  
+                let varName = item["var"];
+                let urlName = item["url"];
+                tempMap[varName] = urlName;
+            });
+        }
+
 
         setVisualMap(tempMap);
 
