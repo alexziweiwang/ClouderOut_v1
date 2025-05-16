@@ -7,7 +7,7 @@ import {fetchProjectList, revertProject,
     saveConvNodeUiPlan,
     fetchConvNodeUiAllPlans,
     addNewAccountFolder
-} from '../models/ProjectManagerModel';
+} from '../models/ProjectManagerModel_Firebase';
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
 export async function fetchProjectListVM(currUser) {

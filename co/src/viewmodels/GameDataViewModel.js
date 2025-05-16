@@ -1,4 +1,4 @@
-import { getProjectGameDataDesign, updateGameDataDesign } from '../models/GameDataModel';
+import { getProjectGameDataDesign, updateGameDataDesign } from '../models/GameDataModel_Firebase';
 
 /**
  * Get project data, call cloud-db related model function
