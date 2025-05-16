@@ -92,6 +92,7 @@ export async function updateProjectNavigationSettingsVM({projectName, currUser, 
 
 export async function fetchProjectNavigationSettingsVM({projectName, currUser}) {
     let res = {};
+    
     if (backendFlag === "firebase") {
         res = await fetchProjectNavigationSettings({projectName, currUser});
     }
@@ -117,6 +118,10 @@ export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType
 
 export async function addNewAccountFolderVM({userId, username}) {
     //TODO1000 valid username
+    let res = {};
     
-    return await addNewAccountFolder({userId, username});
+    if (backendFlag === "firebase") {
+        res = await addNewAccountFolder({userId, username});
+    }
+    return res;
 }
