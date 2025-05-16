@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import langDictionary from './_textDictionary';
 
-import { userLogOutVM } from '../viewmodels/AccountViewModel';
+import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
 export default function Sidebar({compName, username, getUsername}) {
   //  console.log("sidebar, compName:", compName);

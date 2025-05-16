@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import { userSignUpVM, userLogInVM, userLogOutVM } from '../viewmodels/AccountViewModel';
+import { userSignUpVM, userLogInVM, userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
 //TODO1090 cloud-db related
 import { addNewAccountFolderVM } from '../viewmodels/ProjectManagerViewModel';

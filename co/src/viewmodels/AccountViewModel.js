@@ -1,17 +1,14 @@
 import { 
-    getProjectInfo, 
+    getProfileInfo, 
     getUserDefaultUILang, 
     updateUserDefaultUILang, 
-    userSignUp, 
-    userLogIn, 
-    userLogOut 
 } from '../models/AccountModel';
 
 
 /**
 List of functions:
 
-function getProjectInfoVM({uname})
+function getProfileInfoVM({uname})
 
 */
 
@@ -21,8 +18,8 @@ function getProjectInfoVM({uname})
  * @param {*} uname username
  * @returns profile data
  */
-export async function getProjectInfoVM({uname}) {
-    const profile = await getProjectInfo({uname});
+export async function getProfileInfoVM({uname}) {
+    const profile = await getProfileInfo({uname});
     return profile;
 }
 
@@ -34,17 +31,4 @@ export async function getUserDefaultUILangVM({uname}) {
 
 export async function updateUserDefaultUILangVM({uname, newUILang}) {
     await updateUserDefaultUILang({uname, newUILang});
-}
-
-export async function userSignUpVM({email, password, setFunc, succInfoFunc}) {
-    let msg = await userSignUp({email, password, setFunc, succInfoFunc});
-    return msg;
-}
-
-export async function userLogInVM({email, password, loggedInFunc}) {
-    await userLogIn({email, password, loggedInFunc});
-}
-
-export async function userLogOutVM() {
-    await userLogOut();
 }

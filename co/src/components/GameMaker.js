@@ -47,9 +47,6 @@ import {
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
-import { userLogOutVM } from '../viewmodels/AccountViewModel';
-
-
 
 
 import langDictionary from './_textDictionary';

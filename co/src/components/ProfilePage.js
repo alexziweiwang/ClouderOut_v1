@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 //TODO1090 cloud-db related
 
-import { getProjectInfoVM } from '../viewmodels/AccountViewModel';
+import { getProfileInfoVM } from '../viewmodels/AccountViewModel';
 //TODO115 collection of cloud-related
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
@@ -62,7 +62,7 @@ export default function ProfilePage({}) {
             console.log("Not getting profile -- no state");
             return;
         }
-        profile = await getProjectInfoVM({uname: username});
+        profile = await getProfileInfoVM({uname: username});
         console.log("page: ", profile); //TODO test
         setProfile(profile);
     }

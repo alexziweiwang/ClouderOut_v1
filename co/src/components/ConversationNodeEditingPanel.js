@@ -27,7 +27,6 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 //TODO1010 username by auth
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
-import { userLogOutVM } from '../viewmodels/AccountViewModel';
 
 
 
