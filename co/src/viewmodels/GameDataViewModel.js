@@ -1,5 +1,7 @@
 import { getProjectGameDataDesign, updateGameDataDesign } from '../models/GameDataModel_Firebase';
 
+const backendFlag = "firebase"; //TODO6000
+
 /**
  * Get project data, call cloud-db related model function
  * 
@@ -8,7 +10,12 @@ import { getProjectGameDataDesign, updateGameDataDesign } from '../models/GameDa
  * @returns 
  */
 export async function getProjectGameDataDesignVM({projectName, uname}) {
-    const result = await getProjectGameDataDesign({projectName, uname});
+    const result = {};
+
+    if (backendFlag === "firebase") {
+        result = await getProjectGameDataDesign({projectName, uname});
+    }
+
     return result;
 }
 
@@ -20,5 +27,8 @@ export async function getProjectGameDataDesignVM({projectName, uname}) {
  * @param {*} gameData game data
  */
 export async function updateGameDataDesignVM({projectName, uname, gameData}) {
-    await updateGameDataDesign({projectName, uname, gameData});
+    if (backendFlag === "firebase") {
+        await updateGameDataDesign({projectName, uname, gameData});
+    }
+    
 }
