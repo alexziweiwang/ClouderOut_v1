@@ -284,7 +284,10 @@ export default function NodeManager({projectName, currUser,
   
 
       let gameDataTemp = getGameData();
-      setGameDataLocal(gameDataTemp);
+      if (gameDataTemp !== undefined) {
+        setGameDataLocal(gameDataTemp);  
+      }
+      
       let gameDataUpdatedSignal = getGdmUpdatedSignal();
       if (gameDataUpdatedSignal === true) {
         //TODO refresh...

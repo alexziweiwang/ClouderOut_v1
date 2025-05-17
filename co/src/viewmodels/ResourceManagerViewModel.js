@@ -18,7 +18,7 @@ export async function submitFileVM({file, uname, filename}) {
 }
 
 export async function getRmFileListVM({uname}) {
-    const arr = [];
+    let arr = [];
 
     if (backendFlag === "firebase") {
         arr = await getRmFileList({uname});

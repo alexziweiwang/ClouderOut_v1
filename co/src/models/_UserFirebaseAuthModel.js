@@ -1,5 +1,5 @@
-import  { auth } from '../GoogleCloudConnections'; //TODO23 database
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import  { auth } from '../GoogleCloudConnections';
 
 
 //user's account

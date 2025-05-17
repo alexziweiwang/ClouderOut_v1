@@ -14,7 +14,7 @@ const backendFlag = "firebase"; //TODO6000
 /* Returns list of project names according to given parameter: untrashed or trashed */
 export async function fetchProjectListVM(currUser) {
 
-    const group = {"untrashed": {}, "trashed": {}};
+    let group = {"untrashed": {}, "trashed": {}};
 
     if (backendFlag === "firebase") {
             const res = await fetchProjectList(currUser);

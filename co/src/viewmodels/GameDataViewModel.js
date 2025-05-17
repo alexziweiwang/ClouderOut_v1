@@ -10,7 +10,7 @@ const backendFlag = "firebase"; //TODO6000
  * @returns 
  */
 export async function getProjectGameDataDesignVM({projectName, uname}) {
-    const result = {};
+    let result = {};
 
     if (backendFlag === "firebase") {
         result = await getProjectGameDataDesign({projectName, uname});
