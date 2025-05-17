@@ -35,6 +35,8 @@ import {
   updateChapterNodesToCloudDataVM, 
   fetchAllChapterListVM, 
   updateChapterListToCloudVM, 
+
+  
   addNewOneChapterFolderVM 
 } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
@@ -55,7 +57,23 @@ import { emptyConvNodeSinglePieceTemplate, emptyConvNodeUiAllTemplate } from './
 
 export default function GameMaker({projectName}) {
 
-  
+
+/**
+used data structures:
+
+GameDataDesign
+ProjectResourceVarPairs    
+ProjectUILang
+NavigationSettings
+
+
+AllChapterList (used in chapter-manager)
+ChapterNodeMapping (used in node-manager)
+
+Node-Data (multiple, content+ui-setting)
+
+*/
+
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
   const [screenHeight, setScreenHeight] = useState(600);

@@ -16,6 +16,8 @@ import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
 
+
+
 //TODO1090 cloud-db related
 import { convSingleNodeUpdateToCloudVM, convNodeBothPartsFromCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
@@ -35,6 +37,15 @@ export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
  
 
+/**
+used data structures:
+
+single(current) node data (content + ui-settings)
+ProjectResourceVarPairs    
+conv-node-ui-plans
+GameDataDesign
+
+*/
 
 
     const navigate = useNavigate();
