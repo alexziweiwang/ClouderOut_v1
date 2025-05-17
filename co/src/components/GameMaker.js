@@ -61,6 +61,8 @@ export default function GameMaker({projectName}) {
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO
 
+  const [cloudDbConnOk, setCloudDbConnOk] = useState(false);
+
   let textDictItem = langDictionary[languageCodeTextOption];
   let textDictItemDefault = langDictionary["en"];
 
@@ -568,7 +570,8 @@ export default function GameMaker({projectName}) {
 
             console.log("!!! First Enter - GameMaker: ");//TODO testing
 
-        
+            setCloudDbConnOk(false);
+
             //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
             /*
             triggerRefreshFetchCloudData();
@@ -1528,10 +1531,18 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     );
 
     if (listTemp === undefined || listTemp === null) {
-      console.log("test func-fetchChapterListFromCloud(): ...data is invalid");
+              console.log("test func-fetchChapterList-FromCloud(): ...data is invalid");
       setChapterList([]);
+
+
+                                          console.log("Flag: cloud-database connection problem"); //TODO900
+
+
       return [];
     } else {
+
+      setCloudDbConnOk(true);
+
       //convert map into nested array...
       let arrTemp = [];
       Object.keys(listTemp).map((chapterKey) => {   
@@ -1544,7 +1555,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
       })
 
       //TODO test
-      console.log("test func-fetchChapterListFromCloud(): ", arrTemp);
+      console.log("test func-fetchChapterList-FromCloud(): ", arrTemp);
 
       setChapterList(arrTemp);
 
@@ -1767,6 +1778,28 @@ console.log("\t\t\t fetched from local ds ");
 //TODO90 page content
   return (
   <div className="textNoSelect">
+
+
+{cloudDbConnOk === false &&
+
+<>
+<div className="returning_buttons">
+      
+  <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
+
+  <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
+    <label>{projectNameText}: {projectName}</label>
+  
+  </div>    
+
+</div>
+
+
+  <div>Unable to connect to database</div>
+</>
+
+}
+{cloudDbConnOk === true && <>
 <div>
     
     <div className="returning_buttons">
@@ -1835,6 +1868,8 @@ console.log("\t\t\t fetched from local ds ");
     {/*//TODO TESTING */}
 
 
+
+
     <div>
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to load from cloud and cover the project on local?");
@@ -1860,6 +1895,7 @@ console.log("\t\t\t fetched from local ds ");
     
     </div>
     
+
     {showChapterMaker && <div className="parallelFrame sectionArea">
 
         {!isDisplayRmBool && 
@@ -2019,7 +2055,7 @@ console.log("\t\t\t fetched from local ds ");
     
     </>
     }
-   
+
 
 
 
@@ -2253,6 +2289,10 @@ console.log("\t\t\t fetched from local ds ");
             />
           </div>
 </div>
+</>} 
+{/* cloudDbConnOk */}
+
+
 
   </div>
 
