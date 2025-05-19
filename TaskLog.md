@@ -598,6 +598,8 @@
 - 2025-May-16: Deployment prep 7
 - 2025-May-16: Design strategies for data-mapping between metadata and content-data
 
+- 2025-May-19: Deployment prep 8
+
 
 
 
