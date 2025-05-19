@@ -115,6 +115,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       Object.keys(projectNavUiTemplate).map((currKey) => {
         empty_nav_ui_settings[currKey] = projectNavUiTemplate[currKey];
       }); //TODO900 default
+      
 
       const default_size_direction = "h450_800"; //TODO900 default
       const default_ui_language = "en";

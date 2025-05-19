@@ -559,6 +559,8 @@ Node-Data (multiple, content+ui-setting)
  
   const [authEmailName, setAuthEmailName] = useState("_");
 
+  const [firstTimeSwitchTabNavPanel, setFirstTimeSwitchTabNavPanel] = useState(true);
+
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
 
@@ -597,6 +599,7 @@ Node-Data (multiple, content+ui-setting)
             /*
             triggerRefreshFetchCloudData();
 
+            fetchProjectNavigationSettingsFromCloud();
 
             fetchChapterNodeMappingFromCloud();
             
@@ -605,6 +608,7 @@ Node-Data (multiple, content+ui-setting)
             */
             setFirstTimeEnter(false);
         }
+
 
                                 // if (secondTimeEnter === true) {
                                 //   //This area is for any "reset" procedure...
@@ -1496,10 +1500,14 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
   async function fetchProjectNavigationSettingsFromCloud() {
 
+console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
+
     let data = await fetchProjectNavigationSettingsVM({
       projectName: projectName, 
       currUser: authEmailName,
     })
+
+    console.log("data = ", data);
     setCurrentProjectNav(data);
   }
 
@@ -1901,8 +1909,18 @@ console.log("\t\t\t fetched from local ds ");
       }}
       >Save To Cloud</button>
 
-      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{setShowChapterMaker(true);}}>{contentChaptersTabText}</button>
-      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{setShowChapterMaker(false);}}>{menuNavigationsTabText}</button>
+      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{
+        setShowChapterMaker(true);
+        }}>
+          {contentChaptersTabText}</button>
+      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{
+        setShowChapterMaker(false);
+        if (firstTimeSwitchTabNavPanel === true) {
+          fetchProjectNavigationSettingsFromCloud();
+          setFirstTimeSwitchTabNavPanel(false);
+        }
+        }}>
+          {menuNavigationsTabText}</button>
     
     
     </div>
