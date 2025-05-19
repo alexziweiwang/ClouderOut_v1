@@ -31,6 +31,7 @@ export async function fetchAllChapterList({projectName, currUser}) {
 
 
     if (!projectChapSnap.exists()) {
+        console.log("\t\t\tmodel-func fetch-all-chapter-list problem", projectName, "-" ,currUser);
         return;
     }
     list = projectChapSnap.data().chapterList;

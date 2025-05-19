@@ -214,6 +214,7 @@ const tempFontSize = 12;
 
 
         let objTemp = fetchNavObj();
+              console.log("nav-preivew, fetched nav-obj = ", objTemp);
                 
         if (Object.keys(objTemp).length !== Object.keys(navObj).length || objTemp !== navObj) {
    

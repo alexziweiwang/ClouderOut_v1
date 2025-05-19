@@ -36,7 +36,7 @@ import {
   fetchAllChapterListVM, 
   updateChapterListToCloudVM, 
 
-  
+
   addNewOneChapterFolderVM 
 } from '../viewmodels/ChapterInfoViewModel';
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
@@ -79,7 +79,7 @@ Node-Data (multiple, content+ui-setting)
   const [screenHeight, setScreenHeight] = useState(600);
   const [screenWidth, setScreenWidth] = useState(800); //TODO
 
-  const [cloudDbConnOk, setCloudDbConnOk] = useState(false);
+  const [cloudDbConnOk, setCloudDbConnOk] = useState(true);
 
   let textDictItem = langDictionary[languageCodeTextOption];
   let textDictItemDefault = langDictionary["en"];
@@ -582,6 +582,9 @@ Node-Data (multiple, content+ui-setting)
                     
                   console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
             
+        if (authEmailName !== "_") {
+          setCloudDbConnOk(true);
+        }
 
         if (firstTimeEnter === true) {
 
@@ -596,12 +599,10 @@ Node-Data (multiple, content+ui-setting)
 
 
             fetchChapterNodeMappingFromCloud();
-            fetchProjectNavigationSettingsFromCloud();
             
             fetchUILangFromCLoud();
 
             */
-
             setFirstTimeEnter(false);
         }
 
@@ -1098,13 +1099,6 @@ Node-Data (multiple, content+ui-setting)
 
   const emptyValue = {};
 
-  function passInProjectNavData() {
-      return currentProjectNav;
-  }
-
-  function updateProjectNavData(data) {
-    setCurrentProjectNav(data);
-  }
 
   function updateEmuPlayerProfile(data) {
     console.log("game-maker: updateEmuPlayerProfile = ", data); //TODO test
@@ -1918,8 +1912,7 @@ console.log("\t\t\t fetched from local ds ");
 
         {!isDisplayRmBool && 
         <ChapterManager 
-          currUser={authEmailName} 
-          projectName={projectName} 
+
           initialChapterData={chapterList} 
           getChapterDataInfo={passInChapterList}
           
@@ -1941,7 +1934,7 @@ console.log("\t\t\t fetched from local ds ");
         />}
 
         <NodeManager 
-          currUser={authEmailName} 
+          currUser={authEmailName}  //TODO
           projectName={projectName} 
           initialChapterKey={currChapterKey}
           getNodeMapOfChapter={passInCurrentChapterNodeMap}
