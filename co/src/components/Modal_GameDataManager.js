@@ -179,7 +179,7 @@ export default function Modal_GameDataManager ({
         setIsNewDdataTypeBoolean(false);
     }
 
-    function addVarPair() {
+    async function addVarPair() {
         if (newVarName === "") {
             window.alert("Variable name can not be empty.");
             return;
@@ -224,7 +224,7 @@ export default function Modal_GameDataManager ({
     
         //resetNeedCloudData();// TODO remove?
         
-        updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
+        await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
         // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
@@ -308,9 +308,9 @@ export default function Modal_GameDataManager ({
         setEditAreaOpen(true);
     }
 
-    function saveTableChanges() {
+    async function saveTableChanges() {
         //TODO validation? then save changes? for number & boolean types
-        updateVarDefaultValue();
+        await updateVarDefaultValue();
         setEditAreaOpen(false);
         setEditLineDisplay("");
     }
@@ -318,7 +318,7 @@ export default function Modal_GameDataManager ({
         setUpdatedDefaultValue(event.target.value);
     }
 
-    function updateVarDefaultValue() {
+    async function updateVarDefaultValue() {
         if (editLineDisplay === "") {
             console.log("error: empty editing."); //TODO
             return;
@@ -357,10 +357,10 @@ export default function Modal_GameDataManager ({
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        updateGDataDesignToCloud(newGameData);
+        await updateGDataDesignToCloud(newGameData);
     }
 
-    function updateGDataDesignToCloud(gameDataLatest) {
+    async function updateGDataDesignToCloud(gameDataLatest) {
 
 
         if (projName === "" || projName === undefined || projName.trim() === "") {
@@ -368,7 +368,12 @@ export default function Modal_GameDataManager ({
         }
         let currUser = username;
 
-        updateGameDataDesignVM({projectName: projName, uname: currUser, gameData: gameDataLatest});
+        await updateGameDataDesignVM({
+            projectName: projName, 
+            uname: currUser, 
+            gameData: gameDataLatest,
+            bkOption: backendOption
+        });
     
     }
 

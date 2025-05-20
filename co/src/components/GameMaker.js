@@ -21,7 +21,6 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 //TODO1090 cloud-db related
 import { 
   getProjectGameDataDesignVM, 
-  updateGameDataDesignVM, 
 } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { 
@@ -521,25 +520,6 @@ Node-Data (multiple, content+ui-setting)
     setNeedCloudGameData(true);
   }
 
-  function updateGameDataDesignSettingToCloud(gameDataLatest) {
-
-    let project = "";
-    project  = projectName;
-    if (project.trim() === "") {
-      return;
-    }
-    updateGameDataDesignVM({
-      projectName: project, 
-      uname: authEmailName, 
-      gameData: gameDataLatest
-    });
-
-    //TODO3: change signal for other components using game-data (such as node-manager, viwer, etc.)
-    setGdmUpdatedSignal(true);
-    
-    setGameDataDesignList(gameDataLatest); // update game-data here, so then it can send to callees with the latest ver. of data
-
-  }
 
   function passInGdmUpdatedSignal() {
     return gdmUpdatedSignal;
@@ -1636,7 +1616,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         {
           projectName: projectName, 
           uname: authEmailName, 
-          chapterKey: givenChapterKey
+          chapterKey: givenChapterKey,
+          bkOption: backendOption
         }
       );
 

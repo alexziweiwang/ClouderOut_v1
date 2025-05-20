@@ -612,18 +612,6 @@ GameDataDesign
     }
 
 
-
-    // function updateGDataDesignToCloud(gameDataLatest) {
-
-    //     let project = "";
-    //     project  = state.projectName;
-    //     if (project === "" || project === undefined || project.trim() === "") {
-    //         return;
-    //     }
-    //     let currUser = uname;
-    //     updateGameDataDesignVM({projectName: project, uname: currUser, gameData: gameDataLatest});
-    
-    // } //TODO remove
  
 
     function triggerToDirectNextFunc() {

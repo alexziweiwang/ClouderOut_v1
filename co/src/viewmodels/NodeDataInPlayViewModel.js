@@ -3,11 +3,10 @@ import { fetchNodeDataEachNode, fetchNodeDataEachChapter } from '../models/NodeD
 const backendFlag = "firebase"; //TODO6000
 
 
-export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, nodeKey}) {
+export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, nodeKey, bkOption}) {
     let data = {};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         data = await fetchNodeDataEachNode({projectName, uname, chapterKey, nodeKey});
     }
 
@@ -15,11 +14,10 @@ export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, n
 }
 
 
-export async function fetchNodeDataEachChapterVM({projectName, uname, chapterKey}) {
+export async function fetchNodeDataEachChapterVM({projectName, uname, chapterKey, bkOption}) {
     let data = {};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         data = await fetchNodeDataEachChapter({projectName, uname, chapterKey});
     }
     

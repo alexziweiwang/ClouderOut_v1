@@ -51,7 +51,7 @@ export default function GameScreen_AllNodeTypeContainer({
     sendOutBgmSettings,
 
 }) {
-
+    const backendOption = "firebase";
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO /* according to current node's size */
     const [screenHeight, setScreenHeight] = useState(600); //TODO /* according to current node's size */
@@ -197,7 +197,8 @@ export default function GameScreen_AllNodeTypeContainer({
             let docCollection = await fetchNodeDataEachChapterVM({
                 projectName: projectname, 
                 uname: username, 
-                chapterKey: chapterKeyTemp
+                chapterKey: chapterKeyTemp,
+                bkOption: backendOption
             });
 
                                 console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", docCollection);
@@ -244,7 +245,8 @@ export default function GameScreen_AllNodeTypeContainer({
                 projectName: projectname, 
                 uname: username, 
                 chapterKey: chapterKeyTemp, 
-                nodeKey: nodeKeyTemp
+                nodeKey: nodeKeyTemp,
+                bkOption: backendOption
             });
             let tempMap = allNodeDataContainer;
             tempMap[keyStr] = dataObj;

@@ -26,10 +26,9 @@ export async function getProjectGameDataDesignVM({projectName, uname, bkOption})
  * @param {*} uname username
  * @param {*} gameData game data
  */
-export async function updateGameDataDesignVM({projectName, uname, gameData}) {
-  //TODO5000 bk-imp
+export async function updateGameDataDesignVM({projectName, uname, gameData, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await updateGameDataDesign({projectName, uname, gameData});
     }
     
