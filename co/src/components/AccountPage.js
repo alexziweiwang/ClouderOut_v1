@@ -20,7 +20,6 @@ export default function AccountPage({}) {
         username = state.username;
     } 
 
-    //TODO1050 add temp-status for retur nvalue of get-auth?
     const [authEmailName, setAuthEmailName] = useState("_");
 
 

@@ -8,7 +8,7 @@ import langDictionary from './_textDictionary';
 
 
 //TODO1010 username by auth
-import { getAuthFirebase, convertEmailAddr } from '../authtools/firebaseAuthOperations';
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
@@ -35,8 +35,7 @@ export default function Dashboard() {
 
 
     //TODO1050 add temp-status for retur nvalue of get-auth?
-    const [authRawEmail, setAuthRawEmail] = useState("_");
-    const [authEmailString, setAuthEmailString] = useState("_");
+    const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
@@ -44,12 +43,12 @@ export default function Dashboard() {
       getAuthFirebase(
         {
           goToNotLoggedInPageFunc: goToNotLoggedInPage,
-          sendOutEmailName: receiveChangeOfAuthRawEmail
+          sendOutEmailName: setAuthEmailName
 
         }
       );
         
-      console.log("dashboard--\t\tauthEmamilName", authRawEmail);
+      console.log("dashboard--\t\tauthEmamilName", authEmailName);
 
 
         if (firstTimeEnter === true) {
@@ -62,15 +61,6 @@ export default function Dashboard() {
     });
 
 
-    function receiveChangeOfAuthRawEmail(emailAddr) {
-
-      //load from cloud for project list  //TODO9000
-      setAuthRawEmail(emailAddr);
-
-      let emailStringTemp = convertEmailAddr(emailAddr);
-      setAuthEmailString(emailStringTemp);
-
-    }
   
 
     function goToNotLoggedInPage() {
@@ -79,7 +69,7 @@ export default function Dashboard() {
     }
 
     function goToProjectManagingPanel() {
-      navigate('/projectmanagingpanel', { replace: true, state: { "uname": authEmailString } });
+      navigate('/projectmanagingpanel', { replace: true, state: { "uname": authEmailName } });
     }
 
     function projectManageNew() {
@@ -91,7 +81,7 @@ export default function Dashboard() {
     }
 
     function passInUsername() {
-      return authEmailString; //TODO1030
+      return authEmailName; //TODO1030
     }
 
     return (
@@ -99,7 +89,7 @@ export default function Dashboard() {
     {!showNewProjCreationPage && 
       <Sidebar 
         compName={name} 
-        username={authEmailString}
+        username={authEmailName}
         getUsername={passInUsername}
 
       />}
@@ -145,7 +135,7 @@ export default function Dashboard() {
           showCancelButton={true}
           isPart={false}
           triggerCreationSubmit={returnToDashboard}
-          username={authEmailString}
+          username={authEmailName}
       />
 }
   </div>

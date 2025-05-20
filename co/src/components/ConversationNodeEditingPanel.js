@@ -349,7 +349,7 @@ GameDataDesign
     async function fetchGameDataDesignList() { 
         let gddList = await getProjectGameDataDesignVM({
             projectName: state.projectName, 
-            uname: state.userName              //TODO1020
+            uname: authEmailName      
         });
 
 
@@ -368,7 +368,7 @@ GameDataDesign
         /* fetch from cloud db */
         //TODO500     
         const obj = await fetchProjectResourceVarPairsVM({
-            userName: state.userName,               //TODO1020
+            userName: authEmailName,              
             projectName: state.projectName
         });
 
@@ -797,7 +797,7 @@ GameDataDesign
 
         await convSingleNodeUpdateToCloudVM({
             project: state.projectName, 
-            username: state.userName,                //TODO1020
+            username: authEmailName,       
             chapterKey: state.chapterKey, 
             nodeKey: state.clickedNodeKey, 
             dataObj: pieceDataStructure, 
@@ -819,7 +819,7 @@ GameDataDesign
 
         let pieceObjTemp = await convNodeBothPartsFromCloudVM({
             project: state.projectName, 
-            username: state.userName,                //TODO1020
+            username: authEmailName,       
             chapterKey: state.chapterKey, 
             nodeKey: state.clickedNodeKey
         });
@@ -944,7 +944,7 @@ GameDataDesign
     async function updateConvNodeUiPlanToCloud(allPlansMap) {
         await saveConvNodeUiPlanVM({
             projectName: projectName, 
-            currUser: userName,                //TODO1020
+            currUser: authEmailName,          
             updatedAllPlans: allPlansMap, 
             nodeType: "Conversation"
         });
@@ -953,7 +953,7 @@ GameDataDesign
     async function fetchConvNodeUiPlansFromCloud() {
         let obj = await fetchConvNodeUiAllPlansVM({
         projectName: projectName, 
-        currUser: userName,                //TODO1020
+        currUser: authEmailName,            
         nodeType: "Conversation"
         });
 

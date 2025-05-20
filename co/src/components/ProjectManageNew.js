@@ -21,6 +21,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     const [addedAuthorInfo, setAddedAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
     const [projList, setProjList] = useState([]); 
+    
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {

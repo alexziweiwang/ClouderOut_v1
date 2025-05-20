@@ -117,7 +117,7 @@ export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType
 }
 
 export async function addNewAccountFolderVM({userId, username}) {
-    //TODO1000 valid username
+    
     let res = {};
     
     if (backendFlag === "firebase") {
