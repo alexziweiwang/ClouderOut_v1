@@ -16,6 +16,10 @@ export default function Modal_EmuManager({
     getUsername
 
 }) {
+
+    const backendOption = "firebase";
+
+
 //allows user to setup emu-data for testing
 
 
@@ -388,7 +392,11 @@ export default function Modal_EmuManager({
 
     async function prepare1Gdt() {
 
-        let tempObj1 = await fetchEmuData1GdtVM({projectName: projName, currUser: username});
+        let tempObj1 = await fetchEmuData1GdtVM({
+            projectName: projName, 
+            currUser: username,
+            bkOption: backendOption
+        });
         
         let objSize = 0;
         if (tempObj1 !== undefined) {
@@ -442,7 +450,11 @@ export default function Modal_EmuManager({
 
     async function prepare2Epp() {
         // if local is not ready, from cloud
-        let tempObj2 = await fetchEmuData2EppVM({projectName: projName, currUser: username});
+        let tempObj2 = await fetchEmuData2EppVM({
+            projectName: projName, 
+            currUser: username,
+            bkOption: backendOption
+        });
 
         let objSize = 0;
         if (tempObj2 !== undefined) {
@@ -468,7 +480,11 @@ export default function Modal_EmuManager({
     }        
     async function prepare3Epa() {
         // if local is not ready, from cloud
-        let tempObj3 = await fetchEmuData3EpaVM({projectName: projName, currUser: username});
+        let tempObj3 = await fetchEmuData3EpaVM({
+            projectName: projName, 
+            currUser: username.replace,
+            bkOption: backendOption
+        });
 
 
         let objSize = 0;
@@ -493,7 +509,11 @@ export default function Modal_EmuManager({
 
     async function prepare4Ess() {
         // if local is not ready, from cloud
-        let tempObj4 = await fetchEmuData4EssVM({projectName: projName, currUser: username});
+        let tempObj4 = await fetchEmuData4EssVM({
+            projectName: projName, 
+            currUser: username,
+            bkOption: backendOption
+        });
         let objSize = Object.keys(tempObj4).length;
         if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
             return;
@@ -507,7 +527,11 @@ export default function Modal_EmuManager({
 
     async function prepare5Shp() {
         "5shp"
-        let tempObject5 = await fetchEmuData5ShpVM({projectName: projName, currUser: username});
+        let tempObject5 = await fetchEmuData5ShpVM({
+            projectName: projName, 
+            currUser: username,
+            bkOption: backendOption
+        });
                //                             console.log("!!!!! prepare-5shp: ", tempObject5);
 
 
@@ -680,7 +704,12 @@ export default function Modal_EmuManager({
         resObj["ess4"] = ess4;
         resObj["shp5"] = shp5;
 
-        await updateAllSetsVM({projectName: projName, currUser: username, dataObj: resObj});
+        await updateAllSetsVM({
+            projectName: projName, 
+            currUser: username, 
+            dataObj: resObj,
+            bkOption: backendOption
+        });
 
         alert("Changes updated!");
         setCloudUpdated(true);

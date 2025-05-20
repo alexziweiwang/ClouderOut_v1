@@ -42,7 +42,7 @@ export async function updateChapterListToCloudVM({projectName, currUser, chapter
 }
 
 export async function addNewOneChapterFolderVM({project, username, chapterKey, bkOption}) {
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await addNewOneChapterFolder({project, username, chapterKey});
     }
 

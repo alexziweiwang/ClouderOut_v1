@@ -2,31 +2,30 @@ import {fetchEmuData1Gdt, fetchEmuData2Epp, fetchEmuData3Epa, fetchEmuData4Ess, 
 
 const backendFlag = "firebase"; //TODO6000
 
-
-export async function fetchEmuData1GdtVM({projectName, currUser}) {
+export async function fetchEmuData1GdtVM({projectName, currUser,  bkOption}) {
     let res = {};
     
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchEmuData1Gdt({projectName, currUser});
     }
 
     return res;
 }
 
-export async function fetchEmuData2EppVM({projectName, currUser}) {
+export async function fetchEmuData2EppVM({projectName, currUser, bkOption}) {
     let res = {};
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchEmuData2Epp({projectName, currUser});
     }
 
     return res;
 }
 
-export async function fetchEmuData3EpaVM({projectName, currUser}) {
+export async function fetchEmuData3EpaVM({projectName, currUser, bkOption}) {
     let res = {};
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchEmuData3Epa({projectName, currUser});
     }
 
@@ -34,10 +33,10 @@ export async function fetchEmuData3EpaVM({projectName, currUser}) {
 
 }
 
-export async function fetchEmuData4EssVM({projectName, currUser}) {
+export async function fetchEmuData4EssVM({projectName, currUser, bkOption}) {
     let res = {};
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchEmuData4Ess({projectName, currUser});
     }
 
@@ -45,10 +44,10 @@ export async function fetchEmuData4EssVM({projectName, currUser}) {
 
 }
 
-export async function fetchEmuData5ShpVM({projectName, currUser}) {
+export async function fetchEmuData5ShpVM({projectName, currUser, bkOption}) {
     let res = {};
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchEmuData5Shp({projectName, currUser});
     }
 
@@ -56,8 +55,9 @@ export async function fetchEmuData5ShpVM({projectName, currUser}) {
 
 }
 
-export async function updateAllSetsVM({projectName, currUser, dataObj}) {
-    if (backendFlag === "firebase") {
+//TODO5000 bk-imp
+export async function updateAllSetsVM({projectName, currUser, dataObj, bkOption}) {
+    if (bkOption === "firebase") {
         await updateAllSets({projectName, currUser, dataObj});
     }
 

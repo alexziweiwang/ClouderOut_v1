@@ -29,20 +29,18 @@ export async function getProfileInfoVM({uname, bkOption}) {
     return profile;
 }
 
-//TODO5000 bk-imp
-export async function getUserDefaultUILangVM({uname}) {
-    let res = {}
+// export async function getUserDefaultUILangVM({uname}) {
+//     let res = {}
     
-    if (backendFlag === "firebase") {
-        res = await getUserDefaultUILang({uname});
-    }
+//     if (backendFlag === "firebase") {
+//         res = await getUserDefaultUILang({uname});
+//     }
 
-    return res;
-}
+//     return res;
+// }
 
-//TODO5000 bk-imp
-export async function updateUserDefaultUILangVM({uname, newUILang}) {
-    if (backendFlag === "firebase") {
-        await updateUserDefaultUILang({uname, newUILang});
-    }
-}
+// export async function updateUserDefaultUILangVM({uname, newUILang}) {
+//     if (backendFlag === "firebase") {
+//         await updateUserDefaultUILang({uname, newUILang});
+//     }
+// }
