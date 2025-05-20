@@ -1,6 +1,5 @@
 import { fetchChapterNodeMapping, updateChapterNodesToCloudData,
     fetchAllChapterList, updateChapterListToCloud,
-    addNewChapterFolders,
     addNewOneChapterFolder
     
 } from '../models/ChapterInfoModel_Firebase';
@@ -8,46 +7,41 @@ import { fetchChapterNodeMapping, updateChapterNodesToCloudData,
 const backendFlag = "firebase"; //TODO6000
 
 
-export async function fetchChapterNodeMappingVM({projectName, currUser}) {
+export async function fetchChapterNodeMappingVM({projectName, currUser, bkOption}) {
     let mapping = {};
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         mapping =  await fetchChapterNodeMapping({projectName, currUser});
     }
 
     return mapping;
 }
 
-export async function updateChapterNodesToCloudDataVM({projectName, currUser, chapterNodeMappingObj}) {
-    if (backendFlag === "firebase") {
+export async function updateChapterNodesToCloudDataVM({projectName, currUser, chapterNodeMappingObj, bkOption}) {
+    if (bkOption === "firebase") {
         await updateChapterNodesToCloudData({projectName, currUser, chapterNodeMappingObj});
     }
+
 }
 
-export async function fetchAllChapterListVM({projectName, currUser}) {
+export async function fetchAllChapterListVM({projectName, currUser, bkOption}) {
     let list = {};
     
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         list = await fetchAllChapterList({projectName, currUser});
     }
 
     return list;
 }
 
-export async function updateChapterListToCloudVM({projectName, currUser, chapterListData}) {
-    if (backendFlag === "firebase") {
+export async function updateChapterListToCloudVM({projectName, currUser, chapterListData, bkOption}) {
+    if (bkOption === "firebase") {
         await updateChapterListToCloud({projectName, currUser, chapterListData});
     }
-}
-
-export async function addNewChapterFoldersVM({project, username, chapterKeyList}) {
-    if (backendFlag === "firebase") {
-        await addNewChapterFolders({project, username, chapterKeyList});
-    }
 
 }
 
-export async function addNewOneChapterFolderVM({project, username, chapterKey}) {
+export async function addNewOneChapterFolderVM({project, username, chapterKey, bkOption}) {
     if (backendFlag === "firebase") {
         await addNewOneChapterFolder({project, username, chapterKey});
     }

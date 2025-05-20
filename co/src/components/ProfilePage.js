@@ -12,6 +12,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 export default function ProfilePage({}) {
+    const backendOption = "firebase";
 
 
     let name = "/profilepage";
@@ -62,7 +63,7 @@ export default function ProfilePage({}) {
             console.log("Not getting profile -- no state");
             return;
         }
-        profile = await getProfileInfoVM({uname: username});
+        profile = await getProfileInfoVM({uname: username, bkOption: backendOption});
         console.log("page: ", profile); //TODO test
         setProfile(profile);
     }

@@ -73,6 +73,8 @@ ChapterNodeMapping (used in node-manager)
 Node-Data (multiple, content+ui-setting)
 
 */
+  const backendOption = "firebase";
+
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
@@ -1269,7 +1271,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
         await updateChapterNodesToCloudDataVM({
             projectName: projectName, 
             currUser: authEmailName,
-            chapterNodeMappingObj: nodeMap
+            chapterNodeMappingObj: nodeMap,
+            bkOption: backendOption
         });      
         setNodeMapUpdatedSignal(false);
         setGridBlocksUpdatedSignal(false);
@@ -1342,7 +1345,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     await addNewOneChapterFolderVM({
       project: projectName,
       username: authEmailName,
-      chapterKey: chapterInfo[0]
+      chapterKey: chapterInfo[0],
+      bkOption: backendOption
     });
 
   }
@@ -1444,6 +1448,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     let data = await fetchChapterNodeMappingVM({   
         projectName: projectName, 
         currUser: authEmailName,
+        bkOption: backendOption
     });
 
     if (data === undefined || data === null) {
@@ -1534,7 +1539,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       {
         projectName: projectName, 
         currUser: authEmailName,
-        chapterListData: chapterListMap
+        chapterListData: chapterListMap,
+        bkOption: backendOption
       }
     )
 
@@ -1546,7 +1552,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     let listTemp = await fetchAllChapterListVM(
       {
         projectName: projectName, 
-        currUser: authEmailName 
+        currUser: authEmailName,
+        bkOption: backendOption
       }      
     );
 

@@ -35,6 +35,8 @@ export async function submitFile({file, uname, filename}) {
     } else {
       const storageRef = ref(storage, `rm001test/${filename}`);
 //TODO900
+//TODO3000 change to formal storage path later!!!
+
 
       uploadBytes(storageRef, file);
 

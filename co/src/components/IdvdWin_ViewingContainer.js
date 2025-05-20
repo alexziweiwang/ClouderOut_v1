@@ -8,6 +8,7 @@ import {
 //the outer-shell of viewer_entire for in-pracitce playing of a game-project
 export default function IdvdWin_ViewingContainer({username, projectName}) {
 
+    const backendOption = "firebase";
 
     //TODO fetch project navigation-ui settings [game-side]
 
@@ -35,6 +36,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
         let data = await fetchChapterNodeMappingVM({   
             projectName: projectName, 
             currUser: username,
+            bkOption: backendOption
         });
     
         if (data === undefined || data === null) {

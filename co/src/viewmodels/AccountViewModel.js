@@ -20,16 +20,16 @@ function getProfileInfoVM({uname})
  * @param {*} uname username
  * @returns profile data
  */
-export async function getProfileInfoVM({uname}) {
+export async function getProfileInfoVM({uname, bkOption}) {
     const profile = {};
     
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         profile = await getProfileInfo({uname});
     }
     return profile;
 }
 
-
+//TODO5000 bk-imp
 export async function getUserDefaultUILangVM({uname}) {
     let res = {}
     
@@ -40,6 +40,7 @@ export async function getUserDefaultUILangVM({uname}) {
     return res;
 }
 
+//TODO5000 bk-imp
 export async function updateUserDefaultUILangVM({uname, newUILang}) {
     if (backendFlag === "firebase") {
         await updateUserDefaultUILang({uname, newUILang});
