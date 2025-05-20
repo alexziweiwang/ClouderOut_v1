@@ -55,7 +55,6 @@ export async function fetchEmuData5ShpVM({projectName, currUser, bkOption}) {
 
 }
 
-//TODO5000 bk-imp
 export async function updateAllSetsVM({projectName, currUser, dataObj, bkOption}) {
     if (bkOption === "firebase") {
         await updateAllSets({projectName, currUser, dataObj});

@@ -21,7 +21,9 @@ export default function Modal_GameDataManager ({
         getUsername //TODO1000 test
 
     }) {
-
+    
+    
+    const backendOption = "firebase";
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
@@ -147,7 +149,10 @@ export default function Modal_GameDataManager ({
         let tempGameDataDesign = await getProjectGameDataDesignVM({
             projectName: projName, 
             uname: usernameTemp, 
-            mostUpdated: isUpdated});
+            mostUpdated: isUpdated,
+            bkOption: backendOption
+        
+        });
 
         if (tempGameDataDesign === null || tempGameDataDesign === undefined) {
 

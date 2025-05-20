@@ -15,6 +15,7 @@ const backendFlag = "firebase"; //TODO6000
 export async function fetchProjectListVM(currUser) {
 
     let group = {"untrashed": {}, "trashed": {}};
+//TODO5000 bk-imp
 
     if (backendFlag === "firebase") {
             const res = await fetchProjectList(currUser);
@@ -43,6 +44,8 @@ export async function fetchProjectListVM(currUser) {
 }
 
 export async function revertProjectVM({projectToRevert, currUser}) {
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await revertProject({projectToRevert, currUser});
     }
@@ -50,6 +53,8 @@ export async function revertProjectVM({projectToRevert, currUser}) {
 }
 
 export async function deleteProjectVM({projectToDelete, currUser}) {
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await deleteProject({projectToDelete, currUser});
     }
@@ -57,6 +62,8 @@ export async function deleteProjectVM({projectToDelete, currUser}) {
 }
 
 export async function createProjectVM({currUser, projectName, projectObj}) {
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await createProject({currUser, projectName, projectObj});
     }
@@ -66,6 +73,8 @@ export async function createProjectVM({currUser, projectName, projectObj}) {
 
 
 export async function updateProjectUILangVM({projectName, currUser, selectedUILang}) {
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await updateProjectUILang({projectName, currUser, selectedUILang});
     }
@@ -74,6 +83,7 @@ export async function updateProjectUILangVM({projectName, currUser, selectedUILa
 
 export async function fetchProjectUILangVM({projectName, currUser}) {
     let res = {};
+//TODO5000 bk-imp
 
     if (backendFlag === "firebase") {
         res = await fetchProjectUILang({projectName, currUser});
@@ -83,6 +93,8 @@ export async function fetchProjectUILangVM({projectName, currUser}) {
 }
 
 export async function updateProjectNavigationSettingsVM({projectName, currUser, dataObj}) {
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await updateProjectNavigationSettings({projectName, currUser, dataObj});
     }
@@ -92,7 +104,8 @@ export async function updateProjectNavigationSettingsVM({projectName, currUser, 
 
 export async function fetchProjectNavigationSettingsVM({projectName, currUser}) {
     let res = {};
-    
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         res = await fetchProjectNavigationSettings({projectName, currUser});
     }
@@ -101,6 +114,8 @@ export async function fetchProjectNavigationSettingsVM({projectName, currUser}) 
 }
 
 export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPlans, nodeType}) {
+    //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType});
     }
@@ -108,7 +123,8 @@ export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPla
 
 export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType}) {
     let res = {};
-    
+   //TODO5000 bk-imp
+ 
     if (backendFlag === "firebase") {
         res = await fetchConvNodeUiAllPlans({projectName, currUser, nodeType});
     }
@@ -119,7 +135,8 @@ export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType
 export async function addNewAccountFolderVM({userId, username}) {
     
     let res = {};
-    
+   //TODO5000 bk-imp
+ 
     if (backendFlag === "firebase") {
         res = await addNewAccountFolder({userId, username});
     }

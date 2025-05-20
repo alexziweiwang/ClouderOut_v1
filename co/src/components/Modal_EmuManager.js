@@ -407,7 +407,12 @@ export default function Modal_EmuManager({
             // no emu-data for game-data -->      create from game-data-design-list
 
             let isUpdated = true;
-            let gDataDesignMap = await getProjectGameDataDesignVM(({projectName: projName, uname: username, mostUpdated: isUpdated}));
+            let gDataDesignMap = await getProjectGameDataDesignVM(({
+                projectName: projName, 
+                uname: username, 
+                mostUpdated: isUpdated,
+                bkOption: backendOption
+            }));
                                     console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
 
             if (gDataDesignMap === null || gDataDesignMap === undefined) {

@@ -496,7 +496,10 @@ Node-Data (multiple, content+ui-setting)
     const gdataTestResult = await getProjectGameDataDesignVM({
       projectName: project, 
       uname: authEmailName, 
-      mostUpdated: isUpdated});
+      mostUpdated: isUpdated,
+      bkOption: backendOption
+    
+    });
       
     if (gdataTestResult === undefined) {
       console.log("no game_data in this project...");

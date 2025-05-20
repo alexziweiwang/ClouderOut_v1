@@ -35,7 +35,8 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
- 
+
+    const backendOption = "firebase";
 
 /**
 used data structures:
@@ -349,7 +350,8 @@ GameDataDesign
     async function fetchGameDataDesignList() { 
         let gddList = await getProjectGameDataDesignVM({
             projectName: state.projectName, 
-            uname: authEmailName      
+            uname: authEmailName,
+            bkOption: backendOption  
         });
 
 

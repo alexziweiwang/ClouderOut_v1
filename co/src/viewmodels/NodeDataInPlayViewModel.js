@@ -5,6 +5,7 @@ const backendFlag = "firebase"; //TODO6000
 
 export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, nodeKey}) {
     let data = {};
+//TODO5000 bk-imp
 
     if (backendFlag === "firebase") {
         data = await fetchNodeDataEachNode({projectName, uname, chapterKey, nodeKey});
@@ -16,6 +17,7 @@ export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, n
 
 export async function fetchNodeDataEachChapterVM({projectName, uname, chapterKey}) {
     let data = {};
+//TODO5000 bk-imp
 
     if (backendFlag === "firebase") {
         data = await fetchNodeDataEachChapter({projectName, uname, chapterKey});

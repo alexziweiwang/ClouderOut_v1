@@ -9,10 +9,10 @@ const backendFlag = "firebase"; //TODO6000
  * @param {*} uname username
  * @returns 
  */
-export async function getProjectGameDataDesignVM({projectName, uname}) {
+export async function getProjectGameDataDesignVM({projectName, uname, bkOption}) {
     let result = {};
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         result = await getProjectGameDataDesign({projectName, uname});
     }
 
@@ -27,6 +27,8 @@ export async function getProjectGameDataDesignVM({projectName, uname}) {
  * @param {*} gameData game data
  */
 export async function updateGameDataDesignVM({projectName, uname, gameData}) {
+  //TODO5000 bk-imp
+
     if (backendFlag === "firebase") {
         await updateGameDataDesign({projectName, uname, gameData});
     }
