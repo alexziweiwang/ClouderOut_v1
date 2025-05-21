@@ -18,6 +18,9 @@ export default function Modal_ResourceManagingWindow ({
     getUsername //TODO1000 test
 
 }) {
+    const backendOption = "firebase";
+
+    
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
@@ -287,7 +290,12 @@ export default function Modal_ResourceManagingWindow ({
 
         const fileName = `${username}_${selectedFile.name}`;
 
-        await submitFileVM({file: selectedFile , uname: username, filename: fileName});
+        await submitFileVM({
+            file: selectedFile , 
+            uname: username, 
+            filename: fileName,
+            bkOption: backendOption
+        });
         
         await updateUploadedFileRecords(username, fileName, type);
     }
@@ -314,20 +322,35 @@ export default function Modal_ResourceManagingWindow ({
         }
 
 
-        await addToRmFileListVM({uname: username, filetitle: fileName, fileUrl: url, fileType: type});
+        await addToRmFileListVM({
+            uname: username, 
+            filetitle: fileName, 
+            fileUrl: url, 
+            fileType: type,
+            bkOption: backendOption
+        });
  
         await fetchRmFileList(username);
     }
 
     async function updateGoogleDriveFileRecords(type, addedFileName) {
-        await addToRmFileListVM({uname: username, filetitle: addedFileName, fileUrl: googleDriveFileDisplayLink, fileType: type});
+        await addToRmFileListVM({
+            uname: username, 
+            filetitle: addedFileName, 
+            fileUrl: googleDriveFileDisplayLink, 
+            fileType: type,
+            bkOption: backendOption
+        });
         
         await fetchRmFileList(username);
     }
 
     async function fetchRmFileList(authUsername) { //TODO temp debugging
 
-        const fileList = await getRmFileListVM({uname: authUsername});
+        const fileList = await getRmFileListVM({
+            uname: authUsername,
+            bkOption: backendOption
+        });
         if (fileList === undefined || fileList === null) {
             return;
         }
@@ -433,7 +456,11 @@ export default function Modal_ResourceManagingWindow ({
     async function removeOneResource() {
         let userResponse = window.confirm("Are you sure to delete this resource from all projects?");
         if (userResponse) {
-            await removeFromRmFileListVM({uname: username, filetitle: clickedFileName});
+            await removeFromRmFileListVM({
+                uname: username, 
+                filetitle: clickedFileName,
+                bkOption: backendOption
+            });
             await fetchRmFileList(username);
             //update resource's var-pair list
             let emptyObj = {};

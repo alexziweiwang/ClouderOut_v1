@@ -19,6 +19,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 export default function ProjectManagerPanel() {
+    const backendOption = "firebase";
 
     let languageCodeTextOption = 'en';
 

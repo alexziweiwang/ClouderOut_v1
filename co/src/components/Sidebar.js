@@ -6,6 +6,8 @@ import langDictionary from './_textDictionary';
 import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
 export default function Sidebar({compName, username, getUsername}) {
+
+    
   //  console.log("sidebar, compName:", compName);
     const navigate = useNavigate();
 

@@ -2,14 +2,12 @@ import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchPr
 
 const backendFlag = "firebase"; //TODO6000
 
-export async function submitFileVM({file, uname, filename}) {
+export async function submitFileVM({file, uname, filename, bkOption}) {
     if (filename === "" || filename === undefined) {
         return;
     }
-    
- //TODO5000 bk-imp
-   
-    if (backendFlag === "firebase") {
+       
+    if (bkOption === "firebase") {
                                         console.log("step1. submitFileVM ::: ", filename); //TODO test
         await submitFile({file, uname, filename});
     }
@@ -18,29 +16,26 @@ export async function submitFileVM({file, uname, filename}) {
 
 }
 
-export async function getRmFileListVM({uname}) {
+export async function getRmFileListVM({uname, bkOption}) {
     let arr = [];
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         arr = await getRmFileList({uname});
     }
 
     return arr;
 }
 
-export async function addToRmFileListVM({uname, filetitle, fileUrl, fileType}) {
-    //TODO5000 bk-imp
+export async function addToRmFileListVM({uname, filetitle, fileUrl, fileType, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await addToRmFileList({uname, filetitle, fileUrl, fileType});
     }
 }
 
-export async function removeFromRmFileListVM({uname, filetitle})  {
-    //TODO5000 bk-imp
+export async function removeFromRmFileListVM({uname, filetitle, bkOption})  {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await removeFromRmFileList({uname, filetitle});
     }
 }

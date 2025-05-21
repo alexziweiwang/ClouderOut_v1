@@ -11,6 +11,9 @@ import { getAuthFirebase, convertEmailAddr } from '../authtools/firebaseAuthOper
 
 
 export default function UserNotLoggedInPage() {
+    const backendOption = "firebase";
+
+    
 //sign up or log in here...
     const [isCreateAccountPanel, setIsCreateAccountPanel] = useState(false);
 
