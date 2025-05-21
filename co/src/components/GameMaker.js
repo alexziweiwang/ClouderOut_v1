@@ -205,7 +205,8 @@ Node-Data (multiple, content+ui-setting)
       //TODO500     
       const obj = await fetchProjectResourceVarPairsVM({
         userName: authEmailName, 
-        projectName: projectName
+        projectName: projectName,
+        bkOption: backendOption
       });
       
       if (obj === undefined) {
@@ -939,7 +940,8 @@ Node-Data (multiple, content+ui-setting)
                 project: projectName,
                 username: authEmailName,
                 nodeList: waitlist, 
-                chapterKey: currChapterKey
+                chapterKey: currChapterKey,
+                bkOption: backendOption
             }
           );
           //TODO36

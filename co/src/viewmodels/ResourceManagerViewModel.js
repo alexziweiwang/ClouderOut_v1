@@ -40,32 +40,29 @@ export async function removeFromRmFileListVM({uname, filetitle, bkOption})  {
     }
 }
 
-export async function fetchUrlByFilenameVM({fullFilename}) {
+export async function fetchUrlByFilenameVM({fullFilename, bkOption}) {
     let res = {};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchUrlByFilename({fullFilename});
     }
 
     return res;
 }
 
-export async function fetchProjectResourceVarPairsVM({userName, projectName}) {
+export async function fetchProjectResourceVarPairsVM({userName, projectName, bkOption}) {
     let res = {}; 
-    //TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchProjectResourceVarPairs({userName, projectName});
     }
     
     return res;
 }
 
-export async function storeProjectResourceVarPairsToCloudVM({userName, projectName, obj}) {
-    //TODO5000 bk-imp
+export async function storeProjectResourceVarPairsToCloudVM({userName, projectName, obj, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await storeProjectResourceVarPairsToCloud({userName, projectName, obj})
     }
 }

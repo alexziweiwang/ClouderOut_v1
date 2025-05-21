@@ -2,32 +2,29 @@ import { convSingleNodeUpdateToCloud, addNewNodeFolders, convNodeBothPartsFromCl
 
 const backendFlag = "firebase"; //TODO6000
 
-export async function convSingleNodeUpdateToCloudVM({project, username, chapterKey, nodeKey, dataObj, uiDataObj}) {
+export async function convSingleNodeUpdateToCloudVM({project, username, chapterKey, nodeKey, dataObj, uiDataObj, bkOption}) {
     let res = {};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj});
     }
 
     return res;
 }
 
-export async function convNodeBothPartsFromCloudVM({project, username, chapterKey, nodeKey}) {
+export async function convNodeBothPartsFromCloudVM({project, username, chapterKey, nodeKey, bkOption}) {
     let res = {};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey});
     }
     
     return res;
 }
 
-export async function addNewNodeFoldersVM({project, username, nodeList, chapterKey}) {
-    //TODO5000 bk-imp
+export async function addNewNodeFoldersVM({project, username, nodeList, chapterKey, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await addNewNodeFolders({project, username, nodeList, chapterKey});
     }
 

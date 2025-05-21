@@ -724,7 +724,11 @@ export default function Modal_EmuManager({
 
     async function fetchVisualListFromCloud() {
         //TODO500     
-        const obj = await fetchProjectResourceVarPairsVM({userName: username, projectName: projName});
+        const obj = await fetchProjectResourceVarPairsVM({
+            userName: username, 
+            projectName: projName,
+            bkOption: backendOption
+        });
         if (obj === undefined || obj === null) {
             return;
         }

@@ -371,7 +371,8 @@ GameDataDesign
         //TODO500     
         const obj = await fetchProjectResourceVarPairsVM({
             userName: authEmailName,              
-            projectName: state.projectName
+            projectName: state.projectName,
+            bkOption: backendOption
         });
 
         if (obj === undefined || obj === null) {
@@ -791,7 +792,8 @@ GameDataDesign
             chapterKey: state.chapterKey, 
             nodeKey: state.clickedNodeKey, 
             dataObj: pieceDataStructure, 
-            uiDataObj: uiObj
+            uiDataObj: uiObj,
+            bkOption: backendOption
         })            
         .then((res)=>{
                 if (res === "node-update-ok") {
@@ -811,7 +813,8 @@ GameDataDesign
             project: state.projectName, 
             username: authEmailName,       
             chapterKey: state.chapterKey, 
-            nodeKey: state.clickedNodeKey
+            nodeKey: state.clickedNodeKey,
+            bkOption: backendOption
         });
 
 

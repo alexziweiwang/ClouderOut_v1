@@ -259,7 +259,12 @@ export default function Modal_ResourceManagingWindow ({
 
     async function updateVarPairToCloud() { //TODO test and debug
         if (varPairToCloud !== "default") {
-            await storeProjectResourceVarPairsToCloudVM(varPairToCloud);
+            await storeProjectResourceVarPairsToCloudVM({
+                userName: username, 
+                projectName: projName, 
+                obj: varPairToCloud,
+                bkOption: backendOption
+            });
             setVarPairToCloud("default");
         }
         resetDataUpdatedFalse();
@@ -269,7 +274,11 @@ export default function Modal_ResourceManagingWindow ({
     async function fetchProjResourceVarPairLists(usernameTemp) {
         /* fetch from cloud db */
         //TODO500     
-        const obj = await fetchProjectResourceVarPairsVM({userName: usernameTemp, projectName: projName});
+        const obj = await fetchProjectResourceVarPairsVM({
+            userName: usernameTemp, 
+            projectName: projName,
+            bkOption: backendOption
+        });
         
                                     //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
 
@@ -314,7 +323,10 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function updateUploadedFileRecords(fileName, type) {
-        let url = await fetchUrlByFilenameVM({fullFilename: fileName});
+        let url = await fetchUrlByFilenameVM({
+            fullFilename: fileName,
+            bkOption: backendOption
+        });
                                             console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
         if (url === undefined || url === "") {
                                             console.log("\trmWindow -- Error: empty url"); //TODO test
