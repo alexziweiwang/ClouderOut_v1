@@ -12,12 +12,11 @@ import {fetchProjectList, revertProject,
 const backendFlag = "firebase"; //TODO6000
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
-export async function fetchProjectListVM(currUser) {
+export async function fetchProjectListVM({currUser, bkOption}) {
 
     let group = {"untrashed": {}, "trashed": {}};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
             const res = await fetchProjectList(currUser);
             
             if (res === undefined) {
@@ -43,28 +42,25 @@ export async function fetchProjectListVM(currUser) {
     return group;
 }
 
-export async function revertProjectVM({projectToRevert, currUser}) {
-    //TODO5000 bk-imp
+export async function revertProjectVM({projectToRevert, currUser, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await revertProject({projectToRevert, currUser});
     }
 
 }
 
-export async function deleteProjectVM({projectToDelete, currUser}) {
-    //TODO5000 bk-imp
+export async function deleteProjectVM({projectToDelete, currUser, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await deleteProject({projectToDelete, currUser});
     }
 
 }
 
-export async function createProjectVM({currUser, projectName, projectObj}) {
-    //TODO5000 bk-imp
+export async function createProjectVM({currUser, projectName, projectObj, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await createProject({currUser, projectName, projectObj});
     }
 

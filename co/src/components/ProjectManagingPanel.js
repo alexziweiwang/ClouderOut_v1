@@ -123,7 +123,10 @@ export default function ProjectManagerPanel() {
 
     async function loadProjectListFromCloud(emailAddr) {
      
-        const groupList = await fetchProjectListVM(emailAddr);
+        const groupList = await fetchProjectListVM(
+          {currUser: emailAddr,
+           bkOption: backendOption 
+          });
       
         console.log("load_ProjectList_FromCloud, group-list for ", emailAddr , " = ", groupList);
   
@@ -162,7 +165,8 @@ export default function ProjectManagerPanel() {
       await revertProjectVM(
         {
           projectToRevert: selectedTrashedProj, 
-          currUser: authEmailName
+          currUser: authEmailName,
+          bkOption: backendOption
         });
 
       setSelectedTrashedProj("");
@@ -180,7 +184,8 @@ export default function ProjectManagerPanel() {
       await deleteProjectVM( 
         { 
           projectToDelete: selected_project_name, 
-          currUser: authEmailName
+          currUser: authEmailName,
+          bkOption: backendOption
         }
       );
       

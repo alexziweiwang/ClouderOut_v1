@@ -36,7 +36,11 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
 
     async function loadProjectListFromCloud() {
   
-      const groupList = await fetchProjectListVM(username);
+      const groupList = await fetchProjectListVM(
+        {currUser: username,
+         bkOption: backendOption
+        }
+        );
       if (groupList === undefined || groupList.length === 0) {
         setProjList([]);
       } else {
@@ -158,7 +162,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
         {
           currUser: username, 
           projectName: addedNewProjName, 
-          projectObj: projectObj
+          projectObj: projectObj,
+          bkOption: backendOption
         }
       );
       triggerCreationSubmit();
