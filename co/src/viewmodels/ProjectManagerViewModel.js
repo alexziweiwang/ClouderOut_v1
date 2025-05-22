@@ -68,41 +68,37 @@ export async function createProjectVM({currUser, projectName, projectObj, bkOpti
 
 
 
-export async function updateProjectUILangVM({projectName, currUser, selectedUILang}) {
-    //TODO5000 bk-imp
+export async function updateProjectUILangVM({projectName, currUser, selectedUILang, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await updateProjectUILang({projectName, currUser, selectedUILang});
     }
 
 }
 
-export async function fetchProjectUILangVM({projectName, currUser}) {
+export async function fetchProjectUILangVM({projectName, currUser, bkOption}) {
     let res = {};
-//TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchProjectUILang({projectName, currUser});
     }
 
     return res;
 }
 
-export async function updateProjectNavigationSettingsVM({projectName, currUser, dataObj}) {
-    //TODO5000 bk-imp
+export async function updateProjectNavigationSettingsVM({projectName, currUser, dataObj, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await updateProjectNavigationSettings({projectName, currUser, dataObj});
     }
 
 }
 
 
-export async function fetchProjectNavigationSettingsVM({projectName, currUser}) {
+export async function fetchProjectNavigationSettingsVM({projectName, currUser, bkOption}) {
     let res = {};
-    //TODO5000 bk-imp
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchProjectNavigationSettings({projectName, currUser});
     }
 

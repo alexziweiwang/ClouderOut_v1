@@ -648,7 +648,8 @@ Node-Data (multiple, content+ui-setting)
 
     let ans = await fetchProjectUILangVM({
       projectName: projectName, 
-      currUser: authEmailName
+      currUser: authEmailName,
+      bkOption: backendOption
     }); //TODO21
 
     setLanguageCodeTextOption(ans);
@@ -1152,7 +1153,8 @@ Node-Data (multiple, content+ui-setting)
       await updateProjectUILangVM({
         projectName: projectName, 
         currUser: authEmailName, 
-        selectedUILang: val
+        selectedUILang: val,
+        bkOption: backendOption
       });
     }
   }
@@ -1483,7 +1485,8 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     await updateProjectNavigationSettingsVM({
       projectName: projectName, 
       currUser: authEmailName,
-      dataObj: currentProjectNav
+      dataObj: currentProjectNav,
+      bkOption: backendOption
     });
     
   }
@@ -1495,6 +1498,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     let data = await fetchProjectNavigationSettingsVM({
       projectName: projectName, 
       currUser: authEmailName,
+      bkOption: backendOption
     })
 
     console.log("data = ", data);
