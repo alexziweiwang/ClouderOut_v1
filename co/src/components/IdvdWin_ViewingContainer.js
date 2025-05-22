@@ -8,8 +8,17 @@ import {
 //the outer-shell of viewer_entire for in-pracitce playing of a game-project
 export default function IdvdWin_ViewingContainer({username, projectName}) {
 
-    const backendOption = "firebase";
+    const backendOption = "firebase";   
+    //TODO2000 option of "import project" or "online saved project"? add UI for this (project-selector, etc.)?
 
+
+
+
+
+
+
+
+    
     //TODO fetch project navigation-ui settings [game-side]
 
 
@@ -94,7 +103,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
                     mutedViewOption={mutedViewOption}
 
                     getCurrChapterContent={passInCurrChapterContent}
-
+                    backendOption={backendOption}
                     />
 
 

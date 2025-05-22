@@ -49,9 +49,9 @@ export default function GameScreen_AllNodeTypeContainer({
     openSettingPage,
 
     sendOutBgmSettings,
+    backendOption
 
 }) {
-    const backendOption = "firebase";
 
     const [screenWidth, setScreenWidth] = useState(800); //TODO /* according to current node's size */
     const [screenHeight, setScreenHeight] = useState(600); //TODO /* according to current node's size */

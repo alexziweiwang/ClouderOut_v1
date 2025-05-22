@@ -1,6 +1,5 @@
 import { getProjectGameDataDesign, updateGameDataDesign } from '../models/GameDataModel_Firebase';
 
-const backendFlag = "firebase"; //TODO6000
 
 /**
  * Get project data, call cloud-db related model function

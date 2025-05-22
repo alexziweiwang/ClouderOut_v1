@@ -15,9 +15,11 @@ export default function Modal_EmuManager({
     projName,
     getUsername
 
+    //getBackendOption
 }) {
 
-    const backendOption = "firebase";
+    const backendOption = "firebase";    
+    //TODO2000 add "platform option"? - get from game-maker
 
 
 //allows user to setup emu-data for testing

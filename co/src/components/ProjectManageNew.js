@@ -12,7 +12,8 @@ import { projectNavUiTemplate, gdt1Template, epp2Template, epa3Template, ess4Tem
 
 
 export default function ProjectManageNew({cancelAction, showCancelButton, isPart, triggerCreationSubmit, username}) {
-    const backendOption = "firebase";
+    const backendOption = "firebase"; 
+    //TODO5000 speacial: default to use firebase for account folder?
 
 
     const navigate = useNavigate();

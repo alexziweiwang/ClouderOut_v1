@@ -5,8 +5,6 @@ import {
 } from '../models/AccountModel_Firebase';
 
 
-const backendFlag = "firebase"; //TODO6000
-
 /**
 List of functions:
 

@@ -61,7 +61,7 @@ export default function Viewer_Entire({
 
 
     getCurrChapterContent,
-
+    backendOption
 
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
@@ -614,7 +614,7 @@ game-screen (specific node) layer */}
 
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}
-
+                                                backendOption={backendOption}
                                 />
 
                                 

@@ -1,6 +1,5 @@
 import { fetchNodeDataEachNode, fetchNodeDataEachChapter } from '../models/NodeDataInPlayModel_Firebase';
 
-const backendFlag = "firebase"; //TODO6000
 
 
 export async function fetchNodeDataEachNodeVM({projectName, uname, chapterKey, nodeKey, bkOption}) {

@@ -37,6 +37,8 @@ export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
 
     const backendOption = "firebase";
+    //TODO2000 add "platform option"? 
+    //TODO     fetch from game-maker & add UI for choosing platform
 
 /**
 used data structures:

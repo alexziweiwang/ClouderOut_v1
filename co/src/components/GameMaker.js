@@ -72,7 +72,8 @@ ChapterNodeMapping (used in node-manager)
 Node-Data (multiple, content+ui-setting)
 
 */
-  const backendOption = "firebase";
+  const backendOption = "firebase";   
+  //TODO2000 add "platform option"? add UI for choosing platform
 
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
@@ -2146,6 +2147,8 @@ console.log("\t\t\t fetched from local ds ");
           mutedViewOption={mutedViewOption}
 
           getCurrChapterContent={passInCurrChapterContent}
+
+          backendOption={backendOption}
 
       />
 

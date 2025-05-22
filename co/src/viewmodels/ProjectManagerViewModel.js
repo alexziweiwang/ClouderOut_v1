@@ -9,7 +9,6 @@ import {fetchProjectList, revertProject,
     addNewAccountFolder
 } from '../models/ProjectManagerModel_Firebase';
 
-const backendFlag = "firebase"; //TODO6000
 
 /* Returns list of project names according to given parameter: untrashed or trashed */
 export async function fetchProjectListVM({currUser, bkOption}) {

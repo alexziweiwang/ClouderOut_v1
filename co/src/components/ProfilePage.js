@@ -12,8 +12,9 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 export default function ProfilePage({}) {
-    const backendOption = "firebase";
-
+    const backendOption = "firebase"; 
+    //TODO5000 speacial: default to use firebase for account folder?
+    
 
     let name = "/profilepage";
 

@@ -1,7 +1,5 @@
 import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, storeProjectResourceVarPairsToCloud, removeFromRmFileList } from "../models/ResourceManagerModel_Firebase";
 
-const backendFlag = "firebase"; //TODO6000
-
 export async function submitFileVM({file, uname, filename, bkOption}) {
     if (filename === "" || filename === undefined) {
         return;

@@ -4,8 +4,6 @@ import { fetchChapterNodeMapping, updateChapterNodesToCloudData,
     
 } from '../models/ChapterInfoModel_Firebase';
 
-const backendFlag = "firebase"; //TODO6000
-
 
 export async function fetchChapterNodeMappingVM({projectName, currUser, bkOption}) {
     let mapping = {};

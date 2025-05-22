@@ -1,6 +1,5 @@
 import { convSingleNodeUpdateToCloud, addNewNodeFolders, convNodeBothPartsFromCloud } from '../models/NodeEditingModel_Firebase';
 
-const backendFlag = "firebase"; //TODO6000
 
 export async function convSingleNodeUpdateToCloudVM({project, username, chapterKey, nodeKey, dataObj, uiDataObj, bkOption}) {
     let res = {};

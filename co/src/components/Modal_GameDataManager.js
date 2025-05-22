@@ -20,10 +20,14 @@ export default function Modal_GameDataManager ({
 
         getUsername //TODO1000 test
 
+
+        //getBackendOption
     }) {
     
     
-    const backendOption = "firebase";
+    const backendOption = "firebase";   
+    //TODO2000 add "platform option"? - get from game-maker
+
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 

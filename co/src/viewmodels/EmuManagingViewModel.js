@@ -1,6 +1,5 @@
 import {fetchEmuData1Gdt, fetchEmuData2Epp, fetchEmuData3Epa, fetchEmuData4Ess, fetchEmuData5Shp, updateAllSets } from '../models/EmuManagingModel_Firebase';
 
-const backendFlag = "firebase"; //TODO6000
 
 export async function fetchEmuData1GdtVM({projectName, currUser,  bkOption}) {
     let res = {};

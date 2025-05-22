@@ -17,8 +17,11 @@ export default function Modal_ResourceManagingWindow ({
 
     getUsername //TODO1000 test
 
+    //getBackendOption
 }) {
-    const backendOption = "firebase";
+    const backendOption = "firebase";    
+    //TODO2000 add "platform option"? - get from game-maker
+    
 
     
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
