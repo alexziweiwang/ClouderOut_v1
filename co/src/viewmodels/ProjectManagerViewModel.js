@@ -105,31 +105,27 @@ export async function fetchProjectNavigationSettingsVM({projectName, currUser, b
     return res;
 }
 
-export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPlans, nodeType}) {
-    //TODO5000 bk-imp
+export async function saveConvNodeUiPlanVM({projectName, currUser, updatedAllPlans, nodeType, bkOption}) {
 
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         await saveConvNodeUiPlan({projectName, currUser, updatedAllPlans, nodeType});
     }
 }
 
-export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType}) {
+export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType, bkOption}) {
     let res = {};
-   //TODO5000 bk-imp
  
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await fetchConvNodeUiAllPlans({projectName, currUser, nodeType});
     }
 
     return res;
 }
 
-export async function addNewAccountFolderVM({userId, username}) {
-    
+export async function addNewAccountFolderVM({userId, username, bkOption}) {    
     let res = {};
-   //TODO5000 bk-imp
  
-    if (backendFlag === "firebase") {
+    if (bkOption === "firebase") {
         res = await addNewAccountFolder({userId, username});
     }
     return res;

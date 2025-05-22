@@ -68,7 +68,8 @@ export default function UserNotLoggedInPage() {
 
         await addNewAccountFolderVM({
             userId: userIdTemp, 
-            username: providedUsernameInput
+            username: providedUsernameInput,
+            bkOption: backendOption
         });
    
 

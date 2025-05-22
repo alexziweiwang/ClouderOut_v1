@@ -939,15 +939,17 @@ GameDataDesign
             projectName: projectName, 
             currUser: authEmailName,          
             updatedAllPlans: allPlansMap, 
-            nodeType: "Conversation"
+            nodeType: "Conversation",
+            bkOption: backendOption
         });
     }
 
     async function fetchConvNodeUiPlansFromCloud() {
         let obj = await fetchConvNodeUiAllPlansVM({
-        projectName: projectName, 
-        currUser: authEmailName,            
-        nodeType: "Conversation"
+            projectName: projectName, 
+            currUser: authEmailName,            
+            nodeType: "Conversation",
+            bkOption: backendOption
         });
 
         if (obj === undefined) {
