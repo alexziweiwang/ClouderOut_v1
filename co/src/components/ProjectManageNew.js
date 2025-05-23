@@ -21,6 +21,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     const name = "/projectmanagenew";
 
     const [addedNewProjName, setAddedNewProjName] = useState(""); //TODO testing
+    const [addedNewProjKey, setAddedNewProjKey] = useState(""); //TODO testing
+
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAddedAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
@@ -80,7 +82,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
                  genre field (later) */
       
     
-      const result = projList.filter((name) => name === addedNewProjName);
+      const result = projList.filter((name) => name === addedNewProjKey);
       if (result.length > 0) {
         console.log("warning: duplicate name");
         alert("Project Name already taken ...");
@@ -92,7 +94,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
  
       //TODO: author name default: current user-name, then allow adding others
       
-
+      const projTitle = ""; //TODO100
       const empty_game_data = {};
       const empty_rm_audio = [];
       const empty_rm_visual = [];
@@ -148,6 +150,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
 
         author_info: addedAuthorInfo,
         project_description: projDedscription,
+        project_title: addedNewProjName
 
       };
 
@@ -249,7 +252,14 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
                         className="newProjectInfoElement" 
                         type="text" 
                         value={addedNewProjName} 
-                        onChange={(event)=>{changeProjNameInput(event)}}/>
+                        onChange={(event)=>{
+                          changeProjNameInput(event);
+                          let val = event.target.value
+                          let str = val.replaceAll(" ", "_");
+
+                          setAddedNewProjKey(str);
+
+                          }}/>
                         <label> (Changeable)</label>
 
                   </td>
@@ -260,13 +270,16 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
                       <input 
                         className="newProjectInfoElement" 
                         type="text" 
-                        value="" 
+                        value={addedNewProjKey} 
                         onChange={(event)=>{
-                          //TODO project-key
-                          
+                          setAddedNewProjKey(event.target.value);
                         }}
                         onFocus={()=>{
                           //TODO 
+                          let val = addedNewProjName;
+                          let str = val.replaceAll(" ", "_");
+
+                          setAddedNewProjKey(str);
                         }}
                         />
                         <label> (Can NOT change later)</label>
