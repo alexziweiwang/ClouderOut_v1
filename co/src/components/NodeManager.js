@@ -264,6 +264,8 @@ export default function NodeManager({projectName, currUser,
    const [styleArrHook, setStyleArrHook] = useState([]);
 
   
+   const [nodeMappingDisplay, setNodeMappingDisplay] = useState(false);
+
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
 
@@ -306,15 +308,23 @@ export default function NodeManager({projectName, currUser,
                                             // console.log("::: getters........... for chapter: ", chapterKeyTemp);
                                             // console.log("nodemap = ", tempMap); //TODO testing
                                             // console.log("grid = ", gridTemp); //TODO testing
-                                          
-            setNodeRelationshipMap(tempMap); //input-side
-            setGridBlocks(gridTemp); //input-side
-            setChapterKey(chapterKeyTemp);
-            if (firstTimeEnter == false) {
-              updateNodeLinkingsOnce(tempMap, gridTemp);
-            }
-            setClickedNodeKey(""); //reset when switching chapters
-            setClickedNode2(-1); //reset when switching chapters
+            if (gridTemp === undefined) {
+          console.log("undefined!");
+              tempMap = {};
+              gridTemp = [];
+         
+            } 
+
+              setNodeRelationshipMap(tempMap); //input-side
+              setGridBlocks(gridTemp); //input-side
+              setChapterKey(chapterKeyTemp);
+              if (firstTimeEnter == false) {
+                updateNodeLinkingsOnce(tempMap, gridTemp);
+              }
+              setClickedNodeKey(""); //reset when switching chapters
+              setClickedNode2(-1); //reset when switching chapters
+                                      
+           
           } 
 
 
@@ -977,7 +987,7 @@ export default function NodeManager({projectName, currUser,
         }}>
 
 
-        {chapterKey!== "" && <div className="setting_area" 
+        {(chapterKey!== "") && <div className="setting_area" 
         style={{
           "width": "90%"    
         }}

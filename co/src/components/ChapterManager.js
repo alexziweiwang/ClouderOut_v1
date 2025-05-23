@@ -72,9 +72,9 @@ export default function ChapterManager({
         textDictItem.chapterText
         : textDictItemDefault.chapterText;
 
-  let unchangableOnceSubmittedText = textDictItem.unchangableOnceSubmittedText !== undefined ?
-        textDictItem.unchangableOnceSubmittedText
-        : textDictItemDefault.unchangableOnceSubmittedText;
+  let unChangeableOnceSubmittedText = textDictItem.unChangeableOnceSubmittedText !== undefined ?
+        textDictItem.unChangeableOnceSubmittedText
+        : textDictItemDefault.unChangeableOnceSubmittedText;
 
   let editableLaterText = textDictItem.editableLaterText !== undefined ?
         textDictItem.editableLaterText
@@ -400,7 +400,7 @@ console.log("chapterData: ", chapterData); //TODO testing
                       </li>
                       {isAddNewChpater === true && 
                       <div>
-                        <label>{newWordText}{chapterUniqueIDText} ({unchangableOnceSubmittedText}): </label><br></br>
+                        <label>{newWordText}{chapterUniqueIDText} ({unChangeableOnceSubmittedText}): </label><br></br>
                         <input value={newChapterKeyInput} onChange={(event)=>{
                           setNewChapterKeyInput(event.target.value);
                         }}></input>

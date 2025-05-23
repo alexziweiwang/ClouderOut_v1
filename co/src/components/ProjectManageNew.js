@@ -237,9 +237,23 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
   
           <div className="parallelFrame newProjForm">
             <table 
+              style={{"width": "820px"}}
               className="noBorder">
               <tbody>
                 <tr>
+                  <td className="noBorder" style={{"width": "160px"}}>Project Unique ID: </td>
+                  <td className="noBorder">
+                      <input 
+                        className="newProjectInfoElement" 
+                        type="text" 
+                        value="" 
+                        onChange={(event)=>{
+                          //TODO project-key
+                        }}/>
+                        <label> (Can NOT change later)</label>
+                  </td>
+                </tr>
+                <tr style={{"width": "500px", "backgroundColor": "blue"}}>
                   <td className="noBorder">Project Name: </td>
                   <td className="noBorder">
                       <input 
@@ -247,6 +261,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
                         type="text" 
                         value={addedNewProjName} 
                         onChange={(event)=>{changeProjNameInput(event)}}/>
+                        <label> (Changeable)</label>
+
                   </td>
                 </tr>
 

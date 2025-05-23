@@ -574,6 +574,7 @@ Node-Data (multiple, content+ui-setting)
                   console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
             
         if (authEmailName !== "_") {
+          //TODO5000 check returned data from cloud-db
           setCloudDbConnOk(true);
         }
 
@@ -808,6 +809,8 @@ Node-Data (multiple, content+ui-setting)
 
     let grid = (givenChapterKey !== "" && gridBlocksAll[givenChapterKey] !== undefined) ? gridBlocksAll[givenChapterKey] : [];
                                   console.log("\t\tfinally passing in: ", grid);
+
+                                  
     return grid;
   }
 
@@ -1442,12 +1445,13 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     });
 
     if (data === undefined || data === null) {
+      console.log("!!! unable to fetch");
       return;
     }
 
   
     
-                                        //  console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
+                                         console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
     let gridChapterMap = {};
 
 
