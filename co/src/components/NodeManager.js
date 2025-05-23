@@ -264,7 +264,7 @@ export default function NodeManager({projectName, currUser,
    const [styleArrHook, setStyleArrHook] = useState([]);
 
   
-   const [nodeMappingDisplay, setNodeMappingDisplay] = useState(false);
+   const [nodeMgrDisplay, setNodeMgrDisplay] = useState(true);
 
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
@@ -305,11 +305,12 @@ export default function NodeManager({projectName, currUser,
           
             let gridTemp = getGridBlocks(chapterKeyTemp);
   
-                                            // console.log("::: getters........... for chapter: ", chapterKeyTemp);
-                                            // console.log("nodemap = ", tempMap); //TODO testing
-                                            // console.log("grid = ", gridTemp); //TODO testing
-            if (gridTemp === undefined) {
-          console.log("undefined!");
+                                            console.log("::: getters........... for chapter: ", chapterKeyTemp);
+                                            console.log("nodemap = ", tempMap); //TODO testing
+                                            console.log("grid = ", gridTemp); //TODO testing
+
+            if (gridTemp === undefined || tempMap === undefined) {
+                                            console.log("undefined!");
               tempMap = {};
               gridTemp = [];
          

@@ -271,8 +271,8 @@ Node-Data (multiple, content+ui-setting)
 
 //TODO ------------------------------------------------------ testing data area
 
-  const [chapterNodeMapAll, setChapterNodeMapAll] = useState({});
-  const [gridBlocksAll, setGridBlocksAll] = useState({}); //stores node-keys
+  const [chapterNodeMapAll, setChapterNodeMapAll] = useState(undefined);
+  const [gridBlocksAll, setGridBlocksAll] = useState(undefined); //stores node-keys
 
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
@@ -573,7 +573,8 @@ Node-Data (multiple, content+ui-setting)
                     
                   console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
             
-        if (authEmailName !== "_") {
+        if (authEmailName !== "_" && gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
+   
           //TODO5000 check returned data from cloud-db
           setCloudDbConnOk(true);
         }
@@ -582,8 +583,6 @@ Node-Data (multiple, content+ui-setting)
 
 
             console.log("!!! First Enter - GameMaker: ");//TODO testing
-
-            setCloudDbConnOk(false);
 
             //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
             /*
@@ -596,6 +595,9 @@ Node-Data (multiple, content+ui-setting)
             fetchUILangFromCLoud();
 
             */
+
+            loadEverythingFromCloud();
+
             setFirstTimeEnter(false);
         }
 
@@ -666,16 +668,21 @@ Node-Data (multiple, content+ui-setting)
   }
 
   async function goToProjectManagingPanel() {
+    if (cloudDbConnOk === false) {
+      pureNavigateToProjectManagingPanel();
+    } else {
 
-    let saveOrNot = window.confirm("Save all changes and exit?");
-    if (saveOrNot) {
-          if (currChapterKey !== "") {
-            await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
-            await saveToCloudNewNodeList(createdNewNodeWaitlist);
-          }
-
-          pureNavigateToProjectManagingPanel();
+      let saveOrNot = window.confirm("Save all changes and exit?");
+      if (saveOrNot) {
+            if (currChapterKey !== "") {
+              await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
+              await saveToCloudNewNodeList(createdNewNodeWaitlist);
+            }
+  
+            pureNavigateToProjectManagingPanel();
+      }
     }
+
 
   }
 
@@ -810,7 +817,7 @@ Node-Data (multiple, content+ui-setting)
     let grid = (givenChapterKey !== "" && gridBlocksAll[givenChapterKey] !== undefined) ? gridBlocksAll[givenChapterKey] : [];
                                   console.log("\t\tfinally passing in: ", grid);
 
-                                  
+
     return grid;
   }
 
@@ -1444,42 +1451,27 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
         bkOption: backendOption
     });
 
-    if (data === undefined || data === null) {
-      console.log("!!! unable to fetch");
-      return;
-    }
 
-  
-    
-                                         console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
-    let gridChapterMap = {};
+    if (data === undefined || data === null || data.chapterNodeGridBlocks === undefined) {
+                                            console.log("!!! unable to fetch");
 
+        
+            setCloudDbConnOk(false);
 
+    } else {
+                                            console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
+            setCloudDbConnOk(true);
+            let gridChapterMap = {};
 
-//TODO...............
-    gridChapterMap = convertNodeMapToGridBlocks(data.chapterNodeMapping);
-    
-//TODO...............
-
-//TODO20 refactored func
-
-
-
-
-    setGridBlocksAll(gridChapterMap);
-
-
-
-
-
-
-    setChapterNodeMapAll(data.chapterNodeMapping);
-
+            gridChapterMap = convertNodeMapToGridBlocks(data.chapterNodeMapping);
+        
+            setGridBlocksAll(gridChapterMap);            
+            setChapterNodeMapAll(data.chapterNodeMapping);
 
                       //                 console.log("FromCloud !!! data.chapterNodeMapping = ", data.chapterNodeMapping);
-
                    //                    console.log("FromCloud !!! after conversion ... GridBlocks = ", gridChapterMap);
 
+    }
 
   }
 
@@ -1771,6 +1763,7 @@ console.log("\t\t\t fetched from local ds ");
   }
 
   function loadEverythingFromCloud() {
+                                                    console.log("loading-everything-from-cloud");
     fetchProjectNavigationSettingsFromCloud();
     fetchChapterNodeMappingFromCloud();          
   }

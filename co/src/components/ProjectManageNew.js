@@ -51,6 +51,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
 
     function changeProjNameInput(event) {
       const str = event.target.value;
+//TODO change project-key as well
 
       setAddedNewProjName(str);
     }
@@ -240,21 +241,9 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
               style={{"width": "820px"}}
               className="noBorder">
               <tbody>
-                <tr>
-                  <td className="noBorder" style={{"width": "160px"}}>Project Unique ID: </td>
-                  <td className="noBorder">
-                      <input 
-                        className="newProjectInfoElement" 
-                        type="text" 
-                        value="" 
-                        onChange={(event)=>{
-                          //TODO project-key
-                        }}/>
-                        <label> (Can NOT change later)</label>
-                  </td>
-                </tr>
-                <tr style={{"width": "500px", "backgroundColor": "blue"}}>
-                  <td className="noBorder">Project Name: </td>
+              
+                <tr style={{"width": "500px"}}>
+                  <td className="noBorder" style={{"width": "160px"}}>Project Name: </td>
                   <td className="noBorder">
                       <input 
                         className="newProjectInfoElement" 
@@ -265,7 +254,24 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
 
                   </td>
                 </tr>
-
+                <tr>
+                  <td className="noBorder">Project Unique ID: </td>
+                  <td className="noBorder">
+                      <input 
+                        className="newProjectInfoElement" 
+                        type="text" 
+                        value="" 
+                        onChange={(event)=>{
+                          //TODO project-key
+                          
+                        }}
+                        onFocus={()=>{
+                          //TODO 
+                        }}
+                        />
+                        <label> (Can NOT change later)</label>
+                  </td>
+                </tr>
                 <tr>
                   <td className="noBorder">Project Description:</td>
                   <td className="noBorder">
