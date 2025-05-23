@@ -319,6 +319,10 @@ export default function ChapterManager({
                   <ul>
 
                     {chapterData.map((item, index) => {
+                      if (item[0] === "chapter_placeholder") {
+                        return;
+                      }
+
                       let hide = "display";
                       if (chapterData[index][2] === "delete") {
                         hide = "hide";

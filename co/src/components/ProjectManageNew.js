@@ -98,8 +98,11 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       const empty_game_data = {};
       const empty_rm_audio = [];
       const empty_rm_visual = [];
-      const empty_chapter_list = {};
-      const empty_chapter_node_mapping = {};
+      const empty_chapter_list = {0: ["chapter_placeholder","chapter_placeholder","chapter_placeholder","chapter_placeholder"]};
+
+      const empty_chapter_node_mapping = {
+        "placeholder": {}
+      };
       const empty_node_ui_plan = {};
 
       const empty_emu_4sets = {
@@ -166,7 +169,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       await createProjectVM(
         {
           currUser: username, 
-          projectName: addedNewProjName, 
+          projectName: addedNewProjKey, 
           projectObj: projectObj,
           bkOption: backendOption
         }
@@ -219,6 +222,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       setAddedNewProjName("");
       setProjDescription("");
       setAddedAuthorInfo("");
+      setAddedNewProjKey("");
     }
 
 

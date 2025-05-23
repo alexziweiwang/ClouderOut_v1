@@ -1452,14 +1452,13 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
     });
 
 
-    if (data === undefined || data === null || data.chapterNodeGridBlocks === undefined) {
+    if (data === undefined || data === null || data.chapterNodeMapping === undefined) {
                                             console.log("!!! unable to fetch");
 
         
             setCloudDbConnOk(false);
 
     } else {
-                                            console.log("!!! data.chapterNodeGridBlocks = ", data.chapterNodeGridBlocks);
             setCloudDbConnOk(true);
             let gridChapterMap = {};
 
