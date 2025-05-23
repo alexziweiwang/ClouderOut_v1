@@ -72,8 +72,10 @@ ChapterNodeMapping (used in node-manager)
 Node-Data (multiple, content+ui-setting)
 
 */
-  const backendOption = "firebase";   
-  //TODO2000 add "platform option"? add UI for choosing platform
+  const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
+//TODO2000 add "platform option"? add UI for choosing platform
+  const [isBackendOptionCloud, setIsBackendOptionCloud] = useState(true);
+
 
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
@@ -1807,7 +1809,8 @@ console.log("\t\t\t fetched from local ds ");
 
   <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
     <label>{projectNameText}: {projectName}</label>
-  
+    {/* <br></br> */}
+
   </div>    
 
 </div>
@@ -1826,7 +1829,16 @@ console.log("\t\t\t fetched from local ds ");
 
       <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
         <label>{projectNameText}: {projectName}</label>
-      
+        <select
+        onChange={(event)=>{
+          let val = event.target.value;
+          setBackendOption(val);
+        }}
+        >
+          <option value="firebase">Cloud</option>
+          <option value="local">Local</option>
+        </select>
+
       </div>    
 
 

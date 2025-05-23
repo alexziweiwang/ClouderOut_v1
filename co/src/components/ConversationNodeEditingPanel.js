@@ -36,11 +36,12 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
 
-    const backendOption = "firebase";
+    const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
     //TODO2000 add "platform option"? 
     //TODO     fetch from game-maker & add UI for choosing platform
+    const [isBackendOptionCloud, setIsBackendOptionCloud] = useState(true);
 
-/**
+    /**
 used data structures:
 
 single(current) node data (content + ui-settings)
@@ -1018,6 +1019,7 @@ GameDataDesign
                     <label>Project: {state.projectName}</label>
                     <br></br>
                     <label>Node: {state.clickedNodeKey}</label>
+                
                 </div>
 
                 <div style={{"minWidth": "200px", "marginTop": "2px"}}>

@@ -489,7 +489,7 @@ export default function Modal_EmuManager({
         // if local is not ready, from cloud
         let tempObj3 = await fetchEmuData3EpaVM({
             projectName: projName, 
-            currUser: username.replace,
+            currUser: username,
             bkOption: backendOption
         });
 
