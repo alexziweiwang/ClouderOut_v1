@@ -59,7 +59,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     }
     
     async function createNewProjectLocal() {
-        if (addedNewProjName === "") {
+        if (addedNewProjName === "") { //TODO1000 if only contains white space, etc.
           alert("Project Name can not be empty!");
           return;
         }
@@ -258,8 +258,8 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
                         value={addedNewProjName} 
                         onChange={(event)=>{
                           changeProjNameInput(event);
-                          let val = event.target.value
-                          let str = val.replaceAll(" ", "_");
+                          let val = event.target.value;
+                          let str = val.replaceAll(" ", "-");
 
                           setAddedNewProjKey(str);
 
@@ -276,12 +276,16 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
                         type="text" 
                         value={addedNewProjKey} 
                         onChange={(event)=>{
-                          setAddedNewProjKey(event.target.value);
+                          let val = event.target.value;
+                          let str = val.replaceAll(" ", "-");
+
+                          setAddedNewProjKey(str);
+
                         }}
                         onFocus={()=>{
                           //TODO 
                           let val = addedNewProjName;
-                          let str = val.replaceAll(" ", "_");
+                          let str = val.replaceAll(" ", "-");
 
                           setAddedNewProjKey(str);
                         }}

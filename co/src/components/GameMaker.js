@@ -573,10 +573,18 @@ Node-Data (multiple, content+ui-setting)
                     
                   console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
             
-        if (authEmailName !== "_" && gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
-   
+        if (authEmailName !== "_") {
+                                          console.log("\n\n\nvalid auth-username!");
+
           //TODO5000 check returned data from cloud-db
-          setCloudDbConnOk(true);
+          if (gridBlocksAll === undefined || chapterNodeMapAll === undefined) {
+            loadEverythingFromCloud();
+          }
+
+          if (gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
+
+            setCloudDbConnOk(true);
+          }
         }
 
         if (firstTimeEnter === true) {
@@ -1453,7 +1461,7 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
 
     if (data === undefined || data === null || data.chapterNodeMapping === undefined) {
-                                            console.log("!!! unable to fetch");
+                                            console.log("!!! unable to fetch node-mapping");
 
         
             setCloudDbConnOk(false);
@@ -1536,6 +1544,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   //TODO21 refactor to VM
   async function fetchChapterListFromCloud() {
+    if (authEmailName === "_") {
+      console.log("not fetching-chapter-list:  user = ", authEmailName);
+      return;
+    }
     let listTemp = await fetchAllChapterListVM(
       {
         projectName: projectName, 
@@ -1816,26 +1828,15 @@ console.log("\t\t\t fetched from local ds ");
 </>
 
 }
-{cloudDbConnOk === true && <>
+{(cloudDbConnOk === true && authEmailName !== "_" && gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) 
+
+&& <>
 <div>
     
     <div className="returning_buttons">
       
       <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
-
-      <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
-        <label>{projectNameText}: {projectName}</label>
-        <select
-        onChange={(event)=>{
-          let val = event.target.value;
-          setBackendOption(val);
-        }}
-        >
-          <option value="firebase">Cloud</option>
-          <option value="local">Local</option>
-        </select>
-
-      </div>    
+ 
 
 
       <div
