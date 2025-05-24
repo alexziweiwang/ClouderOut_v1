@@ -70,7 +70,7 @@ GameDataDesign
         chapterKey = state.chapterKey;
         clickedNodeKey = state.clickedNodeKey;
 
-    }
+    } 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -256,17 +256,23 @@ GameDataDesign
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        getAuthFirebase(
-            {
-              goToNotLoggedInPageFunc: goToNotLoggedInPage,
-              sendOutEmailName: setAuthEmailName
-    
-            }
-        );
-        console.log("conv-node-editor --\t\tauthEmamilName", authEmailName);
+
+
+        if (authEmailName === "_") {
+            getAuthFirebase(
+                {
+                  goToNotLoggedInPageFunc: goToNotLoggedInPage,
+                  sendOutEmailName: setAuthEmailName
+        
+                }
+            );
+            console.log("auth! conv-node-editor --\t\tauthEmamilName", authEmailName);
+
+        }
+
             
         
-        if (projectName === null || projectName === "default-no-state projectname") {
+        if (authEmailName !== "_" && (projectName === null || projectName === "default-no-state projectname")) {
       //      alert("No project selected. Returning to project selection page...");
             goToProjectManagingPanel();
         }
@@ -282,20 +288,23 @@ GameDataDesign
 
 
         if (firstTimeEnter === true) {
-            initializeUILang();
 
-            loadFromCloud();
+            if (authEmailName !== "_") {
+                initializeUILang();
 
-
-            const item = {};
-            Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
-                item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
-            });
-            setEditingPmPreviewPiece(item);
+                loadFromCloud();
 
 
+                const item = {};
+                Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+                    item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
+                });
+                setEditingPmPreviewPiece(item);
 
-            setFirstTimeEnter(false);
+
+
+                setFirstTimeEnter(false);
+            }
         } 
         
 
@@ -1013,8 +1022,9 @@ GameDataDesign
         >
             <div className="returning_buttons">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-{firstEnterButtonPressed === true &&                
+{state!= undefined && state.projectName !== null && firstEnterButtonPressed === true &&                
 <>
+
 <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
                     <label>Project: {state.projectName}</label>
                     <br></br>
@@ -1063,7 +1073,7 @@ GameDataDesign
 }
             </div>
 
-{state!= undefined && firstEnterButtonPressed === true &&
+{state!= undefined && state.projectName !== null && firstEnterButtonPressed === true &&
 <>
             <div className="parallelFrame" style={{"marginTop": "-5px"}}>
                 <div className="topParalBarLeftPart">

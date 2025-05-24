@@ -563,21 +563,25 @@ Node-Data (multiple, content+ui-setting)
                       
                   //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
 
-        getAuthFirebase(
-            {
-                goToNotLoggedInPageFunc: goToNotLoggedInPage,
-                sendOutEmailName: setAuthEmailName
-            
-            }
-        );
+
+        if (authEmailName === "_") {
+          getAuthFirebase(
+              {
+                  goToNotLoggedInPageFunc: goToNotLoggedInPage,
+                  sendOutEmailName: setAuthEmailName
+              
+              }
+          );
+                          console.log("@@@gamek-maker --\t\tauthEmamilName", authEmailName);
+
+        }
                     
-                  console.log("gamek-maker --\t\tauthEmamilName", authEmailName);
             
         if (authEmailName !== "_") {
-                                          console.log("\n\n\nvalid auth-username!");
 
           //TODO5000 check returned data from cloud-db
           if (gridBlocksAll === undefined || chapterNodeMapAll === undefined) {
+            
             loadEverythingFromCloud();
           }
 
