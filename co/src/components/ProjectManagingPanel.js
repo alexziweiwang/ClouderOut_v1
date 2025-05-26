@@ -208,8 +208,9 @@ export default function ProjectManagerPanel() {
     let name = "/projectmanagingpanel";
     
     
-    return (
-    <div style={{"display": "flex"}}>    
+    return (<>
+
+{authEmailName !== "_" && <div style={{"display": "flex"}}>    
       <Sidebar 
       compName = {name}
       username={username}
@@ -390,5 +391,8 @@ export default function ProjectManagerPanel() {
     
 
   </div>
+    
+            }
+</>            
     );
 }

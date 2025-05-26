@@ -82,7 +82,9 @@ export default function ProfilePage({}) {
 
     
     return (
-  <div className="page">
+
+<>
+  {authEmailName !== "_" && <div className="page">
     
     <Sidebar 
         compName = {name}
@@ -130,6 +132,8 @@ export default function ProfilePage({}) {
       
     </div>
  
-  </div>
+  </div>}
+
+</>
     );
 }

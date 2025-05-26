@@ -59,7 +59,8 @@ export default function AccountPage({}) {
 
 
     return (
-  <div className="page">
+      <>
+  {authEmailName !== "_" && <div className="page">
     <Sidebar 
       compName = {name}
       username={state.username}
@@ -105,6 +106,8 @@ export default function AccountPage({}) {
         </div>
     </div>
  
-  </div>
+  </div>}
+
+  </>
     );
 }

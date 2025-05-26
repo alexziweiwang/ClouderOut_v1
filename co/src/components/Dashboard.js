@@ -84,8 +84,8 @@ export default function Dashboard() {
       return authEmailName; //TODO1030
     }
 
-    return (
-  <div className="page">
+    return (<>
+  {authEmailName !== "_" && <div className="page">
     {!showNewProjCreationPage && 
       <Sidebar 
         compName={name} 
@@ -138,6 +138,8 @@ export default function Dashboard() {
           username={authEmailName}
       />
 }
-  </div>
+  </div>}
+
+  </>
     );
 }
