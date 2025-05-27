@@ -852,7 +852,7 @@ return (<div className={modalStyleName}>
                             setFocusingPanelName("4ess");
                         }}             
                     >4.Emu SL slots</button>
-                    <br></br>
+                    {/* <br></br>
                     <button
                         className={focusingPanelName === "5shp" ? "selectedTab" : ""}
                         onClick={()=>{
@@ -861,7 +861,7 @@ return (<div className={modalStyleName}>
 
                     >
                      5.{emuShopInfo}
-                    </button>
+                    </button> */}
 
 
 </div>}
@@ -1428,7 +1428,7 @@ return (<div className={modalStyleName}>
                 </div>}
 
 
-
+{/* 
 
                 {focusingPanelName ==="5shp" && <div>
                     <div 
@@ -1737,7 +1737,7 @@ return (<div className={modalStyleName}>
                                 }}                            
                             >Cancel</button>
                         </div>}
-                </div>}
+                </div>} */}
 
 </>}
 

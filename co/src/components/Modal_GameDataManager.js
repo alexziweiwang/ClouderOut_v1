@@ -23,6 +23,8 @@ export default function Modal_GameDataManager ({
         
         getOfflineModeName,
 
+        updateForEmuGdt1
+
         //getBackendOption
     }) {
     
@@ -380,6 +382,9 @@ export default function Modal_GameDataManager ({
             gameData: gameDataLatest,
             bkOption: backendOption
         });
+
+
+        updateForEmuGdt1(gameDataLatest);
     
     }
 

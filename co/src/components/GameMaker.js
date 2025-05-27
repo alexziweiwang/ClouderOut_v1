@@ -38,7 +38,10 @@ import {
 
   addNewOneChapterFolderVM 
 } from '../viewmodels/ChapterInfoViewModel';
+
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
+
+import { fetchEmuData1GdtVM } from '../viewmodels/EmuManagingViewModel';
 
 
 import { 
@@ -1203,6 +1206,21 @@ Node-Data (multiple, content+ui-setting)
     }
   }
 
+  async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
+    let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
+  
+    Object.keys(gameDataDesignList).map((currKey) => {
+
+        if (emuGdt1Temp[currKey] === undefined) {
+            emuGdt1Temp[currKey] = gameDataDesignList[currKey];
+            emuGdt1Temp[currKey]["current_value"] = emuGdt1Temp[currKey]["default_value"];
+        }
+    });
+
+    setTestPlayerGameDataTracker(emuGdt1Temp);
+
+  }
+
   function getUserConfigFromEmuManager1Gdt(data1) {
     //update data1 to be the new Game-Data-Tracker
     //TODO  //recreate emu data object
@@ -2339,6 +2357,8 @@ console.log("\t\t\t fetched from local ds ");
                 getUsername={passInAuthEmailName}
 
                 getOfflineModeName={passInOfflineModeName}
+
+                updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 
               />
 
