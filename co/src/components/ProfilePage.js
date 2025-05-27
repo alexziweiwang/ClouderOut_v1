@@ -5,14 +5,13 @@ import { useState, useEffect } from 'react';
 
 //TODO1090 cloud-db related
 
-import { getProfileInfoVM } from '../viewmodels/AccountViewModel';
+import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountViewModel';
 //TODO115 collection of cloud-related
-
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 export default function ProfilePage({}) {
-    const backendOption = "firebase"; 
+    const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
     //TODO5000 speacial: default to use firebase for account folder?
     
 
@@ -30,7 +29,9 @@ export default function ProfilePage({}) {
     const [profileInfo, setProfile] = useState({});
     const [profileEditInput, setProfileEditInput] = useState("");
     
-    
+
+    const [isEditingIntro, setIsEditingIntro] = useState("");
+
     const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -79,6 +80,21 @@ export default function ProfilePage({}) {
   
     }
 
+    async function confirmInfoChange() {
+        let obj = {}; 
+        obj["username"] = authEmailName; 
+        obj["introduction"] = profileEditInput; 
+        setProfile(obj);
+
+        await updateProfileInfoVM({
+            uname: authEmailName, 
+            infoObj: obj, 
+            bkOption: backendOption
+        })
+
+        setProfileEditInput("");
+    }
+ 
 
     
     return (
@@ -106,20 +122,35 @@ export default function ProfilePage({}) {
                 <tr>
                     <td className="noBorder">Instruction:</td>
                     <td className="noBorder">
-                        {profileInfo["introduction"]}
-                        <textarea type="text" onChange={(event)=>{
-                                setProfileEditInput(event.target.value);
-                            }} 
-                            value={profileEditInput}
-                        ></textarea>
-                        <button onClick={()=>{
-                            let obj = {}; 
-                            obj["username"] = profileInfo["username"]; 
-                            obj["introduction"] = "\"" + profileEditInput + "\""; 
-                            setProfile(obj);
-                            setProfileEditInput("");
-                        }}>Change</button>
+                        <label>{profileInfo["introduction"]}</label>
+                        
+                        
+                        
+                        {isEditingIntro === true && <>
+                            <textarea type="text" onChange={(event)=>{
+                                    setProfileEditInput(event.target.value);
+                                }} 
+                                value={profileEditInput}
+                            ></textarea>
+                       
+                            <button onClick={()=>{
+                                confirmInfoChange();
+                                setIsEditingIntro(false);
+                            }}>Confirm</button>
+                            
+                            <button onClick={()=>{
+                                setIsEditingIntro(false);               
+                            }}>Cancel</button>
 
+                        </>}
+
+                        {isEditingIntro === false && <>
+                            <button onClick={()=>{
+                                setIsEditingIntro(true);
+
+                            }}>Edit</button>
+  
+                        </>}
                     </td>
                 </tr>
                 </tbody>

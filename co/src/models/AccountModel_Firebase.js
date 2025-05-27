@@ -22,7 +22,7 @@ export async function getProfileInfo({uname}) {
 }
 
 export async function updateProfileInfo({uname, infoObj}) {
-  
+                            
   const docRef = doc(db, "user_projects", uname);
   const docSnap = await getDoc(docRef);
 
@@ -30,10 +30,10 @@ export async function updateProfileInfo({uname, infoObj}) {
     return;
   }
 
-  await updateDoc(docSnap, 
-  {
-      introduction: infoObj.intro
+  await updateDoc(docRef, {
+    introduction: infoObj.introduction
   });
+
 
 }
 
