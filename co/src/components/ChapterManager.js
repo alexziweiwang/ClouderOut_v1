@@ -13,7 +13,8 @@ export default function ChapterManager({
   sendOutIsCollapsed,
 
   getUILanguage,
-  }) {
+  
+}) {
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
 //TODO3: add getChapterData (from caller) : "getChapterDataInfo()"

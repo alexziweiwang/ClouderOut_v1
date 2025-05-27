@@ -8,6 +8,7 @@ import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 //TODO1090 cloud-db related
 import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
 
+//TODO6000 offline mode prep
 
 
 //TODO700 get chapter-list

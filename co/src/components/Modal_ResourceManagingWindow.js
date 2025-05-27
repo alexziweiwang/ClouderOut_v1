@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
+//TODO6000 offline mode prep
+
 
 import PicturePreview from './PicturePreview';
 import AudioPreview from './AudioPreview';

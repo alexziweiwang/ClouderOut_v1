@@ -5,6 +5,7 @@ import langDictionary from './_textDictionary';
 import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+//TODO6000 offline mode prep
 
 
 export default function Modal_EmuManager({
@@ -13,7 +14,7 @@ export default function Modal_EmuManager({
     update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
     isForGameMaker,
     projName,
-    getUsername
+    getUsername,
 
     //getBackendOption
 }) {

@@ -316,6 +316,9 @@ Node-Data (multiple, content+ui-setting)
   const [gameDataDesignList, setGameDataDesignList] = useState({});
   const [gameDataArray, setGameDataArray] = useState([]);
 
+  const [offlineHalfMode, setOfflineHalfMode] = useState(true);
+  const [offlineFUllMode, setOfflineFullMode] = useState(false); //TODO6000
+
   function manuallyResetWithSampleData() {
 
   setChapterNodeMapAll({
@@ -579,16 +582,32 @@ Node-Data (multiple, content+ui-setting)
             
         if (authEmailName !== "_") {
 
-          //TODO5000 check returned data from cloud-db
-          if (gridBlocksAll === undefined || chapterNodeMapAll === undefined) {
+            //TODO5000 check returned data from cloud-db
+            if (gridBlocksAll === undefined || chapterNodeMapAll === undefined) {
+              
+              loadEverythingFromCloud();
+            }
+
+            if (gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
+
+              setCloudDbConnOk(true);
+            }
+
+            setOfflineHalfMode(false);
+            setOfflineFullMode(false);
+
+        } else {
+
+            setOfflineHalfMode(true);
+//offlineHalfMode
+
+        //TODO6000 offline mode prep
+        //in this case, ask either log-in, or let the user work on the project offline
             
-            loadEverythingFromCloud();
-          }
-
-          if (gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
-
-            setCloudDbConnOk(true);
-          }
+            //save: download current data-sets
+            //import: upload and parse formatted file ...
+            //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
+        
         }
 
         if (firstTimeEnter === true) {
@@ -1815,23 +1834,26 @@ console.log("\t\t\t fetched from local ds ");
 {cloudDbConnOk === false &&
 
 <>
-<div className="returning_buttons">
-      
-  <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
+      <div className="returning_buttons">
+            
+        <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
 
-  <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
-    <label>{projectNameText}: {projectName}</label>
-    {/* <br></br> */}
+        <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
+          <label>{projectNameText}: {projectName}</label>
+          {/* <br></br> */}
 
-  </div>    
+        </div>    
 
-</div>
+      </div>
 
 
-  <div>Unable to connect to database</div>
+      <div> Unable to connect to database for user: [{authEmailName}] </div>
+
 </>
 
 }
+
+
 {(cloudDbConnOk === true && authEmailName !== "_" && gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) 
 
 && <>
@@ -2340,8 +2362,102 @@ console.log("\t\t\t fetched from local ds ");
 
 
   
-    );
+
+
+
+
+
+
+
+
+); //end of entire component
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //default -     current Project Nav

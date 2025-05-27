@@ -5,6 +5,7 @@ import langDictionary from './_textDictionary';
 //TODO20 cloud-func
 import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
+//TODO6000 offline mode prep
 
 
 
