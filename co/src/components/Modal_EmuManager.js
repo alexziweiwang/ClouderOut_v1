@@ -15,8 +15,11 @@ export default function Modal_EmuManager({
     isForGameMaker,
     projName,
     getUsername,
+    
+    getOfflineModeName,
 
     //getBackendOption
+    
 }) {
 
     const backendOption = "firebase";    

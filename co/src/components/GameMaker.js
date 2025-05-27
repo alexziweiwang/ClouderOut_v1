@@ -316,8 +316,8 @@ Node-Data (multiple, content+ui-setting)
   const [gameDataDesignList, setGameDataDesignList] = useState({});
   const [gameDataArray, setGameDataArray] = useState([]);
 
-  const [offlineHalfMode, setOfflineHalfMode] = useState(true);
-  const [offlineFUllMode, setOfflineFullMode] = useState(false); //TODO6000
+  const [offlineHalfMode, setOfflineHalfMode] = useState(true); //with account log-in and use links from external online-drive, not using the storage place
+  const [offlineFullMode, setOfflineFullMode] = useState(false); //TODO6000
 
   function manuallyResetWithSampleData() {
 
@@ -1817,6 +1817,18 @@ console.log("\t\t\t fetched from local ds ");
   function passInAuthEmailName() {
     return authEmailName;
   }
+
+  function passInOfflineModeName() {
+    if (offlineHalfMode === true) {
+        return "offline_half";
+    } else if (offlineFullMode === true) {
+        return "offline_full";
+    } else {
+        return "online_cloud";
+    }
+  }
+
+
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
@@ -2303,7 +2315,8 @@ console.log("\t\t\t fetched from local ds ");
                 projName={projectName}   
                 getUsername={passInAuthEmailName}
 
-            
+                getOfflineModeName={passInOfflineModeName}
+
               />
           
           </div>
@@ -2324,6 +2337,8 @@ console.log("\t\t\t fetched from local ds ");
 
                 projName={projectName}  
                 getUsername={passInAuthEmailName}
+
+                getOfflineModeName={passInOfflineModeName}
 
               />
 
@@ -2350,6 +2365,7 @@ console.log("\t\t\t fetched from local ds ");
               projName={projectName}  
               getUsername={passInAuthEmailName}
 
+              getOfflineModeName={passInOfflineModeName}
             />
           </div>
 </div>

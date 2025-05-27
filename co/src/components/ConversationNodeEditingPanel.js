@@ -251,6 +251,9 @@ GameDataDesign
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
+    const [offlineHalfMode, setOfflineHalfMode] = useState(true); //with account log-in and use links from external online-drive, not using the storage place
+    const [offlineFullMode, setOfflineFullMode] = useState(false); //TODO6000
+  
 
     const [authEmailName, setAuthEmailName] = useState("_");
 
@@ -999,6 +1002,17 @@ GameDataDesign
         return authEmailName;
     }
 
+    function passInOfflineModeName() {
+        if (offlineHalfMode === true) {
+            return "offline_half";
+        } else if (offlineFullMode === true) {
+            return "offline_full";
+        } else {
+            return "online_cloud";
+        }
+
+    }
+
 
           
 
@@ -1324,6 +1338,8 @@ GameDataDesign
 
                     projName={state.projectName}  
                     getUsername={passInUsername}
+
+                    getOfflineModeName={passInOfflineModeName}
                 />
                                                                     {/* } */}
             </div>
@@ -1344,7 +1360,9 @@ GameDataDesign
                     getUILanguage={passInUILanguage}
 
                     getUsername={passInUsername}
-                    projName={state.projectName}    
+                    projName={state.projectName}  
+                    
+                    getOfflineModeName={passInOfflineModeName}
                 />   
             </div>
 
@@ -1369,6 +1387,8 @@ GameDataDesign
 
                     getUsername={passInUsername}
                     projName={state.projectName}  
+
+                    getOfflineModeName={passInOfflineModeName}
 
                 />
             </div>

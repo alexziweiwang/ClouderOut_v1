@@ -900,6 +900,10 @@ return (
 {/* ---------------------------------------------------- */}
 
                         {storyPageChapterTitles.map((item, index) => {
+                            if (item === "chapter_placeholder") {
+                                return;
+                            }
+
                             let keyStr = "storyPageSameplTitle" + index + (isEditing === true ? "__e" : "__ne");
 
 

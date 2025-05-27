@@ -17,7 +17,9 @@ export default function Modal_ResourceManagingWindow ({
     getUILanguage,
     projName,
 
-    getUsername //TODO1000 test
+    getUsername, //TODO1000 test
+
+    getOfflineModeName,
 
     //getBackendOption
 }) {
