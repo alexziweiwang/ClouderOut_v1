@@ -100,7 +100,7 @@ export default function ProfilePage({}) {
                 <tbody>
                 <tr>
                     <td className="noBorder">Username: </td>
-                    <td className="noBorder">{profileInfo["username"]}</td>
+                    <td className="noBorder">{authEmailName}</td>
                 </tr>
 
                 <tr>

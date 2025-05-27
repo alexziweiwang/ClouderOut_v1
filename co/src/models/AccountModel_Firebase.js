@@ -21,6 +21,23 @@ export async function getProfileInfo({uname}) {
 
 }
 
+export async function updateProfileInfo({uname, infoObj}) {
+  
+  const docRef = doc(db, "user_projects", uname);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return;
+  }
+
+  await updateDoc(docSnap, 
+  {
+      introduction: infoObj.intro
+  });
+
+}
+
+
 export async function getUserDefaultUILang({uname}) {
   const docRef = doc(db, "user_projects", uname);
   const docSnap = await getDoc(docRef);

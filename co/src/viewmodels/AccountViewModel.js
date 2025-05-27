@@ -2,6 +2,8 @@ import {
     getProfileInfo, 
     getUserDefaultUILang, 
     updateUserDefaultUILang, 
+    updateProfileInfo
+
 } from '../models/AccountModel_Firebase';
 
 
@@ -19,12 +21,24 @@ function getProfileInfoVM({uname})
  * @returns profile data
  */
 export async function getProfileInfoVM({uname, bkOption}) {
-    const profile = {};
+    let profile = {};
     
     if (bkOption === "firebase") {
         profile = await getProfileInfo({uname});
     }
     return profile;
+}
+
+export async function updateProfileInfoVM({uname, infoObj, bkOption}) {
+
+    if (infoObj === undefined) {
+        return;
+    }
+
+    if (bkOption === "firebase") {
+        await updateProfileInfo({uname, infoObj});
+    }
+    
 }
 
 // export async function getUserDefaultUILangVM({uname}) {
