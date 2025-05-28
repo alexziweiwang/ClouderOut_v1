@@ -41,7 +41,7 @@ import {
 
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
-import { fetchEmuData1GdtVM } from '../viewmodels/EmuManagingViewModel';
+import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 
 
 import { 
@@ -1218,6 +1218,20 @@ Node-Data (multiple, content+ui-setting)
     });
 
     setTestPlayerGameDataTracker(emuGdt1Temp);
+
+    let resObj = {};
+    resObj["gdt1"] = emuGdt1Temp;
+    resObj["epp2"] = testPlayerProfile;
+    resObj["epa3"] = testPlayerAccount;
+    resObj["ess4"] = {"placeholder": "placerholder"};
+    resObj["shp5"] = {"placeholder": "placerholder"};
+
+    await updateAllSetsVM({
+        projectName: projectName, 
+        currUser: authEmailName, 
+        dataObj: resObj,
+        bkOption: backendOption
+    });
 
   }
 
