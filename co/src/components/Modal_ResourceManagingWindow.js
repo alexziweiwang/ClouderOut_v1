@@ -19,7 +19,7 @@ export default function Modal_ResourceManagingWindow ({
 
     getUsername, //TODO1000 test
 
-    getOfflineModeName,
+    getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
 
     //getBackendOption
 }) {

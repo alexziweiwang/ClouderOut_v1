@@ -21,7 +21,7 @@ export default function Modal_GameDataManager ({
 
         getUsername, //TODO1000 test
         
-        getOfflineModeName,
+        getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
 
         updateForEmuGdt1
 
@@ -154,13 +154,21 @@ export default function Modal_GameDataManager ({
 
     async function initialization(usernameTemp) {
         let isUpdated = true;
-        let tempGameDataDesign = await getProjectGameDataDesignVM({
-            projectName: projName, 
-            uname: usernameTemp, 
-            mostUpdated: isUpdated,
-            bkOption: backendOption
-        
-        });
+
+
+        let tempGameDataDesign = {};
+
+        if (getOfflineModeName === "online_cloud") {
+
+                tempGameDataDesign = await getProjectGameDataDesignVM({
+                    projectName: projName, 
+                    uname: usernameTemp, 
+                    mostUpdated: isUpdated,
+                    bkOption: backendOption
+                
+                });
+        }
+
 
         if (tempGameDataDesign === null || tempGameDataDesign === undefined) {
 
@@ -232,7 +240,10 @@ export default function Modal_GameDataManager ({
     
         //resetNeedCloudData();// TODO remove?
         
-        await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
+        if (getOfflineModeName === "online_cloud") {
+            await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
+        }
+
         // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
@@ -318,7 +329,10 @@ export default function Modal_GameDataManager ({
 
     async function saveTableChanges() {
         //TODO validation? then save changes? for number & boolean types
-        await updateVarDefaultValue();
+        if (getOfflineModeName === "online_cloud") {
+            await updateVarDefaultValue();
+        }
+
         setEditAreaOpen(false);
         setEditLineDisplay("");
     }
@@ -365,7 +379,9 @@ export default function Modal_GameDataManager ({
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        await updateGDataDesignToCloud(newGameData);
+        if (getOfflineModeName === "online_cloud") {
+            await updateGDataDesignToCloud(newGameData);
+        }
     }
 
     async function updateGDataDesignToCloud(gameDataLatest) {
@@ -376,13 +392,15 @@ export default function Modal_GameDataManager ({
         }
         let currUser = username;
 
-        await updateGameDataDesignVM({
-            projectName: projName, 
-            uname: currUser, 
-            gameData: gameDataLatest,
-            bkOption: backendOption
-        });
+        if (getOfflineModeName === "online_cloud") {
 
+            await updateGameDataDesignVM({
+                projectName: projName, 
+                uname: currUser, 
+                gameData: gameDataLatest,
+                bkOption: backendOption
+            });
+        }
 
         updateForEmuGdt1(gameDataLatest);
     

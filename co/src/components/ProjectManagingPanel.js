@@ -20,7 +20,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 export default function ProjectManagerPanel() {
     const backendOption = "firebase"; 
-    //TODO5000 speacial: default to use firebase for account folder?
+    //default to use firebase for account folder?
     
     let languageCodeTextOption = 'en';
 

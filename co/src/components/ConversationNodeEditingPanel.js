@@ -259,7 +259,13 @@ GameDataDesign
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-
+          
+        
+        if (authEmailName !== "_" && (projectName === null || projectName === "default-no-state projectname")) {
+            //      alert("No project selected. Returning to project selection page...");
+                  goToProjectManagingPanel();
+        }
+      
 
         if (authEmailName === "_") {
             getAuthFirebase(
@@ -271,15 +277,21 @@ GameDataDesign
             );
             console.log("auth! conv-node-editor --\t\tauthEmamilName", authEmailName);
 
+        } 
+
+        if (authEmailName !== "_") { //online-mode
+            setOfflineHalfMode(false);
+            setOfflineFullMode(false);
+        } else {
+            setOfflineHalfMode(true);
+        //TODO6000 offline mode: import, edit and save one-node's content and ui-settings
+
+
         }
 
-            
-        
-        if (authEmailName !== "_" && (projectName === null || projectName === "default-no-state projectname")) {
-      //      alert("No project selected. Returning to project selection page...");
-            goToProjectManagingPanel();
-        }
 
+
+  
  
     
 

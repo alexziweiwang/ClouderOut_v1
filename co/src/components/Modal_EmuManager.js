@@ -16,7 +16,7 @@ export default function Modal_EmuManager({
     projName,
     getUsername,
     
-    getOfflineModeName,
+    getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
 
     //getBackendOption
     
@@ -397,19 +397,24 @@ export default function Modal_EmuManager({
 
 
     async function prepare1Gdt() {
+        let tempObj1 = {}; //TODO6000 gdt1-template here
 
-        let tempObj1 = await fetchEmuData1GdtVM({
-            projectName: projName, 
-            currUser: username,
-            bkOption: backendOption
-        });
-        
+        if (getOfflineModeName === "online_cloud") {
+
+            tempObj1 = await fetchEmuData1GdtVM({
+                projectName: projName, 
+                currUser: username,
+                bkOption: backendOption
+            });
+            
+        }
+
         let objSize = 0;
         if (tempObj1 !== undefined) {
             objSize = Object.keys(tempObj1).length;
         } 
 
-        if (objSize === 0 || tempObj1 === undefined || tempObj1 === null) {
+        if (getOfflineModeName === "online_cloud" && (objSize === 0 || tempObj1 === undefined || tempObj1 === null)) {
             // no emu-data for game-data -->      create from game-data-design-list
 
             let isUpdated = true;
@@ -432,10 +437,10 @@ export default function Modal_EmuManager({
                 let dataType = gDataDesignMap[currKey]["data_type"];
 
                 let obj = {
-                "name": name,
-                "default_value": defaultVal,
-                "data_type": dataType,
-                "current_value": defaultVal
+                    "name": name,
+                    "default_value": defaultVal,
+                    "data_type": dataType,
+                    "current_value": defaultVal
                 }
                 let keyStr = currKey;
                 trackerMap[keyStr] = obj;
@@ -461,11 +466,16 @@ export default function Modal_EmuManager({
 
     async function prepare2Epp() {
         // if local is not ready, from cloud
-        let tempObj2 = await fetchEmuData2EppVM({
-            projectName: projName, 
-            currUser: username,
-            bkOption: backendOption
-        });
+        
+        let tempObj2 = {}; //TODO template-epp2
+        
+        if (getOfflineModeName === "online_cloud") {
+            tempObj2 = await fetchEmuData2EppVM({
+                projectName: projName, 
+                currUser: username,
+                bkOption: backendOption
+            });
+        }
 
         let objSize = 0;
         if (tempObj2 !== undefined) {
