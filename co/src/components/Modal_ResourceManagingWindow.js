@@ -121,6 +121,8 @@ export default function Modal_ResourceManagingWindow ({
 
     const [username, setUsername] = useState("_");
 
+    const [offlineModeName, setOfflineModeName] = useState("");
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -266,12 +268,20 @@ export default function Modal_ResourceManagingWindow ({
 
     async function updateVarPairToCloud() { //TODO test and debug
         if (varPairToCloud !== "default") {
-            await storeProjectResourceVarPairsToCloudVM({
-                userName: username, 
-                projectName: projName, 
-                obj: varPairToCloud,
-                bkOption: backendOption
-            });
+
+
+            if (offlineModeName === "online_cloud") {
+
+
+                await storeProjectResourceVarPairsToCloudVM({
+                    userName: username, 
+                    projectName: projName, 
+                    obj: varPairToCloud,
+                    bkOption: backendOption
+                });
+            }
+
+
             setVarPairToCloud("default");
         }
         resetDataUpdatedFalse();
@@ -281,16 +291,24 @@ export default function Modal_ResourceManagingWindow ({
     async function fetchProjResourceVarPairLists(usernameTemp) {
         /* fetch from cloud db */
         //TODO500     
-        const obj = await fetchProjectResourceVarPairsVM({
-            userName: usernameTemp, 
-            projectName: projName,
-            bkOption: backendOption
-        });
-        
-                                    //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
 
-        setVisualVarPairs(obj.visual);
-        setAudioVarPairs(obj.audio);
+        let obj = {};
+
+        if (offlineModeName === "online_cloud") {
+
+            obj = await fetchProjectResourceVarPairsVM({
+                userName: usernameTemp, 
+                projectName: projName,
+                bkOption: backendOption
+            });
+
+                                              //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
+
+            setVisualVarPairs(obj.visual);
+            setAudioVarPairs(obj.audio);
+        }
+        
+  
     }
 
     function fileSelectChange(event) {
@@ -305,15 +323,19 @@ export default function Modal_ResourceManagingWindow ({
         }
 
         const fileName = `${username}_${selectedFile.name}`;
-
-        await submitFileVM({
-            file: selectedFile , 
-            uname: username, 
-            filename: fileName,
-            bkOption: backendOption
-        });
         
-        await updateUploadedFileRecords(username, fileName, type);
+        if (offlineModeName === "online_cloud") {
+
+            await submitFileVM({
+                file: selectedFile , 
+                uname: username, 
+                filename: fileName,
+                bkOption: backendOption
+            });
+            
+            await updateUploadedFileRecords(username, fileName, type);
+
+        }
     }
 
 
@@ -330,65 +352,84 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function updateUploadedFileRecords(fileName, type) {
-        let url = await fetchUrlByFilenameVM({
-            fullFilename: fileName,
-            bkOption: backendOption
-        });
-                                            console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
-        if (url === undefined || url === "") {
-                                            console.log("\trmWindow -- Error: empty url"); //TODO test
-            return;
+        let url = "";
+
+        if (offlineModeName === "online_cloud") {
+
+                url = await fetchUrlByFilenameVM({
+                    fullFilename: fileName,
+                    bkOption: backendOption
+                });
+
+                
+                                                    console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
+                if (url === undefined || url === "") {
+                                                    console.log("\trmWindow -- Error: empty url"); //TODO test
+                    return;
+                }
+
+
+                await addToRmFileListVM({
+                    uname: username, 
+                    filetitle: fileName, 
+                    fileUrl: url, 
+                    fileType: type,
+                    bkOption: backendOption
+                });
+        
+                await fetchRmFileList(username);
         }
 
-
-        await addToRmFileListVM({
-            uname: username, 
-            filetitle: fileName, 
-            fileUrl: url, 
-            fileType: type,
-            bkOption: backendOption
-        });
- 
-        await fetchRmFileList(username);
     }
 
     async function updateGoogleDriveFileRecords(type, addedFileName) {
-        await addToRmFileListVM({
-            uname: username, 
-            filetitle: addedFileName, 
-            fileUrl: googleDriveFileDisplayLink, 
-            fileType: type,
-            bkOption: backendOption
-        });
-        
-        await fetchRmFileList(username);
+
+        if (offlineModeName === "online_cloud") {
+
+            await addToRmFileListVM({
+                uname: username, 
+                filetitle: addedFileName, 
+                fileUrl: googleDriveFileDisplayLink, 
+                fileType: type,
+                bkOption: backendOption
+            });
+            
+            await fetchRmFileList(username);
+
+        }
     }
 
     async function fetchRmFileList(authUsername) { //TODO temp debugging
+        const fileList = {};
 
-        const fileList = await getRmFileListVM({
-            uname: authUsername,
-            bkOption: backendOption
-        });
-        if (fileList === undefined || fileList === null) {
-            return;
-        }
+        if (offlineModeName === "online_cloud") {
 
-        setCloudFileList(fileList.filename_records);
-        const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
-        setFileListVisual(vList);
-        if (visualListFilter !== "allVis") {
-            setVisualListFilteredList(vList);
-        }
-        const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
-        setFileListAudio(aList);
-        if (audioListFilter !== "allAu") {
-            setAudioListFilteredList(aList);
-        }
-                                // console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
+                fileList = await getRmFileListVM({
+                    uname: authUsername,
+                    bkOption: backendOption
+                });
+                if (fileList === undefined || fileList === null) {
+                    return;
+                }
 
-                                // console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
-                                // console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
+                setCloudFileList(fileList.filename_records);
+                const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
+                setFileListVisual(vList);
+                if (visualListFilter !== "allVis") {
+                    setVisualListFilteredList(vList);
+                }
+                const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
+                setFileListAudio(aList);
+                if (audioListFilter !== "allAu") {
+                    setAudioListFilteredList(aList);
+                }
+                                        // console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
+
+                                        // console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
+                                        // console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
+
+
+            }
     }
 
     function changeVisFilter(type) {
@@ -475,12 +516,16 @@ export default function Modal_ResourceManagingWindow ({
     async function removeOneResource() {
         let userResponse = window.confirm("Are you sure to delete this resource from all projects?");
         if (userResponse) {
-            await removeFromRmFileListVM({
-                uname: username, 
-                filetitle: clickedFileName,
-                bkOption: backendOption
-            });
-            await fetchRmFileList(username);
+
+            if (offlineModeName === "online_cloud") {
+
+                await removeFromRmFileListVM({
+                    uname: username, 
+                    filetitle: clickedFileName,
+                    bkOption: backendOption
+                });
+                await fetchRmFileList(username);
+            }
             //update resource's var-pair list
             let emptyObj = {};
             storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);
