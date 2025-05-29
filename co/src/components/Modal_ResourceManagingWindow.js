@@ -17,7 +17,7 @@ export default function Modal_ResourceManagingWindow ({
     getUILanguage,
     projName,
 
-    getUsername, //TODO1000 test
+    getUsername,
 
     getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
 
@@ -121,7 +121,8 @@ export default function Modal_ResourceManagingWindow ({
 
     const [username, setUsername] = useState("_");
 
-    const [offlineModeName, setOfflineModeName] = useState("");
+    const [offlineModeName, setOfflineModeName] = useState("online_cloud");
+            //"offline_half"       "offline_full"        "online_cloud"  
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -323,7 +324,7 @@ export default function Modal_ResourceManagingWindow ({
         }
 
         const fileName = `${username}_${selectedFile.name}`;
-        
+
         if (offlineModeName === "online_cloud") {
 
             await submitFileVM({

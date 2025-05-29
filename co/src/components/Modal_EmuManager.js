@@ -659,7 +659,8 @@ export default function Modal_EmuManager({
     }
 
 
-    const [offlineModeName, setOfflineModeName] = useState("");
+    const [offlineModeName, setOfflineModeName] = useState("online_cloud");
+            //"offline_half"       "offline_full"        "online_cloud"  
 
 
     useEffect(() => {

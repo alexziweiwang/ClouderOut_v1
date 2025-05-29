@@ -14,10 +14,6 @@ import Viewer_Entire from './Viewer_Entire';
 import Panel_GameDataTest from './Panel_GameDataTest';
 
 
-//TODO1000 test for: user_name updating for auth
-
-
-
 //TODO1090 cloud-db related
 import { 
   getProjectGameDataDesignVM, 

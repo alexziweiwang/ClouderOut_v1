@@ -19,7 +19,7 @@ export default function Modal_GameDataManager ({
 
         projName,
 
-        getUsername, //TODO1000 test
+        getUsername,
         
         getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
 
@@ -118,7 +118,9 @@ export default function Modal_GameDataManager ({
 
     const [username, setUsername] = useState("_");
 
-    const [offlineModeName, setOfflineModeName] = useState("");
+    const [offlineModeName, setOfflineModeName] = useState("online_cloud");
+            //"offline_half"       "offline_full"        "online_cloud"  
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     

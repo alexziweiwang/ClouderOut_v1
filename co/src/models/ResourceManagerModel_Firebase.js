@@ -176,7 +176,6 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
                                                         // console.log(visualListSnap.data());
 
   let visualList = visualListSnap.data();
-  // visualList = visualList["proj_resource_visual"]; //TODO1000 test later
 
   let audioListSnap = await getDoc(ref, "proj_resource_audio");
                                                         // console.log(audioListSnap.data());
@@ -187,7 +186,6 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
   }
 
   let audioList = audioListSnap.data();
-  // audioList = audioList["proj_resource_audio"]; //TODO1000 test later
 
   const obj = {audio: audioList, visual: visualList};
 

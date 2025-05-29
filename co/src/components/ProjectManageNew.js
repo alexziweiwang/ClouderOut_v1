@@ -59,7 +59,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
     }
     
     async function createNewProjectLocal() {
-        if (addedNewProjName === "") { //TODO1000 if only contains white space, etc.
+        if (addedNewProjName.trim() === "") { // if only contains white space, etc.
           alert("Project Name can not be empty!");
           return;
         }

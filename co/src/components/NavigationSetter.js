@@ -10,10 +10,6 @@ export default function NavigationSetter({initialNavObj,
   triggerUpdateCurrPageName, fetchPageName,
   initialScreenHeight, getScreenheight,
 
-  // projName,
-  // getUsername, //TODO1000
-
-
   intialEmuPlayerProfile,
   fetchEmuPlayerProfile,
   openEmuManager,

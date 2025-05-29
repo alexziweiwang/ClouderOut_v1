@@ -1351,7 +1351,8 @@ export default function PieceSetter({
 
                     <button className="buttonRight"
                         onClick={()=>{
-                            //TODO1000 not adding if conse-arr length is 0
+                         //note: it is acceptable if the game-designer makes no consequence for this button ... (e.g. just for player UX, etc.)
+                         
 
 
                         //TODO save the change: target name + action(become/plus/minus) + magnitude(given value)

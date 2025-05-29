@@ -9,7 +9,6 @@ export async function userSignUp({email, password, setFunc, succInfoFunc}) {
     .then((userCredential) => {
       const user = userCredential.user;
   
-                                          //TODO1000 test
                                           console.log("user created successfully!!    ", user.email);
   
       setFunc("");  
@@ -34,8 +33,8 @@ export async function userSignUp({email, password, setFunc, succInfoFunc}) {
     .then((userCredential) => {
       
       const user = userCredential.user;
-                                              //TODO1000 test
-      console.log("logged in user: ", user.email);
+
+                            console.log("logged in user: ", user.email);
   
       loggedInFunc(user.email);
   
