@@ -118,6 +118,8 @@ export default function Modal_GameDataManager ({
 
     const [username, setUsername] = useState("_");
 
+    const [offlineModeName, setOfflineModeName] = useState("");
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     useEffect(() => {
@@ -135,6 +137,11 @@ export default function Modal_GameDataManager ({
 
             // setFirstTimeEnter(false);
         }
+
+        let modeName = getOfflineModeName();
+        setOfflineModeName(modeName);
+
+
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
     });
@@ -158,7 +165,7 @@ export default function Modal_GameDataManager ({
 
         let tempGameDataDesign = {};
 
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
 
                 tempGameDataDesign = await getProjectGameDataDesignVM({
                     projectName: projName, 
@@ -240,7 +247,7 @@ export default function Modal_GameDataManager ({
     
         //resetNeedCloudData();// TODO remove?
         
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
             await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
         }
 
@@ -329,7 +336,7 @@ export default function Modal_GameDataManager ({
 
     async function saveTableChanges() {
         //TODO validation? then save changes? for number & boolean types
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
             await updateVarDefaultValue();
         }
 
@@ -379,7 +386,7 @@ export default function Modal_GameDataManager ({
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
             await updateGDataDesignToCloud(newGameData);
         }
     }
@@ -392,7 +399,7 @@ export default function Modal_GameDataManager ({
         }
         let currUser = username;
 
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
 
             await updateGameDataDesignVM({
                 projectName: projName, 

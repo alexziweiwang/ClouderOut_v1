@@ -399,7 +399,7 @@ export default function Modal_EmuManager({
     async function prepare1Gdt() {
         let tempObj1 = {}; //TODO6000 gdt1-template here
 
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
 
             tempObj1 = await fetchEmuData1GdtVM({
                 projectName: projName, 
@@ -469,7 +469,7 @@ export default function Modal_EmuManager({
         
         let tempObj2 = {}; //TODO template-epp2
         
-        if (getOfflineModeName === "online_cloud") {
+        if (offlineModeName === "online_cloud") {
             tempObj2 = await fetchEmuData2EppVM({
                 projectName: projName, 
                 currUser: username,
@@ -501,11 +501,16 @@ export default function Modal_EmuManager({
     }        
     async function prepare3Epa() {
         // if local is not ready, from cloud
-        let tempObj3 = await fetchEmuData3EpaVM({
-            projectName: projName, 
-            currUser: username,
-            bkOption: backendOption
-        });
+        let tempObj3 = {}; //TODO temp3
+        
+        if (offlineModeName === "online_cloud") {
+
+            tempObj3 = await fetchEmuData3EpaVM({
+                projectName: projName, 
+                currUser: username,
+                bkOption: backendOption
+            });
+        }
 
 
         let objSize = 0;
@@ -530,11 +535,18 @@ export default function Modal_EmuManager({
 
     async function prepare4Ess() {
         // if local is not ready, from cloud
-        let tempObj4 = await fetchEmuData4EssVM({
-            projectName: projName, 
-            currUser: username,
-            bkOption: backendOption
-        });
+        let tempObj4 = {}; //TODO temp4
+        
+        if (offlineModeName === "online_cloud") {
+
+            tempObj4 = await fetchEmuData4EssVM({
+                projectName: projName, 
+                currUser: username,
+                bkOption: backendOption
+            });
+        }
+
+
         let objSize = Object.keys(tempObj4).length;
         if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
             return;
@@ -548,11 +560,19 @@ export default function Modal_EmuManager({
 
     async function prepare5Shp() {
         "5shp"
-        let tempObject5 = await fetchEmuData5ShpVM({
-            projectName: projName, 
-            currUser: username,
-            bkOption: backendOption
-        });
+        let tempObject5 = {}; //TODO temp5
+        
+
+        if (offlineModeName === "online_cloud") {
+
+            tempObject5 = await fetchEmuData5ShpVM({
+                projectName: projName, 
+                currUser: username,
+                bkOption: backendOption
+            });
+        }
+
+
                //                             console.log("!!!!! prepare-5shp: ", tempObject5);
 
 
@@ -639,6 +659,9 @@ export default function Modal_EmuManager({
     }
 
 
+    const [offlineModeName, setOfflineModeName] = useState("");
+
+
     useEffect(() => {
                                     //TODO
                                     // console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
@@ -690,7 +713,11 @@ export default function Modal_EmuManager({
         }
 
 
-           
+        
+
+        let modeName = getOfflineModeName();
+        setOfflineModeName(modeName);
+
 
 
 
@@ -725,13 +752,17 @@ export default function Modal_EmuManager({
         resObj["ess4"] = ess4;
         resObj["shp5"] = shp5;
 
-        await updateAllSetsVM({
-            projectName: projName, 
-            currUser: username, 
-            dataObj: resObj,
-            bkOption: backendOption
-        });
+        if (offlineModeName === "online_cloud") {
 
+            await updateAllSetsVM({
+                projectName: projName, 
+                currUser: username, 
+                dataObj: resObj,
+                bkOption: backendOption
+            });
+
+        }
+        
         alert("Changes updated!");
         setCloudUpdated(true);
 
@@ -739,12 +770,19 @@ export default function Modal_EmuManager({
     }
 
     async function fetchVisualListFromCloud() {
-        //TODO500     
-        const obj = await fetchProjectResourceVarPairsVM({
-            userName: username, 
-            projectName: projName,
-            bkOption: backendOption
-        });
+        //TODO500    
+        
+        let obj = {};
+        if (offlineModeName === "online_cloud") {
+
+            obj = await fetchProjectResourceVarPairsVM({
+                userName: username, 
+                projectName: projName,
+                bkOption: backendOption
+            });
+        }
+
+
         if (obj === undefined || obj === null) {
             return;
         }
