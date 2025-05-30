@@ -1599,6 +1599,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       console.log("not fetching-chapter-list:  user = ", authEmailName);
       return;
     }
+
+
     let listTemp = await fetchAllChapterListVM(
       {
         projectName: projectName, 
@@ -1614,8 +1616,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
                                           console.log("Flag: cloud-database connection problem"); //TODO900
 
-
+      setCloudDbConnOk(false);
       return [];
+
+
     } else {
 
       setCloudDbConnOk(true);
