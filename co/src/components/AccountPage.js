@@ -31,17 +31,6 @@ export default function AccountPage({}) {
     const [emailLinkedChanging, setEmailLinkedChanging] = useState(false);
     const [phonenumberChanging, setPhonenumberChanging] = useState(false);
 
-    function handleNicknameChange(event) {
-
-    }
-
-    function handleEmailLinkChange(event) {
-
-    }
-
-    function handlePhonenumberChange(event) {
-
-    }
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
@@ -106,9 +95,11 @@ export default function AccountPage({}) {
                   
                       {nicknameChanging === false && <button onClick={()=>{setNicknameChanging(true);}}>Edit</button>}
                       {nicknameChanging === true && <>
-                        <input></input>
+                        <input onChange={(event)=>{setNicknameInput(event.target.value);}}></input>
                         <button onClick={()=>{setNicknameChanging(false);}}>Cancel</button>
-                        <button>Save</button>
+                        <button onClick={()=>{
+                              //TODO update to cloud: nicknameInput
+                        }}>Save</button>
                       </>}
                       
                   </td>
@@ -119,10 +110,11 @@ export default function AccountPage({}) {
                   <td className="noBorder">(email value) 
                       {emailLinkedChanging === false && <button onClick={()=>{setEmailLinkedChanging(true);}}>Edit</button>}
                       {emailLinkedChanging === true && <>
-                        <input></input>
+                        <input onChange={(event)=>{setEmailLinkedInput(event.target.value);}}></input>
                         <button onClick={()=>{setEmailLinkedChanging(false);}}>Cancel</button>
-                        <button>Save</button>
-                      
+                        <button onClick={()=>{
+                              //TODO update to cloud: emailLinkedInput
+                        }}>Save</button>
                       </>}
                   </td>
               </tr>
@@ -133,11 +125,11 @@ export default function AccountPage({}) {
                   
                       {phonenumberChanging === false && <button onClick={()=>{setPhonenumberChanging(true)}}>Edit</button>}
                       {phonenumberChanging === true && <>
-                        <input></input>
+                        <input onChange={(event)=>{setPhonenumberInput(event.target.value);}}></input>
                         <button onClick={()=>{setPhonenumberChanging(false);}}>Cancel</button>
-                        <button>Save</button>
-                      
-                      
+                        <button onClick={()=>{
+                              //TODO update to cloud: phonenumberInput
+                        }}>Save</button>
                       
                       </>}
                         
