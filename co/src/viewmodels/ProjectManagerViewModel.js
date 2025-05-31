@@ -121,11 +121,11 @@ export async function fetchConvNodeUiAllPlansVM({projectName, currUser, nodeType
     return res;
 }
 
-export async function addNewAccountFolderVM({userId, username, bkOption}) {    
+export async function addNewAccountFolderVM({userId, username, userEmailAddr, bkOption}) {    
     let res = {};
  
     if (bkOption === "firebase") {
-        res = await addNewAccountFolder({userId, username});
+        res = await addNewAccountFolder({userId, username, userEmailAddr});
     }
     return res;
 }

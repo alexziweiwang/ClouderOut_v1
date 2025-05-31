@@ -197,7 +197,7 @@ export async function fetchConvNodeUiAllPlans({projectName, currUser, nodeType})
 
 
 //firebase
-export async function addNewAccountFolder({userId, username}) {
+export async function addNewAccountFolder({userId, username, userEmailAddr}) {
                   //Note: userId is the email-address that converted to string with "_"
 
                                 console.log("_firebase_   add-new-account-folders for: [", username, "]");
@@ -211,7 +211,11 @@ export async function addNewAccountFolder({userId, username}) {
           "filename_records": [],
           "filenames": [],
           "introduction": "",
-          "username": username
+          "username": username,
+          "nickname": username,
+          "phoneNumber": "",
+          "emailAddr": userEmailAddr,
+          "activated": true,
 
         });
 
