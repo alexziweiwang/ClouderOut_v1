@@ -258,6 +258,8 @@ export default function ProjectManagerPanel() {
           className={currentProjectAction === "selectProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
         >
         <div>
+
+        {(projList && projList.length > 0) && 
         <div  style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}
               onClick={()=>{  
                 if (currentProjectAction !== "selectProject") {
@@ -269,10 +271,10 @@ export default function ProjectManagerPanel() {
               className="titleBar"
         >
           <label className="cursor_pointer">Select an Ongoing Project ...</label>
-        </div>
+        </div>}
 
 
-        {projList && 
+        {(projList && projList.length > 0) && 
         <div className="parallelFrame"  
           style={{
               "marginTop": "20px", 
@@ -326,6 +328,9 @@ export default function ProjectManagerPanel() {
         </div>
         }</div>
         
+
+
+
         
         </div>
 

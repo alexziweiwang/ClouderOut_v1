@@ -112,9 +112,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
         "ess4": {},
         "shp5": {}
       };
-      Object.keys(gdt1Template).map((currKey) => {
-        empty_emu_4sets["gdt1"][currKey] = gdt1Template[currKey];
-      })
+
 
       Object.keys(epp2Template).map((currKey) => {
         empty_emu_4sets["epp2"][currKey] = epp2Template[currKey];

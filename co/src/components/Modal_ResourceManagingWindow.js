@@ -401,7 +401,7 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function fetchRmFileList(authUsername) { //TODO temp debugging
-        const fileList = {};
+        let fileList = {};
 
         if (offlineModeName === "online_cloud") {
 

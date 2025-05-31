@@ -412,10 +412,10 @@ export default function Modal_EmuManager({
         let objSize = 0;
         if (tempObj1 !== undefined) {
             objSize = Object.keys(tempObj1).length;
-        } 
-
+        }
         if (getOfflineModeName === "online_cloud" && (objSize === 0 || tempObj1 === undefined || tempObj1 === null)) {
             // no emu-data for game-data -->      create from game-data-design-list
+            tempObj1 = {};
 
             let isUpdated = true;
             let gDataDesignMap = await getProjectGameDataDesignVM(({
@@ -426,35 +426,35 @@ export default function Modal_EmuManager({
             }));
                                     console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
 
-            if (gDataDesignMap === null || gDataDesignMap === undefined) {
-                return;
+            if (gDataDesignMap !== null && gDataDesignMap === undefined) {
+            
+
+                let trackerMap = {};
+                {Object.keys(gDataDesignMap).map((currKey) => {
+                    let name = gDataDesignMap[currKey]["name"];
+                    let defaultVal = gDataDesignMap[currKey]["default_value"];
+                    let dataType = gDataDesignMap[currKey]["data_type"];
+
+                    let obj = {
+                        "name": name,
+                        "default_value": defaultVal,
+                        "data_type": dataType,
+                        "current_value": defaultVal
+                    }
+                    let keyStr = currKey;
+                    trackerMap[keyStr] = obj;
+                })} 
+
+                tempObj1 = trackerMap;
+                                            // console.log("\t\t--prepared from design-list."); //TODO test
+            } else {
+                tempObj1 = {};
             }
+        } else {
+            tempObj1 = {};
+        }
 
-            let trackerMap = {};
-            {Object.keys(gDataDesignMap).map((currKey) => {
-                let name = gDataDesignMap[currKey]["name"];
-                let defaultVal = gDataDesignMap[currKey]["default_value"];
-                let dataType = gDataDesignMap[currKey]["data_type"];
-
-                let obj = {
-                    "name": name,
-                    "default_value": defaultVal,
-                    "data_type": dataType,
-                    "current_value": defaultVal
-                }
-                let keyStr = currKey;
-                trackerMap[keyStr] = obj;
-            })} 
-
-            tempObj1 = trackerMap;
-                                           // console.log("\t\t--prepared from design-list."); //TODO test
-
-        } 
-                                            if (objSize !== 0 && tempObj1 !== undefined && tempObj1 !== null) { 
-                                          // console.log("\t\t--fetched from cloud."); //TODO test
-                                            }
-
-  //                                                  console.log("... gdt1 prep: ", tempObj1); //TODO test
+                                                   console.log("... gdt1 prep: ", tempObj1); //TODO test
 
   
         setGdt1(tempObj1);
@@ -664,6 +664,7 @@ export default function Modal_EmuManager({
 
 
     useEffect(() => {
+        console.log("gdt1 = ", gdt1);
                                     //TODO
                                     // console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
                                     // console.log("\t\tinfo: username,projName", username , "and" ,projName);
