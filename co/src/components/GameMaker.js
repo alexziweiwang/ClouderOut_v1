@@ -59,16 +59,16 @@ export default function GameMaker({projectName}) {
 /**
 used data structures:
 
-GameDataDesign
-ProjectResourceVarPairs    
-ProjectUILang
-NavigationSettings
+GameDataDesign <map>
+ProjectResourceVarPairs_audio  <map>   
+ProjectResourceVarPairs_visual  <map>   
+ProjectUILang <string>
+NavigationSettings <map>
 
+AllChapterList (used in chapter-manager) <map/2d_array>
+ChapterNodeMapping (used in node-manager) <map>
 
-AllChapterList (used in chapter-manager)
-ChapterNodeMapping (used in node-manager)
-
-Node-Data (multiple, content+ui-setting)
+Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
 
 */
   const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?

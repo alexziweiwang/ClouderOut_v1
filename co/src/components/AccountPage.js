@@ -83,7 +83,7 @@ export default function AccountPage({}) {
        
             <tbody>
 
-              <tr style={{"backgroundColor": "green", "width": "200px"}}>
+              <tr style={{"width": "200px"}}>
                   <td className="noBorder" style={{"width": "100px"}}>Username: </td>
                   <td className="noBorder" style={{"width": "500px"}}>(username value)</td>
               </tr>

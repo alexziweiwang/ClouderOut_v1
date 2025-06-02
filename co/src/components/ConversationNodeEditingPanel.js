@@ -44,10 +44,11 @@ export default function ConversationNodeEditingPanel() {
     /**
 used data structures:
 
-single(current) node data (content + ui-settings)
-ProjectResourceVarPairs    
-conv-node-ui-plans
-GameDataDesign
+single(current) node data (content + ui-settings) [chapter_key, node_key] <map of maps>
+ProjectResourceVarPairs_audio  <map>   
+ProjectResourceVarPairs_visual  <map>    
+conv-node-ui-plans  <map>
+GameDataDesign <map>
 
 */
 
