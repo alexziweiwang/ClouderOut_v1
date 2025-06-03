@@ -1231,6 +1231,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   }
 
+  function updateGameDataDesignList(data) {
+    //TODO999 update game-data-design-list
+    setGameDataDesignList(data);
+  }
+
+
   function getUserConfigFromEmuManager1Gdt(data1) {
     //update data1 to be the new Game-Data-Tracker
     //TODO  //recreate emu data object
@@ -2438,6 +2444,8 @@ console.log("\t\t\t fetched from local ds ");
                 getOfflineModeName={passInOfflineModeName}
 
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
+
+                updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
 
               />
 

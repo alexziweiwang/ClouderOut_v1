@@ -22,7 +22,8 @@ export default function Modal_GameDataManager ({
         getUsername,
         
         getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
-
+        
+        updateGameDataDesignListToOuterLayer,
         updateForEmuGdt1
 
         //getBackendOption
@@ -260,6 +261,8 @@ export default function Modal_GameDataManager ({
             await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
         }
 
+        updateGameDataDesignListToOuterLayer(gameDataTemp);
+
         // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
@@ -292,7 +295,7 @@ export default function Modal_GameDataManager ({
         setDefaultNewValue(event.target.value);
     }
 
-    function deleteListItem(obj) {
+    async function deleteListItem(obj) {
         //change locally for UI
         let askString = "Are you sure to delete game-data-item " + obj["name"] + " ?";
 
@@ -317,11 +320,12 @@ export default function Modal_GameDataManager ({
                     
             resetNeedCloudData();
                                             
-            updateGDataDesignToCloud(tempMap); /* update cloud db */
+            await updateGDataDesignToCloud(tempMap); /* update cloud db */
     
             //fetchFromCaller();
                         //TODO changing area
 
+            updateGameDataDesignListToOuterLayer(tempMap);
 
         }
 
@@ -331,10 +335,7 @@ export default function Modal_GameDataManager ({
 
     }
 
-    function updateGdmInfoBothLayers(gameDataTemp) {
-        //TODO5
-        updateGDataDesignToCloud(gameDataTemp);
-    }
+
 
     function editListItem(obj) {
         setEditLineDisplay(obj["name"]);
@@ -398,6 +399,8 @@ export default function Modal_GameDataManager ({
         if (offlineModeName === "online_cloud") {
             await updateGDataDesignToCloud(newGameData);
         }
+
+        updateGameDataDesignListToOuterLayer(newGameData);
     }
 
     async function updateGDataDesignToCloud(gameDataLatest) {

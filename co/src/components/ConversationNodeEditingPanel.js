@@ -1027,6 +1027,17 @@ GameDataDesign <map>
     }
 
 
+
+    function getUserConfigFromDataMgr1Gdt() {
+//TODO5000!!!
+
+    }
+
+    function updateGameDataDesignList() {
+    //TODO999 update game-data-design-list
+
+    }
+
           
 
 {/* components:
@@ -1376,6 +1387,9 @@ GameDataDesign <map>
                     projName={state.projectName}  
                     
                     getOfflineModeName={passInOfflineModeName}
+
+                    updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
+                    updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
                 />   
             </div>
 
