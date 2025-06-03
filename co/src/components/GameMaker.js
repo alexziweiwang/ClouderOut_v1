@@ -1866,7 +1866,7 @@ console.log("\t\t\t fetched from local ds ");
     console.log("");
 
     //TODO999
-    console.log("game-data-design = ", gameDataDesignList);
+    console.log("game-data-design = ", gameDataDesignList); //TODO3000 update from emu_gameDataManager...
     console.log("visual-map = ", visualMap);
     console.log("audio-map = ", audioMap);
     console.log("project-ui-lang  =", languageCodeTextOption);
@@ -1874,6 +1874,35 @@ console.log("\t\t\t fetched from local ds ");
 
     console.log("chapter-list = ", chapterList);
     console.log("chapter-node-mapping = ", chapterNodeMapAll);
+
+
+    let fileContentTemp = "game_data: " + JSON.stringify(gameDataDesignList) 
+      + "\n\nresource_visual: " + JSON.stringify(visualMap)
+      + "\n\nresource_audio: " + JSON.stringify(audioMap)
+      + "\n\nproject_ui_language: " + languageCodeTextOption
+      + "\n\nnavigation_settings: " + JSON.stringify(currentProjectNav)
+      + "\n\nchapter_list: " + JSON.stringify(chapterList)
+      + "\n\nchapter_node_mapping: " + JSON.stringify(chapterNodeMapAll);
+    
+    let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
+
+    let downloadLink = document.createElement('a');
+    downloadLink.download = projectName +  "_" +authEmailName;
+    downloadLink.innerHTML = 'Download File';
+
+
+    if (window.webkitURL != null) {
+        downloadLink.href = window.webkitURL.createObjectURL(
+            textFileAsBlob
+        );
+    } else {
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+
 
     // GameDataDesign <map>
     // ProjectResourceVarPairs_audio  <map>   
