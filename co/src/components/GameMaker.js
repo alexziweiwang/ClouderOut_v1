@@ -1860,6 +1860,34 @@ console.log("\t\t\t fetched from local ds ");
     }
   }
 
+  function downloadEntireProjectFile() {
+    //TODO 
+    console.log("\n\n\ndownloaded project file: ");
+    console.log("");
+
+    //TODO999
+    console.log("game-data-design = ", gameDataDesignList);
+    console.log("visual-map = ", visualMap);
+    console.log("audio-map = ", audioMap);
+    console.log("project-ui-lang  =", languageCodeTextOption);
+    console.log("nav-settings = ", currentProjectNav);
+
+    console.log("chapter-list = ", chapterList);
+    console.log("chapter-node-mapping = ", chapterNodeMapAll);
+
+    // GameDataDesign <map>
+    // ProjectResourceVarPairs_audio  <map>   
+    // ProjectResourceVarPairs_visual  <map>   
+    // ProjectUILang <string>
+    // NavigationSettings <map>
+    
+    // AllChapterList (used in chapter-manager) <map/2d_array>
+    // ChapterNodeMapping (used in node-manager) <map>
+    
+    // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
+    
+  }
+
 
 {/* //components
       
@@ -1985,6 +2013,14 @@ console.log("\t\t\t fetched from local ds ");
 
       }}
       >Save To Cloud</button>
+
+      <button>Import from File</button>
+
+      <button
+        onClick={()=>{
+          downloadEntireProjectFile();
+        }}
+      >Download Project File</button>
 
       <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{
         setShowChapterMaker(true);

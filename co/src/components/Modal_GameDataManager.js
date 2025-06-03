@@ -128,16 +128,21 @@ export default function Modal_GameDataManager ({
 
         if (username === "_") {
 
-     //   if (username === "_" && firstTimeEnter === true) {
             let unameTemp = getUsername();
             if (unameTemp !== "_") {
                 initialization(unameTemp);
 
-                //                               console.log("GameDataManager-ModalWindow: First Enter!");
                 setUsername(unameTemp);
             }
 
-            // setFirstTimeEnter(false);
+            
+        }
+
+        if (firstTimeEnter === true && username !== "_") {
+
+            initialization(username);
+
+            setFirstTimeEnter(false);
         }
 
         let modeName = getOfflineModeName();
@@ -178,8 +183,10 @@ export default function Modal_GameDataManager ({
                 });
         }
 
+        console.log("modal-gd-mgr : fetched \n\t", tempGameDataDesign);
 
-        if (tempGameDataDesign === null || tempGameDataDesign === undefined) {
+
+        if (tempGameDataDesign !== null && tempGameDataDesign !== undefined) {
 
             let objSize = Object.keys(tempGameDataDesign).length;
             setGdmMapSize(objSize);
