@@ -625,6 +625,7 @@
 - 2025-Jun-02: Architecture improvement design 5
 - 2025-Jun-02: Project-data-version strategies design
 
+- 2025-Jun-03: Testing-project material prep 6
 
 
 
