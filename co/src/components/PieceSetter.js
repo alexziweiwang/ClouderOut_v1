@@ -262,6 +262,8 @@ export default function PieceSetter({
  //           setAllPiecesDataLocal(allPiece);  
     //    }
                             console.log("piece-setter render once! \n\t*** useEffect ... allPiecesDataLocal is ", allPiecesDataLocal);
+console.log("audiolist = ", audioList);
+
 
         let uiLangTemp = getUILanguage();
         setLanguageCodeTextOption(uiLangTemp);
@@ -808,6 +810,13 @@ export default function PieceSetter({
 
     //TODO21 refactor to VM
     function resourceVarToUrl(list, varName) {
+
+        console.log("resource-var-to-url", list);
+
+        if (list === undefined) {
+            return;
+        }
+        
         let filteredList = list.filter(e => e["var"] == varName);
         if (filteredList.length > 0) {
             return filteredList[0]["url"];
@@ -879,7 +888,7 @@ export default function PieceSetter({
     }
 
     function removeFromStndButtonConseqList(index) {
-        let tempConseq =stndButtonConsequenceArrayLocal.filter((item) =>(item !== stndButtonConsequenceArrayLocal[index]));
+        let tempConseq = stndButtonConsequenceArrayLocal.filter((item) =>(item !== stndButtonConsequenceArrayLocal[index]));
         setStndButtonConsequenceArrayLocal(tempConseq);
     }
 

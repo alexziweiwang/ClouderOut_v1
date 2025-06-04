@@ -407,6 +407,8 @@ GameDataDesign <map>
             return;
         }
 
+        console.log("fetch-proj-resource-lists: ", obj);
+
         setAudioList(obj.audio);
         setVisualList(obj.visual);
 
