@@ -1688,6 +1688,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
   async function getCurrChpNodeDataFromCloud(givenChapterKey) {
+    console.log("fetching for chapter [",givenChapterKey,"]"); 
 //TODO900
       let chapterContentTemp = await fetchNodeDataEachChapterVM(
         {
@@ -1879,7 +1880,7 @@ console.log("\t\t\t fetched from local ds ");
                                               // console.log("nav-settings = ", currentProjectNav);
 
                                               // console.log("chapter-list = ", chapterList);
-                                              // console.log("chapter-node-mapping = ", chapterNodeMapAll);
+                                              console.log("chapter-node-mapping = ", chapterNodeMapAll);
 
     let projectObjPart1Meta = {
       "game_data": gameDataDesignList,
@@ -1895,40 +1896,62 @@ console.log("\t\t\t fetched from local ds ");
 
     let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
 
-    let downloadLink = document.createElement('a');
-    downloadLink.download = projectName +  "_" +authEmailName;
-    downloadLink.innerHTML = 'Download File';
+    // let downloadLink = document.createElement('a');
+    // downloadLink.download = projectName +  "_" +authEmailName;
+    // downloadLink.innerHTML = 'Download File';
 
 
-    if (window.webkitURL != null) {
-        downloadLink.href = window.webkitURL.createObjectURL(
-            textFileAsBlob
-        );
-    } else {
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-    }
+    // if (window.webkitURL != null) {
+    //     downloadLink.href = window.webkitURL.createObjectURL(
+    //         textFileAsBlob
+    //     );
+    // } else {
+    //     downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    //     downloadLink.style.display = 'none';
+    //     document.body.appendChild(downloadLink);
+    // }
 
-    downloadLink.click(); 
+    // downloadLink.click(); 
 
-    // GameDataDesign <map>
-    // ProjectResourceVarPairs_audio  <map>   
-    // ProjectResourceVarPairs_visual  <map>   
-    // ProjectUILang <string>
-    // NavigationSettings <map>
-    
-    // AllChapterList (used in chapter-manager) <map/2d_array>
-    // ChapterNodeMapping (used in node-manager) <map>
-    
-    // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
-    
+    //------------------------------------------------------------------------------
+
+                                                    // GameDataDesign <map>
+                                                    // ProjectResourceVarPairs_audio  <map>   
+                                                    // ProjectResourceVarPairs_visual  <map>   
+                                                    // ProjectUILang <string>
+                                                    // NavigationSettings <map>
+                                                    
+                                                    // AllChapterList (used in chapter-manager) <map/2d_array>
+                                                    // ChapterNodeMapping (used in node-manager) <map>
+                                                    
+                                                    // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
+                                                    
   }
 
   function downloadEntireProjectFilePart2AllNodeContent() {
     //TODO structure: chapter_key: map of nodes | node_key: content and ui_settings
 
+    //chapterNodeMapAll
+    let objectLarge = {};
 
+    Object.keys(chapterNodeMapAll).map(async (chapKey) => {
+
+
+console.log("~~~ chap-key = ", chapKey);
+
+
+      if (chapKey !== "chapter0" && chapKey != "placeholder") {
+        
+      
+      //TODO999 for each chapter ... get all of its node's data?
+
+            let chapAllNodes = await getCurrChpNodeDataFromCloud(chapKey);
+          
+            objectLarge[chapKey] = chapAllNodes;
+      }
+    });
+
+    console.log("downloadEntireProjectFilePart2AllNodeContent ...", objectLarge);
   }
 
 

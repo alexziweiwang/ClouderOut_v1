@@ -38,9 +38,11 @@ export async function fetchNodeDataEachChapter({projectName, uname, chapterKey})
     // for current chapter, its collection of nodes -- then details inside the nodes (docs in the sublevel)
     querySnapshot.forEach((doc) => {
 
-              //                          console.log("\t\t\tid = ", doc.id, " ... data  = ", doc.data());
-            
-            dataMap[doc.id] = doc.data();
+                                      //  console.log("\t\t\tid = ", doc.id, " ... data  = ", doc.data());
+            if (doc.id !== "placeholder123456789___###___###___##") {
+              dataMap[doc.id] = doc.data();
+              
+            }
 
     });
 

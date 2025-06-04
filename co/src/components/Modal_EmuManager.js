@@ -664,7 +664,7 @@ export default function Modal_EmuManager({
 
 
     useEffect(() => {
-        console.log("gdt1 = ", gdt1);
+    //    console.log("gdt1 = ", gdt1);
                                     //TODO
                                     // console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
                                     // console.log("\t\tinfo: username,projName", username , "and" ,projName);
