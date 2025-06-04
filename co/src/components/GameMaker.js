@@ -1866,30 +1866,33 @@ console.log("\t\t\t fetched from local ds ");
     }
   }
 
-  function downloadEntireProjectFile() {
-    //TODO 
-    console.log("\n\n\ndownloaded project file: ");
-    console.log("");
-
-    //TODO999
-    console.log("game-data-design = ", gameDataDesignList); //TODO3000 update from emu_gameDataManager...
-    console.log("visual-map = ", visualMap);
-    console.log("audio-map = ", audioMap);
-    console.log("project-ui-lang  =", languageCodeTextOption);
-    console.log("nav-settings = ", currentProjectNav);
-
-    console.log("chapter-list = ", chapterList);
-    console.log("chapter-node-mapping = ", chapterNodeMapAll);
+  function downloadEntireProjectFilePart1Meta() {
 
 
-    let fileContentTemp = "game_data: " + JSON.stringify(gameDataDesignList) 
-      + "\n\nresource_visual: " + JSON.stringify(visualMap)
-      + "\n\nresource_audio: " + JSON.stringify(audioMap)
-      + "\n\nproject_ui_language: " + languageCodeTextOption
-      + "\n\nnavigation_settings: " + JSON.stringify(currentProjectNav)
-      + "\n\nchapter_list: " + JSON.stringify(chapterList)
-      + "\n\nchapter_node_mapping: " + JSON.stringify(chapterNodeMapAll);
-    
+                                              // console.log("\n\n\ndownloaded project file: ");
+                                              // console.log("");
+
+                                              // console.log("game-data-design = ", gameDataDesignList); //TODO3000 update from emu_gameDataManager...
+                                              // console.log("visual-map = ", visualMap);
+                                              // console.log("audio-map = ", audioMap);
+                                              // console.log("project-ui-lang  =", languageCodeTextOption);
+                                              // console.log("nav-settings = ", currentProjectNav);
+
+                                              // console.log("chapter-list = ", chapterList);
+                                              // console.log("chapter-node-mapping = ", chapterNodeMapAll);
+
+    let projectObjPart1Meta = {
+      "game_data": gameDataDesignList,
+      "resource_visual": visualMap,
+      "resource_audio": audioMap,
+      "project_ui_language": languageCodeTextOption,
+      "navigation_settings": currentProjectNav,
+      "chapter_list": chapterList,
+      "chapter_node_mapping": chapterNodeMapAll
+    };
+
+    let fileContentTemp = JSON.stringify(projectObjPart1Meta);
+
     let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
 
     let downloadLink = document.createElement('a');
@@ -1907,8 +1910,7 @@ console.log("\t\t\t fetched from local ds ");
         document.body.appendChild(downloadLink);
     }
 
-    downloadLink.click();
-
+    downloadLink.click(); 
 
     // GameDataDesign <map>
     // ProjectResourceVarPairs_audio  <map>   
@@ -1921,6 +1923,12 @@ console.log("\t\t\t fetched from local ds ");
     
     // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
     
+  }
+
+  function downloadEntireProjectFilePart2AllNodeContent() {
+    //TODO structure: chapter_key: map of nodes | node_key: content and ui_settings
+
+
   }
 
 
@@ -2053,7 +2061,8 @@ console.log("\t\t\t fetched from local ds ");
 
       <button
         onClick={()=>{
-          downloadEntireProjectFile();
+          downloadEntireProjectFilePart1Meta();
+          downloadEntireProjectFilePart2AllNodeContent();
         }}
       >Download Project File</button>
 
