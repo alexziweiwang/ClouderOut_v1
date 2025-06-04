@@ -1867,8 +1867,49 @@ console.log("\t\t\t fetched from local ds ");
     }
   }
 
-  function downloadEntireProjectFilePart1Meta() {
+  async function exportEachChapterNodesData(chapterKey) {
 
+    let chapAllNodes = await getCurrChpNodeDataFromCloud(chapterKey);
+    let fileContentTemp = JSON.stringify(chapAllNodes);
+
+    let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
+
+    let downloadLink = document.createElement('a');
+    downloadLink.download = downloadLink.download = "project#" + projectName +  "#by#" + authEmailName + "_" + chapterKey;
+    downloadLink.innerHTML = 'Download File';
+
+
+    if (window.webkitURL != null) {
+        downloadLink.href = window.webkitURL.createObjectURL(
+            textFileAsBlob
+        );
+    } else {
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click(); 
+  }
+
+  function fetchEntireProjectAllNodesDataFromCloud() {
+
+
+    Object.keys(chapterNodeMapAll).map(async (chapKey) => {
+      let chapterKeyHandled = chapKey.trim();
+
+        if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
+        
+        //TODO999 for each chapter ... get all of its node's data?
+        exportEachChapterNodesData(chapterKeyHandled);
+                 
+        }
+    });
+
+ 
+  }
+
+  function downloadEntireProjectFilePart1Meta() {
 
                                               // console.log("\n\n\ndownloaded project file: ");
                                               // console.log("");
@@ -1880,7 +1921,8 @@ console.log("\t\t\t fetched from local ds ");
                                               // console.log("nav-settings = ", currentProjectNav);
 
                                               // console.log("chapter-list = ", chapterList);
-                                              console.log("chapter-node-mapping = ", chapterNodeMapAll);
+                                        //      console.log("chapter-node-mapping = ", chapterNodeMapAll);
+
 
     let projectObjPart1Meta = {
       "game_data": gameDataDesignList,
@@ -1889,29 +1931,29 @@ console.log("\t\t\t fetched from local ds ");
       "project_ui_language": languageCodeTextOption,
       "navigation_settings": currentProjectNav,
       "chapter_list": chapterList,
-      "chapter_node_mapping": chapterNodeMapAll
+      "chapter_node_mapping": chapterNodeMapAll,
     };
 
     let fileContentTemp = JSON.stringify(projectObjPart1Meta);
 
     let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
 
-    // let downloadLink = document.createElement('a');
-    // downloadLink.download = projectName +  "_" +authEmailName;
-    // downloadLink.innerHTML = 'Download File';
+    let downloadLink = document.createElement('a');
+    downloadLink.download = "project#" + projectName +  "#by#" + authEmailName + "_settings";
+    downloadLink.innerHTML = 'Download File';
 
 
-    // if (window.webkitURL != null) {
-    //     downloadLink.href = window.webkitURL.createObjectURL(
-    //         textFileAsBlob
-    //     );
-    // } else {
-    //     downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-    //     downloadLink.style.display = 'none';
-    //     document.body.appendChild(downloadLink);
-    // }
+    if (window.webkitURL != null) {
+        downloadLink.href = window.webkitURL.createObjectURL(
+            textFileAsBlob
+        );
+    } else {
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+    }
 
-    // downloadLink.click(); 
+    downloadLink.click(); 
 
     //------------------------------------------------------------------------------
 
@@ -1926,32 +1968,6 @@ console.log("\t\t\t fetched from local ds ");
                                                     
                                                     // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
                                                     
-  }
-
-  function downloadEntireProjectFilePart2AllNodeContent() {
-    //TODO structure: chapter_key: map of nodes | node_key: content and ui_settings
-
-    //chapterNodeMapAll
-    let objectLarge = {};
-
-    Object.keys(chapterNodeMapAll).map(async (chapKey) => {
-
-
-console.log("~~~ chap-key = ", chapKey);
-
-
-      if (chapKey !== "chapter0" && chapKey != "placeholder") {
-        
-      
-      //TODO999 for each chapter ... get all of its node's data?
-
-            let chapAllNodes = await getCurrChpNodeDataFromCloud(chapKey);
-          
-            objectLarge[chapKey] = chapAllNodes;
-      }
-    });
-
-    console.log("downloadEntireProjectFilePart2AllNodeContent ...", objectLarge);
   }
 
 
@@ -2085,7 +2101,7 @@ console.log("~~~ chap-key = ", chapKey);
       <button
         onClick={()=>{
           downloadEntireProjectFilePart1Meta();
-          downloadEntireProjectFilePart2AllNodeContent();
+          fetchEntireProjectAllNodesDataFromCloud();
         }}
       >Download Project File</button>
 
