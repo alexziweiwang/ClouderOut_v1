@@ -95,7 +95,7 @@ export default function ProjectManageNew({cancelAction, showCancelButton, isPart
       //TODO: author name default: current user-name, then allow adding others
       
       const projTitle = ""; //TODO100
-      const empty_game_data = {};
+      const empty_game_data = {"placeholder123456789___###___###___##": "placeholder123456789___###___###___##"};
       const empty_rm_audio = [];
       const empty_rm_visual = [];
       const empty_chapter_list = {0: ["chapter_placeholder","chapter_placeholder","chapter_placeholder","chapter_placeholder"]};

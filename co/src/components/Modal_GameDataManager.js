@@ -126,7 +126,7 @@ export default function Modal_GameDataManager ({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     useEffect(() => {
-
+   //     console.log("game-data-manager: authname = ", username);
         if (username === "_") {
 
             let unameTemp = getUsername();
@@ -134,16 +134,17 @@ export default function Modal_GameDataManager ({
                 initialization(unameTemp);
 
                 setUsername(unameTemp);
+            } else {
+                setFirstTimeEnter(true);
             }
-
-            
         }
 
-        if (firstTimeEnter === true && username !== "_") {
+        // if (firstTimeEnter === true && username !== "_") {
+        if (username !== "_" && gdmMapSize === 0) {
 
             initialization(username);
 
-            setFirstTimeEnter(false);
+        //    setFirstTimeEnter(false);
         }
 
         let modeName = getOfflineModeName();
@@ -167,39 +168,51 @@ export default function Modal_GameDataManager ({
 
     const [gdmMapSize, setGdmMapSize] = useState(0);
 
-    async function initialization(usernameTemp) {
+    function initialization(usernameTemp) {
         let isUpdated = true;
+console.log("initializaed game data manager!!!", usernameTemp);
+
 
 
         let tempGameDataDesign = {};
 
         if (offlineModeName === "online_cloud") {
-
-                tempGameDataDesign = await getProjectGameDataDesignVM({
-                    projectName: projName, 
-                    uname: usernameTemp, 
-                    mostUpdated: isUpdated,
-                    bkOption: backendOption
-                
-                });
+            fetchFromCloud(usernameTemp);
+         
         }
 
-        console.log("modal-gd-mgr : fetched \n\t", tempGameDataDesign);
 
+    }
 
-        if (tempGameDataDesign !== null && tempGameDataDesign !== undefined) {
+    async function fetchFromCloud(usernameTemp) {
+        await getProjectGameDataDesignVM({
+            projectName: projName, 
+            uname: usernameTemp, 
+            mostUpdated: true,
+            bkOption: backendOption
+        
+        })
 
-            let objSize = Object.keys(tempGameDataDesign).length;
-            setGdmMapSize(objSize);
-                //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
-                                    
-            setUsingGameDataDesign(tempGameDataDesign);
+        .then((tempGameDataDesign)=>{
+            console.log("2!!! game-data-design-list-from-cloud: ", tempGameDataDesign);
 
-        } else {
-            setGdmMapSize(0);
-            setUsingGameDataDesign({});
+            if (tempGameDataDesign !== null && tempGameDataDesign !== undefined) {
 
-        }
+                let objSize = Object.keys(tempGameDataDesign).length;
+                setGdmMapSize(objSize);
+                    //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
+                                        
+                setUsingGameDataDesign(tempGameDataDesign);
+    
+            } else {
+                setGdmMapSize(1);
+                setUsingGameDataDesign({"placeholder123456789___###___###___##": "placeholder123456789___###___###___##"});
+    
+            }
+            console.log("3modal-gd-mgr : fetched \n\t", tempGameDataDesign);
+
+            
+       });
 
     }
 

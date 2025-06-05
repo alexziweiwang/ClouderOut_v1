@@ -12,7 +12,7 @@ export async function getProjectGameDataDesignVM({projectName, uname, bkOption})
     let result = {};
 
     if (bkOption === "firebase") {
-        result = await getProjectGameDataDesign({projectName, uname});
+        return await getProjectGameDataDesign({projectName, uname});
     }
 
     return result;

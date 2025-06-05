@@ -686,7 +686,7 @@ GameDataDesign <map>
     function getUserConfigFromEmuManager1Gdt(data1) {  //recreate emu data object
         //update data1 to be the new Game-Data-Tracker
 
-                                                console.log("conv-node-editor, getUserConfigFromEmuManager1Gdt-func, from emu-manger, \ngdt = hp_001 current value is \n", 
+                                                console.log("conv-node-editor, getUserConfigFromEmuManager1Gdt-func, from emu-manger... \n", 
                                                 data1);
                                                 //data1["hp_001"]["current_value"]
         //TODO make dup here

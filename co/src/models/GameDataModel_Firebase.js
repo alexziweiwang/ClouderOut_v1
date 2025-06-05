@@ -17,11 +17,13 @@ export async function getProjectGameDataDesign({projectName, uname}) {
   const projectSnap = await getDoc(projectRef);
 
   if (!projectSnap.exists()) {
-    return {};
+    
+    return {"invalid-snap": ""};
   }
 
   let projectData = {};
   projectData = projectSnap.data().game_data; 
+  console.log("1~projectData  = ", projectData);
 
   return projectData;
 }
