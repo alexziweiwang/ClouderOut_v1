@@ -1378,28 +1378,6 @@ GameDataDesign <map>
 
 
 
-{/* game-data-manager modal */}
-            <div
-                style={{
-                    "display": displayGameDataWindow === true ? "flex" : "none"
-                }}
-            >
-                <Modal_GameDataManager 
-                    isDisplay={displayGameDataWindow}
-                    handleGdmCancel={handleModal_GameDataManagerCancel} 
-                    resetNeedCloudData={markNextNeedCloudGameData} 
-
-                    getUILanguage={passInUILanguage}
-
-                    getUsername={passInUsername}
-                    projName={state.projectName}  
-                    
-                    getOfflineModeName={passInOfflineModeName}
-
-                    updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
-                    updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
-                />   
-            </div>
 
 
 {/* emu-manager modal */}
@@ -1428,6 +1406,28 @@ GameDataDesign <map>
                 />
             </div>
     
+{/* game-data-manager modal */}
+            <div
+                style={{
+                    "display": displayGameDataWindow === true ? "flex" : "none"
+                }}
+            >
+                <Modal_GameDataManager 
+                    isDisplay={displayGameDataWindow}
+                    handleGdmCancel={handleModal_GameDataManagerCancel} 
+                    resetNeedCloudData={markNextNeedCloudGameData} 
+
+                    getUILanguage={passInUILanguage}
+
+                    getUsername={passInUsername}
+                    projName={state.projectName}  
+                    
+                    getOfflineModeName={passInOfflineModeName}
+
+                    updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
+                    updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
+                />   
+            </div>
             
 
 {/* *** quick-view modal ***  */}
