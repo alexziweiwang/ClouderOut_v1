@@ -252,7 +252,7 @@ GameDataDesign <map>
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
 
-    const [offlineHalfMode, setOfflineHalfMode] = useState(true); //with account log-in and use links from external online-drive, not using the storage place
+    const [offlineHalfMode, setOfflineHalfMode] = useState(false); //with account log-in and use links from external online-drive, not using the storage place
     const [offlineFullMode, setOfflineFullMode] = useState(false); //TODO6000
   
 
@@ -260,7 +260,7 @@ GameDataDesign <map>
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-          
+          console.log("testPlayerGameData = " , testPlayerGameData);
         
         if (authEmailName !== "_" && (projectName === null || projectName === "default-no-state projectname")) {
             //      alert("No project selected. Returning to project selection page...");
@@ -272,23 +272,14 @@ GameDataDesign <map>
             getAuthFirebase(
                 {
                   goToNotLoggedInPageFunc: goToNotLoggedInPage,
-                  sendOutEmailName: setAuthEmailName
+                  sendOutEmailName: configAuthEmailName
         
                 }
             );
             console.log("auth! conv-node-editor --\t\tauthEmamilName", authEmailName);
-
         } 
 
-        if (authEmailName !== "_") { //online-mode
-            setOfflineHalfMode(false);
-            setOfflineFullMode(false);
-        } else {
-            setOfflineHalfMode(true);
-        //TODO6000 offline mode: import, edit and save one-node's content and ui-settings
-
-
-        }
+     
 
 
 
@@ -331,6 +322,21 @@ GameDataDesign <map>
     
     }); // --- useEffect ends here ---
 
+    function configAuthEmailName(name) {
+        setAuthEmailName(name);
+
+        if (name !== "_") { //online-mode
+            setOfflineHalfMode(false);
+            setOfflineFullMode(false);
+        } else {
+            setOfflineHalfMode(true);
+        //TODO6000 offline mode: import, edit and save one-node's content and ui-settings
+
+
+        }
+
+
+    }
 
 
     function goToNotLoggedInPage() {

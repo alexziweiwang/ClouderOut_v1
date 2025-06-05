@@ -46,6 +46,8 @@ export default function Panel_GameDataTest({
     useEffect(() => {
         fetchGdataTrackerFromOuterLayer();
 
+        
+
 
         let h = getScreenHeight();
         setScreenHeight(h);

@@ -86,6 +86,7 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
  
         if (firstTimeEnter === true) {
 
+console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
 
             makeDupGdt();
 

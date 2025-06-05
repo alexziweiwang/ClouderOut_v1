@@ -408,13 +408,17 @@ export default function Modal_EmuManager({
             });
             
         }
+        console.log("emu-gdt1 from cloud: ", tempObj1, "......... getOfflineModeName = ", offlineModeName);
 
         let objSize = 0;
+
         if (tempObj1 !== undefined) {
             objSize = Object.keys(tempObj1).length;
         }
+
         if (getOfflineModeName === "online_cloud" && (objSize === 0 || tempObj1 === undefined || tempObj1 === null)) {
             // no emu-data for game-data -->      create from game-data-design-list
+    
             tempObj1 = {};
 
             let isUpdated = true;
