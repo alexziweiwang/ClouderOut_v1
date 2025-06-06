@@ -126,6 +126,9 @@ export default function ChapterManager({
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
+                                console.log("\t\t\t\tchapter-manager rendered once.");
+
+
     if (firstTimeEnter === true) {
       fetchChapterListFromCloud(); //TODO500 use this
       
@@ -447,11 +450,17 @@ console.log("chapterData: ", chapterData); //TODO testing
                         <div
                             style={{"overflow": "scroll"}}
                         >
-                        <table
+
+                        {deletedLocalList.length === 0 && <div>
+                               {noDeletedChapterText}
+
+                        </div>}
+                        
+                        {deletedLocalList.length > 0 && <table
                         
                             style={{"border": "none"}}
                         >
-                       
+                            <tbody>
                               {deletedLocalList.map((item, index) => {
                                 let divKey = "deletedListItem" + index;
                                 return (
@@ -468,9 +477,9 @@ console.log("chapterData: ", chapterData); //TODO testing
                                           "padding": "5px"
                                         }}
                                       >
-                                          <label key={index}>{item[0]}</label>
+                                          {item[0]}
                                           <br></br>
-                                          <label>{item[1]}</label> 
+                                          {item[1]}
                                       </td>
 
                                       <td
@@ -488,10 +497,12 @@ console.log("chapterData: ", chapterData); //TODO testing
                                   
                                   </tr>);
                               })}
+                            </tbody>
+                         
+                        </table>}
 
-                              {deletedLocalList.length === 0 && <label>{noDeletedChapterText}</label>}
+
                         
-                        </table>
                         </div>
                         }
                         

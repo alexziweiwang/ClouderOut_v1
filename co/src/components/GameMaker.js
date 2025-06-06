@@ -578,7 +578,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         }
                     
-            
+            console.log("\t\t\tgame-maker rendered once.");
+
         if (authEmailName !== "_") {
 
             //TODO5000 check returned data from cloud-db
@@ -615,19 +616,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             console.log("!!! First Enter - GameMaker: ");//TODO testing
 
             //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
-            /*
-            triggerRefreshFetchCloudData();
-
-            fetchProjectNavigationSettingsFromCloud();
-
-            fetchChapterNodeMappingFromCloud();
-            
-            fetchUILangFromCLoud();
-
-            */
-
-            loadEverythingFromCloud();
-
+      
             setFirstTimeEnter(false);
         }
 
@@ -1564,7 +1553,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       bkOption: backendOption
     })
 
-    console.log("data = ", data);
+    console.log("proj-nav-settings = ", data);
     setCurrentProjectNav(data);
   }
 
@@ -1836,7 +1825,7 @@ console.log("\t\t\t fetched from local ds ");
   }
 
   function loadEverythingFromCloud() {
-                                                    console.log("loading-everything-from-cloud");
+                                                    console.log("~loading-everything-from-cloud");
     fetchProjectNavigationSettingsFromCloud();
     fetchChapterNodeMappingFromCloud();          
   }
@@ -2122,6 +2111,8 @@ console.log("\t\t\t fetched from local ds ");
     </div>
     
 
+    
+{/* chapter-and-node setting tab */}
     {showChapterMaker && <div className="parallelFrame sectionArea">
 
         {!isDisplayRmBool && 
@@ -2147,6 +2138,7 @@ console.log("\t\t\t fetched from local ds ");
           
         />}
 
+        {currChapterKey !== "" && 
         <NodeManager 
           currUser={authEmailName}  //TODO
           projectName={projectName} 
@@ -2175,11 +2167,16 @@ console.log("\t\t\t fetched from local ds ");
           chapterChangingOrExiting={chapterChangingOrExiting}
           triggerNodeDeleted={triggerNodeDeleted}
           //TODO500
-        />
+        />}
+
+
         {/* Note: later - select according data structure (as initial ds) for this chapter */}
 
     </div>}
 
+
+
+{/* project-nagivation setting tab */}
     {!showChapterMaker && 
     <>
       
@@ -2458,7 +2455,7 @@ console.log("\t\t\t fetched from local ds ");
           {isDisplayRmBool === true && <div>
 
               <Modal_ResourceManagingWindow 
-              
+
                 isDisplay = {isDisplayRmBool} 
                 handleRmCancel={handleResourceManagerCancel} 
                 handleRmSaveChanges={handleResourceManagerSaveChanges}
