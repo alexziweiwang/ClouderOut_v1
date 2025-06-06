@@ -635,7 +635,7 @@
 - 2025-Jun-05: Analyze and improve modals' refreshing/data-flow strategies within editors
 
 - 2025-Jun-06: Testing-project material prep 9
-
+- 2025-Jun-06: Project-data-version strategies design 4
 
 
 
