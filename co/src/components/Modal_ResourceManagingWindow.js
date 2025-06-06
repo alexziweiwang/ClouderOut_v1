@@ -12,6 +12,7 @@ import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
 import langDictionary from './_textDictionary';
 
+//fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh,
     getUILanguage,

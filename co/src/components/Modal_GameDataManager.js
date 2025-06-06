@@ -11,6 +11,8 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodel
 
 //TODO adjust plan: fetch data from cloud-db, and provde display and setup features
 
+
+//fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_GameDataManager ({
         isDisplay, handleGdmCancel, 
         resetNeedCloudData, 

@@ -7,7 +7,7 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 //TODO6000 offline mode prep
 
-
+//fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_EmuManager({
     handleEmCancel,
     getUILanguage,

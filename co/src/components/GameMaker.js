@@ -2449,12 +2449,16 @@ console.log("\t\t\t fetched from local ds ");
 <div>
 
           
-          <div
+          {/* {<div
             style={{
               "display": isDisplayRmBool === false ? "none" : "flex",
             }}
-          >
+          > */}
+          
+          {isDisplayRmBool === true && <div>
+
               <Modal_ResourceManagingWindow 
+              
                 isDisplay = {isDisplayRmBool} 
                 handleRmCancel={handleResourceManagerCancel} 
                 handleRmSaveChanges={handleResourceManagerSaveChanges}
@@ -2470,14 +2474,16 @@ console.log("\t\t\t fetched from local ds ");
 
               />
           
-          </div>
+          </div>}
 
 
-          <div
+          {/* {<div
             style={{
               "display": isDisplayGdmBool === false ? "none" : "flex",
             }}
-          >
+          > */}
+
+          {isDisplayGdmBool === true && <div>
        
               <Modal_GameDataManager 
                 isDisplay={isDisplayGdmBool} 
@@ -2497,14 +2503,18 @@ console.log("\t\t\t fetched from local ds ");
 
               />
 
-          </div>
+          </div>}
 
-
-          <div
+{/* 
+          {<div
             style={{
               "display": isDisplayEmBool === false ? "none" : "flex",
             }}
-          >
+          > */}
+
+
+          {isDisplayEmBool === true && <div>
+
             <Modal_EmuManager
               handleEmCancel={handleEmuManagerCancel}
 
@@ -2522,7 +2532,9 @@ console.log("\t\t\t fetched from local ds ");
 
               getOfflineModeName={passInOfflineModeName}
             />
-          </div>
+          </div>}
+
+
 </div>
 </>} 
 {/* cloudDbConnOk */}
