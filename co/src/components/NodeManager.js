@@ -1413,7 +1413,7 @@ export default function NodeManager({projectName, currUser,
                   <select value={toRevertNodeKey} onChange={(event)=>{
                     setToRevertNodeKey(event.target.value);
                   }}>
-                    <option>-- {selectNodeText} --</option>
+                    <option key="defaultNone_Reverting_Node">-- {selectNodeText} --</option>
                   {Object.keys(nodeRelationshipMap).map((currKey) => {
                     if (nodeRelationshipMap[currKey].display === false) {
                       let keyStr = "revertOption" + currKey

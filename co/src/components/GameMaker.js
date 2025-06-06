@@ -515,6 +515,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       setGameDataDesignList(gdataTestResult);      
     }
  
+
     return gdataTestResult;
 
   }
@@ -593,10 +594,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               setCloudDbConnOk(true);
             }
 
+            if (Object.keys(gameDataDesignList).length === 0) { //TODO999
+                triggerRefreshFetchCloudData();
+            }
+
             setOfflineHalfMode(false);
             setOfflineFullMode(false);
 
-        } else {
+        } else { //auth-email-name is "_"
 
             setOfflineHalfMode(true);
 //offlineHalfMode
@@ -616,7 +621,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             console.log("!!! First Enter - GameMaker: ");//TODO testing
 
             //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
-      
+            
+            
+
             setFirstTimeEnter(false);
         }
 
@@ -1553,7 +1560,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       bkOption: backendOption
     })
 
-    console.log("proj-nav-settings = ", data);
+                                                  // console.log("proj-nav-settings = ", data);
     setCurrentProjectNav(data);
   }
 
@@ -2023,11 +2030,19 @@ console.log("\t\t\t fetched from local ds ");
       </div>
 
       <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
-        <button className="rmTab" onClick={()=>{setDisplayRmModal(true);}}> {resourceManagerButtonText} </button>
-        <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>{gameDataManagerButtonText}</button>
-        <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
-          {emuManagerText}
-        </button>
+        
+        {authEmailName !== "" && 
+        <>
+          <button className="rmTab" onClick={()=>{setDisplayRmModal(true);}}> 
+            {resourceManagerButtonText} </button>
+          
+          <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>
+            {gameDataManagerButtonText}</button>
+          
+          <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
+            {emuManagerText}
+          </button>
+        </>}
       
 
             <div>
@@ -2111,7 +2126,7 @@ console.log("\t\t\t fetched from local ds ");
     </div>
     
 
-    
+
 {/* chapter-and-node setting tab */}
     {showChapterMaker && <div className="parallelFrame sectionArea">
 

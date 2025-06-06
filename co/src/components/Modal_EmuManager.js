@@ -396,14 +396,14 @@ export default function Modal_EmuManager({
     }
 
 
-    async function prepare1Gdt() {
+    async function prepare1Gdt(providedUname) {
         let tempObj1 = {}; //TODO6000 gdt1-template here
 
         if (offlineModeName === "online_cloud") {
 
             tempObj1 = await fetchEmuData1GdtVM({
                 projectName: projName, 
-                currUser: username,
+                currUser: providedUname,
                 bkOption: backendOption
             });
             
@@ -418,7 +418,9 @@ export default function Modal_EmuManager({
 
         if (getOfflineModeName === "online_cloud" && (objSize === 0 || tempObj1 === undefined || tempObj1 === null)) {
             // no emu-data for game-data -->      create from game-data-design-list
-    
+                                        console.log("\t\temu-game-data: preparing from desing-list...");
+
+
             tempObj1 = {};
 
             let isUpdated = true;
@@ -454,8 +456,6 @@ export default function Modal_EmuManager({
             } else {
                 tempObj1 = {};
             }
-        } else {
-            tempObj1 = {};
         }
 
                                                    console.log("... gdt1 prep: ", tempObj1); //TODO test
@@ -468,7 +468,7 @@ export default function Modal_EmuManager({
 
 
 
-    async function prepare2Epp() {
+    async function prepare2Epp(providedUname) {
         // if local is not ready, from cloud
         
         let tempObj2 = {}; //TODO template-epp2
@@ -476,7 +476,7 @@ export default function Modal_EmuManager({
         if (offlineModeName === "online_cloud") {
             tempObj2 = await fetchEmuData2EppVM({
                 projectName: projName, 
-                currUser: username,
+                currUser: providedUname,
                 bkOption: backendOption
             });
         }
@@ -503,7 +503,7 @@ export default function Modal_EmuManager({
         update2Epp(tempObj2);
 
     }        
-    async function prepare3Epa() {
+    async function prepare3Epa(providedUname) {
         // if local is not ready, from cloud
         let tempObj3 = {}; //TODO temp3
         
@@ -511,7 +511,7 @@ export default function Modal_EmuManager({
 
             tempObj3 = await fetchEmuData3EpaVM({
                 projectName: projName, 
-                currUser: username,
+                currUser: providedUname,
                 bkOption: backendOption
             });
         }
@@ -537,7 +537,7 @@ export default function Modal_EmuManager({
 
     }              
 
-    async function prepare4Ess() {
+    async function prepare4Ess(providedUname) {
         // if local is not ready, from cloud
         let tempObj4 = {}; //TODO temp4
         
@@ -545,7 +545,7 @@ export default function Modal_EmuManager({
 
             tempObj4 = await fetchEmuData4EssVM({
                 projectName: projName, 
-                currUser: username,
+                currUser: providedUname,
                 bkOption: backendOption
             });
         }
@@ -562,7 +562,7 @@ export default function Modal_EmuManager({
 
     }
 
-    async function prepare5Shp() {
+    async function prepare5Shp(providedUname) {
         "5shp"
         let tempObject5 = {}; //TODO temp5
         
@@ -571,7 +571,7 @@ export default function Modal_EmuManager({
 
             tempObject5 = await fetchEmuData5ShpVM({
                 projectName: projName, 
-                currUser: username,
+                currUser: providedUname,
                 bkOption: backendOption
             });
         }
@@ -699,15 +699,15 @@ export default function Modal_EmuManager({
             setUsername(uname);
 
 
-            console.log("\t\t........ username = ", username, "... projectname = ", projName);
+            console.log("\t\temu-mgr........ username = ", uname, "... projectname = ", projName);
     
-            prepare1Gdt();
-            prepare2Epp();
-            prepare3Epa();
-            // prepare4Ess();                                   //TODO later
-            prepare5Shp();
+            prepare1Gdt(uname);
+            prepare2Epp(uname);
+            prepare3Epa(uname);
+            // prepare4Ess(uname);                                   //TODO later
+            prepare5Shp(uname);
     
-            fetchVisualListFromCloud();
+            fetchVisualListFromCloud(uname);
     
     
             update1GdtToOuterLayer(); 
@@ -775,14 +775,14 @@ export default function Modal_EmuManager({
 
     }
 
-    async function fetchVisualListFromCloud() {
+    async function fetchVisualListFromCloud(providedUname) {
         //TODO500    
         
         let obj = {};
         if (offlineModeName === "online_cloud") {
 
             obj = await fetchProjectResourceVarPairsVM({
-                userName: username, 
+                userName: providedUname, 
                 projectName: projName,
                 bkOption: backendOption
             });
