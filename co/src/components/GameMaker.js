@@ -1202,6 +1202,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
   
     Object.keys(gameDataDesignList).map((currKey) => {
+        if (currKey === "placeholder123456789___###___###___##") {
+          return;
+        }
+
+        if (emuGdt1Temp[currKey]["current_value"] === undefined) {
+          return;
+        }
 
         if (emuGdt1Temp[currKey] === undefined) {
             emuGdt1Temp[currKey] = gameDataDesignList[currKey];

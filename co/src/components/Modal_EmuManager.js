@@ -899,13 +899,13 @@ return (<div className={modalStyleName}>
                             setFocusingPanelName("3epa");
                         }}             
                     >3.{emuPlayerAccount} </button>
-                    <br></br>
+                    {/* <br></br>
                     <button
                         className={focusingPanelName === "4ess" ? "selectedTab" : ""}
                         onClick={()=>{
                             setFocusingPanelName("4ess");
                         }}             
-                    >4.Emu SL slots</button>
+                    >4.Emu SL slots</button> */}
                     {/* <br></br>
                     <button
                         className={focusingPanelName === "5shp" ? "selectedTab" : ""}
@@ -1467,11 +1467,14 @@ return (<div className={modalStyleName}>
 
                 </div>}
 
-                {focusingPanelName === "4ess" && <div>
+
                 {/* "4.Emu SL slots" */}
+
+                {/* {focusingPanelName === "4ess" && 
+                <div>
 4   SL slots settings
 
-                
+                   </div>} */}
 {/* Note: each sl-slot:
   creation timestamp [key?]
 + customized title
@@ -1479,7 +1482,7 @@ return (<div className={modalStyleName}>
 + game data status object
 + backpack status object */}
 
-                </div>}
+             
 
 
 {/* 

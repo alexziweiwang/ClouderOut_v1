@@ -481,6 +481,10 @@ console.log("initializaed game data manager!!!", usernameTemp);
 
                         <tbody>       
                         {Object.keys(usingGameDataDesign).map((key) => {
+
+                            if (key === "placeholder123456789___###___###___##") {
+                                return;
+                            }
                         
                             return (
                                 <tr key={key} className="tableItem tableRow">
