@@ -752,7 +752,7 @@ export default function Modal_EmuManager({
         update2EppToOuterLayer(); 
         update3EpaToOuterLayer();
         // update 4
-        update5ShpToOuterLayer();
+        // update5ShpToOuterLayer();
 
         
 
@@ -955,7 +955,7 @@ return (<div className={modalStyleName}>
                                     <tr>
                                         <th style={{"width": "120px"}}>{nameText}</th>
                                         <th style={{"width": "70px"}}>{typeText}</th>
-                                        <th style={{"width": "120px"}}>{defaultValueText}</th>
+                                        {/* <th style={{"width": "120px"}}>{defaultValueText}</th> */}
                                         <th style={{"width": "170px"}}>{currentValueText}</th>
                                     </tr>
                                 </thead>
@@ -983,7 +983,7 @@ return (<div className={modalStyleName}>
                                             <tr key={keyName}>
                                                 <td style={{"backgroundColor": ""}}>{currKey}</td>
                                                 <td>{item["data_type"]}</td>
-                                                <td>{defaultVal}</td>
+                                                {/* <td>{defaultVal}</td> */}
                                                 <td style={{"width": "320px", }}>
                                                     <div style={{"display": "flex", "alignItems": "center"}}>
                                                         <div style={{"width": "120px", }}>

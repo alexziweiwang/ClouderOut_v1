@@ -18,7 +18,7 @@ export default function GameScreen_QuickView_ConvNode ({
     uiData1_textframe, uiData2_defaultButtonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
 
     visualMap, audioMap,
-    buttonConsequenceByStatementEntireArray,
+    buttonConsequenceByStatementEntireArray_QVC,
     isViewMuted,
     fetchGameSettingsForPlaying,
 
@@ -299,6 +299,13 @@ console.log("game-screen quick-view conv-node ... render once");
             return visualMap;
         }
 
+        function buttonConsequenceByStatementEntireArray_QVC_local(pieceNum, item) {
+                                                    console.log("qvc layer...");
+
+
+            buttonConsequenceByStatementEntireArray_QVC(pieceNum, item);
+        }
+
         //TODO106
         // function changeBgmVolume(volumeValue) {
         //     if (audioElem !== null && audioElem !== undefined) {
@@ -415,7 +422,7 @@ style={{
                     allPieceContent={allPieceContent} 
                     getCurrentPieceNum={passInCurrentPieceNum} 
                     defaultBtnUISettings={uiData2_defaultButtonOption} 
-                    buttonConsequenceByStatementEntireArray={buttonConsequenceByStatementEntireArray}
+                    buttonConsequenceByStatementEntireArray_UP2={buttonConsequenceByStatementEntireArray_QVC_local}
 
                 />
             }

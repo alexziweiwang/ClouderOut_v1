@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defaultBtnUISettings,
-    buttonConsequenceByStatementEntireArray
+    buttonConsequenceByStatementEntireArray_UP2
     }) {
 
     const [currentPieceNum, setCurrentPieceNum] = useState(initialPieceNum);
@@ -84,7 +84,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                                                             
                                                                             console.log("GameUIPlay2Button pressed...", item);
   
-                            buttonConsequenceByStatementEntireArray(currentPieceNum, item);
+                            buttonConsequenceByStatementEntireArray_UP2(currentPieceNum, item);
 
                             triggerNextPiece();
                         }

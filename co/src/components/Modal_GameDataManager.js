@@ -474,7 +474,7 @@ console.log("initializaed game data manager!!!", usernameTemp);
                             <tr className="textNoSelect tableRow">
                                 <th>{varNameText}</th>
                                 <th>{typeText}</th>
-                                <th>{defaultValueText}</th>
+                                {/* <th>{defaultValueText}</th> */}
                                 <th>{operationsText}</th>
                             </tr>
                         </thead>
@@ -492,19 +492,19 @@ console.log("initializaed game data manager!!!", usernameTemp);
 
                                     <td>{usingGameDataDesign[key]["data_type"]}</td>
 
-                                {(editLineDisplay !== key) && 
+                                {/* {(editLineDisplay !== key) && 
                                     <td>
                                         {usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}
                                     </td>}
                                 {(editLineDisplay === key && editAreaOpen === true) && 
                                     <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
-
+                                */}
 
                                 {(editLineDisplay !== key) && 
                                     <td className="parallelFrame">
-                                        <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button>
+                                        {/* <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button> */}
                                         <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameDataDesign[key]);}}>{deleteText}</button>
-                                    </td>}
+                                    </td>} 
                                 {(editLineDisplay === key && editAreaOpen === true) && 
                                     <td className="parallelFrame">
                                         <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
