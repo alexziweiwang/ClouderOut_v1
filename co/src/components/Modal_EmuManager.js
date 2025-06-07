@@ -408,7 +408,7 @@ export default function Modal_EmuManager({
             });
             
         }
-        console.log("emu-gdt1 from cloud: ", tempObj1, "......... getOfflineModeName = ", offlineModeName);
+                                                    //console.log("emu-gdt1 from cloud: ", tempObj1, "......... getOfflineModeName = ", offlineModeName);
 
         let objSize = 0;
 
@@ -416,47 +416,54 @@ export default function Modal_EmuManager({
             objSize = Object.keys(tempObj1).length;
         }
 
-        if (getOfflineModeName === "online_cloud" && (objSize === 0 || tempObj1 === undefined || tempObj1 === null)) {
-            // no emu-data for game-data -->      create from game-data-design-list
-                                        console.log("\t\temu-game-data: preparing from desing-list...");
 
+        if (offlineModeName === "online_cloud") {
 
-            tempObj1 = {};
+            let gDataDesignMap = await getProjectGameDataDesignVM(({ //TODO6000 fetch from game-maker instead (to save cloud op?)
 
-            let isUpdated = true;
-            let gDataDesignMap = await getProjectGameDataDesignVM(({
-                projectName: projName, 
-                uname: username, 
-                mostUpdated: isUpdated,
-                bkOption: backendOption
+                    projectName: projName, 
+                    uname: providedUname, 
+                    mostUpdated: true,
+                    bkOption: backendOption
             }));
-                                    console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
+                                        //    console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
+                
+            let gdtListLen = 0;
 
-            if (gDataDesignMap !== null && gDataDesignMap === undefined) {
-            
+            if (gDataDesignMap !== null && gDataDesignMap !== undefined) {
+                gdtListLen = Object.keys(gDataDesignMap).length;
 
-                let trackerMap = {};
-                {Object.keys(gDataDesignMap).map((currKey) => {
-                    let name = gDataDesignMap[currKey]["name"];
-                    let defaultVal = gDataDesignMap[currKey]["default_value"];
-                    let dataType = gDataDesignMap[currKey]["data_type"];
+                    if (objSize !== gdtListLen) { //emu-data-list not updated with game-data-design-list
 
-                    let obj = {
-                        "name": name,
-                        "default_value": defaultVal,
-                        "data_type": dataType,
-                        "current_value": defaultVal
+                            let trackerMap = {};
+                            {Object.keys(gDataDesignMap).map((currKey) => {
+                                    if (tempObj1[currKey] !== undefined) { //compare with emu-list, already here
+                                        trackerMap[currKey] = tempObj1[currKey];
+                                    } else {
+                                        let name = gDataDesignMap[currKey]["name"];
+                                        let defaultVal = gDataDesignMap[currKey]["default_value"];
+                                        let dataType = gDataDesignMap[currKey]["data_type"];
+    
+                                        let obj = {
+                                            "name": name,
+                                            "default_value": defaultVal,
+                                            "data_type": dataType,
+                                            "current_value": defaultVal
+                                        }
+                                        trackerMap[currKey] = obj;
+                                    }
+
+                            })} 
+
+                            tempObj1 = trackerMap;
+
                     }
-                    let keyStr = currKey;
-                    trackerMap[keyStr] = obj;
-                })} 
+                }
 
-                tempObj1 = trackerMap;
-                                            // console.log("\t\t--prepared from design-list."); //TODO test
-            } else {
-                tempObj1 = {};
-            }
+
+
         }
+
 
                                                    console.log("... gdt1 prep: ", tempObj1); //TODO test
 

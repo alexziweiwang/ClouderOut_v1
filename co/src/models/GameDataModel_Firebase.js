@@ -17,6 +17,8 @@ export async function getProjectGameDataDesign({projectName, uname}) {
   const projectSnap = await getDoc(projectRef);
 
   if (!projectSnap.exists()) {
+    console.log("uname = ", uname);
+
     
     return {"invalid-snap": ""};
   }
