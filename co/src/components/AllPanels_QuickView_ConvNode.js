@@ -209,7 +209,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
 
     // refactored to VM - already put in vm-part
     function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
-        console.log("??? buttonConsequenceByStatementEntireArray_QV");
+        console.log("quick-view-conv-node : buttonConsequenceByStatementEntireArray_QV");
         buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, changeGameDataTracker, setGameDataTracker, updateRenderCounter);
     }
 
