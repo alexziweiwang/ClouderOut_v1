@@ -638,6 +638,7 @@
 - 2025-Jun-06: Project-data-version strategies design 4
 - 2025-Jun-06: Explore, adjust and test
 
+- 2025-Jun-09: Testing-project material prep 10
 
 
 
