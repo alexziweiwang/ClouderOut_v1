@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
-import { changeGameDataTrackerByStatement, buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
+import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 //level3 (container of conversation-node, for in-practice)
 
@@ -77,89 +77,10 @@ export default function GameScreen_InPracShell_ConvNode ({
       return false;
   }
 
-    //TODO21 refactor to VM
-    function changeGameDataTracker(ds, name, value) {
-        let gmdtObj = ds;
-        gmdtObj[name].current_value = value;
-        
-                                                            // updatedGameDataTracker(gmdtObj);//TODO remove later
-        return gmdtObj;
-    }  
-
-
-    //TODO21 refactor to VM
-    // function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TODO later
-    //     //TODO check if valid
-    //     if (ds[name] === undefined) {
-    //         return;
-    //     }
-    //     //TODO check if valid
-
-    //     let res = {};
-        
-    //     if (type === "boolean" || type === "string") {
-    //         // type - boolean 
-    //             // action is "becomes"
-    //         let boolVal = (newVal === "true" || newVal === true) ? true : false;
-    //         res = changeGameDataTracker(ds, name, boolVal);
-    //     } else if (type === "string") {
-    //         // type - string
-    //             // action is "becomes"
-    //             res = changeGameDataTracker(ds, name, newVal);
-    //     } else if (type === "number") {
-    //         // type - number
-    //         let currVal = ds[name]["current_value"];
-
-    //         let result = 0;
-    //         if (action === "plus") {
-    //             result = currVal - (-1 * newVal); //important, not directly adding
-    //             res = changeGameDataTracker(ds, name, result);
-    //         } else if (action === "minus") {   
-    //             result = currVal - newVal;
-    //             res = changeGameDataTracker(ds, name, result);
-    //         } else if (action === "becomes") {
-    //             res = changeGameDataTracker(ds, name, newVal);
-    //         }
-    //     }
-
-    //     return res;
-    // }
-
-    //TODO21 refactor to VM
-    // function buttonConsequenceByStatementEntireArray(pieceNum, item) {
-
-    //     let stndButtonThisButtonInfo = allPieceData[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
-        
-    //     let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
-    //     if (conseqMap === undefined) {
-    //                                                         console.log("2... conseqMap undefined.");
-    //         return;
-    //     }
-    //                                                       //  console.log("2conseqMap: ", conseqMap, ", len = ", len);
-    //     let res = enteringEmuGameDataTracker;
-    //                                                 //        console.log("\nchange-by-stmt-arr: before - ", res);
-    //     Object.keys(conseqMap).map((currKey) => {
-
-    //         let name = conseqMap[currKey]["name"];  
-    //         let action = conseqMap[currKey]["action"];  
-    //         let newVal = conseqMap[currKey]["newVal"];  
-    //         let type = conseqMap[currKey]["type"];  
-    //                                                         console.log("2calling change-by-stmt, ", conseqMap[currKey]);
-                                  
-    //         res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
-    //     });
-
-    //                                                         console.log("\nchange-by-stmt-arr: after - ", res);
-
-    //     updatedGameDataTracker(res);
-    //                                                 // updateRenderCounter()?
-        
-    // }
-
     function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
         console.log("game-screen-in-prac : buttonConsequenceByStatementEntireArray_QV");
 
-        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringEmuGameDataTracker, changeGameDataTracker, updatedGameDataTracker, notUsing);
+        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringEmuGameDataTracker, updatedGameDataTracker, notUsing);
     }
 
 return (<div>
@@ -200,8 +121,8 @@ return (<div>
                     notifyAfterReset={notUsing}
 
 
-                    buttonConseqByStatement={changeGameDataTrackerByStatement}
                     buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}  //TODO 
+                    
                     isViewMuted={mutedViewOption}
                     fetchGameSettingsForPlaying={fetchGameSettings}
 

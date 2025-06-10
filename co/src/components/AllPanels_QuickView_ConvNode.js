@@ -6,7 +6,7 @@ import langDictionary from './_textDictionary';
 //level3 (container of conversation-node, for quick view, along with panel)
 
 
-import { changeGameDataTrackerByStatement, buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
+import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQViewCancel, 
     isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
@@ -197,14 +197,6 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
     }
 
 
-    function changeGameDataTracker(ds, name, value) {
-        let gmdtObj = ds;
-        gmdtObj[name].current_value = value;
-        
-                                                            // setGameDataTracker(gmdtObj);//TODO remove later
-        return gmdtObj;
-    }  
-
     
     // refactored to VM - already put in vm-part
     // function changeGameDataTrackerByStatement__
@@ -212,7 +204,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
     // refactored to VM - already put in vm-part
     function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
         console.log("quick-view-conv-node : buttonConsequenceByStatementEntireArray_QV");
-        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, changeGameDataTracker, setGameDataTracker, updateRenderCounter);
+        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, updateRenderCounter);
     }
 
 
@@ -348,8 +340,9 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
                     notifyAfterReset={notifyAfterReset}
 
                     receiveGameDataObj={passInGameDataFromScreen}
-                    buttonConseqByStatement={changeGameDataTrackerByStatement}
+                    
                     buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}
+                    
                     isViewMuted={mutedViewOption}
                     fetchGameSettingsForPlaying={passInDefulatGameSettings}
                     openSettingPage={openSettingPage}

@@ -1,11 +1,14 @@
 
 
+function changeGameDataTracker(ds, name, value) {
+    let gmdtObj = ds;
+    gmdtObj[name].current_value = value;
+    
+    return gmdtObj;
+}  
 
 
-
-
-
-export function changeGameDataTrackerByStatement(ds, name, action, newVal, type, changeGameDataTracker) { //TODO later
+function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TODO later
         //TODO check if valid
         if (ds[name] === undefined) {
             return;
@@ -43,33 +46,35 @@ export function changeGameDataTrackerByStatement(ds, name, action, newVal, type,
     }
 
 
-export function buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, changeGameDataTracker, setGameDataTracker, updateRenderCounter) {
+export function buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo) {
 
     let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
     
     let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
     if (conseqMap === undefined) {
-                                                        console.log("2... conseqMap undefined.");
+                                                        console.log("... conseqMap undefined.");
         return;
     }
-                                                      //  console.log("2conseqMap: ", conseqMap, ", len = ", len);
+                                                      //  console.log("conseqMap: ", conseqMap, ", len = ", len);
     let res = gameDataTracker;
-                                                //        console.log("\nchange-by-stmt-arr: before - ", res);
+
+                                                       console.log("\nchange-by-stmt-arr: before - ", res);
     Object.keys(conseqMap).map((currKey) => {
 
         let name = conseqMap[currKey]["name"];  
         let action = conseqMap[currKey]["action"];  
         let newVal = conseqMap[currKey]["newVal"];  
         let type = conseqMap[currKey]["type"];  
-                                                        console.log("2calling change-by-stmt, ", conseqMap[currKey]);
+                                                        console.log("calling change-by-stmt, ", conseqMap[currKey]);
                               
-        res = changeGameDataTrackerByStatement(res, name, action, newVal, type, changeGameDataTracker);
+        res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
 
     });
 
                                                         console.log("\nchange-by-stmt-arr: after - ", res);
 
     setGameDataTracker(res);
-    updateRenderCounter();
+
+    refreshCompo();
     
 }
